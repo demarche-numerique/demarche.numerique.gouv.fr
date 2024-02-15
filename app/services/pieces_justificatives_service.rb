@@ -63,23 +63,6 @@ class PiecesJustificativesService
     pdfs
   end
 
-  def self.serialize_type_de_champs_as_type_pj(revision)
-    tdcs = revision.public_root_type_de_champs.filter { |type_champ| type_champ.piece_justificative? && type_champ.old_pj.present? }
-    tdcs.map.with_index do |type_champ, order_place|
-      description = type_champ.description
-      if /^(?<original_description>.*?)(?:[\r\n]+)Récupérer le formulaire vierge pour mon dossier : (?<lien_demarche>http.*)$/m =~ description
-        description = original_description
-      end
-      {
-        id: type_champ.old_pj[:stable_id],
-        libelle: type_champ.libelle,
-        description: description,
-        order_place: order_place,
-        lien_demarche: lien_demarche,
-      }
-    end
-  end
-
   def acl_for_dossier_export(procedure)
     case @user_profile
     when Expert
