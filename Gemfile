@@ -5,7 +5,6 @@ source 'https://rubygems.org'
 gem 'rails', '~> 8.1.3' # allows update to security fixes at any time
 
 gem 'aasm'
-gem 'active_model_serializers'
 gem 'activestorage-openstack'
 gem 'active_storage_validations'
 gem 'addressable'
