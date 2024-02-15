@@ -48,7 +48,6 @@ class Procedure < ApplicationRecord
   has_many :replaced_procedures, -> { with_discarded }, inverse_of: :replaced_by_procedure, class_name: "Procedure",
   foreign_key: "replaced_by_procedure_id", dependent: :nullify
 
-  has_one :module_api_carto, dependent: :destroy
   has_many :attestation_templates, dependent: :destroy
   has_one :attestation_template_v1, -> { AttestationTemplate.v1 }, dependent: :destroy, class_name: "AttestationTemplate", inverse_of: :procedure
 
@@ -210,7 +209,6 @@ class Procedure < ApplicationRecord
       .where(hidden_at: ...1.month.ago)
   end
 
-  scope :for_api, -> { with_active_revision.includes(:administrateurs, :module_api_carto) }
   scope :for_api_v2, -> { with_active_revision.includes(administrateurs: :user) }
   scope :with_active_revision, -> { includes(draft_revision: :revision_type_de_champs, published_revision: :revision_type_de_champs) }
 
@@ -434,10 +432,6 @@ class Procedure < ApplicationRecord
 
   def dossier_can_transition_to_en_construction?
     accepts_new_dossiers? || depubliee?
-  end
-
-  def expose_legacy_carto_api?
-    module_api_carto&.use_api_carto? && module_api_carto&.migrated?
   end
 
   def declarative?
