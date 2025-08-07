@@ -360,8 +360,8 @@ fr:
         want_to_withdraw_permission: "Souhaitez-vous supprimer l’accès invité de %{email} ?"
         edit_dossier_html:
           zero: '<p class="fr-my-2w"><em>Aucun invité ne peut voir et modifier ce dossier actuellement.</em></p>'
-          one: '<h3 class="fr-h6 fr-mt-2w fr-mb-1w">1 personne invitée</h3>'
-          other: '<h3 class="fr-h6 fr-mt-2w fr-mb-1w">%{count} personnes invitées</h3>'
+          one: '<h2 class="fr-h6 fr-mt-2w fr-mb-1w">1 personne invitée</h2>'
+          other: '<h2 class="fr-h6 fr-mt-2w fr-mb-1w">%{count} personnes invitées</h2>'
         submit_dossier_yourself: "Une fois le dossier complet, vous devrez le déposer vous-même."
     pagination:
       next: Suivant
