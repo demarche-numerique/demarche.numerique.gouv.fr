@@ -20,7 +20,7 @@
     %p.fr-highlight.fr-text--sm= t('asterisk_html', scope: [:utils])
 
     - if invite.errors.any?
-      %p.fr-alert.fr-alert--error.fr-alert--sm.fr-mb-3w
+      %p.fr-alert.fr-alert--error.fr-alert--sm.fr-mb-3w{ role: 'alert', tabindex: '-1', data: { controller: 'autofocus' } }
         - invite.errors.full_messages.each do |msg|
           = msg
 
