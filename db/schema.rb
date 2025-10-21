@@ -1129,6 +1129,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_07_13_000000) do
     t.datetime "hidden_at_as_template", precision: nil
     t.boolean "hide_instructeurs_email", default: false, null: false
     t.boolean "instructeurs_can_edit_dossiers", default: false, null: false
+    t.string "identity_kind"
     t.boolean "instructeurs_self_management_enabled", default: false
     t.boolean "juridique_required", default: true
     t.string "libelle"
