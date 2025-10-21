@@ -329,6 +329,11 @@ type AnnuaireEducationChampDescriptor implements ChampDescriptor {
   type: TypeDeChamp! @deprecated(reason: "Utilisez le champ `__typename` à la place.")
 }
 
+type Anonymous implements Demandeur {
+  email: String!
+  id: ID!
+}
+
 type Association {
   dateCreation: ISO8601Date
   dateDeclaration: ISO8601Date
@@ -1568,8 +1573,13 @@ type DemarcheDescriptor {
   Durée de conservation des dossiers en mois.
   """
   dureeConservationDossiers: Int!
-  forIndividual: Boolean!
+  forIndividual: Boolean! @deprecated(reason: "Utilisez le champ `identityKind` à la place.")
   id: ID!
+
+  """
+  Type d'identité requis pour la démarche.
+  """
+  identityKind: IdentityKind!
   logo: File
 
   """
@@ -3949,6 +3959,23 @@ type IbanChampDescriptor implements ChampDescriptor {
   Type de la valeur du champ.
   """
   type: TypeDeChamp! @deprecated(reason: "Utilisez le champ `__typename` à la place.")
+}
+
+enum IdentityKind {
+  """
+  Anonyme
+  """
+  anonymous
+
+  """
+  Personne physique
+  """
+  individual
+
+  """
+  Personne morale
+  """
+  personne_morale
 }
 
 type IntegerColumn implements Column {

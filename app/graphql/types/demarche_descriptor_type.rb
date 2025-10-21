@@ -8,6 +8,12 @@ module Types
       argument :id, ID, "ID de la démarche.", required: false
     end
 
+    class IdentityKind < Types::BaseEnum
+      value(:individual, "Personne physique")
+      value(:personne_morale, "Personne morale")
+      value(:anonymous, "Anonyme")
+    end
+
     description "Une démarche (métadonnées)
 Ceci est une version abrégée du type `Demarche`, qui n’expose que les métadonnées.
 Cela évite l’accès récursif aux dossiers."
@@ -18,7 +24,8 @@ Cela évite l’accès récursif aux dossiers."
     field :description, String, "Description de la démarche.", null: false
     field :state, Types::DemarcheType::DemarcheState, "État de la démarche.", null: false
     field :declarative, Types::DemarcheType::DossierDeclarativeState, "Pour une démarche déclarative, état cible des dossiers à valider automatiquement", null: true
-    field :for_individual, Boolean, null: false
+    field :for_individual, Boolean, null: false, deprecation_reason: "Utilisez le champ `identityKind` à la place."
+    field :identity_kind, IdentityKind, "Type d'identité requis pour la démarche.", null: false
 
     field :date_creation, GraphQL::Types::ISO8601DateTime, "Date de la création.", null: false
     field :date_publication, GraphQL::Types::ISO8601DateTime, "Date de la publication.", null: true
@@ -53,6 +60,10 @@ Cela évite l’accès récursif aux dossiers."
     field :deliberation, Types::File, "fichier contenant le cadre juridique", null: true, extensions: [{ Extensions::Attachment => { root: :procedure } }]
 
     field :dossiers_count, Int, "nb de dossiers déposés", null: false, internal: true
+
+    def identity_kind
+      procedure.identity_kind
+    end
 
     def service
       dataloader.with(Sources::Association, :service).load(procedure)
@@ -130,7 +141,7 @@ Cela évite l’accès récursif aux dossiers."
     end
 
     def for_individual
-      procedure.for_individual
+      procedure.for_individual?
     end
 
     def date_creation
