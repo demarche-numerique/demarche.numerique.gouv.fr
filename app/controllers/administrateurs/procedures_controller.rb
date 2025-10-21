@@ -36,7 +36,7 @@ module Administrateurs
     end
 
     def new
-      @procedure ||= Procedure.new(for_individual: true, no_gender: true)
+      @procedure ||= Procedure.new(identity_kind: 'individual', no_gender: true)
     end
 
     SIGNIFICANT_DOSSIERS_THRESHOLD = 30
@@ -583,7 +583,7 @@ module Administrateurs
       procedures_result = procedures_result.where(published_at: filter.from_publication_date..) if filter.from_publication_date.present?
       procedures_result = procedures_result.where(service: service) if filter.service_siret.present?
       procedures_result = procedures_result.where(service: services) if services
-      procedures_result = procedures_result.where(for_individual: filter.for_individual) if filter.for_individual.present?
+      procedures_result = procedures_result.where(identity_kind: filter.kind_usagers) if filter.kind_usagers.present?
       procedures_result = procedures_result.where('unaccent(libelle) ILIKE unaccent(?)', "%#{filter.libelle}%") if filter.libelle.present?
       procedures_sql = procedures_result.to_sql
 
@@ -644,7 +644,7 @@ module Administrateurs
       permited_params = if @procedure&.locked?
         params.require(:procedure).permit(*editable_params)
       else
-        params.require(:procedure).permit(*editable_params, :for_individual)
+        params.require(:procedure).permit(*editable_params, :identity_kind)
       end
       if permited_params[:auto_archive_on].present?
         permited_params[:auto_archive_on] = Date.parse(permited_params[:auto_archive_on]) + 1.day

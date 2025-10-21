@@ -19,7 +19,7 @@
     .fr-col{ data: { controller: "lazy-modal" } }
       = render Dsfr::CalloutComponent.new(title: nil) do |c|
         - c.with_html_body do
-          - if @procedure.for_individual
+          - if @procedure.for_individual?
             %p.fr-callout__text
               = t('administrateurs.procedures.champs.callout_personne_physique_html')
             %ul
@@ -29,7 +29,7 @@
             %p.fr-callout__text.fr-text--bold
               = t('administrateurs.procedures.champs.callout_no_ask_twice')
 
-          - else
+          - elsif @procedure.for_personne_morale?
             %p.fr-callout__text
               = t('administrateurs.procedures.champs.callout_personne_morale_html')
             %p.fr-callout__text.fr-text--bold

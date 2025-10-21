@@ -18,8 +18,8 @@ describe 'Creating a new procedure', js: true do
 
     expect(page).to have_current_path(new_from_existing_admin_procedures_path)
     click_on 'Créer une nouvelle démarche de zéro'
-    expect(find('#procedure_for_individual_true')).to be_checked
-    expect(find('#procedure_for_individual_false')).not_to be_checked
+    expect(find('#procedure_identity_kind_individual')).to be_checked
+    expect(find('#procedure_identity_kind_personne_morale')).not_to be_checked
     fill_in 'procedure_duree_conservation_dossiers_dans_ds', with: '3'
     click_on 'Créer la démarche'
 

@@ -45,13 +45,6 @@ class ProceduresFilter
     kind_usagers&.include?(kind_usager)
   end
 
-  def for_individual
-    kind_usagers = params[:kind_usagers]
-    if kind_usagers.present?
-      kind_usagers.map { |k| k == "individual" }.uniq
-    end
-  end
-
   def template?
     ActiveRecord::Type::Boolean.new.cast(params[:template])
   end

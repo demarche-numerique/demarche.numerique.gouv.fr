@@ -256,8 +256,8 @@ describe Administrateurs::ProceduresController, type: :controller do
     end
 
     context 'only for individual' do
-      let!(:procedure) { create(:procedure, :published, for_individual: true) }
-      let!(:procedure2) { create(:procedure, :published, for_individual: false) }
+      let!(:procedure) { create(:procedure, :published, identity_kind: 'individual') }
+      let!(:procedure2) { create(:procedure, :published, identity_kind: 'personne_morale') }
       it 'returns procedures with specifi type of usager' do
         get :all, params: { kind_usagers: ['individual'] }
         expect(assigns(:procedures).any? { |p| p.id == procedure.id }).to be_truthy
@@ -266,8 +266,8 @@ describe Administrateurs::ProceduresController, type: :controller do
     end
 
     context 'only for entreprise' do
-      let!(:procedure) { create(:procedure, :published, for_individual: true) }
-      let!(:procedure2) { create(:procedure, :published, for_individual: false) }
+      let!(:procedure) { create(:procedure, :published, identity_kind: 'individual') }
+      let!(:procedure2) { create(:procedure, :published, identity_kind: 'personne_morale') }
       it 'returns procedures with specifi type of usager' do
         get :all, params: { kind_usagers: ['personne_morale'] }
         expect(assigns(:procedures).any? { |p| p.id == procedure.id }).to be_falsey
@@ -276,8 +276,8 @@ describe Administrateurs::ProceduresController, type: :controller do
     end
 
     context 'for individual and entreprise' do
-      let!(:procedure) { create(:procedure, :published, for_individual: true) }
-      let!(:procedure2) { create(:procedure, :published, for_individual: false) }
+      let!(:procedure) { create(:procedure, :published, identity_kind: 'individual') }
+      let!(:procedure2) { create(:procedure, :published, identity_kind: 'personne_morale') }
       it 'returns procedures with specifi type of usager' do
         get :all, params: { kind_usagers: ['individual', 'personne_morale'] }
         expect(assigns(:procedures).any? { |p| p.id == procedure.id }).to be_truthy
@@ -666,7 +666,7 @@ describe Administrateurs::ProceduresController, type: :controller do
           expect(subject.libelle).to eq procedure_params[:libelle]
           expect(subject.description).to eq procedure_params[:description]
           expect(subject.organisation).to eq procedure_params[:organisation]
-          expect(subject.for_individual).not_to eq procedure_params[:for_individual]
+          expect(subject.identity_kind).not_to eq procedure_params[:identity_kind]
         end
       end
     end
