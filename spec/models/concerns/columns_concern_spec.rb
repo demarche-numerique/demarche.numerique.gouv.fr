@@ -231,7 +231,8 @@ describe ColumnsConcern do
   end
 
   describe 'export' do
-    let(:procedure) { create(:procedure_with_dossiers, :published, types_de_champ_public:, for_individual:) }
+    let(:procedure) { create(:procedure_with_dossiers, :published, identity_kind:, types_de_champ_public:) }
+    let(:identity_kind) { for_individual ? 'individual' : 'personne_morale' }
     let(:for_individual) { true }
     let(:types_de_champ_public) do
       [
@@ -321,7 +322,7 @@ describe ColumnsConcern do
     end
 
     describe '#dossier_columns_for_export' do
-      let(:procedure) { create(:procedure_with_dossiers, :routee, :published, types_de_champ_public:, for_individual:) }
+      let(:procedure) { create(:procedure_with_dossiers, :routee, :published, types_de_champ_public:, identity_kind:) }
 
       it "returns all dossier columns" do
         expected = [

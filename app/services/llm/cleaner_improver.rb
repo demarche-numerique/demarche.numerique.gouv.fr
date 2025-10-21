@@ -360,14 +360,14 @@ module LLM
     end
 
     def before_schema(procedure)
-      if procedure.for_individual
+      if procedure.for_individual?
         <<~TEXT.strip
           - Civilité (M./Mme)
           - Nom
           - Prénom
           - Email
         TEXT
-      else
+      elsif procedure.for_personne_morale?
         <<~TEXT.strip
           - Email
           - SIRET
@@ -387,6 +387,8 @@ module LLM
           - SIRET du siège social
           - Adresse normalisée complète de l'établissement : numéro et nom de voie, complément d'adresse, code postal, localité (commune), code INSEE de la localité
         TEXT
+      else
+        ''
       end
     end
   end

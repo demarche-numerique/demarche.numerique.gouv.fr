@@ -90,7 +90,7 @@ RSpec.describe ProcessStalledDeclarativeDossierJob, type: :job do
       end
 
       context 'for entreprise' do
-        let(:procedure) { create(:procedure, :published, :with_instructeur, for_individual: false, declarative_with_state: state) }
+        let(:procedure) { create(:procedure, :published, :with_instructeur, :for_personne_morale, declarative_with_state: state) }
 
         let(:dossier) { create(:dossier, :en_construction, :with_entreprise, procedure:, as_degraded_mode: false) }
 

@@ -230,7 +230,7 @@ prawn_document(page_size: "A4") do |pdf|
 
   if @procedure.for_individual?
     add_identite_individual(pdf)
-  else
+  elsif @procedure.for_personne_morale?
     add_identite_etablissement(pdf, 'Etablissement')
   end
   pdf.text "\n"

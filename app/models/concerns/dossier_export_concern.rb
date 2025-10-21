@@ -96,7 +96,7 @@ module DossierExportConcern
         ['Association date de déclaration', etablissement&.association_date_declaration],
         ['Association date de publication', etablissement&.association_date_publication],
       ]
-    else
+    elsif procedure.for_personne_morale?
       columns << ['Entreprise raison sociale', etablissement&.entreprise_raison_sociale]
     end
     if procedure.chorusable? && procedure.chorus_configuration.complete?

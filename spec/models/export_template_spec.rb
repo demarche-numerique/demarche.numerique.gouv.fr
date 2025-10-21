@@ -3,7 +3,8 @@
 describe ExportTemplate do
   let(:groupe_instructeur) { create(:groupe_instructeur, procedure:) }
   let(:export_template) { build(:export_template, groupe_instructeur:) }
-  let(:procedure) { create(:procedure, types_de_champ_public:, for_individual:) }
+  let(:procedure) { create(:procedure, types_de_champ_public:, identity_kind:) }
+  let(:identity_kind) { for_individual ? 'individual' : 'personne_morale' }
   let(:for_individual) { false }
   let(:types_de_champ_public) do
     [
@@ -116,7 +117,7 @@ describe ExportTemplate do
   end
 
   describe '#tags and #pj_tags' do
-    let(:procedure) { build(:procedure, for_individual:) }
+    let(:procedure) { build(:procedure, identity_kind:) }
 
     context 'for entreprise procedure' do
       let(:for_individual) { false }
