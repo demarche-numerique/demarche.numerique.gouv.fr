@@ -11,7 +11,7 @@ module InitiationProcedureConcern
         organisation: 'Dinum',
         cadre_juridique: "inexistant car c’est un test",
         duree_conservation_dossiers_dans_ds: 1,
-        for_individual: true,
+        identity_kind: 'individual',
         administrateurs: [administrateur]
       )
 

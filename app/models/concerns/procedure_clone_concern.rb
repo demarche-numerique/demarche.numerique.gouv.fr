@@ -21,6 +21,7 @@ module ProcedureCloneConcern
     'lien_site_web',
     'lien_notice',
     'for_individual',
+    'identity_kind',
     'auto_archive_on',
     'published_at',
     'hidden_at',
@@ -159,6 +160,7 @@ module ProcedureCloneConcern
   end
 
   def initialize_clone_defaults(procedure, admin)
+    procedure.identity_kind = procedure.identity_kind
     procedure.claim_path!(admin, SecureRandom.uuid)
     procedure.aasm_state = :brouillon
     procedure.closed_at = nil

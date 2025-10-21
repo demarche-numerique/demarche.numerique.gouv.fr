@@ -18,7 +18,7 @@ FactoryBot.define do
       # This is because saving the dossier fails when the procedure has not been saved beforehand
       # (due to some internal ActiveRecord error).
       # TODO: find a way to find the issue and just `build` the procedure.
-      procedure { create(:procedure, :published, :with_type_de_champ, :with_type_de_champ_private, for_individual: for_individual?) }
+      procedure { create(:procedure, :published, :with_type_de_champ, :with_type_de_champ_private, identity_kind: for_individual? ? 'individual' : 'personne_morale') }
     end
 
     after(:create) do |dossier, evaluator|
