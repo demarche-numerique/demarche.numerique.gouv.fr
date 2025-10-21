@@ -683,7 +683,7 @@ describe Instructeurs::DossiersController, type: :controller do
     end
 
     context 'when related etablissement is still in degraded_mode' do
-      let(:procedure) { create(:procedure, :published, for_individual: false, instructeurs: instructeurs) }
+      let(:procedure) { create(:procedure, :published, :for_personne_morale, instructeurs: instructeurs) }
       let(:dossier) { create(:dossier, :en_instruction, :with_entreprise, procedure: procedure, as_degraded_mode: true) }
 
       subject { post :terminer, params: { process_action: "accepter", procedure_id: procedure.id, dossier_id: dossier.id, statut: 'a-suivre' }, format: :turbo_stream }

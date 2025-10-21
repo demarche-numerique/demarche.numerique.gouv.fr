@@ -57,7 +57,7 @@ describe 'dossiers/show/header', type: :view do
 
   describe "identity edit" do
     context "when the identity is individual" do
-      let(:procedure) { create(:procedure, for_individual: true) }
+      let(:procedure) { create(:procedure, :for_individual) }
       let(:dossier) { create(:dossier, :with_individual, state: "brouillon", procedure: procedure) }
 
       it "display identity with an edit link" do
@@ -67,7 +67,7 @@ describe 'dossiers/show/header', type: :view do
     end
 
     context "when the identity is an enterprise" do
-      let(:procedure) { create(:procedure, for_individual: false) }
+      let(:procedure) { create(:procedure, :for_personne_morale) }
       let(:dossier) { create(:dossier, :with_entreprise, state: "brouillon", procedure: procedure) }
 
       it "display short identity with an edit siret link" do

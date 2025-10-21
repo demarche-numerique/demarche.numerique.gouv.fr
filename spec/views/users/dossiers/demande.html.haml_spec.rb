@@ -39,7 +39,7 @@ describe 'users/dossiers/demande', type: :view do
   context 'when the user is logged in with FranceConnect' do
     let(:france_connect_information) { build(:france_connect_information) }
     let(:user) { build(:user, france_connect_informations: [france_connect_information]) }
-    let(:procedure1) { create(:procedure, :with_type_de_champ, for_individual: true) }
+    let(:procedure1) { create(:procedure, :with_type_de_champ) }
     let(:dossier) { create(:dossier, procedure: procedure1, user: user) }
 
     before do

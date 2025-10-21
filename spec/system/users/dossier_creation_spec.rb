@@ -224,6 +224,28 @@ describe 'Creating a new dossier:', js: true do
         expect(page).to have_field('Numéro SIRET', with: '0000')
       end
     end
+
+    context 'when the procedure is anonymous' do
+      let(:procedure) { create(:procedure, :published, :for_anonymous, :with_service, types_de_champ_public: [{ type: :text, libelle: 'Votre demande' }]) }
+      let(:dossier) { procedure.dossiers.last }
+
+      scenario 'the user reaches the form directly and deposes a dossier without identifying' do
+        visit commencer_path(path: procedure.path)
+        click_on 'Commencer la démarche'
+
+        # no identity nor SIRET step: straight to the form
+        expect(page).to have_current_path(brouillon_dossier_path(dossier))
+        expect(dossier.autorisation_donnees).to be(true)
+
+        fill_in('Votre demande', with: 'super demande')
+        click_on 'Déposer le dossier'
+        click_on 'Accéder au dossier'
+
+        dossier.reload
+        expect(dossier.state).to eq('en_construction')
+        expect(dossier.project_champ(procedure.published_types_de_champ_public.first).value).to eq('super demande')
+      end
+    end
   end
 
   context 'when the user is not signed in' do

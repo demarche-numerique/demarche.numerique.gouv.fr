@@ -2,8 +2,8 @@
 
 describe 'users/dossiers/attestation_depot', type: :view do
   let(:user) { create(:user) }
-  let(:procedure) { create(:procedure, :published, libelle: 'Ma procédure de test', for_individual: true) }
-  let(:dossier) { create(:dossier, :en_construction, user: user, procedure: procedure, for_individual?: true) }
+  let(:procedure) { create(:procedure, :published, :for_individual, libelle: 'Ma procédure de test') }
+  let(:dossier) { create(:dossier, :en_construction, :with_individual, user: user, procedure: procedure) }
 
   before do
     sign_in user
