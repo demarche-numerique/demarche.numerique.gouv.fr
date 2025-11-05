@@ -38,22 +38,6 @@
   }
 }
 
-.autosave-retry {
-  &:disabled {
-    .autosave-retry-label {
-      display: none;
-    }
-  }
-
-  &:not(:disabled) {
-    cursor: pointer;
-
-    .autosave-retrying-label {
-      display: none;
-    }
-  }
-}
-
 // Ineligibility link: fix vertical align and underline position
 .dossier-edit-footer--ineligibilite-link {
   align-self: baseline;

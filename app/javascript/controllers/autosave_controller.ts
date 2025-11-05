@@ -24,20 +24,14 @@ const AUTOSAVE_CONDITIONAL_SPINNER_DEBOUNCE_DELAY = 200;
 // * `autosave:end` - dispatched after sucessful save
 // * `autosave:error` - dispatched when an error occures
 //
-// The controller also listens to the following events:
-// * `autosave:retry` - dispatched by `AutosaveStatusController` when the user
-// clicks the retry button in the form status bar
-//
 export class AutosaveController extends ApplicationController {
   #abortController?: AbortController;
   #latestPromise = Promise.resolve();
-  #needsRetry = false;
   #pendingPromiseCount = 0;
   #spinnerTimeoutId?: ReturnType<typeof setTimeout>;
 
   connect() {
     this.#latestPromise = Promise.resolve();
-    this.onGlobal('autosave:retry', () => this.didRequestRetry());
     this.on('change', (event) => this.onChange(event));
     this.on('input', (event) => this.onInput(event));
   }
@@ -144,14 +138,7 @@ export class AutosaveController extends ApplicationController {
     }, AUTOSAVE_CONDITIONAL_SPINNER_DEBOUNCE_DELAY);
   }
 
-  private didRequestRetry() {
-    if (this.#needsRetry) {
-      this.enqueueAutosaveWithValidationRequest();
-    }
-  }
-
   private didEnqueue() {
-    this.#needsRetry = false;
     this.globalDispatch('autosave:enqueue');
   }
 
@@ -164,7 +151,6 @@ export class AutosaveController extends ApplicationController {
   }
 
   private didFail(error: ResponseError) {
-    this.#needsRetry = true;
     this.#pendingPromiseCount -= 1;
     this.globalDispatch('autosave:error', { error });
   }

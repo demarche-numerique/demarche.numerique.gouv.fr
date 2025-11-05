@@ -1,7 +1,5 @@
 import {
   addClass,
-  disable,
-  enable,
   getConfig,
   hasClass,
   removeClass,
@@ -16,19 +14,16 @@ const {
 const AUTOSAVE_STATUS_VISIBLE_DURATION = status_visible_duration;
 
 // This is a controller we attach to the status area in the main form. It
-// coordinates notifications and will dispatch `autosave:retry` event if user
-// decides to retry after an error.
+// coordinates autosave notifications.
 //
 export class AutosaveStatusController extends ApplicationController {
-  static targets = ['idle', 'succeeded', 'failed', 'retryButton'];
+  static targets = ['idle', 'succeeded', 'failed'];
 
   declare readonly idleTarget: HTMLElement;
   declare readonly succeededTarget: HTMLElement;
   declare readonly failedTarget: HTMLElement;
-  declare readonly retryButtonTarget: HTMLButtonElement;
 
   connect(): void {
-    this.onGlobal('autosave:enqueue', () => this.didEnqueue());
     this.onGlobal('autosave:end', () => this.didSucceed());
     this.onGlobal<CustomEvent>('autosave:error', (event) =>
       this.didFail(event)
@@ -50,16 +45,7 @@ export class AutosaveStatusController extends ApplicationController {
     removeClass(autosave, 'debounced-added');
   }
 
-  onClickRetryButton() {
-    this.globalDispatch('autosave:retry');
-  }
-
-  private didEnqueue() {
-    disable(this.retryButtonTarget);
-  }
-
   private didSucceed() {
-    enable(this.retryButtonTarget);
     this.setState('succeeded');
     this.debounce(this.hideSucceededStatus, AUTOSAVE_STATUS_VISIBLE_DURATION);
   }
@@ -74,7 +60,6 @@ export class AutosaveStatusController extends ApplicationController {
       return;
     }
 
-    enable(this.retryButtonTarget);
     this.setState('failed');
 
     const shouldLogError = !error.response || error.response.status != 0; // ignore timeout errors
