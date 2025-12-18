@@ -1,0 +1,16 @@
+%p= t(:hello, scope: [:views, :shared, :greetings])
+
+%p
+  = t(".email_body.html",
+      count: @groups.count,
+      groupe: @groups.first.label,
+      email: @current_instructeur_email,
+      procedure: @procedure.libelle,
+      procedure_url: instructeur_procedure_url(@procedure))
+
+  - if @groups.count > 1
+    %ul
+      - @groups.each do |group|
+        %li= group.label
+
+= render partial: "layouts/mailers/signature"

@@ -69,4 +69,73 @@ RSpec.describe GroupeInstructeurMailer, type: :mailer do
       end
     end
   end
+
+  describe '#notify_added_instructeur_from_groupes_import' do
+    let(:procedure) { create(:procedure) }
+    let(:groupe_instructeur_1) { create(:groupe_instructeur, procedure: procedure, label: 'Groupe 1') }
+    let(:groupe_instructeur_2) { create(:groupe_instructeur, procedure: procedure, label: 'Groupe 2') }
+    let(:instructeur) { create(:instructeur, email: 'instructeur@test.fr') }
+    let(:current_instructeur_email) { 'admin@test.fr' }
+
+    subject { described_class.notify_added_instructeur_from_groupes_import(instructeur, groups, current_instructeur_email) }
+
+    context 'when assigned to one group' do
+      let(:groups) { [groupe_instructeur_1] }
+
+      it 'sends email with correct subject and content' do
+        expect(subject.to).to eq(['instructeur@test.fr'])
+        expect(subject.subject).to include('Vous avez été affecté(e) au groupe instructeur « Groupe 1 »')
+        expect(subject.subject).to include(procedure.libelle)
+        expect(subject.body).to include('Vous avez été affecté(e) au groupe instructeur « Groupe 1 »')
+        expect(subject.body).to include(procedure.libelle)
+        expect(subject.body).to include('admin@test.fr')
+      end
+    end
+
+    context 'when assigned to many groups' do
+      let(:groups) { [groupe_instructeur_1, groupe_instructeur_2] }
+
+      it 'sends email with correct subject and content for many groups' do
+        expect(subject.to).to eq(['instructeur@test.fr'])
+        expect(subject.subject).to include('Vous avez été affecté(e) à 2 groupes instructeurs')
+        expect(subject.subject).to include(procedure.libelle)
+        expect(subject.body).to include('Vous avez été affecté(e) à 2 groupes instructeurs')
+        expect(subject.body).to include('Groupe 1')
+        expect(subject.body).to include('Groupe 2')
+        expect(subject.body).to include('admin@test.fr')
+      end
+    end
+  end
+
+  describe '#confirm_and_notify_added_instructeur_from_groupes_import' do
+    let(:procedure) { create(:procedure) }
+    let(:groupe_instructeur_1) { create(:groupe_instructeur, procedure: procedure, label: 'Groupe 1') }
+    let(:groupe_instructeur_2) { create(:groupe_instructeur, procedure: procedure, label: 'Groupe 2') }
+    let(:instructeur) { create(:instructeur, email: 'instructeur@test.fr') }
+    let(:current_instructeur_email) { 'admin@test.fr' }
+
+    subject { described_class.confirm_and_notify_added_instructeur_from_groupes_import(instructeur, groups, current_instructeur_email) }
+
+    context 'when assigned to one group' do
+      let(:groups) { [groupe_instructeur_1] }
+
+      it 'sends email with correct subject and includes reset password token' do
+        expect(subject.to).to eq(['instructeur@test.fr'])
+        expect(subject.subject).to include('Vous avez été affecté(e) au groupe "Groupe 1"')
+        expect(subject.subject).to include(procedure.libelle)
+        expect(instructeur.user.reset_password_token).to be_present
+      end
+    end
+
+    context 'when assigned to many groups' do
+      let(:groups) { [groupe_instructeur_1, groupe_instructeur_2] }
+
+      it 'sends email with correct subject for many groups and includes reset password token' do
+        expect(subject.to).to eq(['instructeur@test.fr'])
+        expect(subject.subject).to include('Vous avez été affecté(e) à 2 groupes')
+        expect(subject.subject).to include(procedure.libelle)
+        expect(instructeur.user.reset_password_token).to be_present
+      end
+    end
+  end
 end

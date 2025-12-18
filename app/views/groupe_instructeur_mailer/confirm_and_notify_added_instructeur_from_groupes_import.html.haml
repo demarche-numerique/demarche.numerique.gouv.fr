@@ -1,0 +1,30 @@
+%p= t(:hello, scope: [:views, :shared, :greetings])
+
+%p
+  = t(".email_body.html",
+      count: @groups.count,
+      groupe: @groups.first.label,
+      email: @current_instructeur_email,
+      procedure: @procedure.libelle,
+      procedure_url: instructeur_procedure_url(@procedure))
+
+  %ul
+    - @groups.each do |group|
+      %li= group.label
+%p
+  Votre compte a été créé pour l’adresse électronique
+  %strong #{@instructeur.email}.
+
+%p
+  Pour l’activer, cliquez sur le lien suivant :
+  = link_to(users_activate_url(token: @reset_password_token), users_activate_url(token: @reset_password_token))
+
+%p
+  Lors de vos prochaines connexions sur #{APPLICATION_NAME} cliquez sur le bouton « Se connecter » positionné sur le haut de page ou bien sur ce lien : 
+  = link_to new_user_session_url, new_user_session_url
+
+%p
+  Nous vous invitons aussi à consulter notre tutoriel à destination des nouveaux instructeurs :
+  = link_to(INSTRUCTEUR_TUTORIAL_URL, INSTRUCTEUR_TUTORIAL_URL)
+
+= render partial: "layouts/mailers/signature"

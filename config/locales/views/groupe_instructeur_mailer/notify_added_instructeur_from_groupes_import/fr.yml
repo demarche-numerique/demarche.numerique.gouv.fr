@@ -1,0 +1,7 @@
+fr:
+  groupe_instructeur_mailer:
+    notify_added_instructeur_from_groupes_import:
+      email_body:
+        html:
+          one: "Vous avez été affecté(e) au groupe instructeur « %{groupe} » de la démarche « <a href=\"%{procedure_url}\">%{procedure}</a> » par %{email}."
+          other: "Vous avez été affecté(e) à %{count} groupes instructeurs de la démarche « <a href=\"%{procedure_url}\">%{procedure}</a> » par %{email} :"

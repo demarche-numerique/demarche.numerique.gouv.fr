@@ -349,14 +349,13 @@ module Administrateurs
         if csv_content.first.has_key?("groupe") && csv_content.first.has_key?("email")
           groupes_emails = csv_content.map { |r| r.to_h.slice('groupe', 'email') }
 
-          added_instructeurs_by_group, invalid_emails = InstructeursImportService.import_groupes(procedure, groupes_emails)
+          groupes_by_instructeur, invalid_emails = InstructeursImportService.import_groupes(procedure, groupes_emails)
 
-          added_instructeurs_by_group.each do |groupe, added_instructeurs|
-            if added_instructeurs.present?
-              notify_instructeurs(groupe, added_instructeurs)
-            end
-            flash_message_for_import(invalid_emails)
+          groupes_by_instructeur.each do |instructeur, groupes|
+            notify_instructeur_after_groupes_import(instructeur, groupes)
           end
+
+          flash_message_for_import(invalid_emails)
 
         elsif csv_content.first.has_key?("email") && !csv_content.map(&:to_h).first.keys.many? && procedure.groupe_instructeurs.one?
           instructors_emails = csv_content.map(&:to_h)
@@ -528,6 +527,20 @@ module Administrateurs
         GroupeInstructeurMailer
           .notify_added_instructeurs(groupe, known_instructeurs, current_administrateur.email)
           .deliver_later
+      end
+    end
+
+    def notify_instructeur_after_groupes_import(instructeur, groupes)
+      if instructeur.user.email_verified_at
+        GroupeInstructeurMailer
+          .notify_added_instructeur_from_groupes_import(instructeur, groupes, current_administrateur.email)
+          .deliver_later
+      else
+        if instructeur.should_receive_email_activation?
+          GroupeInstructeurMailer
+            .confirm_and_notify_added_instructeur_from_groupes_import(instructeur, groupes, current_administrateur.email)
+            .deliver_later
+        end
       end
     end
   end

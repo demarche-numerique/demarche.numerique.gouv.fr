@@ -31,15 +31,19 @@ class InstructeursImportService
       .where(label: target_labels)
       .index_with { emails_in_groupe[_1.label] }
 
-    added_instructeurs_by_group = []
+    groupes_by_instructeur = Hash.new { |h, k| h[k] = [] }
 
     target_groupes.each do |groupe_instructeur, emails|
       added_instructeurs, invalid_emails = groupe_instructeur.add_instructeurs(emails:)
-      added_instructeurs_by_group << [groupe_instructeur, added_instructeurs]
+
+      added_instructeurs.each do |instructeur|
+        groupes_by_instructeur[instructeur] << groupe_instructeur
+      end
+
       errors << invalid_emails
     end
 
-    [added_instructeurs_by_group, errors.flatten]
+    [groupes_by_instructeur, errors.flatten]
   end
 
   def self.import_instructeurs(procedure, emails)
