@@ -5,6 +5,7 @@ module Instructeurs
     include EmailSanitizableConcern
     include GroupeInstructeursSignatureConcern
     include InstructeurProcedureConcern
+    include InstructeurEmailNotificationConcern
     before_action :ensure_allowed!
 
     ITEMS_PER_PAGE = 25
@@ -29,7 +30,7 @@ module Instructeurs
       emails, maybe_typos = check_if_typo(emails)
       errors = Array.wrap(generate_emails_suggestions_message(maybe_typos))
 
-      instructeurs, invalid_emails = groupe_instructeur.add_instructeurs(emails:)
+      added_instructeurs, invalid_emails = groupe_instructeur.add_instructeurs(emails:)
 
       if invalid_emails.present?
         errors += [
@@ -39,26 +40,16 @@ module Instructeurs
         ]
       end
 
-      if instructeurs.present?
+      if added_instructeurs.present?
         flash[:notice] = if procedure.routing_enabled?
-          t('.assignment', count: instructeurs.size,
-            emails: instructeurs.map(&:email).join(', '),
+          t('.assignment', count: added_instructeurs.size,
+            emails: added_instructeurs.map(&:email).join(', '),
             groupe: groupe_instructeur.label)
         else
           "Les instructeurs ont bien été affectés à la démarche"
         end
 
-        known_instructeurs, not_verified_instructeurs = instructeurs.partition { |instructeur| instructeur.user.email_verified_at }
-
-        not_verified_instructeurs.filter(&:should_receive_email_activation?).each do
-          GroupeInstructeurMailer.confirm_and_notify_added_instructeur(_1, groupe_instructeur, current_instructeur.email).deliver_later
-        end
-
-        if known_instructeurs.present?
-          GroupeInstructeurMailer
-            .notify_added_instructeurs(groupe_instructeur, known_instructeurs, current_instructeur.email)
-            .deliver_later
-        end
+        notify_instructeurs(groupe_instructeur, added_instructeurs, current_instructeur)
       end
 
       @procedure = procedure

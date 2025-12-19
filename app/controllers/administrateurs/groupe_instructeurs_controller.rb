@@ -7,6 +7,7 @@ module Administrateurs
     include Logic
     include GroupeInstructeursSignatureConcern
     include CsvParsingConcern
+    include InstructeurEmailNotificationConcern
 
     before_action :ensure_not_super_admin!, only: [:add_instructeur]
 
@@ -246,7 +247,7 @@ module Administrateurs
       emails, maybe_typos = check_if_typo(emails)
       errors = Array.wrap(generate_emails_suggestions_message(maybe_typos))
 
-      instructeurs, invalid_emails = groupe_instructeur.add_instructeurs(emails:)
+      added_instructeurs, invalid_emails = groupe_instructeur.add_instructeurs(emails:)
 
       if invalid_emails.present?
         errors += [
@@ -256,27 +257,17 @@ module Administrateurs
         ]
       end
 
-      if instructeurs.present?
+      if added_instructeurs.present?
         flash[:notice] = if procedure.routing_enabled?
           t('.assignment',
-            count: instructeurs.size,
-            emails: instructeurs.map(&:email).join(', '),
+            count: added_instructeurs.size,
+            emails: added_instructeurs.map(&:email).join(', '),
             groupe: groupe_instructeur.label)
         else
           "Les instructeurs ont bien été affectés à la démarche"
         end
 
-        known_instructeurs, not_verified_instructeurs = instructeurs.partition { |instructeur| instructeur.user.email_verified_at }
-
-        not_verified_instructeurs.filter(&:should_receive_email_activation?).each do
-          GroupeInstructeurMailer.confirm_and_notify_added_instructeur(_1, groupe_instructeur, current_administrateur.email).deliver_later
-        end
-
-        if known_instructeurs.present?
-          GroupeInstructeurMailer
-            .notify_added_instructeurs(groupe_instructeur, known_instructeurs, current_administrateur.email)
-            .deliver_later
-        end
+        notify_instructeurs(groupe_instructeur, added_instructeurs, current_administrateur)
       end
 
       flash[:alert] = errors.join(". ") if !errors.empty?
@@ -362,7 +353,7 @@ module Administrateurs
 
           added_instructeurs, invalid_emails = InstructeursImportService.import_instructeurs(procedure, instructors_emails)
           if added_instructeurs.present?
-            notify_instructeurs(groupe_instructeur, added_instructeurs)
+            notify_instructeurs(groupe_instructeur, added_instructeurs, current_administrateur)
           end
           flash_message_for_import(invalid_emails)
         else
@@ -515,32 +506,6 @@ module Administrateurs
           .groupe_instructeurs
           .find_or_create_by(label: label)
           .update(instructeurs: [current_administrateur.instructeur], routing_rule:)
-      end
-    end
-
-    def notify_instructeurs(groupe, added_instructeurs)
-      known_instructeurs, new_instructeurs = added_instructeurs.partition { |instructeur| instructeur.user.email_verified_at }
-
-      new_instructeurs.each { GroupeInstructeurMailer.confirm_and_notify_added_instructeur(_1, groupe, current_administrateur.email).deliver_later }
-
-      if known_instructeurs.present?
-        GroupeInstructeurMailer
-          .notify_added_instructeurs(groupe, known_instructeurs, current_administrateur.email)
-          .deliver_later
-      end
-    end
-
-    def notify_instructeur_after_groupes_import(instructeur, groupes)
-      if instructeur.user.email_verified_at
-        GroupeInstructeurMailer
-          .notify_added_instructeur_from_groupes_import(instructeur, groupes, current_administrateur.email)
-          .deliver_later
-      else
-        if instructeur.should_receive_email_activation?
-          GroupeInstructeurMailer
-            .confirm_and_notify_added_instructeur_from_groupes_import(instructeur, groupes, current_administrateur.email)
-            .deliver_later
-        end
       end
     end
   end
