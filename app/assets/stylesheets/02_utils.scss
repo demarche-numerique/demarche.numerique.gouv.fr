@@ -186,6 +186,10 @@
   vertical-align: middle;
 }
 
+.border-grey {
+  border: 1px solid var(--border-default-grey);
+}
+
 .border-background-contrast-grey {
   border: 3px solid var(--background-contrast-grey);
 }
