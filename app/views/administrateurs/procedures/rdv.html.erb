@@ -1,0 +1,70 @@
+<%= render partial: 'administrateurs/breadcrumbs',
+  locals: { steps: [['Démarches', admin_procedures_back_path(@procedure)],
+                    [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)],
+                    ['Prise de rendez-vous']] } %>
+
+<div class="fr-container">
+  <div class="fr-grid-row">
+    <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
+      <h1 class="fr-h2">Prise de rendez-vous</h1>
+
+      <p>
+        Cette fonctionnalité permet aux instructeurs de proposer un rendez-vous aux usagers depuis l'onglet « Rendez-vous » de leur dossier (via le service&nbsp;<strong>RDV Service Public</strong>
+        ).
+      </p>
+      <p>
+        En savoir plus sur la <a href="https://doc.demarches-simplifiees.fr/pour-aller-plus-loin/prise-de-rdv" target="_blank">prise de rendez-vous</a>.
+      </p>
+      <% if current_administrateur.instructeur.rdv_connection.nil? %>
+        <%= render Dsfr::CalloutComponent.new(title: nil) do |c| %>
+          <% c.with_body do %>
+            <p>
+              Pour activer cette fonctionnalité, vous devez commencer par connecter votre compte <strong>RDV Service Public</strong> à votre compte Démarches Simplifiées.
+            </p>
+            <%= form_tag('/auth/rdvservicepublic', method: 'post', data: {turbo: false}) do %>
+              <button class="fr-btn" type="submit">
+                Connecter RDV Service Public
+                <span class="fr-ml-1w fr-icon-external-link-line" aria-hidden="true"></span>
+              </button>
+            <% end %>
+          <% end %>
+        <% end %>
+
+      <% else %>
+        <%= render Dsfr::CalloutComponent.new(title: "Accès à la fonctionnalité par les instructeurs") do |c| %>
+          <% c.with_body do %>
+            <p>
+              Pour utiliser cette fonctionnalité, les instructeurs doivent être
+              <strong>ajoutés dans votre configuration</strong>
+              du service RDV Service Public.
+            </p>
+            <%= link_to "Vérifier ma configuration dans RDV Service Public", RdvService.rdv_sp_org_config_url, class: 'fr-btn', target: '_blank' %>
+          <% end %>
+        <% end %>
+
+        <div class="fr-mb-6w">
+          <%= turbo_frame_tag "rdv-connection-info", loading: :lazy, src: instructeur_rdv_connections_path(redirect_path: rdv_admin_procedure_path(@procedure)) %>
+        </div>
+
+        <ul class="fr-toggle__list">
+          <li>
+            <%= form_for(@procedure,
+              method: :patch,
+              url: rdv_admin_procedure_path(@procedure),
+              data: { controller: 'autosubmit', turbo: 'true' }) do |f| %>
+
+              <%= render Dsfr::ToggleComponent.new(form: f,
+                target: :rdv_enabled,
+                title: "Autoriser les instructeurs à prendre des rendez-vous avec les usagers",
+                hint: "Les instructeurs pourront configurer le rendez-vous via le site de RDV Service Public : date et horaire, type de rendez-vous (téléphone, visioconférence, présentiel)",
+                opt: { "checked" => @procedure.rdv_enabled? },
+                extra_class_names: "") %>
+            <% end %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render Procedure::FixedFooterComponent.new(procedure: @procedure, extra_class_names: 'fr-col-offset-md-2 fr-col-md-8' ) %>
