@@ -27,7 +27,7 @@
             .cell
               .flex.align-center
                 = form.label :libelle, "Libellé du champ", class: 'flex-grow', for: dom_id(type_de_champ, :libelle)
-                - if can_be_mandatory?
+                - if mandatory_configurable?
                   .cell.flex.align-center
                     = form.check_box :mandatory, class: 'small-margin small', id: dom_id(type_de_champ, :mandatory)
                     = form.label :mandatory, "Champ obligatoire", for: dom_id(type_de_champ, :mandatory)
@@ -282,6 +282,9 @@
 
     - if type_de_champ.referentiel?
       = render(TypesDeChampEditor::InfoReferentielComponent.new(procedure:, type_de_champ:))
+
+    - if type_de_champ.quotient_familial?
+      = render(TypesDeChampEditor::QuotientFamilialComponent.new())
 
     - if type_de_champ.repetition?
       .flex.justify-start.section.fr-ml-1w

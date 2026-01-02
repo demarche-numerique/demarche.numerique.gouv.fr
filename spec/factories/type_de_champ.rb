@@ -216,6 +216,9 @@ FactoryBot.define do
     factory :type_de_champ_rnf do
       type_champ { TypeDeChamp.type_champs.fetch(:rnf) }
     end
+    factory :type_de_champ_quotient_familial do
+      type_champ { TypeDeChamp.type_champs.fetch(:quotient_familial) }
+    end
     factory :type_de_champ_repetition do
       type_champ { TypeDeChamp.type_champs.fetch(:repetition) }
 

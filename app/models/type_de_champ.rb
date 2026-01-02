@@ -18,8 +18,9 @@ class TypeDeChamp < ApplicationRecord
   PIECES_JOINTES = :pieces_jointes
   CHOICE = :choice
   REFERENTIEL_EXTERNE = :referentiel_externe
+  FRANCE_CONNECT = :france_connect
 
-  CATEGORIES = [STRUCTURE, ETAT_CIVIL, LOCALISATION, PAIEMENT_IDENTIFICATION, STANDARD, PIECES_JOINTES, CHOICE, REFERENTIEL_EXTERNE]
+  CATEGORIES = [STRUCTURE, ETAT_CIVIL, LOCALISATION, PAIEMENT_IDENTIFICATION, STANDARD, PIECES_JOINTES, CHOICE, REFERENTIEL_EXTERNE, FRANCE_CONNECT]
 
   TYPE_DE_CHAMP_TO_CATEGORIE = {
     referentiel: REFERENTIEL_EXTERNE,
@@ -63,6 +64,7 @@ class TypeDeChamp < ApplicationRecord
     pole_emploi: REFERENTIEL_EXTERNE,
     mesri: REFERENTIEL_EXTERNE,
     cojo: REFERENTIEL_EXTERNE,
+    quotient_familial: FRANCE_CONNECT,
   }
 
   enum :type_champ, {
@@ -107,6 +109,7 @@ class TypeDeChamp < ApplicationRecord
     epci: 'epci',
     cojo: 'cojo',
     referentiel: 'referentiel',
+    quotient_familial: 'quotient_familial',
   }
 
   enum :nature, {
@@ -325,6 +328,7 @@ class TypeDeChamp < ApplicationRecord
     return if mandatory_changed?
 
     self.mandatory = false if non_fillable?
+    self.mandatory = true if must_be_mandatory?
   end
 
   def only_present_on_draft?
@@ -403,6 +407,12 @@ class TypeDeChamp < ApplicationRecord
     type_champ.in?([
       TypeDeChamp.type_champs.fetch(:header_section),
       TypeDeChamp.type_champs.fetch(:explication),
+    ])
+  end
+
+  def must_be_mandatory?
+    type_champ.in?([
+      TypeDeChamp.type_champs.fetch(:quotient_familial),
     ])
   end
 

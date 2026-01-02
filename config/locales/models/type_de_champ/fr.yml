@@ -13,6 +13,7 @@ fr:
           pieces_jointes: 'Pièces jointes'
           choice: 'Choix'
           referentiel_externe: 'Référentiel externe'
+          france_connect: 'Champ FranceConnect'
         type_champs:
           header_section: 'Titre de section'
           repetition: 'Bloc répétable'
@@ -58,6 +59,7 @@ fr:
           cojo: 'Accréditation Paris 2024'
           formatted: Champ formaté
           referentiel: 'Référentiel configurable (avancé)'
+          quotient_familial: 'Quotient familial'
         default_libelle:
           annuaire_education: Établissement
           communes: Commune

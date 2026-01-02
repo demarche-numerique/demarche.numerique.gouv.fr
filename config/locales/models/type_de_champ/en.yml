@@ -13,6 +13,7 @@ en:
           pieces_jointes: 'Attachments'
           choice: 'Choice'
           referentiel_externe: 'External referential'
+          france_connect: 'FranceConnect field'
         type_champs:
           header_section: 'Header section'
           repetition: 'Repetition'
@@ -58,6 +59,7 @@ en:
           cojo: 'Accreditation Paris 2024'
           formatted: 'Formatted field'
           referentiel: 'External data to configure (advanced)'
+          quotient_familial: 'Family quotient'
         default_libelle:
           annuaire_education: Educational institution
           dossier_link: File number submitted on %{app_name}

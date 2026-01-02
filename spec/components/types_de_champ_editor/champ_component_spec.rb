@@ -98,6 +98,16 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       end
     end
 
+    describe 'tdc quotient familial' do
+      let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :quotient_familial, libelle: 'Quotient familial (FranceConnect)' }]) }
+      let(:coordinate) { procedure.draft_revision.revision_types_de_champ_public.first }
+
+      it 'does not have mandatory configuration' do
+        expect(page).to have_css('input[type="text"][value="Quotient familial"]')
+        expect(page).not_to have_field('Champ obligatoire')
+      end
+    end
+
     describe 'select champ position' do
       let(:tdc) { procedure.draft_revision.types_de_champ.first }
       let(:coordinate) { procedure.draft_revision.revision_types_de_champ_public.first }

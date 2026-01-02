@@ -1,0 +1,24 @@
+.fr-px-2w
+  %p Ce champ permet de récupérer automatiquement et de façon fiable les données d'identité, le quotient familial CAF ou MSA et la composition familiale de l'usager connecté via FranceConnect
+
+  %hr.fr-hr
+
+  .fr-mb-1w.cell
+    %p.fake-label.fr-text--bold.flex-grow.fr-mb-1v Les données sont récupérées correctement
+    %p L'usager n'a pas besoin de transmettre un justificatif de quotient familial
+
+  %hr.fr-hr
+
+  .fr-mb-1w.cell
+    %p.fake-label.fr-text--bold.flex-grow.fr-mb-1v Les données ne sont pas récupérées ou incorrectes
+    %p.fr-mb-0 L'usager doit transmettre un justificatif de quotient familial.
+
+  .fr-notice.fr-notice--info.fr-mb-2w.fr-px-3w
+    %p
+      .fr-notice__title Information importante
+      Un champ de type "Pièce à joindre" sera affiché dans les cas suivants :
+      .notice__desc
+        %ul.fr-mt-1v.fr-ml-4w
+          %li L'usager ne s'est pas connecté via FranceConnect ;
+          %li L'usager s'est connecté via FranceConnect mais n'a pas confirmé l'exactitude des données récupérées ;
+          %li L'usager s'est connecté via FranceConnect mais la récupération de son quotient familial n'a pas fonctionné.
