@@ -502,7 +502,11 @@ Rails.application.routes.draw do
 
           resources :dossiers, only: [:show, :destroy], param: :dossier_id, path: "(:statut)/dossiers", defaults: { statut: 'a-suivre' } do
             member do
-              resources :commentaires, only: [:destroy]
+              resources :commentaires, only: [:destroy] do
+                member do
+                  post :cancel_correction
+                end
+              end
               resources :rdvs, only: [:create]
               get 'next'
               get 'previous'
