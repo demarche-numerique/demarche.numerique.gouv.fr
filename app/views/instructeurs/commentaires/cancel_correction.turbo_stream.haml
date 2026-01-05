@@ -1,0 +1,9 @@
+= turbo_stream.update @commentaire do
+  = render Dossiers::MessageComponent.new(commentaire: @commentaire, connected_user: @commentaire.instructeur || @commentaire.expert)
+
+- if current_user.instructeur?
+  = turbo_stream.replace 'header-top', partial: 'instructeurs/dossiers/header_top', locals: { dossier: @commentaire.dossier, procedure_presentation: @procedure_presentation, notifications: @notifications }
+
+  - if @notifications_sticker.present?
+    - @notifications_sticker.keys.each do |label|
+      = turbo_stream.replace "notification-sticker-#{label.to_s}", partial: 'shared/notification_sticker', locals: { label: label.to_s, notification: @notifications_sticker[label] }

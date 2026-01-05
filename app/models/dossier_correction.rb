@@ -6,7 +6,7 @@ class DossierCorrection < ApplicationRecord
 
   validates_associated :commentaire
 
-  scope :pending, -> { where(resolved_at: nil) }
+  scope :pending, -> { where(resolved_at: nil, cancelled_at: nil) }
 
   enum :reason, {
     incorrect: 'incorrect',
@@ -28,7 +28,16 @@ class DossierCorrection < ApplicationRecord
     save!
   end
 
-  def pending? = !resolved?
+  def pending? = !resolved? && !cancelled?
+
+  def cancelled?
+    cancelled_at.present?
+  end
+
+  def cancel!
+    update!(cancelled_at: Time.current)
+    resolve! unless resolved?
+  end
 
   def resolved_by_modification?
     return false if !resolved?
