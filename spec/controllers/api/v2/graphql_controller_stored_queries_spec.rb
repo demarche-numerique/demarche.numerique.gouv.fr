@@ -1484,21 +1484,46 @@ describe API::V2::GraphqlController do
     context 'dossierSupprimerMessage' do
       let(:dossier) { create(:dossier, :en_construction, :with_individual, procedure:) }
       let(:message) { create(:commentaire, dossier:, instructeur:) }
-      let(:dossier_correction) { create(:dossier_correction, dossier:, commentaire: message) }
       let(:variables) { { input: { messageId: message.to_typed_id, instructeurId: instructeur.to_typed_id } } }
       let(:operation_name) { 'dossierSupprimerMessage' }
 
       it {
         expect(message.discarded?).to be_falsey
-        expect(dossier_correction.commentaire.discarded?).to be_falsey
-        expect(dossier.pending_correction?).to be_truthy
         expect(gql_errors).to be_nil
         expect(gql_data[:dossierSupprimerMessage][:errors]).to be_nil
         expect(gql_data[:dossierSupprimerMessage][:message][:id]).to eq(message.to_typed_id)
         expect(gql_data[:dossierSupprimerMessage][:message][:discardedAt]).not_to be_nil
         expect(message.reload.discarded?).to be_truthy
-        expect(dossier.pending_correction?).to be_falsey
       }
+
+      context 'with cancelled correction' do
+        let(:dossier_correction) { create(:dossier_correction, dossier:, commentaire: message, cancelled_at: Time.current) }
+
+        it {
+          expect(message.discarded?).to be_falsey
+          expect(dossier_correction.commentaire.discarded?).to be_falsey
+          expect(dossier_correction.cancelled?).to be_truthy
+          expect(gql_errors).to be_nil
+          expect(gql_data[:dossierSupprimerMessage][:errors]).to be_nil
+          expect(gql_data[:dossierSupprimerMessage][:message][:id]).to eq(message.to_typed_id)
+          expect(gql_data[:dossierSupprimerMessage][:message][:discardedAt]).not_to be_nil
+          expect(message.reload.discarded?).to be_truthy
+        }
+      end
+
+      context 'with pending correction' do
+        let(:dossier_correction) { create(:dossier_correction, dossier:, commentaire: message) }
+
+        it {
+          expect(message.discarded?).to be_falsey
+          expect(dossier_correction.commentaire.discarded?).to be_falsey
+          expect(dossier.pending_correction?).to be_truthy
+          expect(gql_errors).to be_nil
+          expect(gql_data[:dossierSupprimerMessage][:errors]).to eq([{ message: "Le message ne peut pas être supprimé" }])
+          expect(message.reload.discarded?).to be_falsey
+          expect(dossier.pending_correction?).to be_truthy
+        }
+      end
 
       context 'when unauthorized' do
         let(:dossier) { create(:dossier, :en_construction, :with_individual, procedure: create(:procedure, :new_administrateur, :for_individual)) }

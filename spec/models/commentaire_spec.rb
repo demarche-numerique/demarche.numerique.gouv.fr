@@ -133,4 +133,96 @@ describe Commentaire do
       expect(commentaire.body).to eq("ValidBody")
     end
   end
+
+  describe '#soft_deletable?' do
+    let(:instructeur) { create(:instructeur) }
+    let(:dossier) { create(:dossier, :en_construction) }
+    let(:commentaire) { create(:commentaire, instructeur: instructeur, dossier: dossier) }
+
+    context 'when the message is sent by the connected user' do
+      it { expect(commentaire.soft_deletable?(instructeur)).to be true }
+    end
+
+    context 'when a pending correction is attached' do
+      before { create(:dossier_correction, commentaire: commentaire, dossier: dossier) }
+
+      it { expect(commentaire.soft_deletable?(instructeur)).to be false }
+    end
+
+    context 'when a cancelled correction is attached' do
+      before { create(:dossier_correction, commentaire: commentaire, dossier: dossier, cancelled_at: Time.current, resolved_at: Time.current) }
+
+      it { expect(commentaire.soft_deletable?(instructeur)).to be true }
+    end
+
+    context 'when the message is already discarded' do
+      before { commentaire.update!(discarded_at: Time.current) }
+
+      it { expect(commentaire.soft_deletable?(instructeur)).to be false }
+    end
+  end
+
+  describe '#can_cancel_correction?' do
+    let(:instructeur) { create(:instructeur) }
+    let(:dossier) { create(:dossier, :en_construction) }
+    let(:commentaire) { create(:commentaire, instructeur: instructeur, dossier: dossier) }
+
+    context 'when no correction is attached' do
+      it { expect(commentaire.can_cancel_correction?(instructeur)).to be_falsey }
+    end
+
+    context 'when a pending correction is attached' do
+      before { create(:dossier_correction, commentaire: commentaire, dossier: dossier) }
+
+      it { expect(commentaire.can_cancel_correction?(instructeur)).to be true }
+    end
+
+    context 'when the correction is already cancelled' do
+      before { create(:dossier_correction, commentaire: commentaire, dossier: dossier, cancelled_at: Time.current, resolved_at: Time.current) }
+
+      it { expect(commentaire.can_cancel_correction?(instructeur)).to be false }
+    end
+
+    context 'when the message is discarded' do
+      before do
+        create(:dossier_correction, commentaire: commentaire, dossier: dossier)
+        commentaire.update!(discarded_at: Time.current)
+      end
+
+      it { expect(commentaire.can_cancel_correction?(instructeur)).to be false }
+    end
+
+    context 'when the connected user is not the sender' do
+      let(:other_instructeur) { create(:instructeur) }
+      before { create(:dossier_correction, commentaire: commentaire, dossier: dossier) }
+
+      it { expect(commentaire.can_cancel_correction?(other_instructeur)).to be false }
+    end
+
+    context 'when the connected user is the usager (not instructeur)' do
+      let(:user) { dossier.user }
+      before { create(:dossier_correction, commentaire: commentaire, dossier: dossier) }
+
+      it { expect(commentaire.can_cancel_correction?(user)).to be false }
+    end
+  end
+
+  describe '#cancel_correction!' do
+    let(:instructeur) { create(:instructeur) }
+    let(:dossier) { create(:dossier, :en_construction) }
+    let(:commentaire) { create(:commentaire, instructeur: instructeur, dossier: dossier) }
+    let!(:correction) { create(:dossier_correction, commentaire: commentaire, dossier: dossier) }
+
+    it 'cancels the correction' do
+      commentaire.cancel_correction!
+      expect(correction.reload).to be_cancelled
+      expect(correction).to be_resolved
+    end
+
+    it 'keeps the message body' do
+      original_body = commentaire.body
+      commentaire.cancel_correction!
+      expect(commentaire.reload.body).to eq(original_body)
+    end
+  end
 end

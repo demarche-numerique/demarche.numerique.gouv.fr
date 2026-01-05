@@ -179,11 +179,24 @@ RSpec.describe Dossiers::MessageComponent, type: :component do
           it { is_expected.not_to have_selector("form[action=\"#{form_url}\"]") }
         end
 
-        context 'when commentaire is a correction' do
+        context 'when commentaire is a pending correction' do
           let(:commentaire) { create(:commentaire, instructeur:, body: 'Please fix this') }
           before { create(:dossier_correction, commentaire:, dossier:) }
 
-          it { is_expected.to have_button(component.t('.delete_with_correction_button')) }
+          it 'displays the cancel correction button instead of delete' do
+            is_expected.to have_button(component.t('.cancel_correction_button'))
+            is_expected.not_to have_button(component.t('.delete_button'))
+          end
+        end
+
+        context 'when commentaire is a cancelled correction' do
+          let(:commentaire) { create(:commentaire, instructeur:, body: 'Please fix this') }
+          before { create(:dossier_correction, commentaire:, dossier:, cancelled_at: Time.current, resolved_at: Time.current) }
+
+          it 'displays the delete button' do
+            is_expected.to have_button(component.t('.delete_button'))
+            is_expected.not_to have_button(component.t('.cancel_correction_button'))
+          end
         end
       end
 
@@ -276,15 +289,10 @@ RSpec.describe Dossiers::MessageComponent, type: :component do
           end
         end
 
-        context "when the correction has been discarded by instructeur" do
-          let!(:correction) { create(:dossier_correction, commentaire:, dossier:, resolved_at: nil) }
-
-          before do
-            commentaire.soft_delete!
-          end
+        context "when the correction has been cancelled by instructeur" do
+          let!(:correction) { create(:dossier_correction, commentaire:, dossier:, cancelled_at: Time.current, resolved_at: Time.current) }
 
           it "returns a badge correction annulée" do
-            correction.reload
             expect(subject).to have_text("Demande de correction annulée")
           end
         end
@@ -328,6 +336,16 @@ RSpec.describe Dossiers::MessageComponent, type: :component do
       end
 
       context 'when there is no correction' do
+        it 'does not display the correction alert' do
+          expect(subject).not_to have_css('.fr-alert')
+        end
+      end
+
+      context 'when the correction is cancelled' do
+        before do
+          create(:dossier_correction, commentaire: commentaire, dossier: dossier, cancelled_at: Time.current)
+        end
+
         it 'does not display the correction alert' do
           expect(subject).not_to have_css('.fr-alert')
         end
