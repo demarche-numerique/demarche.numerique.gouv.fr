@@ -1,0 +1,48 @@
+- if for_preview?
+  .fr-fieldset
+    .fr-fieldset__legend--regular.fr-fieldset__legend= t('.admin.scenario_question')
+    .fr-fieldset__element.fr-fieldset__element--inline
+      .fr-radio-group.fr-radio-rich
+        = @form.radio_button :external_state, 'fetched', id: "#{@champ.stable_id}_fetched", aria: labelledby_id_attr(input_label_id(@champ, :fetched))
+        %label.fr-label{ for: "#{@champ.stable_id}_fetched", id: input_label_id(@champ, :fetched) }
+          = t('.admin.qf_data_fetched')
+
+    .fr-fieldset__element.fr-fieldset__element--inline
+      .fr-radio-group.fr-radio-rich
+        = @form.radio_button :external_state, 'idle', id: "#{@champ.stable_id}_not_fetched", aria: labelledby_id_attr(input_label_id(@champ, :not_fetched))
+        %label.fr-label{ for: "#{@champ.stable_id}_not_fetched", id: input_label_id(@champ, :not_fetched) }
+          = t('.admin.qf_data_not_fetched')
+
+- if render_external_champ?
+  - if for_preview?
+    %p= t('.admin.preview_simulation')
+
+  -# render les data
+  = t('.external_champ.title')
+  = qf_data
+
+  .fr-fieldset
+    .fr-fieldset__legend--regular.fr-fieldset__legend
+      = t('.external_champ.confirmation.question')
+      = render EditableChamp::AsteriskMandatoryComponent.new
+    .fr-fieldset__element.fr-fieldset__element--inline
+      .fr-radio-group
+        = @form.radio_button :value, true, id: "#{@champ.stable_id}_correct", aria: labelledby_id_attr(input_label_id(@champ, :correct))
+        %label.fr-label{ for: "#{@champ.stable_id}_correct", id: input_label_id(@champ, :correct) }
+          = t('.external_champ.confirmation.true')
+
+    .fr-fieldset__element.fr-fieldset__element--inline
+      .fr-radio-group
+        = @form.radio_button :value, false, id: "#{@champ.stable_id}_incorrect", aria: labelledby_id_attr(input_label_id(@champ, :incorrect))
+        %label.fr-label{ for: "#{@champ.stable_id}_incorrect", id: input_label_id(@champ, :incorrect) }
+          = t('.external_champ.confirmation.false')
+
+  - if fc_data_incorrect?
+    .fr-callout.fr-callout--yellow-moutarde
+      .fr-callout__text
+        = t('.external_champ.incorrect_qf_data')
+
+- if render_piece_justificative_champ?
+  = t('.piece_justificative_champ.libelle')
+  = render EditableChamp::AsteriskMandatoryComponent.new
+  = render Attachment::MultipleComponent.new(champ: @champ, attached_file: @champ.piece_justificative_file, form_object_name: @form.object_name, max: 1, aria_labelledby: labelledby_id)

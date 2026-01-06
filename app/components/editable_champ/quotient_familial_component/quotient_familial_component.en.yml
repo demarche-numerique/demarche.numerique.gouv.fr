@@ -1,0 +1,16 @@
+---
+en:
+  admin:
+    scenario_question: "Select the scenario you want to view:"
+    qf_data_fetched: User connected with FranceConnect and QF retrieved
+    qf_data_not_fetched: User not connected with FranceConnect or QF not retrieved
+    preview_simulation: "Data simulation for 2 parents and 2 children:"
+  external_champ:
+    title: Your identity details, those of your children, and your family quotient (QF) have been securely retrieved via FranceConnect.
+    confirmation:
+      question: Is this information correct?
+      true: Yes
+      false: No
+    incorrect_qf_data: We will not use this data to review your folder. You must attach proof of your family quotient.
+  piece_justificative_champ:
+    libelle: Proof of family quotient

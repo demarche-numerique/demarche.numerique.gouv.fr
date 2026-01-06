@@ -1,0 +1,51 @@
+{
+  "adresse": {
+    "pays": "FRANCE",
+    "lieu_dit": null,
+    "destinataire": "Madame ROUX Jeanne",
+    "code_postal_ville": "75002 PARIS",
+    "numero_libelle_voie": "1 RUE MONTORGUEIL",
+    "complement_information": null,
+    "complement_information_geographique": null
+  },
+  "allocataires": [
+    {
+      "sexe": "F",
+      "prenoms": "JEANNE STEPHANIE",
+      "nom_usage": "ROUX",
+      "nom_naissance": "ROUX",
+      "date_naissance": "1987-06-27"
+    },
+    {
+      "sexe": "M",
+      "prenoms": "ROBERT STEPHANE",
+      "nom_usage": "ROUX",
+      "nom_naissance": "ROUX",
+      "date_naissance": "1987-06-27"
+    }
+  ],
+  "enfants": [
+    {
+      "sexe": "M",
+      "prenoms": "ALEXIS VINCENT",
+      "nom_usage": "ROUX",
+      "nom_naissance": "ROUX",
+      "date_naissance": "2006-04-20"
+    },
+    {
+      "sexe": "F",
+      "prenoms": "ELISE LOUISA",
+      "nom_usage": "ROUX",
+      "nom_naissance": "ROUX",
+      "date_naissance": "2020-12-01"
+    }
+  ],
+  "quotient_familial": {
+    "valeur": 464,
+    "mois": 12,
+    "annee": 2023,
+    "fournisseur": "CAF",
+    "mois_calcul": 12,
+    "annee_calcul": 2023
+  }
+}

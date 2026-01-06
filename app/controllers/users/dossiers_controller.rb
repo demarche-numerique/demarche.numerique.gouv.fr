@@ -581,6 +581,7 @@ module Users
         :country_code,
         :commune_code,
         :postal_code,
+        :external_state,
         value: [],
       ]
       # Strong attributes do not support records (indexed hash); they only support hashes with
