@@ -97,7 +97,7 @@ class Commentaire < ApplicationRecord
 
   def soft_deletable?(connected_user)
     sent_by?(connected_user) &&
-      (sent_by_instructeur? || sent_by_expert?) &&
+      sent_by_instructeur? &&
       !discarded? &&
       !dossier_correction&.pending?
   end
@@ -106,7 +106,7 @@ class Commentaire < ApplicationRecord
     dossier_correction&.pending? &&
       sent_by?(connected_user) &&
       !discarded? &&
-      (sent_by_instructeur? || sent_by_expert?)
+      sent_by_instructeur?
   end
 
   def cancel_correction!

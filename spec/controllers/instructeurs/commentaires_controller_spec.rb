@@ -132,15 +132,14 @@ describe Instructeurs::CommentairesController, type: :controller do
     before { sign_in(expert.user) }
 
     describe 'destroy' do
-      context 'when it works' do
+      context 'when expert tries to delete their own message' do
         let(:commentaire) { create(:commentaire, expert: expert, dossier: dossier) }
         subject { delete :destroy, params: { dossier_id: dossier.id, procedure_id: procedure.id, id: commentaire.id, statut: 'a-suivre' }, format: :turbo_stream }
 
-        it 'respond with OK and flash' do
+        it 'does not allow deleting the message' do
           expect(subject).to have_http_status(:ok)
-          expect(subject.body).to include('Message supprimé')
-          expect(subject.body).to include('alert-success')
-          expect(subject.body).to include('Votre message a été supprimé')
+          expect(subject.body).to include('alert-danger')
+          expect(commentaire.reload.discarded?).to be_falsey
         end
       end
     end

@@ -74,12 +74,16 @@ class Dossiers::MessageComponent < ApplicationComponent
 
   def show_cancel_correction_button?
     return false if groupe_gestionnaire
-    return false unless connected_user.is_a?(Instructeur) || connected_user.is_a?(Expert)
+    return false unless connected_user.is_a?(Instructeur)
 
     commentaire.can_cancel_correction?(connected_user)
   end
 
   def show_delete_button?
+    # For groupe_gestionnaire, gestionnaires can delete their own messages
+    # For dossiers, only instructeurs can delete their own messages
+    return false if groupe_gestionnaire.nil? && !connected_user.is_a?(Instructeur)
+
     commentaire.soft_deletable?(connected_user)
   end
 
