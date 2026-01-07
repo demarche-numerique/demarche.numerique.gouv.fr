@@ -38,11 +38,11 @@ describe Instructeurs::CommentairesController, type: :controller do
         context 'when a pending correction is attached' do
           let!(:correction) { create(:dossier_correction, commentaire:, dossier:) }
 
-          it 'allows deleting the message and auto-cancels the correction' do
+          it 'does not allow deleting the message' do
             expect(subject).to have_http_status(:ok)
-            expect(subject.body).to include('Message supprimé')
-            expect(commentaire.reload).to be_discarded
-            expect(correction.reload).to be_cancelled
+            expect(subject.body).to include('alert-danger')
+            expect(commentaire.reload).not_to be_discarded
+            expect(correction.reload).to be_pending
           end
         end
 

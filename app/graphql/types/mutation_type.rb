@@ -6,6 +6,7 @@ module Types
 
     field :dossier_envoyer_message, mutation: Mutations::DossierEnvoyerMessage
     field :dossier_supprimer_message, mutation: Mutations::DossierSupprimerMessage
+    field :dossier_annuler_demande_correction, mutation: Mutations::DossierAnnulerDemandeCorrection
     field :dossier_passer_en_instruction, mutation: Mutations::DossierPasserEnInstruction
     field :dossier_classer_sans_suite, mutation: Mutations::DossierClasserSansSuite
     field :dossier_refuser, mutation: Mutations::DossierRefuser

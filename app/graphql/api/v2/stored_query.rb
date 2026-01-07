@@ -929,6 +929,18 @@ class API::V2::StoredQuery
     }
   }
 
+  mutation dossierAnnulerDemandeCorrection($input: DossierAnnulerDemandeCorrectionInput!) {
+    dossierAnnulerDemandeCorrection(input: $input) {
+      message {
+        id
+        createdAt
+      }
+      errors {
+        message
+      }
+    }
+  }
+
   mutation dossierModifierAnnotationText(
     $input: DossierModifierAnnotationTextInput!
   ) {

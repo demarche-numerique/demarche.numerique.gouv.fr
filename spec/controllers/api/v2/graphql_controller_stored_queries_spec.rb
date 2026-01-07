@@ -1519,13 +1519,9 @@ describe API::V2::GraphqlController do
           expect(dossier_correction.commentaire.discarded?).to be_falsey
           expect(dossier.pending_correction?).to be_truthy
           expect(gql_errors).to be_nil
-          expect(gql_data[:dossierSupprimerMessage][:errors]).to be_nil
-          expect(gql_data[:dossierSupprimerMessage][:message][:id]).to eq(message.to_typed_id)
-          expect(gql_data[:dossierSupprimerMessage][:message][:discardedAt]).not_to be_nil
-          expect(message.reload.discarded?).to be_truthy
-          # l'api supprime directement la correction quand on supprime le message
-          expect(dossier_correction.reload.cancelled?).to be_truthy
-          expect(dossier.pending_correction?).to be_falsey
+          expect(gql_data[:dossierSupprimerMessage][:errors]).to eq([{ message: "Le message ne peut pas être supprimé" }])
+          expect(message.reload.discarded?).to be_falsey
+          expect(dossier_correction.reload.pending?).to be_truthy
         }
       end
 

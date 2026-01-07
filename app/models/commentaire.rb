@@ -98,7 +98,8 @@ class Commentaire < ApplicationRecord
   def soft_deletable?(connected_user)
     sent_by?(connected_user) &&
       (sent_by_instructeur? || sent_by_expert?) &&
-      !discarded?
+      !discarded? &&
+      !dossier_correction&.pending?
   end
 
   def can_cancel_correction?(connected_user)
@@ -115,7 +116,6 @@ class Commentaire < ApplicationRecord
   def soft_delete!
     transaction do
       discard!
-      dossier_correction&.cancel!
       dossier_pending_response&.respond!
       update! body: ''
     end
