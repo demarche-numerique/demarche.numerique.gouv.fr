@@ -1,34 +1,37 @@
-.merci.text-center.mb-7
-  .fr-container
-    .fr-grid-row.fr-col-offset-md-2.fr-col-md-8
-      .fr-col-12
-        = image_tag('user/envoi-dossier.svg', alt: '', class: 'mt-8')
-        %p.fr-h1.fr-mt-4w= t('views.users.dossiers.merci.thanks')
-        %h1.send.fr-m-2w.fr-text--lg
-          = t('views.users.dossiers.merci.dossier_send_l1')
-          = procedure.libelle
-          = t('views.users.dossiers.merci.dossier_send_l2')
-        %p.fr-m-2w
+.merci.fr-pt-2w
+  .fr-container.fr-my-4w
+    .fr-grid-row
+      .fr-col-xl-2
+      .fr-col-xl-8
+        %p.fr-h2.fr-my-4w
+          %i.fr-icon-folder-check-line.fr-icon--lg.fr-text-default--info.fr-mr-1w
+          = t('views.users.dossiers.merci.thanks')
+
+        %h1.send.fr-my-2w.fr-text--lg
+          = t('views.users.dossiers.merci.dossier_success', libelle: procedure.libelle)
+        %p.fr-my-2w
           = t('views.users.dossiers.merci.dossier_acces_l1')
           %strong= t('views.users.dossiers.merci.dossier_acces_l2')
-        %p.fr-m-2w
+        %p.fr-my-2w
           = t('views.users.dossiers.merci.dossier_edit_l1')
           - if !dossier&.read_only? && !procedure.declarative_accepte? && !procedure.sva_svr_enabled?
             %strong= t('views.users.dossiers.merci.dossier_edit_l2')
             = t('views.users.dossiers.merci.dossier_edit_l3')
           %strong= t('views.users.dossiers.merci.dossier_edit_l4')
+
         - if procedure.active_dossier_submitted_message
           .fr-my-4w= render SimpleFormatComponent.new(procedure.active_dossier_submitted_message.message_on_submit_by_usager, allow_a: true)
-    %p.justify-center.flex.fr-mb-5w.fr-mt-2w
-      = render(partial: 'users/dossiers/show/download_dossier', locals: { dossier: dossier })
-      = link_to t('views.users.dossiers.merci.acces_dossier'), dossier ? dossier_path(dossier) : "#dossier" , class: 'fr-btn fr-mx-2w'
 
-    %hr.fr-hr
-      = link_to t('views.users.dossiers.merci.submit_dossier'), commencer_url(procedure.path), class: 'fr-btn fr-btn--secondary fr-mt-2w'
+        %p.flex.fr-mb-5w.fr-mt-4w
+          = render(partial: 'users/dossiers/show/download_dossier', locals: { dossier: dossier })
+          = link_to t('views.users.dossiers.merci.acces_dossier'), dossier ? dossier_path(dossier) : "#dossier" , class: 'fr-btn fr-mx-2w'
 
-      - if procedure.monavis_embed
-        .monavis
-          %h2.fr-mt-5w.fr-mb-1w.fr-text--lg
-            = t('views.users.dossiers.merci.jdma_l1')
-          %p= t('views.users.dossiers.merci.jdma_l2')
-          != procedure.monavis_embed_html_source("site")
+        %hr.fr-hr
+        %p= link_to t('views.users.dossiers.merci.submit_dossier'), commencer_url(procedure.path), class: 'fr-btn fr-btn--secondary fr-mt-2w'
+
+        - if procedure.monavis_embed
+          .monavis.text-center
+            %h2.fr-mt-5w.fr-mb-1w.fr-text--lg
+              = t('views.users.dossiers.merci.jdma_l1')
+            %p= t('views.users.dossiers.merci.jdma_l2')
+            != procedure.monavis_embed_html_source("site")

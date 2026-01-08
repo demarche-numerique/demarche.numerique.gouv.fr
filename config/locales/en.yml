@@ -481,8 +481,7 @@ en:
           continue: Continue
         merci:
           thanks: Thank you!
-          dossier_send_l1: Your file on the procedure
-          dossier_send_l2: has been sent.
+          dossier_success: Your file has been submitted on the procedure “%{libelle}”.
           dossier_acces_l1: You have now access to your
           dossier_acces_l2: online file.
           dossier_edit_l1: You can
