@@ -213,7 +213,15 @@ export class AutosaveController extends ApplicationController {
 
     const formData = new FormData();
     for (const input of inputs) {
-      if (input.type == 'checkbox') {
+      if (input instanceof HTMLSelectElement) {
+        if (input.multiple && input.selectedOptions.length > 0) {
+          for (const option of input.selectedOptions) {
+            formData.append(input.name, option.value);
+          }
+        } else {
+          formData.append(input.name, input.value);
+        }
+      } else if (input.type == 'checkbox') {
         formData.append(input.name, input.checked ? input.value : '');
       } else if (input.type == 'radio') {
         if (input.checked) {
@@ -251,7 +259,7 @@ export class AutosaveController extends ApplicationController {
     const element = this.element as HTMLElement;
 
     return [
-      ...element.querySelectorAll<HTMLInputElement>(
+      ...element.querySelectorAll<HTMLInputElement | HTMLSelectElement>(
         'input:not([type=file]), textarea, select'
       )
     ].filter((element) => !element.disabled);

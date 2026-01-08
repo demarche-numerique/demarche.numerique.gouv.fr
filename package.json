@@ -52,6 +52,7 @@
     "graphql": "^16.11.0",
     "highcharts": "^10.3.3",
     "lightgallery": "^2.9.0",
+    "lucide-react": "^0.562.0",
     "maplibre-gl": "^4.5.0",
     "match-sorter": "^8.1.0",
     "p-retry": "^7.1.1",

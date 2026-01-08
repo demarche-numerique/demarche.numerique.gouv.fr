@@ -17,9 +17,8 @@ class EditableChamp::MultipleDropDownListComponent < EditableChamp::EditableCham
       class: 'fr-mt-1w',
       name: @form.field_name(:value, multiple: true),
       placeholder: t('views.components.multiple_combobox'),
-      selected_keys: @champ.selected_options,
+      value: @champ.selected_options,
       items:,
-      value_separator: false,
       ariaLabelledbyPrefix: aria_labelledby_prefix,
       labelId: input_label_id(@champ)
     )

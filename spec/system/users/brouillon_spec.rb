@@ -37,11 +37,10 @@ describe 'The user', js: true do
     find('.fr-checkbox-group label', text: 'val3').click
     select('bravo', from: form_id_for('simple_choice_drop_down_list_long'))
 
-    scroll_to(find_field('multiple_choice_drop_down_list_long'), align: :center)
-    select_combobox('multiple_choice_drop_down_list_long', 'alpha')
+    select_autocomplete('multiple_choice_drop_down_list_long', 'alpha')
     wait_until { champ_value_for('multiple_choice_drop_down_list_long') == ['alpha'].to_json }
 
-    select_combobox('multiple_choice_drop_down_list_long', 'charly')
+    select_autocomplete('multiple_choice_drop_down_list_long', 'charly')
     wait_until { champ_value_for('multiple_choice_drop_down_list_long') == ['alpha', 'charly'].to_json }
 
     select('Australie', from: form_id_for('pays'))

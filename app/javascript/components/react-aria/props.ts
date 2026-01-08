@@ -89,3 +89,29 @@ export type RemoteComboBoxProps = s.Infer<typeof RemoteComboBoxProps> & {
   translation?: Record<string, string>;
   onChange?: (item: Item | null) => void;
 };
+
+const SelectProps = s.partial(
+  s.object({
+    id: s.string(),
+    className: s.string(),
+    name: s.string(),
+    description: s.string(),
+    isRequired: s.boolean(),
+    isDisabled: s.boolean(),
+    'aria-label': s.string(),
+    'aria-labelledby': s.string(),
+    'aria-describedby': s.string(),
+    placeholder: s.string(),
+    data: s.record(s.string(), s.string())
+  })
+);
+
+export const MultipleSelectProps = s.assign(
+  SelectProps,
+  s.object({
+    items: s.union([s.array(Item), ArrayOfStrings, ArrayOfTuples]),
+    value: s.array(s.string()),
+    labelId: s.string(), // if label is not in the component, we need to pass the label id
+    ariaLabelledbyPrefix: s.string()
+  })
+);

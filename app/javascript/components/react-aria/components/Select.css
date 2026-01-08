@@ -1,0 +1,41 @@
+@import './theme.css';
+@import './Popover.css';
+
+.react-aria-Select {
+  color: var(--text-color);
+  position: relative;
+
+  .react-aria-SelectValue {
+    display: block;
+    flex: 1;
+    text-align: start;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &[data-placeholder] {
+      color: var(--text-color-placeholder);
+      font-weight: normal;
+    }
+  }
+
+  .react-aria-SelectValue {
+    [slot='description'] {
+      display: none;
+    }
+  }
+}
+
+.select-popover[data-trigger='Select'] {
+  width: var(--trigger-width);
+  padding: 0;
+}
+
+.fr-ds-select_multiple {
+  .fr-tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing);
+    margin-top: var(--spacing);
+  }
+}

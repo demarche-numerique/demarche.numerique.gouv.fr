@@ -119,6 +119,20 @@ module SystemHelpers
     end
   end
 
+  def select_autocomplete(libelle, value)
+    label = find('label', text: libelle)
+    scroll_to(label)
+    label.click
+
+    within '[role="listbox"]' do
+      option = find('[role="option"]', text: value)
+      expect(option).to be_visible
+      sleep 0.1 # wait for any animation to complete
+      option.click
+      option.send_keys(:escape)
+    end
+  end
+
   def log_out
     within('.fr-header .fr-container .fr-header__tools .fr-btns-group') do
       scroll_to(find('button[title="Mon profil"]'), align: :center)
