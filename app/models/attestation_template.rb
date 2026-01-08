@@ -79,17 +79,21 @@ class AttestationTemplate < ApplicationRecord
     ],
   }.freeze
 
-  def attestation_for(dossier)
-    attestation = Attestation.new
+  def generate_attestation_for(dossier)
+    return if dossier.attestation.present?
+
+    pdf_data = build_pdf(dossier)
+
+    attestation = Attestation.new(dossier:)
     attestation.title = replace_tags(title, dossier, escape: false) if version == 1
     attestation.pdf.attach(
-      io: StringIO.new(build_pdf(dossier)),
+      io: StringIO.new(pdf_data),
       filename: "attestation-dossier-#{dossier.id}.pdf",
       content_type: 'application/pdf',
       # we don't want to run virus scanner on this file
       metadata: { virus_scan_result: ActiveStorage::VirusScanner::SAFE }
     )
-    attestation
+    attestation.save!
   end
 
   def unspecified_champs_for_dossier(dossier)

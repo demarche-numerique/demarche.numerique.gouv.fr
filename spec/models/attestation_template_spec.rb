@@ -53,7 +53,7 @@ describe AttestationTemplate, type: :model do
     end
   end
 
-  describe 'attestation_for' do
+  describe 'generate_attestation_for' do
     let(:procedure) do
       create(:procedure,
         types_de_champ_public: types_de_champ,
@@ -82,7 +82,10 @@ describe AttestationTemplate, type: :model do
         .update(value: 'libelle2')
     end
 
-    let(:attestation) { attestation_template.attestation_for(dossier) }
+    subject {
+      attestation_template.generate_attestation_for(dossier)
+      dossier.attestation
+    }
 
     context 'attestation v1' do
       let(:template_title) { 'title --libelleA--' }
@@ -101,7 +104,7 @@ describe AttestationTemplate, type: :model do
           m.call(*args)
         end
 
-        attestation_template.attestation_for(dossier)
+        attestation_template.generate_attestation_for(dossier)
 
         arguments
       end
@@ -109,8 +112,8 @@ describe AttestationTemplate, type: :model do
       it 'passes the correct parameters and generates an attestation' do
         expect(view_args[:attestation][:title]).to eq('title libelle1')
         expect(view_args[:attestation][:body]).to eq('body libelle2')
-        expect(attestation.title).to eq('title libelle1')
-        expect(attestation.pdf).to be_attached
+        expect(subject.title).to eq('title libelle1')
+        expect(subject.pdf).to be_attached
       end
     end
 
@@ -129,7 +132,7 @@ describe AttestationTemplate, type: :model do
       end
 
       it 'generates an attestation' do
-        expect(attestation.pdf).to be_attached
+        expect(subject.pdf).to be_attached
       end
     end
   end

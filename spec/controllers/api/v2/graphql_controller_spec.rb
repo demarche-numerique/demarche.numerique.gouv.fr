@@ -1208,11 +1208,10 @@ describe API::V2::GraphqlController do
             dossier.procedure.save!
           end
 
-          it 'should return the attestation' do
+          it 'should enqueue attestation job' do
             expect(gql_errors).to eq(nil)
             expect(gql_data[:dossierRefuser][:dossier][:state]).to eq('refuse')
-            expect(gql_data[:dossierRefuser][:dossier][:attestation]).not_to be_nil
-            expect(gql_data[:dossierRefuser][:dossier][:attestation][:url]).to be_present
+            expect(AttestationPdfGenerationJob).to have_been_enqueued.with(dossier)
             expect(gql_data[:dossierRefuser][:errors]).to be_nil
           end
         end
@@ -1223,10 +1222,10 @@ describe API::V2::GraphqlController do
             dossier.procedure.save!
           end
 
-          it 'should not return attestation' do
+          it 'should not enqueue attestation generation job' do
             expect(gql_errors).to eq(nil)
             expect(gql_data[:dossierRefuser][:dossier][:state]).to eq('refuse')
-            expect(gql_data[:dossierRefuser][:dossier][:attestation]).to be_nil
+            expect(AttestationPdfGenerationJob).not_to have_been_enqueued.with(dossier)
             expect(gql_data[:dossierRefuser][:errors]).to be_nil
           end
         end

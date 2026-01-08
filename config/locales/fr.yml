@@ -945,7 +945,7 @@ fr:
       update_identite:
         identity_saved: "Identité enregistrée"
       attestation:
-        no_longer_available: "L’attestation n’est plus disponible sur ce dossier."
+        not_available: "L'attestation n’est pas disponible, veuillez réessayer plus tard."
       papertrail:
         receipt: "Attestation de dépôt"
         description: "Ce document atteste que %{user_name} a déposé le %{date} un dossier sur la démarche « %{procedure} »."

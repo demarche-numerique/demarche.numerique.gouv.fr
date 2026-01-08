@@ -73,7 +73,8 @@ describe MailTemplateConcern do
         let(:kind) { AttestationTemplate.kinds.fetch(:acceptation) }
 
         before do
-          dossier.attestation = dossier.build_attestation_acceptation
+          dossier.accepte!
+          AttestationPdfGenerationJob.perform_now(dossier)
           dossier.reload
           mail.body = "--lien attestation--"
         end

@@ -5,8 +5,8 @@ RSpec.describe Cron::StalledDeclarativeProceduresJob, type: :job do
     let(:state) { nil }
     let(:procedure) { create(:procedure, :published, :for_individual, :with_instructeur, declarative_with_state: state) }
     let!(:brouillon) { create(:dossier, :brouillon, procedure:) }
-    let!(:en_construction) { create(:dossier, :en_construction, :with_individual, :with_attestation_acceptation, procedure:) }
-    let!(:en_construction_triggered) { create(:dossier, :en_construction, :with_individual, :with_attestation_acceptation, procedure:, declarative_triggered_at: 1.minute.ago) }
+    let!(:en_construction) { create(:dossier, :en_construction, :with_individual, procedure:) }
+    let!(:en_construction_triggered) { create(:dossier, :en_construction, :with_individual, procedure:, declarative_triggered_at: 1.minute.ago) }
     let!(:en_instruction) { create(:dossier, :en_instruction, :with_individual, procedure:) }
 
     subject(:perform_job) do

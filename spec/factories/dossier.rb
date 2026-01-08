@@ -263,18 +263,20 @@ FactoryBot.define do
     end
 
     trait :with_attestation_acceptation do
-      after(:build) do |dossier, _evaluator|
-        dossier.procedure.attestation_acceptation_template ||= build(:attestation_template)
+      after(:create) do |dossier, _evaluator|
+        dossier.procedure.attestation_acceptation_template ||= create(:attestation_template, procedure: dossier.procedure, state: :published)
         dossier.association(:attestation_acceptation_template).target = dossier.procedure.attestation_acceptation_template
-        dossier.attestation = dossier.build_attestation_acceptation
+        # Attestation generation is now asynchronous, execute the job immediately for tests
+        AttestationPdfGenerationJob.perform_now(dossier)
       end
     end
 
     trait :with_attestation_refus do
-      after(:build) do |dossier, _evaluator|
-        dossier.procedure.attestation_refus_template ||= build(:attestation_template, :refus)
+      after(:create) do |dossier, _evaluator|
+        dossier.procedure.attestation_refus_template ||= create(:attestation_template, :refus, procedure: dossier.procedure, state: :published)
         dossier.association(:attestation_refus_template).target = dossier.procedure.attestation_refus_template
-        dossier.attestation = dossier.build_attestation_refus
+        # Attestation generation is now asynchronous, execute the job immediately for tests
+        AttestationPdfGenerationJob.perform_now(dossier)
       end
     end
 

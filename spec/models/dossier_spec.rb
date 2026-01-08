@@ -1009,36 +1009,6 @@ describe Dossier, type: :model do
     end
   end
 
-  describe '#build_attestation_acceptation' do
-    let(:attestation_acceptation_template) { nil }
-    let(:procedure) { create(:procedure, attestation_acceptation_template:) }
-
-    before :each do
-      dossier.attestation = dossier.build_attestation_acceptation
-      dossier.reload
-    end
-
-    context 'when the dossier is in en_instruction state ' do
-      let!(:dossier) { create(:dossier, :en_instruction, procedure: procedure) }
-
-      context 'when the procedure has no attestation' do
-        it { expect(dossier.attestation).to be_nil }
-      end
-
-      context 'when the procedure has an unactivated attestation' do
-        let(:attestation_acceptation_template) { build(:attestation_template, activated: false) }
-
-        it { expect(dossier.attestation).to be_nil }
-      end
-
-      context 'when the procedure attached has an activated attestation' do
-        let(:attestation_acceptation_template) { build(:attestation_template, activated: true) }
-
-        it { expect(dossier.attestation).not_to be_nil }
-      end
-    end
-  end
-
   describe 'updated_at' do
     let!(:dossier) { create(:dossier) }
     let(:modif_date) { Time.zone.parse('01/01/2100') }
@@ -1384,19 +1354,23 @@ describe Dossier, type: :model do
   end
 
   describe '#accepter!' do
-    let(:dossier) { create(:dossier, :en_instruction, :with_individual) }
+    let(:procedure) { create(:procedure, :for_individual, :published) }
+    let(:dossier) { create(:dossier, :en_instruction, :with_individual, procedure:) }
     let(:last_operation) { dossier.dossier_operation_logs.last }
     let(:operation_serialized) { last_operation.data }
     let!(:instructeur) { create(:instructeur) }
     let!(:now) { Time.zone.parse('01/01/2100') }
-    let(:attestation) { Attestation.new }
+    let!(:attestation_template) { create(:attestation_template, procedure:, kind: :acceptation, state: :published) }
 
     before do
       allow(NotificationMailer).to receive(:send_accepte_notification).and_return(double(deliver_later: true))
-      allow(dossier).to receive(:build_attestation_acceptation).and_return(attestation)
 
       travel_to now
-      dossier.accepter!(instructeur: instructeur, motivation: 'motivation')
+
+      perform_enqueued_jobs(only: AttestationPdfGenerationJob) do
+        dossier.accepter!(instructeur: instructeur, motivation: 'motivation')
+      end
+
       dossier.reload
     end
 
@@ -1414,7 +1388,7 @@ describe Dossier, type: :model do
       expect(operation_serialized['dossier_id']).to eq(dossier.id)
       expect(operation_serialized['executed_at']).to eq(last_operation.executed_at.iso8601)
       expect(NotificationMailer).to have_received(:send_accepte_notification).with(dossier)
-      expect(dossier.attestation).to eq(attestation)
+      expect(dossier.attestation).to be_present
       expect(dossier.commentaires.count).to eq(1)
     end
   end
@@ -1422,22 +1396,25 @@ describe Dossier, type: :model do
   describe '#accepter_automatiquement!' do
     let(:last_operation) { dossier.dossier_operation_logs.last }
     let!(:now) { Time.zone.parse('01/01/2100') }
-    let(:attestation) { Attestation.new }
+    let(:procedure) { create(:procedure, :for_individual, :published) }
+    let!(:attestation_template) { create(:attestation_template, procedure:, kind: :acceptation, state: :published) }
 
     before do
       allow(NotificationMailer).to receive(:send_accepte_notification).and_return(double(deliver_later: true))
-      allow(dossier).to receive(:build_attestation_acceptation).and_return(attestation)
 
       travel_to(now)
     end
 
     subject {
-      dossier.accepter_automatiquement!
+      perform_enqueued_jobs(only: AttestationPdfGenerationJob) do
+        dossier.accepter_automatiquement!
+      end
+
       dossier.reload
     }
 
     context 'as declarative procedure' do
-      let(:dossier) { create(:dossier, :en_construction, :with_individual, :with_declarative_accepte) }
+      let(:dossier) { create(:dossier, :en_construction, :with_individual, :with_declarative_accepte, procedure:) }
 
       it 'accepts dossier automatiquement' do
         expect(subject.motivation).to eq(nil)
@@ -1449,13 +1426,14 @@ describe Dossier, type: :model do
         expect(last_operation.operation).to eq('accepter')
         expect(last_operation.automatic_operation?).to be_truthy
         expect(NotificationMailer).to have_received(:send_accepte_notification).with(dossier)
-        expect(subject.attestation).to eq(attestation)
+        expect(subject.attestation).to be_present
       end
     end
 
     context 'as sva procedure' do
       let(:procedure) { create(:procedure, :for_individual, :published, :sva) }
       let(:dossier) { create(:dossier, :en_instruction, :with_individual, procedure:, sva_svr_decision_on: Date.current, en_instruction_at: DateTime.new(2021, 5, 1, 12)) }
+      let!(:attestation_template) { create(:attestation_template, procedure:, kind: :acceptation, state: :published) }
 
       it 'accepts dossier automatiquement' do
         expect(subject.motivation).to eq(nil)
@@ -1467,7 +1445,7 @@ describe Dossier, type: :model do
         expect(last_operation.operation).to eq('accepter')
         expect(last_operation.automatic_operation?).to be_truthy
         expect(NotificationMailer).to have_received(:send_accepte_notification).with(dossier)
-        expect(subject.attestation).to eq(attestation)
+        expect(subject.attestation).to be_present
         expect(dossier.commentaires.count).to eq(1)
       end
     end

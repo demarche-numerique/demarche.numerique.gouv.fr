@@ -121,7 +121,7 @@ module Users
       if dossier.attestation&.pdf&.attached?
         redirect_to dossier.attestation.pdf.url, allow_other_host: true
       else
-        flash.notice = t('.no_longer_available')
+        flash.notice = t('.not_available')
         redirect_to dossier_path(dossier)
       end
     end

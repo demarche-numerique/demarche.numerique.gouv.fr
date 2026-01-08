@@ -863,16 +863,19 @@ class Dossier < ApplicationRecord
     public_send("attestation_#{kind}_template")
   end
 
-  def build_attestation_acceptation
-    if attestation_acceptation_template&.activated?
-      attestation_acceptation_template.attestation_for(self)
-    end
-  end
+  def enqueue_attestation_generation
+    return if attestation.present?
 
-  def build_attestation_refus
-    if attestation_refus_template&.activated?
-      attestation_refus_template.attestation_for(self)
+    template = if accepte?
+      attestation_template_for(AttestationTemplate.kinds.fetch(:acceptation))
+    elsif refuse?
+      attestation_template_for(AttestationTemplate.kinds.fetch(:refus))
     end
+
+    return if template.blank?
+    return if !template.activated?
+
+    AttestationPdfGenerationJob.perform_later(self)
   end
 
   def is_user?(author)

@@ -213,8 +213,8 @@ describe PiecesJustificativesService do
       end
 
       context 'with an attestation' do
-        let(:dossier) { create(:dossier, :with_attestation_acceptation) }
-        let!(:witness) { create(:dossier, :with_attestation_acceptation) }
+        let(:dossier) { create(:dossier, :accepte, :with_attestation_acceptation) }
+        let!(:witness) { create(:dossier, :accepte, :with_attestation_acceptation) }
 
         it { expect(subject).to match_array(dossier.attestation.pdf.attachment) }
         it 'uses default name for dossier directory' do

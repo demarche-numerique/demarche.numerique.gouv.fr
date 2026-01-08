@@ -3,10 +3,13 @@
 RSpec.describe ProcessStalledDeclarativeDossierJob, type: :job do
   describe "perform" do
     let(:procedure) { create(:procedure, :published, :for_individual, :with_instructeur, declarative_with_state: state) }
+    let!(:attestation_template) { create(:attestation_template, procedure:, kind: :acceptation, state: :published) }
     let(:last_operation) { dossier.dossier_operation_logs.last }
 
     subject(:perform_job) do
-      described_class.perform_now(dossier.reload)
+      perform_enqueued_jobs(only: AttestationPdfGenerationJob) do
+        described_class.perform_now(dossier.reload)
+      end
       dossier.reload
     end
 
@@ -18,7 +21,7 @@ RSpec.describe ProcessStalledDeclarativeDossierJob, type: :job do
       let(:state) { Dossier.states.fetch(:en_instruction) }
 
       context 'dossier en_construction' do
-        let(:dossier) { create(:dossier, :en_construction, :with_individual, :with_attestation_acceptation, procedure:) }
+        let(:dossier) { create(:dossier, :en_construction, :with_individual, procedure:) }
 
         it {
           perform_job
@@ -51,7 +54,7 @@ RSpec.describe ProcessStalledDeclarativeDossierJob, type: :job do
       let(:state) { Dossier.states.fetch(:accepte) }
 
       context 'dossier en_construction' do
-        let(:dossier) { create(:dossier, :en_construction, :with_individual, :with_attestation_acceptation, procedure:) }
+        let(:dossier) { create(:dossier, :en_construction, :with_individual, procedure:) }
 
         it {
           perform_job
@@ -89,12 +92,12 @@ RSpec.describe ProcessStalledDeclarativeDossierJob, type: :job do
       context 'for entreprise' do
         let(:procedure) { create(:procedure, :published, :with_instructeur, for_individual: false, declarative_with_state: state) }
 
-        let(:dossier) { create(:dossier, :en_construction, :with_entreprise, :with_attestation_acceptation, procedure:, as_degraded_mode: false) }
+        let(:dossier) { create(:dossier, :en_construction, :with_entreprise, procedure:, as_degraded_mode: false) }
 
         it { expect(subject).to be_accepte }
 
         context 'having etablissement in degraded_mode' do
-          let(:dossier) { create(:dossier, :en_construction, :with_entreprise, :with_attestation_acceptation, procedure:, as_degraded_mode: true) }
+          let(:dossier) { create(:dossier, :en_construction, :with_entreprise, procedure:, as_degraded_mode: true) }
 
           before do
             expect(dossier).to_not receive(:accepter_automatiquement!)

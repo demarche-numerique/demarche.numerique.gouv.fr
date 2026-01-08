@@ -944,7 +944,7 @@ en:
       update_identite:
         identity_saved: "Identity data is registred"
       attestation:
-        no_longer_available: "The certificate is no longer available on this file."
+        not_available: "The certificate is not available, please try again later."
       show:
         papertrail:
           get_papertrail: "Get a deposit receipt"

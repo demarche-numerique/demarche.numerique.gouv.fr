@@ -165,7 +165,7 @@ describe API::V1::DossiersController do
       context 'when dossier (with attestation) exists and belongs to procedure' do
         let(:procedure_id) { procedure.id }
         let(:dossier_id) { dossier.id }
-        let!(:dossier) { create(:dossier, :with_entreprise, :with_attestation_acceptation, :accepte, procedure: procedure, motivation: "Motivation") }
+        let!(:dossier) { create(:dossier, :with_entreprise, :accepte, :with_attestation_acceptation, procedure: procedure, motivation: "Motivation") }
         let(:body) { JSON.parse(retour.body, symbolize_names: true) }
         subject { body[:dossier] }
 
