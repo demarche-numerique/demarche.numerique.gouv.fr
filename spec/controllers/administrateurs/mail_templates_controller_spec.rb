@@ -45,6 +45,10 @@ describe Administrateurs::MailTemplatesController, type: :controller do
       expect(response.body).to include(procedure.service.nom)
       expect(response.body).to include(procedure.service.telephone)
     end
+
+    it 'exposes a preview dossier link' do
+      expect(assigns(:preview_service)).to be_a(DossierPreviewService)
+    end
   end
 
   describe 'PATCH update' do

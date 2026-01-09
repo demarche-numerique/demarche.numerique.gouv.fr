@@ -79,7 +79,8 @@ class RootController < ApplicationController
       end
     end
 
-    @dossier = procedure.draft_revision.dossier_for_preview(current_user)
+    @preview_service = DossierPreviewService.new(procedure:, current_user:)
+    @dossier = @preview_service.dossier
   end
 
   def suivi

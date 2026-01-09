@@ -1054,6 +1054,7 @@ describe Instructeurs::ProceduresController, type: :controller do
       expect(response).to have_http_status(:success)
       expect(response.body).to include("Premier champ")
       expect(response.body).not_to include("Déposer")
+      expect(assigns(:preview_service)).to be_a(DossierPreviewService)
     end
   end
 

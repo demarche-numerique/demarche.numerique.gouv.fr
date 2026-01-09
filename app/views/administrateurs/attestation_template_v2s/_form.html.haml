@@ -115,11 +115,7 @@
             %h2.fr-h4 Aperçu
             %p= link_to 'Prévisualiser en taille réelle', admin_procedure_attestation_template_v2_path(procedure, format: :pdf, attestation_kind:), class: 'fr-link', target: '_blank', rel: 'noopener'
           %iframe.attestation-preview{ title: "Aperçu", src: admin_procedure_attestation_template_v2_path(procedure, format: :pdf, attestation_kind:), data: { attestation_target: 'preview' } }
-          %p.fr-hint-text
-            L'aperçu est mis à jour automatiquement après chaque modification.
-            Pour générer un aperçu fidèle avec champs et dates,
-            = link_to("créez-vous un dossier", new_dossier_path(procedure_id: procedure, brouillon: true), **external_link_attributes)
-            et acceptez-le : l'aperçu l'utilisera.
+          = render PreviewDossierLinkComponent.new(preview_service: @preview_service)
 
   - if attestation_template.draft?
     - content_for(:sticky_header) do

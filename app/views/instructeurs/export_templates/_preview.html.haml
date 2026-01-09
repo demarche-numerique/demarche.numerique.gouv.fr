@@ -1,7 +1,8 @@
-- dossier = procedure.dossier_for_preview(current_instructeur)
+- dossier = preview_service.dossier
 
 #preview.export-template-preview.fr-p-2w.sticky--top
-  %h2.fr-h4 Aperçu
+  %h2.fr-h4.fr-mb-0 Aperçu
+  = render PreviewDossierLinkComponent.new(preview_service: preview_service)
   - if dossier.nil?
     %p.fr-text--sm
       Pour générer un aperçu fidèle avec tous les champs et les dates,

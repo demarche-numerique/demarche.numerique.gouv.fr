@@ -6,6 +6,7 @@ module Instructeurs
     before_action :set_export_template, only: [:edit, :update, :destroy]
     before_action :ensure_legitimate_groupe_instructeur, only: [:create, :update]
     before_action :set_types_de_champ, only: [:new, :edit]
+    before_action :set_preview_service, only: [:new, :create, :edit, :update, :preview]
 
     def new
       @export_template = export_template
@@ -45,7 +46,7 @@ module Instructeurs
     def preview
       export_template = ExportTemplate.new(export_template_params)
 
-      render turbo_stream: turbo_stream.replace('preview', partial: 'preview', locals: { procedure: @procedure, export_template: })
+      render turbo_stream: turbo_stream.replace('preview', partial: 'preview', locals: { procedure: @procedure, export_template:, preview_service: @preview_service })
     end
 
     private
@@ -95,6 +96,10 @@ module Instructeurs
       return if export_template_params[:groupe_instructeur_id].in?(@groupe_instructeurs.map { _1.id.to_s })
 
       redirect_to [:export_templates, :instructeur, @procedure], alert: 'Vous n’avez pas le droit de créer un modèle d’export pour ce groupe'
+    end
+
+    def set_preview_service
+      @preview_service = DossierPreviewService.new(procedure: @procedure, current_user:)
     end
   end
 end

@@ -177,19 +177,6 @@ class ProcedureRevision < ApplicationRecord
     changes
   end
 
-  def dossier_for_preview(user)
-    dossier = Dossier
-      .create_with(autorisation_donnees: true)
-      .find_or_initialize_by(revision: self, user: user, for_procedure_preview: true, state: Dossier.states.fetch(:brouillon))
-
-    if dossier.new_record?
-      dossier.build_default_values
-      dossier.save!
-    end
-
-    dossier
-  end
-
   def types_de_champ_for(scope: nil)
     case scope
     when :public

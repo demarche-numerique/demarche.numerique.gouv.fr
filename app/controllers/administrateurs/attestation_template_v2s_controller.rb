@@ -7,8 +7,8 @@ module Administrateurs
     before_action :preload_revisions, only: [:edit, :update, :create]
 
     def show
-      preview_dossier = @procedure.dossier_for_preview(current_user)
-      attributes = @attestation_template.render_attributes_for(dossier: preview_dossier)
+      @preview_service = DossierPreviewService.new(procedure: @procedure, current_user:)
+      attributes = @attestation_template.render_attributes_for(dossier: @preview_service.dossier)
 
       @body = attributes.fetch(:body)
       @signature = attributes.fetch(:signature)
@@ -29,6 +29,8 @@ module Administrateurs
     end
 
     def edit
+      @preview_service = DossierPreviewService.new(procedure: @procedure, current_user:)
+
       @buttons = [
         [
           ['Gras', 'bold', 'bold'],

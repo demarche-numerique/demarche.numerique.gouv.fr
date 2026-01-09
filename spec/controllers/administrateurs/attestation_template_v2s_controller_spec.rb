@@ -41,17 +41,11 @@ describe Administrateurs::AttestationTemplateV2sController, type: :controller do
       render_views
 
       context 'with preview dossier' do
-        let!(:dossier) { create(:dossier, :en_construction, procedure:, for_procedure_preview: true) }
+        let!(:dossier) { DossierPreviewService.new(procedure:, current_user: admin.user).dossier }
 
         it do
           is_expected.to include("Mon titre pour Ma démarche")
           is_expected.to include("n° #{dossier.id}")
-        end
-      end
-
-      context 'without preview dossier' do
-        it do
-          is_expected.to include("Mon titre pour --dossier_procedure_libelle--")
         end
       end
 
@@ -100,7 +94,7 @@ describe Administrateurs::AttestationTemplateV2sController, type: :controller do
       render_views
       let(:format) { :pdf }
       let(:attestation_acceptation_template) { build(:attestation_template, :v2, signature:) }
-      let(:dossier) { create(:dossier, :en_construction, procedure:, for_procedure_preview: true) }
+      let!(:dossier) { DossierPreviewService.new(procedure:, current_user: admin.user).dossier }
 
       before do
         html_content = /Ministère des devs.+Mon titre pour Ma démarche.+n° #{dossier.id}/m

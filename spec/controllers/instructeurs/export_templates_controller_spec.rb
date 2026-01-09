@@ -33,6 +33,7 @@ describe Instructeurs::ExportTemplatesController, type: :controller do
     it do
       subject
       expect(assigns(:export_template)).to be_present
+      expect(assigns(:preview_service)).to be_a(DossierPreviewService)
     end
   end
 
@@ -148,6 +149,7 @@ describe Instructeurs::ExportTemplatesController, type: :controller do
     it 'render edit' do
       subject
       expect(response).to render_template(:edit)
+      expect(assigns(:preview_service)).to be_a(DossierPreviewService)
     end
 
     context "with export_template not accessible by current instructeur" do
@@ -253,7 +255,7 @@ describe Instructeurs::ExportTemplatesController, type: :controller do
       subject { put :preview, params: { procedure_id: procedure.id, id: export_template.id, export_template: export_template_params }, format: :turbo_stream }
 
       it 'works with bigbig procedure' do
-        dossier = create(:dossier, procedure: procedure, for_procedure_preview: true)
+        dossier = DossierPreviewService.new(procedure:, current_user: instructeur.user).dossier
         subject
         expect(response.body).to include "DOSSIER_#{dossier.id}"
         expect(response.body).to include "mon_export_#{dossier.id}.pdf"

@@ -23,7 +23,7 @@
       method: :put,
       html: { class: 'form form-ds-fr-white procedure-form__column--form fr-background-alt--blue-france' } do |f|
 
-      %h1.page-title= @mail_template.class.const_get(:DISPLAYED_NAME)
+      %h1.fr-mt-3w.fr-h2= @mail_template.class.const_get(:DISPLAYED_NAME)
       = render partial: 'form', locals: { f: f, tags: @mail_template.tags }
       .procedure-form__actions.sticky--bottom
         .actions-right
@@ -31,10 +31,7 @@
 
     .procedure-form__column--preview
       .procedure-form__preview.sticky--top
-        %h3
-          .procedure-form__preview-title
-            Aperçu
-            .notice
-              Cet aperçu est mis à jour après chaque sauvegarde.
+        %h2.fr-mt-3w.fr-mb-0.fr-h3 Aperçu
+        .notice= render PreviewDossierLinkComponent.new(preview_service: @preview_service)
         .procedure-preview
           = render partial: 'apercu', locals: { procedure: @mail_template.procedure }

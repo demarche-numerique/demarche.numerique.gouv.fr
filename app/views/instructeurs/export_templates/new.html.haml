@@ -4,5 +4,4 @@
                       [t('.title')]] }
 .fr-container
   %h1 Nouveau modèle d’export
-
-  = render partial: 'form', locals: { procedure: @procedure, export_template: @export_template, groupe_instructeurs: @groupe_instructeurs }
+  = render partial: 'form', locals: { procedure: @procedure, export_template: @export_template, groupe_instructeurs: @groupe_instructeurs, preview_service: @preview_service }

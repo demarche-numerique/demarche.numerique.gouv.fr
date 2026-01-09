@@ -375,8 +375,8 @@ module Instructeurs
 
     def apercu
       @procedure = procedure
-      @dossier = procedure.active_revision.dossier_for_preview(current_user)
-      @dossier.with_champs
+      @preview_service = DossierPreviewService.new(procedure:, current_user:)
+      @dossier = @preview_service.dossier
     end
 
     def history

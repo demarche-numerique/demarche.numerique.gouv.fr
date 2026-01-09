@@ -1,4 +1,4 @@
 - if export_template.tabular?
   = render partial: 'form_tabular', locals: { procedure:, export_template:, groupe_instructeurs: }
 - else
-  = render partial: 'form_zip', locals: { procedure:, export_template:, groupe_instructeurs: }
+  = render partial: 'form_zip', locals: { procedure:, export_template:, groupe_instructeurs:, preview_service: }
