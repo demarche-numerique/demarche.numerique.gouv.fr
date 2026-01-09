@@ -27,7 +27,8 @@ class Dsfr::AlertComponent < ApplicationComponent
 
   def alert_class(state)
     class_names(
-      "fr-alert fr-alert--#{state}" => true,
+      "fr-alert" => true,
+      "fr-alert--#{state}" => state.present?,
       "fr-alert--sm" => size == :sm,
       extra_class_names => true
     )

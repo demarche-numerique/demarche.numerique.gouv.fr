@@ -19,8 +19,8 @@ describe Instructeurs::RdvConnectionsController, type: :controller do
     end
 
     it "gives information about my connection to RDV Service Public" do
-      expect(response.body).to have_text("Votre compte Démarches Simplifiées avec l'adresse électronique\n      francis.factice.ds@test.gouv.fr")
-      expect(response.body).to have_text("est connecté au compte RDV\n      Service Public avec l'adresse électronique francis.factice.rdv@test.gouv.fr.")
+      expect(response.body).to have_text("Votre compte Démarches Simplifiées avec l'adresse électronique francis.factice.ds@test.gouv.fr")
+      expect(response.body).to have_text("est connecté au compte RDV Service Public avec l'adresse électronique francis.factice.rdv@test.gouv.fr.")
     end
   end
 

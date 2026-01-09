@@ -1,0 +1,15 @@
+<%= helpers.turbo_frame_tag "rdv-connection-info" do %>
+  <%= render Dsfr::AlertComponent.new(state: nil, title: t('.title')) do |c| %>
+    <% c.with_body do %>
+      <p>
+        <%= t('.connection_message_html', ds_email: current_instructeur.email, rdv_email: rdv_email) %>
+      </p>
+
+      <p><%= t('.disconnect_info') %></p>
+
+      <p>
+        <%= link_to(t('.disconnect_button'), instructeur_rdv_connections_path(redirect_path: redirect_path), class: 'fr-btn fr-btn--sm fr-btn--secondary', method: :delete) %>
+      </p>
+    <% end %>
+  <% end %>
+<% end %>

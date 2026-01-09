@@ -24,7 +24,8 @@
 
       - if dossier.procedure.rdv_enabled?
         = dynamic_tab_item(t('views.instructeurs.dossiers.tab_steps.rendez_vous'),
-          rendez_vous_instructeur_dossier_path(dossier.procedure, dossier, statut: params[:statut]))
+          [rendez_vous_instructeur_dossier_path(dossier.procedure, dossier, statut: params[:statut]),
+          rendez_vous_connexion_instructeur_dossier_path(dossier.procedure, dossier, statut: params[:statut])])
 
       = dynamic_tab_item(t('views.instructeurs.dossiers.tab_steps.involved_persons'),
         personnes_impliquees_instructeur_dossier_path(dossier.procedure, dossier, statut: params[:statut]))

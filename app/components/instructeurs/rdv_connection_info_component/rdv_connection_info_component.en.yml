@@ -1,0 +1,6 @@
+---
+en:
+  title: RDV Service Public Account
+  connection_message_html: 'Your Démarches Simplifiées account with email address <b>%{ds_email}</b> is connected to the RDV Service Public account with email address <b>%{rdv_email}</b>.'
+  disconnect_info: If you wish to connect this Démarches Simplifiées account to another RDV Service Public account, you can disconnect this account.
+  disconnect_button: Disconnect the account

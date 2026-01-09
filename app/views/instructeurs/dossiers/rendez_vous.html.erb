@@ -1,0 +1,54 @@
+<% content_for(:title, "Rendez-vous · Dossier n° #{@dossier.id} (#{@dossier.owner_name})") %>
+
+<%= render partial: "header", locals: { dossier: @dossier, gallery_attachments: @gallery_attachments, procedure_presentation: @procedure_presentation, notifications: @notifications, notifications_sticker: @notifications_sticker } %>
+
+<div class="rendez-vous container">
+  <div class="fr-grid-row">
+    <% if current_instructeur.rdv_connection %>
+      <div class="fr-col fr-col-12 fr-col-md-3">
+        <%= render partial: 'instructeurs/dossiers/rendez_vous/sidemenu' %>
+      </div>
+    <% end %>
+    <div class="fr-col">
+      <% if @booked_rdvs.nil? || @booked_rdvs&.empty? %>
+        <p>Vous pouvez proposer un rendez-vous à l'usager, en le configurant sur le site RDV Service Public (date et horaire, par téléphone / en visioconférence / en présentiel).</p>
+        <p> En savoir plus sur la <a href="https://doc.demarches-simplifiees.fr/tutoriels/tutoriel-instructeur#la-prise-de-rendez-vous" target="_blank">prise de rendez-vous</a>.</p>
+      <% end %>
+      <% if current_instructeur.rdv_connection.nil? %>
+        <%= render Dsfr::CalloutComponent.new(title: nil) do |c| %>
+          <% c.with_body do %>
+            <p>
+              Pour utiliser cette fonctionnalité, vous devez commencer par connecter votre compte
+              <strong>RDV Service Public</strong>
+              à votre compte Démarches Simplifiées :
+            </p>
+            <%= form_tag('/auth/rdvservicepublic', method: 'post', data: {turbo: false}) do %>
+              <button class="fr-btn" type="submit">
+                Connecter RDV Service Public
+                <span class="fr-ml-1w fr-icon-external-link-line" aria-hidden="true"></span>
+              </button>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <% if @booked_rdvs.nil? %>
+          <p>
+            Une erreur est survenue lors de la récupération des rendez-vous. Veuillez réessayer plus tard.
+            Vous pouvez consulter les rendez-vous sur le site RDV Service Public.
+          </p>
+          <p>
+            <%= link_to "Voir mon agenda dans RDV Service Public", RdvService.rdv_sp_agenda_url, class: 'fr-btn', target: '_blank' %>
+          </p>
+        <% else %>
+          <div class="fr-mb-2w">
+            <% @booked_rdvs&.each do |rdv| %>
+              <%= render Instructeurs::RdvCardComponent.new(rdv:) %>
+            <% end %>
+          </div>
+        <% end %>
+
+        <%= render Instructeurs::ScheduleRdvButtonComponent.new(dossier: @dossier) %>
+      <% end %>
+    </div>
+  </div>
+</div>
