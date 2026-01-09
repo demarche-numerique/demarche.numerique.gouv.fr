@@ -2,7 +2,7 @@
 
 module Maintenance
   class T20250901migrateEnAttenteCorrectionFiltersTask < MaintenanceTasks::Task
-    # Documentation: cette tâche migre les filtres sur l' Etat du dossier avec la valeur pending_correction vers le filtre notification équivalent
+    # Documentation: cette tâche migre les filtres sur l’ Etat du dossier avec la valeur pending_correction vers le filtre notification équivalent
 
     include RunnableOnDeployConcern
     include StatementsHelpersConcern

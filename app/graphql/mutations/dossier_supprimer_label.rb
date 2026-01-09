@@ -2,7 +2,7 @@
 
 module Mutations
   class DossierSupprimerLabel < Mutations::BaseMutation
-    description "Supprimer un label d'un dossier"
+    description "Supprimer un label d’un dossier"
 
     argument :dossier_id, ID, required: true, loads: Types::DossierType
     argument :label_id, ID, required: true, loads: Types::LabelType

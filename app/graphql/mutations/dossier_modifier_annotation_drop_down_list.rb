@@ -2,7 +2,7 @@
 
 module Mutations
   class DossierModifierAnnotationDropDownList < Mutations::DossierModifierAnnotation
-    description "Modifier l’annotation d'un champs de type dropdown list."
+    description "Modifier l’annotation d’un champs de type dropdown list."
 
     argument :value, GraphQL::Types::String, required: true
 

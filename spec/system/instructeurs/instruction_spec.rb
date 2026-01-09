@@ -140,14 +140,14 @@ describe 'Instructing a dossier:', js: true do
     click_on "Télécharger un dossier"
     within(:css, '#tabpanel-standard1-panel') do
       choose "Fichier csv", allow_label_click: true
-      click_on "Demander l'export"
+      click_on "Demander l’export"
     end
 
     expect(page).to have_text('Nous générons cet export.')
 
     find("button", text: "Téléchargements").click
     click_on "Liste des exports"
-    expect(page).to have_text("Export .csv d’un dossier « à suivre » demandé il y a moins d'une minute")
+    expect(page).to have_text("Export .csv d’un dossier « à suivre » demandé il y a moins d’une minute")
     expect(page).to have_text("En préparation")
 
     assert_performed_jobs 1 do

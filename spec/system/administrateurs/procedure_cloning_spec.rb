@@ -58,7 +58,7 @@ describe 'As an administrateur I wanna clone a procedure', js: true do
       find('#publish-procedure-link').click
       expect(find_field('Lien de la démarche à diffuser aux usagers').value).to eq 'libelle-de-la-procedure-2'
       fill_in 'Lien de la démarche à diffuser aux usagers', with: 'libelle-de-la-procedure'
-      expect(page).to have_content "Si vous publiez cette démarche, le lien ne pointera plus sur l'ancienne démarche."
+      expect(page).to have_content "Si vous publiez cette démarche, le lien ne pointera plus sur l’ancienne démarche."
 
       fill_in 'Où les usagers trouveront-ils le lien vers la démarche ?', with: 'http://some.website'
       click_on 'publish'
@@ -98,7 +98,7 @@ describe 'As an administrateur I wanna clone a procedure', js: true do
       find('#publish-procedure-link').click
       expect(find_field('Lien de la démarche à diffuser aux usagers').value).to eq 'libelle-de-la-procedure-2'
       fill_in 'Lien de la démarche à diffuser aux usagers', with: 'libelle-de-la-procedure'
-      expect(page).to have_content "Si vous publiez cette démarche, le lien ne pointera plus sur l'ancienne démarche."
+      expect(page).to have_content "Si vous publiez cette démarche, le lien ne pointera plus sur l’ancienne démarche."
       fill_in 'Où les usagers trouveront-ils le lien vers la démarche ?', with: 'http://some.website'
       click_on 'publish'
 

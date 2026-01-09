@@ -3,4 +3,4 @@ fr:
     attributes:
       champs/epci_champ:
         hints:
-          value: "Sélectionnez le département de l'EPCI dans la première liste. Sélectionnez ensuite l'EPCI."
+          value: "Sélectionnez le département de l’EPCI dans la première liste. Sélectionnez ensuite l’EPCI."

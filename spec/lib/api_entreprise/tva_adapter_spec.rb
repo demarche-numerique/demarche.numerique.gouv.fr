@@ -21,7 +21,7 @@ describe APIEntreprise::TvaAdapter do
       expect(subject).to be_an_instance_of(Hash)
     end
 
-    it 'L\'entreprise contient bien un numero_tva_intracommunautaire' do
+    it 'L’entreprise contient bien un numero_tva_intracommunautaire' do
       expect(subject[:entreprise_numero_tva_intracommunautaire]).to eq("FR48672039971")
     end
   end

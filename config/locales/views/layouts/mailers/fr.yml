@@ -8,7 +8,7 @@ fr:
         file_messagerie: messagerie du dossier
         procedure_management: "Cette démarche est gérée par :"
         ask_question: "Une question sur votre dossier ?"
-        email_sent_to: "Cet email a été envoyé à l'adresse :"
+        email_sent_to: "Cet email a été envoyé à l’adresse :"
         by_messagerie: "Messagerie du dossier :"
         by_messagerie_link: envoyez directement un message à l’instructeur
         by_contact_link: "Page de contact :"
@@ -34,11 +34,11 @@ fr:
         accuse_lecture: a été traité le %{processed_at}.
       accuse_lecture:
         good_morning: Bonjour,
-        first_part: Nous vous informons qu'une décision sur le dossier n° %{dossier_id} de la démarche
+        first_part: Nous vous informons qu’une décision sur le dossier n° %{dossier_id} de la démarche
         second_part: a été rendue.
         third_part: Pour en connaitre la nature, veuillez consulter votre dossier dans votre compte Démarches Simplifiées.
         button_text: Consulter mon dossier
-        commentaire_html: <p>Bonjour,</p><p>Nous vous informons qu'une décision sur votre dossier a été rendue.</p>Cordialement,<br>%{service}
+        commentaire_html: <p>Bonjour,</p><p>Nous vous informons qu’une décision sur votre dossier a été rendue.</p>Cordialement,<br>%{service}
 
       commentaire_groupe_gestionnaire_footer:
         do_not_reply_html: Merci de ne pas répondre à cet email. Consultez votre message sur %{application_name} ou contactez votre expéditeur par <a href="mailto:%{sender_email}">mail</a>

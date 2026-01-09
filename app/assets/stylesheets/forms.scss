@@ -229,16 +229,16 @@
   .fr-label .fr-hint-text,
   .fr-label + .fr-hint-text {
     clear: right;
-    // Évite (en version mobile) que les premiers mots de l'aide
-    // ne remontent en vis à vis de l'encart
-    // "champ actualisé par l'administration", lorsqu'il est présent
+    // Évite (en version mobile) que les premiers mots de l’aide
+    // ne remontent en vis à vis de l’encart
+    // "champ actualisé par l’administration", lorsqu'il est présent
   }
 
   .fr-label + .fr-hint-text > *,
   .fr-label + .fr-hint-text > * > p,
   .fr-fieldset__legend + .fr-hint-text > * {
-    // la description d'un champ peut contenir du markup (markdown->html),
-    // on herite donc la taille de police, la couleur et l'interlignage de fr-hint-text
+    // la description d’un champ peut contenir du markup (markdown->html),
+    // on herite donc la taille de police, la couleur et l’interlignage de fr-hint-text
     // on réinitialise les marges des éléments
     font-size: inherit;
     line-height: inherit;
@@ -256,12 +256,12 @@
   }
 
   .fr-hint-text + .fr-input {
-    // les champs se trouvant juste après un message d'aide ont le même espacement que ceux se trouvant juste après un label
+    // les champs se trouvant juste après un message d’aide ont le même espacement que ceux se trouvant juste après un label
     margin-top: 0.5rem;
   }
 
   .fr-fieldset__legend .fr-hint-text {
-    // les messages d'aide se trouvant dans une légende ont le même espacement que ceux se trouvant dans un label
+    // les messages d’aide se trouvant dans une légende ont le même espacement que ceux se trouvant dans un label
     margin-top: 0.25rem;
   }
 
@@ -445,7 +445,7 @@
       color: var(--text-disabled-grey);
     }
     .address-ban .fr-ds-combobox .fr-autocomplete {
-      opacity: 0.5; // Réduit l'opacité de l'icône droite en background. L'input étant autant disabled, cette opacité s'ajoute à celle du disabled
+      opacity: 0.5; // Réduit l’opacité de l’icône droite en background. L’input étant autant disabled, cette opacité s’ajoute à celle du disabled
     }
   }
 

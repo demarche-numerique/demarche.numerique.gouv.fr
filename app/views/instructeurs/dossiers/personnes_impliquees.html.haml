@@ -12,7 +12,7 @@
 
   = render partial: 'instructeurs/dossiers/personnes_impliquees_block', locals: { emails_collection: @avis_emails, title: "Personnes à qui un avis a été demandé", blank: "Aucun avis n’a été demandé" }
 
-  = render partial: 'instructeurs/dossiers/personnes_impliquees_block', locals: { emails_collection: @invites_emails, title: "Personnes invitées par l'usager à modifier ce dossier", blank: "Aucune personne n’a été invitée par l'usager à modifier ce dossier" }
+  = render partial: 'instructeurs/dossiers/personnes_impliquees_block', locals: { emails_collection: @invites_emails, title: "Personnes invitées par l’usager à modifier ce dossier", blank: "Aucune personne n’a été invitée par l’usager à modifier ce dossier" }
 
   = render Instructeurs::DossierTraitementsComponent.new(traitements: @dossier.traitements)
 

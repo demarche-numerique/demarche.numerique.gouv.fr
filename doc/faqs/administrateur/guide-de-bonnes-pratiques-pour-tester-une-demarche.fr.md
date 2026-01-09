@@ -41,7 +41,7 @@ Vous devez commencer par cette étape afin de tester le parcours d’un usager p
 2. Commencez à remplir votre dossier en suivant le bouton **« Commencer la démarche »**.
   ![Page d’accueil usager de la démarche {aria-hidden="true"}](faq/administrateur-procedure-test-commencer.png)
 
-3. Après avoir complété le dossier et éventuellement testé les fonctionnalités dédiées à l'interface usagers (invitation à compléter un dossier…), cliquez sur **« Déposer le dossier »** pour finaliser le dépôt et voir le message de confirmation de dépôt.
+3. Après avoir complété le dossier et éventuellement testé les fonctionnalités dédiées à l’interface usagers (invitation à compléter un dossier…), cliquez sur **« Déposer le dossier »** pour finaliser le dépôt et voir le message de confirmation de dépôt.
   ![Test de la démarche par l’usager {aria-hidden="true"}](faq/administrateur-procedure-test-usager.png)
 
 Une fois votre dossier de test déposé, un message de confirmation de dépôt sera affiché :

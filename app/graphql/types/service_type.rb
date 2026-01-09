@@ -11,8 +11,8 @@ module Types
     global_id_field :id
 
     field :nom, String, "nom du service qui met en oeuvre la démarche", null: false
-    field :type_organisme, TypeOrganisme, "type d'organisme qui met en oeuvre la démarche", null: false
-    field :organisme, String, "nom de l'organisme qui met en oeuvre la démarche", null: false
+    field :type_organisme, TypeOrganisme, "type d’organisme qui met en oeuvre la démarche", null: false
+    field :organisme, String, "nom de l’organisme qui met en oeuvre la démarche", null: false
     field :siret, String, "n° siret du service qui met en oeuvre la démarche", null: true
   end
 end

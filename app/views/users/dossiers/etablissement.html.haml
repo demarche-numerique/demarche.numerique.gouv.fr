@@ -10,10 +10,10 @@
     - etablissement = @dossier.etablissement
 
     - if etablissement.as_degraded_mode?
-      = render Dsfr::CalloutComponent.new(title: "Nous n'avons pas pu vérifier votre SIRET", theme: :warning, icon: "fr-icon-feedback-fill") do |c|
+      = render Dsfr::CalloutComponent.new(title: "Nous n’avons pas pu vérifier votre SIRET", theme: :warning, icon: "fr-icon-feedback-fill") do |c|
         - c.with_body do
           %p
-            L'annuaire INSEE est indisponible, nous ne pouvons pas vérifier votre SIRET.
+            L’annuaire INSEE est indisponible, nous ne pouvons pas vérifier votre SIRET.
             %br
             %br
             Veuillez vérifier par vous-même que le numéro
@@ -22,7 +22,7 @@
 
           %p
             = link_to annuaire_link(etablissement.siret), class: "fr-btn fr-btn--secondary", **external_link_attributes do
-              Vérifier dans l'annuaire des entreprises
+              Vérifier dans l’annuaire des entreprises
 
     - elsif etablissement.diffusable_commercialement == false
       %p= t('warning_for_private_info', scope: 'views.shared.dossiers.identite_entreprise', siret: pretty_siret(etablissement.siret))

@@ -403,7 +403,7 @@ describe 'BatchOperation a dossier:', js: true do
 
       expect(page).to have_selector("#modal-commentaire-batch", visible: true)
       expect(page).to have_content("Envoyer un message à 2 usagers")
-      fill_in('Votre message', with: "Message de test pour l'onglet tous")
+      fill_in('Votre message', with: "Message de test pour l’onglet tous")
       click_on "Envoyer le message"
 
       # ensure batched dossiers are disabled

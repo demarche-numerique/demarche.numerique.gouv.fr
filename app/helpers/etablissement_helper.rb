@@ -19,7 +19,7 @@ module EtablissementHelper
   end
 
   # trouver la declaration 2051, et prendre la premiere valeur du bilan identifié par le code code_nref: 300476
-  # autrement connu comme le resultat d'un exercice dans un bilan comptable "funky magic accountant lingo"
+  # autrement connu comme le resultat d’un exercice dans un bilan comptable "funky magic accountant lingo"
   def extract_resultat_exercice(bilan)
     declaration_2051 = bilan.dig('declarations').find { _1["numero_imprime"] == "2051" }
     return nil if declaration_2051.nil?
@@ -58,8 +58,8 @@ module EtablissementHelper
 
   def effectif(etablissement)
     {
-      'NN' => "Unités non employeuses (pas de salarié au cours de l'année de référence et pas d’effectif au 31/12).",
-      '00' => "0 salarié (n'ayant pas d’effectif au 31/12 mais ayant employé des salariés au cours de l'année de référence)",
+      'NN' => "Unités non employeuses (pas de salarié au cours de l’année de référence et pas d’effectif au 31/12).",
+      '00' => "0 salarié (n’ayant pas d’effectif au 31/12 mais ayant employé des salariés au cours de l’année de référence)",
       '01' => '1 ou 2 salariés',
       '02' => '3 à 5 salariés',
       '03' => '6 à 9 salariés',

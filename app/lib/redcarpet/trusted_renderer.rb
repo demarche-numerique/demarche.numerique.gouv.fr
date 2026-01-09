@@ -37,7 +37,7 @@ module Redcarpet
     end
 
     def image(link, title, alt_text)
-      # Extrait les attributs personnalisés s'ils existent sous la forme { aria-hidden=true } dans les []
+      # Extrait les attributs personnalisés s’ils existent sous la forme { aria-hidden=true } dans les []
       custom_attributes = {}
       if alt_text =~ /\s*\{(.+)\}$/
         attr_string = Regexp.last_match(1)

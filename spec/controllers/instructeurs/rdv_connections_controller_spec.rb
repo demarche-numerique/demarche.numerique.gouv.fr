@@ -19,8 +19,8 @@ describe Instructeurs::RdvConnectionsController, type: :controller do
     end
 
     it "gives information about my connection to RDV Service Public" do
-      expect(response.body).to have_text("Votre compte Démarches Simplifiées avec l'adresse électronique\n      francis.factice.ds@test.gouv.fr")
-      expect(response.body).to have_text("est connecté au compte RDV\n      Service Public avec l'adresse électronique francis.factice.rdv@test.gouv.fr.")
+      expect(response.body).to have_text("Votre compte Démarches Simplifiées avec l’adresse électronique\n      francis.factice.ds@test.gouv.fr")
+      expect(response.body).to have_text("est connecté au compte RDV\n      Service Public avec l’adresse électronique francis.factice.rdv@test.gouv.fr.")
     end
   end
 
@@ -30,7 +30,7 @@ describe Instructeurs::RdvConnectionsController, type: :controller do
     it do
       expect { rdv_connection.reload }.to raise_error(ActiveRecord::RecordNotFound)
       expect(flash.alert).to be_nil
-      expect(flash.notice).to eq("Votre compte Démarches Simplifiées n'est plus connecté à RDV Service Public.")
+      expect(flash.notice).to eq("Votre compte Démarches Simplifiées n’est plus connecté à RDV Service Public.")
       expect(response).to redirect_to(profil_path)
     end
   end

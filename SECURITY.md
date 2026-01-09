@@ -79,8 +79,8 @@ Lorsque l’équipe reçoit un rapport sur une faille de sécurité, elle procè
 
   * Confirmer le problème et déterminer les versions affectées.
   * Vérifier le code pour trouver tout problème similaire potentiel.
-  * Communiquer par mattermost aux différentes instances connues qu'une faille est en cours de résolution
-  * Préparer les correctifs, les merger sur la branche production et les déployer sur l'instance DINUM
+  * Communiquer par mattermost aux différentes instances connues qu’une faille est en cours de résolution
+  * Préparer les correctifs, les merger sur la branche production et les déployer sur l’instance DINUM
   * Communiquer par mattermost aux différentes instances connues que le correctif est disponible sur la branche principale
 
 ## Commentaires sur cette politique

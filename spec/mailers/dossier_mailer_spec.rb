@@ -177,7 +177,7 @@ RSpec.describe DossierMailer, type: :mailer do
       subject { described_class.notify_near_deletion_to_administration([dossier], dossier.user.email) }
 
       it 'checks email subject and body for correct inclusions for en_construction status' do
-        expect(subject.subject).to eq("Un dossier en attente d'instruction va bientôt être supprimé")
+        expect(subject.subject).to eq("Un dossier en attente d’instruction va bientôt être supprimé")
         expect(subject.body).to include("N° #{dossier.id} ")
         expect(subject.body).to include(dossier.procedure.libelle)
         expect(subject.body).to include("PDF")
@@ -207,7 +207,7 @@ RSpec.describe DossierMailer, type: :mailer do
 
       it 'verifies email subject, to, and body for correct inclusions for en_construction status' do
         expect(subject.to).to eq([dossier.user.email])
-        expect(subject.subject).to eq("Un dossier en attente d'instruction va bientôt être supprimé")
+        expect(subject.subject).to eq("Un dossier en attente d’instruction va bientôt être supprimé")
         expect(subject.body).to include("N° #{dossier.id} ")
         expect(subject.body).to include(dossier.procedure.libelle)
         expect(subject.body).to include("Votre compte reste activé")

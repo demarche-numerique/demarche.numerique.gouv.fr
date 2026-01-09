@@ -135,7 +135,7 @@ describe Administrateurs::APITokensController, type: :controller do
 
       it 'does not update a token' do
         expect(token.authorized_networks).to eq([IPAddr.new('118.218.200.200')])
-        expect(assigns(:invalid_network_message)).to eq("Vous ne pouvez pas supprimer les restrictions d'accès à l'API d'un jeton permanent.")
+        expect(assigns(:invalid_network_message)).to eq("Vous ne pouvez pas supprimer les restrictions d’accès à l’API d’un jeton permanent.")
       end
     end
 

@@ -10,7 +10,7 @@ fr:
         email: 'Adresse électronique de contact'
         telephone: 'Téléphone'
         nom: Nom du service
-        faq_link: Lien vers une page d'aide ou FAQ
+        faq_link: Lien vers une page d’aide ou FAQ
         contact_link: Lien vers une page ou formulaire de contact
         other_contact_info: Précisions
         organisme: Organisme(s)
@@ -20,12 +20,12 @@ fr:
             Exemple : service jeunesse et prévention, direction des affaires maritimes
           organisme: |
             Indiquez les organismes depuis l’échelon territorial jusqu’au ministère séparés par une virgule.
-            Exemple : mairie de Mours, préfecture de l'Oise, ministère de la Culture
+            Exemple : mairie de Mours, préfecture de l’Oise, ministère de la Culture
           faq_link: |
-            Indiquez l'url d'une page présentant des contenus d'aide et/ou questions-réponses permettant d'orienter les usagers.
+            Indiquez l’url d’une page présentant des contenus d’aide et/ou questions-réponses permettant d’orienter les usagers.
             Exemple : https://www.mairie-de-mours.fr/faq
           contact_link: |
-            Indiquez l'url d'une page présentant vos coordonnées et/ou un formulaire de contact en ligne.
+            Indiquez l’url d’une page présentant vos coordonnées et/ou un formulaire de contact en ligne.
             Exemple : https://www.mairie-de-mours.fr/contact
           email: |
             Indiquez une adresse électronique valide qui permettra de recevoir et de répondre aux questions des usagers.

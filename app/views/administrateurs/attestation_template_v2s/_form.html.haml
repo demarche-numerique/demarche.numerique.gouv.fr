@@ -12,7 +12,7 @@
       .fr-mb-6w
         = render Dsfr::AlertComponent.new(state: :info, title: "Nouvel éditeur d’attestation", heading_level: "h3") do |c|
           - c.with_body do
-            %p Cette page présente un nouvel éditeur d'attestation, plus flexible et conforme à la charte de l'État.
+            %p Cette page présente un nouvel éditeur d’attestation, plus flexible et conforme à la charte de l’État.
             %p
               %strong Pour modifier l’attestation existante (actuellement délivrée aux usagers),
               = link_to("cliquez ici", edit_admin_procedure_attestation_template_path(procedure, attestation_kind:)) + "."
@@ -28,7 +28,7 @@
               = t(".attestation_#{attestation_kind}_description")
 
           .fr-fieldset__element
-            = render Dsfr::CalloutComponent.new(title: "Activation de la délivrance de l'attestation", theme: :neutral) do |c|
+            = render Dsfr::CalloutComponent.new(title: "Activation de la délivrance de l’attestation", theme: :neutral) do |c|
               - c.with_html_body do
                 .fr-toggle.fr-toggle--label-left
                   = f.check_box :activated, class: "fr-toggle__input", id: dom_id(attestation_template, :activated)
@@ -116,10 +116,10 @@
             %p= link_to 'Prévisualiser en taille réelle', admin_procedure_attestation_template_v2_path(procedure, format: :pdf, attestation_kind:), class: 'fr-link', target: '_blank', rel: 'noopener'
           %iframe.attestation-preview{ title: "Aperçu", src: admin_procedure_attestation_template_v2_path(procedure, format: :pdf, attestation_kind:), data: { attestation_target: 'preview' } }
           %p.fr-hint-text
-            L'aperçu est mis à jour automatiquement après chaque modification.
+            L’aperçu est mis à jour automatiquement après chaque modification.
             Pour générer un aperçu fidèle avec champs et dates,
             = link_to("créez-vous un dossier", new_dossier_path(procedure_id: procedure, brouillon: true), **external_link_attributes)
-            et acceptez-le : l'aperçu l'utilisera.
+            et acceptez-le : l’aperçu l’utilisera.
 
   - if attestation_template.draft?
     - content_for(:sticky_header) do

@@ -2,5 +2,5 @@
 fr:
   changes_to_save: "modification à déposer"
   modified_at: "modifié le %{datetime}"
-  check_content_rebased: "Information : champ actualisé par l'administration. Vérifier son contenu."
+  check_content_rebased: "Information : champ actualisé par l’administration. Vérifier son contenu."
   recommended_size: La taille maximale conseillée est de %{size} caractères.

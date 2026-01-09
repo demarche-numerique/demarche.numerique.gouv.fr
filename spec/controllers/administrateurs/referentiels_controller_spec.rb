@@ -445,7 +445,7 @@ describe Administrateurs::ReferentielsController, type: :controller do
           expect { subject }.to change { referentiel.reload.datasource }.to("$.results")
           expect(referentiel.json_template).to eq({ "type" => "OK" })
           expect(response).to redirect_to(mapping_type_de_champ_admin_procedure_referentiel_path(procedure, type_de_champ.stable_id, referentiel))
-          expect(flash[:notice]).to eq("La configuration de l'autocomplete a bien été enregistrée")
+          expect(flash[:notice]).to eq("La configuration de l’autocomplete a bien été enregistrée")
         end
 
         context 'when update fails' do

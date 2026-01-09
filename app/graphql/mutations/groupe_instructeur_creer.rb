@@ -3,7 +3,7 @@
 module Mutations
   class GroupeInstructeurCreer < Mutations::BaseMutation
     class GroupeInstructeurAttributes < Types::BaseInputObject
-      description "Attributs pour l’ajout d'un groupe instructeur."
+      description "Attributs pour l’ajout d’un groupe instructeur."
       argument :label, String, "Libelle du groupe instructeur.", required: true
       argument :closed, Boolean, "L’état du groupe instructeur.", required: false, default_value: false
       argument :instructeurs, [Types::ProfileInput], "Instructeurs à ajouter.", required: false, default_value: []

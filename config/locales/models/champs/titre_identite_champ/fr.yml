@@ -3,4 +3,4 @@ fr:
     attributes:
       champs/titre_identite_champ:
           hints:
-            value: "Pièce attendue : Carte nationale d'identité (uniquement le recto), passeport, titre de séjour ou autre justificatif d’identité."
+            value: "Pièce attendue : Carte nationale d’identité (uniquement le recto), passeport, titre de séjour ou autre justificatif d’identité."

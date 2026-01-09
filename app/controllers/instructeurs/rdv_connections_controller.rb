@@ -8,7 +8,7 @@ module Instructeurs
 
     def destroy
       current_instructeur.rdv_connection.destroy
-      flash.notice = "Votre compte Démarches Simplifiées n'est plus connecté à RDV Service Public."
+      flash.notice = "Votre compte Démarches Simplifiées n’est plus connecté à RDV Service Public."
       redirect_to params[:redirect_path] || profil_path
     end
   end

@@ -2,21 +2,21 @@
 fr:
   no_changes: Aucune modification
   breaking_change:
-    one: "Les modifications apportées ne s'appliqueront pas au dossier déjà déposé."
-    other: "Les modifications apportées ne s'appliqueront pas aux %{count} dossiers déjà déposés."
+    one: "Les modifications apportées ne s’appliqueront pas au dossier déjà déposé."
+    other: "Les modifications apportées ne s’appliqueront pas aux %{count} dossiers déjà déposés."
   delete_champ_html:
     one: "Un dossier en cours de traitement porte ce champ. Les données associées à ce champ seront supprimées."
     other: "%{count} dossiers en cours de traitement portent ce champ. Les <strong>données</strong> associées avec ce champ seront <strong>supprimées</strong>."
   add_option: "ajoutés : %{items}"
   remove_option: "supprimés : %{items}"
-  invalid_routing_rules_alert: "Certains groupes d'instructeurs ont une règle de routage invalide. Veuillez mettre à jour la configuration des groupes d'instructeurs après avoir publié les modifications."
+  invalid_routing_rules_alert: "Certains groupes d’instructeurs ont une règle de routage invalide. Veuillez mettre à jour la configuration des groupes d’instructeurs après avoir publié les modifications."
 
   update_referentiel: &update_referentiel
-    referentiel_url: "L'URL de l'API du champ « %{label} » a été modifiée. La nouvelle URL est « %{to} »."
-    referentiel_mode: "Le mode d'intérogation du référentiel du champ « %{label} » a été modifié. Le nouveau mode est « %{to} »."
-    referentiel_hint: "L'indication à fournir à l'usager concernant le format de saisie attendu du champ « %{label} » a été modifiée. La nouvelle indication est « %{to} »."
-    referentiel_test_data: "L'exemple de saisie valide du champ « %{label} » a été modifié. Le nouvel exemple est « %{to} »."
-    referentiel_mapping: "Le mapping des données entre le champ et l'API du champ « %{label} » a été modifié."
+    referentiel_url: "L'URL de l’API du champ « %{label} » a été modifiée. La nouvelle URL est « %{to} »."
+    referentiel_mode: "Le mode d’intérogation du référentiel du champ « %{label} » a été modifié. Le nouveau mode est « %{to} »."
+    referentiel_hint: "L’indication à fournir à l’usager concernant le format de saisie attendu du champ « %{label} » a été modifiée. La nouvelle indication est « %{to} »."
+    referentiel_test_data: "L’exemple de saisie valide du champ « %{label} » a été modifié. Le nouvel exemple est « %{to} »."
+    referentiel_mapping: "Le mapping des données entre le champ et l’API du champ « %{label} » a été modifié."
 
   public:
     add: Le champ « %{label} » a été ajouté.
@@ -35,7 +35,7 @@ fr:
     update_nature: La nature de pièce justificative « %{label} » a été modifiée en « %{to} ».
     update_notice_explicative: La notice explicative du champ « %{label} » a été modifiée.
     update_drop_down_options: "Les options de sélection du champ « %{label} » ont été modifiées :"
-    update_drop_down_options_alert: "Le champ « %{label} » est utilisé pour le routage des dossiers. Veuillez mettre à jour la configuration des groupes d'instructeurs après avoir publié les modifications."
+    update_drop_down_options_alert: "Le champ « %{label} » est utilisé pour le routage des dossiers. Veuillez mettre à jour la configuration des groupes d’instructeurs après avoir publié les modifications."
     enable_mandatory: Le champ « %{label} » est maintenant obligatoire.
     disable_mandatory: Le champ « %{label} » n’est plus obligatoire.
     enable_drop_down_other: Le champ « %{label} » comporte maintenant un choix « Autre ».
@@ -51,9 +51,9 @@ fr:
     update_character_limit: La limite de caractères du champ texte « %{label} » a été modifiée. La nouvelle limite est « %{to} ».
     remove_character_limit: La limite de caractères du champ texte « %{label} » a été supprimée.
     update_formatted_mode: Le mode du champ formaté « %{label} » a été modifié. Le nouveau mode est « %{to} ».
-    update_letters_acceptance: L'acceptation des lettres pour le champ « %{label} » a été modifiée. Les lettres sont désormais %{to}.
-    update_numbers_acceptance: L'acceptation des chiffres pour le champ « %{label} » a été modifiée. Les chiffres sont désormais %{to}.
-    update_special_characters_acceptance: L'acceptation des caractères spéciaux pour le champ « %{label} » a été modifiée. Les caractères spéciaux sont désormais %{to}.
+    update_letters_acceptance: L’acceptation des lettres pour le champ « %{label} » a été modifiée. Les lettres sont désormais %{to}.
+    update_numbers_acceptance: L’acceptation des chiffres pour le champ « %{label} » a été modifiée. Les chiffres sont désormais %{to}.
+    update_special_characters_acceptance: L’acceptation des caractères spéciaux pour le champ « %{label} » a été modifiée. Les caractères spéciaux sont désormais %{to}.
     remove_min_character_length: Le nombre de caractères minimum pour le champ « %{label} » a été supprimé.
     update_min_character_length: Le nombre de caractères minimum pour le champ « %{label} » a été modifié. Le minimum est désormais %{to}.
     remove_max_character_length: Le nombre de caractères maxium pour le champ « %{label} » a été supprimé.
@@ -78,7 +78,7 @@ fr:
     update_max_number: La valeur maximale pour le champ « %{label} » a été modifié. Le maximum est désormais %{to}.
     update_date_in_past: "Le champ « %{label} » a été modifié.  %{to} "
     add_date_in_past_constraint: "La date doit être dans le passé"
-    remove_date_in_past_constraint: "La date n'est plus limitée à une date dans le passé."
+    remove_date_in_past_constraint: "La date n’est plus limitée à une date dans le passé."
     update_range_date: "Le champ « %{label} » a été modifié.  %{to} "
     add_range_date_constraint: "La limite des valeurs a été activée."
     remove_range_date_constraint: "La limite des valeurs a été désactivée."

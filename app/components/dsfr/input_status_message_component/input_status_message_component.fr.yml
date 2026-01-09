@@ -13,7 +13,7 @@ fr:
     success: "Référence trouvée : %{value}"
   prefilled: "Donnée remplie automatiquement."
   pj:
-    info: "Contenu du fichier en cours d'analyse…"
+    info: "Contenu du fichier en cours d’analyse…"
     warning: "Notre système n’a pas pu identifier le numéro IBAN.<br>Vérifiez votre document ou ne tenez pas compte de ce message si vous êtes sûr(e) de votre fichier."
     valid: "Notre système a identifié l’IBAN %{iban}"
     valid_with_bank: "Notre système a identifié l’IBAN %{iban} - <b>%{bank_name}</b>"

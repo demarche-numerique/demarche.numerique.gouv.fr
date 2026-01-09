@@ -255,7 +255,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
           click_on 'Supprimer'
         end
       end
-      expect(page).to have_content("devrait être précédé d'un titre de niveau 1")
+      expect(page).to have_content("devrait être précédé d’un titre de niveau 1")
 
       # check summary refresh
       procedure.reload.active_revision.types_de_champ_private.each do |header_section|

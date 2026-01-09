@@ -3,7 +3,7 @@ fr:
   administrateurs:
     api_tokens:
       nom:
-        new_token: Création d'un nouveau jeton
+        new_token: Création d’un nouveau jeton
         name: Nom du jeton
         name-hint: 'exemples: prod orus, test presta'
         continue: Continuer

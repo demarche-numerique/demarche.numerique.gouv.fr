@@ -3,7 +3,7 @@
 module Maintenance
   class T20241009NoopAttemptRunOnDeployTask < MaintenanceTasks::Task
     # Documentation: cette tâche ne fait rien mais sert à vérifier
-    # qu'elle sera bien exécutée sur le déploiement suivant
+    # qu’elle sera bien exécutée sur le déploiement suivant
     # pour remplacer after party.
 
     include RunnableOnDeployConcern

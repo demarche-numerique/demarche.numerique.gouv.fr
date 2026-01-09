@@ -21,7 +21,7 @@
     - if @dossier.present?
       Pour en savoir plus, veuillez vous rapprocher de #{@dossier.user.email}.
     - else
-      Nous restons à votre disposition si vous avez besoin d’accompagnement à l'adresse #{link_to CONTACT_EMAIL, "mailto:#{CONTACT_EMAIL}"}.
+      Nous restons à votre disposition si vous avez besoin d’accompagnement à l’adresse #{link_to CONTACT_EMAIL, "mailto:#{CONTACT_EMAIL}"}.
 
 
 = render partial: "layouts/mailers/signature"

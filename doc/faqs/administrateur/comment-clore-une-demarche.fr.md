@@ -23,9 +23,9 @@ Bien que l’accès à la démarche soit restreint, les dossiers déjà déposé
 
  Un usager qui suit un lien vers la démarche sera informé qu’elle est close. Cependant au moment de la clôture vous pouvez indiquer quelle démarche la remplace (nous le redigerons vers celle-ci), ou la raison pour laquelle est close.
 
-![Capture d'écran du remplacement de démarche {aria-hidden="true"}](faq/administrateur-procedure-close-replace.png)
+![Capture d’écran du remplacement de démarche {aria-hidden="true"}](faq/administrateur-procedure-close-replace.png)
 
-![Capture d'écran pour saisir le motif de cloture de démarche {aria-hidden="true"}](faq/administrateur-procedure-close-message.png)
+![Capture d’écran pour saisir le motif de cloture de démarche {aria-hidden="true"}](faq/administrateur-procedure-close-message.png)
 
 ## Comment prévoir la clôture automatique d’une démarche ?
 

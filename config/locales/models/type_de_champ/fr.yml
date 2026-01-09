@@ -67,7 +67,7 @@ fr:
           iban: IBAN
           regions: Région
           siret: Numéro SIRET
-          titre_identite: Pièce d'identité
+          titre_identite: Pièce d’identité
           phone: Numéro de téléphone
           rna: Numéro RNA
           rnf: Numéro RNF
@@ -89,4 +89,4 @@ fr:
       type_de_champ:
         attributes:
           header_section_level:
-            gap_error: "devrait être précédé d'un titre de niveau %{level}"
+            gap_error: "devrait être précédé d’un titre de niveau %{level}"

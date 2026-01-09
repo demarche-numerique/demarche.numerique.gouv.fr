@@ -1,4 +1,4 @@
 - if dossier.present?
   = link_to "#{t('views.users.dossiers.merci.download_dossier')} (PDF)",  dossier_path(dossier, format: :pdf), download: "#{t('views.users.dossiers.show.header.download', dossier_id: dossier.id)}", class: 'fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-download-line', **external_link_attributes
-- else # contexte d'aperçu du message en fin dépôt pour les admins
+- else # contexte d’aperçu du message en fin dépôt pour les admins
   = link_to "#{t('views.users.dossiers.merci.download_dossier')} (PDF)", "#", download: "#{t('views.users.dossiers.show.header.download_without_number')}", class: 'fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-download-line', **external_link_attributes

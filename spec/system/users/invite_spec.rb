@@ -83,7 +83,7 @@ describe 'Invitations' do
         log_in(another_user)
         visit targeted_user_link_path(targeted_user_link)
         expect(page).to have_current_path(targeted_user_link_path(targeted_user_link))
-        expect(page).to have_content("L'invitation est à destination de #{targeted_user_link.target_email}")
+        expect(page).to have_content("L’invitation est à destination de #{targeted_user_link.target_email}")
       end
     end
 
@@ -96,7 +96,7 @@ describe 'Invitations' do
         log_in(another_user)
         visit targeted_user_link_path(targeted_user_link)
         expect(page).to have_current_path(targeted_user_link_path(targeted_user_link))
-        expect(page).to have_content("L'invitation est à destination de #{targeted_user_link.target_email}")
+        expect(page).to have_content("L’invitation est à destination de #{targeted_user_link.target_email}")
       end
     end
 

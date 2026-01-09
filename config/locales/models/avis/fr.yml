@@ -9,7 +9,7 @@ fr:
         claimant: "Demandeur"
         confidentiel: "confidentiel"
         question_answer: "Réponse oui/non"
-        introduction: "Message d'introduction"
+        introduction: "Message d’introduction"
         question_label: "Posez une question à l’expert"
         introduction_file: "Pièce jointe"
         hints:
@@ -19,7 +19,7 @@ fr:
         claimant: "Demandeur"
         confidentiel: "confidentiel"
         question_answer: "Réponse oui/non"
-        introduction: "Message d'introduction"
+        introduction: "Message d’introduction"
         question_label: "Posez une question à l’expert"
         introduction_file: "Pièce jointe"
         hints:
@@ -50,7 +50,7 @@ fr:
       ask_new_avis: Demander un autre avis
     information_text:
       no_new_avis_text: Le dossier a été traité
-      no_new_avis_text_detail: Les demandes d'avis ne sont plus autorisées
+      no_new_avis_text_detail: Les demandes d’avis ne sont plus autorisées
       unauthorized_avis_text: Cette démarche n’autorise pas la demande d’avis à un expert.
       unauthorized_avis_text_detail: Veuillez contacter votre administrateur
       empty_text: Aucun avis.

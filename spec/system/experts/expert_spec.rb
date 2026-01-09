@@ -116,7 +116,7 @@ describe 'Inviting an expert:', js: true do
       # check validation
       fill_in 'avis_answer', with: 'Ma réponse d’expert.'
       click_on 'Envoyer votre avis'
-      expect(page).to have_content("Le champ « Réponse oui/non » n'est pas inclus(e) dans la liste")
+      expect(page).to have_content("Le champ « Réponse oui/non » n’est pas inclus(e) dans la liste")
 
       find('label', text: 'non').click
       fill_in 'avis_answer', with: 'Ma réponse d’expert.'

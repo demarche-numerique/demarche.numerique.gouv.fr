@@ -235,7 +235,7 @@ describe Administrateurs::AttestationTemplatesController, type: :controller do
 
       context 'with invalid tag' do
         let(:body) { 'body --yolo--' }
-        it { expect(flash.alert).to eq("Le modèle de l’attestation contient des erreurs et n'a pas pu être enregistré. Veuiller les corriger") }
+        it { expect(flash.alert).to eq("Le modèle de l’attestation contient des erreurs et n’a pas pu être enregistré. Veuiller les corriger") }
       end
 
       context 'with removed champ' do

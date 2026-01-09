@@ -19,7 +19,7 @@ describe Conditions::ConditionsErrorsComponent, type: :component do
 
       it do
         expect(page).to have_css('.errors-summary')
-        expect(page).to have_content("Un champ cible n'est plus disponible")
+        expect(page).to have_content("Un champ cible n’est plus disponible")
       end
     end
 
@@ -47,7 +47,7 @@ describe Conditions::ConditionsErrorsComponent, type: :component do
       let(:source_tdcs) { [tdc] }
       let(:conditions) { [greater_than(champ_value(tdc.stable_id), constant('a text'))] }
 
-      it { expect(page).to have_content("« Supérieur à » ne s'applique qu'à des nombres.") }
+      it { expect(page).to have_content("« Supérieur à » ne s’applique qu'à des nombres.") }
     end
 
     context 'when the include operator is applied on a list' do
@@ -55,7 +55,7 @@ describe Conditions::ConditionsErrorsComponent, type: :component do
       let(:source_tdcs) { [tdc] }
       let(:conditions) { [ds_include(champ_value(tdc.stable_id), constant('a text'))] }
 
-      it { expect(page).to have_content("Lʼopérateur « inclus » ne s'applique qu'au choix simple ou multiple.") }
+      it { expect(page).to have_content("Lʼopérateur « inclus » ne s’applique qu’au choix simple ou multiple.") }
     end
 
     context 'when a choice is not in a drop_down' do
@@ -79,7 +79,7 @@ describe Conditions::ConditionsErrorsComponent, type: :component do
       let(:source_tdcs) { [tdc] }
       let(:conditions) { [ds_eq(champ_value(tdc.stable_id), constant(tdc.drop_down_options.first))] }
 
-      it { expect(page).to have_content("« est » ne s'applique pas au choix multiple.") }
+      it { expect(page).to have_content("« est » ne s’applique pas au choix multiple.") }
     end
 
     context 'when an not_eq operator applies to a multiple_drop_down' do
@@ -87,7 +87,7 @@ describe Conditions::ConditionsErrorsComponent, type: :component do
       let(:source_tdcs) { [tdc] }
       let(:conditions) { [ds_not_eq(champ_value(tdc.stable_id), constant(tdc.drop_down_options.first))] }
 
-      it { expect(page).to have_content("« n’est pas » ne s'applique pas au choix multiple.") }
+      it { expect(page).to have_content("« n’est pas » ne s’applique pas au choix multiple.") }
     end
 
     context 'when target became unavailable but a right still references the value' do
@@ -97,7 +97,7 @@ describe Conditions::ConditionsErrorsComponent, type: :component do
       let(:source_tdcs) { [tdc] }
       let(:conditions) { [ds_eq(empty, constant('a text'))] }
 
-      it { expect(page).to have_content("Un champ cible n'est plus disponible") }
+      it { expect(page).to have_content("Un champ cible n’est plus disponible") }
     end
   end
 end

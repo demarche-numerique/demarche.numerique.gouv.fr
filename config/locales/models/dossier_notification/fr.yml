@@ -14,7 +14,7 @@ fr:
         dossier_modifie: Dossier modifié
         attente_correction: En attente de correction
         attente_reponse: En attente de réponse
-        attente_avis: En attente d'avis externe
+        attente_avis: En attente d’avis externe
         message: Message
         # TODO: switch to ’Annotation instructeur’ during global renaming
         annotation_instructeur: Annotation privée

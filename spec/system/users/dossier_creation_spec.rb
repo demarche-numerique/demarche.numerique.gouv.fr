@@ -78,7 +78,7 @@ describe 'Creating a new dossier:', js: true do
 
           within "#identite-form" do
             within '.suspect-email' do
-              expect(page).to have_content("L'adresse électronique semble erronée Vouliez-vous écrire : prenom.nom@gmail.com ? Oui Non")
+              expect(page).to have_content("L’adresse électronique semble erronée Vouliez-vous écrire : prenom.nom@gmail.com ? Oui Non")
               click_button("Oui")
             end
             click_button("Continuer")

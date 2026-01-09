@@ -78,7 +78,7 @@ module Administrateurs
       @attestation_template.assign_attributes(attestation_params)
 
       if @attestation_template.invalid?
-        flash.alert = "L’attestation contient des erreurs et n'a pas pu être enregistrée. Corriger les erreurs."
+        flash.alert = "L’attestation contient des erreurs et n’a pas pu être enregistrée. Corriger les erreurs."
       else
         # - draft just published
         if @attestation_template.published? && should_edit_draft?

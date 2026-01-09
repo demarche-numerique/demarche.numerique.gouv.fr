@@ -21,7 +21,7 @@ describe APIEntreprise::AttestationSocialeAdapter do
       expect(subject).to be_an_instance_of(Hash)
     end
 
-    it "renvoie l'url de l'attestation sociale" do
+    it "renvoie l’url de l’attestation sociale" do
       expect(subject[:entreprise_attestation_sociale_url]).to eq("https://storage.entreprise.api.gouv.fr/siade/1569139162-b99824d9c764aae19a862a0af-attestation_vigilance_acoss.pdf")
     end
   end

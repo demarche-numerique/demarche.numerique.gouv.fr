@@ -22,7 +22,7 @@ describe Columns::ChampColumn do
         expect_type_de_champ_values('siret', match_array(
           [
             "44011762001530",
-            "SA à conseil d'administration (s.a.i.)",
+            "SA à conseil d’administration (s.a.i.)",
             "440117620",
             "GRTGAZ",
             "GRTGAZ",

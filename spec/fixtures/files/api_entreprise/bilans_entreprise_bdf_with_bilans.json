@@ -116,7 +116,7 @@
                         ],
                         "evolution":18.7,
                         "code_absolu":"2000566",
-                        "intitule":"Produits d'exploitation chiffre d'affaires net total",
+                        "intitule":"Produits d’exploitation chiffre d’affaires net total",
                         "code_EDI":"FL:C516:5004:1",
                         "code":"FL",
                         "code_type_donnee":"MOA"
@@ -150,7 +150,7 @@
                         ],
                         "evolution":null,
                         "code_absolu":"2001265",
-                        "intitule":"Dettes groupe, communauté d'exploitation et associés, montant brut",
+                        "intitule":"Dettes groupe, communauté d’exploitation et associés, montant brut",
                         "code_EDI":"VI:C516:5004:1",
                         "code":"VI",
                         "code_type_donnee":"MOA"
@@ -322,7 +322,7 @@
                         ],
                         "evolution":24.09,
                         "code_absolu":"2000566",
-                        "intitule":"Produits d'exploitation chiffre d'affaires net total",
+                        "intitule":"Produits d’exploitation chiffre d’affaires net total",
                         "code_EDI":"FL:C516:5004:1",
                         "code":"FL",
                         "code_type_donnee":"MOA"
@@ -356,7 +356,7 @@
                         ],
                         "evolution":null,
                         "code_absolu":"2001265",
-                        "intitule":"Dettes groupe, communauté d'exploitation et associés, montant brut",
+                        "intitule":"Dettes groupe, communauté d’exploitation et associés, montant brut",
                         "code_EDI":"VI:C516:5004:1",
                         "code":"VI",
                         "code_type_donnee":"MOA"
@@ -528,7 +528,7 @@
                         ],
                         "evolution":null,
                         "code_absolu":"2000566",
-                        "intitule":"Produits d'exploitation chiffre d'affaires net total",
+                        "intitule":"Produits d’exploitation chiffre d’affaires net total",
                         "code_EDI":"FL:C516:5004:1",
                         "code":"FL",
                         "code_type_donnee":"MOA"
@@ -562,7 +562,7 @@
                         ],
                         "evolution":null,
                         "code_absolu":"2001265",
-                        "intitule":"Dettes groupe, communauté d'exploitation et associés, montant brut",
+                        "intitule":"Dettes groupe, communauté d’exploitation et associés, montant brut",
                         "code_EDI":"VI:C516:5004:1",
                         "code":"VI",
                         "code_type_donnee":"MOA"

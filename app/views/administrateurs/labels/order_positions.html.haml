@@ -1,8 +1,8 @@
 .fr-container.fr-mt-6w.fr-mb-15w
   = link_to " Liste des labels", admin_procedure_labels_path, class: 'fr-link fr-icon-arrow-left-line fr-link--icon--left fr-icon--sm'
   %h3.fr-my-3w
-    Personnaliser l'ordre des #{@labels.size} labels
-  %p Déplacez les labels dans la liste pour définir leur ordre d'affichage pour les instructeurs :
+    Personnaliser l’ordre des #{@labels.size} labels
+  %p Déplacez les labels dans la liste pour définir leur ordre d’affichage pour les instructeurs :
 
   %fr-container{ data: { controller: 'move-cards-position' } }
     = form_tag update_order_positions_admin_procedure_labels_path, method: :patch, id: 'order-admin-procedure-labels-form' do

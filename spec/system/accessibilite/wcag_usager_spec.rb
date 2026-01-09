@@ -112,7 +112,7 @@ describe 'wcag rules for usager', chrome: true do
     end
   end
 
-  context "logged in, depot d'un dossier as individual" do
+  context "logged in, depot d’un dossier as individual" do
     before do
       login_as litteraire_user, scope: :user
       visit commencer_path(path: procedure.reload.path)
@@ -124,7 +124,7 @@ describe 'wcag rules for usager', chrome: true do
     end
 
     # with no surprise, there's a lot of work on this one
-    scenario "dépot d'un dossier" do
+    scenario "dépot d’un dossier" do
       click_on 'Commencer la démarche'
 
       within('.individual-infos') do
@@ -139,7 +139,7 @@ describe 'wcag rules for usager', chrome: true do
     end
   end
 
-  context "logged in, depot d'un dossier entreprise" do
+  context "logged in, depot d’un dossier entreprise" do
     let(:procedure) { create(:procedure, :with_service, :published) }
 
     before do
@@ -147,7 +147,7 @@ describe 'wcag rules for usager', chrome: true do
       visit commencer_path(path: procedure.reload.path)
     end
 
-    scenario "écran identification de l'entreprise" do
+    scenario "écran identification de l’entreprise" do
       click_on 'Commencer la démarche'
       expect(page).to be_axe_clean
     end

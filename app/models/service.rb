@@ -24,7 +24,7 @@ class Service < ApplicationRecord
   validates :nom, uniqueness: { scope: :administrateur, message: 'existe déjà' }
   validates :organisme, presence: { message: 'doit être renseigné' }, allow_nil: false
   validates :siret, siret: true
-  validates :siret, comparison: { other_than: SIRET_TEST, message: "n'est pas valide" }, on: :update
+  validates :siret, comparison: { other_than: SIRET_TEST, message: "n’est pas valide" }, on: :update
   validates :type_organisme, presence: { message: 'doit être renseigné' }, allow_nil: false
   validates :telephone, phone: { possible: true, allow_blank: true }
   validates :horaires, presence: { message: 'doivent être renseignés' }, allow_nil: false

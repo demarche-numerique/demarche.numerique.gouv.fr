@@ -35,7 +35,7 @@ module Manager
         success
       end
 
-      flash[:notice] = "L'archivage automatique a été activé sur les #{successes.size} procédure(s) choisies"
+      flash[:notice] = "L’archivage automatique a été activé sur les #{successes.size} procédure(s) choisies"
       redirect_to manager_outdated_procedures_path
     end
   end

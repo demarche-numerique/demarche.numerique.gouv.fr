@@ -33,7 +33,7 @@ describe 'Administrateurs can edit procedures', js: true do
 
     # setup rules and stuffs
     expect(page).to have_content("Inéligibilité des dossiers")
-    fill_in "Message d’inéligibilité", with: "vous n'etes pas eligible"
+    fill_in "Message d’inéligibilité", with: "vous n’etes pas eligible"
     find('label', text: 'Bloquer le dépôt des dossiers répondant à des conditions d’inéligibilité').click
     click_on "Ajouter une règle d’inéligibilité"
     all('select').first.select 'Un champ oui non'
@@ -41,7 +41,7 @@ describe 'Administrateurs can edit procedures', js: true do
 
     # rules are setup
     wait_until { procedure.reload.draft_revision.ineligibilite_enabled == true }
-    expect(procedure.draft_revision.ineligibilite_message).to eq("vous n'etes pas eligible")
+    expect(procedure.draft_revision.ineligibilite_message).to eq("vous n’etes pas eligible")
     expect(procedure.draft_revision.ineligibilite_rules).to eq(ds_eq(champ_value(first_tdc.stable_id), constant(true)))
   end
 end

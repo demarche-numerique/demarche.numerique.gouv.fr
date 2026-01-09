@@ -26,7 +26,7 @@ RSpec.describe Referentiels::MappingFormComponent, type: :component do
         expect(page).to have_selector("th", text: "Exemple de donnée")
         expect(page).to have_selector("th", text: "Type de donnée")
         expect(page).to have_selector("th", text: "Utiliser la donnée\n\npour préremplir\n\nun champ du\n\nformulaire")
-        expect(page).to have_selector("th", text: "Libellé de la donnée récupérée\n\n(pour afficher à l'usager et/ou l'instructeur)")
+        expect(page).to have_selector("th", text: "Libellé de la donnée récupérée\n\n(pour afficher à l’usager et/ou l’instructeur)")
 
         # tbody
         jsonpaths = page.all("tr td:nth-child(1)").map(&:text).map(&:strip)

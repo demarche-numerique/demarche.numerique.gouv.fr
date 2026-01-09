@@ -49,4 +49,4 @@ Pour appliquer un filtre sur une colonne de date, rentrez la date au format « J
 
 En complément, vous pouvez également utiliser le bouton **« Personnaliser le tableau »** afin d’avoir une idée des informations du dossier avant de l’instruire.
 
-![Capture d'écran de l’interface de personnalisation du tableau {aria-hidden="true"}](faq/instructeur-dossiers-list-header.png)
+![Capture d’écran de l’interface de personnalisation du tableau {aria-hidden="true"}](faq/instructeur-dossiers-list-header.png)

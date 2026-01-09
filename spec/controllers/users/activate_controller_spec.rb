@@ -11,7 +11,7 @@ describe Users::ActivateController, type: :controller do
         expect {
           post :resend_verification_email
         }.to change { user.reload.confirmation_token }
-        expect(flash[:notice]).to eq("Un nouvel email de vérification a été envoyé à l'adresse #{user.email}.")
+        expect(flash[:notice]).to eq("Un nouvel email de vérification a été envoyé à l’adresse #{user.email}.")
         expect(response).to redirect_to(root_path(user))
       end
     end
@@ -114,7 +114,7 @@ describe Users::ActivateController, type: :controller do
       it 'redirects to root path with an explanation notice and it send a new link if user present' do
         expect { subject }.to have_enqueued_mail(UserMailer, :resend_confirmation_email)
         expect(response).to redirect_to(root_path(user))
-        expect(flash[:alert]).to eq("Ce lien n'est plus valable, un nouveau lien a été envoyé à l'adresse #{user.email}")
+        expect(flash[:alert]).to eq("Ce lien n’est plus valable, un nouveau lien a été envoyé à l’adresse #{user.email}")
       end
     end
   end

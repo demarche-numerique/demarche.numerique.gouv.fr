@@ -11,7 +11,7 @@ fr:
     au moins un <strong>« champ routable »</strong>, soit un champ de type :
   routing_configuration_notice_3_html: |
     Ajoutez ce champ dans la page d’édition <a href="%{path}">des champs du formulaire</a>.
-  delete_title: Aucun dossier ne sera supprimé. Les groupes d'instructeurs vont être supprimés. Seuls les instructeurs du groupe « %{defaut_label} » resteront affectés à la démarche.
+  delete_title: Aucun dossier ne sera supprimé. Les groupes d’instructeurs vont être supprimés. Seuls les instructeurs du groupe « %{defaut_label} » resteront affectés à la démarche.
   delete_confirmation: |
     Attention : tous les dossiers vont être déplacés dans le groupe « %{defaut_label} » et seuls les instructeurs présent dans ce groupe resteront affectés à la démarche. Souhaitez-vous continuer ?
   routage_doc:

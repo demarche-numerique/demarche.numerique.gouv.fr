@@ -43,7 +43,7 @@ describe 'Creating a new procedure', js: true do
     expect {
       within(:css, '#tabpanel-standard-panel') do
         choose "Fichier xlsx", allow_label_click: true
-        click_on "Demander l'export"
+        click_on "Demander l’export"
       end
       expect(page).to have_content("Nous générons cet export. Veuillez revenir dans quelques minutes pour le télécharger.")
     }.to have_enqueued_job(ExportJob).with(an_instance_of(Export))

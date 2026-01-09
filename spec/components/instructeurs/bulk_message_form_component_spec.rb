@@ -84,7 +84,7 @@ describe Instructeurs::BulkMessageFormComponent, type: :component do
 
       it 'is expected to render the groupe' do
         create(:dossier, :brouillon, procedure:, groupe_instructeur: nil)
-        expect(subject).to have_content("Contacter également l'usager qui n'a pas encore renseigné le(s) champ(s) de routage")
+        expect(subject).to have_content("Contacter également l’usager qui n’a pas encore renseigné le(s) champ(s) de routage")
       end
     end
 

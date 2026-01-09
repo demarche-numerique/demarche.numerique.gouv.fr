@@ -9,7 +9,7 @@ module InitiationProcedureConcern
         libelle: 'Une première procédure',
         description: "Une première procédure afin de découvrir les possibilités de #{Current.application_name}",
         organisation: 'Dinum',
-        cadre_juridique: "inexistant car c'est un test",
+        cadre_juridique: "inexistant car c’est un test",
         duree_conservation_dossiers_dans_ds: 1,
         for_individual: true,
         administrateurs: [administrateur]
@@ -24,7 +24,7 @@ module InitiationProcedureConcern
 
       service = Service.create(
         nom: 'Un très bon service',
-        organisme: "d'un excellent organisme",
+        organisme: "d’un excellent organisme",
         type_organisme: Service.type_organismes.fetch(:autre),
         email: 'contactez@moi.fr',
         telephone: '1234',

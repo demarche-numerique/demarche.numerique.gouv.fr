@@ -10,7 +10,7 @@
         L’usager sera informé que son dossier a été accepté
 
   - menu.with_item(class: "hidden inactive form-inside fr-pt-1v") do
-    = render partial: 'instructeurs/dossiers/instruction_button_motivation', locals: { dossier: dossier, placeholder: 'Expliquez au demandeur pourquoi ce dossier est accepté (facultatif)', popup_class: 'accept', process_action: 'accepter', title: 'Accepter', confirm: "Confirmez-vous l'acceptation ce dossier ?" }
+    = render partial: 'instructeurs/dossiers/instruction_button_motivation', locals: { dossier: dossier, placeholder: 'Expliquez au demandeur pourquoi ce dossier est accepté (facultatif)', popup_class: 'accept', process_action: 'accepter', title: 'Accepter', confirm: "Confirmez-vous l’acceptation ce dossier ?" }
 
   - menu.with_item do
     = link_to('#', onclick: "DS.showMotivation(event, 'without-continuation');", role: 'menuitem') do

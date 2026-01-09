@@ -74,7 +74,7 @@ module Gestionnaires
 
         case result
         in Dry::Monads::Result::Success
-          logger.info("L'administrateur #{@administrateur.id} est supprimé par le gestionnaire #{current_gestionnaire.id} depuis le groupe gestionnaire #{@groupe_gestionnaire.id}")
+          logger.info("L’administrateur #{@administrateur.id} est supprimé par le gestionnaire #{current_gestionnaire.id} depuis le groupe gestionnaire #{@groupe_gestionnaire.id}")
           flash[:notice] = I18n.t('groupe_gestionnaires.flash.notice.groupe_gestionnaire_administrateur.destroy', email: @administrateur.email)
           GroupeGestionnaireMailer
             .notify_removed_administrateur(@groupe_gestionnaire, @administrateur.email, current_gestionnaire.email)

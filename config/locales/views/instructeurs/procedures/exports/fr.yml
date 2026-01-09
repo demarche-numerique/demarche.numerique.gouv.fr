@@ -13,8 +13,8 @@ fr:
           Ils sont disponibles pendant %{expiration_time} heures après leur génération.
         title_zip: Un problème avec le format zip ?
         export_description_zip_html: |
-          Vous n’arrivez pas à extraire un export au format .zip et un message d'erreur s'affiche comme quoi il est corrompu ? Essayez avec <a href="https://www.7-zip.org/" target="_blank" rel="noopener noreferrer">7zip</a>.<br>
-          Vous n’arrivez pas à extraire un export au format .zip sur un réseau d'entreprise ? Essayer de renommer l'archive avec un nom plus court et ré-essayer de l'extraire.
+          Vous n’arrivez pas à extraire un export au format .zip et un message d’erreur s’affiche comme quoi il est corrompu ? Essayez avec <a href="https://www.7-zip.org/" target="_blank" rel="noopener noreferrer">7zip</a>.<br>
+          Vous n’arrivez pas à extraire un export au format .zip sur un réseau d’entreprise ? Essayer de renommer l’archive avec un nom plus court et ré-essayer de l’extraire.
 
         no_export_html: Vous n’avez pas d’export pour le moment. <br> Vous ne trouvez pas un export ? Il a peut-être expiré, les exports sont supprimés au bout de %{expiration_time} heures.
       export_templates:

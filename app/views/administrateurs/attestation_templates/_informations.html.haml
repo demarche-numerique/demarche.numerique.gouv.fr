@@ -23,7 +23,7 @@
         .description
           = tag[:description]
 
-%h3.fr-h5 Logo de l'attestation
+%h3.fr-h5 Logo de l’attestation
 %p.fr-text--sm.fr-text-mention--grey.fr-mb-0
   Dimensions conseillées : au minimum 500px de largeur ou de hauteur.
 = render Attachment::EditComponent.new(attached_file: @attestation_template.logo, direct_upload: false)

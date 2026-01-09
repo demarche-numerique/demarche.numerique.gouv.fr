@@ -22,7 +22,7 @@ describe APIEntreprise::EffectifsAnnuelsAdapter do
       expect(subject).to be_an_instance_of(Hash)
     end
 
-    it "renvoie les effectifs de l'année antérieure" do
+    it "renvoie les effectifs de l’année antérieure" do
       expect(subject[:entreprise_effectif_annuel]).to eq(100.5)
     end
   end

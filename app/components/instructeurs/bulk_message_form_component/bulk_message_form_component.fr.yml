@@ -2,13 +2,13 @@
 fr:
   dossier_count_without_group_html:
     zero: ""
-    one: "<span>Contacter également l'usager qui n'a pas encore renseigné le(s) champ(s) de routage</span>"
-    other: "<span>Contacter également les <strong>%{count}</strong> usagers qui n'ont pas encore renseigné le(s) champ(s) de routage</span>"
+    one: "<span>Contacter également l’usager qui n’a pas encore renseigné le(s) champ(s) de routage</span>"
+    other: "<span>Contacter également les <strong>%{count}</strong> usagers qui n’ont pas encore renseigné le(s) champ(s) de routage</span>"
   dossier_count_per_group:
     one: "1 usager"
     other: "%{count} usagers"
   form:
-    target_group:  "Ciblez les groupes d'usagers avec un dossier \"brouillon\" que vous souhaitez contacter"
+    target_group:  "Ciblez les groupes d’usagers avec un dossier \"brouillon\" que vous souhaitez contacter"
     select_all:  "Tout sélectionner"
   alert:
     send_message_to: "Vous allez envoyer un message à "

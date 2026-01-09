@@ -98,7 +98,7 @@ describe Instructeurs::ColumnFilterValueComponent, type: :component do
 
       it {
         expect(react_props_items["items"].map(&:first)).to eq([
-          "Déposé depuis longtemps", "Expire bientôt", "Bientôt supprimé", "Dossier modifié", "Annotation privée", "Avis externe", "En attente de correction", "En attente de réponse", "En attente d'avis externe",
+          "Déposé depuis longtemps", "Expire bientôt", "Bientôt supprimé", "Dossier modifié", "Annotation privée", "Avis externe", "En attente de correction", "En attente de réponse", "En attente d’avis externe",
         ])
       }
     end

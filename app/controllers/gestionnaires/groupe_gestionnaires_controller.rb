@@ -21,7 +21,7 @@ module Gestionnaires
 
         redirect_to gestionnaire_groupe_gestionnaire_path(@groupe_gestionnaire)
       else
-        flash.now.alert = "Le groupe contient des erreurs et n'a pas pu être enregistré. Veuiller les corriger"
+        flash.now.alert = "Le groupe contient des erreurs et n’a pas pu être enregistré. Veuiller les corriger"
 
         render :edit
       end

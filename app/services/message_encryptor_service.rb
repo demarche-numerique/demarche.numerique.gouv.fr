@@ -16,7 +16,7 @@ class MessageEncryptorService
   def decrypt_and_verify(message, purpose: nil)
     @encryptor.decrypt_and_verify(message, purpose:)
   rescue ActiveSupport::MessageEncryptor::InvalidMessage => original_error
-    # Ce n'est pas un message chiffré, on essaie juste de le décoder s'il avait été simplement signé
+    # Ce n’est pas un message chiffré, on essaie juste de le décoder s’il avait été simplement signé
     begin
       @verifier.verify(message, purpose:)
     rescue ActiveSupport::MessageVerifier::InvalidSignature

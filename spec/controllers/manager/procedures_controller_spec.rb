@@ -142,7 +142,7 @@ describe Manager::ProceduresController, type: :controller do
         expect(procedure.administrateurs).to include(administrateur)
         expect(procedure.instructeurs).to include(administrateur.instructeur)
         expect(flash[:alert]).to be_nil
-        expect(flash[:notice]).to eq("L’administrateur #{administrateur.email} a été ajouté à la démarche. L'instructeur #{administrateur.instructeur.email} a été ajouté à la démarche.")
+        expect(flash[:notice]).to eq("L’administrateur #{administrateur.email} a été ajouté à la démarche. L’instructeur #{administrateur.instructeur.email} a été ajouté à la démarche.")
       end
     end
 
@@ -161,7 +161,7 @@ describe Manager::ProceduresController, type: :controller do
         expect(procedure.administrateurs).to include(administrateur)
         expect(procedure.instructeurs).to include(administrateur.instructeur)
         expect(flash[:alert]).to be_nil
-        expect(flash[:notice]).to eq("L’administrateur #{administrateur.email} a été ajouté à la démarche. L'instructeur #{instructeur.email} a été ajouté à la démarche.")
+        expect(flash[:notice]).to eq("L’administrateur #{administrateur.email} a été ajouté à la démarche. L’instructeur #{instructeur.email} a été ajouté à la démarche.")
       end
     end
 
@@ -173,7 +173,7 @@ describe Manager::ProceduresController, type: :controller do
         expect(procedure.administrateurs).to include(administrateur)
         expect(procedure.instructeurs).to include(administrateur.instructeur)
         expect(flash[:alert]).to be_nil
-        expect(flash[:notice]).to eq("L’administrateur #{administrateur.email} a été ajouté à la démarche. L'instructeur #{administrateur.instructeur.email} a été ajouté à la démarche.")
+        expect(flash[:notice]).to eq("L’administrateur #{administrateur.email} a été ajouté à la démarche. L’instructeur #{administrateur.instructeur.email} a été ajouté à la démarche.")
       end
     end
   end

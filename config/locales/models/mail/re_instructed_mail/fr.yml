@@ -3,5 +3,5 @@ fr:
     models:
       mail:
         re_instructed_mail:
-          default_subject: Votre dossier n° %{dossier_number} est en train d'être réexaminé (%{procedure_libelle})
+          default_subject: Votre dossier n° %{dossier_number} est en train d’être réexaminé (%{procedure_libelle})
           under_re_instruction: Réexamen du dossier

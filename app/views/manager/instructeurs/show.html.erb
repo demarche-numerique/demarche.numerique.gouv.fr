@@ -37,7 +37,7 @@
                   method: :delete,
                   disabled: !page.resource.can_be_deleted?,
                   class: "button button--danger",
-                  data: { turbo_confirm: "Confirmez-vous la suppression de l'instructeur ?" },
+                  data: { turbo_confirm: "Confirmez-vous la suppression de l’instructeur ?" },
                   title: page.resource.can_be_deleted? ? "Supprimer" : "Cet instructeur est administrateur ou a des démarches dont il est le seul instructeur et ne peut être supprimé") %>
   </div>
 </header>

@@ -3,7 +3,7 @@ fr:
   address_input_label: "Centrer la carte en recherchant une adresse"
   address_input_description: "Saisissez une adresse, une voie, un lieu-dit ou une commune. Exemple : 11 rue Réaumur, Paris"
   address_placeholder: "Commencez à saisir"
-  address_search_error: "Une erreur est survenue lors de la recherche d'adresse"
+  address_search_error: "Une erreur est survenue lors de la recherche d’adresse"
   pin_input_label: "Ajouter un point sur la carte"
   pin_input_description: "Exemple : "
   show_pin: "Afficher votre position sur la carte"

@@ -76,7 +76,7 @@ describe Procedure::ErrorsSummary, type: :component do
       expect(page).to have_content("a une logique conditionnelle invalide")
 
       expect(page).to have_selector("a", text: "header sections must have consistent order")
-      expect(page).to have_content("devrait être précédé d'un titre de niveau 1")
+      expect(page).to have_content("devrait être précédé d’un titre de niveau 1")
 
       expect(page).to have_selector("a", text: "regexp invalid")
       expect(page).to have_content("est invalide, veuillez la corriger")
@@ -103,7 +103,7 @@ describe Procedure::ErrorsSummary, type: :component do
       expect(page).to have_selector("a", text: "Les règles d’inéligibilité")
       expect(page).to have_selector("a[href*='v2']", text: "Le modèle d’attestation")
       expect(page).to have_selector("a", text: "L’adresse électronique de notification de passage de dossier en instruction")
-      expect(page).to have_text("n'est pas valide", count: 2)
+      expect(page).to have_text("n’est pas valide", count: 2)
     end
   end
 
@@ -119,7 +119,7 @@ describe Procedure::ErrorsSummary, type: :component do
 
     it 'render error nicely' do
       expect(page).to have_selector("a:not([href*='v2'])", text: "Le modèle d’attestation")
-      expect(page).to have_text("n'est pas valide", count: 1)
+      expect(page).to have_text("n’est pas valide", count: 1)
     end
   end
 end

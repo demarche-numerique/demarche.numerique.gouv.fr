@@ -103,7 +103,7 @@ module Instructeurs
 
     def update_order_positions
       InstructeursProcedure.update_instructeur_procedures_positions(current_instructeur, ordered_procedure_ids_params)
-      redirect_to instructeur_procedures_path, notice: "L'ordre des démarches a été mis à jour."
+      redirect_to instructeur_procedures_path, notice: "L’ordre des démarches a été mis à jour."
     end
 
     def select_procedure
@@ -363,7 +363,7 @@ module Instructeurs
       if errors.empty?
         flash[:notice] = "Tous les messages ont été envoyés avec succès"
       else
-        flash[:alert] = "Envoi terminé. Cependant #{errors.count} messages n'ont pas été envoyés"
+        flash[:alert] = "Envoi terminé. Cependant #{errors.count} messages n’ont pas été envoyés"
       end
       redirect_to instructeur_procedure_path(@procedure)
     end

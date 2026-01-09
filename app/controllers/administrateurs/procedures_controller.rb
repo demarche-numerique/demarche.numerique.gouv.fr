@@ -214,7 +214,7 @@ module Administrateurs
         user_ids = @procedure.dossiers.not_archived.state_brouillon.pluck(:user_id).uniq
         content = params[:email_content_brouillon]
         SendClosingNotificationJob.perform_later(user_ids, content, @procedure)
-        flash.notice = "Les emails sont en cours d'envoi"
+        flash.notice = "Les emails sont en cours d’envoi"
       end
 
       if @procedure.closing_notification_en_cours?
@@ -279,7 +279,7 @@ module Administrateurs
 
       flash.notice = case level
       when :none
-        "La démarche n'est plus restreinte à ProConnect"
+        "La démarche n’est plus restreinte à ProConnect"
       when :instructeurs
         "La démarche est restreinte à ProConnect pour les administrateurs et instructeurs"
       when :all
@@ -337,7 +337,7 @@ module Administrateurs
       other_procedure = @procedure.other_procedure_with_path(new_path)
 
       if other_procedure.present? && !current_administrateur.owns?(other_procedure)
-        flash.alert = "Cette URL de démarche n'est pas disponible"
+        flash.alert = "Cette URL de démarche n’est pas disponible"
         return redirect_to [:admin, @procedure, :path]
       end
 
@@ -410,7 +410,7 @@ module Administrateurs
 
     def allow_expert_messaging
       @procedure.update!(allow_expert_messaging: !@procedure.allow_expert_messaging)
-      flash.notice = @procedure.allow_expert_messaging ? "Les experts ont accès à la messagerie" : "Les experts n'ont plus accès à la messagerie"
+      flash.notice = @procedure.allow_expert_messaging ? "Les experts ont accès à la messagerie" : "Les experts n’ont plus accès à la messagerie"
       redirect_to admin_procedure_experts_path(@procedure)
     end
 

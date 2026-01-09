@@ -13,7 +13,7 @@ describe 'As an administrateur I create an API token', js: true do
     expect(page).to have_content('Profil')
 
     click_on 'Créer un nouveau jeton'
-    expect(page).to have_content("Création d'un nouveau jeton")
+    expect(page).to have_content("Création d’un nouveau jeton")
 
     fill_in 'Nom du jeton', with: 'mon jeton'
     click_on 'Continuer'

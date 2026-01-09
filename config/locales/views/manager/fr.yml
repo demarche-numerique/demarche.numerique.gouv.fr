@@ -9,6 +9,6 @@ fr:
           other: "%{emails} ne sont pas des adresses électroniques valides"
     administrateurs:
       delete:
-        cannot_be_deleted: "L'administrateur ne peut pas être supprimé"
-        still_procedures: "L'administrateur ne peut pas être supprimé car il a encore des démarches"
-        still_services: "L'administrateur ne peut pas être supprimé car il a encore des services"
+        cannot_be_deleted: "L’administrateur ne peut pas être supprimé"
+        still_procedures: "L’administrateur ne peut pas être supprimé car il a encore des démarches"
+        still_services: "L’administrateur ne peut pas être supprimé car il a encore des services"

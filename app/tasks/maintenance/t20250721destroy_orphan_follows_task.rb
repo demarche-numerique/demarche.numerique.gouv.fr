@@ -3,7 +3,7 @@
 module Maintenance
   class T20250721destroyOrphanFollowsTask < MaintenanceTasks::Task
     # Documentation: cette tâche vient supprimer les follows orphelins dûs
-    # à la suppression d'un dossier ou d'un instructeur
+    # à la suppression d’un dossier ou d’un instructeur
 
     include RunnableOnDeployConcern
     include StatementsHelpersConcern

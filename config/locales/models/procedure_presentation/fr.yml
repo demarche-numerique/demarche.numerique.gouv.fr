@@ -43,7 +43,7 @@ fr:
           followers_instructeurs:
             email: Instructeurs
           traitements:
-            instructeur_email: Adresse électronique d'un des agents ayant pris part a l'instruction du dossier
+            instructeur_email: Adresse électronique d’un des agents ayant pris part a l’instruction du dossier
           groupe_instructeur:
             id: Groupe instructeur
             label: Groupe instructeur

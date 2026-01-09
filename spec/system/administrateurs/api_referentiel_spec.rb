@@ -18,7 +18,7 @@ describe 'Referentiel API:' do
   context 'edges cases' do
     let(:types_de_champ_public) do
       [
-        { type: :referentiel, libelle: "qu'importe" },
+        { type: :referentiel, libelle: "qu’importe" },
       ]
     end
 
@@ -30,11 +30,11 @@ describe 'Referentiel API:' do
       find("#referentiel_url").fill_in(with: 'google.com')
       fill_in("Indications à fournir à l’usager concernant le format de saisie attendu", with: "focusout")
 
-      expect(page).to have_content("n'est pas au format d'une URL, saisissez une URL valide ex https://api_1.ext/")
+      expect(page).to have_content("n’est pas au format d’une URL, saisissez une URL valide ex https://api_1.ext/")
       find("#referentiel_url").fill_in(with: 'https://google.com')
       fill_in("Indications à fournir à l’usager concernant le format de saisie attendu", with: "focusout")
 
-      expect(page).to have_content("doit être autorisée par notre équipe. Veuillez nous contacter par mail (contact@demarche.numerique.gouv.fr) et nous indiquer l'URL et la documentation de l'API que vous souhaitez intégrer.")
+      expect(page).to have_content("doit être autorisée par notre équipe. Veuillez nous contacter par mail (contact@demarche.numerique.gouv.fr) et nous indiquer l’URL et la documentation de l’API que vous souhaitez intégrer.")
       find("#referentiel_url").fill_in(with: 'https://rnb-api.beta.gouv.fr/api/alpha/buildings/{id}/')
       fill_in("Indications à fournir à l’usager concernant le format de saisie attendu", with: "focusout")
 
@@ -47,7 +47,7 @@ describe 'Referentiel API:' do
       expect(page).to have_unchecked_field("Ajouter une méthode d’authentification")
       find("#referentiel_url").fill_in(with: 'google.com')
       fill_in("Indications à fournir à l’usager concernant le format de saisie attendu", with: "focusout")
-      expect(page).to have_content("Le champ « URL de l'API » n'est pas au format d'une URL, saisissez une URL valide ex https://api_1.ext/")
+      expect(page).to have_content("Le champ « URL de l’API » n’est pas au format d’une URL, saisissez une URL valide ex https://api_1.ext/")
       expect(page).to have_unchecked_field("Ajouter une méthode d’authentification")
     end
   end
@@ -81,7 +81,7 @@ describe 'Referentiel API:' do
           find("#referentiel_url").fill_in(with: 'https://rnb-api.beta.gouv.fr/api/alpha/buildings/{id}/')
           find('label[for="referentiel_mode_exact_match"]').click
           fill_in("Indications à fournir à l’usager concernant le format de saisie attendu", with: "Saisir votre numero de bâtiment")
-          fill_in("Exemple de saisie valide (affiché à l'usager et utilisé pour tester la requête)", with: "PG46YY6YWCX8")
+          fill_in("Exemple de saisie valide (affiché à l’usager et utilisé pour tester la requête)", with: "PG46YY6YWCX8")
           click_on('Étape suivante')
           wait_until { Referentiel.count == 1 }
           expect(page).to have_content("Pré remplissage des champs et/ou affichage des données récupérées")
@@ -240,10 +240,10 @@ describe 'Referentiel API:' do
           find("#referentiel_url").fill_in(with: 'https://tabular-api.data.gouv.fr/api/resources/796dfff7-cf54-493a-a0a7-ba3c2024c6f3/data/?finess__contains={id}')
           find('label[for="referentiel_mode_autocomplete"]').click
           fill_in("Indications à fournir à l’usager concernant le format de saisie attendu", with: "Saisir votre finess")
-          fill_in("Exemple de saisie valide (affiché à l'usager et utilisé pour tester la requête)", with: "010002699")
+          fill_in("Exemple de saisie valide (affiché à l’usager et utilisé pour tester la requête)", with: "010002699")
           click_on('Étape suivante')
           wait_until { Referentiel.count == 1 }
-          expect(page).to have_content("Configuration de l'autocomplétion ")
+          expect(page).to have_content("Configuration de l’autocomplétion ")
         end
 
         VCR.use_cassette('referentiel/datagouv-finess') do # referentiel is called at mapping setup
@@ -492,10 +492,10 @@ describe 'Referentiel API:' do
           find("#referentiel_url").fill_in(with: 'https://tabular-api.data.gouv.fr/api/resources/796dfff7-cf54-493a-a0a7-ba3c2024c6f3/data/?finess__contains={id}')
           find('label[for="referentiel_mode_autocomplete"]').click
           fill_in("Indications à fournir à l’usager concernant le format de saisie attendu", with: "Saisir votre finess")
-          fill_in("Exemple de saisie valide (affiché à l'usager et utilisé pour tester la requête)", with: "010002699")
+          fill_in("Exemple de saisie valide (affiché à l’usager et utilisé pour tester la requête)", with: "010002699")
           click_on('Étape suivante')
           wait_until { Referentiel.count == 1 }
-          expect(page).to have_content("Configuration de l'autocomplétion ")
+          expect(page).to have_content("Configuration de l’autocomplétion ")
         end
 
         # configuration autocomplete

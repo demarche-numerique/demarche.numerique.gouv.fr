@@ -39,6 +39,6 @@ http_interactions:
     body:
       encoding: UTF-8
       string: >
-        {"error":"acces_denied","reason":"Token not found or inactive","message":"Votre jeton d'API n'a pas été trouvé ou n'est pas actif"}
+        {"error":"acces_denied","reason":"Token not found or inactive","message":"Votre jeton d’API n’a pas été trouvé ou n’est pas actif"}
   recorded_at: Wed, 15 Sep 2021 10:02:12 GMT
 recorded_with: VCR 6.0.0

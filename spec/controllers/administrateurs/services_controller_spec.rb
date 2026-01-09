@@ -252,7 +252,7 @@ describe Administrateurs::ServicesController, type: :controller do
 
       it do
         expect(service.reload).not_to be_nil
-        expect(flash.alert).to eq("la démarche #{procedure.libelle} utilise encore le service #{service.nom}. Veuillez l'affecter à un autre service avant de pouvoir le supprimer")
+        expect(flash.alert).to eq("la démarche #{procedure.libelle} utilise encore le service #{service.nom}. Veuillez l’affecter à un autre service avant de pouvoir le supprimer")
         expect(flash.notice).to be_nil
         expect(response).to redirect_to(admin_services_path(procedure_id: procedure.id))
       end

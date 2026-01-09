@@ -14,7 +14,7 @@ describe 'instructeurs/dossiers/instruction_button_motivation', type: :view do
         popup_class: 'accept',
         process_action: 'accepter',
         title: 'Accepter',
-        confirm: "Confirmez-vous l'acceptation ce dossier ?"
+        confirm: "Confirmez-vous l’acceptation ce dossier ?"
       )
     end
 

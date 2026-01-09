@@ -17,8 +17,8 @@ module Manager
       end
       instructeur.destroy!
 
-      logger.info("L'instructeur #{instructeur.id} est supprimé par #{current_super_admin.id}")
-      flash[:notice] = "L'instructeur #{instructeur.id} est supprimé"
+      logger.info("L’instructeur #{instructeur.id} est supprimé par #{current_super_admin.id}")
+      flash[:notice] = "L’instructeur #{instructeur.id} est supprimé"
 
       redirect_to manager_instructeurs_path
     end

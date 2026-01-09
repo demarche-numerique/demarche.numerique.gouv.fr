@@ -57,4 +57,4 @@ Exemple dans la description de la démarche :
 
 Rendu côté usager :
 
-![Aperçu de ce même texte faisant état d'une mise en gras, d'une mise en italique et d'un soulignement](faq/administrateur-example-markup-preview.png)
+![Aperçu de ce même texte faisant état d’une mise en gras, d’une mise en italique et d’un soulignement](faq/administrateur-example-markup-preview.png)

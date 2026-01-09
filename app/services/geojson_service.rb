@@ -82,7 +82,7 @@ class GeojsonService
     result
   end
 
-  # Extrait la liste des géométries d'un GeoJSON (FeatureCollection, Feature, Geometry, etc.)
+  # Extrait la liste des géométries d’un GeoJSON (FeatureCollection, Feature, Geometry, etc.)
   def self.geometries_from_geojson(geojson)
     case geojson[:type]
     when "FeatureCollection"
@@ -94,7 +94,7 @@ class GeojsonService
     end.compact
   end
 
-  # Itère sur toutes les coordonnées de toutes les géométries d'un GeoJSON
+  # Itère sur toutes les coordonnées de toutes les géométries d’un GeoJSON
   def self.yield_each_coordinate_in_geojson(geojson)
     geometries = geometries_from_geojson(geojson)
     geometries.each do |geometry|

@@ -5,15 +5,15 @@
 
 %p
   - if @tokens.one?
-    <b>Votre jeton d'API « #{@tokens.first.prefix} » expirera le 1er juillet 2023</b>.
+    <b>Votre jeton d’API « #{@tokens.first.prefix} » expirera le 1er juillet 2023</b>.
   - else
-    <b>Vos jetons d'API « #{@tokens.map(&:prefix).join(', ')} » expireront le 1er juillet 2023</b>.
+    <b>Vos jetons d’API « #{@tokens.map(&:prefix).join(', ')} » expireront le 1er juillet 2023</b>.
   Passée cette date, vos interconnexions utilisant ce jeton ne marcheront plus.
 
 %p
   Vous devrez le(s) remplacer par de nouveaux jetons que vous pouvez obtenir en utilisant la page #{link_to(profil_url, profil_url)}.
 
 %p
-  Nous restons à votre disposition si vous avez besoin d’accompagnement à l'adresse #{link_to CONTACT_EMAIL, "mailto:#{CONTACT_EMAIL}"}.
+  Nous restons à votre disposition si vous avez besoin d’accompagnement à l’adresse #{link_to CONTACT_EMAIL, "mailto:#{CONTACT_EMAIL}"}.
 
 = render partial: "layouts/mailers/signature"

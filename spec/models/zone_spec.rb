@@ -16,23 +16,23 @@ describe Zone do
       create(:zone, labels: [
         {
           designated_on: start_previous_government,
-          name: "Ministère de l'Économie, des Finances et de la Relance",
+          name: "Ministère de l’Économie, des Finances et de la Relance",
         },
         {
           designated_on: start_last_government,
-          name: "Ministère de l'Économie, des Finances et de la Souveraineté industrielle et numérique",
+          name: "Ministère de l’Économie, des Finances et de la Souveraineté industrielle et numérique",
         },
       ])
     end
 
     it 'returns label for the current millesime' do
-      expect(zone.current_label).to eq "Ministère de l'Économie, des Finances et de la Souveraineté industrielle et numérique"
+      expect(zone.current_label).to eq "Ministère de l’Économie, des Finances et de la Souveraineté industrielle et numérique"
     end
 
     it 'returns label at specific date' do
-      expect(zone.label_at(start_previous_government + 1.week)).to eq "Ministère de l'Économie, des Finances et de la Relance"
-      expect(zone.label_at(start_last_government + 1.week)).to eq "Ministère de l'Économie, des Finances et de la Souveraineté industrielle et numérique"
-      expect(zone.label_at(start_previous_government - 1.week)).to eq "Ministère de l'Économie, des Finances et de la Relance"
+      expect(zone.label_at(start_previous_government + 1.week)).to eq "Ministère de l’Économie, des Finances et de la Relance"
+      expect(zone.label_at(start_last_government + 1.week)).to eq "Ministère de l’Économie, des Finances et de la Souveraineté industrielle et numérique"
+      expect(zone.label_at(start_previous_government - 1.week)).to eq "Ministère de l’Économie, des Finances et de la Relance"
     end
   end
 

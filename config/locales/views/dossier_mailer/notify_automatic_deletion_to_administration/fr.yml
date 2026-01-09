@@ -9,13 +9,13 @@ fr:
         other: 'Le délai maximal de conservation des dossiers a été atteint, ceux-ci ont donc été mis à la corbeille :'
       footer_html:
         one: |
-          Vous pouvez encore retrouver ce dossier jusqu'au <strong>%{deletion_date}</strong> depuis l’onglet
+          Vous pouvez encore retrouver ce dossier jusqu’au <strong>%{deletion_date}</strong> depuis l’onglet
           <a href="%{trash_url}">corbeille</a>
           du suivi des dossiers, pour les télécharger ou étendre sa durée de conservation.
           <br>
           Passé ce délai, ce dossier sera <strong>supprimé définitivement</strong>.
         other: |
-          Vous pouvez encore retrouver ces dossiers jusqu'au <strong>%{deletion_date}</strong> depuis l’onglet « Corbeille »
+          Vous pouvez encore retrouver ces dossiers jusqu’au <strong>%{deletion_date}</strong> depuis l’onglet « Corbeille »
           sur la page du suivi des dossiers, pour les télécharger ou étendre leur durée de conservation.
           <br>
           Passé ce délai, ces dossiers seront <strong>supprimés définitivement</strong>.

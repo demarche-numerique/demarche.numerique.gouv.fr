@@ -11,7 +11,7 @@
       <%= render Dsfr::CalloutComponent.new(title: nil) do |c| %>
         <% c.with_body do %>
           <p>
-            Cette option permet de limiter l'accès à la démarche selon le niveau de restriction choisi.
+            Cette option permet de limiter l’accès à la démarche selon le niveau de restriction choisi.
             Les utilisateurs concernés pourront accéder à la démarche
             <strong>uniquement en se connectant via ProConnect.</strong>
           </p>
@@ -41,7 +41,7 @@
               <%= f.radio_button :pro_connect_restriction, 'none', class: 'fr-radio' %>
               <%= f.label :pro_connect_restriction_none, class: 'fr-label' do %>
                 Aucune restriction
-                <p class="fr-hint-text">Les instructeurs et usagers peuvent accéder à cette démarche, qu'ils soient connectés à ProConnect ou non.</p>
+                <p class="fr-hint-text">Les instructeurs et usagers peuvent accéder à cette démarche, qu’ils soient connectés à ProConnect ou non.</p>
               <% end %>
             </div>
           </div>
@@ -61,13 +61,13 @@
               <%= f.radio_button :pro_connect_restriction, 'all', class: 'fr-radio' %>
               <%= f.label :pro_connect_restriction_all, class: 'fr-label' do %>
                 Tous les utilisateurs
-                <p class="fr-hint-text">Seuls les usagers authentifiés via ProConnect pourront déposer de nouveaux dossiers. Administrateurs et instructeurs doivent aussi s'authentifier via ProConnect.</p>
+                <p class="fr-hint-text">Seuls les usagers authentifiés via ProConnect pourront déposer de nouveaux dossiers. Administrateurs et instructeurs doivent aussi s’authentifier via ProConnect.</p>
               <% end %>
             </div>
             <% if @logged_in_with_pro_connect && @procedure.publiee? && @procedure.robots_indexable? %>
               <%= render Dsfr::AlertComponent.new(title: nil, state: :warning, extra_class_names: 'fr-mt-2w') do |c| %>
                 <% c.with_body do %>
-                  <p>Avec l'option « Tous les utilisateurs », l'indexation par les moteurs de recherche sera automatiquement désactivée.</p>
+                  <p>Avec l’option « Tous les utilisateurs », l’indexation par les moteurs de recherche sera automatiquement désactivée.</p>
                 <% end %>
               <% end %>
             <% end %>

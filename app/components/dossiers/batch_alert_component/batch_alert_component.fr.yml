@@ -24,7 +24,7 @@ fr:
         other: "%{success_count}/%{count} dossiers ont été passés en instruction"
     in_progress:
       text_success:
-        one: "1 dossier est en cours d'instruction"
+        one: "1 dossier est en cours d’instruction"
         other: "%{success_count}/%{count} dossiers ont été passés en instruction"
   repousser_expiration:
     finish:
@@ -33,7 +33,7 @@ fr:
         other: "%{success_count}/%{count} dossiers seront conservé 1 mois supplémentaire"
     in_progress:
       text_success:
-        one: "1 dossier est en cours d'être conservé 1 mois supplémentaire"
+        one: "1 dossier est en cours d’être conservé 1 mois supplémentaire"
         other: "%{success_count}/%{count} dossiers seront conservé 1 mois supplémentaire"
   accepter:
     finish:
@@ -42,7 +42,7 @@ fr:
         other: "%{success_count}/%{count} dossiers ont été acceptés"
     in_progress:
       text_success:
-        one: "1 dossier est en cours d'acceptation"
+        one: "1 dossier est en cours d’acceptation"
         other: "%{success_count}/%{count} dossiers ont été acceptés"
   refuser:
     finish:
@@ -87,12 +87,12 @@ fr:
         other: "%{success_count}/%{count} dossiers ont été suivis"
     in_progress:
       text_success:
-        one: "1 dossier est en cours d'être suivi"
+        one: "1 dossier est en cours d’être suivi"
         other: "%{success_count}/%{count} dossiers ont été suivis"
   unfollow:
     finish:
       text_success:
-        one: "%{success_count}/1 dossier n'est plus suivi"
+        one: "%{success_count}/1 dossier n’est plus suivi"
         other: "%{success_count}/%{count} dossiers ne sont plus suivis"
     in_progress:
       text_success:
@@ -105,7 +105,7 @@ fr:
         other: "%{success_count}/%{count} dossiers ont été repassés en construction"
     in_progress:
       text_success:
-        one: "1 dossier est en cours d'être repassé en construction"
+        one: "1 dossier est en cours d’être repassé en construction"
         other: "%{success_count}/%{count} dossiers ont été repassés en construction"
   create_avis:
     finish:

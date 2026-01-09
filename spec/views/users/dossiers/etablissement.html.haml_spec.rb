@@ -35,9 +35,9 @@ describe 'users/dossiers/etablissement', type: :view do
   context 'etablissement as degraded mode' do
     let(:etablissement) { Etablissement.create!(siret: '41816609600051') }
 
-    it "affiche une notice avec un lien de vérification vers l'annuaire" do
+    it "affiche une notice avec un lien de vérification vers l’annuaire" do
       expect(rendered).to have_text("418 166 096 00051")
-      expect(rendered).to have_link("Vérifier dans l'annuaire des entreprises", href: "https://annuaire-entreprises\.data\.gouv\.fr/rechercher?terme=#{etablissement.siret}")
+      expect(rendered).to have_link("Vérifier dans l’annuaire des entreprises", href: "https://annuaire-entreprises\.data\.gouv\.fr/rechercher?terme=#{etablissement.siret}")
     end
   end
 end

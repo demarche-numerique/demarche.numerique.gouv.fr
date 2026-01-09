@@ -83,12 +83,12 @@ module Manager
           end
         end
         if procedure.groupe_instructeurs.many?
-          notices.push "L'instructeur #{instructeur.email} a été ajouté aux #{procedure.groupe_instructeurs.count} groupes d'instructeurs."
+          notices.push "L’instructeur #{instructeur.email} a été ajouté aux #{procedure.groupe_instructeurs.count} groupes d’instructeurs."
         else
-          notices.push "L'instructeur #{instructeur.email} a été ajouté à la démarche."
+          notices.push "L’instructeur #{instructeur.email} a été ajouté à la démarche."
         end
       else
-        alerts.push "L'instructeur #{instructeur.email} est introuvable."
+        alerts.push "L’instructeur #{instructeur.email} est introuvable."
       end
 
       flash[:notice] = notices.join(" ") if notices.present?
@@ -173,7 +173,7 @@ module Manager
         end
       end
       message =  "Import des tags terminé."
-      message += " Ces démarches n'existent pas : #{invalid_ids.to_sentence}" if invalid_ids.any?
+      message += " Ces démarches n’existent pas : #{invalid_ids.to_sentence}" if invalid_ids.any?
       flash.notice = message
       redirect_to manager_administrateurs_path
     end

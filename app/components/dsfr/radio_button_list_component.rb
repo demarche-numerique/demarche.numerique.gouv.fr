@@ -13,7 +13,7 @@ class Dsfr::RadioButtonListComponent < ApplicationComponent
   end
 
   def error?
-    # TODO: mettre correctement le aria-labelled-by avec l'id du div qui contient les erreurs
+    # TODO: mettre correctement le aria-labelled-by avec l’id du div qui contient les erreurs
     # https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/bouton-radio/
     @error.present?
   end

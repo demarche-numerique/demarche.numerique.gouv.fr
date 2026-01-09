@@ -34,12 +34,12 @@ class GroupeGestionnaire::GroupeGestionnaireAdministrateurs::AdministrateurCompo
   end
 
   def destroy_button
-    button_to "Révoquer l'accès administrateur",
+    button_to "Révoquer l’accès administrateur",
       gestionnaire_groupe_gestionnaire_administrateur_path(@groupe_gestionnaire, @administrateur),
       method: :delete,
       disabled: !@administrateur.can_be_deleted?,
       class: 'fr-btn fr-btn--sm fr-btn--tertiary',
       title: @administrateur.can_be_deleted? ? "Supprimer" : "Cet administrateur a des démarches dont il est le seul admin et ne peut être supprimé",
-      form: { data: { turbo: true, turbo_confirm: "Supprimer « #{@administrateur.email} » en tant qu'administrateur ?" } }
+      form: { data: { turbo: true, turbo_confirm: "Supprimer « #{@administrateur.email} » en tant qu’administrateur ?" } }
   end
 end

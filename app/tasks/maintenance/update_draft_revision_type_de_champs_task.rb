@@ -13,11 +13,11 @@ module Maintenance
     #
     # Remarques:
     # - Toutes les valeurs sont écrasées sur la draft revision
-    # - Les positions doivent être dans l'ordre, sans trou, en suivant l'ordre de l'éditeur du formulair !
+    # - Les positions doivent être dans l’ordre, sans trou, en suivant l’ordre de l’éditeur du formulair !
     # - Les positions commencent à 0, comme un index
-    # - La position de l'ensemble du bloc répétable est celle du "parent"
-    # - Les champs des blocs répétables suivent la position du parent (c'est notre code qui la réinitialise à 0)
-    # - Ne permet pas de "sortir" des champs de blocs répétables, ni en ajouter (on peut juste réorganiser à l'intérieur du bloc)
+    # - La position de l’ensemble du bloc répétable est celle du "parent"
+    # - Les champs des blocs répétables suivent la position du parent (c’est notre code qui la réinitialise à 0)
+    # - Ne permet pas de "sortir" des champs de blocs répétables, ni en ajouter (on peut juste réorganiser à l’intérieur du bloc)
     def process(row)
       procedure_id = row["demarche_id"]
       typed_id = row["id"]

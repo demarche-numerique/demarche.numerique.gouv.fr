@@ -2,7 +2,7 @@
 
 module Maintenance
   class T20250206destroyContactInformationsInNotRoutedProceduresTask < MaintenanceTasks::Task
-    # Documentation: cette tâche modifie les données pour supprimer les informations de contact des démarches non routées. La fonctionnalité d'informations de contact avait été ouverte par erreur aux démarches non routées.
+    # Documentation: cette tâche modifie les données pour supprimer les informations de contact des démarches non routées. La fonctionnalité d’informations de contact avait été ouverte par erreur aux démarches non routées.
 
     include RunnableOnDeployConcern
     include StatementsHelpersConcern

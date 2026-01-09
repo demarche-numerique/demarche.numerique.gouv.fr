@@ -22,6 +22,6 @@ Une démarche déclarative est une démarche pour laquelle certaines étapes de 
 
 Pour configurer une démarche comme déclarative, accédez à la partie **« Présentation »** de la démarche depuis le tableau de bord administrateur. En bas de la page, dans l’onglet **« Options avancées »**, sélectionnez l’option souhaitée (*« En instruction »* ou *« Accepté »*) et enregistrez les modifications.
 
-![Capture d'écran de la page de configuration de la demarche déclarative {aria-hidden="true"}](faq/administrateur-create-declarative.png)
+![Capture d’écran de la page de configuration de la demarche déclarative {aria-hidden="true"}](faq/administrateur-create-declarative.png)
 
 Vous avez la possibilité de revenir en arrière ou de modifier le type de démarche déclarative à tout moment, même après publication.

@@ -97,7 +97,7 @@
 
           - if !procedure.discarded? && !procedure.publiee? && procedure.can_be_deleted_by_administrateur?
             - menu.with_item do
-              = link_to admin_procedure_path(procedure), role: 'menuitem', method: :delete, data: { confirm: "Voulez-vous vraiment supprimer la démarche ? \nToute suppression est définitive et s'appliquera aux éventuels autres administrateurs de cette démarche !" } do
+              = link_to admin_procedure_path(procedure), role: 'menuitem', method: :delete, data: { confirm: "Voulez-vous vraiment supprimer la démarche ? \nToute suppression est définitive et s’appliquera aux éventuels autres administrateurs de cette démarche !" } do
                 = dsfr_icon('fr-icon-delete-line')
                 .dropdown-description
                   %h4= t('administrateurs.dropdown_actions.delete')

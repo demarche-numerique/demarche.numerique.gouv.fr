@@ -3,7 +3,7 @@
 module Maintenance
   class T20250512removeDuplicateFlipperValuesTask < MaintenanceTasks::Task
     # Cette tache suit T20250512prepareUnifyFlipperValuesTask
-    # elle supprime l'ancien format de valeur de Flipper maintenant
+    # elle supprime l’ancien format de valeur de Flipper maintenant
     # que le code a été migré.
 
     include RunnableOnDeployConcern

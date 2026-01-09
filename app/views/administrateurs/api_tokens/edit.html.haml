@@ -1,4 +1,4 @@
-- content_for :title, "Modification du jeton d'API « #{@api_token.name} »"
+- content_for :title, "Modification du jeton d’API « #{@api_token.name} »"
 
 = render partial: 'administrateurs/breadcrumbs',
   locals: { steps: [['Tableau de bord', tableau_de_bord_helper_path],
@@ -8,7 +8,7 @@
 .fr-container.fr-mt-2w
 
   %turbo-frame#tokenUpdate
-    %h1 Modification du jeton d'API « #{@api_token.name} »
+    %h1 Modification du jeton d’API « #{@api_token.name} »
 
     = form_with url: admin_api_token_path(@api_token), method: :patch, html: { class: 'fr-mt-2w' } do |f|
       .fr-input-group
@@ -50,9 +50,9 @@
     = form_with url: admin_api_token_path(@api_token), method: :patch, html: { class: 'fr-mt-2w' } do |f|
       .fr-mb-4w
         - if @api_token.full_access?
-          %p Votre jeton d'API a accès à toutes vos démarches.
+          %p Votre jeton d’API a accès à toutes vos démarches.
           = hidden_field_tag :procedure_to_add, '[]'
-          %button.fr-btn.fr-btn--secondary.fr-btn--sm Restreindre l'accès à certaines démarches
+          %button.fr-btn.fr-btn--secondary.fr-btn--sm Restreindre l’accès à certaines démarches
         - else
           .fr-select-group
             %label.fr-label{ for: 'procedure_to_add' } Ajouter des démarches autorisées

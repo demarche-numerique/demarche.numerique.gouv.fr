@@ -9,8 +9,8 @@ module Types
       end
 
       class EntrepriseEtatAdministratifType < Types::BaseEnum
-        value("Actif", "L'entreprise est en activité", value: Etablissement.entreprise_etat_administratifs.fetch("actif"))
-        value("Ferme", "L'entreprise a cessé son activité", value: Etablissement.entreprise_etat_administratifs.fetch("fermé"))
+        value("Actif", "L’entreprise est en activité", value: Etablissement.entreprise_etat_administratifs.fetch("actif"))
+        value("Ferme", "L’entreprise a cessé son activité", value: Etablissement.entreprise_etat_administratifs.fetch("fermé"))
       end
 
       field :siren, String, null: false

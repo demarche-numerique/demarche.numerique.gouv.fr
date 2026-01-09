@@ -2,7 +2,7 @@ ministeres:
   - MAA:
     labels:
       - '2022-05-20': "Ministère de l’Agriculture et de la Souveraineté alimentaire"
-      - '2020-07-06': "Ministère de l'Agriculture et de l'Alimentation"
+      - '2020-07-06': "Ministère de l’Agriculture et de l’Alimentation"
     tchap_hs:
       - agent.agriculture.tchap.gouv.fr
   - MC:
@@ -20,7 +20,7 @@ ministeres:
   - MSAPH:
     labels:
       - '2024-03-12': "Non attribué"
-      - '2022-05-20': "Ministère des Solidarités, de l'Autonomie et des personnes handicapées"
+      - '2022-05-20': "Ministère des Solidarités, de l’Autonomie et des personnes handicapées"
       - '2020-07-06': "Non attribué"
     tchap_hs:
       - agent.social.tchap.gouv.fr
@@ -28,7 +28,7 @@ ministeres:
     labels:
       - '2025-07-30': "Ministère du Travail, de la Santé, des Solidarités et des Familles"
       - '2024-03-12': "Ministère du Travail, de la Santé et des Solidarités"
-      - '2022-05-20': "Ministère du Travail, du Plein emploi et de l'Insertion"
+      - '2022-05-20': "Ministère du Travail, du Plein emploi et de l’Insertion"
       - '2020-07-06': "Ministère du Travail"
     tchap_hs:
       - agent.social.tchap.gouv.fr
@@ -40,7 +40,7 @@ ministeres:
   - MEF:
     labels:
       - '2022-05-20': "Ministère de l’Économie, des Finances et de la Souveraineté industrielle et numérique"
-      - '2020-07-06': "Ministère de l'Économie, des Finances et de la Relance"
+      - '2020-07-06': "Ministère de l’Économie, des Finances et de la Relance"
     tchap_hs:
       - agent.finances.tchap.gouv.fr
   - MJS:
@@ -59,22 +59,22 @@ ministeres:
   - MEN:
     labels:
       - '2025-07-30': "Ministère de l’Éducation nationale, de l’Enseignement supérieur et de la Recherche"
-      - '2022-05-20': "Ministère de l'Éducation nationale et de la Jeunesse"
-      - '2020-07-06': "Ministère de l'Éducation nationale, de la Jeunesse et des Sports"
+      - '2022-05-20': "Ministère de l’Éducation nationale et de la Jeunesse"
+      - '2020-07-06': "Ministère de l’Éducation nationale, de la Jeunesse et des Sports"
     tchap_hs:
       - agent.education.tchap.gouv.fr
   - ESR:
     labels:
       - '2025-07-30': "Non attribué"
-      - '2022-05-20': "Ministère de l'Enseignement supérieur et de la Recherche"
-      - '2020-07-06': "Ministère de l'Enseignement supérieur, de la Recherche et de l'Innovation"
+      - '2022-05-20': "Ministère de l’Enseignement supérieur et de la Recherche"
+      - '2020-07-06': "Ministère de l’Enseignement supérieur, de la Recherche et de l’Innovation"
     tchap_hs:
       - agent.education.tchap.gouv.fr
   - MI:
     labels:
       - '2025-07-30': "Ministère de l’Intérieur"
-      - '2022-05-20': "Ministère de l'Intérieur et des Outre-mer"
-      - '2020-07-06': "Ministère de l'Intérieur"
+      - '2022-05-20': "Ministère de l’Intérieur et des Outre-mer"
+      - '2020-07-06': "Ministère de l’Intérieur"
     tchap_hs:
       - agent.interieur.tchap.gouv.fr
   - MINARM:

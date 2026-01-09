@@ -275,11 +275,11 @@
       - c.with_bottom do
         %button.fr-btn Call to action
 
-    = render Dsfr::CalloutComponent.new(title: "Titre d'une information positive", theme: :success, icon: "fr-icon-message-2-fill") do |c|
+    = render Dsfr::CalloutComponent.new(title: "Titre d’une information positive", theme: :success, icon: "fr-icon-message-2-fill") do |c|
       - c.with_body do
         %p
-          N'importe quelle icône
-          = link_to("du jeu d'icônes", "https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/icones", **external_link_attributes)
+          N’importe quelle icône
+          = link_to("du jeu d’icônes", "https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/icones", **external_link_attributes)
           peut être utilisée.
 
     %h1 Dsfr::CardVerticalComponent
@@ -297,7 +297,7 @@
             = button_tag "Button 2", class: "fr-btn fr-btn--secondary"
 
     %h1 Dsfr::NoticeComponent
-    %p= link_to "Documentation DSFR Bandeau d'information", "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/bandeau-d-information-importante", **external_link_attributes
+    %p= link_to "Documentation DSFR Bandeau d’information", "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/bandeau-d-information-importante", **external_link_attributes
     .my-3
       = render Dsfr::NoticeComponent.new(closable: true) do |c|
         - c.with_title do

@@ -2,7 +2,7 @@
 
 module Mutations
   class DossierEnvoyerMessage < Mutations::BaseMutation
-    description "Envoyer un message à l'usager du dossier."
+    description "Envoyer un message à l’usager du dossier."
 
     argument :dossier_id, ID, required: true, loads: Types::DossierType
     argument :instructeur_id, ID, required: true, loads: Types::ProfileType

@@ -47,7 +47,7 @@ module Administrateurs
         end
 
         if @api_token.eternal? && networks.empty?
-          @invalid_network_message = "Vous ne pouvez pas supprimer les restrictions d'accès à l'API d'un jeton permanent."
+          @invalid_network_message = "Vous ne pouvez pas supprimer les restrictions d’accès à l’API d’un jeton permanent."
           @api_token.reload
           return render :edit
         end

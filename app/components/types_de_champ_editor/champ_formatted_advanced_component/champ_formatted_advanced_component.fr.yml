@@ -9,4 +9,4 @@ fr:
     indications: Indications sur le format de saisie attendu (affichées à l’usager)
     indications_hint: 'Exemple : Numéro à 7 caractères comportant des chiffres et des lettres (exemple: AB446KP)'
     valid_exemple: Exemple de saisie valide (ou de format de saisie requis)
-    error_message: Message d'erreur à afficher à l'usager en cas de saisie invalide
+    error_message: Message d’erreur à afficher à l’usager en cas de saisie invalide

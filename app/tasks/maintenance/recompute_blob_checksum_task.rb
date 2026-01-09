@@ -4,7 +4,7 @@ module Maintenance
   class RecomputeBlobChecksumTask < MaintenanceTasks::Task
     # Avant février 2024, les filigranes ont corrompu les hash des fichiers.
     # Régulièrement, des dossiers en brouillon étaient déposés avec ce problème
-    # (on retrouve les fichiers corrompu dans l'onglet retry de sidekiq).
+    # (on retrouve les fichiers corrompu dans l’onglet retry de sidekiq).
     # Cette tache recalcule les hashes.
     # 2024-05-27-01
     attribute :blob_ids, :string

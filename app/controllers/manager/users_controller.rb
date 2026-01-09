@@ -35,14 +35,14 @@ module Manager
     def resend_confirmation_instructions
       user = User.find(params[:id])
       user.resend_confirmation_instructions
-      flash[:notice] = "L'email d’activation de votre compte a été renvoyé."
+      flash[:notice] = "L’email d’activation de votre compte a été renvoyé."
       redirect_to manager_user_path(user)
     end
 
     def resend_reset_password_instructions
       user = User.find(params[:id])
       user.send_reset_password_instructions
-      flash[:notice] = "L'email de réinitialisation du mot de passe a été renvoyé."
+      flash[:notice] = "L’email de réinitialisation du mot de passe a été renvoyé."
       redirect_to manager_user_path(user)
     end
 
@@ -67,8 +67,8 @@ module Manager
       end
       user.delete_and_keep_track_dossiers_also_delete_user(current_super_admin, reason: :user_removed)
 
-      logger.info("L'utilisateur #{user.id} est supprimé par #{current_super_admin.id}")
-      flash[:notice] = "L'utilisateur #{user.id} est supprimé"
+      logger.info("L’utilisateur #{user.id} est supprimé par #{current_super_admin.id}")
+      flash[:notice] = "L’utilisateur #{user.id} est supprimé"
 
       redirect_to manager_users_path
     end
@@ -94,7 +94,7 @@ module Manager
     def unblock_email
       @user = User.find(params[:user_id])
       if Sendinblue::API.new.unblock_user(@user.email)
-        flash.notice = "L'adresse électronique a été débloquée auprès de Sendinblue"
+        flash.notice = "L’adresse électronique a été débloquée auprès de Sendinblue"
       else
         flash.alert = "Impossible de débloquer cette adresse électronique auprès de Sendinblue"
       end

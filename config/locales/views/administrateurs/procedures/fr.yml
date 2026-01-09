@@ -20,13 +20,13 @@ fr:
         page_subtitle_with_redirection: Votre démarche est close. Le lien public redirige désormais vers cette <a href="%{redirection_path}" target="_blank" rel="noopener noreferrer">démarche</a>.
         callout_content: Vous avez la possibilité de continuer à instruire les dossiers déposés. Si vous n’avez pas l’intention d’instruire ces dossiers, nous vous invitons à en informer les usagers.
         email_toggle_brouillon:
-          one: Souhaitez-vous envoyer un email à l'utilisateur avec un dossier en brouillon ?
+          one: Souhaitez-vous envoyer un email à l’utilisateur avec un dossier en brouillon ?
           other: Souhaitez-vous envoyer un email aux %{count} utilisateurs avec un dossier en brouillon ?
-        email_content_brouillon: Contenu de l'email
+        email_content_brouillon: Contenu de l’email
         email_toggle_en_cours:
-          one: Souhaitez-vous envoyer un email à l'utilisateur avec un dossier déposé ?
+          one: Souhaitez-vous envoyer un email à l’utilisateur avec un dossier déposé ?
           other: Souhaitez-vous envoyer un email aux %{count} utilisateurs avec un dossier déposé ?
-        email_content_en_cours: Contenu de l'email
+        email_content_en_cours: Contenu de l’email
       preview_unavailable: Aperçu non disponible car la démarche est mal configurée
       modifications:
         dossiers_en_construction_and_dossiers_en_instruction: Il y a %{en_construction_count} dossiers « en construction » et %{en_instruction_count} dossiers « en instruction » sur cette version de la démarche.
@@ -68,13 +68,13 @@ fr:
         dpd_title: Avant de publier
         dpd_part_1: Avez-vous bien pensé à informer votre Délégué à la Protection des Données personnelles (DPD).
         dpd_part_2: Si votre démarche propose de collecter des données personnelles, vous devez informer votre DPD. Chaque organisme en a un.
-        dpd_part_3: "Ce dernier pourra vous aider dans la finalisation de votre démarche, et vous inviter à vous interroger sur les données collectées, et sur la pertinence de ces dernières. N'oubliez pas : toutes les démarches qui contiennent des données personnelles doivent être consignées dans un registre des traitements :"
+        dpd_part_3: "Ce dernier pourra vous aider dans la finalisation de votre démarche, et vous inviter à vous interroger sur les données collectées, et sur la pertinence de ces dernières. N’oubliez pas : toutes les démarches qui contiennent des données personnelles doivent être consignées dans un registre des traitements :"
         dpd_part_4: Comment faire ? Vous pouvez soit lui communiquer par email le lien vers la démarche en test, ou bien le nommer « administrateur ». Dans tous les cas, ne publiez votre démarche qu’après avoir eu son avis.
         back_to_procedure: 'Annuler et revenir à la page de la démarche'
         submit: Publier
       check_path:
         path_not_available:
-          owner: Cette url est identique à celle d’une autre de vos démarches publiées. Si vous publiez cette démarche, le lien ne pointera plus sur l'ancienne démarche.
+          owner: Cette url est identique à celle d’une autre de vos démarches publiées. Si vous publiez cette démarche, le lien ne pointera plus sur l’ancienne démarche.
           not_owner: Cette url est identique à celle d’une autre démarche, vous devez la modifier afin de pouvoir publier votre démarche.
       unpublished_changes_sticky_header:
         intro_html: Les modifications effectuées ne seront visibles <strong>qu'à la prochaine publication</strong>

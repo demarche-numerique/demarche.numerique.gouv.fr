@@ -8,7 +8,7 @@
 
   = render Dsfr::CalloutComponent.new(title: nil) do |c|
     - c.with_body do
-      Pendant l'instruction d'un dossier, les instructeurs peuvent demander leur avis à un ou plusieurs experts.
+      Pendant l’instruction d’un dossier, les instructeurs peuvent demander leur avis à un ou plusieurs experts.
       %p
         = link_to('Comment gérer les avis externes', t('.experts_doc.url'),
           title: t('.experts_doc.title'),
@@ -60,7 +60,7 @@
 
   - if @procedure.experts_require_administrateur_invitation?
     .card
-      = render Procedure::InvitationWithTypoComponent.new(maybe_typos: @maybe_typos, url: admin_procedure_experts_path(@procedure), title: "Avant d'ajouter l’adresse électronique à la liste d'expert prédéfinie, veuillez confirmer" )
+      = render Procedure::InvitationWithTypoComponent.new(maybe_typos: @maybe_typos, url: admin_procedure_experts_path(@procedure), title: "Avant d’ajouter l’adresse électronique à la liste d’expert prédéfinie, veuillez confirmer" )
       = form_for :experts_procedure,
         url: admin_procedure_experts_path(@procedure),
         html: { class: 'form' } do |f|
@@ -110,7 +110,7 @@
                 %td.actions= button_to 'Retirer',
                   admin_procedure_expert_path(id: expert_procedure, procedure: @procedure),
                   method: :delete,
-                  data: { confirm: "Êtes-vous sûr de vouloir révoquer l'expert « #{expert_procedure.expert.email} » de la démarche #{expert_procedure.procedure.libelle} ? Les instructeurs ne pourront plus lui demander d’avis" },
+                  data: { confirm: "Êtes-vous sûr de vouloir révoquer l’expert « #{expert_procedure.expert.email} » de la démarche #{expert_procedure.procedure.libelle} ? Les instructeurs ne pourront plus lui demander d’avis" },
                   class: 'fr-btn fr-btn--secondary'
   - else
     .blank-tab

@@ -11,7 +11,7 @@
     = link_to(demarche_link, demarche_link)
 
     %p
-      En cas de difficulté, essayez l'ancienne adresse : 
+      En cas de difficulté, essayez l’ancienne adresse : 
       = link_to(ds_link, ds_link)
   - else
     = link_to(sign_in_by_link_url(@instructeur.id, jeton: @login_token), sign_in_by_link_url(@instructeur.id, jeton: @login_token))

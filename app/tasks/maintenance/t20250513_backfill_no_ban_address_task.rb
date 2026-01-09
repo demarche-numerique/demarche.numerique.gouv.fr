@@ -2,7 +2,7 @@
 
 module Maintenance
   class T20250513BackfillNoBanAddressTask < MaintenanceTasks::Task
-    # Documentation: marque les anciennes adresses qui n'avaient pas
+    # Documentation: marque les anciennes adresses qui n’avaient pas
     # été validées comme étant étant hors BAN
     # Cf https://github.com/demarches-simplifiees/demarches-simplifiees.fr/pull/10037
 

@@ -93,7 +93,7 @@
                   .fr-mb-1w
                     %button{ 'data-action': 'expand#toggle' }
                       %span.fr-icon-add-line.fr-icon--sm.fr-mr-1w.fr-text-action-high--blue-france{ 'aria-hidden': 'true', 'data-expand-target': 'icon' }
-                      Type d'usager
+                      Type d’usager
                   .fr-ml-1w.hidden{ 'data-expand-target': 'content' }
                     = f.collection_check_boxes :kind_usagers, ['individual', 'personne_morale'], :to_s, :to_s, include_hidden: false do |b|
                       .fr-checkbox-group.fr-ml-2w.fr-py-1w

@@ -105,7 +105,7 @@ RSpec.describe Avis, type: :model do
     context "when no answer" do
       let(:avis) { create(:avis, claimant: claimant) }
 
-      it "supprime l'avis" do
+      it "supprime l’avis" do
         avis.revoke_by!(claimant)
         expect(avis).to be_destroyed
         expect(Avis.count).to eq 0
@@ -115,7 +115,7 @@ RSpec.describe Avis, type: :model do
     context "with answer" do
       let(:avis) { create(:avis, :with_answer, claimant: claimant) }
 
-      it "revoque l'avis" do
+      it "revoque l’avis" do
         avis.revoke_by!(claimant)
         expect(avis).not_to be_destroyed
         expect(avis).to be_revoked

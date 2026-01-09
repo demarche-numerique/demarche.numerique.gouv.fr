@@ -2,7 +2,7 @@
 
 module Maintenance
   class UpdateClosingReasonIfNoReplacedByIdTask < MaintenanceTasks::Task
-    # Remet les messages de cloture d'une démarche proprement (sinon affichage KO).
+    # Remet les messages de cloture d’une démarche proprement (sinon affichage KO).
     # Avant BackfillClosingReasonInClosedProceduresTask
     # 2024-03-21-01 PR #10158
     def collection

@@ -62,7 +62,7 @@ describe 'Closing a procedure', js: true do
 
       select('Autre')
 
-      fill_in("Message d'information remplaçant la démarche", with: "Bonjour,\nLa démarche est maintenant sur www.autre-site.fr\nCordialement")
+      fill_in("Message d’information remplaçant la démarche", with: "Bonjour,\nLa démarche est maintenant sur www.autre-site.fr\nCordialement")
 
       accept_alert do
         within('form') { click_on 'Clore la démarche' }
@@ -74,11 +74,11 @@ describe 'Closing a procedure', js: true do
 
       expect(page).to have_text('Votre démarche est close')
 
-      expect(page).to have_text("Souhaitez-vous envoyer un email à l'utilisateur avec un dossier en brouillon ?")
+      expect(page).to have_text("Souhaitez-vous envoyer un email à l’utilisateur avec un dossier en brouillon ?")
 
-      check("Souhaitez-vous envoyer un email à l'utilisateur avec un dossier en brouillon ?")
+      check("Souhaitez-vous envoyer un email à l’utilisateur avec un dossier en brouillon ?")
 
-      expect(page).to have_text ("Contenu de l'email")
+      expect(page).to have_text ("Contenu de l’email")
 
       fill_in('email_content_brouillon', with: "La démarche a fermé.")
 

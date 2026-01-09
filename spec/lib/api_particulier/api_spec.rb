@@ -61,7 +61,7 @@ describe APIParticulier::API do
         rescue APIParticulier::Error::Unauthorized => e
           expect(e.message).to include('url: particulier.api.gouv.fr/api/introspect')
           expect(e.message).to include('HTTP error code: 401')
-          expect(e.message).to include("Votre jeton d'API n'a pas été trouvé ou n'est pas actif")
+          expect(e.message).to include("Votre jeton d’API n’a pas été trouvé ou n’est pas actif")
         end
       end
     end

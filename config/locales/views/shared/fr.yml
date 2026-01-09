@@ -9,7 +9,7 @@ fr:
         demande_revoquee_le: "Demande d’avis révoquée le %{date}"
         relance_effectuee_le: "Relance effectuée le %{date}"
         reponse_donnee_le: "Réponse donnée le %{date}"
-        en_attente: "En attente d'avis"
+        en_attente: "En attente d’avis"
         avis_non_rendu: "Avis non rendu"
       france_connect_login:
         title: 'Se créer un compte avec FranceConnect'
@@ -22,7 +22,7 @@ fr:
         already_user: 'J’ai déjà un compte'
         create: 'Créer un compte'
         signin: 'Se connecter'
-        email_unverified: "Votre adresse électronique n'est pas vérifiée, vous ne recevrez donc pas les messages de %{application_name}. Veuillez vérifier votre boîte de réception et cliquer sur le lien de vérification. Vous n'avez pas reçu l'email ?"
+        email_unverified: "Votre adresse électronique n’est pas vérifiée, vous ne recevrez donc pas les messages de %{application_name}. Veuillez vérifier votre boîte de réception et cliquer sur le lien de vérification. Vous n’avez pas reçu l’email ?"
         cta_email_unverified: "Renvoyer l’email de vérification"
       messages:
         remove_file: 'Supprimer le fichier'

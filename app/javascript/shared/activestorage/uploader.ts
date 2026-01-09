@@ -106,7 +106,7 @@ export default class Uploader {
       const message = errors && errors[0];
       throw new FileUploadError(
         message ||
-          `Impossible d'associer le fichier (in english: error attaching file).'`,
+          `Impossible d’associer le fichier (in english: error attaching file).'`,
         error.response?.status,
         ERROR_CODE_ATTACH
       );

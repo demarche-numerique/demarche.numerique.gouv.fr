@@ -2,9 +2,9 @@
 
 module Maintenance
   class T20250415removeMisplacedAutodestructionHeaderTask < MaintenanceTasks::Task
-    # Un bug s'est glissé dans le DelayedPurgeJob : il supprime les fichiers sur le storage
+    # Un bug s’est glissé dans le DelayedPurgeJob : il supprime les fichiers sur le storage
     # OpenStack même si le blob est toujours attaché à un enregistrement.
-    # C'est le cas par exemple des fichiers partagés entre dossiers ou procédures clonés.
+    # C’est le cas par exemple des fichiers partagés entre dossiers ou procédures clonés.
     #
     # A partir des logs emis lors du dépot du flag x-delete-at, on ré́alise une liste de tous les
     # blob.key potentiellement concernés par ce bugs
@@ -17,7 +17,7 @@ module Maintenance
     # - vérifier si le blob est toujours marqué pour autodestruction
     # - si le blob est marqué pour autodestruction et toujours attaché,
     # on va le "sauver" retirant le flag
-    # - on va par ailleurs logger dans la table TaskLog les blobs qui n'existent plus
+    # - on va par ailleurs logger dans la table TaskLog les blobs qui n’existent plus
     # sur le storage afin de de prévenir les utilisateurs
 
     csv_collection(headers: ['blob_key'])

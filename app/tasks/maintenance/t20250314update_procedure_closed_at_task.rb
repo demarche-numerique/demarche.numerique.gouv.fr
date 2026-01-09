@@ -2,8 +2,8 @@
 
 module Maintenance
   class T20250314updateProcedureClosedAtTask < MaintenanceTasks::Task
-    # Documentation: cette tâche modifie la date de clôture d'une procédure.
-    # Elle peut être utilisée en cas d'erreur de l'administrateur.
+    # Documentation: cette tâche modifie la date de clôture d’une procédure.
+    # Elle peut être utilisée en cas d’erreur de l’administrateur.
     # Le format de la date de clôture (closing_date) doit être "YYYY-MM-DD".
 
     include RunnableOnDeployConcern

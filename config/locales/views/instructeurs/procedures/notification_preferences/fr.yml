@@ -10,17 +10,17 @@ fr:
           cancel: Annuler
           save: Enregistrer
       badge_preferences:
-        flash_notice: "Vos préférences pour les badges de notification sont enregistrées. Ceux-ci sont en cours d'ajustement."
+        flash_notice: "Vos préférences pour les badges de notification sont enregistrées. Ceux-ci sont en cours d’ajustement."
         subtitle: Configurez sur cette page <strong>les événements que vous souhaitez voir signalés</strong> sur les dossiers de cette démarche.
         legend_content:
-          dossier_depose: Être averti lorsqu'un dossier déposé depuis au moins %{days} jours n'est suivi par aucun instructeur
-          dossier_modifie: Être informé lorsque l'usager a modifié son dossier
-          message: Être informé lorsqu'il y a un nouveau message dans la messagerie du dossier
-          annotation_instructeur: Être informé lorsqu'un instructeur a renseigné une ou plusieurs annotations privées sur le dossier
-          avis_externe: Être informé lorsqu'un avis externe a été rendu sur le dossier
-          attente_correction: Être informé lorsqu'une demande de correction a été envoyée à l'usager
-          attente_avis: Être informé lorsqu'un avis externe a été demandé sur le dossier
-          attente_reponse: Être informé lorsqu'un message a été envoyé à l'usager avec l'option "en attente de réponse"
+          dossier_depose: Être averti lorsqu’un dossier déposé depuis au moins %{days} jours n’est suivi par aucun instructeur
+          dossier_modifie: Être informé lorsque l’usager a modifié son dossier
+          message: Être informé lorsqu’il y a un nouveau message dans la messagerie du dossier
+          annotation_instructeur: Être informé lorsqu’un instructeur a renseigné une ou plusieurs annotations privées sur le dossier
+          avis_externe: Être informé lorsqu’un avis externe a été rendu sur le dossier
+          attente_correction: Être informé lorsqu’une demande de correction a été envoyée à l’usager
+          attente_avis: Être informé lorsqu’un avis externe a été demandé sur le dossier
+          attente_reponse: Être informé lorsqu’un message a été envoyé à l’usager avec l’option "en attente de réponse"
         label:
           positive: Oui
           negative: Non

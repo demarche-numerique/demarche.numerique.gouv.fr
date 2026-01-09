@@ -34,7 +34,7 @@ module Maintenance
             "country_name" => "France",
 
             "entreprise_date_creation" => "1990-04-24",
-            "entreprise_forme_juridique" => "SA à conseil d'administration (s.a.i.)",
+            "entreprise_forme_juridique" => "SA à conseil d’administration (s.a.i.)",
             "entreprise_nom_commercial" => "GRTGAZ",
             "entreprise_raison_sociale" => "GRTGAZ",
             "entreprise_siren" => "440117620",

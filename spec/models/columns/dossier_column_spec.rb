@@ -27,7 +27,7 @@ describe Columns::DossierColumn do
           expect(procedure.find_column(label: "N° dossier").value(dossier)).to eq(dossier.id)
           expect(procedure.find_column(label: "Adresse électronique").value(dossier)).to eq(dossier.user_email_for(:display))
           expect(procedure.find_column(label: "France connecté ?").value(dossier)).to eq(false)
-          expect(procedure.find_column(label: "Entreprise forme juridique").value(dossier)).to eq("SA à conseil d'administration (s.a.i.)")
+          expect(procedure.find_column(label: "Entreprise forme juridique").value(dossier)).to eq("SA à conseil d’administration (s.a.i.)")
           expect(procedure.find_column(label: "Entreprise SIREN").value(dossier)).to eq('440117620')
           expect(procedure.find_column(label: "Entreprise nom commercial").value(dossier)).to eq('GRTGAZ')
           expect(procedure.find_column(label: "Entreprise raison sociale").value(dossier)).to eq('GRTGAZ')

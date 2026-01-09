@@ -1,13 +1,13 @@
 ---
 fr:
   errors:
-    not_available: "Un champ cible n'est plus disponible. Il est soit supprimé, soit déplacé en dessous de ce champ."
+    not_available: "Un champ cible n’est plus disponible. Il est soit supprimé, soit déplacé en dessous de ce champ."
     unmanaged: "Le champ « %{libelle} » est de type « %{type_champ} » et ne peut pas être utilisé comme champ cible."
     incompatible: "Le champ « %{libelle} » est de type « %{type_champ} ». Il ne peut pas être %{operator} « %{right} »."
-    required_number: "« %{operator} » ne s'applique qu'à des nombres."
-    required_list: "Lʼopérateur « inclus » ne s'applique qu'au choix simple ou multiple."
+    required_number: "« %{operator} » ne s’applique qu'à des nombres."
+    required_list: "Lʼopérateur « inclus » ne s’applique qu’au choix simple ou multiple."
     required_include:
-      eq: "Lʼopérateur « est » ne s'applique pas au choix multiple. Sélectionnez l’opérateur « contient »."
-      not_eq: "Lʼopérateur « n’est pas » ne s'applique pas au choix multiple."
+      eq: "Lʼopérateur « est » ne s’applique pas au choix multiple. Sélectionnez l’opérateur « contient »."
+      not_eq: "Lʼopérateur « n’est pas » ne s’applique pas au choix multiple."
     not_included: "« %{right} » ne fait pas partie de « %{libelle} »."
-    empty_options: "Le champ « %{libelle} » n'a aucune option parmi lesquelles choisir."
+    empty_options: "Le champ « %{libelle} » n’a aucune option parmi lesquelles choisir."

@@ -5,7 +5,7 @@ FactoryBot.define do
     email { 'plop@octo.com' }
     user { nil }
     association :dossier
-    message { "un message d'invitation" }
+    message { "un message d’invitation" }
 
     after(:build) do |invite, _evaluator|
       if invite.user.present?

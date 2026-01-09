@@ -81,7 +81,7 @@ describe Champs::FormattedChamp do
 
           it 'has default error message' do
             subject
-            expect(champ.errors.full_messages_for(:value).first).to eq "n'est pas valide"
+            expect(champ.errors.full_messages_for(:value).first).to eq "n’est pas valide"
           end
         end
       end

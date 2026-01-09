@@ -7,7 +7,7 @@
   .flex.justify-between.align-center.fr-mb-3w
     %h1.fr-h2 Annotations privées
     - if @procedure.revised?
-      = link_to "Voir l'historique des modifications des annotations", modifications_admin_procedure_path(@procedure), class: 'fr-link'
+      = link_to "Voir l’historique des modifications des annotations", modifications_admin_procedure_path(@procedure), class: 'fr-link'
 
   = render  NestedForms::FormOwnerComponent.new
   .fr-grid-row
@@ -17,7 +17,7 @@
         = render Dsfr::AlertComponent.new(title: "Possibilités de modification limitées", state: :info, extra_class_names: 'fr-my-2w') do |c|
           - c.with_body do
             %p
-              Votre démarche est publiée et des dossiers ont déjà été déposés. Afin d'éviter la perte de données sur les dossiers déjà déposés, certaines transformations de champs uniquement sont autorisées. Les types de champs non autorisés sont désactivés dans la liste "TYPE DE CHAMP" d'un champ existant. Si vous souhaitez modifier un champ existant, nous vous recommandons de supprimer ce champ et d'ajouter un nouveau champ avec le type souhaité.
+              Votre démarche est publiée et des dossiers ont déjà été déposés. Afin d’éviter la perte de données sur les dossiers déjà déposés, certaines transformations de champs uniquement sont autorisées. Les types de champs non autorisés sont désactivés dans la liste "TYPE DE CHAMP" d’un champ existant. Si vous souhaitez modifier un champ existant, nous vous recommandons de supprimer ce champ et d’ajouter un nouveau champ avec le type souhaité.
       = render TypesDeChampEditor::EditorComponent.new(revision: @procedure.draft_revision, is_annotation: true)
 
 .padded-fixed-footer

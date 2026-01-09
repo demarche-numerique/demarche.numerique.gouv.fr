@@ -58,7 +58,7 @@ describe Users::TransfersController, type: :controller do
         subject
 
         expect { dossier_transfert.reload.to eq(dossier_transfert) }
-        expect { (flash.alert).to eq("Vous n'avez pas l'autorisation pour supprimer cette demande de transfert") }
+        expect { (flash.alert).to eq("Vous n’avez pas l’autorisation pour supprimer cette demande de transfert") }
         expect { (subject).to redirect_to dossiers_path }
       end
     end

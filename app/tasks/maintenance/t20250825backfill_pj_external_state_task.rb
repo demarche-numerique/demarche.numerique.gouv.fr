@@ -3,9 +3,9 @@
 module Maintenance
   class T20250825backfillPjExternalStateTask < MaintenanceTasks::Task
     # Cette tâche convertit les qq champs pj de type RIB au niveau système
-    # de machine à état en remplissant la colonne external_state à partir de l'état calculé
+    # de machine à état en remplissant la colonne external_state à partir de l’état calculé
     # via les méthodes external_data_fetched? et external_error_present?
-    # Cette tache ne devrait concerner que l'instance DINUM, la feature RIB étant encore
+    # Cette tache ne devrait concerner que l’instance DINUM, la feature RIB étant encore
     # sous feature flag.
 
     include RunnableOnDeployConcern

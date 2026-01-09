@@ -13,7 +13,7 @@ fr:
           attributes:
             geometry:
               blank: "ne peut pas être vide"
-              invalid_geometry: "n'est pas un GeoJSON valide"
+              invalid_geometry: "n’est pas un GeoJSON valide"
               invalid_crs: "contient des coordonnées invalides, veuillez utiliser le système de coordonnées WGS84"
   geo_area:
     label:

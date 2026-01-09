@@ -92,7 +92,7 @@
       %fieldset.fr-fieldset{ "aria-labelledby": "for-individual-legend" }
         %legend#for-individual-legend.fr-fieldset__legend.fr-fieldset__legend--regular
           À qui s’adresse ma démarche ?
-          %span.fr-hint-text Si votre démarche s’adresse indifféremment à une personne morale ou un particulier, choisissez l'option « Particuliers ». Vous pourrez ajouter un champ SIRET directement dans le formulaire.
+          %span.fr-hint-text Si votre démarche s’adresse indifféremment à une personne morale ou un particulier, choisissez l’option « Particuliers ». Vous pourrez ajouter un champ SIRET directement dans le formulaire.
         .fr-fieldset__element
           .fr-radio-group.fr-radio-rich
             = f.radio_button :for_individual, true
@@ -145,8 +145,8 @@
               Lien de rappel HTTP (webhook)
             %p.fr-hint-text
               %strong Les webhooks sont maintenant dépréciés
-              Nous vous recommandons d'utiliser l'API GraphQL en faisant du polling,
-              = link_to "voici un exemple d'implementation ", WEBHOOK_ALTERNATIVE_DOC_URL, rel: "noopener", target: "_blank", title: "Voir une implémentation alternative à l'ancien système de webhook"
+              Nous vous recommandons d’utiliser l’API GraphQL en faisant du polling,
+              = link_to "voici un exemple d’implementation ", WEBHOOK_ALTERNATIVE_DOC_URL, rel: "noopener", target: "_blank", title: "Voir une implémentation alternative à l’ancien système de webhook"
             = f.text_field :web_hook_url, class: 'fr-input', placeholder: 'https://callback.exemple.fr/'
 
         .fr-fieldset__element
@@ -179,14 +179,14 @@
           .fr-radio-group
             = f.radio_button :declarative_with_state, Procedure.declarative_with_states.fetch(:en_instruction)
             = f.label :declarative_with_state, value: Procedure.declarative_with_states.fetch(:en_instruction), class: 'fr-label' do
-              Passage automatique en instruction (l'usager ne peut plus modifier son dossier)
+              Passage automatique en instruction (l’usager ne peut plus modifier son dossier)
 
 
         .fr-fieldset__element
           .fr-radio-group
             = f.radio_button :declarative_with_state, Procedure.declarative_with_states.fetch(:accepte)
             = f.label :declarative_with_state, value: Procedure.declarative_with_states.fetch(:accepte), class: 'fr-label' do
-              Passage automatique au statut « accepté » (l'usager ne peut plus modifier son dossier)
+              Passage automatique au statut « accepté » (l’usager ne peut plus modifier son dossier)
 
 
         - if !@procedure.piece_justificative_multiple?
@@ -196,4 +196,4 @@
               = f.label :piece_justificative_multiple, class: 'fr-label' do
                 Champ “Pièce justificative” avec multiples fichiers
             %p.fr-hint-text
-              Autorise les usagers à envoyer plusieurs fichiers pour les champs de type “Pièce justificative”. L'activation de cette option est irréversible et peut nécessiter des modifications si vous utilisez des systèmes automatisés pour traiter les dossiers.
+              Autorise les usagers à envoyer plusieurs fichiers pour les champs de type “Pièce justificative”. L’activation de cette option est irréversible et peut nécessiter des modifications si vous utilisez des systèmes automatisés pour traiter les dossiers.

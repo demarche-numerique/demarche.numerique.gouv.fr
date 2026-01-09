@@ -7,7 +7,7 @@
           - c.with_title do
             L’acceptation du dossier envoie automatiquement une attestation à l’usager
           - c.with_link do
-            = link_to 'Prévisualiser l’attestation', apercu_attestation_instructeur_dossier_path(dossier.procedure, dossier, attestation_kind: AttestationTemplate.kinds.fetch(:acceptation)), class: 'fr-notice__link', **external_link_attributes, title: "Voir l’attestation qui sera envoyée à l'usager"
+            = link_to 'Prévisualiser l’attestation', apercu_attestation_instructeur_dossier_path(dossier.procedure, dossier, attestation_kind: AttestationTemplate.kinds.fetch(:acceptation)), class: 'fr-notice__link', **external_link_attributes, title: "Voir l’attestation qui sera envoyée à l’usager"
 
       = render partial: 'instructeurs/dossiers/unspecified_champs', locals: { unspecified_attestation_champs: dossier.unspecified_attestation_champs(AttestationTemplate.kinds.fetch(:acceptation)) }
 
@@ -18,7 +18,7 @@
           - c.with_title do
             Le refus du dossier envoie automatiquement une attestation à l’usager
           - c.with_link do
-            = link_to 'Prévisualiser l’attestation', apercu_attestation_instructeur_dossier_path(dossier.procedure, dossier, attestation_kind: AttestationTemplate.kinds.fetch(:refus)), class: 'fr-notice__link', **external_link_attributes, title: "Voir l’attestation qui sera envoyée à l'usager"
+            = link_to 'Prévisualiser l’attestation', apercu_attestation_instructeur_dossier_path(dossier.procedure, dossier, attestation_kind: AttestationTemplate.kinds.fetch(:refus)), class: 'fr-notice__link', **external_link_attributes, title: "Voir l’attestation qui sera envoyée à l’usager"
 
       = render partial: 'instructeurs/dossiers/unspecified_champs', locals: { unspecified_attestation_champs: dossier.unspecified_attestation_champs(AttestationTemplate.kinds.fetch(:refus)) }
 

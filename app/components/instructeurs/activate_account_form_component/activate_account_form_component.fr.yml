@@ -1,7 +1,7 @@
 ---
 fr:
   title: Création de compte sur %{application_name}
-  activate: Se créer un compte avec l'adresse électronique %{email}
+  activate: Se créer un compte avec l’adresse électronique %{email}
   email_disabled: Adresse instructeur non modifiable
   submit: Créer un compte
 

@@ -147,7 +147,7 @@ describe ProcedurePathConcern do
         expect(procedure_2.procedure_paths.count).to eq(1)
         expect(procedure_2.canonical_path).to eq(procedure_2.procedure_paths.first.path)
         expect { subject }.to raise_error(ActiveRecord::RecordInvalid)
-        expect(procedure.errors.full_messages).to include("Le champ « Lien public » ne peut pas être utilisé car c'est le dernier lien de la démarche.")
+        expect(procedure.errors.full_messages).to include("Le champ « Lien public » ne peut pas être utilisé car c’est le dernier lien de la démarche.")
       end
     end
   end

@@ -1,9 +1,9 @@
 - if ENV['NOTICE_NOTIFICATION_PREFERENCE'] == 'enabled'
   = render Dsfr::NoticeComponent.new(closable: true, data_attributes: { "data-notice-name" => "instr-personnalisation-notifications" }) do |c|
     - c.with_title do
-      NOUVEAUTÉ – Vous pouvez maintenant personnaliser l'affichage de vos badges de notifications.
+      NOUVEAUTÉ – Vous pouvez maintenant personnaliser l’affichage de vos badges de notifications.
     - c.with_link do
-      = link_to "Personnaliser l'affichage dès maintenant !", notification_preferences_instructeur_procedure_path(@procedure, tab: :badge), class: "fr-notice__link"
+      = link_to "Personnaliser l’affichage dès maintenant !", notification_preferences_instructeur_procedure_path(@procedure, tab: :badge), class: "fr-notice__link"
 
 - content_for(:title, "#{@procedure.libelle}")
 

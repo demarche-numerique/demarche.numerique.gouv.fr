@@ -4,7 +4,7 @@ module Maintenance
   class T20250611backfillDossiersExpiredAtTask < MaintenanceTasks::Task
     # Documentation: cette tâche modifie les données pour corriger
     # la valeur du champ expired_at des dossiers pour lesquels
-    # une notification d'expiration a été envoyée.
+    # une notification d’expiration a été envoyée.
 
     include RunnableOnDeployConcern
     include StatementsHelpersConcern

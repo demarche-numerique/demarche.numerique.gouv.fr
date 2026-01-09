@@ -21,7 +21,7 @@ describe 'users/procedure_footer', type: :view do
     expect(subject).to have_link("Mentions légales")
   end
 
-  context "quand le dossier n'a pas de service associé" do
+  context "quand le dossier n’a pas de service associé" do
     let(:service) { nil }
 
     it do

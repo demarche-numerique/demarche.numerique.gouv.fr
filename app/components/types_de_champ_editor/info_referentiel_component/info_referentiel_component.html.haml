@@ -17,7 +17,7 @@
         %ul.fr-mt-0
           %li proposer des autosuggestions au fur et à mesure de la saisie de l’usager (issue de la BDD du référentiel)
           %li vérifier la correspondance exacte de saisie dans la BDD du référentiel
-          %li et/ou pré-remplir d'autres champ avec une donnée issues du référentiel
+          %li et/ou pré-remplir d’autres champ avec une donnée issues du référentiel
         %p.notice__desc
           Vous pouvez vous référer à
           = link_to "notre documentation", "https://doc.demarches-simplifiees.fr/tutoriels/champ-referentiel-avance-a-configurer", target: "_blank"
@@ -33,7 +33,7 @@
                 = "#{jsonpath.to_s} -> #{champ.public? ? "champ" : "annotation privée"} « #{champ.libelle || mapping[:prefill_stable_id]} »"
             - else
               %li
-                = "Le pré-remplissage de #{jsonpath.to_s} ne pourra être effectué, car le champ ou l'annotation privée n'existe plus"
+                = "Le pré-remplissage de #{jsonpath.to_s} ne pourra être effectué, car le champ ou l’annotation privée n’existe plus"
 
   %p.flex.column.align-end
     = link_to "Configurer le champ", edit_referentiel_on_draft_or_clone_url, class: 'fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-equalizer-fill', data: { turbo: false }

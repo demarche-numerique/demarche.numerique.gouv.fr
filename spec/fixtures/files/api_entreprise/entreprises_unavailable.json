@@ -1,7 +1,7 @@
 {
   "errors": [
     "Erreur interne du serveur",
-    "Le siret ou siren indiqué n'existe pas, n'est pas connu ou ne comporte aucune information pour cet appel"
+    "Le siret ou siren indiqué n’existe pas, n’est pas connu ou ne comporte aucune information pour cet appel"
   ],
   "gateway_error": true
 }

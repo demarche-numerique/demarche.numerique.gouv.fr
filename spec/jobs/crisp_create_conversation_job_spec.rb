@@ -137,7 +137,7 @@ RSpec.describe CrispCreateConversationJob, type: :job do
       end
     end
 
-    context 'cas d\'erreur - échec d\'envoi de message' do
+    context 'cas d’erreur - échec d’envoi de message' do
       before do
         allow(api).to receive(:create_conversation)
           .and_return(Dry::Monads::Success(data: { session_id: session_id }))

@@ -2,14 +2,14 @@ fr:
   dossier_mailer:
     notify_near_deletion_to_user:
       subject_en_construction:
-        one: Un dossier en attente d'instruction va bientôt être supprimé
-        other: Des dossiers en attente d'instruction vont bientôt être supprimés
+        one: Un dossier en attente d’instruction va bientôt être supprimé
+        other: Des dossiers en attente d’instruction vont bientôt être supprimés
       subject_termine:
         one: Un dossier traité va bientôt être supprimé
         other: Des dossiers traités vont bientôt être supprimés
       header_en_construction:
-        one: "Afin de respecter la durée de conservation de vos données personnelles, le dossier en attente d'instruction suivant sera supprimé automatiquement le %{expiration_date} :"
-        other: "Afin de respecter la durée de conservation de vos données personnelles, les dossiers en attente d'instruction suivants seront supprimés automatiquement le %{expiration_date} :"
+        one: "Afin de respecter la durée de conservation de vos données personnelles, le dossier en attente d’instruction suivant sera supprimé automatiquement le %{expiration_date} :"
+        other: "Afin de respecter la durée de conservation de vos données personnelles, les dossiers en attente d’instruction suivants seront supprimés automatiquement le %{expiration_date} :"
       header_termine:
         one: "Afin de respecter la durée de conservation de vos données personnelles, ce dossier traité sera supprimé le %{expiration_date} :"
         other: "Afin de respecter la durée de conservation de vos données personnelles, ces dossiers traités seront supprimés le %{expiration_date} :"
@@ -20,5 +20,5 @@ fr:
         one: Vous pouvez télécharger votre dossier au format PDF depuis l’onglet « Expirants » sur la page
         other: Vous pouvez télécharger vos dossiers au format PDF depuis l’onglet « Expirants » sur la page
       footer_en_construction:
-        one: Depuis la page de votre dossier vous avez la possibilité de :<br>- prolonger la durée de conservation<br>- contacter l'administration qui gère votre dossier via la messagerie
-        other: Depuis la page de vos dossiers vous avez la possibilité de :<br>- prolonger la durée de conservation<br>- contacter l'administration qui gère votre dossier via la messagerie
+        one: Depuis la page de votre dossier vous avez la possibilité de :<br>- prolonger la durée de conservation<br>- contacter l’administration qui gère votre dossier via la messagerie
+        other: Depuis la page de vos dossiers vous avez la possibilité de :<br>- prolonger la durée de conservation<br>- contacter l’administration qui gère votre dossier via la messagerie

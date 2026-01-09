@@ -66,7 +66,7 @@ class RechercheController < ApplicationController
 
     logger.info(payload.to_json)
 
-    redirect_to recherche_index_path, alert: "La recherche n'a pas pu aboutir."
+    redirect_to recherche_index_path, alert: "La recherche n’a pas pu aboutir."
   end
 
   private

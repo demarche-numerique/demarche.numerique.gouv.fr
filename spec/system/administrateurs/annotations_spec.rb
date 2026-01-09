@@ -34,7 +34,7 @@ describe 'As an administrateur I can edit annotation', js: true do
       end
     end
 
-    expect(page).to have_content("devrait être précédé d'un titre de niveau 1")
+    expect(page).to have_content("devrait être précédé d’un titre de niveau 1")
 
     # check summary
     procedure.reload.active_revision.types_de_champ_private.each do |header_section|

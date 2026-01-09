@@ -16,6 +16,6 @@ fr:
       'Logic::IncludeOperator': Contient
       'Logic::ExcludeOperator': Ne contient pas
       'Logic::InDepartementOperator': Est dans le département
-      'Logic::NotInDepartementOperator': N'est pas dans le département
+      'Logic::NotInDepartementOperator': N’est pas dans le département
       'Logic::InRegionOperator': Est dans la région
-      'Logic::NotInRegionOperator': N'est pas dans la région
+      'Logic::NotInRegionOperator': N’est pas dans la région

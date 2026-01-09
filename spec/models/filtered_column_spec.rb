@@ -36,7 +36,7 @@ describe FilteredColumn do
         let(:filter) { { operator: 'match', value: [(FilteredColumn::PG_INTEGER_MAX_VALUE + 1).to_s] } }
 
         it 'adds an error' do
-          expect(filtered_column.errors.map(&:message)).to include(/Le filtre « label » n'est pas un numéro de dossier possible/)
+          expect(filtered_column.errors.map(&:message)).to include(/Le filtre « label » n’est pas un numéro de dossier possible/)
         end
       end
 

@@ -5,19 +5,19 @@ fr:
         referentiels/api_referentiel:
           attributes:
             url:
-              invalid_format: "n'est pas au format d'une URL, saisissez une URL valide ex https://api_1.ext/"
-              not_allowed: "doit être autorisée par notre équipe. Veuillez nous contacter par mail (%{contact_email}) et nous indiquer l'URL et la documentation de l'API que vous souhaitez intégrer."
+              invalid_format: "n’est pas au format d’une URL, saisissez une URL valide ex https://api_1.ext/"
+              not_allowed: "doit être autorisée par notre équipe. Veuillez nous contacter par mail (%{contact_email}) et nous indiquer l’URL et la documentation de l’API que vous souhaitez intégrer."
     models:
       referentiel: 'Type de champ'
     attributes:
       referentiels/api_referentiel:
-        url: "URL de l'API"
+        url: "URL de l’API"
         hint: "Indications à fournir à l’usager concernant le format de saisie attendu"
-        test_data: "Exemple de saisie valide (affiché à l'usager et utilisé pour tester la requête)"
+        test_data: "Exemple de saisie valide (affiché à l’usager et utilisé pour tester la requête)"
         hints:
-          url_html: "Format attendu : https://api_1.ext/<strong>{id}</strong>, la section <strong>{id}</strong> sera remplacée par la valeur du champ. L'appel se fera en HTTP GET"
+          url_html: "Format attendu : https://api_1.ext/<strong>{id}</strong>, la section <strong>{id}</strong> sera remplacée par la valeur du champ. L’appel se fera en HTTP GET"
           hint: "Exemple : Identifiant de 12 caractères comportant des chiffres et des lettres (exemple : PG46YY6YWCX8)"
           "authentication_data[header]": "Exemples : Authorization, X-API-Key."
           "authentication_data[value]": "Exemples : Bearer your_token_here, Basic base64(username:password). Veillez à respecter la casse et l’orthographe du préfixe (ex : Bearer, Basic), sans ajouter d’espaces superflus."
-        "authentication_data[header]": "Nom de l'en-tête"
-        "authentication_data[value]": "Valeur de l'en-tête"
+        "authentication_data[header]": "Nom de l’en-tête"
+        "authentication_data[value]": "Valeur de l’en-tête"

@@ -103,14 +103,14 @@
     </table>
   <% else %>
     <p>
-      Historique indisponible. Cette adresse électronique n'existe pas chez nos
+      Historique indisponible. Cette adresse électronique n’existe pas chez nos
       prestataires d’envoi, ou nous n’avons pas réussi à en charger des
       données. Vous pouvez éventuellement fouiller les
       <a href="https://app-smtp.sendinblue.com/log">logs de SendInBlue</a>.
     </p>
   <% end %>
 
-  <%= link_to "Voir aussi les événements d'email", manager_email_events_path("search" => @user.email) %>
+  <%= link_to "Voir aussi les événements d’email", manager_email_events_path("search" => @user.email) %>
 
   <h2 style="font-size: 1.3em; margin: 24px 0 8px 0">Problèmes potentiel</h2>
 
@@ -130,7 +130,7 @@ Bonjour,
 votre compte est activé de notre côté.
 Vous pouvez vous connecter à votre compte de deux manières :
 - à cette adresse, afin de consulter vos dossiers : https://www.demarches-simplifiees.fr/users/sign_in
-- depuis la page de démarrage d’une démarche qu'on vous a communiqué, afin de déposer un dossier.
+- depuis la page de démarrage d’une démarche qu’on vous a communiqué, afin de déposer un dossier.
 
 Si vous avez oublié votre mot de passe, vous pouvez aussi en demander un nouveau via:
 https://www.demarches-simplifiees.fr/users/password/new
@@ -153,7 +153,7 @@ Bien cordialement</pre>
 Bonjour,
 
 Votre compte n’a pas été confirmé. Je vous ai transmis à nouveau un code de confirmation
-dans un email séparé ; après avoir cliqué sur le lien qui s'y trouve, vous pourrez vous connecter
+dans un email séparé ; après avoir cliqué sur le lien qui s’y trouve, vous pourrez vous connecter
 à votre compte, voir les dossiers déposés et en déposer de nouveaux.
 
 Si vous avez oublié votre mot de passe, vous pouvez aussi en demander un autre via:
@@ -189,7 +189,7 @@ Cordialement</pre>
 Bonjour,
 
 votre adresse électronique était bloqué par notre prestataire.
-Je l'ai débloqué, vous devriez recevoir les mails à venir.
+Je l’ai débloqué, vous devriez recevoir les mails à venir.
 
 Cela peut arriver si vous, ou ceux qui gèrent vos emails, marquent nos emails comme spam.
 

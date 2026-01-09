@@ -19,8 +19,8 @@ Comment reproduire le problème :
 **Comportement attendu**
 Comment le site aurait-il dû se comporter ?
 
-**Capture d'écran**
-Si besoin, ajoutez une capture d'écran de votre problème. Cela nous aide à identifier plus rapidement le souci.
+**Capture d’écran**
+Si besoin, ajoutez une capture d’écran de votre problème. Cela nous aide à identifier plus rapidement le souci.
 
 **Appareil et navigateur utilisé**
  - Appareil : [par exemple PC, Mac, iPhone, Android]

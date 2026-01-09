@@ -125,7 +125,7 @@ describe Champs::RNAController, type: :controller do
           champ.reload
           expect(champ.value).to eq(rna)
           expect(champ.data["association_titre"]).to eq("LA PRÉVENTION ROUTIERE")
-          expect(champ.data["association_objet"]).to eq("L'association a pour objet de promouvoir la pratique du sport de haut niveau et de contribuer à la formation des jeunes sportifs.")
+          expect(champ.data["association_objet"]).to eq("L’association a pour objet de promouvoir la pratique du sport de haut niveau et de contribuer à la formation des jeunes sportifs.")
           expect(champ.data["association_date_creation"]).to eq("2015-01-01")
           expect(champ.data["association_date_declaration"]).to eq("2019-01-01")
           expect(champ.data["association_date_publication"]).to eq("2018-01-01")

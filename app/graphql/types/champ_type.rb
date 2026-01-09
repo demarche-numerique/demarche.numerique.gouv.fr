@@ -5,7 +5,7 @@ module Types
     include Types::BaseInterface
 
     global_id_field :id
-    field :champ_descriptor_id, String, "L'identifiant du champDescriptor de ce champ", null: false
+    field :champ_descriptor_id, String, "L’identifiant du champDescriptor de ce champ", null: false
     field :label, String, "Libellé du champ.", null: false, method: :libelle
     field :string_value, String, "La valeur du champ sous forme texte.", null: true
     field :updated_at, GraphQL::Types::ISO8601DateTime, "Date de dernière modification du champ.", null: false

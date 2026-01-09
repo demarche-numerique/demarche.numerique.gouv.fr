@@ -356,7 +356,7 @@ RSpec.describe Dossiers::MessageComponent, type: :component do
       let(:gestionnaire) { create(:gestionnaire) }
       let(:commentaire) { create(:commentaire_groupe_gestionnaire, sender: administrateurs(:default_admin), gestionnaire: gestionnaire, body: 'Second message') }
 
-      it 'should display gestionnaire\'s email' do
+      it 'should display gestionnaire’s email' do
         is_expected.to have_text(gestionnaire.email)
       end
 

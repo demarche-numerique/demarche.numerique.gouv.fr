@@ -151,7 +151,7 @@ RSpec.describe Crisp::APIService do
                 "reason" => "resolved",
                 "data" => {
                   "session_id" => session_id,
-                  "last_message" => "J'ai un pb avec l'attestation",
+                  "last_message" => "J’ai un pb avec l’attestation",
                   "topic" => "Attestation issue",
                   "meta" => {
                     "email" => "test@example.com",
@@ -167,7 +167,7 @@ RSpec.describe Crisp::APIService do
 
           expect(result).to be_success
           expect(result.success.dig(:data, :topic)).to eq("Attestation issue")
-          expect(result.success.dig(:data, :last_message)).to eq("J'ai un pb avec l'attestation")
+          expect(result.success.dig(:data, :last_message)).to eq("J’ai un pb avec l’attestation")
           expect(result.success.dig(:data, :meta, :segments)).to eq(["attestation"])
         end
       end

@@ -3,7 +3,7 @@
 
   = render Dsfr::AlertComponent.new(title: error_title, state: :error, extra_class_names: 'fr-mb-3w') do |c|
     - c.with_body do
-      %p L'API n'a pas retournée une réponse valide, veuillez vérifier les paramètres du referentiel :
+      %p L'API n’a pas retournée une réponse valide, veuillez vérifier les paramètres du referentiel :
       %pre Endpoint: #{test_url}
 
       - if test_headers.present?

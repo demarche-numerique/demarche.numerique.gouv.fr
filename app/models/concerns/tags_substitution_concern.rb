@@ -177,14 +177,14 @@ module TagsSubstitutionConcern
     {
       id: 'individual_last_name',
       libelle: 'nom',
-      description: "nom de l'usager",
+      description: "nom de l’usager",
       lambda: -> (d) { d.individual&.nom },
       available_for_states: Dossier::SOUMIS,
     },
     {
       id: 'individual_first_name',
       libelle: 'prénom',
-      description: "prénom de l'usager",
+      description: "prénom de l’usager",
       lambda: -> (d) { d.individual&.prenom },
       available_for_states: Dossier::SOUMIS,
     },

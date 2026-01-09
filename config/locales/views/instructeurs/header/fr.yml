@@ -20,7 +20,7 @@ fr:
             modification_published_at_and_by: "Modifications publiées le %{date} par %{email}"
             modification_published_at: "Modifications publiées le %{date}"
             new: Nouveau
-            no_history: "Aucune modification n'a été publiée"
+            no_history: "Aucune modification n’a été publiée"
           exports_list: Liste des exports
           export_templates: Modèles d’export
           exports_notification_label: Un nouvel export est prêt à être téléchargé

@@ -14,12 +14,12 @@ title: "Comment trouver ma démarche ?"
 
 > Ce site ne dispose pas d’un annuaire comprenant l’ensemble des démarches administratives en ligne. Vous pouvez retrouver des informations soit :
 
-> - sur le site [service-public.fr](https://www.service-public.fr) : site officiel d'information sur les démarches administratives
+> - sur le site [service-public.fr](https://www.service-public.fr) : site officiel d’information sur les démarches administratives
 > - sur le site internet de l’administration concernée (ministère, organisme, préfecture, mairie…)
 
 > Pour effectuer un dépôt sur %{application_name} vous devez notamment disposer d’un lien qui vous a été communiqué par l’administration.
 
-> Par exemple s’il s’agit d'une démarche relative à un titre de séjour, vous trouverez l’information sur le site de la préfécture dont vous dépendez. S’il s'agit d’une demande de Pass Culture, vous trouverez les liens utiles sur le site du Pass Culture, etc…
+> Par exemple s’il s’agit d’une démarche relative à un titre de séjour, vous trouverez l’information sur le site de la préfécture dont vous dépendez. S’il s’agit d’une demande de Pass Culture, vous trouverez les liens utiles sur le site du Pass Culture, etc…
 
 ## 1. Trouver le lien de votre démarche
 
@@ -48,12 +48,12 @@ Vous trouverez ci-dessous la liste des démarches les plus courantes dématéria
 *   [Signaler une utilisation frauduleuse de carte bancaire en ligne](https://dai.ly/x902ha4)
 *   [Consulter ses points permis de conduire](https://dai.ly/x902ie0)
 *   [Demander l’aide au logement (APL)](https://dai.ly/x902i16)
-*   [Formuler ses choix d'orientation en fin de collège (post 3e)](https://dai.ly/x902jm8)
-*   [Formuler ses choix d'orientation au lycée (post 2de GT)](https://dai.ly/x902jfg)
+*   [Formuler ses choix d’orientation en fin de collège (post 3e)](https://dai.ly/x902jm8)
+*   [Formuler ses choix d’orientation au lycée (post 2de GT)](https://dai.ly/x902jfg)
 *   [Faire son recensement citoyen obligatoire](https://dai.ly/x902jsa)
 *   [Participer à la journée défense et citoyenneté](https://dai.ly/x902k20)
 *   [Demander un extrait de casier judiciaire (bulletin n°3)](https://dai.ly/x902hh0)
-*   [Demander l'aide juridictionnelle](https://dai.ly/x902j5m)
+*   [Demander l’aide juridictionnelle](https://dai.ly/x902j5m)
 *   [Demander un logement en cité universitaire](https://dai.ly/x902iva)
 
 

@@ -1,7 +1,7 @@
 fr:
   deleted_explanation: "Les dossiers ont été supprimés. Vous ne pouvez plus les récupérer pour les raisons suivantes :"
   deleted_explanation_first_instructeur: L’utilisateur a intentionnellement supprimé son dossier.
-  deleted_explanation_second_instructeur: Le délai de conservation maximal a expiré. Conformément au règlement RGPD, l'application ne peut continuer à les héberger.
+  deleted_explanation_second_instructeur: Le délai de conservation maximal a expiré. Conformément au règlement RGPD, l’application ne peut continuer à les héberger.
   deleted_explanation_first_user: Vous avez supprimé votre dossier.
-  deleted_explanation_second_user: Le délai de conservation maximal a expiré. Conformément au règlement RGPD, l'application ne peut continuer à les héberger.
-  no_deleted_dossiers: Vous n'avez pas de dossiers supprimés définitivement.
+  deleted_explanation_second_user: Le délai de conservation maximal a expiré. Conformément au règlement RGPD, l’application ne peut continuer à les héberger.
+  no_deleted_dossiers: Vous n’avez pas de dossiers supprimés définitivement.

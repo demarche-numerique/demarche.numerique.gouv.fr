@@ -67,7 +67,7 @@ class RootController < ApplicationController
               [
                 "option A",
                 "option B",
-                "-- avant l'option C --",
+                "-- avant l’option C --",
                 "option C",
               ]
             type_de_champ.save

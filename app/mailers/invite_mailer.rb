@@ -7,7 +7,7 @@ class InviteMailer < ApplicationMailer
   def invite_user(invite)
     bypass_unverified_mail_protection!
 
-    subject = "Participez à l'élaboration d’un dossier"
+    subject = "Participez à l’élaboration d’un dossier"
     targeted_user_link = invite.targeted_user_link || invite.create_targeted_user_link(target_context: 'invite',
                                                                                        target_model: invite,
                                                                                        user: invite.user)

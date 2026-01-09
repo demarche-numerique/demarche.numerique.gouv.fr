@@ -65,7 +65,7 @@ class FilteredColumn
   def check_filter_max_integer
     if @column.column == 'id' &&
       (filter_values.any? { |value| value.to_i > PG_INTEGER_MAX_VALUE })
-      errors.add(:base, "Le filtre « #{label} » n'est pas un numéro de dossier possible")
+      errors.add(:base, "Le filtre « #{label} » n’est pas un numéro de dossier possible")
     end
   end
 end

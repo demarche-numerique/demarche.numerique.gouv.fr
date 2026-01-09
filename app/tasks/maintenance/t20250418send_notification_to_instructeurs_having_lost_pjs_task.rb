@@ -68,7 +68,7 @@ module Maintenance
       <<~TEXT
         Bonjour,<br><br>
 
-        En raison d'une erreur technique, les pièces jointes des dossiers suivants ne sont plus disponibles :
+        En raison d’une erreur technique, les pièces jointes des dossiers suivants ne sont plus disponibles :
 
         #{to_html_list(list_of_missing_pjs_and_dossier(dossiers_and_champs, link_for: :instructeur))}
 

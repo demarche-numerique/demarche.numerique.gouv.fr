@@ -5,7 +5,7 @@ class JwtTokenValidator < ActiveModel::EachValidator
     begin
       JWT.decode value, nil, false
     rescue
-      record.errors.add attribute, :invalid, message: (options[:message] || "n'est pas un jeton valide")
+      record.errors.add attribute, :invalid, message: (options[:message] || "n’est pas un jeton valide")
     end
   end
 end

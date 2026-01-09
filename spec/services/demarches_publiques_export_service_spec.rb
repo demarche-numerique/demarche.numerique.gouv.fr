@@ -12,7 +12,7 @@ describe DemarchesPubliquesExportService do
       expected_result = {
         number: procedure.id,
         title: procedure.libelle,
-        description: "Demande de subvention à l'intention des associations",
+        description: "Demande de subvention à l’intention des associations",
         service: {
           nom: procedure.service.nom,
           organisme: "organisme",
@@ -27,7 +27,7 @@ describe DemarchesPubliquesExportService do
         notice: nil,
         deliberation: nil,
         datePublication: procedure.published_at.iso8601,
-        zones: ["Ministère de l'Education Populaire"],
+        zones: ["Ministère de l’Education Populaire"],
         tags: [],
         dossiersCount: 1,
         revision: {

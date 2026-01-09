@@ -15,7 +15,7 @@ module Manager
     private
 
     def ensure_administrateur_exists
-      redirect("Cet administrateur n'existe pas. Veuillez réessayer.") unless administrateur
+      redirect("Cet administrateur n’existe pas. Veuillez réessayer.") unless administrateur
     end
 
     def ensure_not_already_added

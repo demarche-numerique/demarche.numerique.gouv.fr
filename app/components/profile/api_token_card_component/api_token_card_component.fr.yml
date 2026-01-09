@@ -1,5 +1,5 @@
 fr:
   tokens_title: Jetons d’identification de l’API (token)
   first_paragraph_html: |
-    Ces jetons sont nécessaires pour effectuer des appels vers l’API de %{application_name}. Vous pouvez <strong>consulter notre documentation en suivant </strong><a target="_blank" rel="noopener" href="%{api_doc_url}" title="Voir la documentation de l'API de %{application_name}">ce lien</a>
+    Ces jetons sont nécessaires pour effectuer des appels vers l’API de %{application_name}. Vous pouvez <strong>consulter notre documentation en suivant </strong><a target="_blank" rel="noopener" href="%{api_doc_url}" title="Voir la documentation de l’API de %{application_name}">ce lien</a>
   create_token: Créer un nouveau jeton

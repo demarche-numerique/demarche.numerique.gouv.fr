@@ -18,7 +18,7 @@ FactoryBot.define do
     entreprise_siren { '440117620' }
     entreprise_capital_social { 537_100_000 }
     entreprise_numero_tva_intracommunautaire { 'FR27440117620' }
-    entreprise_forme_juridique { 'SA à conseil d\'administration (s.a.i.)' }
+    entreprise_forme_juridique { 'SA à conseil d’administration (s.a.i.)' }
     entreprise_forme_juridique_code { '5599' }
     entreprise_nom_commercial { 'GRTGAZ' }
     entreprise_raison_sociale { 'GRTGAZ' }

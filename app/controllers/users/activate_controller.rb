@@ -41,7 +41,7 @@ class Users::ActivateController < ApplicationController
       flash[:notice] = 'Votre adresse électronique a bien été vérifié'
     else
       if user.present?
-        flash[:alert] = "Ce lien n'est plus valable, un nouveau lien a été envoyé à l'adresse #{user.email}"
+        flash[:alert] = "Ce lien n’est plus valable, un nouveau lien a été envoyé à l’adresse #{user.email}"
         user.resend_confirmation_email!
       else
         flash[:alert] = "Un problème est survenu, vous pouvez nous contacter sur #{Current.contact_email}"
@@ -56,7 +56,7 @@ class Users::ActivateController < ApplicationController
       token = SecureRandom.hex(10)
       user.update!(confirmation_token: token, confirmation_sent_at: Time.zone.now)
       user.resend_confirmation_email!
-      flash[:notice] = "Un nouvel email de vérification a été envoyé à l'adresse #{user.email}."
+      flash[:notice] = "Un nouvel email de vérification a été envoyé à l’adresse #{user.email}."
     else
       flash[:alert] = "Votre adresse électronique est déjà vérifié ou vous n'êtes pas connecté."
     end

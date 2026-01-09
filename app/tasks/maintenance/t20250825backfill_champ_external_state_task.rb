@@ -3,7 +3,7 @@
 module Maintenance
   class T20250825backfillChampExternalStateTask < MaintenanceTasks::Task
     # Cette tâche convertit les champs COJO / RNF / Référentiel au niveau système
-    # de machine à état en remplissant la colonne external_state à partir de l'état calculé
+    # de machine à état en remplissant la colonne external_state à partir de l’état calculé
     # via les méthodes external_data_fetched? et external_error_present?
 
     include RunnableOnDeployConcern

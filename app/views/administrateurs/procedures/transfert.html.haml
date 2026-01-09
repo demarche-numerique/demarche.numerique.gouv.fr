@@ -17,7 +17,7 @@
           .fr-fieldset__element
             .fr-input-group
               = label_tag :email_admin, class: "fr-label" do
-                Adresse électronique de l'administrateur destinataire
+                Adresse électronique de l’administrateur destinataire
                 %span.fr-hint-text Un compte administrateur à cette adresse doit déjà exister sur #{Current.application_name}.
 
               = text_field_tag :email_admin, '', { class: 'fr-input', type: 'email' }

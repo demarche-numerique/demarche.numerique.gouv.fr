@@ -20,11 +20,11 @@ describe APIEntreprise::ExtraitKbisAdapter do
       expect(subject).to be_an_instance_of(Hash)
     end
 
-    it 'L\'entreprise contient bien un capital_social' do
+    it 'L’entreprise contient bien un capital_social' do
       expect(subject[:entreprise_capital_social]).to eq(50123.6)
     end
 
-    it 'L\'entreprise contient bien un nom_commercial' do
+    it 'L’entreprise contient bien un nom_commercial' do
       expect(subject[:entreprise_nom_commercial]).to eq('DECATHLON')
     end
   end

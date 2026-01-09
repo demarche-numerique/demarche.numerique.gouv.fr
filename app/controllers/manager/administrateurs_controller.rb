@@ -28,8 +28,8 @@ module Manager
 
       case result
       in Dry::Monads::Result::Success
-        logger.info("L'administrateur #{administrateur.id} est supprimé par #{current_super_admin.id}")
-        flash[:notice] = "L'administrateur #{administrateur.id} est supprimé"
+        logger.info("L’administrateur #{administrateur.id} est supprimé par #{current_super_admin.id}")
+        flash[:notice] = "L’administrateur #{administrateur.id} est supprimé"
       in Dry::Monads::Result::Failure(reason)
         flash[:alert] = I18n.t(reason, scope: "manager.administrateurs.delete")
       end

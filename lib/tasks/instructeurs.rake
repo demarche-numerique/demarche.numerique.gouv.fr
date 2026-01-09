@@ -18,7 +18,7 @@ namespace :instructeurs do
       InstructeursImportService.new.import(Procedure.find(procedure_id), lines)
 
     if errors.present?
-      rake_puts "Ces instructeurs n'ont pas pu être importés :"
+      rake_puts "Ces instructeurs n’ont pas pu être importés :"
       rake_puts errors
     end
 

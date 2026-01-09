@@ -1,7 +1,7 @@
 .fr-container.fr-mt-6w.fr-mb-15w
   = link_to " Liste des démarches", instructeur_procedures_path, class: 'fr-link fr-icon-arrow-left-line fr-link--icon--left fr-icon--sm'
   %h3.fr-my-3w
-    Personnaliser l'ordre des #{@procedures.size} démarches « en cours »
+    Personnaliser l’ordre des #{@procedures.size} démarches « en cours »
   %p Déplacez les démarches dans la liste pour les classer en fonction de vos préférences :
 
   %fr-container{ data: { controller: 'move-cards-position' } }

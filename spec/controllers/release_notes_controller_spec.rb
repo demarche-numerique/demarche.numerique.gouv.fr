@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe ReleaseNotesController, type: :controller do
-  let!(:note_admin) { create(:release_note, categories: ['administrateur'], body: "Pour l'admin", released_on: Date.new(2023, 10, 15)) }
-  let!(:note_instructeur) { create(:release_note, categories: ['instructeur'], body: "Pour l'instructeur", released_on: Date.new(2023, 10, 13)) }
+  let!(:note_admin) { create(:release_note, categories: ['administrateur'], body: "Pour l’admin", released_on: Date.new(2023, 10, 15)) }
+  let!(:note_instructeur) { create(:release_note, categories: ['instructeur'], body: "Pour l’instructeur", released_on: Date.new(2023, 10, 13)) }
 
   let(:user) { nil }
   let(:admin) { create(:user, administrateur: build(:administrateur)) }

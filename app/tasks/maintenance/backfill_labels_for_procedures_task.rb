@@ -3,7 +3,7 @@
 module Maintenance
   class BackfillLabelsForProceduresTask < MaintenanceTasks::Task
     # Cette tâche permet de créer un jeu de labels génériques pour les anciennes procédures
-    # Plus d'informations sur l'implémentation des labels ici : https://github.com/demarches-simplifiees/demarches-simplifiees.fr/issues/9787
+    # Plus d’informations sur l’implémentation des labels ici : https://github.com/demarches-simplifiees/demarches-simplifiees.fr/issues/9787
     # 2024-10-15
 
     include RunnableOnDeployConcern

@@ -182,7 +182,7 @@ RSpec.describe NotificationMailer, type: :mailer do
   end
 
   describe 'subject with apostrophe' do
-    let(:procedure) { create(:simple_procedure, libelle: "Mon titre avec l'apostrophe") }
+    let(:procedure) { create(:simple_procedure, libelle: "Mon titre avec l’apostrophe") }
     let(:dossier) { create(:dossier, :en_instruction, :with_individual, :with_service, user: user, procedure:) }
     let(:email_template) { create(:received_mail, subject:, body: 'Your dossier was accepted. Thanks.', procedure:) }
 
@@ -195,7 +195,7 @@ RSpec.describe NotificationMailer, type: :mailer do
     context "when the subject has a special character that should not be escaped" do
       let(:subject) { '--libellé démarche--' }
       it 'includes the apostrophe without escaping it' do
-        expect(mail.subject).to eq("Mon titre avec l'apostrophe")
+        expect(mail.subject).to eq("Mon titre avec l’apostrophe")
       end
     end
   end

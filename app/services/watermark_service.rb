@@ -46,7 +46,7 @@ class WatermarkService
     convert << "northwest"
   end
 
-  # Parcourt l'image ligne par ligne et colonne par colonne en y apposant un filigrane
+  # Parcourt l’image ligne par ligne et colonne par colonne en y apposant un filigrane
   # en alternant un décalage horizontal sur chaque ligne
   def apply_watermark(convert, metadata)
     stride_x, stride_y, initial_offsets_x, initial_offset_y = calculate_watermark_params

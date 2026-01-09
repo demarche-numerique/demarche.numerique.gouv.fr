@@ -15,7 +15,7 @@ class Referentiels::StepperComponent < StepperBaseComponent
     if type_de_champ.public?
       "Configuration du champ « #{type_de_champ.libelle} »"
     else
-      "Configuration de l'annotation privée « #{type_de_champ.libelle} »"
+      "Configuration de l’annotation privée « #{type_de_champ.libelle} »"
     end
   end
 
@@ -27,13 +27,13 @@ class Referentiels::StepperComponent < StepperBaseComponent
     elsif step_component_class == Referentiels::PrefillAndDisplayComponent
       "Pré remplissage des champs et/ou affichage des données récupérées"
     elsif step_component_class == Referentiels::AutocompleteConfigurationComponent || (step_component == Referentiels::ConfigurationErrorComponent && referentiel.autocomplete?)
-      "Configuration de l'autocomplétion"
+      "Configuration de l’autocomplétion"
     end
   end
 
   def next_step_title
     if step_component_class == Referentiels::NewFormComponent && referentiel.mode == 'autocomplete'
-      "Configuration de l'autocomplétion"
+      "Configuration de l’autocomplétion"
     elsif step_component_class == Referentiels::NewFormComponent && referentiel.mode == 'exact_match' || step_component_class == Referentiels::AutocompleteConfigurationComponent
       "Réponse et mapping"
     elsif step_component_class == Referentiels::MappingFormComponent

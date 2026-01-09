@@ -159,7 +159,7 @@ describe Experts::AvisController, type: :controller do
       end
 
       context 'with a revoked avis' do
-        it "refuse l'accès au dossier" do
+        it "refuse l’accès au dossier" do
           avis_with_answer.update!(revoked_at: Time.zone.now)
           subject
           expect(flash.alert).to eq("Vous n’avez plus accès à ce dossier.")
@@ -168,7 +168,7 @@ describe Experts::AvisController, type: :controller do
       end
 
       context 'with an avis that does not belongs to current_expert' do
-        it "refuse l'accès au dossier" do
+        it "refuse l’accès au dossier" do
           sign_in(create(:expert).user)
           subject
           expect(response).to redirect_to(expert_all_avis_path)
@@ -194,7 +194,7 @@ describe Experts::AvisController, type: :controller do
       context 'with an avis that does not belongs to current_expert' do
         let(:avis_to_instruct) { avis_without_answer }
 
-        it "refuse l'accès au dossier" do
+        it "refuse l’accès au dossier" do
           sign_in(create(:expert).user)
           subject
           expect(response).to redirect_to(expert_all_avis_path)
@@ -236,7 +236,7 @@ describe Experts::AvisController, type: :controller do
       end
 
       context 'with an avis that does not belongs to current_expert' do
-        it "refuse l'accès au dossier" do
+        it "refuse l’accès au dossier" do
           sign_in(create(:expert).user)
           subject
           expect(response).to redirect_to(expert_all_avis_path)
@@ -312,7 +312,7 @@ describe Experts::AvisController, type: :controller do
       context 'with an avis that does not belongs to current_expert' do
         before { sign_in(create(:expert).user) }
 
-        it "refuse l'accès au dossier" do
+        it "refuse l’accès au dossier" do
           expect(subject).to redirect_to(expert_all_avis_path)
           expect(flash.alert).to eq("Vous n’avez pas accès à cet avis.")
         end

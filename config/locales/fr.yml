@@ -144,29 +144,29 @@ fr:
         examples_html: "
           <h4>Certains scripts ne sont pas compatibles avec les technologies d’assistance</h4>
           <ul>
-            <li>Sur la combinaison Chrome / TalkBack, le focus n'est pas capturé dans les modales.
+            <li>Sur la combinaison Chrome / TalkBack, le focus n’est pas capturé dans les modales.
               <br><a href=\"https://github.com/GouvernementFR/dsfr/issues/967\">Un ticket a été ouvert à ce sujet auprès du DSFR</a>.</li>
-            <li>Sur le formulaire d'une démarche, l'intitulé du bouton permettant d'afficher la suite des erreurs n'est pas pertinent. De plus, une fois activé, le focus reste sur le bouton.</li>
-            <li>Le bouton d'action de la combobox <em>Adresse postale</em> n'a pas d'étiquette.</li>
-            <li>Le bouton d'action des panneaux <em>Inviter une personne à modifier ce dossier</em> et <em>Identité du demandeur</em> sont dotés d'attributs conflictuels (<code>aria-expanded</code> et <code>aria-haspopup</code>).</li>
+            <li>Sur le formulaire d’une démarche, l’intitulé du bouton permettant d’afficher la suite des erreurs n’est pas pertinent. De plus, une fois activé, le focus reste sur le bouton.</li>
+            <li>Le bouton d’action de la combobox <em>Adresse postale</em> n’a pas d’étiquette.</li>
+            <li>Le bouton d’action des panneaux <em>Inviter une personne à modifier ce dossier</em> et <em>Identité du demandeur</em> sont dotés d’attributs conflictuels (<code>aria-expanded</code> et <code>aria-haspopup</code>).</li>
           </ul>
           <h4>Certains messages de statut ne sont pas correctement restitués par les technologies d’assistance</h4>
           <ul>
-            <li>Sur la page de création de compte, lorsque le formulaire soumis est en erreur, la page se recharge sans que l'erreur ne soit restituée aux technologies d'assistance.</li>
-            <li>Sur le formulaire d'une démarche, la progression du téléversement d'une pièce jointe (et le message d'échec, le cas échéant) ne sont pas restitués aux technologies d’assistance.</li>
-            <li>Sur le formulaire d'une démarche, le message d'échec de l'enregistrement automatique n'est pas restitué aux technologies d’assistance.</li>
+            <li>Sur la page de création de compte, lorsque le formulaire soumis est en erreur, la page se recharge sans que l’erreur ne soit restituée aux technologies d’assistance.</li>
+            <li>Sur le formulaire d’une démarche, la progression du téléversement d’une pièce jointe (et le message d’échec, le cas échéant) ne sont pas restitués aux technologies d’assistance.</li>
+            <li>Sur le formulaire d’une démarche, le message d’échec de l’enregistrement automatique n’est pas restitué aux technologies d’assistance.</li>
           </ul>
           <h4>Certaines prises de focus sont altérées</h4>
           <ul>
             <li>Sur la FAQ, la visibilité de la prise de focus est altérée sur les boutons du sommaire.
             <br><a href=\"https://github.com/GouvernementFR/dsfr/issues/967\">Un ticket a été ouvert à ce sujet auprès du DSFR</a>.</li>
-            <li>En version mobile, sur les pages d'une démarche, la visibilité de la prise de focus du lien de retour aux dossiers (ou à la page d'accueil) est altérée.</li>
-            <li>En version mobile, sur le formulaire d'une démarche, lorsque le panneau <em>Inviter une personne à modifier ce dossier</em> est ouvert, il masque la prise de focus des champs suivants.</li>
+            <li>En version mobile, sur les pages d’une démarche, la visibilité de la prise de focus du lien de retour aux dossiers (ou à la page d’accueil) est altérée.</li>
+            <li>En version mobile, sur le formulaire d’une démarche, lorsque le panneau <em>Inviter une personne à modifier ce dossier</em> est ouvert, il masque la prise de focus des champs suivants.</li>
           </ul>
           <h4>Certains documents PDF ne sont pas accessibles</h4>
-          <p>Sur les pages d'une démarche, le document PDF de dématérialisation de la démarche n'est pas accessible.</p>"
+          <p>Sur les pages d’une démarche, le document PDF de dématérialisation de la démarche n’est pas accessible.</p>"
         subtitle_two: "Contenus exemptés"
-        exemption_html: "<p class=\"fr-mb-2w\">Les documents PDF, accessibles via le lien <em>Texte cadrant la demande d’information</em> présent dans le pied de pages de chaque démarche, sont fournis par l'administration en charge de la démarche.</p>"
+        exemption_html: "<p class=\"fr-mb-2w\">Les documents PDF, accessibles via le lien <em>Texte cadrant la demande d’information</em> présent dans le pied de pages de chaque démarche, sont fournis par l’administration en charge de la démarche.</p>"
         subtitle_three: "Remarques complémentaires"
         content_html: "<p class=\"fr-mb-2w\">Les pages de documentation sont gérées par un outil tiers. Elles ne sont pas entièrement accessibles.</p>"
 
@@ -207,10 +207,10 @@ fr:
         page_nine: "Authentification"
         page_ten: "Mot de passe oublié"
         page_ten_url: "/users/password/new"
-        page_eleven: "Création d'un dossier - Identité"
-        page_twelve: "Création d'un dossier - Brouillon"
-        page_thirteen: "Création d'un dossier - Confirmation d'envoi"
-        page_note_html: "La démarche <a href=\"https://www.demarches-simplifiees.fr/commencer/cd92-demande-amethyste-ph-v1\">CD92 - Demande de titre améthyste - Première demande (v1 - PH)</a> a été utilisé dans le cadre de l'audit."
+        page_eleven: "Création d’un dossier - Identité"
+        page_twelve: "Création d’un dossier - Brouillon"
+        page_thirteen: "Création d’un dossier - Confirmation d’envoi"
+        page_note_html: "La démarche <a href=\"https://www.demarches-simplifiees.fr/commencer/cd92-demande-amethyste-ph-v1\">CD92 - Demande de titre améthyste - Première demande (v1 - PH)</a> a été utilisé dans le cadre de l’audit."
       contact:
         title: "Retour d’information et contact"
         intro: "Si vous n’arrivez pas à accéder à un contenu ou à un service, vous pouvez contacter le responsable de Démarches simplifiées pour être orienté vers une alternative accessible ou obtenir le contenu sous une autre forme."
@@ -341,7 +341,7 @@ fr:
       create:
         success: "Une invitation a été envoyée à %{email}. Vous pouvez <a href=\"#\" class=\"fr-link fr-text--sm\" aria-controls=\"dossier-invites-modal-dialog\" data-fr-opened=\"false\" data-fr-js-modal-button=\"true\">inviter une autre personne</a>."
       destroy:
-        success: "L'autorisation de %{email} vient d'être révoquée. Vous pouvez <a href=\"#\" class=\"fr-link fr-text--sm\" aria-controls=\"dossier-invites-modal-dialog\" data-fr-opened=\"false\" data-fr-js-modal-button=\"true\">inviter une autre personne</a>."
+        success: "L’autorisation de %{email} vient d’être révoquée. Vous pouvez <a href=\"#\" class=\"fr-link fr-text--sm\" aria-controls=\"dossier-invites-modal-dialog\" data-fr-opened=\"false\" data-fr-js-modal-button=\"true\">inviter une autre personne</a>."
         error: "Vous ne pouvez pas révoquer cette autorisation"
       dropdown:
         invite_to_edit: Inviter une personne à modifier ce dossier
@@ -701,6 +701,9 @@ fr:
     errors:
       messages:
         not_a_phone: 'est invalide. Saisissez un numéro de téléphone valide. Exemple : 0612345678'
+        not_a_number: "n’est pas un nombre"
+        invalid: "n’est pas valide"
+        inclusion: "n’est pas inclus(e) dans la liste"
         url: 'n’est pas un lien valide'
         invalid_email_format: 'est invalide. Saisissez une adresse électronique valide. Exemple : adresse@mail.com'
         api_response_pending: 'En attente de réponse...'
@@ -751,7 +754,7 @@ fr:
             path:
               taken: est déjà utilisé par une démarche. Vous ne pouvez pas l’utiliser car il appartient à un autre administrateur.
               invalid: n’est pas valide. Il doit comporter au moins 3 caractères, au plus 200 caractères et seuls les caractères a-z, 0-9, '_' et '-' sont autorisés.
-              last_path: ne peut pas être utilisé car c'est le dernier lien de la démarche.
+              last_path: ne peut pas être utilisé car c’est le dernier lien de la démarche.
         procedure_revision:
           attributes:
             ineligibilite_rules:
@@ -811,7 +814,7 @@ fr:
     messages:
       saml_not_authorized: "Vous n’êtes pas autorisé à accéder à ce service."
       dossier_not_found: "Le dossier n’existe pas ou vous n’y avez pas accès."
-      # dossier_map_not_activated: "Le dossier n'a pas accès à la cartographie."
+      # dossier_map_not_activated: "Le dossier n’a pas accès à la cartographie."
       targeted_user_link_expired: "Ce lien d’invitation n’est plus valable ou le dossier n’est plus accessible."
       procedure_not_found: "La démarche n’existe pas"
       pro_connect:
@@ -826,9 +829,9 @@ fr:
         not_found: 'Nous n’avons pas trouvé d’établissement correspondant à ce numéro SIRET.'
       invalid_character_rules: Vous devez sélectionner au moins un type de caractère.
       invalid_character_length: "Le nombre minimum de caractères doit être inférieur au nombre maximum de caractères"
-      evil_regexp: L'expression régulière que vous avez entrée est potentiellement dangereuse et pourrait entraîner des problèmes de performance
-      mismatch_regexp: L'exemple doit correspondre à l'expression régulière fournie
-      syntax_error_regexp: La syntaxe de l'expression régulière n'est pas valide
+      evil_regexp: L’expression régulière que vous avez entrée est potentiellement dangereuse et pourrait entraîner des problèmes de performance
+      mismatch_regexp: L’exemple doit correspondre à l’expression régulière fournie
+      syntax_error_regexp: La syntaxe de l’expression régulière n’est pas valide
       # procedure_not_draft: "Cette démarche n’est maintenant plus en brouillon."
       cadastres_empty:
         one: "Aucune parcelle cadastrale sur la zone sélectionnée"
@@ -967,18 +970,18 @@ fr:
       show_in_trash:
         page_title: "Dossier n° %{numero} - En corbeille"
         title: "Le dossier n° %{numero} a été mis à la corbeille"
-        explanation_html: "Vous pouvez retrouver ce dossier depuis l'onglet <a href=\"%{trash_link}\" class=\"fr-link\">corbeille</a> de votre compte.<br>Il n'est pas consultable actuellement."
+        explanation_html: "Vous pouvez retrouver ce dossier depuis l’onglet <a href=\"%{trash_link}\" class=\"fr-link\">corbeille</a> de votre compte.<br>Il n’est pas consultable actuellement."
         consult_trash: "Consulter la corbeille"
         user_request_info_without_if: "Ce dossier a été mis à la corbeille à votre demande :<br>Vous pouvez encore le <strong>restaurer</strong>."
         user_request_info: "Si ce dossier a été mis à la corbeille à votre demande :<br>Vous pouvez encore le <strong>restaurer</strong>."
-        automatic_info: "Si ce dossier a été mis à la corbeille automatiquement car son délai maximal de conservation a été atteint :<br>Nous vous invitons à le <strong>télécharger</strong> au plus vite avant qu'il ne soit supprimé définitivement."
+        automatic_info: "Si ce dossier a été mis à la corbeille automatiquement car son délai maximal de conservation a été atteint :<br>Nous vous invitons à le <strong>télécharger</strong> au plus vite avant qu’il ne soit supprimé définitivement."
       show_deleted:
         page_title: "Dossier n° %{numero} - Supprimé définitivement"
         title: "Le dossier n° %{numero} a été supprimé"
         explanation: "Vous ne pouvez plus récupérer ce dossier pour une des raisons suivantes :"
         reason_user_request: "Il a été mis à la corbeille à votre demande, puis automatiquement supprimé."
         reason_automatic: "Il a été supprimé car son délai maximal de conservation a été atteint."
-        history_link_html: "Vous pouvez retrouver l'ensemble des dossiers supprimés de votre compte (hors \"BROUILLON\") sur la page <a href=\"%{history_link}\" class=\"fr-link\">Historique des dossiers supprimés</a>."
+        history_link_html: "Vous pouvez retrouver l’ensemble des dossiers supprimés de votre compte (hors \"BROUILLON\") sur la page <a href=\"%{history_link}\" class=\"fr-link\">Historique des dossiers supprimés</a>."
   instructeurs:
     dossiers:
       deleted_by_instructeur: "Le dossier a bien été supprimé de votre interface"
@@ -1073,7 +1076,7 @@ fr:
       label_select_merge_flow: Ce compte %{email} vous appartient-il ?
       title_fill_in_password:  Pour les fusionner, entrez votre mot de passe
       button_merge: Fusionner les comptes
-      title_fill_in_email: Donnez-nous alors l'adresse électronique que %{application_name} utilisera pour vous contacter
+      title_fill_in_email: Donnez-nous alors l’adresse électronique que %{application_name} utilisera pour vous contacter
       button_use_this_email: Utiliser cette adresse électronique
       link_confirm_by_email: Confirmer mon compte par email
     flash:

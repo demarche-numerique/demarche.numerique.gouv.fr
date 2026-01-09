@@ -346,7 +346,7 @@
     {
       "ville": "NOUMEA",
       "code": "ACIDC98098",
-      "description": "Directionn de l'Aviation Civile NC",
+      "description": "Directionn de l’Aviation Civile NC",
       "label": "DAC NC",
       "code_postal": "98845"
     },
@@ -402,7 +402,7 @@
     {
       "ville": "PARIS",
       "code": "ACIOCAC075",
-      "description": "Direction Generale de l'Aviation Civile",
+      "description": "Direction Generale de l’Aviation Civile",
       "label": "DGAC",
       "code_postal": "75720"
     },
@@ -423,7 +423,7 @@
     {
       "ville": "VBONNEUIL SUR MARNE CEDEX",
       "code": "ACISTAC094",
-      "description": "Service Technique de l'Aviation civile",
+      "description": "Service Technique de l’Aviation civile",
       "label": "STAC",
       "code_postal": "94381"
     },

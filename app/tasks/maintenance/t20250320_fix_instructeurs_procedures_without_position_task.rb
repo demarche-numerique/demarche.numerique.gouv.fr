@@ -2,7 +2,7 @@
 
 module Maintenance
   class T20250320FixInstructeursProceduresWithoutPositionTask < MaintenanceTasks::Task
-    # Documentation: backfill l'attribut `position` d'InstructeurProcedure qui ont été créés avec une valeur nil
+    # Documentation: backfill l’attribut `position` d'InstructeurProcedure qui ont été créés avec une valeur nil
 
     include RunnableOnDeployConcern
     include StatementsHelpersConcern

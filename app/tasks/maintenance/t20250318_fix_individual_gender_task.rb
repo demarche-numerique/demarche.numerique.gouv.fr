@@ -3,7 +3,7 @@
 module Maintenance
   class T20250318FixIndividualGenderTask < MaintenanceTasks::Task
     # Documentation: cette tâche corrige la valeur du gender dans la table
-    # Individual, notamment dans les cas où l'utilisateur a fait traduire la
+    # Individual, notamment dans les cas où l’utilisateur a fait traduire la
     # page par son navigateur.
 
     include RunnableOnDeployConcern

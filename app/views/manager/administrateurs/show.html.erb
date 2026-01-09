@@ -33,9 +33,9 @@
 
   <div>
     <% if page.resource.invitation_expired? %>
-      <%= link_to "renvoyer l'invitation", reinvite_manager_administrateur_path(page.resource), method: :post, class: "button" %>
+      <%= link_to "renvoyer l’invitation", reinvite_manager_administrateur_path(page.resource), method: :post, class: "button" %>
     <% end %>
-    <%= button_to t("administrate.actions.destroy"), delete_manager_administrateur_path(page.resource), method: :delete, disabled: !page.resource.can_be_deleted?, class: "button button--danger", data: { turbo_confirm: "Confirmez-vous la suppression de l'administrateur ?" }, title: page.resource.can_be_deleted? ? "Supprimer" : "Cet administrateur a des démarches dont il est le seul admin et ne peut être supprimé" %>
+    <%= button_to t("administrate.actions.destroy"), delete_manager_administrateur_path(page.resource), method: :delete, disabled: !page.resource.can_be_deleted?, class: "button button--danger", data: { turbo_confirm: "Confirmez-vous la suppression de l’administrateur ?" }, title: page.resource.can_be_deleted? ? "Supprimer" : "Cet administrateur a des démarches dont il est le seul admin et ne peut être supprimé" %>
   </div>
 </header>
 

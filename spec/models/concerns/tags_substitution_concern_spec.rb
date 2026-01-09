@@ -210,17 +210,17 @@ describe TagsSubstitutionConcern, type: :model do
     context 'when the procedure has a type de champ with double dash (--)' do
       let(:types_de_champ_public) do
         [
-          { libelle: "bon pote -- c'est top" },
+          { libelle: "bon pote -- c’est top" },
         ]
       end
 
       context 'and they are used in the template' do
-        let(:template) { "--bon pote __ c'est top--" }
+        let(:template) { "--bon pote __ c’est top--" }
 
         context 'and their value in the dossier are not nil' do
           before do
             dossier.project_champs_public
-              .find { |champ| champ.libelle == "bon pote -- c'est top" }
+              .find { |champ| champ.libelle == "bon pote -- c’est top" }
               .update(value: 'ceci est mon évènement')
           end
 
@@ -700,12 +700,12 @@ describe TagsSubstitutionConcern, type: :model do
     end
 
     it 'normalize white spaces' do
-      tokens = TagsSubstitutionConcern::TagsParser.parse("hello --Jour(s) fixe(s)\xc2\xA0souhaité(s)\xc2\xA0:-- world --B.8 COMMUNE&nbsp; o\xC3\xB9 est&nbsp;situ\xC3\xA9e le site d'exploitation--".encode('utf-8'))
+      tokens = TagsSubstitutionConcern::TagsParser.parse("hello --Jour(s) fixe(s)\xc2\xA0souhaité(s)\xc2\xA0:-- world --B.8 COMMUNE&nbsp; o\xC3\xB9 est&nbsp;situ\xC3\xA9e le site d’exploitation--".encode('utf-8'))
       expect(tokens).to eq([
         { text: "hello " },
         { tag: "Jour(s) fixe(s) souhaité(s) :" },
         { text: " world " },
-        { tag: "B.8 COMMUNE  où est située le site d'exploitation" },
+        { tag: "B.8 COMMUNE  où est située le site d’exploitation" },
       ])
     end
   end

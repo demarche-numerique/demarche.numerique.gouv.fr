@@ -48,11 +48,11 @@ Si vous souhaitez adapter demarches-simplifiees.fr à vos besoins, nous vous rec
 
 Dans le cas où vous envisagez d’héberger une instance de demarches-simplifiees.fr vous-même, nous ne disposons malheureusement pas des moyens pour vous accompagner, ni d’assurer de support technique concernant votre installation.
 
-Toutefois, certains acteurs (le ministère des armées, l’administration autonome en Polynésie française, l'association Adullact) ont déployé des instances séparées. Nous proposons aux personnes intéressées de les mettre en relation avec ces acteurs existants, pour obtenir un retour d’expérience et bénéficier de leur retour.
+Toutefois, certains acteurs (le ministère des armées, l’administration autonome en Polynésie française, l’association Adullact) ont déployé des instances séparées. Nous proposons aux personnes intéressées de les mettre en relation avec ces acteurs existants, pour obtenir un retour d’expérience et bénéficier de leur retour.
 
 ## Bonnes pratiques de code
 
-Votre contribution sera plus rapidement traitée si elle s'appuie sur nos habitudes de développement.
+Votre contribution sera plus rapidement traitée si elle s’appuie sur nos habitudes de développement.
 
 Nous travaillons à rendre explicite un maximum de nos pratiques de dev, aussi il est chaudement recommandé
 de prendre connaissance des [bonnes pratiques de code](doc/Contributions/Pratiques-de-dev.md).

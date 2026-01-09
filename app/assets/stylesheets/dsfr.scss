@@ -57,7 +57,7 @@ input[type='radio'] {
   }
 }
 
-// dans le DSFR il est possible d'avoir un bouton seulement avec une icone mais j'ai du surcharger ici pour eviter d'avoir des marges de l'icone. Je n'ai pas bien compris pourquoi
+// dans le DSFR il est possible d’avoir un bouton seulement avec une icone mais j’ai du surcharger ici pour eviter d’avoir des marges de l’icone. Je n’ai pas bien compris pourquoi
 .fr-btns-group--sm.fr-btns-group--icon-left
   .fr-btn[class*=' fr-icon-'].icon-only::before {
   margin-left: 0;
@@ -69,12 +69,12 @@ input[type='radio'] {
   box-shadow: 0px 0px 0px 1px $light-red;
 }
 
-// on utilise le dropdown de sélecteur de langue pour un autre usage donc on veut retirer l'icone
+// on utilise le dropdown de sélecteur de langue pour un autre usage donc on veut retirer l’icone
 .fr-translate .fr-translate__btn.custom-fr-translate-no-icon::before {
   display: none;
 }
 
-// on souhaite que le dropdown s'adapate correctement en largeur
+// on souhaite que le dropdown s’adapate correctement en largeur
 .fr-translate .fr-menu__list.max-content {
   width: max-content;
 }

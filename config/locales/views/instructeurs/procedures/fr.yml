@@ -3,6 +3,6 @@ fr:
     procedures:
       show:
         file_tracking: Suivi des dossiers
-        reinit_display: Votre affichage a dû être réinitialisé en raison d'un problème technique.
+        reinit_display: Votre affichage a dû être réinitialisé en raison d’un problème technique.
       administrators_list:
         title: Administrateurs de la démarche

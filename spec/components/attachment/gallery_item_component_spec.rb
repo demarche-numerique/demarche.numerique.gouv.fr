@@ -38,7 +38,7 @@ RSpec.describe Attachment::GalleryItemComponent, type: :component do
     end
 
     context "when gallery item has been updated" do
-      # un nouveau blob est créé après modification d'un champ pièce justificative
+      # un nouveau blob est créé après modification d’un champ pièce justificative
       before { attachment.blob.touch(:created_at) }
 
       it 'displays the right text' do

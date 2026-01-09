@@ -5,7 +5,7 @@ FactoryBot.define do
 
   factory :procedure do
     sequence(:libelle) { |n| "Procedure #{n}" }
-    description { "Demande de subvention à l'intention des associations" }
+    description { "Demande de subvention à l’intention des associations" }
     organisation { "Orga DINUM" }
     cadre_juridique { "un cadre juridique important" }
     published_at { nil }

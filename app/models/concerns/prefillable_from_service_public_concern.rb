@@ -75,7 +75,7 @@ module PrefillableFromServicePublicConcern
         :etablissement_enseignement
       elsif data[:nom_complet].match?(/MINISTERE|MINISTERIEL/)
         :administration_centrale
-      else # we can't differentiate between operateur d'état, administration centrale and service déconcentré de l'état, set the most frequent
+      else # we can't differentiate between operateur d’état, administration centrale and service déconcentré de l’état, set the most frequent
         :service_deconcentre_de_l_etat
       end
 

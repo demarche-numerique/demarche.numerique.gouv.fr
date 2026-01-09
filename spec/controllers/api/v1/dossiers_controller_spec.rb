@@ -227,7 +227,7 @@ describe API::V1::DossiersController do
             expect(subject[:siren]).to eq('440117620')
             expect(subject[:capital_social]).to eq(537_100_000)
             expect(subject[:numero_tva_intracommunautaire]).to eq('FR27440117620')
-            expect(subject[:forme_juridique]).to eq('SA à conseil d\'administration (s.a.i.)')
+            expect(subject[:forme_juridique]).to eq('SA à conseil d’administration (s.a.i.)')
             expect(subject[:forme_juridique_code]).to eq('5599')
             expect(subject[:nom_commercial]).to eq('GRTGAZ')
             expect(subject[:raison_sociale]).to eq('GRTGAZ')

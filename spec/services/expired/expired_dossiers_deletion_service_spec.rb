@@ -226,7 +226,7 @@ describe Expired::DossiersDeletionService do
     context 'when a procedure has an admin who is not an instructeur' do
       let!(:dossier) { create(:dossier, :en_construction, procedure: procedure, en_construction_at: (conservation_par_defaut - 2.weeks + 1.day).ago) }
       let!(:existing_admin) { procedure.administrateurs.first }
-      let!(:new_admin) { create(:administrateur) } # Nouvel admin qui n'est pas instructeur
+      let!(:new_admin) { create(:administrateur) } # Nouvel admin qui n’est pas instructeur
 
       before do
         dossier.update_expired_at

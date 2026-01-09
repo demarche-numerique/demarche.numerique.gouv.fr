@@ -758,7 +758,7 @@ class Dossier < ApplicationRecord
       parts = [
         "Dossier en brouillon répondant à la démarche ",
         procedure.libelle,
-        " gérée par l'organisme ",
+        " gérée par l’organisme ",
         procedure.organisation_name,
       ]
     else
@@ -767,7 +767,7 @@ class Dossier < ApplicationRecord
         depose_at.strftime("%d/%m/%Y"),
         " sur la démarche ",
         procedure.libelle,
-        " gérée par l'organisme ",
+        " gérée par l’organisme ",
         procedure.organisation_name,
       ]
     end

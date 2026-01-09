@@ -1,7 +1,7 @@
 = render Dsfr::AlertComponent.new(title: "Gestion de vos archives", state: :info) do |c|
   - c.with_body do
     %p
-      L'archivage de votre démarche se fait mensuellement. Pour chaque mois depuis la publication de votre démarche vous pouvez faire une demande de création d'archive.
+      L’archivage de votre démarche se fait mensuellement. Pour chaque mois depuis la publication de votre démarche vous pouvez faire une demande de création d’archive.
 
     %p
       Cette archive contient
@@ -17,10 +17,10 @@
         %ul
           %li
             %span.fr-badge un repertoire horodatage/
-            contenant le journal d'outil de chaque opération (un fichier terminant en .json) effectuée sur ce dossier
+            contenant le journal d’outil de chaque opération (un fichier terminant en .json) effectuée sur ce dossier
           %li
             %span.fr-badge un répertoire dossier/
-            contenant l'attestation de la décision finale sur ce dossier
+            contenant l’attestation de la décision finale sur ce dossier
           %li
             %span.fr-badge un répertoire pieces_justificatives/
             contenant les pièces justificatives associées à ce dossier
@@ -29,7 +29,7 @@
             exporté au format PDF
       %li
         %span.fr-badge un répertoire bills/
-        contenant l'horodatage signé de toute la plateforme pour chaque jour où une opération a été effectuée sur l'un des dossiers présent dans l'archive
+        contenant l’horodatage signé de toute la plateforme pour chaque jour où une opération a été effectuée sur l’un des dossiers présent dans l’archive
 
     %p
       Les archives dont le poids est estimé à plus de #{number_to_human_size(Archive::MAX_SIZE)} ne sont pas supportées.

@@ -9,9 +9,9 @@ title: "Comment comprendre mon tableau de bord administrateur ?"
 
 # Comment comprendre mon tableau de bord administrateur ?
 
-Votre tableau de bord présente l'ensemble de vos démarches, classées en 4 catégories :
+Votre tableau de bord présente l’ensemble de vos démarches, classées en 4 catégories :
 
-![Capture d'écran du tableau de bord administrateur {aria-hidden="true"}](faq/administrateur-procedures-list-header.png)
+![Capture d’écran du tableau de bord administrateur {aria-hidden="true"}](faq/administrateur-procedures-list-header.png)
 
 ## Publiées
 
@@ -29,4 +29,4 @@ Une démarche close est une démarche qui a été active mais qui désormais ne 
 
 ## Supprimées
 
-Il s'agit des démarches supprimées par l'administrateur, quel que soit leur état (*« publiée »*, *« en test »* ou *« close »*). Ces démarches peuvent être restaurées en cliquant sur le bouton **« Actions »** puis **« Restaurer »**.
+Il s’agit des démarches supprimées par l’administrateur, quel que soit leur état (*« publiée »*, *« en test »* ou *« close »*). Ces démarches peuvent être restaurées en cliquant sur le bouton **« Actions »** puis **« Restaurer »**.

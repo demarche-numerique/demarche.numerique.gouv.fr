@@ -12,9 +12,9 @@ describe TypesDeChamp::SiretTypeDeChamp do
     end
 
     it "returns base column with SIRET when libelle doesn't contain SIRET" do
-      tdc_siret.update(libelle: "Identification de l'entreprise")
+      tdc_siret.update(libelle: "Identification de l’entreprise")
 
-      expect(columns[0].label).to eq("Identification de l'entreprise – SIRET")
+      expect(columns[0].label).to eq("Identification de l’entreprise – SIRET")
     end
 
     it "includes required jsonpaths" do

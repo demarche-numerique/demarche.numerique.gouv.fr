@@ -87,7 +87,7 @@ describe Instructeurs::DossiersController, type: :controller do
         subject
         expect(instructeur.followed_dossiers).to eq([])
         expect(response).to redirect_to(instructeur_dossier_path(dossier.procedure, dossier))
-        expect(flash.alert).to eq("Votre action n'a pas été effectuée, ce dossier fait parti d'un traitement de masse.")
+        expect(flash.alert).to eq("Votre action n’a pas été effectuée, ce dossier fait parti d’un traitement de masse.")
       end
     end
   end
@@ -120,7 +120,7 @@ describe Instructeurs::DossiersController, type: :controller do
         subject
         expect(instructeur.followed_dossiers).to eq([dossier])
         expect(response).to redirect_to(instructeur_dossier_path(dossier.procedure, dossier))
-        expect(flash.alert).to eq("Votre action n'a pas été effectuée, ce dossier fait parti d'un traitement de masse.")
+        expect(flash.alert).to eq("Votre action n’a pas été effectuée, ce dossier fait parti d’un traitement de masse.")
       end
     end
   end
@@ -144,7 +144,7 @@ describe Instructeurs::DossiersController, type: :controller do
       it do
         expect(dossier.archived).to eq(false)
         expect(response).to redirect_to(instructeur_dossier_path(dossier.procedure, dossier))
-        expect(flash.alert).to eq("Votre action n'a pas été effectuée, ce dossier fait parti d'un traitement de masse.")
+        expect(flash.alert).to eq("Votre action n’a pas été effectuée, ce dossier fait parti d’un traitement de masse.")
       end
     end
   end
@@ -167,7 +167,7 @@ describe Instructeurs::DossiersController, type: :controller do
       it do
         expect(dossier.reload.archived).to eq(true)
         expect(response).to redirect_to(instructeur_dossier_path(dossier.procedure, dossier))
-        expect(flash.alert).to eq("Votre action n'a pas été effectuée, ce dossier fait parti d'un traitement de masse.")
+        expect(flash.alert).to eq("Votre action n’a pas été effectuée, ce dossier fait parti d’un traitement de masse.")
       end
     end
   end
@@ -219,7 +219,7 @@ describe Instructeurs::DossiersController, type: :controller do
 
       it do
         expect(response).to redirect_to(instructeur_dossier_path(dossier.procedure, dossier))
-        expect(flash.alert).to eq("Votre action n'a pas été effectuée, ce dossier fait parti d'un traitement de masse.")
+        expect(flash.alert).to eq("Votre action n’a pas été effectuée, ce dossier fait parti d’un traitement de masse.")
       end
     end
 
@@ -264,7 +264,7 @@ describe Instructeurs::DossiersController, type: :controller do
       it do
         expect(dossier.reload.state).to eq('en_instruction')
         expect(response).to redirect_to(instructeur_dossier_path(dossier.procedure, dossier))
-        expect(flash.alert).to eq("Votre action n'a pas été effectuée, ce dossier fait parti d'un traitement de masse.")
+        expect(flash.alert).to eq("Votre action n’a pas été effectuée, ce dossier fait parti d’un traitement de masse.")
       end
     end
   end
@@ -325,7 +325,7 @@ describe Instructeurs::DossiersController, type: :controller do
       it do
         expect(dossier.reload.state).to eq('refuse')
         expect(response).to redirect_to(instructeur_dossier_path(dossier.procedure, dossier))
-        expect(flash.alert).to eq("Votre action n'a pas été effectuée, ce dossier fait parti d'un traitement de masse.")
+        expect(flash.alert).to eq("Votre action n’a pas été effectuée, ce dossier fait parti d’un traitement de masse.")
       end
     end
 
@@ -449,7 +449,7 @@ describe Instructeurs::DossiersController, type: :controller do
         end
         it 'flashes message' do
           subject
-          expect(flash.alert).to eq("Votre action n'a pas été effectuée, ce dossier fait parti d'un traitement de masse.")
+          expect(flash.alert).to eq("Votre action n’a pas été effectuée, ce dossier fait parti d’un traitement de masse.")
         end
       end
     end
@@ -529,7 +529,7 @@ describe Instructeurs::DossiersController, type: :controller do
 
         it 'creates a commentaire' do
           expect { subject }.to change { Commentaire.count }.by(1)
-          expect(dossier_accuse_lecture.commentaires.last.body).to eq("<p>Bonjour,</p><p>Nous vous informons qu'une décision sur votre dossier a été rendue.</p>Cordialement,<br>#{procedure_accuse_lecture.service.nom}")
+          expect(dossier_accuse_lecture.commentaires.last.body).to eq("<p>Bonjour,</p><p>Nous vous informons qu’une décision sur votre dossier a été rendue.</p>Cordialement,<br>#{procedure_accuse_lecture.service.nom}")
         end
       end
     end
@@ -1779,7 +1779,7 @@ describe Instructeurs::DossiersController, type: :controller do
       end
       it 'flashes message' do
        subject
-       expect(flash.alert).to eq("Votre action n'a pas été effectuée, ce dossier fait parti d'un traitement de masse.")
+       expect(flash.alert).to eq("Votre action n’a pas été effectuée, ce dossier fait parti d’un traitement de masse.")
      end
     end
   end
@@ -1810,7 +1810,7 @@ describe Instructeurs::DossiersController, type: :controller do
        end
        it 'flashes message' do
          subject
-         expect(flash.alert).to eq("Votre action n'a pas été effectuée, ce dossier fait parti d'un traitement de masse.")
+         expect(flash.alert).to eq("Votre action n’a pas été effectuée, ce dossier fait parti d’un traitement de masse.")
        end
      end
   end
@@ -1842,7 +1842,7 @@ describe Instructeurs::DossiersController, type: :controller do
       it do
         expect(dossier.hidden_by_administration_at).not_to eq(nil)
         expect(response).to redirect_to(instructeur_dossier_path(dossier.procedure, dossier))
-        expect(flash.alert).to eq("Votre action n'a pas été effectuée, ce dossier fait parti d'un traitement de masse.")
+        expect(flash.alert).to eq("Votre action n’a pas été effectuée, ce dossier fait parti d’un traitement de masse.")
       end
     end
   end

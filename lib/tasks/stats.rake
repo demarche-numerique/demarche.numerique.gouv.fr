@@ -7,7 +7,7 @@ namespace :stats do
     count = scope.count
     percentage = total_count > 0 ? ((count.to_f / total_count) * 100).round(2) : 0
 
-    # Récupération de 3 IDs d'exemple distincts
+    # Récupération de 3 IDs d’exemple distincts
     sample_ids = scope.distinct.limit(3).pluck(:id)
 
     # Calcul de la somme des dossiers
@@ -40,10 +40,10 @@ namespace :stats do
     count = scope.count
     percentage = total_count > 0 ? ((count.to_f / total_count) * 100).round(2) : 0
 
-    # Récupération de 3 IDs d'exemple distincts
+    # Récupération de 3 IDs d’exemple distincts
     sample_ids = scope.distinct.limit(3).pluck(:id)
 
-    # Calcul du nombre d'instructeurs ayant accès aux export_templates (avant fonctionnalité de partage des modèles)
+    # Calcul du nombre d’instructeurs ayant accès aux export_templates (avant fonctionnalité de partage des modèles)
     total_instructeurs = scope.joins(export_templates: { groupe_instructeur: :instructeurs })
       .select('instructeurs.id')
       .distinct
@@ -58,7 +58,7 @@ namespace :stats do
     }
   end
   desc <<~EOD
-    Génère des statistiques d'utilisation des fonctionnalités des démarches publiées ou closes
+    Génère des statistiques d’utilisation des fonctionnalités des démarches publiées ou closes
     au cours des 2 dernières années. Génère un fichier CSV avec les résultats.
   EOD
   task procedure_features: :environment do
@@ -89,11 +89,11 @@ namespace :stats do
     organization_procedures = base_scope.where(for_individual: false)
     add_procedure_stat(stats, "Personnes morales", organization_procedures, total_procedures, total_dossiers_all_procedures)
 
-    # 3. Règles d'inéligibilité activées
+    # 3. Règles d’inéligibilité activées
     ineligibilite_procedures = base_scope.joins(:published_revision)
       .where(procedure_revisions: { ineligibilite_enabled: true })
       .distinct
-    add_procedure_stat(stats, "Règles d'inéligibilité activées", ineligibilite_procedures, total_procedures, total_dossiers_all_procedures)
+    add_procedure_stat(stats, "Règles d’inéligibilité activées", ineligibilite_procedures, total_procedures, total_dossiers_all_procedures)
 
     # 4. Accusé lecture activé
     accuse_lecture_procedures = base_scope.where(accuse_lecture: true)
@@ -138,7 +138,7 @@ namespace :stats do
     declarative_accepte_procedures = base_scope.where(declarative_with_state: 'accepte')
     add_procedure_stat(stats, "Démarches déclaratives (accepté)", declarative_accepte_procedures, total_procedures, total_dossiers_all_procedures)
 
-    # 13. Date de clôture renseignée à l'avance
+    # 13. Date de clôture renseignée à l’avance
     auto_archive_procedures = base_scope.where.not(auto_archive_on: nil)
     add_procedure_stat(stats, "Date de clôture programmée", auto_archive_procedures, total_procedures, total_dossiers_all_procedures)
 
@@ -233,11 +233,11 @@ namespace :stats do
       end
     end
 
-    # 29. Démarches avec modèles d'export (traité séparément)
+    # 29. Démarches avec modèles d’export (traité séparément)
     export_templates_procedures = base_scope.joins(:export_templates).distinct
-    export_templates_stat = add_procedure_stat_with_instructeurs(stats, "Avec modèles d'export", export_templates_procedures, total_procedures)
+    export_templates_stat = add_procedure_stat_with_instructeurs(stats, "Avec modèles d’export", export_templates_procedures, total_procedures)
 
-    rake_puts "Avec modèles d'export (hors partage): #{export_templates_stat[:count]} démarches (#{export_templates_stat[:percentage]}%) - #{export_templates_stat[:total_instructeurs]} instructeurs"
+    rake_puts "Avec modèles d’export (hors partage): #{export_templates_stat[:count]} démarches (#{export_templates_stat[:percentage]}%) - #{export_templates_stat[:total_instructeurs]} instructeurs"
 
     # 30. Démarches issues de clones
     cloned_procedures = base_scope.where(cloned_from_library: true)
@@ -248,7 +248,7 @@ namespace :stats do
     rake_puts "\n=== Génération des statistiques par type de champ ==="
 
     # Récupération des stats par type de champ sur les champs publics (parent = null uniquement)
-    # Utilisons une approche en 2 étapes pour éviter les problèmes d'attributs manquants
+    # Utilisons une approche en 2 étapes pour éviter les problèmes d’attributs manquants
     type_champ_data = ActiveRecord::Base.connection.execute(<<~SQL.squish).to_a
       SELECT
         type_champ,
@@ -311,7 +311,7 @@ namespace :stats do
       .distinct
       .count
 
-    rake_puts "Dossiers avec messages d'instructeurs: #{dossiers_with_instructeur_messages}"
+    rake_puts "Dossiers avec messages d’instructeurs: #{dossiers_with_instructeur_messages}"
 
     # 32. Dossiers avec messages envoyés par les usagers (ni instructeur, ni expert, ni système)
     system_emails = Commentaire::SYSTEM_EMAILS
@@ -324,7 +324,7 @@ namespace :stats do
       .distinct
       .count
 
-    rake_puts "Dossiers avec messages d'usagers: #{dossiers_with_usager_messages}"
+    rake_puts "Dossiers avec messages d’usagers: #{dossiers_with_usager_messages}"
 
     # 33. Dossiers avec des labels
     dossiers_with_labels = dossiers_base_scope
@@ -340,7 +340,7 @@ namespace :stats do
     filepath = Rails.root.join("tmp", filename)
 
     CSV.open(filepath, 'wb', headers: true) do |csv|
-      csv << ['Fonctionnalité', 'Nombre de démarches', 'Pourcentage démarches', 'Total dossiers', 'Pourcentage dossiers', 'Exemples d\'IDs']
+      csv << ['Fonctionnalité', 'Nombre de démarches', 'Pourcentage démarches', 'Total dossiers', 'Pourcentage dossiers', 'Exemples d’IDs']
 
       stats.each do |stat|
         csv << [
@@ -376,14 +376,14 @@ namespace :stats do
       dossiers_percentage_usager = total_dossiers_all_procedures > 0 ? ((dossiers_with_usager_messages.to_f / total_dossiers_all_procedures) * 100).round(2) : 0
       dossiers_percentage_labels = total_dossiers_all_procedures > 0 ? ((dossiers_with_labels.to_f / total_dossiers_all_procedures) * 100).round(2) : 0
 
-      csv << ['Dossiers avec messages d\'instructeurs', dossiers_with_instructeur_messages, dossiers_percentage_instructeur, '', '', '']
-      csv << ['Dossiers avec messages d\'usagers', dossiers_with_usager_messages, dossiers_percentage_usager, '', '', '']
+      csv << ['Dossiers avec messages d’instructeurs', dossiers_with_instructeur_messages, dossiers_percentage_instructeur, '', '', '']
+      csv << ['Dossiers avec messages d’usagers', dossiers_with_usager_messages, dossiers_percentage_usager, '', '', '']
       csv << ['Dossiers avec labels', dossiers_with_labels, dossiers_percentage_labels, '', '', '']
 
       # Ajouter les statistiques export_templates séparément
       csv << []
       csv << ['=== STATISTIQUES INSTRUCTEURS ===']
-      csv << ['Fonctionnalité', 'Nombre de démarches', 'Pourcentage démarches', 'Nombre d\'instructeurs', '', 'Exemples d\'IDs']
+      csv << ['Fonctionnalité', 'Nombre de démarches', 'Pourcentage démarches', 'Nombre d’instructeurs', '', 'Exemples d’IDs']
       csv << [
         export_templates_stat[:feature],
         export_templates_stat[:count],
@@ -395,8 +395,8 @@ namespace :stats do
     end
 
     rake_puts "\n=== STATISTIQUES DOSSIERS ==="
-    rake_puts "Dossiers avec messages d'instructeurs: #{dossiers_with_instructeur_messages} (#{total_dossiers_all_procedures > 0 ? ((dossiers_with_instructeur_messages.to_f / total_dossiers_all_procedures) * 100).round(2) : 0}%)"
-    rake_puts "Dossiers avec messages d'usagers: #{dossiers_with_usager_messages} (#{total_dossiers_all_procedures > 0 ? ((dossiers_with_usager_messages.to_f / total_dossiers_all_procedures) * 100).round(2) : 0}%)"
+    rake_puts "Dossiers avec messages d’instructeurs: #{dossiers_with_instructeur_messages} (#{total_dossiers_all_procedures > 0 ? ((dossiers_with_instructeur_messages.to_f / total_dossiers_all_procedures) * 100).round(2) : 0}%)"
+    rake_puts "Dossiers avec messages d’usagers: #{dossiers_with_usager_messages} (#{total_dossiers_all_procedures > 0 ? ((dossiers_with_usager_messages.to_f / total_dossiers_all_procedures) * 100).round(2) : 0}%)"
     rake_puts "Dossiers avec labels: #{dossiers_with_labels} (#{total_dossiers_all_procedures > 0 ? ((dossiers_with_labels.to_f / total_dossiers_all_procedures) * 100).round(2) : 0}%)"
 
     rake_puts "Fichier CSV généré : #{filepath}"

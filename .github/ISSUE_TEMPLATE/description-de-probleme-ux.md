@@ -1,6 +1,6 @@
 # contexte ;
 
-ex: ETQ usager, lorsque je dépose mon dossier, celui ci peut rester en brouillon sans que je comprenne qu'il n'est pas encore déposé au sens administratif
+ex: ETQ usager, lorsque je dépose mon dossier, celui ci peut rester en brouillon sans que je comprenne qu’il n’est pas encore déposé au sens administratif
 
 # difficultés
 

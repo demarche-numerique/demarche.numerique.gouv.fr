@@ -21,7 +21,7 @@ module Types::Champs
       end
     end
 
-    field :engagement_juridique, EngagementJuridiqueType, "Montant engagé et payé de l'EJ.", null: true
+    field :engagement_juridique, EngagementJuridiqueType, "Montant engagé et payé de l’EJ.", null: true
 
     def engagement_juridique
       object if object.value.present?

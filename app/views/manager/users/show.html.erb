@@ -48,8 +48,8 @@
                   method: :delete,
                   disabled: !page.resource.can_be_deleted?,
                   class: "button button--danger",
-                  data: { turbo_confirm: "Confirmez-vous la suppression de l'utilisateur ?" },
-                  title: page.resource.can_be_deleted? ? "Supprimer" : "Cet utilisateur ne peut être supprimé. Il a des dossiers dont l'instruction a commencé ou il est administrateur ou instructeur") %>
+                  data: { turbo_confirm: "Confirmez-vous la suppression de l’utilisateur ?" },
+                  title: page.resource.can_be_deleted? ? "Supprimer" : "Cet utilisateur ne peut être supprimé. Il a des dossiers dont l’instruction a commencé ou il est administrateur ou instructeur") %>
 
     <% if !user.confirmed? %>
       <%= link_to('Renvoyer l’email de confirmation', [:resend_confirmation_instructions, namespace, page.resource], method: :post, class: 'button') %>

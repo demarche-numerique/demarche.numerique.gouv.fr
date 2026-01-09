@@ -3,7 +3,7 @@ fr:
   everything_csv_html: Demander un export au format .csv<br>(uniquement les dossiers, sans les champs répétables)
   everything_xlsx_html: Demander un export au format .xlsx
   everything_ods_html: Demander un export au format .ods
-  everything_zip_html: Demander un export au format .zip<br>(ne contient pas l'horodatage ni le journal de log)
+  everything_zip_html: Demander un export au format .zip<br>(ne contient pas l’horodatage ni le journal de log)
   everything_json_html: Demander un export au format .json (GeoJSON)
   everything_short: Demander un export au format %{export_format}
   download_all: Télécharger tous les dossiers

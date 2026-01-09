@@ -4,7 +4,7 @@ module Maintenance
   class T20251118destroyInstructeursProcedureOfInstructeursRemovedFromProcedureTask < MaintenanceTasks::Task
     # Documentation: cette tâche permet de supprimer les instructeurs_procedure
     # qui correspondent à des instructeurs ne faisant plus partis de la procedure,
-    # cad des instructeurs qui ne font plus partis d'aucun groupe de la procédure.
+    # cad des instructeurs qui ne font plus partis d’aucun groupe de la procédure.
 
     include RunnableOnDeployConcern
     include StatementsHelpersConcern

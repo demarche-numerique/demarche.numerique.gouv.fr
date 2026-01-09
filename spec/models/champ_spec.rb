@@ -438,7 +438,7 @@ describe Champ do
             entreprise_date_creation: "1989-07-09",
             association_rna: "W595004053",
             association_titre: "MAISON DES JEUNES ET DE LA CULTURE DE LA FABRIQUE",
-            association_objet: "Création, gestion et animation de la Maison des Jeunes et de la Culture de la Fabrique, qui constitue un élément essentiel de la vie sociale et culturelle d'un territoire de vie : pays, agglomération, ville, communauté de communes, village, quartier ...",
+            association_objet: "Création, gestion et animation de la Maison des Jeunes et de la Culture de la Fabrique, qui constitue un élément essentiel de la vie sociale et culturelle d’un territoire de vie : pays, agglomération, ville, communauté de communes, village, quartier ...",
             association_date_creation: "1962-05-23",
             association_date_declaration: "2016-12-02",
             association_date_publication: "1962-05-31"

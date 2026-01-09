@@ -55,11 +55,11 @@
               %span{ data: { copy_message_placeholder: true } }
 
         - if profile == 'instructeur'
-          = render Dossiers::RowShowComponent.new(label: "Effectif mensuel #{try_format_mois_effectif(etablissement)} de l'établissement (URSSAF ou MSA)") do |c|
+          = render Dossiers::RowShowComponent.new(label: "Effectif mensuel #{try_format_mois_effectif(etablissement)} de l’établissement (URSSAF ou MSA)") do |c|
             - c.with_value do
               %p.copy-zone= etablissement.entreprise_effectif_mensuel
 
-          = render Dossiers::RowShowComponent.new(label: "Effectif moyen annuel #{etablissement.entreprise_effectif_annuel_annee} de l'unité légale (URSSAF ou MSA)") do |c|
+          = render Dossiers::RowShowComponent.new(label: "Effectif moyen annuel #{etablissement.entreprise_effectif_annuel_annee} de l’unité légale (URSSAF ou MSA)") do |c|
             - c.with_value do
               %p.copy-zone= etablissement.entreprise_effectif_annuel
 
@@ -130,17 +130,17 @@
           = render Dossiers::RowShowComponent.new(label: "Attestation sociale") do |c|
             - c.with_value do
               - if profile == 'instructeur'
-                %p= link_to "Consulter l'attestation", url_for(etablissement.entreprise_attestation_sociale), **external_link_attributes
+                %p= link_to "Consulter l’attestation", url_for(etablissement.entreprise_attestation_sociale), **external_link_attributes
               - else
-                %p Une attestation de vigilance délivrée par l'ACOSS a été jointe à votre dossier.
+                %p Une attestation de vigilance délivrée par l’ACOSS a été jointe à votre dossier.
 
         - if etablissement.entreprise_attestation_fiscale.attached?
           = render Dossiers::RowShowComponent.new(label: "Attestation fiscale") do |c|
             - c.with_value do
               - if profile == 'instructeur'
-                %p= link_to "Consulter l'attestation", url_for(etablissement.entreprise_attestation_fiscale), **external_link_attributes
+                %p= link_to "Consulter l’attestation", url_for(etablissement.entreprise_attestation_fiscale), **external_link_attributes
               - else
-                %p Une attestation fiscale délivrée par l'URSSAF a été jointe à votre dossier.
+                %p Une attestation fiscale délivrée par l’URSSAF a été jointe à votre dossier.
 
         - if etablissement.association?
           = render Dossiers::RowShowComponent.new(label: "Numéro RNA") do |c|

@@ -64,7 +64,7 @@ module Maintenance
       <<~TEXT
         Bonjour,<br><br>
 
-        En raison d'une erreur technique, les pièces jointes suivantes ne sont plus disponibles :
+        En raison d’une erreur technique, les pièces jointes suivantes ne sont plus disponibles :
 
         #{to_html_list(format_missing_files(dossiers_and_champs), style: "margin-bottom: 0.5rem")}
 

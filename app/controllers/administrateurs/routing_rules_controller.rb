@@ -38,7 +38,7 @@ module Administrateurs
       new_defaut_groupe = @procedure.groupe_instructeurs.find(defaut_groupe_instructeur_id)
 
       if new_defaut_groupe.closed
-        flash.alert = "Il n'est pas possible de définir un groupe inactif par défaut."
+        flash.alert = "Il n’est pas possible de définir un groupe inactif par défaut."
         redirect_to admin_procedure_groupe_instructeurs_path(@procedure)
       else
         @procedure.update!(defaut_groupe_instructeur: new_defaut_groupe)

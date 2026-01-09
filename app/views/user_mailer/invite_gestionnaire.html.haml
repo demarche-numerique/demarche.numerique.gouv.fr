@@ -7,7 +7,7 @@
   Vous venez d’être nommé gestionnaire du groupe gestionnaire #{@groupe_gestionnaire.name} sur #{APPLICATION_NAME}.
 
 %p
-  Votre compte a été créé pour l'adresse électronique #{@user.email}. Pour l'activer, nous vous invitons à cliquer sur le lien suivant : 
+  Votre compte a été créé pour l’adresse électronique #{@user.email}. Pour l’activer, nous vous invitons à cliquer sur le lien suivant : 
   = link_to(gestionnaires_activate_url(token: @reset_password_token), gestionnaires_activate_url(token: @reset_password_token))
 
 = render partial: "layouts/mailers/signature"

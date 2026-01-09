@@ -42,9 +42,9 @@
     <% end %>
 
     <% if procedure.hidden_as_template? %>
-      <%= link_to 'Autoriser l\'affichage dans les modèles', unhide_as_template_manager_procedure_path(procedure), method: :post, class: 'button' %>
+      <%= link_to 'Autoriser l’affichage dans les modèles', unhide_as_template_manager_procedure_path(procedure), method: :post, class: 'button' %>
     <% else %>
-      <%= link_to 'Masquer l\'affichage dans la liste de "Toutes les démarches"', hide_as_template_manager_procedure_path(procedure), method: :post, class: 'button' %>
+      <%= link_to 'Masquer l’affichage dans la liste de "Toutes les démarches"', hide_as_template_manager_procedure_path(procedure), method: :post, class: 'button' %>
     <% end %>
 
     <% if procedure.can_be_deleted_by_manager? %>
@@ -81,7 +81,7 @@
                 <button>Ajouter un administrateur (pour toujours)</button>
 
                 <p>
-                  J'utilise cette option ETQ support quand un usager a besoin de
+                  J’utilise cette option ETQ support quand un usager a besoin de
                   devenir administrateur sur une démarche
                 </p>
               <% end %>
@@ -102,7 +102,7 @@
                     Devenir administrateur &amp; instructeur (pour la journée)
                   </button>
                   <p>
-                    J'utilise cette option temporairement à des fins de support.
+                    J’utilise cette option temporairement à des fins de support.
                   </p>
                 <% end %>
               <% end %>

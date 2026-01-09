@@ -6,7 +6,7 @@ class Columns::ReadAgreementColumn < Columns::DossierColumn
       procedure_id:,
       table: nil,
       column: nil,
-      label: "Décision vue par l'usager ?",
+      label: "Décision vue par l’usager ?",
       type: :boolean,
       displayable: false,
       options_for_select: [[I18n.t('activerecord.attributes.type_de_champ.type_champs.yes_no_true'), true], [I18n.t('activerecord.attributes.type_de_champ.type_champs.yes_no_false'), false]]

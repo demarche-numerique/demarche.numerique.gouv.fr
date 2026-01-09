@@ -42,15 +42,15 @@ namespace :benchmarks do
   end
 
   # Benchmark une action Rails spécifique, y compris le temps de génération des views.
-  # Optionnellement, compare avec une autre implémentation de l'action
+  # Optionnellement, compare avec une autre implémentation de l’action
   # sur la même branche ou sur deux branches git.
   #
-  # Le benchmark se fait en deux temps (2 processes ruby séparés à lancer l'un après l'autre)
+  # Le benchmark se fait en deux temps (2 processes ruby séparés à lancer l’un après l’autre)
   # en stockant les résultats intermédiaires dans un fichier.
   #
   # === Prérequis ===
   #
-  # 1. On fake l'authentification. Commenter le `before_action :authenticate_*` concerné
+  # 1. On fake l’authentification. Commenter le `before_action :authenticate_*` concerné
   #
   # 2. Override dans le controller le(s) `current_*` concernés
   #
@@ -60,10 +60,10 @@ namespace :benchmarks do
   #      @current_instructeur ||= Instructeur.find(12_345)
   #    end
   #
-  # 3. Pour se rapprocher un peu plus de l'environnement de prod, activer le cache:
-  #    `rails dev:cache` puis redémarrer le serveur (à refaire à la fin pour l'enlever)
+  # 3. Pour se rapprocher un peu plus de l’environnement de prod, activer le cache:
+  #    `rails dev:cache` puis redémarrer le serveur (à refaire à la fin pour l’enlever)
   #
-  # 4a. Pour comparer l'implémentation de deux actions sur la même branche (par ex `index` et `index_main`):
+  # 4a. Pour comparer l’implémentation de deux actions sur la même branche (par ex `index` et `index_main`):
   #    la seconde implémentation doit :
   #    - avoir une route définie (ie. `get :index_main`)
   #    - adapter les `before_action`
@@ -73,14 +73,14 @@ namespace :benchmarks do
   #
   #    rake benchmarks:action[Instructeurs::ProceduresController,index,index_main]
   #
-  # 4b. Pour comparer l'implémentation d'une même action sur 2 branches,
-  #     exécuter sur chacune d'entre elle :
+  # 4b. Pour comparer l’implémentation d’une même action sur 2 branches,
+  #     exécuter sur chacune d’entre elle :
   #
   #     rake benchmarks:action[Instructeurs::ProceduresController,index,index]
   #
   #     Attention : penser à refaire les étapes 1 et 2 sur la seconde branche !
   #
-  # 5.  Pour passer des paramètres d'urls, utiliser la variable d'environnement `PARAMS`
+  # 5.  Pour passer des paramètres d’urls, utiliser la variable d’environnement `PARAMS`
   #     sous forme key=value, séparables par des virgules :
   #
   #     rake benchmarks:action[Users::CommencerController,commencer,commencer] PARAMS=path=my-demarche,other=value

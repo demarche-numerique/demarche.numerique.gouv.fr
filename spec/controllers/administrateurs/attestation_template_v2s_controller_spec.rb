@@ -71,10 +71,10 @@ describe Administrateurs::AttestationTemplateV2sController, type: :controller do
       end
 
       context 'with footer' do
-        let(:attestation_acceptation_template) { build(:attestation_template, :v2, footer: "c'est le pied") }
+        let(:attestation_acceptation_template) { build(:attestation_template, :v2, footer: "c’est le pied") }
 
         it do
-          is_expected.to include("c'est le pied")
+          is_expected.to include("c’est le pied")
         end
       end
 

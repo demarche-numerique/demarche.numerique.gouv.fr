@@ -24,11 +24,11 @@ fr:
         subtitle: Configurez sur cette page les notifications que vous souhaitez recevoir par email
         for_each_avis_submitted:
           title: Recevoir une notification à chaque avis qui vous est demandé
-          notice_1: Cet email vous signale qu'un avis vous est demandé.
+          notice_1: Cet email vous signale qu’un avis vous est demandé.
           notice_2: Il est envoyé à chaque fois qu’un instructeur vous demande un avis.
         for_each_message_submitted:
           title: Recevoir une notification à chaque message reçu
-          notice_1: Cet email vous signale qu'un nouveau message est disponible dans la messagerie.
+          notice_1: Cet email vous signale qu’un nouveau message est disponible dans la messagerie.
           notice_2: Il est envoyé à chaque fois qu’un instructeur ou usager envoie un message.
         buttons:
           back_to_procedure: Revenir sur les avis de la démarche

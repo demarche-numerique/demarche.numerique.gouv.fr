@@ -22,7 +22,7 @@ module Administrateurs
 
         redirect_to edit_admin_procedure_attestation_template_path(@procedure)
       else
-        flash.now.alert = "Le modèle de l’attestation contient des erreurs et n'a pas pu être enregistré. Veuiller les corriger"
+        flash.now.alert = "Le modèle de l’attestation contient des erreurs et n’a pas pu être enregistré. Veuiller les corriger"
 
         render :edit
       end

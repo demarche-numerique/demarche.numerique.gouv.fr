@@ -4,7 +4,7 @@
   Bonjour,
 
 %p
-  Votre précédente confirmation d'adresse électronique n'a pas fonctionné, vous pouvez essayer de nouveau en cliquant sur ce bouton :
+  Votre précédente confirmation d’adresse électronique n’a pas fonctionné, vous pouvez essayer de nouveau en cliquant sur ce bouton :
   = round_button 'Je confirme', users_confirm_email_url(token: @token), :primary
 
 %p
@@ -12,7 +12,7 @@
   = link_to(users_confirm_email_url(token: @token), users_confirm_email_url(token: @token))
 
 %p
-  Nous restons à votre disposition si vous avez besoin d’accompagnement à l'adresse #{link_to CONTACT_EMAIL, "mailto:#{CONTACT_EMAIL}"}.
+  Nous restons à votre disposition si vous avez besoin d’accompagnement à l’adresse #{link_to CONTACT_EMAIL, "mailto:#{CONTACT_EMAIL}"}.
 
 
 = render partial: "layouts/mailers/signature"
