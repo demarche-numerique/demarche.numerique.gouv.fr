@@ -9,6 +9,7 @@ require:
   - ./lib/cops/add_concurrent_index.rb
   - ./lib/cops/application_name.rb
   - ./lib/cops/adresse_electronique.rb
+  - ./lib/cops/french_apostrophe.rb
   - ./lib/cops/unscoped.rb
   - ./lib/cops/rspec/consecutive_it_blocks.rb
 
@@ -48,6 +49,18 @@ DS/AdresseElectronique:
   Exclude:
     - './lib/cops/adresse_electronique.rb'
     - './lib/tasks/adresse_electronique_lint.rake'
+
+DS/FrenchApostrophe:
+  Enabled: true
+  Exclude:
+    - 'lib/cops/*.rb'
+    - 'spec/**/*'
+    - 'lib/tasks/adresse_electronique_lint.rake'
+    - 'lib/tasks/support.rake'
+    - 'app/models/concerns/dossier_champs_concern.rb' # English error message
+    - 'app/models/prefill_description.rb' # curl command example
+    - 'app/models/procedure.rb' # SQL CASE statement
+    - 'app/models/concerns/procedure_sva_svr_concern.rb' # SQL query
 
 DS/Unscoped:
   Enabled: true

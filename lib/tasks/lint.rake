@@ -13,4 +13,5 @@ task :lint do
   sh "bun lint:types"
   sh "bun lint:css"
   sh "bundle exec rake lint:adresse_electronique"
+  sh "bundle exec rake lint:french_apostrophe"
 end
