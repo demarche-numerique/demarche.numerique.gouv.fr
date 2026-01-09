@@ -15,15 +15,14 @@
 
   %fieldset.fr-fieldset
     %legend.fr-fieldset__legend
-      %h3.fr-h6= t('views.invites.form.title')
+      %h2.fr-h6= t('views.invites.form.title')
 
     %p.fr-highlight.fr-text--sm= t('asterisk_html', scope: [:utils])
 
     - if invite.errors.any?
-      .fr-alert.fr-alert--error.fr-alert--sm.fr-mb-3w{ role: 'alert' }
-        %ul
-          - invite.errors.full_messages.each do |msg|
-            %li= msg
+      %p.fr-alert.fr-alert--error.fr-alert--sm.fr-mb-3w{ role: 'alert', tabindex: '-1', data: { controller: 'autofocus' } }
+        - invite.errors.full_messages.each do |msg|
+          = msg
 
     .fr-fieldset__element
       .fr-input-group

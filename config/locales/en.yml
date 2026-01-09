@@ -359,8 +359,8 @@ en:
         want_to_withdraw_permission: "Would you like to withdraw the permission of %{email}?"
         edit_dossier_html:
           zero: '<p class="fr-my-2w"><em>No user can view and edit this file at this time.</em></p>'
-          one: '<h3 class="fr-h6 fr-mt-2w fr-mb-1w">1 user invited</h3>'
-          other: '<h3 class="fr-h6 fr-mt-2w fr-mb-1w">%{count} users invited</h3>'
+          one: '<h2 class="fr-h6 fr-mt-2w fr-mb-1w">1 user invited</h2>'
+          other: '<h2 class="fr-h6 fr-mt-2w fr-mb-1w">%{count} users invited</h2>'
         submit_dossier_yourself: "Once your file is complete, you'll need to submit it yourself."
     pagination:
       next: Next
