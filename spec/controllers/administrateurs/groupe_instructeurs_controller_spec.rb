@@ -957,6 +957,8 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
         expect(response).to redirect_to(admin_procedure_groupe_instructeurs_path(procedure3))
         expect(flash[:routing_mode]).to eq 'simple'
         expect(procedure3.groupe_instructeurs.pluck(:label)).to match_array(['Paris', 'Lyon', 'Marseille'])
+        expect(procedure3.groupe_instructeurs.pluck(:valid_routing_rule)).to match_array([true, true, true])
+        expect(procedure3.groupe_instructeurs.pluck(:unique_routing_rule)).to match_array([true, true, true])
         expect(procedure3.reload.defaut_groupe_instructeur.routing_rule).to eq(ds_eq(champ_value(drop_down_tdc.stable_id), constant('Lyon')))
         expect(procedure3.routing_enabled).to be_truthy
         expect(procedure3.routing_alert).to be_truthy
@@ -1102,6 +1104,8 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
     it do
       expect(response).to redirect_to(admin_procedure_groupe_instructeurs_path(procedure4))
       expect(procedure4.groupe_instructeurs.pluck(:label)).to match_array(['Groupe 1 (à renommer et configurer)', 'Groupe 2 (à renommer et configurer)'])
+      expect(procedure4.groupe_instructeurs.pluck(:valid_routing_rule)).to match_array([false, false])
+      expect(procedure4.groupe_instructeurs.pluck(:unique_routing_rule)).to match_array([false, false])
       expect(procedure4.reload.routing_enabled).to be_truthy
     end
   end

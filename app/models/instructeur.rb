@@ -309,7 +309,7 @@ class Instructeur < ApplicationRecord
   end
 
   def groupe_instructeur_options_for(procedure)
-    groupe_instructeurs.filter_map { [_1.label, _1.id] if _1.procedure == procedure }
+    groupe_instructeurs.where(procedure:).pluck(:label, :id)
   end
 
   def feature_enabled?(feature)

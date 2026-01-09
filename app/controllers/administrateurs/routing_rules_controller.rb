@@ -9,6 +9,7 @@ module Administrateurs
     def update
       condition = condition_form.to_condition
       @groupe_instructeur.update!(routing_rule: condition)
+      @groupe_instructeur.update_rule_statuses
 
       @routing_rule_component = build_routing_rule_component
     end
@@ -16,6 +17,7 @@ module Administrateurs
     def add_row
       condition = Logic.add_empty_condition_to(@groupe_instructeur.routing_rule)
       @groupe_instructeur.update!(routing_rule: condition)
+      @groupe_instructeur.update_rule_statuses
 
       @routing_rule_component = build_routing_rule_component
     end
@@ -23,6 +25,7 @@ module Administrateurs
     def delete_row
       condition = condition_form.delete_row(row_index).to_condition
       @groupe_instructeur.update!(routing_rule: condition)
+      @groupe_instructeur.update_rule_statuses
 
       @routing_rule_component = build_routing_rule_component
     end
@@ -30,6 +33,7 @@ module Administrateurs
     def change_targeted_champ
       condition = condition_form.change_champ(row_index).to_condition
       @groupe_instructeur.update!(routing_rule: condition)
+      @groupe_instructeur.update_rule_statuses
 
       @routing_rule_component = build_routing_rule_component
     end

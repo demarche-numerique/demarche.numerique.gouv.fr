@@ -46,4 +46,10 @@ class Logic::NAryOperator < Logic::Term
         @operands.count { |o| o == operand } == other.operands.count { |o| o == operand }
       end
   end
+
+  def hash
+    term = self.class.name
+    sorted_operands = operands.sort_by(&:hash)
+    [term, *sorted_operands].hash
+  end
 end

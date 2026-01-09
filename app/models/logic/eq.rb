@@ -44,4 +44,10 @@ class Logic::Eq < Logic::BinaryOperator
     self.class == other.class &&
       [@left, @right].permutation.any? { |p| p == [other.left, other.right] }
   end
+
+  def hash
+    term = self.class.name
+    sorted_operands = operands.sort_by(&:hash)
+    [term, *sorted_operands].hash
+  end
 end

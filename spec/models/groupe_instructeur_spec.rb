@@ -198,6 +198,78 @@ describe GroupeInstructeur, type: :model do
     end
   end
 
+  describe 'routing rule validity' do
+    include Logic
+
+    let(:routed_procedure) { create(:procedure, :published, routing_enabled: true, administrateur: admin) }
+    let(:stable_id) { routed_procedure.published_revision.types_de_champ_public.last.stable_id }
+
+    before do
+      routed_procedure.draft_revision.add_type_de_champ(
+        type_champ: :drop_down_list,
+        libelle: 'Ville',
+        drop_down_options: ['Paris', 'Lyon', 'Marseille']
+      )
+      routed_procedure.publish_revision!(admin)
+    end
+
+    describe '#valid_rule?' do
+      context 'with valid routing rule' do
+        let(:gi) do
+          create(:groupe_instructeur,
+                 procedure: routed_procedure,
+                 routing_rule: ds_eq(champ_value(stable_id), constant('Paris')))
+        end
+
+        it 'returns true for valid routing rule' do
+          expect(gi.valid_rule?).to be true
+        end
+      end
+
+      context 'with invalid routing rule (unknown stable_id)' do
+        let(:gi) do
+          create(:groupe_instructeur,
+                 procedure: routed_procedure,
+                 routing_rule: ds_eq(champ_value(999), constant('Paris')))
+        end
+
+        it 'returns false for invalid routing rule' do
+          expect(gi.valid_rule?).to be false
+        end
+      end
+
+      context 'with nil routing rule' do
+        let(:gi) do
+          create(:groupe_instructeur,
+                 procedure: routed_procedure,
+                 routing_rule: nil)
+        end
+
+        it 'returns false for nil routing rule' do
+          expect(gi.valid_rule?).to be false
+        end
+      end
+    end
+
+    describe '#update_rule_statuses' do
+      let!(:gi) do
+        create(:groupe_instructeur,
+               procedure: routed_procedure,
+               routing_rule: ds_eq(champ_value(stable_id), constant('Paris')))
+      end
+
+      it 'updates valid_routing_rule for this groupe instructeur' do
+        expect { gi.update_rule_statuses }
+          .to change { gi.reload.valid_routing_rule }.from(false).to(true)
+      end
+
+      it 'updates unique_routing_rule for this groupe instructeur' do
+        expect { gi.update_rule_statuses }
+          .to change { gi.reload.unique_routing_rule }.from(false).to(true)
+      end
+    end
+  end
+
   private
 
   def assign(procedure_to_assign, instructeur_assigne: instructeur)

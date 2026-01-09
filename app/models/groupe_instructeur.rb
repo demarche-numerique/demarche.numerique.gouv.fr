@@ -86,6 +86,15 @@ class GroupeInstructeur < ApplicationRecord
     id != procedure.defaut_groupe_instructeur_id
   end
 
+  def update_rule_statuses
+    update_rule_validity_status
+    procedure.update_all_groupes_rule_unicity_status
+  end
+
+  def update_rule_validity_status
+    update!(valid_routing_rule: valid_rule?)
+  end
+
   def routing_to_configure?
     invalid_rule? || non_unique_rule?
   end

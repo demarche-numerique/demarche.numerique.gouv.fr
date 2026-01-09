@@ -18,6 +18,8 @@ module ProcedureGroupeInstructeurAPIHackConcern
       end
 
       tdc.update!(drop_down_options:)
+
+      self.update_all_groupes_rule_statuses
     end
   end
 end

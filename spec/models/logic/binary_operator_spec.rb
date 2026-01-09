@@ -34,6 +34,14 @@ describe Logic::BinaryOperator do
       expect(greater_than(champ_value(champ.stable_id), champ_value(champ2.stable_id)).sources).to eq([champ.stable_id, champ2.stable_id])
     end
   end
+
+  describe '#hash' do
+    it do
+      expect(ds_eq(constant(1), constant(2)).hash).to eq(ds_eq(constant(1), constant(2)).hash)
+      expect(ds_eq(constant(1), constant(2)).hash).to eq(ds_eq(constant(2), constant(1)).hash)
+      expect(ds_eq(constant(1), constant(2)).hash).not_to eq(ds_not_eq(constant(2), constant(1)).hash)
+    end
+  end
 end
 
 describe Logic::GreaterThan do

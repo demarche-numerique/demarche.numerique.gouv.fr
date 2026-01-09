@@ -34,4 +34,17 @@ describe Logic::NAryOperator do
   def and_from(boolean_to_constants)
     ds_and(boolean_to_constants.map { |b| constant(b) })
   end
+
+  def or_from(boolean_to_constants)
+    ds_or(boolean_to_constants.map { |b| constant(b) })
+  end
+
+  describe '#hash' do
+    it do
+      expect(and_from([false, true]).hash).to eq(and_from([false, true]).hash)
+      expect(and_from([false, true]).hash).to eq(and_from([true, false]).hash)
+      expect(or_from([false, true]).hash).to eq(or_from([true, false]).hash)
+      expect(and_from([false, true]).hash).not_to eq(or_from([true, false]).hash)
+    end
+  end
 end

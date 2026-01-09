@@ -74,6 +74,8 @@ module Administrateurs
           .update(instructeurs: [current_administrateur.instructeur], routing_rule:)
       end
 
+      @procedure.update_all_groupes_rule_statuses
+
       @procedure.toggle_routing
       defaut = @procedure.defaut_groupe_instructeur
 
@@ -104,6 +106,8 @@ module Administrateurs
       procedure.defaut_groupe_instructeur.update!(label: 'Groupe 1 (à renommer et configurer)')
       procedure.groupe_instructeurs
         .create({ label: 'Groupe 2 (à renommer et configurer)', instructeurs: [current_administrateur.instructeur] })
+
+      procedure.update_all_groupes_rule_statuses
 
       procedure.toggle_routing
 

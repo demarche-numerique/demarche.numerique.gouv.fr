@@ -12,6 +12,7 @@ class Procedure < ApplicationRecord
   include ProcedureCloneConcern
   include PiecesJointesListConcern
   include ColumnsConcern
+  include RoutingRuleStatusesConcern
 
   include Discard::Model
   self.discard_column = :hidden_at
