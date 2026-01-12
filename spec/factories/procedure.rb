@@ -312,6 +312,10 @@ FactoryBot.define do
         procedure.create_generic_labels
       end
     end
+
+    trait :with_api_particulier_token do
+      api_particulier_token { JWT.encode({ exp: 2.months.from_now.to_i }, nil, 'none') }
+    end
   end
 end
 

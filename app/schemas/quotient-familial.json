@@ -1,0 +1,117 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://demarche.numerique.gouv.fr/quotient-familial.schema.json",
+  "title": "quotient familial",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "required": [
+        "allocataires",
+        "enfants",
+        "adresse",
+        "quotient_familial"
+      ],
+      "properties": {
+        "allocataires": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/personne"
+          }
+        },
+        "enfants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/personne"
+          }
+        },
+        "adresse": {
+          "type": "object",
+          "properties": {
+            "destinataire": {
+              "type": "string"
+            },
+            "complement_information": {
+              "type": ["string", "null"]
+            },
+            "complement_information_geographique": {
+              "type": ["string", "null"]
+            },
+            "numero_libelle_voie": {
+              "type": ["string", "null"]
+            },
+            "lieu_dit": {
+              "type": ["string", "null"]
+            },
+            "code_postal_ville": {
+              "type": "string"
+            },
+            "pays": {
+              "type": "string"
+            }
+          }
+        },
+        "quotient_familial": {
+          "type": "object",
+          "required": [
+            "fournisseur",
+            "valeur",
+            "annee",
+            "mois",
+            "annee_calcul",
+            "mois_calcul"
+          ],
+          "properties": {
+            "fournisseur": {
+              "type": "string"
+            },
+            "valeur": {
+              "type": "integer"
+            },
+            "annee": {
+              "type": "integer"
+            },
+            "mois": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 12
+            },
+            "annee_calcul": {
+              "type": "integer"
+            },
+            "mois_calcul": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 12
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "personne": {
+      "type": "object",
+      "properties": {
+        "nom_naissance": {
+          "type": "string"
+        },
+        "nom_usage": {
+          "type": ["string", "null"]
+        },
+        "prenoms": {
+          "type": "string"
+        },
+        "date_naissance": {
+          "type": "string",
+          "format": "date"
+        },
+        "sexe": {
+          "type": "string",
+          "enum": ["M", "F"]
+        }
+      }
+    }
+  }
+}
