@@ -23,13 +23,13 @@ class DateLimitValidator < ActiveModel::Validator
 
     if start_date.present? && end_date.present? && not_in_range(start_date, end_date, date)
       # i18n-tasks-use t('errors.messages.not_in_range_date')
-      champ.errors.add(:value, :not_in_range_date, start_date: I18n.l(start_date), end_date: I18n.l(end_date))
+      champ.errors.add(:value, :not_in_range_date, start_date: I18n.l(start_date, format: :long), end_date: I18n.l(end_date, format: :long))
     elsif start_date.present? && date < start_date
       # i18n-tasks-use t('errors.messages.limit_start_date')
-      champ.errors.add(:value, :limit_start_date, start_date: I18n.l(start_date))
+      champ.errors.add(:value, :limit_start_date, start_date: I18n.l(start_date, format: :long))
     elsif end_date.present? && date > end_date
       # i18n-tasks-use t('errors.messages.limit_end_date')
-      champ.errors.add(:value, :limit_end_date, end_date: I18n.l(end_date))
+      champ.errors.add(:value, :limit_end_date, end_date: I18n.l(end_date, format: :long))
     end
   end
 

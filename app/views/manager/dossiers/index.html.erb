@@ -36,7 +36,7 @@
       ⚠️⚠️ Le dossier n°
       <%= @deleted_dossier.dossier_id %>
       a été
-      <b>supprimé le <%= l(@deleted_dossier.deleted_at) %></b>
+      <b>supprimé le <%= l(@deleted_dossier.deleted_at, format: :long_with_time) %></b>
       pour la raison :
       <b><%= t("activerecord.attributes.deleted_dossier.reason.#{@deleted_dossier.reason}") %></b>
       . ⚠️⚠️

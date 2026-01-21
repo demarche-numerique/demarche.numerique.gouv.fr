@@ -112,7 +112,7 @@ module ApplicationHelper
   end
 
   def try_parse_format_date(date)
-    date.then { Date.parse(_1) rescue nil }&.then { I18n.l(_1) }
+    date.then { Date.parse(_1) rescue nil }&.then { I18n.l(_1, format: :long) }
   end
 
   def try_format_mois_effectif(etablissement)
