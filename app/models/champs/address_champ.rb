@@ -192,7 +192,7 @@ class Champs::AddressChamp < Champs::TextChamp
   end
 
   def validate_completed
-    if ban? && mandatory?
+    if ban? && mandatory? && !full_address?
       errors.add(:value, :missing)
     elsif not_ban? && france?
       validate_not_in_ban_completed

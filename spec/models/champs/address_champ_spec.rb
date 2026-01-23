@@ -183,4 +183,56 @@ describe Champs::AddressChamp do
       end
     end
   end
+
+  describe '#validate_completed' do
+    let(:types_de_champ_public) { [{ type: :address, mandatory: }] }
+    let(:mandatory) { true }
+
+    context 'when mandatory and ban mode' do
+      context 'when address is complete' do
+        let(:value) { '33 Rue Rébeval 75019 Paris' }
+        let(:value_json) do
+          {
+            "type" => "housenumber",
+            "label" => "33 Rue Rébeval 75019 Paris",
+            "city_code" => "75119",
+            "city_name" => "Paris",
+            "postal_code" => "75019",
+            "region_code" => "11",
+            "region_name" => "Île-de-France",
+            "street_name" => "Rue Rébeval",
+            "street_number" => "33",
+            "street_address" => "33 Rue Rébeval",
+            "department_code" => "75",
+            "department_name" => "Paris",
+          }
+        end
+
+        it 'has no errors' do
+          champ.validate_completed
+          expect(champ.errors).to be_empty
+        end
+      end
+
+      context 'when address is empty' do
+        let(:value_json) { { "country_code" => "FR" } }
+
+        it 'has errors' do
+          champ.validate_completed
+          expect(champ.errors).not_to be_empty
+          expect(champ.errors.first.type).to eq(:missing)
+        end
+      end
+    end
+
+    context 'when not mandatory and ban mode' do
+      let(:mandatory) { false }
+      let(:value_json) { { "country_code" => "FR" } }
+
+      it 'has no errors' do
+        champ.validate_completed
+        expect(champ.errors).to be_empty
+      end
+    end
+  end
 end
