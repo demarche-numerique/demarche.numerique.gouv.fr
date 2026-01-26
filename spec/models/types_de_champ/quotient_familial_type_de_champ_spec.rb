@@ -43,4 +43,24 @@ describe TypesDeChamp::QuotientFamilialTypeDeChamp do
       end
     end
   end
+
+  describe '#columns' do
+    let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :quotient_familial, libelle: 'qf' }]) }
+    let(:tdc_quotient_familial) { procedure.active_revision.types_de_champ.first }
+    let(:columns) { tdc_quotient_familial.columns(procedure:) }
+
+    it 'adds QF columns' do
+      expected_columns = [
+        "qf – [Allocataire 1] Nom de naissance",
+        "qf – [Allocataire 1] Prénoms",
+        "qf – [Allocataire 2] Nom de naissance",
+        "qf – [Allocataire 2] Prénoms",
+        "qf – Valeur du QF",
+        "qf – Mois du QF",
+        "qf – Année du QF",
+      ]
+
+      expect(columns.map(&:label)).to match_array(expected_columns)
+    end
+  end
 end
