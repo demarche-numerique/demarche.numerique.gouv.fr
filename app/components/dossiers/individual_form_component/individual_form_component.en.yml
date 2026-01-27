@@ -1,7 +1,11 @@
 ---
 en:
-  self_title: Your identity
-  callout_text: "You are acting as a proxy for a principal, either professionally (such as accountant, lawyer, civil servant…) or personally (family). Make sure to respect the conditions of"
-  callout_link: Articles 1984 and following of the Civil Code.
-  callout_link_title: Articles 1984 and following of the Civil Code.
-  beneficiaire_title: "Identity of the beneficiary"
+  for_self:
+    self_title: Your identity
+    callout_title: Your information will be forwarded to verify your status
+    callout_text: We will request proof of your situation directly from the relevant authorities. If the information is available, you will not need to provide any supporting documents.
+  for_tiers:
+    callout_text: "You are acting as a proxy for a principal, either professionally (such as accountant, lawyer, civil servant…) or personally (family). Make sure to respect the conditions of"
+    callout_link: Articles 1984 and following of the Civil Code.
+    callout_link_title: Articles 1984 and following of the Civil Code.
+    beneficiaire_title: "Identity of the beneficiary"

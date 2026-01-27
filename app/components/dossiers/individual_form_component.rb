@@ -10,4 +10,8 @@ class Dossiers::IndividualFormComponent < ApplicationComponent
   def email_notifications?(individual)
     individual.object.notification_method == Individual.notification_methods[:email]
   end
+
+  def can_personal_data_be_transmitted?
+    @dossier.has_france_connect_type_de_champ? && current_user.france_connected_with_one_identity?
+  end
 end

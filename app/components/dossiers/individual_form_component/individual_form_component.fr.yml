@@ -1,7 +1,11 @@
 ---
 fr:
-  self_title: Votre identité
-  callout_text: Vous agissez en tant que mandataire, soit professionnellement (comme expert-comptable, avocat, agent public…) soit personnellement (famille). Assurez-vous de respecter les conditions des
-  callout_link: Articles 1984 et suivants du Code civil.
-  callout_link_title: Articles 1984 et suivants du Code civil.
-  beneficiaire_title: Identité du bénéficiaire
+  for_self:
+    self_title: Votre identité
+    callout_title: Vos informations vont être transmises pour vérifier votre statut
+    callout_text: Nous allons demander le justificatif de votre situation directement auprès des administrations en charge. Si l’information est disponible, vous n’aurez pas de justificatifs à fournir.
+  for_tiers:
+    callout_text: Vous agissez en tant que mandataire, soit professionnellement (comme expert-comptable, avocat, agent public…) soit personnellement (famille). Assurez-vous de respecter les conditions des
+    callout_link: Articles 1984 et suivants du Code civil.
+    callout_link_title: Articles 1984 et suivants du Code civil.
+    beneficiaire_title: Identité du bénéficiaire

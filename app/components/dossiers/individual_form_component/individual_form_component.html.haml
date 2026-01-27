@@ -3,16 +3,16 @@
   - if for_tiers?
     .fr-alert.fr-alert--info.fr-mb-2w
       %p.fr-notice__text
-        = t('.callout_text')
-        = link_to(t('.callout_link'),
+        = t('.for_tiers.callout_text')
+        = link_to(t('.for_tiers.callout_link'),
                 'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070721/LEGISCTA000006136404/#LEGISCTA000006136404',
-                title: helpers.new_tab_suffix(t('.callout_link_title')),
+                title: helpers.new_tab_suffix(t('.for_tiers.callout_link_title')),
                 **helpers.external_link_attributes)
 
     %fieldset.fr-fieldset.mandataire-infos
       %legend.fr-fieldset__legend--regular.fr-fieldset__legend
         %h2.fr-h4
-          = t('.self_title')
+          = t('.for_self.self_title')
 
       .fr-fieldset__element.fr-fieldset__element--short-text
         = render Dsfr::InputComponent.new(form: f, attribute: :mandataire_first_name, opts: { autocomplete: 'given-name' })
@@ -20,14 +20,19 @@
       .fr-fieldset__element.fr-fieldset__element--short-text
         = render Dsfr::InputComponent.new(form: f, attribute: :mandataire_last_name, opts: { autocomplete: 'family-name' })
 
+  - elsif can_personal_data_be_transmitted?
+    = render Dsfr::AlertComponent.new(title: t('.for_self.callout_title'), state: :info, with_prefix: false, extra_class_names: 'fr-mb-2w') do |c|
+      - c.with_body do
+        = t('.for_self.callout_text')
+
   = f.fields_for :individual, include_id: false do |individual|
     %fieldset.fr-fieldset.fr-mb-0.individual-infos
       %legend.fr-fieldset__legend--regular.fr-fieldset__legend
         %h2.fr-h4
           - if for_tiers?
-            = t('.beneficiaire_title')
+            = t('.for_tiers.beneficiaire_title')
           - else
-            = t('.self_title')
+            = t('.for_self.self_title')
 
       - unless @dossier.procedure.no_gender?
         .fr-fieldset__element.fr-mb-0

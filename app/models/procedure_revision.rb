@@ -239,6 +239,10 @@ class ProcedureRevision < ApplicationRecord
     types_de_champ_public.any?(&:carte?)
   end
 
+  def has_france_connect_type_de_champ?
+    types_de_champ_public.any?(&:france_connect?)
+  end
+
   def coordinate_and_tdc(stable_id)
     return [nil, nil] if stable_id.blank?
 
