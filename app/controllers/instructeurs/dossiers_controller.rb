@@ -179,6 +179,9 @@ module Instructeurs
 
     def archive
       dossier.archiver!(current_instructeur)
+    rescue ActiveRecord::RecordInvalid => e
+      flash.alert = e.record.errors.full_messages.to_sentence
+    ensure
       redirect_back(fallback_location: instructeur_procedure_path(procedure))
     end
 

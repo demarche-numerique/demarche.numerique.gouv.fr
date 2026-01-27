@@ -40,6 +40,7 @@ fr:
     errors:
       models:
         dossier:
+          cannot_archive: Le dossier ne peut être archivé qu’une fois le traitement terminé
           attributes:
             pending_correction:
               blank: "Cochez la case indiquant avoir effectué les corrections demandées."

@@ -18,7 +18,7 @@ module Mutations
 
     def authorized?(dossier:, instructeur:)
       if !dossier.termine?
-        return false, { errors: ["Un dossier ne peut être déplacé dans « à archiver » qu’une fois le traitement terminé"] }
+        return false, { errors: [I18n.t('activerecord.errors.models.dossier.cannot_archive')] }
       end
 
       dossier_authorized_for?(dossier, instructeur)

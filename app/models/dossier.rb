@@ -461,6 +461,7 @@ class Dossier < ApplicationRecord
   validates :mandataire_first_name, presence: true, if: :for_tiers?
   validates :mandataire_last_name, presence: true, if: :for_tiers?
   validates :for_tiers, inclusion: { in: [true, false] }, if: -> { revision&.procedure&.for_individual? }
+  validate :check_can_archiver, if: -> { archived_changed? && archived? }
 
   def self.downloadable_sorted_batch
     DossierPreloader.new(includes(
@@ -612,6 +613,10 @@ class Dossier < ApplicationRecord
 
   def can_terminer_automatiquement_by_sva_svr?
     sva_svr_decision_triggered_at.nil? && !pending_correction? && (sva_svr_decision_on.today? || sva_svr_decision_on.past?)
+  end
+
+  def check_can_archiver
+    errors.add(:base, :cannot_archive) if !termine?
   end
 
   def any_etablissement_as_degraded_mode?

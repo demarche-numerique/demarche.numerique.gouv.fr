@@ -39,6 +39,7 @@ en:
     errors:
       models:
         dossier:
+          cannot_archive: The file can only be archived once processing is complete
           attributes:
             pending_correction:
               blank: Check to confirm that you have made the requested corrections.

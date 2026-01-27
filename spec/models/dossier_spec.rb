@@ -2174,6 +2174,33 @@ describe Dossier, type: :model do
     end
   end
 
+  describe '#archiver!' do
+    let(:instructeur) { create(:instructeur) }
+
+    context 'when dossier is termine' do
+      let(:dossier) { create(:dossier, :accepte) }
+
+      it 'archives the dossier' do
+        freeze_time do
+          dossier.archiver!(instructeur)
+
+          expect(dossier.archived).to be true
+          expect(dossier.archived_at).to eq(Time.zone.now)
+          expect(dossier.archived_by).to eq(instructeur.email)
+        end
+      end
+    end
+
+    context 'when dossier is not termine' do
+      let(:dossier) { create(:dossier, :en_instruction) }
+
+      it 'raises an error' do
+        expect { dossier.archiver!(instructeur) }.to raise_error(ActiveRecord::RecordInvalid)
+        expect(dossier.errors.full_messages).to include(I18n.t('activerecord.errors.models.dossier.cannot_archive'))
+      end
+    end
+  end
+
   describe '#notify_draft_not_submitted' do
     let!(:user1) { create(:user) }
     let!(:user2) { create(:user) }
