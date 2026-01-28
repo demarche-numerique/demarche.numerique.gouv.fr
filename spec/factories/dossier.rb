@@ -123,7 +123,9 @@ FactoryBot.define do
     end
 
     trait :archived do
+      accepte
       archived { true }
+      state { Dossier.states.fetch(:accepte) }
     end
 
     trait :not_archived do

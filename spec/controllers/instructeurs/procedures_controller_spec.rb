@@ -380,8 +380,8 @@ describe Instructeurs::ProceduresController, type: :controller do
 
       context 'with an archived dossier' do
         let(:statut) { 'archives' }
-        let!(:archived_dossier) { create(:dossier, :en_instruction, procedure: procedure, archived: true) }
-        let!(:archived_dossier_deleted) { create(:dossier, :en_instruction, procedure: procedure, archived: true, hidden_by_administration_at: 2.days.ago) }
+        let!(:archived_dossier) { create(:dossier, :archived, procedure: procedure) }
+        let!(:archived_dossier_deleted) { create(:dossier, :archived, procedure: procedure, hidden_by_administration_at: 2.days.ago) }
 
         context do
           before { subject }
@@ -390,8 +390,8 @@ describe Instructeurs::ProceduresController, type: :controller do
         end
 
         context 'and terminer dossiers on each of the others groups' do
-          let!(:archived_dossier_on_gi_2) { create(:dossier, :en_instruction, groupe_instructeur: gi_2, archived: true) }
-          let!(:archived_dossier_on_gi_3) { create(:dossier, :en_instruction, groupe_instructeur: gi_3, archived: true) }
+          let!(:archived_dossier_on_gi_2) { create(:dossier, :archived, groupe_instructeur: gi_2) }
+          let!(:archived_dossier_on_gi_3) { create(:dossier, :archived, groupe_instructeur: gi_3) }
 
           before { subject }
 
@@ -414,7 +414,7 @@ describe Instructeurs::ProceduresController, type: :controller do
         let!(:a_suivre_dossier) { travel_to(1.day.ago) { create(:dossier, :en_instruction, procedure: procedure) } }
         let!(:new_followed_dossier) { travel_to(2.days.ago) { create(:dossier, :en_instruction, procedure: procedure) } }
         let!(:termine_dossier) { travel_to(3.days.ago) { create(:dossier, :accepte, procedure: procedure) } }
-        let!(:archived_dossier) { travel_to(4.days.ago) { create(:dossier, :en_instruction, procedure: procedure, archived: true) } }
+        let!(:archived_dossier) { travel_to(4.days.ago) { create(:dossier, :archived, procedure: procedure) } }
 
         before do
           instructeur.followed_dossiers << new_followed_dossier
@@ -679,10 +679,10 @@ describe Instructeurs::ProceduresController, type: :controller do
 
     describe 'archived dossiers count calculation' do
       let(:statut) { 'tous' }
-      let!(:en_instruction_dossier) { create(:dossier, :en_instruction, procedure: procedure) }
-      let!(:archived_dossier_1) { create(:dossier, :en_instruction, procedure: procedure, archived: true) }
-      let!(:archived_dossier_2) { create(:dossier, :accepte, procedure: procedure, archived: true) }
-      let!(:archived_dossier_3) { create(:dossier, :en_instruction, procedure: procedure, archived: true, hidden_by_administration_at: 1.day.ago) }
+      let!(:en_instruction_dossier) { create(:dossier, :en_instruction, procedure: procedure, groupe_instructeur: procedure.defaut_groupe_instructeur) }
+      let!(:archived_dossier_1) { create(:dossier, :accepte, :archived, procedure: procedure) }
+      let!(:archived_dossier_2) { create(:dossier, :refuse, :archived, procedure: procedure) }
+      let!(:archived_dossier_3) { create(:dossier, :accepte, :archived, procedure: procedure, hidden_by_administration_at: 1.day.ago) }
 
       before do
         sign_in(instructeur.user)
@@ -695,7 +695,7 @@ describe Instructeurs::ProceduresController, type: :controller do
       end
 
       context 'when there is a filter' do
-        let(:filter) { FilteredColumn.new(column: procedure.find_column(label: "État du dossier"), filter: 'en_instruction') }
+        let(:filter) { FilteredColumn.new(column: procedure.find_column(label: "État du dossier"), filter: 'accepte') }
 
         let!(:procedure_presentation) do
           create(:procedure_presentation, assign_to: instructeur.assign_to.first, tous_filters: [filter])
@@ -704,7 +704,7 @@ describe Instructeurs::ProceduresController, type: :controller do
         it 'counts only the archived dossiers that match the filter' do
           subject
 
-          expect(assigns(:archived_dossiers_count)).to eq(1)
+          expect(assigns(:archived_dossiers_count)).to eq(2)
         end
       end
 

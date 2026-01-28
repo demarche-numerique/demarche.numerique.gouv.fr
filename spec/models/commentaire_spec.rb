@@ -21,7 +21,7 @@ describe Commentaire do
       let(:dossier) { create :dossier, :archived }
       let(:commentaire) { build :commentaire, dossier: dossier }
 
-      it { is_expected.to be_truthy }
+      it { is_expected.to be_falsey }
     end
 
     context 'on a dossier en_construction' do

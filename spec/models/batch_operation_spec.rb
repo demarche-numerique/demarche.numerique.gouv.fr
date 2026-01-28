@@ -128,7 +128,7 @@ describe BatchOperation, type: :model do
       end
     end
     context 'when dossier is already archived' do
-      let(:dossier) { create(:dossier, :accepte, :with_individual, archived: true, procedure: procedure) }
+      let(:dossier) { create(:dossier, :archived, :with_individual, procedure: procedure) }
 
       it 'skips dossier is already archived' do
         expect(batch_operation.dossiers_safe_scope).not_to include(dossier)
@@ -166,7 +166,7 @@ describe BatchOperation, type: :model do
     end
 
     context 'when dossier is already en instruction' do
-      let(:dossier) { create(:dossier, :en_instruction, :with_individual, archived: true, procedure: procedure) }
+      let(:dossier) { create(:dossier, :en_instruction, :with_individual, procedure: procedure) }
 
       it 'skips dossier is already en instruction' do
         expect(batch_operation.dossiers_safe_scope).not_to include(dossier)
@@ -196,7 +196,7 @@ describe BatchOperation, type: :model do
     end
 
     context 'when dossier is already accepte' do
-      let(:dossier) { create(:dossier, :accepte, :with_individual, archived: true, procedure: procedure) }
+      let(:dossier) { create(:dossier, :accepte, :with_individual, procedure: procedure) }
 
       it 'skips dossier is already en instruction' do
         expect(batch_operation.dossiers_safe_scope).not_to include(dossier)
@@ -219,7 +219,7 @@ describe BatchOperation, type: :model do
     subject { BatchOperation.safe_create!(instructeur: instructeur, operation: :archiver, dossier_ids: [dossier.id, dossier_2.id]) }
 
     context 'success with divergent list of dossier_ids' do
-      let(:dossier) { create(:dossier, :accepte, :with_individual, archived: true, procedure: procedure) }
+      let(:dossier) { create(:dossier, :archived, :with_individual, procedure: procedure) }
 
       it 'does not keep archived dossier within batch_operation.dossiers' do
         expect(subject.dossiers).not_to include(dossier)
