@@ -33,6 +33,7 @@ features = [
   :notification,
   :ocr,
   :pro_connect_restricted,
+  :quotient_familial_type_de_champ,
   :rdv,
   :referentiel_type_de_champ,
   :sva,

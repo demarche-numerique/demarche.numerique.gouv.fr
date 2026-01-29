@@ -8,6 +8,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
 
     before do
       Flipper.enable_actor(:engagement_juridique_type_de_champ, procedure)
+      Flipper.enable(:quotient_familial_type_de_champ, procedure)
       allow_any_instance_of(Procedure).to receive(:stable_ids_used_by_routing_rules).and_return(routing_rules_stable_ids)
       allow_any_instance_of(ProcedureRevisionTypeDeChamp).to receive(:used_by_ineligibilite_rules?).and_return(ineligibilite_rules_used?)
       render_inline(component)

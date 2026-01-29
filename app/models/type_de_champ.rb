@@ -6,6 +6,7 @@ class TypeDeChamp < ApplicationRecord
   FEATURE_FLAGS = {
     engagement_juridique: :engagement_juridique_type_de_champ,
     cojo: :cojo_type_de_champ,
+    quotient_familial: :quotient_familial_type_de_champ,
   }
 
   MINIMUM_TEXTAREA_CHARACTER_LIMIT_LENGTH = 400
