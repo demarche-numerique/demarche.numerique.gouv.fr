@@ -46,4 +46,6 @@ Sentry.init do |config|
 
   # config.excluded_exceptions += []
   config.delayed_job.report_after_job_retries = false # don't wait for all attempts before reporting
+
+  config.rails.active_job_report_on_retry_error = true # https://github.com/getsentry/sentry-ruby/pull/2617
 end
