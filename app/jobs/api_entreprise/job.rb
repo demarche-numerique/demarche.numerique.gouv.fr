@@ -54,7 +54,7 @@ class APIEntreprise::Job < ApplicationJob
 
   def retry_or_discard(exception)
     if executions < max_attempts
-      retry_job wait: 1.day
+      retry_job wait: 1.day, error: exception
     else
       log_job_exception(exception)
     end

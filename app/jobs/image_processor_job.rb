@@ -36,8 +36,8 @@ class ImageProcessorJob < ApplicationJob
   retry_on MiniMagick::Invalid, attempts: 3
   retry_on MiniMagick::Error, attempts: 3
 
-  rescue_from ActiveStorage::PreviewError do
-    retry_or_discard
+  rescue_from ActiveStorage::PreviewError do |exception|
+    retry_or_discard(exception)
   end
 
   def perform(blob)
@@ -128,9 +128,9 @@ class ImageProcessorJob < ApplicationJob
     champ.RIB?
   end
 
-  def retry_or_discard
+  def retry_or_discard(exception)
     if executions < 3
-      retry_job wait: 5.minutes
+      retry_job wait: 5.minutes, error: exception
     end
   end
 end
