@@ -107,6 +107,8 @@ module Types
           Types::Champs::Descriptor::COJOChampDescriptorType
         when TypeDeChamp.type_champs.fetch(:formatted)
           Types::Champs::Descriptor::FormattedChampDescriptorType
+        when TypeDeChamp.type_champs.fetch(:quotient_familial)
+          Types::Champs::Descriptor::QuotientFamilialChampDescriptorType
         end
       end
     end

@@ -4686,6 +4686,34 @@ type Query {
   ): GroupeInstructeurWithDossiers!
 }
 
+type QuotientFamilialChampDescriptor implements ChampDescriptor {
+  """
+  Description des champs d’un bloc répétable.
+  """
+  champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
+
+  """
+  Description du champ.
+  """
+  description: String
+  id: ID!
+
+  """
+  Libellé du champ.
+  """
+  label: String!
+
+  """
+  Est-ce que le champ est obligatoire ?
+  """
+  required: Boolean!
+
+  """
+  Type de la valeur du champ.
+  """
+  type: TypeDeChamp! @deprecated(reason: "Utilisez le champ `__typename` à la place.")
+}
+
 type RNA {
   address: Address
   id: String!
@@ -5496,6 +5524,11 @@ enum TypeDeChamp {
   Situation Pôle emploi
   """
   pole_emploi
+
+  """
+  Quotient familial
+  """
+  quotient_familial
 
   """
   Référentiel configurable (avancé)
