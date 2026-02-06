@@ -116,6 +116,7 @@ module DossierExportConcern
       procedure.sva_svr_enabled? ? ["Date décision #{procedure.sva_svr_configuration.human_decision}", :sva_svr_decision_on] : nil,
       ['Traité le', :processed_at],
       ['Motivation de la décision', :motivation],
+      procedure.accuse_lecture? ? ['Accusé de lecture', :accuse_lecture_agreement_at] : nil,
       ['Instructeurs', followers_instructeurs.map(&:email).join(' ')],
     ].compact
 

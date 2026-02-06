@@ -183,6 +183,24 @@ describe ProcedureExportService do
         end
       end
 
+      context 'with procedure accuse_lecture' do
+        let(:procedure) { create(:procedure, :published, :for_individual, :accuse_lecture) }
+        let(:agreement_date) { Date.new(2024, 3, 15) }
+        let!(:dossier_with_agreement) do
+          create(:dossier, :accepte, :with_individual, procedure:, accuse_lecture_agreement_at: agreement_date)
+        end
+        let!(:dossier_without_agreement) do
+          create(:dossier, :accepte, :with_individual, procedure:, accuse_lecture_agreement_at: nil)
+        end
+
+        it 'includes Accusé de lecture header and exports date or nil' do
+          expect(dossiers_sheet.headers).to include('Accusé de lecture')
+          idx = dossiers_sheet.headers.index('Accusé de lecture')
+          values = dossiers_sheet.data.map { |row| row[idx] }
+          expect(values).to contain_exactly(agreement_date, nil)
+        end
+      end
+
       context 'with BOM input' do
         let(:procedure) { create(:procedure, :published, :for_individual, types_de_champ_public:) }
         let!(:dossier) { create(:dossier, :en_instruction, :with_individual, procedure: procedure) }

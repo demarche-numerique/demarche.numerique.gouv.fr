@@ -2693,6 +2693,21 @@ describe Dossier, type: :model do
 
       it { expect(dossier.spreadsheet_columns(types_de_champ: [])).to include(["Date décision SVR", :sva_svr_decision_on]) }
     end
+
+    context 'procedure accuse_lecture' do
+      let(:dossier) { build(:dossier, procedure: create(:procedure, :accuse_lecture)) }
+
+      it { expect(dossier.spreadsheet_columns(types_de_champ: [])).to include(['Accusé de lecture', :accuse_lecture_agreement_at]) }
+    end
+
+    context 'procedure without accuse_lecture' do
+      let(:dossier) { create(:dossier, procedure: create(:procedure, :for_individual)) }
+
+      it 'does not include Accusé de lecture column' do
+        libelles = dossier.spreadsheet_columns(types_de_champ: []).map(&:first)
+        expect(libelles).not_to include('Accusé de lecture')
+      end
+    end
   end
 
   describe '#processed_in_month' do
