@@ -29,7 +29,7 @@ RSpec.describe Instructeurs::RdvCardComponent, type: :component do
   describe "rendering" do
     it "displays appointment information" do
       expect(subject).to have_css("span.fr-icon-calendar-fill")
-      expect(subject).to have_text(I18n.l(starts_at, format: :human))
+      expect(subject).to have_text(DateFormatHelper.human(starts_at))
     end
 
     it "displays the owner information" do

@@ -31,7 +31,7 @@ RSpec.describe 'administrateurs/procedures/_api_entreprise_token_expiration_aler
     it "should display an error" do
       subject
 
-      expect(rendered).to have_content("Votre jeton API Entreprise expirera le\n#{I18n.l(expiration, format: :long_with_time)}.")
+      expect(rendered).to have_content("Votre jeton API Entreprise expirera le\n#{DateFormatHelper.long_with_time(expiration)}.")
     end
   end
 

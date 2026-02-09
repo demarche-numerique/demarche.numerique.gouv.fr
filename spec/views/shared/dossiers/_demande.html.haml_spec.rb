@@ -40,7 +40,7 @@ describe 'shared/dossiers/demande', type: :view do
       expect(subject).to include(individual.gender)
       expect(subject).to include(individual.nom)
       expect(subject).to include(individual.prenom)
-      expect(subject).to include(I18n.l(individual.birthdate, format: :long))
+      expect(subject).to include(DateFormatHelper.long(individual.birthdate))
     end
   end
 

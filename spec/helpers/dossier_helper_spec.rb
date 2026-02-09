@@ -230,7 +230,7 @@ RSpec.describe DossierHelper, type: :helper do
     context "with complete france_connect information" do
       let(:user_information) { build(:france_connect_information, updated_at: Time.zone.now) }
       it {
-        expect(subject).to have_text("Le dossier a été déposé par le compte de #{user_information.given_name} #{user_information.family_name}, authentifié par FranceConnect le #{I18n.l(user_information.updated_at.to_date)}")
+        expect(subject).to have_text("Le dossier a été déposé par le compte de #{user_information.given_name} #{user_information.family_name}, authentifié par FranceConnect le #{DateFormatHelper.long(user_information.updated_at)}")
       }
     end
 

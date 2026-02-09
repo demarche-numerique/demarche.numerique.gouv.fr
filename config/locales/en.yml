@@ -854,26 +854,6 @@ en:
   time:
     formats:
       default: "%d %B %Y %R"
-      long: "%d %B %Y"
-      long_with_time: "%d %B %Y at %H:%M"
-      long_with_time_and_timezone: "%d %B %Y at %H:%M (%Z)"
-      short: "%d %b %Y"
-      short_with_time: "%d %b %Y %H:%M"
-      messagerie_date: "On %d %b %Y %H:%M"
-      human: "%A %-d %B at %Hh%M"
-      dashed: "%Y-%m-%d"
-      month_year: "%B %Y"
-      day_month_short: "%d %b"
-  datetime:
-    formats:
-      long: "%d %B %Y at %H:%M"
-  date:
-    formats:
-      long: "%d %B %Y"
-      short: "%d %b %Y"
-      dashed: "%Y-%m-%d"
-      month_year: "%B %Y"
-      day_month_short: "%d %b"
   dates:
     today: "Today"
     yesterday: "Yesterday"

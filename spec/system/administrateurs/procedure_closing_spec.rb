@@ -92,7 +92,7 @@ describe 'Closing a procedure', js: true do
 
       procedure.reload
 
-      expect(page).to have_text("Un email a été envoyé pour informer les usagers le #{I18n.l(procedure.closed_at.to_date)}")
+      expect(page).to have_text("Un email a été envoyé pour informer les usagers le #{DateFormatHelper.long(procedure.closed_at)}")
     end
   end
 end

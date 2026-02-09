@@ -47,7 +47,7 @@ describe "procedure filters" do
     add_column("Date de création")
     within ".dossiers-table" do
       expect(page).to have_button("Date de création")
-      expect(page).to have_link(I18n.l(new_unfollow_dossier.created_at, format: :short_with_time))
+      expect(page).to have_link(DateFormatHelper.short_with_time(new_unfollow_dossier.created_at))
     end
   end
 

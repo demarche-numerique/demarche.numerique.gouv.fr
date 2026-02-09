@@ -179,7 +179,7 @@ describe 'instructeurs/dossiers/show', type: :view do
     end
 
     it 'fills the individual with the informations from France Connect' do
-      expect(view.content_for(:notice_info)).to have_text("Le dossier a été déposé par le compte de #{france_connect_information.given_name} #{france_connect_information.family_name}, authentifié par FranceConnect le #{I18n.l(france_connect_information.updated_at.to_date)}")
+      expect(view.content_for(:notice_info)).to have_text("Le dossier a été déposé par le compte de #{france_connect_information.given_name} #{france_connect_information.family_name}, authentifié par FranceConnect le #{DateFormatHelper.long(france_connect_information.updated_at)}")
     end
   end
 

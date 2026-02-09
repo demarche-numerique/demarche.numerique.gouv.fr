@@ -26,7 +26,7 @@ describe StatsController, type: :controller do
           3.months.ago => 0,
           62.days.ago => 2,
           31.days.ago => 1,
-        }.transform_keys { |date| I18n.l(date, format: '%B %Y') })
+        }.transform_keys { |date| DateFormatHelper.month_year(date) })
       end
     end
 
@@ -52,7 +52,7 @@ describe StatsController, type: :controller do
           45.days.ago => 1,
           1.month.ago => 0,
           1.day.ago => 2,
-        }.transform_keys { |date| I18n.l(date, format: '%B %Y') })
+        }.transform_keys { |date| DateFormatHelper.month_year(date) })
       end
     end
   end
