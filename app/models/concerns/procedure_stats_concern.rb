@@ -137,10 +137,10 @@ module ProcedureStatsConcern
   end
 
   def pretty_month(month)
-    I18n.l(month, format: :month_year)
+    DateFormatHelper.month_year(month)
   end
 
   def pretty_week(week)
-    I18n.l(week, format: :day_month_short)
+    DateFormatHelper.day_month_short(week)
   end
 end

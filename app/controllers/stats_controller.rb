@@ -112,7 +112,7 @@ class StatsController < ApplicationController
   def format_keys_as_months(series)
     series.transform_keys do |k|
       date = k.is_a?(Date) ? k : (Date.parse(k) rescue k)
-      l(date, format: "%B %Y")
+      DateFormatHelper.month_year(date)
     end
   end
 

@@ -29,7 +29,7 @@ class Archive < ApplicationRecord
     if time_span_type == 'everything'
       "procedure-#{procedure.id}.zip"
     else
-      "procedure-#{procedure.id}-mois-#{I18n.l(month, format: '%Y-%m')}.zip"
+      "procedure-#{procedure.id}-mois-#{month.strftime('%Y-%m')}.zip"
     end
   end
 

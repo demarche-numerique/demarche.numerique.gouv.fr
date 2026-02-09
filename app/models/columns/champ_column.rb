@@ -196,14 +196,14 @@ class Columns::ChampColumn < Column
     [:decimal_number, :formatted] => -> (v) { v.to_s },
     # date
     [:date, :datetime] => -> (v) { v.to_datetime },
-    [:date, :text] => -> (v) { I18n.l(v, format: :long) },
-    [:date, :textarea] => -> (v) { I18n.l(v, format: :long) },
-    [:date, :formatted] => -> (v) { I18n.l(v, format: :long) },
+    [:date, :text] => -> (v) { DateFormatHelper.long(v) },
+    [:date, :textarea] => -> (v) { DateFormatHelper.long(v) },
+    [:date, :formatted] => -> (v) { DateFormatHelper.long(v) },
     # datetime
     [:datetime, :date] => -> (v) { v.to_date },
-    [:datetime, :text] => -> (v) { I18n.l(v) },
-    [:datetime, :textarea] => -> (v) { I18n.l(v) },
-    [:datetime, :formatted] => -> (v) { I18n.l(v) },
+    [:datetime, :text] => -> (v) { DateFormatHelper.long_with_time(v) },
+    [:datetime, :textarea] => -> (v) { DateFormatHelper.long_with_time(v) },
+    [:datetime, :formatted] => -> (v) { DateFormatHelper.long_with_time(v) },
     # checkbox
     [:checkbox, :yes_no] => -> (v) { v },
     [:checkbox, :text] => -> (v) { v ? 'Oui' : 'Non' },

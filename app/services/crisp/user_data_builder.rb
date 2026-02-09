@@ -58,7 +58,7 @@ module Crisp
         "⚠️ **Adresse électronique non vérifiée**"
       end
 
-      text << "❌ Compte bloqué depuis le #{I18n.l(user.blocked_at, format: :short)}" if user.blocked_at.present?
+      text << "❌ Compte bloqué depuis le #{DateFormatHelper.short(user.blocked_at)}" if user.blocked_at.present?
 
       text.join("\n")
     end

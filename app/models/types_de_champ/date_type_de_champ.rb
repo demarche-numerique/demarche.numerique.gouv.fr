@@ -2,7 +2,7 @@
 
 class TypesDeChamp::DateTypeDeChamp < TypesDeChamp::TypeDeChampBase
   def champ_value(champ)
-    I18n.l(Time.zone.parse(champ.value), format: :long)
+    DateFormatHelper.long(Time.zone.parse(champ.value))
   rescue ArgumentError
     champ.value.presence || "" # old dossiers can have not parseable dates
   end
