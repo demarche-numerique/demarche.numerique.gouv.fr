@@ -82,4 +82,4 @@
         %p.fr-mt-1w
           = t('shared.procedure_description.sva_svr_prevision_date',
             delay: t("x_#{procedure.sva_svr_configuration.unit}", count: procedure.sva_svr_configuration.period.to_i, scope: 'datetime.distance_in_words'),
-            date: l(SVASVRDecisionDateCalculatorService.decision_date_from_today(procedure), format: :long).gsub(' ', " "))
+            date: DateFormatHelper.long(SVASVRDecisionDateCalculatorService.decision_date_from_today(procedure)).gsub(' ', "\u00A0"))

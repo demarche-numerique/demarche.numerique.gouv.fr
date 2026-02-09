@@ -24,7 +24,7 @@
         = link_to status, all_admin_procedures_path(@filter.without(:statuses, status)), class: 'fr-tag fr-tag--dismiss fr-mb-1w'
   - if @filter.from_publication_date.present?
     .selected-from-publication-date.fr-mb-2w
-      = link_to "Depuis le #{l(@filter.from_publication_date)}", all_admin_procedures_path(@filter.without(:from_publication_date)), class: 'fr-tag fr-tag--dismiss fr-mb-1w'
+      = link_to "Depuis le #{DateFormatHelper.long(@filter.from_publication_date)}", all_admin_procedures_path(@filter.without(:from_publication_date)), class: 'fr-tag fr-tag--dismiss fr-mb-1w'
 
   .fr-table.fr-table--bordered
     .fr-table__wrapper
@@ -47,7 +47,7 @@
                     %button.fr-icon-add-line.fr-icon--sm.fr-mb-1w.fr-text-action-high--blue-france.fr-btn.fr-btn--tertiary-no-outline{ 'aria-hidden': 'true', 'data-expand-target': 'icon' }
                   %td= admin.email
                   %td.fr-cell--right.fr-cell--numeric= admin.procedures.size
-                  %td.fr-cell--numeric= l(admin.created_at, format: :message_date_without_time)
+                  %td.fr-cell--numeric= DateFormatHelper.message_date_without_time(admin.created_at)
                 %tr.hidden{ 'data-expand-target': 'content' }
                   %td.fr-cell--multiline.fr-background-alt--green-emeraude{ colspan: '4' }
                     %ul

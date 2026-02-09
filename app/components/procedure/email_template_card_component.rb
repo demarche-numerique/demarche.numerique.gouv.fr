@@ -21,7 +21,7 @@ class Procedure::EmailTemplateCardComponent < ApplicationComponent
 
   def tag
     if edited?
-      "modifié le #{I18n.l(@email_template.updated_at, format: :short)}"
+      "modifié le #{DateFormatHelper.short(@email_template.updated_at)}"
     else
       "Modèle standard"
     end

@@ -34,7 +34,7 @@
   <section class="main-content__body">
     <p>
       ⚠️⚠️ Le dossier n° <%= @deleted_dossier.dossier_id %> a été
-      <b>supprimé le <%= l(@deleted_dossier.deleted_at) %></b> pour la raison:
+      <b>supprimé le <%= DateFormatHelper.long(@deleted_dossier.deleted_at) %></b> pour la raison:
       <b><%= t("activerecord.attributes.deleted_dossier.reason.#{@deleted_dossier.reason}") %></b>.
       ⚠️⚠️
       <br>

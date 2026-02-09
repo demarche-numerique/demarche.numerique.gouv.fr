@@ -37,20 +37,20 @@
 
           - if dossier.hidden_by_expired?
             %p.fr-icon--sm.fr-icon-delete-line
-              = t('views.users.dossiers.dossiers_list.deleted_by_automatic', date: l(dossier.hidden_by_expired_at.to_date, format: :long))
+              = t('views.users.dossiers.dossiers_list.deleted_by_automatic', date: DateFormatHelper.long(dossier.hidden_by_expired_at))
           - elsif dossier.hidden_by_user?
             %p.fr-icon--sm.fr-icon-delete-line
-              = t('views.users.dossiers.dossiers_list.deleted_by_user', date: l(dossier.hidden_by_user_at.to_date, format: :long))
+              = t('views.users.dossiers.dossiers_list.deleted_by_user', date: DateFormatHelper.long(dossier.hidden_by_user_at))
           - else
             %p.fr-icon--sm.fr-icon-edit-box-line
               - if dossier.depose_at.present?
                 %span
-                  = t('views.users.dossiers.dossiers_list.depose_at', date: l(dossier.depose_at.to_date, format: :long))
+                  = t('views.users.dossiers.dossiers_list.depose_at', date: DateFormatHelper.long(dossier.depose_at))
               - else
                 %span
-                  = t('views.users.dossiers.dossiers_list.created_at', date: l(dossier.created_at.to_date, format: :long))
+                  = t('views.users.dossiers.dossiers_list.created_at', date: DateFormatHelper.long(dossier.created_at))
                 - if dossier.created_at != dossier.updated_at
-                  = t('views.users.dossiers.dossiers_list.updated_at', date: l(dossier.updated_at, format: :long_with_time))
+                  = t('views.users.dossiers.dossiers_list.updated_at', date: DateFormatHelper.long_with_time(dossier.updated_at))
 
             - if dossier.invites.present?
               %p.fr-icon--sm.fr-icon-shield-line

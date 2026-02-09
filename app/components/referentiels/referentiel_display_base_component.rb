@@ -30,9 +30,9 @@ class Referentiels::ReferentielDisplayBaseComponent < ApplicationComponent
     mapping_type = safe_referentiel_mapping[jsonpath]&.dig(:type) || Referentiels::MappingFormComponent::TYPES[:string]
     case [mapping_type&.to_sym, value]
     in [:date, value]
-      I18n.l(Date.parse(DateDetectionUtils.convert_to_iso8601_date(value)), format: :short) rescue nil
+      DateFormatHelper.short(Date.parse(DateDetectionUtils.convert_to_iso8601_date(value))) rescue nil
     in [:datetime, value]
-      I18n.l(DateTime.parse(DateDetectionUtils.convert_to_iso8601_datetime(value)), format: :long_with_time) rescue nil
+      DateFormatHelper.long_with_time(DateTime.parse(DateDetectionUtils.convert_to_iso8601_datetime(value))) rescue nil
     in [:boolean, TrueClass => value]
       I18n.t('utils.yes')
     in [:boolean, FalseClass => value]

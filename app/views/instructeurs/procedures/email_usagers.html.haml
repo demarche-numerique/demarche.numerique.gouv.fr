@@ -28,5 +28,5 @@
           %li
             %b
               = message.instructeur.email
-              a envoyé ce message à #{message.dossier_count} usagers le #{I18n.l(message.sent_at, format: :long_with_time)}
+              a envoyé ce message à #{message.dossier_count} usagers le #{DateFormatHelper.long_with_time(message.sent_at)}
             %p= message.body

@@ -15,7 +15,7 @@
               = t('confidentiel', scope: 'activerecord.attributes.avis')
 
           %span.fr-text--xs.fr-text-mention--grey.pull-right{ class: highlight_if_unseen_class(avis_seen_at, avis.created_at) }
-            = t('demande_envoyee_le', scope: 'views.shared.avis', date: l(avis.created_at, format: :short_with_time))
+            = t('demande_envoyee_le', scope: 'views.shared.avis', date: DateFormatHelper.short_with_time(avis.created_at))
 
         .border-left
           = render SimpleFormatComponent.new(avis.introduction, allow_a: false)
@@ -29,10 +29,10 @@
           - if avis.answer.present?
             - if avis.revoked?
               %span.fr-badge.fr-badge--sm{ class: highlight_if_unseen_class(avis_seen_at, avis.revoked_at) }
-                = t('demande_revoquee_le', scope: 'views.shared.avis', date: l(avis.revoked_at, format: :short_with_time))
+                = t('demande_revoquee_le', scope: 'views.shared.avis', date: DateFormatHelper.short_with_time(avis.revoked_at))
 
             %span.fr-text--xs.fr-text-mention--grey.pull-right{ class: highlight_if_unseen_class(avis_seen_at, avis.updated_at) }
-              = t('reponse_donnee_le', scope: 'views.shared.avis', date: l(avis.updated_at, format: :short_with_time))
+              = t('reponse_donnee_le', scope: 'views.shared.avis', date: DateFormatHelper.short_with_time(avis.updated_at))
           - else
             %span.fr-badge.fr-badge--sm
               = t(avis.dossier.termine? ? 'views.shared.avis.avis_non_rendu' : 'views.shared.avis.en_attente')
@@ -40,7 +40,7 @@
         .fr-mb-2w
           - if avis.reminded_at
             %span.date.fr-text--xs.fr-text-mention--grey{ class: highlight_if_unseen_class(avis_seen_at, avis.reminded_at) }
-              = t('relance_effectuee_le', scope: 'views.shared.avis', date: l(avis.reminded_at, format: :short_with_time))
+              = t('relance_effectuee_le', scope: 'views.shared.avis', date: DateFormatHelper.short_with_time(avis.reminded_at))
           - if expert_or_instructeur.is_a?(Instructeur)
             - if avis.answer.blank? && !avis.dossier.termine?
               = link_to(t('remind', scope: 'helpers.label'), remind_instructeur_avis_path(avis.procedure, params[:statut], avis), class:'fr-btn fr-btn--sm fr-btn--tertiary-no-outline', data: { confirm: t('remind', scope: 'helpers.confirmation', email: avis.expert.email) })

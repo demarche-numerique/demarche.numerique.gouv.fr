@@ -23,7 +23,7 @@
           .flex
             %span.fr-badge.fr-badge--warning.fr-mr-1w
               = t('closed', scope: [:layouts, :breadcrumb])
-            = t('since', scope: [:layouts, :breadcrumb], date: l(@procedure.closed_at.to_date, format: :long))
+            = t('since', scope: [:layouts, :breadcrumb], date: DateFormatHelper.long(@procedure.closed_at))
 
         - elsif @procedure.locked?
           = link_to commencer_url(@procedure.path), commencer_url(@procedure.path), class: "fr-link"
@@ -38,7 +38,7 @@
 
             %span.fr-badge.fr-badge--success.fr-mr-1w
               = t('published', scope: [:layouts, :breadcrumb])
-            = t('since', scope: [:layouts, :breadcrumb], number: @procedure.id, date: l(@procedure.published_at.to_date, format: :long))
+            = t('since', scope: [:layouts, :breadcrumb], number: @procedure.id, date: DateFormatHelper.long(@procedure.published_at))
 
         - else
           %p.fr-mb-1w
@@ -47,4 +47,4 @@
           .flex
             %span.fr-badge.fr-badge--new.fr-mr-1w
               = t('draft', scope: [:layouts, :breadcrumb])
-            = t('since', scope: [:layouts, :breadcrumb], number: @procedure.id, date: l(@procedure.created_at.to_date, format: :long))
+            = t('since', scope: [:layouts, :breadcrumb], number: @procedure.id, date: DateFormatHelper.long(@procedure.created_at))

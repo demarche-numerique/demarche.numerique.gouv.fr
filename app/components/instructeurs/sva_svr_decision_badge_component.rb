@@ -66,7 +66,7 @@ class Instructeurs::SVASVRDecisionBadgeComponent < ApplicationComponent
     elsif pending_correction?
       t(".dossier_terminated_x_days_after_correction", count: days_count)
     else
-      t(".dossier_terminated_on", date: helpers.l(dossier.sva_svr_decision_on))
+      t(".dossier_terminated_on", date: DateFormatHelper.long(dossier.sva_svr_decision_on))
     end
   end
 

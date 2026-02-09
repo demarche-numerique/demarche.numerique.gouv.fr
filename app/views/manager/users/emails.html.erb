@@ -87,7 +87,7 @@
             </td>
 
             <td class="cell-data cell-data--string" style="text-align: center;">
-              <%= l(email.delivered_at, format: :long_with_time) %>
+              <%= DateFormatHelper.long_with_time(email.delivered_at) %>
             </td>
 
             <td class="cell-data cell-data--string" style="text-align: center;">

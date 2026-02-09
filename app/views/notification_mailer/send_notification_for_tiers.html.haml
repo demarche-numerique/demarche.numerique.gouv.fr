@@ -16,9 +16,9 @@
   - if @repasser_en_instruction
     = t("layouts.mailers.for_tiers.repasser_en_instruction")
   - elsif @dossier.hide_info_with_accuse_lecture?
-    = t("layouts.mailers.for_tiers.accuse_lecture", processed_at: l(@dossier.updated_at.to_date, format: :long))
+    = t("layouts.mailers.for_tiers.accuse_lecture", processed_at: DateFormatHelper.long(@dossier.updated_at))
   - else
-    = t("layouts.mailers.for_tiers.#{@dossier.state}", processed_at: l(@dossier.updated_at.to_date, format: :long))
+    = t("layouts.mailers.for_tiers.#{@dossier.state}", processed_at: DateFormatHelper.long(@dossier.updated_at))
 
 %p
   = t("layouts.mailers.for_tiers.second_part")

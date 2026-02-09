@@ -6,7 +6,7 @@
           %span.fr-icon-calendar-fill{ "aria-hidden": "true" }
           %strong
             = t('.appointment_on')
-            = l(starts_at, format: :human)
+            = DateFormatHelper.human(starts_at)
         %p
           %span{ "aria-hidden": "true", class: icon_class }
           %strong

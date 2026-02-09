@@ -3,6 +3,6 @@
 %ul.tab-list
   - traitements.each do |traitement|
     %li
-      - processed_at = l(traitement.processed_at, format: :long_with_time)
+      - processed_at = DateFormatHelper.long_with_time(traitement.processed_at)
       - props = { processed_at:, email: traitement.instructeur_email }.compact
       = t(".#{traitement.event}", **props)

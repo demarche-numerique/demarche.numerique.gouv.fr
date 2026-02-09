@@ -23,7 +23,7 @@
         .mb-1
 
   %td= t procedure.aasm_state, scope: 'activerecord.attributes.procedure.aasm_state'
-  %td= l(procedure.published_at, format: :message_date_without_time) if procedure.published_at
+  %td= DateFormatHelper.message_date_without_time(procedure.published_at) if procedure.published_at
   %td
     = link_to('Consulter', apercu_admin_procedure_path(procedure.id), target: "_blank", class: 'fr-btn fr-btn--tertiary fr-btn--sm fr-mb-1w',  title: new_tab_suffix('Aperçu de la démarche'))
     = link_to('Cloner', admin_procedure_clone_settings_path(procedure.id, from_new_from_existing: true), 'data-method' => :get, class: 'fr-btn fr-btn--tertiary fr-btn--sm')

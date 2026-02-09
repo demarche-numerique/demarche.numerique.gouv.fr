@@ -38,7 +38,7 @@
                 %tr
                   %td.fr-cell--multiline= link_to export_template.name, [:edit, :instructeur, @procedure, export_template]
                   %td= pretty_kind(export_template.kind)
-                  %td= l(export_template.created_at.to_date, format: :long)
+                  %td= DateFormatHelper.long(export_template.created_at)
                   - if @procedure.groupe_instructeurs.many?
                     %td= export_template.groupe_instructeur.label
                     %td

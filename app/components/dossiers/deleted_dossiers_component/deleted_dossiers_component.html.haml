@@ -41,7 +41,7 @@
                       -# .fr-badge
                       -#   = t("activerecord.attributes.deleted_dossier.reason.#{deleted_dossier.reason}")
                     %td.deleted-cell
-                      = l(deleted_dossier.deleted_at, format: '%d/%m/%y')
+                      = deleted_dossier.deleted_at.strftime('%d/%m/%y')
 
       .fr-table__footer
         .fr-table__footer--start

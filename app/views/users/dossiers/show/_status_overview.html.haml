@@ -60,7 +60,7 @@
             = render Dsfr::CalloutComponent.new(title: t(dossier.procedure.sva_svr_configuration.decision, scope: "views.users.dossiers.show.status_overview.delay_title")) do |c|
               - c.with_body do
                 %p
-                  = t('views.users.dossiers.show.status_overview.delay_text_sva_svr', date: l(dossier.sva_svr_decision_on, format: :long))
+                  = t('views.users.dossiers.show.status_overview.delay_text_sva_svr', date: DateFormatHelper.long(dossier.sva_svr_decision_on))
 
           = render Procedure::EstimatedDelayComponent.new(procedure: dossier.procedure)
 

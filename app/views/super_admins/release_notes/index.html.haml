@@ -20,7 +20,7 @@
           %tbody
             - @release_notes.each do |note|
               %tr
-                %td= l(note.released_on) if note.released_on
+                %td= DateFormatHelper.long(note.released_on) if note.released_on
                 %td
                   - if note.published?
                     %span.fr-badge.fr-badge--success.fr-badge--no-icon Publié

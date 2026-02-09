@@ -57,10 +57,10 @@ class Instructeurs::CellComponent < ApplicationComponent
       format_enums(column: @column, raw_values: raw_value)
     when :date
       raw_value = Date.parse(raw_value) if raw_value.is_a?(String)
-      I18n.l(raw_value, format: :short)
+      DateFormatHelper.short(raw_value)
     when :datetime
       raw_value = DateTime.parse(raw_value) if raw_value.is_a?(String)
-      I18n.l(raw_value, format: :short_with_time)
+      DateFormatHelper.short_with_time(raw_value)
     else
       # Escape if it's a string and not already safe
       raw_value.html_safe? ? raw_value : html_escape(raw_value.to_s)

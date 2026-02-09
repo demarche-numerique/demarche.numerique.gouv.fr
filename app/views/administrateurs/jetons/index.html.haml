@@ -36,10 +36,10 @@
                   %td
                     - if @procedure.api_entreprise_token&.expired_or_expires_soon?
                       .fr-badge.fr-badge--error
-                        = l(@procedure.api_entreprise_token.expires_at.to_date, format: :long)
+                        = DateFormatHelper.long(@procedure.api_entreprise_token.expires_at)
                     - else
                       .fr-badge.fr-badge--success
-                        = l(@procedure.api_entreprise_token.expires_at.to_date, format: :long)
+                        = DateFormatHelper.long(@procedure.api_entreprise_token.expires_at)
                   %td.change
 
                     = link_to 'Modifier',

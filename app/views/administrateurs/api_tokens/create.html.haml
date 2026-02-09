@@ -48,7 +48,7 @@
     %li
       %strong Date de fin de validité :
       - if @api_token.expires_at.present?
-        %span= l(@api_token.expires_at, format: :long)
+        %span= DateFormatHelper.long(@api_token.expires_at)
       - else
         %span aucune
 

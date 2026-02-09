@@ -140,7 +140,7 @@ class Dossiers::MessageComponent < ApplicationComponent
   end
 
   def commentaire_date
-    I18n.l(commentaire.created_at, format: :messagerie_date)
+    DateFormatHelper.messagerie_date(commentaire.created_at)
   end
 
   def delete_url

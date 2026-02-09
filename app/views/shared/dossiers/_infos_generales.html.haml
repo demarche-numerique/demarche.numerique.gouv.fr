@@ -1,22 +1,22 @@
 .fr-px-2w.fr-mb-4w
   .fr-my-2w
     %ul
-      %li= t(:submitted_at, scope: [:views, :shared, :dossiers, :form], datetime: l(dossier.depose_at, format: :long_with_time))
+      %li= t(:submitted_at, scope: [:views, :shared, :dossiers, :form], datetime: DateFormatHelper.long_with_time(dossier.depose_at))
       - if dossier.last_champ_updated_at.present? && dossier.last_champ_updated_at > dossier.depose_at
-        %li= t(:user_updated_at, scope: [:views, :shared, :dossiers, :form], datetime: l(dossier.last_champ_updated_at, format: :long_with_time))
+        %li= t(:user_updated_at, scope: [:views, :shared, :dossiers, :form], datetime: DateFormatHelper.long_with_time(dossier.last_champ_updated_at))
       - if dossier.last_champ_instructeur_updated_at.present?
-        %li= t(:instructeur_updated_at, scope: [:views, :shared, :dossiers, :form], datetime: l(dossier.last_champ_instructeur_updated_at, format: :long_with_time))
+        %li= t(:instructeur_updated_at, scope: [:views, :shared, :dossiers, :form], datetime: DateFormatHelper.long_with_time(dossier.last_champ_instructeur_updated_at))
       - if dossier.en_instruction_at.present?
-        %li= t(:switched_to_instruction_at, scope: [:views, :shared, :dossiers, :form], datetime: l(dossier.en_instruction_at, format: :long_with_time))
+        %li= t(:switched_to_instruction_at, scope: [:views, :shared, :dossiers, :form], datetime: DateFormatHelper.long_with_time(dossier.en_instruction_at))
       - if dossier.pending_correction?
-        %li= t(:revert_to_submitted_at, scope: [:views, :shared, :dossiers, :form], datetime: l(dossier.pending_correction.created_at, format: :long_with_time))
+        %li= t(:revert_to_submitted_at, scope: [:views, :shared, :dossiers, :form], datetime: DateFormatHelper.long_with_time(dossier.pending_correction.created_at))
       - if dossier.termine?
         - if dossier.accepte?
-          %li= t(:acceptee_at, scope: [:views, :shared, :dossiers, :form], datetime: l(dossier.processed_at, format: :long_with_time))
+          %li= t(:acceptee_at, scope: [:views, :shared, :dossiers, :form], datetime: DateFormatHelper.long_with_time(dossier.processed_at))
         - if dossier.refuse?
-          %li= t(:refuse_at, scope: [:views, :shared, :dossiers, :form], datetime: l(dossier.processed_at, format: :long_with_time))
+          %li= t(:refuse_at, scope: [:views, :shared, :dossiers, :form], datetime: DateFormatHelper.long_with_time(dossier.processed_at))
         - if dossier.sans_suite?
-          %li= t(:closed_at, scope: [:views, :shared, :dossiers, :form], datetime: l(dossier.processed_at, format: :long_with_time))
+          %li= t(:closed_at, scope: [:views, :shared, :dossiers, :form], datetime: DateFormatHelper.long_with_time(dossier.processed_at))
 
     .fr-highlight
       %p.fr-text--sm.fr-text-mention--grey= t('views.shared.dossiers.demande.en_construction_notice')

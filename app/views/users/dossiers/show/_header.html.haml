@@ -4,7 +4,7 @@
       %span.fr-h2
         = t('views.users.dossiers.show.header.dossier_number', dossier_id: dossier.id)
         - if dossier.depose_at.present?
-          = t('views.users.dossiers.show.header.submit_date', date_du_dossier: I18n.l(dossier.depose_at, format: :long_with_time))
+          = t('views.users.dossiers.show.header.submit_date', date_du_dossier: DateFormatHelper.long_with_time(dossier.depose_at))
       %span.fr-text--lg
         = dossier.procedure.libelle
         = status_badge_user(dossier, 'super')

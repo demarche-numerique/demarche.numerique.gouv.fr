@@ -1,5 +1,5 @@
 .fr-mb-4w
-  %h3= l(notes[0].released_on, format: :long)
+  %h3= DateFormatHelper.long(notes[0].released_on)
 
   - notes.each do |note|
     .fr-mb-4w.fr-px-2w.fr-py-2w.fr-background-alt--grey{ data: { turbo: "false" } }

@@ -45,7 +45,7 @@
       = link_to "Modèle DS", all_admin_procedures_path(@filter.without(:template)), class: 'fr-tag fr-tag--dismiss fr-mb-1w'
   - if @filter.from_publication_date.present?
     .selected-from-publication-date.fr-mb-2w
-      = link_to "Depuis #{l(@filter.from_publication_date)}", all_admin_procedures_path(@filter.without(:from_publication_date)), class: 'fr-tag fr-tag--dismiss fr-mb-1w'
+      = link_to "Depuis #{DateFormatHelper.long(@filter.from_publication_date)}", all_admin_procedures_path(@filter.without(:from_publication_date)), class: 'fr-tag fr-tag--dismiss fr-mb-1w'
 
   .fr-table.fr-table--sm.fr-table--no-scroll.fr-table--bordered{ 'data-turbo': 'true', 'data-turbo-force': 'server' }
     .fr-table__wrapper

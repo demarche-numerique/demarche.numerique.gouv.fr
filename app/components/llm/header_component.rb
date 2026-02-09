@@ -16,7 +16,7 @@ module LLM
       if llm_rule_suggestion.queued?
         t('.queued')
       else
-        searched_at = I18n.l(llm_rule_suggestion.created_at, format: :human)
+        searched_at = DateFormatHelper.human(llm_rule_suggestion.created_at)
         t('.last_refresh', searched_at:)
       end
     end

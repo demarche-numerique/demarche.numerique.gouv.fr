@@ -9,7 +9,7 @@
 %p
   Ce lien est
   %b valable pendant une semaine
-  (jusqu’au #{l(@valid_until, format: :human)})
+  (jusqu'au #{DateFormatHelper.human(@valid_until)})
   et peut-être réutilisé
   %b plusieurs fois.
 

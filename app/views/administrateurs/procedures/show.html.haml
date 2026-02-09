@@ -78,7 +78,7 @@
           %p
             = "Plus d’informations dans la #{link_to('page de fermeture', closing_details_path(@procedure.path))}, visible par les usagers."
         - if @procedure.closing_notification_brouillon? || @procedure.closing_notification_en_cours?
-          = "Un email a été envoyé pour informer les usagers le #{ l(@procedure.closed_at.to_date, format: :long) }"
+          = "Un email a été envoyé pour informer les usagers le #{ DateFormatHelper.long(@procedure.closed_at) }"
 
 .fr-container
   %h2= "Gestion de la démarche № #{number_with_html_delimiter(@procedure.id)}"

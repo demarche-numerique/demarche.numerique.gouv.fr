@@ -17,9 +17,9 @@
       %div
         %h2.fr-card__title
           - if current_revision.administrateur.present?
-            = t('instructeurs.dossiers.header.banner.history.modification_published_at_and_by', date: l(current_revision.published_at, format: :long_with_time), email: current_revision.administrateur.email)
+            = t('instructeurs.dossiers.header.banner.history.modification_published_at_and_by', date: DateFormatHelper.long_with_time(current_revision.published_at), email: current_revision.administrateur.email)
           - else
-            = t('instructeurs.dossiers.header.banner.history.modification_published_at', date: l(current_revision.published_at, format: :long_with_time))
+            = t('instructeurs.dossiers.header.banner.history.modification_published_at', date: DateFormatHelper.long_with_time(current_revision.published_at))
           - if current_revision.id > @instructeur_procedure.last_revision_seen_id.to_i
             %span.fr-badge.fr-badge--sm.fr-badge--new= t('instructeurs.dossiers.header.banner.history.new')
       %div

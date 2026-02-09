@@ -3,7 +3,7 @@
   %ul.tab-list
     - manual_assignments.each do |assignment|
       %li
-        - assigned_at = l(assignment.assigned_at, format: :long_with_time)
+        - assigned_at = DateFormatHelper.long_with_time(assignment.assigned_at)
         - assigned_by = assignment.assigned_by
         - if assigned_by.present?
           = "Le #{assigned_at}, #{assigned_by} a réaffecté ce dossier du groupe « #{assignment.previous_groupe_instructeur_label} » au groupe « #{assignment.groupe_instructeur_label} »"

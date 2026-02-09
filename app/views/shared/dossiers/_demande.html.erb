@@ -16,7 +16,7 @@
         <%= t('views.shared.dossiers.demande.accuse_lecture') %>
 
         <% if dossier.accuse_lecture_agreement_at.present? %>
-          <%= t('views.shared.dossiers.demande.accuse_lecture_with_agreement', agreement: l(dossier.accuse_lecture_agreement_at, format: :long)) %>
+          <%= t('views.shared.dossiers.demande.accuse_lecture_with_agreement', agreement: DateFormatHelper.long(dossier.accuse_lecture_agreement_at)) %>
         <% else %>
           <%= t('views.shared.dossiers.demande.accuse_lecture_without_agreement') %>
         <% end %>

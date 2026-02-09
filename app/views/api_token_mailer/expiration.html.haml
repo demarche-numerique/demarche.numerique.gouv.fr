@@ -6,7 +6,7 @@
 %p Vous recevez ce courriel car vous êtes le propriétaire du jeton « #{@api_token.name} ».
 
 %p
-  %strong Ce jeton expirera le #{l(@api_token.expires_at, format: :long)}.
+  %strong Ce jeton expirera le #{DateFormatHelper.long(@api_token.expires_at)}.
   %br
   L’accès à l’API de #{APPLICATION_NAME} sera alors bloqué pour ce jeton.
 

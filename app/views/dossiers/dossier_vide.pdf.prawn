@@ -79,7 +79,7 @@ def add_procedure(pdf, procedure)
 end
 
 def format_date(date)
-  I18n.l(date, format: :message_date_with_year)
+  DateFormatHelper.message_date_with_year(date)
 end
 
 def add_identite_individual(pdf)

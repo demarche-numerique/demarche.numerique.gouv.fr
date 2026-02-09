@@ -17,7 +17,7 @@
 
             %tr
               %td
-                = I18n.l(date, format: :month_year).capitalize
+                = DateFormatHelper.month_year(date).capitalize
               %td.fr-cell--right.fr-cell--numeric
                 = count
               %td.fr-cell--right

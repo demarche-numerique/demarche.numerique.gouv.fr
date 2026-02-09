@@ -99,7 +99,7 @@ class LLM::ImproveTypesItemComponent < LLM::SuggestionItemComponent
   def format_date(date_string)
     return nil if date_string.blank?
 
-    I18n.l(Date.parse(date_string))
+    DateFormatHelper.long(Date.parse(date_string))
   rescue ArgumentError
     date_string
   end
