@@ -104,15 +104,31 @@ module ApplicationHelper
   end
 
   def try_format_date(date)
-    date.present? ? I18n.l(date, format: :long) : ''
+    date.present? ? DateFormatHelper.long(date) : ''
   end
 
   def try_format_datetime(datetime, format: nil)
-    datetime.present? ? I18n.l(datetime, format:) : ''
+    return '' if datetime.blank?
+
+    case format
+    when :long then DateFormatHelper.long(datetime)
+    when :long_with_time then DateFormatHelper.long_with_time(datetime)
+    when :short then DateFormatHelper.short(datetime)
+    when :short_with_time then DateFormatHelper.short_with_time(datetime)
+    when :messagerie_date then DateFormatHelper.messagerie_date(datetime)
+    when :human then DateFormatHelper.human(datetime)
+    when :dashed then DateFormatHelper.dashed(datetime)
+    when :month_year then DateFormatHelper.month_year(datetime)
+    when :day_month_short then DateFormatHelper.day_month_short(datetime)
+    when :message_date_without_time then DateFormatHelper.message_date_without_time(datetime)
+    when :long_with_time_and_timezone then DateFormatHelper.long_with_time_and_timezone(datetime)
+    when :veryshort then DateFormatHelper.veryshort(datetime)
+    else DateFormatHelper.long(datetime)
+    end
   end
 
   def try_parse_format_date(date)
-    date.then { Date.parse(_1) rescue nil }&.then { I18n.l(_1) }
+    date.then { Date.parse(_1) rescue nil }&.then { DateFormatHelper.long(_1) }
   end
 
   def try_format_mois_effectif(etablissement)
@@ -134,7 +150,7 @@ module ApplicationHelper
     when (today - 6)..(today - 2)
       I18n.t('dates.days_ago', count: (today - date).to_i)
     else
-      I18n.l(date, format: :long)
+      DateFormatHelper.long(date)
     end
   end
 

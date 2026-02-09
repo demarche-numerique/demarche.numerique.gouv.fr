@@ -23,7 +23,7 @@ module ProcedureHelper
   end
 
   def procedure_auto_archive_date(procedure)
-    I18n.l(procedure.auto_archive_on - 1.day, format: :long)
+    DateFormatHelper.long(procedure.auto_archive_on - 1.day)
   end
 
   def procedure_auto_archive_time(procedure)
