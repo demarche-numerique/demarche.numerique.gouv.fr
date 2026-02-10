@@ -26,45 +26,31 @@ module Maintenance
       context "when pj is a classical format image" do
         let(:file) { fixture_file_upload('spec/fixtures/files/logo_test_procedure.png', 'image/png') }
 
-        it "creates a variant" do
-          expect(attachment.variant(resize_to_limit: [400, 400]).key).to be_nil
-          expect { subject }.to change { ActiveStorage::VariantRecord.count }.by(1)
-          expect(attachment.variant(resize_to_limit: [400, 400]).key).not_to be_nil
-          expect(attachment.variant(resize_to_limit: [2000, 2000]).key).to be_nil
+        it "enqueues a CreateVariantJob" do
+          expect { subject }.to have_enqueued_job(CreateVariantJob).with(attachment.id, file_type: '')
         end
 
         context "when file_type is 'pdf'" do
           let(:file_type) { 'pdf' }
 
-          it "skips image attachments" do
-            expect { subject }.not_to change { ActiveStorage::VariantRecord.count }
+          it "enqueues a CreateVariantJob with the file_type" do
+            expect { subject }.to have_enqueued_job(CreateVariantJob).with(attachment.id, file_type: 'pdf')
           end
         end
       end
 
-      context "when pj is a rare format image" do
-        let(:file) { fixture_file_upload('spec/fixtures/files/pencil.tiff', 'image/tiff') }
-
-        it "creates two variants" do
-          expect(attachment.variant(resize_to_limit: [400, 400]).key).to be_nil
-          expect { subject }.to change { ActiveStorage::VariantRecord.count }.by(2)
-          expect(attachment.variant(resize_to_limit: [400, 400]).key).not_to be_nil
-          expect(attachment.variant(resize_to_limit: [2000, 2000]).key).not_to be_nil
-        end
-      end
-
-      context "when pj is a pdf", :external_deps do
+      context "when pj is a pdf" do
         let(:file) { fixture_file_upload('spec/fixtures/files/piece_justificative_0.pdf', 'application/pdf') }
 
-        it "creates a representation" do
-          expect { subject }.to change { ActiveStorage::VariantRecord.count }.by(1)
+        it "enqueues a CreateVariantJob" do
+          expect { subject }.to have_enqueued_job(CreateVariantJob).with(attachment.id, file_type: '')
         end
 
         context "when file_type is 'image'" do
           let(:file_type) { 'image' }
 
-          it "skips pdf attachments" do
-            expect { subject }.not_to change { ActiveStorage::VariantRecord.count }
+          it "enqueues a CreateVariantJob with the file_type" do
+            expect { subject }.to have_enqueued_job(CreateVariantJob).with(attachment.id, file_type: 'image')
           end
         end
       end

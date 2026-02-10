@@ -30,37 +30,11 @@ module Maintenance
         .where(type: ["Champs::PieceJustificativeChamp", 'Champs::TitreIdentiteChamp'])
         .ids
 
-      attachments = ActiveStorage::Attachment
+      ActiveStorage::Attachment
         .where(record_id: champ_ids)
-
-      attachments.each do |attachment|
-        next if !attachment.representable? || !attachment.representation_required?
-        next if skip_attachment?(attachment)
-
-        if attachment.variable?
-          attachment.variant(resize_to_limit: [400, 400]).processed if attachment.variant(resize_to_limit: [400, 400]).key.nil?
-          if attachment.blob.content_type.in?(RARE_IMAGE_TYPES) && attachment.variant(resize_to_limit: [2000, 2000]).key.nil?
-            attachment.variant(resize_to_limit: [2000, 2000]).processed
-          end
-        elsif attachment.previewable?
-          attachment.representation(resize_to_limit: [400, 400]).processed
+        .find_each do |attachment|
+          CreateVariantJob.perform_later(attachment.id, file_type:)
         end
-      rescue MiniMagick::Error, ActiveStorage::Error
-      end
-    end
-
-    private
-
-    def skip_attachment?(attachment)
-      content_type = attachment.blob.content_type
-      case file_type
-      when 'image'
-        !content_type.in?(AUTHORIZED_IMAGE_TYPES)
-      when 'pdf'
-        !content_type.in?(AUTHORIZED_PDF_TYPES)
-      else
-        false
-      end
     end
   end
 end
