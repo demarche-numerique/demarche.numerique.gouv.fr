@@ -1,17 +1,15 @@
 # frozen_string_literal: true
 
 describe Instructeur, type: :model do
-  let(:admin) { create :administrateur }
-  let(:procedure) { create :procedure, :published, administrateur: admin }
-  let(:procedure_2) { create :procedure, :published, administrateur: admin }
-  let(:procedure_3) { create :procedure, :published, administrateur: admin }
-  let(:instructeur) { create :instructeur, administrateurs: [admin] }
-  let(:procedure_assign) { assign(procedure) }
+  let_it_be(:admin) { create :administrateur }
+  let_it_be(:procedure) { create :procedure, :published, administrateur: admin }
+  let_it_be(:procedure_2) { create :procedure, :published, administrateur: admin }
+  let_it_be(:procedure_3) { create :procedure, :published, administrateur: admin }
+  let_it_be(:instructeur, reload: true) { create :instructeur, administrateurs: [admin] }
+  let_it_be(:procedure_assign) { assign(procedure) }
 
-  before do
-    procedure_assign
+  before_all do
     assign(procedure_2)
-    procedure_3
   end
 
   describe 'associations' do
@@ -301,7 +299,7 @@ describe Instructeur, type: :model do
   end
 
   describe '#daily_email_summary_data' do
-    let(:instructeur) { create(:instructeur) }
+    let_it_be(:instructeur) { create(:instructeur) }
     let!(:groupe_instructeur) { create(:groupe_instructeur, procedure:, instructeurs: [instructeur]) }
     let(:procedure) { create(:procedure, :published) }
     let!(:instructeur_procedure) { create(:instructeurs_procedure, instructeur:, procedure:, daily_email_summary: true) }
@@ -444,12 +442,12 @@ describe Instructeur, type: :model do
   end
 
   describe "#dossiers_count_summary" do
-    let(:instructeur_2) { create(:instructeur) }
-    let(:instructeur_3) { create(:instructeur) }
-    let(:procedure) { create(:procedure, instructeurs: [instructeur_2, instructeur_3], procedure_expires_when_termine_enabled: true) }
-    let(:gi_1) { procedure.defaut_groupe_instructeur }
-    let(:gi_2) { create(:groupe_instructeur, label: '2', procedure: procedure) }
-    let(:gi_3) { create(:groupe_instructeur, label: '3', procedure: procedure) }
+    let_it_be(:instructeur_2, reload: true) { create(:instructeur) }
+    let_it_be(:instructeur_3) { create(:instructeur) }
+    let_it_be(:procedure, reload: true) { create(:procedure, instructeurs: [instructeur_2, instructeur_3], procedure_expires_when_termine_enabled: true) }
+    let_it_be(:gi_1) { procedure.defaut_groupe_instructeur }
+    let_it_be(:gi_2) { create(:groupe_instructeur, label: '2', procedure: procedure) }
+    let_it_be(:gi_3) { create(:groupe_instructeur, label: '3', procedure: procedure) }
 
     subject do
       instructeur_2.dossiers_count_summary([gi_1.id, gi_2.id])
@@ -641,8 +639,8 @@ describe Instructeur, type: :model do
   end
 
   describe '#merge' do
-    let(:old_instructeur) { create(:instructeur) }
-    let(:new_instructeur) { create(:instructeur) }
+    let_it_be(:old_instructeur, reload: true) { create(:instructeur) }
+    let_it_be(:new_instructeur, reload: true) { create(:instructeur) }
 
     subject { new_instructeur.merge(old_instructeur) }
 

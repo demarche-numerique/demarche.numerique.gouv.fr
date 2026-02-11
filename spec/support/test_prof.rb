@@ -2,3 +2,7 @@
 
 require 'test_prof/recipes/rspec/let_it_be'
 require 'test_prof/recipes/rspec/before_all'
+
+TestProf::BeforeAll.configure do |config|
+  config.setup_fixtures = true
+end
