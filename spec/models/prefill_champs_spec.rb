@@ -64,84 +64,61 @@ RSpec.describe PrefillChamps do
       end
     end
 
-    shared_examples "a champ public value that is authorized" do |type_de_champ_type, value|
-      context "when the type de champ is authorized (#{type_de_champ_type})" do
-        let(:types_de_champ_public) { [{ type: type_de_champ_type }.merge(additional_tdc_opts)] }
+    context "when the public type de champ is authorized" do
+      let_it_be(:procedure) do
+        ref = create(:api_referentiel, :exact_match)
+        create(:procedure, :published, types_de_champ_public: [
+          { type: :text }, { type: :textarea }, { type: :decimal_number },
+          { type: :integer_number }, { type: :email }, { type: :phone },
+          { type: :iban }, { type: :civilite }, { type: :pays },
+          { type: :regions }, { type: :date }, { type: :datetime },
+          { type: :yes_no }, { type: :checkbox }, { type: :drop_down_list },
+          { type: :departements }, { type: :communes }, { type: :address },
+          { type: :multiple_drop_down_list }, { type: :dossier_link },
+          { type: :epci }, { type: :siret },
+          { type: :referentiel, referentiel: ref }
+        ])
+      end
+      let_it_be(:dossier, reload: true) { create(:dossier, :brouillon, procedure:) }
+      let_it_be(:linked_dossier) { create(:dossier, :en_construction, procedure:) }
 
-        let(:additional_tdc_opts) do
-          case type_de_champ_type
-          when :referentiel
-            { referentiel: create(:api_referentiel, :exact_match) }
-          else
-            {}
-          end
-        end
-
-        let(:type_de_champ) { procedure.published_revision.types_de_champ_public.first }
-        let(:champ) { find_champ_by_stable_id(dossier, type_de_champ.stable_id) }
-        let(:champ_value) { value == 'linked_dossier_id' ? linked_dossier.id : value }
-
-        let(:params) { { "champ_#{type_de_champ.to_typed_id_for_query}" => champ_value } }
-
-        it "builds an array of hash matching the given params", :slow do
-          expect(prefill_champs_array).to match([{ id: champ.id }.merge(attributes(champ, champ_value))])
+      [
+        [:text, "value"],
+        [:textarea, "value"],
+        [:decimal_number, "3.14"],
+        [:integer_number, "42"],
+        [:email, "value"],
+        [:phone, "value"],
+        [:iban, "value"],
+        [:civilite, "M."],
+        [:pays, "FR"],
+        [:regions, "03"],
+        [:date, "2022-12-22"],
+        [:datetime, "2022-12-22T10:30"],
+        [:yes_no, "true"],
+        [:yes_no, "false"],
+        [:checkbox, "true"],
+        [:checkbox, "false"],
+        [:drop_down_list, "value"],
+        [:departements, "03"],
+        [:communes, ['01540', '01457']],
+        [:address, "20 avenue de Ségur 75007 Paris"],
+        [:multiple_drop_down_list, ["val1", "val2"]],
+        [:dossier_link, :linked_dossier_id],
+        [:epci, ['01', '200042935']],
+        [:siret, "13002526500013"],
+        [:referentiel, "13002526500013"]
+      ].each do |type, value|
+        it "builds correct prefill for #{type} (#{value})", :slow do
+          tdc = procedure.published_revision.types_de_champ_public.find { _1.type_champ == type.to_s }
+          champ = find_champ_by_stable_id(dossier, tdc.stable_id)
+          champ_value = value == :linked_dossier_id ? linked_dossier.id : value
+          params = { "champ_#{tdc.to_typed_id_for_query}" => champ_value }
+          result = described_class.new(dossier, params).to_a
+          expect(result).to match([{ id: champ.id }.merge(attributes(champ, champ_value))])
         end
       end
     end
-
-    shared_examples "a champ private value that is authorized" do |type_de_champ_type, value|
-      context "when the type de champ is authorized (#{type_de_champ_type})" do
-        let(:types_de_champ_private) { [{ type: type_de_champ_type }] }
-        let(:type_de_champ) { procedure.published_revision.types_de_champ_private.first }
-        let(:champ) { find_champ_by_stable_id(dossier, type_de_champ.stable_id) }
-        let(:champ_value) { value == 'linked_dossier_id' ? linked_dossier.id : value }
-
-        let(:params) { { "champ_#{type_de_champ.to_typed_id_for_query}" => champ_value } }
-
-        it "builds an array of hash matching the given params", :slow do
-          expect(prefill_champs_array).to match([{ id: champ.id }.merge(attributes(champ, champ_value))])
-        end
-      end
-    end
-
-    shared_examples "a champ public value that is unauthorized" do |type_de_champ_type, value|
-      let(:types_de_champ_public) { [{ type: type_de_champ_type }] }
-      let(:type_de_champ) { procedure.published_revision.types_de_champ_public.first }
-
-      let(:params) { { "champ_#{type_de_champ.to_typed_id_for_query}" => value } }
-
-      context "when the type de champ is unauthorized (#{type_de_champ_type})" do
-        it "filters out the param" do
-          expect(prefill_champs_array).to match([])
-        end
-      end
-    end
-
-    it_behaves_like "a champ public value that is authorized", :text, "value"
-    it_behaves_like "a champ public value that is authorized", :textarea, "value"
-    it_behaves_like "a champ public value that is authorized", :decimal_number, "3.14"
-    it_behaves_like "a champ public value that is authorized", :integer_number, "42"
-    it_behaves_like "a champ public value that is authorized", :email, "value"
-    it_behaves_like "a champ public value that is authorized", :phone, "value"
-    it_behaves_like "a champ public value that is authorized", :iban, "value"
-    it_behaves_like "a champ public value that is authorized", :civilite, "M."
-    it_behaves_like "a champ public value that is authorized", :pays, "FR"
-    it_behaves_like "a champ public value that is authorized", :regions, "03"
-    it_behaves_like "a champ public value that is authorized", :date, "2022-12-22"
-    it_behaves_like "a champ public value that is authorized", :datetime, "2022-12-22T10:30"
-    it_behaves_like "a champ public value that is authorized", :yes_no, "true"
-    it_behaves_like "a champ public value that is authorized", :yes_no, "false"
-    it_behaves_like "a champ public value that is authorized", :checkbox, "true"
-    it_behaves_like "a champ public value that is authorized", :checkbox, "false"
-    it_behaves_like "a champ public value that is authorized", :drop_down_list, "value"
-    it_behaves_like "a champ public value that is authorized", :departements, "03"
-    it_behaves_like "a champ public value that is authorized", :communes, ['01540', '01457']
-    it_behaves_like "a champ public value that is authorized", :address, "20 avenue de Ségur 75007 Paris"
-    it_behaves_like "a champ public value that is authorized", :multiple_drop_down_list, ["val1", "val2"]
-    it_behaves_like "a champ public value that is authorized", :dossier_link, 'linked_dossier_id'
-    it_behaves_like "a champ public value that is authorized", :epci, ['01', '200042935']
-    it_behaves_like "a champ public value that is authorized", :siret, "13002526500013"
-    it_behaves_like "a champ public value that is authorized", :referentiel, "13002526500013"
 
     context "when the public type de champ is authorized (repetition)" do
       let(:types_de_champ_public) { [{ type: :repetition, children: [{ type: :text }] }] }
@@ -158,31 +135,59 @@ RSpec.describe PrefillChamps do
       end
     end
 
-    it_behaves_like "a champ private value that is authorized", :text, "value"
-    it_behaves_like "a champ private value that is authorized", :textarea, "value"
-    it_behaves_like "a champ private value that is authorized", :decimal_number, "3.14"
-    it_behaves_like "a champ private value that is authorized", :integer_number, "42"
-    it_behaves_like "a champ private value that is authorized", :email, "value"
-    it_behaves_like "a champ private value that is authorized", :phone, "value"
-    it_behaves_like "a champ private value that is authorized", :iban, "value"
-    it_behaves_like "a champ private value that is authorized", :civilite, "M."
-    it_behaves_like "a champ private value that is authorized", :pays, "FR"
-    it_behaves_like "a champ private value that is authorized", :regions, "93"
-    it_behaves_like "a champ private value that is authorized", :date, "2022-12-22"
-    it_behaves_like "a champ private value that is authorized", :datetime, "2022-12-22T10:30"
-    it_behaves_like "a champ private value that is authorized", :yes_no, "true"
-    it_behaves_like "a champ private value that is authorized", :yes_no, "false"
-    it_behaves_like "a champ private value that is authorized", :checkbox, "true"
-    it_behaves_like "a champ private value that is authorized", :checkbox, "false"
-    it_behaves_like "a champ private value that is authorized", :drop_down_list, "value"
-    it_behaves_like "a champ private value that is authorized", :regions, "93"
-    it_behaves_like "a champ private value that is authorized", :siret, "13002526500013"
-    it_behaves_like "a champ private value that is authorized", :departements, "03"
-    it_behaves_like "a champ private value that is authorized", :communes, ['01540', '01457']
-    it_behaves_like "a champ private value that is authorized", :address, "20 avenue de Ségur 75007 Paris"
-    it_behaves_like "a champ private value that is authorized", :multiple_drop_down_list, ["val1", "val2"]
-    it_behaves_like "a champ private value that is authorized", :dossier_link, 'linked_dossier_id'
-    it_behaves_like "a champ private value that is authorized", :epci, ['01', '200042935']
+    context "when the private type de champ is authorized" do
+      let_it_be(:procedure) do
+        create(:procedure, :published, types_de_champ_private: [
+          { type: :text }, { type: :textarea }, { type: :decimal_number },
+          { type: :integer_number }, { type: :email }, { type: :phone },
+          { type: :iban }, { type: :civilite }, { type: :pays },
+          { type: :regions }, { type: :date }, { type: :datetime },
+          { type: :yes_no }, { type: :checkbox }, { type: :drop_down_list },
+          { type: :departements }, { type: :communes }, { type: :address },
+          { type: :multiple_drop_down_list }, { type: :dossier_link },
+          { type: :epci }, { type: :siret }
+        ])
+      end
+      let_it_be(:dossier, reload: true) { create(:dossier, :brouillon, procedure:) }
+      let_it_be(:linked_dossier) { create(:dossier, :en_construction, procedure:) }
+
+      [
+        [:text, "value"],
+        [:textarea, "value"],
+        [:decimal_number, "3.14"],
+        [:integer_number, "42"],
+        [:email, "value"],
+        [:phone, "value"],
+        [:iban, "value"],
+        [:civilite, "M."],
+        [:pays, "FR"],
+        [:regions, "93"],
+        [:date, "2022-12-22"],
+        [:datetime, "2022-12-22T10:30"],
+        [:yes_no, "true"],
+        [:yes_no, "false"],
+        [:checkbox, "true"],
+        [:checkbox, "false"],
+        [:drop_down_list, "value"],
+        [:regions, "93"],
+        [:siret, "13002526500013"],
+        [:departements, "03"],
+        [:communes, ['01540', '01457']],
+        [:address, "20 avenue de Ségur 75007 Paris"],
+        [:multiple_drop_down_list, ["val1", "val2"]],
+        [:dossier_link, :linked_dossier_id],
+        [:epci, ['01', '200042935']]
+      ].each do |type, value|
+        it "builds correct prefill for #{type} (#{value})", :slow do
+          tdc = procedure.published_revision.types_de_champ_private.find { _1.type_champ == type.to_s }
+          champ = find_champ_by_stable_id(dossier, tdc.stable_id)
+          champ_value = value == :linked_dossier_id ? linked_dossier.id : value
+          params = { "champ_#{tdc.to_typed_id_for_query}" => champ_value }
+          result = described_class.new(dossier, params).to_a
+          expect(result).to match([{ id: champ.id }.merge(attributes(champ, champ_value))])
+        end
+      end
+    end
 
     context "when the private type de champ is authorized (repetition)" do
       let(:types_de_champ_private) { [{ type: :repetition, children: [{ type: :text }] }] }
@@ -199,30 +204,51 @@ RSpec.describe PrefillChamps do
       end
     end
 
-    it_behaves_like "a champ public value that is unauthorized", :decimal_number, "non decimal string"
-    it_behaves_like "a champ public value that is unauthorized", :integer_number, "non integer string"
-    it_behaves_like "a champ public value that is unauthorized", :number, "value"
-    it_behaves_like "a champ public value that is unauthorized", :dossier_link, "value"
-    it_behaves_like "a champ public value that is unauthorized", :titre_identite, "value"
-    it_behaves_like "a champ public value that is unauthorized", :civilite, "value"
-    it_behaves_like "a champ public value that is unauthorized", :date, "value"
-    # Does not care because it's going to be normalized anyway
-    # it_behaves_like "a champ public value that is unauthorized", :datetime, "value"
-    # it_behaves_like "a champ public value that is unauthorized", :datetime, "12-22-2022T10:30"
-    it_behaves_like "a champ public value that is unauthorized", :linked_drop_down_list, "value"
-    it_behaves_like "a champ public value that is unauthorized", :header_section, "value"
-    it_behaves_like "a champ public value that is unauthorized", :explication, "value"
-    it_behaves_like "a champ public value that is unauthorized", :piece_justificative, "value"
-    it_behaves_like "a champ public value that is unauthorized", :cnaf, "value"
-    it_behaves_like "a champ public value that is unauthorized", :dgfip, "value"
-    it_behaves_like "a champ public value that is unauthorized", :pole_emploi, "value"
-    it_behaves_like "a champ public value that is unauthorized", :mesri, "value"
-    it_behaves_like "a champ public value that is unauthorized", :carte, "value"
-    it_behaves_like "a champ public value that is unauthorized", :pays, "value"
-    it_behaves_like "a champ public value that is unauthorized", :regions, "value"
-    it_behaves_like "a champ public value that is unauthorized", :departements, "value"
-    it_behaves_like "a champ public value that is unauthorized", :communes, "value"
-    it_behaves_like "a champ public value that is unauthorized", :multiple_drop_down_list, ["value"]
+    context "when the public type de champ is unauthorized" do
+      let_it_be(:procedure) do
+        create(:procedure, :published, types_de_champ_public: [
+          { type: :decimal_number }, { type: :integer_number }, { type: :number },
+          { type: :dossier_link }, { type: :titre_identite }, { type: :civilite },
+          { type: :date }, { type: :linked_drop_down_list }, { type: :header_section },
+          { type: :explication }, { type: :piece_justificative }, { type: :cnaf },
+          { type: :dgfip }, { type: :pole_emploi }, { type: :mesri },
+          { type: :carte }, { type: :pays }, { type: :regions },
+          { type: :departements }, { type: :communes }, { type: :multiple_drop_down_list }
+        ])
+      end
+      let_it_be(:dossier, reload: true) { create(:dossier, :brouillon, procedure:) }
+
+      [
+        [:decimal_number, "non decimal string"],
+        [:integer_number, "non integer string"],
+        [:number, "value"],
+        [:dossier_link, "value"],
+        [:titre_identite, "value"],
+        [:civilite, "value"],
+        [:date, "value"],
+        [:linked_drop_down_list, "value"],
+        [:header_section, "value"],
+        [:explication, "value"],
+        [:piece_justificative, "value"],
+        [:cnaf, "value"],
+        [:dgfip, "value"],
+        [:pole_emploi, "value"],
+        [:mesri, "value"],
+        [:carte, "value"],
+        [:pays, "value"],
+        [:regions, "value"],
+        [:departements, "value"],
+        [:communes, "value"],
+        [:multiple_drop_down_list, ["value"]]
+      ].each do |type, value|
+        it "filters out unauthorized #{type}" do
+          tdc = procedure.published_revision.types_de_champ_public.find { _1.type_champ == type.to_s }
+          params = { "champ_#{tdc.to_typed_id_for_query}" => value }
+          result = described_class.new(dossier, params).to_a
+          expect(result).to match([])
+        end
+      end
+    end
 
     context "when the public type de champ is unauthorized because of wrong value format (repetition)" do
       let(:types_de_champ_public) { [{ type: :repetition, children: [{ type: :text }] }] }
