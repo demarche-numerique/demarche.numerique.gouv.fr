@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'rake'
+TPS::Application.load_tasks if Rake::Task.tasks.empty?
+
 describe 'service tasks' do
   let(:rake_task) { Rake::Task[task] }
   subject { rake_task.invoke }

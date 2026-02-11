@@ -45,9 +45,6 @@ end
 
 ActiveJob::Base.queue_adapter = :test
 
-TPS::Application.load_tasks
-Rake.application.options.trace = false
-
 RSpec.configure do |config|
   # Since rspec 3.8.0, bisect uses fork to improve bisection speed.
   # This however fails as soon as we're running feature tests (which uses many processes).
@@ -82,8 +79,6 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
 
   config.before(:each) do
-    Rake.verbose false
-
     Typhoeus::Expectation.clear
 
     ActionMailer::Base.deliveries.clear

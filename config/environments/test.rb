@@ -11,7 +11,8 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # While tests run files are not watched, reloading is not necessary.
-  config.enable_reloading = ENV["DISABLE_SPRING"].blank? # Reloading must be enabled with spring
+  # Enable reloading only when Spring is actively running.
+  config.enable_reloading = defined?(Spring::Application)
 
   # Eager loading loads your entire application. When running a single test locally,
   # this is usually not necessary, and can slow down your test suite. However, it's
@@ -54,15 +55,14 @@ Rails.application.configure do
   # Tell Active Support which deprecation messages to disallow.
   config.active_support.disallowed_deprecation_warnings = []
 
-  # Highlight code that triggered database queries in logs.
-  config.active_record.verbose_query_logs = true
+  # Verbose query logs add caller backtraces to every SQL query. Opt-in via VERBOSE_QUERY_LOGS=1.
+  config.active_record.verbose_query_logs = ENV["VERBOSE_QUERY_LOGS"].present?
 
   # https://evilmartians.com/chronicles/the-whop-chop-how-we-cut-a-rails-test-suite-and-ci-time-in-half
-  if ENV["CI"].present?
-    config.active_record.verbose_query_logs = false
-    config.active_record.query_log_tags_enabled = false
-    config.log_level = :fatal
+  config.active_record.query_log_tags_enabled = false
+  config.log_level = ENV["CI"].present? ? :fatal : :warn
 
+  if ENV["CI"].present?
     config.assets.compile = false
   end
 

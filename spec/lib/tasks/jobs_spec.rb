@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'rake'
+TPS::Application.load_tasks if Rake::Task.tasks.empty?
+
 describe 'jobs' do
   describe 'schedule' do
     subject { Rake::Task['jobs:schedule'].invoke }
