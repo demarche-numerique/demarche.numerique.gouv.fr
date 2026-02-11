@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe Dossier, type: :model do
+describe Dossier, :group, type: :model do
   include ActionView::Helpers::SanitizeHelper
 
   let(:user) { create(:user) }
@@ -40,14 +40,14 @@ describe Dossier, type: :model do
     end
 
     describe 'by_statut' do
-      let(:procedure) { create(:procedure) }
-      let(:dossier_en_construction) { create(:dossier, :en_construction, procedure:) }
-      let(:dossier_en_instruction) { create(:dossier, :en_instruction, procedure:) }
-      let(:dossier_accepte) { create(:dossier, :accepte, procedure:) }
-      let(:dossier_refuse) { create(:dossier, :refuse, procedure:) }
-      let(:dossier_accepte_archive) { create(:dossier, :accepte, :archived, procedure:) }
-      let(:dossier_accepte_deleted) { create(:dossier, :accepte, :hidden_by_administration, procedure:) }
-      let(:dossier_accepte_archive_deleted) { create(:dossier, :accepte, :archived, :hidden_by_administration, procedure:) }
+      let_it_be(:procedure) { create(:procedure) }
+      let_it_be(:dossier_en_construction) { create(:dossier, :en_construction, procedure:) }
+      let_it_be(:dossier_en_instruction) { create(:dossier, :en_instruction, procedure:) }
+      let_it_be(:dossier_accepte) { create(:dossier, :accepte, procedure:) }
+      let_it_be(:dossier_refuse) { create(:dossier, :refuse, procedure:) }
+      let_it_be(:dossier_accepte_archive) { create(:dossier, :accepte, :archived, procedure:) }
+      let_it_be(:dossier_accepte_deleted) { create(:dossier, :accepte, :hidden_by_administration, procedure:) }
+      let_it_be(:dossier_accepte_archive_deleted) { create(:dossier, :accepte, :archived, :hidden_by_administration, procedure:) }
 
       let!(:dossiers) { [dossier_en_construction, dossier_en_instruction, dossier_accepte, dossier_refuse] }
 
@@ -565,13 +565,13 @@ describe Dossier, type: :model do
   end
 
   describe '#avis_for' do
-    let!(:instructeur) { create(:instructeur) }
-    let!(:procedure) { create(:procedure, :published, instructeurs: [instructeur]) }
-    let!(:dossier) { create(:dossier, procedure: procedure, state: Dossier.states.fetch(:en_construction)) }
-    let!(:experts_procedure) { create(:experts_procedure, expert: expert_1, procedure: procedure) }
-    let!(:experts_procedure_2) { create(:experts_procedure, expert: expert_2, procedure: procedure) }
-    let!(:expert_1) { create(:expert) }
-    let!(:expert_2) { create(:expert) }
+    let_it_be(:instructeur) { create(:instructeur) }
+    let_it_be(:expert_1) { create(:expert) }
+    let_it_be(:expert_2) { create(:expert) }
+    let_it_be(:procedure) { create(:procedure, :published, instructeurs: [instructeur]) }
+    let_it_be(:dossier) { create(:dossier, procedure: procedure, state: Dossier.states.fetch(:en_construction)) }
+    let_it_be(:experts_procedure) { create(:experts_procedure, expert: expert_1, procedure: procedure) }
+    let_it_be(:experts_procedure_2) { create(:experts_procedure, expert: expert_2, procedure: procedure) }
 
     context 'when there is a public advice asked from the dossiers instructeur' do
       let!(:avis) { create(:avis, dossier: dossier, claimant: instructeur, experts_procedure: experts_procedure, confidentiel: false) }
@@ -802,10 +802,10 @@ describe Dossier, type: :model do
   end
 
   describe '.ordered_for_export' do
-    let(:procedure) { create(:procedure) }
-    let!(:dossier2) { create(:dossier, :with_entreprise, procedure: procedure, state: Dossier.states.fetch(:en_construction), depose_at: Time.zone.parse('03/01/2010')) }
-    let!(:dossier3) { create(:dossier, :with_entreprise, procedure: procedure, state: Dossier.states.fetch(:en_instruction), depose_at: Time.zone.parse('01/01/2010')) }
-    let!(:dossier4) { create(:dossier, :with_entreprise, procedure: procedure, state: Dossier.states.fetch(:en_instruction), archived: true, depose_at: Time.zone.parse('02/01/2010')) }
+    let_it_be(:procedure) { create(:procedure) }
+    let_it_be(:dossier2) { create(:dossier, :with_entreprise, procedure: procedure, state: Dossier.states.fetch(:en_construction), depose_at: Time.zone.parse('03/01/2010')) }
+    let_it_be(:dossier3) { create(:dossier, :with_entreprise, procedure: procedure, state: Dossier.states.fetch(:en_instruction), depose_at: Time.zone.parse('01/01/2010')) }
+    let_it_be(:dossier4) { create(:dossier, :with_entreprise, procedure: procedure, state: Dossier.states.fetch(:en_instruction), archived: true, depose_at: Time.zone.parse('02/01/2010')) }
 
     subject { procedure.dossiers.ordered_for_export }
 
@@ -1361,7 +1361,7 @@ describe Dossier, type: :model do
   end
 
   describe "#can_transition_to_en_construction?" do
-    let(:procedure) { create(:procedure, :published) }
+    let_it_be(:procedure) { create(:procedure, :published) }
     let(:dossier) { create(:dossier, state: state, procedure: procedure) }
 
     subject { dossier.can_transition_to_en_construction? }
@@ -2444,15 +2444,15 @@ describe Dossier, type: :model do
   end
 
   describe "with_notifiable_procedure" do
-    let(:test_procedure) { create(:procedure) }
-    let(:published_procedure) { create(:procedure, :published) }
-    let(:closed_procedure) { create(:procedure, :closed) }
-    let(:unpublished_procedure) { create(:procedure, :unpublished) }
+    let_it_be(:test_procedure) { create(:procedure) }
+    let_it_be(:published_procedure) { create(:procedure, :published) }
+    let_it_be(:closed_procedure) { create(:procedure, :closed) }
+    let_it_be(:unpublished_procedure) { create(:procedure, :unpublished) }
 
-    let!(:dossier_on_test_procedure) { create(:dossier, procedure: test_procedure) }
-    let!(:dossier_on_published_procedure) { create(:dossier, procedure: published_procedure) }
-    let!(:dossier_on_closed_procedure) { create(:dossier, procedure: closed_procedure) }
-    let!(:dossier_on_unpublished_procedure) { create(:dossier, procedure: unpublished_procedure) }
+    let_it_be(:dossier_on_test_procedure) { create(:dossier, procedure: test_procedure) }
+    let_it_be(:dossier_on_published_procedure) { create(:dossier, procedure: published_procedure) }
+    let_it_be(:dossier_on_closed_procedure) { create(:dossier, procedure: closed_procedure) }
+    let_it_be(:dossier_on_unpublished_procedure) { create(:dossier, procedure: unpublished_procedure) }
 
     let(:notify_on_closed) { false }
     let(:dossiers) { Dossier.with_notifiable_procedure(notify_on_closed: notify_on_closed) }
