@@ -2,7 +2,7 @@
 
 describe ProcedureCloneConcern, type: :model do
   describe 'clone' do
-    let(:service) { create(:service) }
+    let_it_be(:service) { create(:service) }
     let(:procedure) do
       create(:procedure,
         received_mail: received_mail,
@@ -32,10 +32,10 @@ describe ProcedureCloneConcern, type: :model do
     let(:signature) { Rack::Test::UploadedFile.new('spec/fixtures/files/black.png', 'image/png') }
 
     let(:groupe_instructeur_1) { create(:groupe_instructeur, procedure: procedure, label: "groupe_1", contact_information: create(:contact_information)) }
-    let(:instructeur_1) { create(:instructeur) }
-    let(:instructeur_2) { create(:instructeur) }
-    let!(:assign_to_1) { create(:assign_to, procedure: procedure, groupe_instructeur: groupe_instructeur_1, instructeur: instructeur_1) }
-    let!(:assign_to_2) { create(:assign_to, procedure: procedure, groupe_instructeur: groupe_instructeur_1, instructeur: instructeur_2) }
+    let_it_be(:instructeur_1) { create(:instructeur) }
+    let_it_be(:instructeur_2) { create(:instructeur) }
+    let(:assign_to_1) { create(:assign_to, procedure: procedure, groupe_instructeur: groupe_instructeur_1, instructeur: instructeur_1) }
+    let(:assign_to_2) { create(:assign_to, procedure: procedure, groupe_instructeur: groupe_instructeur_1, instructeur: instructeur_2) }
     let(:options) do
       {
         clone_attestation_acceptation_template: true,
@@ -63,6 +63,8 @@ describe ProcedureCloneConcern, type: :model do
     end
 
     describe "should keep groupe instructeurs " do
+      before { assign_to_1; assign_to_2 }
+
       it "should clone groupe instructeurs" do
         expect(subject.groupe_instructeurs.size).to eq(2)
         expect(subject.groupe_instructeurs.size).to eq(procedure.groupe_instructeurs.size)
@@ -140,6 +142,8 @@ describe ProcedureCloneConcern, type: :model do
       let(:stable_id) { 1337 }
       let(:types_de_champ_public) { [{ type: :referentiel, referentiel: referentiel, stable_id: }] }
 
+      before { procedure }
+
       context 'when cloned by the same administrateur' do
         let(:administrateur) { procedure.administrateurs.first }
 
@@ -214,6 +218,8 @@ describe ProcedureCloneConcern, type: :model do
     context 'when the procedure is cloned to another administrateur' do
       let(:administrateur) { create(:administrateur) }
       let(:opendata) { false }
+
+      before { assign_to_1; assign_to_2 }
 
       context 'and the procedure does not have a groupe with the defaut label' do
         before do
