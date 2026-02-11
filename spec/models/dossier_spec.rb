@@ -165,12 +165,12 @@ describe Dossier, :group, type: :model do
   end
 
   describe 'brouillon_close_to_expiration' do
-    let(:procedure) { create(:procedure, :published, duree_conservation_dossiers_dans_ds: 6) }
-    let!(:young_dossier) { create(:dossier, :en_construction, procedure: procedure) }
-    let!(:expiring_dossier) { create(:dossier, updated_at: 85.days.ago, procedure: procedure) }
-    let!(:expiring_dossier_with_notification) { create(:dossier, updated_at: 85.days.ago, brouillon_close_to_expiration_notice_sent_at: Time.zone.now, procedure: procedure) }
-    let!(:just_expired_dossier) { create(:dossier, updated_at: (6.months + 1.hour + 10.seconds).ago, procedure: procedure) }
-    let!(:long_expired_dossier) { create(:dossier, updated_at: 1.year.ago, procedure: procedure) }
+    let_it_be(:procedure) { create(:procedure, :published, duree_conservation_dossiers_dans_ds: 6) }
+    let_it_be(:young_dossier) { create(:dossier, :en_construction, procedure:) }
+    let_it_be(:expiring_dossier, reload: true) { create(:dossier, updated_at: 85.days.ago, procedure:) }
+    let_it_be(:expiring_dossier_with_notification, reload: true) { create(:dossier, updated_at: 85.days.ago, brouillon_close_to_expiration_notice_sent_at: Time.zone.now, procedure:) }
+    let_it_be(:just_expired_dossier) { create(:dossier, updated_at: (6.months + 1.hour + 10.seconds).ago, procedure:) }
+    let_it_be(:long_expired_dossier) { create(:dossier, updated_at: 1.year.ago, procedure:) }
 
     subject { Dossier.brouillon_close_to_expiration }
 
@@ -215,12 +215,12 @@ describe Dossier, :group, type: :model do
   end
 
   describe 'en_construction_close_to_expiration' do
-    let(:procedure) { create(:procedure, :published, duree_conservation_dossiers_dans_ds: 6) }
-    let!(:young_dossier) { create(:dossier, procedure: procedure) }
-    let!(:expiring_dossier) { create(:dossier, :en_construction, en_construction_at: 175.days.ago, procedure: procedure) }
-    let!(:expiring_dossier_with_notification) { create(:dossier, :en_construction, en_construction_at: 175.days.ago, en_construction_close_to_expiration_notice_sent_at: Time.zone.now, procedure: procedure) }
-    let!(:just_expired_dossier) { create(:dossier, :en_construction, en_construction_at: (6.months + 1.hour + 10.seconds).ago, procedure: procedure) }
-    let!(:long_expired_dossier) { create(:dossier, :en_construction, en_construction_at: 1.year.ago, procedure: procedure) }
+    let_it_be(:procedure, reload: true) { create(:procedure, :published, duree_conservation_dossiers_dans_ds: 6) }
+    let_it_be(:young_dossier) { create(:dossier, procedure:) }
+    let_it_be(:expiring_dossier, reload: true) { create(:dossier, :en_construction, en_construction_at: 175.days.ago, procedure:) }
+    let_it_be(:expiring_dossier_with_notification, reload: true) { create(:dossier, :en_construction, en_construction_at: 175.days.ago, en_construction_close_to_expiration_notice_sent_at: Time.zone.now, procedure:) }
+    let_it_be(:just_expired_dossier) { create(:dossier, :en_construction, en_construction_at: (6.months + 1.hour + 10.seconds).ago, procedure:) }
+    let_it_be(:long_expired_dossier) { create(:dossier, :en_construction, en_construction_at: 1.year.ago, procedure:) }
 
     subject { Dossier.en_construction_close_to_expiration }
 
@@ -276,12 +276,12 @@ describe Dossier, :group, type: :model do
   end
 
   describe 'termine_close_to_expiration' do
-    let(:procedure) { create(:procedure, :published, duree_conservation_dossiers_dans_ds: 6, procedure_expires_when_termine_enabled: true) }
-    let!(:young_dossier) { create(:dossier, state: :accepte, procedure: procedure, processed_at: 2.days.ago) }
-    let!(:expiring_dossier) { create(:dossier, state: :accepte, procedure: procedure, processed_at: 175.days.ago) }
-    let!(:expiring_dossier_with_notification) { create(:dossier, state: :accepte, procedure: procedure, processed_at: 175.days.ago, termine_close_to_expiration_notice_sent_at: Time.zone.now) }
-    let!(:just_expired_dossier) { create(:dossier, state: :accepte, procedure: procedure, processed_at: (6.months + 1.hour + 10.seconds).ago) }
-    let!(:long_expired_dossier) { create(:dossier, state: :accepte, procedure: procedure, processed_at: 1.year.ago) }
+    let_it_be(:procedure, reload: true) { create(:procedure, :published, duree_conservation_dossiers_dans_ds: 6, procedure_expires_when_termine_enabled: true) }
+    let_it_be(:young_dossier) { create(:dossier, state: :accepte, procedure:, processed_at: 2.days.ago) }
+    let_it_be(:expiring_dossier, reload: true) { create(:dossier, state: :accepte, procedure:, processed_at: 175.days.ago) }
+    let_it_be(:expiring_dossier_with_notification, reload: true) { create(:dossier, state: :accepte, procedure:, processed_at: 175.days.ago, termine_close_to_expiration_notice_sent_at: Time.zone.now) }
+    let_it_be(:just_expired_dossier) { create(:dossier, state: :accepte, procedure:, processed_at: (6.months + 1.hour + 10.seconds).ago) }
+    let_it_be(:long_expired_dossier) { create(:dossier, state: :accepte, procedure:, processed_at: 1.year.ago) }
 
     subject { Dossier.termine_close_to_expiration }
 
@@ -830,11 +830,11 @@ describe Dossier, :group, type: :model do
     end
 
     context "when the groupe instructeur change" do
-      let(:procedure) { create(:procedure) }
-      let(:instructeur) { create(:instructeur) }
-      let(:new_instructeur) { create(:instructeur) }
-      let(:previous_groupe_instructeur) { create(:groupe_instructeur, procedure:, instructeurs: [instructeur]) }
-      let(:dossier) { create(:dossier, :en_construction, groupe_instructeur: previous_groupe_instructeur, procedure:) }
+      let_it_be(:procedure) { create(:procedure) }
+      let_it_be(:instructeur) { create(:instructeur) }
+      let_it_be(:new_instructeur) { create(:instructeur) }
+      let_it_be(:previous_groupe_instructeur) { create(:groupe_instructeur, procedure:, instructeurs: [instructeur]) }
+      let_it_be(:dossier, reload: true) { create(:dossier, :en_construction, groupe_instructeur: previous_groupe_instructeur, procedure:) }
 
       context "when an instructeur of the previous groupe is not is the new groupe" do
         let(:new_groupe_instructeur) { create(:groupe_instructeur, procedure:, instructeurs: [new_instructeur]) }
@@ -2831,8 +2831,8 @@ describe Dossier, :group, type: :model do
   end
 
   describe '#update_champs_timestamps' do
-    let(:procedure) { create(:procedure, types_de_champ_public: [{}, { type: :piece_justificative }, { type: :titre_identite }]) }
-    let(:dossier) { create(:dossier, procedure:, brouillon_close_to_expiration_notice_sent_at: 10.days.ago) }
+    let_it_be(:procedure) { create(:procedure, types_de_champ_public: [{}, { type: :piece_justificative }, { type: :titre_identite }]) }
+    let_it_be(:dossier, reload: true) { create(:dossier, procedure:, brouillon_close_to_expiration_notice_sent_at: 10.days.ago) }
     let(:changed_champs) { dossier.champs.filter(&:text?) }
 
     subject { -> { dossier.update_champs_timestamps(changed_champs, Champ::USER_BUFFER_STREAM) } }
