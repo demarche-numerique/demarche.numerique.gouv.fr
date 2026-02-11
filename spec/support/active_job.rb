@@ -7,5 +7,3 @@ RSpec.configure do |config|
     clear_enqueued_jobs
   end
 end
-
-ActiveJob::Base.queue_adapter = :test

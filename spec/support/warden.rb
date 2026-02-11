@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-include Warden::Test::Helpers
-
 RSpec.configure do |config|
-  config.before(:all) do
+  config.include Warden::Test::Helpers
+
+  config.before(:suite) do
     Warden.test_mode!
   end
 end
