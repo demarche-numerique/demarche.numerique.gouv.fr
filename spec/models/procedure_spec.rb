@@ -936,8 +936,8 @@ describe Procedure do
   end
 
   describe "#publish_revision!" do
-    let(:administrateur) { create(:administrateur) }
-    let(:procedure) { create(:procedure, :published, administrateurs: [administrateur]) }
+    let_it_be(:administrateur) { create(:administrateur) }
+    let_it_be(:procedure, reload: true) { create(:procedure, :published, administrateurs: [administrateur]) }
     let(:tdc_attributes) { { type_champ: :number, libelle: 'libelle 1' } }
     let(:publication_date) { Time.zone.local(2021, 1, 1, 12, 00, 00) }
 
@@ -1607,18 +1607,11 @@ describe Procedure do
 
   describe 'extend_conservation_for_dossiers' do
     let(:duree_conservation_dossiers_dans_ds) { 2 }
-    let(:procedure) { create(:procedure, duree_conservation_dossiers_dans_ds:) }
-    let(:expiring_dossier_brouillon) { create(:dossier, :brouillon, procedure: procedure, brouillon_close_to_expiration_notice_sent_at: duree_conservation_dossiers_dans_ds.months.ago) }
-    let(:expiring_dossier_en_construction) { create(:dossier, :en_construction, procedure: procedure, en_construction_close_to_expiration_notice_sent_at: duree_conservation_dossiers_dans_ds.months.ago) }
-    let(:expiring_dossier_en_termine) { create(:dossier, :accepte, procedure: procedure, termine_close_to_expiration_notice_sent_at: duree_conservation_dossiers_dans_ds.months.ago) }
-    let(:not_expiring_dossie) { create(:dossier, :accepte, procedure: procedure, created_at: duree_conservation_dossiers_dans_ds.months.ago) }
-    before do
-      procedure
-      expiring_dossier_brouillon
-      expiring_dossier_en_construction
-      expiring_dossier_en_termine
-      not_expiring_dossie
-    end
+    let_it_be(:procedure, reload: true) { create(:procedure, duree_conservation_dossiers_dans_ds: 2) }
+    let_it_be(:expiring_dossier_brouillon) { create(:dossier, :brouillon, procedure: procedure, brouillon_close_to_expiration_notice_sent_at: 2.months.ago) }
+    let_it_be(:expiring_dossier_en_construction) { create(:dossier, :en_construction, procedure: procedure, en_construction_close_to_expiration_notice_sent_at: 2.months.ago) }
+    let_it_be(:expiring_dossier_en_termine) { create(:dossier, :accepte, procedure: procedure, termine_close_to_expiration_notice_sent_at: 2.months.ago) }
+    let_it_be(:not_expiring_dossie) { create(:dossier, :accepte, procedure: procedure, created_at: 2.months.ago) }
 
     context 'when duree_conservation_dossiers_dans_ds does not changes' do
       it 'does not enqueues any job' do
@@ -1643,7 +1636,7 @@ describe Procedure do
   end
 
   describe "#attestation_template" do
-    let(:procedure) { create(:procedure) }
+    let_it_be(:procedure, reload: true) { create(:procedure) }
     subject { procedure.reload }
 
     context "when there is a v2 draft and a v1" do
@@ -1689,9 +1682,9 @@ describe Procedure do
   end
 
   describe "#parsed_latest_zone_labels" do
-    let!(:draft_procedure) { create(:procedure) }
-    let!(:published_procedure) { create(:procedure_with_dossiers, :published, dossiers_count: 2) }
-    let!(:closed_procedure) { create(:procedure, :closed) }
+    let_it_be(:draft_procedure) { create(:procedure) }
+    let_it_be(:published_procedure) { create(:procedure_with_dossiers, :published, dossiers_count: 2) }
+    let_it_be(:closed_procedure) { create(:procedure, :closed) }
     let!(:procedure_detail_draft) { ProcedureDetail.new(id: draft_procedure.id, latest_zone_labels: '{ "zone1", "zone2" }') }
     let!(:procedure_detail_published) { ProcedureDetail.new(id: published_procedure.id, latest_zone_labels: '{ "zone3", "zone4" }') }
     let!(:procedure_detail_closed) { ProcedureDetail.new(id: closed_procedure.id, latest_zone_labels: '{ "zone5", "zone6" }') }
@@ -1813,18 +1806,18 @@ describe Procedure do
   describe 'routing rule statuses management' do
     include Logic
 
-    let(:admin) { create :administrateur }
-    let(:procedure) { create(:procedure, :published, routing_enabled: true, administrateur: admin) }
-    let(:stable_id) { procedure.published_revision.types_de_champ_public.last.stable_id }
-
-    before do
-      procedure.draft_revision.add_type_de_champ(
+    let_it_be(:admin) { create :administrateur }
+    let_it_be(:procedure, reload: true) do
+      p = create(:procedure, :published, routing_enabled: true, administrateur: admin)
+      p.draft_revision.add_type_de_champ(
         type_champ: :drop_down_list,
         libelle: 'Ville',
         drop_down_options: ['Paris', 'Lyon', 'Marseille']
       )
-      procedure.publish_revision!(admin)
+      p.publish_revision!(admin)
+      p
     end
+    let_it_be(:stable_id) { procedure.published_revision.types_de_champ_public.last.stable_id }
 
     describe '#update_all_groupes_rule_validity_status' do
       let!(:gi_valid) do
