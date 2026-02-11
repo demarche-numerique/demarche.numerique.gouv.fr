@@ -45,9 +45,9 @@ describe BatchOperation, type: :model do
   end
 
   describe '#track_processed_dossier' do
-    let(:instructeur) { create(:instructeur) }
-    let(:procedure) { create(:simple_procedure, instructeurs: [instructeur]) }
-    let(:dossier) { create(:dossier, :accepte, :with_individual, archived: true, procedure: procedure) }
+    let_it_be(:instructeur) { create(:instructeur) }
+    let_it_be(:procedure) { create(:simple_procedure, instructeurs: [instructeur]) }
+    let_it_be(:dossier, reload: true) { create(:dossier, :accepte, :with_individual, archived: true, procedure: procedure) }
     let(:batch_operation) { create(:batch_operation, operation: :archiver, instructeur: instructeur, dossiers: [dossier]) }
 
     it 'unlock the dossier' do
@@ -116,8 +116,8 @@ describe BatchOperation, type: :model do
   end
 
   describe '#dossiers_safe_scope (with archiver)' do
-    let(:instructeur) { create(:instructeur) }
-    let(:procedure) { create(:simple_procedure, instructeurs: [instructeur]) }
+    let_it_be(:instructeur) { create(:instructeur) }
+    let_it_be(:procedure) { create(:simple_procedure, instructeurs: [instructeur]) }
     let(:batch_operation) { create(:batch_operation, operation: :archiver, instructeur: instructeur, dossiers: [dossier]) }
 
     context 'when dossier is valid' do
@@ -153,8 +153,8 @@ describe BatchOperation, type: :model do
   end
 
   describe '#dossiers_safe_scope (with passer_en_instruction)' do
-    let(:instructeur) { create(:instructeur) }
-    let(:procedure) { create(:simple_procedure, instructeurs: [instructeur]) }
+    let_it_be(:instructeur) { create(:instructeur) }
+    let_it_be(:procedure) { create(:simple_procedure, instructeurs: [instructeur]) }
     let(:batch_operation) { create(:batch_operation, operation: :passer_en_instruction, instructeur: instructeur, dossiers: [dossier]) }
 
     context 'when dossier is valid' do
@@ -183,8 +183,8 @@ describe BatchOperation, type: :model do
   end
 
   describe '#dossiers_safe_scope (with accepter)' do
-    let(:instructeur) { create(:instructeur) }
-    let(:procedure) { create(:simple_procedure, instructeurs: [instructeur]) }
+    let_it_be(:instructeur) { create(:instructeur) }
+    let_it_be(:procedure) { create(:simple_procedure, instructeurs: [instructeur]) }
     let(:batch_operation) { create(:batch_operation, operation: :accepter, instructeur: instructeur, dossiers: [dossier]) }
 
     context 'when dossier is valid' do
@@ -213,9 +213,9 @@ describe BatchOperation, type: :model do
   end
 
   describe '#safe_create!' do
-    let(:instructeur) { create(:instructeur) }
-    let(:procedure) { create(:simple_procedure, instructeurs: [instructeur]) }
-    let(:dossier_2) { create(:dossier, :accepte, procedure: procedure) }
+    let_it_be(:instructeur) { create(:instructeur) }
+    let_it_be(:procedure) { create(:simple_procedure, instructeurs: [instructeur]) }
+    let_it_be(:dossier_2) { create(:dossier, :accepte, procedure: procedure) }
     subject { BatchOperation.safe_create!(instructeur: instructeur, operation: :archiver, dossier_ids: [dossier.id, dossier_2.id]) }
 
     context 'success with divergent list of dossier_ids' do
