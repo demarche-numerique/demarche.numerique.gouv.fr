@@ -24,4 +24,10 @@ class Champs::QuotientFamilialChamp < Champ
     api = APIParticulier::QuotientFamilial.new(procedure)
     api.quotient_familial(fci)
   end
+
+  def clear_piece_justificative
+    if fc_data_correct? && self.piece_justificative_file.attached?
+      self.piece_justificative_file.purge_later
+    end
+  end
 end

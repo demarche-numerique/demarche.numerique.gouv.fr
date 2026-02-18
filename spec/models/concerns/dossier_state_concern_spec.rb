@@ -285,4 +285,48 @@ RSpec.describe DossierStateConcern do
       end
     end
   end
+
+  describe '#clear_france_connect_champs_piece_justificatives (after user submits a dossier or modifications)' do
+    let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :quotient_familial }]) }
+    let(:dossier) { create(:dossier, procedure:) }
+    let(:champ) { dossier.champs.first }
+
+    subject { dossier.send(:clear_france_connect_champs_piece_justificatives!) }
+
+    context "when data have been fetched and the user has confirmed its accuracy, but he has uploaded an attachment" do
+      before do
+        champ.update(value: 'true', external_state: 'fetched')
+        champ.piece_justificative_file.attach(fixture_file_upload('spec/fixtures/files/logo_test_procedure.png', 'image/png'))
+      end
+
+      it 'deletes the associated attachment' do
+        subject
+        expect(champ.reload.piece_justificative_file).not_to be_attached
+      end
+    end
+
+    context "when data have been fetched and the user user does not confirm its accuracy, so he has uploaded an attachment" do
+      before do
+        champ.update(value: 'false', external_state: 'fetched')
+        champ.piece_justificative_file.attach(fixture_file_upload('spec/fixtures/files/logo_test_procedure.png', 'image/png'))
+      end
+
+      it 'does not delete the associated attachment' do
+        subject
+        expect(champ.reload.piece_justificative_file).to be_attached
+      end
+    end
+
+    context "when data have not been fetched, so the user has uploaded an attachment" do
+      before do
+        champ.update(external_state: 'idle')
+        champ.piece_justificative_file.attach(fixture_file_upload('spec/fixtures/files/logo_test_procedure.png', 'image/png'))
+      end
+
+      it 'does not delete the associated attachment' do
+        subject
+        expect(champ.reload.piece_justificative_file).to be_attached
+      end
+    end
+  end
 end

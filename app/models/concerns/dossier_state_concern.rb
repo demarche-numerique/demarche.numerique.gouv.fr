@@ -367,6 +367,7 @@ module DossierStateConcern
     remove_discarded_rows!
     remove_not_visible_or_empty_repetitions!
     clear_not_visible_or_empty_champs!
+    clear_france_connect_champs_piece_justificatives!
   end
 
   def clean_champs_after_instruction!
@@ -403,6 +404,13 @@ module DossierStateConcern
       .filter { _1.blank? || !_1.visible? }
 
     champs.where(id: champs_to_clear, stream: Champ::MAIN_STREAM).find_each(&:clear)
+  end
+
+  def clear_france_connect_champs_piece_justificatives!
+    champs_to_clear = project_champs_public.filter(&:france_connect?)
+
+    return if champs_to_clear.empty?
+    champs.where(id: champs_to_clear).find_each(&:clear_piece_justificative)
   end
 
   def clear_titres_identite!

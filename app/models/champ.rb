@@ -83,6 +83,7 @@ class Champ < ApplicationRecord
     :expression_reguliere_exemple_text,
     :expression_reguliere_error_message,
     :RIB?,
+    :france_connect?,
     to: :type_de_champ
 
   delegate(*TypeDeChamp.type_champs.values.map { "#{_1}?".to_sym }, to: :type_de_champ)
