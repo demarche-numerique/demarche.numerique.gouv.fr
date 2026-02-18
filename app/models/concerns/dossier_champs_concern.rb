@@ -252,6 +252,16 @@ module DossierChampsConcern
     champs.filter(&:history_stream?)
   end
 
+  def set_default_value_for_france_connect_champs
+    revision.types_de_champ_public.filter(&:france_connect?).filter_map do |type_de_champ|
+      champ = project_champ(type_de_champ)
+
+      next if !champ.requires_external_data?
+
+      champ.fetch! if champ.may_fetch?
+    end
+  end
+
   private
 
   def changed_champ_ids_for_merge(stream)

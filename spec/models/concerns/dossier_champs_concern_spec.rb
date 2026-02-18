@@ -980,4 +980,66 @@ RSpec.describe DossierChampsConcern do
       }
     end
   end
+
+  describe '#set_default_value_for_france_connect_champs' do
+    let!(:procedure) { create(:procedure, :published, types_de_champ_public:, for_individual: true) }
+    let(:types_de_champ_public) { [{ type: :quotient_familial }] }
+    let(:dossier) { create(:dossier, procedure:, for_procedure_preview: false, for_tiers: false) }
+    let(:champ_qf) { dossier.champs.first }
+    let!(:fci) { create(:france_connect_information, user: dossier.user) }
+
+    subject { dossier.set_default_value_for_france_connect_champs }
+
+    context 'when the user starts a new dossier' do
+      before { allow(champ_qf).to receive(:fetch!).and_return(nil) }
+      it 'set a default value for the quotient_familial champ' do
+        subject
+        expect(champ_qf).to have_received(:fetch!)
+      end
+    end
+
+    context "when the user returns to their dossier" do
+      before do
+        champ_qf.update(external_state: 'fetched')
+        dossier.reload
+        allow(champ_qf).to receive(:fetch!).and_return(nil)
+      end
+
+      it 'does not attempt to set the champ again' do
+        subject
+        expect(champ_qf).not_to have_received(:fetch!)
+      end
+    end
+
+    context 'when the admin add a new quotient_familial tdc' do
+      before do
+        champ_qf.update(external_state: 'fetched')
+        procedure.draft_revision.add_type_de_champ({
+          type_champ: TypeDeChamp.type_champs.fetch(:quotient_familial),
+          libelle: "QF 2",
+        })
+        procedure.publish_revision!(procedure.administrateurs.first)
+        dossier.reload
+        dossier.rebase!
+
+        @old_qf = dossier.project_champs_public.last
+        @new_qf = dossier.project_champs_public.first
+
+        @fetched_instances = []
+
+        allow_any_instance_of(Champs::QuotientFamilialChamp)
+          .to receive(:fetch!) do |instance|
+            @fetched_instances << instance
+            nil
+          end
+      end
+
+      it 'does not attempt to set the old champ again, but does attempt to set the new champ' do
+        subject
+        fetched_ids = @fetched_instances.map(&:stable_id)
+        expect(fetched_ids).to include(@new_qf.stable_id)
+        expect(fetched_ids).not_to include(@old_qf.stable_id)
+      end
+    end
+  end
 end

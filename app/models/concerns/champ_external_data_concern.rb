@@ -45,7 +45,7 @@ module ChampExternalDataConcern
       end
 
       event :fetch, after_commit: :fetch_and_handle_result do
-        transitions from: [:waiting_for_job], to: :fetching
+        transitions from: [:idle, :waiting_for_job], to: :fetching, guard: :ready_for_external_call?
       end
 
       event :external_data_fetched do
@@ -68,7 +68,10 @@ module ChampExternalDataConcern
     def pending? = waiting_for_job? || fetching?
     def done? = fetched? || external_error?
 
+    # this is dedicated to REFERENTIEL_EXTERNE type de champ, with asynchronous call
     def uses_external_data? = false
+    # this is dedicated to FRANCE CONNECT type de champ, with synchronous call
+    def requires_external_data? = false
 
     private
 
