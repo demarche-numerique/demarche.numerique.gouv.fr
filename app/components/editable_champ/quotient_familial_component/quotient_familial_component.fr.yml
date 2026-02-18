@@ -6,7 +6,6 @@ fr:
     qf_data_not_fetched: Usager non connecté via FranceConnect ou QF non récupéré
     preview_simulation: "Simulation de données pour 2 parents et 2 enfants à charge :"
   external_champ:
-    title: Vos données d’identité, celles de vos enfants et votre quotient familial (QF) ont été récupérées de façon sécurisée via FranceConnect.
     confirmation:
       question: Ces informations sont-elles correctes ?
       true: Oui

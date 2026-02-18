@@ -11,9 +11,19 @@
       - data.each do |label, value, opts = {}|
         .champ-row
           %dt.champ-label= label
-          %dd.champ-content{ class: class_names('copy-zone': opts.fetch(:copy, true)), 'data-to-copy': opts.fetch(:data_to_copy, nil) }
-            = value
-            %span{ 'data-copy-message-placeholder': true }
+          - if value.is_a?(Array)
+            %dd.champ-content
+            %dl
+              - value.each do |l, v|
+                .flex
+                  %dt.champ-content.fr-mr-1v= l
+                  %dd.champ-content{ class: class_names('copy-zone': opts.fetch(:copy, true)), 'data-to-copy': opts.fetch(:data_to_copy, nil) }
+                    = v
+                    %span{ 'data-copy-message-placeholder': true }
+          - else
+            %dd.champ-content{ class: class_names('copy-zone': opts.fetch(:copy, true)), 'data-to-copy': opts.fetch(:data_to_copy, nil) }
+              = value
+              %span{ 'data-copy-message-placeholder': true }
 
     - if details.present?
       %details

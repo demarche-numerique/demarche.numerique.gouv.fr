@@ -6,9 +6,10 @@ class Dsfr::AlertComponent < ApplicationComponent
 
   attr_reader :state, :title, :size, :block, :extra_class_names, :heading_level
 
-  def initialize(state:, title: '', size: '', extra_class_names: nil, heading_level: 'h3')
+  def initialize(state:, title: '', with_prefix: true, size: '', extra_class_names: nil, heading_level: 'h3')
     @state = state
     @title = title
+    @with_prefix = with_prefix
     @size = size
     @block = block
     @extra_class_names = extra_class_names
@@ -16,6 +17,8 @@ class Dsfr::AlertComponent < ApplicationComponent
   end
 
   def prefix_for_state
+    return "" if !@with_prefix
+
     case state
     when :error then "Erreur : "
     when :info then "Information : "

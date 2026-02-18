@@ -17,9 +17,8 @@
   - if for_preview?
     %p= t('.admin.preview_simulation')
 
-  -# render les data
-  = t('.external_champ.title')
-  = qf_data
+  .fr-mb-2w
+    = render QuotientFamilial::QuotientFamilialComponent.new(qf_data:)
 
   .fr-fieldset
     .fr-fieldset__legend--regular.fr-fieldset__legend
