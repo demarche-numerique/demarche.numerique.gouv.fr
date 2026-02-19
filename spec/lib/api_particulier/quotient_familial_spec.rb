@@ -8,8 +8,7 @@ describe APIParticulier::QuotientFamilial do
     let(:subject) { api.quotient_familial(fci) }
 
     before do
-      # TODO : ajuster l'url pour la prod
-      stub_request(:get, /https:\/\/staging.particulier.api.gouv.fr\/v3\/dss\/quotient_familial\/identite/)
+      stub_request(:get, /https:\/\/particulier.api.gouv.fr\/api\/v3\/dss\/quotient_familial\/identite/)
         .to_return(body: body, status: status)
     end
 

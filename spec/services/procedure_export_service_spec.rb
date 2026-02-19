@@ -117,6 +117,7 @@ describe ProcedureExportService do
             "engagement_juridique",
             "yes_no",
             "referentiel",
+            "quotient_familial",
           ]
         end
 

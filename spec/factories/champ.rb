@@ -201,5 +201,8 @@ FactoryBot.define do
 
     factory :champ_do_not_use_referentiel, class: 'Champs::ReferentielChamp' do
     end
+
+    factory :champ_do_not_use_quotient_familial, class: 'Champs::QuotientFamilialChamp' do
+    end
   end
 end
