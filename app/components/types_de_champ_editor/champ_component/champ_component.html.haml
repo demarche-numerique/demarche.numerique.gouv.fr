@@ -26,28 +26,34 @@
           .flex.column.justify-start.width-66
             .cell
               .flex.align-center
-                = form.label :libelle, "Libellé du champ", class: 'flex-grow', for: dom_id(type_de_champ, :libelle)
+                - if libelle_configurable?
+                  = form.label :libelle, "Libellé du champ", class: 'flex-grow', for: dom_id(type_de_champ, :libelle)
+
                 - if mandatory_configurable?
-                  .cell.flex.align-center
+                  .flex.align-center
                     = form.check_box :mandatory, class: 'small-margin small', id: dom_id(type_de_champ, :mandatory)
                     = form.label :mandatory, "Champ obligatoire", for: dom_id(type_de_champ, :mandatory)
-              = form.text_field :libelle, class: 'fr-input small-margin small width-100', id: dom_id(type_de_champ, :libelle), data: input_autofocus
-            - if type_de_champ.header_section?
-              %p.fr-text--sm
-                Nous numérotons automatiquement les titres lorsqu’aucun de vos titres ne commence par un chiffre.
 
-            - if !type_de_champ.header_section? && !type_de_champ.titre_identite?
+              - if libelle_configurable?
+                = form.text_field :libelle, class: 'fr-input small-margin small width-100', id: dom_id(type_de_champ, :libelle), data: input_autofocus
+
+            - if description_configurable?
               .cell.fr-mt-1w
                 = form.label :description, "Description du champ (optionnel)", for: dom_id(type_de_champ, :description)
                 = form.text_area :description, class: 'fr-input small-margin small width-100 resize-y', rows: 3, id: dom_id(type_de_champ, :description)
-              - if type_de_champ.textarea?
-                .cell.fr-mt-1w
-                  = form.label :character_limit, for: dom_id(type_de_champ, :character_limit) do
-                    Spécifier un nombre maximal conseillé de caractères :
-                  = form.select :character_limit, options_for_character_limit, {}, { id: dom_id(type_de_champ, :character_limit), class: 'fr-select' }
+
             - if type_de_champ.header_section?
+              %p.fr-text--sm
+                Nous numérotons automatiquement les titres lorsqu’aucun de vos titres ne commence par un chiffre.
               .cell.fr-mt-1w
                 = render TypesDeChampEditor::HeaderSectionComponent.new(form: form, tdc: type_de_champ, upper_tdcs: @upper_coordinates.map(&:type_de_champ))
+
+            - if type_de_champ.textarea?
+              .cell.fr-mt-1w
+                = form.label :character_limit, for: dom_id(type_de_champ, :character_limit) do
+                  Spécifier un nombre maximal conseillé de caractères :
+                = form.select :character_limit, options_for_character_limit, {}, { id: dom_id(type_de_champ, :character_limit), class: 'fr-select' }
+
             - if type_de_champ.explication?
               .cell.fr-mt-2w
                 .fr-toggle
@@ -211,6 +217,10 @@
                           = form.label :end_date, for: dom_id(type_de_champ, :end_date) do
                             date de fin
                           = form.date_field :end_date, class: "fr-input", value: type_de_champ.end_date, id: dom_id(type_de_champ, :end_date)
+
+            - if type_de_champ.quotient_familial?
+              .cell.fr-my-auto.fr-mx-3w
+                Ce champ permet de récupérer automatiquement et de façon fiable les données d'identité, le quotient familial CAF ou MSA et la composition familiale de l'usager connecté via FranceConnect
 
         .flex.justify-start.fr-mt-1w.flex-gap
           - if type_de_champ.linked_drop_down_list?

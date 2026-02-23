@@ -103,7 +103,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       let(:coordinate) { procedure.draft_revision.revision_types_de_champ_public.first }
 
       it 'does not have mandatory configuration' do
-        expect(page).to have_css('input[type="text"][value="Quotient familial"]')
+        expect(page).to have_css('option[selected]', text: "Quotient familial")
         expect(page).not_to have_field('Champ obligatoire')
       end
     end

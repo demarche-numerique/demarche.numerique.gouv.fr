@@ -18,6 +18,20 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
     type_de_champ.fillable? && !type_de_champ.must_be_mandatory?
   end
 
+  def libelle_configurable?
+    !type_de_champ.type_champ.in?([
+      TypeDeChamp.type_champs.fetch(:quotient_familial),
+    ])
+  end
+
+  def description_configurable?
+    !type_de_champ.type_champ.in?([
+      TypeDeChamp.type_champs.fetch(:quotient_familial),
+      TypeDeChamp.type_champs.fetch(:header_section),
+      TypeDeChamp.type_champs.fetch(:titre_identite),
+    ])
+  end
+
   def type_de_champ_path
     admin_procedure_type_de_champ_path(procedure, type_de_champ.stable_id)
   end
