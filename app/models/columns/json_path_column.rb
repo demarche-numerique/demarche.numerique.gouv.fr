@@ -3,7 +3,7 @@
 class Columns::JSONPathColumn < Columns::ChampColumn
   attr_reader :jsonpath
 
-  def initialize(procedure_id:, label:, stable_id:, tdc_type:, jsonpath:, options_for_select: [], displayable:, filterable: true, type: :text, mandatory:)
+  def initialize(procedure_id:, label:, stable_id:, tdc_type:, jsonpath:, options_for_select: [], displayable:, filterable: true, type: :text, mandatory:, human_label: nil)
     @jsonpath = quote_string(jsonpath)
 
     super(
@@ -15,7 +15,8 @@ class Columns::JSONPathColumn < Columns::ChampColumn
       filterable:,
       type:,
       options_for_select:,
-      mandatory:
+      mandatory:,
+      human_label:
     )
   end
 

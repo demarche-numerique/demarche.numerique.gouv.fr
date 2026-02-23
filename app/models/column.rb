@@ -12,17 +12,20 @@ class Column
   attr_reader :table, :column, :label, :type, :filterable, :displayable, :mandatory
   attr_accessor :options_for_select
 
-  def initialize(procedure_id:, table:, column:, label: nil, type: :text, filterable: true, displayable: true, options_for_select: [], mandatory: true)
+  def initialize(procedure_id:, table:, column:, label: nil, human_label: nil, type: :text, filterable: true, displayable: true, options_for_select: [], mandatory: true)
     @procedure_id = procedure_id
     @table = table
     @column = column
     @label = label || I18n.t(column, scope: [:activerecord, :attributes, :procedure_presentation, :fields, table])
+    @human_label = human_label
     @type = type
     @filterable = filterable
     @displayable = displayable
     @options_for_select = options_for_select
     @mandatory = mandatory
   end
+
+  def human_label = @human_label || label
 
   # the id is a String to be used in forms
   def id = h_id.to_json
