@@ -137,6 +137,10 @@ class TypeDeChamp < ApplicationRecord
     type_champs.fetch(:engagement_juridique),
   ]
 
+  API_PART_FC_TDC = [type_champs.fetch(:quotient_familial)]
+
+  PUBLIC_ONLY_TYPES = API_PART_FC_TDC
+
   store_accessor :options,
                  :cadastres,
                  :old_pj,
@@ -411,11 +415,7 @@ class TypeDeChamp < ApplicationRecord
     ])
   end
 
-  def must_be_mandatory?
-    type_champ.in?([
-      TypeDeChamp.type_champs.fetch(:quotient_familial),
-    ])
-  end
+  def must_be_mandatory? = type_champ.in?(API_PART_FC_TDC)
 
   def choice_type?
     type_champ.in?([

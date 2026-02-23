@@ -100,12 +100,34 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
     end
 
     describe 'tdc quotient familial' do
-      let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :quotient_familial, libelle: 'Quotient familial (FranceConnect)' }]) }
-      let(:coordinate) { procedure.draft_revision.revision_types_de_champ_public.first }
+      let(:procedure) { create(:procedure, types_de_champ_public:, types_de_champ_private: [{ type: :text }]) }
 
-      it 'does not have mandatory configuration' do
-        expect(page).to have_css('option[selected]', text: "Quotient familial")
-        expect(page).not_to have_field('Champ obligatoire')
+      context "when coordinate public" do
+        let(:types_de_champ_public) { [{ type: :quotient_familial, libelle: 'Quotient familial' }] }
+        let(:coordinate) { procedure.draft_revision.revision_types_de_champ_public.first }
+
+        it 'does not have mandatory configuration' do
+          expect(page).to have_css('option[selected]', text: "Quotient familial")
+          expect(page).not_to have_field('Champ obligatoire')
+        end
+      end
+
+      context "when coordinate private" do
+        let(:types_de_champ_public) { [] }
+        let(:coordinate) { procedure.draft_revision.revision_types_de_champ_private.first }
+
+        it 'does not include quotient familial tdc' do
+          expect(page).not_to have_css('option', text: "Quotient familial")
+        end
+      end
+
+      context "when coordinate is repetition" do
+        let(:types_de_champ_public) { [{ type: :repetition, children: [{ type: :text }] }] }
+        let(:coordinate) { procedure.draft_revision.revision_types_de_champ_public.first.children_revision_types_de_champ.first }
+
+        it "does not include quotient familial for child tdc" do
+          expect(page).not_to have_css('option', text: "Quotient familial")
+        end
       end
     end
 

@@ -125,6 +125,7 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
 
   EXCLUDE_FROM_BLOCK = [
     TypeDeChamp.type_champs.fetch(:repetition),
+    TypeDeChamp.type_champs.fetch(:quotient_familial),
   ]
 
   def filter_block_type_champ(type_champ)
@@ -133,7 +134,7 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
 
   def filter_public_or_private_only_type_champ(type_champ)
     if coordinate.private?
-      true
+      !TypeDeChamp::PUBLIC_ONLY_TYPES.include?(type_champ)
     else
       !TypeDeChamp::PRIVATE_ONLY_TYPES.include?(type_champ)
     end
