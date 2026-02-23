@@ -30,4 +30,14 @@ class Champs::QuotientFamilialChamp < Champ
       self.piece_justificative_file.purge_later
     end
   end
+
+  def libelle
+    if fc_data_correct?
+      ""
+    elsif fc_data_incorrect?
+      I18n.t('api_particulier.libelle.quotient_familial.fc_data_incorrect')
+    else
+      I18n.t('api_particulier.libelle.quotient_familial.default')
+    end
+  end
 end

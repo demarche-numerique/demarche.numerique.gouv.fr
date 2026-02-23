@@ -1,0 +1,5 @@
+---
+en:
+  correct_qf_data: The data below has been retrieved automatically and reliably via the ‘Family quotient (France Connect)’ field.
+  incorrect_qf_data: The user has not confirmed the accuracy of the identity data/family quotient/family composition, automatically retrieved via the ‘Family quotient (France Connect)’ field.
+  qf_data_not_fetched: Identity data/family quotient/family composition could not be retrieved automatically via the ‘Family quotient (France Connect)’ field.

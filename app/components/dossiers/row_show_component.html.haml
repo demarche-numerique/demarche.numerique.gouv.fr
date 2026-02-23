@@ -1,6 +1,7 @@
 .champ-row
   %p.champ-label
-    = "#{label} :"
+    - if label.present?
+      = "#{label} :"
     = render Dossiers::ChampUpdatedComponent.new(updated_at:, seen_at:)
 
   - if blank?

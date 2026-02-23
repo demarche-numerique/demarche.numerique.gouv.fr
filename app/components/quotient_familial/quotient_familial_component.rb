@@ -3,8 +3,9 @@
 class QuotientFamilial::QuotientFamilialComponent < ApplicationComponent
   attr_reader :qf_data
 
-  def initialize(qf_data:)
+  def initialize(qf_data:, with_header: false)
     @qf_data = qf_data
+    @with_header = with_header
   end
 
   def source

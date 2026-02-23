@@ -1,5 +1,9 @@
 en:
   api_particulier:
+    libelle:
+      quotient_familial:
+        fc_data_incorrect: Proof of family quotient
+        default: Family quotient
     providers:
       cnaf:
         libelle: Caisse nationale d’allocations familiales (CAF)

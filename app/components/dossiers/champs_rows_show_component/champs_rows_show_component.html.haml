@@ -71,6 +71,8 @@
               %span{ data: 'copy-message-placeholder' }
           - when TypeDeChamp.type_champs.fetch(:referentiel)
             = render Dossiers::ReferentielComponent.new(champ:, profile: @profile)
+          - when TypeDeChamp.type_champs.fetch(:quotient_familial)
+            = render Dossiers::QuotientFamilialComponent.new(champ:, profile: @profile)
 
           - else
             .copy-zone{ 'data-to-copy': champ.to_s.strip }
