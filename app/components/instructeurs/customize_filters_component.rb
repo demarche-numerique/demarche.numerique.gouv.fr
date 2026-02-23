@@ -55,7 +55,7 @@ class Instructeurs::CustomizeFiltersComponent < ApplicationComponent
     filter_action_button(
       filter_column: filter_column,
       icon: 'delete-line',
-      text: t('.delete_filter', filter_label: filter_column.label),
+      text: t('.delete_filter', filter_label: filter_column.human_label),
       filters_columns_array: filters_columns.filter { _1.id != filter_column.id }
     )
   end
@@ -76,7 +76,7 @@ class Instructeurs::CustomizeFiltersComponent < ApplicationComponent
     filter_action_button(
       filter_column: filter_column,
       icon: 'arrow-up-line',
-      text: t('.move_up_filter', filter_label: filter_column.label),
+      text: t('.move_up_filter', filter_label: filter_column.human_label),
       filters_columns_array: reordered_columns,
       disabled: !can_move_up
     )
@@ -98,7 +98,7 @@ class Instructeurs::CustomizeFiltersComponent < ApplicationComponent
     filter_action_button(
       filter_column: filter_column,
       icon: 'arrow-down-line',
-      text: t('.move_down_filter', filter_label: filter_column.label),
+      text: t('.move_down_filter', filter_label: filter_column.human_label),
       filters_columns_array: reordered_columns,
       disabled: !can_move_down
     )
@@ -112,7 +112,7 @@ class Instructeurs::CustomizeFiltersComponent < ApplicationComponent
     {
       "-- #{t('.file_section')} --" => procedure.dossier_filterable_columns,
       "-- #{t('.instructors_section')} --" => procedure.instructeurs_filterable_columns,
-    }.transform_values { it.map { [_1.label, _1.id] } }
+    }.transform_values { it.map { [_1.human_label, _1.id] } }
   end
 
   def disabled_items
@@ -130,14 +130,14 @@ class Instructeurs::CustomizeFiltersComponent < ApplicationComponent
   end
 
   def usager_filter_items
-    procedure.usager_filterable_columns.map { [_1.label, _1.id] }
+    procedure.usager_filterable_columns.map { [_1.human_label, _1.id] }
   end
 
   def form_filter_items
-    procedure.form_filterable_columns.map { [_1.label, _1.id] }
+    procedure.form_filterable_columns.map { [_1.human_label, _1.id] }
   end
 
   def annotation_filter_items
-    procedure.annotation_privees_filterable_columns.map { [_1.label, _1.id] }
+    procedure.annotation_privees_filterable_columns.map { [_1.human_label, _1.id] }
   end
 end

@@ -25,7 +25,7 @@ class Instructeurs::EditableFiltersComponent < ApplicationComponent
       form: { data: { turbo: true } },
       form_class: 'inline'
     ) do
-      t('.clear_filter', filter_label: filter.label)
+      t('.clear_filter', filter_label: filter.human_label)
     end
   end
 

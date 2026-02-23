@@ -31,9 +31,9 @@ class Instructeurs::ColumnTableHeaderComponent < ApplicationComponent
   end
 
   def label_and_arrow(column)
-    return column.label if @sorted_column.column != column
+    return column.human_label if @sorted_column.column != column
 
-    @sorted_column.ascending? ? "#{column.label} ↑" : "#{column.label} ↓"
+    @sorted_column.ascending? ? "#{column.human_label} ↑" : "#{column.human_label} ↓"
   end
 
   def aria_sort(column)

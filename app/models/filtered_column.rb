@@ -9,12 +9,12 @@ class FilteredColumn
 
   attr_reader :column, :filter
 
-  delegate :label, to: :column
+  delegate :human_label, to: :column
 
   validate :check_filter_max_length
   validate :check_filter_max_integer
   validates :filter, presence: {
-    message: -> (object, _data) { "Le filtre « #{object.label} » ne peut pas être vide" },
+    message: -> (object, _data) { "Le filtre « #{object.human_label} » ne peut pas être vide" },
   }
 
   def initialize(column:, filter: nil)
@@ -57,7 +57,7 @@ class FilteredColumn
       filter_values.any? { |value| value.is_a?(String) && value.length > FILTERS_VALUE_MAX_LENGTH }
       errors.add(
         :base,
-        "Le filtre « #{label} » est trop long (maximum: #{FILTERS_VALUE_MAX_LENGTH} caractères)"
+        "Le filtre « #{human_label} » est trop long (maximum: #{FILTERS_VALUE_MAX_LENGTH} caractères)"
       )
     end
   end
@@ -65,7 +65,7 @@ class FilteredColumn
   def check_filter_max_integer
     if @column.column == 'id' &&
       (filter_values.any? { |value| value.to_i > PG_INTEGER_MAX_VALUE })
-      errors.add(:base, "Le filtre « #{label} » n’est pas un numéro de dossier possible")
+      errors.add(:base, "Le filtre « #{human_label} » n’est pas un numéro de dossier possible")
     end
   end
 end

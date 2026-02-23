@@ -11,7 +11,7 @@ class Instructeurs::ColumnPickerComponent < ApplicationComponent
 
   def displayable_columns_for_select
     [
-      procedure.columns.filter(&:displayable).map { |column| [column.label, column.id] },
+      procedure.columns.filter(&:displayable).map { |column| [column.human_label, column.id] },
       procedure_presentation.displayed_columns.map(&:id),
     ]
   end

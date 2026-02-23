@@ -73,9 +73,9 @@ class Instructeurs::ClearFilterButtonsComponent < ApplicationComponent
 
   def button_content(filter, value)
     if value.nil?
-      "#{filter.label.truncate(50)} : #{human_operator(filter.filter_operator)}"
+      "#{filter.human_label.truncate(50)} : #{human_operator(filter.filter_operator)}"
     else
-      "#{filter.label.truncate(50)} : #{human_value(filter, value)}"
+      "#{filter.human_label.truncate(50)} : #{human_value(filter, value)}"
     end
   end
 
