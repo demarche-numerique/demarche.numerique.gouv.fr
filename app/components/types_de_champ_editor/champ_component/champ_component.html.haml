@@ -249,6 +249,12 @@
           - if type_de_champ.linked_drop_down_list?
             .flex.column.justify-start.flex-grow
               .cell
+                = form.label :drop_down_primary_libelle, "Libellé du champ primaire", for: dom_id(type_de_champ, :drop_down_primary_libelle)
+                = form.text_field :drop_down_primary_libelle, class: 'fr-input small-margin small width-100', id: dom_id(type_de_champ, :drop_down_primary_libelle)
+              .cell.fr-mt-1w
+                = form.label :drop_down_primary_description, "Description du champ primaire", for: dom_id(type_de_champ, :drop_down_primary_description)
+                = form.text_area :drop_down_primary_description, class: 'fr-input small-margin small width-100', rows: 3, id: dom_id(type_de_champ, :drop_down_primary_description)
+              .cell.fr-mt-1w
                 = form.label :drop_down_secondary_libelle, "Libellé du champ secondaire", class: 'flex-grow', for: dom_id(type_de_champ, :drop_down_secondary_libelle)
                 = form.text_field :drop_down_secondary_libelle, class: 'fr-input small-margin small width-100', id: dom_id(type_de_champ, :drop_down_secondary_libelle)
               .cell.fr-mt-1w

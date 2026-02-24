@@ -45,6 +45,8 @@ class Champ < ApplicationRecord
     :value_is_in_options?,
     :options_for_select,
     :options_for_select_with_other,
+    :drop_down_primary_libelle,
+    :drop_down_primary_description,
     :drop_down_secondary_libelle,
     :drop_down_secondary_description,
     :drop_down_simple?,
