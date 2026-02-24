@@ -16,7 +16,7 @@ class Column
     @procedure_id = procedure_id
     @table = table
     @column = column
-    @label = label || I18n.t(column, scope: [:activerecord, :attributes, :procedure_presentation, :fields, table])
+    @label = label || I18n.t(column, scope: [:activerecord, :attributes, :procedure_presentation, :fields, table], locale: :fr)
     @human_label = human_label
     @type = type
     @filterable = filterable
