@@ -1,20 +1,54 @@
-.fr-fieldset__element.fr-mb-0.fr-pl-0
-  %div{ class: class_names("fr-select-group", "fr-select-group--error": primary_value.blank?) }
-    = render EditableChamp::ChampLabelComponent.new form: @form, champ: @champ, seen_at: @seen_at
-
-    = @form.select :primary_value, @champ.primary_options, select_options, required: @champ.required?, class: 'fr-select fr-mb-3v', id: @champ.focusable_input_id, aria: { **labelledby_id_attr, describedby: "#{@champ.describedby_id} #{@champ.error_id(:value)}" }, translate: 'no'
-
-- if @champ.has_secondary_options_for_primary?
-  .fr-fieldset__element.fr-pl-0
-    %div{ class: class_names("fr-select-group", "fr-select-group--error": primary_value.present? && secondary_value.blank?) }
-      = @form.label :secondary_value, for: "#{@champ.focusable_input_id}-secondary", class: 'fr-label' do
-        = @champ.drop_down_secondary_libelle.presence || "Valeur secondaire dépendant de la première"
-        - if @champ.public?
-          - if @champ.mandatory?
+- if @champ.drop_down_primary_libelle.present?
+  %fieldset.fr-fieldset.fr-mb-0
+    %legend.fr-fieldset__legend.fr-text--regular.fr-pb-0{ id: champ_fieldset_legend_id(@champ) }
+      = @champ.libelle
+      - if @champ.mandatory? && @champ.public?
+        = render EditableChamp::AsteriskMandatoryComponent.new
+      - if @champ.description.present?
+        .fr-hint-text.fr-mt-1w.fr-mb-1w.width-100{ id: @champ.describedby_id }
+          = render SimpleFormatComponent.new(@champ.description, allow_a: true)
+    .fr-fieldset__element.fr-mb-0
+      %div{ class: class_names("fr-select-group", "fr-select-group--error": primary_value.blank?) }
+        = @form.label :primary_value, for: @champ.focusable_input_id, class: 'fr-label' do
+          = @champ.drop_down_primary_libelle
+          - if @champ.mandatory? && @champ.public?
             = render EditableChamp::AsteriskMandatoryComponent.new
-      - if @champ.drop_down_secondary_description.present?
-        .fr-hint-text.fr-mb-1w{ id: "#{@champ.describedby_id}-secondary" }
-          = render SimpleFormatComponent.new(@champ.drop_down_secondary_description, allow_a: true)
-      = @form.select :secondary_value, @champ.secondary_options[@champ.primary_value], select_options, required: @champ.required?, class: 'fr-select', id: "#{@champ.focusable_input_id}-secondary", aria: { **labelledby_id_attr, describedby: "#{@champ.describedby_id}-secondary" }, translate: 'no', data: { turbo_force: :server }
+        - if @champ.drop_down_primary_description.present?
+          .fr-hint-text.fr-mb-1w{ id: "#{@champ.describedby_id}-primary" }
+            = render SimpleFormatComponent.new(@champ.drop_down_primary_description, allow_a: true)
+        = @form.select :primary_value, @champ.primary_options, select_options, required: @champ.required?, class: 'fr-select fr-mb-3v', id: @champ.focusable_input_id, aria: { **labelledby_id_attr, describedby: "#{@champ.describedby_id}-primary #{@champ.error_id(:value)}".strip }, translate: 'no'
+    - if @champ.has_secondary_options_for_primary?
+      .fr-fieldset__element.fr-mb-0
+        %div{ class: class_names("fr-select-group", "fr-select-group--error": primary_value.present? && secondary_value.blank?) }
+          = @form.label :secondary_value, for: "#{@champ.focusable_input_id}-secondary", class: 'fr-label' do
+            = @champ.drop_down_secondary_libelle.presence || "Valeur secondaire dépendant de la première"
+            - if @champ.public?
+              - if @champ.mandatory?
+                = render EditableChamp::AsteriskMandatoryComponent.new
+          - if @champ.drop_down_secondary_description.present?
+            .fr-hint-text.fr-mb-1w{ id: "#{@champ.describedby_id}-secondary" }
+              = render SimpleFormatComponent.new(@champ.drop_down_secondary_description, allow_a: true)
+          = @form.select :secondary_value, @champ.secondary_options[@champ.primary_value], select_options, required: @champ.required?, class: 'fr-select', id: "#{@champ.focusable_input_id}-secondary", aria: { **labelledby_id_attr, describedby: "#{@champ.describedby_id}-secondary" }, translate: 'no', data: { turbo_force: :server }
+    - else
+      = @form.hidden_field :secondary_value, value: ''
 - else
-  = @form.hidden_field :secondary_value, value: ''
+  .fr-fieldset__element.fr-mb-0.fr-pl-0
+    %div{ class: class_names("fr-select-group", "fr-select-group--error": primary_value.blank?) }
+      = render EditableChamp::ChampLabelComponent.new form: @form, champ: @champ, seen_at: @seen_at
+
+      = @form.select :primary_value, @champ.primary_options, select_options, required: @champ.required?, class: 'fr-select fr-mb-3v', id: @champ.focusable_input_id, aria: { **labelledby_id_attr, describedby: "#{@champ.describedby_id} #{@champ.error_id(:value)}" }, translate: 'no'
+
+  - if @champ.has_secondary_options_for_primary?
+    .fr-fieldset__element.fr-pl-0
+      %div{ class: class_names("fr-select-group", "fr-select-group--error": primary_value.present? && secondary_value.blank?) }
+        = @form.label :secondary_value, for: "#{@champ.focusable_input_id}-secondary", class: 'fr-label' do
+          = @champ.drop_down_secondary_libelle.presence || "Valeur secondaire dépendant de la première"
+          - if @champ.public?
+            - if @champ.mandatory?
+              = render EditableChamp::AsteriskMandatoryComponent.new
+        - if @champ.drop_down_secondary_description.present?
+          .fr-hint-text.fr-mb-1w{ id: "#{@champ.describedby_id}-secondary" }
+            = render SimpleFormatComponent.new(@champ.drop_down_secondary_description, allow_a: true)
+        = @form.select :secondary_value, @champ.secondary_options[@champ.primary_value], select_options, required: @champ.required?, class: 'fr-select', id: "#{@champ.focusable_input_id}-secondary", aria: { **labelledby_id_attr, describedby: "#{@champ.describedby_id}-secondary" }, translate: 'no', data: { turbo_force: :server }
+  - else
+    = @form.hidden_field :secondary_value, value: ''
