@@ -61,10 +61,42 @@ describe Champs::DossierLinkChamp, type: :model do
         it { is_expected.to be_truthy }
       end
 
+      context 'when deleted dossier id' do
+        let(:deleted_dossier) { create(:deleted_dossier) }
+        let(:value) { deleted_dossier.dossier_id.to_s }
+        it { is_expected.to be_truthy }
+      end
+
       context 'when invalid id' do
         let(:value) { 'kthxbye' }
         it { is_expected.to be_falsey }
       end
+
+      context 'when unknown id' do
+        let(:value) { '999999999' }
+        it { is_expected.to be_falsey }
+      end
+    end
+  end
+
+  describe '#deleted_dossier' do
+    context 'when value is blank' do
+      let(:mandatory) { false }
+      let(:value) { nil }
+      it { expect(champ.deleted_dossier).to be_nil }
+    end
+
+    context 'when value points to an existing dossier' do
+      let(:mandatory) { false }
+      let(:value) { create(:dossier).id.to_s }
+      it { expect(champ.deleted_dossier).to be_nil }
+    end
+
+    context 'when value points to a deleted dossier' do
+      let(:mandatory) { false }
+      let(:deleted) { create(:deleted_dossier) }
+      let(:value) { deleted.dossier_id.to_s }
+      it { expect(champ.deleted_dossier).to eq(deleted) }
     end
   end
 end

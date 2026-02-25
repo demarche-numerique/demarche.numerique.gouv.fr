@@ -66,6 +66,8 @@ module Dsfr
         dossier = Dossier.visible_by_administration.find_by(id: @champ.value)
         if dossier.present?
           { state: :info, text: dossier.text_summary }
+        elsif (deleted_dossier = @champ.deleted_dossier)
+          { state: :warning, text: deleted_dossier_summary(deleted_dossier) }
         end
       when TypeDeChamp.type_champs[:referentiel]
         if @champ.pending?
@@ -91,6 +93,20 @@ module Dsfr
           { state: :valid, text: }
         end
       end
+    end
+
+    private
+
+    def deleted_dossier_summary(deleted_dossier)
+      t(".dossier_link.deleted",
+        dossier_id: deleted_dossier.dossier_id,
+        procedure: deleted_dossier.procedure.libelle,
+        reason: deleted_dossier_reason(deleted_dossier),
+        deleted_at: helpers.l(deleted_dossier.deleted_at.to_date))
+    end
+
+    def deleted_dossier_reason(deleted_dossier)
+      t(".dossier_link.reasons.#{deleted_dossier.reason}")
     end
   end
 end

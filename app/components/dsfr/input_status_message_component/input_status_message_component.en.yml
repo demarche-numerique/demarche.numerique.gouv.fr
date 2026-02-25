@@ -11,6 +11,17 @@ en:
     fetching: "Search in progress."
     error: "No item found for the reference: %{value}"
     success: "Reference found: %{value}"
+  dossier_link:
+    deleted: "File no. %{dossier_id} of procedure \"%{procedure}\" was %{reason} on %{deleted_at}."
+    reasons:
+      user_request: "deleted"
+      manager_request: "deleted"
+      user_removed: "deleted"
+      procedure_removed: "deleted"
+      expired: "expired"
+      instructeur_request: "deleted"
+      user_expired: "expired"
+    not_found: "This file no longer exists."
   prefilled: "Prefilled data."
   pj:
     info: "The file content will be analyzed …"

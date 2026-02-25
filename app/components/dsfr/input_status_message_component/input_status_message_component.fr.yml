@@ -11,6 +11,17 @@ fr:
     fetching: "Recherche en cours."
     error: "Aucun élément trouvé pour la référence : %{value}"
     success: "Référence trouvée : %{value}"
+  dossier_link:
+    deleted: "Le dossier n° %{dossier_id} sur la démarche « %{procedure} » a été %{reason} le %{deleted_at}."
+    reasons:
+      user_request: "supprimé"
+      manager_request: "supprimé"
+      user_removed: "supprimé"
+      procedure_removed: "supprimé"
+      expired: "expiré"
+      instructeur_request: "supprimé"
+      user_expired: "expiré"
+    not_found: "Ce dossier n’existe plus."
   prefilled: "Donnée remplie automatiquement."
   pj:
     info: "Contenu du fichier en cours d’analyse…"

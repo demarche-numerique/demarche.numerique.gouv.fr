@@ -9,4 +9,11 @@
   .copy-zone
     %p= sanitize(dossier.text_summary)
 - else
-  %p Pas de dossier associé
+  - deleted_dossier = DeletedDossier.includes(:procedure).find_by(dossier_id: champ.to_s)
+  - if deleted_dossier
+    %p Dossier n° #{deleted_dossier.dossier_id}
+    %br
+    .copy-zone
+      %p= deleted_dossier_show_summary(deleted_dossier)
+  - else
+    %p Pas de dossier associé
