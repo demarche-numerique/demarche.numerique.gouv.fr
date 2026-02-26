@@ -45,7 +45,8 @@ module ChampExternalDataConcern
       end
 
       event :fetch, after_commit: :fetch_and_handle_result do
-        transitions from: [:idle, :waiting_for_job], to: :fetching, guard: :ready_for_external_call?
+        # transitions from: [:idle, :waiting_for_job], to: :fetching, guard: :ready_for_external_call?
+        transitions from: [:idle, :waiting_for_job], to: :fetching
       end
 
       event :external_data_fetched do
