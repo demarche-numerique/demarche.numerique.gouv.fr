@@ -5,5 +5,5 @@ class Champs::EngagementJuridiqueChamp < Champ
   validates_with ExpressionReguliereValidator,
                 expression_reguliere: /([A-Z]|[0-9]|\-|\_|\+|\/)+/,
                 expression_reguliere_error_message: "Le numéro d'EJ ne peut contenir que des caractères alphanumérique et les caractères spéciaux suivant : “-“ ; “_“ ; “+“ ; “/“",
-                if: :should_validate_in_current_context?
+                if: :validate_champ_value?
 end

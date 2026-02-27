@@ -7,7 +7,7 @@ module RNAChampAssociationFetchableConcern
     value = rna
     data = APIEntreprise::RNAAdapter.new(rna, procedure_id).to_params
     update_external_data!(data:, value:)
-    true
+    valid_champ_value?
   rescue APIEntreprise::API::Error, APIEntrepriseToken::TokenError => error
     update_external_data!(data: nil, value:)
     if APIEntrepriseService.service_unavailable_error?(error, target: :djepva)

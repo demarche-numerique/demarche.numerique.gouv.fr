@@ -7,14 +7,14 @@ class Champs::PieceJustificativeChamp < Champ
 
   validates :piece_justificative_file,
     size: { less_than: FILE_MAX_SIZE },
-    if: -> { should_validate_in_current_context? && !type_de_champ.skip_pj_validation }
+    if: -> { validate_champ_value? && !type_de_champ.skip_pj_validation }
 
   validates :piece_justificative_file,
     content_type: AUTHORIZED_CONTENT_TYPES,
-    if: -> { should_validate_in_current_context? && !type_de_champ.skip_content_type_pj_validation }
+    if: -> { validate_champ_value? && !type_de_champ.skip_content_type_pj_validation }
 
   validate :validate_dynamic_piece_justificative_rules,
-    if: -> { should_validate_in_current_context? && piece_justificative_file.attached? }
+    if: -> { validate_champ_value? && piece_justificative_file.attached? }
 
   def main_value_name
     :piece_justificative_file

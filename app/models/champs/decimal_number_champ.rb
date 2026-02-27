@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Champs::DecimalNumberChamp < Champ
-  validates_with NumberLimitValidator, if: :should_validate_in_current_context?
+  validates_with NumberLimitValidator, if: :validate_champ_value?
   before_validation :format_value
 
   validates :value, numericality: {
@@ -18,7 +18,7 @@ class Champs::DecimalNumberChamp < Champ
       # i18n-tasks-use t('errors.messages.not_a_float')
       object.errors.generate_message(:value, :not_a_float)
     },
-  }, if: :should_validate_in_current_context?
+  }, if: :validate_champ_value?
 
   private
 

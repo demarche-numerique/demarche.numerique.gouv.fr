@@ -9,7 +9,7 @@ class Champs::TitreIdentiteChamp < Champ
   validates :piece_justificative_file,
     content_type: ACCEPTED_FORMATS,
     size: { less_than: FILE_MAX_SIZE },
-    if: :should_validate_in_current_context?
+    if: :validate_champ_value?
 
   def main_value_name
     :piece_justificative_file

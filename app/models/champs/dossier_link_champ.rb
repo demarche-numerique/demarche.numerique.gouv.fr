@@ -2,7 +2,7 @@
 
 class Champs::DossierLinkChamp < Champ
   validate :value_integerable, if: -> { value.present? }, on: :prefill
-  validate :dossier_exists, if: -> { should_validate_in_current_context? && value.present? }
+  validate :dossier_exists, if: -> { validate_champ_value? && value.present? }
 
   private
 

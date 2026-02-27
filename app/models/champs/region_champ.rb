@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Champs::RegionChamp < Champs::TextChamp
-  validate :value_in_region_names, if: -> { !value.nil? && should_validate_in_current_context? }
-  validate :external_id_in_region_codes, if: -> { !external_id.nil? && should_validate_in_current_context? }
+  validate :value_in_region_names, if: -> { !value.nil? && validate_champ_value? }
+  validate :external_id_in_region_codes, if: -> { !external_id.nil? && validate_champ_value? }
 
   def selected
     code

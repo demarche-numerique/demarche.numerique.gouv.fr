@@ -2,7 +2,7 @@
 
 class Champs::MultipleDropDownListChamp < Champ
   store_accessor :value_json, :referentiels
-  validate :values_are_in_options, if: -> { value.present? && should_validate_in_current_context? }
+  validate :values_are_in_options, if: -> { value.present? && validate_champ_value? }
   before_save :store_referentiels, if: :drop_down_advanced?
 
   THRESHOLD_NB_OPTIONS_AS_CHECKBOX = 5

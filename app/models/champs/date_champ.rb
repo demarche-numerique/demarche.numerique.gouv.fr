@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Champs::DateChamp < Champ
-  validates_with DateLimitValidator, if: :should_validate_in_current_context?
+  validates_with DateLimitValidator, if: :validate_champ_value?
   before_validation :convert_to_iso8601_date, unless: -> { validation_context == :prefill }
   validate :iso_8601
 

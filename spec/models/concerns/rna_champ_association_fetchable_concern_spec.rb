@@ -47,7 +47,7 @@ RSpec.describe RNAChampAssociationFetchableConcern do
       let(:status) { 422 }
       let(:body) { '' }
 
-      it_behaves_like "an association fetcher", true, nil, '1234', nil
+      it_behaves_like "an association fetcher", false, :invalid, '1234', nil
     end
 
     context 'when the RNA is unknow' do
@@ -55,7 +55,7 @@ RSpec.describe RNAChampAssociationFetchableConcern do
       let(:status) { 404 }
       let(:body) { '' }
 
-      it_behaves_like "an association fetcher", true, nil, 'W111111111', nil
+      it_behaves_like "an association fetcher", false, :not_found, 'W111111111', nil
     end
 
     context 'when the API is unavailable due to network error' do

@@ -4,7 +4,7 @@ class Champs::CommuneChamp < Champs::TextChamp
   store_accessor :value_json, :code_departement, :code_postal, :code_region
   before_save :on_codes_change, if: :should_refresh_after_code_change?
 
-  validates :external_id, presence: true, if: -> { value.present? && should_validate_in_current_context? }
+  validates :external_id, presence: true, if: -> { value.present? && validate_champ_value? }
   after_validation :instrument_external_id_error, if: -> { errors.include?(:external_id) }
 
   def departement_name
