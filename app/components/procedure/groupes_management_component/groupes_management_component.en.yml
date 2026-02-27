@@ -6,6 +6,12 @@ en:
   found:
     one: found
     other: found
+  add_groupe_modal:
+    title: Add a group
+    label: New group
+    placeholder: Enter a group name
+    cancel: Cancel
+    submit: Add
   bulk_assignment:
     title: Bulk instructor assignment (all groups)
     notification_alert_html: All instructors you add / remove from the procedure <strong>will be notified by email</strong>.

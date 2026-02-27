@@ -32,4 +32,28 @@ describe 'Manage procedure instructeurs', js: true do
       expect(page).to have_css("#instructeur_emails[disabled=\"disabled\"]")
     end
   end
+
+  context 'when adding a groupe instructeur via modal' do
+    let(:procedure) { create(:procedure, :routee) }
+
+    scenario 'creates a new groupe and redirects to its configuration page' do
+      visit admin_procedure_groupe_instructeurs_path(procedure)
+
+      click_button 'Ajouter un groupe'
+
+      within('#modal-add-groupe') do
+        expect(page).to have_button('Ajouter', disabled: true)
+
+        fill_in 'Nouveau groupe', with: 'Départements hors IDF'
+
+        expect(page).to have_button('Ajouter', disabled: false)
+
+        click_button 'Ajouter'
+      end
+
+      expect(page).to have_content("a été créé")
+      expect(page).to have_content("Départements hors IDF")
+      expect(procedure.groupe_instructeurs.find_by(label: "Départements hors IDF")).to be_present
+    end
+  end
 end

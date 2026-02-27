@@ -3,8 +3,30 @@
 
 = render Procedure::ImportComponent.new(procedure: @procedure)
 
-= link_to ajout_admin_procedure_groupe_instructeurs_path(@procedure), class: 'fr-btn fr-btn--primary fr-icon-add-line fr-btn--icon-left fr-mb-3w' do
-  Ajouter un groupe
+%button.fr-btn.fr-btn--primary.fr-icon-add-line.fr-btn--icon-left.fr-mb-3w{ 'aria-controls': 'modal-add-groupe', 'data-fr-opened': 'false' }
+  = t('.add_groupe_modal.title')
+
+%dialog#modal-add-groupe.fr-modal{ aria: { labelledby: 'fr-modal-title-add-groupe' }, role: 'dialog' }
+  .fr-container.fr-container--fluid.fr-container-md
+    .fr-grid-row.fr-grid-row--center
+      .fr-col-12.fr-col-md-8.fr-col-lg-6
+        .fr-modal__body
+          .fr-modal__header
+            %button.fr-btn--close.fr-btn{ aria: { controls: 'modal-add-groupe' }, title: t('utils.modal_close_alt') }= t('utils.modal_close')
+          .fr-modal__content
+            %h1#fr-modal-title-add-groupe.fr-modal__title
+              %span.fr-icon-add-line.fr-icon--lg
+              = t('.add_groupe_modal.title')
+            = form_for :groupe_instructeur, url: admin_procedure_groupe_instructeurs_path(@procedure), method: :post, data: { controller: 'enable-submit-if-filled', action: 'input->enable-submit-if-filled#fill' } do |f|
+              .fr-input-group.fr-mb-3w
+                = f.label :label, t('.add_groupe_modal.label'), class: 'fr-label'
+                = f.text_field :label, required: true, class: 'fr-input fr-mt-1w', placeholder: t('.add_groupe_modal.placeholder'), data: { 'enable-submit-if-filled-target': 'input' }
+              .fr-modal__footer.fr-p-0.fr-m-0
+                %ul.fr-btns-group.fr-btns-group--inline-sm
+                  %li
+                    %button.fr-btn.fr-btn--secondary{ type: 'button', aria: { controls: 'modal-add-groupe' } }= t('.add_groupe_modal.cancel')
+                  %li
+                    = f.button t('.add_groupe_modal.submit'), class: 'fr-btn', disabled: true, data: { 'enable-submit-if-filled-target': 'submit' }
 
 = render Procedure::GroupesSearchComponent.new(procedure: @procedure,
   query: @query,

@@ -6,6 +6,12 @@ fr:
   found:
     one: trouvé
     other: trouvés
+  add_groupe_modal:
+    title: Ajouter un groupe
+    label: Nouveau groupe
+    placeholder: Saisissez un nom de groupe
+    cancel: Annuler
+    submit: Ajouter
   bulk_assignment:
     title: Affectation en masse des instructeurs (tous les groupes)
     notification_alert_html: Tous les instructeurs que vous ajouterez / retirerez de la démarche <strong>seront notifiés par email</strong>.

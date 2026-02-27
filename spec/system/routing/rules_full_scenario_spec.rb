@@ -84,9 +84,12 @@ describe 'The routing with rules', js: true do
     alain = User.find_by(email: 'alain@gouv.fr').instructeur
 
     # add inactive groupe
-    visit ajout_admin_procedure_groupe_instructeurs_path(procedure)
-    fill_in 'Nouveau groupe', with: 'non visible car inactif'
-    click_on 'Ajouter'
+    visit admin_procedure_groupe_instructeurs_path(procedure)
+    click_on 'Ajouter un groupe'
+    within('#modal-add-groupe') do
+      fill_in 'Nouveau groupe', with: 'non visible car inactif'
+      click_on 'Ajouter'
+    end
     expect(page).to have_text('Le groupe d’instructeurs « non visible car inactif » a été créé. ')
     check("Groupe inactif", allow_label_click: true)
 
@@ -131,9 +134,12 @@ describe 'The routing with rules', js: true do
     procedure.groupe_instructeurs.where(closed: false).each { |gi| wait_until { gi.reload.routing_rule.present? } }
 
     # add a group without routing rules
-    visit ajout_admin_procedure_groupe_instructeurs_path(procedure)
-    fill_in 'Nouveau groupe', with: 'artistique'
-    click_on 'Ajouter'
+    visit admin_procedure_groupe_instructeurs_path(procedure)
+    click_on 'Ajouter un groupe'
+    within('#modal-add-groupe') do
+      fill_in 'Nouveau groupe', with: 'artistique'
+      click_on 'Ajouter'
+    end
     expect(page).to have_text('Le groupe d’instructeurs « artistique » a été créé. ')
     expect(procedure.groupe_instructeurs.count).to eq(4)
 
