@@ -241,6 +241,7 @@ describe Champs::RNFChamp, type: :model do
         }
 
         expect(subject.value![:value_json]).to eq(value_json)
+        expect(true).to be(true)
       end
     end
   end
