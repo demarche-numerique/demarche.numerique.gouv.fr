@@ -761,8 +761,6 @@ Rails.application.routes.draw do
 
         collection do
           get 'options'
-          get 'ajout'
-          post 'ajout' => 'groupe_instructeurs#create'
           patch 'wizard'
           get 'simple_routing'
           post 'create_simple_routing'

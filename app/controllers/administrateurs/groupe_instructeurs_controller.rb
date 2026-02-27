@@ -29,12 +29,6 @@ module Administrateurs
       end
     end
 
-    def ajout
-      redirect_to admin_procedure_groupe_instructeurs_path(procedure) if procedure.groupe_instructeurs.one?
-      @procedure = procedure
-      @groupes_instructeurs = paginated_groupe_instructeurs
-    end
-
     def simple_routing
       @procedure = procedure
     end
