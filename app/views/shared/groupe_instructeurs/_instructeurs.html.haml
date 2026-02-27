@@ -22,7 +22,7 @@
         %react-fragment
           = render ReactComponent.new 'ComboBox/MultiComboBox', items: available_instructeur_emails, id: 'instructeur_emails', name: 'emails[]', allows_custom_value: true, 'aria-label': 'Emails', data: { 'enable-submit-if-filled-target': 'input' }
 
-      = f.submit t('views.shared.groupe_instructeurs.assign'), class: 'fr-btn fr-btn--tertiary', disabled: true, data: { 'enable-submit-if-filled-target': 'submit' }
+      = f.button t('views.shared.groupe_instructeurs.assign'), class: 'fr-btn fr-btn--primary fr-btn--icon-left fr-icon-add-line fr-icon--lg', disabled: true, data: { 'enable-submit-if-filled-target': 'submit' }
 
   %hr.fr-mt-4w
   .flex.justify-between.align-baseline

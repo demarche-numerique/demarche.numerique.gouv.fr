@@ -13,7 +13,7 @@ describe 'As an instructeur', js: true do
 
     select_combobox('Emails', instructeur_email, custom_value: true)
 
-    perform_enqueued_jobs { click_on 'Affecter' }
+    perform_enqueued_jobs { click_on 'Ajouter' }
 
     expect(page).to have_text("Les instructeurs ont bien été affectés à la démarche")
   end

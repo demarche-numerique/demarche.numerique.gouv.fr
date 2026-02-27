@@ -37,7 +37,7 @@ fr:
           one: "%{count} instructeur affecté"
           other: "%{count} instructeurs affectés"
         instructeur_assignation: Affectation des instructeurs
-        assign: Affecter
+        assign: Ajouter
         remove: Retirer
         instructeur_emails: Adresse(s) électronique(s)
         copy_paste_hint: "Vous pouvez saisir les adresses individuellement, ou bien copier-coller dans le champ ci-dessous une liste d’adresses séparées par des points-virgules (exemple : adresse1@mail.com; adresse2@mail.com; adresse3@mail.com)."

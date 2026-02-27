@@ -5,7 +5,7 @@ fr:
         title: Affecter un nouvel instructeur
         instructeur_emails: Adresse électronique des instructeurs que vous souhaitez affecter à cette démarche.
         copy_paste_hint: "Vous pouvez saisir les adresses individuellement, ou bien copier-coller dans le champ ci-dessous une liste d’adresses séparées par des points-virgules (exemple : adresse1@mail.com; adresse2@mail.com; adresse3@mail.com)."
-        assign: Affecter
+        assign: Ajouter
         wrong_adress: "L’adresse électronique saisie n’est pas valide."
       add_instructeurs:
         wrong_address:
