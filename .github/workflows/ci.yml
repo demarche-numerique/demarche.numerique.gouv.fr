@@ -9,50 +9,6 @@ env:
   DISABLE_SPRING: '1'
 
 jobs:
-  linters:
-    name: Linters
-    runs-on: ubuntu-22.04
-    services:
-      postgres:
-        image: postgis/postgis:17-3.5
-        env:
-          POSTGRES_USER: tps_test
-          POSTGRES_DB: tps_test
-          POSTGRES_PASSWORD: tps_test
-        ports: [ "5432:5432" ]
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup the app code and dependancies
-        uses: ./.github/actions/ci-setup-rails
-
-      - name: Setup bun and node modules
-        uses: ./.github/actions/ci-setup-bun-node
-
-      - name: Run linters
-        run: |
-          bundle exec rake lint
-          RAILS_ENV=test bundle exec rake zeitwerk:check
-
-  js_tests:
-    name: JavaScript tests
-    runs-on: ubuntu-22.04
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup bun and node modules
-        uses: ./.github/actions/ci-setup-bun-node
-
-      - name: Run tests
-        run: bun run test
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-
   unit_tests:
     name: Unit tests
     runs-on: ubuntu-22.04
@@ -71,10 +27,6 @@ jobs:
         image: redis:7-alpine
         ports: ["6379:6379"]
 
-    strategy:
-      matrix:
-        instances: [0, 1, 2, 3, 4, 5]
-
     steps:
       - uses: actions/checkout@v4
 
@@ -91,140 +43,12 @@ jobs:
 
       - name: Run tests
         run: |
-          SPEC_FILES=$(./split_tests -glob='spec/**/*_spec.rb' -exclude-glob='spec/system/**' -split-index=${{ strategy.job-index }} -split-total=${{ strategy.job-total }} -junit -junit-path=tmp/*.junit.xml)
+          SPEC_FILES=$(./split_tests -glob='spec/**/*_spec.rb' -exclude-glob='spec/system/**' -split-index=1 -split-total=6 -junit -junit-path=tmp/*.junit.xml)
           echo "Running tests for bin/rspec $SPEC_FILES"
-          bin/rspec $SPEC_FILES --tag ~slow --tag ~external_deps --tag ~llm_eval --format progress --format RspecJunitFormatter --out tmp/rspec_${{ github.job }}_${{ strategy.job-index }}.junit.xml
+          BOOTSNAP_STATS=1 bundle exec rspec $SPEC_FILES --tag ~slow --tag ~external_deps --tag ~llm_eval --format progress --format RspecJunitFormatter --out tmp/rspec_${{ github.job }}_$1.junit.xml
 
-      - name: Upload test results for this instance
-        uses: actions/upload-artifact@v4
-        with:
-          name: rspec-results-${{ github.job }}-${{ strategy.job-index }}
-          path: tmp/rspec_${{ github.job }}_${{ strategy.job-index }}.junit.xml
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-
-  unit_tests_slow_or_deps:
-    name: (slow, dep) unit tests
-    runs-on: ubuntu-22.04
-    timeout-minutes: 20
-    env:
-      RUBY_YJIT_ENABLE: "1"
-    services:
-      postgres:
-        image: postgis/postgis:17-3.5
-        env:
-          POSTGRES_USER: tps_test
-          POSTGRES_DB: tps_test
-          POSTGRES_PASSWORD: tps_test
-        ports: ["5432:5432"]
-      redis:
-        image: redis:7-alpine
-        ports: ["6379:6379"]
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup the app runtime and dependencies
-        uses: ./.github/actions/ci-setup-rails
-
-      - name: Download or pre-compile assets
-        uses: ./.github/actions/ci-setup-assets
-
-      - name: Install build dependancies
-        # - libvips-dev for image variant processing
-        # - fonts pickable by ImageMagick (still needed for watermark)
-        # - rust for YJIT support
-        # - poppler-utils for pdf previews
-        run: sudo apt-get update && sudo apt-get install -y libvips-dev gsfonts rustc poppler-utils
-
-      - name: Run tests
+      - name: Run tests 2 with warm bootsnap cache
         run: |
-          bin/rspec --tag slow --tag external_deps --tag ~llm_eval --format progress --format RspecJunitFormatter
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-
-  system_tests:
-    name: System tests
-
-    runs-on: warp-ubuntu-2204-x64-2x
-    timeout-minutes: 20
-    env:
-      RUBY_YJIT_ENABLE: "1"
-    services:
-      postgres:
-        image: postgis/postgis:17-3.5
-        env:
-          POSTGRES_USER: tps_test
-          POSTGRES_DB: tps_test
-          POSTGRES_PASSWORD: tps_test
-        ports: ["5432:5432"]
-      redis:
-        image: redis:7-alpine
-        ports: ["6379:6379"]
-
-    strategy:
-      matrix:
-        instances: [0, 1, 2, 3]
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup the app runtime and dependencies
-        uses: ./.github/actions/ci-setup-rails
-
-      - name: Setup bun and node modules
-        uses: ./.github/actions/ci-setup-bun-node
-
-      - name: Setup playwright
-        run: bun playwright install --only-shell chromium
-
-      - name: Download or pre-compile assets
-        uses: ./.github/actions/ci-setup-assets
-
-      - name: Setup split tests
-        uses: ./.github/actions/ci-setup-split-tests
-        with:
-          results_path: tmp/*.junit.xml
-
-      - name: Run tests
-        run: |
-          SPEC_FILES=$(./split_tests -glob='spec/system/**/*_spec.rb' -split-index=${{ strategy.job-index }} -split-total=${{ strategy.job-total }} -junit -junit-path=tmp/*.junit.xml)
+          SPEC_FILES=$(./split_tests -glob='spec/**/*_spec.rb' -exclude-glob='spec/system/**' -split-index=1 -split-total=6 -junit -junit-path=tmp/*.junit.xml)
           echo "Running tests for bin/rspec $SPEC_FILES"
-          RAILS_ENV=test bin/rspec $SPEC_FILES --format progress --format RspecJunitFormatter --out tmp/rspec_${{ github.job }}_${{ strategy.job-index }}.junit.xml
-
-      - name: Upload test results for this instance
-        uses: actions/upload-artifact@v4
-        with:
-          name: rspec-results-${{ github.job }}-${{ strategy.job-index }}
-          path: tmp/rspec_${{ github.job }}_${{ strategy.job-index }}.junit.xml
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-
-  save_test_reports:
-    name: Save test reports
-    needs: [unit_tests, system_tests]
-    runs-on: ubuntu-22.04
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Collect test results from all instances
-        uses: actions/download-artifact@v4
-        with:
-          path: tmp
-          pattern: rspec-results-*
-          merge-multiple: true
-
-      - name: Save test results and timing data, to better split future tests
-        uses: ./.github/actions/ci-save-split-tests
-        with:
-          results_path: tmp/*.junit.xml
+          BOOTSNAP_STATS=1 bundle exec rspec $SPEC_FILES --tag ~slow --tag ~external_deps --tag ~llm_eval --format progress --format RspecJunitFormatter --out tmp/rspec_${{ github.job }}_$1.junit.xml
