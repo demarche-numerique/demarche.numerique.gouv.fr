@@ -1,0 +1,48 @@
+<div class="autosave autosave-state-idle text-center-for-md fr-mb-1w" data-controller="autosave-status">
+  <p class="autosave-explanation fr-text--sm fr-mb-0">
+    <span class="autosave-explanation-text">
+      <% if annotation? %>
+        <%= t('.annotations.explanation') %>
+      <% elsif dossier.en_construction? %>
+        <%= t('.en_construction.explanation') %>
+        <% if dossier.can_passer_en_construction? && owner? %>
+          <%= t('.en_construction.submit_them') %>
+        <% end %>
+      <% else %>
+        <%= t('.brouillon.explanation') %>
+      <% end %>
+    </span>
+    <% if !annotation? %>
+      <%= link_to t('.more_information'), t("links.common.faq.autosave_url"), class: 'fr-link fr-link--sm fr-ml-1w', **external_link_attributes %>
+    <% end %>
+  </p>
+
+  <p class="autosave-status succeeded fr-text--sm fr-mb-0">
+    <span class="fr-icon-success-fill fr-mr-1v" aria-hidden="true"></span>
+    <% if annotation? %>
+      <%= t('.annotations.confirmation_html') %>
+    <% elsif dossier.en_construction? %>
+      <%= t('.en_construction.confirmation_html') %>
+    <% else %>
+      <%= t('.brouillon.confirmation_html') %>
+    <% end %>
+    <% if !annotation? %>
+      <%= link_to t('.more_information'), t("links.common.faq.autosave_url"), class: 'fr-link fr-link--sm fr-ml-1w', **external_link_attributes %>
+    <% end %>
+  </p>
+
+  <p class="autosave-status failed fr-text--sm fr-mb-0">
+    <span class="fr-icon-warning-fill fr-mr-1v" aria-hidden="true"></span>
+    <% if annotation? %>
+      <%= t('.annotations.error_html') %>
+    <% elsif dossier.en_construction? %>
+      <%= t('.en_construction.error_html') %>
+    <% else %>
+      <%= t('.brouillon.error_html') %>
+    <% end %>
+    <button class="fr-btn fr-btn--tertiary fr-btn--sm fr-ml-1w fr-mt-n1v autosave-retry" type="button" data-action="autosave-status#onClickRetryButton" data-autosave-status-target="retryButton">
+      <span class="autosave-retry-label">Réessayer</span>
+      <span class="autosave-retrying-label">Enregistrement en cours…</span>
+    </button>
+  </p>
+</div>
