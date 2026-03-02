@@ -11,7 +11,7 @@ RSpec.describe Dossiers::AutosaveFooterComponent, type: :component do
 
   context 'when showing brouillon state (default state)' do
     it 'displays brouillon explanation' do
-      expect(component).to have_text("Votre brouillon")
+      expect(component).to have_text("Enregistrement automatique du dossier")
     end
   end
 
@@ -19,19 +19,7 @@ RSpec.describe Dossiers::AutosaveFooterComponent, type: :component do
     let(:dossier) { create(:dossier, :en_construction) }
 
     it 'displays en construction explanation' do
-      expect(component).to have_text("Vos modifications")
-      expect(component).to have_text("Déposez-les")
-    end
-
-    context 'when dossier is not eligible' do
-      before do
-        allow(dossier).to receive(:can_passer_en_construction?).and_return(false)
-      end
-
-      it 'displays en construction explanation' do
-        expect(component).to have_text("Vos modifications")
-        expect(component).not_to have_text("Déposez-les")
-      end
+      expect(component).to have_text("Enregistrement automatique des modifications")
     end
   end
 
@@ -39,7 +27,7 @@ RSpec.describe Dossiers::AutosaveFooterComponent, type: :component do
     let(:annotation) { true }
 
     it 'displays annotations explanation' do
-      expect(component).to have_text("Vos annotations")
+      expect(component).to have_text("Enregistrement automatique des annotations")
     end
   end
 end

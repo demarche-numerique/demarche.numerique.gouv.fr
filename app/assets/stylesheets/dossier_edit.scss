@@ -16,11 +16,3 @@
     text-align: right;
   }
 }
-
-.dossier-edit {
-  .autosave {
-    // Make the autosave block occupy the entire horizontal space,
-    // to ensure the failed state has room to display its content.
-    flex-grow: 1;
-  }
-}

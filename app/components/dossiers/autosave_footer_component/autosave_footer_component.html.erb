@@ -1,24 +1,15 @@
-<div class="autosave autosave-state-idle text-center-for-md fr-mb-1w" data-controller="autosave-status">
-  <p class="autosave-explanation fr-text--sm fr-mb-0">
-    <span class="autosave-explanation-text">
-      <% if annotation? %>
-        <%= t('.annotations.explanation') %>
-      <% elsif dossier.en_construction? %>
-        <%= t('.en_construction.explanation') %>
-        <% if dossier.can_passer_en_construction? && owner? %>
-          <%= t('.en_construction.submit_them') %>
-        <% end %>
-      <% else %>
-        <%= t('.brouillon.explanation') %>
-      <% end %>
-    </span>
-    <% if !annotation? %>
-      <%= link_to t('.more_information'), t("links.common.faq.autosave_url"), class: 'fr-link fr-link--sm fr-ml-1w', **external_link_attributes %>
+<div class="autosave" data-controller="autosave-status">
+  <p class="autosave-status fr-info-text fr-text--sm fr-m-0" data-autosave-status-target="idle">
+    <% if annotation? %>
+      <%= t('.annotations.explanation') %>
+    <% elsif dossier.en_construction? %>
+      <%= t('.en_construction.explanation') %>
+    <% else %>
+      <%= t('.brouillon.explanation') %>
     <% end %>
   </p>
 
-  <p class="autosave-status succeeded fr-text--sm fr-mb-0">
-    <span class="fr-icon-success-fill fr-mr-1v" aria-hidden="true"></span>
+  <p class="autosave-status succeeded fr-valid-text fr-text--sm fr-m-0 fr-hidden" data-autosave-status-target="succeeded">
     <% if annotation? %>
       <%= t('.annotations.confirmation_html') %>
     <% elsif dossier.en_construction? %>
@@ -26,13 +17,9 @@
     <% else %>
       <%= t('.brouillon.confirmation_html') %>
     <% end %>
-    <% if !annotation? %>
-      <%= link_to t('.more_information'), t("links.common.faq.autosave_url"), class: 'fr-link fr-link--sm fr-ml-1w', **external_link_attributes %>
-    <% end %>
   </p>
 
-  <p class="autosave-status failed fr-text--sm fr-mb-0">
-    <span class="fr-icon-warning-fill fr-mr-1v" aria-hidden="true"></span>
+  <p class="autosave-status failed fr-error-text fr-text--sm fr-m-0 fr-hidden" data-autosave-status-target="failed">
     <% if annotation? %>
       <%= t('.annotations.error_html') %>
     <% elsif dossier.en_construction? %>

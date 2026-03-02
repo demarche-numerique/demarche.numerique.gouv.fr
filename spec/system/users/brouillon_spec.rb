@@ -61,7 +61,7 @@ describe 'The user', js: true do
     fill_in('dossier_link', with: '123')
     find('.editable-champ-piece_justificative input[type=file]').attach_file(Rails.root + 'spec/fixtures/files/file.pdf')
 
-    expect(page).to have_css('span', text: 'Votre brouillon est automatiquement enregistré', visible: true)
+    expect(page).to have_css('p.autosave-status', text: 'Enregistrement automatique du dossier', visible: true)
     wait_for_autosave
 
     # check data on the dossier
@@ -718,7 +718,7 @@ describe 'The user', js: true do
       fill_individual
 
       expect(page).to have_no_button('Enregistrer le brouillon')
-      expect(page).to have_content('Votre brouillon est automatiquement enregistré')
+      expect(page).to have_content('Enregistrement automatique du dossier')
 
       fill_in('texte obligatoire', with: 'a valid user input')
       wait_for_autosave

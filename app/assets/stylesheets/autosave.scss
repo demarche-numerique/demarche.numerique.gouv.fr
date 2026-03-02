@@ -1,19 +1,40 @@
 .autosave {
-  position: relative;
-}
+  @media (max-width: 62em) {
+    margin-bottom: 0.75rem;
 
-.autosave-status {
-  // Position the status over the explanation text
-  position: absolute;
-  top: 0;
-  width: 100%;
-
-  &.succeeded {
-    color: var(--success-425-625);
+    .dossier-edit-footer:has(.dossier-edit-footer--ineligibilite-link) & {
+      margin-bottom: 0;
+    }
   }
 
-  &.failed {
-    color: var(--warning-425-625);
+  &-status {
+    display: block;
+
+    @media (max-width: 62em) {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  // Override fr-info-text: use round information icon instead of square, default text color
+  .fr-info-text {
+    color: var(--text-default-grey);
+
+    &::before {
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath d='M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10Zm-1-11v6h2v-6h-2Zm0-4v2h2V7h-2Z'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath d='M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10Zm-1-11v6h2v-6h-2Zm0-4v2h2V7h-2Z'/%3E%3C/svg%3E");
+    }
+  }
+
+  // Override fr-error-text: use warning triangle icon in orange instead of red error
+  .fr-error-text {
+    color: var(--text-default-warning);
+
+    &::before {
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='m12.866 3 9.526 16.5a1 1 0 0 1-.866 1.5H2.474a1 1 0 0 1-.866-1.5L11.134 3a1 1 0 0 1 1.732 0ZM11 16v2h2v-2h-2Zm0-7v5h2V9h-2Z'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='m12.866 3 9.526 16.5a1 1 0 0 1-.866 1.5H2.474a1 1 0 0 1-.866-1.5L11.134 3a1 1 0 0 1 1.732 0ZM11 16v2h2v-2h-2Zm0-7v5h2V9h-2Z'/%3E%3C/svg%3E");
+    }
   }
 }
 
@@ -33,53 +54,12 @@
   }
 }
 
-$autosave-status-fade-in-duration: 0.2s;
-$autosave-status-fade-out-duration: 0.7s;
+// Ineligibility link: fix vertical align and underline position
+.dossier-edit-footer--ineligibilite-link {
+  align-self: baseline;
 
-// By default (and in the idle state), display the explanation text and hide statuses.
-.autosave-explanation {
-  visibility: visible;
-  opacity: 1;
-  // Make the explanation fade-in slowly when the status is being removed
-  transition-property: opacity;
-  transition-duration: $autosave-status-fade-out-duration;
-}
-
-.autosave-status {
-  visibility: hidden;
-  opacity: 0;
-  // Make the status fade-out slowly when being removed
-  transition-property: opacity, visibility;
-  transition-duration: $autosave-status-fade-out-duration;
-}
-
-// When one of the status messages should be displayed:
-.autosave-state-succeeded,
-.autosave-state-failed {
-  // Hide the explanation
-  .autosave-explanation {
-    visibility: hidden;
-    opacity: 0;
-    // Make the explanation fade-out quickly
-    transition-property: opacity, visibility;
-    transition-duration: $autosave-status-fade-in-duration;
+  @media (max-width: 62em) {
+    text-align: center;
+    margin-top: 0rem;
   }
-
-  // Show the status message (succeeded or failed)
-  .autosave-status.succeeded,
-  .autosave-status.failed {
-    opacity: 1;
-    // Make the status message fade-in quickly
-    transition-property: opacity;
-    transition-duration: $autosave-status-fade-in-duration;
-  }
-}
-
-// Show only the relevant status message (succeeded of failed)
-.autosave-state-succeeded .autosave-status.succeeded {
-  visibility: visible;
-}
-
-.autosave-state-failed .autosave-status.failed {
-  visibility: visible;
 }

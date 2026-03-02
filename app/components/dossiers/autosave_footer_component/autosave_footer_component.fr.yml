@@ -1,16 +1,14 @@
 ---
 fr:
   brouillon:
-    explanation: Votre brouillon est automatiquement enregistré.
-    confirmation_html: 'Brouillon enregistré <span class="fr-sr-only">avec succès</span>'
-    error_html: '<span class="fr-sr-only">Attention :</span> Impossible d’enregistrer le brouillon.'
+    explanation: Enregistrement automatique du dossier
+    confirmation_html: 'Brouillon du dossier enregistré'
+    error_html: '<span class="fr-sr-only">Attention :</span> Impossible d’enregistrer le dossier, <a href="/contact" target="_blank">contactez-nous</a> si le problème persiste.'
   en_construction:
-    explanation: Vos modifications sont automatiquement enregistrées.
-    submit_them: Déposez-les quand vous aurez terminé.
+    explanation: Enregistrement automatique des modifications
     confirmation_html: 'Modifications enregistrées <span class="fr-sr-only">avec succès</span>'
-    error_html: '<span class="fr-sr-only">Attention :</span> Impossible d’enregistrer les modifications.'
+    error_html: '<span class="fr-sr-only">Attention :</span> Impossible d’enregistrer les modifications, <a href="/contact" target="_blank">contactez-nous</a> si le problème persiste.'
   annotations:
-    explanation: Vos annotations sont automatiquement enregistrées.
+    explanation: Enregistrement automatique des annotations
     confirmation_html: 'Annotations enregistrées <span class="fr-sr-only">avec succès</span>'
-    error_html: '<span class="fr-sr-only">Attention :</span> Impossible d’enregistrer les annotations.'
-  more_information: En savoir plus
+    error_html: '<span class="fr-sr-only">Attention :</span> Impossible d’enregistrer les annotations, <a href="/contact" target="_blank">contactez-nous</a> si le problème persiste.'

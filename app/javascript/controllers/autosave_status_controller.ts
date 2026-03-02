@@ -20,8 +20,11 @@ const AUTOSAVE_STATUS_VISIBLE_DURATION = status_visible_duration;
 // decides to retry after an error.
 //
 export class AutosaveStatusController extends ApplicationController {
-  static targets = ['retryButton'];
+  static targets = ['idle', 'succeeded', 'failed', 'retryButton'];
 
+  declare readonly idleTarget: HTMLElement;
+  declare readonly succeededTarget: HTMLElement;
+  declare readonly failedTarget: HTMLElement;
   declare readonly retryButtonTarget: HTMLButtonElement;
 
   connect(): void {
@@ -82,15 +85,20 @@ export class AutosaveStatusController extends ApplicationController {
 
   private setState(state: 'succeeded' | 'failed' | 'idle') {
     const autosave = this.element as HTMLDivElement;
-    if (autosave) {
-      // Re-apply the state even if already present, to get a nice animation
-      removeClass(autosave, 'autosave-state-idle');
-      removeClass(autosave, 'autosave-state-succeeded');
-      removeClass(autosave, 'autosave-state-failed');
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      autosave.offsetHeight; // flush animations
-      addClass(autosave, `autosave-state-${state}`);
-    }
+    if (!autosave) return;
+
+    // Update state classes on parent (maintained for test compatibility)
+    removeClass(autosave, 'autosave-state-idle');
+    removeClass(autosave, 'autosave-state-succeeded');
+    removeClass(autosave, 'autosave-state-failed');
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    autosave.offsetHeight; // flush animations
+    addClass(autosave, `autosave-state-${state}`);
+
+    // Toggle visibility of target elements via fr-hidden
+    this.idleTarget.classList.toggle('fr-hidden', state !== 'idle');
+    this.succeededTarget.classList.toggle('fr-hidden', state !== 'succeeded');
+    this.failedTarget.classList.toggle('fr-hidden', state !== 'failed');
   }
 
   private hideSucceededStatus() {

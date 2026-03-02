@@ -1,16 +1,14 @@
 ---
 en:
   brouillon:
-    explanation: Your draft is automatically saved.
-    confirmation_html: Draft successfully saved.
-    error_html: '<span class="fr-sr-only">Warning:</span> Impossible to save the draft.'
+    explanation: File is automatically saved.
+    confirmation_html: File successfully saved.
+    error_html: '<span class="fr-sr-only">Warning:</span> Impossible to save the file, <a href="/contact" target="_blank">contact us</a> if the issue persists.'
   en_construction:
-    explanation: Your modifications are automatically saved.
-    submit_them: Submit them when you’re done.
+    explanation: Modifications are automatically saved.
     confirmation_html: Modifications successfully saved.
-    error_html: '<span class="fr-sr-only">Warning:</span> Impossible to save the modifications.'
+    error_html: '<span class="fr-sr-only">Warning:</span> Impossible to save the modifications, <a href="/contact" target="_blank">contact us</a> if the issue persists.'
   annotations:
     explanation: Your annotations are automatically saved.
     confirmation_html: Annotations successfully saved.
     error_html: '<span class="fr-sr-only">Warning:</span> Impossible to save the annotations.'
-  more_information: More informations

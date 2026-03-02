@@ -26,7 +26,7 @@ describe 'users/dossiers/brouillon', type: :view do
     end
 
     it 'affiche les boutons de validation' do
-      expect(rendered).to have_selector('.send-dossier-actions-bar')
+      expect(rendered).to have_selector('.dossier-edit-footer')
     end
 
     it 'prépare le footer' do
