@@ -1,3 +1,14 @@
+@keyframes autosave-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .autosave {
   @media (max-width: 62em) {
     margin-bottom: 0.75rem;
@@ -14,6 +25,14 @@
       text-align: center;
       margin-left: auto;
       margin-right: auto;
+    }
+
+    &:not(.fr-hidden) {
+      animation: autosave-fade-in 0.2s ease-out;
+
+      @media (prefers-reduced-motion: reduce) {
+        animation: none;
+      }
     }
   }
 
