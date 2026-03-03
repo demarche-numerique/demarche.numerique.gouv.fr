@@ -22,7 +22,9 @@ class Dossiers::EditFooterComponent < ApplicationComponent
     @annotation.present?
   end
 
-  def can_submit?
+  def show_submit?
+    return false if !owner?
+
     can_submit_draft? || can_submit_en_construction?
   end
 
@@ -31,7 +33,7 @@ class Dossiers::EditFooterComponent < ApplicationComponent
   end
 
   def can_submit_en_construction?
-    owner? && user_buffer_changes?
+    @dossier.en_construction?
   end
 
   def submit_button_label
@@ -76,13 +78,16 @@ class Dossiers::EditFooterComponent < ApplicationComponent
   end
 
   def submit_en_construction_button_options
+    disabled = !can_passer_en_construction? || !user_buffer_changes?
+
     {
       class: 'fr-btn',
-      disabled: !can_passer_en_construction?,
+      disabled:,
+      title: !user_buffer_changes? ? t('.submit_changes_disabled_title') : nil,
       method: :post,
       data: { 'disable-with': t('.submitting'), controller: 'autosave-submit', turbo_force: :server },
       form: { id: "form-submit-en-construction" },
-    }
+    }.compact
   end
 
   def render?

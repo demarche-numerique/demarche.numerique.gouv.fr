@@ -7,7 +7,7 @@
         %ul.fr-btns-group.fr-btns-group--inline-lg
 
           - if show_for_user?
-            - if can_submit? && owner?
+            - if show_submit?
               - if !can_passer_en_construction?
                 %li.dossier-edit-footer--ineligibilite-link.fr-mt-1w.fr-mb-2w= link_to t('.submit_disabled'), "#", disabled_submit_button_options
 

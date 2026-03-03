@@ -2,6 +2,7 @@
 fr:
   submit: Déposer le dossier
   submit_changes: Déposer les modifications
+  submit_changes_disabled_title: Modifiez le dossier avant de le redéposer
   submit_disabled: Pourquoi je ne peux pas déposer mon dossier ?
   check_completude: Vérifier le dossier
   notify_owner_for_changes: Prévenir le titulaire de vos modifications

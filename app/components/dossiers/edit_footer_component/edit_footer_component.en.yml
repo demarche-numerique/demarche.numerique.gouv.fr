@@ -2,6 +2,7 @@
 en:
   submit: Submit the file
   submit_changes: Submit file changes
+  submit_changes_disabled_title: Modify the file before resubmitting it
   submit_disabled: File submission disabled
   check_completude: Check the file
   notify_owner_for_changes: Notify the owner of your changes
