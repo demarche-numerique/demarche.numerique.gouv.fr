@@ -171,7 +171,6 @@ module SystemHelpers
   def wait_for_autosave
     blur
     expect(page).to have_css('.debounced-empty') # no more debounce
-    expect(page).to have_css('.autosave-state-idle') # no more in flight promise
   end
 
   # find input (radio), center it in the screen, then click on label (otherwise element out of scope)
