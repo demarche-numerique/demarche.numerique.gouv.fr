@@ -4,7 +4,7 @@
 >
   <% if header_section %>
     <div class="<%= class_names(flex: true, "top-bordered" => first_level?) %>">
-      <%= render EditableChamp::HeaderSectionComponent.new(champ: header_section, html_class: { 'fr-m-0 fr-text--md fr-px-4v flex-grow': true, "fr-text-action-high--blue-france fr-py-2w": first_level?, 'fr-py-1v': !first_level? }) %>
+      <%= render EditableChamp::HeaderSectionComponent.new(champ: header_section, with_visual_heading: false,html_class: { 'fr-m-0 fr-text--md fr-px-4v flex-grow': true, "fr-text-action-high--blue-france fr-py-2w": first_level?, 'fr-py-1v': !first_level? }) %>
 
       <% if ![champs, sections].map(&:empty?).all? && first_level? %>
         <button
