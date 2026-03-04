@@ -23,8 +23,8 @@ class Scaleway::API
     case result
     in Success(body:)
       map_emails(body[:emails] || [])
-    in Failure(code:, reason:)
-      Sentry.capture_message("Scaleway API error: #{reason}", extra: { code: })
+    in Failure(code:, error:)
+      Sentry.capture_message("Scaleway API error: #{error}", extra: { code: })
       []
     end
   end

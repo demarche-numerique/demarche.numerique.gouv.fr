@@ -38,7 +38,7 @@ RSpec.describe ChampFetchExternalDataJob, type: :job do
 
   describe 'error handling and backoff strategy' do
     let(:error) { StandardError.new('Retryable error') }
-    let(:failure) { Dry::Monads::Failure(retryable: true, reason: error, code: 504) }
+    let(:failure) { Dry::Monads::Failure(retryable: true, error:, code: 504) }
 
     before do
       champ.update_column(:external_state, 'waiting_for_job')

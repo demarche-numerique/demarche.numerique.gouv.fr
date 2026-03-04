@@ -77,7 +77,7 @@ module Maintenance
       context 'when api respond KO' do
         before do
           element.update(data:)
-          allow_any_instance_of(Champs::RNFChamp).to receive(:fetch_external_data).and_return(Failure(code: 404, reason: :removed))
+          allow_any_instance_of(Champs::RNFChamp).to receive(:fetch_external_data).and_return(Failure(code: 404, error: :removed))
         end
 
         it 'updates value_json' do

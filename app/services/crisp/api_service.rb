@@ -121,8 +121,8 @@ module Crisp
       case result
       in Success(body:)
         Success(body)
-      in Failure(code:, reason:)
-        Failure(API::Client::Error[:api_error, code, false, reason])
+      in Failure(code:, error:)
+        Failure(API::Client::Error[:api_error, code, false, error])
       end
     end
   end

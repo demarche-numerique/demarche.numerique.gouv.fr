@@ -74,15 +74,15 @@ class OCRService
   def self.document_ia_url = ENV.fetch("DOCUMENT_IA_URL", nil)
 
   def self.not_configured(message)
-    Failure(retryable: false, reason: StandardError.new("#{message} not configured"))
+    Failure(retryable: false, error: StandardError.new("#{message} not configured"))
   end
 
   def self.to_retryable_failure(data)
     case data
-    in code:, reason:
-      Failure(retryable: false, reason:, code:)
+    in code:, error:
+      Failure(retryable: false, error:, code:)
     else
-      Failure(retryable: false, reason: StandardError.new('Unknown error'))
+      Failure(retryable: false, error: StandardError.new('Unknown error'))
     end
   end
 end

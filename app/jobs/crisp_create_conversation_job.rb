@@ -121,8 +121,8 @@ class CrispCreateConversationJob < ApplicationJob
     case response
     in Success(body)
       body
-    in Failure(reason:)
-      fail reason
+    in Failure(error:)
+      fail error
     end
   end
 

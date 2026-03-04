@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class ExternalDataException
-  attr_accessor :reason, :code
+  attr_accessor :error, :code
 
-  def initialize(reason:, code:)
-    @reason = reason
+  def initialize(error:, code:)
+    @error = error
     @code = code
   end
 end

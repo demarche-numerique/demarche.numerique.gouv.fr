@@ -23,8 +23,8 @@ class CrispUpdatePeopleDataJob < ApplicationJob
     case result
     in Success(data:)
       { email: data[:email], segments: data[:segments] || [] }
-    in Failure(reason:)
-      fail reason
+    in Failure(error:)
+      fail error
     end
   end
 
@@ -35,8 +35,8 @@ class CrispUpdatePeopleDataJob < ApplicationJob
     case result
     in Success
     # NOOP
-    in Failure(reason:)
-      fail reason
+    in Failure(error:)
+      fail error
     end
   end
 

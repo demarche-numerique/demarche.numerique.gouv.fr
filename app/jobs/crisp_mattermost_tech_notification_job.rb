@@ -23,8 +23,8 @@ class CrispMattermostTechNotificationJob < ApplicationJob
       message = build_mattermost_message(data)
 
       send_mattermost_notification(message)
-    in Failure(reason:)
-      fail reason
+    in Failure(error:)
+      fail error
     end
   end
 
@@ -38,8 +38,8 @@ class CrispMattermostTechNotificationJob < ApplicationJob
     case result
     in Success(_)
       # NOOP
-    in Failure(reason:)
-      fail reason
+    in Failure(error:)
+      fail error
     end
   end
 

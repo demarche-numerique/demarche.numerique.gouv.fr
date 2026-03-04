@@ -61,11 +61,11 @@ class ReferentielService
     in Success(body:)
       Success(body)
     in Failure(code:) if code.in?(RETRYABLE_STATUS_CODES) # api may be rate limited, or down etc..
-      Failure(retryable: true, reason: StandardError.new("Retryable: #{code}"), code:)
+      Failure(retryable: true, error: StandardError.new("Retryable: #{code}"), code:)
     in Failure(code:) if code.in?(NON_RETRYABLE_STATUS_CODES) # search may not have been found
-      Failure(retryable: false, reason: StandardError.new("Not retryable: #{code}"), code:)
+      Failure(retryable: false, error: StandardError.new("Not retryable: #{code}"), code:)
     in Failure
-      Failure(retryable: false, reason: StandardError.new('Unknown error'), code:)
+      Failure(retryable: false, error: StandardError.new('Unknown error'), code:)
     end
   end
 

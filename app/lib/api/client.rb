@@ -33,11 +33,11 @@ class API::Client
         **typhoeus_options)
     end
     handle_response(response, schema:)
-  rescue StandardError => reason
-    if reason.is_a?(URI::InvalidURIError)
-      Failure(Error[:uri, 0, false, reason])
+  rescue StandardError => error
+    if error.is_a?(URI::InvalidURIError)
+      Failure(Error[:uri, 0, false, error])
     else
-      Failure(Error[:error, 0, false, reason])
+      Failure(Error[:error, 0, false, error])
     end
   end
 
@@ -55,7 +55,7 @@ class API::Client
   end
 
   OK = Data.define(:body, :response)
-  Error = Data.define(:type, :code, :retryable, :reason)
+  Error = Data.define(:type, :code, :retryable, :error)
 
   def handle_response(response, schema:)
     if response.success?

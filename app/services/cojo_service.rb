@@ -21,8 +21,8 @@ class COJOService
         accreditation_first_name: accreditation_success ? body[:firstName] : nil,
         accreditation_last_name: accreditation_success ? body[:lastName] : nil,
       })
-    in Failure(code:, reason:) if code.in?(401..403)
-      Failure(API::Client::Error[:unauthorized, code, false, reason])
+    in Failure(code:, error:) if code.in?(401..403)
+      Failure(API::Client::Error[:unauthorized, code, false, error])
     else
       result
     end

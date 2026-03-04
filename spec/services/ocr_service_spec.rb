@@ -50,7 +50,7 @@ describe OCRService do
           analysis = described_class.analyze(blob, nature: 'RIB')
           expect(analysis.failure?).to be true
           expect(analysis.failure[:code]).to eq(422)
-          expect(analysis.failure[:reason].to_s).to include('Invalid')
+          expect(analysis.failure[:error].to_s).to include('Invalid')
         end
       end
     end

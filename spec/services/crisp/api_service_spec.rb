@@ -48,7 +48,7 @@ RSpec.describe Crisp::APIService do
     context 'when API call fails' do
       before do
         allow(api_client).to receive(:call).and_return(
-          Dry::Monads::Failure({ code: 400, reason: 'Bad Request' })
+          Dry::Monads::Failure({ code: 400, error: 'Bad Request' })
         )
       end
 

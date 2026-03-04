@@ -40,7 +40,7 @@ describe Champs::RNFChamp, type: :model do
     end
 
     context 'when fetch_external_data_exceptions contains a non-retryable error' do
-      let(:error) { ExternalDataException.new(reason: 'Not retryable', code: 404) }
+      let(:error) { ExternalDataException.new(error: 'Not retryable', code: 404) }
 
       before { champ.update_columns(external_state: 'external_error', fetch_external_data_exceptions: [error]) }
 
@@ -180,7 +180,7 @@ describe Champs::RNFChamp, type: :model do
       let(:response_type) { 'invalid' }
       it {
         expect(subject.failure.retryable).to be_falsey
-        expect(subject.failure.reason).to be_a(API::Client::SchemaError)
+        expect(subject.failure.error).to be_a(API::Client::SchemaError)
       }
     end
 
@@ -189,7 +189,7 @@ describe Champs::RNFChamp, type: :model do
       let(:response_type) { 'invalid' }
       it {
         expect(subject.failure.retryable).to be_truthy
-        expect(subject.failure.reason).to be_a(API::Client::HTTPError)
+        expect(subject.failure.error).to be_a(API::Client::HTTPError)
       }
     end
 
@@ -198,7 +198,7 @@ describe Champs::RNFChamp, type: :model do
       let(:response_type) { 'invalid' }
       it {
         expect(subject.failure.retryable).to be_falsey
-        expect(subject.failure.reason).to be_a(API::Client::HTTPError)
+        expect(subject.failure.error).to be_a(API::Client::HTTPError)
       }
     end
 
@@ -207,7 +207,7 @@ describe Champs::RNFChamp, type: :model do
       let(:response_type) { 'invalid' }
       it {
         expect(subject.failure.retryable).to be_falsey
-        expect(subject.failure.reason).to be_a(API::Client::HTTPError)
+        expect(subject.failure.error).to be_a(API::Client::HTTPError)
       }
     end
 
@@ -216,7 +216,7 @@ describe Champs::RNFChamp, type: :model do
       let(:response_type) { 'invalid' }
       it {
         expect(subject.failure.retryable).to be_falsey
-        expect(subject.failure.reason).to be_a(API::Client::HTTPError)
+        expect(subject.failure.error).to be_a(API::Client::HTTPError)
       }
     end
 

@@ -38,12 +38,12 @@ class APIBretagneService
     result = call(url:, params:)
 
     case result
-    in Failure(code:, reason:) if code.in?(401..403)
+    in Failure(code:, error:) if code.in?(401..403)
       if remaining_retry_count > 0
         login
         fetch_page(url:, params:, remaining_retry_count: 0)
       else
-        fail "APIBretagneService, #{reason} #{code}"
+        fail "APIBretagneService, #{error} #{code}"
       end
     in Success(body:)
       body
@@ -65,8 +65,8 @@ class APIBretagneService
     case result
     in Success(token:)
       @token = token
-    in Failure(reason:, code:)
-      fail "APIBretagneService, #{reason} #{code}"
+    in Failure(error:, code:)
+      fail "APIBretagneService, #{error} #{code}"
     end
   end
 
@@ -80,8 +80,8 @@ class APIBretagneService
     case result
     in Success(body:)
       Success(token: body.split("Bearer ")[1])
-    in Failure(code:, reason:) if code.in?(403)
-      Failure(API::Client::Error[:invalid_credential, code, false, reason])
+    in Failure(code:, error:) if code.in?(403)
+      Failure(API::Client::Error[:invalid_credential, code, false, error])
     else
       Failure(API::Client::Error[:api_down])
     end

@@ -44,7 +44,7 @@ describe APIParticulier::QuotientFamilial do
 
       it 'returns a Failure with an invalid_schema code' do
         expect(subject).to be_failure
-        expect(subject.failure[:reason].message).to include("dossier allocataire non trouvé")
+        expect(subject.failure[:error].message).to include("dossier allocataire non trouvé")
       end
     end
   end

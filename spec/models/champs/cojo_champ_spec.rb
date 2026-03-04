@@ -37,7 +37,7 @@ describe Champs::COJOChamp, type: :model do
       let(:response_type) { 'invalid' }
       it {
         expect(subject.failure.retryable).to be_falsey
-        expect(subject.failure.reason).to be_a(API::Client::SchemaError)
+        expect(subject.failure.error).to be_a(API::Client::SchemaError)
       }
     end
 
@@ -46,7 +46,7 @@ describe Champs::COJOChamp, type: :model do
       let(:response_type) { 'invalid' }
       it {
         expect(subject.failure.retryable).to be_truthy
-        expect(subject.failure.reason).to be_a(API::Client::HTTPError)
+        expect(subject.failure.error).to be_a(API::Client::HTTPError)
       }
     end
 
@@ -55,7 +55,7 @@ describe Champs::COJOChamp, type: :model do
       let(:response_type) { 'invalid' }
       it {
         expect(subject.failure.retryable).to be_falsey
-        expect(subject.failure.reason).to be_a(API::Client::HTTPError)
+        expect(subject.failure.error).to be_a(API::Client::HTTPError)
       }
     end
   end

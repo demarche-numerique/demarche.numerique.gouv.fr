@@ -53,7 +53,7 @@ describe Champs::SiretChamp do
 
     context 'when external fetch failed' do
       let(:external_id) { "12345678901245" }
-      let(:exception) { ExternalDataException.new(reason: 'Not retryable', code: 404) }
+      let(:exception) { ExternalDataException.new(error: 'Not retryable', code: 404) }
 
       before do
         champ.update_columns(

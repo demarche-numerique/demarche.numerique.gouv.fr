@@ -137,7 +137,7 @@ RSpec.describe CrispCreateConversationJob, type: :job do
     context 'conversation creation error' do
       before do
         allow(api).to receive(:create_conversation)
-          .and_return(Dry::Monads::Failure(reason: 'API Error'))
+          .and_return(Dry::Monads::Failure(error: 'API Error'))
       end
 
       it 'reenqueues job so it will retry later' do
@@ -161,7 +161,7 @@ RSpec.describe CrispCreateConversationJob, type: :job do
           .and_return(Dry::Monads::Success(data: { session_id: session_id }))
 
         allow(api).to receive(:send_message)
-          .and_return(Dry::Monads::Failure(reason: 'Message send failed'))
+          .and_return(Dry::Monads::Failure(error: 'Message send failed'))
       end
 
       it 'reenqueues job for retry' do

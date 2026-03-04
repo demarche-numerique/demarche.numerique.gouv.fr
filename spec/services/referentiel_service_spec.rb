@@ -79,7 +79,7 @@ RSpec.describe ReferentielService, type: :service do
       let(:body) { nil }
       it "returns a not retryable Failure" do
         expect(subject).to be_failure
-        expect(subject.failure).to include(retryable: false, reason: StandardError.new('Not retryable: 404'), code: 404)
+        expect(subject.failure).to include(retryable: false, error: StandardError.new('Not retryable: 404'), code: 404)
       end
     end
 
@@ -88,7 +88,7 @@ RSpec.describe ReferentielService, type: :service do
       let(:body) { nil }
       it "returns a retryable Failure" do
         expect(subject).to be_failure
-        expect(subject.failure).to include(retryable: true, reason: StandardError.new('Retryable: 429'), code: 429)
+        expect(subject.failure).to include(retryable: true, error: StandardError.new('Retryable: 429'), code: 429)
       end
     end
 
@@ -97,7 +97,7 @@ RSpec.describe ReferentielService, type: :service do
       let(:body) { nil }
       it "returns a retryable Failure" do
         expect(subject).to be_failure
-        expect(subject.failure).to include(retryable: false, reason: StandardError.new('Unknown error'), code: 418)
+        expect(subject.failure).to include(retryable: false, error: StandardError.new('Unknown error'), code: 418)
       end
     end
 

@@ -30,7 +30,7 @@ describe Champs::ReferentielChamp, type: :model do
 
     context 'when the champ is in error with a non-retryable error' do
       let(:external_data_exceptions) do
-        ExternalDataException.new(reason: 'Not retryable: 404, 400, 403, 401', code: 404)
+        ExternalDataException.new(error: 'Not retryable: 404, 400, 403, 401', code: 404)
       end
 
       before { champ.update_columns(external_state: 'external_error', fetch_external_data_exceptions: [external_data_exceptions]) }

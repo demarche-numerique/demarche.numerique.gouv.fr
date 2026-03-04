@@ -2,19 +2,21 @@
 
 class ExternalDataExceptionType < ActiveRecord::Type::Value
   # value can come from:
-  # setter: ExternalDataException or { reason:, code: } (Hash),
-  # from db: { reason:, code: } (Hash)
+  # setter: ExternalDataException or { error:, code: } (Hash),
+  # from db: { reason:, code: } (Hash) (legacy) or { error:, code: } (Hash)
   def cast(value)
     case value
     in NilClass
       nil
     in ExternalDataException
       value
-    in { reason: String => reason, code: Integer => code }
-      ExternalDataException.new(reason:, code:)
+    in { error: String => error, code: Integer => code }
+      ExternalDataException.new(error:, code:)
+    in { reason: String => error, code: Integer => code }
+      ExternalDataException.new(error:, code:)
     in String => json_string
       h = JSON.parse(json_string, symbolize_names: true) rescue { reason: json_string, code: nil }
-      ExternalDataException.new(reason: h[:reason], code: h[:code])
+      ExternalDataException.new(error: h[:error] || h[:reason], code: h[:code])
     else
       raise ArgumentError, "Invalid value for ExternalDataException casting: #{value}"
     end
@@ -31,7 +33,7 @@ class ExternalDataExceptionType < ActiveRecord::Type::Value
     in ExternalDataException
       JSON.generate({
         code: value.code,
-        reason: value.reason,
+        error: value.error,
       })
     else
       raise ArgumentError, "Invalid value for ExternalDataException serialization: #{value}"

@@ -2117,7 +2117,7 @@ describe Users::DossiersController, type: :controller do
       end
 
       context 'when the requested external_id is in error' do
-        before { dossier.champs.first.update_columns(external_id: 'kthxbye', value: "OK", fetch_external_data_exceptions: [ExternalDataException.new(reason: "thxbye", code: 429)]) }
+        before { dossier.champs.first.update_columns(external_id: 'kthxbye', value: "OK", fetch_external_data_exceptions: [ExternalDataException.new(error: "thxbye", code: 429)]) }
         it 'validates errors' do
           subject
           expect(response).not_to include('Trop de demandes. Nous réessayons pour vous.')

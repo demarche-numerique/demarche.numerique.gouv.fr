@@ -21,14 +21,14 @@ class AnnuaireServicePublicService
       else
         Failure(API::Client::Error[:not_found, 404, false, "No result found for this SIRET."])
       end
-    in Failure(code:, reason:) if code.in?(401..403)
-      Sentry.capture_message("#{self.class.name}: #{reason} code: #{code}", extra: { siret: })
-      Failure(API::Client::Error[:unauthorized, code, false, reason])
-    in Failure(type: :schema, code:, reason:)
-      reason.errors[0].first
-      Sentry.capture_exception(reason, extra: { siret:, code: })
+    in Failure(code:, error:) if code.in?(401..403)
+      Sentry.capture_message("#{self.class.name}: #{error} code: #{code}", extra: { siret: })
+      Failure(API::Client::Error[:unauthorized, code, false, error])
+    in Failure(type: :schema, code:, error:)
+      error.errors[0].first
+      Sentry.capture_exception(error, extra: { siret:, code: })
 
-      Failure(API::Client::Error[:schema, code, false, reason])
+      Failure(API::Client::Error[:schema, code, false, error])
     else
       result
     end

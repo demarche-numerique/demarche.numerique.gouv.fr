@@ -93,7 +93,7 @@ RSpec.describe ChampExternalDataConcern do
         allow(champ).to receive(:ready_for_external_call?).and_return(true)
         champ.fetch_later!
 
-        failure = Failure(retryable: false, reason: Exception.new('nop'), code:)
+        failure = Failure(retryable: false, error: Exception.new('nop'), code:)
         allow(champ).to receive(:fetch_external_data).and_return(failure)
         allow(Sentry).to receive(:capture_exception)
         champ.fetch!
@@ -120,7 +120,7 @@ RSpec.describe ChampExternalDataConcern do
         allow(champ).to receive(:ready_for_external_call?).and_return(true)
         champ.fetch_later!
 
-        failure = Failure(retryable: true, reason: Exception.new('nop'), code: 404)
+        failure = Failure(retryable: true, error: Exception.new('nop'), code: 404)
         allow(champ).to receive(:fetch_external_data).and_return(failure)
       end
 
