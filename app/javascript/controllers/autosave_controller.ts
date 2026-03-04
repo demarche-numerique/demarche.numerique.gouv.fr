@@ -7,7 +7,19 @@ import {
   FAILURE_CLIENT,
   FileUploadError
 } from '../shared/activestorage/file-upload-error';
+import {
+  showAttachmentError,
+  hideAttachmentError
+} from '../shared/attachment-error';
 import { ApplicationController } from './application_controller';
+
+/**
+ * Erreur de validation pour un fichier
+ */
+interface FileValidationError {
+  file: File;
+  errors: string[];
+}
 
 const {
   autosave: { debounce_delay }
@@ -70,8 +82,28 @@ export class AutosaveController extends ApplicationController {
     matchInputElement(event.target, {
       file: (target) => {
         if (target.dataset.autoAttachUrl && target.files?.length) {
+          // IMPORTANT : Masquer et nettoyer les erreurs précédentes avant tout traitement
+          hideAttachmentError(target);
+
           this.globalDispatch('autosave:input');
-          this.enqueueAutouploadRequest(target, target.files[0]);
+
+          const allFiles = Array.from(target.files);
+
+          // Partitionner les fichiers en valides et invalides
+          const { validFiles, invalidFiles } = this.partitionFiles(
+            target,
+            allFiles
+          );
+
+          // Afficher toutes les erreurs en une seule fois
+          if (invalidFiles.length > 0) {
+            this.showFileErrors(target, invalidFiles);
+          }
+
+          // Upload uniquement les fichiers valides
+          for (const file of validFiles) {
+            this.enqueueAutouploadRequest(target, file);
+          }
         }
       },
       changeable: (target) => {
@@ -255,5 +287,267 @@ export class AutosaveController extends ApplicationController {
         'input:not([type=file]), textarea, select'
       )
     ].filter((element) => !element.disabled);
+  }
+
+  private partitionFiles(
+    input: HTMLInputElement,
+    files: File[]
+  ): { validFiles: File[]; invalidFiles: FileValidationError[] } {
+    const validFiles: File[] = [];
+    const invalidFiles: FileValidationError[] = [];
+    const maxFilesRemaining = this.getMaxFilesRemaining(input);
+
+    for (let index = 0; index < files.length; index++) {
+      const file = files[index];
+      const errors: string[] = [];
+
+      const limitError = this.checkFileLimit(input, index, maxFilesRemaining);
+      if (limitError) {
+        errors.push(limitError);
+      }
+
+      const formatError = this.checkFileFormat(input, file);
+      if (formatError) {
+        errors.push(formatError);
+      }
+
+      const sizeError = this.checkFileSize(input, file);
+      if (sizeError) {
+        errors.push(sizeError);
+      }
+
+      if (errors.length > 0) {
+        invalidFiles.push({ file, errors });
+      } else {
+        validFiles.push(file);
+      }
+    }
+
+    return { validFiles, invalidFiles };
+  }
+
+  private showFileErrors(
+    input: HTMLInputElement,
+    invalidFiles: FileValidationError[]
+  ): void {
+    const uniqueErrors = [
+      ...new Set(invalidFiles.flatMap(({ errors }) => errors))
+    ];
+
+    showAttachmentError(input, uniqueErrors);
+  }
+
+  /**
+   * Parse l'attribut accept pour générer un label lisible
+   * Extrait les extensions et catégories MIME directement depuis accept
+   * @example ".pdf,.docx,image/*" → "PDF, DOCX, images"
+   */
+  private parseAcceptForDisplay(accept: string): string {
+    const acceptedFormats = accept
+      .split(',')
+      .map((format) => format.trim().toLowerCase());
+
+    const displayItems: string[] = [];
+
+    for (const format of acceptedFormats) {
+      if (format.startsWith('.')) {
+        const ext = format.substring(1).toUpperCase();
+        if (!displayItems.includes(ext)) {
+          displayItems.push(ext);
+        }
+      } else if (format.includes('/*')) {
+        const category = format.split('/')[0];
+        const label = this.getFormatFamilyLabel(category);
+        if (!displayItems.includes(label)) {
+          displayItems.push(label);
+        }
+      } else {
+        const label = this.getMimeTypeLabel(format);
+        if (label && !displayItems.includes(label)) {
+          displayItems.push(label);
+        }
+      }
+    }
+
+    // Si aucune extension/wildcard/MIME type reconnu, message générique
+    if (displayItems.length === 0) {
+      return 'certains formats spécifiques';
+    }
+
+    return displayItems.join(', ');
+  }
+
+  /**
+   * Retourne le label correspondant à une famille de formats
+   * Basé sur FORMAT_FAMILY_EXAMPLES de config/initializers/authorized_content_types.rb
+   */
+  private getFormatFamilyLabel(mimeCategory: string): string {
+    const formatFamilyLabels: Record<string, string> = {
+      // Correspond à FORMAT_FAMILY_EXAMPLES[:image_scan]
+      image: '.jpg, .jpeg, .png',
+      // Correspond à FORMAT_FAMILY_EXAMPLES[:video]
+      video: '.mp4, .mov, .avi, .wmv',
+      // Correspond à FORMAT_FAMILY_EXAMPLES[:audio]
+      audio: '.mp3, .wav, .aac, .m4a',
+      // Correspond à FORMAT_FAMILY_EXAMPLES[:document_texte] (partiel)
+      application: '.pdf, .doc, .docx, .odt, .txt',
+      // Correspond à FORMAT_FAMILY_EXAMPLES[:donnees] (partiel)
+      text: '.xml, .json, .txt, .csv'
+    };
+
+    return formatFamilyLabels[mimeCategory] || mimeCategory;
+  }
+
+  /**
+   * Convertit un MIME type exact vers son label correspondant de FORMAT_FAMILY_EXAMPLES
+   * Mapping basé sur FORMAT_FAMILIES (config/initializers/authorized_content_types.rb)
+   */
+  private getMimeTypeLabel(mimeType: string): string | null {
+    // Mapping des MIME types utilisés dans FORMAT_FAMILIES vers leurs labels
+    const mimeToFamilyLabel: Record<string, string> = {
+      // image_scan → '.jpg, .jpeg, .png'
+      'image/jpeg': '.jpg, .jpeg, .png',
+      'image/png': '.jpg, .jpeg, .png',
+
+      // document_texte → '.pdf, .doc, .docx, .odt, .txt'
+      'application/pdf': '.pdf, .doc, .docx, .odt, .txt',
+      'application/x-pdf': '.pdf, .doc, .docx, .odt, .txt',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+        '.pdf, .doc, .docx, .odt, .txt',
+      'application/vnd.oasis.opendocument.text':
+        '.pdf, .doc, .docx, .odt, .txt',
+      'application/msword': '.pdf, .doc, .docx, .odt, .txt',
+      'text/plain': '.pdf, .doc, .docx, .odt, .txt',
+
+      // tableur → '.xls, .xlsx, .ods, .csv'
+      'application/vnd.ms-excel': '.xls, .xlsx, .ods, .csv',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+        '.xls, .xlsx, .ods, .csv',
+      'application/vnd.oasis.opendocument.spreadsheet':
+        '.xls, .xlsx, .ods, .csv',
+      'text/csv': '.xls, .xlsx, .ods, .csv',
+
+      // presentation → '.ppt, .pptx, .odp'
+      'application/vnd.openxmlformats-officedocument.presentationml.presentation':
+        '.ppt, .pptx, .odp',
+      'application/vnd.ms-powerpoint': '.ppt, .pptx, .odp',
+
+      // audio → '.mp3, .wav, .aac, .m4a'
+      'audio/mpeg': '.mp3, .wav, .aac, .m4a',
+      'audio/mp4': '.mp3, .wav, .aac, .m4a',
+      'audio/x-m4a': '.mp3, .wav, .aac, .m4a',
+      'audio/aac': '.mp3, .wav, .aac, .m4a',
+      'audio/x-wav': '.mp3, .wav, .aac, .m4a',
+
+      // video → '.mp4, .mov, .avi, .wmv'
+      'video/mp4': '.mp4, .mov, .avi, .wmv',
+      'video/quicktime': '.mp4, .mov, .avi, .wmv',
+      'video/3gpp': '.mp4, .mov, .avi, .wmv',
+      'video/x-ms-wm': '.mp4, .mov, .avi, .wmv',
+
+      // archive → '.zip, .rar, .7z, .gz'
+      'application/zip': '.zip, .rar, .7z, .gz',
+      'application/x-zip-compressed': '.zip, .rar, .7z, .gz',
+      'application/x-7z-compressed': '.zip, .rar, .7z, .gz',
+      'application/vnd.rar': '.zip, .rar, .7z, .gz',
+      'application/x-rar': '.zip, .rar, .7z, .gz',
+      'application/gzip': '.zip, .rar, .7z, .gz'
+    };
+
+    return mimeToFamilyLabel[mimeType] || null;
+  }
+
+  private checkFileFormat(input: HTMLInputElement, file: File): string | null {
+    const accept = input.accept;
+    if (!accept) return null;
+
+    const acceptedFormats = accept
+      .split(',')
+      .map((format) => format.trim().toLowerCase());
+
+    const fileName = file.name.toLowerCase();
+    const fileExtension = fileName.substring(fileName.lastIndexOf('.'));
+
+    const isAccepted = acceptedFormats.some((format) => {
+      if (format.startsWith('.')) {
+        return fileExtension === format;
+      } else if (format.includes('/*')) {
+        const mimeType = format.split('/')[0];
+        return file.type.startsWith(mimeType + '/');
+      } else {
+        return file.type === format;
+      }
+    });
+
+    if (!isAccepted) {
+      // Parser accept directement pour construire le message d'erreur
+      const formatsLabel = this.parseAcceptForDisplay(accept);
+      return `Les formats de fichier acceptés sont :&nbsp;<strong>${formatsLabel}</strong>.`;
+    }
+
+    return null;
+  }
+
+  private checkFileSize(input: HTMLInputElement, file: File): string | null {
+    const maxSize = input.dataset.maxFileSize
+      ? parseInt(input.dataset.maxFileSize, 10)
+      : 0;
+
+    if (!maxSize) return null; // Pas de limite
+
+    if (file.size > maxSize) {
+      const maxSizeMB = (maxSize / (1024 * 1024)).toFixed(0);
+      return `La taille maximale du fichier autorisée est de&nbsp;<strong>${maxSizeMB} Mo</strong>.`;
+    }
+
+    return null;
+  }
+
+  private countCurrentFiles(container: Element): number {
+    const persistedCount = container.querySelectorAll(
+      '[data-attachment-row]'
+    ).length;
+
+    const inFlightCount = container.querySelectorAll(
+      '.direct-upload:not(.direct-upload--complete):not(.direct-upload--error)'
+    ).length;
+
+    return persistedCount + inFlightCount;
+  }
+
+  /**
+   * Calcule le nombre de fichiers restants qu'on peut ajouter
+   * @returns Le nombre de slots disponibles, ou Infinity si pas de limite
+   */
+  private getMaxFilesRemaining(input: HTMLInputElement): number {
+    const max = input.dataset.max ? parseInt(input.dataset.max, 10) : 0;
+    if (!max) return Infinity; // Pas de limite
+
+    const container = input.closest('.attachment-multiple');
+    if (!container) return Infinity; // Pas dans un contexte multiple
+
+    const currentCount = this.countCurrentFiles(container);
+    return Math.max(0, max - currentCount);
+  }
+
+  /**
+   * Vérifie si un fichier dépasse la limite de nombre
+   * @param index Position du fichier dans la liste
+   * @param maxRemaining Nombre maximum de fichiers qu'on peut encore ajouter
+   * @returns Le message d'erreur si limite dépassée, null sinon
+   */
+  private checkFileLimit(
+    input: HTMLInputElement,
+    index: number,
+    maxRemaining: number
+  ): string | null {
+    if (maxRemaining === Infinity) return null; // Pas de limite
+
+    if (index >= maxRemaining) {
+      const max = input.dataset.max ? parseInt(input.dataset.max, 10) : 0;
+      return `Le nombre de fichiers maximum est de&nbsp;<strong> ${max}</strong>.`;
+    }
+
+    return null;
   }
 }
