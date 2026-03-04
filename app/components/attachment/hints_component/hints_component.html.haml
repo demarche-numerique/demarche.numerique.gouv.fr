@@ -1,0 +1,8 @@
+%p.fr-hint-text.fr-mb-1w{ id: @html_id }
+  - if show_identity_hint?
+    = t('.identity_hint')
+    %br
+  - if max_file_size.present?
+    = t('.max_file_size', max_file_size: number_to_human_size(max_file_size))
+  - if allowed_extensions.present?
+    = t('.allowed_formats', formats: allowed_extensions.join(', '))

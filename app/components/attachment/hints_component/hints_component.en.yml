@@ -1,0 +1,5 @@
+---
+en:
+  identity_hint: "Required document: National identity card (front side only), passport, residency permit or other proof of identity."
+  max_file_size: "Maximum size allowed: %{max_file_size}."
+  allowed_formats: "Supported formats: %{formats}"
