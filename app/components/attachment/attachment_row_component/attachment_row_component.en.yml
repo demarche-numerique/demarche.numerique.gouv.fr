@@ -1,0 +1,9 @@
+---
+en:
+  delete_file: Delete file %{filename}
+  file_name: "the file %{filename}"
+  open_file: Open file %{filename}
+  delete_file_title: "Delete the file %{filename}"
+  errors:
+    virus_infected: "Virus detected, please send another file."
+    corrupted_file: "The file is corrupted, please send another file."

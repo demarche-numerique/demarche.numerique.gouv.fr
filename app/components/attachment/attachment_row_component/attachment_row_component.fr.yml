@@ -1,0 +1,9 @@
+---
+fr:
+  delete_file: Supprimer
+  file_name: "le fichier %{filename}"
+  open_file: Ouvrir le fichier %{filename}
+  delete_file_title: "Supprimer le fichier %{filename}"
+  errors:
+    virus_infected: "Virus détecté, merci d’envoyer un autre fichier."
+    corrupted_file: "Le fichier est corrompu, merci d’envoyer un autre fichier."
