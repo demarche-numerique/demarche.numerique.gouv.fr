@@ -2,7 +2,7 @@
   %button.fr-sr-only{ aria: { controls: 'modal-eligibilite-rules-dialog' }, data: { 'fr-opened': opened?.to_s } }
     show modal
 
-  %dialog.fr-modal{ "aria-labelledby" => "fr-modal-title-modal-1", role: "dialog", id: 'modal-eligibilite-rules-dialog', data: { 'turbo-permanent' => true } }
+  %dialog.fr-modal{ "aria-labelledby" => "fr-modal-title-modal-1", "aria-describedby" => "modal-eligibilite-rules-description", role: "alertdialog", id: 'modal-eligibilite-rules-dialog', data: { 'turbo-permanent' => true } }
     .fr-container.fr-container--fluid.fr-container-md
       .fr-grid-row.fr-grid-row--center
         .fr-col-12.fr-col-md-8.fr-col-lg-6
@@ -13,7 +13,7 @@
               %h1#fr-modal-title-modal-1.fr-modal__title
                 %span.fr-icon-arrow-right-line.fr-icon--lg>
                 = t('.modal.title')
-              %p= error_message
+              %p#modal-eligibilite-rules-description= error_message
 
 - if wrapped?
   #ineligibilite_rules_modal
