@@ -19,7 +19,7 @@
     <% end %>
   </p>
 
-  <p class="autosave-status failed fr-error-text fr-text--sm fr-m-0 fr-hidden" data-autosave-status-target="failed">
+  <p class="autosave-status failed fr-error-text fr-text--sm fr-m-0 fr-hidden" tabindex="-1" role="alert" data-autosave-status-target="failed">
     <% if annotation? %>
       <%= t('.annotations.error_html') %>
     <% elsif dossier.en_construction? %>

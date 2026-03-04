@@ -17,6 +17,8 @@ export class AutosaveStatusController extends ApplicationController {
   declare readonly succeededTarget: HTMLElement;
   declare readonly failedTarget: HTMLElement;
 
+  private hasNotifiedError = false;
+
   connect(): void {
     this.onGlobal('autosave:end', () => this.didSucceed());
     this.onGlobal<CustomEvent>('autosave:error', (event) =>
@@ -40,6 +42,7 @@ export class AutosaveStatusController extends ApplicationController {
   }
 
   private didSucceed() {
+    this.hasNotifiedError = false;
     this.setState('succeeded');
     this.debounce(this.hideSucceededStatus, AUTOSAVE_STATUS_VISIBLE_DURATION);
   }
@@ -55,6 +58,11 @@ export class AutosaveStatusController extends ApplicationController {
     }
 
     this.setState('failed');
+
+    if (!this.hasNotifiedError) {
+      this.hasNotifiedError = true;
+      this.failedTarget.focus();
+    }
 
     const shouldLogError = !error.response || error.response.status != 0; // ignore timeout errors
     if (shouldLogError) {
