@@ -15,6 +15,12 @@ describe APIEntreprise::PrivilegesAdapter do
   end
 
   it { is_expected.to be_valid }
+  it 'returns scopes decoded from token' do
+    allow(JWT).to receive(:decode).and_return([{ "scopes" => ["attestation_fiscale_dgfip", "open_data"] }])
+
+    expect(adapter.scopes).to eq(["attestation_fiscale_dgfip", "open_data"])
+    expect(WebMock).not_to have_requested(:get, "https://entreprise.api.gouv.fr/privileges")
+  end
 
   context 'when token is not valid or missing' do
     let(:token) { nil }
@@ -22,5 +28,11 @@ describe APIEntreprise::PrivilegesAdapter do
     let(:body) { '' }
 
     it { is_expected.not_to be_valid }
+  end
+
+  it 'returns empty scopes on decode error' do
+    allow(JWT).to receive(:decode).and_raise(JWT::DecodeError)
+
+    expect(adapter.scopes).to eq([])
   end
 end

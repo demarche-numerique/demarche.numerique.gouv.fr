@@ -5,6 +5,7 @@ module Administrateurs
     before_action :retrieve_procedure
 
     def index
+      @api_entreprise_scopes = APIEntreprise::PrivilegesAdapter.new(@procedure.api_entreprise_token).scopes
     end
 
     def edit_particulier

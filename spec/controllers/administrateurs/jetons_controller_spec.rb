@@ -8,6 +8,24 @@ describe Administrateurs::JetonsController, type: :controller do
     before do
       sign_in(admin.user)
     end
+
+    describe 'GET #index' do
+      let(:token) { "eyJhbGciOiJub25lIn0.eyJzY29wZXMiOlsiYXR0ZXN0YXRpb25fZmlzY2FsZV9kZ2ZpcCIsIm9wZW5fZGF0YSJdLCJleHAiOjQxMDI0NDQ4MDB9." }
+      let(:procedure) { create(:procedure, administrateur: admin, api_entreprise_token: token) }
+
+      subject { get :index, params: { procedure_id: procedure.id } }
+
+      before do
+        allow_any_instance_of(APIEntrepriseToken).to receive(:expired_or_expires_soon?).and_return(false)
+      end
+
+      it 'assigns decoded scopes for the token' do
+        subject
+        expect(response).to have_http_status(:success)
+        expect(assigns(:api_entreprise_scopes)).to eq(["attestation_fiscale_dgfip", "open_data"])
+      end
+    end
+
     describe 'GET #edit_entreprise' do
       let(:procedure) { create(:procedure, administrateur: admin) }
 

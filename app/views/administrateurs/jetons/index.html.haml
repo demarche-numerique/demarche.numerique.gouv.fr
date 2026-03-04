@@ -25,6 +25,8 @@
                     Jeton
                   %th{ scope: "col" }
                     Expiration
+                  %th{ scope: "col" }
+                    Permissions
                   %th.change.fr-col-2{ scope: "col" }
                     Actions
 
@@ -40,6 +42,13 @@
                     - else
                       .fr-badge.fr-badge--success
                         = l(@procedure.api_entreprise_token.expires_at.to_date, format: :long)
+                  %td
+                    - if @api_entreprise_scopes.present?
+                      - @api_entreprise_scopes.sort.each do |scope|
+                        %span.fr-tag.fr-tag--sm.fr-mr-1w.fr-mb-1w
+                          = scope
+                    - else
+                      -
                   %td.change
 
                     = link_to 'Modifier',

@@ -5,6 +5,13 @@ class APIEntreprise::PrivilegesAdapter < APIEntreprise::Adapter
     @token = token
   end
 
+  def scopes
+    payload = JWT.decode(@token&.jwt_token, nil, false).first || {}
+    Array(payload.with_indifferent_access["scopes"])
+  rescue JWT::DecodeError, NoMethodError
+    []
+  end
+
   def valid?
     begin
       get_resource
