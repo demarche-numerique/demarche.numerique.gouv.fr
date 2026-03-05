@@ -2,6 +2,7 @@
   <% if doc.is_a?(RIB) %>
     <div class="flex justify-between align-baseline">
       <p class="fr-text-mention--grey fr-mb-2w"><%= t('.title') %></p>
+
       <%= link_to edit_instructeurs_dossier_champ_path(dossier_id: champ.dossier_id, public_id: champ.public_id), class: "fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-pencil-line" do %>
         <%= t('views.shared.actions.edit') %>
       <% end %>

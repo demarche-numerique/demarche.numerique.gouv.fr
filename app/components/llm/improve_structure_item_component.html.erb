@@ -7,7 +7,10 @@
             <span class="fr-icon-add-line fr-icon--sm fr-mr-1v"></span>
             Ajout de section
           </span>
-          (niveau <%= payload['header_section_level'] %>) <%= payload['libelle'] %>
+          (niveau
+          <%= payload['header_section_level'] %>
+          )
+          <%= payload['libelle'] %>
         <% elsif op_kind == 'update' && original_tdc %>
           <span class="fr-badge fr-badge--green-bourgeon fr-mr-1w">
             <span class="fr-icon-arrow-up-down-line fr-icon--sm fr-mr-1v"></span>
