@@ -39,7 +39,7 @@ fr:
       dinum:
         title: "Le site de la DINUM — Direction interministérielle du numérique"
         url: "https://www.numerique.gouv.fr/dinum/"
-        alt: "Direction interministérielle du numérique"
+        alt: "Direction Interministérielle du\u00A0Numérique"
       cgu:
         label: "CGU"
         title: "Conditions Générales d’Utilisation"

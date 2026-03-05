@@ -37,7 +37,7 @@ en:
       dinum:
         title: "Le site de la DINUM — Direction interministérielle du numérique"
         url: "https://www.numerique.gouv.fr/dinum/"
-        alt: "Direction interministérielle du numérique"
+        alt: "Direction Interministérielle du\u00A0Numérique"
       code:
         label: "Source code"
         url: "https://github.com/demarche-numerique/demarche.numerique.gouv.fr"
