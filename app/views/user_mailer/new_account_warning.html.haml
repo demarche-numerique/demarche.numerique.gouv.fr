@@ -16,18 +16,18 @@
       %i= @procedure.libelle
     cliquez sur le bouton ci-dessous, puis connectez-vous à votre compte.
 
-  = round_button("Commencer la démarche « #{@procedure.libelle.truncate(60)} »", commencer_sign_in_url(path: @procedure.path), :primary)
+  = dsfr_button("Commencer la démarche « #{@procedure.libelle.truncate(60)} »", commencer_sign_in_url(path: @procedure.path), :primary)
   = vertical_margin(16)
-  = round_button('Demander un nouveau mot de passe', new_password_url(@user), :secondary)
+  = dsfr_button('Demander un nouveau mot de passe', new_password_url(@user), :secondary)
 
 - else
   %p
     Rendez-vous sur le site #{APPLICATION_NAME} pour vous connecter à votre compte.
-    = round_button('Se connecter', new_user_session_url, :primary)
+    = dsfr_button('Se connecter', new_user_session_url, :primary)
 
   %p
     Vous avez oublié votre mot de passe ?
-    = round_button('Demander un nouveau mot de passe', new_password_url(@user), :secondary)
+    = dsfr_button('Demander un nouveau mot de passe', new_password_url(@user), :secondary)
 
 = vertical_margin(6)
 %p

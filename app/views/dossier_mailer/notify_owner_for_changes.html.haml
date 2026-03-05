@@ -5,7 +5,7 @@
 
 %p= t('.body_html', email_invite: @invite.email)
 %p= t('.link_html')
-= round_button(t('.access_file'), dossier_url(@dossier), :primary)
+= dsfr_button(t('.access_file'), dossier_url(@dossier), :primary)
 
 - if @dossier.procedure.auto_archive_on
   %p= t('.submit_before', before: procedure_auto_archive_datetime(@dossier.procedure))

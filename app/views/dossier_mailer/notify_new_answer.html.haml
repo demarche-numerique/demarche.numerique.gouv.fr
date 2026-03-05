@@ -11,11 +11,11 @@
     %p= t('.contact_html', email: @service.email)
   - else
     %p= t('.contact_no_email')
-  = round_button(t('.access_file'), dossier_url(@dossier), :primary)
+  = dsfr_button(t('.access_file'), dossier_url(@dossier), :primary)
 - else
   %p= t('.body_html', libelle_demarche: @dossier.procedure.libelle)
   %p= t('.link')
-  = round_button(t('.access_message'), messagerie_dossier_url(@dossier), :primary)
+  = dsfr_button(t('.access_message'), messagerie_dossier_url(@dossier), :primary)
 
 = render 'layouts/mailers/signature', service: @service
 

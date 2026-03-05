@@ -6,7 +6,7 @@
 
 %p
   Veuillez confirmer votre adresse électronique en cliquant sur le lien ci-dessous:
-  = round_button 'Je confirme', france_connect_confirm_email_url(@token), :primary
+  = dsfr_button 'Je confirme', france_connect_confirm_email_url(@token), :primary
 
 
 %p Ce lien est valide #{distance_of_time_in_words(FranceConnectInformation::CONFIRMATION_EMAIL_VALIDITY)}.

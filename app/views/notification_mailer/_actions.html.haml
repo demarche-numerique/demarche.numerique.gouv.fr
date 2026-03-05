@@ -4,10 +4,10 @@
   - variant = (index == 0 ? :primary : :secondary)
   - case action
   - when MailTemplateConcern::Actions::SHOW
-    = round_button(t(:access, scope: [:layouts, :notifications, :actions]), dossier_url(@dossier), variant)
+    = dsfr_button(t(:access, scope: [:layouts, :notifications, :actions]), dossier_url(@dossier), variant)
   - when MailTemplateConcern::Actions::ASK_QUESTION
-    = round_button(t(:question, scope: [:layouts, :notifications, :actions]), messagerie_dossier_url(@dossier), variant)
+    = dsfr_button(t(:question, scope: [:layouts, :notifications, :actions]), messagerie_dossier_url(@dossier), variant)
   - when MailTemplateConcern::Actions::REPLY
-    = round_button(t(:reply, scope: [:layouts, :notifications, :actions]), messagerie_dossier_url(@dossier), variant)
+    = dsfr_button(t(:reply, scope: [:layouts, :notifications, :actions]), messagerie_dossier_url(@dossier), variant)
 
 = vertical_margin(5)

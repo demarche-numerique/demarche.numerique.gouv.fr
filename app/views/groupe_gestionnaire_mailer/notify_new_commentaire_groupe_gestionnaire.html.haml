@@ -4,7 +4,7 @@
 
 %p
   = t('.body', groupe_gestionnaire_name: @groupe_gestionnaire.name, sender_email: @sender_email)
-%p= round_button(t('.see_message'), @commentaire_url, :primary)
+%p= dsfr_button(t('.see_message'), @commentaire_url, :primary)
 
 = render partial: "layouts/mailers/signature"
 

@@ -5,7 +5,7 @@
 
 %p= t(".#{@correction.reason}.explanation_html", dossier_id: @dossier.id, libelle_demarche: @dossier.procedure.libelle)
 %p= t('.link')
-= round_button(t('.access_message'), messagerie_dossier_url(@dossier), :primary)
+= dsfr_button(t('.access_message'), messagerie_dossier_url(@dossier), :primary)
 
 - if @dossier.sva_svr_decision_on.present?
   %p= t(".#{@correction.reason}.sva_svr", rule_name: t(@dossier.procedure.sva? ? :sva : :svr, scope: 'shared.procedures.sva_svr_rule_name'))
