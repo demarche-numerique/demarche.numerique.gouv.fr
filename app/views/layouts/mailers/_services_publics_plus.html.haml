@@ -1,15 +1,15 @@
 = vertical_margin(20)
 
-%div{ style: 'background-color: #F5F5FE; padding: 20px;' }
+.darkmode-3{ style: 'background-color: #F5F5FE; padding: 20px;' }
   %table{ width: "100%", border: "0", cellspacing: "0", cellpadding: "0" }
     %tr
-      %td{ width: "70%", valign: "top", align: "center" }
+      %td.darkmode{ width: "70%", valign: "top", align: "center" }
         %p{ style: 'margin: 0' }
           J’aide les services publics à s’améliorer :
           %br
           = link_to 'Je donne mon avis avec Services Publics +', @services_publics_plus_url, target: '_blank', rel: 'noopener noreferrer'
 
-      %td{ width: "30%" }
+      %td.darkmode{ width: "30%" }
         = link_to @services_publics_plus_url, target: '_blank', rel: 'noopener noreferrer' do
           = image_tag('mailer/logo-services-plus.png', height: 39, width: 121, style: 'display:block; vertical-align: middle', alt: "Services Publics +")
 
