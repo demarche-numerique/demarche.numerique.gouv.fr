@@ -16,6 +16,7 @@ HEADER_LOGO_HEIGHT = ENV.fetch("HEADER_LOGO_HEIGHT", "56")
 
 # Mailer logos
 MAILER_LOGO_SRC = ENV.fetch("MAILER_LOGO_SRC", "mailer/republique-francaise-logo.png")
+MAILER_LOGO_DARK_SRC = ENV.fetch("MAILER_LOGO_DARK_SRC", nil)
 
 # Default logo of a procedure
 PROCEDURE_DEFAULT_LOGO_SRC = ENV.fetch("PROCEDURE_DEFAULT_LOGO_SRC", "republique-francaise-logo.svg")
