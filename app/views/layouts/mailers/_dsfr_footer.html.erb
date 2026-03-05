@@ -34,24 +34,179 @@
               bgcolor="#ffffff"
               align="center"
             >
-              <tr>
-                <td
-                  class="darkmode-1"
-                  align="center"
-                  style="padding:16px 20px; line-height:20px; font-size:11px; color:#6b6b6b; font-family:'Marianne', Arial, Helvetica, sans-serif;"
-                >
-                  <span
-                    style="font-family:'Marianne', Arial, Helvetica, sans-serif !important;"
+              <% if content_for?(:procedure_logo) %>
+                <%# Notification emails: logo + app name in 2 centered columns %>
+                <tr>
+                  <td style="padding:0px 0px 12px 0px;">
+                    <table
+                      style="margin:0 auto; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;width:496px;"
+                      class="wlkm-cl darkmode"
+                      width="496"
+                      cellspacing="0"
+                      cellpadding="0"
+                      role="presentation"
+                      border="0"
+                      bgcolor="#ffffff"
+                      align="center"
+                    >
+                      <tr>
+                        <td
+                          height="12"
+                          style="line-height:12px; font-size:12px; height:12px;"
+                        >
+                          &nbsp;
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td align="center" valign="middle">
+                          <table
+                            style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"
+                            cellspacing="0"
+                            cellpadding="0"
+                            role="presentation"
+                            border="0"
+                            align="center"
+                            class="darkmode"
+                          >
+                            <tr>
+                              <%# Column 1: logo aligned right %>
+                              <td
+                                align="right"
+                                valign="middle"
+                                style="padding-right:12px;"
+                                class="darkmode"
+                              >
+                                <% if MAILER_LOGO_DARK_SRC.present? && MAILER_LOGO_DARK_SRC != MAILER_LOGO_SRC %>
+                                  <img
+                                    src="<%= image_url(MAILER_LOGO_SRC) %>"
+                                    alt="Logo <%= APPLICATION_NAME %>"
+                                    style="display:block; max-height:40px; max-width:80px; height:auto; width:auto;"
+                                    border="0"
+                                    class="hide-black"
+                                  />
+                                  <img
+                                    src="<%= image_url(MAILER_LOGO_DARK_SRC) %>"
+                                    alt="Logo <%= APPLICATION_NAME %>"
+                                    style="display:none; max-height:40px; max-width:80px; height:auto; width:auto;"
+                                    border="0"
+                                    class="hide-white"
+                                  />
+                                <% else %>
+                                  <img
+                                    src="<%= image_url(MAILER_LOGO_SRC) %>"
+                                    alt="Logo <%= APPLICATION_NAME %>"
+                                    style="display:block; max-height:40px; max-width:80px; height:auto; width:auto;"
+                                    border="0"
+                                  />
+                                <% end %>
+                              </td>
+
+                              <%# Column 2: app name + provider, aligned left %>
+                              <td
+                                align="left"
+                                valign="middle"
+                                style="padding-left:12px;"
+                                class="darkmode"
+                              >
+                                <span
+                                  class="darkmode"
+                                  style="display:block; line-height:18px; font-size:12px; color:#161616; font-family:'Marianne', Arial, Helvetica, sans-serif;"
+                                >
+                                  <strong>
+                                    <%= application_name_without_link %>
+                                  </strong>
+                                </span>
+
+                                <span
+                                  class="darkmode-1"
+                                  style="display:block; line-height:16px; font-size:10px; color:#6b6b6b; font-family:'Marianne', Arial, Helvetica, sans-serif;"
+                                >
+                                  est un service fourni par
+                                  <%= t("links.provider.provided_by") %>
+                                </span>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td
+                          height="12"
+                          style="line-height:12px; font-size:12px; height:12px;"
+                        >
+                          &nbsp;
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+<% else %>
+  <%# Standard emails: simple centered text, no logo, no gradient/border wrapper %>
+  <table
+    width="100%"
+    border="0"
+    align="center"
+    cellpadding="0"
+    cellspacing="0"
+    bgcolor="#ffffff"
+    class="darkmode"
+    style="min-width:100%!important;width:100%;"
+    role="presentation"
+  >
+    <tr>
+      <td align="center">
+        <table
+          style="min-width:600px;margin:0 auto; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;width:600px;"
+          class="wlkm-mw darkmode"
+          width="600"
+          cellspacing="0"
+          cellpadding="0"
+          role="presentation"
+          border="0"
+          bgcolor="#ffffff"
+          align="center"
+        >
+          <tr>
+            <td>
+              <table
+                style="margin:0 auto; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;width:496px;"
+                class="wlkm-cl darkmode"
+                width="496"
+                cellspacing="0"
+                cellpadding="0"
+                role="presentation"
+                border="0"
+                bgcolor="#ffffff"
+                align="center"
+              >
+                <tr>
+                  <td
+                    class="darkmode-1"
+                    align="center"
+                    style="padding:16px 20px; line-height:20px; font-size:11px; color:#6b6b6b; font-family:'Marianne', Arial, Helvetica, sans-serif;"
                   >
-                    <%= APPLICATION_NAME %> est un service fourni par
-                    <%= t("links.provider.provided_by") %>
-                  </span>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-</table>
+                    <span
+                      style="font-family:'Marianne', Arial, Helvetica, sans-serif !important;"
+                    >
+                      <%= APPLICATION_NAME %> est un service fourni par
+                      <%= t("links.provider.provided_by") %>
+                    </span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+<% end %>
