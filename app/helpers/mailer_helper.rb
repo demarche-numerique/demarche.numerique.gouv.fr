@@ -9,6 +9,10 @@ module MailerHelper
     render 'shared/mailer_round_button', text: text, url: url, theme: theme(variant)
   end
 
+  def dsfr_button(text, url, variant)
+    render 'shared/mailer_dsfr_button', text: text, url: url, variant: variant
+  end
+
   def application_name_without_link
     # The WORD JOINER unicode entity (&#8288;) prevents email clients from auto-linking the app name
     APPLICATION_NAME.gsub(".", "&#8288;.").html_safe # rubocop:disable Rails/OutputSafety

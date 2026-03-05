@@ -1,0 +1,62 @@
+<% case variant
+  when :primary
+    bg_color = "#000091"
+    text_color = "#FFFFFF"
+    border_style = "border:solid 1px #000091"
+    dm_button_class = "darkmode-button-primary"
+    dm_color_class = "darkmode-button-color-primary"
+  when :secondary
+    bg_color = "#FFFFFF"
+    text_color = "#000091"
+    border_style = "border:solid 1px #000091"
+    dm_button_class = "darkmode-button-secondary"
+    dm_color_class = "darkmode-button-color-secondary"
+  end %>
+
+<table
+  width="100%"
+  border="0"
+  cellspacing="0"
+  cellpadding="0"
+  role="presentation"
+>
+  <tr>
+    <td align="center" style="padding: 8px 0;">
+      <table
+        style="border-collapse: initial; <%= border_style %>; background-color: <%= bg_color %>;"
+        align="left"
+        cellpadding="0"
+        role="presentation"
+        cellspacing="0"
+        border="0"
+        class="darkmode"
+        bgcolor="<%= bg_color %>"
+      >
+        <tbody>
+          <tr>
+            <td
+              style="font-size: 14px; line-height: 24px; font-family: 'Marianne', Arial, Helvetica, sans-serif; height:32px; padding: 0px 16px 0px 16px;"
+              align="center"
+              bgcolor="<%= bg_color %>"
+              class="<%= dm_button_class %>"
+            >
+              <a
+                class="<%= dm_color_class %>"
+                href="<%= url %>"
+                style="color: <%= text_color %>; text-decoration: none;"
+                target="_blank"
+                rel="noopener"
+              >
+                <span
+                  style="font-family: 'Marianne', Arial, Helvetica, sans-serif !important;"
+                >
+                  <%= text %>
+                </span>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+</table>
