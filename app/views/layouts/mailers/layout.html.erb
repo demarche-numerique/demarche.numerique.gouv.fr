@@ -47,6 +47,7 @@
                   bgcolor="#ffffff"
                   align="center"
                 >
+                  <%# Main content %>
                   <tr>
                     <td>
                       <table
@@ -72,31 +73,45 @@
                           </tr>
                         <% end %>
 
-                        <%# Main content %>
                         <tr>
                           <td
                             class="darkmode"
-                            style="padding:10px 10px; line-height:24px; font-size:14px; color:#161616; font-family:'Marianne', Arial, Helvetica, sans-serif;"
+                            style="padding:10px 10px 20px 10px; line-height:24px; font-size:14px; color:#161616; font-family:'Marianne', Arial, Helvetica, sans-serif;"
                           >
                             <%= yield %>
                           </td>
                         </tr>
-
-                        <%# Business footer (signature, service info) %>
-                        <% if content_for?(:footer) %>
-                          <tr>
-                            <td
-                              class="darkmode-1"
-                              style="padding:10px 10px 20px 10px; line-height:22px; font-size:12px; color:#6b6b6b; font-family:'Marianne', Arial, Helvetica, sans-serif;"
-                            >
-                              <p style="font-size:13px;">—</p>
-                              <%= yield(:footer) %>
-                            </td>
-                          </tr>
-                        <% end %>
                       </table>
                     </td>
                   </tr>
+
+                  <%# Business footer: service info block with DSFR blue tint %>
+                  <% if content_for?(:footer) %>
+                    <tr>
+                      <td bgcolor="#F5F5FE" class="darkmode-3">
+                        <table
+                          style="margin:0 auto; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;width:496px;"
+                          class="wlkm-cl darkmode"
+                          width="496"
+                          cellspacing="0"
+                          cellpadding="0"
+                          role="presentation"
+                          border="0"
+                          bgcolor="#F5F5FE"
+                          align="center"
+                        >
+                          <tr>
+                            <td
+                              class="darkmode"
+                              style="padding:16px 10px; line-height:22px; font-size:12px; color:#3a3a3a; font-family:'Marianne', Arial, Helvetica, sans-serif;"
+                            >
+                              <%= yield(:footer) %>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  <% end %>
                 </table>
               </td>
             </tr>
