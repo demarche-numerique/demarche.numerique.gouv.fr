@@ -40,10 +40,11 @@
             %li
               %span= t('.other_contact_info')
               %span= service_or_contact_information.other_contact_info
-        %p
-          = t('.email_sent_to')
-          %br
-          - if params[:controller] == 'administrateurs/mail_templates'
-            = link_to t('.fake_usager_email'), "mailto: #{t('.fake_usager_email')}"
-          - else
-            = link_to dossier.user_email_for(:notification), "mailto: #{dossier.user_email_for(:notification)}"
+- content_for :sent_to do
+  %p
+    = t('.email_sent_to')
+    %br
+    - if params[:controller] == 'administrateurs/mail_templates'
+      = link_to t('.fake_usager_email'), "mailto: #{t('.fake_usager_email')}"
+    - else
+      = link_to dossier.user_email_for(:notification), "mailto: #{dossier.user_email_for(:notification)}"

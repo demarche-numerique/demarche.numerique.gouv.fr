@@ -112,6 +112,34 @@
                       </td>
                     </tr>
                   <% end %>
+
+                  <%# "Email sent to" line, below the blue zone %>
+                  <% if content_for?(:sent_to) %>
+                    <tr>
+                      <td>
+                        <table
+                          style="margin:0 auto; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;width:496px;"
+                          class="wlkm-cl darkmode"
+                          width="496"
+                          cellspacing="0"
+                          cellpadding="0"
+                          role="presentation"
+                          border="0"
+                          bgcolor="#ffffff"
+                          align="center"
+                        >
+                          <tr>
+                            <td
+                              class="darkmode-1"
+                              style="padding:12px 10px; line-height:20px; font-size:12px; color:#6b6b6b; font-family:'Marianne', Arial, Helvetica, sans-serif;"
+                            >
+                              <%= yield(:sent_to) %>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  <% end %>
                 </table>
               </td>
             </tr>
