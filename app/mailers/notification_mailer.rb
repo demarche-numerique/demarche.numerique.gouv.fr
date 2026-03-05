@@ -14,7 +14,6 @@ class NotificationMailer < ApplicationMailer
 
   helper ServiceHelper
 
-  layout 'mailers/notifications_layout'
   default from: NO_REPLY_EMAIL
 
   def send_notification

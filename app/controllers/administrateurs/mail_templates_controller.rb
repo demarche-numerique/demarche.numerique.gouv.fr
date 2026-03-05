@@ -47,7 +47,7 @@ module Administrateurs
       @rendered_template = sanitize(mail_template.body_for_dossier(dossier), scrubber: Sanitizers::MailScrubber.new)
       @actions = mail_template.actions_for_dossier(dossier)
 
-      render(template: 'notification_mailer/send_notification', layout: 'mailers/notifications_layout')
+      render(template: 'notification_mailer/send_notification', layout: 'mailers/layout')
     end
 
     private

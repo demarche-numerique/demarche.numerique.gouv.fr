@@ -8,7 +8,7 @@ class ApplicationMailer < ActionMailer::Base
 
   helper :application # gives access to all helpers defined within `application_helper`.
   default from: "#{APPLICATION_NAME} <#{CONTACT_EMAIL}>"
-  layout 'mailer'
+  layout 'mailers/layout'
 
   before_action -> { Sentry.set_tags(mailer: mailer_name, action: action_name) }
 end

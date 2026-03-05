@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
 <!doctype html>
 
 <html
@@ -7,338 +5,106 @@
   xmlns:v="urn:schemas-microsoft-com:vml"
   xmlns:o="urn:schemas-microsoft-com:office:office"
 >
-  <head>
-    <title><%= yield(:title) %></title>
+  <head><%= render "layouts/mailers/dsfr_head" %></head>
 
-    <!--
-  [if !mso]>
-  <!--
--->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <body style="font-family: 'Marianne', Arial, Helvetica, sans-serif;">
+    <%# Outer wrapper: full-width white background %>
+    <table
+      style="min-width:100%!important; width:100%;"
+      width="100%"
+      cellspacing="0"
+      cellpadding="0"
+      role="presentation"
+      border="0"
+      bgcolor="#ffffff"
+      class="wlkm-mw darkmode"
+    >
+      <tr>
+        <td align="center" class="darkmode">
+          <%= render "layouts/mailers/dsfr_header" %>
 
-    <!-- <![endif] -->
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <style type="text/css">  #outlook a { padding: 0; }  .ReadMsgBody { width: 100%; }  .ExternalClass { width: 100%; }  .ExternalClass * { line-height:100%; }  body { margin: 0; padding: 0; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }  table, td { border-collapse:collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; }  img { border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; }  p { display: block; margin: 13px 0; } blockquote { margin: 0; background: #eee; } blockquote p { padding: 10px; border-radius: 5px; }</style>
-
-    <!--
-  [if !mso]>
-  <!-->
-  <style type="text/css">  @media only screen and (max-width:480px) {    @-ms-viewport { width:320px; }    @viewport { width:320px; }  }</style>
-  <!--<![endif]
--->
-    <!--
-  [if mso]>
-  <xml>
-  <o:OfficeDocumentSettings>
-  <o:AllowPNG/>
-  <o:PixelsPerInch>96</o:PixelsPerInch>
-  </o:OfficeDocumentSettings>
-  </xml>
-  <![endif]
--->
-    <!--
-  [if lte mso 11]>
-  <style type="text/css">  .outlook-group-fix {    width:100% !important;  }</style>
-  <![endif]
--->
-    <style type="text/css">  @media only screen and (min-width:480px) {    .mj-column-per-66 { width:66.66666666666666%!important; }.mj-column-per-33 { width:33.33333333333333%!important; }.mj-column-per-100 { width:100%!important; }  }</style>
-  </head>
-
-  <body style="background: #F4F4F4;">
-    <div style="background-color:#F4F4F4;">
-      <!--
-  [if mso | IE]>
-  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" align="center" style="width:600px;">
-  <tr>
-  <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-  <![endif]
--->
-      <div style="margin:0px auto;max-width:600px;">
-        <table
-          role="presentation"
-          cellpadding="0"
-          cellspacing="0"
-          style="font-size:0px;width:100%;"
-          align="center"
-          border="0"
-        >
-          <tbody>
+          <%# Content area: 600px centered with side borders %>
+          <table
+            style="min-width:620px;margin:0 auto; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; background:linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(234,234,234,1) 5%, rgba(234,234,234,1) 95%, rgba(255,255,255,1) 100%);"
+            width="620"
+            cellspacing="0"
+            cellpadding="0"
+            role="presentation"
+            border="0"
+            align="center"
+            class="wlkm-mw darkmode"
+          >
             <tr>
-              <td
-                style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px 0px 20px 0px;"
-              >
-                <!--
-  [if mso | IE]>
-  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-  <td style="vertical-align:top;width:198px;">
-  <![endif]
--->
-                <div
-                  class="mj-column-per-33 outlook-group-fix"
-                  style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;"
+              <td align="center">
+                <table
+                  style="min-width:600px;margin:0 auto; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;width:600px;border-left:1px #e5e5e5 solid; border-right:1px #e5e5e5 solid; border-bottom:1px #e5e5e5 solid;"
+                  class="wlkm-mw darkmode"
+                  width="600"
+                  cellspacing="0"
+                  cellpadding="0"
+                  role="presentation"
+                  border="0"
+                  bgcolor="#ffffff"
+                  align="center"
                 >
-                  <table
-                    role="presentation"
-                    cellpadding="0"
-                    cellspacing="0"
-                    width="100%"
-                    border="0"
-                  >
-                    <tbody>
-                      <tr>
-                        <td
-                          style="word-wrap:break-word;font-size:0px;padding:0px 25px 0px 0px;padding-top:0px;padding-bottom:0px;"
-                          align="right"
-                        >
-                          <div
-                            style="cursor:auto;color:#55575d;font-family:Helvetica, Arial, sans-serif;font-size:11px;line-height:22px;text-align:right;"
-                          >
-                            <p style="margin: 10px 0;"></p>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                  <tr>
+                    <td>
+                      <table
+                        style="margin:0 auto; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;width:496px;"
+                        class="wlkm-cl darkmode"
+                        width="496"
+                        cellspacing="0"
+                        cellpadding="0"
+                        role="presentation"
+                        border="0"
+                        bgcolor="#ffffff"
+                        align="center"
+                      >
+                        <%# Optional title %>
+                        <% if content_for?(:title) %>
+                          <tr>
+                            <td
+                              class="darkmode"
+                              style="padding:20px 10px; line-height:32px; font-size:24px; color:#161616; font-family:'Marianne', Arial, Helvetica, sans-serif;"
+                            >
+                              <strong><%= yield(:title) %></strong>
+                            </td>
+                          </tr>
+                        <% end %>
 
-                <!--
-  [if mso | IE]>
-  </td>
-  </tr>
-  </table>
-  <![endif]
--->
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!--
-  [if mso | IE]>
-  </td>
-  </tr>
-  </table>
-  <![endif]
--->
-      <!--
-  [if mso | IE]>
-  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" align="center" style="width:600px;">
-  <tr>
-  <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-  <![endif]
--->
-      <div style="margin:0px auto;max-width:600px;background:#ffffff;">
-        <table
-          role="presentation"
-          cellpadding="0"
-          cellspacing="0"
-          style="font-size:0px;width:100%;background:#ffffff;"
-          align="center"
-          border="0"
-        >
-          <tbody>
-            <tr>
-              <td
-                style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px 0px 20px 0px;"
-              >
-                <!--
-  [if mso | IE]>
-  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-  <td style="vertical-align:top;width:600px;">
-  <![endif]
--->
-                <div
-                  class="mj-column-per-100 outlook-group-fix"
-                  style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;"
-                >
-                  <table
-                    role="presentation"
-                    cellpadding="0"
-                    cellspacing="0"
-                    width="100%"
-                    border="0"
-                  >
-                    <tbody>
-                      <%- if content_for?(:procedure_logo) %>
-                        <%= yield :procedure_logo %>
-                      <%- else %>
+                        <%# Main content %>
                         <tr>
                           <td
-                            style="word-wrap:break-word;font-size:0px;padding:0;padding-top:0px;padding-bottom:0px;"
-                            align="left"
+                            class="darkmode"
+                            style="padding:10px 10px; line-height:24px; font-size:14px; color:#161616; font-family:'Marianne', Arial, Helvetica, sans-serif;"
                           >
-                            <p
-                              style="cursor:auto;color:#333333;font-family:Helvetica, Arial, sans-serif;font-size:14px;text-align:center"
-                            >
-                              <%= image_tag image_url(MAILER_LOGO_SRC), alt: "Logo #{APPLICATION_NAME}", style: "max-height:100px; padding:15px 15px 30px 15px; vertical-aligne:middle; display:inline !important; border:0; height:auto; outline:none; text-decoration:none; -ms-interpolation-mode:bicubic;", align: "middle" %>
-
-                              <b
-                                style="font-size:20px;font-weight:600;display:inline-block"
-                              >
-                                <%= application_name_without_link %>
-                              </b>
-                            </p>
-                          </td>
-                        </tr>
-                      <%- end %>
-
-                      <tr>
-                        <td
-                          style="word-wrap:break-word;font-size:0px;padding:0px 25px 0px 25px;padding-top:0px;padding-bottom:0px;"
-                          align="left"
-                        >
-                          <div
-                            style="cursor:auto;color:#55575d;font-family:Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;text-align:left;"
-                          >
-                            <h1
-                              style="font-size: 30px; text-align: center; font-weight: 300; max-width: 300px; margin: 30px auto 40px; line-height: 1.2;"
-                            >
-                              <%= yield(:title) %>
-                            </h1>
-
                             <%= yield %>
-                          </div>
-                        </td>
-                      </tr>
-
-                      <% if content_for?(:footer) %>
-                        <tr>
-                          <td
-                            style="word-wrap:break-word;font-size:0px;padding:0px 25px 0px 25px;padding-top:0px;padding-bottom:0px;"
-                            align="left"
-                          >
-                            <p style="font-size:13px;text-align:left;">
-                              —
-                            </p>
-
-                            <p
-                              style="cursor:auto;color:#55575d;font-family:Helvetica, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:22px;text-align:left;"
-                            >
-                              <%= yield(:footer) %>
-                            </p>
                           </td>
                         </tr>
-                      <% end %>
-                    </tbody>
-                  </table>
-                </div>
 
-                <!--
-  [if mso | IE]>
-  </td>
-  </tr>
-  </table>
-  <![endif]
--->
+                        <%# Business footer (signature, service info) %>
+                        <% if content_for?(:footer) %>
+                          <tr>
+                            <td
+                              class="darkmode-1"
+                              style="padding:10px 10px 20px 10px; line-height:22px; font-size:12px; color:#6b6b6b; font-family:'Marianne', Arial, Helvetica, sans-serif;"
+                            >
+                              <p style="font-size:13px;">—</p>
+                              <%= yield(:footer) %>
+                            </td>
+                          </tr>
+                        <% end %>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
               </td>
             </tr>
-          </tbody>
-        </table>
-      </div>
+          </table>
 
-      <!--
-  [if mso | IE]>
-  </td>
-  </tr>
-  </table>
-  <![endif]
--->
-      <!--
-  [if mso | IE]>
-  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" align="center" style="width:600px;">
-  <tr>
-  <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-  <![endif]
--->
-      <div style="margin:0px auto;max-width:600px;">
-        <table
-          role="presentation"
-          cellpadding="0"
-          cellspacing="0"
-          style="font-size:0px;width:100%;"
-          align="center"
-          border="0"
-        >
-          <tbody>
-            <tr>
-              <td
-                style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px 0px 20px 0px;"
-              >
-                <!--
-  [if mso | IE]>
-  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-  <td style="vertical-align:top;width:600px;">
-  <![endif]
--->
-                <div
-                  class="mj-column-per-100 outlook-group-fix"
-                  style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;"
-                >
-                  <table
-                    role="presentation"
-                    cellpadding="0"
-                    cellspacing="0"
-                    width="100%"
-                    border="0"
-                  >
-                    <tbody>
-                      <tr>
-                        <td
-                          style="word-wrap:break-word;font-size:0px;padding:0px 20px 0px 20px;padding-top:0px;padding-bottom:0px;"
-                          align="center"
-                        >
-                          <div
-                            style="cursor:auto;color:#55575d;font-family:Helvetica, Arial, sans-serif;font-size:11px;line-height:22px;text-align:center;"
-                          >
-                            <%= "#{APPLICATION_NAME}" %> est un service fourni
-                            par <%= t("links.provider.provided_by") %>
-                          </div>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td
-                          style="word-wrap:break-word;font-size:0px;padding:0px 20px 0px 20px;padding-top:0px;padding-bottom:0px;"
-                          align="center"
-                        >
-                          <div
-                            style="cursor:auto;color:#55575d;font-family:Helvetica, Arial, sans-serif;font-size:11px;line-height:22px;text-align:center;"
-                          >
-                            <p style="margin: 10px 0;"></p>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-                <!--
-  [if mso | IE]>
-  </td>
-  </tr>
-  </table>
-  <![endif]
--->
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!--
-  [if mso | IE]>
-  </td>
-  </tr>
-  </table>
-  <in![endif]
--->
-    </div>
+          <%= render "layouts/mailers/dsfr_footer" %>
+        </td>
+      </tr>
+    </table>
   </body>
 </html>
