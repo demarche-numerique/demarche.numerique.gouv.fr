@@ -13,11 +13,11 @@
           %dt.champ-label{ class: class_names('no_colon': value.is_a?(Hash)) }= label
           - if value.is_a?(Hash)
             %dd
-            %dl.sub_list.fr-pl-1w
+            %dl.sub_list.fr-pl-1w.fr-mb-1w
               - value.each do |l, v, o = {}|
                 .flex
                   %dt.champ-label.fr-mr-1v= l
-                  %dd.champ-content{ class: class_names('copy-zone': o.fetch(:copy, true)), 'data-to-copy': o.fetch(:data_to_copy, nil) }
+                  %dd.champ-content.fr-pb-0{ class: class_names('copy-zone': o.fetch(:copy, true)), 'data-to-copy': o.fetch(:data_to_copy, nil) }
                     = v
                     %span{ 'data-copy-message-placeholder': true }
           - else
