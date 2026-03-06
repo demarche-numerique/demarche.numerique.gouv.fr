@@ -7,11 +7,11 @@
 
 - if @attestation_template.logo_blob&.previously_new_record?
   = turbo_stream.update dom_id(@attestation_template, :logo_attachment) do
-    = render(Attachment::EditComponent.new(attached_file: @attestation_template.logo, direct_upload: false))
+    = render(Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: @attestation_template.logo, direct_upload: false), drop_zone: :none))
 
 - if @attestation_template.signature_blob&.previously_new_record?
   = turbo_stream.update dom_id(@attestation_template, :signature_attachment) do
-    = render(Attachment::EditComponent.new(attached_file: @attestation_template.signature, direct_upload: false))
+    = render(Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: @attestation_template.signature, direct_upload: false), drop_zone: :none))
 
 - body_id = "attestation-template-json-body-messages"
 - if @attestation_template.errors.include?(:json_body)

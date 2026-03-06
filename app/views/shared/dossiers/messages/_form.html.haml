@@ -6,16 +6,20 @@
   - elsif local_assigns.has_key?(:dossier) &&  instructeur_signed_in? || administrateur_signed_in? || expert_signed_in?
     - placeholder = t('views.shared.dossiers.messages.form.write_message_placeholder')
 
+  - if local_assigns.has_key?(:dossier)
+    - pj_input_id = dom_id(commentaire, :piece_jointe)
+    - drop_zone_attrs = Attachment::DropZoneDecorator.new(mode: :remote, input_selector: "##{pj_input_id}").data_attributes
+
   = f.label :body, class: "fr-label" do
     = t('views.shared.dossiers.messages.form.message_label_mandatory')
     = render EditableChamp::AsteriskMandatoryComponent.new
-  = f.text_area :body, rows: '5', placeholder: placeholder, title: placeholder, required: true, class: 'fr-input message-textarea', data: { 'hide-target-target': 'focus'}
+  = f.text_area :body, rows: '5', placeholder: placeholder, title: placeholder, required: true, class: 'fr-input message-textarea', data: local_assigns.has_key?(:dossier) ? { 'hide-target-target': 'focus' }.merge(drop_zone_attrs) : { 'hide-target-target': 'focus' }
 
   - if local_assigns.has_key?(:dossier)
     .fr-mt-3w.fr-input-group
-      = f.label :piece_jointe, class: "fr-label", for: dom_id(commentaire, :piece_jointe)
+      = f.label :piece_jointe, class: "fr-label", for: pj_input_id
       %div{ data: { controller: "file-input-reset", delete_label: t('views.shared.messages.remove_file') } }
-        = render Attachment::MultipleComponent.new(attached_file: commentaire.piece_jointe)
+        = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: commentaire.piece_jointe), drop_zone: :none, hidden: true, id: pj_input_id)
         %ul{ data: { 'file-input-reset-target': 'fileList' } }
 
   .fr-mt-3w

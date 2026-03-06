@@ -1,17 +1,16 @@
 @import 'colors';
 
 .direct-upload {
-  display: inline-block;
   position: relative;
-  padding: 4px 15px;
-  margin: 0 3px 3px 0;
+  display: inline-block;
+  border-color: transparent;
   border: 1px solid $border-grey;
   border-radius: 3px;
-  font-size: 14px;
 }
 
 .direct-upload--pending {
   opacity: 0.7;
+  border: 1px solid $border-grey;
 }
 
 .direct-upload__progress {
@@ -29,16 +28,35 @@
 .direct-upload__filename {
   position: relative; // set a position so it appears above the progress bar
 }
-
-.direct-upload--complete .direct-upload__progress {
-  background-color: var(--background-overlap-grey);
+.direct-upload--error {
+  padding-top: 0 !important;
+  padding-bottom: 1rem !important;
 }
 
-.direct-upload--error {
-  border-color: var(--border-plain-error);
+.direct-upload {
+  &.direct-upload--error,
+  &.direct-upload--complete {
+    border-color: transparent;
+  }
+  &.direct-upload--error .direct-upload__progress {
+    display: none;
+  }
 }
 
 input[type='file'][data-direct-upload-url][disabled],
 input[type='file'][data-auto-attach-url][disabled] {
   display: none;
+}
+
+.direct-upload--simulated .direct-upload__progress {
+  animation: progress-bar-fill 90s ease-out forwards;
+}
+
+@keyframes progress-bar-fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 93%; // donne l'impression que c'est bloqué
+  }
 }

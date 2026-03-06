@@ -48,7 +48,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
     add_champ
     select('Pièce à joindre', from: 'Type de champ')
 
-    find('.attachment input[type=file]').attach_file(Rails.root + 'spec/fixtures/files/file.pdf')
+    find('.attachment-field input[type=file]').attach_file(Rails.root + 'spec/fixtures/files/file.pdf')
 
     # Expect the files to be uploaded immediately
     expect(page).to have_text('file.pdf')

@@ -84,7 +84,7 @@ describe 'Inviting an expert:', js: true do
       expect(page).to have_text('Cet avis est confidentiel')
 
       fill_in 'avis_answer', with: 'Ma réponse d’expert : c’est un oui.'
-      find('.attachment input[name="avis[piece_justificative_file]"]').attach_file(Rails.root + 'spec/fixtures/files/RIB.pdf')
+      find('.attachment-field input[name="avis[piece_justificative_file]"]').attach_file(Rails.root + 'spec/fixtures/files/RIB.pdf')
       click_on 'Envoyer votre avis'
 
       expect(page).to have_content('Votre réponse est enregistrée')

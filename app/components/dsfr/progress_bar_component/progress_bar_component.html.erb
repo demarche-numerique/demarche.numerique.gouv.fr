@@ -1,0 +1,27 @@
+<div
+  class="direct-upload fr-upload-group fr-mr-2w fr-mt-3w fr-mb-0 fr-px-3v fr-py-1w <%= 'direct-upload--simulated' if simulated %>"
+  id="direct-upload-<%= id %>"
+  data-direct-upload-id="<%= id %>"
+>
+  <div class="direct-upload__error fr-messages-group hidden">
+    <p class="fr-message fr-message--error fr-mt-0 direct-upload__error-message"></p>
+  </div>
+
+  <div
+    class="direct-upload__progress"
+    role="progressbar"
+    aria-label="<%= t(".loading") %>"
+    tabindex="0"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    style="<%= simulated ? nil : 'width: 0%' %>"
+  ></div>
+
+  <span class="fr-label direct-upload__filename"><%= content %></span>
+
+  <div class="direct-upload__retry hidden">
+    <button class="fr-btn fr-btn--sm fr-btn--secondary" type="button">
+      <%= t(".retry") %>
+    </button>
+  </div>
+</div>

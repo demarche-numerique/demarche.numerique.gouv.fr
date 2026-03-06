@@ -1,6 +1,9 @@
 - if @champ.type_de_champ.piece_justificative_template&.attached?
   = render partial: "shared/piece_justificative_template", locals: { champ: @champ }
+
 %p.fr-hint-text.fr-mb-1w{ id: hint_id }
   = t('.max_file_size', max_file_size: number_to_human_size(max_file_size))
   = t('.allowed_formats', formats: allowed_formats.join(', '))
-= render Attachment::EditComponent.new(champ: @form.object, attached_file: @champ.piece_justificative_file, attachment: @champ.piece_justificative_file[0], form_object_name: @form.object_name, aria_labelledby: labelledby_id, parent_hint_id: hint_id)
+
+- attachment = @champ.piece_justificative_file[0]
+= render Attachment::FileFieldComponent.new(context: attachment_context, attachments: attachment ? [attachment] : [], drop_zone: :integrated, max: 1)

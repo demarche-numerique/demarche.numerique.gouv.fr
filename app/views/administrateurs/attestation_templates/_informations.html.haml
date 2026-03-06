@@ -26,13 +26,13 @@
 %h3.fr-h5 Logo de l’attestation
 %p.fr-text--sm.fr-text-mention--grey.fr-mb-0
   Dimensions conseillées : au minimum 500px de largeur ou de hauteur.
-= render Attachment::EditComponent.new(attached_file: @attestation_template.logo, direct_upload: false)
+= render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: @attestation_template.logo, direct_upload: false), drop_zone: :none)
 
 
 %h3.fr-h5.fr-mt-5w Tampon de l’attestation
 %p.fr-text--sm.fr-text-mention--grey.fr-mb-0
   Dimensions conseillées : au minimum 500px de largeur ou de hauteur.
-= render Attachment::EditComponent.new(attached_file: @attestation_template.signature, direct_upload: false)
+= render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: @attestation_template.signature, direct_upload: false), drop_zone: :none)
 
 
 - if @attestation_template.procedure.routing_enabled?

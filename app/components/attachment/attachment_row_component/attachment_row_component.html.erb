@@ -1,0 +1,33 @@
+<div
+  class="fr-mt-3w"
+  id="<%= dom_id(attachment, :persisted_row) %>"
+  data-attachment-row="true"
+>
+  <% if attachment.virus_scanner_error? %>
+    <p class="fr-error-text"><%= error_message %></p>
+  <% end %>
+
+  <div class="<%= 'attachment-error' if attachment.virus_scanner_error? %>">
+    <% if downloadable? %>
+      <%= render Dsfr::DownloadComponent.new(attachment:) %>
+    <% else %>
+      <p class="fr-mb-2v attachment-filename">
+        <%= link_to_if(viewable?, attachment.filename.to_s, helpers.url_for(attachment.blob), title: t(".open_file", filename: attachment.filename), **helpers.external_link_attributes) %>
+      </p>
+      <%= render Attachment::ProgressComponent.new(attachment:, ignore_antivirus: true, ignore_watermark: true) %>
+    <% end %>
+
+    <% if user_can_destroy? %>
+      <p class="fr-mb-0">
+        <%= render NestedForms::OwnedButtonComponent.new(formaction: destroy_attachment_path, http_method: :delete, opt: {class: "fr-btn fr-btn--tertiary fr-btn--sm", title: t(".delete_file_title", filename: attachment.filename)}) do %>
+          <span class="fr-icon--sm fr-icon-delete-line fr-mr-1w"></span>
+          <%= t('.delete_file') %>
+
+          <span class="fr-sr-only">
+            <%= t('.file_name', filename: attachment.filename) %>
+          </span>
+        <% end %>
+      </p>
+    <% end %>
+  </div>
+</div>

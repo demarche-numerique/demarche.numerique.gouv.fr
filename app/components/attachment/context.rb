@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Value object for attachment component configuration.
-# Eliminates parameter duplication (12→5 params for ButtonUploaderComponent).
+# Eliminates parameter duplication across attachment components.
 class Attachment::Context
   attr_reader :champ, :attached_file, :auto_attach_url, :direct_upload, :view_as,
               :user_can_destroy, :form_object_name, :aria_labelledby,

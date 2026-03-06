@@ -1,0 +1,10 @@
+---
+en:
+  drop_zone_aria_label: "Drag and drop area. Activate to open the file picker."
+  drop_zone_label:
+    one: "Drag and drop your file here"
+    other: "Drag and drop your files here"
+  or: "or"
+  button_label:
+    one: "Choose a file"
+    other: "Choose files"

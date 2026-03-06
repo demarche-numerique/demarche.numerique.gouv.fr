@@ -111,6 +111,10 @@
       <%= yield :charts_js %>
     </div>
 
-    <%= render Attachment::ProgressBarComponent.new %>
+    <template id="progress-bar-template">
+      <%= render Dsfr::ProgressBarComponent.new do %>
+        <slot name="filename"></slot>
+      <% end %>
+    </template>
   </body>
 </html>

@@ -1,4 +1,4 @@
-= render Attachment::MultipleComponent.new(champ: @champ, attached_file: @champ.piece_justificative_file, form_object_name: @form.object_name, view_as:, max:, aria_labelledby: labelledby_id) do |c|
+= render Attachment::FileFieldComponent.new(context: attachment_context, max:, drop_zone: :integrated) do |c|
   - if @champ.type_de_champ.piece_justificative_template&.attached?
     - c.with_template do
       = render partial: "shared/piece_justificative_template", locals: { champ: @champ }

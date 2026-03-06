@@ -1,0 +1,17 @@
+<div
+  id="<%= dom_id(attachment, :show) %>"
+  class="<%= 'attachment-error' if error? %> <%= 'fr-mb-2w' unless should_display_link? %>"
+>
+  <% if should_display_link? %>
+    <%= render Dsfr::DownloadComponent.new(attachment:, virus_not_analyzed: !attachment.virus_scanner.started?, new_tab: false, truncate:) %>
+  <% else %>
+    <div class="attachment-filename fr-mb-1w fr-mr-1w">
+      <%= attachment.filename.to_s %>
+    </div>
+    <%= render Attachment::ProgressComponent.new(attachment:) %>
+  <% end %>
+
+  <% if error? %>
+    <p class="fr-error-text"><%= error_message %></p>
+  <% end %>
+</div>

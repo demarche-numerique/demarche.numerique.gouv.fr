@@ -67,7 +67,7 @@
                     = form.text_area :collapsible_explanation_text, class: "fr-input small-margin small", id: dom_id(type_de_champ, :collapsible_explanation_text)
               .cell.fr-mt-1w
                 = form.label :notice_explicative, "Notice explicative", for: dom_id(type_de_champ, :notice_explicative)
-                = render Attachment::EditComponent.new(**notice_explicative_options)
+                = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(**notice_explicative_options), drop_zone: :none)
 
             - if type_de_champ.piece_justificative?
               .cell.fr-mt-1w
@@ -145,7 +145,7 @@
               .cell
                 = form.label :piece_justificative_template, t('.template_label'), for: dom_id(type_de_champ, :piece_justificative_template)
                 %p.fr-hint-text= t('.max_file_size_hint', max_file_size: number_to_human_size(type_de_champ.max_file_size_bytes))
-                = render Attachment::EditComponent.new(**piece_justificative_template_options)
+                = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(**piece_justificative_template_options), drop_zone: :none)
 
               - if type_de_champ.titre_identite?
                 .cell.fr-mt-1w

@@ -97,10 +97,9 @@
     <%= display_message %>
 
     <% if llm_rule_suggestion.state.in?(['running', 'queued']) %>
-      <span class="fr-btn fr-btn--tertiary llm-job-progress">
-        <span class="llm-job-progress__bar"></span>
-        <span class="llm-job-progress__label"><%= enqueue_button_text %></span>
-      </span>
+      <%= render Dsfr::ProgressBarComponent.new(simulated: true, id: llm_rule_suggestion.id) do %>
+        <%= enqueue_button_text %>
+      <% end %>
     <% else %>
       <p><%= button %></p>
     <% end %>

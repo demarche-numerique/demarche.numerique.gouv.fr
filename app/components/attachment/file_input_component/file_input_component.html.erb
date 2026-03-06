@@ -1,0 +1,11 @@
+<%= file_field_tag(field_name_or_default, **file_field_options) %>
+
+<% if champ.blank? %>
+  <div
+    class="fr-sr-only"
+    id="<%= final_input_id %>-aria-live"
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+<% end %>

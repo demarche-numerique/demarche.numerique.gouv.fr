@@ -18,4 +18,13 @@ class EditableChamp::TitreIdentiteComponent < EditableChamp::EditableChampBaseCo
       .filter_map { |ct| MiniMime.lookup_by_content_type(ct)&.extension }
       .uniq
   end
+
+  def attachment_context
+    Attachment::Context.new(
+      champ: @form.object,
+      form_object_name: @form.object_name,
+      aria_labelledby: labelledby_id,
+      parent_hint_id: hint_id
+    )
+  end
 end

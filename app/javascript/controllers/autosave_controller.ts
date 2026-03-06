@@ -523,8 +523,9 @@ export class AutosaveController extends ApplicationController {
     const max = input.dataset.max ? parseInt(input.dataset.max, 10) : 0;
     if (!max) return Infinity; // Pas de limite
 
-    const container = input.closest('.attachment-multiple');
-    if (!container) return Infinity; // Pas dans un contexte multiple
+    // Support both new (.attachment-field) and legacy (.attachment-multiple) classes
+    const container = input.closest('.attachment-field, .attachment-multiple');
+    if (!container) return Infinity; // Pas dans un contexte attachment
 
     const currentCount = this.countCurrentFiles(container);
     return Math.max(0, max - currentCount);

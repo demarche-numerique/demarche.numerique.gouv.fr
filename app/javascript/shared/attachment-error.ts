@@ -1,8 +1,9 @@
 /**
- * Trouve le container .attachment-multiple depuis un input
+ * Trouve le container attachment field depuis un input
+ * Support both new (.attachment-field) and legacy (.attachment-multiple) classes
  */
 function findContainer(input: HTMLInputElement): Element | null {
-  return input.closest('.attachment-multiple');
+  return input.closest('.attachment-field, .attachment-multiple');
 }
 
 /**

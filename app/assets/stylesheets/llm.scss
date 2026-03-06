@@ -3,35 +3,3 @@
     margin-bottom: 0.5rem;
   }
 }
-
-.llm-job-progress {
-  padding-right: 15rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.llm-job-progress__bar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  background-color: var(--background-contrast-grey);
-  transition: width 120ms ease-out;
-  transform: translate3d(0, 0, 0);
-  animation: llm-job-progress-fill 90s ease-out forwards;
-}
-
-.llm-job-progress__label {
-  position: relative;
-  color: var(--text-default-grey);
-  font-weight: bold;
-}
-
-@keyframes llm-job-progress-fill {
-  from {
-    width: 0%;
-  }
-  to {
-    width: 93%; // donne l'impression que c'est bloqué
-  }
-}

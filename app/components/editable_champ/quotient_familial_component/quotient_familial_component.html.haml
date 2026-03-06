@@ -44,4 +44,4 @@
 - if render_piece_justificative_champ?
   = t('.piece_justificative_champ.libelle')
   = render EditableChamp::AsteriskMandatoryComponent.new
-  = render Attachment::MultipleComponent.new(champ: @champ, attached_file: @champ.piece_justificative_file, form_object_name: @form.object_name, max: 1, aria_labelledby: labelledby_id)
+  = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(champ: @champ, form_object_name: @form.object_name, aria_labelledby: labelledby_id), max: 1, drop_zone: :integrated)

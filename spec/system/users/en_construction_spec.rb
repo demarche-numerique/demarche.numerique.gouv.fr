@@ -33,7 +33,7 @@ describe "Dossier en_construction", js: true do
       live_region_selector = "##{champ.focusable_input_id}-aria-live"
       expect(page).to have_css(live_region_selector, text: "La pièce jointe (toto.txt) a bien été supprimée.", visible: :all)
 
-      input_selector = "#attachment-multiple-empty-#{champ.public_id}"
+      input_selector = "##{champ.focusable_input_id}"
       expect(page).to have_selector(input_selector)
       find(input_selector).attach_file(Rails.root.join('spec/fixtures/files/file.pdf'))
 

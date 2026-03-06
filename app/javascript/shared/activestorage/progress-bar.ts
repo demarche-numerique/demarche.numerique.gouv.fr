@@ -43,7 +43,30 @@ export default class ProgressBar {
     const element = getDirectUploadElement(id);
     if (element) {
       element.classList.add(ERROR_CLASS);
+      element.classList.add('fr-fieldset--error');
       element.setAttribute('title', error);
+
+      // Display error message in the error zone
+      const errorMessage = element.querySelector<HTMLElement>(
+        '.direct-upload__error-message'
+      );
+      if (errorMessage) {
+        errorMessage.textContent = error;
+      }
+      const retryButton = element.querySelector<HTMLButtonElement>(
+        '.direct-upload__retry'
+      );
+      if (retryButton) {
+        retryButton.classList.remove('hidden');
+      }
+
+      // Show the error zone
+      const errorZone = element.querySelector<HTMLElement>(
+        '.direct-upload__error'
+      );
+      if (errorZone) {
+        errorZone.classList.remove('hidden');
+      }
     }
   }
 

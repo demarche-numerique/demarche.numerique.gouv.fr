@@ -3,7 +3,7 @@
 describe EditableChamp::TitreIdentiteComponent, type: :component do
   let(:procedure) { create(:procedure, :published, types_de_champ_public:) }
   let(:types_de_champ_public) { [{ type: :titre_identite }] }
-  let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
+  let(:dossier) { create(:dossier, procedure:) }
   let(:champ) { dossier.champs.first }
 
   let(:form) do

@@ -6,8 +6,8 @@
   = turbo_stream.update "#{@champ.focusable_input_id}-aria-live", t('activerecord.models.attachment.successfully_deleted_without_anchor', attachment: deleted_filename)
   = turbo_stream.focus @champ.focusable_input_id
 - else
-  = turbo_stream.replace dom_id(@attachment, :edit) do
-    = render Attachment::EditComponent.new(**@attachment_options)
+  = turbo_stream.replace dom_id(@attachment, :persisted_row) do
+    = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(**@attachment_options), drop_zone: :none)
   - deleted_filename = (@attachment&.blob&.filename || params[:attachment] || '')
   = turbo_stream.update "#{dom_id(@attachment.record, @attachment.name)}-aria-live", t('activerecord.models.attachment.successfully_deleted_without_anchor', attachment: deleted_filename)
   = turbo_stream.focus dom_id(@attachment.record, @attachment.name)

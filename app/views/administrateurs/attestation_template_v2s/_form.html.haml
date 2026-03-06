@@ -60,7 +60,7 @@
               Dimensions conseillées : au minimum 500px de largeur ou de hauteur.
 
             %div{ id: h(dom_id(attestation_template, :logo_attachment)) }
-              = render Attachment::EditComponent.new(attached_file: attestation_template.logo, direct_upload: false)
+              = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: attestation_template.logo, direct_upload: false), drop_zone: :none)
 
           .fr-fieldset__element
             = render Dsfr::InputComponent.new(form: f, attribute: :label_direction, input_type: :text_area, required: false, opts: { rows: 2, data: { controller: :textarea, textarea_max_rows_value: 2 } }) do |c|
@@ -103,7 +103,7 @@
               Dimensions conseillées : au minimum 500px de largeur ou de hauteur.
 
             %div{ id: h(dom_id(attestation_template, :signature_attachment)) }
-              = render Attachment::EditComponent.new(attached_file: attestation_template.signature, direct_upload: false)
+              = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: attestation_template.signature, direct_upload: false), drop_zone: :none)
 
           .fr-fieldset__element
             = render Dsfr::InputComponent.new(form: f, attribute: :footer, input_type: :text_area, required: false, opts: { rows: 3, data: { controller: :textarea, textarea_max_rows_value: 3 } }) do |c|

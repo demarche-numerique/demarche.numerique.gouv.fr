@@ -308,7 +308,7 @@
 
 
   .container
-    %h1.fr-mt-4w Attachment::EditComponent
+    %h1.fr-mt-4w Attachment::FileFieldComponent (single file)
     %span.fr-hint-text Note: direct upload, suppression ne marchent pas comme attendu ici.
 
     - champ = @dossier.champs.find { _1.type_champ == TypeDeChamp.type_champs.fetch(:piece_justificative) }
@@ -318,30 +318,30 @@
     - if attachment = ActiveStorage::Attachment.last
       - attachment.update(created_at: 1.second.ago)
       %h3 New attachment
-      = render Attachment::EditComponent.new(champ:, attached_file: champ.piece_justificative_file, attachment: nil)
+      = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(champ:), drop_zone: :none)
 
       %h3.fr-mt-4w Existing attachment
-      = render Attachment::EditComponent.new(champ:, attached_file: champ.piece_justificative_file, attachment:)
+      = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(champ:), drop_zone: :none)
 
       %h3.fr-mt-4w Existing attachment, user can not destroy
-      = render Attachment::EditComponent.new(champ:, attached_file: champ.piece_justificative_file, attachment:, user_can_destroy: false)
+      = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(champ:, user_can_destroy: false), drop_zone: :none)
 
       %h3.fr-mt-4w Existing attachment, error
       - attachment.blob.metadata[:virus_scan_result] = ActiveStorage::VirusScanner::INFECTED
-      = render Attachment::EditComponent.new(champ:, attached_file: Champ.new.piece_justificative_file, attachment:)
+      = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(champ: Champ.new), drop_zone: :none)
 
 
       %h3.fr-mt-4w New attachment on TypeDeChamp
-      = render Attachment::EditComponent.new(auto_attach_url: "/some-auto-attach-path", attached_file: tdc.piece_justificative_template, attachment: nil)
+      = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: tdc.piece_justificative_template, auto_attach_url: "/some-auto-attach-path"), drop_zone: :none)
 
       %h3.fr-mt-4w Existing attachment on TypeDeChamp, view as link
-      = render Attachment::EditComponent.new(auto_attach_url: "/some-auto-attach-path", attached_file: tdc.piece_justificative_template, attachment: attachment.reload)
+      = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: tdc.piece_justificative_template, auto_attach_url: "/some-auto-attach-path"), drop_zone: :none)
 
       %h3.fr-mt-4w Existing attachment on TypeDeChamp view as download
-      = render Attachment::EditComponent.new(auto_attach_url: "/some-auto-attach-path", attached_file: tdc.piece_justificative_template, attachment: attachment.reload, view_as: :download)
+      = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: tdc.piece_justificative_template, auto_attach_url: "/some-auto-attach-path", view_as: :download), drop_zone: :none)
 
       %h3.fr-mt-4w New attachment on generic object
-      = render Attachment::EditComponent.new(attached_file: avis.introduction_file)
+      = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: avis.introduction_file), drop_zone: :none)
 
       %h3.fr-mt-4w Existing attachment on generic object, view as download
-      = render Attachment::EditComponent.new(attached_file: avis.introduction_file, attachment: attachment.reload, view_as: :download)
+      = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: avis.introduction_file, view_as: :download), drop_zone: :none)

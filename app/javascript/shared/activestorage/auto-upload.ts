@@ -1,5 +1,4 @@
 import invariant from 'tiny-invariant';
-import { show, hide, toggle } from '@utils';
 
 import Uploader from './uploader';
 import {
@@ -52,7 +51,6 @@ export class AutoUpload {
 
   private begin() {
     this.#input.disabled = true;
-    this.hideErrorMessage();
   }
 
   private succeeded() {
@@ -64,10 +62,15 @@ export class AutoUpload {
       return;
     }
 
-    this.#uploader.progressBar.destroy();
-
     const message = this.messageFromError(error);
-    this.displayErrorMessage(message);
+
+    // Display error in the progress bar instead of destroying it
+    this.#uploader.progressBar.error(message.title);
+
+    // Add retry button listener if retry is allowed
+    if (message.retry) {
+      this.attachRetryListener();
+    }
 
     this.#input.classList.toggle('fr-text-default--error', true);
   }
@@ -102,40 +105,30 @@ export class AutoUpload {
     }
   }
 
-  private displayErrorMessage(message: ErrorMessage) {
-    const errorElement = this.errorElement;
-    if (errorElement) {
-      show(errorElement);
-      this.errorTitleElement.textContent = message.title || '';
-      toggle(this.errorRetryButton, message.retry);
-    }
-  }
-
-  private hideErrorMessage() {
-    const errorElement = this.errorElement;
-    if (errorElement) {
-      hide(errorElement);
-    }
-  }
-
-  get errorElement() {
-    return this.#input
-      .closest('.attachment')
-      ?.querySelector<HTMLElement>('.attachment-upload-error');
-  }
-
-  get errorTitleElement() {
-    const element =
-      this.errorElement?.querySelector<HTMLElement>('.fr-error-text');
-    invariant(element, 'Could not find the error title element.');
-    return element;
-  }
-
-  get errorRetryButton() {
-    const element = this.errorElement?.querySelector<HTMLButtonElement>(
-      '.attachment-upload-error-retry'
+  private attachRetryListener() {
+    const progressBarElement = document.querySelector<HTMLElement>(
+      `#direct-upload-${this.#uploader.directUpload.id}`
     );
-    invariant(element, 'Could not find the error retry button element.');
-    return element;
+    const retryButton = progressBarElement?.querySelector<HTMLButtonElement>(
+      '.direct-upload__retry'
+    );
+
+    if (retryButton) {
+      retryButton.addEventListener(
+        'click',
+        () => {
+          // Remove the error state
+          progressBarElement?.classList.remove('direct-upload--error');
+          const errorZone = progressBarElement?.querySelector<HTMLElement>(
+            '.direct-upload__error'
+          );
+          errorZone?.classList.add('hidden');
+
+          // Restart the upload
+          this.start();
+        },
+        { once: true }
+      );
+    }
   }
 }

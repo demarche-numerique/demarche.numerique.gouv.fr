@@ -30,20 +30,22 @@ class Attachment::FileFieldComponent < ApplicationComponent
 
   renders_one :template
 
-  attr_reader :context, :max, :drop_zone, :attachments, :current_count
+  attr_reader :context, :max, :drop_zone, :attachments, :current_count, :hidden, :input_id
 
   delegate :champ, :form_object_name, :view_as, :user_can_destroy?, :aria_labelledby, :attached_file,
            to: :context
 
-  def initialize(context:, drop_zone:, max: nil, attachments: nil)
+  def initialize(context:, drop_zone:, max: nil, attachments: nil, hidden: false, id: nil)
     @context = context
     @drop_zone = drop_zone
+    @hidden = hidden
+    @input_id = id
 
     # Get attachments
     @attachments = if attachments
       Array(attachments).compact
     elsif attached_file.is_a?(ActiveStorage::Attached::Many)
-      attached_file.attachments
+      attached_file.attachments.to_a
     elsif attached_file.is_a?(ActiveStorage::Attached::One) && attached_file.attached?
       [attached_file.attachment]
     else
@@ -95,7 +97,9 @@ class Attachment::FileFieldComponent < ApplicationComponent
     Attachment::FileInputComponent.new(
       context:,
       max: @max,
-      current_count: @current_count
+      current_count: @current_count,
+      hidden: @hidden,
+      id: @input_id
     )
   end
 

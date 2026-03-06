@@ -42,7 +42,7 @@
 
     .fr-input-group
       = f.label :introduction_file, class: 'fr-label'
-      = render Attachment::EditComponent.new(attached_file: avis.introduction_file)
+      = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: avis.introduction_file), drop_zone: :none)
 
     - if linked_dossiers.present?
       = f.check_box :invite_linked_dossiers, {}, true, false

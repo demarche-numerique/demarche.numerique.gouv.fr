@@ -1,0 +1,10 @@
+---
+fr:
+  drop_zone_aria_label: "Zone de glisser-déposer. Activez pour ouvrir le sélecteur de fichiers."
+  drop_zone_label:
+    one: "Faites glisser et déposez votre fichier ici"
+    other: "Faites glisser et déposez vos fichiers ici"
+  or: "ou"
+  button_label:
+    one: "Choisir un fichier"
+    other: "Choisir des fichiers"

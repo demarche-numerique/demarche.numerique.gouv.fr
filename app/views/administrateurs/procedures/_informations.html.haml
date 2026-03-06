@@ -17,7 +17,7 @@
   .fr-fieldset__element
     .fr-input-group
       = f.label :logo, 'Ajouter un logo de la démarche', class: 'fr-label', for: dom_id(@procedure, :logo)
-      = render Attachment::EditComponent.new(attached_file: @procedure.logo, view_as: :link)
+      = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: @procedure.logo, view_as: :link), drop_zone: :none)
   .fr-fieldset__element
     .fr-input-group
       = f.label :duree_conservation_dossiers_dans_ds, class: 'fr-label' do
@@ -61,7 +61,7 @@
   .fr-fieldset__element
     .fr-input-group
       = f.label :deliberation, 'Cadre juridique - texte à importer', class: 'fr-label', for: dom_id(@procedure, :deliberation)
-      = render Attachment::EditComponent.new(attached_file: @procedure.deliberation, view_as: :download)
+      = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: @procedure.deliberation, view_as: :download), drop_zone: :none)
 
 %fieldset.fr-fieldset
   .fr-fieldset__element
@@ -81,11 +81,11 @@
     .fr-input-group
       = f.label :notice, 'Notice explicative de la démarche', class: 'fr-label', for: dom_id(@procedure, :notice)
       %p.fr-hint-text
-        Une notice explicative est un document que vous avez élaboré, destiné à guider l’usager dans sa démarche. Le bouton pour télécharger cette notice apparaît en haut du formulaire pour l’usager.
+        Une notice explicative est un document que vous avez élaboré, destiné à guider l'usager dans sa démarche. Le bouton pour télécharger cette notice apparaît en haut du formulaire pour l'usager.
         %br
 
         Formats acceptés : .doc, .odt, .pdf, .ppt, .pptx
-      = render Attachment::EditComponent.new(attached_file: @procedure.notice, view_as: :download)
+      = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: @procedure.notice, view_as: :download), drop_zone: :none)
 
   - if !@procedure.locked?
     .fr-fieldset__element

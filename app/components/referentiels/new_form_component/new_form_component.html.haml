@@ -30,8 +30,8 @@
         .fr-input-group
           = form.label :piece_justificative_template, class: 'fr-label', for: dom_id(@type_de_champ, :piece_justificative_template) do
             Fichier CSV
-            %span.fr-text-hint Utilisez le modèle du fichier CSV fourni ci-dessous pour construire votre référentiel (le nombre de colonne n’est pas limité).
-          = render Attachment::EditComponent.new(attached_file: @type_de_champ.piece_justificative_template, view_as: :link)
+            %span.fr-text-hint Utilisez le modèle du fichier CSV fourni ci-dessous pour construire votre référentiel (le nombre de colonne n'est pas limité).
+          = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: @type_de_champ.piece_justificative_template, view_as: :link), drop_zone: :none)
 
       %hr.fr-hr.fr-my-5w
 

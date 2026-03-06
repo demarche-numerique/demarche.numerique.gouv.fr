@@ -479,9 +479,10 @@ describe EditableChamp::RepetitionComponent, type: :component do
       end
 
       context "for type titre_identite" do
-        let(:children) { [{ type: :titre_identite }] }
+        let(:children) { [{ type: :titre_identite, mandatory: false }] }
 
         it do
+          allow_any_instance_of(ActiveStorage::Attachment).to receive(:persisted?).and_return(false)
           expect(subject).to have_selector("input[aria-labelledby='#{repetition_fieldset_legend_id(repetition_champ)} #{input_label_id(champ)}']")
         end
       end

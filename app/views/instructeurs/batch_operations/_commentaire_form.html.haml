@@ -12,12 +12,15 @@
   - form_data = { controller: 'persisted-form', persisted_form_key_value: 'create_commentaire_form', remote: true, 'batch-operation-target': 'commentaireForm'}
 
   = form_for commentaire, url: url, html: { multipart: true, data: form_data } do |f|
+    - pj_input_id = "#{dom_id(commentaire)}-piece-jointe"
+    - drop_zone_attrs = Attachment::DropZoneDecorator.new(mode: :remote, input_selector: "##{pj_input_id}").data_attributes
+
     .fr-input-group
-      = render Dsfr::InputComponent.new(form: f, attribute: :body, input_type: :text_area)
+      = render Dsfr::InputComponent.new(form: f, attribute: :body, input_type: :text_area, opts: { data: drop_zone_attrs })
 
     .fr-input-group
       = f.label :piece_jointe, class: 'fr-label'
-      = render Attachment::EditComponent.new(attached_file: commentaire.piece_jointe)
+      = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: commentaire.piece_jointe), drop_zone: :none, hidden: true, id: pj_input_id)
 
     - if dossier_ids.present?
       - dossier_ids.each do |id|
