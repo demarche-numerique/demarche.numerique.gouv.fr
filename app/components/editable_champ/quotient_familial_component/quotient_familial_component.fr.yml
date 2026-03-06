@@ -12,4 +12,5 @@ fr:
       false: Non
     incorrect_qf_data: Nous n’utiliserons pas ces données pour examiner votre dossier. Vous devez joindre un justificatif de quotient familial.
   piece_justificative_champ:
+    data_not_found: Nous n’avons pu récupérer les données de votre situation auprès des administrations en charge. Vous devez joindre un justificatif de quotient familial.
     libelle: Justificatif de quotient familial
