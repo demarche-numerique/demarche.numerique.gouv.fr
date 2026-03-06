@@ -363,6 +363,7 @@ class SerializerService
       title
       description
       state
+      forIndividual
       tags
       zones
       datePublication
