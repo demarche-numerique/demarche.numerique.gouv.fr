@@ -2,4 +2,4 @@
 fr:
   correct_qf_data: Les données ci-dessous ont été récupérées automatiquement et de façon fiable via le champ "Quotient familial (France Connect)".
   incorrect_qf_data: L’usager n’a pas confirmé l’exactitude des données d’identité / quotient familial / composition familiale, récupérées automatiquement via le champ "Quotient familial (France Connect)"
-  qf_data_not_fetched: Les données d’identitié / quotient familial / composition familiale n’ont pas pu être récupérées automatiquement via le champ "Quotient familial (France Connect)"
+  qf_data_not_fetched: Les données d’identité / quotient familial / composition familiale n’ont pas pu être récupérées automatiquement via le champ "Quotient familial (France Connect)"
