@@ -25,7 +25,7 @@ class Dossiers::QuotientFamilialComponent < ApplicationComponent
         closable: false,
         data_attributes: { "data-notice-name" => "info-recuperation-donnees-qf" }
       ) do |c|
-        c.with_desc do
+        c.with_title do
           description
         end
       end
