@@ -1,0 +1,52 @@
+<div class="attachment-field <%= 'attachment-field--single' if @max == 1 %> <%= 'attachment-field--multiple' if @max > 1 %> <%= 'fr-downloads-group' if view_as == :download %> <%= 'destroyable' if user_can_destroy? %>">
+  <%# Optional template (e.g., PJ template download link) %>
+  <%= template %>
+
+  <%# Hints (formats, size) %>
+  <% if show_hint? %>
+    <%= render hints_component %>
+  <% end %>
+
+  <%# Uploader (if not at max) %>
+  <% if show_uploader? %>
+    <div id="<%= empty_component_id %>" data-turbo-force="server">
+      <% if drop_zone == :integrated %>
+        <%# Integrated drop zone (drag events on parent, they bubble naturally) %>
+        <div <%= drop_zone_decorator.data_attributes.map { |k, v| "data-#{k.to_s.dasherize}='#{v}'" }.join(' ').html_safe %> class="<%= drop_zone_decorator.css_class %>">
+          <div class="attachment-drop-area fr-p-3w" role="button" tabindex="0" aria-label="<%= t('.drop_zone_aria_label') %>" data-action="click->drop-target#openFilePicker keydown.enter->drop-target#openFilePicker keydown.space->drop-target#openFilePicker">
+            <span class="fr-icon-upload-line" aria-hidden="true"></span>
+            <p><%= t('.drop_zone_label', count: @max) %></p>
+            <p class="fr-hr-or"><%= t('.or') %></p>
+            <button class="fr-btn fr-btn--secondary fr-btn--sm" type="button" tabindex="-1" data-action="click->drop-target#openFilePicker">
+              <%= t('.button_label', count: @max) %>
+            </button>
+          </div>
+          <%= render file_input_component %>
+        </div>
+      <% else %>
+        <%# No drop zone, just the input %>
+        <%= render file_input_component %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%# Error wrapper %>
+  <%= render Attachment::ErrorWrapperComponent.new(with_top_margin: !show_uploader?) %>
+
+  <%# Existing files %>
+  <% if @attachments.any? %>
+    <% if show_as_list? %>
+      <%# Multiple files: show as list %>
+      <ul class="fr-my-1v attachment-files-list">
+        <% @attachments.each do |attachment| %>
+          <li id="<%= dom_id(attachment) %>">
+            <%= render Attachment::AttachmentRowComponent.new(attachment:, context:) %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <%# Single file: show as replacement (no list) %>
+      <%= render Attachment::AttachmentRowComponent.new(attachment: @attachments.first, context:) %>
+    <% end %>
+  <% end %>
+</div>
