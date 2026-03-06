@@ -1499,6 +1499,7 @@ type DemarcheDescriptor {
   Durée de conservation des dossiers en mois.
   """
   dureeConservationDossiers: Int!
+  forIndividual: Boolean!
   id: ID!
   logo: File
 

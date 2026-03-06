@@ -18,6 +18,7 @@ Cela évite l’accès récursif aux dossiers."
     field :description, String, "Description de la démarche.", null: false
     field :state, Types::DemarcheType::DemarcheState, "État de la démarche.", null: false
     field :declarative, Types::DemarcheType::DossierDeclarativeState, "Pour une démarche déclarative, état cible des dossiers à valider automatiquement", null: true
+    field :for_individual, Boolean, null: false
 
     field :date_creation, GraphQL::Types::ISO8601DateTime, "Date de la création.", null: false
     field :date_publication, GraphQL::Types::ISO8601DateTime, "Date de la publication.", null: true
@@ -122,6 +123,10 @@ Cela évite l’accès récursif aux dossiers."
 
     def declarative
       procedure.declarative_with_state
+    end
+
+    def for_individual
+      procedure.for_individual
     end
 
     def date_creation
