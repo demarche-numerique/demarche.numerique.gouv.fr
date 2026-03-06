@@ -19,6 +19,12 @@ class EditableChamp::QuotientFamilialComponent < EditableChamp::EditableChampBas
     !fetched? || fc_data_incorrect?
   end
 
+  def render_data_incorrect_callout?
+    return render_data_incorrect_callout_preview? if for_preview?
+
+    fc_data_incorrect?
+  end
+
   def qf_data
     if for_preview?
       JSON.parse(
@@ -39,5 +45,9 @@ class EditableChamp::QuotientFamilialComponent < EditableChamp::EditableChampBas
 
   def render_piece_justificative_champ_preview?
     @champ.preview_state == 'not_fetched_preview' || (@champ.preview_state == 'fetched_preview' && fc_data_approved? == false)
+  end
+
+  def render_data_incorrect_callout_preview?
+    !fc_data_approved?
   end
 end

@@ -36,7 +36,7 @@
         %label.fr-label{ for: "#{@champ.stable_id}_incorrect", id: input_label_id(@champ, :incorrect) }
           = t('.external_champ.confirmation.false')
 
-  - if fc_data_incorrect?
+  - if render_data_incorrect_callout?
     .fr-callout.fr-callout--yellow-moutarde
       .fr-callout__text
         = t('.external_champ.incorrect_qf_data')
