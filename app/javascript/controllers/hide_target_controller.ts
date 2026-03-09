@@ -7,14 +7,25 @@ export class HideTargetController extends Controller {
   declare readonly revealTargets: HTMLElement[];
   declare readonly focusTargets: HTMLElement[];
 
-  connect() {
-    this.sourceTargets.forEach((source) => {
-      source.addEventListener('click', this.handleInput.bind(this));
-    });
+  #boundHandleInput = this.handleInput.bind(this);
+  #boundHandleReveal = this.handleReveal.bind(this);
 
-    this.revealTargets?.forEach((el) => {
-      el.addEventListener('click', this.handleReveal.bind(this));
-    });
+  sourceTargetConnected(source: HTMLElement) {
+    const event = source instanceof HTMLInputElement ? 'change' : 'click';
+    source.addEventListener(event, this.#boundHandleInput);
+  }
+
+  sourceTargetDisconnected(source: HTMLElement) {
+    source.removeEventListener('change', this.#boundHandleInput);
+    source.removeEventListener('click', this.#boundHandleInput);
+  }
+
+  revealTargetConnected(el: HTMLElement) {
+    el.addEventListener('click', this.#boundHandleReveal);
+  }
+
+  revealTargetDisconnected(el: HTMLElement) {
+    el.removeEventListener('click', this.#boundHandleReveal);
   }
 
   handleInput(event: Event) {
