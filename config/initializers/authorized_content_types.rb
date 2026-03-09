@@ -129,12 +129,23 @@ FORMAT_FAMILIES = {
 }.freeze
 
 FORMAT_FAMILY_EXAMPLES = {
-  document_texte: '.pdf, .doc, .docx, .odt, .txt',
+  document_texte: '.pdf, .doc, .docx, .odt, .txt, .rtf, .pages',
   tableur: '.xls, .xlsx, .ods, .csv',
   presentation: '.ppt, .pptx, .odp',
-  donnees: '.xml, .json, .kml, .sql, .csv',
-  image_scan: '.jpg, .jpeg, .png',
-  audio: '.mp3, .wav, .aac, .m4a',
-  video: '.mp4, .mov, .avi, .wmv',
-  archive: '.zip, .rar, .7z, .gz',
+  donnees: '.xml, .json, .csv, .kml, .gpx, .tsv, .dbf',
+  image_scan: '.jpg, .jpeg, .png, .tiff, .webp, .gif',
+  audio: '.m4a, .mp3, .wav, .aac',
+  video: '.mp4, .mov, .wmv, .3gp',
+  archive: '.zip, .7z, .rar, .gz',
+}.freeze
+
+FORMAT_FAMILY_TOP_FORMATS = {
+  document_texte: '.pdf, .docx',
+  tableur: '.xlsx, .csv',
+  presentation: '.pptx, .odp',
+  donnees: '.xml, .json',
+  image_scan: '.jpeg, .png',
+  audio: '.m4a, .mp3',
+  video: '.mp4, .mov',
+  archive: '.zip, .7z',
 }.freeze

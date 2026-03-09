@@ -866,14 +866,14 @@ class TypeDeChamp < ApplicationRecord
     ])
   end
 
-  private
-
   def allowed_extensions
     allowed_content_types
       .filter_map { |mime| MiniMime.lookup_by_content_type(mime)&.extension }
       .uniq
       .map { |ext| ".#{ext}" }
   end
+
+  private
 
   def families_to_content_types(families)
     return AUTHORIZED_CONTENT_TYPES if families.blank?

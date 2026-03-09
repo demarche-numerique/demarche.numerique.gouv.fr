@@ -1,5 +1,7 @@
 ---
 fr:
   identity_hint: "Pièce attendue : Carte nationale d’identité (uniquement le recto), passeport, titre de séjour ou autre justificatif d’identité."
-  max_file_size: "Taille maximale autorisée : %{max_file_size}."
+  max_file_size: "Taille maximale autorisée : %{max_file_size}"
   allowed_formats: "Formats acceptés : %{formats}"
+  format_category_line: "%{category} : %{extensions}"
+  formats_tooltip_label: "Voir tous les formats acceptés"
