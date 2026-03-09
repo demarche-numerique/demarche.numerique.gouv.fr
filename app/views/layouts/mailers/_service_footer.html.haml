@@ -1,11 +1,12 @@
 - service_or_contact_information = dossier.service_or_contact_information
 - if service_or_contact_information.present?
-  %table{ width: "100%", border: "0", cellspacing: "0", cellpadding: "0", style: "font-family:'Marianne', Arial, Helvetica, sans-serif; font-size:12px; line-height:22px; text-align:left;" }
+  %table{ width: "100%", border: "0", cellspacing: "0", cellpadding: "0", style: "font-size:12px; line-height:22px; text-align:left;" }
     %tr
       %td{ valign: "top" }
         %p
           %strong
             = t('.procedure_management')
+          %br
           = service_or_contact_information.nom
           = service_or_contact_information.adresse
         %strong= t('.ask_question')

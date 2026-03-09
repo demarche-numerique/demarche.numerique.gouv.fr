@@ -5,7 +5,7 @@
 
 - if @dossier.brouillon?
   %p= t('.body_draft_html', libelle_demarche: @dossier.procedure.libelle)
-  %p{ style: "padding: 8px; color: #333333; background-color: #EEEEEE; font-size: 14px;" }
+  %p.darkmode-3{ style: "padding: 8px; color: #3A3A3A; background-color: #F5F5FE; font-size: 14px;" }
     = @body
   - if @service&.email.present?
     %p= t('.contact_html', email: @service.email)
