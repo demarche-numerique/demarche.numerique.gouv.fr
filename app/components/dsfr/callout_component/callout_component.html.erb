@@ -1,0 +1,14 @@
+<div class="<%= callout_class.join(' ') %>">
+  <% if title.present? %>
+    <%= content_tag(heading_level, class: 'fr-callout__title') do %>
+      <%= title %>
+    <% end %>
+  <% end %>
+  <% if html_body? %>
+    <div class="fr-callout__text"><%= html_body %></div>
+  <% end %>
+  <% if body? %>
+    <p class="fr-callout__text"><%= body %></p>
+  <% end %>
+  <%= bottom %>
+</div>

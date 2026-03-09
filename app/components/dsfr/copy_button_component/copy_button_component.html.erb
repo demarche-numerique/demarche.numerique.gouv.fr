@@ -1,0 +1,8 @@
+<span data-controller="clipboard" data-clipboard-text-value="<%= @text %>">
+  <button class="fr-btn fr-icon-clipboard-line fr-btn--sm fr-btn--tertiary-no-outline align-middle" data-action="clipboard#copy" title="<%= @title %>">
+    <%= @title %>
+  </button>
+  <span class="fr-text--sm hidden" data-clipboard-target="success">
+    <%= @success || t('.copy_confirmation') %>
+  </span>
+</span>

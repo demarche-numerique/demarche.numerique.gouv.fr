@@ -1,0 +1,18 @@
+<div class="fr-download">
+<%= link_to url, {class: "fr-download__link", download: name} do -%>
+<% if !has_name -%>
+<span class="fr-sr-only"><%= t('.action') %></span>
+<% end -%>
+<%= truncate ? name.truncate(20) : name %><span class="fr-download__detail">
+<%= helpers.download_details(attachment) %>
+</span><% end -%>
+<% if ephemeral_link -%>
+<span class="fr-ml-2w fr-text--xs fr-text-mention--grey">
+<span class="fr-icon-questionnaire-line" aria-hidden="true"></span>
+<%= t('.ephemeral_link') %>
+</span><% end -%>
+<% if virus_not_analyzed -%>
+<div class="fr-text--xs fr-text-mention--grey">
+<%= t('.virus_not_analyzed') %>
+</div><% end -%>
+</div>

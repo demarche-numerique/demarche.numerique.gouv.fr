@@ -1,0 +1,27 @@
+<div <%= tag.attributes(**options) %>>
+  <div class="fr-container">
+    <div class="fr-notice__body">
+      <p>
+        <% if title %>
+          <span class="fr-notice__title">
+            <%= title %>
+          </span>
+        <% end %>
+        <% if desc %>
+          <span class="fr-notice__desc">
+            <%= desc %>
+          </span>
+        <% end %>
+        <% if link %>
+          <%= link %>
+        <% end %>
+      </p>
+
+      <% if closable? %>
+        <button class="fr-btn--close fr-btn" title="<%= t('.close_notice') %>" data-action="dsfr-notice#closeNotice">
+          <%= t('.close_notice') %>
+        </button>
+      <% end %>
+    </div>
+  </div>
+</div>

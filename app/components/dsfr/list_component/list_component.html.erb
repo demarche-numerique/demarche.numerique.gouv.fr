@@ -1,0 +1,9 @@
+<ul>
+  <% if items? %>
+    <% items.each do |item| %>
+      <li class="fr-py-1v"><%= item %></li>
+    <% end %>
+  <% elsif empty? %>
+    <li class="fr-py-1v"><%= empty %></li>
+  <% end %>
+</ul>

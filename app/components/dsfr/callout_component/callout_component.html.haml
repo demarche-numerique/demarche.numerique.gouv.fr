@@ -1,9 +1,0 @@
-%div{ class: callout_class }
-  - if title.present?
-    = content_tag(heading_level, class: 'fr-callout__title') do
-      = title
-  - if html_body?
-    .fr-callout__text= html_body
-  - if body?
-    %p.fr-callout__text= body
-  = bottom

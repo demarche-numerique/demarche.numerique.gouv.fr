@@ -1,5 +1,0 @@
-%span{ data: { controller: 'clipboard', clipboard_text_value: @text } }
-  %button.fr-btn.fr-icon-clipboard-line.fr-btn--sm.fr-btn--tertiary-no-outline.align-middle{ data: { action: 'clipboard#copy' }, title: @title }
-    = @title
-  %span.fr-text--sm.hidden{ data: { clipboard_target: 'success' } }
-    = @success || t('.copy_confirmation')

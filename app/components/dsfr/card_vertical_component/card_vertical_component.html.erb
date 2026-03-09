@@ -1,0 +1,46 @@
+<div class="fr-card">
+  <div class="fr-card__body">
+    <div class="fr-card__content">
+      <% if title %>
+        <h2 class="fr-card__title">
+          <%= title %>
+        </h2>
+      <% end %>
+      <% if desc %>
+        <p class="fr-card__desc">
+          <%= desc %>
+        </p>
+      <% end %>
+      <div class="fr-card__start">
+        <% if tags %>
+          <ul class="fr-tags-group">
+            <% tags.each do |tag| %>
+              <li>
+                <p class="fr-tag"><%= tag %></p>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+      <div class="fr-card__end">
+        <% if error %>
+          <div class="fr-card__detail fr-alert fr-alert--error" role="alert">
+            <p><%= error %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <% if footer_buttons? %>
+      <div class="fr-card__footer">
+        <ul class="fr-btns-group fr-btns-group--inline-reverse fr-btns-group--inline-lg">
+          <% footer_buttons.each do |button| %>
+            <li>
+              <%= button %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</div>
