@@ -62,6 +62,7 @@ public/graphql/schema
 /.claude/
 !/.claude/settings.json
 CLAUDE.local.md
+/.playwright-mcp
 
 # git worktrees
 .worktrees/
