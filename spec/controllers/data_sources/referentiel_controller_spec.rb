@@ -25,7 +25,7 @@ describe DataSources::ReferentielController, type: :controller do
             expect(response.parsed_body).to be_an(Array)
             expect(response.parsed_body.size).to eq(1)
             expect(response.parsed_body.first["label"]).to eq("010002699 (CENTRE MEDICAL REGINA)")
-            expect(response.parsed_body.first["value"]).to eq("010002699 (CENTRE MEDICAL REGINA)")
+            expect(response.parsed_body.first["value"]).to eq("0:010002699 (CENTRE MEDICAL REGINA)")
             expect(response.parsed_body.first["data"]).to be_an_instance_of(String)
           end
         end
@@ -64,7 +64,7 @@ describe DataSources::ReferentielController, type: :controller do
             expect(response.parsed_body).to be_an(Array)
             expect(response.parsed_body.size).to eq(4)
             expect(response.parsed_body.first["label"]).to eq("DIPLOME NATIONAL / DIPLOME D'ETAT – AGRO-ALIMENTAIRE, ALIMENTATION, CUISINE ")
-            expect(response.parsed_body.first["value"]).to eq("DIPLOME NATIONAL / DIPLOME D'ETAT – AGRO-ALIMENTAIRE, ALIMENTATION, CUISINE ")
+            expect(response.parsed_body.first["value"]).to eq("0:DIPLOME NATIONAL / DIPLOME D'ETAT – AGRO-ALIMENTAIRE, ALIMENTATION, CUISINE ")
             expect(response.parsed_body.first["data"]).to be_an_instance_of(String)
           end
         end

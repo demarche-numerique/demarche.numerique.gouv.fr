@@ -12,11 +12,14 @@ class ReferentielAutocompleteRenderService
 
   def format_response
     objects = JsonPath.on(api_response, referentiel.datasource).first
-    objects.take(MAX_RENDERED_OBJECTS).map do |data|
+    objects.take(MAX_RENDERED_OBJECTS).map.with_index do |data, index|
       label = render_template(json_template, data.with_indifferent_access).join("")
+      # Use index as unique value prefix to prevent duplicate keys when multiple items have the same label
+      # This prevents infinite loops in react-stately's internal linked list structure
+      # The value is only used as a React key - the actual data sent to server is the encrypted 'data' field
       {
         label:,
-        value: label,
+        value: "#{index}:#{label}",
         data: message_encryptor_service.encrypt_and_sign(data, purpose: :storage, expires_in: 1.hour),
       }
     end

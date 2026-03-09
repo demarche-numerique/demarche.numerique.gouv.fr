@@ -20,15 +20,32 @@ RSpec.describe ReferentielAutocompleteRenderService do
       expect(subject.format_response).to match_array([
         {
           label: 'Tango (Charlie)',
-          value: 'Tango (Charlie)',
+          value: '0:Tango (Charlie)',
           data: anything,
         },
         {
           label: 'Bob (Delta)',
-          value: 'Bob (Delta)',
+          value: '1:Bob (Delta)',
           data: anything,
         },
       ])
+    end
+
+    context 'with duplicate labels' do
+      let(:api_response) do
+        {
+          'items' => [
+            { 'finess' => 'Dupli', 'ej_rs' => 'A' },
+            { 'finess' => 'Dupli', 'ej_rs' => 'A' },
+          ],
+        }
+      end
+
+      it 'ensures unique values to prevent infinite loops' do
+        result = subject.format_response
+        expect(result.map { |item| item[:value] }.uniq.count).to eq(2)
+        expect(result.map { |item| item[:value] }).to match_array(['0:Dupli (A)', '1:Dupli (A)'])
+      end
     end
   end
 
