@@ -19,8 +19,8 @@ module SystemHelpers
     if sign_in_by_link
       mail = ActionMailer::Base.deliveries.last
       message = mail.html_part.body.raw_source
-      instructeur_id = message[/".+\/connexion-par-jeton\/(.+)\?jeton=(.*)"/, 1]
-      jeton = message[/".+\/connexion-par-jeton\/(.+)\?jeton=(.*)"/, 2]
+      instructeur_id = message[/".+\/connexion-par-jeton\/(.+?)\?jeton=(.*?)"/, 1]
+      jeton = message[/".+\/connexion-par-jeton\/(.+?)\?jeton=(.*?)"/, 2]
 
       visit sign_in_by_link_path(instructeur_id, jeton: jeton)
     end
