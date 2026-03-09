@@ -1,10 +1,16 @@
-<div class="fr-connect-group fr-my-2w">
-  <%= link_to pro_connect_login_path, class: "fr-btn fr-connect fr-proconnect" do %>
-    <span class="fr-connect__login"><%= t('.login_button') %></span>
-    <span class="fr-connect__brand">ProConnect</span>
+<div class="pro-connect-login">
+  <% if resolved_title.present? %>
+    <%= content_tag(@heading_level, resolved_title, class: "fr-h6") %>
   <% end %>
 
-  <p>
-    <%= link_to t('.help_link'), "https://www.proconnect.gouv.fr/", target: "_blank", rel: "noopener" %>
-  </p>
+  <div class="fr-connect-group fr-my-2w">
+    <%= link_to @url, class: "fr-btn fr-connect fr-proconnect" do %>
+      <span class="fr-connect__login"><%= t('.login_button') %></span>
+      <span class="fr-connect__brand">ProConnect</span>
+    <% end %>
+
+    <p>
+      <%= link_to t('.help_link'), "https://www.proconnect.gouv.fr/", target: "_blank", rel: "noopener" %>
+    </p>
+  </div>
 </div>

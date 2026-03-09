@@ -13,16 +13,17 @@ fr:
         en_attente: "En attente d’avis"
         avis_non_rendu: "Avis non rendu"
       france_connect_login:
-        title: 'Se créer un compte avec FranceConnect'
-        description: "FranceConnect est la solution proposée par l’État pour sécuriser et simplifier la connexion à vos services en ligne."
+        title: "Se créer un compte avec FranceConnect"
+        commencer_title: "Vous êtes un particulier ?"
         login_button: "S’identifier avec"
         help_link: "Qu’est-ce que FranceConnect ?"
-        separator: 'ou'
+        separator: ou
       account:
-        already_user_question: 'Vous avez déjà un compte ?'
-        already_user: 'J’ai déjà un compte'
-        create: 'Créer un compte'
-        signin: 'Se connecter'
+        account_title: "Se connecter avec son compte %{application_name}"
+        already_user_question: "Vous avez déjà un compte ?"
+        already_user: "J’ai déjà un compte"
+        create: "Créer un compte %{application_name}"
+        signin: "Se connecter"
         email_unverified: "Votre adresse électronique n’est pas vérifiée, vous ne recevrez donc pas les messages de %{application_name}. Veuillez vérifier votre boîte de réception et cliquer sur le lien de vérification. Vous n’avez pas reçu l’email ?"
         cta_email_unverified: "Renvoyer l’email de vérification"
       messages:

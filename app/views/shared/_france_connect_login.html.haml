@@ -1,9 +1,7 @@
 - if FranceConnectService.enabled?
   .france-connect-login
     = tag.public_send(local_assigns.fetch(:heading_level, :h2), class: "fr-h6") do
-      = t('views.shared.france_connect_login.title')
-    %p
-      = t('views.shared.france_connect_login.description')
+      = local_assigns.fetch(:title, t('views.shared.france_connect_login.title'))
 
     .fr-connect-group.fr-my-2w
       = link_to(url, class: "fr-btn fr-connect") do
@@ -12,7 +10,5 @@
         %span.fr-connect__brand FranceConnect
       %p
         = link_to t('views.shared.france_connect_login.help_link'), "https://franceconnect.gouv.fr/", title: new_tab_suffix(t('views.shared.france_connect_login.help_link')), **external_link_attributes
-
-    %p.fr-hr-or= t('views.shared.france_connect_login.separator')
 - else
   <!-- FranceConnect is not configured -->

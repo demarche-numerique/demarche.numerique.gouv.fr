@@ -14,14 +14,15 @@ en:
         avis_non_rendu: "Response not given"
       france_connect_login:
         title: "With FranceConnect"
-        description: "FranceConnect is a solution proposed by the government to secure and simplify the connection to web services."
+        commencer_title: "Are you an individual?"
         login_button: "Sign in with"
         help_link: What is FranceConnect?
         separator: or
       account:
+        account_title: "Sign in with your %{application_name} account"
         already_user_question: 'Do you already have an account?'
         already_user: "I already have an account"
-        create: 'Create an account'
+        create: 'Create an account on %{application_name}'
         signin: 'Sign in'
         email_unverified: "Your email address is not verified, so you will not receive messages from %{application_name}. Please check your inbox and click on the verification link. Didn't receive the email?"
         cta_email_unverified: "Resend verification email"
