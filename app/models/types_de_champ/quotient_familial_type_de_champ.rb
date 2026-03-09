@@ -28,4 +28,8 @@ class TypesDeChamp::QuotientFamilialTypeDeChamp < TypesDeChamp::TypeDeChampBase
       )
     end
   end
+
+  def champ_value_for_export(champ, path = :value)
+    ''
+  end
 end
