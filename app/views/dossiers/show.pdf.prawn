@@ -135,6 +135,90 @@ def add_identite_etablissement(pdf, etablissement)
   end
 end
 
+def add_quotient_familial(pdf, qf_data)
+  qf = qf_data["quotient_familial"]
+  allocataires = qf_data["allocataires"]
+  enfants = qf_data["enfants"]
+  adresse = qf_data["adresse"]
+
+  pdf.pad_bottom(default_margin) do
+    if qf.present?
+      pdf.font 'marianne', style: :bold do
+        pdf.text "Quotient familial #{qf['fournisseur']} :"
+      end
+
+      format_in_2_columns(pdf, "Valeur", number_with_delimiter(qf["valeur"], delimiter: " "))
+      format_in_2_columns(pdf, "Période effective", I18n.l(Date.parse(qf["periode_effective"]), format: "%m/%Y"))
+    end
+
+    allocataires&.each_with_index do |allocataire, index|
+      suffix = allocataires.size > 1 ? " #{index + 1}" : ""
+
+      pdf.font 'marianne', style: :bold do
+        pdf.text "Allocataire#{suffix} :"
+      end
+
+      add_individual_for_quotient_familial(pdf, allocataire)
+    end
+
+    enfants&.each_with_index do |enfant, index|
+      suffix = enfants.size > 1 ? " #{index + 1}" : ""
+
+      pdf.font 'marianne', style: :bold do
+        pdf.text "Enfant#{suffix} :"
+      end
+
+      add_individual_for_quotient_familial(pdf, enfant)
+    end
+
+    if adresse.present?
+      pdf.font 'marianne', style: :bold do
+        pdf.text "Adresse de la famille :"
+      end
+
+      format_in_2_columns(pdf, "Identité du destinataire", adresse["destinataire"])
+      format_in_2_columns(pdf, "Adresse", format_adresse_for_quotient_familial(adresse))
+    end
+  end
+end
+
+def add_individual_for_quotient_familial(pdf, individual)
+  if individual["nom_naissance"].present?
+    format_in_2_columns(pdf, "Nom de naissance", individual["nom_naissance"])
+  end
+
+  if individual["nom_usage"].present?
+    format_in_2_columns(pdf, "Nom d'usage", individual["nom_usage"])
+  end
+
+  if individual["prenoms"].present?
+    format_in_2_columns(pdf, "Prénoms", individual["prenoms"])
+  end
+
+  if individual["date_naissance"].present?
+    format_in_2_columns(
+      pdf,
+      "Date de naissance",
+      I18n.l(Date.parse(individual["date_naissance"]), format: :short)
+    )
+  end
+
+  if individual["sexe"].present?
+    format_in_2_columns(pdf, "Sexe", individual["sexe"])
+  end
+end
+
+def format_adresse_for_quotient_familial(adresse)
+  [
+    adresse["complement_information"],
+    adresse["complement_information_geographique"],
+    adresse["lieu_dit"],
+    adresse["numero_libelle_voie"],
+    adresse["code_postal_ville"],
+    adresse["pays"],
+  ].compact.join(", ")
+end
+
 def add_single_champ(pdf, champ)
   tdc = champ.type_de_champ
   return if champ.conditional? && !champ.visible?
@@ -197,6 +281,15 @@ def add_single_champ(pdf, champ)
   when 'Champs::TextareaChamp'
     value = champ.blank? ? 'Non communiqué' : champ.to_s
     format_in_2_lines(pdf, tdc.libelle, clean_string_for_pdf(value))
+  when 'Champs::QuotientFamilialChamp'
+    if champ.fc_data_correct?
+      pdf.font 'marianne', style: :bold do
+        pdf.text champ.libelle
+      end
+      add_quotient_familial(pdf, champ.value_json['api_part'])
+    else
+      format_in_2_lines(pdf, champ.libelle, champ.piece_justificative_file.map { |pj| "- #{pj.filename}" }.join("\n"))
+    end
   else
     value = champ.blank? ? 'Non communiqué' : champ.to_s
     format_in_2_lines(pdf, tdc.libelle, value)
