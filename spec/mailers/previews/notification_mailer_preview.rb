@@ -10,7 +10,7 @@ class NotificationMailerPreview < ActionMailer::Preview
   end
 
   def send_accepte_notification
-    NotificationMailer.send_accepte_notification(dossier)
+    NotificationMailer.send_accepte_notification(dossier(:accepte))
   end
 
   def send_refuse_notification
@@ -31,8 +31,8 @@ class NotificationMailerPreview < ActionMailer::Preview
 
   private
 
-  def dossier
-    Dossier.last
+  def dossier(state = nil)
+    Dossier.where(state:).last || Dossier.last
   end
 
   def dossier_with_image
