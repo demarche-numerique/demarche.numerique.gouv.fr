@@ -1,41 +1,42 @@
-<table
-  width="100%"
-  border="0"
-  align="center"
-  cellpadding="0"
-  cellspacing="0"
-  bgcolor="#ffffff"
-  class="darkmode"
-  style="min-width:100%!important;width:100%;"
-  role="presentation"
->
-  <tr>
-    <td align="center">
-      <table
-        style="min-width:620px;margin:0 auto; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; background:linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(234,234,234,1) 5%, rgba(234,234,234,1) 95%, rgba(255,255,255,1) 100%);"
-        width="620"
-        cellspacing="0"
-        cellpadding="0"
-        role="presentation"
-        border="0"
-        align="center"
-        class="wlkm-mw darkmode"
-      >
-        <tr>
-          <td align="center">
-            <table
-              style="min-width:600px;margin:0 auto; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;width:600px;border-left:1px #e5e5e5 solid; border-right:1px #e5e5e5 solid; border-bottom:1px #e5e5e5 solid;"
-              class="wlkm-mw darkmode"
-              width="600"
-              cellspacing="0"
-              cellpadding="0"
-              role="presentation"
-              border="0"
-              bgcolor="#ffffff"
-              align="center"
-            >
-              <% if content_for?(:procedure_logo) %>
-                <%# Notification emails: logo + app name in 2 centered columns %>
+<%# Logos block: only for notification emails with a procedure logo %>
+<% if content_for?(:procedure_logo) %>
+  <table
+    width="100%"
+    border="0"
+    align="center"
+    cellpadding="0"
+    cellspacing="0"
+    bgcolor="#ffffff"
+    class="darkmode"
+    style="min-width:100%!important;width:100%;"
+    role="presentation"
+  >
+    <tr>
+      <td align="center">
+        <table
+          style="min-width:620px;margin:0 auto; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; background:linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(234,234,234,1) 5%, rgba(234,234,234,1) 95%, rgba(255,255,255,1) 100%);"
+          width="620"
+          cellspacing="0"
+          cellpadding="0"
+          role="presentation"
+          border="0"
+          align="center"
+          class="wlkm-mw darkmode"
+        >
+          <tr>
+            <td align="center">
+              <table
+                style="min-width:600px;margin:0 auto; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;width:600px;border-left:1px #e5e5e5 solid; border-right:1px #e5e5e5 solid; border-bottom:1px #e5e5e5 solid;"
+                class="wlkm-mw darkmode"
+                width="600"
+                cellspacing="0"
+                cellpadding="0"
+                role="presentation"
+                border="0"
+                bgcolor="#ffffff"
+                align="center"
+              >
+                <%# Notification emails: Marianne + DN logo left, app name right (DSFR two-logo variant) %>
                 <tr>
                   <td style="padding:0px 0px 12px 0px;">
                     <table
@@ -59,75 +60,19 @@
                       </tr>
 
                       <tr>
-                        <td align="center" valign="middle">
-                          <table
-                            style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"
-                            cellspacing="0"
-                            cellpadding="0"
-                            role="presentation"
-                            border="0"
-                            align="center"
-                            class="darkmode"
-                          >
-                            <tr>
-                              <%# Column 1: logo aligned right %>
-                              <td
-                                align="right"
-                                valign="middle"
-                                style="padding-right:12px;"
-                                class="darkmode"
-                              >
-                                <% if MAILER_LOGO_DARK_SRC.present? && MAILER_LOGO_DARK_SRC != MAILER_LOGO_SRC %>
-                                  <img
-                                    src="<%= image_url(MAILER_LOGO_SRC) %>"
-                                    alt="Logo <%= APPLICATION_NAME %>"
-                                    style="display:block; max-height:40px; max-width:80px; height:auto; width:auto;"
-                                    border="0"
-                                    class="hide-black"
-                                  />
-                                  <img
-                                    src="<%= image_url(MAILER_LOGO_DARK_SRC) %>"
-                                    alt="Logo <%= APPLICATION_NAME %>"
-                                    style="display:none; max-height:40px; max-width:80px; height:auto; width:auto;"
-                                    border="0"
-                                    class="hide-white"
-                                  />
-                                <% else %>
-                                  <img
-                                    src="<%= image_url(MAILER_LOGO_SRC) %>"
-                                    alt="Logo <%= APPLICATION_NAME %>"
-                                    style="display:block; max-height:40px; max-width:80px; height:auto; width:auto;"
-                                    border="0"
-                                  />
-                                <% end %>
-                              </td>
+                        <td
+                          style="width:100%;"
+                          width="100%"
+                          valign="top"
+                          align="center"
+                        >
+                          <%# Left: Marianne logo %>
+                          <%= render "layouts/mailers/dsfr_marianne_logo" %>
 
-                              <%# Column 2: app name + provider, aligned left %>
-                              <td
-                                align="left"
-                                valign="middle"
-                                style="padding-left:12px;"
-                                class="darkmode"
-                              >
-                                <span
-                                  class="darkmode"
-                                  style="display:block; line-height:18px; font-size:12px; color:#161616; font-family:'Marianne', Arial, Helvetica, sans-serif;"
-                                >
-                                  <strong>
-                                    <%= application_name_without_link %>
-                                  </strong>
-                                </span>
+                          <%# Center-left: instance logo (next to Marianne) %>
+                          <%= render "layouts/mailers/dsfr_instance_logo" %>
 
-                                <span
-                                  class="darkmode-1"
-                                  style="display:block; line-height:16px; font-size:10px; color:#6b6b6b; font-family:'Marianne', Arial, Helvetica, sans-serif;"
-                                >
-                                  est un service fourni par
-                                  <%= t("links.provider.provided_by") %>
-                                </span>
-                              </td>
-                            </tr>
-                          </table>
+                          <%= render "layouts/mailers/dsfr_identity" %>
                         </td>
                       </tr>
 
