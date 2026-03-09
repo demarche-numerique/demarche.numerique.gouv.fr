@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe 'users/sessions/new', type: :view do
+describe 'users/registrations/new', type: :view do
   before(:each) do
     allow(view).to receive(:devise_mapping).and_return(Devise.mappings[:user])
     allow(view).to receive(:resource).and_return(User.new)
@@ -10,21 +10,10 @@ describe 'users/sessions/new', type: :view do
     assign(:user, User.new)
   end
 
-  context 'when FranceConnect and ProConnect are enabled' do
+  context 'when ProConnect is enabled' do
     before do
-      allow(FranceConnectService).to receive(:enabled?).and_return(true)
       allow(ProConnectService).to receive(:enabled?).and_return(true)
       render
-    end
-
-    it 'renders form fields' do
-      expect(rendered).to have_field('Adresse électronique')
-      expect(rendered).to have_field('Mot de passe')
-      expect(rendered).to have_button('Se connecter')
-    end
-
-    it 'renders FranceConnect login button' do
-      expect(rendered).to have_css('.france-connect-login')
     end
 
     it 'renders ProConnect login button' do

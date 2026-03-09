@@ -8,6 +8,9 @@
     %h1.fr-h2= t('views.registrations.new.title', name: Current.application_name)
 
     = render partial: 'shared/france_connect_login', locals: { url: france_connect_path }
+    = render ProConnectLoginComponent.new
+
+    %p.fr-hr-or= t('views.shared.france_connect_login.separator')
 
     %fieldset.fr-mb-0.fr-fieldset{ aria: { labelledby: 'create-account-legend' } }
       %legend.fr-fieldset__legend#create-account-legend
@@ -28,4 +31,4 @@
           = render PasswordComplexityComponent.new
 
     .fr-btns-group
-      = f.submit t('views.shared.account.create'), id: 'submit-password', disabled: :disabled, class: "fr-btn fr-mt-2w", data: { disable_with: t('views.users.passwords.edit.submit_loading') }
+      = f.submit t('views.shared.account.create', application_name: Current.application_name), id: 'submit-password', disabled: :disabled, class: "fr-btn fr-mt-2w", data: { disable_with: t('views.users.passwords.edit.submit_loading') }

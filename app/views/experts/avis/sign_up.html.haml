@@ -22,4 +22,4 @@
             #password_complexity
               = render PasswordComplexityComponent.new
 
-        = f.submit t('views.shared.account.create'), id: 'submit-password', disabled: :disabled, class: "fr-btn fr-btn--lg fr-mt-2w", data: { disable_with: t('views.users.passwords.edit.submit_loading') }
+        = f.submit t('views.shared.account.create', application_name: Current.application_name), id: 'submit-password', disabled: :disabled, class: "fr-btn fr-btn--lg fr-mt-2w", data: { disable_with: t('views.users.passwords.edit.submit_loading') }

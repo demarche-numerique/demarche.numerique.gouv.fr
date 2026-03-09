@@ -623,8 +623,6 @@ en:
           reset_password: Forgot password?
           connection: Sign in
           find_procedure: Find your procedure
-          state_civil_servant: Are you a state civil servant?
-          connect_with_pro_connect: Visit our dedicated page
           subtitle: "Sign in with my account"
           for_tiers_alert: If you are completing a forme for someone else, you must use your own credentials.
         link_sent:

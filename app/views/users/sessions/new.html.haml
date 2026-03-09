@@ -7,6 +7,9 @@
     %h1.fr-h2= t('views.users.sessions.new.sign_in', application_name: Current.application_name)
 
     = render partial: 'shared/france_connect_login', locals: { url: france_connect_path }
+    = render ProConnectLoginComponent.new
+
+    %p.fr-hr-or= t('views.shared.france_connect_login.separator')
 
     %fieldset.fr-mb-0.fr-fieldset{ aria: { labelledby: 'new-account-legend' } }
       %legend.fr-fieldset__legend#new-account-legend
@@ -31,8 +34,3 @@
 
       .fr-fieldset__element
         .fr-btns-group= f.submit t('views.users.sessions.new.connection'), class: "fr-btn"
-
-  - if ProConnectService.enabled?
-    %p.fr-hr-or= t('views.shared.france_connect_login.separator')
-    %h2.important-header.mb-1= t('views.users.sessions.new.state_civil_servant')
-    .fr-btns-group= link_to t('views.users.sessions.new.connect_with_pro_connect'), pro_connect_path, class: "fr-btn fr-btn--secondary"

@@ -627,8 +627,6 @@ fr:
           reset_password: Mot de passe oublié ?
           connection: Se connecter
           find_procedure: Trouvez votre démarche
-          state_civil_servant: Vous êtes agent de la fonction publique d’État ?
-          connect_with_pro_connect: Accédez à notre page dédiée
           subtitle: "Se connecter avec son compte"
           for_tiers_alert: Si vous remplissez un dossier pour un tiers, vous devez utiliser vos propres identifiants.
         link_sent:
