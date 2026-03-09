@@ -100,7 +100,7 @@ prawn_document(margin: [top_margin, right_margin, bottom_margin, left_margin], p
     pdf.fill_color black
     pdf.pad_top(100) do
       pdf.text t('.generated_at', date: l(Time.zone.now.to_date, format: :long)), size: 10, character_spacing: -0.2, align: :right
-      pdf.text t('.signature', app_name: Current.application_name), size: 10, character_spacing: -0.2, align: :right
+      pdf.text t('.signature', app_name: APPLICATION_NAME), size: 10, character_spacing: -0.2, align: :right
     end
   end
 end
