@@ -1,13 +1,15 @@
 en:
   layouts:
     mailers:
-      service_footer:
+      sent_to:
         do_not_reply: Please do not reply to this email.
         contact_admin: To contact your administration, go directly to the
         file_messagerie: file mailbox
+        email_sent_to: "This email has been sent to :"
+        fake_usager_email: 'user.adress@mail.com'
+      service_footer:
         procedure_management: "This procedure is managed by:"
         ask_question: "Ask a question about your file:"
-        email_sent_to: "This email has been sent to :"
         by_messagerie: "Messaging :"
         by_messagerie_link: send a message directly to the instructor
         by_contact_link: "Contact page :"
@@ -17,7 +19,6 @@ en:
         faq_link: Consult the online help
         contact_link: Consult the administration contact page
         other_contact_info: "Other contact informations :"
-        fake_usager_email: 'user.adress@mail.com'
       signature:
         team: "The team"
       for_tiers:

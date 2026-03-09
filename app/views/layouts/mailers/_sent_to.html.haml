@@ -1,0 +1,13 @@
+%p
+  %strong
+    = t('.do_not_reply')
+    - if dossier.present? && dossier.messagerie_available?
+      = t('.contact_admin')
+      = succeed '.' do
+        = link_to t('.file_messagerie'), messagerie_dossier_url(dossier), target: '_blank', rel: 'noopener', style: "color:#6b6b6b;"
+%p
+  = t('.email_sent_to')
+  - if params[:controller] == 'administrateurs/mail_templates'
+    = link_to t('.fake_usager_email'), "mailto:#{t('.fake_usager_email')}", style: "color:#6b6b6b;"
+  - else
+    = link_to dossier.user_email_for(:notification), "mailto:#{dossier.user_email_for(:notification)}", style: "color:#6b6b6b;"

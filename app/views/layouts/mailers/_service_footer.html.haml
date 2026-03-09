@@ -1,10 +1,3 @@
-%strong
-  = t('.do_not_reply')
-  - if dossier.present? && dossier.messagerie_available?
-    = t('.contact_admin')
-    = succeed '.' do
-      = link_to t('.file_messagerie'), messagerie_dossier_url(dossier), target: '_blank', rel: 'noopener'
-
 - service_or_contact_information = dossier.service_or_contact_information
 - if service_or_contact_information.present?
   %table{ width: "100%", border: "0", cellspacing: "0", cellpadding: "0", style: "font-family:'Marianne', Arial, Helvetica, sans-serif; font-size:12px; line-height:22px; text-align:left;" }
@@ -40,11 +33,3 @@
             %li
               %span= t('.other_contact_info')
               %span= service_or_contact_information.other_contact_info
-- content_for :sent_to do
-  %p
-    = t('.email_sent_to')
-    %br
-    - if params[:controller] == 'administrateurs/mail_templates'
-      = link_to t('.fake_usager_email'), "mailto: #{t('.fake_usager_email')}"
-    - else
-      = link_to dossier.user_email_for(:notification), "mailto: #{dossier.user_email_for(:notification)}"

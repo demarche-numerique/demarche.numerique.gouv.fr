@@ -14,3 +14,6 @@
 
 - content_for :footer do
   = render 'layouts/mailers/service_footer', dossier: @dossier
+
+- content_for :sent_to do
+  = render 'layouts/mailers/sent_to', dossier: @dossier
