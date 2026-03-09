@@ -38,7 +38,7 @@
               <td align="center">
                 <table
                   style="min-width:600px;margin:0 auto; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;width:600px;border-left:1px #e5e5e5 solid; border-right:1px #e5e5e5 solid; border-bottom:1px #e5e5e5 solid;"
-                  class="wlkm-mw darkmode"
+                  class="wlkm-mw darkmode-2"
                   width="600"
                   cellspacing="0"
                   cellpadding="0"
@@ -52,7 +52,7 @@
                     <td>
                       <table
                         style="margin:0 auto; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;width:496px;"
-                        class="wlkm-cl darkmode"
+                        class="wlkm-cl darkmode-2"
                         width="496"
                         cellspacing="0"
                         cellpadding="0"
@@ -65,7 +65,7 @@
                         <% if content_for?(:title) %>
                           <tr>
                             <td
-                              class="darkmode"
+                              class="darkmode-2"
                               style="padding:20px 10px; line-height:32px; font-size:24px; color:#161616; font-family:'Marianne', Arial, Helvetica, sans-serif;"
                             >
                               <strong><%= yield(:title) %></strong>
@@ -75,7 +75,7 @@
 
                         <tr>
                           <td
-                            class="darkmode"
+                            class="darkmode-2"
                             style="padding:10px 10px 20px 10px; line-height:24px; font-size:14px; color:#161616; font-family:'Marianne', Arial, Helvetica, sans-serif;"
                           >
                             <%= yield %>
@@ -88,10 +88,10 @@
                   <%# Business footer: service info block with DSFR blue tint %>
                   <% if content_for?(:footer) %>
                     <tr>
-                      <td bgcolor="#F5F5FE" class="darkmode-3">
+                      <td bgcolor="#F5F5FE" class="darkmode-4">
                         <table
                           style="margin:0 auto; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;width:496px;"
-                          class="wlkm-cl darkmode"
+                          class="wlkm-cl darkmode-4"
                           width="496"
                           cellspacing="0"
                           cellpadding="0"
@@ -102,7 +102,7 @@
                         >
                           <tr>
                             <td
-                              class="darkmode"
+                              class="darkmode-4"
                               style="padding:16px 10px; line-height:22px; font-size:12px; color:#3a3a3a; font-family:'Marianne', Arial, Helvetica, sans-serif;"
                             >
                               <%= yield(:footer) %>
@@ -112,9 +112,39 @@
                       </td>
                     </tr>
                   <% end %>
+                </table>
+              </td>
+            </tr>
+          </table>
 
-                  <%# "Email sent to" line, below the blue zone %>
-                  <% if content_for?(:sent_to) %>
+          <%= render "layouts/mailers/dsfr_footer" %>
+
+          <%# "Email sent to" line — standalone section, same structure as logos %>
+          <% if content_for?(:sent_to) %>
+            <table
+              width="100%"
+              border="0"
+              align="center"
+              cellpadding="0"
+              cellspacing="0"
+              bgcolor="#ffffff"
+              class="darkmode"
+              style="min-width:100%!important;width:100%;"
+              role="presentation"
+            >
+              <tr>
+                <td align="center">
+                  <table
+                    style="min-width:600px;margin:0 auto; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;width:600px;"
+                    class="wlkm-mw darkmode"
+                    width="600"
+                    cellspacing="0"
+                    cellpadding="0"
+                    role="presentation"
+                    border="0"
+                    bgcolor="#ffffff"
+                    align="center"
+                  >
                     <tr>
                       <td>
                         <table
@@ -139,13 +169,11 @@
                         </table>
                       </td>
                     </tr>
-                  <% end %>
-                </table>
-              </td>
-            </tr>
-          </table>
-
-          <%= render "layouts/mailers/dsfr_footer" %>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          <% end %>
         </td>
       </tr>
     </table>
