@@ -8,18 +8,26 @@
       - c.with_html_body do
         - if @procedure.pro_connect_restriction_all?
           - c.with_body do
-            = render ProConnectLoginComponent.new
+            = render ProConnectLoginComponent.new(url: commencer_pro_connect_path(path: @procedure.path, prefill_token: @prefilled_dossier&.prefill_token), title: nil)
             .fr-alert.fr-alert--info
               %p= t('.pro_connect_restriction_all_info_html', path: pro_connect_login_path)
         - else
-          = render partial: 'shared/france_connect_login', locals: { url: commencer_france_connect_path(path: @procedure.path, prefill_token: @prefilled_dossier&.prefill_token), heading_level: :h3 }
-          %ul.fr-btns-group.fr-btns-group--inline
-            %li
-              = link_to commencer_sign_up_path(path: @procedure.path, prefill_token: @prefilled_dossier&.prefill_token), class: 'fr-btn' do
-                = t('views.shared.account.create')
-                %span.optional-on-small-screens.fr-ml-1v
-                  #{Current.application_name}
-            %li= link_to t('views.shared.account.already_user'), commencer_sign_in_path(path: @procedure.path, prefill_token: @prefilled_dossier&.prefill_token), class: 'fr-btn fr-btn--secondary'
+          .fr-grid-row.fr-grid-row--gutters
+            .fr-col-12.fr-col-lg-5
+              = render partial: 'shared/france_connect_login', locals: { url: commencer_france_connect_path(path: @procedure.path, prefill_token: @prefilled_dossier&.prefill_token), heading_level: :h3, title: t('views.shared.france_connect_login.commencer_title') }
+              = render ProConnectLoginComponent.new(url: commencer_pro_connect_path(path: @procedure.path, prefill_token: @prefilled_dossier&.prefill_token), heading_level: :h3)
+            .fr-hidden.fr-unhidden-lg.fr-col-lg-1
+              .fr-vr-or{ role: "separator", "aria-orientation": "vertical" }
+                %span= t('views.shared.france_connect_login.separator')
+            .fr-col-12.fr-hr-or-mobile{ role: "separator", "aria-orientation": "horizontal" }
+              %span= t('views.shared.france_connect_login.separator')
+            .fr-col-12.fr-col-lg-6.flex.justify-center.column
+              %h3.fr-h6= t('views.shared.account.account_title', application_name: Current.application_name)
+              %ul.fr-btns-group
+                %li
+                  = link_to commencer_sign_up_path(path: @procedure.path, prefill_token: @prefilled_dossier&.prefill_token), class: 'fr-btn' do
+                    = t('views.shared.account.create', application_name: Current.application_name)
+                %li= link_to t('views.shared.account.already_user'), commencer_sign_in_path(path: @procedure.path, prefill_token: @prefilled_dossier&.prefill_token), class: 'fr-btn fr-btn--secondary'
 
 
   - else

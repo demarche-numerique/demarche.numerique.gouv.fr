@@ -32,13 +32,33 @@ RSpec.describe 'commencer/show', type: :view do
   subject { render }
 
   context 'when no user is signed in' do
-    before { allow(FranceConnectService).to receive(:enabled?).and_return(true) }
+    before do
+      allow(FranceConnectService).to receive(:enabled?).and_return(true)
+      allow(ProConnectService).to receive(:enabled?).and_return(true)
+    end
 
     it 'renders sign-in and sign-up links' do
       subject
       expect(rendered).to have_link('Créer un compte')
       expect(rendered).to have_link('J’ai déjà un compte')
       expect(rendered).to have_link('S’identifier avec FranceConnect')
+    end
+
+    it 'renders ProConnect login button' do
+      subject
+      expect(rendered).to have_css('.pro-connect-login')
+    end
+
+    context 'when ProConnect is disabled' do
+      before do
+        allow(FranceConnectService).to receive(:enabled?).and_return(true)
+        allow(ProConnectService).to receive(:enabled?).and_return(false)
+      end
+
+      it 'does not render ProConnect login button' do
+        subject
+        expect(rendered).not_to have_css('.pro-connect-login')
+      end
     end
   end
 
