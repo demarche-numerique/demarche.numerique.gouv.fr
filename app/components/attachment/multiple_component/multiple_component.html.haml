@@ -2,14 +2,23 @@
   = template
 
   - if show_hint?
-    %p.fr-hint-text.fr-mb-1w{ id: describedby_hint_id }
+    %p.fr-hint-text.fr-mb-1v.fr-mt-0{ id: describedby_hint_id }
       - if champ&.titre_identite_nature?
         = t('.identity_hint')
         %br
       - if max_file_size.present?
         = t('.max_file_size', max_file_size: number_to_human_size(max_file_size))
-      - if allowed_formats.present?
-        = t('.allowed_formats', formats: allowed_formats.join(', '))
+      - if show_format_families?
+        = " – "
+        = t('.allowed_formats', formats: formats_accepted_text)
+        %button.fr-btn--tooltip.fr-icon-question-line.fr-btn--sm.fr-btn--tertiary-no-outline.fr-p-0.fr-ml-1v{ type: 'button', 'aria-describedby': tooltip_id, 'aria-label': t('.formats_tooltip_label') }
+        %span.fr-tooltip.fr-placement{ id: tooltip_id, role: 'tooltip', 'aria-hidden': 'true' }
+          - format_families_info.each do |family|
+            = t('.format_category_line', category: family[:label].capitalize, extensions: "#{family[:all_formats]}...")
+            %br
+      - elsif show_exhaustive_formats?
+        = " – "
+        = t('.allowed_formats', formats: exhaustive_formats)
 
   - if @attachments.size >= 1
     %ul.fr-my-1v

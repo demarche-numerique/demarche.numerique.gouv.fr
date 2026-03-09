@@ -79,6 +79,11 @@ RSpec.describe Attachment::MultipleComponent, type: :component do
     it 'renders the identity_hint text' do
       expect(subject).to have_content("Pièce attendue")
     end
+
+    it 'renders exhaustive format list without tooltip' do
+      expect(subject).to have_content('.jpeg, .png')
+      expect(subject).to have_no_selector('[role="tooltip"]')
+    end
   end
 
   context 'max attachments' do
@@ -86,6 +91,67 @@ RSpec.describe Attachment::MultipleComponent, type: :component do
 
     it 'renders a disabled input file where max attachments has been reached' do
       expect(subject).to have_selector('input[type=file][disabled]')
+    end
+  end
+
+  context 'when champ is a piece_justificative with no format limit' do
+    let(:types_de_champ_public) { [{ type: :piece_justificative }] }
+    let(:dossier) { create(:dossier, procedure:) }
+
+    it 'does not render format info, only max size' do
+      expect(subject).to have_content(/Taille maximale autorisée/)
+      expect(subject).to have_no_content('Formats acceptés')
+    end
+  end
+
+  context 'when champ is a piece_justificative limited to document_texte' do
+    let(:types_de_champ_public) { [{ type: :piece_justificative }] }
+    let(:dossier) { create(:dossier, procedure:) }
+
+    before do
+      champ.type_de_champ.update!(options: champ.type_de_champ.options.merge(
+        pj_limit_formats: true,
+        pj_format_families: ['document_texte']
+      ))
+    end
+
+    it 'renders format info with category name and top formats' do
+      expect(subject).to have_content('document texte (.pdf, .docx...)')
+    end
+
+    it 'renders tooltip with full format list' do
+      expect(subject).to have_selector('[role="tooltip"]')
+    end
+
+    it 'renders accessible tooltip button with aria-label' do
+      expect(subject).to have_selector('button[aria-label]')
+    end
+  end
+
+  context 'when champ is a piece_justificative limited to document_texte + image_scan' do
+    let(:types_de_champ_public) { [{ type: :piece_justificative }] }
+    let(:dossier) { create(:dossier, procedure:) }
+
+    before do
+      champ.type_de_champ.update!(options: champ.type_de_champ.options.merge(
+        pj_limit_formats: true,
+        pj_format_families: ['document_texte', 'image_scan']
+      ))
+    end
+
+    it 'renders both categories with top formats' do
+      expect(subject).to have_content('document texte (.pdf, .docx...)')
+      expect(subject).to have_content('image / scan (.jpeg, .png...)')
+    end
+  end
+
+  context 'when champ is a piece_justificative with RIB nature' do
+    let(:types_de_champ_public) { [{ type: :piece_justificative, nature: 'RIB' }] }
+    let(:dossier) { create(:dossier, procedure:) }
+
+    it 'renders exhaustive format list without tooltip' do
+      expect(subject).to have_content('.pdf, .docx, .odt, .doc, .txt, .rtf, .jpeg, .png')
+      expect(subject).to have_no_selector('[role="tooltip"]')
     end
   end
 

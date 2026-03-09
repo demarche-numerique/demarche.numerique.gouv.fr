@@ -258,18 +258,18 @@ class Attachment::EditComponent < ApplicationComponent
     @allowed_formats ||= begin
       if identity_context?
         tdc = champ.present? ? champ.type_de_champ : @attached_file.record
-        return tdc.send(:allowed_extensions).map { _1.delete_prefix('.') }
+        return tdc.allowed_extensions.map { _1.delete_prefix('.') }
       end
 
       if champ.blank?
         record = @attached_file.record
         tdc = record.is_a?(TypeDeChamp) ? record : (record.respond_to?(:type_de_champ) ? record.type_de_champ : nil)
         if tdc.is_a?(TypeDeChamp)
-          return tdc.send(:allowed_extensions).map { _1.delete_prefix('.') } if tdc.RIB?
+          return tdc.allowed_extensions.map { _1.delete_prefix('.') } if tdc.RIB?
 
           # Pour les pièces jointes avec des formats limités, on affiche les formats autorisés
           if tdc.piece_justificative? && tdc.pj_limit_formats? && tdc.pj_format_families.present?
-            return tdc.send(:allowed_extensions).map { _1.delete_prefix('.') }
+            return tdc.allowed_extensions.map { _1.delete_prefix('.') }
           end
         end
       end
