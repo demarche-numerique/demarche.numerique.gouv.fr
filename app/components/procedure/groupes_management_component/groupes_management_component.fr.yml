@@ -12,6 +12,10 @@ fr:
     placeholder: Saisissez un nom de groupe
     cancel: Annuler
     submit: Ajouter
+  export_dropdown:
+    title: Exporter
+    export_instructeurs: Exporter la liste des groupes / instructeurs (.csv)
+    export_contact_informations: Exporter les informations de contact par groupes (.csv)
   bulk_assignment:
     title: Affectation en masse des instructeurs (tous les groupes)
     notification_alert_html: Tous les instructeurs que vous ajouterez / retirerez de la démarche <strong>seront notifiés par email</strong>.

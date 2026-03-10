@@ -12,6 +12,10 @@ en:
     placeholder: Enter a group name
     cancel: Cancel
     submit: Add
+  export_dropdown:
+    title: Export
+    export_instructeurs: Export groups / instructors list (.csv)
+    export_contact_informations: Export contact information by groups (.csv)
   bulk_assignment:
     title: Bulk instructor assignment (all groups)
     notification_alert_html: All instructors you add / remove from the procedure <strong>will be notified by email</strong>.

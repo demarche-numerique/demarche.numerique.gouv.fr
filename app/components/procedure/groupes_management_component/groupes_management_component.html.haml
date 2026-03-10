@@ -35,8 +35,15 @@
 
 .flex.justify-between.align-baseline
   .title.fr-text--bold= table_header
-  = button_to export_groupe_instructeurs_admin_procedure_groupe_instructeurs_path(@procedure, format: :csv), method: :get, class: 'fr-btn fr-btn--tertiary fr-btn--icon-left fr-icon-download-line' do
-    Exporter la liste (.csv)
+  = render Dropdown::MenuComponent.new(wrapper: :div, button_options: { class: ['fr-btn--tertiary', 'fr-btn--icon-left', 'fr-icon-download-line'] }, menu_options: { class: ['dropdown-menu-simple'] }) do |menu|
+    - menu.with_button_inner_html do
+      = t('.export_dropdown.title')
+    - menu.with_item do
+      = link_to export_groupe_instructeurs_admin_procedure_groupe_instructeurs_path(@procedure, format: :csv), role: 'menuitem', class: 'fr-link' do
+        = t('.export_dropdown.export_instructeurs')
+    - menu.with_item do
+      = link_to export_contact_informations_admin_procedure_groupe_instructeurs_path(@procedure, format: :csv), role: 'menuitem', class: 'fr-link' do
+        = t('.export_dropdown.export_contact_informations')
 
 .fr-table.fr-table--no-caption.fr-table--layout-fixed.fr-mt-2w
   .fr-table__wrapper

@@ -454,6 +454,34 @@ module Administrateurs
       end
     end
 
+    def export_contact_informations
+      groupe_instructeurs = procedure.groupe_instructeurs.includes(:contact_information)
+
+      data = CSV.generate(headers: true) do |csv|
+        column_names = ["Groupe", "Nom_du_service", "Adresse_electronique_de_contact", "Telephone", "Horaires", "Adresse_postale"]
+        csv << column_names
+        groupe_instructeurs.each do |gi|
+          contact = gi.contact_information
+          if contact.present?
+            csv << [
+              gi.label,
+              contact.nom,
+              contact.email,
+              contact.telephone,
+              contact.horaires,
+              contact.adresse,
+            ]
+          else
+            csv << [gi.label, '', '', '', '', '']
+          end
+        end
+      end
+
+      respond_to do |format|
+        format.csv { send_data data, filename: "#{procedure.id}-contact-informations-#{Date.today}.csv" }
+      end
+    end
+
     def bulk_route
       BulkRouteJob.perform_later(procedure)
 

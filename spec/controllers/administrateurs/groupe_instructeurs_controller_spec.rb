@@ -902,6 +902,41 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
     end
   end
 
+  describe '#export_contact_informations' do
+    let!(:contact_info_1) { create(:contact_information, groupe_instructeur: gi_1_1, nom: 'Service A', email: 'contact@service-a.gouv.fr', telephone: '0123456789', horaires: "9h-12h\r\n14h-17h", adresse: "1 rue de la Paix\r\n75001 Paris") }
+    let!(:contact_info_2) { create(:contact_information, groupe_instructeur: gi_1_2, nom: 'Service B', email: 'contact@service-b.gouv.fr', telephone: '0987654321', horaires: '8h-16h', adresse: '2 avenue des Champs, Lyon') }
+
+    subject do
+      get :export_contact_informations, params: { procedure_id: procedure.id, format: :csv }
+    end
+
+    it 'generates a CSV file containing the contact information by group' do
+      expect(subject.status).to eq(200)
+      expect(subject.stream.body).to include("Groupe")
+      expect(subject.stream.body).to include("Nom_du_service")
+      expect(subject.stream.body).to include("Service A")
+      expect(subject.stream.body).to include("contact@service-a.gouv.fr")
+      expect(subject.stream.body).to include("Service B")
+      expect(subject.header["Content-Disposition"]).to include("#{procedure.id}-contact-informations-#{Date.today}.csv")
+    end
+
+    it 'preserves newlines in CSV fields' do
+      csv = CSV.parse(subject.stream.body, headers: true)
+      row = csv.find { |r| r['Groupe'] == gi_1_1.label }
+      expect(row['Horaires']).to eq("9h-12h\r\n14h-17h")
+      expect(row['Adresse_postale']).to eq("1 rue de la Paix\r\n75001 Paris")
+    end
+
+    context 'when a group has no contact information' do
+      before { contact_info_2.destroy }
+
+      it 'includes the group with empty contact fields' do
+        expect(subject.status).to eq(200)
+        expect(subject.stream.body).to include(gi_1_2.label)
+      end
+    end
+  end
+
   describe '#options' do
     context 'with a simple routable type de champ' do
       let!(:procedure) do

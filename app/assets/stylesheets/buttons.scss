@@ -239,6 +239,17 @@ ul.dropdown-items {
   margin-bottom: 0;
 }
 
+.dropdown-menu-simple {
+  min-width: max-content;
+
+  .dropdown-items li {
+    padding: $default-spacer 2 * $default-spacer;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+}
+
 // Apply custom styles to DSFR fr-translate component
 .fr-translate__btn.fr-btn.help-btn::before {
   content: none;
