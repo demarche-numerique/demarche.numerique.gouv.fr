@@ -7,8 +7,8 @@
 
     %h1.fr-h2= t('views.registrations.new.title', name: Current.application_name)
 
-    = render partial: 'shared/france_connect_login', locals: { url: france_connect_path }
-    = render ProConnectLoginComponent.new
+    = render partial: 'shared/france_connect_login', locals: { url: france_connect_path, title: t('views.shared.france_connect_login.signup_title') }
+    = render ProConnectLoginComponent.new(title: t('views.shared.france_connect_login.signup_pc_title'))
 
     %p.fr-hr-or= t('views.shared.france_connect_login.separator')
 

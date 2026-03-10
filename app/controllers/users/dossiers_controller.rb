@@ -549,7 +549,7 @@ module Users
       return if logged_in_with_pro_connect?
 
       flash.alert = t('users.dossiers.pro_connect_restriction_required')
-      redirect_to pro_connect_path
+      redirect_to new_user_session_path
     end
 
     def page

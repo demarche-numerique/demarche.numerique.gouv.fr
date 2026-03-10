@@ -1281,7 +1281,7 @@ describe Instructeurs::DossiersController, type: :controller do
 
       it "redirects to pro_connect_restricted page" do
         get :show, params: { procedure_id: procedure.id, dossier_id: dossier.id, statut: 'a-suivre' }
-        expect(response).to redirect_to(pro_connect_path)
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
   end

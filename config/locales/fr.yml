@@ -328,7 +328,7 @@ fr:
         json_description_copy: Copier la requête d’obtention de la description JSON
     registrations:
       new:
-        title: "Creation de compte sur %{name}"
+        title: "Création de compte sur %{name}"
         subtitle: "Se créer un compte avec une adresse électronique"
         email_label: 'Adresse électronique'
         password_label: "Mot de passe (%{min_length} caractères minimum)"
@@ -627,8 +627,7 @@ fr:
           reset_password: Mot de passe oublié ?
           connection: Se connecter
           find_procedure: Trouvez votre démarche
-          subtitle: "Se connecter avec son compte"
-          for_tiers_alert: Si vous remplissez un dossier pour un tiers, vous devez utiliser vos propres identifiants.
+          subtitle: "Se connecter avec son adresse électronique"
         link_sent:
           consult_help_page_html: Si vous voyez cette page trop souvent, <a target="_blank" rel="noopener noreferrer" href="%{href}">consultez notre aide</a>.
           email_cta_html: "Nous avons besoin de vérifier votre adresse électronique <strong>%{email}</strong>."

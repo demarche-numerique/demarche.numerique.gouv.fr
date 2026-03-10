@@ -484,7 +484,7 @@ module Instructeurs
       return if logged_in_with_pro_connect?
 
       flash[:alert] = "Vous devez vous connecter par ProConnect pour accéder à cette démarche"
-      redirect_to pro_connect_path
+      redirect_to new_user_session_path
     end
 
     def redirect_to_avis_if_needed

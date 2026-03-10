@@ -1,6 +1,6 @@
 - if FranceConnectService.enabled?
   .france-connect-login
-    = tag.public_send(local_assigns.fetch(:heading_level, :h2), class: "fr-h6") do
+    = tag.public_send(local_assigns.fetch(:heading_level, :h2), class: "fr-h6 fr-mb-0") do
       = local_assigns.fetch(:title, t('views.shared.france_connect_login.title'))
 
     .fr-connect-group.fr-my-2w

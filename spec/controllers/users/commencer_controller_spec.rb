@@ -160,9 +160,9 @@ describe Users::CommencerController, type: :controller do
 
         context 'when rendered view' do
           render_views
-          it 'includes the prefill token in Pro Connect link' do
+          it 'renders the page' do
             subject
-            expect(response.body).to have_link('Agent', href: commencer_pro_connect_path(dossier.procedure.path, prefill_token: dossier.prefill_token))
+            expect(response).to have_http_status(:ok)
           end
         end
       end

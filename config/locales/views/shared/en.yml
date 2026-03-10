@@ -13,8 +13,11 @@ en:
         en_attente: "Waiting for response"
         avis_non_rendu: "Response not given"
       france_connect_login:
-        title: "With FranceConnect"
+        title: "Sign in with FranceConnect"
+        signup_title: "Create an account with FranceConnect"
+        signup_pc_title: "Create an account with ProConnect"
         commencer_title: "Are you an individual?"
+        commencer_pc_title: "Are you a professional?"
         login_button: "Sign in with"
         help_link: What is FranceConnect?
         separator: or

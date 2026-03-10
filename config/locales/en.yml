@@ -623,8 +623,7 @@ en:
           reset_password: Forgot password?
           connection: Sign in
           find_procedure: Find your procedure
-          subtitle: "Sign in with my account"
-          for_tiers_alert: If you are completing a forme for someone else, you must use your own credentials.
+          subtitle: "Sign in with your email"
         link_sent:
           consult_help_page_html: If you're seeing this page too often, <a target="_blank" rel="noopener noreferrer" href="%{href}">please consult our help page</a>.
           email_cta_html: "We have to validate your email address <strong>%{email}</strong>."

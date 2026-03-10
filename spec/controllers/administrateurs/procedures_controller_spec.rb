@@ -1830,10 +1830,10 @@ describe Administrateurs::ProceduresController, type: :controller do
 
     context 'when ProConnect is required' do
       let(:procedure) { create(:procedure, pro_connect_restriction: :instructeurs, administrateur: admin) }
-      it 'redirects to pro_connect_path and sets a flash message' do
+      it 'redirects to sign_in and sets a flash message' do
         subject
 
-        expect(response).to redirect_to(pro_connect_path)
+        expect(response).to redirect_to(new_user_session_path)
         expect(flash[:alert]).to eq("Vous devez vous connecter par ProConnect pour accéder à cette démarche")
       end
 
@@ -1842,10 +1842,10 @@ describe Administrateurs::ProceduresController, type: :controller do
           cookies.encrypted[ProConnectSessionConcern::SESSION_INFO_COOKIE_NAME] = { value: { user_id: admin.user.id }.to_json }
         end
 
-        it "does not redirect to pro_connect_path" do
+        it "does not redirect to sign_in" do
           subject
 
-          expect(response).not_to redirect_to(pro_connect_path)
+          expect(response).not_to redirect_to(new_user_session_path)
         end
       end
     end

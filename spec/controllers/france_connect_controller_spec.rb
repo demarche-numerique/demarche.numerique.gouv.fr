@@ -142,7 +142,7 @@ describe FranceConnectController, type: :controller do
           before { subject }
 
           it do
-            expect(response).to redirect_to(pro_connect_path)
+            expect(response).to redirect_to(new_user_session_path)
             expect(flash[:alert]).to be_present
           end
         end
@@ -172,7 +172,7 @@ describe FranceConnectController, type: :controller do
             it 'redirects to the login path' do
               expect { subject }.not_to change { User.count }
 
-              expect(response).to redirect_to(pro_connect_path)
+              expect(response).to redirect_to(new_user_session_path)
               expect(flash[:alert]).to eq(I18n.t('errors.messages.france_connect.forbidden_html', app_name: APPLICATION_NAME))
             end
           end
@@ -502,7 +502,7 @@ describe FranceConnectController, type: :controller do
           subject
           expect(FranceConnectInformation.exists?(fci.id)).to be_falsey
           expect(controller.current_user).to be_nil
-          expect(response).to redirect_to(pro_connect_path)
+          expect(response).to redirect_to(new_user_session_path)
           expect(flash[:alert]).to eq(I18n.t('errors.messages.france_connect.forbidden_html', app_name: APPLICATION_NAME))
         end
       end

@@ -18,7 +18,7 @@ describe 'Sign in', js: true do
     within(".fr-header__tools") do
       click_on("Sign in")
     end
-    expect(page).to have_content("With FranceConnect")
+    expect(page).to have_content("Sign in with FranceConnect")
     fill_in(:user_email, with: user.email)
     fill_in(:user_password, with: 'wrong password')
     click_on("Sign in")

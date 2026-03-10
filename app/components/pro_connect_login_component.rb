@@ -2,13 +2,9 @@
 
 class ProConnectLoginComponent < ApplicationComponent
   def initialize(url: nil, title: :default, heading_level: :h2)
-    @url = url
+    @url = url || Rails.application.routes.url_helpers.pro_connect_login_path
     @title = title
     @heading_level = heading_level
-  end
-
-  def before_render
-    @url ||= helpers.pro_connect_login_path
   end
 
   def render?
@@ -18,11 +14,8 @@ class ProConnectLoginComponent < ApplicationComponent
   private
 
   def resolved_title
-    case @title
-    when :default
+    if @title == :default
       t('.title')
-    when nil
-      nil
     else
       @title
     end

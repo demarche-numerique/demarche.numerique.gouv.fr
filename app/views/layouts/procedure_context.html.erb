@@ -20,8 +20,4 @@
   <% end %>
 <% end %>
 
-<% if procedure.present? %>
-  <% content_for(:pro_connect_path, commencer_pro_connect_path(procedure.path, **extra_query_params)) %>
-<% end %>
-
 <%= render template: 'layouts/application' %>

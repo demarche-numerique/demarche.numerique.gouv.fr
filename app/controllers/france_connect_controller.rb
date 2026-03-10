@@ -235,7 +235,7 @@ class FranceConnectController < ApplicationController
 
   def destroy_fci_and_redirect_to_login(fci)
     fci.destroy
-    redirect_to pro_connect_path, alert: t('errors.messages.france_connect.forbidden_html', app_name: APPLICATION_NAME)
+    redirect_to new_user_session_path, alert: t('errors.messages.france_connect.forbidden_html', app_name: APPLICATION_NAME)
   end
 
   def connect_france_connect(user)
