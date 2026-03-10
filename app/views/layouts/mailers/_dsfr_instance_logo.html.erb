@@ -34,24 +34,17 @@
               </td>
             </tr>
 
-            <% if MAILER_LOGO_DARK_SRC.present? && MAILER_LOGO_DARK_SRC != MAILER_LOGO_SRC %>
-              <tr>
-                <td class="hide-black" align="left">
-                  <%= image_tag image_url(MAILER_LOGO_SRC), alt: "Logo #{APPLICATION_NAME}", style: "display:Block; margin-left:10px; margin-top:6px; max-height:48px; max-width:90px; height:auto; width:auto;", border: "0", class: "hide-black" %>
-                </td>
-              </tr>
-              <tr>
-                <td class="hide-white" align="left">
-                  <%= image_tag image_url(MAILER_LOGO_DARK_SRC), alt: "Logo #{APPLICATION_NAME}", style: "display:Block; margin-left:10px; margin-top:6px; max-height:48px; max-width:90px; height:auto; width:auto;", border: "0", class: "hide-white" %>
-                </td>
-              </tr>
-            <% else %>
-              <tr>
-                <td align="left">
-                  <%= image_tag image_url(MAILER_LOGO_SRC), alt: "Logo #{APPLICATION_NAME}", style: "margin-left:10px; margin-top:6px; max-height:48px; max-width:90px; height:auto; width:auto;", border: "0" %>
-                </td>
-              </tr>
-            <% end %>
+            <tr>
+              <td class="hide-black" align="left">
+                <%= image_tag image_url(MAILER_LOGO_SRC), alt: "Logo #{APPLICATION_NAME}", style: "display:block; margin-left:10px; margin-top:6px; max-height:48px; max-width:90px; height:auto; width:auto;", border: "0", class: "hide-black" %>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="hide-white" align="left">
+                <%= image_tag image_url(MAILER_LOGO_DARK_SRC), alt: "Logo #{APPLICATION_NAME}", style: "display:block; margin-left:10px; margin-top:6px; max-height:48px; max-width:90px; height:auto; width:auto;", border: "0", class: "hide-white" %>
+              </td>
+            </tr>
 
             <tr>
               <td

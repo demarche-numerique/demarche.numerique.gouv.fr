@@ -66,8 +66,10 @@
                           valign="top"
                           align="center"
                         >
-                          <%# Left: Marianne logo %>
-                          <%= render "layouts/mailers/dsfr_marianne_logo" %>
+                          <%- if MAILER_LOGO_MARIANNE_SRC.present? -%>
+                            <%# Left: Marianne logo %>
+                            <%= render "layouts/mailers/dsfr_marianne_logo" %>
+                          <%- end -%>
 
                           <%# Center-left: instance logo (next to Marianne) %>
                           <%= render "layouts/mailers/dsfr_instance_logo" %>
