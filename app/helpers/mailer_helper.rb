@@ -2,11 +2,11 @@
 
 module MailerHelper
   def vertical_margin(height)
-    render 'shared/mailer_vertical_margin', height: height
+    render 'layouts/mailers/vertical_margin', height: height
   end
 
   def dsfr_button(text, url, variant)
-    render 'shared/mailer_dsfr_button', text: text, url: url, variant: variant
+    render 'layouts/mailers/dsfr_button', text: text, url: url, variant: variant
   end
 
   def application_name_without_link
