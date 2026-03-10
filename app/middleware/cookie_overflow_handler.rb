@@ -16,6 +16,13 @@ class CookieOverflowHandler
       "message=#{e.message}"
     )
 
+    session_hash = env["rack.session"]&.to_hash || {}
+    key_sizes = session_hash.transform_values { |v| ActiveSupport::JSON.encode(v).bytesize }
+
+    Sentry.capture_message("Cookie overflow for #{cookie_name}", extra: {
+      key_sizes:,
+    })
+
     headers = {
       "Location" => "/",
       "Content-Type" => "text/html",
