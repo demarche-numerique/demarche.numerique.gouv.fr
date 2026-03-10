@@ -9,6 +9,10 @@ class TypesDeChamp::MultipleDropDownListTypeDeChamp < TypesDeChamp::TypeDeChampB
     end
   end
 
+  def champ_value_for_export(champ, path = :value)
+    path == :value ? champ_value(champ).presence : super
+  end
+
   def champ_value_for_tag(champ, path = :value)
     ChampPresentations::MultipleDropDownListPresentation.new(selected_options(champ))
   end
