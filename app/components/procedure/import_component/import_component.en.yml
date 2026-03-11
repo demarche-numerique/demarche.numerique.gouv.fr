@@ -1,6 +1,8 @@
 en:
-  button: Add with file import
-  title: Add with file import
+  button_groupes: Add with file import
+  button_instructeurs: Add instructors with file import
+  title_groupes: Add with file import
+  title_instructeurs: Add instructors with file import
   cancel: Cancel
   tabs:
     groupes: Groups / instructors
@@ -12,6 +14,10 @@ en:
   groupes:
     notice_html: "To import groups and instructors, your csv file must have 2 columns: <strong>Groupe</strong> and <strong>Email</strong>. The file size must be less than %{csv_max_size} (see template file below). <br> Once your import is complete, you will need to <strong>configure the routing rules</strong> for each of the added groups."
     alert_email_notifications_html: "All instructors added to the procedure <strong>are going to be notified by e-mail.</strong>"
+    confirm: All instructors added to the procedure will be notified by email. Do you want to continue?
+  instructeurs:
+    notice_html: "To import instructors, your csv file must have <strong>1 column: Email</strong> listing the email addresses of the instructors. The file size must be less than %{csv_max_size} (see template file below)."
+    alert_email_notifications_html: "All instructors you add to the procedure <strong>will be notified by email.</strong>"
     confirm: All instructors added to the procedure will be notified by email. Do you want to continue?
   contact_informations:
     notice_html: "To import contact information by groups, your csv file must have 6 columns: <strong>Groupe</strong>, <strong>Nom_du_service</strong>, <strong>Adresse_electronique_de_contact</strong>, <strong>Telephone</strong>, <strong>Horaires</strong> and <strong>Adresse_postale</strong>. The file size must be less than 1 MB (see template file below)."

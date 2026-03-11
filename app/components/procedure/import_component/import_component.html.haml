@@ -1,5 +1,9 @@
-%button.fr-btn.fr-btn--secondary.fr-icon-upload-line.fr-btn--icon-left.fr-mb-3w.fr-ml-2w{ 'aria-controls': 'modal-import', 'data-fr-opened': 'false' }
-  = t('.button')
+- if @procedure.routing_enabled?
+  %button.fr-btn.fr-btn--secondary.fr-icon-upload-line.fr-btn--icon-left.fr-mb-3w.fr-ml-2w{ 'aria-controls': 'modal-import', 'data-fr-opened': 'false' }
+    = t('.button_groupes')
+- else
+  %button.fr-btn.fr-btn--secondary.fr-icon-upload-line.fr-btn--icon-left.fr-mb-3w{ 'aria-controls': 'modal-import', 'data-fr-opened': 'false' }
+    = t('.button_instructeurs')
 
 %dialog#modal-import.fr-modal{ aria: { labelledby: 'fr-modal-title-import' }, role: 'dialog' }
   .fr-container.fr-container--fluid.fr-container-md
@@ -11,64 +15,89 @@
           .fr-modal__content
             %h1#fr-modal-title-import.fr-modal__title
               %span.fr-icon-upload-line.fr-icon--lg
-              = t('.title')
+              = @procedure.routing_enabled? ? t('.title_groupes') : t('.title_instructeurs')
 
-            .fr-tabs
-              %ul.fr-tabs__list.fr-ml-2w{ role: 'tablist' }
-                %li{ role: 'presentation' }
-                  %button#tab-import-groupes.fr-tabs__tab{ role: 'tab', 'aria-selected': 'true', 'aria-controls': 'panel-import-groupes', tabindex: '0' }
-                    = t('.tabs.groupes')
-                %li{ role: 'presentation' }
-                  %button#tab-import-contact.fr-tabs__tab{ role: 'tab', 'aria-selected': 'false', 'aria-controls': 'panel-import-contact', tabindex: '-1' }
-                    = t('.tabs.contact_informations')
+            - if @procedure.routing_enabled?
+              .fr-tabs
+                %ul.fr-tabs__list.fr-ml-2w{ role: 'tablist' }
+                  %li{ role: 'presentation' }
+                    %button#tab-import-groupes.fr-tabs__tab{ role: 'tab', 'aria-selected': 'true', 'aria-controls': 'panel-import-groupes', tabindex: '0' }
+                      = t('.tabs.groupes')
+                  %li{ role: 'presentation' }
+                    %button#tab-import-contact.fr-tabs__tab{ role: 'tab', 'aria-selected': 'false', 'aria-controls': 'panel-import-contact', tabindex: '-1' }
+                      = t('.tabs.contact_informations')
 
-              #panel-import-groupes.fr-tabs__panel.fr-tabs__panel--selected{ role: 'tabpanel', 'aria-labelledby': 'tab-import-groupes' }
-                %p.fr-mb-2w= t(".groupes.notice_html", csv_max_size: number_to_human_size(csv_max_size))
+                #panel-import-groupes.fr-tabs__panel.fr-tabs__panel--selected{ role: 'tabpanel', 'aria-labelledby': 'tab-import-groupes' }
+                  %p.fr-mb-2w= t(".groupes.notice_html", csv_max_size: number_to_human_size(csv_max_size))
 
-                .fr-alert.fr-icon-mail-line.fr-mb-3w
-                  %p= t(".groupes.alert_email_notifications_html")
+                  .fr-alert.fr-icon-mail-line.fr-mb-3w
+                    %p= t(".groupes.alert_email_notifications_html")
 
-                = form_tag import_admin_procedure_groupe_instructeurs_path(@procedure), method: :post, multipart: true, data: { controller: 'enable-submit-if-uploaded' } do
-                  %label.fr-label.fr-text--bold
-                    = t('.file_to_import')
-                  .fr-download
-                    = link_to groupes_template_path, { class: "fr-download__link", download: '' } do
-                      = t('.download_template')
-                      %span.fr-download__detail
-                        = groupes_template_detail
-                  .fr-hint-text.fr-mb-1w
-                    = t('.file_size_limit', max_file_size: number_to_human_size(csv_max_size))
-                  .flex.column{ data: { action: 'input->enable-submit-if-uploaded#upload' } }
-                    = file_field_tag :csv_file, required: true, accept: 'text/csv', class: 'fr-mb-2w', id: 'csv_file_groupes', data: { 'enable-submit-if-uploaded-target': 'input' }
-                    %ul.fr-btns-group.fr-btns-group--inline-sm
-                      %li
-                        %button.fr-btn.fr-btn--secondary{ type: 'button', aria: { controls: 'modal-import' } }= t('.cancel')
-                      %li
-                        = submit_tag t('.import_file'), class: 'fr-btn', data: { disable_with: "Envoi...", confirm: t('.groupes.confirm'), 'enable-submit-if-uploaded-target': 'submit' }, disabled: true
+                  = form_tag import_admin_procedure_groupe_instructeurs_path(@procedure), method: :post, multipart: true, data: { controller: 'enable-submit-if-uploaded' } do
+                    %label.fr-label.fr-text--bold
+                      = t('.file_to_import')
+                    .fr-download
+                      = link_to groupes_template_path, { class: "fr-download__link", download: '' } do
+                        = t('.download_template')
+                        %span.fr-download__detail
+                          = groupes_template_detail
+                    .fr-hint-text.fr-mb-1w
+                      = t('.file_size_limit', max_file_size: number_to_human_size(csv_max_size))
+                    .flex.column{ data: { action: 'input->enable-submit-if-uploaded#upload' } }
+                      = file_field_tag :csv_file, required: true, accept: 'text/csv', class: 'fr-mb-2w', id: 'csv_file_groupes', data: { 'enable-submit-if-uploaded-target': 'input' }
+                      %ul.fr-btns-group.fr-btns-group--inline-sm
+                        %li
+                          %button.fr-btn.fr-btn--secondary{ type: 'button', aria: { controls: 'modal-import' } }= t('.cancel')
+                        %li
+                          = submit_tag t('.import_file'), class: 'fr-btn', data: { disable_with: "Envoi...", confirm: t('.groupes.confirm'), 'enable-submit-if-uploaded-target': 'submit' }, disabled: true
 
-              #panel-import-contact.fr-tabs__panel{ role: 'tabpanel', 'aria-labelledby': 'tab-import-contact' }
-                %p.fr-mb-2w= t(".contact_informations.notice_html")
+                #panel-import-contact.fr-tabs__panel{ role: 'tabpanel', 'aria-labelledby': 'tab-import-contact' }
+                  %p.fr-mb-2w= t(".contact_informations.notice_html")
 
-                .fr-alert.fr-alert--info.fr-mb-3w
-                  %p
-                    = t(".contact_informations.info_1_html")
-                  %p
-                    = t(".contact_informations.info_2_html")
+                  .fr-alert.fr-alert--info.fr-mb-3w
+                    %p
+                      = t(".contact_informations.info_1_html")
+                    %p
+                      = t(".contact_informations.info_2_html")
 
-                = form_tag import_contact_informations_admin_procedure_groupe_instructeurs_path(@procedure), method: :post, multipart: true, data: { controller: 'enable-submit-if-uploaded' } do
-                  %label.fr-label.fr-text--bold
-                    = t('.file_to_import')
-                  .fr-download
-                    = link_to contact_informations_template_path, { class: "fr-download__link", download: '' } do
-                      = t('.download_template')
-                      %span.fr-download__detail
-                        = contact_informations_template_detail
-                  .fr-hint-text.fr-mb-1w
-                    = t('.file_size_limit', max_file_size: number_to_human_size(csv_max_size))
-                  .flex.column{ data: { action: 'input->enable-submit-if-uploaded#upload' } }
-                    = file_field_tag :csv_file, required: true, accept: 'text/csv', class: 'fr-mb-2w', id: 'csv_file_contact', data: { 'enable-submit-if-uploaded-target': 'input' }
-                    %ul.fr-btns-group.fr-btns-group--inline-sm
-                      %li
-                        %button.fr-btn.fr-btn--secondary{ type: 'button', aria: { controls: 'modal-import' } }= t('.cancel')
-                      %li
-                        = submit_tag t('.import_file'), class: 'fr-btn', data: { disable_with: "Envoi...", confirm: t('.contact_informations.confirm'), 'enable-submit-if-uploaded-target': 'submit' }, disabled: true
+                  = form_tag import_contact_informations_admin_procedure_groupe_instructeurs_path(@procedure), method: :post, multipart: true, data: { controller: 'enable-submit-if-uploaded' } do
+                    %label.fr-label.fr-text--bold
+                      = t('.file_to_import')
+                    .fr-download
+                      = link_to contact_informations_template_path, { class: "fr-download__link", download: '' } do
+                        = t('.download_template')
+                        %span.fr-download__detail
+                          = contact_informations_template_detail
+                    .fr-hint-text.fr-mb-1w
+                      = t('.file_size_limit', max_file_size: number_to_human_size(csv_max_size))
+                    .flex.column{ data: { action: 'input->enable-submit-if-uploaded#upload' } }
+                      = file_field_tag :csv_file, required: true, accept: 'text/csv', class: 'fr-mb-2w', id: 'csv_file_contact', data: { 'enable-submit-if-uploaded-target': 'input' }
+                      %ul.fr-btns-group.fr-btns-group--inline-sm
+                        %li
+                          %button.fr-btn.fr-btn--secondary{ type: 'button', aria: { controls: 'modal-import' } }= t('.cancel')
+                        %li
+                          = submit_tag t('.import_file'), class: 'fr-btn', data: { disable_with: "Envoi...", confirm: t('.contact_informations.confirm'), 'enable-submit-if-uploaded-target': 'submit' }, disabled: true
+
+            - else
+              %p.fr-mb-2w= t(".instructeurs.notice_html", csv_max_size: number_to_human_size(csv_max_size))
+
+              .fr-alert.fr-icon-mail-line.fr-mb-3w
+                %p= t(".instructeurs.alert_email_notifications_html")
+
+              = form_tag import_admin_procedure_groupe_instructeurs_path(@procedure), method: :post, multipart: true, data: { controller: 'enable-submit-if-uploaded' } do
+                %label.fr-label.fr-text--bold
+                  = t('.file_to_import')
+                .fr-download
+                  = link_to groupes_template_path, { class: "fr-download__link", download: '' } do
+                    = t('.download_template')
+                    %span.fr-download__detail
+                      = groupes_template_detail
+                .fr-hint-text.fr-mb-1w
+                  = t('.file_size_limit', max_file_size: number_to_human_size(csv_max_size))
+                .flex.column{ data: { action: 'input->enable-submit-if-uploaded#upload' } }
+                  = file_field_tag :csv_file, required: true, accept: 'text/csv', class: 'fr-mb-2w', id: 'csv_file_instructeurs', data: { 'enable-submit-if-uploaded-target': 'input' }
+                  %ul.fr-btns-group.fr-btns-group--inline-sm
+                    %li
+                      %button.fr-btn.fr-btn--secondary{ type: 'button', aria: { controls: 'modal-import' } }= t('.cancel')
+                    %li
+                      = submit_tag t('.import_file'), class: 'fr-btn', data: { disable_with: "Envoi...", confirm: t('.instructeurs.confirm'), 'enable-submit-if-uploaded-target': 'submit' }, disabled: true

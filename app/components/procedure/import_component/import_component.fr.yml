@@ -1,6 +1,8 @@
 fr:
-  button: Ajout avec import de fichier
-  title: Ajout avec import de fichier
+  button_groupes: Ajout avec import de fichier
+  button_instructeurs: Ajout d’instructeurs avec import de fichier
+  title_groupes: Ajout avec import de fichier
+  title_instructeurs: Ajout d’instructeurs avec import de fichier
   cancel: Annuler
   tabs:
     groupes: Groupes / instructeurs
@@ -12,6 +14,10 @@ fr:
   groupes:
     notice_html: "Pour importer des groupes / instructeurs, votre fichier csv doit comporter 2 colonnes : <strong>Email</strong> et <strong>Groupe</strong>. Le poids du fichier doit être inférieur à %{csv_max_size} (voir modèle de fichier ci-dessous). <br> Une fois votre import effectué, vous devrez ensuite <strong>configurer les règles de routage</strong> pour chacun des groupes ajoutés."
     alert_email_notifications_html: "Tous les instructeurs ajoutés à la démarche <strong>seront notifiés par email.</strong>"
+    confirm: Tous les instructeurs ajoutés à la démarche vont être notifiés par email. Voulez-vous continuer ?
+  instructeurs:
+    notice_html: "Pour importer des instructeurs, votre fichier csv doit comporter <strong>1 seule colonne : Email</strong> listant les adresses électroniques des instructeurs. Le poids du fichier doit être inférieur à %{csv_max_size} (voir modèle de fichier ci-dessous)."
+    alert_email_notifications_html: "Tous les instructeurs que vous ajouterez à la démarche <strong>seront notifiés par email.</strong>"
     confirm: Tous les instructeurs ajoutés à la démarche vont être notifiés par email. Voulez-vous continuer ?
   contact_informations:
     notice_html: "Pour importer des informations de contact par groupes, votre fichier csv doit comporter 6 colonnes : <strong>Groupe</strong>, <strong>Nom_du_service</strong>, <strong>Adresse_electronique_de_contact</strong>, <strong>Telephone</strong>, <strong>Horaires</strong> et <strong>Adresse_postale</strong>. Le poids du fichier doit être inférieur à 1 Mo (voir modèle de fichier ci-dessous)."
