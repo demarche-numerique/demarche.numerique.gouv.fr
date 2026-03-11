@@ -979,6 +979,24 @@ describe Instructeurs::ProceduresController, type: :controller do
     end
   end
 
+  describe '#polling_last_export' do
+    let(:instructeur) { create(:instructeur) }
+    let!(:procedure) { create(:procedure) }
+    let!(:assign_to) { create(:assign_to, instructeur: instructeur, groupe_instructeur: build(:groupe_instructeur, procedure: procedure)) }
+    let(:gi_0) { assign_to.groupe_instructeur }
+
+    before { sign_in(instructeur.user) }
+
+    context 'when no recent export exists (last_export_for returns nil)' do
+      it 'does not raise and responds successfully' do
+        get :polling_last_export, params: { procedure_id: procedure.id, statut: 'tous' }, format: :turbo_stream
+
+        expect(response).to have_http_status(:ok)
+        expect(assigns(:last_export)).to be_nil
+      end
+    end
+  end
+
   describe '#export_templates' do
     render_views
 

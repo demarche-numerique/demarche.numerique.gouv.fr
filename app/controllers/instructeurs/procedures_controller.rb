@@ -261,7 +261,7 @@ module Instructeurs
     def polling_last_export
       @statut = statut
       @last_export = last_export_for(@statut)
-      if @last_export.available?
+      if @last_export&.available?
         flash.notice = t('instructeurs.procedures.export_available_html', file_format: @last_export.format, file_url: @last_export.file.url)
       else
         flash.notice = t('instructeurs.procedures.export_pending_html', url: exports_instructeur_procedure_path(procedure))
