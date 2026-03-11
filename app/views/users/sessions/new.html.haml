@@ -27,10 +27,9 @@
 
 
       .fr-fieldset__element
-        .auth-options
-          .flex-no-shrink
-            = f.check_box :remember_me
-            = f.label :remember_me, t('views.users.sessions.new.remember_me'), class: 'remember-me'
+        .fr-checkbox-group.fr-checkbox-group--sm
+          = f.check_box :remember_me
+          = f.label :remember_me, t('views.users.sessions.new.remember_me'), class: 'fr-label'
 
-      .fr-fieldset__element
+      .fr-fieldset__element.fr-mt-1w
         .fr-btns-group= f.submit t('views.users.sessions.new.connection'), class: "fr-btn"

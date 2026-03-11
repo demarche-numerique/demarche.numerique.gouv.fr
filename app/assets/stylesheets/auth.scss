@@ -20,17 +20,6 @@
 }
 
 .auth-form {
-  .auth-options {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 2 * $default-spacer;
-  }
-
-  .remember-me {
-    display: inline-block;
-    margin-bottom: 0;
-  }
-
   .register {
     display: flex;
     justify-content: space-between;
