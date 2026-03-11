@@ -1,14 +1,20 @@
 en:
-  csv_import:
-    import_file: Import file
-    import_file_alert: All instructors added to the procedure will be notified by email. Do you want to continue?
-    file_to_import: File to import
-    file_size_limit: "File size limit : %{max_file_size}."
-    groupes:
-      title: Bulk Import / Export
-      notice_1_html: "For the import, your csv file must have 2 columns : <strong>Email</strong> and <strong>Groupe</strong>. The file size must be less than %{csv_max_size} (see model below)."
-      notice_2_html: The import does not overwrite existing groups and instructors. It only allows you to <strong>add them</strong>.
-    instructeurs:
-      title: Adding instructors with file import
-      notice_1_html: For the import, your csv file must have <strong>1 column :Email</strong> listing the email addresses of the instructors. The file size must be less than %{csv_max_size} (see model below).
-      notice_2_html: The import does not overwrite existing instructors. It only allows you to <strong>add them</strong>.
+  button: Add with file import
+  title: Add with file import
+  cancel: Cancel
+  tabs:
+    groupes: Groups / instructors
+    contact_informations: Custom contact information by groups
+  file_to_import: File to import
+  download_template: Download template
+  file_size_limit: "Maximum size: %{max_file_size}."
+  import_file: Import file
+  groupes:
+    notice_html: "To import groups and instructors, your csv file must have 2 columns: <strong>Groupe</strong> and <strong>Email</strong>. The file size must be less than %{csv_max_size} (see template file below). <br> Once your import is complete, you will need to <strong>configure the routing rules</strong> for each of the added groups."
+    alert_email_notifications_html: "All instructors added to the procedure <strong>are going to be notified by e-mail.</strong>"
+    confirm: All instructors added to the procedure will be notified by email. Do you want to continue?
+  contact_informations:
+    notice_html: "To import contact information by groups, your csv file must have 6 columns: <strong>Groupe</strong>, <strong>Nom_du_service</strong>, <strong>Adresse_electronique_de_contact</strong>, <strong>Telephone</strong>, <strong>Horaires</strong> and <strong>Adresse_postale</strong>. The file size must be less than 1 MB (see template file below)."
+    info_1_html: If you have already entered contact information for a group, it <strong>will be overwritten</strong> by the content of the imported file.
+    info_2_html: If you do not enter specific contact information for a group, the contact information displayed to the user will be <strong>that of the service managing the procedure</strong>.
+    confirm: All instructor groups will be updated with this contact information. Do you want to continue?

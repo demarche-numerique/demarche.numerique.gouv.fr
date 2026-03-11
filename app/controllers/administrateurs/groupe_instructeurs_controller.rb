@@ -482,6 +482,25 @@ module Administrateurs
       end
     end
 
+    def import_contact_informations
+      if !CSV_ACCEPTED_CONTENT_TYPES.include?(csv_file.content_type) && !CSV_ACCEPTED_CONTENT_TYPES.include?(marcel_content_type)
+        flash[:alert] = "Importation impossible : veuillez importer un fichier CSV"
+      elsif csv_file.size > CSV_MAX_SIZE
+        flash[:alert] = "Importation impossible : le poids du fichier est supérieur à #{number_to_human_size(CSV_MAX_SIZE)}"
+      else
+        csv_content = parse_csv(csv_file)
+        required_headers = %w[groupe nom_du_service adresse_electronique_de_contact telephone horaires adresse_postale]
+
+        if csv_content.present? && (required_headers - csv_content.first.keys).empty?
+          import_contact_informations_from_csv(csv_content)
+        else
+          flash[:alert] = "Importation impossible : le fichier CSV doit contenir les colonnes Groupe, Nom_du_service, Adresse_electronique_de_contact, Telephone, Horaires, Adresse_postale"
+        end
+      end
+
+      redirect_to admin_procedure_groupe_instructeurs_path(procedure)
+    end
+
     def bulk_route
       BulkRouteJob.perform_later(procedure)
 
@@ -494,6 +513,45 @@ module Administrateurs
 
     def closed_params?
       params[:closed] == "1"
+    end
+
+    def import_contact_informations_from_csv(csv_content)
+      updated_groups = []
+      not_found_groups = []
+
+      csv_content.each do |row|
+        group_label = row['groupe']&.strip
+        next if group_label.blank?
+
+        groupe_instructeur = procedure.groupe_instructeurs.find_by(label: group_label)
+
+        if groupe_instructeur.nil?
+          not_found_groups << group_label
+          next
+        end
+
+        contact_info = groupe_instructeur.contact_information || groupe_instructeur.build_contact_information
+
+        contact_info.assign_attributes(
+          nom: row['nom_du_service']&.strip,
+          email: row['adresse_electronique_de_contact']&.strip,
+          telephone: row['telephone']&.strip,
+          horaires: row['horaires']&.strip,
+          adresse: row['adresse_postale']&.strip
+        )
+
+        if contact_info.save
+          updated_groups << group_label
+        end
+      end
+
+      if updated_groups.any?
+        flash[:notice] = "Les informations de contact ont été importées pour #{updated_groups.count} groupe(s)."
+      end
+
+      if not_found_groups.any?
+        flash[:alert] = "Les groupes suivants n'ont pas été trouvés : #{not_found_groups.join(', ')}"
+      end
     end
 
     def procedure

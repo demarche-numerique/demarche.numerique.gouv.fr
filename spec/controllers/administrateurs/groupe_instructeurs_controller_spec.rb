@@ -937,6 +937,61 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
     end
   end
 
+  describe '#import_contact_informations' do
+    subject do
+      post :import_contact_informations, params: { procedure_id: procedure.id, csv_file: csv_file }
+    end
+
+    context 'with valid CSV' do
+      let(:csv_file) { fixture_file_upload('spec/fixtures/files/import-contact-informations.csv', 'text/csv') }
+
+      before do
+        gi_1_1.update!(label: 'premier groupe')
+        gi_1_2.update!(label: 'deuxième groupe')
+      end
+
+      it 'creates contact information for existing groups' do
+        expect { subject }.to change { ContactInformation.count }.by(2)
+
+        expect(flash[:notice]).to include("2 groupe(s)")
+
+        gi_1_1.reload
+        expect(gi_1_1.contact_information.nom).to eq('Service Test')
+        expect(gi_1_1.contact_information.email).to eq('test@example.gouv.fr')
+        expect(gi_1_1.contact_information.adresse).to eq("1 rue Test\n75001 Paris")
+      end
+
+      context 'when a group already has contact information' do
+        let!(:existing_contact) { create(:contact_information, groupe_instructeur: gi_1_1, nom: 'Old Service') }
+
+        it 'updates the existing contact information' do
+          expect { subject }.to change { ContactInformation.count }.by(1)
+
+          existing_contact.reload
+          expect(existing_contact.nom).to eq('Service Test')
+        end
+      end
+    end
+
+    context 'when a group does not exist' do
+      let(:csv_file) { fixture_file_upload('spec/fixtures/files/import-contact-informations-not-found.csv', 'text/csv') }
+
+      it 'shows an alert for not found groups' do
+        subject
+        expect(flash[:alert]).to include('Groupe Inexistant')
+      end
+    end
+
+    context 'when the CSV has wrong headers' do
+      let(:csv_file) { fixture_file_upload('spec/fixtures/files/invalid-group-file.csv', 'text/csv') }
+
+      it 'shows an error message' do
+        subject
+        expect(flash[:alert]).to include('colonnes')
+      end
+    end
+  end
+
   describe '#options' do
     context 'with a simple routable type de champ' do
       let!(:procedure) do

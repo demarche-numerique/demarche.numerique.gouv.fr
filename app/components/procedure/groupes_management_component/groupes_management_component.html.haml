@@ -1,10 +1,10 @@
 - content_for(:title, 'Groupes')
 %h1.fr-h2 Gestion des groupes
 
-= render Procedure::ImportComponent.new(procedure: @procedure)
-
-%button.fr-btn.fr-btn--primary.fr-icon-add-line.fr-btn--icon-left.fr-mb-3w{ 'aria-controls': 'modal-add-groupe', 'data-fr-opened': 'false' }
-  = t('.add_groupe_modal.title')
+.flex.align-center
+  %button.fr-btn.fr-btn--primary.fr-icon-add-line.fr-btn--icon-left.fr-mb-3w{ 'aria-controls': 'modal-add-groupe', 'data-fr-opened': 'false' }
+    = t('.add_groupe_modal.title')
+  = render Procedure::ImportComponent.new(procedure: @procedure)
 
 %dialog#modal-add-groupe.fr-modal{ aria: { labelledby: 'fr-modal-title-add-groupe' }, role: 'dialog' }
   .fr-container.fr-container--fluid.fr-container-md

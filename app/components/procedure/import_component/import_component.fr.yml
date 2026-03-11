@@ -1,19 +1,20 @@
 fr:
-  csv_import:
-    import_file: Importer le fichier
-    import_file_alert: Tous les instructeurs ajoutés à la procédure vont être notifiés par email. Voulez-vous continuer ?
-    file_to_import: Fichier à importer
-    download_template: Modèle à télécharger
-    file_size_limit: "Taille maximale : %{max_file_size}."
-    groupes:
-      title: Ajout de groupes / instructeurs avec import de fichier
-      notice_1_html: "Pour l’import, votre fichier csv doit comporter 2 colonnes : <strong>Email</strong> et <strong>Groupe</strong>. Le poids du fichier doit être inférieur à %{csv_max_size} (voir modèle ci-dessous)."
-      notice_2_html: L’import n’écrase pas les groupes et instructeurs existants. Il permet uniquement <strong>d’en ajouter</strong>.
-      notice_3_html: Une fois votre import effectué, vous devrez ensuite <strong>configurer les règles de routage</strong> pour chacun des groupes ajoutés.
-      notification_alert_html: Même si votre démarche est encore en test / non publiée, tous les instructeurs que vous ajouterez à la démarche <strong>seront notifiés par email</strong>.
-      notification_alert_publiee_html: Tous les instructeurs que vous ajouterez à la démarche <strong>seront notifiés par email</strong>.
-
-    instructeurs:
-      title: Ajout d’instructeurs avec import de fichier
-      notice_1_html: "Pour l’import, votre fichier csv doit comporter <strong>1 seule colonne : Email</strong> listant les adresses électroniques des instructeurs. Le poids du fichier doit être inférieur à %{csv_max_size} (voir modèle ci-dessous)."
-      notice_2_html: L’import n’écrase pas les instructeurs existants. Il permet uniquement <strong>d’en ajouter</strong>.
+  button: Ajout avec import de fichier
+  title: Ajout avec import de fichier
+  cancel: Annuler
+  tabs:
+    groupes: Groupes / instructeurs
+    contact_informations: Informations de contact personnalisées par groupes
+  file_to_import: Fichier à importer
+  download_template: Modèle à télécharger
+  file_size_limit: "Taille maximale : %{max_file_size}."
+  import_file: Importer le fichier
+  groupes:
+    notice_html: "Pour importer des groupes / instructeurs, votre fichier csv doit comporter 2 colonnes : <strong>Email</strong> et <strong>Groupe</strong>. Le poids du fichier doit être inférieur à %{csv_max_size} (voir modèle de fichier ci-dessous). <br> Une fois votre import effectué, vous devrez ensuite <strong>configurer les règles de routage</strong> pour chacun des groupes ajoutés."
+    alert_email_notifications_html: "Tous les instructeurs ajoutés à la démarche <strong>seront notifiés par email.</strong>"
+    confirm: Tous les instructeurs ajoutés à la démarche vont être notifiés par email. Voulez-vous continuer ?
+  contact_informations:
+    notice_html: "Pour importer des informations de contact par groupes, votre fichier csv doit comporter 6 colonnes : <strong>Groupe</strong>, <strong>Nom_du_service</strong>, <strong>Adresse_electronique_de_contact</strong>, <strong>Telephone</strong>, <strong>Horaires</strong> et <strong>Adresse_postale</strong>. Le poids du fichier doit être inférieur à 1 Mo (voir modèle de fichier ci-dessous)."
+    info_1_html: Si vous avez déjà renseigné des informations de contact pour un groupe, celles-ci <strong>seront écrasées</strong> par le contenu du fichier importé.
+    info_2_html: Si vous ne renseignez pas d’informations de contact spécifiques pour un groupe, les informations de contact affichées à l’usager seront <strong>celles du service porteur de la démarche</strong>.
+    confirm: Tous les groupes instructeurs vont être mis à jour avec ces informations de contact. Voulez-vous continuer ?
