@@ -428,6 +428,24 @@ describe Users::CommencerController, type: :controller do
     end
   end
 
+  describe '#pro_connect' do
+    context 'for a published procedure' do
+      subject { get :pro_connect, params: { path: published_procedure.path } }
+
+      it 'set the path to return after sign-up to the procedure start page' do
+        subject
+        expect(controller.stored_location_for(:user)).to eq(commencer_path(path: published_procedure.path))
+        expect(subject).to redirect_to(pro_connect_login_path)
+      end
+
+      context 'when a prefill token is given' do
+        subject { get :pro_connect, params: { path: published_procedure.path, prefill_token: 'prefill_token' } }
+
+        it_behaves_like 'a prefill token storage'
+      end
+    end
+  end
+
   describe '#dossier_vide_pdf' do
     let(:procedure) { create(:procedure, :published, :with_service, :with_path) }
     before { get :dossier_vide_pdf, params: { path: procedure.path } }
