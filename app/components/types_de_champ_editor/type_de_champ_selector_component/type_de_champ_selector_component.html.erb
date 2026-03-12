@@ -1,0 +1,72 @@
+<div class="type-de-champ-selector" data-controller="type-de-champ-selector" data-type-de-champ-selector-disabled-value="<%= disabled? %>">
+  <select name="type_de_champ[type_champ]" data-type-de-champ-selector-target="hiddenInput" class="changeable" style="display:none" tabindex="-1">
+    <option value="<%= current_type_champ %>" selected><%= current_type_label %></option>
+  </select>
+
+  <button type="button"
+    role="combobox"
+    aria-haspopup="listbox"
+    aria-expanded="false"
+    aria-controls="<%= dom_id(type_de_champ, :type_champ_panel) %>"
+    <% if disabled? %>aria-disabled="true"<% end %>
+    class="fr-select type-de-champ-selector-trigger"
+    id="<%= dom_id(type_de_champ, :type_champ) %>"
+    data-type-de-champ-selector-target="trigger"
+    data-action="type-de-champ-selector#toggle">
+    <span class="<%= current_type_icon %> fr-icon--sm" aria-hidden="true"></span>
+    <span class="type-de-champ-selector-trigger-label"><%= current_type_label %></span>
+    <% if disabled? %>
+      <span class="fr-icon-lock-fill fr-icon--sm" aria-hidden="true"></span>
+    <% end %>
+  </button>
+
+  <div class="type-de-champ-selector-panel fr-hidden"
+    role="listbox"
+    id="<%= dom_id(type_de_champ, :type_champ_panel) %>"
+    aria-label="<%= t('.panel_label') %>"
+    data-type-de-champ-selector-target="panel"
+    data-action="keydown.escape->type-de-champ-selector#close keydown.up->type-de-champ-selector#navigateUp keydown.down->type-de-champ-selector#navigateDown keydown.enter->type-de-champ-selector#selectFocused">
+    <div class="type-de-champ-selector-search">
+      <span class="fr-icon-search-line fr-icon--sm" aria-hidden="true"></span>
+      <input type="text"
+        class="fr-input"
+        placeholder="<%= t('.search_placeholder') %>"
+        autocomplete="off"
+        data-type-de-champ-selector-target="searchInput"
+        data-action="input->type-de-champ-selector#search">
+      <button type="button"
+        class="type-de-champ-selector-clear fr-hidden"
+        data-type-de-champ-selector-target="clearButton"
+        data-action="type-de-champ-selector#clear"
+        aria-label="<%= t('.clear_search') %>">
+        <span class="fr-icon-close-circle-line fr-icon--sm" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <div class="type-de-champ-selector-options">
+      <% grouped_types.each do |group| %>
+        <div role="group" aria-labelledby="category-<%= group[:key] %>" data-type-de-champ-selector-target="category" data-category="<%= group[:key] %>">
+          <div class="type-de-champ-selector-category-label" id="category-<%= group[:key] %>">
+            <%= group[:label] %>
+          </div>
+          <% group[:types].each do |type| %>
+            <div role="option"
+              id="<%= dom_id(type_de_champ, "option_#{type[:value]}") %>"
+              <% if type[:selected] %>aria-selected="true"<% end %>
+              <% if type[:disabled] %>aria-disabled="true"<% end %>
+              class="type-de-champ-selector-option <%= 'selected' if type[:selected] %> <%= 'disabled' if type[:disabled] %>"
+              data-type-de-champ-selector-target="option"
+              data-value="<%= type[:value] %>"
+              data-label="<%= type[:label] %>"
+              data-icon="<%= type[:icon] %>"
+              data-category-label="<%= group[:label] %>"
+              data-action="click->type-de-champ-selector#select">
+              <span class="<%= type[:icon] %> fr-icon--sm" aria-hidden="true"></span>
+              <span class="type-de-champ-selector-option-label"><%= type[:label] %></span>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
