@@ -13,7 +13,7 @@ describe 'As an administrateur I can edit annotation', js: true do
   scenario 'with private tdc, having invalid order, it pops up errors summary' do
     click_on 'Ajouter une annotation'
 
-    select('Titre de section', from: 'Type de champ')
+    select_type_de_champ('header_section')
     wait_until { procedure.reload.active_revision.types_de_champ_private.first&.type_champ == TypeDeChamp.type_champs.fetch(:header_section) }
     first_header = procedure.active_revision.types_de_champ_private.first
     select('Titre de niveau 1', from: dom_id(first_header, :header_section_level))
@@ -24,7 +24,9 @@ describe 'As an administrateur I can edit annotation', js: true do
 
     wait_until { procedure.reload.active_revision.types_de_champ_private.count == 2 }
     second_header = procedure.active_revision.types_de_champ_private.last
-    select('Titre de section', from: dom_id(second_header, :type_champ))
+    within("##{dom_id(second_header.stable_self, :editor_error)}") do
+      select_type_de_champ('header_section')
+    end
     wait_until { procedure.reload.active_revision.types_de_champ_private.last&.type_champ == TypeDeChamp.type_champs.fetch(:header_section) }
     select('Titre de niveau 2', from: dom_id(second_header, :header_section_level))
 

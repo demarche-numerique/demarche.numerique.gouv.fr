@@ -22,7 +22,7 @@ describe 'Administrateurs can edit procedures', js: true do
     # setup a compatible champ
     expect(page).to have_content('Champs du formulaire')
     click_on 'Ajouter un champ'
-    select "Oui/Non"
+    select_type_de_champ('yes_no')
     fill_in "Libellé du champ", with: "Un champ oui non"
     click_on "Revenir à l’écran de gestion"
     procedure.reload

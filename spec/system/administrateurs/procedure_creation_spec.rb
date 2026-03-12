@@ -41,7 +41,7 @@ describe 'Creating a new procedure', js: true do
       fill_in 'Libellé du champ', with: 'libelle de champ'
       blur
       expect(page).to have_content('Formulaire enregistré')
-      expect(page).to have_selector('select > optgroup', count: 7)
+      expect(page).to have_selector('[data-type-de-champ-selector-target="category"]', count: 6, visible: :all)
 
       within(find('.type-de-champ-add-button', match: :first)) {
         add_champ
@@ -55,7 +55,7 @@ describe 'Creating a new procedure', js: true do
       # Add an empty repetition type de champ
       add_champ
       hide_autonotice_message
-      select('Bloc répétable', from: 'Type de champ')
+      select_type_de_champ('repetition')
       fill_in 'Libellé du champ', with: 'libellé de champ'
       blur
       expect(page).to have_content('Formulaire enregistré')
