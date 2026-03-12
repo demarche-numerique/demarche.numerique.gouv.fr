@@ -5,15 +5,12 @@ en:
     attributes:
       type_de_champ:
         categorie:
-          structure: 'Field structure'
-          etat_civil: 'Civil status'
-          localisation: 'Location'
-          paiement_identification: 'Payment and identification'
-          standard: 'Standard field'
-          pieces_jointes: 'Attachments'
+          structure: 'Form structure'
+          standard: 'Standard fields'
           choice: 'Choice'
-          referentiel_externe: 'External referential'
-          france_connect: 'FranceConnect field'
+          identification: 'Identity and contact'
+          localisation: 'Location'
+          referentiel: 'Reference data'
         type_champs:
           header_section: 'Header section'
           repetition: 'Repetition'
