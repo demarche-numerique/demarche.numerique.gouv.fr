@@ -15,7 +15,7 @@
   .type-de-champ {
     width: 100%;
     margin-bottom: $default-padding;
-    overflow: hidden;
+    overflow: visible;
     scroll-margin: 1em;
 
     .type-de-champ-container {
@@ -136,4 +136,119 @@
 #summary nav ul {
   height: 80vh;
   overflow: auto;
+}
+
+.type-de-champ-selector {
+  position: relative;
+
+  .type-de-champ-selector-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    background: var(--background-default-grey);
+    border: 1px solid var(--border-default-grey);
+    border-radius: 0.25rem;
+    padding: 0.5rem 0.75rem;
+
+    &[aria-disabled='true'] {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &[aria-expanded='true'] {
+      border-color: var(--border-active-blue-france);
+    }
+  }
+
+  .type-de-champ-selector-trigger-label {
+    flex-grow: 1;
+  }
+
+  .type-de-champ-selector-panel {
+    position: absolute;
+    z-index: 100;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 70vh;
+    overflow-y: auto;
+    background: var(--background-default-grey);
+    border: 1px solid var(--border-active-blue-france);
+    border-radius: 0.25rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  }
+
+  .type-de-champ-selector-search {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: var(--background-default-grey);
+    border-bottom: 1px solid var(--border-default-grey);
+
+    .fr-input {
+      border: none;
+      padding: 0.25rem;
+      flex-grow: 1;
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+
+  .type-de-champ-selector-clear {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+  }
+
+  .type-de-champ-selector-options [role='group'] + [role='group'] {
+    border-top: 2px solid var(--border-default-grey);
+  }
+
+  .type-de-champ-selector-category-label {
+    padding: 0.5rem 0.75rem 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--text-default-grey);
+  }
+
+  .type-de-champ-selector-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    font-size: 1rem;
+
+    &:hover:not(.disabled) {
+      background: var(--background-alt-blue-france);
+    }
+
+    &.selected {
+      background: var(--background-alt-blue-france);
+      font-weight: 600;
+    }
+
+    &.focused {
+      background: var(--background-alt-blue-france);
+      outline: 2px solid var(--border-active-blue-france);
+      outline-offset: -2px;
+    }
+
+    &.disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    mark {
+      background: var(--background-contrast-yellow-tournesol);
+      padding: 0;
+    }
+  }
 }
