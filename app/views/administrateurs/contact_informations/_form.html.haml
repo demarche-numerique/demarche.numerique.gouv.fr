@@ -1,10 +1,6 @@
-= form_with url: instructeur_groupe_contact_information_path, model: @contact_information, local: true do |f|
-  = hidden_field_tag :from_admin, params[:from_admin]
+= form_with url: admin_procedure_groupe_instructeur_contact_information_path(@procedure, @groupe_instructeur), model: @contact_information, local: true do |f|
 
   = render "shared/groupe_instructeurs/contact_information_fields", f: f
-
-  - if procedure_id.present?
-    = hidden_field_tag :procedure_id, procedure_id
 
   .fixed-footer
     .fr-container
@@ -12,12 +8,12 @@
         %li
           = f.submit "Enregistrer", class: "fr-btn"
         %li
-          = link_to "Annuler", instructeur_groupe_path(@groupe_instructeur, procedure_id: procedure_id), class: "fr-btn fr-btn--secondary"
+          = link_to "Annuler", admin_procedure_groupe_instructeur_path(@procedure, @groupe_instructeur), class: "fr-btn fr-btn--secondary"
 
         - if ["edit", "update"].include?(params[:action])
           %li
             = link_to 'Supprimer',
-              instructeur_groupe_contact_information_path(procedure_id: @procedure.id, groupe_id: @groupe_instructeur.id),
+              admin_procedure_groupe_instructeur_contact_information_path(@procedure, @groupe_instructeur),
               method: :delete,
               data: { confirm: "Confirmez vous la suppression de ces informations de contact ?" },
               class: 'fr-btn fr-btn--secondary'

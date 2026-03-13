@@ -749,6 +749,7 @@ Rails.application.routes.draw do
 
       resources :groupe_instructeurs, only: [:index, :show, :create, :update, :destroy] do
         patch 'update_state' => 'groupe_instructeurs#update_state'
+        resource :contact_information, only: [:new, :create, :edit, :update, :destroy]
 
         member do
           post 'add_instructeurs'

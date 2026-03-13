@@ -1,0 +1,23 @@
+= render Dsfr::CalloutComponent.new(title: "Informations de contact") do |c|
+  - c.with_body do
+    Votre démarche est hébergée par #{Current.application_name} – mais nous ne pouvons pas assurer le support des démarches. Et malgré la dématérialisation, les usagers se posent parfois des questions légitimes sur le processus administratif.
+    %br
+    %br
+    %strong Il est donc indispensable que les usagers puissent vous contacter
+    par le moyen de leur choix s’ils ont des questions sur votre démarche.
+    %br
+    %br
+    Ces informations de contact seront visibles par les utilisateurs de la démarche, affichées dans le menu « Aide », ainsi qu’en pied de page lors du dépôt d’un dossier.
+    %br
+    %br
+    ⚠️  En cas d’informations invalides, #{Current.application_name} se réserve le droit de suspendre la publication de la démarche.
+
+= render Dsfr::InputComponent.new(form: f, attribute: :nom, input_type: :text_field) do |c|
+  - c.with_hint do
+    Indiquez le nom à utiliser pour contacter le groupe instructeur
+    (Exemple: Secrétariat de la Mairie)
+
+= render Dsfr::InputComponent.new(form: f, attribute: :email, input_type: :email_field)
+= render Dsfr::InputComponent.new(form: f, attribute: :telephone, input_type: :telephone_field)
+= render Dsfr::InputComponent.new(form: f, attribute: :horaires, input_type: :text_area)
+= render Dsfr::InputComponent.new(form: f, attribute: :adresse, input_type: :text_area)

@@ -1,0 +1,11 @@
+= render partial: 'administrateurs/breadcrumbs',
+  locals: { steps: [['Démarches', admin_procedures_path],
+    [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)],
+    ["Groupes d'instructeurs", admin_procedure_groupe_instructeurs_path(@procedure)],
+    [@groupe_instructeur.label, admin_procedure_groupe_instructeur_path(@procedure, @groupe_instructeur)],
+    ['Informations de contact']]}
+.container
+  %h1 Modifier les informations de contact
+
+  = render partial: 'form',
+    locals: { contact_information: @contact_information }
