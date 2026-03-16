@@ -54,6 +54,9 @@ en:
         instant_email_dossier_deletion:
           title: Receive an email informing me that a user has deleted their file
           notice: This email informs you that a file « en construction » that you were following has been deleted at the user's request. You will therefore no longer have access to it.
+        info_notice:
+          title: Important
+          desc_followed_dossiers_html: You must <strong>follow</strong> the file (by clicking the "Follow" button) to receive this email notification.
         warning_notice:
           title: Caution
           desc_expiration: When this option is disabled, you will no longer receive alerts about files expiring before they are automatically moved to the trash.

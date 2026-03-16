@@ -54,6 +54,9 @@ fr:
         instant_email_dossier_deletion:
           title: Recevoir un email m’informant qu’un usager a supprimé son dossier
           notice: Cet email vous informe qu’un dossier « en construction » que vous suiviez a été supprimé à la demande de l’usager. Vous n’y aurez donc plus accès.
+        info_notice:
+          title: Important
+          desc_followed_dossiers_html: Vous devez impérativement <strong>suivre</strong> le dossier (en cliquant sur le bouton « Suivre ») pour recevoir cette notification par email.
         warning_notice:
           title: Attention
           desc_expiration: Lorsque cette option est désactivée, vous ne recevez plus aucune alerte concernant l’expiration des dossiers avant leur mise à la corbeille automatique.

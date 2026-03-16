@@ -14,12 +14,23 @@
             hint: t('.instant_email_new_dossier.notice'),
             extra_class_names: 'fr-toggle--border-bottom')
 
-        %li
-          = render Dsfr::ToggleComponent.new(form:,
-            target: :instant_email_new_message,
-            title: t(".instant_email_new_message.title"),
-            hint: t('.instant_email_new_message.notice'),
-            extra_class_names: 'fr-toggle--border-bottom')
+        %li{ data: { controller: "hide-target" } }
+          - instant_email_new_message = instructeur_procedure.instant_email_new_message?
+
+          .fr-toggle--border-bottom
+            = render Dsfr::ToggleComponent.new(form:,
+              target: :instant_email_new_message,
+              title: t(".instant_email_new_message.title"),
+              hint: t('.instant_email_new_message.notice'),
+              extra_class_names: 'fr-toggle',
+              opt: { "hide-target_target": "source" })
+
+            .fr-notice.fr-notice--info.fr-mt-1w{ class: (instant_email_new_message ? nil : "fr-hidden"), data: { "hide-target_target": "toHide" } }
+              .fr-container
+                .fr-notice__body
+                  %p
+                    %span.fr-notice__title.fr-text--sm= t('.info_notice.title')
+                    %span.fr-notice__desc.fr-text--sm= t('.info_notice.desc_followed_dossiers_html')
 
         %li
           = render Dsfr::ToggleComponent.new(form:,
