@@ -10,3 +10,18 @@ fr:
   download:
     one: Télécharger un dossier
     other: Télécharger %{count} dossiers
+  tab_standard: Standard
+  tab_template: A partir d’un modèle
+  select_format: Sélectionner le format de l’export
+  file_xlsx: Fichier xlsx
+  file_ods: Fichier ods
+  file_csv: Fichier csv
+  file_csv_hint: Uniquement les dossiers, sans les champs répétables
+  file_zip: Fichier zip
+  file_zip_hint: ne contient pas l’horodatage ni le journal de log
+  file_geojson: Fichier geojson
+  cancel: Annuler
+  request_export: Demander l’export
+  select_template: Sélectionner le modèle d’export
+  no_template: Aucun modèle configuré
+  configure_templates: Configurer les modèles d’export

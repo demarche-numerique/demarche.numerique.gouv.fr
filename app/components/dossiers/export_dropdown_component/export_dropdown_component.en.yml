@@ -10,3 +10,18 @@ en:
   download:
     one: Download a file
     other: Download %{count} files
+  tab_standard: Standard
+  tab_template: From a template
+  select_format: Select the export format
+  file_xlsx: Xlsx file
+  file_ods: Ods file
+  file_csv: Csv file
+  file_csv_hint: Only files, without repeatable fields
+  file_zip: Zip file
+  file_zip_hint: does not contain timestamp nor operation logs
+  file_geojson: Geojson file
+  cancel: Cancel
+  request_export: Request export
+  select_template: Select the export template
+  no_template: No template configured
+  configure_templates: Configure export templates
