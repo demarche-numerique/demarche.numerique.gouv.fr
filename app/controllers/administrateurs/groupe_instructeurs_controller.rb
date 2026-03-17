@@ -114,16 +114,38 @@ module Administrateurs
     end
 
     def destroy_all_groups_but_defaut
-      reaffecter_all_dossiers_to_defaut_groupe
-      procedure.groupe_instructeurs_but_defaut.each(&:destroy!)
-      procedure.update!(routing_enabled: false, routing_alert: false)
-      procedure.defaut_groupe_instructeur.update!(
-        routing_rule: nil,
-        label: GroupeInstructeur::DEFAUT_LABEL,
-        closed: false,
-        contact_information: nil
-      )
+      GroupeInstructeur.transaction do
+        reaffecter_all_dossiers_to_defaut_groupe
+
+        groupe_ids = procedure.groupe_instructeurs_but_defaut.pluck(:id)
+
+        AssignTo.where(groupe_instructeur_id: groupe_ids).delete_all
+        DossierAssignment.where(groupe_instructeur_id: groupe_ids).update_all(groupe_instructeur_id: nil)
+        DossierAssignment.where(previous_groupe_instructeur_id: groupe_ids).update_all(previous_groupe_instructeur_id: nil)
+        ExportTemplate.where(groupe_instructeur_id: groupe_ids).delete_all
+        ContactInformation.where(groupe_instructeur_id: groupe_ids).delete_all
+        exports_groupe_instructeur_model = Class.new(ApplicationRecord) do
+          self.table_name = 'exports_groupe_instructeurs'
+        end
+        exports_groupe_instructeur_model.where(groupe_instructeur_id: groupe_ids).delete_all
+
+        procedure.groupe_instructeurs_but_defaut.delete_all
+
+        procedure.update!(routing_enabled: false, routing_alert: false)
+        procedure.defaut_groupe_instructeur.update!(
+          routing_rule: nil,
+          label: GroupeInstructeur::DEFAUT_LABEL,
+          closed: false,
+          contact_information: nil
+        )
+      end
+
       flash.notice = 'Tous les groupes instructeurs ont été supprimés'
+      redirect_to admin_procedure_groupe_instructeurs_path(procedure)
+
+    rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotDestroyed => e
+      Sentry.capture_exception(e, extra: { procedure_id: procedure.id })
+      flash.alert = "Une erreur est survenue lors de la suppression des groupes : #{e.message}"
       redirect_to admin_procedure_groupe_instructeurs_path(procedure)
     end
 
@@ -231,8 +253,12 @@ module Administrateurs
     end
 
     def reaffecter_all_dossiers_to_defaut_groupe
-      procedure.groupe_instructeurs_but_defaut.each do |gi|
-        gi.dossiers.find_each do |dossier|
+      dossiers = Dossier.joins(:groupe_instructeur)
+        .where(groupe_instructeur: procedure.groupe_instructeurs_but_defaut)
+        .includes(:groupe_instructeur)
+
+      dossiers.find_in_batches(batch_size: 1000) do |batch|
+        batch.each do |dossier|
           dossier.assign_to_groupe_instructeur(procedure.defaut_groupe_instructeur, DossierAssignment.modes.fetch(:auto), current_administrateur)
         end
       end
@@ -535,7 +561,7 @@ module Administrateurs
       end
 
       if params[:filter] == '1'
-        groupes = Kaminari.paginate_array(groupes.filter(&:routing_to_configure?))
+        groupes = Kaminari.paginate_array(groupes.routing_to_configure)
       end
 
       groupes
@@ -601,12 +627,41 @@ module Administrateurs
     end
 
     def create_groups_from_drop_down_list_tdc(tdc_options, stable_id)
-      tdc_options.each do |label, _|
-        routing_rule = ds_eq(champ_value(stable_id), constant(label))
-        @procedure
-          .groupe_instructeurs
-          .find_or_create_by(label: label)
-          .update(instructeurs: [current_administrateur.instructeur], routing_rule:)
+      existing_labels = @procedure.groupe_instructeurs.pluck(:label)
+      new_groups = tdc_options.reject { |label, _| existing_labels.include?(label) }
+
+      return if new_groups.empty?
+
+      base_time = Time.current
+      groupe_data = new_groups.map do |label, _|
+        {
+          label: label,
+          procedure_id: @procedure.id,
+          routing_rule: ds_eq(champ_value(stable_id), constant(label)),
+          created_at: base_time,
+          updated_at: base_time,
+        }
+      end
+
+      GroupeInstructeur.transaction do
+        GroupeInstructeur.insert_all(groupe_data)
+
+        new_group_labels = new_groups.map(&:first)
+
+        new_group_ids = @procedure.reload.groupe_instructeurs
+          .where(label: new_group_labels)
+          .pluck(:id)
+
+        assign_to_data = new_group_ids.map do |id|
+          {
+            instructeur_id: current_administrateur.instructeur.id,
+            groupe_instructeur_id: id,
+            created_at: base_time,
+            updated_at: base_time,
+          }
+        end
+
+        AssignTo.insert_all(assign_to_data) if assign_to_data.present?
       end
     end
   end

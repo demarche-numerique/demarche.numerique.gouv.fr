@@ -12,7 +12,8 @@ describe Conditions::RoutingRulesComponent, type: :component do
 
     before do
       groupe_instructeur.update(routing_rule: routing_rule)
-      render_inline(described_class.new(groupe_instructeur: groupe_instructeur))
+      procedure.update_all_groupes_rule_statuses
+      render_inline(described_class.new(groupe_instructeur: groupe_instructeur.reload))
     end
 
     context 'with one row' do

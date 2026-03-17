@@ -24,7 +24,7 @@ module Maintenance
         rule_operator = :ds_eq
 
         create_groups_from_territorial_tdc(tdc_options, tdc.stable_id, rule_operator, admin)
-
+        procedure.update_all_groupes_rule_statuses
         dossier1.reload
         dossier2.reload
       end

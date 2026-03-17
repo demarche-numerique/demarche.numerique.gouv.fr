@@ -268,6 +268,16 @@ describe GroupeInstructeur, type: :model do
           .to change { gi.reload.unique_routing_rule }.from(false).to(true)
       end
     end
+
+    describe '#groups_with_same_rule' do
+      let(:routing_rule) { ds_eq(champ_value(1), constant('A')) }
+      let!(:gi1) { create(:groupe_instructeur, procedure:, routing_rule:) }
+      let!(:gi2) { create(:groupe_instructeur, procedure:, routing_rule:) }
+
+      it 'finds groups with same rule' do
+        expect(gi1.groups_with_same_rule).to include(gi2.label)
+      end
+    end
   end
 
   private

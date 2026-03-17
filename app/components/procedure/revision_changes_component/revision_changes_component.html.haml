@@ -232,7 +232,7 @@
   - if @private_move_changes.present?
     - list.with_item do
       = t(".private.move", count: @private_move_changes.size)
-  - if @previous_revision.procedure.routing_enabled? && @previous_revision.procedure.groupe_instructeurs.any?(&:invalid_rule?)
+  - if @previous_revision.procedure.routing_enabled? && @previous_revision.procedure.groupe_instructeurs.invalid_routing_rule.any?
     - list.with_item do
       .fr-alert.fr-alert--warning.fr-mt-1v
         = t(".invalid_routing_rules_alert")

@@ -30,7 +30,7 @@
 
 = render Procedure::GroupesSearchComponent.new(procedure: @procedure,
   query: @query,
-  to_configure_count: @procedure.groupe_instructeurs.filter(&:routing_to_configure?).count,
+  to_configure_count: @procedure.groupe_instructeurs.routing_to_configure.size,
   to_configure_filter: @to_configure_filter)
 
 .flex.justify-between.align-baseline
@@ -70,9 +70,9 @@
                     %p.fr-badge.fr-badge--info.fr-badge--sm.fr-mt-1w inactif
                   - elsif gi.routing_rule.nil?
                     %p.fr-badge.fr-badge--warning.fr-badge--sm.fr-mt-1w aucune règle
-                  - elsif gi.invalid_rule?
+                  - elsif gi.invalid_routing_rule?
                     %p.fr-badge.fr-badge--warning.fr-badge--sm.fr-mt-1w règle invalide
-                  - elsif gi.non_unique_rule?
+                  - elsif gi.non_unique_routing_rule?
                     %p.fr-badge.fr-badge--warning.fr-badge--sm.fr-mt-1w règle déjà attribuée à #{gi.groups_with_same_rule}
 
                 %td{ scope: 'col' }

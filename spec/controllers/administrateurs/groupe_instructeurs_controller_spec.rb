@@ -67,6 +67,7 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
 
       before do
         gi_1_1.update(routing_rule: ds_eq(champ_value(drop_down_tdc.stable_id), constant('Deuxième choix')))
+        procedure.update_all_groupes_rule_statuses
         get :show, params: { procedure_id: procedure.id, id: gi_1_1.id }
       end
 
@@ -248,17 +249,44 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
       dossierB.reload
     end
 
-    it do
-      expect(dossierA.groupe_instructeur.id).to be(procedure.defaut_groupe_instructeur.id)
-      expect(dossierB.groupe_instructeur.id).to be(procedure.defaut_groupe_instructeur.id)
-      expect(dossierA.dossier_assignment.dossier_id).to be(dossierA.id)
-      expect(dossierB.dossier_assignment.dossier_id).to be(dossierB.id)
-      expect(dossierA.dossier_assignment.groupe_instructeur_id).to be(procedure.defaut_groupe_instructeur.id)
-      expect(dossierB.dossier_assignment.groupe_instructeur_id).to be(procedure.defaut_groupe_instructeur.id)
-      expect(dossierA.dossier_assignment.assigned_by).to eq(admin.email)
-      expect(dossierB.dossier_assignment.assigned_by).to eq(admin.email)
+    context 'when it works' do
+      it do
+        expect(dossierA.groupe_instructeur.id).to be(procedure.defaut_groupe_instructeur.id)
+        expect(dossierB.groupe_instructeur.id).to be(procedure.defaut_groupe_instructeur.id)
+        expect(dossierA.dossier_assignment.dossier_id).to be(dossierA.id)
+        expect(dossierB.dossier_assignment.dossier_id).to be(dossierB.id)
+        expect(dossierA.dossier_assignment.groupe_instructeur_id).to be(procedure.defaut_groupe_instructeur.id)
+        expect(dossierB.dossier_assignment.groupe_instructeur_id).to be(procedure.defaut_groupe_instructeur.id)
+        expect(dossierA.dossier_assignment.assigned_by).to eq(admin.email)
+        expect(dossierB.dossier_assignment.assigned_by).to eq(admin.email)
+      end
+    end
+
+    context 'when an error occurs during deletion' do
+      let!(:initial_groupe_count) { procedure.groupe_instructeurs.count }
+
+      before do
+        allow_any_instance_of(Procedure).to receive(:update!).and_raise(ActiveRecord::RecordInvalid.new)
+      end
+
+      it 'rolls back the transaction and does not delete any groups' do
+        expect {
+          post :destroy_all_groups_but_defaut, params: { procedure_id: procedure.id }
+        }.not_to change { procedure.groupe_instructeurs.count }
+
+        expect(procedure.groupe_instructeurs.count).to eq(initial_groupe_count)
+      end
+
+      it 'displays an error message and redirects to the groupe instructeurs page' do
+        post :destroy_all_groups_but_defaut, params: { procedure_id: procedure.id }
+
+        expect(flash.alert).to be_present
+        expect(flash.alert).to include('Une erreur est survenue')
+        expect(response).to redirect_to(admin_procedure_groupe_instructeurs_path(procedure))
+      end
     end
   end
+
   describe '#update' do
     let(:new_name) { 'nouveau nom du groupe' }
     let!(:procedure_non_routee) { create(:procedure, :published, :for_individual, administrateurs: [admin]) }
@@ -997,6 +1025,21 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
         expect(procedure3.reload.defaut_groupe_instructeur.routing_rule).to eq(ds_eq(champ_value(drop_down_tdc.stable_id), constant('Lyon')))
         expect(procedure3.routing_enabled).to be_truthy
         expect(procedure3.routing_alert).to be_truthy
+      end
+
+      it 'assigns the admin instructeur to all new groups' do
+        groups = procedure3.groupe_instructeurs.where(label: ['Paris', 'Lyon', 'Marseille'])
+        expect(groups.map(&:instructeurs)).to all(include(admin.instructeur))
+      end
+
+      it 'creates exactly one AssignTo per new group' do
+        paris_groupe = procedure3.groupe_instructeurs.find_by(label: 'Paris')
+        lyon_groupe = procedure3.groupe_instructeurs.find_by(label: 'Lyon')
+        marseille_groupe = procedure3.groupe_instructeurs.find_by(label: 'Marseille')
+
+        expect(AssignTo.where(groupe_instructeur: paris_groupe, instructeur: admin.instructeur).count).to eq(1)
+        expect(AssignTo.where(groupe_instructeur: lyon_groupe, instructeur: admin.instructeur).count).to eq(1)
+        expect(AssignTo.where(groupe_instructeur: marseille_groupe, instructeur: admin.instructeur).count).to eq(1)
       end
     end
 

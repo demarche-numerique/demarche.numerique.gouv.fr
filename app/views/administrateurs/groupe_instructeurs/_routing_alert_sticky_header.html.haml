@@ -3,8 +3,8 @@
     .flex.justify-between.align-center.fr-text-default--warning
       %span
         = dsfr_icon("fr-icon-warning-fill fr-mr-1v")
-        - if @procedure.groupe_instructeurs.any?(&:invalid_rule?)
+        - if @procedure.groupe_instructeurs.invalid_routing_rule.any?
           = t('.routing_alert_with_invalid_rules_html', count: @procedure.dossiers.state_en_construction_ou_instruction.count)
         - else
           = t('.routing_alert_html', count: @procedure.dossiers.state_en_construction_ou_instruction.count)
-      = button_to t('.bulk_route'), bulk_route_admin_procedure_groupe_instructeurs_path(@procedure), class: 'fr-btn no-wrap', disabled: @procedure.groupe_instructeurs.any?(&:invalid_rule?), data: { disable_with: "Routage en cours…", confirm: t('.bulk_routing_confirm') }
+      = button_to t('.bulk_route'), bulk_route_admin_procedure_groupe_instructeurs_path(@procedure), class: 'fr-btn no-wrap', disabled: @procedure.groupe_instructeurs.invalid_routing_rule.any?, data: { disable_with: "Routage en cours…", confirm: t('.bulk_routing_confirm') }

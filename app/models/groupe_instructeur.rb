@@ -33,6 +33,10 @@ class GroupeInstructeur < ApplicationRecord
   scope :active, -> { where(closed: false) }
   scope :closed, -> { where(closed: true) }
   scope :for_dossiers, -> (dossiers) { joins(:dossiers).where(dossiers: dossiers).distinct(:id) }
+  scope :routing_to_configure, -> { invalid_routing_rule.or(non_unique_routing_rule) }
+  scope :invalid_routing_rule, -> { where(valid_routing_rule: false) }
+  scope :valid_routing_rule, -> { where(valid_routing_rule: true) }
+  scope :non_unique_routing_rule, -> { where(unique_routing_rule: false) }
 
   def add(instructeur)
     return if instructeur.nil?
@@ -89,18 +93,19 @@ class GroupeInstructeur < ApplicationRecord
   def update_rule_statuses
     update_rule_validity_status
     procedure.update_all_groupes_rule_unicity_status
+    reload
   end
 
   def update_rule_validity_status
     update!(valid_routing_rule: valid_rule?)
   end
 
-  def routing_to_configure?
-    invalid_rule? || non_unique_rule?
+  def invalid_routing_rule?
+    !valid_routing_rule?
   end
 
-  def invalid_rule?
-    !valid_rule?
+  def non_unique_routing_rule?
+    !unique_routing_rule?
   end
 
   def valid_rule?
@@ -116,22 +121,17 @@ class GroupeInstructeur < ApplicationRecord
     !rule.is_a?(EmptyOperator) && routing_rule_matches_tdc?(rule)
   end
 
-  def non_unique_rule?
-    return false if invalid_rule?
-    routing_rule.in?(other_groupe_instructeurs.map(&:routing_rule))
-  end
-
   def groups_with_same_rule
-    return if routing_rule.nil?
+    return if routing_rule.nil? || unique_routing_rule?
+
     other_groupe_instructeurs
-      .filter { _1.routing_rule.present? }
-      .filter { _1.routing_rule == routing_rule }
-      .map(&:label)
+      .where(routing_rule: routing_rule)
+      .pluck(:label)
       .join(', ')
   end
 
   def other_groupe_instructeurs
-    procedure.groupe_instructeurs - [self]
+    procedure.groupe_instructeurs.where.not(id:)
   end
 
   def humanized_routing_rule

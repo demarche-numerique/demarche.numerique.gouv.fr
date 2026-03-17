@@ -4,7 +4,7 @@ module RoutingEngine
   def self.compute(dossier, assignment_mode: DossierAssignment.modes.fetch(:auto))
     return if dossier.forced_groupe_instructeur
 
-    matching_groupe = dossier.procedure.groupe_instructeurs.active.reject(&:invalid_rule?).find do |gi|
+    matching_groupe = dossier.procedure.groupe_instructeurs.active.valid_routing_rule.find do |gi|
       gi.routing_rule&.compute(dossier.filled_champs)
     end
 

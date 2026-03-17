@@ -1,7 +1,7 @@
 .fr-col-6.fr-col-md-4.fr-col-lg-3
   = link_to admin_procedure_groupe_instructeurs_path(@procedure), id: 'groupe-instructeurs', class: 'fr-tile fr-enlarge-link' do
     .fr-tile__body.flex.column.align-center.justify-between
-      - if @procedure.routing_enabled? && @procedure.groupe_instructeurs.any? { _1.routing_to_configure?}
+      - if @procedure.routing_enabled? && @procedure.groupe_instructeurs.routing_to_configure.any?
         %p.fr-badge.fr-badge--warning À faire
       - elsif @procedure.instructeurs.present?
         %p.fr-badge.fr-badge--success Validé

@@ -7,9 +7,9 @@
       .flex
         - if @groupe_instructeur.routing_rule.nil?
           %p.fr-mb-1w.fr-badge.fr-badge--warning.fr-badge--sm aucune règle
-        - elsif @groupe_instructeur.invalid_rule?
+        - elsif @groupe_instructeur.invalid_routing_rule?
           %p.fr-mb-1w.fr-badge.fr-badge--warning.fr-badge--sm règle invalide
-        - elsif @groupe_instructeur.non_unique_rule?
+        - elsif @groupe_instructeur.non_unique_routing_rule?
           %p.fr-mb-1w.fr-badge.fr-badge--warning.fr-badge--sm règle déjà attribuée à #{@groupe_instructeur.groups_with_same_rule}
 
       = render Conditions::ConditionsErrorsComponent.new(conditions: condition_per_row, source_tdcs: @source_tdcs)

@@ -9,6 +9,7 @@ describe RoutingEngine, type: :model do
     let(:gi_2) { procedure.groupe_instructeurs.create(label: 'a second group') }
 
     subject do
+      procedure.update_all_groupes_rule_statuses
       RoutingEngine.compute(dossier)
       dossier.groupe_instructeur
     end
@@ -227,6 +228,56 @@ describe RoutingEngine, type: :model do
         it 'computes by groups label order' do
           is_expected.to eq(gi_2)
         end
+      end
+    end
+
+    context 'performance with many groupe instructeurs' do
+      let(:procedure) do
+        create(:procedure,
+          types_de_champ_public: [{ type: :drop_down_list, libelle: 'Commune', options: ['Commune_0001'] }])
+      end
+
+      let(:drop_down_tdc) { procedure.draft_revision.types_de_champ.first }
+      let!(:last_groupe) { procedure.groupe_instructeurs.create(label: 'last_groupe', valid_routing_rule: true) }
+
+      before do
+        base_time = Time.current
+        procedure_id = procedure.id
+        tdc_stable_id = drop_down_tdc.stable_id
+
+        groupe_data = Array.new(4999).map.with_index do |_, i|
+          commune_name = "Commune_#{format('%04d', i + 2)}"
+          {
+            label: commune_name,
+            procedure_id: procedure_id,
+            valid_routing_rule: true,
+            unique_routing_rule: true,
+            routing_rule: {
+              "term" => "Logic::Eq",
+              "left" => { "term" => "Logic::ChampValue", "stable_id" => tdc_stable_id },
+              "right" => { "term" => "Logic::Constant", "value" => commune_name },
+            },
+            created_at: base_time,
+            updated_at: base_time,
+          }
+        end
+
+        GroupeInstructeur.insert_all(groupe_data)
+
+        last_groupe.update(routing_rule: ds_eq(champ_value(drop_down_tdc.stable_id), constant('Commune_0001')))
+
+        dossier.champs.first.update(value: 'Commune_0001')
+      end
+
+      it 'routes to last groupe instructeur quickly even with 5000 groupes' do
+        expect(procedure.groupe_instructeurs.count).to eq(5001)
+
+        start_time = Time.current
+        RoutingEngine.compute(dossier)
+        end_time = Time.current
+
+        expect(dossier.groupe_instructeur).to eq(last_groupe)
+        expect(end_time - start_time).to be < 1
       end
     end
   end

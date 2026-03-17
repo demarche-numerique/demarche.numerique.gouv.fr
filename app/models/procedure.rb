@@ -593,7 +593,7 @@ class Procedure < ApplicationRecord
   end
 
   def groupe_instructeurs_but_defaut
-    groupe_instructeurs - [defaut_groupe_instructeur]
+    groupe_instructeurs.where.not(id: defaut_groupe_instructeur_id)
   end
 
   def routing_champs

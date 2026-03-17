@@ -26,6 +26,7 @@ describe BulkRouteJob, type: :job do
     end
 
     before do
+      procedure.update_all_groupes_rule_statuses
       dossier1.champs.first.update(value: 'Paris')
       dossier2.champs.first.update(value: 'Lyon')
       dossier3.champs.first.update(value: 'Marseille')
