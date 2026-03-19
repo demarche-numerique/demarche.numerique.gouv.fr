@@ -1,1 +1,9 @@
 *.lockb binary diff=lockb
+*.rb text eol=lf
+*.sh text eol=lf
+Gemfile text eol=lf
+Gemfile.lock text eol=lf
+Procfile* text eol=lf
+Rakefile text eol=lf
+bin/* text eol=lf
+config.ru text eol=lf

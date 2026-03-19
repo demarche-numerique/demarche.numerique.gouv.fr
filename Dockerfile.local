@@ -1,0 +1,36 @@
+FROM ruby:3.4-slim-bookworm
+
+ENV BUNDLE_PATH=/usr/local/bundle \
+    BUNDLE_JOBS=4 \
+    BUNDLE_RETRY=3 \
+    PATH=/root/.bun/bin:/usr/local/bundle/bin:${PATH}
+
+RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends \
+    bash \
+    build-essential \
+    ca-certificates \
+    curl \
+    file \
+    git \
+    gsfonts \
+    libpq-dev \
+    libyaml-dev \
+    libvips \
+    libvips-dev \
+    pkg-config \
+    postgresql-client \
+    shared-mime-info \
+    unzip \
+  && apt-get autoremove -y \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN curl -fsSL https://bun.sh/install | bash
+
+WORKDIR /app
+
+COPY Gemfile Gemfile.lock package.json bun.lock ./
+COPY patches ./patches
+
+RUN bundle install && bun install
+
+EXPOSE 3000 3036
