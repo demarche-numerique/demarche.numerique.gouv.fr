@@ -130,12 +130,13 @@ describe Instructeurs::CommentairesController, type: :controller do
     end
 
     describe 'IDOR protection' do
+      # instructeur is assigned to procedure but NOT to other_procedure
       let(:other_procedure) { create(:procedure, :published, :for_individual) }
       let(:other_dossier) { create(:dossier, :en_construction, :with_individual, procedure: other_procedure) }
       let(:other_commentaire) { create(:commentaire, dossier: other_dossier) }
 
       context 'destroy on a dossier the instructeur has no access to' do
-        subject { delete :destroy, params: { dossier_id: other_dossier.id, procedure_id: other_procedure.id, id: other_commentaire.id, statut: 'a-suivre' }, format: :turbo_stream }
+        subject { delete :destroy, params: { dossier_id: other_dossier.id, procedure_id: procedure.id, id: other_commentaire.id, statut: 'a-suivre' }, format: :turbo_stream }
 
         it 'raises ActiveRecord::RecordNotFound' do
           expect { subject }.to raise_error(ActiveRecord::RecordNotFound)
@@ -144,7 +145,7 @@ describe Instructeurs::CommentairesController, type: :controller do
 
       context 'cancel_correction on a dossier the instructeur has no access to' do
         let!(:correction) { create(:dossier_correction, commentaire: other_commentaire, dossier: other_dossier) }
-        subject { post :cancel_correction, params: { dossier_id: other_dossier.id, procedure_id: other_procedure.id, id: other_commentaire.id, statut: 'a-suivre' }, format: :turbo_stream }
+        subject { post :cancel_correction, params: { dossier_id: other_dossier.id, procedure_id: procedure.id, id: other_commentaire.id, statut: 'a-suivre' }, format: :turbo_stream }
 
         it 'raises ActiveRecord::RecordNotFound' do
           expect { subject }.to raise_error(ActiveRecord::RecordNotFound)
@@ -154,6 +155,9 @@ describe Instructeurs::CommentairesController, type: :controller do
   end
 
   context 'as expert' do
+    let!(:experts_procedure) { create(:experts_procedure, expert: expert, procedure: procedure) }
+    let!(:avis) { create(:avis, dossier: dossier, experts_procedure: experts_procedure, claimant: instructeur) }
+
     before { sign_in(expert.user) }
 
     describe 'destroy' do
