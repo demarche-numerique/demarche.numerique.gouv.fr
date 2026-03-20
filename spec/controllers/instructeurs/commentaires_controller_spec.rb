@@ -128,6 +128,29 @@ describe Instructeurs::CommentairesController, type: :controller do
         end
       end
     end
+
+    describe 'IDOR protection' do
+      let(:other_procedure) { create(:procedure, :published, :for_individual) }
+      let(:other_dossier) { create(:dossier, :en_construction, :with_individual, procedure: other_procedure) }
+      let(:other_commentaire) { create(:commentaire, dossier: other_dossier) }
+
+      context 'destroy on a dossier the instructeur has no access to' do
+        subject { delete :destroy, params: { dossier_id: other_dossier.id, procedure_id: other_procedure.id, id: other_commentaire.id, statut: 'a-suivre' }, format: :turbo_stream }
+
+        it 'raises ActiveRecord::RecordNotFound' do
+          expect { subject }.to raise_error(ActiveRecord::RecordNotFound)
+        end
+      end
+
+      context 'cancel_correction on a dossier the instructeur has no access to' do
+        let!(:correction) { create(:dossier_correction, commentaire: other_commentaire, dossier: other_dossier) }
+        subject { post :cancel_correction, params: { dossier_id: other_dossier.id, procedure_id: other_procedure.id, id: other_commentaire.id, statut: 'a-suivre' }, format: :turbo_stream }
+
+        it 'raises ActiveRecord::RecordNotFound' do
+          expect { subject }.to raise_error(ActiveRecord::RecordNotFound)
+        end
+      end
+    end
   end
 
   context 'as expert' do
