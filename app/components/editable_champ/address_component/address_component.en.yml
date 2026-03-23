@@ -12,3 +12,4 @@ en:
   country_label: Country
   not_in_ban: I cannot find my address in the suggestions
   address_hint: 'Enter an address, a street, a city. Example: 11 rue Réaumur, Paris'
+  commune_not_in_api_geo: I can't find my city / municipality in the suggestions

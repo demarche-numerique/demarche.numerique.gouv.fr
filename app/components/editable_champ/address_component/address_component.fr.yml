@@ -12,3 +12,4 @@ fr:
   country_label: Pays
   not_in_ban: Je ne trouve pas mon adresse dans les suggestions
   address_hint: 'Saisissez une adresse, une voie, un lieu-dit ou une commune. Exemple : 11 rue Réaumur, Paris'
+  commune_not_in_api_geo: Je ne trouve pas ma ville / commune dans les suggestions
