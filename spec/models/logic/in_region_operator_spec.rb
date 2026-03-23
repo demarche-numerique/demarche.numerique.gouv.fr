@@ -28,6 +28,14 @@ describe Logic::InRegionOperator do
       it { expect(ds_in_region(champ_value(champ_commune.stable_id), constant('11')).compute([champ_commune])).to be(true) }
     end
 
+    context 'commune in fallback mode' do
+      let(:champ_commune_fallback) do
+        Champs::CommuneChamp.new(value: 'Ma commune', not_in_api_geo: 'true', stable_id: tdc_commune.stable_id, dossier:)
+      end
+
+      it { expect(ds_in_region(champ_value(champ_commune_fallback.stable_id), constant('11')).compute([champ_commune_fallback])).to be(false) }
+    end
+
     context 'epci' do
       it do
         expect(ds_in_region(champ_value(champ_epci.stable_id), constant('84')).compute([champ_epci])).to be(true)
