@@ -1,0 +1,18 @@
+.fr-fieldset__element{ class: class_names("hidden" => @champ.not_in_api_geo?) }
+  %react-fragment
+    = render ReactComponent.new "ComboBox/RemoteComboBox", **react_props
+
+.fr-fieldset__element
+  .fr-checkbox-group
+    = @form.check_box :not_in_api_geo, { id: @champ.focusable_input_id(:not_in_api_geo), class: "fr-input", checked: @champ.not_in_api_geo?, 'aria-labelledby': input_label_id(@champ, :not_in_api_geo) }, 'true', 'false'
+    = @form.label :not_in_api_geo, for: @champ.focusable_input_id(:not_in_api_geo), class: 'fr-label', id: input_label_id(@champ, :not_in_api_geo) do
+      = t('.not_in_api_geo')
+
+.fr-fieldset__element{ class: class_names("hidden" => !@champ.not_in_api_geo?) }
+  .fr-input-group
+    = @form.label :value, class: 'fr-label', for: @champ.focusable_input_id(:value), id: input_label_id(@champ, :value) do
+      - capture do
+        = t('.free_text_label')
+        - if @champ.required?
+          = render EditableChamp::AsteriskMandatoryComponent.new
+    = @form.text_field :value, id: @champ.focusable_input_id(:value), class: "fr-input", required: @champ.required?, disabled: !@champ.not_in_api_geo?, "aria-labelledby": input_label_id(@champ, :value)

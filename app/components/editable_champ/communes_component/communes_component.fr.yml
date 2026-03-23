@@ -1,3 +1,5 @@
 ---
 fr:
   search_error: "Une erreur est survenue lors de la recherche"
+  not_in_api_geo: "Je ne trouve pas ma ville / commune dans les suggestions"
+  free_text_label: "Ville ou commune"
