@@ -23,18 +23,11 @@
             aria-label="<%= t('.drop_zone_aria_label') %>"
             data-action="click->drop-target#openFilePicker keydown.enter->drop-target#openFilePicker keydown.space->drop-target#openFilePicker"
           >
-            <span
-              class="fr-icon-upload-line fr-hidden fr-unhidden-md"
-              aria-hidden="true"
-            ></span>
+            <span class="fr-icon-upload-line" aria-hidden="true"></span>
 
-            <p class="fr-mb-1v fr-hidden fr-unhidden-md">
-              <%= t('.drop_zone_label', count: @max) %>
-            </p>
+            <p class="fr-mb-1v"><%= t('.drop_zone_label', count: @max) %></p>
 
-            <p class="fr-hr-or fr-mb-2v fr-hidden fr-unhidden-md">
-              <%= t('.or') %>
-            </p>
+            <p class="fr-hr-or fr-mb-2v"><%= t('.or') %></p>
 
             <button
               class="fr-btn fr-btn--secondary fr-btn--sm"
