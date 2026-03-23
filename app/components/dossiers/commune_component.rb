@@ -8,7 +8,11 @@ class Dossiers::CommuneComponent < ApplicationComponent
   end
 
   def call
-    render Dossiers::ExternalChampComponent.new(data:, source:)
+    if champ.not_in_api_geo?
+      render Dossiers::ExternalChampComponent.new(data: fallback_data, source: fallback_source)
+    else
+      render Dossiers::ExternalChampComponent.new(data:, source:)
+    end
   end
 
   def self.data_labels
@@ -30,6 +34,14 @@ class Dossiers::CommuneComponent < ApplicationComponent
   end
 
   def source
-    "référentiels géographiques nationaux"
+    t('.source_api_geo')
+  end
+
+  def fallback_data
+    [[t('.municipality'), champ.value]]
+  end
+
+  def fallback_source
+    t('.source_free_text')
   end
 end

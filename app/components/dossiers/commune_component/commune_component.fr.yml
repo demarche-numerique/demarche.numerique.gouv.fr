@@ -2,3 +2,5 @@ fr:
   municipality: Commune
   insee_code: Code INSEE
   department: Département
+  source_api_geo: référentiels géographiques nationaux
+  source_free_text: saisie libre par l’usager
