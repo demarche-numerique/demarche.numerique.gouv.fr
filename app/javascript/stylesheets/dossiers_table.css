@@ -1,0 +1,33 @@
+
+.dossiers-table {
+  .fr-cell--fixed {
+/*  */
+  }
+
+  a:not(.fr-link) {
+/*  */
+  }
+
+  .fr-link {
+/*  */
+  }
+
+  .fr-badge {
+    white-space: nowrap;
+  }
+
+  .follow-col {
+    .fr-btn {
+      margin-bottom: 2px;
+      margin-top: 2px;
+    }
+  }
+}
+
+.file-hidden-by-user {
+  background-color: rgba(242, 137, 0, 0.6);
+
+  &:hover {
+    background-color: rgba(242, 137, 0, 0.6) !important;
+  }
+}

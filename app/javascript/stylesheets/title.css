@@ -1,0 +1,11 @@
+
+.huge-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 35px;
+  font-weight: bold;
+
+  @media (max-width: 980px) {
+    font-size: 25px;
+  }
+}

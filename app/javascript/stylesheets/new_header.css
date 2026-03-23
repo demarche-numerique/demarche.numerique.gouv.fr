@@ -1,0 +1,48 @@
+/* Target mobile version */
+.fr-header__menu.fr-modal {
+  /* Avoid overflow due to button width */
+  overflow-x: hidden;
+
+  .fr-btn {
+    margin-right: -0.25rem;
+    padding: 0.25rem 0.5rem;
+    width: auto;
+  }
+
+  /* Align links & buttons */
+  .fr-translate {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* Align list content with other items */
+  .fr-menu__list {
+    margin-left: 0.5rem;
+  }
+
+  /* Add space between button edge and content */
+  .fr-container
+    .fr-header__menu-links
+    .fr-btns-group.flex.align-center
+    .fr-translate.fr-nav
+    .fr-nav__item
+    .fr-translate__btn.fr-btn {
+    margin-right: 0;
+    margin-left: 0;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+
+  /* Remove border on when there is one item only */
+  .fr-nav__item:only-child::before {
+    box-shadow: none;
+  }
+}
+
+/* Avoid overflow when character spacing is modified */
+#modal-header__menu.fr-modal--opened {
+  .fr-container {
+    max-width: 100vw;
+    margin: 0;
+  }
+}

@@ -1,0 +1,8 @@
+
+#dossier-annotations-privees {
+  h1 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: var(--default-padding);
+  }
+}

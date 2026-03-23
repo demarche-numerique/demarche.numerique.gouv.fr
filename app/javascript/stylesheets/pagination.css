@@ -1,0 +1,9 @@
+
+.pagination {
+  text-align: center;
+  margin-bottom: 24px;
+
+  > span {
+    margin: 0 var(--default-spacer);
+  }
+}

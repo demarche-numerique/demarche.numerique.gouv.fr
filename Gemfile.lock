@@ -1118,7 +1118,6 @@ DEPENDENCIES
   rubocop-rspec
   ruby-openai
   saml_idp
-  sassc-rails
   selenium-devtools
   selenium-webdriver
   sentry-delayed_job

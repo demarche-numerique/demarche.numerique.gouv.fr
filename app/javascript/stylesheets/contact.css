@@ -1,0 +1,20 @@
+#contact-form {
+  margin: 0 auto;
+  padding-top: 30px;
+
+  .description {
+    padding-bottom: 30px;
+  }
+
+  .recommandations {
+    p {
+      font-size: 1.5rem;
+      font-weight: bold;
+      line-height: 1.5rem;
+    }
+  }
+
+  ul {
+    margin-bottom: 15px;
+  }
+}

@@ -1,0 +1,9 @@
+
+.errors-summary {
+  background: var(--background-red);
+  margin: (var(--default-spacer)) (calc(-1 * var(--default-spacer)));
+
+  ul {
+    padding: var(--default-spacer);
+  }
+}

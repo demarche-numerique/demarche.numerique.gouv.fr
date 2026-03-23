@@ -1,0 +1,67 @@
+
+.dossier-container {
+  .sub-header {
+    h1 {
+      font-size: 22px;
+      margin-bottom: 0;
+    }
+
+    h2 {
+      font-weight: bold;
+    }
+
+    .header-actions {
+      margin-bottom: var(--default-spacer);
+      display: flex;
+    }
+  }
+
+  .edit-identity-content {
+    padding: var(--default-padding) !important;
+    min-width: 250px !important;
+
+    .champ-row {
+      padding: 0;
+    }
+  }
+
+  .edit-identity-action {
+    .table {
+      margin-bottom: 32px;
+    }
+  }
+
+  .latest-message-section {
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    margin-bottom: 32px;
+
+    .button.send {
+      align-self: flex-end;
+    }
+  }
+}
+
+@media (min-width: 48em) {
+  .dossier-container {
+    .header-actions {
+      flex-direction: row;
+      justify-content: flex-end;
+      gap: 0 16px;
+    }
+  }
+}
+
+@media (max-width: 48em) {
+  .dossier-container .header-actions {
+    flex-direction: column;
+    justify-content: stretch;
+    gap: 16px 0;
+
+    .dropdown-button {
+      min-width: 100%;
+      white-space: normal;
+    }
+  }
+}

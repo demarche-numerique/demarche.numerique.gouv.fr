@@ -1,0 +1,68 @@
+
+.export-template-preview {
+  /* From https://codepen.io/myramoki/pen/xZJjrr */
+  .tree {
+    margin-left: 0;
+  }
+
+  .tree,
+  .tree ul {
+    padding: 0;
+    list-style: none;
+    position: relative;
+  }
+
+  .tree ul {
+/*  */
+  }
+
+  .tree:before,
+  .tree ul:before {
+    content: '';
+    display: block;
+    width: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 4px;
+    border-left: 1px dashed;
+  }
+
+  ul.tree:before {
+    border-left: none;
+  }
+
+  .tree li {
+    margin: 0;
+/*  */
+/*  */
+    position: relative;
+  }
+
+  .tree > li {
+/*  */
+  }
+
+  .tree li:before {
+    content: '';
+    display: block;
+/*  */
+    height: 0;
+    border-top: 1px dashed;
+/*  */
+    position: absolute;
+/*  */
+    left: 4px;
+  }
+
+  ul.tree > li:before {
+    border-top: none;
+  }
+
+  .tree li:last-child:before {
+/*  */
+    height: auto;
+/*  */
+    bottom: 0;
+  }
+}

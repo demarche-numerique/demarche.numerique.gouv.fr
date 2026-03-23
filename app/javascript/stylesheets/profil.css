@@ -1,0 +1,18 @@
+
+#profil-page {
+  b {
+    font-weight: bold;
+  }
+
+  .card {
+    margin: 24px 0;
+  }
+
+  p {
+    margin: 16px auto;
+  }
+
+  .email-address {
+    font-weight: bold;
+  }
+}

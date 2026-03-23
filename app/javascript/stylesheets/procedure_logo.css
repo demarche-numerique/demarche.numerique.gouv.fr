@@ -1,0 +1,12 @@
+
+.procedure-logo {
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+/*  */
+  background-position: 95% 50%;
+/*  */
+  height: 84px;
+  width: 84px;
+  margin-right: var(--default-padding);
+}

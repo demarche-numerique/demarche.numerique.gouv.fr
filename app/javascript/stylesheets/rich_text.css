@@ -1,0 +1,61 @@
+
+.rich-text:not(.piece_justificative):not(.titre_identite) {
+  i {
+    font-style: italic;
+  }
+
+  b {
+    font-weight: bold;
+  }
+
+  small {
+    font-size: 14px;
+  }
+
+  ol,
+  ul {
+    list-style: inside;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
+  blockquote {
+    margin: var(--default-padding) 0 var(--default-padding) var(--default-padding);
+  }
+
+  p {
+    margin-bottom: var(--default-padding);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: var(--default-padding);
+    line-height: 1;
+  }
+
+  h2 {
+    font-size: 32px;
+  }
+
+  h3 {
+    font-size: 28px;
+  }
+
+  h4 {
+    font-size: 24px;
+  }
+
+  h5 {
+    font-size: 20px;
+  }
+
+  h6 {
+    font-size: 16px;
+  }
+}

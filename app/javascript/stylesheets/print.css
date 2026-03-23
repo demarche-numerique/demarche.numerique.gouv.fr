@@ -1,0 +1,59 @@
+
+@media print {
+  .new-header,
+  .sub-header,
+  footer {
+    display: none;
+  }
+
+  .print-header {
+    display: block;
+    margin-top: 30px;
+    font-size: 30px;
+    line-height: 50px;
+    font-weight: bold;
+  }
+
+  body {
+    font-family: 'Marianne';
+  }
+
+  .subtitle {
+    margin-top: -20px;
+    color: var(--dark-grey);
+  }
+
+  th,
+  td {
+    vertical-align: top;
+  }
+
+  th {
+    text-align: left;
+
+    &.header-section {
+      padding-top: 1.2em;
+      font-size: 1.2em;
+    }
+  }
+
+  .messagerie {
+    .messages-list {
+      list-style: none;
+      padding-left: 0;
+      max-height: none;
+
+      h2 {
+        font-size: 110%;
+      }
+    }
+  }
+
+  .message {
+    margin-bottom: 40px;
+  }
+
+  .updated-at {
+    display: none;
+  }
+}

@@ -1,0 +1,89 @@
+
+.two-columns {
+  @media (min-width: 980px) {
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      transparent 50%,
+      var(--background-alt-blue-france) 50%,
+      var(--background-alt-blue-france) 100%
+    );
+  }
+
+  .columns-container {
+    /* TODO: https://github.com/demarche-numerique/demarche.numerique.gouv.fr/issues/7882, once implemented, we won't need container anymore */
+    padding-left: var(--default-padding);
+    padding-right: var(--default-padding);
+    max-width: calc(var(--page-width) + 32px);
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @media (min-width: 980px) {
+      flex-direction: row;
+      align-items: stretch;
+      justify-content: space-between;
+    }
+  }
+
+  .column {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 32px 0 0 0;
+
+    &:last-of-type {
+      padding-bottom: 32px;
+    }
+
+    @media (min-width: 980px) {
+      width: 45%;
+      margin: 0;
+      padding: var(--two-columns-padding) 0 var(--two-columns-padding) 0;
+
+      &:last-of-type {
+        padding-bottom: var(--two-columns-padding);
+      }
+    }
+  }
+}
+
+.one-column-centered {
+  margin: auto;
+  max-width: 520px;
+}
+
+.blank-tab {
+  text-align: center;
+}
+
+.sticky--top {
+  position: sticky;
+/*  */
+  top: 1rem;
+}
+
+.sticky--bottom {
+  position: sticky;
+/*  */
+  bottom: 0;
+
+/*  */
+}
+
+html.scroll-margins-for-sticky-footer {
+  scroll-padding-top: 3.5rem;
+  @media (max-width: 980px) {
+    scroll-padding-bottom: 9.5rem;
+    /* 9.5rem = padding-top + text height + button height + line-height + padding-bottom + empty space */
+    /* 9.5rem = 0.5 + 1.5✕2 + 2.5 + 1 + 0.5 + 2 */
+  }
+
+  @media (min-width: 980px) {
+    scroll-padding-bottom: 6.5rem;
+    /* 6.5rem = padding-top + height + padding-bottom + empty space */
+    /* 6.5rem = 1 + 2.5 + 1 + 2 */
+  }
+}

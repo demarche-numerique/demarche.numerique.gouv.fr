@@ -1,0 +1,26 @@
+.counter-start-header-section {
+  counter-reset: h2;
+
+  .reset-h2 {
+    counter-reset: h3;
+  }
+
+  .reset-h3 {
+    counter-reset: h4;
+  }
+
+  .header-section.section-3::before {
+    counter-increment: h2;
+    content: counter(h2) '. ';
+  }
+
+  .header-section.section-4::before {
+    counter-increment: h3;
+    content: counter(h2) '.' counter(h3) '. ';
+  }
+
+  .header-section.section-5::before {
+    counter-increment: h4;
+    content: counter(h2) '.' counter(h3) '.' counter(h4) '. ';
+  }
+}

@@ -1,0 +1,11 @@
+
+.label {
+  display: inline-block;
+  padding: 4px var(--default-spacer);
+  background: var(--dark-grey);
+  border: 1px solid transparent;
+  color: #ffffff;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 18px;
+}

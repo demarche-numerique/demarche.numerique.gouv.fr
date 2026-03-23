@@ -1,0 +1,136 @@
+
+.types-de-champ-editor {
+  > .types-de-champ-block {
+    padding-left: 0;
+
+    .types-de-champ-errors {
+      background-color: var(--background-red);
+      padding: var(--default-padding);
+    }
+  }
+
+  .type-de-champ {
+    width: 100%;
+    margin-bottom: var(--default-padding);
+    overflow: hidden;
+    scroll-margin: 1em;
+
+    .type-de-champ-container {
+      width: 100%;
+      border: 1px solid var(--border-default-grey);
+      padding-top: 12px;
+      border-left-width: 4px;
+      border-radius: 5px;
+      margin-bottom: 24px;
+      box-shadow: 0px 2px 4px -4px;
+    }
+
+    &.type-header-section {
+      .type-de-champ-container {
+        border-left: 4px solid var(--background-action-high-blue-france);
+      }
+    }
+
+    .handle {
+      cursor: grab;
+
+      &:hover {
+        background-color: var(--hover-tint);
+      }
+    }
+
+    .right {
+      flex-grow: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    &.first .move-up {
+      display: none;
+    }
+
+    &.last .move-down {
+      display: none;
+    }
+
+    .flex {
+      &.flex-gap {
+        column-gap: 16px;
+      }
+
+      &.section {
+        padding: var(--default-spacer) 16px;
+
+        &.footer {
+          padding: 1.40px 16px;
+          border-top: 1px solid var(--border-default-grey);
+        }
+      }
+    }
+
+    legend {
+      text-transform: uppercase;
+      padding: 0;
+      margin: 0;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .cell {
+      .checkboxes-fieldset {
+        padding: 0;
+        margin: 0;
+      }
+
+      .fr-fieldset {
+        margin-bottom: 0;
+      }
+
+      label:not(.fr-label),
+      legend label,
+      .fake-label {
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        font-size: 12px;
+      }
+    }
+
+    .carte-options {
+      label {
+        font-weight: initial;
+      }
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--white);
+    width: 100%;
+    border: 1px solid var(--border-grey);
+    padding: 30px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom: none;
+    padding-bottom: 15px;
+    padding-top: 15px;
+/*  */
+  }
+
+  .fill-duration {
+    align-self: center;
+    font-size: 14px;
+
+    a {
+      /* Remove the icon indicating an external link (for less visual noise) */
+      &[target='_blank']::after {
+        display: none;
+      }
+    }
+  }
+}
+
+#summary nav ul {
+  height: 80vh;
+  overflow: auto;
+}

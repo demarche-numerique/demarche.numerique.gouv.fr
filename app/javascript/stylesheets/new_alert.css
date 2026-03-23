@@ -1,0 +1,42 @@
+.alert {
+  &:before {
+    margin-right: 3px;
+  }
+  a {
+    color: inherit;
+  }
+}
+
+.alert-danger {
+  color: #fff;
+  background-color: var(--error-425-625);
+}
+
+:root[data-fr-theme='dark'] .alert-danger {
+  color: var(--text-default-error);
+  background-color: var(--background-contrast-error);
+}
+
+.alert-success {
+  color: #fff;
+  background-color: var(--success-425-625);
+}
+
+:root[data-fr-theme='dark'] .alert-success {
+  color: var(--text-default-success);
+  background-color: var(--background-contrast-success);
+}
+
+.alert-fixed {
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%);
+  max-width: 700px;
+  top: 10px;
+  border-radius: 10px;
+  /* highest z-index is modal with */
+  /*  .fr-modal__body { z-index: calc(var(--ground) + 2000); } */
+  /*  .fr-modal { z-index: 1750; } */
+  /* so we position the alert below the modal */
+  z-index: calc(var(--ground) + 1250);
+}

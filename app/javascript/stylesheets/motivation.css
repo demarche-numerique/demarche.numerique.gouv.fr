@@ -1,0 +1,47 @@
+
+.motivation {
+  width: 450px;
+
+  h3 {
+    font-size: 22px;
+    margin-bottom: 16px;
+    line-height: 1.5;
+
+    .icon {
+      vertical-align: sub;
+      margin-right: var(--default-spacer);
+    }
+  }
+
+  textarea {
+    margin-bottom: var(--default-spacer);
+    min-height: 10em;
+  }
+
+  .help {
+    color: var(--dark-grey);
+    font-size: 11px;
+    margin-bottom: 16px;
+  }
+
+  .warning {
+    background-color: var(--orange-bg);
+    padding: var(--default-spacer);
+    margin-bottom: 16px;
+    border-radius: 3px;
+
+    h4 {
+      margin-top: var(--default-spacer);
+      font-weight: bold;
+    }
+
+    ul {
+      list-style: disc;
+      padding-left: calc(1.5 * var(--default-spacer));
+    }
+  }
+
+  input[data-direct-upload-url] {
+    width: 100%;
+  }
+}

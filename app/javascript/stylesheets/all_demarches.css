@@ -1,0 +1,40 @@
+.sidebar-filter {
+  border: none;
+  padding-left: 0;
+
+  ul {
+    list-style: none;
+    padding-inline-start: 0;
+    border-top: 1px solid var(--border-plain-grey);
+  }
+
+  li {
+    border-bottom: 1px solid var(--border-plain-grey);
+  }
+
+  button {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  legend {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .reinit a {
+    background-image: none;
+  }
+}
+
+.main-filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

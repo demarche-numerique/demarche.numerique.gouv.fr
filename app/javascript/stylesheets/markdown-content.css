@@ -1,0 +1,20 @@
+.markdown-content {
+  img {
+    max-width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+    display: block;
+
+    /* In markdown img are always wrapped in p, */
+    /* which already contains vertical margin. */
+    /* We only add margin when there are siblings. */
+    /* NOTE: CSS consider the img is only-child even */
+    /* when there are only text node siblings, but it's still fine for us. */
+    margin: 1.5rem auto;
+
+    &:only-child {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}

@@ -1,0 +1,64 @@
+
+[data-fr-theme='dark'] .card {
+  background: none;
+  border: 1px solid var(--background-action-low-blue-france);
+}
+
+.card {
+  padding: 24px 16px;
+  border: 1px solid var(--border-grey);
+  margin-bottom: 32px;
+  background: #ffffff;
+
+  .logo {
+    width: auto;
+    max-width: 50px;
+    height: 100%;
+    margin-right: 16px;
+  }
+
+  &.feedback {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 16px 32px;
+    font-size: small;
+    border: 1px dashed var(--border-grey);
+    background: var(--light-yellow);
+
+    .card-title {
+      margin-bottom: var(--default-spacer);
+    }
+
+    b {
+      font-weight: bold;
+    }
+  }
+
+  &.no-list {
+    ul {
+      list-style: none !important;
+      padding-left: 0;
+    }
+  }
+
+  ol {
+    list-style-type: decimal;
+    list-style-position: inside;
+    padding-left: var(--default-padding);
+  }
+
+  p:not(:last-of-type) {
+    margin-bottom: var(--default-spacer);
+  }
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 1.5rem;
+  margin-bottom: 16px;
+
+  a:not(:hover) {
+/*  */
+  }
+}

@@ -1,0 +1,106 @@
+
+.page-title {
+  font-size: 30px;
+  font-weight: normal;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.tab-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: var(--default-padding);
+
+  .highlighted {
+    font-size: 16px;
+    font-weight: normal;
+  }
+}
+
+.tab-list,
+.tab-paragraph {
+  margin-bottom: 32px;
+}
+
+.header-actions {
+  flex-shrink: 0;
+
+  .button {
+    /* Needed so that buttons without text */
+    /* are ligned with those that have text */
+    vertical-align: top;
+  }
+
+  .label {
+    padding: var(--default-spacer) var(--default-padding);
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+.print-menu-opener {
+  position: relative;
+}
+
+.dropdown-export.dropdown-content {
+  width: 450px;
+
+  a {
+    text-decoration: underline;
+  }
+}
+
+.dropdown-label.dropdown-content {
+  min-width: 390px;
+}
+
+.print-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 45px;
+  font-size: 14px;
+  background: #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-grey);
+  min-width: 270px;
+  max-width: 340px;
+  z-index: 20;
+
+  &.open {
+    display: block;
+  }
+
+  li {
+    border-bottom: 1px solid var(--border-grey);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .menu-item {
+      align-items: center;
+      padding: 14px;
+      color: var(--dark-grey);
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      img {
+        margin-right: 14px;
+      }
+    }
+
+    .menu-link {
+      display: flex;
+      color: var(--black);
+
+      &:hover {
+        background: var(--light-grey);
+      }
+    }
+  }
+}
+
+.print-header {
+  display: none;
+}

@@ -1,0 +1,29 @@
+span.notifications {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background-color: var(--background-flat-warning);
+}
+
+.fr-tabs__list span.notifications {
+  z-index: 2;
+  top: 5px;
+  right: 8px;
+}
+
+.fr-nav {
+  &__notifiable {
+    position: relative;
+  }
+
+  .fr-nav__link + .notifications {
+    top: 1rem;
+    right: 0.25rem;
+  }
+
+  .fr-nav__btn .notifications {
+    top: 0;
+    right: -0.25rem;
+  }
+}

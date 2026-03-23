@@ -1,0 +1,97 @@
+
+/* Toggle-switch */
+/* The switch - the box around */
+.form label.toggle-switch {
+  position: relative;
+  display: inline-block;
+  height: 24px;
+  margin: 0;
+  margin-right: 15px;
+
+  margin-bottom: var(--default-fields-spacer);
+
+  &.small-margin {
+    margin-bottom: var(--default-spacer);
+  }
+
+  &.no-margin {
+    margin-bottom: 0;
+  }
+}
+
+/* Hide default HTML checkbox */
+.form label.toggle-switch input[type='checkbox'] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+/* The control */
+.toggle-switch-control {
+  position: absolute;
+  width: 47px;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--border-grey);
+  transition: 0.4s;
+  border: 1px solid transparent;
+}
+
+.toggle-switch-control::before {
+  position: absolute;
+  content: '';
+  height: 20px;
+  width: 20px;
+  left: 1px;
+  bottom: 1px;
+  background-color: var(--white);
+  transition: 0.4s;
+}
+
+input:checked + .toggle-switch-control {
+  background-color: var(--green);
+}
+
+input:focus + .toggle-switch-control {
+  border-color: var(--blue-france-500);
+  box-shadow: 0px 0px 2px 1px var(--blue-france-500);
+}
+
+input:checked + .toggle-switch-control::before {
+  transform: translateX(23px);
+}
+
+.toggle-switch-label {
+  margin-left: 47px;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.toggle-switch-label.on {
+  color: var(--green);
+}
+
+.toggle-switch-label.off {
+  color: var(--grey);
+}
+
+.toggle-switch-checkbox:checked ~ .toggle-switch-label.off {
+  display: none;
+}
+
+.toggle-switch-checkbox:not(:checked) ~ .toggle-switch-label.on {
+  display: none;
+}
+
+/* Rounded control */
+.toggle-switch-control.round {
+  border-radius: 24px;
+}
+
+.toggle-switch-control.round::before {
+  border-radius: 50%;
+}

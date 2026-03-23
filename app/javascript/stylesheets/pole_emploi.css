@@ -1,0 +1,28 @@
+
+table.pole-emploi {
+  margin: 32px 0 var(--default-padding) var(--default-padding);
+  width: 100%;
+
+  caption {
+    font-weight: bold;
+    margin-left: calc(-1 * var(--default-padding));
+    margin-bottom: var(--default-spacer);
+    text-align: left;
+  }
+
+  th,
+  td {
+    font-weight: normal;
+    padding: var(--default-spacer);
+  }
+
+  th.text-right {
+    text-align: right;
+  }
+
+  &.horizontal {
+    th {
+      border-bottom: 1px solid var(--grey);
+    }
+  }
+}

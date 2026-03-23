@@ -1,0 +1,13 @@
+.chart {
+  width: 100%;
+}
+
+.big-number-card-number {
+  display: block;
+  text-align: center;
+  font-size: 4.5rem;
+  line-height: 1.5em;
+  font-weight: bold;
+  color: var(--text-title-blue-france);
+  white-space: nowrap;
+}

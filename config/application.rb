@@ -43,7 +43,6 @@ module TPS
     config.i18n.available_locales = [:fr, :en]
     config.i18n.fallbacks = [:fr]
 
-    config.assets.paths << Rails.root.join('app', 'assets', 'javascript')
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
     config.assets.precompile += ['.woff']
 

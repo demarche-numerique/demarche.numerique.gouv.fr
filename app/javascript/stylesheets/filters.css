@@ -1,0 +1,42 @@
+
+#editable-filters-component {
+  .fr-fieldset,
+  .fr-ds-combobox__multiple {
+    margin-bottom: 0 !important;
+  }
+
+  .fr-fieldset__legend {
+    min-width: fit-content;
+    max-width: 400px;
+  }
+
+  .default-filter {
+    max-width: 300px;
+
+    /* Hide the up and down arrows for number input */
+    input[type='number'] {
+      -moz-appearance: textfield;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+  }
+}
+
+#customize-filters-component {
+  .filter-box {
+    border: 2px dashed var(--blue-france-700);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+#toggle-apply-all-tabs-form {
+  border-top: 1px solid var(--border-contrast-grey);
+}

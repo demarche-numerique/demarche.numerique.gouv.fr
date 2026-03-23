@@ -1,0 +1,47 @@
+
+.table {
+  /* TODO : tester de remplacer par l'élément table uniquement */
+  width: 100%;
+
+  tbody tr {
+    border-top: 1px solid var(--border-default-grey);
+  }
+
+  td,
+  th[scope='row'] {
+    padding-top: var(--default-spacer);
+    padding-bottom: var(--default-spacer);
+    vertical-align: middle;
+  }
+
+  th,
+  td.libelle {
+    text-align: left;
+    font-weight: bold;
+    padding: 24px 2px;
+
+    &.padded {
+      padding-left: 16px;
+    }
+  }
+
+  &.vertical {
+    font-size: 16px;
+    line-height: 22px;
+
+    tr {
+      border-top: none;
+    }
+
+    th,
+    td.libelle {
+      padding-top: var(--default-spacer);
+      padding-bottom: var(--default-spacer);
+
+      &.header-section {
+        color: var(--blue-france-500);
+        font-size: 20px;
+      }
+    }
+  }
+}

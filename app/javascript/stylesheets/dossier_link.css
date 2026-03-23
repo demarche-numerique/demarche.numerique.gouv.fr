@@ -1,0 +1,15 @@
+
+.dossier-link {
+  .help-block > p {
+    margin-top: calc(-1 * var(--default-padding));
+    margin-bottom: 32px;
+  }
+
+  .text-info {
+    color: var(--blue-france-500);
+  }
+
+  .text-warning {
+    color: var(--dark-red);
+  }
+}

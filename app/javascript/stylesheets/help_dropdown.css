@@ -1,0 +1,19 @@
+
+.help-dropdown {
+  .dropdown-content {
+    width: 360px;
+  }
+}
+
+.dropdown-items li.help-dropdown-service {
+  cursor: default;
+
+  &:hover {
+    background: inherit;
+  }
+
+  a {
+    display: inline;
+    color: var(--blue-france-500);
+  }
+}

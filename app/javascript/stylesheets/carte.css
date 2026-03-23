@@ -1,0 +1,55 @@
+
+.areas {
+  margin-bottom: 10px;
+
+  input {
+    margin-top: 5px;
+  }
+}
+
+.ds-ctrl button {
+  color: var(--dark-grey);
+
+  &.on,
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
+
+.react-aria-popover {
+  &[data-placement='top'] {
+    --origin: translateY(8px);
+  }
+
+  &[data-placement='bottom'] {
+    --origin: translateY(-8px);
+  }
+
+  &[data-placement='right'] {
+    --origin: translateX(-8px);
+  }
+
+  &[data-placement='left'] {
+    --origin: translateX(8px);
+  }
+
+  &[data-entering] {
+    animation: popover-slide 200ms;
+  }
+
+  &[data-exiting] {
+    animation: popover-slide 200ms reverse ease-in;
+  }
+}
+
+@keyframes popover-slide {
+  from {
+    transform: var(--origin);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

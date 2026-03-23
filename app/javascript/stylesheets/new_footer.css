@@ -1,0 +1,21 @@
+.footer-logo:hover {
+  opacity: 0.8;
+}
+
+.fr-footer__logo {
+  &.logo-beta-gouv-fr {
+    width: 9rem;
+  }
+}
+
+.fr-footer__top-link p {
+  margin-bottom: 0;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+}
+
+.fr-footer .fr-download__link {
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  color: var(--text-default-grey);
+}

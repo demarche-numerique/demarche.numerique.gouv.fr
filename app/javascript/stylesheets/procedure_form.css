@@ -1,0 +1,101 @@
+
+.procedure-form .page-title {
+  text-align: left;
+}
+
+.procedure-form__columns {
+  display: flex;
+  margin-top: calc(-1 * var(--sub-header-bottom-margin));
+}
+
+/* We want to make the form as large as possible, */
+/* without shrinking the preview too much. */
+/* */
+/* A balanced compromised seems to make the form */
+/* slighly larger than the preview (flex 10/9), and */
+/* to reduce the margins on the preview as much as */
+/* possible. */
+.procedure-form__column--form {
+  flex: 10;
+  padding: 0 var(--default-padding);
+
+  input[type='file'] {
+/*  */
+  }
+
+  &.no-background {
+    background-color: transparent;
+  }
+}
+
+.procedure-form__column--preview {
+  flex: 9;
+  padding: 0 32px;
+  /* Gain a little horizontal space by using the white */
+  /* space on the right as our margin. */
+  padding-right: 0;
+}
+
+/* Hide the preview panel on smaller screens */
+@media screen and (max-width: 800px) {
+  .procedure-form__column--preview {
+    display: none;
+  }
+}
+
+.procedure-form__preview .procedure-preview {
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.procedure-form__preview-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  opacity: 0.5;
+  margin-top: 32px;
+  margin-bottom: 64px;
+
+  .notice {
+    color: var(--dark-grey);
+    font-size: 16px;
+    font-weight: normal;
+  }
+}
+
+[data-fr-theme='dark'] .procedure-form__actions {
+  background: var(--background-action-low-blue-france);
+  border-top: 1px solid var(--background-action-low-blue-france-hover);
+}
+
+.procedure-form__actions {
+  display: flex;
+  padding: var(--default-spacer) var(--default-padding);
+  background: var(--light-grey);
+  border-top: 1px solid var(--border-grey);
+  justify-content: space-between;
+  align-items: center;
+
+  .button.send {
+    margin-left: auto;
+  }
+
+  .actions-left {
+    margin-right: auto;
+  }
+
+  .actions-right {
+    margin-left: auto;
+  }
+}
+
+.procedure-form__options-details {
+  margin-bottom: var(--default-padding);
+}
+
+.procedure-form__options-summary {
+  cursor: pointer;
+
+  h3 {
+    display: inline-block;
+  }
+}

@@ -1,0 +1,11 @@
+
+.code-block {
+  background-color: var(--black);
+  color: var(--white);
+  border-radius: 3px;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  overflow: auto;
+}

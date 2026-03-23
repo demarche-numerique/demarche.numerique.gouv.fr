@@ -1,0 +1,57 @@
+
+#map-svg {
+  max-width: 100%;
+  height: auto;
+}
+
+#map-infos {
+  min-width: 328px;
+}
+
+.departement.nothing {
+  fill: #e3e3fd;
+}
+
+.departement.small {
+  fill: #cacafb;
+}
+
+.departement.medium {
+  fill: #8585f6;
+}
+
+.departement.large {
+  fill: #313178;
+}
+
+.departement.xlarge {
+  fill: #272747;
+}
+
+.legends {
+  .legend {
+    width: 60px;
+    height: 10px;
+    display: inline-block;
+  }
+
+  .nothing {
+    background-color: #e3e3fd;
+  }
+
+  .small {
+    background-color: #cacafb;
+  }
+
+  .medium {
+    background-color: #8585f6;
+  }
+
+  .large {
+    background-color: #313178;
+  }
+
+  .xlarge {
+    background-color: #272747;
+  }
+}

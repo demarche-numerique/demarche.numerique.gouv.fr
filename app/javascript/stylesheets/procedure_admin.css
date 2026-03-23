@@ -1,0 +1,32 @@
+.procedure-admin-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+
+  .button {
+    margin-right: 10px;
+  }
+
+  a {
+/*  */
+  }
+}
+
+.procedure-admin-listing-container {
+  margin-left: auto;
+}
+
+.container {
+  a {
+    overflow-wrap: break-word;
+  }
+}
+
+.admin-metadata {
+  margin-top: -8px;
+  margin-bottom: 8px;
+
+  li {
+    font-size: 14px;
+  }
+}

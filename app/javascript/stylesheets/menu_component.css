@@ -1,0 +1,8 @@
+
+.menu-component-header {
+  font-size: 12px;
+
+  a {
+    text-decoration: underline;
+  }
+}

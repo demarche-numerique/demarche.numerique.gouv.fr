@@ -1,0 +1,19 @@
+
+.code-example {
+  background-color: var(--background-contrast-grey);
+
+  .example-header {
+    display: flex;
+    background-color: var(--background-alt-grey);
+    align-items: center;
+
+    .lang {
+      margin-right: auto;
+      padding: var(--default-padding);
+    }
+  }
+
+  pre {
+    padding: 0 var(--default-padding);
+  }
+}

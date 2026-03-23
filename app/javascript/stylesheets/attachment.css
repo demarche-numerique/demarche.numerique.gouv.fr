@@ -1,0 +1,140 @@
+.attachment-error {
+  position: relative;
+
+  &::before {
+    box-shadow: inset 2px 0 0 0 var(--border-plain-error);
+    height: 100%;
+    content: '';
+    left: -0.75rem;
+    position: absolute;
+    width: 2px;
+  }
+
+  .attachment-filename {
+    color: var(--text-default-error);
+  }
+}
+
+.attachment-error {
+  .fr-error-text {
+    margin-top: 0.5rem;
+  }
+}
+
+/* New unified attachment field styles */
+.attachment-field {
+  /* Common styles for all attachment fields */
+
+  /* Anti-virus badge for just uploaded attachment when seen as downloadable */
+  .fr-download + .fr-badge {
+    position: relative;
+    top: -1rem;
+  }
+
+  .fr-btn {
+    align-self: flex-start;
+  }
+
+  &.attachment-field--single {
+    /* Styles for single file (max=1) */
+  }
+
+  &.attachment-field--multiple {
+    /* Styles for multiple files (max>1) */
+    &:not(.fr-downloads-group),
+    &.fr-downloads-group[data-controller='replace-attachment'] {
+      ul {
+        list-style-type: none;
+        padding-inline-start: 0;
+      }
+
+      li {
+        padding-bottom: 0;
+      }
+    }
+
+    &.fr-downloads-group.destroyable ul {
+      list-style-type: none;
+      padding-inline-start: 0;
+    }
+  }
+}
+
+.attachment {
+  /* Anti-virus badge for just uploaded attachment when seen as downloadable */
+  .fr-download + .fr-badge {
+    position: relative;
+    top: -1rem;
+  }
+
+  .fr-btn {
+    align-self: flex-start;
+  }
+}
+.attachment-files-list {
+  .fr-download {
+    margin-bottom: 0.5rem;
+  }
+
+  li + li {
+    margin-top: 0.5rem;
+  }
+}
+
+.attachment-row:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Legacy support */
+ul[data-file-input-reset-target='fileList'] {
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+
+.attachment-drop-zone {
+  .attachment-drop-area {
+    width: 100%;
+    border: 2px dashed var(--border-default-grey);
+    border-radius: 0.25rem;
+    cursor: pointer;
+    text-align: center;
+    background-color: var(--grey-975-100);
+    transition:
+      border-color 0.2s,
+      border-style 0.2s,
+      background-color 0.2s;
+
+    @media (max-width: 48em) {
+      border: none;
+      background-color: transparent;
+      text-align: left;
+      padding: 0 !important;
+
+      .fr-icon-upload-line,
+      p {
+        display: none;
+      }
+    }
+  }
+  .fr-hr-or {
+    max-width: 90px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &.attachment-drop-zone--active .attachment-drop-area {
+    border-color: var(--border-active-blue-france);
+    background-color: var(--background-alt-blue-france);
+    border-style: solid;
+  }
+
+  /* Hide the native file input visually — it stays functional via openFilePicker */
+  input[type='file'] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+}

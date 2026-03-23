@@ -1,0 +1,20 @@
+
+.sub-header {
+  background-color: var(--background-alt-blue-france);
+  padding-top: var(--default-padding);
+  margin-bottom: var(--sub-header-bottom-margin);
+  border-bottom: 1px solid var(--border-default-grey);
+
+  .fr-container {
+    margin-bottom: -1px;
+  }
+
+  .breadcrumbs {
+    list-style: none;
+    padding-inline-start: 0;
+
+    a:not(:hover) {
+/*  */
+    }
+  }
+}

@@ -1,0 +1,11 @@
+.groupe-instructeur {
+  .setup {
+    text-align: center;
+    width: 100px;
+  }
+
+  .actions {
+    text-align: center;
+    width: 250px;
+  }
+}

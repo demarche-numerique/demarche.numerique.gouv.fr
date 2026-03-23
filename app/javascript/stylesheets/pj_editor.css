@@ -1,0 +1,15 @@
+.pj-editor {
+  min-height: 100vh;
+
+  .header {
+    background-color: var(--background-alt-blue-france);
+  }
+
+  .footer {
+    border-top: 2px solid var(--border-plain-blue-france);
+  }
+
+  embed {
+    height: 100%;
+  }
+}
