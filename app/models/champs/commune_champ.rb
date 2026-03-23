@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class Champs::CommuneChamp < Champs::TextChamp
-  store_accessor :value_json, :code_departement, :code_postal, :code_region
+  store_accessor :value_json, :code_departement, :code_postal, :code_region, :not_in_api_geo
   before_save :on_codes_change, if: :should_refresh_after_code_change?
+  before_save :on_not_in_api_geo_change, if: :value_json_changed?
 
-  validates :external_id, presence: true, if: -> { value.present? && should_validate_in_current_context? }
+  validates :external_id, presence: true, if: -> { in_api_geo? && value.present? && should_validate_in_current_context? }
   after_validation :instrument_external_id_error, if: -> { errors.include?(:external_id) }
 
   def departement_name
@@ -36,7 +37,19 @@ class Champs::CommuneChamp < Champs::TextChamp
   alias postal_code code_postal
 
   def name
-    APIGeoService.safely_normalize_city_name(code_departement, code, safe_to_s)
+    if not_in_api_geo?
+      safe_to_s
+    else
+      APIGeoService.safely_normalize_city_name(code_departement, code, safe_to_s)
+    end
+  end
+
+  def not_in_api_geo?
+    not_in_api_geo == 'true'
+  end
+
+  def in_api_geo?
+    !not_in_api_geo?
   end
 
   def code
@@ -57,6 +70,8 @@ class Champs::CommuneChamp < Champs::TextChamp
 
   def code=(code)
     if code.blank?
+      return if not_in_api_geo?
+
       self.code_departement = nil
       self.code_postal = nil
       self.external_id = nil
@@ -102,7 +117,20 @@ class Champs::CommuneChamp < Champs::TextChamp
   end
 
   def should_refresh_after_code_change?
-    !departement? || code_postal_changed? || external_id_changed?
+    in_api_geo? && (!departement? || code_postal_changed? || external_id_changed?)
+  end
+
+  def on_not_in_api_geo_change
+    previous_not_in_api_geo = value_json_was&.dig('not_in_api_geo')
+
+    if not_in_api_geo == 'true' && previous_not_in_api_geo != 'true'
+      self.external_id = nil
+      self.code_departement = nil
+      self.code_postal = nil
+      self.code_region = nil
+    elsif not_in_api_geo != 'true' && previous_not_in_api_geo == 'true'
+      self.value = nil
+    end
   end
 
   def instrument_external_id_error

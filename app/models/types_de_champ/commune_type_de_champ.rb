@@ -24,7 +24,13 @@ class TypesDeChamp::CommuneTypeDeChamp < TypesDeChamp::TypeDeChampBase
   end
 
   def champ_value(champ)
-    champ.code_postal? ? "#{champ.name} (#{champ.code_postal})" : champ.name
+    if champ.not_in_api_geo?
+      champ.value.to_s
+    elsif champ.code_postal?
+      "#{champ.name} (#{champ.code_postal})"
+    else
+      champ.name
+    end
   end
 
   def columns(procedure:, displayable: true, prefix: nil)
