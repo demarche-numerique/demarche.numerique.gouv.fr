@@ -78,6 +78,29 @@ describe TypeDeChamp do
       end
     end
 
+    describe 'changing the type_champ clears referentiel_id' do
+      let(:csv_referentiel) { create(:csv_referentiel) }
+      let(:tdc) { create(:type_de_champ_drop_down_list, referentiel: csv_referentiel) }
+
+      context 'from drop_down_list to referentiel' do
+        before { tdc.update(type_champ: TypeDeChamp.type_champs.fetch(:referentiel)) }
+
+        it { expect(tdc.referentiel_id).to be_nil }
+      end
+
+      context 'from drop_down_list to text' do
+        before { tdc.update(type_champ: TypeDeChamp.type_champs.fetch(:text)) }
+
+        it { expect(tdc.referentiel_id).to be_nil }
+      end
+
+      context 'from drop_down_list to multiple_drop_down_list (both use csv referentiel)' do
+        before { tdc.update(type_champ: TypeDeChamp.type_champs.fetch(:multiple_drop_down_list)) }
+
+        it { expect(tdc.referentiel_id).to be_nil }
+      end
+    end
+
     describe 'changing the type_champ from a drop_down_list' do
       let(:tdc) { create(:type_de_champ_drop_down_list) }
 

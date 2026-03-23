@@ -241,6 +241,7 @@ class TypeDeChamp < ApplicationRecord
   before_validation :reset_pj_format_options_if_forced_nature
 
   before_save :remove_attachment, if: -> { type_champ_changed? }
+  before_save :clean_referentiel
 
   def valid?(context = nil)
     super
@@ -899,6 +900,11 @@ class TypeDeChamp < ApplicationRecord
     elsif !explication? && notice_explicative.attached?
       notice_explicative.purge_later
     end
+  end
+
+  def clean_referentiel
+    return unless persisted? && type_champ_changed? && referentiel_id?
+    self.referentiel_id = nil
   end
 
   def set_drop_down_list_options
