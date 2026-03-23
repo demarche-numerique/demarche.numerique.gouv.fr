@@ -9,7 +9,7 @@ en:
     reserves_biologiques: Réserves biologiques
     reserves_naturelles: Réserves naturelles
     natura_2000: Natura 2000
-    zones_humides: Zones humides d’importance internationale
+    zones_humides: Zones humides d'importance internationale
     znieff: ZNIEFF
   character_limit:
     unlimited: No character limitation
@@ -39,3 +39,4 @@ en:
   template_label: "Template file proposed to the user"
   families_legend: "ACCEPTED FORMAT(S)"
   tooltip_examples: "Examples: %{examples}..."
+  commune_warning: "Do not use this field for birth municipalities."

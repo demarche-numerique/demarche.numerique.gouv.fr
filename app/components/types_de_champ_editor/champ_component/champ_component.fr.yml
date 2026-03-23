@@ -45,3 +45,4 @@ fr:
   multiple_files_hint: "Les usagers pourront joindre plusieurs fichiers si nécessaire."
   families_legend: "FORMAT(S) ACCEPTÉ(S)"
   tooltip_examples: "Exemples : %{examples}..."
+  commune_warning: "Ne pas utiliser ce champ pour les communes de naissance."
