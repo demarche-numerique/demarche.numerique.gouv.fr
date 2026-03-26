@@ -83,6 +83,20 @@ class Attachment::FileFieldComponent < ApplicationComponent
     champ.present? ? "attachment-progress-#{champ.public_id}" : "attachment-progress-generic"
   end
 
+  def processing_status_id
+    champ.present? ? "attachment-processing-status-#{champ.public_id}" : "attachment-processing-status-generic"
+  end
+
+  def processing_status_text
+    @attachments.filter_map do |attachment|
+      if attachment.watermark_pending?
+        I18n.t("watermark_pending", scope: "attachment/progress_component")
+      elsif attachment.virus_scanner.pending?
+        I18n.t("antivirus_pending", scope: "attachment/progress_component")
+      end
+    end.join(" ")
+  end
+
   def describedby_hint_id
     return nil if champ.nil?
     "#{champ.focusable_input_id}-hint"

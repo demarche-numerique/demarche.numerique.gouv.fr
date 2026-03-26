@@ -64,7 +64,7 @@ export class AutoUpload {
 
     const message = this.messageFromError(error);
 
-    // Display error in the progress bar instead of destroying it
+    // Display error in the progress bar
     this.#uploader.progressBar.error(message.title);
 
     // Add retry button listener if retry is allowed
