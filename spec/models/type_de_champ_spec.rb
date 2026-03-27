@@ -1,6 +1,35 @@
 # frozen_string_literal: true
 
 describe TypeDeChamp do
+  describe 'CATEGORIES' do
+    it 'defines exactly 6 categories' do
+      expect(TypeDeChamp::CATEGORIES.size).to eq(6)
+    end
+
+    it 'maps every type_champ to a category' do
+      TypeDeChamp.type_champs.each_key do |type_champ|
+        expect(TypeDeChamp::TYPE_DE_CHAMP_TO_CATEGORIE).to have_key(type_champ.to_sym),
+          "Missing category for type_champ: #{type_champ}"
+      end
+    end
+  end
+
+  describe 'TYPE_DE_CHAMP_TO_ICON' do
+    it 'maps every type_champ to an icon' do
+      TypeDeChamp.type_champs.each_key do |type_champ|
+        expect(TypeDeChamp::TYPE_DE_CHAMP_TO_ICON).to have_key(type_champ.to_sym),
+          "Missing icon for type_champ: #{type_champ}"
+      end
+    end
+
+    it 'all icons start with fr-icon-' do
+      TypeDeChamp::TYPE_DE_CHAMP_TO_ICON.each_value do |icon|
+        expect(icon).to start_with('fr-icon-'),
+          "Icon #{icon} does not start with fr-icon-"
+      end
+    end
+  end
+
   describe 'validation' do
     context 'type' do
       it do

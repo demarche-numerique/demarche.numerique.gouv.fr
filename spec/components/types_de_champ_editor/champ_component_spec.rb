@@ -23,7 +23,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       context 'drop down tdc not used for routing' do
         it do
           expect(page).not_to have_text(/utilisé pour\nle routage/)
-          expect(page).not_to have_css("select[disabled=\"disabled\"]")
+          expect(page).not_to have_css("[aria-disabled=\"true\"]")
         end
       end
 
@@ -31,7 +31,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
         let(:routing_rules_stable_ids) { [tdc.stable_id] }
 
         it do
-          expect(page).to have_css("select[disabled=\"disabled\"]")
+          expect(page).to have_css("[aria-disabled=\"true\"]")
           expect(page).to have_text(/utilisé pour\nle routage/)
         end
       end
@@ -40,8 +40,8 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
         let(:ineligibilite_rules_used?) { true }
 
         it do
-          expect(page).to have_css("select[disabled=\"disabled\"]")
-          expect(page).to have_text(/l’eligibilité des dossiers/)
+          expect(page).to have_css("[aria-disabled=\"true\"]")
+          expect(page).to have_text("l\u2019eligibilité des dossiers")
         end
       end
 
@@ -77,7 +77,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
         let(:coordinate) { procedure.draft_revision.revision_types_de_champ_public.first }
 
         it 'does not include Engagement Juridique' do
-          expect(page).not_to have_css('option', text: "Engagement Juridique")
+          expect(page).not_to have_css('[data-type-de-champ-selector-target="option"]', text: "Engagement Juridique")
         end
       end
 
@@ -85,7 +85,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
         let(:coordinate) { procedure.draft_revision.revision_types_de_champ_private.first }
 
         it 'includes Engagement Juridique' do
-          expect(page).to have_css('option', text: "Engagement Juridique")
+          expect(page).to have_css('[data-type-de-champ-selector-target="option"]', text: "Engagement Juridique")
         end
       end
     end
@@ -107,7 +107,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
         let(:coordinate) { procedure.draft_revision.revision_types_de_champ_public.first }
 
         it 'does not have mandatory configuration' do
-          expect(page).to have_css('option[selected]', text: "Quotient familial")
+          expect(page).to have_css('[data-type-de-champ-selector-target="option"][aria-selected="true"]', text: "Quotient familial")
           expect(page).not_to have_field('Champ obligatoire')
         end
       end
@@ -117,7 +117,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
         let(:coordinate) { procedure.draft_revision.revision_types_de_champ_private.first }
 
         it 'does not include quotient familial tdc' do
-          expect(page).not_to have_css('option', text: "Quotient familial")
+          expect(page).not_to have_css('[data-type-de-champ-selector-target="option"]', text: "Quotient familial")
         end
       end
 
@@ -126,7 +126,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
         let(:coordinate) { procedure.draft_revision.revision_types_de_champ_public.first.children_revision_types_de_champ.first }
 
         it "does not include quotient familial for child tdc" do
-          expect(page).not_to have_css('option', text: "Quotient familial")
+          expect(page).not_to have_css('[data-type-de-champ-selector-target="option"]', text: "Quotient familial")
         end
       end
     end
@@ -143,7 +143,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
 
   describe 'ACCEPTED_TYPES' do
     it 'contains expected conversions' do
-      expect(described_class::ACCEPTED_TYPES).to include(
+      expect(TypesDeChampEditor::TypeDeChampSelectorComponent::ACCEPTED_TYPES).to include(
         "checkbox" => ["yes_no", "text", "textarea", "formatted"],
         "civilite" => ["text", "textarea", "formatted"],
         "date" => ["datetime", "text", "textarea", "formatted"],
@@ -240,7 +240,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
 
     it 'does not list Titre identité' do
       render_inline(component)
-      expect(page).not_to have_css('option', text: 'Titre identité')
+      expect(page).not_to have_css('[data-type-de-champ-selector-target="option"]', text: 'Titre identité')
     end
   end
 end

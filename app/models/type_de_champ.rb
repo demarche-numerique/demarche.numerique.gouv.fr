@@ -12,60 +12,107 @@ class TypeDeChamp < ApplicationRecord
   MINIMUM_TEXTAREA_CHARACTER_LIMIT_LENGTH = 400
 
   STRUCTURE = :structure
-  ETAT_CIVIL = :etat_civil
-  LOCALISATION = :localisation
-  PAIEMENT_IDENTIFICATION = :paiement_identification
   STANDARD = :standard
-  PIECES_JOINTES = :pieces_jointes
   CHOICE = :choice
-  REFERENTIEL_EXTERNE = :referentiel_externe
-  FRANCE_CONNECT = :france_connect
+  IDENTIFICATION = :identification
+  LOCALISATION = :localisation
+  REFERENTIEL = :referentiel
 
-  CATEGORIES = [STRUCTURE, ETAT_CIVIL, LOCALISATION, PAIEMENT_IDENTIFICATION, STANDARD, PIECES_JOINTES, CHOICE, REFERENTIEL_EXTERNE, FRANCE_CONNECT]
+  CATEGORIES = [STRUCTURE, STANDARD, CHOICE, IDENTIFICATION, LOCALISATION, REFERENTIEL]
 
   TYPE_DE_CHAMP_TO_CATEGORIE = {
-    referentiel: REFERENTIEL_EXTERNE,
-    engagement_juridique: REFERENTIEL_EXTERNE,
     header_section: STRUCTURE,
-    repetition: STRUCTURE,
-    dossier_link: STRUCTURE,
     explication: STRUCTURE,
-    civilite: ETAT_CIVIL,
-    email: ETAT_CIVIL,
-    phone: ETAT_CIVIL,
+
+    text: STANDARD,
+    textarea: STANDARD,
+    integer_number: STANDARD,
+    decimal_number: STANDARD,
+    formatted: STANDARD,
+    date: STANDARD,
+    datetime: STANDARD,
+    piece_justificative: STANDARD,
+    repetition: STANDARD,
+    dossier_link: STANDARD,
+    number: STANDARD,
+
+    drop_down_list: CHOICE,
+    multiple_drop_down_list: CHOICE,
+    linked_drop_down_list: CHOICE,
+    yes_no: CHOICE,
+    checkbox: CHOICE,
+
+    civilite: IDENTIFICATION,
+    email: IDENTIFICATION,
+    phone: IDENTIFICATION,
+    siret: IDENTIFICATION,
+    iban: IDENTIFICATION,
+
     address: LOCALISATION,
     communes: LOCALISATION,
     departements: LOCALISATION,
     regions: LOCALISATION,
     pays: LOCALISATION,
     epci: LOCALISATION,
-    iban: PAIEMENT_IDENTIFICATION,
-    siret: PAIEMENT_IDENTIFICATION,
-    text: STANDARD,
-    textarea: STANDARD,
-    number: STANDARD,
-    decimal_number: STANDARD,
-    integer_number: STANDARD,
-    formatted: STANDARD,
-    date: STANDARD,
-    datetime: STANDARD,
-    piece_justificative: STANDARD,
-    titre_identite: PIECES_JOINTES,
-    checkbox: CHOICE,
-    drop_down_list: CHOICE,
-    multiple_drop_down_list: CHOICE,
-    linked_drop_down_list: CHOICE,
-    yes_no: CHOICE,
-    annuaire_education: REFERENTIEL_EXTERNE,
-    rna: REFERENTIEL_EXTERNE,
-    rnf: REFERENTIEL_EXTERNE,
-    carte: REFERENTIEL_EXTERNE,
-    cnaf: REFERENTIEL_EXTERNE,
-    dgfip: REFERENTIEL_EXTERNE,
-    pole_emploi: REFERENTIEL_EXTERNE,
-    mesri: REFERENTIEL_EXTERNE,
-    cojo: REFERENTIEL_EXTERNE,
-    quotient_familial: FRANCE_CONNECT,
+
+    referentiel: REFERENTIEL,
+    engagement_juridique: REFERENTIEL,
+    annuaire_education: REFERENTIEL,
+    rna: REFERENTIEL,
+    rnf: REFERENTIEL,
+    carte: REFERENTIEL,
+    cnaf: REFERENTIEL,
+    dgfip: REFERENTIEL,
+    pole_emploi: REFERENTIEL,
+    mesri: REFERENTIEL,
+    cojo: REFERENTIEL,
+    titre_identite: REFERENTIEL,
+    quotient_familial: REFERENTIEL,
+  }
+
+  TYPE_DE_CHAMP_TO_ICON = {
+    header_section: 'fr-icon-heading',
+    explication: 'fr-icon-emphasis',
+    text: 'fr-icon-text',
+    textarea: 'fr-icon-align-left',
+    integer_number: 'fr-icon-hashtag',
+    decimal_number: 'fr-icon-hashtag',
+    formatted: 'fr-icon-edit-box-line',
+    date: 'fr-icon-calendar-line',
+    datetime: 'fr-icon-time-line',
+    piece_justificative: 'fr-icon-attachment-line',
+    repetition: 'fr-icon-repeat-line',
+    dossier_link: 'fr-icon-links-line',
+    number: 'fr-icon-hashtag',
+    drop_down_list: 'fr-icon-radio-button-line',
+    multiple_drop_down_list: 'fr-icon-checkbox-multiple-line',
+    linked_drop_down_list: 'fr-icon-dropdown-list',
+    yes_no: 'fr-icon-toggle-line',
+    checkbox: 'fr-icon-checkbox-blank-line',
+    civilite: 'fr-icon-user-line',
+    email: 'fr-icon-at-line',
+    phone: 'fr-icon-phone-line',
+    siret: 'fr-icon-hotel-line',
+    iban: 'fr-icon-bank-card-2-line',
+    address: 'fr-icon-home-2-line',
+    communes: 'fr-icon-map-pin-line',
+    departements: 'fr-icon-map-pin-line',
+    regions: 'fr-icon-map-pin-line',
+    pays: 'fr-icon-earth-line',
+    epci: 'fr-icon-pin-distance-line',
+    referentiel: 'fr-icon-verified-badge-line',
+    engagement_juridique: 'fr-icon-verified-badge-line',
+    annuaire_education: 'fr-icon-verified-badge-line',
+    rna: 'fr-icon-verified-badge-line',
+    rnf: 'fr-icon-verified-badge-line',
+    carte: 'fr-icon-road-map-line',
+    cnaf: 'fr-icon-verified-badge-line',
+    dgfip: 'fr-icon-verified-badge-line',
+    pole_emploi: 'fr-icon-verified-badge-line',
+    mesri: 'fr-icon-verified-badge-line',
+    cojo: 'fr-icon-verified-badge-line',
+    titre_identite: 'fr-icon-user-line',
+    quotient_familial: 'fr-icon-verified-badge-line',
   }
 
   enum :type_champ, {

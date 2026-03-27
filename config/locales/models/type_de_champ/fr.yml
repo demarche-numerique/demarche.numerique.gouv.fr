@@ -5,15 +5,12 @@ fr:
     attributes:
       type_de_champ:
         categorie:
-          structure: 'Structure des champs'
-          etat_civil: 'État civil'
-          localisation: 'Localisation'
-          paiement_identification: 'Paiement et Identification'
-          standard: 'Champ standard'
-          pieces_jointes: 'Pièces jointes'
+          structure: 'Structure du formulaire'
+          standard: 'Champs standards'
           choice: 'Choix'
-          referentiel_externe: 'Référentiel externe'
-          france_connect: 'Champ FranceConnect'
+          identification: 'Identification et coordonnées'
+          localisation: 'Localisation'
+          referentiel: 'Référentiel'
         type_champs:
           header_section: 'Titre de section'
           repetition: 'Bloc répétable'

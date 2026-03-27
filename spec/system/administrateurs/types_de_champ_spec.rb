@@ -46,7 +46,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
 
   scenario "adding a piece justificative template" do
     add_champ
-    select('Pièce à joindre', from: 'Type de champ')
+    select_type_de_champ('piece_justificative')
 
     find('.attachment-field input[type=file]').attach_file(Rails.root + 'spec/fixtures/files/file.pdf')
 
@@ -194,7 +194,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
     add_champ
     hide_autonotice_message
 
-    select('Bloc répétable', from: 'Type de champ')
+    select_type_de_champ('repetition')
     fill_in 'Libellé du champ', with: 'libellé de champ'
 
     expect(page).to have_content('Formulaire enregistré')
@@ -212,7 +212,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
     page.all('.fr-icon-add-line')[2].click
 
     within '.type-de-champ:nth-child(2)' do
-      select('Bloc répétable', from: 'Type de champ')
+      select_type_de_champ('repetition')
       fill_in 'Libellé du champ', with: 'libellé de champ 2'
     end
 
@@ -223,7 +223,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
     add_champ
     hide_autonotice_message
 
-    select('Carte', from: 'Type de champ')
+    select_type_de_champ('carte')
     fill_in 'Libellé du champ', with: 'Libellé de champ carte', fill_options: { clear: :backspace }
     check 'Cadastres'
 
@@ -245,7 +245,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
     add_champ
     hide_autonotice_message
 
-    select('Choix simple', from: 'Type de champ')
+    select_type_de_champ('drop_down_list')
     fill_in 'Libellé du champ', with: 'Libellé de champ menu déroulant', fill_options: { clear: :backspace }
     fill_in 'Options de la liste', with: 'Un menu', fill_options: { clear: :backspace }
     check "Proposer une option « autre » avec un texte libre"
@@ -266,7 +266,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
 
       # It displays the estimate when adding a new champ
       add_champ
-      select('Pièce à joindre', from: 'Type de champ')
+      select_type_de_champ('piece_justificative')
       expect(page).to have_content('Durée de remplissage estimée : 3 min')
 
       # It updates the estimate when updating the champ
@@ -290,7 +290,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
 
       # It displays the estimate when adding a new champ
       add_champ
-      select('Pièce à joindre', from: 'Type de champ')
+      select_type_de_champ('piece_justificative')
       expect(page).not_to have_content('Durée de remplissage estimée')
     end
   end
@@ -298,7 +298,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
   context 'header section' do
     scenario 'with public tdc, having invalid order, it pops up errors summary' do
       add_champ
-      select('Titre de section', from: 'Type de champ')
+      select_type_de_champ('header_section')
       wait_until { procedure.reload.active_revision.types_de_champ_public.first&.type_champ == TypeDeChamp.type_champs.fetch(:header_section) }
       first_header = procedure.active_revision.types_de_champ_public.first
       select('Titre de niveau 1', from: dom_id(first_header, :header_section_level))
@@ -309,7 +309,9 @@ describe 'As an administrateur I can edit types de champ', js: true do
 
       wait_until { procedure.reload.active_revision.types_de_champ_public.count == 2 }
       second_header = procedure.active_revision.types_de_champ_public.last
-      select('Titre de section', from: dom_id(second_header, :type_champ))
+      within("##{dom_id(second_header.stable_self, :editor_error)}") do
+        select_type_de_champ('header_section')
+      end
       wait_until { procedure.reload.active_revision.types_de_champ_public.last&.type_champ == TypeDeChamp.type_champs.fetch(:header_section) }
       select('Titre de niveau 2', from: dom_id(second_header, :header_section_level))
 
@@ -469,7 +471,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
 
       within all('.type-de-champ').last do
         fill_in 'Libellé du champ', with: 'Deuxième champ'
-        select 'Choix simple', from: 'Type de champ'
+        select_type_de_champ('drop_down_list')
         fill_in "Options de la liste", with: "" # make tdc invalid
       end
 
@@ -574,6 +576,64 @@ describe 'As an administrateur I can edit types de champ', js: true do
       end
 
       expect(page).not_to have_selector("#api-champ-columns-modal[open]")
+    end
+  end
+
+  describe 'type de champ selector dropdown', js: true do
+    let(:administrateur) { create(:administrateur) }
+    let(:procedure) { create(:procedure, administrateurs: [administrateur]) }
+
+    before do
+      login_as administrateur.user, scope: :user
+      visit champs_admin_procedure_path(procedure)
+      add_champ
+      wait_until { procedure.reload.active_revision.types_de_champ_public.count == 1 }
+    end
+
+    it 'opens and closes the dropdown' do
+      selector = find('.type-de-champ-selector', match: :first)
+      trigger = selector.find('[data-type-de-champ-selector-target="trigger"]')
+
+      trigger.click
+      expect(selector).to have_css('[data-type-de-champ-selector-target="panel"]:not(.fr-hidden)')
+
+      trigger.click
+      expect(selector).to have_css('[data-type-de-champ-selector-target="panel"].fr-hidden', visible: :all)
+    end
+
+    it 'filters options by search' do
+      selector = find('.type-de-champ-selector', match: :first)
+      selector.find('[data-type-de-champ-selector-target="trigger"]').click
+
+      selector.find('[data-type-de-champ-selector-target="searchInput"]').fill_in(with: 'choix')
+
+      expect(selector).to have_css('[data-value="drop_down_list"]:not(.fr-hidden)')
+      expect(selector).to have_css('[data-value="text"].fr-hidden', visible: :all)
+    end
+
+    it 'selects a type and updates the trigger' do
+      select_type_de_champ('textarea')
+
+      selector = find('.type-de-champ-selector', match: :first)
+      expect(selector.find('[data-type-de-champ-selector-target="trigger"]')).to have_text('Texte long')
+    end
+
+    it 'clears search with the clear button' do
+      selector = find('.type-de-champ-selector', match: :first)
+      selector.find('[data-type-de-champ-selector-target="trigger"]').click
+      selector.find('[data-type-de-champ-selector-target="searchInput"]').fill_in(with: 'xyz')
+
+      selector.find('[data-type-de-champ-selector-target="clearButton"]').click
+      expect(selector.find('[data-type-de-champ-selector-target="searchInput"]').value).to eq('')
+      expect(selector).to have_css('[data-type-de-champ-selector-target="option"]:not(.fr-hidden)')
+    end
+
+    it 'searches with accent-insensitive matching' do
+      selector = find('.type-de-champ-selector', match: :first)
+      selector.find('[data-type-de-champ-selector-target="trigger"]').click
+
+      selector.find('[data-type-de-champ-selector-target="searchInput"]').fill_in(with: 'piece')
+      expect(selector).to have_css('[data-value="piece_justificative"]:not(.fr-hidden)')
     end
   end
 end

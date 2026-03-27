@@ -218,7 +218,7 @@ describe 'fetch API Particulier Data', js: true do
       visit champs_admin_procedure_path(procedure)
 
       add_champ
-      select('Données de la Caisse nationale des allocations familiales', from: 'Type de champ')
+      select_type_de_champ('cnaf')
       fill_in 'Libellé du champ', with: 'libellé de champ'
       blur
       expect(page).to have_content('Formulaire enregistré')
