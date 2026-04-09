@@ -2026,6 +2026,15 @@ describe Procedure do
       end
     end
 
+    context 'when a drop_down_list type de champ has a CsvReferentiel' do
+      let(:referentiel) { create(:csv_referentiel) }
+      let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :text, stable_id: 100 }, { type: :drop_down_list, stable_id: 200, referentiel:, drop_down_mode: 'advanced' }]) }
+
+      it 'returns false without raising' do
+        expect(procedure.used_by_referentiel_urls?(text_tdc)).to be false
+      end
+    end
+
     context 'when no referentiel' do
       it 'returns false' do
         expect(procedure.used_by_referentiel_urls?(text_tdc)).to be false
