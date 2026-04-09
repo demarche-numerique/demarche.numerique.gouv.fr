@@ -855,6 +855,7 @@ class Procedure < ApplicationRecord
     @stable_ids_used_by_referentiel_urls ||= draft_revision
       .types_de_champ
       .filter_map(&:referentiel)
+      .filter { it.respond_to?(:tiptap_mention_stable_ids) }
       .flat_map(&:tiptap_mention_stable_ids)
       .uniq
   end

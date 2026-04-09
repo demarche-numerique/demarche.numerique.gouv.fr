@@ -2032,6 +2032,17 @@ describe Procedure do
       end
     end
 
+    context 'when referentiel is a CsvReferentiel' do
+      before do
+        ref_tdc.update!(referentiel: create(:csv_referentiel))
+      end
+
+      it 'returns false without raising' do
+        expect { procedure.used_by_referentiel_urls?(text_tdc) }.not_to raise_error
+        expect(procedure.used_by_referentiel_urls?(text_tdc)).to be false
+      end
+    end
+
     context 'when referentiel has only {query} tag' do
       before do
         ref_tdc.update!(referentiel: create(:api_referentiel, :exact_match, use_tiptap: true, url_tiptap: {
