@@ -130,7 +130,34 @@ describe Instructeurs::CommentairesController, type: :controller do
     end
   end
 
+  context 'IDOR — instructeur accessing another procedure dossier' do
+    let(:other_procedure) { create(:procedure, :published, :for_individual) }
+    let(:other_dossier) { create(:dossier, :en_construction, :with_individual, procedure: other_procedure) }
+    let(:other_commentaire) { create(:commentaire, dossier: other_dossier) }
+
+    before { sign_in(instructeur.user) }
+
+    describe 'destroy' do
+      subject { delete :destroy, params: { dossier_id: other_dossier.id, procedure_id: procedure.id, id: other_commentaire.id, statut: 'a-suivre' }, format: :turbo_stream }
+
+      it 'raises RecordNotFound' do
+        expect { subject }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
+    describe 'cancel_correction' do
+      subject { post :cancel_correction, params: { dossier_id: other_dossier.id, procedure_id: procedure.id, id: other_commentaire.id, statut: 'a-suivre' }, format: :turbo_stream }
+
+      it 'raises RecordNotFound' do
+        expect { subject }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+  end
+
   context 'as expert' do
+    let(:experts_procedure) { create(:experts_procedure, expert:, procedure:) }
+    let!(:avis) { create(:avis, experts_procedure:, dossier:, claimant: instructeur) }
+
     before { sign_in(expert.user) }
 
     describe 'destroy' do
@@ -143,6 +170,17 @@ describe Instructeurs::CommentairesController, type: :controller do
           expect(subject.body).to include('Message supprimé')
           expect(subject.body).to include('alert-success')
           expect(subject.body).to include('Votre message a été supprimé')
+        end
+      end
+
+      context 'when dossier belongs to another procedure' do
+        let(:other_procedure) { create(:procedure, :published, :for_individual) }
+        let(:other_dossier) { create(:dossier, :en_construction, :with_individual, procedure: other_procedure) }
+        let(:other_commentaire) { create(:commentaire, expert:, dossier: other_dossier) }
+        subject { delete :destroy, params: { dossier_id: other_dossier.id, procedure_id: procedure.id, id: other_commentaire.id, statut: 'a-suivre' }, format: :turbo_stream }
+
+        it 'raises RecordNotFound' do
+          expect { subject }.to raise_error(ActiveRecord::RecordNotFound)
         end
       end
     end

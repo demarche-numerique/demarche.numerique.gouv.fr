@@ -47,7 +47,11 @@ module Instructeurs
     end
 
     def dossier
-      Dossier.find(params[:dossier_id])
+      @dossier ||= if current_instructeur
+        current_instructeur.dossiers.visible_by_administration.find(params[:dossier_id])
+      elsif current_expert
+        current_expert.dossiers.find(params[:dossier_id])
+      end
     end
 
     def commentaire
