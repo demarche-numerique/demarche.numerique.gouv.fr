@@ -267,6 +267,7 @@ GEM
     event_stream_parser (1.0.0)
     excon (1.3.0)
       logger
+    execjs (2.10.1)
     factory_bot (6.5.5)
       activesupport (>= 6.1.0)
     faraday (2.14.1)
@@ -558,6 +559,7 @@ GEM
       webfinger (~> 2.0)
     orm_adapter (0.5.0)
     ostruct (0.6.3)
+    package_json (0.2.0)
     parallel (1.27.0)
     parsby (1.1.1)
     parser (3.3.9.0)
@@ -691,6 +693,13 @@ GEM
     rdoc (6.14.2)
       erb
       psych (>= 4.0.0)
+    react_on_rails (16.6.0)
+      addressable
+      connection_pool
+      execjs (~> 2.5)
+      rails (>= 5.2)
+      rainbow (~> 3.0)
+      shakapacker (>= 6.0)
     reactionview (0.1.2)
       actionview (>= 7.0)
       herb (>= 0.7.0, < 1.0.0)
@@ -813,6 +822,7 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
+    semantic_range (3.1.1)
     sentry-delayed_job (5.27.0)
       delayed_job (>= 4.0)
       sentry-ruby (~> 5.27.0)
@@ -825,6 +835,12 @@ GEM
     sentry-sidekiq (5.27.0)
       sentry-ruby (~> 5.27.0)
       sidekiq (>= 3.0)
+    shakapacker (10.0.0)
+      activesupport (>= 5.2)
+      package_json
+      rack-proxy (>= 0.6.1)
+      railties (>= 5.2)
+      semantic_range (>= 2.3.0)
     shoulda-matchers (6.5.0)
       activesupport (>= 5.2.0)
     sib-api-v3-sdk (9.1.0)
@@ -1102,6 +1118,7 @@ DEPENDENCIES
   rails-i18n
   rails-pg-extras
   rake-progressbar
+  react_on_rails
   reactionview
   redcarpet
   redis

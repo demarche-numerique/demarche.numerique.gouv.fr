@@ -21,8 +21,13 @@ RSpec.describe SelectProcedureDropDownListComponent, type: :component do
   let(:action_path) { '/test/path' }
   let(:form_class) { 'ml-auto' }
 
-  let(:react_component) { page.find('react-component') }
-  let(:react_props_items) { JSON.parse(react_component['props']) }
+  let(:react_component) do
+    page.find(
+      'script.js-react-on-rails-component[data-component-name="SelectProcedureDropDownList"]',
+      visible: false
+    )
+  end
+  let(:react_props_items) { JSON.parse(react_component.text(:all)) }
 
   it 'renders the label' do
     expect(subject).to have_text('Accès direct')
@@ -42,6 +47,11 @@ RSpec.describe SelectProcedureDropDownListComponent, type: :component do
   it 'includes the action path in the props' do
     subject
     expect(react_props_items["data"]["action_path"]).to eq('/test/path')
+  end
+
+  it 'renders the React on Rails mount point' do
+    subject
+    expect(page).to have_selector('#select-procedure-drop-down-list-react-component.flex-1')
   end
 
   it 'applies the form class' do

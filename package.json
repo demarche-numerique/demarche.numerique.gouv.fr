@@ -57,6 +57,7 @@
     "pmtiles": "^4.3.0",
     "react": "19.2.5",
     "react-aria-components": "^1.16.0",
+    "react-on-rails": "16.6.0",
     "react-coordinate-input": "^1.0.0",
     "react-dom": "19.2.5",
     "react-fast-compare": "^3.2.2",

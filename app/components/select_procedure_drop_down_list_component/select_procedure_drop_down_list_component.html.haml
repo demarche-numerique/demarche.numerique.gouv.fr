@@ -5,8 +5,10 @@
 
   .fr-col-12.fr-col-sm-10.fr-col-md-8.flex.align-center
     = label_tag :procedure_id, t('.label_html'), class: 'fr-label fr-text--bold fr-mr-2w', id: 'select-procedure-drop-down-list-label', for: 'select-procedure-drop-down-list'
-    %react-fragment.flex-1
-      = render ReactComponent.new "ComboBox/SingleComboBox", **react_props
+    = helpers.react_component("SelectProcedureDropDownList",
+      props: react_props,
+      id: 'select-procedure-drop-down-list-react-component',
+      html_options: { class: 'flex-1' })
 
     %input.hidden{
       type: 'submit',

@@ -86,6 +86,7 @@ gem 'rails-i18n' # Locales par défaut
 gem 'rails-pg-extras'
 gem 'rake-progressbar', require: false
 gem 'reactionview'
+gem 'react_on_rails'
 gem 'redcarpet'
 gem 'redis'
 gem 'rexml' # add missing gem due to ruby3 (https://github.com/Shopify/bootsnap/issues/325)
