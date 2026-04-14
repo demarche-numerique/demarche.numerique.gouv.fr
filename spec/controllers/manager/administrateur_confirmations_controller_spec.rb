@@ -155,6 +155,23 @@ RSpec.describe Manager::AdministrateurConfirmationsController, type: :controller
 
         it { expect(flash[:error]).to match(/Le lien que vous avez utilisé est invalide/) }
       end
+
+      context 'when the procedure_id is tampered in the URL' do
+        let(:other_procedure) { create(:procedure) }
+
+        before { sign_in confirmer_super_admin }
+
+        subject(:tampered_request) do
+          post :create, params: {
+            procedure_id: other_procedure.id,
+            q: encrypt({ email: invited_administrateur.email, inviter_id: inviter_super_admin.id }),
+          }
+        end
+
+        it "adds the admin to the tampered procedure (proving the vulnerability)" do
+          expect { tampered_request }.to change { other_procedure.administrateurs.count }.by(1)
+        end
+      end
     end
   end
 
