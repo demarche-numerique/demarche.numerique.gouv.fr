@@ -45,6 +45,7 @@ describe ApplicationController, type: :controller do
         expect(payload[:to_log].compact).to eq({
           user_agent: 'Rails Testing',
           user_roles: 'Guest',
+          client_ip: request.remote_ip,
         })
       end
     end
@@ -65,6 +66,7 @@ describe ApplicationController, type: :controller do
           user_agent: 'Rails Testing',
           user_id: current_user.id,
           user_roles: 'User',
+          client_ip: request.remote_ip,
         })
       end
     end
@@ -88,6 +90,7 @@ describe ApplicationController, type: :controller do
           user_agent: 'Rails Testing',
           user_id: current_user.id,
           user_roles: 'User, Instructeur, Administrateur, SuperAdmin',
+          client_ip: request.remote_ip,
         })
       end
     end

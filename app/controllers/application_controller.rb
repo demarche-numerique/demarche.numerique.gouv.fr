@@ -285,7 +285,7 @@ class ApplicationController < ActionController::Base
       user_agent: request.user_agent,
       user_id: current_user&.id,
       user_roles: current_user_roles,
-      client_ip: request.headers['X-Forwarded-For'],
+      client_ip: request.remote_ip,
       request_id: Current.request_id,
     })
 
@@ -321,7 +321,7 @@ class ApplicationController < ActionController::Base
     if instructeur_signed_in? &&
         sensitive_path &&
         !current_instructeur.bypass_email_login_token &&
-        !IPService.ip_trusted?(request.headers['X-Forwarded-For']) &&
+        !IPService.ip_trusted?(request.remote_ip) &&
         !trusted_device? &&
         !pro_connect_mfa?
 
