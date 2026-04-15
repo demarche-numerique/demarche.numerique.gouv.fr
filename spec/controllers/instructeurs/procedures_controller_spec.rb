@@ -913,6 +913,24 @@ describe Instructeurs::ProceduresController, type: :controller do
         end
       end
 
+      context 'when instructeur forges a request targeting a group they do not belong to (IDOR)' do
+        subject do
+          post :create_multiple_commentaire_for_brouillons,
+                params: {
+                  procedure_id: procedure.id,
+                  bulk_message: {
+                    body: body,
+                    groupe_instructeur_ids: { gi_p1_2.id => true },
+                  },
+                }
+        end
+
+        it "does not send messages to dossiers in the unauthorized group" do
+          expect { subject }.not_to change { Commentaire.count }
+          expect(dossier_3.commentaires.count).to eq(0)
+        end
+      end
+
       context 'when without_group is specified' do
         subject do
           post :create_multiple_commentaire_for_brouillons,
