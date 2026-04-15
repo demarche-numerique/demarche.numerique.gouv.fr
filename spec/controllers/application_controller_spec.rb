@@ -249,6 +249,29 @@ describe ApplicationController, type: :controller do
     end
   end
 
+  describe '#redirect_if_untrusted IP source (security: 2FA bypass via X-Forwarded-For spoofing)' do
+    let(:current_instructeur) { create(:instructeur) }
+
+    before do
+      current_instructeur.update!(bypass_email_login_token: false)
+      allow(@controller).to receive(:current_instructeur).and_return(current_instructeur)
+      allow(@controller).to receive(:redirect_to)
+      allow(@controller).to receive(:trusted_device?).and_return(false)
+      allow(@controller).to receive(:instructeur_signed_in?).and_return(true)
+      allow(@controller).to receive(:sensitive_path).and_return(true)
+      allow(@controller).to receive(:send_login_token_or_bufferize)
+      allow(@controller).to receive(:get_stored_location_for).and_return(nil)
+      allow(@controller).to receive(:store_location_for)
+      allow(@controller).to receive(:pro_connect_mfa?).and_return(false)
+      @request.headers['X-Forwarded-For'] = '10.0.0.1'
+    end
+
+    it 'passes request.remote_ip to IPService, not the raw X-Forwarded-For header' do
+      expect(IPService).to receive(:ip_trusted?).with(@controller.request.remote_ip)
+      @controller.send(:redirect_if_untrusted)
+    end
+  end
+
   describe 'crisp_config and crisp_segments' do
     before do
       allow(ENV).to receive(:enabled?).with("CRISP").and_return(true)
