@@ -17,7 +17,7 @@ RSpec.describe Manager::AdministrateurConfirmationsController, type: :controller
     subject(:new_request) do
       get :new, params: {
         procedure_id: procedure.id,
-        q: encrypt({ email: invited_administrateur.email, inviter_id: inviter_super_admin.id }),
+        q: encrypt({ email: invited_administrateur.email, inviter_id: inviter_super_admin.id, procedure_id: procedure.id }),
       }
     end
 
@@ -84,7 +84,7 @@ RSpec.describe Manager::AdministrateurConfirmationsController, type: :controller
     subject(:create_request) do
       post :create, params: {
         procedure_id: procedure.id,
-        q: encrypt({ email: invited_administrateur.email, inviter_id: inviter_super_admin.id }),
+        q: encrypt({ email: invited_administrateur.email, inviter_id: inviter_super_admin.id, procedure_id: procedure.id }),
       }
     end
 
@@ -154,6 +154,27 @@ RSpec.describe Manager::AdministrateurConfirmationsController, type: :controller
         before { post :create, params: { procedure_id: procedure.id, q: "something that is invalid" } }
 
         it { expect(flash[:error]).to match(/Le lien que vous avez utilisé est invalide/) }
+      end
+
+      context 'when the URL procedure does not match the one bound to the confirmation link' do
+        let(:other_procedure) { create(:procedure) }
+        let(:token_bound_to_procedure) do
+          encrypt({
+            email: invited_administrateur.email,
+            inviter_id: inviter_super_admin.id,
+            procedure_id: procedure.id,
+          })
+        end
+
+        before { sign_in confirmer_super_admin }
+
+        subject(:mismatched_request) do
+          post :create, params: { procedure_id: other_procedure.id, q: token_bound_to_procedure }
+        end
+
+        it "does not add the administrateur to the URL procedure" do
+          expect { mismatched_request }.not_to change { other_procedure.administrateurs.count }
+        end
       end
     end
   end
