@@ -123,6 +123,23 @@ module TPS
 
     config.exceptions_app = self.routes
 
+    if ENV['REDIS_CACHE_URL'].blank?
+      config.cache_store = :file_store, Rails.root.join("tmp/cache")
+    else
+      redis_options = {
+        url: ENV['REDIS_CACHE_URL'],
+        connect_timeout: 0.2,
+        error_handler: -> (method:, returning:, exception:) {
+          Sentry.capture_exception exception, level: 'warning',
+            tags: { method: method, returning: returning }
+        },
+      }
+      redis_options[:ssl] = ENV['REDIS_CACHE_SSL'] == 'enabled'
+      redis_options[:ssl_params] = { verify_mode: OpenSSL::SSL::VERIFY_NONE } if ENV['REDIS_CACHE_SSL_VERIFY_NONE'] == 'enabled'
+
+      config.cache_store = :redis_cache_store, redis_options
+    end
+
     # Copied from rgeo/activerecord-postgis-adapter
     ActiveRecord::SchemaDumper.ignore_tables |= [
       'geography_columns',

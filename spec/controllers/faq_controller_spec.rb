@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe FAQController, type: :controller do
+  before { Rails.cache.clear }
   describe "GET #index" do
     render_views
 

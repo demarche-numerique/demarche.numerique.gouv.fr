@@ -74,26 +74,6 @@ Rails.application.configure do
   # want to log everything, set the level to "debug".
   config.log_level = ENV.fetch("DS_LOG_LEVEL", "info")
 
-  # Use a different cache store in production.
-  if ENV['REDIS_CACHE_URL'].present?
-    redis_options = {
-      url: ENV['REDIS_CACHE_URL'],
-      connect_timeout: 0.2,
-      error_handler: -> (method:, returning:, exception:) {
-        Sentry.capture_exception exception, level: 'warning',
-          tags: { method: method, returning: returning }
-      },
-    }
-
-    redis_options[:ssl] = ENV['REDIS_CACHE_SSL'] == 'enabled'
-
-    if ENV['REDIS_CACHE_SSL_VERIFY_NONE'] == 'enabled'
-      redis_options[:ssl_params] = { verify_mode: OpenSSL::SSL::VERIFY_NONE }
-    end
-
-    config.cache_store = :redis_cache_store, redis_options
-  end
-
   # Use a real queuing backend for Active Job (and separate queues per environment).
   config.active_job.queue_adapter = ENV.fetch('RAILS_QUEUE_ADAPTER') { :sidekiq }
   # config.active_job.queue_name_prefix = "tps_production"

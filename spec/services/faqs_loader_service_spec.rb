@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe FAQsLoaderService do
   let(:substitutions) { { application_name: "demarche.numerique.gouv.fr", application_base_url: APPLICATION_BASE_URL, contact_email: CONTACT_EMAIL } }
   let(:service) { FAQsLoaderService.new(substitutions) }
-
+  before(:each) { Rails.cache.clear }
   context "behavior with stubbed markdown files" do
     before do
       allow(Dir).to receive(:glob).and_return(['path/to/faq1.md', 'path/to/faq2.md'])
