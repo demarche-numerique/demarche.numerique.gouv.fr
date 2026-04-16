@@ -176,7 +176,11 @@ class User < ApplicationRecord
       .find_or_create_by(email: email)
 
     if user.valid? && user.expert.nil?
-      user.create_expert!
+      begin
+        user.create_expert!
+      rescue ActiveRecord::RecordNotUnique
+        user.reload
+      end
     end
 
     user

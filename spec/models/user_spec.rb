@@ -216,6 +216,15 @@ describe User, type: :model do
         end
       end
     end
+
+    context 'when a concurrent job raises RecordNotUnique on Expert creation' do
+      it 'does not raise and returns the user' do
+        allow_any_instance_of(User).to receive(:create_expert!).and_raise(ActiveRecord::RecordNotUnique)
+
+        expect { subject }.not_to raise_error
+        expect(subject).to be_a(User)
+      end
+    end
   end
 
   describe '.create_or_promote_to_gestionnaire' do
