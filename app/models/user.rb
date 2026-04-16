@@ -177,7 +177,7 @@ class User < ApplicationRecord
 
     if user.valid? && user.expert.nil?
       begin
-        user.create_expert!
+        User.transaction(requires_new: true) { user.create_expert! }
       rescue ActiveRecord::RecordNotUnique
         user.reload
       end
