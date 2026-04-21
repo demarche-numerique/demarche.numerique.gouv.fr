@@ -1,3 +1,5 @@
 ---
 en:
   search_error: "An error occurred while searching"
+  not_in_api_geo: "I can't find my city / municipality in the suggestions"
+  free_text_label: "City or municipality"

@@ -7,7 +7,7 @@ describe EditableChamp::CommunesComponent, type: :component do
   let(:champ) { dossier.champs.first }
 
   describe 'aria-describedby' do
-    let(:react_component) { page.find('react-component') }
+    let(:react_component) { page.first('react-component') }
     let(:react_props) { JSON.parse(react_component['props']) }
 
     subject do
@@ -39,6 +39,39 @@ describe EditableChamp::CommunesComponent, type: :component do
         before { dossier.errors.import(champ.errors.add(:value, 'error')) }
 
         it { is_expected.to eq([champ.error_id(:value)]) }
+      end
+    end
+  end
+
+  describe 'not_in_api_geo fallback' do
+    subject do
+      component = nil
+      ActionView::Base.empty.form_for(champ, url: '/') do |form|
+        component = EditableChamp::EditableChampComponent.new(champ:, form:)
+      end
+
+      render_inline(component)
+    end
+
+    context 'when not_in_api_geo is false' do
+      before { champ.update_column(:value_json, {}) }
+
+      it 'renders the checkbox unchecked and text input hidden' do
+        subject
+        checkbox = page.first("input[type='checkbox'][name*='not_in_api_geo']", visible: :all)
+        expect(checkbox).not_to be_checked
+        expect(page).to have_css(".fr-fieldset__element.hidden input[name*='value']", visible: :all)
+      end
+    end
+
+    context 'when not_in_api_geo is true' do
+      before { champ.update_column(:value_json, { not_in_api_geo: 'true' }) }
+
+      it 'renders the checkbox checked and a text input' do
+        subject
+        checkbox = page.first("input[type='checkbox'][name*='not_in_api_geo']", visible: :all)
+        expect(checkbox).to be_checked
+        expect(page).to have_css("input[name*='value']")
       end
     end
   end

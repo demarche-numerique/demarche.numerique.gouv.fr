@@ -2,3 +2,5 @@ en:
   municipality: Municipality
   insee_code: INSEE Code
   department: Department
+  source_api_geo: national geographic references
+  source_free_text: free text entered by user

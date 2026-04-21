@@ -589,10 +589,12 @@ module Instructeurs
         :accreditation_birthdate,
         :address,
         :not_in_ban,
+        :commune_not_in_api_geo,
         :street_address,
         :city_name,
         :country_code,
         :commune_code,
+        :not_in_api_geo,
         :postal_code,
         value: [],
       ]

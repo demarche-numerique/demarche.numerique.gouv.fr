@@ -233,6 +233,23 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
     end
   end
 
+  describe 'tdc communes warning' do
+    let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :communes }]) }
+    let(:coordinate) { procedure.draft_revision.revision_types_de_champ_public.first }
+    let(:component) { described_class.new(coordinate:, upper_coordinates: []) }
+
+    before do
+      allow_any_instance_of(Procedure).to receive(:stable_ids_used_by_routing_rules).and_return([])
+      allow_any_instance_of(ProcedureRevisionTypeDeChamp).to receive(:used_by_ineligibilite_rules?).and_return(false)
+      render_inline(component)
+    end
+
+    it 'displays a warning about birth communes' do
+      expect(page).to have_css('.fr-alert--warning')
+      expect(page).to have_text('Ne pas utiliser ce champ pour les communes de naissance.')
+    end
+  end
+
   describe 'hide old titre_identite in creation list' do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :text }]) }
     let(:coordinate) { procedure.draft_revision.revision_types_de_champ_public.first }

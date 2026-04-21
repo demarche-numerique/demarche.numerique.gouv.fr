@@ -3,12 +3,6 @@
 class EditableChamp::CommunesComponent < EditableChamp::EditableChampBaseComponent
   include ApplicationHelper
 
-  def call
-    tag.react_fragment do
-      render(ReactComponent.new("ComboBox/RemoteComboBox", **react_props))
-    end
-  end
-
   def dsfr_input_classname
     'fr-select'
   end

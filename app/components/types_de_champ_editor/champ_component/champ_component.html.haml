@@ -18,6 +18,9 @@
                     data: { "fr-opened" => "false", "turbo-frame" => "api-champ-columns", action: "lazy-modal#load" },
                     src: api_champ_columns_admin_procedure_path(id: procedure.id, stable_id: type_de_champ.stable_id),
                     "aria-controls" => "api-champ-columns-modal")
+              - if type_de_champ.communes?
+                .fr-alert.fr-alert--warning.fr-alert--sm.fr-mt-1w
+                  %p= t('.commune_warning')
               - if disabled_type_de_champ_select?
                 .cell.fr-mt-1w
                   %span.fr-icon-lock-fill.fr-icon--sm

@@ -3,6 +3,7 @@
 class Champs::AddressChamp < Champs::TextChamp
   store_accessor :value_json,
     :not_in_ban,
+    :commune_not_in_api_geo,
     :postal_code,
     :country_code,
     :country_name,
@@ -183,6 +184,10 @@ class Champs::AddressChamp < Champs::TextChamp
     not_in_ban == 'true'
   end
 
+  def commune_not_in_api_geo?
+    commune_not_in_api_geo == 'true'
+  end
+
   def legend_label?
     true
   end
@@ -231,6 +236,10 @@ class Champs::AddressChamp < Champs::TextChamp
     not_in_ban_changed? && not_in_ban_was == '' && not_in_ban == 'true'
   end
 
+  def commune_api_geo_toggled?
+    commune_not_in_api_geo_changed?
+  end
+
   def set_full_address
     address_data = self.value_json
     if become_france? || become_international?
@@ -252,6 +261,9 @@ class Champs::AddressChamp < Champs::TextChamp
       address_data = { 'not_in_ban': '', 'country_code': 'FR' }
     elsif become_not_ban?
       address_data = { 'not_in_ban': 'true' }
+    elsif commune_api_geo_toggled?
+      address_data['city_code'] = nil
+      address_data['city_name'] = nil
     end
 
     if france?

@@ -48,8 +48,17 @@
                   - if @champ.required?
                     = render EditableChamp::AsteriskMandatoryComponent.new
                   .fr-hint-text= t('.commune_hint')
-              %react-fragment
-                = render ReactComponent.new "ComboBox/RemoteComboBox", **commune_react_props
+              - if @champ.commune_not_in_api_geo?
+                = @form.text_field :city_name, id: @champ.focusable_input_id(:city_name), class: "fr-input small-margin", required: @champ.required?, "aria-labelledby": input_label_id(@champ, :commune_name)
+              - else
+                %react-fragment
+                  = render ReactComponent.new "ComboBox/RemoteComboBox", **commune_react_props
 
               - if @champ.errors.include?(:commune_name)
                 %p.fr-error-text{ id: @champ.error_id(:commune_name) }= @champ.errors.full_messages_for(:commune_name).first
+
+          .fr-fieldset__element
+            .fr-checkbox-group
+              = @form.check_box :commune_not_in_api_geo, { id: @champ.focusable_input_id(:commune_not_in_api_geo), class: "fr-input", checked: @champ.commune_not_in_api_geo?, 'aria-labelledby': aria_labelledby(:commune_not_in_api_geo) }, 'true', 'false'
+              = @form.label :commune_not_in_api_geo, for: @champ.focusable_input_id(:commune_not_in_api_geo), class: 'fr-label', id: input_label_id(@champ, :commune_not_in_api_geo) do
+                - t('.commune_not_in_api_geo')

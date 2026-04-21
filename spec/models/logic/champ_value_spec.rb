@@ -137,6 +137,14 @@ describe Logic::ChampValue do
       it do
         is_expected.to eq({ code_departement: '92', code_region: '11' })
       end
+
+      context 'in fallback mode (not_in_api_geo)' do
+        let(:champ) do
+          Champs::CommuneChamp.new(value: 'Ma commune', not_in_api_geo: 'true', stable_id: tdc.stable_id, dossier:)
+        end
+
+        it { is_expected.to eq({ code_departement: nil, code_region: nil }) }
+      end
     end
 
     context 'epci tdc' do
