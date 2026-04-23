@@ -6,7 +6,7 @@ RSpec.describe Dossiers::UserActiveFiltersComponent, type: :component do
   let(:tags) do
     [
       { group: :procedure_id, value: '42', label: 'Demande de subvention' },
-      { group: :state, value: 'depose', label: 'Déposé' }
+      { group: :state, value: 'depose', label: 'Déposé' },
     ]
   end
 

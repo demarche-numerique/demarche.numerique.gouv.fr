@@ -12,7 +12,7 @@ RSpec.describe Dossiers::UserFilterPanelComponent, type: :component do
         procedure_ids: {},
         states: { 'brouillon' => 1, 'depose' => 5, 'en_instruction' => 0, 'accepte' => 0, 'refuse' => 0, 'sans_suite' => 0 },
         alerts: { 'nouveau_message' => 0, 'message_avec_attente_de_reponse' => 3, 'a_corriger' => 0, 'expire_bientot' => 0 },
-        shared_with_me: 0
+        shared_with_me: 0,
       })
   end
   let(:has_invites) { false }

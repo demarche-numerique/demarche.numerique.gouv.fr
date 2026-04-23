@@ -1,5 +1,5 @@
 <div class="user-search-bar">
-  <%= form_with url: dossiers_path, method: :get, data: { turbo_frame: "dossiers_list", turbo_action: "advance" }, class: "user-search-bar__form #{'user-search-bar__form--hidden-mobile' if search_terms.present?}" do %>
+  <%= form_with url: dossiers_path, method: :get, data: { turbo_frame: "dossiers_list", turbo_action: "advance" }, class: "user-search-bar__form" do %>
     <% filter_params.each do |key, value| %>
       <% next if key.to_s == 'search' %>
 
@@ -8,51 +8,35 @@
       <% end %>
     <% end %>
 
-    <div class="fr-input-group">
-      <label for="search" class="fr-label">
-        <%= t('views.users.dossiers.index.search.placeholder_label') %>
+    <label for="search" class="fr-label">
+      <%= t('views.users.dossiers.index.search.placeholder_label', default: 'Rechercher un dossier') %>
+    </label>
 
-        <span class="fr-hint-text">
-          <%= t('views.users.dossiers.index.search.placeholder_hint') %>
-        </span>
-      </label>
+    <span class="fr-hint-text">
+      <%= t('views.users.dossiers.index.search.placeholder_hint', default: 'Par n° de dossier, nom / prénom, SIRET, mots-clés…') %>
+    </span>
 
-      <div class="fr-search-bar fr-mt-2w">
-        <input
-          type="search"
-          id="search"
-          name="search"
-          class="fr-input"
-          placeholder="<%= t('views.users.dossiers.index.search.placeholder_text') %>"
-          value="<%= search_terms %>"
-          autocomplete="off"
-        >
+    <div class="fr-search-bar">
+      <input
+        type="search"
+        id="search"
+        name="search"
+        class="fr-input"
+        placeholder="<%= t('views.users.dossiers.index.search.placeholder_text', default: 'Saisissez votre recherche') %>"
+        value="<%= search_terms %>"
+      />
 
-        <button class="fr-btn" type="submit">
-          <%= t('views.users.dossiers.index.search.submit') %>
-        </button>
-      </div>
+      <button class="fr-btn" type="submit">
+        <%= t('views.users.dossiers.index.search.submit', default: 'Rechercher') %>
+      </button>
     </div>
-  <% end %>
-
-  <% if search_terms.present? %>
-    <a
-      href="#search-no-result"
-      class="
-        fr-link fr-icon-search-line fr-link--icon-left fr-text--bold
-        fr-hidden-md user-search-bar__mobile-link
-      "
-    >
-      <%= t('views.users.dossiers.index.search.submit') %>
-    </a>
   <% end %>
 
   <button
     type="button"
     class="
-      fr-btn fr-btn--tertiary-no-outline fr-icon-equalizer-line
+      fr-btn fr-btn--tertiary-no-outline fr-icon-equalizer-2-line
       fr-btn--icon-left
-      <%= filter_button_visibility_class %>
     "
     data-fr-opened="false"
     aria-controls="dossiers-filter-modal"
