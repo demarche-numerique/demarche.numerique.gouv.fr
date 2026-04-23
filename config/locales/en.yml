@@ -595,6 +595,13 @@ en:
             more_details: More information
             procedure: procedure
             this_procedure: this procedure
+        trash:
+          title: "Trash"
+          back_to_list: "← My files"
+          deleted_history_link: "Deleted files history"
+          count:
+            one: "1 file"
+            other: "%{count} files"
         transfers:
           sender_from_support: Technical support
           sender_demande_en_cours_html: '<h4 class="card-title fr-mb-1v">A transfer request is pending on file Nº %{id} to %{email}</h4>'

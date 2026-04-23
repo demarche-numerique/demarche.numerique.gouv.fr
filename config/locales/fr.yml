@@ -612,6 +612,13 @@ fr:
           restore_and_extend_conservation_html: 'Restaurer et étendre la conservation <span class="fr-sr-only">du dossier numéro %{id}</span> (%{duree_conservation_dossiers_dans_ds} mois)'
           actions: "Actions"
           other_actions: "Autres actions"
+        trash:
+          title: "Corbeille"
+          back_to_list: "← Mes dossiers"
+          deleted_history_link: "Historique des dossiers supprimés"
+          count:
+            one: "1 dossier"
+            other: "%{count} dossiers"
         transfers:
           sender_from_support: Le support technique
           sender_demande_en_cours_html: '<h4 class="card-title fr-mb-1v">Une demande de transfert est en cours sur le dossier n° %{id} pour %{email}</h4>'
