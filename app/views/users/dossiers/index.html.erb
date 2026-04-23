@@ -1,0 +1,75 @@
+<%# app/views/users/dossiers/index.html.erb %>
+<% if params[:search].present? %>
+  <% content_for(:title, t('views.users.dossiers.search.result_title', search_terms: params[:search], default: "Résultat de la recherche pour « #{params[:search]} »")) %>
+<% else %>
+  <% content_for(:title, t('views.users.dossiers.index.metas.title', default: 'Mes dossiers')) %>
+<% end %>
+
+<section class="dossiers-headers sub-header">
+  <div class="fr-container">
+    <div class="mes-dossiers-header">
+      <h1 class="fr-h3">
+        <%= t('views.users.dossiers.index.dossiers') %>
+      </h1>
+
+      <% if @corbeille_count.positive? %>
+        <%= link_to trash_path, class: 'fr-link mes-dossiers-header__corbeille' do %>
+          <span class="fr-icon-delete-bin-line" aria-hidden="true"></span>
+          <%= t('views.users.dossiers.index.corbeille_link.label', count: @corbeille_count, default: "Corbeille (#{@corbeille_count})") %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<div class="fr-container">
+  <div class="fr-grid-row fr-grid-row--center">
+    <div class="fr-col-12 fr-col-xl-10">
+      <% if params[:search].present? %>
+        <%= link_to t('views.users.dossiers.index.search.back_to_list', default: '← Mes dossiers'), dossiers_path, class: 'fr-link' %>
+        <h2 class="page-title">
+          <%= t('views.users.dossiers.search.result_term_title', search_terms: params[:search]) %>
+        </h2>
+      <% end %>
+
+      <% total_user_dossiers = current_user.dossiers.visible_by_user.count + current_user.dossiers_invites.visible_by_user.count %>
+
+      <% if total_user_dossiers <= 5 && params[:search].blank? && !@filter.active? %>
+        <%= render partial: 'dossiers_list', locals: { dossiers: @dossiers, filter: nil, search: false, statut: nil } %>
+      <% else %>
+        <turbo-frame id="dossiers_list">
+          <%= render Dossiers::UserSearchComponent.new(
+                search_terms: params[:search],
+                active_filter_count: @filter.active_filter_tags.count,
+                filter_params: params.to_unsafe_h.symbolize_keys.slice(:search, :procedure_id, :shared_with_me, :state, :alert, :from_created_at_date, :from_depose_at_date)
+              ) %>
+
+          <% if @filter.active? %>
+            <%= render Dossiers::UserActiveFiltersComponent.new(
+                  tags: @filter.active_filter_tags,
+                  current_filter_params: params.to_unsafe_h.symbolize_keys.slice(:search, :procedure_id, :shared_with_me, :state, :alert, :from_created_at_date, :from_depose_at_date)
+                ) %>
+          <% end %>
+
+          <% if @dossiers.any? %>
+            <p class="results-count">
+              <%= t('views.users.dossiers.index.results_count',
+                    page_to: [@dossiers.offset_value + @dossiers.size, @total_count].min,
+                    total: @total_count,
+                    default: "1 - #{[@dossiers.offset_value + @dossiers.size, @total_count].min} sur #{@total_count} dossiers") %>
+            </p>
+          <% end %>
+
+          <%= render partial: 'dossiers_list', locals: { dossiers: @dossiers, filter: @filter, search: params[:search].present?, statut: nil } %>
+        </turbo-frame>
+
+        <%= render Dossiers::UserFilterPanelComponent.new(
+              filter: @filter,
+              filter_params: params.to_unsafe_h.symbolize_keys.slice(:search, :procedure_id, :shared_with_me, :state, :alert, :from_created_at_date, :from_depose_at_date),
+              procedures_for_select: @procedures_for_select,
+              has_invites: current_user.dossiers_invites.exists?
+            ) %>
+      <% end %>
+    </div>
+  </div>
+</div>
