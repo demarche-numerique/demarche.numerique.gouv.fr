@@ -1,7 +1,0 @@
-= form_with(url: dossiers_path, method: :get, class: "fr-mb-5w") do |f|
-  = f.hidden_field :q, value: params[:q], id: nil
-  = f.label :procedure_id, t('.procedures.label'), class: 'fr-label fr-mb-1w', for: 'procedure_select'
-  .flex
-    = f.select :procedure_id, options_for_select(@procedures_for_select, params[:procedure_id]), { prompt: t('.procedures.prompt') }, class: 'fr-select fr-mr-1w', id: 'procedure_select'
-    %button.fr-btn.fr-btn--sm{ 'aria-label': t('.procedures.label') }
-      = t('.procedures.button')
