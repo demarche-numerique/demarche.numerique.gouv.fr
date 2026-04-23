@@ -9,12 +9,7 @@ en:
         index:
           title: Files
           title_search: "Search: %{terms}"
-          title_statut_in_progress: "Files in progress"
-          title_statut_finished: "Finished files"
-          title_statut_invited: "Guest files"
-          title_statut_expiring: "Expiring files"
-          title_statut_trash: "Deleted files "
-          title_statut_transfered: "Transfer request"
+          title_statut_trash: "Deleted files"
         identite:
           title: "New file (%{procedure_label}) - Step 1: Identity"
         show:

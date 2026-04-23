@@ -575,8 +575,59 @@ fr:
         dossier_menu: "Dossier numéro %{id}"
         index:
           dossiers: "Mes dossiers"
+          customize: "Personnaliser la liste"
           see_deleted_dossiers_history: Historique des dossiers supprimés
           administration_no_longer_processes: "L’administration ne traitera plus votre demande."
+          metas:
+            title: "Mes dossiers"
+          corbeille_link:
+            label:
+              one: "Corbeille (%{count})"
+              other: "Corbeille (%{count})"
+          search:
+            placeholder_label: "Rechercher un dossier"
+            placeholder_hint: "Par n° de dossier, nom / prénom, SIRET, mots-clés…"
+            placeholder_text: "Saisissez votre recherche"
+            submit: "Rechercher"
+            back_to_list: "← Mes dossiers"
+            result_title: "Résultat de la recherche pour « %{search_terms} »"
+          filter_panel:
+            open: "Filtrer les dossiers"
+            open_with_count:
+              one: "Filtrer les dossiers (%{count})"
+              other: "Filtrer les dossiers (%{count})"
+            title: "Filtrer les dossiers"
+            close: "Fermer"
+            groups:
+              procedure: "Par démarche"
+              shared_with_me: "Partagé avec moi"
+              state: "État de traitement"
+              alert: "Alerte sur le dossier"
+            procedure_placeholder: "Sélectionnez une démarche"
+            shared_with_me:
+              one: "Partagé avec moi (%{count})"
+              other: "Partagé avec moi (%{count})"
+            states:
+              brouillon: "Brouillon"
+              depose: "Déposé"
+              en_instruction: "En instruction"
+              accepte: "Accepté"
+              refuse: "Refusé"
+              sans_suite: "Classé sans suite"
+            alerts:
+              nouveau_message: "Nouveau message"
+              message_avec_attente_de_reponse: "Message avec attente de réponse"
+              a_corriger: "À corriger"
+              expire_bientot: "Expire bientôt"
+            from_created_at_date: "Créé depuis le"
+            from_depose_at_date: "Déposé depuis le"
+            reset: "Réinitialiser"
+            apply:
+              one: "Afficher le %{count} dossier"
+              other: "Afficher les %{count} dossiers"
+          active_filters:
+            reset: "Réinitialiser les filtres"
+            remove_tag: "Retirer le filtre : %{label}"
         dossiers_list:
           n_dossier: "dossier n°"
           no_result_title: Aucun dossier
@@ -585,6 +636,11 @@ fr:
           no_result_reset_search: Réinitialiser la recherche
           no_result_text_with_filter: ne correspond aux filtres sélectionnés
           no_result_reset_filter: Réinitialiser les filtres
+          no_result_search_title: Aucun dossier ne correspond à votre recherche
+          no_result_search_intro: "Vous pouvez :"
+          no_result_search_modify: modifier votre recherche
+          no_result_search_back_prefix: ou retourner à la
+          no_result_search_back_link: liste de vos dossiers
           procedure_closed:
             brouillon:
               internal_procedure_html: <h4 class="card-title fr-mb-1v">Cette démarche est close</h4><p>Vous ne pouvez pas déposer ce dossier. Nous vous invitons à en déposer un nouveau sur la %{link} qui la remplace.</p>
@@ -630,15 +686,26 @@ fr:
           count:
             one: "1 dossier"
             other: "%{count} dossiers"
+        transfer_requests:
+          title: "Demandes de transfert"
+          back_to_list: "← Mes dossiers"
+          count:
+            one: "1 dossier en attente de transfert"
+            other: "%{count} dossiers en attente de transfert"
+          received_from: "Demande de transfert envoyée par %{email}"
+          accept: "Accepter"
+          refuse: "Refuser"
+          refuse_confirm: "Êtes-vous sûr de vouloir refuser cette demande de transfert ?"
+          close: "Fermer"
+
         transfers:
           sender_from_support: Le support technique
-          sender_demande_en_cours_html: '<h4 class="card-title fr-mb-1v">Une demande de transfert est en cours sur le dossier n° %{id} pour %{email}</h4>'
           sender_demande_en_cours_from_support_html: '<h4 class="card-title fr-mb-1v">Une demande de transfert par le support technique est en cours sur le dossier n° %{id} pour %{email}</h4>'
-          receiver_demande_en_cours_html: '<h4 class="card-title fr-mb-1v">Demande de transfert pour le dossier n° %{id} envoyé par %{email}</h4>'
-          receiver_demande_en_cours_from_support_html: '<h4 class="card-title fr-mb-1v">Demande de transfert par le support technique pour le dossier n° %{id} de %{email}</h4>'
           revoke_html: 'Révoquer cette demande <span class="fr-sr-only">de transfert</span>'
-          accept: Accepter
-          reject: Refuser
+          sender_title: "Demande de transfert en cours"
+          sender_body: "Vous avez envoyé une demande de transfert de ce dossier à %{email}."
+          sender_body_from_support: "L'équipe support a initié une demande de transfert de ce dossier vers %{email}."
+          revoke: "Révoquer cette demande"
       sessions:
         new:
           sign_in: Connexion à %{application_name}

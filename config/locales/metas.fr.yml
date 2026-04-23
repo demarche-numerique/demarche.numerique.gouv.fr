@@ -9,12 +9,7 @@ fr:
         index:
           title: Dossiers
           title_search: "Recherche : %{terms}"
-          title_statut_in_progress: "Dossiers en cours"
-          title_statut_finished: "Dossiers traités"
-          title_statut_invited: "Dossiers invités"
-          title_statut_expiring: "Dossiers expirants"
           title_statut_trash: "Dossiers supprimés"
-          title_statut_transfered: "Demandes de transfert"
         identite:
           title: "Nouveau dossier (%{procedure_label}) - Étape 1 : Identité"
         show:

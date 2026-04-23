@@ -3,12 +3,12 @@
     <%= link_to dossiers_path(remove_params_for(tag)),
         class: 'user-active-filters__chip fr-tag fr-tag--dismiss',
         data: { turbo_frame: 'dossiers_list', turbo_action: 'advance' },
-        aria: { label: t('views.users.dossiers.index.active_filters.remove_tag', label: tag[:label], default: "Retirer le filtre : #{tag[:label]}") } do %>
+        aria: { label: t('views.users.dossiers.index.active_filters.remove_tag', label: tag[:label]) } do %>
       <%= tag[:label] %>
     <% end %>
   <% end %>
 
-  <%= link_to t('views.users.dossiers.index.active_filters.reset', default: 'Réinitialiser les filtres'),
+  <%= link_to t('views.users.dossiers.index.active_filters.reset'),
       dossiers_path(reset_params),
       class: 'user-active-filters__reset fr-link',
       data: { turbo_frame: 'dossiers_list', turbo_action: 'advance' } %>

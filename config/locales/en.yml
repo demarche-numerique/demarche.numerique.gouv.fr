@@ -565,8 +565,59 @@ en:
         dossier_menu: "File number %{id}"
         index:
           dossiers: "My files"
+          customize: "Customize list"
           see_deleted_dossiers_history: Deleted files history
           administration_no_longer_processes: "The administration will no longer process your request."
+          metas:
+            title: "My files"
+          corbeille_link:
+            label:
+              one: "Trash (%{count})"
+              other: "Trash (%{count})"
+          search:
+            placeholder_label: "Search a file"
+            placeholder_hint: "By file number, name, SIRET, keywords..."
+            placeholder_text: "Enter your search"
+            submit: "Search"
+            back_to_list: "← My files"
+            result_title: "Search results for \"%{search_terms}\""
+          filter_panel:
+            open: "Filter files"
+            open_with_count:
+              one: "Filter files (%{count})"
+              other: "Filter files (%{count})"
+            title: "Filter files"
+            close: "Close"
+            groups:
+              procedure: "By procedure"
+              shared_with_me: "Shared with me"
+              state: "Processing state"
+              alert: "File alert"
+            procedure_placeholder: "Select a procedure"
+            shared_with_me:
+              one: "Shared with me (%{count})"
+              other: "Shared with me (%{count})"
+            states:
+              brouillon: "Draft"
+              depose: "Submitted"
+              en_instruction: "Under review"
+              accepte: "Accepted"
+              refuse: "Rejected"
+              sans_suite: "Closed without follow-up"
+            alerts:
+              nouveau_message: "New message"
+              message_avec_attente_de_reponse: "Message pending response"
+              a_corriger: "Needs correction"
+              expire_bientot: "Expires soon"
+            from_created_at_date: "Created since"
+            from_depose_at_date: "Submitted since"
+            reset: "Reset"
+            apply:
+              one: "Show %{count} file"
+              other: "Show %{count} files"
+          active_filters:
+            reset: "Reset filters"
+            remove_tag: "Remove filter: %{label}"
         dossiers_list:
           n_dossier: "File no."
           no_result_title: No files
@@ -575,6 +626,11 @@ en:
           no_result_reset_search: Reset search
           no_result_text_with_filter: found with selected filters
           no_result_reset_filter: Reset filters
+          no_result_search_title: No file matches your search
+          no_result_search_intro: "You can:"
+          no_result_search_modify: edit your search
+          no_result_search_back_prefix: or go back to your
+          no_result_search_back_link: file list
           pending_correction_html: '<h4 class="card-title fr-mb-1v">This file is waiting for your corrections</h4><p>Consult the changes to be made in the <a href="%{link}" class="fr-link">messaging system <span class="fr-sr-only">of file number %{id}</span></a>.</p>'
           pending_response:
             title: "This file is waiting for your response"
@@ -607,15 +663,26 @@ en:
           count:
             one: "1 file"
             other: "%{count} files"
+        transfer_requests:
+          title: "Transfer requests"
+          back_to_list: "← My files"
+          count:
+            one: "1 file pending transfer"
+            other: "%{count} files pending transfer"
+          received_from: "Transfer request sent by %{email}"
+          accept: "Accept"
+          refuse: "Refuse"
+          refuse_confirm: "Are you sure you want to refuse this transfer request?"
+          close: "Close"
+
         transfers:
           sender_from_support: Technical support
-          sender_demande_en_cours_html: '<h4 class="card-title fr-mb-1v">A transfer request is pending on file Nº %{id} to %{email}</h4>'
           sender_demande_en_cours_from_support_html: '<h4 class="card-title fr-mb-1v">A transfer request from technical support is pending on file Nº %{id} to %{email}</h4>'
-          receiver_demande_en_cours_html: '<h4 class="card-title fr-mb-1v">Transfer request on file Nº %{id} sent by %{email}</h4>'
-          receiver_demande_en_cours_from_support_html: '<h4 class="card-title fr-mb-1v">Transfer request from technical support on file Nº %{id} of %{email}</h4>'
           revoke_html: 'Revoke this <span class="fr-sr-only">transfer</span> request'
-          accept: Accept
-          reject: Reject
+          sender_title: "Transfer request in progress"
+          sender_body: "You sent a transfer request for this file to %{email}."
+          sender_body_from_support: "The support team initiated a transfer request for this file to %{email}."
+          revoke: "Revoke this request"
         dossier_action:
           edit_dossier: "Edit the file"
           start_other_dossier: "Start another empty file"

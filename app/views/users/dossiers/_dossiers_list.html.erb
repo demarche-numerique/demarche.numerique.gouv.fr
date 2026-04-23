@@ -1,11 +1,13 @@
 <% if dossiers.present? %>
-  <h2 class="fr-h6 fr-my-2w"><%= page_entries_info dossiers %></h2>
+  <% unless local_assigns[:hide_count] %>
+    <h2 class="fr-h6 fr-my-2w"><%= page_entries_info dossiers %></h2>
+  <% end %>
   <% dossiers.each do |dossier| %>
     <div class="card" id="dossier_<%= dossier.id %>">
       <div class="flex justify-between">
         <div>
           <h3 class="card-title">
-            <% if ["dossiers-transferes", "dossiers-supprimes"].exclude?(@statut) %>
+            <% if @statut != "dossiers-supprimes" %>
               <%= link_to(url_for_dossier(dossier)) do %>
                 <%= dossier.procedure.libelle %>
 
@@ -145,42 +147,24 @@
       <% end %>
 
       <% if dossier.transfer.present? %>
-        <% if @statut == "dossiers-transferes" %>
-          <%= render Dsfr::AlertComponent.new(state: :info, size: :sm) do |c| %>
-            <% c.with_body do %>
-              <% if dossier.transfer.from_support? %>
-                <%= t('views.users.dossiers.transfers.receiver_demande_en_cours_from_support_html', id: dossier.id, email: dossier.user_email_for(:notification)) %>
-              <% else %>
-                <%= t('views.users.dossiers.transfers.receiver_demande_en_cours_html', id: dossier.id, email: dossier.user_email_for(:notification)) %>
-              <% end %>
-
-              <ul class="fr-links-group fr-links-group--inline">
-                <li>
-                  <%= link_to t('views.users.dossiers.transfers.accept'), transfer_path(dossier.transfer), class: "fr-link", method: :put %>
-                </li>
-
-                <li>
-                  <%= link_to t('views.users.dossiers.transfers.reject'), transfer_path(dossier.transfer), class: "fr-link", method: :delete %>
-                </li>
-              </ul>
+        <%= render Dsfr::AlertComponent.new(title: t('views.users.dossiers.transfers.sender_title'), state: :info, with_prefix: false, extra_class_names: "fr-pb-1w fr-mb-2w") do |c| %>
+          <% c.with_body do %>
+            <% if dossier.transfer.from_support? %>
+              <p>
+                <%= t('views.users.dossiers.transfers.sender_body_from_support', email: dossier.transfer.email) %>
+              </p>
+            <% else %>
+              <p>
+                <%= t('views.users.dossiers.transfers.sender_body', email: dossier.transfer.email) %>
+              </p>
             <% end %>
-          <% end %>
-        <% else %>
-          <%= render Dsfr::AlertComponent.new(state: :info, size: :sm, extra_class_names: "fr-pb-1w fr-mb-2w") do |c| %>
-            <% c.with_body do %>
-              <% if dossier.transfer.from_support? %>
-                <%= t('views.users.dossiers.transfers.sender_demande_en_cours_from_support_html', id: dossier.id, email: dossier.transfer.email) %>
-              <% else %>
-                <%= t('views.users.dossiers.transfers.sender_demande_en_cours_html', id: dossier.id, email: dossier.transfer.email) %>
-              <% end %>
 
-              <%= link_to t('views.users.dossiers.transfers.revoke_html'), transfer_path(dossier.transfer), class: 'fr-link', method: :delete %>
-            <% end %>
+            <%= link_to t('views.users.dossiers.transfers.revoke'), transfer_path(dossier.transfer), class: 'fr-link', method: :delete %>
           <% end %>
         <% end %>
       <% end %>
 
-      <% if ["dossiers-transferes", "dossiers-supprimes"].exclude?(@statut) %>
+      <% if @statut != "dossiers-supprimes" %>
         <div class="flex justify-end no-flex-xs">
           <%= render partial: 'dossier_actions', locals: { dossier: dossier } %>
         </div>
@@ -251,16 +235,52 @@
       </p>
     </div>
   <% elsif search %>
-    <div class="blank-tab">
-      <h2 class="empty-text">
-        <%= t('views.users.dossiers.dossiers_list.no_result_title') %>
+    <div class="no-result-search fr-my-4w">
+      <h2 class="fr-h6 fr-mb-2w">
+        <%= t('views.users.dossiers.dossiers_list.no_result_search_title') %>
       </h2>
 
-      <p class="empty-text-details">
-        <%= t('views.users.dossiers.dossiers_list.no_result_text_with_search') %>
-        <br>
-        <%= link_to t('views.users.dossiers.dossiers_list.no_result_reset_search'), dossiers_path(), class: 'fr-btn fr-btn--sm fr-mt-2w' %>
+      <p class="fr-mb-1w">
+        <%= t('views.users.dossiers.dossiers_list.no_result_search_intro') %>
       </p>
+
+      <ul>
+        <li>
+          <%= t('views.users.dossiers.dossiers_list.no_result_search_modify') %>
+
+          <div class="fr-hidden-md fr-mt-2w fr-mb-2w no-result-search__form">
+            <%= form_with url: dossiers_path, method: :get, class: 'fr-input-group' do %>
+              <label for="search-no-result" class="fr-label">
+                <%= t('views.users.dossiers.index.search.placeholder_label') %>
+
+                <span class="fr-hint-text">
+                  <%= t('views.users.dossiers.index.search.placeholder_hint') %>
+                </span>
+              </label>
+
+              <div class="fr-search-bar fr-mt-2w">
+                <input
+                  type="search"
+                  id="search-no-result"
+                  name="search"
+                  class="fr-input"
+                  value="<%= params[:search] %>"
+                  autocomplete="off"
+                >
+
+                <button class="fr-btn" type="submit">
+                  <%= t('views.users.dossiers.index.search.submit') %>
+                </button>
+              </div>
+            <% end %>
+          </div>
+        </li>
+
+        <li>
+          <%= t('views.users.dossiers.dossiers_list.no_result_search_back_prefix') %>
+          <%= link_to t('views.users.dossiers.dossiers_list.no_result_search_back_link'), dossiers_path, class: 'fr-link' %>
+        </li>
+      </ul>
     </div>
   <% else %>
     <div class="blank-tab">
