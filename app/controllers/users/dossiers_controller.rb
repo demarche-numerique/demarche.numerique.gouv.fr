@@ -11,7 +11,7 @@ module Users
 
     layout 'procedure_context', only: [:identite, :update_identite, :siret, :update_siret]
 
-    ACTIONS_ALLOWED_TO_ANY_USER = [:index, :new,  :deleted_dossiers]
+    ACTIONS_ALLOWED_TO_ANY_USER = [:index, :new, :deleted_dossiers, :trash]
     ACTIONS_ALLOWED_TO_OWNER_OR_INVITE = [:show, :destroy, :demande, :messagerie, :brouillon, :modifier, :update, :create_commentaire, :attestation_depot, :restore, :champ, :check_completude, :notify_owner_for_changes]
     TRASH_ACTIONS = [:show_in_trash, :show_deleted]
     ITEMS_PER_PAGE = 25
@@ -471,6 +471,18 @@ module Users
 
     def deleted_dossiers
       @deleted_dossiers = current_user.deleted_dossiers.includes(:procedure).order_by_updated_at.page(page)
+    end
+
+    def trash
+      @statut = 'dossiers-supprimes'
+      @dossiers = current_user.dossiers
+        .hidden_by_user
+        .or(current_user.dossiers.hidden_by_expired)
+        .includes(:procedure)
+        .order(updated_at: :desc)
+        .page(page)
+        .per(ITEMS_PER_PAGE)
+      @total_count = @dossiers.total_count
     end
 
     private

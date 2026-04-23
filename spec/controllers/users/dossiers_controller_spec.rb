@@ -2441,6 +2441,33 @@ describe Users::DossiersController, type: :controller do
     end
   end
 
+  describe 'GET #trash' do
+    let(:user) { create(:user) }
+    before { sign_in(user) }
+
+    it 'assigns dossiers hidden by user or expired' do
+      hidden_by_user = create(:dossier, :en_construction, user: user, hidden_by_user_at: Time.current)
+      hidden_by_expired = create(:dossier, :en_construction, user: user, hidden_by_expired_at: Time.current)
+      visible = create(:dossier, :en_construction, user: user)
+
+      get :trash
+
+      expect(assigns(:dossiers)).to include(hidden_by_user, hidden_by_expired)
+      expect(assigns(:dossiers)).not_to include(visible)
+    end
+
+    it 'paginates dossiers' do
+      create_list(:dossier, 30, :en_construction, user: user, hidden_by_user_at: Time.current)
+      get :trash
+      expect(assigns(:dossiers).size).to eq(25)
+    end
+
+    it 'is accessible without ownership restriction' do
+      get :trash
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
   private
 
   def find_champ_by_stable_id(dossier, stable_id)
