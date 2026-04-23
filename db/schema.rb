@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_04_21_120000) do
+ActiveRecord::Schema[7.2].define(version: 2026_04_23_140000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_stat_statements"
@@ -1125,7 +1125,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_04_21_120000) do
     t.string "path"
     t.boolean "piece_justificative_multiple", default: true, null: false
     t.boolean "pro_connect_restricted", default: false, null: false
-    t.string "pro_connect_restriction", default: "none", null: false
+    t.string "pro_connect_restriction", default: "instructeurs", null: false
     t.boolean "procedure_expires_when_termine_enabled", default: true
     t.datetime "published_at", precision: nil
     t.bigint "published_revision_id"
