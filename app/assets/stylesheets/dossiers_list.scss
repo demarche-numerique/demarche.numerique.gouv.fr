@@ -1,0 +1,75 @@
+.mes-dossiers-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  &__corbeille {
+    white-space: nowrap;
+  }
+}
+
+.user-search-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  &__form {
+    flex: 1;
+  }
+}
+
+.user-active-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+
+  &__chip {
+    background: var(--background-action-low-blue-france);
+    color: var(--text-action-high-blue-france);
+  }
+
+  &__reset {
+    align-self: center;
+  }
+}
+
+.user-filter-panel {
+  &__content {
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+
+  &__actions {
+    position: sticky;
+    bottom: 0;
+    padding: 1rem;
+    background: var(--background-default-grey);
+    border-top: 1px solid var(--border-default-grey);
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .fr-modal__body {
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: 0;
+      height: 100vh;
+    }
+  }
+}
+
+.results-count {
+  font-weight: bold;
+  margin: 1rem 0 0.5rem;
+}
