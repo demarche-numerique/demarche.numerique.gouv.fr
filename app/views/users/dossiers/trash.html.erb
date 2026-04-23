@@ -2,26 +2,23 @@
 
 <section class="dossiers-headers sub-header">
   <div class="fr-container">
-    <p class="fr-mb-3w">
-      <%= link_to t('views.users.dossiers.trash.back_to_list'), dossiers_path, class: 'fr-link' %>
-    </p>
+    <%= link_to t('views.users.dossiers.trash.back_to_list'), dossiers_path, class: 'fr-link' %>
 
-    <h1 class="fr-h3"><%= t('views.users.dossiers.trash.title') %></h1>
+    <div class="mes-dossiers-header">
+      <h1 class="fr-h3"><%= t('views.users.dossiers.trash.title') %></h1>
+      <%= link_to t('views.users.dossiers.trash.deleted_history_link'), deleted_dossiers_path, class: 'fr-link' %>
+    </div>
   </div>
 </section>
 
 <div class="fr-container">
   <div class="fr-grid-row fr-grid-row--center">
     <div class="fr-col-12 fr-col-xl-10">
-      <div class="trash-list-header">
-        <h2 class="fr-h6 fr-my-2w">
-          <%= t('views.users.dossiers.trash.count', count: @total_count) %>
-        </h2>
+      <p class="results-count">
+        <%= t('views.users.dossiers.trash.count', count: @total_count) %>
+      </p>
 
-        <%= link_to t('views.users.dossiers.trash.deleted_history_link'), deleted_dossiers_path, class: 'fr-link' %>
-      </div>
-
-      <%= render partial: 'dossiers_list', locals: { dossiers: @dossiers, filter: nil, search: false, statut: 'dossiers-supprimes', hide_count: true } %>
+      <%= render partial: 'dossiers_list', locals: { dossiers: @dossiers, filter: nil, search: false, statut: 'dossiers-supprimes' } %>
     </div>
   </div>
 </div>

@@ -8,7 +8,7 @@ module Users
       'nouveau_message'                 => :with_unread_messages_for_user,
       'message_avec_attente_de_reponse' => :with_pending_responses,
       'a_corriger'                      => :with_pending_corrections,
-      'expire_bientot'                  => :close_to_expiration
+      'expire_bientot'                  => :close_to_expiration,
     }.freeze
 
     def initialize(user:, params:)
@@ -38,7 +38,7 @@ module Users
         procedure_ids:  count_procedure_ids,
         states:         count_states,
         alerts:         count_alerts,
-        shared_with_me: scope_without(:shared_with_me).where(id: @user.dossiers_invites.visible_by_user).count
+        shared_with_me: scope_without(:shared_with_me).where(id: @user.dossiers_invites.visible_by_user).count,
       }
     end
 
@@ -128,7 +128,7 @@ module Users
     def count_alerts
       scope = scope_without(:alert)
       ALERT_SCOPES.keys.index_with do |alert_key|
-        scope.where(id: Dossier.public_send(ALERT_SCOPES[alert_key]).pluck(:id)).count
+        scope.where(id: Dossier.public_send(ALERT_SCOPES[alert_key]).select(:id)).count
       end
     end
 
@@ -138,8 +138,8 @@ module Users
       scope = scope.where(id: @user.dossiers_invites.visible_by_user) if shared_with_me? && group != :shared_with_me
       scope = scope.where(state: model_states) if model_states.any? && group != :state
       scope = scope.where(id: alert_ids) if alert_scopes.any? && group != :alert
-      scope = scope.where('dossiers.created_at >= ?', from_created_at_date) if from_created_at_date && group != :from_created_at_date
-      scope = scope.where('dossiers.depose_at >= ?', from_depose_at_date) if from_depose_at_date && group != :from_depose_at_date
+      scope = scope.where(dossiers: { created_at: from_created_at_date.. }) if from_created_at_date && group != :from_created_at_date
+      scope = scope.where(dossiers: { depose_at: from_depose_at_date.. }) if from_depose_at_date && group != :from_depose_at_date
       scope
     end
   end

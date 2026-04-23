@@ -14,16 +14,16 @@
                 class="fr-btn--close fr-btn"
                 aria-controls="dossiers-filter-modal"
               >
-                <%= t('views.users.dossiers.index.filter_panel.close') %>
+                <%= t('views.users.dossiers.index.filter_panel.close', default: 'Fermer') %>
               </button>
             </div>
 
             <div class="fr-modal__content">
               <h1 id="dossiers-filter-title" class="fr-modal__title">
-                <%= t('views.users.dossiers.index.filter_panel.title') %>
+                <%= t('views.users.dossiers.index.filter_panel.title', default: 'Filtrer les dossiers') %>
               </h1>
 
-              <%= form_with url: dossiers_path, method: :get, data: { turbo_frame: "filter_panel", controller: "filter-autosubmit" } do |f| %>
+              <%= form_with url: dossiers_path, method: :get, data: { turbo_frame: "dossiers_list", turbo_action: "advance", controller: "filter-autosubmit" } do |f| %>
                 <% if filter_params[:search].present? %>
                   <%= hidden_field_tag :search, filter_params[:search] %>
                 <% end %>
@@ -31,24 +31,24 @@
                 <% if show_procedure_filter? %>
                   <fieldset class="fr-fieldset">
                     <legend class="fr-fieldset__legend">
-                      <%= t('views.users.dossiers.index.filter_panel.groups.procedure') %>
+                      <%= t('views.users.dossiers.index.filter_panel.groups.procedure', default: 'Par démarche') %>
                     </legend>
 
                     <%= select_tag :procedure_id,
-                        options_for_select([[t('views.users.dossiers.index.filter_panel.procedure_placeholder'), '']] + procedures_for_select, filter_params[:procedure_id]),
+                        options_for_select([[t('views.users.dossiers.index.filter_panel.procedure_placeholder', default: 'Sélectionnez une démarche'), '']] + procedures_for_select, filter_params[:procedure_id]),
                         class: 'fr-select',
                         data: { action: 'change->filter-autosubmit#submit' } %>
                   </fieldset>
                 <% end %>
 
-                <% if has_invites %>
+                <% if show_shared_with_me_filter? %>
                   <fieldset class="fr-fieldset">
                     <div class="fr-fieldset__element">
                       <div class="fr-checkbox-group">
                         <%= check_box_tag :shared_with_me, '1', filter_params[:shared_with_me] == '1', data: { action: 'change->filter-autosubmit#submit' } %>
 
                         <label class="fr-label" for="shared_with_me">
-                          <%= t('views.users.dossiers.index.filter_panel.shared_with_me', count: filter.counts[:shared_with_me]) %>
+                          <%= t('views.users.dossiers.index.filter_panel.shared_with_me', count: filter.counts[:shared_with_me], default: "Partagé avec moi (#{filter.counts[:shared_with_me]})") %>
                         </label>
                       </div>
                     </div>
@@ -57,10 +57,10 @@
 
                 <fieldset class="fr-fieldset">
                   <legend class="fr-fieldset__legend">
-                    <%= t('views.users.dossiers.index.filter_panel.groups.state') %>
+                    <%= t('views.users.dossiers.index.filter_panel.groups.state', default: 'État de traitement') %>
                   </legend>
 
-                  <% Users::DossierStateMapping::UI_STATES.each do |s| %>
+                  <% ui_states.each do |s| %>
                     <div class="fr-fieldset__element">
                       <div class="fr-checkbox-group">
                         <%= check_box_tag 'state[]', s, state_checked?(s), id: "state_#{s}", data: { action: 'change->filter-autosubmit#submit' } %>
@@ -75,7 +75,7 @@
 
                 <fieldset class="fr-fieldset">
                   <legend class="fr-fieldset__legend">
-                    <%= t('views.users.dossiers.index.filter_panel.groups.alert') %>
+                    <%= t('views.users.dossiers.index.filter_panel.groups.alert', default: 'Alerte sur le dossier') %>
                   </legend>
 
                   <% alert_keys.each do |a| %>
@@ -94,7 +94,7 @@
                 <fieldset class="fr-fieldset">
                   <div class="fr-fieldset__element">
                     <label class="fr-label" for="from_created_at_date">
-                      <%= t('views.users.dossiers.index.filter_panel.from_created_at_date') %>
+                      <%= t('views.users.dossiers.index.filter_panel.from_created_at_date', default: 'Créé depuis le') %>
                     </label>
 
                     <%= date_field_tag :from_created_at_date, filter_params[:from_created_at_date], class: 'fr-input', data: { action: 'change->filter-autosubmit#submit' } %>
@@ -102,7 +102,7 @@
 
                   <div class="fr-fieldset__element">
                     <label class="fr-label" for="from_depose_at_date">
-                      <%= t('views.users.dossiers.index.filter_panel.from_depose_at_date') %>
+                      <%= t('views.users.dossiers.index.filter_panel.from_depose_at_date', default: 'Déposé depuis le') %>
                     </label>
 
                     <%= date_field_tag :from_depose_at_date, filter_params[:from_depose_at_date], class: 'fr-input', data: { action: 'change->filter-autosubmit#submit' } %>
@@ -110,14 +110,12 @@
                 </fieldset>
 
                 <div class="user-filter-panel__actions">
-                  <%= link_to t('views.users.dossiers.index.filter_panel.reset'),
+                  <%= link_to t('views.users.dossiers.index.filter_panel.reset', default: 'Réinitialiser'),
                       dossiers_path(search: filter_params[:search]),
                       class: 'fr-btn fr-btn--secondary',
-                      data: { turbo_frame: '_top' } %>
+                      data: { turbo_frame: 'dossiers_list', turbo_action: 'advance' } %>
 
-                  <%= submit_tag t('views.users.dossiers.index.filter_panel.apply', count: filter.total_count),
-                      class: 'fr-btn',
-                      data: { turbo_frame: '_top' } %>
+                  <%= submit_tag t('views.users.dossiers.index.filter_panel.apply', count: filter.total_count, default: "Afficher les #{filter.total_count} dossiers"), class: 'fr-btn' %>
                 </div>
               <% end %>
             </div>
