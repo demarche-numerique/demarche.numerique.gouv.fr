@@ -46,7 +46,7 @@ describe 'Transfer dossier flow', js: true do
       expect(page).to have_content('1 dossier en attente de transfert')
     end
 
-    it 'accepts a transfer', skip: 'Turbo PATCH method on link not triggered by Playwright in headless test environment' do
+    it 'accepts a transfer' do
       visit transferts_path
       find_link('Accepter').click
       expect(page).to have_current_path(dossiers_path)

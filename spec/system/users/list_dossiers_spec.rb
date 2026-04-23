@@ -5,23 +5,13 @@ describe 'user dossiers list', js: true do
 
   before { login_as user, scope: :user }
 
-  describe 'small list (≤ 5 dossiers)' do
-    it 'does not show search or filter UI' do
-      create_list(:dossier, 3, :en_construction, user: user)
-      visit dossiers_path
-
-      expect(page).not_to have_selector('input[name=search]')
-      expect(page).not_to have_button(text: /Filtrer les dossiers/i)
-    end
-  end
-
-  describe 'large list (> 5 dossiers)' do
-    before { create_list(:dossier, 6, :en_construction, user: user) }
+  describe 'dossiers list' do
+    before { create_list(:dossier, 3, :en_construction, user: user) }
 
     it 'shows search and filter UI' do
       visit dossiers_path
-      expect(page).to have_selector('.user-search-bar__form input[name=search]')
-      expect(page).to have_css('button[aria-controls="dossiers-filter-modal"]', text: /Filtrer les dossiers/i)
+      expect(page).to have_selector('input[name=search]')
+      expect(page).to have_button(text: /Filtrer les dossiers/i)
     end
   end
 
@@ -96,7 +86,14 @@ describe 'user dossiers list', js: true do
   end
 
   describe 'filter panel' do
-    pending "TODO: JS interaction with DSFR modal, covered by controller spec for now"
+    before { create_list(:dossier, 6, :en_construction, user: user) }
+
+    it 'opens the filter modal when clicking the filter button' do
+      visit dossiers_path
+      expect(page).not_to have_selector('#dossiers-filter-modal[open]')
+      click_button(text: /Filtrer les dossiers/i)
+      expect(page).to have_selector('#dossiers-filter-modal[open]')
+    end
   end
 
   describe 'active filter with no result' do
@@ -109,10 +106,10 @@ describe 'user dossiers list', js: true do
   end
 
   describe 'active filter chips' do
-    pending "TODO: JS interaction with DSFR modal, covered by controller spec for now"
+    pending "TODO: chip removal requires JS interaction inside DSFR modal; filter logic covered by spec/controllers/users/dossiers_controller_spec.rb GET #index"
   end
 
   describe 'reset filters' do
-    pending "TODO: JS interaction with DSFR modal, covered by controller spec for now"
+    pending "TODO: reset requires JS interaction inside DSFR modal; filter logic covered by spec/controllers/users/dossiers_controller_spec.rb GET #index"
   end
 end

@@ -224,14 +224,14 @@ describe 'Invitations' do
       end
 
       it "can search by id and it displays the dossier" do
-        page.find_by_id('q').set(dossier.id)
+        page.find_by_id('search').set(dossier.id)
         find('.fr-search-bar .fr-btn').click
         expect(current_path).to eq(dossiers_path)
         expect(page).to have_link(dossier.procedure.libelle)
       end
 
       it "can search something inside the dossier and it displays the dossier" do
-        page.find_by_id('q').set(dossier_2.project_champs_public.first.value)
+        page.find_by_id('search').set(dossier_2.project_champs_public.first.value)
         find('.fr-search-bar .fr-btn').click
         expect(current_path).to eq(dossiers_path)
         expect(page).to have_link(dossier.procedure.libelle)
@@ -249,13 +249,13 @@ describe 'Invitations' do
 
   def navigate_to_brouillon(dossier)
     expect(page).to have_current_path(dossiers_path)
-    click_on(dossier.procedure.libelle, match: :first)
+    click_link(dossier.procedure.libelle, match: :first)
     expect(page).to have_current_path(brouillon_dossier_path(dossier))
   end
 
   def navigate_to_dossier(dossier)
     expect(page).to have_current_path(dossiers_path)
-    click_on(dossier.procedure.libelle, match: :first)
+    click_link(dossier.procedure.libelle, match: :first)
     expect(page).to have_current_path(dossier_path(dossier))
   end
 
