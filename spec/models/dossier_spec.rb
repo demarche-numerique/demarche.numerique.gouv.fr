@@ -826,6 +826,44 @@ describe Dossier, type: :model do
     end
   end
 
+  describe '.with_unread_messages_for_user' do
+    let(:dossier_with_unread_instructeur) { create(:dossier, :en_construction) }
+    let(:dossier_with_read_instructeur) { create(:dossier, :en_construction) }
+    let(:dossier_with_unread_expert) { create(:dossier, :en_construction) }
+    let(:dossier_with_only_usager_message) { create(:dossier, :en_construction) }
+    let(:dossier_with_discarded_unread) { create(:dossier, :en_construction) }
+
+    before do
+      create(:commentaire, dossier: dossier_with_unread_instructeur, instructeur: create(:instructeur), seen_by_recipient_at: nil)
+      create(:commentaire, dossier: dossier_with_read_instructeur, instructeur: create(:instructeur), seen_by_recipient_at: 1.day.ago)
+      create(:commentaire, dossier: dossier_with_unread_expert, expert: create(:expert), seen_by_recipient_at: nil)
+      create(:commentaire, dossier: dossier_with_only_usager_message, seen_by_recipient_at: nil)
+      create(:commentaire, dossier: dossier_with_discarded_unread, instructeur: create(:instructeur), seen_by_recipient_at: nil, discarded_at: Time.current)
+    end
+
+    subject { Dossier.with_unread_messages_for_user }
+
+    it 'includes dossiers with unread instructeur messages' do
+      expect(subject).to include(dossier_with_unread_instructeur)
+    end
+
+    it 'includes dossiers with unread expert messages' do
+      expect(subject).to include(dossier_with_unread_expert)
+    end
+
+    it 'excludes dossiers where instructeur messages are read' do
+      expect(subject).not_to include(dossier_with_read_instructeur)
+    end
+
+    it 'excludes dossiers where only the usager posted a message' do
+      expect(subject).not_to include(dossier_with_only_usager_message)
+    end
+
+    it 'excludes dossiers where the unread message is discarded' do
+      expect(subject).not_to include(dossier_with_discarded_unread)
+    end
+  end
+
   describe '.ordered_for_export' do
     let(:procedure) { create(:procedure) }
     let!(:dossier2) { create(:dossier, :with_entreprise, procedure: procedure, state: Dossier.states.fetch(:en_construction), depose_at: Time.zone.parse('03/01/2010')) }
