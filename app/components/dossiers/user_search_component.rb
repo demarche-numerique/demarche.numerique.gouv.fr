@@ -11,9 +11,13 @@ class Dossiers::UserSearchComponent < ApplicationComponent
 
   def filter_button_label
     if active_filter_count.positive?
-      t('.filter_panel.open_with_count', count: active_filter_count, scope: 'views.users.dossiers.index', default: "Filtrer les dossiers (#{active_filter_count})")
+      t('filter_panel.open_with_count', count: active_filter_count, scope: 'views.users.dossiers.index')
     else
-      t('.filter_panel.open', scope: 'views.users.dossiers.index', default: "Filtrer les dossiers")
+      t('filter_panel.open', scope: 'views.users.dossiers.index')
     end
+  end
+
+  def filter_button_visibility_class
+    'fr-hidden' if search_terms.present?
   end
 end

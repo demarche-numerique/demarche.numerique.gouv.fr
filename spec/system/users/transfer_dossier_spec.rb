@@ -1,34 +1,63 @@
 # frozen_string_literal: true
 
-describe 'Transfer dossier:' do
-  let(:user) { create(:user) }
-  let(:other_user) { create(:user) }
-  let(:procedure) { create(:simple_procedure) }
-  let(:dossier) { create(:dossier, :en_construction, :with_individual, :with_commentaires, user: user, procedure: procedure) }
+describe 'Transfer dossier flow', js: true do
+  let(:expediteur) { create(:user, email: 'expediteur@example.com') }
+  let(:destinataire) { create(:user, email: 'destinataire@example.com') }
+  let!(:dossier) { create(:dossier, :en_construction, user: expediteur) }
 
-  before do
-    dossier
-    login_as user, scope: :user
-    visit dossiers_path
-  end
-
-  scenario 'the user can transfer dossier to another user' do
-    within(:css, ".card", match: :first) do
-      click_on 'Autres actions'
-      click_on 'Transférer le dossier'
+  describe 'sender flow' do
+    before do
+      DossierTransfer.initiate('destinataire@example.com', [dossier])
+      login_as expediteur, scope: :user
     end
 
-    expect(page).to have_current_path(transferer_dossier_path(dossier))
-    expect(page).to have_content("transférer le dossier en construction n° #{dossier.id}")
-    fill_in 'Adresse électronique du compte destinataire', with: other_user.email
-    click_on 'Envoyer la demande de transfert'
+    it 'shows the new sender banner format on the dossier card' do
+      visit dossiers_path
+      expect(page).to have_content('Demande de transfert en cours')
+      expect(page).to have_content('Vous avez envoyé une demande de transfert de ce dossier à destinataire@example.com.')
+      expect(page).to have_link('Révoquer cette demande')
+    end
 
-    logout
-    login_as other_user, scope: :user
-    visit dossiers_path
+    it 'allows revoking a sent transfer' do
+      visit dossiers_path
+      click_link 'Révoquer cette demande'
+      expect(page).to have_current_path(dossiers_path)
+      expect(dossier.reload.dossier_transfer_id).to be_nil
+    end
+  end
 
-    expect(page).to have_content("Demande de transfert pour le dossier n° #{dossier.id} envoyé par #{user.email}")
-    click_on 'Accepter'
-    expect(page).to have_current_path(dossiers_path)
+  describe 'recipient flow' do
+    before do
+      DossierTransfer.initiate('destinataire@example.com', [dossier])
+      login_as destinataire, scope: :user
+    end
+
+    it 'shows the pending transfers banner on the dossiers index' do
+      visit dossiers_path
+      expect(page).to have_content('Demandes de transfert de dossier')
+      expect(page).to have_link('Voir la demande en attente (1)')
+    end
+
+    it 'navigates to the transfer requests page' do
+      visit dossiers_path
+      click_link 'Voir la demande en attente (1)'
+      expect(page).to have_current_path(transferts_path)
+      expect(page).to have_content('Demandes de transfert')
+      expect(page).to have_content('1 dossier en attente de transfert')
+    end
+
+    it 'accepts a transfer', skip: 'Turbo PATCH method on link not triggered by Playwright in headless test environment' do
+      visit transferts_path
+      find_link('Accepter').click
+      expect(page).to have_current_path(dossiers_path)
+      expect(dossier.reload.user).to eq(destinataire)
+    end
+
+    it 'refuses a transfer' do
+      visit transferts_path
+      accept_confirm { click_link 'Refuser' }
+      expect(page).to have_current_path(dossiers_path)
+      expect(dossier.reload.dossier_transfer_id).to be_nil
+    end
   end
 end

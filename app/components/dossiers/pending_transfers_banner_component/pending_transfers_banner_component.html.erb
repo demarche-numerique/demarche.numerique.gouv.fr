@@ -1,0 +1,5 @@
+<%= render Dsfr::AlertComponent.new(state: :info, with_prefix: false, title: t('.title')) do |c| %>
+  <% c.with_body do %>
+    <%= link_to t('.link', count: count), transferts_path, class: 'fr-link', data: { turbo_frame: '_top' } %>
+  <% end %>
+<% end %>

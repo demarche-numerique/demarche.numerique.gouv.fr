@@ -19,11 +19,11 @@ class Dossiers::UserFilterPanelComponent < ApplicationComponent
   end
 
   def state_label(ui_state)
-    t("filter_panel.states.#{ui_state}", scope: 'views.users.dossiers.index', default: ui_state.to_s.humanize)
+    t("filter_panel.states.#{ui_state}", scope: 'views.users.dossiers.index')
   end
 
   def alert_label(alert_key)
-    t("filter_panel.alerts.#{alert_key}", scope: 'views.users.dossiers.index', default: alert_key.to_s.humanize)
+    t("filter_panel.alerts.#{alert_key}", scope: 'views.users.dossiers.index')
   end
 
   def state_checked?(ui_state)
