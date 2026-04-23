@@ -1559,85 +1559,32 @@ describe Users::DossiersController, type: :controller do
     end
   end
 
-  describe '#index' do
+  describe 'GET #index' do
+    let(:user) { create(:user) }
     before { sign_in(user) }
 
-    context 'when the user does not have any dossiers' do
-      before { get(:index) }
-
-      it { expect(assigns(:statut)).to eq('en-cours') }
+    it 'assigns @filter as a DossierFilterService' do
+      get :index
+      expect(assigns(:filter)).to be_a(Users::DossierFilterService)
     end
 
-    context 'when the user only have its own dossiers' do
-      let!(:own_dossier) { create(:dossier, user: user) }
-
-      before { get(:index) }
-      it do
-        expect(assigns(:statut)).to eq('en-cours')
-        expect(assigns(:user_dossiers)).to match([own_dossier])
-      end
+    it 'assigns @dossiers paginated to 25 per page' do
+      create_list(:dossier, 30, :en_construction, user: user)
+      get :index
+      expect(assigns(:dossiers).size).to eq(25)
     end
 
-    context 'when the user only have some dossiers invites' do
-      let!(:invite) { create(:invite, dossier: create(:dossier), user: user) }
-
-      before { get(:index) }
-
-      it do
-        expect(assigns(:statut)).to eq('dossiers-invites')
-        expect(assigns(:dossiers_invites)).to match([invite.dossier])
-      end
+    it 'assigns @corbeille_count' do
+      create(:dossier, user: user, hidden_by_user_at: Time.current)
+      create(:dossier, user: user, hidden_by_expired_at: Time.current)
+      get :index
+      expect(assigns(:corbeille_count)).to eq(2)
     end
 
-    context 'when the user has dossiers invites, own and traites' do
-      let!(:procedure) { create(:procedure, :published) }
-      let!(:own_dossier) { create(:dossier, user: user) }
-      let!(:own_dossier2) { create(:dossier, user: user, state: "accepte", procedure: procedure) }
-      let!(:invite) { create(:invite, dossier: create(:dossier), user: user) }
-
-      context 'and there is no statut param' do
-        before { get(:index) }
-
-        it { expect(assigns(:statut)).to eq('en-cours') }
-      end
-
-      context 'and there is "dossiers-invites" param' do
-        before { get(:index, params: { statut: 'dossiers-invites' }) }
-
-        it { expect(assigns(:statut)).to eq('dossiers-invites') }
-      end
-
-      context 'and there is "en-cours" param' do
-        before { get(:index, params: { statut: 'en-cours' }) }
-
-        it { expect(assigns(:statut)).to eq('en-cours') }
-      end
-
-      context 'and there is "traites" param' do
-        before { get(:index, params: { statut: 'traites' }) }
-
-        it { expect(assigns(:statut)).to eq('traites') }
-      end
-
-      context 'and the traité dossier has been hidden by user' do
-        before do
-          own_dossier2.update!(hidden_by_user_at: Time.zone.now)
-          get(:index, params: { statut: 'traites' })
-        end
-        it { expect(assigns(:statut)).to eq('en-cours') }
-      end
-
-      context 'when the instructeur archive the dossier' do
-        before do
-          own_dossier2.update!(archived: true)
-          get(:index, params: { statut: 'en-cours' })
-        end
-        it do
-          expect(assigns(:statut)).to eq('en-cours')
-          expect(assigns(:dossiers_traites).map(&:id)).to eq([own_dossier2.id])
-          expect(own_dossier2.archived).to be_truthy
-        end
-      end
+    it 'passes filter params to the service' do
+      get :index, params: { state: ['depose'], alert: ['a_corriger'], procedure_id: '42' }
+      expect(assigns(:filter)).to be_a(Users::DossierFilterService)
+      expect(response).to have_http_status(:ok)
     end
 
     context 'when the user has dossier in brouillon recently updated' do
@@ -1647,35 +1594,6 @@ describe Users::DossiersController, type: :controller do
       before { get(:index) }
 
       it { expect(assigns(:first_brouillon_recently_updated)).to match(own_dossier_2) }
-    end
-
-    describe 'sort order' do
-      before do
-        travel_to(4.days.ago) { create(:dossier, user: user) }
-        travel_to(2.days.ago) { create(:dossier, user: user) }
-        travel_to(4.days.ago) { create(:invite, dossier: create(:dossier), user: user) }
-        travel_to(2.days.ago) { create(:invite, dossier: create(:dossier), user: user) }
-        get(:index)
-      end
-
-      it 'displays the most recently updated dossiers first' do
-        expect(assigns(:user_dossiers).first.updated_at.to_date).to eq(2.days.ago.to_date)
-        expect(assigns(:user_dossiers).second.updated_at.to_date).to eq(4.days.ago.to_date)
-        expect(assigns(:dossiers_invites).first.updated_at.to_date).to eq(2.days.ago.to_date)
-        expect(assigns(:dossiers_invites).second.updated_at.to_date).to eq(4.days.ago.to_date)
-      end
-    end
-
-    context 'when the user has a deleted dossier on a discarded procedure' do
-      render_views
-
-      let!(:deleted_dossier) { create(:deleted_dossier, user_id: user.id) }
-
-      before { deleted_dossier.procedure.discard! }
-
-      subject { get(:index, params: { statut: 'dossiers-supprimes-definitivement' }) }
-
-      it { is_expected.to have_http_status(200) }
     end
   end
 
@@ -2172,16 +2090,6 @@ describe Users::DossiersController, type: :controller do
     context 'when the id is empty' do
       let(:dossier_id) { nil }
       it { is_expected.to be nil }
-    end
-  end
-
-  describe '#index' do
-    before do
-      sign_in(user)
-    end
-    it 'works' do
-      get :index
-      expect(response).to have_http_status(:ok)
     end
   end
 

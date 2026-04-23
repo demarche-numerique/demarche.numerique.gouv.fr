@@ -12,6 +12,7 @@ module Users
     ACTIONS_ALLOWED_TO_ANY_USER = [:index, :new,  :deleted_dossiers]
     ACTIONS_ALLOWED_TO_OWNER_OR_INVITE = [:show, :destroy, :demande, :messagerie, :brouillon, :modifier, :update, :create_commentaire, :attestation_depot, :restore, :champ, :check_completude, :notify_owner_for_changes]
     TRASH_ACTIONS = [:show_in_trash, :show_deleted]
+    ITEMS_PER_PAGE = 25
 
     before_action :ensure_ownership!, except: ACTIONS_ALLOWED_TO_ANY_USER + ACTIONS_ALLOWED_TO_OWNER_OR_INVITE + TRASH_ACTIONS
     before_action :redirect_if_hidden_or_deleted_dossier, only: [:show]
@@ -33,60 +34,13 @@ module Users
     end
 
     def index
-      ordered_dossiers = Dossier.includes(:pending_corrections, procedure: :procedure_paths).order_by_depose_at
-
-      user_revision_ids = current_user.dossiers.visible_by_user.select(:revision_id).to_sql
-      invite_revision_ids = current_user.dossiers_invites.select(:revision_id).to_sql
-      all_revision_id = "(#{user_revision_ids}) UNION (#{invite_revision_ids})"
-
-      all_dossier_procedures = Procedure.where(id: ProcedureRevision.where("id IN (#{all_revision_id})").select(:procedure_id))
-
-      @procedures_for_select = all_dossier_procedures
-        .distinct(:procedure_id)
-        .order(:libelle)
-        .pluck(:libelle, :id)
-
-      @procedure_id = params[:procedure_id]
-      if @procedure_id.present?
-        ordered_dossiers = ordered_dossiers.where(procedures: { id: @procedure_id })
-      end
-
-      @search_terms = params[:q]
-      if @search_terms.present?
-        dossiers_filter_by_search = DossierSearchService.matching_dossiers_for_user(@search_terms, current_user).page
-        ordered_dossiers = ordered_dossiers.merge(dossiers_filter_by_search)
-      end
-
-      @dossiers_visibles = ordered_dossiers.visible_by_user.preload(:etablissement, :individual, :invites)
-
-      @user_dossiers = current_user.dossiers.state_not_termine.merge(@dossiers_visibles)
-      @dossiers_traites = current_user.dossiers.state_termine.merge(@dossiers_visibles)
-      @dossiers_invites = current_user.dossiers_invites.merge(@dossiers_visibles)
-      @dossiers_supprimes = (current_user.dossiers.hidden_by_user.or(current_user.dossiers.hidden_by_expired)).merge(ordered_dossiers)
-      @dossier_transferes = @dossiers_visibles.where(dossier_transfer_id: DossierTransfer.for_email(current_user.email))
-      @dossiers_close_to_expiration = current_user.dossiers.close_to_expiration.merge(@dossiers_visibles)
-
-      @statut = statut(@user_dossiers, @dossiers_traites, @dossiers_invites, @dossiers_supprimes, @dossier_transferes, @dossiers_close_to_expiration, params[:statut])
-
-      @dossiers = case @statut
-      when 'en-cours'
-        @user_dossiers
-      when 'traites'
-        @dossiers_traites
-      when 'dossiers-invites'
-        @dossiers_invites
-      when 'dossiers-supprimes'
-        @dossiers_supprimes
-      when 'dossiers-transferes'
-        @dossier_transferes
-      when 'dossiers-expirant'
-        @dossiers_close_to_expiration
-      end.page(page)
-
+      @filter = Users::DossierFilterService.new(user: current_user, params: params)
+      @dossiers = @filter.dossiers.page(page).per(ITEMS_PER_PAGE)
+      @total_count = @filter.total_count
+      @counts = @filter.counts
+      @corbeille_count = current_user.dossiers.hidden_by_user.or(current_user.dossiers.hidden_by_expired).count
+      @procedures_for_select = procedures_for_select
       @first_brouillon_recently_updated = current_user.dossiers.visible_by_user.brouillons_recently_updated.first
-
-      @filter = DossiersFilter.new(current_user, params)
-      @dossiers = @filter.filter_procedures(@dossiers).page(page)
     end
 
     def show
@@ -529,25 +483,14 @@ module Users
       dossier.for_tiers? && dossier.identity_from_fc?
     end
 
-    # if the status tab is filled, then this tab
-    # else first filled tab
-    # else en-cours
-    def statut(mes_dossiers, dossiers_traites, dossiers_invites, dossiers_supprimes, dossier_transferes, dossiers_close_to_expiration, params_statut)
-      tabs = {
-        'en-cours' => mes_dossiers,
-        'traites' => dossiers_traites,
-        'dossiers-invites' => dossiers_invites,
-        'dossiers-supprimes' => dossiers_supprimes,
-        'dossiers-transferes' => dossier_transferes,
-        'dossiers-expirant' => dossiers_close_to_expiration,
-      }
-
-      if tabs[params_statut]&.present?
-        params_statut
-      else
-        tab = tabs.find { |_tab, scope| scope.present? }
-        tab&.first || 'en-cours'
-      end
+    def procedures_for_select
+      user_rev = current_user.dossiers.visible_by_user.select(:revision_id).to_sql
+      invite_rev = current_user.dossiers_invites.select(:revision_id).to_sql
+      all_rev = "(#{user_rev}) UNION (#{invite_rev})"
+      Procedure.where(id: ProcedureRevision.where("id IN (#{all_rev})").select(:procedure_id))
+        .distinct(:procedure_id)
+        .order(:libelle)
+        .pluck(:libelle, :id)
     end
 
     def store_user_location!
