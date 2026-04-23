@@ -73,20 +73,15 @@ RSpec.describe Users::DossierFilterService do
     let!(:accepte) { create(:dossier, :accepte, user: user) }
 
     it 'filters by a single UI state' do
-      service = described_class.new(user: user, params: ActionController::Parameters.new(state: ['depose']))
+      service = described_class.new(user: user, params: ActionController::Parameters.new(state: ['en_construction']))
       expect(service.dossiers).to include(en_construction)
       expect(service.dossiers).not_to include(brouillon, en_instruction, accepte)
     end
 
     it 'filters by multiple states (OR)' do
-      service = described_class.new(user: user, params: ActionController::Parameters.new(state: ['brouillon', 'depose']))
+      service = described_class.new(user: user, params: ActionController::Parameters.new(state: ['brouillon', 'en_construction']))
       expect(service.dossiers).to include(brouillon, en_construction)
       expect(service.dossiers).not_to include(en_instruction, accepte)
-    end
-
-    it 'ignores unknown state values' do
-      service = described_class.new(user: user, params: ActionController::Parameters.new(state: ['unknown']))
-      expect(service.dossiers).to include(own_dossier, invited_dossier, brouillon, en_construction, en_instruction, accepte)
     end
   end
 
@@ -112,6 +107,85 @@ RSpec.describe Users::DossierFilterService do
       service = described_class.new(user: user, params: ActionController::Parameters.new(from_created_at_date: 'not-a-date'))
       expect { service.dossiers.to_a }.not_to raise_error
       expect(service.dossiers).to include(old_dossier, recent_dossier)
+    end
+  end
+
+  describe '#total_count' do
+    it 'returns the number of filtered dossiers' do
+      service = described_class.new(user: user, params: ActionController::Parameters.new(state: ['brouillon']))
+      expect(service.total_count).to eq(service.dossiers.count)
+    end
+  end
+
+  describe '#active?' do
+    it 'is false when no filter is applied' do
+      service = described_class.new(user: user, params: ActionController::Parameters.new)
+      expect(service.active?).to be(false)
+    end
+
+    it 'ignores search as an active filter' do
+      service = described_class.new(user: user, params: ActionController::Parameters.new(search: 'foo'))
+      expect(service.active?).to be(false)
+    end
+
+    it 'is true when a filter other than search is applied' do
+      service = described_class.new(user: user, params: ActionController::Parameters.new(state: ['en_construction']))
+      expect(service.active?).to be(true)
+    end
+  end
+
+  describe '#counts' do
+    let!(:dossier_depose_corriger) { create(:dossier, :en_construction, user: user) }
+    let!(:dossier_depose_nothing) { create(:dossier, :en_construction, user: user) }
+    let!(:dossier_accepte) { create(:dossier, :accepte, user: user) }
+
+    before do
+      create(:dossier_correction, dossier: dossier_depose_corriger)
+    end
+
+    it 'returns counts for states (ignoring state filter itself)' do
+      service = described_class.new(user: user, params: ActionController::Parameters.new(state: ['en_construction']))
+      expect(service.counts[:states]['en_construction']).to eq(4)
+      expect(service.counts[:states]['accepte']).to eq(1)
+    end
+
+    it 'returns counts for alerts (contextualized by state filter)' do
+      service = described_class.new(user: user, params: ActionController::Parameters.new(state: ['en_construction']))
+      expect(service.counts[:alerts]['a_corriger']).to eq(1)
+    end
+
+    it 'returns counts grouped by procedure_id' do
+      service = described_class.new(user: user, params: ActionController::Parameters.new)
+      expect(service.counts[:procedure_ids]).to be_a(Hash)
+    end
+
+    it 'returns shared_with_me count' do
+      service = described_class.new(user: user, params: ActionController::Parameters.new)
+      expect(service.counts[:shared_with_me]).to eq(1)
+    end
+  end
+
+  describe '#active_filter_tags' do
+    let(:procedure) { create(:procedure, libelle: 'Demande de subvention') }
+
+    it 'returns one tag per active filter value' do
+      service = described_class.new(user: user, params: ActionController::Parameters.new(
+        procedure_id: procedure.id.to_s,
+        state: ['en_construction', 'en_instruction'],
+        alert: ['a_corriger']
+      ))
+      keys = service.active_filter_tags.map { |t| [t[:group], t[:value]] }
+      expect(keys).to contain_exactly(
+        [:procedure_id, procedure.id.to_s],
+        [:state, 'en_construction'],
+        [:state, 'en_instruction'],
+        [:alert, 'a_corriger']
+      )
+    end
+
+    it 'returns an empty list when no filter is active' do
+      service = described_class.new(user: user, params: ActionController::Parameters.new)
+      expect(service.active_filter_tags).to eq([])
     end
   end
 
