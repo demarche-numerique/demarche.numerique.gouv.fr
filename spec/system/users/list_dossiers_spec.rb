@@ -200,6 +200,19 @@ describe 'user access to the list of their dossiers', js: true do
     end
   end
 
+  describe 'active filter with no result' do
+    before { create_list(:dossier, 10, :en_construction, user: user) }
+
+    it 'renders the empty state without error' do
+      visit dossiers_path(state: ['accepte'])
+      expect(page).to have_content(/0 dossier|aucun dossier|Aucun résultat|Aucun dossier ne correspond/i)
+    end
+  end
+
+  describe 'filter panel' do
+    pending "TODO: JS interaction with DSFR modal, covered by controller spec for now"
+  end
+
   describe 'clone' do
     it 'should have links to clone dossiers' do
       expect(page).to have_link(nil, href: clone_dossier_path(dossier_brouillon))

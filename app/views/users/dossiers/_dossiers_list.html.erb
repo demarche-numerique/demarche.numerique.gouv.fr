@@ -238,7 +238,7 @@
   <% end %>
   <%= paginate dossiers, views_prefix: 'shared' %>
 <% else %>
-  <% if filter.present? && filter.filter_params_count > 0 %>
+  <% if filter.present? && filter.active? %>
     <div class="blank-tab">
       <h2 class="empty-text">
         <%= t('views.users.dossiers.dossiers_list.no_result_title') %>
