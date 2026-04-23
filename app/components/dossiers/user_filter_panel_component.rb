@@ -1,0 +1,44 @@
+# frozen_string_literal: true
+
+class Dossiers::UserFilterPanelComponent < ApplicationComponent
+  def initialize(filter:, filter_params:, procedures_for_select:, has_invites:)
+    @filter = filter
+    @filter_params = filter_params
+    @procedures_for_select = procedures_for_select
+    @has_invites = has_invites
+  end
+
+  attr_reader :filter, :filter_params, :procedures_for_select, :has_invites
+
+  def show_procedure_filter?
+    procedures_for_select.size >= 2
+  end
+
+  def show_shared_with_me_filter?
+    has_invites
+  end
+
+  def state_label(ui_state)
+    t("filter_panel.states.#{ui_state}", scope: 'views.users.dossiers.index', default: ui_state.to_s.humanize)
+  end
+
+  def alert_label(alert_key)
+    t("filter_panel.alerts.#{alert_key}", scope: 'views.users.dossiers.index', default: alert_key.to_s.humanize)
+  end
+
+  def state_checked?(ui_state)
+    Array(filter_params[:state]).include?(ui_state)
+  end
+
+  def alert_checked?(alert_key)
+    Array(filter_params[:alert]).include?(alert_key)
+  end
+
+  def ui_states
+    Users::DossierStateMapping::UI_STATES
+  end
+
+  def alert_keys
+    Users::DossierFilterService::ALERT_SCOPES.keys
+  end
+end
