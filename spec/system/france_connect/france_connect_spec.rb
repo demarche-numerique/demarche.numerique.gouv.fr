@@ -107,7 +107,7 @@ describe 'FranceConnect Connexion' do
               fill_in 'password', with: SECURE_PASSWORD
               click_on 'Fusionner les comptes'
 
-              expect(page).to have_content('Dossiers')
+              expect(page).to have_content('Mes dossiers')
             end
 
             scenario 'it uses another email that belongs to nobody' do
@@ -178,7 +178,7 @@ describe 'FranceConnect Connexion' do
           before { page.find('.fr-connect').click }
 
           scenario 'he is redirected to user dossiers page' do
-            expect(page).to have_content('Dossiers')
+            expect(page).to have_content('Mes dossiers')
           end
 
           scenario 'the updated_at date is well updated' do
