@@ -73,15 +73,20 @@ RSpec.describe Users::DossierFilterService do
     let!(:accepte) { create(:dossier, :accepte, user: user) }
 
     it 'filters by a single UI state' do
-      service = described_class.new(user: user, params: ActionController::Parameters.new(state: ['en_construction']))
+      service = described_class.new(user: user, params: ActionController::Parameters.new(state: ['depose']))
       expect(service.dossiers).to include(en_construction)
       expect(service.dossiers).not_to include(brouillon, en_instruction, accepte)
     end
 
     it 'filters by multiple states (OR)' do
-      service = described_class.new(user: user, params: ActionController::Parameters.new(state: ['brouillon', 'en_construction']))
+      service = described_class.new(user: user, params: ActionController::Parameters.new(state: ['brouillon', 'depose']))
       expect(service.dossiers).to include(brouillon, en_construction)
       expect(service.dossiers).not_to include(en_instruction, accepte)
+    end
+
+    it 'ignores unknown state values' do
+      service = described_class.new(user: user, params: ActionController::Parameters.new(state: ['unknown']))
+      expect(service.dossiers).to include(own_dossier, invited_dossier, brouillon, en_construction, en_instruction, accepte)
     end
   end
 
@@ -129,7 +134,7 @@ RSpec.describe Users::DossierFilterService do
     end
 
     it 'is true when a filter other than search is applied' do
-      service = described_class.new(user: user, params: ActionController::Parameters.new(state: ['en_construction']))
+      service = described_class.new(user: user, params: ActionController::Parameters.new(state: ['depose']))
       expect(service.active?).to be(true)
     end
   end
@@ -144,13 +149,13 @@ RSpec.describe Users::DossierFilterService do
     end
 
     it 'returns counts for states (ignoring state filter itself)' do
-      service = described_class.new(user: user, params: ActionController::Parameters.new(state: ['en_construction']))
-      expect(service.counts[:states]['en_construction']).to eq(4)
+      service = described_class.new(user: user, params: ActionController::Parameters.new(state: ['depose']))
+      expect(service.counts[:states]['depose']).to eq(4)
       expect(service.counts[:states]['accepte']).to eq(1)
     end
 
     it 'returns counts for alerts (contextualized by state filter)' do
-      service = described_class.new(user: user, params: ActionController::Parameters.new(state: ['en_construction']))
+      service = described_class.new(user: user, params: ActionController::Parameters.new(state: ['depose']))
       expect(service.counts[:alerts]['a_corriger']).to eq(1)
     end
 
@@ -172,13 +177,13 @@ RSpec.describe Users::DossierFilterService do
     it 'returns one tag per active filter value' do
       service = described_class.new(user: user, params: ActionController::Parameters.new(
         procedure_id: procedure.id.to_s,
-        state: ['en_construction', 'en_instruction'],
+        state: ['depose', 'en_instruction'],
         alert: ['a_corriger']
       ))
       keys = service.active_filter_tags.map { |t| [t[:group], t[:value]] }
       expect(keys).to contain_exactly(
         [:procedure_id, procedure.id.to_s],
-        [:state, 'en_construction'],
+        [:state, 'depose'],
         [:state, 'en_instruction'],
         [:alert, 'a_corriger']
       )
