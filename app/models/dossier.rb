@@ -277,6 +277,13 @@ class Dossier < ApplicationRecord
   scope :with_type_de_champ, -> (stable_id) { joins(:champs).where(champs: { stream: 'main', stable_id: }) }
   scope :without_type_de_champ, -> (stable_id) { where.not(id: with_type_de_champ(stable_id).select(:id)) }
 
+  scope :with_unread_messages_for_user, -> {
+    joins(:commentaires)
+      .where(commentaires: { discarded_at: nil, seen_by_recipient_at: nil })
+      .where('commentaires.instructeur_id IS NOT NULL OR commentaires.expert_id IS NOT NULL')
+      .distinct
+  }
+
   scope :all_state,                   -> (include_archived: false) { include_archived ? state_not_brouillon : not_archived.state_not_brouillon }
   scope :en_construction,             -> { not_archived.state_en_construction }
   scope :en_instruction,              -> { not_archived.state_en_instruction }
