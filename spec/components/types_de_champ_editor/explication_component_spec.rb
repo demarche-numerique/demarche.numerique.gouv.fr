@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 describe TypesDeChampEditor::ChampComponent, type: :component do
+  before do
+    allow_any_instance_of(Conditions::ChampsConditionsComponent)
+      .to receive(:feature_enabled?).with(:column_conditions).and_return(false)
+  end
+
   describe 'render by type' do
     context 'explication' do
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :explication }]) }

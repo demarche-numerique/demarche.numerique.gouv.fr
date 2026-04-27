@@ -9,10 +9,12 @@ describe Conditions::RoutingRulesComponent, type: :component do
     let(:drop_down_tdc) { procedure.draft_revision.types_de_champ.first }
     let(:integer_number_tdc) { procedure.draft_revision.types_de_champ.last }
     let(:routing_rule) { ds_eq(champ_value(drop_down_tdc.stable_id), constant('Lyon')) }
+    let(:component) { described_class.new(groupe_instructeur: groupe_instructeur) }
 
     before do
       groupe_instructeur.update(routing_rule: routing_rule)
-      render_inline(described_class.new(groupe_instructeur: groupe_instructeur))
+      allow(component).to receive(:feature_enabled?).with(:column_conditions).and_return(false)
+      render_inline(component)
     end
 
     context 'with one row' do

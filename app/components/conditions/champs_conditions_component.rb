@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class Conditions::ChampsConditionsComponent < Conditions::ConditionsComponent
-  def initialize(tdc:, upper_tdcs:, procedure_id:)
+  def initialize(tdc:, upper_tdcs:, procedure:)
     @tdc, @condition, @source_tdcs = tdc, tdc.condition, upper_tdcs
-    @procedure_id = procedure_id
+    @procedure = procedure
+    @champ_value_in_condition = procedure.champ_value_in_condition?
   end
 
   private
@@ -29,11 +30,11 @@ class Conditions::ChampsConditionsComponent < Conditions::ConditionsComponent
   end
 
   def add_condition_path
-    add_row_admin_procedure_condition_path(@procedure_id, @tdc.stable_id)
+    add_row_admin_procedure_condition_path(@procedure.id, @tdc.stable_id)
   end
 
   def delete_condition_path(row_index)
-    delete_row_admin_procedure_condition_path(@procedure_id, @tdc.stable_id, row_index: row_index)
+    delete_row_admin_procedure_condition_path(@procedure.id, @tdc.stable_id, row_index: row_index)
   end
 
   def input_id_for(name, row_index)

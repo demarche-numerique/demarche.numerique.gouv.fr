@@ -51,7 +51,7 @@ module Administrateurs
       Conditions::ChampsConditionsComponent.new(
         tdc: @tdc,
         upper_tdcs: @upper_tdcs,
-        procedure_id: @procedure.id
+        procedure: @procedure
       )
     end
 

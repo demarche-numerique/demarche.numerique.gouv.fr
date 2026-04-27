@@ -3,12 +3,18 @@
 describe Conditions::ChampsConditionsComponent, type: :component do
   include Logic
 
+  let(:procedure) { create(:procedure) }
+
   describe 'render' do
     let(:tdc) { create(:type_de_champ, condition: condition) }
     let(:condition) { nil }
     let(:upper_tdcs) { [] }
+    let(:component) { described_class.new(tdc: tdc, upper_tdcs: upper_tdcs, procedure: procedure) }
 
-    before { render_inline(described_class.new(tdc: tdc, upper_tdcs: upper_tdcs, procedure_id: 123)) }
+    before do
+      allow(component).to receive(:feature_enabled?).with(:column_conditions).and_return(false)
+      render_inline(component)
+    end
 
     context 'when there are no upper tdc' do
       it { expect(page).not_to have_text('Logique conditionnelle') }
@@ -189,7 +195,7 @@ describe Conditions::ChampsConditionsComponent, type: :component do
     let(:tdc) { build(:type_de_champ, condition: condition) }
     let(:condition) { nil }
 
-    subject { described_class.new(tdc: tdc, upper_tdcs: [], procedure_id: 123).send(:rows) }
+    subject { described_class.new(tdc: tdc, upper_tdcs: [], procedure: procedure).send(:rows) }
 
     context 'when there is one condition' do
       let(:condition) { ds_eq(empty, constant(1)) }

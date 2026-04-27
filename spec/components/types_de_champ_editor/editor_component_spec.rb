@@ -6,6 +6,11 @@ describe TypesDeChampEditor::EditorComponent, type: :component do
   let(:types_de_champ_private) { [{ type: :repetition, children: [], libelle: 'private' }] }
   let(:types_de_champ_public) { [{ type: :repetition, children: [], libelle: 'public' }] }
 
+  before do
+    allow_any_instance_of(Conditions::ChampsConditionsComponent)
+      .to receive(:feature_enabled?).with(:column_conditions).and_return(false)
+  end
+
   describe 'render' do
     subject { render_inline(described_class.new(revision:, is_annotation:)) }
 

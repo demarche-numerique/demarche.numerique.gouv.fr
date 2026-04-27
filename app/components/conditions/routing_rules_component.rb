@@ -6,8 +6,10 @@ class Conditions::RoutingRulesComponent < Conditions::ConditionsComponent
   def initialize(groupe_instructeur:)
     @groupe_instructeur = groupe_instructeur
     @condition = groupe_instructeur.routing_rule || empty_operator(empty, empty)
-    @procedure_id = groupe_instructeur.procedure_id
-    @source_tdcs = groupe_instructeur.procedure.active_revision.types_de_champ_public
+    @procedure = groupe_instructeur.procedure
+    @procedure_id = @procedure.id
+    @source_tdcs = @procedure.active_revision.types_de_champ_public
+    @champ_value_in_condition = @procedure.champ_value_in_condition?
   end
 
   private

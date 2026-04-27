@@ -62,9 +62,26 @@ class Conditions::ConditionsComponent < ApplicationComponent
   end
 
   def available_targets_for_select
-    @source_tdcs
-      .filter(&:conditionable?)
-      .map { |tdc| [tdc.libelle, champ_value(tdc.stable_id).to_json] }
+    if column_mode?
+      conditionable_targets_by_tdc
+        .map { |column| [column.label + " (col)", column_value(column).to_json] }
+    else
+      @source_tdcs
+        .filter(&:conditionable?)
+        .map { |tdc| [tdc.libelle, champ_value(tdc.stable_id).to_json] }
+    end
+  end
+
+  def column_mode?
+    feature_enabled?(:column_conditions) && !@champ_value_in_condition
+  end
+
+  def conditionable_targets_by_tdc
+    @conditionable_targets_by_tdc ||= @source_tdcs.to_h do |tdc|
+      tdc.columns(procedure: @procedure)
+        .filter { _1.type != :text }
+        .filter { _1.type != :date }
+    end
   end
 
   def operator_tag(operator_name, targeted_champ, row_index)
