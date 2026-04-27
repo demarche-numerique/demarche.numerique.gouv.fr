@@ -2017,6 +2017,67 @@ describe Procedure do
     end
   end
 
+  describe '#champ_value_in_condition?' do
+    include Logic
+    let(:procedure) do
+      create(:procedure, types_de_champ_public: [
+        { type: :yes_no, libelle: 'gate' },
+        { type: :integer_number, libelle: 'value' },
+      ])
+    end
+    let(:revision) { procedure.draft_revision }
+    let(:gate_tdc) { revision.types_de_champ_public.first }
+    let(:value_tdc) { revision.types_de_champ_public.second }
+    let(:gate_column) { procedure.find_column(label: 'gate') }
+
+    subject { procedure.reload.champ_value_in_condition? }
+
+    context 'with no conditions anywhere' do
+      it { is_expected.to be(false) }
+    end
+
+    context 'when a draft_revision tdc condition uses a champ_value' do
+      before { value_tdc.update!(condition: ds_eq(champ_value(gate_tdc.stable_id), constant(true))) }
+
+      it { is_expected.to be(true) }
+    end
+
+    context 'when ineligibilite_rules uses a champ_value' do
+      before { revision.update!(ineligibilite_rules: ds_eq(champ_value(gate_tdc.stable_id), constant(true))) }
+
+      it { is_expected.to be(true) }
+    end
+
+    context 'when a routing_rule uses a champ_value' do
+      before do
+        create(:groupe_instructeur, procedure:, routing_rule: ds_eq(champ_value(gate_tdc.stable_id), constant(true)))
+      end
+
+      it { is_expected.to be(true) }
+    end
+
+    context 'when a champ_value is nested deep inside ineligibilite_rules' do
+      before do
+        revision.update!(ineligibilite_rules: ds_and([
+          ds_eq(column_value(gate_column), constant(true)),
+          ds_eq(champ_value(gate_tdc.stable_id), constant(true)),
+        ]))
+      end
+
+      it { is_expected.to be(true) }
+    end
+
+    context 'when only column_values are used everywhere' do
+      before do
+        value_tdc.update!(condition: ds_eq(column_value(gate_column), constant(true)))
+        revision.update!(ineligibilite_rules: ds_eq(column_value(gate_column), constant(true)))
+        create(:groupe_instructeur, procedure:, routing_rule: ds_eq(column_value(gate_column), constant(true)))
+      end
+
+      it { is_expected.to be(false) }
+    end
+  end
+
   describe '#used_by_referentiel_urls?' do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :text, stable_id: 100 }, { type: :referentiel, stable_id: 200 }]) }
     let(:text_tdc) { procedure.draft_revision.types_de_champ.find { _1.stable_id == 100 } }

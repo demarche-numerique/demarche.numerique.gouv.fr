@@ -966,6 +966,60 @@ describe ProcedureRevision do
     end
   end
 
+  describe '#champ_value_in_condition?' do
+    include Logic
+    let(:procedure) do
+      create(:procedure, types_de_champ_public: [
+        { type: :yes_no, libelle: 'gate' },
+        { type: :integer_number, libelle: 'value' },
+      ])
+    end
+    let(:gate_tdc) { draft.types_de_champ_public.first }
+    let(:value_tdc) { draft.types_de_champ_public.second }
+    let(:gate_column) { procedure.find_column(label: 'gate') }
+
+    subject { procedure.reload.draft_revision.champ_value_in_condition? }
+
+    context 'when no tdc has a condition' do
+      it { is_expected.to be(false) }
+    end
+
+    context 'when a tdc condition uses a champ_value' do
+      before { value_tdc.update!(condition: ds_eq(champ_value(gate_tdc.stable_id), constant(true))) }
+
+      it { is_expected.to be(true) }
+    end
+
+    context 'when a tdc condition uses only a column_value' do
+      before { value_tdc.update!(condition: ds_eq(column_value(gate_column), constant(true))) }
+
+      it { is_expected.to be(false) }
+    end
+
+    context 'when a champ_value is nested deep inside an And' do
+      before do
+        value_tdc.update!(condition: ds_and([
+          ds_eq(column_value(gate_column), constant(true)),
+          ds_eq(champ_value(gate_tdc.stable_id), constant(true)),
+        ]))
+      end
+
+      it { is_expected.to be(true) }
+    end
+
+    context 'when ineligibilite_rules use a champ_value' do
+      before { draft.update!(ineligibilite_rules: ds_eq(champ_value(gate_tdc.stable_id), constant(true))) }
+
+      it { is_expected.to be(true) }
+    end
+
+    context 'when ineligibilite_rules use only a column_value' do
+      before { draft.update!(ineligibilite_rules: ds_eq(column_value(gate_column), constant(true))) }
+
+      it { is_expected.to be(false) }
+    end
+  end
+
   describe 'children_of' do
     context 'with a simple tdc' do
       let(:procedure) { create(:procedure, :with_type_de_champ) }

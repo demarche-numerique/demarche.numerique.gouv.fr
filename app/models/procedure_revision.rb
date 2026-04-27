@@ -261,6 +261,14 @@ class ProcedureRevision < ApplicationRecord
     types_de_champ_for(scope: :public).filter(&:conditionable?)
   end
 
+  def champ_value_in_condition?
+    conditions = types_de_champ.filter_map(&:condition) + [ineligibilite_rules].compact
+
+    conditions
+      .flat_map(&:terms)
+      .any? { _1.is_a?(Logic::ChampValue) }
+  end
+
   def apply_llm_rule_suggestion_items(changes)
     # Handle adds first, outside transaction to ensure stable_ids are generated and available
     created = changes.fetch(:add, []).each_with_object({}) do |item, accu|
