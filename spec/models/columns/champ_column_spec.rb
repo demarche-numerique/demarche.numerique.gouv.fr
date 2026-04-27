@@ -145,6 +145,35 @@ describe Columns::ChampColumn do
         end
       end
 
+      context "with a drop_down_list with 'other' option enabled" do
+        let(:other_procedure) do
+          create(:procedure, types_de_champ_public: [
+            { type: :drop_down_list, libelle: 'drop_down_list', drop_down_other: true },
+          ])
+        end
+        let(:column_drop_down) { other_procedure.find_column(label: 'drop_down_list') }
+        let(:dossier) { create(:dossier, procedure: other_procedure) }
+        let(:champ) { dossier.champs.first }
+
+        context "when the user picked 'other' without typing a value" do
+          before { champ.update!(value: Champs::DropDownListChamp::OTHER) }
+
+          it do
+            expect(column_drop_down.value(champ)).to eq('autre')
+            expect(column('date').value(champ)).to be_nil
+          end
+        end
+
+        context "when the user picked 'other' and typed a custom value" do
+          before do
+            champ.update!(value: Champs::DropDownListChamp::OTHER)
+            champ.update!(value_other: 'ma valeur')
+          end
+
+          it { expect(column_drop_down.value(champ)).to eq('autre : ma valeur') }
+        end
+      end
+
       context 'from a multiple_drop_down_list' do
         let(:champ) { Champs::MultipleDropDownListChamp.new(value:) }
         let(:value) { '["val1","val2"]' }

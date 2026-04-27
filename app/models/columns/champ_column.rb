@@ -105,7 +105,11 @@ class Columns::ChampColumn < Column
 
   def column_id = "type_de_champ/#{stable_id}"
 
-  def string_value(champ) = champ.public_send(column)
+  def string_value(champ)
+    return drop_down_other_value(champ) if drop_down_other_filled?(champ)
+
+    champ.public_send(column)
+  end
 
   def typed_value(champ)
     value = string_value(champ)
@@ -225,6 +229,15 @@ class Columns::ChampColumn < Column
     [:multiple_drop_down_list, :textarea] => -> (v) { v.join("\n") },
     [:multiple_drop_down_list, :formatted] => -> (v) { v.join(', ') },
   }
+
+  def drop_down_other_filled?(champ)
+    champ.is_a?(Champs::DropDownListChamp) && champ.other == true
+  end
+
+  def drop_down_other_value(champ)
+    other_label = I18n.t('shared.champs.drop_down_list.other_short')
+    champ.value.present? ? "#{other_label} : #{champ.value}" : other_label
+  end
 
   def parse_boolean(value)
     case value
