@@ -606,6 +606,13 @@ class Procedure < ApplicationRecord
     active_revision.revision_types_de_champ_public.filter(&:used_by_routing_rules?).map(&:libelle)
   end
 
+  def champ_value_in_condition?
+    return @champ_value_in_condition if defined?(@champ_value_in_condition)
+
+    @champ_value_in_condition = draft_revision.champ_value_in_condition? ||
+      champ_value_in_routing_rule?
+  end
+
   def dossiers_count
     dossiers.count
   end
@@ -829,6 +836,13 @@ class Procedure < ApplicationRecord
   end
 
   private
+
+  def champ_value_in_routing_rule?
+    groupe_instructeurs
+      .filter_map(&:routing_rule)
+      .flat_map(&:terms)
+      .any? { _1.is_a?(Logic::ChampValue) }
+  end
 
   def stable_ids_used_by_routing_rules
     @stable_ids_used_by_routing_rules ||= groupe_instructeurs.flat_map { _1.routing_rule&.sources }.compact.uniq
