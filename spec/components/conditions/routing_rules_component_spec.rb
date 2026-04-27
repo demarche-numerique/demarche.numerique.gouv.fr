@@ -3,6 +3,26 @@
 describe Conditions::RoutingRulesComponent, type: :component do
   include Logic
 
+  describe '#sources in column mode' do
+    let(:procedure) do
+      create(:procedure, types_de_champ_public: [
+        { type: :integer_number, libelle: 'age' },
+        { type: :repetition, libelle: 'family', children: [{ type: :integer_number, libelle: 'child_age' }] },
+      ])
+    end
+    let(:groupe_instructeur) { procedure.groupe_instructeurs.first }
+    let(:component) { Conditions::RoutingRulesComponent.new(groupe_instructeur:) }
+
+    before { allow(component).to receive(:feature_enabled?).with(:column_conditions).and_return(true) }
+
+    it 'excludes repetition tdcs from condition targets' do
+      libelles = component.send(:sources_by_section).values.flatten(1).map(&:first)
+
+      expect(libelles).to include('age')
+      expect(libelles).not_to include('family')
+    end
+  end
+
   describe 'render' do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :drop_down_list, libelle: 'Votre ville', options: ['Paris', 'Lyon', 'Marseille'] }, { type: :integer_number, libelle: 'Un champ nombre entier' }]) }
     let(:groupe_instructeur) { procedure.groupe_instructeurs.first }

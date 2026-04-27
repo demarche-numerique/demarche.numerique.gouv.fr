@@ -40,48 +40,79 @@ class Conditions::ConditionsComponent < ApplicationComponent
     # - its type has changed : number -> carto
     # - it has been removed
     # - it has been put lower in the form
-    current_target_valid = targets_for_select.map(&:second).include?(targeted_champ.to_json)
+    current_target_valid = sources_by_section
+      .values
+      .flat_map { it.map(&:last) }
+      .include?(targeted_champ)
 
-    selected_target = current_target_valid ? targeted_champ.to_json : empty.to_json
+    selected_target = current_target_valid ? targeted_champ : empty
 
     select_tag(
       input_name_for('targeted_champ'),
-      options_for_select(targets_for_select, selected_target),
+      target_options_html(sources_by_section, selected_target),
       onchange: "this.form.action = this.form.action + '/change_targeted_champ?row_index=#{row_index}'",
       id: input_id_for('targeted_champ', row_index),
       class: { 'fr-select': true, alert: !current_target_valid }
     )
   end
 
-  def targets_for_select
-    empty_target_for_select + available_targets_for_select
+  def target_options_html(sources_by_section, selected_target)
+    options = [option_tag(t('.select'), empty, selected_target)]
+
+    sources_by_section.each do |section, sources|
+      options << content_tag(:option, section.libelle, disabled: true) if section.present?
+      sources.each { |label, source| options << option_tag(label, source, selected_target) }
+    end
+
+    safe_join(options)
+  end
+
+  def option_tag(label, source, selected)
+    content_tag(:option, label, value: source.to_json, selected: source == selected)
   end
 
   def empty_target_for_select
     [[t('.select'), empty.to_json]]
   end
 
-  def available_targets_for_select
-    if column_mode?
-      conditionable_targets_by_tdc
-        .map { |column| [column.label + " (col)", column_value(column).to_json] }
-    else
-      @source_tdcs
-        .filter(&:conditionable?)
-        .map { |tdc| [tdc.libelle, champ_value(tdc.stable_id).to_json] }
-    end
-  end
-
   def column_mode?
     feature_enabled?(:column_conditions) && !@champ_value_in_condition
   end
 
-  def conditionable_targets_by_tdc
-    @conditionable_targets_by_tdc ||= @source_tdcs.to_h do |tdc|
-      tdc.columns(procedure: @procedure)
-        .filter { _1.type != :text }
-        .filter { _1.type != :date }
+  def sources_by_section
+    @sources_by_section ||= index_by_top_section(@source_tdcs)
+      .transform_values { |tdcs| to_sources(tdcs) }
+      .compact_blank
+  end
+
+  def index_by_top_section(tdcs)
+    last_section = nil
+    tdcs.each_with_object(Hash.new { |h, k| h[k] = [] }) do |tdc, h|
+      if tdc.header_section? && tdc.header_section_level_value == 1
+        last_section = tdc
+      else
+        h[last_section] << tdc
+      end
     end
+  end
+
+  def to_sources(tdcs) = column_mode? ? to_column_values(tdcs) : to_champ_values(tdcs)
+
+  SUPPORTED_TYPES = [:integer, :decimal, :enum, :enums, :boolean].freeze
+
+  def to_column_values(tdcs)
+    tdcs
+      .reject(&:repetition?)
+      .flat_map { it.columns(procedure: @procedure) }
+      .filter(&:filterable)
+      .filter { it.type.in?(SUPPORTED_TYPES) }
+      .map { |column| [column.label, column_value(column)] }
+  end
+
+  def to_champ_values(tdcs)
+    tdcs
+      .filter(&:conditionable?)
+      .map { |tdc| [tdc.libelle, champ_value(tdc.stable_id)] }
   end
 
   def operator_tag(operator_name, targeted_champ, row_index)
@@ -219,7 +250,7 @@ class Conditions::ConditionsComponent < ApplicationComponent
   end
 
   def render?
-    @condition.present? || available_targets_for_select.any?
+    @condition.present? || sources_by_section.any?
   end
 
   def input_name_for(name)
