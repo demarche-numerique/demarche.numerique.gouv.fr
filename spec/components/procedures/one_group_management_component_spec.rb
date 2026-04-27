@@ -23,6 +23,8 @@ describe Procedure::OneGroupeManagementComponent, type: :component do
         })
         procedure.publish_revision!(procedure.administrateurs.first)
         procedure.reload
+        allow_any_instance_of(Conditions::RoutingRulesComponent)
+          .to receive(:feature_enabled?).with(:column_conditions).and_return(false)
         subject
       end
       it { expect(page).to have_text('aucune règle') }
