@@ -12,4 +12,6 @@ class Logic::Term
   def eql?(other)
     hash == other.hash
   end
+
+  def terms = [self]
 end

@@ -11,6 +11,8 @@ class Logic::NAryOperator < Logic::Term
     @operands.flat_map(&:sources)
   end
 
+  def terms = [self] + @operands.flat_map(&:terms)
+
   def to_h
     {
       "term" => self.class.name,
