@@ -1,5 +1,5 @@
 .flex.justify-start.section{ id: dom_id(@tdc.stable_self, :condition), data: {turbo_force: :server} }
-  = form_tag admin_procedure_condition_path(@procedure_id, @tdc.stable_id), method: :patch, class: 'form' do
+  = form_tag admin_procedure_condition_path(@procedure.id, @tdc.stable_id), method: :patch, class: 'form' do
     .conditionnel.fr-mt-4v
       .flex
         %p

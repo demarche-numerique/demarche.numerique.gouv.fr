@@ -5,6 +5,11 @@ describe Conditions::IneligibiliteRulesComponent, type: :component do
   let(:procedure) { create(:procedure) }
   let(:component) { described_class.new(draft_revision: procedure.draft_revision) }
 
+  before do
+    allow_any_instance_of(described_class)
+      .to receive(:feature_enabled?).with(:column_conditions).and_return(false)
+  end
+
   describe 'render' do
     let(:ineligibilite_message) { 'ok' }
     let(:ineligibilite_enabled) { true }

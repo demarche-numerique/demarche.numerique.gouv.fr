@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 describe TypesDeChampEditor::ChampComponent, type: :component do
+  before do
+    allow_any_instance_of(Conditions::ChampsConditionsComponent)
+      .to receive(:feature_enabled?).with(:column_conditions).and_return(false)
+  end
+
   describe 'render' do
     let(:component) { described_class.new(coordinate:, upper_coordinates: []) }
     let(:routing_rules_stable_ids) { [] }

@@ -35,6 +35,7 @@ features = [
   :switch_domain,
   :llm_nightly_improve_procedure,
   :ami_notifications,
+  :column_conditions,
 ]
 
 def database_exists?
