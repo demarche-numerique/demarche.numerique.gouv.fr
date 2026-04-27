@@ -1872,6 +1872,12 @@ describe Procedure do
     end
   end
 
+  describe 'pro_connect_restriction default' do
+    it 'defaults to :instructeurs for new procedures' do
+      expect(Procedure.new.pro_connect_restriction).to eq('instructeurs')
+    end
+  end
+
   describe '#enable_pro_connect_restriction!' do
     let(:procedure) { create(:procedure, opendata: true, robots_indexable: true) }
 

@@ -26,6 +26,11 @@ describe 'Creating a new procedure', js: true do
     fill_in_dummy_procedure_details
     click_on 'Créer la démarche'
 
+    expect(page).to have_current_path(pro_connect_required_path)
+
+    allow_any_instance_of(Administrateurs::AdministrateurController).to receive(:logged_in_with_pro_connect?).and_return(true)
+
+    visit champs_admin_procedure_path(Procedure.last)
     expect(page).to have_current_path(champs_admin_procedure_path(Procedure.last))
   end
 

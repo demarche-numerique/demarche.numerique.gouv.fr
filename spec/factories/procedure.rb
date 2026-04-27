@@ -18,6 +18,7 @@ FactoryBot.define do
     sva_svr { {} }
     no_gender { true }
     api_entreprise_token { JWT.encode({ exp: 2.months.from_now.to_i }, nil, 'none') }
+    pro_connect_restriction { :none }
 
     groupe_instructeurs { [association(:groupe_instructeur, :default, procedure: instance, strategy: :build)] }
     administrateurs { [administrateur] }

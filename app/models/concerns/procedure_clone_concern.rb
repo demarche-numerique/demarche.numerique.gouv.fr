@@ -186,7 +186,6 @@ module ProcedureCloneConcern
     procedure.template = false
     procedure.labels = labels.map(&:dup)
     procedure.routing_alert = false
-    procedure.pro_connect_restriction = :none
     procedure.robots_indexable = true
     procedure.admin_default_procedure_presentation_active = false
     procedure.admin_default_procedure_presentation_id = nil
