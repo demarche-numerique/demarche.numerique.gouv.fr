@@ -11,6 +11,8 @@ class Logic::BinaryOperator < Logic::Term
     [@left, @right].flat_map(&:sources)
   end
 
+  def terms = [self] + @left.terms + @right.terms
+
   def to_h
     {
       "term" => self.class.name,
