@@ -164,4 +164,42 @@ describe Logic::ColumnValue do
       expect(column_value).not_to eq(Logic::ChampValue.new(column.stable_id))
     end
   end
+
+  describe 'when the underlying column has disappeared' do
+    let(:h_id) { { procedure_id: 999_999, column_id: "type_de_champ/123" } }
+    let(:broken) { Logic::ColumnValue.from_h({ "term" => "Logic::ColumnValue", "column_id" => h_id }) }
+
+    it 'does not raise on from_h' do
+      expect { broken }.not_to raise_error
+    end
+
+    it do
+      expect(broken.compute([])).to be_nil
+      expect(broken.type([])).to eq(:unmanaged)
+      expect(broken.options([])).to eq([])
+      expect(broken.sources).to eq([])
+      expect(broken.to_s([])).to be_nil
+    end
+
+    it 'errors always returns :not_available, regardless of the tdcs passed' do
+      expect(broken.errors([])).to eq([{ type: :not_available }])
+      expect(broken.errors(procedure.active_revision.types_de_champ)).to eq([{ type: :not_available }])
+    end
+
+    it 'to_h preserves the original h_id (no nesting / no wrapping leak)' do
+      expect(broken.to_h).to eq({ "term" => "Logic::ColumnValue", "column_id" => h_id })
+    end
+
+    it 'survives multiple save/reload cycles without growing nested wrappers' do
+      twice_round_tripped = Logic::ColumnValue.from_h(broken.to_h)
+
+      expect(twice_round_tripped.to_h).to eq(broken.to_h)
+    end
+
+    it 'two broken ColumnValues with the same h_id are equal' do
+      other = Logic::ColumnValue.from_h({ "term" => "Logic::ColumnValue", "column_id" => h_id })
+
+      expect(broken).to eq(other)
+    end
+  end
 end
