@@ -104,6 +104,26 @@ describe Columns::LinkedDropDownColumn do
     end
   end
 
+  describe '#options_for_select' do
+    let(:procedure) do
+      create(:procedure, types_de_champ_public: [
+        { type: :linked_drop_down_list, libelle: 'linked', drop_down_options: ['--section 1--', 'option A', 'option B', '--section 2--', 'option C'] },
+      ])
+    end
+
+    it 'normalizes the primary options as [label, value] pairs' do
+      column = procedure.find_column(label: 'linked (Primaire)')
+
+      expect(column.options_for_select).to eq([['section 1', 'section 1'], ['section 2', 'section 2']])
+    end
+
+    it 'normalizes the secondary options as [label, value] pairs' do
+      column = procedure.find_column(label: 'linked (Secondaire)')
+
+      expect(column.options_for_select).to eq([['option A', 'option A'], ['option B', 'option B'], ['option C', 'option C']])
+    end
+  end
+
   describe 'unpack_values' do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :linked_drop_down_list, libelle: 'linked' }]) }
     let(:type_de_champ) { procedure.active_revision.types_de_champ_public.first }
