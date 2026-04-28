@@ -86,7 +86,7 @@ class TypesDeChamp::LinkedDropDownListTypeDeChamp < TypesDeChamp::TypeDeChampBas
         type: :enum,
         path: :primary,
         displayable: false,
-        options_for_select: primary_options,
+        options_for_select: primary_options.map { [it, it] },
         mandatory: mandatory?
       ),
       Columns::LinkedDropDownColumn.new(
@@ -97,7 +97,7 @@ class TypesDeChamp::LinkedDropDownListTypeDeChamp < TypesDeChamp::TypeDeChampBas
         type: :enum,
         path: :secondary,
         displayable: false,
-        options_for_select: secondary_options.values.flatten.uniq.sort,
+        options_for_select: secondary_options.values.flatten.uniq.sort.map { [it, it] },
         mandatory: mandatory?
       ),
     ]
