@@ -382,8 +382,13 @@ module Users
       champ.validate(:champs_public_value) if champ.done?
       respond_to do |format|
         format.turbo_stream do
-          @to_show, @to_hide = []
           @to_update = [champ].concat(champ.prefillable_champs)
+          # Le champ asynchrone vient d'arriver : recalcule la visibilité des
+          # champs qui dépendent de lui (ex. condition sur siret.departement).
+          @to_show, @to_hide = dossier.project_champs_public_all
+            .filter { it.conditional? || it.child? }
+            .partition(&:visible?)
+            .map { champs_to_one_selector(_1 - @to_update) }
           render :update, layout: false
         end
       end
