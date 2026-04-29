@@ -148,10 +148,15 @@
         <%= render Dsfr::AlertComponent.new(title: t('views.users.dossiers.transfers.sender_title', default: 'Demande de transfert en cours'), state: :info, extra_class_names: "fr-pb-1w fr-mb-2w") do |c| %>
           <% c.with_body do %>
             <% if dossier.transfer.from_support? %>
-              <p><%= t('views.users.dossiers.transfers.sender_body_from_support', email: dossier.transfer.email, default: "L'équipe support a initié une demande de transfert de ce dossier vers #{dossier.transfer.email}.") %></p>
+              <p>
+                <%= t('views.users.dossiers.transfers.sender_body_from_support', email: dossier.transfer.email, default: "L'équipe support a initié une demande de transfert de ce dossier vers #{dossier.transfer.email}.") %>
+              </p>
             <% else %>
-              <p><%= t('views.users.dossiers.transfers.sender_body', email: dossier.transfer.email, default: "Vous avez envoyé une demande de transfert de ce dossier à #{dossier.transfer.email}.") %></p>
+              <p>
+                <%= t('views.users.dossiers.transfers.sender_body', email: dossier.transfer.email, default: "Vous avez envoyé une demande de transfert de ce dossier à #{dossier.transfer.email}.") %>
+              </p>
             <% end %>
+
             <%= link_to t('views.users.dossiers.transfers.revoke', default: 'Révoquer cette demande'), transfer_path(dossier.transfer), class: 'fr-link', method: :delete %>
           <% end %>
         <% end %>
