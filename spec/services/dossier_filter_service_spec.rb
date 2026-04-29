@@ -709,13 +709,13 @@ describe DossierFilterService do
         end
       end
 
-      context "when searching by region_name" do
+      context "when searching by region_code" do
         let(:value) { "60" }
         let(:filter) { ["rna – Région", value] }
 
         before do
-          kept_dossier.project_champs_public.find { _1.stable_id == 1 }.update(value_json: { "region_name" => value })
-          create(:dossier, procedure:).project_champs_public.find { _1.stable_id == 1 }.update(value_json: { "region_name" => "unknown" })
+          kept_dossier.project_champs_public.find { _1.stable_id == 1 }.update(value_json: { "region_code" => value })
+          create(:dossier, procedure:).project_champs_public.find { _1.stable_id == 1 }.update(value_json: { "region_code" => "unknown" })
         end
 
         it { is_expected.to contain_exactly(kept_dossier.id) }

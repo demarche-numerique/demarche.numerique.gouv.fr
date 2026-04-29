@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class Columns::JSONPathColumn < Columns::ChampColumn
-  attr_reader :jsonpath
+  attr_reader :jsonpath, :filter_jsonpath
 
-  def initialize(procedure_id:, label:, stable_id:, tdc_type:, jsonpath:, options_for_select: [], displayable:, filterable: true, type: :text, mandatory:)
+  def initialize(procedure_id:, label:, stable_id:, tdc_type:, jsonpath:, filter_jsonpath: nil, options_for_select: [], displayable:, filterable: true, type: :text, mandatory:)
     @jsonpath = quote_string(jsonpath)
+    @filter_jsonpath = quote_string(filter_jsonpath || jsonpath)
 
     super(
       procedure_id:,
@@ -48,7 +49,7 @@ class Columns::JSONPathColumn < Columns::ChampColumn
     parts << %(@ >= "#{start_date}") if start_date
     parts << %(@ <= "#{end_date}") if end_date
 
-    condition = sanitize_sql(%{champs.value_json @? '#{jsonpath} ? (#{parts.join(' && ')})'})
+    condition = sanitize_sql(%{champs.value_json @? '#{filter_jsonpath} ? (#{parts.join(' && ')})'})
 
     targeted_dossiers(dossiers, condition).ids
   end
@@ -63,10 +64,10 @@ class Columns::JSONPathColumn < Columns::ChampColumn
 
       return dossiers.ids if integers.empty?
 
-      condition = sanitize_sql(%{champs.value_json @? '#{jsonpath} ? (#{integers.map { |i| "@ == #{i}" }.join(" || ")})'})
+      condition = sanitize_sql(%{champs.value_json @? '#{filter_jsonpath} ? (#{integers.map { |i| "@ == #{i}" }.join(" || ")})'})
     else
       value = quote_string(search_terms.join('|'))
-      condition = sanitize_sql(%{champs.value_json @? '#{jsonpath} ? (@ like_regex "#{value}" flag "i")'})
+      condition = sanitize_sql(%{champs.value_json @? '#{filter_jsonpath} ? (@ like_regex "#{value}" flag "i")'})
     end
 
     targeted_dossiers(dossiers, condition).ids
