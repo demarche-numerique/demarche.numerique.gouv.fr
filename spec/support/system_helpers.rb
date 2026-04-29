@@ -210,6 +210,6 @@ RSpec.configure do |config|
   config.include SystemHelpers, type: :system
 
   config.before(:each, type: :system) do
-    stub_request(:post, WEASYPRINT_URL).to_return(body: '%PDF-1.4 fake pdf for tests') if WEASYPRINT_URL
+    stub_request(:post, WEASYPRINT_URL).to_return(body: '%PDF-1.4 fake pdf for tests') if WEASYPRINT_URL.present?
   end
 end
