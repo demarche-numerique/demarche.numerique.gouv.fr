@@ -18,7 +18,11 @@ module Users
     end
 
     def update
-      DossierTransfer.accept(params[:id], current_user)
+      if DossierTransfer.accept(params[:id], current_user)
+        flash.notice = t("users.dossiers.transferer.accepted")
+      else
+        flash.alert = t("users.dossiers.transferer.unauthorized_destroy")
+      end
       redirect_to dossiers_path
     end
 

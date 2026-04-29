@@ -64,6 +64,26 @@ describe Users::TransfersController, type: :controller do
     end
   end
 
+  describe 'PATCH #update' do
+    before { sign_in(recipient_user) }
+
+    context 'when accept succeeds' do
+      let(:dossier_transfert) { DossierTransfer.initiate(recipient_user.email, [dossier]) }
+
+      it 'sets a notice flash' do
+        patch :update, params: { id: dossier_transfert.id }
+        expect(flash.notice).to be_present
+      end
+    end
+
+    context 'when accept fails (invalid transfer)' do
+      it 'sets an alert flash' do
+        patch :update, params: { id: 99999 }
+        expect(flash.alert).to be_present
+      end
+    end
+  end
+
   describe "POST create" do
     before do
       sign_in(sender_user)
