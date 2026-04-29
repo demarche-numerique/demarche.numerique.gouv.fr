@@ -20,6 +20,12 @@
   </div>
 </section>
 
+<% if params[:search].blank? && @pending_transfers_count.positive? %>
+  <div class="fr-container">
+    <%= render Dossiers::PendingTransfersBannerComponent.new(count: @pending_transfers_count) %>
+  </div>
+<% end %>
+
 <div class="fr-container">
   <div class="fr-grid-row fr-grid-row--center">
     <div class="fr-col-12 fr-col-xl-10">
