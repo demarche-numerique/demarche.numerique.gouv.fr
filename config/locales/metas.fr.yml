@@ -6,10 +6,6 @@ fr:
       title: "Créer un compte"
     users:
       dossiers:
-        index:
-          title: Dossiers
-          title_search: "Recherche : %{terms}"
-          title_statut_trash: "Dossiers supprimés"
         identite:
           title: "Nouveau dossier (%{procedure_label}) - Étape 1 : Identité"
         show:

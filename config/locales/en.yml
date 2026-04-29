@@ -555,18 +555,10 @@ en:
           edit_dossier_title: "Edit my file - You can modify your file as long as it has not been sent for processing"
         search:
           search_file: Search a file (by file number, keywords…)
-          label: Search a file (by file number, last name / first name, keywords…)
-          placeholder: Enter your search
-          button: Search a file
           simple: Search
-          result_term_title: Search result for « %{search_terms} »
-          result_procedure_title: and procedure « %{procedure_libelle} »
-        dossiers_menu: My files
         dossier_menu: "File number %{id}"
         index:
           dossiers: "My files"
-          customize: "Customize list"
-          see_deleted_dossiers_history: Deleted files history
           administration_no_longer_processes: "The administration will no longer process your request."
           metas:
             title: "My files"
@@ -622,15 +614,13 @@ en:
           n_dossier: "File no."
           no_result_title: No files
           no_result_text_html: "To fill a procedure, contact your administration asking for the procedure link. <br> It should look like %{app_base}/commencer/xxx."
-          no_result_text_with_search: found with search terms
-          no_result_reset_search: Reset search
           no_result_text_with_filter: found with selected filters
           no_result_reset_filter: Reset filters
           no_result_search_title: No file matches your search
           no_result_search_intro: "You can:"
-          no_result_search_modify: edit your search
-          no_result_search_back_prefix: or go back to your
-          no_result_search_back_link: file list
+          no_result_search_modify: "Modify your search"
+          no_result_search_back_prefix: "Or"
+          no_result_search_back_link: go back to your files list
           pending_correction_html: '<h4 class="card-title fr-mb-1v">This file is waiting for your corrections</h4><p>Consult the changes to be made in the <a href="%{link}" class="fr-link">messaging system <span class="fr-sr-only">of file number %{id}</span></a>.</p>'
           pending_response:
             title: "This file is waiting for your response"
@@ -665,7 +655,6 @@ en:
             other: "%{count} files"
         transfer_requests:
           title: "Transfer requests"
-          back_to_list: "← My files"
           count:
             one: "1 file pending transfer"
             other: "%{count} files pending transfer"
@@ -674,7 +663,6 @@ en:
           refuse: "Refuse"
           refuse_confirm: "Are you sure you want to refuse this transfer request?"
           close: "Close"
-
         transfers:
           sender_from_support: Technical support
           sender_demande_en_cours_from_support_html: '<h4 class="card-title fr-mb-1v">A transfer request from technical support is pending on file Nº %{id} to %{email}</h4>'

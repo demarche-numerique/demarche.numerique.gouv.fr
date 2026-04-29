@@ -138,6 +138,8 @@ ignore_unused:
   - 'links.main_navigation.doc.expert_title'
   - 'links.main_navigation.doc.instructeur_title'
   - 'shared.dossiers.geo.*'
+  - 'views.users.dossiers.index.filter_panel.*'
+  - 'views.users.dossiers.index.active_filters.*'
 # - '{devise,kaminari,will_paginate}.*'
 # - 'simple_form.{yes,no}'
 # - 'simple_form.{placeholders,hints,labels}.*'

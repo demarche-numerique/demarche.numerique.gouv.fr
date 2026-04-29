@@ -19,7 +19,3 @@ en:
           button_delay_expiration:
             one: "Keep for %{count} more month"
             other: "Keep for %{count} more months"
-        callout:
-          first_brouillon_recently_updated_title: You already started to fill a file
-          first_brouillon_recently_updated_text: "%{time_ago} ago you started to fill a file on « %{libelle} » procedure."
-          first_brouillon_recently_updated_button: Keep filling this file

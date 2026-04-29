@@ -565,18 +565,10 @@ fr:
           edit_dossier_title: "Modifier le dossier - Vous pouvez modifier votre dossier tant qu’il n’est pas passé en instruction"
         search:
           search_file: Rechercher un dossier (par n° de dossier, mots-clés…)
-          label: Rechercher un dossier (par n° de dossier, nom / prénom, mots-clés…)
-          placeholder: Saisissez votre recherche
-          button: Rechercher un dossier
           simple: Rechercher
-          result_term_title: Résultat de la recherche pour « %{search_terms} »
-          result_procedure_title: et pour la procédure « %{procedure_libelle} »
-        dossiers_menu: "Mes dossiers"
         dossier_menu: "Dossier numéro %{id}"
         index:
           dossiers: "Mes dossiers"
-          customize: "Personnaliser la liste"
-          see_deleted_dossiers_history: Historique des dossiers supprimés
           administration_no_longer_processes: "L’administration ne traitera plus votre demande."
           metas:
             title: "Mes dossiers"
@@ -632,15 +624,13 @@ fr:
           n_dossier: "dossier n°"
           no_result_title: Aucun dossier
           no_result_text_html: "Pour remplir une démarche, contactez votre administration en lui demandant le lien de la démarche. <br> Celui ci doit ressembler à %{app_base}/commencer/xxx."
-          no_result_text_with_search: ne correspond aux termes recherchés
-          no_result_reset_search: Réinitialiser la recherche
           no_result_text_with_filter: ne correspond aux filtres sélectionnés
           no_result_reset_filter: Réinitialiser les filtres
           no_result_search_title: Aucun dossier ne correspond à votre recherche
           no_result_search_intro: "Vous pouvez :"
-          no_result_search_modify: modifier votre recherche
-          no_result_search_back_prefix: ou retourner à la
-          no_result_search_back_link: liste de vos dossiers
+          no_result_search_modify: "Modifier votre recherche"
+          no_result_search_back_prefix: "Ou"
+          no_result_search_back_link: revenir à la liste de vos dossiers
           procedure_closed:
             brouillon:
               internal_procedure_html: <h4 class="card-title fr-mb-1v">Cette démarche est close</h4><p>Vous ne pouvez pas déposer ce dossier. Nous vous invitons à en déposer un nouveau sur la %{link} qui la remplace.</p>
@@ -688,7 +678,6 @@ fr:
             other: "%{count} dossiers"
         transfer_requests:
           title: "Demandes de transfert"
-          back_to_list: "← Mes dossiers"
           count:
             one: "1 dossier en attente de transfert"
             other: "%{count} dossiers en attente de transfert"
@@ -697,14 +686,13 @@ fr:
           refuse: "Refuser"
           refuse_confirm: "Êtes-vous sûr de vouloir refuser cette demande de transfert ?"
           close: "Fermer"
-
         transfers:
           sender_from_support: Le support technique
           sender_demande_en_cours_from_support_html: '<h4 class="card-title fr-mb-1v">Une demande de transfert par le support technique est en cours sur le dossier n° %{id} pour %{email}</h4>'
           revoke_html: 'Révoquer cette demande <span class="fr-sr-only">de transfert</span>'
           sender_title: "Demande de transfert en cours"
           sender_body: "Vous avez envoyé une demande de transfert de ce dossier à %{email}."
-          sender_body_from_support: "L'équipe support a initié une demande de transfert de ce dossier vers %{email}."
+          sender_body_from_support: "L’équipe support a initié une demande de transfert de ce dossier vers %{email}."
           revoke: "Révoquer cette demande"
       sessions:
         new:
