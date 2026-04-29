@@ -6,13 +6,14 @@ describe Conditions::ChampsConditionsComponent, type: :component do
   let(:procedure) { create(:procedure) }
 
   describe 'render' do
-    let(:tdc) { create(:type_de_champ, condition: condition) }
+    let(:tdc) { create(:type_de_champ, condition:) }
     let(:condition) { nil }
     let(:upper_tdcs) { [] }
-    let(:component) { described_class.new(tdc: tdc, upper_tdcs: upper_tdcs, procedure: procedure) }
+    let(:component) { described_class.new(tdc:, upper_tdcs:, procedure:) }
+    let(:column_mode) { false }
 
     before do
-      allow(component).to receive(:feature_enabled?).with(:column_conditions).and_return(false)
+      allow(component).to receive(:feature_enabled?).with(:column_conditions).and_return(column_mode)
       render_inline(component)
     end
 
@@ -40,14 +41,76 @@ describe Conditions::ChampsConditionsComponent, type: :component do
       let(:upper_tdc) { create(:type_de_champ_number) }
       let(:upper_tdcs) { [upper_tdc] }
 
-      context 'and one condition' do
-        let(:condition) { ds_eq(champ_value(upper_tdc.stable_id), constant(1)) }
+      shared_examples 'targeted condition rendering' do
+        let(:upper_tdc_type) { :integer_number }
 
-        it do
-          expect(page).to have_button('cliquer pour désactiver')
-          expect(page).to have_selector('table')
-          expect(page).to have_selector('tbody > tr', count: 1)
+        context 'and one condition' do
+          let(:condition) { ds_eq(target, constant(1)) }
+
+          it do
+            expect(page).to have_button('cliquer pour désactiver')
+            expect(page).to have_selector('table')
+            expect(page).to have_selector('tbody > tr', count: 1)
+          end
         end
+
+        context 'focus one row' do
+          context 'enum' do
+            let(:upper_tdc_type) { :drop_down_list }
+            let(:condition) { empty_operator(target, constant(true)) }
+
+            it do
+              expect(page).to have_select('type_de_champ[condition_form][rows][][operator_name]', with_options: ['Est'])
+              expect(page).to have_select('type_de_champ[condition_form][rows][][value]', options: ['Sélectionner', 'val1', 'val2', 'val3'])
+            end
+          end
+
+          context 'regions' do
+            let(:upper_tdc_type) { :regions }
+            let(:condition) { empty_operator(target, constant(true)) }
+            let(:region_options) { APIGeoService.regions.map { _1[:name] } }
+
+            it do
+              expect(page).to have_select('type_de_champ[condition_form][rows][][operator_name]', with_options: ['Est'])
+              expect(page).to have_select('type_de_champ[condition_form][rows][][value]', options: (['Sélectionner'] + region_options))
+            end
+          end
+        end
+
+        context 'when there are 3 conditions' do
+          let(:condition) do
+            ds_or([
+              ds_eq(target, constant(1)),
+              ds_eq(target, empty),
+              greater_than(target, constant(3)),
+            ])
+          end
+
+          it do
+            expect(page).to have_selector('tbody > tr', count: 3)
+            expect(page).to have_select("type_de_champ_condition_form_top_operator_name", selected: "Ou", options: ['Et', 'Ou'])
+          end
+        end
+      end
+
+      context 'in champ_value mode' do
+        let(:upper_tdc) { create(:"type_de_champ_#{upper_tdc_type}") }
+        let(:target) { champ_value(upper_tdc.stable_id) }
+
+        include_examples 'targeted condition rendering'
+      end
+
+      context 'in column_value mode' do
+        let(:column_mode) { true }
+        # Le upper_tdc doit être attaché à la procedure pour que la
+        # désérialisation de la condition (Column.find) retrouve la colonne.
+        let(:procedure) do
+          create(:procedure, types_de_champ_public: [{ type: upper_tdc_type, libelle: 'col' }])
+        end
+        let(:upper_tdc) { procedure.draft_revision.types_de_champ.first }
+        let(:target) { column_value(upper_tdc.columns(procedure:).first) }
+
+        include_examples 'targeted condition rendering'
       end
 
       context 'focus one row' do
@@ -75,17 +138,6 @@ describe Conditions::ChampsConditionsComponent, type: :component do
           it do
             expect(page).to have_select('type_de_champ[condition_form][rows][][operator_name]', with_options: ['Est', 'N’est pas'])
             expect(page).to have_select('type_de_champ[condition_form][rows][][value]', options: ['Oui', 'Non'])
-          end
-        end
-
-        context 'enum' do
-          let(:drop_down) { create(:type_de_champ_drop_down_list) }
-          let(:upper_tdcs) { [drop_down] }
-          let(:condition) { empty_operator(champ_value(drop_down.stable_id), constant(true)) }
-
-          it do
-            expect(page).to have_select('type_de_champ[condition_form][rows][][operator_name]', with_options: ['Est'])
-            expect(page).to have_select('type_de_champ[condition_form][rows][][value]', options: ['Sélectionner', 'val1', 'val2', 'val3'])
           end
         end
 
@@ -125,18 +177,6 @@ describe Conditions::ChampsConditionsComponent, type: :component do
           end
         end
 
-        context 'regions' do
-          let(:regions) { create(:type_de_champ_regions) }
-          let(:upper_tdcs) { [regions] }
-          let(:condition) { empty_operator(champ_value(regions.stable_id), constant(true)) }
-          let(:region_options) { APIGeoService.regions.map { _1[:name] } }
-
-          it do
-            expect(page).to have_select('type_de_champ[condition_form][rows][][operator_name]', with_options: ['Est'])
-            expect(page).to have_select('type_de_champ[condition_form][rows][][value]', options: (['Sélectionner'] + region_options))
-          end
-        end
-
         context 'pays' do
           let(:pays) { create(:type_de_champ_pays) }
           let(:upper_tdcs) { [pays] }
@@ -168,24 +208,6 @@ describe Conditions::ChampsConditionsComponent, type: :component do
         it do
           expect(page).to have_selector('tbody > tr', count: 2)
           expect(page).to have_select("type_de_champ_condition_form_top_operator_name", selected: "Et", options: ['Et', 'Ou'])
-        end
-      end
-
-      context 'when there are 3 conditions' do
-        let(:upper_tdc) { create(:type_de_champ_number) }
-        let(:upper_tdcs) { [upper_tdc] }
-
-        let(:condition) do
-          ds_or([
-            ds_eq(champ_value(upper_tdc.stable_id), constant(1)),
-            ds_eq(champ_value(upper_tdc.stable_id), empty),
-            greater_than(champ_value(upper_tdc.stable_id), constant(3)),
-          ])
-        end
-
-        it do
-          expect(page).to have_selector('tbody > tr', count: 3)
-          expect(page).to have_select("type_de_champ_condition_form_top_operator_name", selected: "Ou", options: ['Et', 'Ou'])
         end
       end
     end
