@@ -1631,6 +1631,44 @@ describe Instructeurs::DossiersController, type: :controller do
     end
   end
 
+  describe "#annotation" do
+    include Logic
+
+    let(:referentiel) { create(:api_referentiel, :exact_match, :with_exact_match_response) }
+    let(:async_stable_id) { 10 }
+    let(:checkbox_stable_id) { 20 }
+    let(:explication_stable_id) { 30 }
+    let(:condition) { ds_eq(champ_value(checkbox_stable_id), constant(true)) }
+    let(:types_de_champ_private) do
+      [
+        { type: :referentiel, referentiel:, stable_id: async_stable_id },
+        { type: :checkbox, stable_id: checkbox_stable_id },
+        { type: :explication, stable_id: explication_stable_id, condition: },
+      ]
+    end
+    let(:procedure) { create(:procedure, :published, types_de_champ_private:, instructeurs:) }
+    let(:dossier) { create(:dossier, :en_construction, :with_populated_annotations, procedure:) }
+
+    subject do
+      get :annotation, params: { procedure_id: procedure.id, dossier_id: dossier.id, stable_id: async_stable_id, row_id: nil }, format: :turbo_stream
+    end
+
+    context 'when a conditional annotation exists alongside the polled annotation' do
+      before do
+        dossier.champs.find(&:referentiel?).update_columns(external_id: 'kthxbye', value: 'OK', data: {})
+        dossier.champs.find { _1.stable_id == checkbox_stable_id }.update_columns(value: 'true')
+      end
+
+      it 'recomputes visibility of conditional annotations after polling' do
+        subject
+
+        explication_annotation = assigns(:dossier).project_champs_private_all
+          .find { _1.type_de_champ.stable_id == explication_stable_id }
+        expect(assigns(:to_show)).to include("##{explication_annotation.input_group_id}")
+      end
+    end
+  end
+
   describe "#annotations_privees" do
     context "when annotation_instructeur notifications exist" do
       let!(:other_instructeur) { create(:instructeur) }

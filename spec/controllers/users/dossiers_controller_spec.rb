@@ -2418,6 +2418,36 @@ describe Users::DossiersController, type: :controller do
           expect(response).not_to include('Trop de demandes. Nous réessayons pour vous.')
         end
       end
+
+      context 'when a conditional champ exists alongside the polled champ' do
+        include Logic
+
+        let(:async_stable_id) { 10 }
+        let(:checkbox_stable_id) { 20 }
+        let(:explication_stable_id) { 30 }
+        let(:condition) { ds_eq(champ_value(checkbox_stable_id), constant(true)) }
+        let(:types_de_champ_public) do
+          [
+            { type: :referentiel, referentiel:, stable_id: async_stable_id },
+            { type: :checkbox, stable_id: checkbox_stable_id },
+            { type: :explication, stable_id: explication_stable_id, condition: },
+          ]
+        end
+        let(:stable_id) { async_stable_id }
+
+        before do
+          dossier.champs.find(&:referentiel?).update_columns(external_id: 'kthxbye', value: 'OK', data: {})
+          dossier.champs.find { _1.stable_id == checkbox_stable_id }.update_columns(value: 'true')
+        end
+
+        it 'recomputes visibility of conditional champs after polling' do
+          subject
+
+          explication_champ = assigns(:dossier).project_champs_public_all
+            .find { _1.type_de_champ.stable_id == explication_stable_id }
+          expect(assigns(:to_show)).to include("##{explication_champ.input_group_id}")
+        end
+      end
     end
   end
 

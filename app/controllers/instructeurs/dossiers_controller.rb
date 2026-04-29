@@ -409,8 +409,13 @@ module Instructeurs
 
       respond_to do |format|
         format.turbo_stream do
-          @to_show, @to_hide = []
           @to_update = [annotation].concat(annotation.prefillable_champs)
+          # L'annotation asynchrone vient d'arriver : recalcule la visibilité des
+          # annotations qui dépendent d'elle (ex. condition sur siret.departement).
+          @to_show, @to_hide = @dossier.project_champs_private_all
+            .filter { it.conditional? || it.child? }
+            .partition(&:visible?)
+            .map { champs_to_one_selector(_1 - @to_update) }
 
           render :update_annotations
         end
