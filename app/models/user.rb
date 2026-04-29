@@ -67,6 +67,12 @@ class User < ApplicationRecord
     link_invites!
   end
 
+  def dossier_transfers_received_pending
+    Dossier.includes(:procedure, :user, :individual, :etablissement)
+      .where(dossier_transfer_id: DossierTransfer.for_email(email).pending)
+      .order(updated_at: :desc)
+  end
+
   def owns?(dossier)
     dossier.user_id == id
   end

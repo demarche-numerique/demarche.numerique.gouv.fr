@@ -579,6 +579,50 @@ describe User, type: :model do
     end
   end
 
+  describe '#dossier_transfers_received_pending' do
+    let(:user) { create(:user, email: 'destinataire@example.com') }
+    let(:expediteur) { create(:user) }
+
+    let!(:dossier_received) do
+      d = create(:dossier, :en_construction, user: expediteur)
+      transfer = DossierTransfer.create(email: 'destinataire@example.com', dossiers: [d])
+      d.update!(dossier_transfer_id: transfer.id)
+      d
+    end
+
+    let!(:dossier_for_other_email) do
+      d = create(:dossier, :en_construction, user: expediteur)
+      transfer = DossierTransfer.create(email: 'autre@example.com', dossiers: [d])
+      d.update!(dossier_transfer_id: transfer.id)
+      d
+    end
+
+    let!(:dossier_without_transfer) { create(:dossier, :en_construction, user: expediteur) }
+
+    subject { user.dossier_transfers_received_pending }
+
+    it 'includes dossiers transferred to user email' do
+      expect(subject).to include(dossier_received)
+    end
+
+    it 'excludes dossiers transferred to other emails' do
+      expect(subject).not_to include(dossier_for_other_email)
+    end
+
+    it 'excludes dossiers without transfer' do
+      expect(subject).not_to include(dossier_without_transfer)
+    end
+
+    it 'excludes dossiers with expired transfer' do
+      d = create(:dossier, :en_construction, user: expediteur)
+      expired_transfer = DossierTransfer.create(email: 'destinataire@example.com', dossiers: [d])
+      expired_transfer.update_columns(created_at: 3.weeks.ago)
+      d.update!(dossier_transfer_id: expired_transfer.id)
+
+      expect(subject).not_to include(d)
+    end
+  end
+
   describe 'discard default devise validation when needed' do
     let(:now) { Time.zone.now }
     let(:before) { now - 1.day }
