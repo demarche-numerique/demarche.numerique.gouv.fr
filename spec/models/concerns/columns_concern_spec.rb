@@ -59,6 +59,26 @@ describe ColumnsConcern do
         expect(procedure.find_column(h_id:)).to eq(code_naf_column)
       end
     end
+
+    context 'when the column lives only in the draft revision' do
+      let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :integer_number }]) }
+      let(:referentiel) { create(:csv_referentiel, :with_items) }
+      let(:integer_tdc) { procedure.draft_revision.types_de_champ.first }
+      let(:draft_tdc) do
+        procedure.draft_revision.add_type_de_champ(
+          type_champ: 'drop_down_list',
+          libelle: 'liste csv',
+          drop_down_mode: 'advanced',
+          referentiel_id: referentiel.id,
+          after_stable_id: integer_tdc.stable_id
+        )
+      end
+      let(:draft_column) { draft_tdc.columns(procedure:).first }
+
+      it 'falls back to the draft revision columns' do
+        expect(procedure.find_column(h_id: draft_column.h_id)).to eq(draft_column)
+      end
+    end
   end
 
   describe "#columns" do
