@@ -23,6 +23,17 @@ module ColumnsConcern
       column = columns.find { _1.h_id == h_id }
     end
 
+    # `columns` n'inspecte que les révisions publiées. Quand l'admin édite la
+    # draft, une condition peut référencer une colonne qui n'y existe pas
+    # encore (TDC ajouté, mode advanced, en-têtes de référentiel ré-importés).
+    # Sans ce fallback, le round-trip dump/load d'AR (`Mutable#cast`) sur
+    # `tdc.condition = ...` casse les `Logic::ColumnValue` à chaque écriture.
+    if column.nil? && h_id.present? && !brouillon? && draft_revision_id.present?
+      column = draft_revision.types_de_champ
+        .flat_map { _1.columns(procedure: self) }
+        .find { _1.h_id == h_id }
+    end
+
     raise ActiveRecord::RecordNotFound.new("Column: unable to find h_id: #{h_id} or label: #{label} for procedure_id #{id}") if column.nil?
 
     column
