@@ -9,5 +9,6 @@ en:
         email_label: Email of the recipient account
         submit: Send transfer request
         notice_sent: The transfer request has been sent successfully
+        accepted: The transfer request has been accepted.
         destroy: The transfer request has been deleted successfully
         unauthorized_destroy: You don't have the authorization to delete this transfer request

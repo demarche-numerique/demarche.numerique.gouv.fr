@@ -2441,6 +2441,36 @@ describe Users::DossiersController, type: :controller do
     end
   end
 
+  describe 'GET #transfer_requests' do
+    let(:user) { create(:user, email: 'destinataire@example.com') }
+    before { sign_in(user) }
+
+    let(:expediteur) { create(:user) }
+
+    it 'assigns dossiers transferred to user email' do
+      dossier = create(:dossier, :en_construction, user: expediteur)
+      transfer = DossierTransfer.create(email: 'destinataire@example.com', dossiers: [dossier])
+      dossier.update!(dossier_transfer_id: transfer.id)
+
+      get :transfer_requests
+      expect(assigns(:pending_transfers)).to include(dossier)
+    end
+
+    it 'excludes dossiers transferred to other emails' do
+      other_dossier = create(:dossier, :en_construction, user: expediteur)
+      transfer = DossierTransfer.create(email: 'autre@example.com', dossiers: [other_dossier])
+      other_dossier.update!(dossier_transfer_id: transfer.id)
+
+      get :transfer_requests
+      expect(assigns(:pending_transfers)).not_to include(other_dossier)
+    end
+
+    it 'is accessible without ownership restriction' do
+      get :transfer_requests
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
   describe 'GET #trash' do
     let(:user) { create(:user) }
     before { sign_in(user) }

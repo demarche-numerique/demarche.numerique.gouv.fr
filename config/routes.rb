@@ -409,6 +409,7 @@ Rails.application.routes.draw do
     get 'demarches' => 'demarches#index'
     get 'deleted_dossiers' => 'dossiers#deleted_dossiers'
     get 'trash' => 'dossiers#trash'
+    get 'transferts' => 'dossiers#transfer_requests'
 
     get 'profil' => 'profil#show'
     patch 'update_email' => 'profil#update_email'
