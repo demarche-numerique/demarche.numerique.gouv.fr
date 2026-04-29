@@ -36,7 +36,7 @@ module Dsfr
     end
 
     def pjs_statut?
-      @champ.rib? && !@champ.idle?
+      (@champ.rib? || @champ.justificatif_domicile?) && !@champ.idle?
     end
 
     def dossier_link_support_statut?
@@ -102,19 +102,28 @@ module Dsfr
           { state: :valid, text: t(".referentiel.success", value: @champ.value) }
         end
       when TypeDeChamp.type_champs[:piece_justificative]
-        value_json = @champ.value_json
-        iban = value_json&.dig('rib', 'iban')
-        bank_name = value_json&.dig('rib', 'bank_name')
-
         if @champ.pending?
           { state: :info, text: t('.pj.info') }
         elsif @champ.external_error?
           { state: :warning, text: t('.pj.error') }
-        elsif iban.nil?
-          { state: :warning, text: t('.pj.warning') }
+        elsif @champ.justificatif_domicile?
+          justif = @champ.ocr_result
+          if justif&.two_ddoc
+            { state: :valid, text: t('.pj.justif_domicile.valid_html', beneficiary: justif.beneficiary, address: justif.label, issue_date: l(justif.issue_date)) }
+          else
+            { state: :warning, text: t('.pj.justif_domicile.warning') }
+          end
         else
-          text = bank_name.present? ? t('.pj.valid_with_bank', iban:, bank_name:) : t('.pj.valid', iban:)
-          { state: :valid, text: }
+          value_json = @champ.value_json
+          iban = value_json&.dig('rib', 'iban')
+          bank_name = value_json&.dig('rib', 'bank_name')
+
+          if iban.nil?
+            { state: :warning, text: t('.pj.warning') }
+          else
+            text = bank_name.present? ? t('.pj.valid_with_bank', iban:, bank_name:) : t('.pj.valid', iban:)
+            { state: :valid, text: }
+          end
         end
       end
     end

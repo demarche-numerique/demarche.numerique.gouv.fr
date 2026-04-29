@@ -19,4 +19,7 @@ fr:
     valid: "Notre système a identifié l’IBAN %{iban}"
     valid_with_bank: "Notre système a identifié l’IBAN %{iban} - <b>%{bank_name}</b>"
     error: "Une erreur est survenue lors de l’analyse de votre document.<br>Ne tenez pas compte de ce message si vous êtes sûr(e) de votre fichier."
+    justif_domicile:
+      warning: "Notre système n’a pas pu certifier l’adresse contenue dans le justificatif.<br>Vérifiez votre document ou ne tenez pas compte de ce message si vous êtes sûr(e) de votre fichier."
+      valid_html: "Justificatif de domicile au nom de <strong>%{beneficiary}</strong> (<strong>%{address}</strong>), émis le %{issue_date}."
 
