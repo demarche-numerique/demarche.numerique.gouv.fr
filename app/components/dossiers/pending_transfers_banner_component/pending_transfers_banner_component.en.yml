@@ -1,0 +1,6 @@
+---
+en:
+  title: "Transfer requests"
+  link:
+    one: "See the pending request (%{count})"
+    other: "See pending requests (%{count})"

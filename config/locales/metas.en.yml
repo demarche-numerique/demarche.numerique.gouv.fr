@@ -6,10 +6,6 @@ en:
       title: "Create an account"
     users:
       dossiers:
-        index:
-          title: Files
-          title_search: "Search: %{terms}"
-          title_statut_trash: "Deleted files"
         identite:
           title: "New file (%{procedure_label}) - Step 1: Identity"
         show:

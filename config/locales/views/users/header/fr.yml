@@ -20,7 +20,3 @@ fr:
           button_delay_expiration:
             one: "Conserver %{count} mois supplémentaire"
             other: "Conserver %{count} mois supplémentaires"
-        callout:
-          first_brouillon_recently_updated_title: Vous avez déjà commencé à remplir un dossier
-          first_brouillon_recently_updated_text: Il y a %{time_ago} vous avez commencé à remplir un dossier sur la démarche « %{libelle} ».
-          first_brouillon_recently_updated_button: Continuer à remplir
