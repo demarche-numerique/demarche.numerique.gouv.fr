@@ -5,7 +5,7 @@
       <div class="flex justify-between">
         <div>
           <h3 class="card-title">
-            <% if ["dossiers-transferes", "dossiers-supprimes"].exclude?(@statut) %>
+            <% if @statut != "dossiers-supprimes" %>
               <%= link_to(url_for_dossier(dossier)) do %>
                 <%= dossier.procedure.libelle %>
 
@@ -145,41 +145,19 @@
       <% end %>
 
       <% if dossier.transfer.present? %>
-        <% if @statut == "dossiers-transferes" %>
-          <%= render Dsfr::AlertComponent.new(state: :info, size: :sm) do |c| %>
-            <% c.with_body do %>
-              <% if dossier.transfer.from_support? %>
-                <%= t('views.users.dossiers.transfers.receiver_demande_en_cours_from_support_html', id: dossier.id, email: dossier.user_email_for(:notification)) %>
-              <% else %>
-                <%= t('views.users.dossiers.transfers.receiver_demande_en_cours_html', id: dossier.id, email: dossier.user_email_for(:notification)) %>
-              <% end %>
-
-              <ul class="fr-links-group fr-links-group--inline">
-                <li>
-                  <%= link_to t('views.users.dossiers.transfers.accept'), transfer_path(dossier.transfer), class: "fr-link", method: :put %>
-                </li>
-
-                <li>
-                  <%= link_to t('views.users.dossiers.transfers.reject'), transfer_path(dossier.transfer), class: "fr-link", method: :delete %>
-                </li>
-              </ul>
+        <%= render Dsfr::AlertComponent.new(title: t('views.users.dossiers.transfers.sender_title', default: 'Demande de transfert en cours'), state: :info, extra_class_names: "fr-pb-1w fr-mb-2w") do |c| %>
+          <% c.with_body do %>
+            <% if dossier.transfer.from_support? %>
+              <p><%= t('views.users.dossiers.transfers.sender_body_from_support', email: dossier.transfer.email, default: "L'équipe support a initié une demande de transfert de ce dossier vers #{dossier.transfer.email}.") %></p>
+            <% else %>
+              <p><%= t('views.users.dossiers.transfers.sender_body', email: dossier.transfer.email, default: "Vous avez envoyé une demande de transfert de ce dossier à #{dossier.transfer.email}.") %></p>
             <% end %>
-          <% end %>
-        <% else %>
-          <%= render Dsfr::AlertComponent.new(title: t('views.users.dossiers.transfers.sender_title', default: 'Demande de transfert en cours'), state: :info, extra_class_names: "fr-pb-1w fr-mb-2w") do |c| %>
-            <% c.with_body do %>
-              <% if dossier.transfer.from_support? %>
-                <p><%= t('views.users.dossiers.transfers.sender_body_from_support', email: dossier.transfer.email, default: "L'équipe support a initié une demande de transfert de ce dossier vers #{dossier.transfer.email}.") %></p>
-              <% else %>
-                <p><%= t('views.users.dossiers.transfers.sender_body', email: dossier.transfer.email, default: "Vous avez envoyé une demande de transfert de ce dossier à #{dossier.transfer.email}.") %></p>
-              <% end %>
-              <%= link_to t('views.users.dossiers.transfers.revoke', default: 'Révoquer cette demande'), transfer_path(dossier.transfer), class: 'fr-link', method: :delete %>
-            <% end %>
+            <%= link_to t('views.users.dossiers.transfers.revoke', default: 'Révoquer cette demande'), transfer_path(dossier.transfer), class: 'fr-link', method: :delete %>
           <% end %>
         <% end %>
       <% end %>
 
-      <% if ["dossiers-transferes", "dossiers-supprimes"].exclude?(@statut) %>
+      <% if @statut != "dossiers-supprimes" %>
         <div class="flex justify-end no-flex-xs">
           <%= render partial: 'dossier_actions', locals: { dossier: dossier } %>
         </div>
