@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class TypesDeChamp::PieceJustificativeTypeDeChamp < TypesDeChamp::TypeDeChampBase
+  include AddressableColumnConcern
+
   def estimated_fill_duration(revision)
     FILL_DURATION_LONG
   end
@@ -66,21 +68,23 @@ class TypesDeChamp::PieceJustificativeTypeDeChamp < TypesDeChamp::TypeDeChampBas
        )
       end
     elsif justificatif_domicile?
-      cs += JustificatifDomicile.attribute_types
-        .map { |attr, type| [attr, active_model_type_to_column_type(type)] }
-        .map do |attr, type|
-        jsonpath = "$.#{attr}"
+      cs += [
+        ['Bénéficiaire', '$.beneficiary', :text],
+        ['Adresse',     '$.label',       :text],
+        ['Date d’émission', '$.issue_date', :date],
+      ].map do |label, jsonpath, type|
         Columns::JSONPathColumn.new(
           procedure_id: procedure.id,
           stable_id:,
           tdc_type: type_champ,
-          label: "#{libelle_with_prefix(prefix)} – #{attr}",
+          label: "#{libelle_with_prefix(prefix)} – #{label}",
           type:,
           jsonpath:,
           displayable: true,
           mandatory: mandatory?
         )
       end
+      cs.concat(addressable_columns(procedure:, displayable:, prefix:))
     elsif titre_identite?
       cs += [
         Columns::TitreIdentiteColumn.new(
@@ -96,20 +100,5 @@ class TypesDeChamp::PieceJustificativeTypeDeChamp < TypesDeChamp::TypeDeChampBas
     end
 
     cs
-  end
-
-  private
-
-  def active_model_type_to_column_type(am_type)
-    case am_type
-    in ActiveModel::Type::String
-      :text
-    in ActiveModel::Type::Date
-      :date
-    in ActiveModel::Type::Boolean
-      :boolean
-    else
-      raise "unknown type #{am_type}"
-    end
   end
 end
