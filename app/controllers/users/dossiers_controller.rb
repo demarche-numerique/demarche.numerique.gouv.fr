@@ -42,6 +42,7 @@ module Users
       @total_count = @filter.total_count
       @counts = @filter.counts
       @corbeille_count = current_user.dossiers.hidden_by_user.or(current_user.dossiers.hidden_by_expired).count
+      @pending_transfers_count = current_user.dossier_transfers_received_pending.count
       @procedures_for_select = procedures_for_select
       @first_brouillon_recently_updated = current_user.dossiers.visible_by_user.brouillons_recently_updated.first
     end

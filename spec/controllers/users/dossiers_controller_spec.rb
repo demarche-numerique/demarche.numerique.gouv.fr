@@ -1624,6 +1624,11 @@ describe Users::DossiersController, type: :controller do
       expect(assigns(:corbeille_count)).to eq(2)
     end
 
+    it 'assigns @pending_transfers_count' do
+      get :index
+      expect(assigns(:pending_transfers_count)).to be_a(Integer)
+    end
+
     it 'passes filter params to the service' do
       get :index, params: { state: ['depose'], alert: ['a_corriger'], procedure_id: '42' }
       expect(assigns(:filter)).to be_a(Users::DossierFilterService)
