@@ -572,11 +572,12 @@ en:
           search:
             back_to_list: "← My files"
             result_title: "Search results for \"%{search_terms}\""
+            placeholder_label: "Search a file"
+            placeholder_hint: "By file number, name, SIRET, keywords..."
+            placeholder_text: "Enter your search"
+            submit: "Search"
           filter_panel:
             open: "Filter files"
-            open_with_count:
-              one: "Filter files (%{count})"
-              other: "Filter files (%{count})"
             title: "Filter files"
             close: "Close"
             groups:
@@ -585,9 +586,6 @@ en:
               state: "Processing state"
               alert: "File alert"
             procedure_placeholder: "Select a procedure"
-            shared_with_me:
-              one: "Shared with me (%{count})"
-              other: "Shared with me (%{count})"
             alerts:
               nouveau_message: "New message"
               message_avec_attente_de_reponse: "Message pending response"
@@ -597,19 +595,24 @@ en:
             from_depose_at_date: "Submitted since"
             reset: "Reset"
             apply:
+              zero: "No matching file"
               one: "Show %{count} file"
               other: "Show %{count} files"
           active_filters:
             reset: "Reset filters"
             remove_tag: "Remove filter: %{label}"
+            from_created_at_date_tag: "Created since %{date}"
+            from_depose_at_date_tag: "Submitted since %{date}"
         dossiers_list:
           n_dossier: "File no."
           no_result_title: No files
           no_result_text_html: "To fill a procedure, contact your administration asking for the procedure link. <br> It should look like %{app_base}/commencer/xxx."
           no_result_text_with_filter: found with selected filters
-          no_result_reset_filter: Reset filters
-          no_result_text_with_search: found matching your search
-          no_result_reset_search: Reset search
+          no_result_search_title: "No file matches your search"
+          no_result_search_intro: "You can:"
+          no_result_search_modify: "Modify your search"
+          no_result_search_back_html: "Or %{link}"
+          no_result_search_back_link: "go back to your files list"
           pending_correction_html: '<h4 class="card-title fr-mb-1v">This file is waiting for your corrections</h4><p>Consult the changes to be made in the <a href="%{link}" class="fr-link">messaging system <span class="fr-sr-only">of file number %{id}</span></a>.</p>'
           pending_response:
             title: "This file is waiting for your response"

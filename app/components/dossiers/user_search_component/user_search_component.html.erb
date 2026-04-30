@@ -1,43 +1,25 @@
 <div class="user-search-bar">
-  <%= form_with url: dossiers_path, method: :get, data: { turbo_frame: "dossiers_list", turbo_action: "advance" }, class: "user-search-bar__form" do %>
+  <%= form_with url: dossiers_path, method: :get, data: { turbo_frame: "dossiers_list", turbo_action: "advance" }, class: form_class do %>
     <% filter_hidden_inputs.each do |name, value| %>
       <%= hidden_field_tag name, value %>
     <% end %>
 
-    <label for="search" class="fr-label">
-      <%= t('.label') %>
-    </label>
-
-    <span class="fr-hint-text">
-      <%= t('.hint') %>
-    </span>
-
-    <div class="fr-search-bar">
-      <input
-        type="search"
-        id="search"
-        name="search"
-        class="fr-input"
-        autocomplete="off"
-        placeholder="<%= t('.placeholder') %>"
-        value="<%= search_terms %>"
-      >
-
-      <button class="fr-btn" type="submit">
-        <%= t('.submit') %>
-      </button>
-    </div>
+    <%= render partial: 'users/dossiers/search_input', locals: { search_terms: search_terms } %>
   <% end %>
 
   <button
     type="button"
     class="
-      fr-btn fr-btn--tertiary-no-outline fr-icon-equalizer-2-line
+      fr-btn fr-btn--tertiary-no-outline fr-icon-equalizer-line
       fr-btn--icon-left
+      <%= filter_button_visibility_class %>
     "
     data-fr-opened="false"
     aria-controls="dossiers-filter-modal"
   >
-    <%= filter_button_label %>
+    <%= t('views.users.dossiers.index.filter_panel.open') %>
+    <% if active_filter_count.positive? %>
+      <span class="user-search-bar__filter-count">(<%= active_filter_count %>)</span>
+    <% end %>
   </button>
 </div>

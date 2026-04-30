@@ -65,6 +65,15 @@ describe 'user dossiers list', js: true do
       expect(page).to have_link('← Mes dossiers')
       expect(page).to have_link('Historique des dossiers supprimés')
     end
+
+    it 'renders the link with a non-underlined DSFR icon' do
+      create(:dossier, :en_construction, :hidden_by_user, user: user)
+      visit dossiers_path
+
+      link = find('.mes-dossiers-header__corbeille')
+      expect(link[:class]).to include('fr-icon-delete-bin-line')
+      expect(link).not_to have_css('span.fr-icon-delete-bin-line')
+    end
   end
 
   describe 'trash page' do
@@ -93,6 +102,13 @@ describe 'user dossiers list', js: true do
 
       expect(page).to have_current_path(deleted_dossiers_path)
     end
+
+    it 'wraps the back-link consistently with the search page' do
+      create(:dossier, :en_construction, :hidden_by_user, user: user)
+      visit trash_path
+
+      expect(page).to have_css('p.fr-mb-3w a.fr-link', text: 'Mes dossiers')
+    end
   end
 
   describe 'filter panel' do
@@ -112,6 +128,11 @@ describe 'user dossiers list', js: true do
     it 'renders the empty state without error' do
       visit dossiers_path(state: ['accepte'])
       expect(page).to have_content(/0 dossier|aucun dossier|Aucun résultat|Aucun dossier ne correspond/i)
+    end
+
+    it 'shows a single reset entrypoint' do
+      visit dossiers_path(state: ['accepte'])
+      expect(page).to have_link('Réinitialiser les filtres', count: 1)
     end
   end
 

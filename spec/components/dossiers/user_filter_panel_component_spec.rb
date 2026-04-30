@@ -64,4 +64,23 @@ RSpec.describe Dossiers::UserFilterPanelComponent, type: :component do
   it 'renders the submit button with count' do
     expect(subject.to_html).to include('Afficher les 12')
   end
+
+  context 'when no dossier matches' do
+    let(:filter) do
+      instance_double(Users::DossierFilterService,
+        active?: true,
+        total_count: 0,
+        counts: {
+          procedure_ids: {},
+          states: { 'brouillon' => 0, 'en_construction' => 0, 'en_instruction' => 0, 'accepte' => 0, 'refuse' => 0, 'sans_suite' => 0 },
+          alerts: { 'nouveau_message' => 0, 'message_avec_attente_de_reponse' => 0, 'a_corriger' => 0, 'expire_bientot' => 0 },
+          shared_with_me: 0,
+        })
+    end
+
+    it 'renders a disabled apply button with the zero label' do
+      expect(subject.to_html).to include('Aucun dossier ne correspond')
+      expect(subject.css('input[type=submit][disabled]').size).to eq(1)
+    end
+  end
 end

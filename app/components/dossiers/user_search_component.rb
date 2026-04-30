@@ -9,16 +9,8 @@ class Dossiers::UserSearchComponent < ApplicationComponent
 
   attr_reader :search_terms, :active_filter_count, :filter_params
 
-  def filter_button_label
-    if active_filter_count.positive?
-      t('filter_panel.open_with_count', count: active_filter_count, scope: 'views.users.dossiers.index')
-    else
-      t('filter_panel.open', scope: 'views.users.dossiers.index')
-    end
-  end
-
   def filter_button_visibility_class
-    'fr-hidden' if search_terms.present?
+    helpers.class_names('fr-hidden': search_terms.present?)
   end
 
   def filter_hidden_inputs
@@ -26,5 +18,9 @@ class Dossiers::UserSearchComponent < ApplicationComponent
       multiple = value.is_a?(Array)
       Array(value).map { |v| [multiple ? "#{key}[]" : key.to_s, v] }
     end
+  end
+
+  def form_class
+    helpers.class_names('user-search-bar__form', 'user-search-bar__form--hidden-mobile': search_terms.present?)
   end
 end

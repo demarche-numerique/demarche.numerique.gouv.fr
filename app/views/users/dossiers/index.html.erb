@@ -1,76 +1,69 @@
-<%# app/views/users/dossiers/index.html.erb %>
 <% if params[:search].present? %>
   <% content_for(:title, t('views.users.dossiers.index.search.result_title', search_terms: params[:search])) %>
 <% else %>
   <% content_for(:title, t('views.users.dossiers.index.metas.title')) %>
 <% end %>
 
-<section class="dossiers-headers sub-header">
-  <div class="fr-container">
-    <div class="mes-dossiers-header">
-      <h1 class="fr-h3"><%= t('views.users.dossiers.index.dossiers') %></h1>
-
-      <% if @corbeille_count.positive? %>
-        <%= link_to trash_path, class: 'fr-link mes-dossiers-header__corbeille' do %>
-          <span class="fr-icon-delete-bin-line" aria-hidden="true"></span>
-          <%= t('views.users.dossiers.index.corbeille_link.label', count: @corbeille_count) %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-</section>
-
-<% if params[:search].blank? && @pending_transfers_count.positive? %>
-  <div class="fr-container">
-    <%= render Dossiers::PendingTransfersBannerComponent.new(count: @pending_transfers_count) %>
-  </div>
-<% end %>
-
-<div class="fr-container">
-  <div class="fr-grid-row fr-grid-row--center">
-    <div class="fr-col-12 fr-col-xl-10">
+<turbo-frame id="dossiers_list" target="_top">
+  <section class="dossiers-headers sub-header">
+    <div class="fr-container">
       <% if params[:search].present? %>
-        <%= link_to t('views.users.dossiers.index.search.back_to_list'), dossiers_path, class: 'fr-link' %>
-        <h2 class="page-title">
+        <p class="fr-mb-3w">
+          <%= link_to t('views.users.dossiers.index.search.back_to_list'), dossiers_path, class: 'fr-link' %>
+        </p>
+        <h1 class="fr-h3">
           <%= t('views.users.dossiers.index.search.result_title', search_terms: params[:search]) %>
-        </h2>
+        </h1>
+      <% else %>
+        <%= render partial: 'index_header', locals: { corbeille_count: @corbeille_count } %>
       <% end %>
 
-      <% if @show_simple_list %>
-        <%= render partial: 'dossiers_list', locals: { dossiers: @dossiers, filter: nil, search: false, statut: nil } %>
-      <% else %>
-        <turbo-frame id="dossiers_list">
-          <%= render Dossiers::UserSearchComponent.new(
-                search_terms: params[:search],
-                active_filter_count: @filter.active_filter_tags.count,
-                filter_params: filter_params_slice
-              ) %>
-
-          <% if @filter.active? %>
-            <%= render Dossiers::UserActiveFiltersComponent.new(
-                  tags: @filter.active_filter_tags,
-                  current_filter_params: filter_params_slice
-                ) %>
-          <% end %>
-
-          <% if @dossiers.any? %>
-            <p class="results-count">
-              <%= t('views.users.dossiers.index.results_count',
-                    page_from: @dossiers.offset_value + 1,
-                    page_to: [@dossiers.offset_value + @dossiers.size, @total_count].min,
-                    count: @total_count) %>
-            </p>
-          <% end %>
-
-          <%= render partial: 'dossiers_list', locals: { dossiers: @dossiers, filter: @filter, search: params[:search].present?, statut: nil } %>
-        </turbo-frame>
-        <%= render Dossiers::UserFilterPanelComponent.new(
-              filter: @filter,
-              filter_params: filter_params_slice,
-              procedures_for_select: @procedures_for_select,
-              has_invites: current_user.dossiers_invites.exists?
+      <% if !@show_simple_list %>
+        <%= render Dossiers::UserSearchComponent.new(
+              search_terms: params[:search],
+              active_filter_count: @filter.active_filter_tags.count,
+              filter_params: filter_params_slice
             ) %>
       <% end %>
     </div>
+  </section>
+
+  <% if params[:search].blank? && @pending_transfers_count.positive? %>
+    <div class="fr-container">
+      <%= render Dossiers::PendingTransfersBannerComponent.new(count: @pending_transfers_count) %>
+    </div>
+  <% end %>
+
+  <div class="fr-container">
+    <% if @show_simple_list %>
+      <%= render partial: 'dossiers_list', locals: { dossiers: @dossiers, filter: nil, search: false, statut: nil } %>
+    <% else %>
+      <% if @filter.active? %>
+        <%= render Dossiers::UserActiveFiltersComponent.new(
+              tags: @filter.active_filter_tags,
+              current_filter_params: filter_params_slice
+            ) %>
+      <% end %>
+
+      <% if @dossiers.any? %>
+        <p class="results-count">
+          <%= t('views.users.dossiers.index.results_count',
+                page_from: @dossiers.offset_value + 1,
+                page_to: [@dossiers.offset_value + @dossiers.size, @total_count].min,
+                count: @total_count) %>
+        </p>
+      <% end %>
+
+      <%= render partial: 'dossiers_list', locals: { dossiers: @dossiers, filter: @filter, search: params[:search].present?, statut: nil } %>
+    <% end %>
   </div>
-</div>
+</turbo-frame>
+
+<% if !@show_simple_list %>
+  <%= render Dossiers::UserFilterPanelComponent.new(
+        filter: @filter,
+        filter_params: filter_params_slice,
+        procedures_for_select: @procedures_for_select,
+        has_invites: @counts[:shared_with_me].positive?
+      ) %>
+<% end %>

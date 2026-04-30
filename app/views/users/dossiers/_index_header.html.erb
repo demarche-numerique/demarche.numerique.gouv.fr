@@ -1,0 +1,10 @@
+<div class="mes-dossiers-header">
+  <h1 class="fr-h3"><%= t('views.users.dossiers.index.dossiers') %></h1>
+
+  <% if corbeille_count.positive? %>
+    <%= link_to t('views.users.dossiers.index.corbeille_link.label', count: corbeille_count),
+        trash_path,
+        class: 'fr-link fr-icon-delete-bin-line fr-link--icon-left mes-dossiers-header__corbeille',
+        data: { turbo_frame: '_top' } %>
+  <% end %>
+</div>

@@ -1,46 +1,5 @@
 <div class="card">
-  <div class="flex justify-between">
-    <div>
-      <h3 class="card-title"><%= dossier.procedure.libelle %></h3>
-
-      <div class="badge_info fr-mb-1w fr-hidden-md">
-        <p class="fr-mb-0">
-          <%= t('views.users.dossiers.dossiers_list.n_dossier') %>
-          <%= number_with_html_delimiter(dossier.id) %>
-        </p>
-
-        <%= status_badge_user(dossier, 'fr-mb-1w') %>
-      </div>
-
-      <p class="fr-icon--sm fr-icon-user-line">
-        <span class="fr-sr-only">
-          <%= t('views.shared.dossiers.demande.requester_identity') %>
-        </span>
-
-        <%= demandeur_dossier(dossier) %>
-      </p>
-
-      <p class="fr-icon--sm fr-icon-edit-box-line">
-        <% if dossier.depose_at.present? %>
-          <%= t('views.users.dossiers.dossiers_list.depose_at', date: l(dossier.depose_at.to_date, format: :long)) %>
-        <% else %>
-          <%= t('views.users.dossiers.dossiers_list.created_at', date: l(dossier.created_at.to_date, format: :long)) %>
-          <% if dossier.created_at != dossier.updated_at %>
-            <%= t('views.users.dossiers.dossiers_list.updated_at', date: l(dossier.updated_at, format: :long_with_time)) %>
-          <% end %>
-        <% end %>
-      </p>
-    </div>
-
-    <div class="badge_info text-right fr-hidden unhidden-md">
-      <p class="fr-mb-0">
-        <%= t('views.users.dossiers.dossiers_list.n_dossier') %>
-        <%= number_with_html_delimiter(dossier.id) %>
-      </p>
-
-      <%= status_badge_user(dossier, 'fr-mb-1w') %>
-    </div>
-  </div>
+  <%= render partial: 'dossier_card_content', locals: { dossier: dossier, linkable: false } %>
 
   <%= render Dsfr::AlertComponent.new(state: :info, with_prefix: false) do |c| %>
     <% c.with_body do %>

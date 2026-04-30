@@ -582,11 +582,12 @@ fr:
           search:
             back_to_list: "← Mes dossiers"
             result_title: "Résultat de la recherche pour « %{search_terms} »"
+            placeholder_label: "Rechercher un dossier"
+            placeholder_hint: "Par n° de dossier, nom / prénom, SIRET, mots-clés…"
+            placeholder_text: "Saisissez votre recherche"
+            submit: "Rechercher"
           filter_panel:
             open: "Filtrer les dossiers"
-            open_with_count:
-              one: "Filtrer les dossiers (%{count})"
-              other: "Filtrer les dossiers (%{count})"
             title: "Filtrer les dossiers"
             close: "Fermer"
             groups:
@@ -595,9 +596,6 @@ fr:
               state: "État de traitement"
               alert: "Alerte sur le dossier"
             procedure_placeholder: "Sélectionnez une démarche"
-            shared_with_me:
-              one: "Partagé avec moi (%{count})"
-              other: "Partagé avec moi (%{count})"
             alerts:
               nouveau_message: "Nouveau message"
               message_avec_attente_de_reponse: "Message avec attente de réponse"
@@ -607,19 +605,24 @@ fr:
             from_depose_at_date: "Déposé depuis le"
             reset: "Réinitialiser"
             apply:
+              zero: "Aucun dossier ne correspond"
               one: "Afficher le %{count} dossier"
               other: "Afficher les %{count} dossiers"
           active_filters:
             reset: "Réinitialiser les filtres"
             remove_tag: "Retirer le filtre : %{label}"
+            from_created_at_date_tag: "Créé depuis le %{date}"
+            from_depose_at_date_tag: "Déposé depuis le %{date}"
         dossiers_list:
           n_dossier: "dossier n°"
           no_result_title: Aucun dossier
           no_result_text_html: "Pour remplir une démarche, contactez votre administration en lui demandant le lien de la démarche. <br> Celui ci doit ressembler à %{app_base}/commencer/xxx."
           no_result_text_with_filter: ne correspond aux filtres sélectionnés
-          no_result_reset_filter: Réinitialiser les filtres
-          no_result_text_with_search: ne correspond à votre recherche
-          no_result_reset_search: Réinitialiser la recherche
+          no_result_search_title: "Aucun dossier ne correspond à votre recherche"
+          no_result_search_intro: "Vous pouvez :"
+          no_result_search_modify: "Modifier votre recherche"
+          no_result_search_back_html: "Ou %{link}"
+          no_result_search_back_link: "revenir à la liste de vos dossiers"
           procedure_closed:
             brouillon:
               internal_procedure_html: <h4 class="card-title fr-mb-1v">Cette démarche est close</h4><p>Vous ne pouvez pas déposer ce dossier. Nous vous invitons à en déposer un nouveau sur la %{link} qui la remplace.</p>

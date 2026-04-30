@@ -115,6 +115,12 @@ RSpec.describe Users::DossierFilterService do
       service = described_class.new(user: user, params: ActionController::Parameters.new(state: ['brouillon']))
       expect(service.total_count).to eq(service.dossiers.count)
     end
+
+    it 'memoizes the count so repeated access does not re-query (read twice per render)' do
+      service = described_class.new(user: user, params: ActionController::Parameters.new)
+      expect(service).to receive(:dossiers).once.and_call_original
+      3.times { service.total_count }
+    end
   end
 
   describe '#active?' do
@@ -167,6 +173,12 @@ RSpec.describe Users::DossierFilterService do
     it 'does not raise PG::GroupingError when a search is active' do
       service = described_class.new(user: user, params: ActionController::Parameters.new(search: 'foo'))
       expect { service.counts }.not_to raise_error
+    end
+
+    it 'memoizes counts so repeated access does not recompute (filter panel reads them many times)' do
+      service = described_class.new(user: user, params: ActionController::Parameters.new)
+      expect(service).to receive(:count_states).once.and_call_original
+      3.times { service.counts }
     end
 
     it 'counts only the user own alerts, not other users matching dossiers' do
@@ -235,6 +247,17 @@ RSpec.describe Users::DossierFilterService do
         service = described_class.new(user: user, params: ActionController::Parameters.new(procedure_id: own_procedure_dossier.procedure.id.to_s))
         labels = service.active_filter_tags.map { |t| t[:label] }
         expect(labels).to include('Ma démarche')
+      end
+    end
+
+    it 'labels date filters with a human readable sentence' do
+      I18n.with_locale(:fr) do
+        service = described_class.new(user: user, params: ActionController::Parameters.new(
+          from_created_at_date: '2026-06-24',
+          from_depose_at_date: '2026-06-24'
+        ))
+        labels = service.active_filter_tags.map { |t| t[:label] }
+        expect(labels).to contain_exactly('Créé depuis le 24/06/2026', 'Déposé depuis le 24/06/2026')
       end
     end
   end

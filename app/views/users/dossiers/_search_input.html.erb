@@ -1,0 +1,25 @@
+<div class="fr-input-group">
+  <label for="<%= local_assigns.fetch(:input_id, 'search') %>" class="fr-label">
+    <%= t('views.users.dossiers.index.search.placeholder_label') %>
+
+    <span class="fr-hint-text">
+      <%= t('views.users.dossiers.index.search.placeholder_hint') %>
+    </span>
+  </label>
+
+  <div class="fr-search-bar fr-mt-2w">
+    <input
+      type="search"
+      id="<%= local_assigns.fetch(:input_id, 'search') %>"
+      name="search"
+      class="fr-input"
+      placeholder="<%= t('views.users.dossiers.index.search.placeholder_text') %>"
+      value="<%= search_terms %>"
+      autocomplete="off"
+    >
+
+    <button class="fr-btn" type="submit">
+      <%= t('views.users.dossiers.index.search.submit') %>
+    </button>
+  </div>
+</div>

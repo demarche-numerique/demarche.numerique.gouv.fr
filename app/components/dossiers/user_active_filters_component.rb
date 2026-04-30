@@ -13,7 +13,7 @@ class Dossiers::UserActiveFiltersComponent < ApplicationComponent
   end
 
   def remove_params_for(tag)
-    new_params = current_filter_params.deep_dup.to_h.with_indifferent_access
+    new_params = current_filter_params.deep_dup
     case tag[:group]
     when :state, :alert
       new_params[tag[:group]] = Array(new_params[tag[:group]]) - [tag[:value]]

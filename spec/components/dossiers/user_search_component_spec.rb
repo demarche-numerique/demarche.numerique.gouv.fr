@@ -16,14 +16,16 @@ RSpec.describe Dossiers::UserSearchComponent, type: :component do
   end
 
   it 'renders the filter open button without count when no filter active' do
-    expect(subject.to_html).to match(/Filtrer les dossiers(?!\s*\()/)
+    expect(subject.to_html).to include('Filtrer les dossiers')
+    expect(subject.css('.user-search-bar__filter-count')).to be_empty
   end
 
   context 'with active filters' do
     let(:active_filter_count) { 3 }
 
-    it 'renders the filter open button with count' do
-      expect(subject.to_html).to include('Filtrer les dossiers (3)')
+    it 'renders the filter open button with a count badge' do
+      expect(subject.to_html).to include('Filtrer les dossiers')
+      expect(subject.css('.user-search-bar__filter-count').text).to eq('(3)')
     end
   end
 

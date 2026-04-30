@@ -1,5 +1,0 @@
-fr:
-  label: "Rechercher un dossier"
-  hint: "Par n° de dossier, nom / prénom, SIRET, mots-clés…"
-  placeholder: "Saisissez votre recherche"
-  submit: "Rechercher"

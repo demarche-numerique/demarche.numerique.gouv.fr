@@ -7,6 +7,11 @@
 
   &__corbeille {
     white-space: nowrap;
+
+    --underline-img: none;
+    --text-decoration: underline;
+
+    text-underline-offset: 2px;
   }
 }
 
@@ -19,26 +24,40 @@
   @media (min-width: 768px) {
     flex-direction: row;
     align-items: flex-end;
+    justify-content: space-between;
   }
 
   &__form {
     flex: 1;
+
+    @media (min-width: 768px) {
+      flex: 0 1 50%;
+    }
+  }
+
+  &__filter-count {
+    margin-left: 0.25rem;
+    color: var(--text-default-error);
+  }
+}
+
+@media (max-width: 767px) {
+  .user-search-bar__form--hidden-mobile {
+    display: none !important;
   }
 }
 
 .user-active-filters {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
   gap: 0.5rem;
   margin: 1rem 0;
 
   &__chip {
-    background: var(--background-action-low-blue-france);
-    color: var(--text-action-high-blue-france);
-  }
-
-  &__reset {
-    align-self: center;
+    background-color: var(--background-action-high-blue-france);
+    color: var(--text-inverted-blue-france);
   }
 }
 
@@ -46,6 +65,20 @@
   &__content {
     max-height: 100vh;
     overflow-y: auto;
+  }
+
+  &__count {
+    margin-left: 0.25rem;
+    color: var(--text-action-high-blue-france);
+
+    &--zero {
+      color: var(--text-disabled-grey);
+    }
+  }
+
+  .fr-fieldset:not(:last-of-type) {
+    border-bottom: 1px solid var(--border-default-grey);
+    padding-bottom: 1rem;
   }
 
   &__actions {
@@ -60,11 +93,20 @@
   }
 
   @media (min-width: 768px) {
-    .fr-modal__body {
-      max-width: 420px;
-      margin-left: auto;
-      margin-right: 0;
+    .user-filter-panel__content {
+      position: fixed;
+      inset: 0 0 0 auto;
+      width: 420px;
+      max-width: 90vw;
       height: 100vh;
+      overflow: hidden;
+    }
+
+    .fr-modal__body {
+      height: 100vh;
+      max-height: 100vh;
+      overflow-y: auto;
+      border-radius: 0;
     }
   }
 }
@@ -72,4 +114,25 @@
 .results-count {
   font-weight: bold;
   margin: 1rem 0 0.5rem;
+}
+
+.trash-list-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.transfer-requests-close-bottom {
+  display: flex;
+  justify-content: center;
+  border-top: 2px solid var(--border-default-blue-france);
+  padding: 1rem 0;
+}
+
+.no-result-search__form {
+  background: var(--background-alt-blue-france);
+  padding: 1rem;
+  border-radius: 0.25rem;
 }
