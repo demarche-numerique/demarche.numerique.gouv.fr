@@ -26,6 +26,17 @@
   }
 }
 
+@media (max-width: 767px) {
+  .user-search-bar__form--hidden-mobile {
+    display: none !important;
+  }
+}
+
+.user-search-bar__mobile-link {
+  background-image: none;
+  text-decoration: none;
+}
+
 .user-active-filters {
   display: flex;
   flex-wrap: wrap;
@@ -72,4 +83,25 @@
 .results-count {
   font-weight: bold;
   margin: 1rem 0 0.5rem;
+}
+
+.trash-list-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.transfer-requests-close-bottom {
+  display: flex;
+  justify-content: center;
+  border-top: 2px solid var(--border-default-blue-france);
+  padding: 1rem 0;
+}
+
+.no-result-search__form {
+  background: var(--background-alt-blue-france);
+  padding: 1rem;
+  border-radius: 0.25rem;
 }

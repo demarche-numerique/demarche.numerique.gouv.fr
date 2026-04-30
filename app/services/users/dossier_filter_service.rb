@@ -17,16 +17,13 @@ module Users
     end
 
     def base_scope
-      scope = Dossier.where(id: @user.dossiers.visible_by_user).or(
-        Dossier.where(id: @user.dossiers_invites.visible_by_user)
-      )
-      return scope if search_terms.blank?
-
-      scope.merge(DossierSearchService.matching_dossiers_for_user(search_terms, @user))
+      @base_scope ||= compute_base_scope
     end
 
     def dossiers
-      scope_without(:none).order(updated_at: :desc)
+      scope_without(:none)
+        .preload(:procedure, :user, :individual, :etablissement, :transfer, :invites, :awaiting_response, :pending_correction)
+        .order(updated_at: :desc)
     end
 
     def total_count
@@ -49,13 +46,13 @@ module Users
         tags << { group: :procedure_id, value: @params[:procedure_id].to_s, label: procedure&.libelle.to_s }
       end
       if shared_with_me?
-        tags << { group: :shared_with_me, value: '1', label: I18n.t('dossiers.user_filter_panel_component.shared_with_me', default: 'Partagé avec moi') }
+        tags << { group: :shared_with_me, value: '1', label: I18n.t('views.users.dossiers.index.filter_panel.groups.shared_with_me') }
       end
       Array(@params[:state]).each do |s|
-        tags << { group: :state, value: s, label: I18n.t("dossiers.user_filter_panel_component.states.#{s}", default: s) }
+        tags << { group: :state, value: s, label: I18n.t("views.users.dossiers.index.filter_panel.states.#{s}") }
       end
       Array(@params[:alert]).each do |a|
-        tags << { group: :alert, value: a, label: I18n.t("dossiers.user_filter_panel_component.alerts.#{a}", default: a) }
+        tags << { group: :alert, value: a, label: I18n.t("views.users.dossiers.index.filter_panel.alerts.#{a}") }
       end
       if from_created_at_date
         tags << { group: :from_created_at_date, value: @params[:from_created_at_date], label: @params[:from_created_at_date].to_s }
@@ -77,6 +74,15 @@ module Users
 
     private
 
+    def compute_base_scope
+      scope = Dossier.where(id: @user.dossiers.visible_by_user).or(
+        Dossier.where(id: @user.dossiers_invites.visible_by_user)
+      )
+      return scope if search_terms.blank?
+
+      scope.merge(DossierSearchService.matching_dossiers_for_user(search_terms, @user))
+    end
+
     def search_terms
       @params[:search].presence
     end
@@ -96,7 +102,7 @@ module Users
     end
 
     def alert_ids
-      alert_scopes.flat_map { |scope_name| Dossier.public_send(scope_name).pluck(:id) }.uniq
+      @alert_ids ||= alert_scopes.flat_map { |scope_name| base_scope.merge(Dossier.public_send(scope_name)).ids }.uniq
     end
 
     def from_created_at_date
@@ -107,6 +113,7 @@ module Users
       parse_date(@params[:from_depose_at_date])
     end
 
+    # TODO: dedupe with DossiersFilter#from_created_at_date
     def parse_date(raw)
       return nil if raw.blank?
       Date.parse(raw)
@@ -119,9 +126,9 @@ module Users
     end
 
     def count_states
-      scope = scope_without(:state)
+      raw = scope_without(:state).group(:state).count
       Users::DossierStateMapping::UI_STATES.index_with do |ui_state|
-        scope.where(state: Users::DossierStateMapping.model_state_for(ui_state)).count
+        raw[Users::DossierStateMapping.model_state_for(ui_state)].to_i
       end
     end
 
@@ -133,7 +140,7 @@ module Users
     end
 
     def scope_without(group)
-      scope = base_scope
+      scope = base_scope.unscope(:order)
       scope = scope.joins(:procedure).where(procedures: { id: @params[:procedure_id] }) if @params[:procedure_id].present? && group != :procedure_id
       scope = scope.where(id: @user.dossiers_invites.visible_by_user) if shared_with_me? && group != :shared_with_me
       scope = scope.where(state: model_states) if model_states.any? && group != :state

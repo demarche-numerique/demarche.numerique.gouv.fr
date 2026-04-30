@@ -14,10 +14,6 @@ class Dossiers::UserFilterPanelComponent < ApplicationComponent
     procedures_for_select.size >= 2
   end
 
-  def show_shared_with_me_filter?
-    has_invites
-  end
-
   def state_label(ui_state)
     t("filter_panel.states.#{ui_state}", scope: 'views.users.dossiers.index')
   end
@@ -32,10 +28,6 @@ class Dossiers::UserFilterPanelComponent < ApplicationComponent
 
   def alert_checked?(alert_key)
     Array(filter_params[:alert]).include?(alert_key)
-  end
-
-  def ui_states
-    Users::DossierStateMapping::UI_STATES
   end
 
   def alert_keys

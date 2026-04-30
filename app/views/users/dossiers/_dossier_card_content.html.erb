@@ -1,0 +1,95 @@
+<div class="flex justify-between">
+  <div>
+    <h3 class="card-title">
+      <% if local_assigns.fetch(:linkable, true) %>
+        <%= link_to(url_for_dossier(dossier)) do %>
+          <%= dossier.procedure.libelle %>
+
+          <span class="fr-sr-only">
+            <%= t('views.users.dossiers.dossiers_list.n_dossier') %>
+            <%= number_with_html_delimiter(dossier.id) %>
+          </span>
+        <% end %>
+      <% else %>
+        <%= dossier.procedure.libelle %>
+      <% end %>
+    </h3>
+
+    <div class="badge_info fr-mb-1w fr-hidden-md">
+      <p class="fr-mb-0">
+        <%= t('views.users.dossiers.dossiers_list.n_dossier') %>
+        <%= number_with_html_delimiter(dossier.id) %>
+      </p>
+
+      <%= status_badge_user(dossier, 'fr-mb-1w') %>
+
+      <% if dossier.pending_correction? %>
+        <br>
+        <%= pending_correction_badge(:for_user) %>
+      <% end %>
+
+      <% if dossier.pending_response? %>
+        <br>
+        <%= pending_response_badge(:for_user) %>
+      <% end %>
+    </div>
+
+    <p class="fr-icon--sm fr-icon-user-line">
+      <span class="fr-sr-only">
+        <%= t('views.shared.dossiers.demande.requester_identity') %>
+      </span>
+
+      <%= demandeur_dossier(dossier) %>
+    </p>
+
+    <% if dossier.hidden_by_expired? %>
+      <p class="fr-icon--sm fr-icon-delete-line">
+        <%= t('views.users.dossiers.dossiers_list.deleted_by_automatic', date: l(dossier.hidden_by_expired_at.to_date, format: :long)) %>
+      </p>
+    <% elsif dossier.hidden_by_user? %>
+      <p class="fr-icon--sm fr-icon-delete-line">
+        <%= t('views.users.dossiers.dossiers_list.deleted_by_user', date: l(dossier.hidden_by_user_at.to_date, format: :long)) %>
+      </p>
+    <% else %>
+      <p class="fr-icon--sm fr-icon-edit-box-line">
+        <% if dossier.depose_at.present? %>
+          <span>
+            <%= t('views.users.dossiers.dossiers_list.depose_at', date: l(dossier.depose_at.to_date, format: :long)) %>
+          </span>
+        <% else %>
+          <span>
+            <%= t('views.users.dossiers.dossiers_list.created_at', date: l(dossier.created_at.to_date, format: :long)) %>
+          </span>
+          <% if dossier.created_at != dossier.updated_at %>
+            <%= t('views.users.dossiers.dossiers_list.updated_at', date: l(dossier.updated_at, format: :long_with_time)) %>
+          <% end %>
+        <% end %>
+      </p>
+      <% if dossier.invites.present? %>
+        <p class="fr-icon--sm fr-icon-shield-line">
+          <%= t('views.users.dossiers.dossiers_list.shared_with', owner: dossier.user_email_for(:display)) %>
+          <%= dossier.invites.map(&:email).join(', ') %>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="badge_info text-right fr-hidden unhidden-md">
+    <p class="fr-mb-0">
+      <%= t('views.users.dossiers.dossiers_list.n_dossier') %>
+      <%= number_with_html_delimiter(dossier.id) %>
+    </p>
+
+    <%= status_badge_user(dossier, 'fr-mb-1w') %>
+
+    <% if dossier.pending_correction? %>
+      <br>
+      <%= pending_correction_badge(:for_user) %>
+    <% end %>
+
+    <% if dossier.pending_response? %>
+      <br>
+      <%= pending_response_badge(:for_user) %>
+    <% end %>
+  </div>
+</div>

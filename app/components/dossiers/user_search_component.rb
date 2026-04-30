@@ -20,4 +20,10 @@ class Dossiers::UserSearchComponent < ApplicationComponent
   def filter_button_visibility_class
     'fr-hidden' if search_terms.present?
   end
+
+  def form_class
+    classes = ['user-search-bar__form']
+    classes << 'user-search-bar__form--hidden-mobile' if search_terms.present?
+    classes.join(' ')
+  end
 end

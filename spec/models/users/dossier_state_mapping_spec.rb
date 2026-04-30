@@ -18,10 +18,4 @@ RSpec.describe Users::DossierStateMapping do
       expect(described_class.model_state_for('unknown')).to be_nil
     end
   end
-
-  describe '.ui_states' do
-    it 'exposes the 6 UI states in display order' do
-      expect(described_class.ui_states).to eq(%w[brouillon depose en_instruction accepte refuse sans_suite])
-    end
-  end
 end

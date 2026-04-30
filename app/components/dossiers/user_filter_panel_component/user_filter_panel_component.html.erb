@@ -41,7 +41,7 @@
                   </fieldset>
                 <% end %>
 
-                <% if show_shared_with_me_filter? %>
+                <% if has_invites %>
                   <fieldset class="fr-fieldset">
                     <div class="fr-fieldset__element">
                       <div class="fr-checkbox-group">
@@ -60,7 +60,7 @@
                     <%= t('views.users.dossiers.index.filter_panel.groups.state', default: 'État de traitement') %>
                   </legend>
 
-                  <% ui_states.each do |s| %>
+                  <% Users::DossierStateMapping::UI_STATES.each do |s| %>
                     <div class="fr-fieldset__element">
                       <div class="fr-checkbox-group">
                         <%= check_box_tag 'state[]', s, state_checked?(s), id: "state_#{s}", data: { action: 'change->filter-autosubmit#submit' } %>
