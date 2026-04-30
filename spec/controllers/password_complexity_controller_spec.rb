@@ -32,5 +32,16 @@ describe PasswordComplexityController, type: :controller do
         expect(response.body).to include('Mot de passe vulnérable')
       end
     end
+
+    context 'when the password exceeds the maximum length' do
+      let(:long_password) { 'a' * 5_000 }
+      let(:params) { { user: { password: long_password } } }
+
+      it 'truncates the password to Devise max length before scoring to prevent DoS' do
+        max = Devise.password_length.max
+        expect(ZxcvbnService).to receive(:complexity).with(satisfy { |arg| arg.length <= max }).and_return(0)
+        subject
+      end
+    end
   end
 end

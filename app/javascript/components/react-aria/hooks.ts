@@ -1,3 +1,4 @@
+import { fire, httpRequest } from '@utils';
 import { matchSorter, type MatchSorterOptions } from 'match-sorter';
 import type { Key } from 'react';
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -8,7 +9,6 @@ import type {
 import isEqual from 'react-fast-compare';
 import { useAsyncList, type AsyncListOptions } from 'react-stately';
 import { useEvent } from 'react-use-event-hook';
-import { fire, httpRequest } from '@utils';
 import * as s from 'superstruct';
 import { useDebounceCallback } from 'usehooks-ts';
 
@@ -377,7 +377,7 @@ export function useRemoteList({
   const [selectedItem, setSelectedItem] = useState<Item | null>(() => {
     if (defaultItems) {
       return (
-        defaultItems.find((item) => item.value == defaultSelectedKey) ?? null
+        defaultItems.find((item) => getKey(item) == defaultSelectedKey) ?? null
       );
     }
     return null;
@@ -402,7 +402,7 @@ export function useRemoteList({
     const item =
       (typeof key != 'string'
         ? null
-        : selectedItem?.value == key
+        : selectedItem && getKey(selectedItem) == key
           ? selectedItem
           : list.getItem(key)) ?? null;
     setSelectedItem(item);
@@ -447,7 +447,7 @@ export function useRemoteList({
   // add to items list current selected item if it's not in the list
   const items = error
     ? []
-    : selectedItem && !list.getItem(selectedItem.value)
+    : selectedItem && !list.getItem(getKey(selectedItem))
       ? [selectedItem, ...list.items]
       : list.items;
 
@@ -489,7 +489,7 @@ export function useRemoteList({
 
   return {
     selectedItem,
-    selectedKey: selectedItem?.value ?? null,
+    selectedKey: selectedItem ? getKey(selectedItem) : null,
     onSelectionChange,
     inputValue,
     onInputChange,
@@ -501,8 +501,10 @@ export function useRemoteList({
   };
 }
 
-function getKey(item: Item) {
-  return item.value;
+// Items from remote search (format_response) include an `id` (MD5 of data) for unique keying.
+// Items from server reload (selected_items) have no `id`, so we fallback to `value`.
+export function getKey(item: Item) {
+  return item.id ?? item.value;
 }
 
 const AnnuaireEducationPayload = s.type({
@@ -599,7 +601,9 @@ export const createLoader = (
       return { items: [] };
     } catch (error) {
       console.error(error);
-      throw new Error(options?.errorMessage ?? 'An error occurred');
+      throw new Error(options?.errorMessage ?? 'An error occurred', {
+        cause: error
+      });
     }
   };
 };

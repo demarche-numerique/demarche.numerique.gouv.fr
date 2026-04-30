@@ -1,4 +1,4 @@
-@import 'placeholders';
+@import 'constants';
 
 html,
 body {
@@ -36,7 +36,11 @@ pre {
 }
 
 .container {
-  @extend %container;
+  padding-left: $default-padding;
+  padding-right: $default-padding;
+  max-width: $page-width + 2 * $default-padding;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 react-fragment {

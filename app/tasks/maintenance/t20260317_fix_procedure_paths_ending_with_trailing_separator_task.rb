@@ -12,6 +12,8 @@ module Maintenance
     def process(procedure_path)
       procedure = procedure_path.procedure
 
+      return if procedure.nil?
+
       # Only act on the canonical (current) path
       return unless procedure_path.path == procedure.canonical_path
 

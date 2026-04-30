@@ -23,6 +23,12 @@
                   %span.fr-icon-lock-fill.fr-icon--sm
                   Aucun type de champ autorisé pour transformer ce champ
 
+              - if type_de_champ.communes?
+                .cell.fr-mt-1w
+                  = render Dsfr::NoticeComponent.new(state: "warning", closable: false) do |c|
+                    - c.with_title { "Attention :" }
+                    - c.with_desc { "ne pas utiliser ce champ pour les <strong>communes de naissance</strong>.".html_safe }
+
           .flex.column.justify-start.width-66
             .cell
               .flex.align-center
@@ -80,7 +86,7 @@
                   class: 'fr-select small-margin small inline width-100',
                   id: dom_id(type_de_champ, :nature)
               - nature_dom_id = dom_id(type_de_champ, :nature)
-              - if type_de_champ.titre_identite_nature?
+              - if type_de_champ.titre_identite?
                 .fr-hr
                 .cell
                   = form.label :formats_accepted, t('.identity_formats.title'), for: nature_dom_id, class: 'fake-label'
@@ -91,7 +97,7 @@
                   = form.label :deletion_title, t('.identity_deletion.title'), for: nature_dom_id, class: 'fake-label'
                   %p.fr-mb-0= t('.identity_deletion.desc_html')
                   %p.fr-mt-0= t('.identity_deletion.note_html')
-              - elsif type_de_champ.RIB?
+              - elsif type_de_champ.rib?
                 .cell.fr-mt-2w
                   = render Dsfr::NoticeComponent.new(state: 'info') do |c|
                     - c.with_title do
@@ -133,15 +139,15 @@
                             - else
                               = form.label "pj_format_families_#{value}", label, for: dom_id(type_de_champ, "pj_format_#{value}"), class: 'fr-label'
 
-              - if !type_de_champ.titre_identite_nature?
+              - if !type_de_champ.titre_identite?
                 .fr-hr.fr-mt-2w
                 .cell
                   .fr-toggle
                     = form.check_box :pj_auto_purge, id: dom_id(type_de_champ, :pj_auto_purge), class: 'fr-toggle__input'
                     = form.label :pj_auto_purge, t('.auto_purge_label'), for: dom_id(type_de_champ, :pj_auto_purge), class: 'fr-toggle__label fr-label'
 
-            - if type_de_champ.piece_justificative_or_titre_identite?
-              .fr-hr{ class: class_names('fr-mt-2w': !type_de_champ.titre_identite_nature?) }
+            - if type_de_champ.piece_justificative?
+              .fr-hr{ class: class_names('fr-mt-2w': !type_de_champ.titre_identite?) }
               .cell
                 = form.label :piece_justificative_template, t('.template_label'), for: dom_id(type_de_champ, :piece_justificative_template)
                 %p.fr-hint-text= t('.max_file_size_hint', max_file_size: number_to_human_size(type_de_champ.max_file_size_bytes))
@@ -155,7 +161,7 @@
                         Dans le cadre de la RGPD, le titre d’identité sera supprimé lors de l’acceptation, du refus ou du classement sans suite du dossier.<br>
                         Aussi, pour des raisons de sécurité, un filigrane est automatiquement ajouté aux images.<br>
                         Finalement, le titre d’identité ne sera ni disponible dans les zip de dossiers, ni téléchargeable par API.
-              - elsif procedure.piece_justificative_multiple? && !type_de_champ.titre_identite_nature? && !type_de_champ.RIB?
+              - elsif procedure.piece_justificative_multiple? && !type_de_champ.titre_identite? && !type_de_champ.rib?
                 .fr-hr.fr-mt-2w
                 .cell
                   %p= t('.multiple_files_hint')
@@ -194,33 +200,58 @@
                 .cell
                   %legend.fake-label
                     Format accepté
-                  .fr-toggle
-                    = form.check_box :date_in_past, id: dom_id(type_de_champ, :date_in_past), class: 'fr-toggle__input'
-                    = form.label :date_in_past, "Cette date doit être dans le passé", for: dom_id(type_de_champ, :date_in_past), class: 'fr-toggle__label fr-label'
 
-                .cell.fr-mt-2w
-                  .fr-toggle
-                    = form.check_box :range_date, id: dom_id(type_de_champ, :range_date), class: 'fr-toggle__input'
-                    = form.label :range_date, "Cette date doit être comprise entre des dates limites", for: dom_id(type_de_champ, :range_date), class: 'fr-toggle__label fr-label'
+                  - if type_de_champ.date?
+                    .fr-toggle
+                      = form.check_box :birthdate, id: dom_id(type_de_champ, :birthdate), class: 'fr-toggle__input'
+                      = form.label :birthdate, "Ce champ est une date de naissance", for: dom_id(type_de_champ, :birthdate), class: 'fr-toggle__label fr-label'
+                    %p.fr-hint-text La date devra être comprise entre le 1er janvier 1900 et aujourd’hui
 
-                - if form.object.range_date?
-                  .cell.fr-mt-1w
-                    %fieldset.fr-fieldset
-                      .fr-fieldset__element.fr-fieldset__element--inline.fr-mb-0
-                        .fr-input-group
-                          = form.label :start_date, for: dom_id(type_de_champ, :start_date) do
-                            date de début
-                          = form.date_field :start_date, class: "fr-input", value: type_de_champ.start_date, id: dom_id(type_de_champ, :start_date)
+                  - if !form.object.birthdate?
+                    .fr-toggle.fr-mt-2w
+                      = form.check_box :date_in_past, id: dom_id(type_de_champ, :date_in_past), class: 'fr-toggle__input'
+                      = form.label :date_in_past, "Cette date doit être dans le passé", for: dom_id(type_de_champ, :date_in_past), class: 'fr-toggle__label fr-label'
 
-                      .fr-fieldset__element.fr-fieldset__element--inline.fr-mb-0
-                        .fr-input-group
-                          = form.label :end_date, for: dom_id(type_de_champ, :end_date) do
-                            date de fin
-                          = form.date_field :end_date, class: "fr-input", value: type_de_champ.end_date, id: dom_id(type_de_champ, :end_date)
+                    .fr-toggle.fr-mt-2w
+                      = form.check_box :range_date, id: dom_id(type_de_champ, :range_date), class: 'fr-toggle__input'
+                      = form.label :range_date, "Cette date doit être comprise entre des dates limites", for: dom_id(type_de_champ, :range_date), class: 'fr-toggle__label fr-label'
+
+                    - if form.object.range_date?
+                      .cell.fr-mt-1w
+                        %fieldset.fr-fieldset
+                          .fr-fieldset__element.fr-fieldset__element--inline.fr-mb-0
+                            .fr-input-group
+                              = form.label :start_date, for: dom_id(type_de_champ, :start_date) do
+                                date de début
+                              = form.date_field :start_date, class: "fr-input", value: type_de_champ.start_date, id: dom_id(type_de_champ, :start_date)
+
+                          .fr-fieldset__element.fr-fieldset__element--inline.fr-mb-0
+                            .fr-input-group
+                              = form.label :end_date, for: dom_id(type_de_champ, :end_date) do
+                                date de fin
+                              = form.date_field :end_date, class: "fr-input", value: type_de_champ.end_date, id: dom_id(type_de_champ, :end_date)
 
             - if type_de_champ.quotient_familial?
               .cell.fr-my-auto.fr-mx-3w
                 Ce champ permet de récupérer automatiquement et de façon fiable les données d'identité, le quotient familial CAF ou MSA et la composition familiale de l'usager connecté via FranceConnect
+            - if type_de_champ.dossier_link?
+              .fr-hr.fr-mt-2w
+              .cell
+                .fr-toggle.fr-mb-2w
+                  = form.check_box :procedures_limit, id: dom_id(type_de_champ, :procedures_limit), class: 'fr-toggle__input'
+                  = form.label :procedures_limit, "Limiter à certaines démarches", for: dom_id(type_de_champ, :procedures_limit), class: 'fr-toggle__label fr-label'
+
+                - if form.object.procedures_limit?
+                  .border-left-dark
+
+                    .fr-notice.fr-notice--info
+                      .fr-container
+                        .fr-notice__body
+                          %p
+                            %span.fr-notice__title.fr-text--sm.fr-mr-0 Seuls les dossiers déposés par l'usager lui-même seront proposés
+
+                    .cell.fr-mt-2w
+                      = render TypesDeChampEditor::DossierLinkChampComponent.new(procedures: current_administrateur.procedures, type_de_champ: type_de_champ, form: form, procedure: procedure)
 
         .flex.justify-start.fr-mt-1w.flex-gap
           - if type_de_champ.linked_drop_down_list?

@@ -11,7 +11,7 @@
                 %caption Complétez le tableau de mapping ci-dessous en fonction des données que vous souhaitez exploiter
                 %thead
                   %tr
-                    %th.fr-cell--fixed Propriété
+                    %th.fr-cell--multiline.fr-cell--fixed Propriété
                     %th Exemple de donnée
                     %th Type de donnée
                     %th
@@ -29,7 +29,7 @@
                 %tbody
                   - last_request_keys.each do |jsonpath, example_value|
                     %tr{ data: { controller: "referentiel-mapping" } }
-                      %td.fr-cell--fixed
+                      %td.fr-cell--multiline.fr-cell--fixed
                         %span.hidden{ id: label_check_prefill(jsonpath) }= "Utiliser #{jsonpath} pour préremplir le formulaire"
                         = jsonpath
                         = hidden_field_tag attribute_name(jsonpath, "example_value"), example_value

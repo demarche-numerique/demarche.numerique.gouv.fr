@@ -317,9 +317,39 @@
             <%= t(".#{prefix}.update_max_character_length", label: change.label, to: change.to) %>
           <% end %>
         <% end %>
-      <% when :referentiel_url, :referentiel_mode, :referentiel_hint, :referentiel_test_data, :referentiel_mapping %>
+      <% when :referentiel_url_tiptap, :referentiel_mode, :referentiel_hint, :referentiel_test_data_tiptap, :referentiel_mapping %>
         <% list.with_item do %>
           <%= t(".update_referentiel.#{change.attribute}", label: change.label, to: change.to) %>
+        <% end %>
+      <% when :procedures_limit %>
+        <% if change.to == "0" %>
+          <% list.with_item do %>
+            <%= t(".#{prefix}.remove_procedures_limit", label: change.label) %>
+          <% end %>
+        <% else %>
+          <% list.with_item do %>
+            <%= t(".#{prefix}.add_procedures_limit", label: change.label) %>
+          <% end %>
+        <% end %>
+      <% when :dossier_link_procedure_ids %>
+        <% added = change.to - change.from %>
+        <% removed = change.from - change.to %>
+        <% list.with_item do %>
+          <%= t(".#{prefix}.update_procedures", label: change.label) %>
+
+          <%= render Dsfr::ListComponent.new do |list| %>
+            <% if added.present? %>
+              <% list.with_item do %>
+                <%= t('.add_option', items: added.map { |p| "« N° #{p[:id]} - #{p[:libelle]} »" }.join(", ")) %>
+              <% end %>
+            <% end %>
+
+            <% if removed.present? %>
+              <% list.with_item do %>
+                <%= t('.remove_option', items: removed.map { |p| "« N° #{p[:id]} - #{p[:libelle]} »" }.join(", ")) %>
+              <% end %>
+            <% end %>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>

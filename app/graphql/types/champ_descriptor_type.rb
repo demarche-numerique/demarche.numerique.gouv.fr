@@ -85,8 +85,6 @@ module Types
           Types::Champs::Descriptor::CarteChampDescriptorType
         when TypeDeChamp.type_champs.fetch(:repetition)
           Types::Champs::Descriptor::RepetitionChampDescriptorType
-        when TypeDeChamp.type_champs.fetch(:titre_identite)
-          Types::Champs::Descriptor::TitreIdentiteChampDescriptorType
         when TypeDeChamp.type_champs.fetch(:iban)
           Types::Champs::Descriptor::IbanChampDescriptorType
         when TypeDeChamp.type_champs.fetch(:siret)

@@ -7,37 +7,39 @@
   <% if suggestions_count.zero? %>
     <%= render Dsfr::AlertComponent.new(state: :success) do |component| %>
       <% component.with_body do %>
-        <p>
-          🎉 <strong>Félicitations</strong>, nous n’avons aucune suggestion
-          pertinente à proposer sur ce thème, ce qui signifie probablement que
-          votre formulaire est déjà de qualité!
-        </p>
+        <p><%= t('.no_suggestion_html') %></p>
 
         <%= form_for llm_rule_suggestion,
-                      url: accept_simplification_admin_procedure_types_de_champ_path(procedure, llm_rule_suggestion),
+                      url: accept_simplification_admin_procedure_types_de_champ_path(
+                        procedure,
+                        tunnel_id: llm_rule_suggestion.tunnel_id,
+                        rule: llm_rule_suggestion.rule,
+                        id: llm_rule_suggestion.id
+                      ),
                       method: :post do |form| %>
           <p class="fr-mt-1w">
-            <%= form.submit("Passer à la suite", class: "fr-btn") %>
+            <%= form.submit(t('.continue'), class: "fr-btn") %>
           </p>
         <% end %>
       <% end %>
     <% end %>
   <% else %>
     <%= form_for llm_rule_suggestion,
-                    url: accept_simplification_admin_procedure_types_de_champ_path(procedure, llm_rule_suggestion),
+                    url: accept_simplification_admin_procedure_types_de_champ_path(
+                      procedure,
+                      tunnel_id: llm_rule_suggestion.tunnel_id,
+                      rule: llm_rule_suggestion.rule,
+                      id: llm_rule_suggestion.id
+                    ),
                     method: :post,
                     data: { controller: "enable-submit-if-checked" }, html: { class: 'llm-rule-suggestion-form' } do |form| %>
       <div class="border-background-contrast-grey fr-p-2w">
         <p class="fr-mb-3w flex align-center">
           <span class="fr-badge fr-badge--info fr-mr-1w">
-            <%= suggestions_count %>
-            <%= 'suggestion'.pluralize(suggestions_count) %>
+            <%= t('.suggestions_count', count: suggestions_count) %>
           </span>
 
-          <span class="fr-hint-text">
-            Ces suggestions utilisent l’IA. Vérifiez toujours ce qui est
-            proposé.
-          </span>
+          <span class="fr-hint-text"><%= t('.ai_disclaimer') %></span>
         </p>
 
         <fieldset
@@ -45,8 +47,7 @@
           data-action="click->enable-submit-if-checked#click"
         >
           <legend class="fr-fieldset__legend">
-            Sélectionnez les suggestions que vous souhaitez appliquer pour
-            améliorer votre formulaire :
+            <%= t('.select_legend') %>
           </legend>
 
           <% ordered_llm_rule_suggestion_items.each do |llm_rule_suggestion_item| %>
@@ -57,17 +58,13 @@
         </fieldset>
       </div>
 
-      <ul class="fr-btns-group fr-btns-group--inline-md mt-4 flex justify-center">
+      <ul class="fr-btns-group fr-btns-group--inline-md fr-mt-8v flex justify-center">
         <li>
-          <% if last_rule? %>
-            <%= link_to("Ignorer et revenir à l’écran de gestion", back_link, class: "fr-btn fr-btn--secondary") %>
-          <% else %>
-            <%= form.submit("Ignorer cette étape", class: "fr-btn fr-btn--secondary") %>
-          <% end %>
+          <%= form.submit(last_rule? ? t('.skip_and_finish') : t('.skip_and_continue'), class: "fr-btn fr-btn--secondary") %>
         </li>
 
         <li>
-          <%= form.submit("Appliquer les suggestions et poursuivre", class: "fr-btn", data: { 'enable-submit-if-checked-target': 'submit' }, disabled: !at_least_one_accepted?) %>
+          <%= form.submit(last_rule? ? t('.apply_and_finish') : t('.apply_and_continue'), class: "fr-btn", data: { 'enable-submit-if-checked-target': 'submit' }, disabled: !at_least_one_accepted?) %>
         </li>
       </ul>
     <% end %>
@@ -75,14 +72,10 @@
 <% elsif stepper_finished? %>
   <%= render Dsfr::AlertComponent.new(state: :success) do |component| %>
     <% component.with_body do %>
-      <p>
-        <strong>Ce parcours d’amélioration de la qualité du formulaire est terminé.</strong>
-        Vous pourrez obtenir de nouvelles suggestions en recommençant le
-        parcours.
-      </p>
+      <p><%= t('.finished_html') %></p>
 
       <p class="fr-mt-1w">
-        <%= link_to("Recommencer le parcours", restart_link, class: "fr-btn") %>
+        <%= link_to(t('.restart'), restart_link, class: "fr-btn") %>
       </p>
     <% end %>
   <% end %>
@@ -106,14 +99,13 @@
   </div>
 <% elsif llm_rule_suggestion.state.in?(['accepted', 'skipped']) %>
   <p>
-    Vous avez déjà <%= llm_rule_suggestion.accepted? ? "accepté" : "ignoré" %>
-    des suggestions
+    <%= t(".already_processed_html.#{llm_rule_suggestion.accepted? ? 'accepted' : 'skipped'}") %>
   </p>
   <p class="fr-mt-1w">
     <% if last_rule? %>
-      <%= link_to("Revenir à l’écran de gestion", back_link, class: "fr-link") %>
+      <%= link_to(t('.back_link'), back_link, class: "fr-link") %>
     <% else %>
-      <%= link_to("Poursuivre le parcours d’amélioration", next_link, class: "fr-link") %>
+      <%= link_to(t('.next_link'), next_link, class: "fr-link") %>
     <% end %>
   </p>
 <% end %>

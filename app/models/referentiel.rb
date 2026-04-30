@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Referentiel < ApplicationRecord
+  self.ignored_columns += [:use_tiptap, :url, :test_data]
+
   has_many :items, -> { order(:id) }, class_name: 'ReferentielItem', dependent: :destroy, inverse_of: :referentiel
   has_many :types_de_champ, inverse_of: :referentiel, dependent: :nullify
 

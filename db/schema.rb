@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_03_13_120001) do
+ActiveRecord::Schema[7.2].define(version: 2026_04_27_100611) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_stat_statements"
@@ -547,11 +547,14 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_13_120001) do
     t.string "search_terms"
     t.string "state"
     t.bigint "submitted_revision_id"
+    t.boolean "submitted_with_france_connect", default: false, null: false
     t.date "sva_svr_decision_on"
     t.datetime "sva_svr_decision_triggered_at"
     t.datetime "termine_close_to_expiration_notice_sent_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.integer "user_id"
+    t.index "to_tsvector('french_unaccent'::regconfig, (((search_terms)::text || ' '::text) || (private_search_terms)::text))", name: "index_dossiers_on_search_terms_private_search_terms", using: :gin
+    t.index "to_tsvector('french_unaccent'::regconfig, (search_terms)::text)", name: "index_dossiers_on_search_terms", using: :gin
     t.index ["archived"], name: "index_dossiers_on_archived"
     t.index ["batch_operation_id"], name: "index_dossiers_on_batch_operation_id"
     t.index ["dossier_transfer_id"], name: "index_dossiers_on_dossier_transfer_id"
@@ -561,6 +564,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_13_120001) do
     t.index ["parent_dossier_id"], name: "index_dossiers_on_parent_dossier_id"
     t.index ["prefill_token"], name: "index_dossiers_on_prefill_token", unique: true
     t.index ["revision_id"], name: "index_dossiers_on_revision_id"
+    t.index ["revision_id"], name: "index_dossiers_stalled_declarative", where: "(((state)::text = 'en_construction'::text) AND (declarative_triggered_at IS NULL))"
     t.index ["state"], name: "index_dossiers_on_state"
     t.index ["user_id"], name: "index_dossiers_on_user_id"
   end
@@ -883,6 +887,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_13_120001) do
     t.boolean "instant_email_new_expert_avis", default: false, null: false
     t.boolean "instant_email_new_message", default: false, null: false
     t.bigint "instructeur_id", null: false
+    t.datetime "last_export_seen_at"
     t.bigint "last_revision_seen_id"
     t.integer "position", null: false
     t.bigint "procedure_id", null: false
@@ -938,9 +943,12 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_13_120001) do
     t.string "schema_hash", null: false
     t.string "state", default: "pending", null: false
     t.jsonb "token_usage"
+    t.string "tunnel_id", limit: 6
     t.datetime "updated_at", null: false
     t.index ["procedure_revision_id", "schema_hash", "rule"], name: "index_llm_rule_suggestions_on_revision_schema_rule"
+    t.index ["procedure_revision_id", "tunnel_id"], name: "idx_on_procedure_revision_id_tunnel_id_b61e462711"
     t.index ["procedure_revision_id"], name: "index_llm_rule_suggestions_on_procedure_revision_id"
+    t.index ["tunnel_id"], name: "index_llm_rule_suggestions_on_tunnel_id"
   end
 
   create_table "maintenance_tasks_runs", force: :cascade do |t|
@@ -998,6 +1006,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_13_120001) do
     t.jsonb "archives_filters", default: [], null: false, array: true
     t.integer "assign_to_id"
     t.datetime "created_at", precision: nil
+    t.boolean "customized", default: false, null: false
     t.jsonb "displayed_columns", default: [], null: false, array: true
     t.jsonb "displayed_fields", default: [{"label"=>"Demandeur", "table"=>"user", "column"=>"email"}], null: false
     t.jsonb "expirant_filters", default: [], null: false, array: true
@@ -1059,9 +1068,12 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_13_120001) do
   create_table "procedures", id: :serial, force: :cascade do |t|
     t.string "aasm_state", default: "brouillon"
     t.boolean "accuse_lecture", default: false, null: false
+    t.boolean "admin_default_procedure_presentation_active", default: false, null: false
+    t.bigint "admin_default_procedure_presentation_id"
     t.boolean "allow_expert_messaging", default: true, null: false
     t.boolean "allow_expert_review", default: true, null: false
     t.string "api_entreprise_token"
+    t.datetime "api_entreprise_token_expiration_notice_sent_at"
     t.datetime "api_entreprise_token_expires_at", precision: nil
     t.text "api_particulier_scopes", default: [], array: true
     t.jsonb "api_particulier_sources", default: {}
@@ -1132,6 +1144,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_13_120001) do
     t.string "web_hook_url"
     t.datetime "whitelisted_at", precision: nil
     t.bigint "zone_id"
+    t.index ["admin_default_procedure_presentation_id"], name: "index_procedures_on_admin_default_procedure_presentation_id"
     t.index ["api_particulier_sources"], name: "index_procedures_on_api_particulier_sources", using: :gin
     t.index ["declarative_with_state"], name: "index_procedures_on_declarative_with_state"
     t.index ["defaut_groupe_instructeur_id"], name: "index_procedures_on_defaut_groupe_instructeur_id"
@@ -1222,9 +1235,12 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_13_120001) do
     t.string "mode"
     t.string "name", null: false
     t.string "test_data"
+    t.jsonb "test_data_tiptap"
     t.string "type"
     t.datetime "updated_at", null: false
     t.string "url"
+    t.jsonb "url_tiptap"
+    t.boolean "use_tiptap", default: true, null: false
   end
 
   create_table "refused_mails", id: :serial, force: :cascade do |t|
@@ -1526,6 +1542,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_13_120001) do
   add_foreign_key "procedure_revisions", "dossier_submitted_messages"
   add_foreign_key "procedure_revisions", "procedures"
   add_foreign_key "procedures", "groupe_instructeurs", column: "defaut_groupe_instructeur_id"
+  add_foreign_key "procedures", "procedure_presentations", column: "admin_default_procedure_presentation_id"
   add_foreign_key "procedures", "procedure_revisions", column: "draft_revision_id"
   add_foreign_key "procedures", "procedure_revisions", column: "published_revision_id"
   add_foreign_key "procedures", "services"

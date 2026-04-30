@@ -40,13 +40,15 @@
                 - if instructeur_signed_in? || user_signed_in?
                   %li
                     = render AccountDropdownComponent.new(dossier: @dossier, nav_bar_profile:)
-                - elsif request.path != new_user_session_path && !content_for?(:hide_header_login)
+                - else
                   - if request.path == new_user_registration_path
                     %li.fr-hidden-sm.fr-unhidden-lg.fr-link--sm.fr-mr-1v= t('views.shared.account.already_user_question')
-                  %li= link_to 'Professionnel',
-                    content_for(:pro_connect_path) || pro_connect_path,
-                    class: "fr-btn fr-btn--tertiary fr-icon-government-fill fr-btn--icon-left"
-                  %li= link_to t('views.shared.account.signin'), new_user_session_path, class: "fr-btn fr-btn--tertiary fr-icon-account-circle-fill fr-btn--icon-left"
+                  - if request.path != new_user_session_path && !content_for?(:hide_header_signin)
+                    %li= link_to t('views.shared.account.signin'), new_user_session_path, class: "fr-btn fr-btn--tertiary fr-icon-account-circle-fill fr-btn--icon-left"
+                  - if request.path != pro_connect_path
+                    %li= link_to t('views.shared.account.professional'),
+                      content_for(:pro_connect_path) || pro_connect_path,
+                      class: "fr-btn fr-btn--tertiary fr-icon-government-fill fr-btn--icon-left"
 
                 %li
                   - if dossier.present? && nav_bar_profile == :user

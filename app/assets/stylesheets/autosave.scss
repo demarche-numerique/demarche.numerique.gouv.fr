@@ -11,10 +11,8 @@
 
 .autosave {
   @media (max-width: 62em) {
-    margin-bottom: 0.75rem;
-
     .dossier-edit-footer:has(.dossier-edit-footer--ineligibilite-link) & {
-      margin-bottom: 0;
+      margin-bottom: 0 !important;
     }
   }
 

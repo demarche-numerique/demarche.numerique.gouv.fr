@@ -13,7 +13,7 @@
           %tbody
             - referentiel_mapping_prefillable.sort.each do |jsonpath, mapping_opts|
               %tr
-                %td.fr-cell--fixed= jsonpath
+                %td.fr-cell--multiline.fr-cell--fixed= jsonpath
                 %td.fr-cell--multiline= mapping_opts[:example_value]
                 %td= mapping_opts[:type]
                 %td= prefill_stable_id_tag(jsonpath, mapping_opts)

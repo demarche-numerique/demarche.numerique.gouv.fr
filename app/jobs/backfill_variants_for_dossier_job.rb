@@ -11,7 +11,7 @@ class BackfillVariantsForDossierJob < ApplicationJob
 
     champ_ids = Champ
       .where(dossier_id: dossier)
-      .where(type: ["Champs::PieceJustificativeChamp", "Champs::TitreIdentiteChamp"])
+      .where(type: "Champs::PieceJustificativeChamp")
       .ids
 
     return if champ_ids.empty?

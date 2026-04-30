@@ -14,7 +14,7 @@
 
 - elsif @champ.render_as_combobox?
   %react-fragment
-    = render ReactComponent.new "ComboBox/SingleComboBox", **react_props
+    = render ReactComponent.new "Select/SingleSelect", **react_props
 - else
   = @form.select :value,
     items,

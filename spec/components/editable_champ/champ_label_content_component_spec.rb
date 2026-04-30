@@ -19,7 +19,8 @@ RSpec.describe EditableChamp::ChampLabelContentComponent, type: :component do
       datetime?: false,
       integer_number?: false,
       decimal_number?: false,
-      textarea?: false
+      textarea?: false,
+      dossier_link?: false
     )
   end
 

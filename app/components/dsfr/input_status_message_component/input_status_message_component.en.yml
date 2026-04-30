@@ -8,6 +8,7 @@ en:
     fetched: "%{raison_sociale_or_name} %{forme_juridique}"
     error: "An error occurred while retrieving SIRET information."
   referentiel:
+    not_configured: "This field has not been configured by the administrator yet."
     fetching: "Search in progress."
     error: "No item found for the reference: %{value}"
     success: "Reference found: %{value}"

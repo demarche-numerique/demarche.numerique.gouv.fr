@@ -13,7 +13,7 @@
   %p
     %b
       Pour l’activer, cliquez sur le lien suivant :
-      = link_to(admin_activate_url(token: @reset_password_token), admin_activate_url(token: @reset_password_token))
+      = link_to(users_activate_url(token: @reset_password_token), users_activate_url(token: @reset_password_token))
 - else
   %p
     %b

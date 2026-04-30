@@ -15,5 +15,5 @@
     - tags.each do |tag|
       %li{ class: class_names("hidden" => can_toggle_nullable && tag[:maybe_null]), data: { "maybe-null" => can_toggle_nullable && tag[:maybe_null].present? } }
         - label = button_label(tag)
-        %button.fr-tag.fr-tag--sm{ type: "button", title: button_title(tag), data: { action: 'click->tiptap#insertTag', tiptap_target: 'tag', tag_id: tag[:id], tag_label: label } }
+        %button.fr-tag.fr-tag--sm{ class: class_names('fr-tag--blue-ecume': tag[:highlight]), type: "button", title: button_title(tag), data: { action: 'click->tiptap#insertTag', tiptap_target: 'tag', tag_id: tag[:id], tag_label: label } }
           = label

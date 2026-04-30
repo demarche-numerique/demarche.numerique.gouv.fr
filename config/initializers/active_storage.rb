@@ -9,9 +9,21 @@ Rails.application.config.active_storage.variant_processor = :vips
 Rails.application.config.active_storage.analyzers = []
 
 ActiveSupport.on_load(:active_storage_blob) do
-  include BlobImageProcessorConcern
+  include BlobProcessorConcern
   include BlobVirusScannerConcern
   include BlobSignedIdConcern
+
+  # With analyzers disabled, ActiveStorage falls back to NullAnalyzer whose
+  # `analyze_later? == false`, so `analyze_blob_later` (after_create_commit on
+  # Attachment) ends up calling `blob.update! metadata: ...` synchronously.
+  # Under contention (e.g. a batch op where N workers attach the same blob),
+  # those UPDATEs serialize on the same row and hit PG statement_timeout.
+  # Pre-marking the blob as analyzed at INSERT time short-circuits the
+  # `unless blob.analyzed?` guard in `Attachment#analyze_blob_later`, so no
+  # extra UPDATE is ever issued.
+  before_create do
+    self.metadata = metadata.merge("analyzed" => true)
+  end
 
   ActiveStorage::Blob.class_eval do
     def purge_later
@@ -26,7 +38,7 @@ ActiveSupport.on_load(:active_storage_blob) do
 end
 
 ActiveSupport.on_load(:active_storage_attachment) do
-  include AttachmentVirusScannerConcern
+  include AttachmentProcessorConcern
 end
 
 Rails.application.reloader.to_prepare do

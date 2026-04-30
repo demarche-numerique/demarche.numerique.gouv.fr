@@ -17,9 +17,35 @@ describe APIParticulier::QuotientFamilial do
       let(:body) {
         {
           data:
-            JSON.parse(
-              Rails.root.join("app/components/editable_champ/quotient_familial_component/preview_quotient_familial_data.json").read
-            ),
+            {
+              "adresse": {
+                "pays": "FRANCE",
+                "lieu_dit": nil,
+                "destinataire": "Madame ROUX Jeanne",
+                "code_postal_ville": "75002 PARIS",
+                "numero_libelle_voie": "1 RUE MONTORGUEIL",
+                "complement_information": nil,
+                "complement_information_geographique": nil,
+              },
+              "allocataires": [
+                {
+                  "sexe": "F",
+                  "prenoms": "JEANNE STEPHANIE",
+                  "nom_usage": "ROUX",
+                  "nom_naissance": "ROUX",
+                  "date_naissance": "1987-06-27",
+                },
+              ],
+              "enfants": [],
+              "quotient_familial": {
+                "valeur": 464,
+                "fournisseur": "CAF",
+                "annee": 2023,
+                "mois": 12,
+                "annee_calcul": 2023,
+                "mois_calcul": 12,
+              },
+            },
         }.to_json
       }
 
@@ -30,7 +56,11 @@ describe APIParticulier::QuotientFamilial do
 
     context "when success response with not valid schema" do
       let(:status) { 200 }
-      let(:body) { { quotient_familial: "123" }.to_json }
+      let(:body) {
+        {
+          data: { quotient_familial: "123" },
+        }.to_json
+      }
 
       it 'returns a Failure with an invalid_schema code' do
         expect(subject).to be_failure

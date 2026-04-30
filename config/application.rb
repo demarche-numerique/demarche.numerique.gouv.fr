@@ -4,6 +4,7 @@ require_relative "boot"
 
 require "rails/all"
 require_relative "../app/middleware/cookie_overflow_handler"
+require_relative "../app/middleware/direct_upload_406_logger"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -76,6 +77,7 @@ module TPS
 
     config.middleware.use Rack::Attack
     config.middleware.insert_before ActionDispatch::Cookies, CookieOverflowHandler
+    config.middleware.insert_before Rack::Head, DirectUpload406Logger
 
     config.ds_env = ENV.fetch('DS_ENV', Rails.env)
 
@@ -90,7 +92,12 @@ module TPS
 
     config.ds_zonage_enabled = ENV.fetch("ZONAGE_ENABLED", nil) == "enabled"
 
-    config.skylight.probes += [:active_job, :excon, :graphql, :httpclient, :redis]
+    # The :graphql probe attaches GraphQL::Tracing::ActiveSupportNotificationsTrace,
+    # which publishes a start/finish AS::Notifications event around every field
+    # resolution. On large API V2 responses (tens of thousands of fields) this
+    # costs ~16% of request wall time for per-field granularity that is unreadable
+    # at that scale — we keep only request-level spans from the controller/AR probes.
+    config.skylight.probes += [:active_job, :excon, :httpclient, :redis]
 
     # Custom Configuration
     # @see https://guides.rubyonrails.org/configuring.html#custom-configuration

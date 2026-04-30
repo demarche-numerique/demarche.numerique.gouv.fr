@@ -72,6 +72,37 @@ describe 'Creating a new dossier:', js: true do
         it_behaves_like 'the user can create a new draft'
       end
 
+      context 'when user is connected via FranceConnect with incomplete identity' do
+        let(:procedure) { create(:procedure, :published, :for_individual, :with_service, libelle:) }
+        let(:user) { create(:user, france_connect_informations: [build(:france_connect_information, family_name: nil)]) }
+
+        it 'allows the user to fill in missing fields and edit them later' do
+          find('label', text: "Pour vous").click
+
+          expect(page).to have_field('Prénom', disabled: false)
+          expect(page).to have_field('Nom', disabled: false)
+          expect(page).not_to have_text("par FranceConnect et ne peuvent pas être modifiées")
+
+          fill_in('Prénom', with: 'prenom')
+          fill_in('Nom', with: 'nom')
+
+          within "#identite-form" do
+            click_button('Continuer')
+          end
+
+          dossier = procedure.dossiers.last
+          expect(page).to have_current_path(brouillon_dossier_path(dossier))
+          expect(dossier.individual.reload.prenom).to eq('prenom')
+          expect(dossier.individual.nom).to eq('nom')
+
+          # Return to identity page to verify values are preserved
+          visit identite_dossier_path(dossier)
+
+          expect(page).to have_field('Prénom', with: 'prenom', disabled: false)
+          expect(page).to have_field('Nom', with: 'nom', disabled: false)
+        end
+      end
+
       context 'when for tiers is disabled' do
         let(:procedure) { create(:procedure, :published, :for_individual, :with_service, for_tiers_enabled: false, libelle:) }
 

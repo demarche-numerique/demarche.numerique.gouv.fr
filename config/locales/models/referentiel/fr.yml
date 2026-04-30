@@ -4,14 +4,16 @@ fr:
       models:
         referentiels/api_referentiel:
           attributes:
-            url:
+            url_tiptap:
               invalid_format: "n’est pas au format d’une URL, saisissez une URL valide ex https://api_1.ext/"
-              not_allowed: "doit être autorisée par notre équipe. Veuillez nous contacter par mail (%{contact_email}) et nous indiquer l’URL et la documentation de l’API que vous souhaitez intégrer."
+              https_required: "doit commencer par https://"
+              missing_query_params: "doit contenir au moins un paramètre dynamique (tag)"
+              not_allowed: "doit être autorisée par notre équipe. Veuillez nous contacter par mail (%{contact_email}) et nous indiquer l’URL et la documentation de l’API que vous souhaitez intégrer. Seuls les domaines se terminant par .gouv.fr sont automatiquement autorisés (à l’exception de .beta.gouv.fr)"
     models:
       referentiel: 'Type de champ'
     attributes:
       referentiels/api_referentiel:
-        url: "URL de l’API"
+        url: "URL du référentiel"
         hint: "Indications à fournir à l’usager concernant le format de saisie attendu"
         test_data: "Exemple de saisie valide (affiché à l’usager et utilisé pour tester la requête)"
         hints:

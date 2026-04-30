@@ -35,6 +35,17 @@ describe Instructeurs::CommentairesController, type: :controller do
           end
         end
 
+        context 'when instructeur is not assigned to the dossier (IDOR attempt)' do
+          let(:other_dossier) { create(:dossier, :en_construction, :with_individual) }
+          let(:commentaire) { create(:commentaire, dossier: other_dossier) }
+          subject { delete :destroy, params: { dossier_id: other_dossier.id, procedure_id: procedure.id, id: commentaire.id, statut: 'a-suivre' }, format: :turbo_stream }
+
+          it 'returns 404 and does not delete the commentaire' do
+            expect { subject }.to raise_error(ActiveRecord::RecordNotFound)
+            expect(commentaire.reload).not_to be_discarded
+          end
+        end
+
         context 'when a pending correction is attached' do
           let!(:correction) { create(:dossier_correction, commentaire:, dossier:) }
 
@@ -131,6 +142,9 @@ describe Instructeurs::CommentairesController, type: :controller do
   end
 
   context 'as expert' do
+    let!(:experts_procedure) { create(:experts_procedure, expert:, procedure:) }
+    let!(:avis) { create(:avis, dossier:, experts_procedure:, claimant: instructeur) }
+
     before { sign_in(expert.user) }
 
     describe 'destroy' do

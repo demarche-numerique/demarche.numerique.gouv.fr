@@ -29,7 +29,7 @@ module Maintenance
 
       champ_ids = Champ
         .where(dossier_id: dossier)
-        .where(type: ["Champs::PieceJustificativeChamp", 'Champs::TitreIdentiteChamp'])
+        .where(type: "Champs::PieceJustificativeChamp")
         .ids
 
       attachments = ActiveStorage::Attachment

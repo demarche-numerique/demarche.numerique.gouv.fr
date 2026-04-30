@@ -1,5 +1,5 @@
 .fr-col-6.fr-col-md-4.fr-col-lg-3
-  = link_to simplify_admin_procedure_types_de_champ_path(@procedure, rule: next_rule), id: 'administrateurs', class: 'fr-tile fr-enlarge-link' do
+  = link_to new_simplify_admin_procedure_types_de_champ_path(@procedure), id: 'administrateurs', class: 'fr-tile fr-enlarge-link' do
     .fr-tile__body.flex.column.align-center.justify-between
       - if improved?
         %p.fr-badge.fr-badge--success Amélioré

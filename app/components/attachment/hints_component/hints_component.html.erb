@@ -5,7 +5,7 @@
   <%- end -%>
 
   <%- if max_file_size.present? -%>
-    <%= t('.max_file_size', max_file_size: number_to_human_size(max_file_size)) %>
+    <%= t('.max_file_size', max_file_size: number_to_human_size(max_file_size), count: @max || 1) %>
   <%- end -%>
 
   <%- if show_format_families? -%>

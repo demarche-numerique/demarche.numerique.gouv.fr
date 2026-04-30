@@ -6,12 +6,13 @@ class Dossiers::BatchAlertComponent < ApplicationComponent
   def initialize(batch:, procedure:)
     @batch = batch
     @procedure = procedure
-    set_seen_at! if batch.finished_at.present?
+
+    @finished_unseen = @batch.finished_unseen?
+    @batch.seen! if @finished_unseen
   end
 
-  def set_seen_at!
-    @batch.seen_at = Time.zone.now
-    @batch.save
+  def should_refresh?
+    !@batch.finished_at? || @finished_unseen
   end
 
   def procedure_path

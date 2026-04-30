@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Dossiers::QuotientFamilialComponent < ApplicationComponent
-  delegate :fc_data_correct?, :fc_data_incorrect?, to: :@champ
+  delegate :fc_data_correct?, :fc_data_incorrect?, :fc_data_not_found?, to: :@champ
 
   attr_reader :champ, :profile
 
@@ -37,8 +37,10 @@ class Dossiers::QuotientFamilialComponent < ApplicationComponent
       t(".correct_qf_data")
     elsif fc_data_incorrect?
       t(".incorrect_qf_data")
+    elsif fc_data_not_found?
+      t(".qf_data_not_found")
     else
-      t(".qf_data_not_fetched")
+      t(".qf_data_not_recovered")
     end
   end
 

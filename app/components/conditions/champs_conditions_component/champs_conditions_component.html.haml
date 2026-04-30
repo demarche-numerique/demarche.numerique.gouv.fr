@@ -1,6 +1,6 @@
 .flex.justify-start.section{ id: dom_id(@tdc.stable_self, :condition), data: {turbo_force: :server} }
   = form_tag admin_procedure_condition_path(@procedure_id, @tdc.stable_id), method: :patch, class: 'form' do
-    .conditionnel.mt-2
+    .conditionnel.fr-mt-4v
       .flex
         %p
           Logique conditionnelle
@@ -9,7 +9,7 @@
       = render Conditions::ConditionsErrorsComponent.new(conditions: condition_per_row, source_tdcs: @source_tdcs)
 
       - if @condition.present?
-        %table.condition-table.mt-2
+        %table.condition-table.fr-mt-4v
           %thead
             %tr
               %th.far-left
@@ -26,4 +26,4 @@
                 %td.value= right_operand_tag(targeted_champ, value, row_index, operator_name)
                 %td.delete-column= delete_condition_tag(row_index)
 
-        .flex.justify-end.mt-2= add_condition_tag
+        .flex.justify-end.fr-mt-4v= add_condition_tag

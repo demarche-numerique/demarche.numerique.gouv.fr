@@ -373,32 +373,8 @@ RSpec.describe Types::DossierType, type: :graphql do
     end
   end
 
-  describe 'dossier with titre identite filled' do
-    let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :titre_identite }]) }
-    let(:dossier) { create(:dossier, :accepte, :with_populated_champs, procedure: procedure) }
-
-    let(:query) { DOSSIER_WITH_TITRE_IDENTITE_QUERY }
-    let(:variables) { { number: dossier.id } }
-
-    it {
-      expect(data[:dossier][:champs][0][:filled]).to eq(true)
-    }
-  end
-
-  describe 'dossier with titre identite not filled' do
-    let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :titre_identite }]) }
-    let(:dossier) { create(:dossier, :accepte, procedure: procedure) }
-
-    let(:query) { DOSSIER_WITH_TITRE_IDENTITE_QUERY }
-    let(:variables) { { number: dossier.id } }
-
-    it {
-      expect(data[:dossier][:champs][0][:filled]).to eq(false)
-    }
-  end
-
-  describe 'dossier with piece justificative nature=TITRE_IDENTITE filled' do
-    let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :piece_justificative, nature: 'TITRE_IDENTITE' }]) }
+  describe 'dossier with piece justificative nature=titre_identite filled' do
+    let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :piece_justificative, nature: 'titre_identite' }]) }
     let(:dossier) { create(:dossier, :accepte, :with_populated_champs, procedure: procedure) }
 
     let(:query) { DOSSIER_WITH_TITRE_IDENTITE_QUERY }
@@ -410,22 +386,23 @@ RSpec.describe Types::DossierType, type: :graphql do
     end
   end
 
-  describe 'dossier with piece justificative nature=TITRE_IDENTITE filled' do
-    let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :piece_justificative, nature: 'TITRE_IDENTITE' }]) }
+  describe 'dossier with piece justificative nature=titre_identite does not expose sensitive data' do
+    let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :piece_justificative, nature: 'titre_identite' }]) }
     let(:dossier) { create(:dossier, :accepte, :with_populated_champs, procedure: procedure) }
-
-    let(:query) { DOSSIER_WITH_PIECE_JUSTIFICATIVE_QUERY }
+    let(:query) { DOSSIER_WITH_PIECE_JUSTIFICATIVE_COLUMNS_AND_FILES_QUERY }
     let(:variables) { { number: dossier.id } }
 
-    it 'returns TitreIdentiteChamp type' do
-      expect(data[:dossier][:champs][0][:__typename]).to eq('PieceJustificativeChamp')
+    it 'returns empty files and no attachment columns' do
+      champ = data[:dossier][:champs][0]
+      expect(champ[:__typename]).to eq('PieceJustificativeChamp')
       expect(data[:dossier][:champs][0].key?(:filled)).to eq(false)
-      expect(data[:dossier][:champs][0][:columns]).not_to be_empty
+      expect(champ[:files]).to eq([])
+      expect(champ[:columns].none? { _1[:__typename] == 'AttachmentsColumn' }).to eq(true)
     end
   end
 
-  describe 'dossier with piece justificative nature=TITRE_IDENTITE not filled' do
-    let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :piece_justificative, nature: 'TITRE_IDENTITE' }]) }
+  describe 'dossier with piece justificative nature=titre_identite not filled' do
+    let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :piece_justificative, nature: 'titre_identite' }]) }
     let(:dossier) { create(:dossier, :accepte, procedure: procedure) }
 
     let(:query) { DOSSIER_WITH_TITRE_IDENTITE_QUERY }
@@ -741,30 +718,35 @@ RSpec.describe Types::DossierType, type: :graphql do
     }
   }
   GRAPHQL
-  DOSSIER_WITH_PIECE_JUSTIFICATIVE_QUERY = <<-GRAPHQL
+
+  DOSSIER_WITH_PIECE_JUSTIFICATIVE_COLUMNS_AND_FILES_QUERY = <<-GRAPHQL
   query($number: Int!) {
     dossier(number: $number) {
       id
       number
-
       champs {
         id
         label
         __typename
         ... on PieceJustificativeChamp {
-
+          files {
+            url
+            filename
+          }
         }
         columns {
           __typename
           label
-          ... on IntegerColumn {
-            value
+          ... on AttachmentsColumn {
+            value {
+              url
+              filename
+            }
           }
         }
       }
     }
   }
-
   GRAPHQL
 
   DOSSIER_WITH_TITRE_IDENTITE_QUERY = <<-GRAPHQL

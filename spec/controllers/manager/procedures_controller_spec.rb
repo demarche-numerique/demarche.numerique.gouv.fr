@@ -101,6 +101,32 @@ describe Manager::ProceduresController, type: :controller do
     end
   end
 
+  describe '#change_piece_justificative_template' do
+    let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative }]) }
+    let(:other_procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative }]) }
+    let(:other_type_de_champ) { other_procedure.draft_revision.types_de_champ.first }
+    let(:upload) do
+      Rack::Test::UploadedFile.new(
+        Rails.root.join("spec/fixtures/files/RIB.pdf"),
+        "application/pdf"
+      )
+    end
+
+    subject(:cross_procedure_request) do
+      post :change_piece_justificative_template, params: {
+        id: procedure.id,
+        type_de_champ: { id: other_type_de_champ.id, piece_justificative_template: upload },
+      }
+    rescue ActiveRecord::RecordNotFound
+      nil
+    end
+
+    it "does not update the template of a type de champ from a different procedure" do
+      expect { cross_procedure_request }
+        .not_to change { other_type_de_champ.reload.piece_justificative_template.blob.id }
+    end
+  end
+
   describe '#delete_administrateur' do
     let(:procedure) { create(:procedure, :with_service, administrateurs: [administrateur, autre_administrateur]) }
     let(:administrateur) { create(:administrateur, email: super_admin.email) }

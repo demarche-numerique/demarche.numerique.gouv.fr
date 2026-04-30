@@ -9,6 +9,7 @@ module Instructeurs
     include TurboChampsConcern
     include InstructeurConcern
     include ActionController::Streaming
+    include BilansBdfConcern
     include Zipline
 
     before_action :redirect_on_dossier_not_found, only: [:show, :show_submitted_revision]
@@ -55,8 +56,7 @@ module Instructeurs
     end
 
     def bilans_bdf
-      extension = params[:format]
-      render extension.to_sym => dossier.etablissement.entreprise_bilans_bdf_to_sheet(extension)
+      bilans_bdf_response(dossier.etablissement, params[:format], instructeur_procedure_path(procedure))
     end
 
     def show
@@ -326,11 +326,29 @@ module Instructeurs
 
         handle_pending_response_flag(@commentaire)
 
-        redirect_to messagerie_instructeur_dossier_path(procedure, dossier, statut: statut)
+        respond_to do |format|
+          format.turbo_stream do
+            @dossier = dossier
+            @connected_user = current_instructeur
+            @form_url = commentaire_instructeur_dossier_path(procedure, dossier, statut: statut)
+            render template: 'shared/dossiers/create_commentaire'
+          end
+          format.html { redirect_to messagerie_instructeur_dossier_path(procedure, dossier, statut: statut) }
+        end
       else
         @commentaire.piece_jointe.purge.reload # only allowed here, sync action
-        flash.alert = @commentaire.errors.full_messages
-        render :messagerie
+        respond_to do |format|
+          format.turbo_stream do
+            @dossier = dossier
+            @connected_user = current_instructeur
+            @form_url = commentaire_instructeur_dossier_path(procedure, dossier, statut: statut)
+            render template: 'shared/dossiers/create_commentaire', status: :unprocessable_entity
+          end
+          format.html do
+            flash.alert = @commentaire.errors.full_messages
+            render :messagerie, status: :unprocessable_entity
+          end
+        end
       end
     end
 
@@ -640,7 +658,7 @@ module Instructeurs
       gallery_attachments_ids = Rails.cache.fetch([dossier, "gallery_attachments"], expires_in: 10.minutes) do
         champs_attachments_ids = dossier
           .filled_champs
-          .filter(&:piece_justificative_or_titre_identite?)
+          .filter(&:piece_justificative?)
           .filter(&:visible?)
           .flat_map(&:piece_justificative_file)
           .map(&:id)

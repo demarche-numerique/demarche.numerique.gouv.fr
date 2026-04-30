@@ -78,6 +78,11 @@
     margin-bottom: 1mm;
   }
 
+  .marianne-with-devise {
+    height: 20mm;
+    margin-bottom: 1mm;
+  }
+
   .intitule {
     font-size: 12pt;
     font-weight: bold;
@@ -110,6 +115,35 @@
     line-height: 14pt;
     font-weight: bold;
     text-align: right;
+  }
+
+  .logo-site {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 2mm;
+
+    img {
+      max-height: 15mm;
+      max-width: 30mm;
+    }
+  }
+
+  .direction-block {
+    text-align: right;
+    margin-top: 5.25mm;
+
+    .direction-label {
+      font-size: 8pt;
+      font-weight: normal;
+      line-height: 12pt;
+      margin: 0;
+    }
+
+    .direction-site {
+      font-size: 10pt;
+      font-weight: bold;
+      margin: 1mm 0 0;
+    }
   }
 
   .body-start {
@@ -177,6 +211,62 @@
     @media screen {
       position: absolute;
       bottom: 0;
+    }
+  }
+
+  // Attestation de dépôt specific styles
+  .attestation-depot {
+    // Attestation de dépôt header: override flex with position for WeasyPrint
+    &-header {
+      display: block;
+      position: relative;
+
+      .right {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+
+    .bloc-marque {
+      display: inline-block;
+      margin-right: 5mm;
+    }
+
+    &-title {
+      font-size: 16pt;
+      text-align: center;
+      margin: 10mm 0 5mm;
+    }
+
+    &-procedure {
+      font-size: 12pt;
+      font-weight: bold;
+      text-align: center;
+      margin: 0 0 12mm;
+    }
+
+    &-description {
+      margin-bottom: 10mm;
+    }
+
+    &-section {
+      margin-bottom: 8mm;
+    }
+
+    dl {
+      display: grid;
+      grid-template-columns: 40mm 1fr;
+      gap: 1.5mm 5mm;
+      margin: 3mm 0 0;
+
+      dt {
+        font-weight: bold;
+      }
+
+      dd {
+        margin: 0;
+      }
     }
   }
 

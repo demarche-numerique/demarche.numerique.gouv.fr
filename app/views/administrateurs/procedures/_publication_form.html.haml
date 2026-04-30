@@ -2,9 +2,9 @@
   url: admin_procedure_publish_path(procedure_id: procedure.id),
   method: :put do |f|
   = render Procedure::ErrorsSummary.new(procedure: @procedure, validation_context: :publication)
-  .mt-2
+  .fr-mt-4v
     - if procedure.draft_changed?
-      %p.mb-2= t('.draft_changed_procedure_alert')
+      %p.fr-mb-4v= t('.draft_changed_procedure_alert')
       = render Dsfr::AlertComponent.new(state: :info, size: :sm, extra_class_names: 'fr-mb-2w') do |c|
         - c.with_body do
           = render Procedure::RevisionChangesComponent.new new_revision: procedure.draft_revision, previous_revision: procedure.published_revision

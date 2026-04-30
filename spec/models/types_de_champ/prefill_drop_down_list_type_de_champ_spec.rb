@@ -24,6 +24,18 @@ RSpec.describe TypesDeChamp::PrefillDropDownListTypeDeChamp do
     end
   end
 
+  describe '#possible_values does not contain unescaped HTML (XSS prevention)' do
+    let(:procedure) { create(:procedure) }
+    let(:xss_payload) { '<img src=x onerror=alert(1)>' }
+    let(:type_de_champ) { build(:type_de_champ_drop_down_list, procedure: procedure, drop_down_options: ["safe_option", xss_payload]) }
+
+    subject(:possible_values) { described_class.new(type_de_champ, procedure.active_revision).possible_values }
+
+    it 'escapes HTML entities in drop_down_options' do
+      expect(possible_values).not_to include('<img src=x')
+    end
+  end
+
   describe '#example_value' do
     let(:procedure) { create(:procedure) }
     let(:type_de_champ) { build(:type_de_champ_drop_down_list, procedure: procedure) }

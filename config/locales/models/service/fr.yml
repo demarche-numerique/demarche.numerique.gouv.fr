@@ -7,7 +7,7 @@ fr:
     attributes:
       service: &service
         adresse: 'Adresse postale'
-        email: 'Adresse électronique de contact'
+        email: 'Adresse électronique'
         telephone: 'Téléphone'
         nom: Nom du service
         faq_link: Lien vers une page d’aide ou FAQ

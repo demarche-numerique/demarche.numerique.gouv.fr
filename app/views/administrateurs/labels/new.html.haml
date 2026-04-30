@@ -1,4 +1,5 @@
 - content_for :title, "Nouveau label"
+- render_procedure_sticky_title(@procedure)
 
 = render partial: 'administrateurs/breadcrumbs',
   locals: { steps: [['Démarches', admin_procedures_path],

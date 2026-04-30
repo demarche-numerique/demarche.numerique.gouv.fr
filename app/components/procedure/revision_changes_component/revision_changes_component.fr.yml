@@ -12,10 +12,10 @@ fr:
   invalid_routing_rules_alert: "Certains groupes d’instructeurs ont une règle de routage invalide. Veuillez mettre à jour la configuration des groupes d’instructeurs après avoir publié les modifications."
 
   update_referentiel: &update_referentiel
-    referentiel_url: "L’URL de l’API du champ « %{label} » a été modifiée. La nouvelle URL est « %{to} »."
+    referentiel_url_tiptap: "L’URL de l’API du champ « %{label} » a été modifiée. La nouvelle URL est « %{to} »."
     referentiel_mode: "Le mode d’intérogation du référentiel du champ « %{label} » a été modifié. Le nouveau mode est « %{to} »."
     referentiel_hint: "L’indication à fournir à l’usager concernant le format de saisie attendu du champ « %{label} » a été modifiée. La nouvelle indication est « %{to} »."
-    referentiel_test_data: "L’exemple de saisie valide du champ « %{label} » a été modifié. Le nouvel exemple est « %{to} »."
+    referentiel_test_data_tiptap: "L’exemple de saisie valide du champ « %{label} » a été modifié. Le nouvel exemple est « %{to} »."
     referentiel_mapping: "Le mapping des données entre le champ et l’API du champ « %{label} » a été modifié."
 
   public:
@@ -89,6 +89,9 @@ fr:
     update_pj_limit_formats: "La limitation des formats du champ « %{label} » a été modifiée."
     update_pj_format_families: "Les familles de formats acceptés du champ « %{label} » ont été modifiées."
     update_pj_auto_purge: "La suppression automatique du champ « %{label} » a été modifiée."
+    add_procedures_limit: L’option « Limiter à certaines démarches » a été activée pour le champ « %{label} ».
+    remove_procedures_limit: L’option « Limiter à certaines démarches » a été désactivée pour le champ « %{label} ».
+    update_procedures: "Les démarches autorisées pour le champ « %{label} » ont été modifiées :"
 
   private:
     add: L’annotation privée « %{label} » a été ajoutée.

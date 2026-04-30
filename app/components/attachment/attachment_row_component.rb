@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-# Displays a persisted attachment: filename/download link, antivirus status, delete button.
+# Displays an attachment: filename/download link, antivirus status, delete button.
+# Handles both persisted and unpersisted attachments (e.g. after validation error).
 # Read-only display component (no file input).
 class Attachment::AttachmentRowComponent < ApplicationComponent
   attr_reader :attachment, :context
@@ -8,9 +9,10 @@ class Attachment::AttachmentRowComponent < ApplicationComponent
   delegate :champ, :auto_attach_url, :direct_upload, :view_as, :user_can_destroy?,
            to: :context
 
-  def initialize(attachment:, context:)
+  def initialize(attachment:, context:, field_name: nil)
     @attachment = attachment
     @context = context
+    @field_name = field_name
   end
 
   def attachment_path(**args)

@@ -85,8 +85,8 @@ fr:
           archive: "Archive compressée"
         natures:
           non_specifie: "Non spécifié"
-          TITRE_IDENTITE: "Titre d’identité"
-          RIB: "Relevé d’identité bancaire (RIB)"
+          titre_identite: "Titre d’identité"
+          rib: "Relevé d’identité bancaire (RIB)"
           justificatif_domicile: "Justificatif de domicile"
     errors:
       type_de_champ:

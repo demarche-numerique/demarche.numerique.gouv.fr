@@ -12,5 +12,6 @@ en:
       false: No
     incorrect_qf_data: We will not use this data to review your folder. You must attach proof of your family quotient.
   piece_justificative_champ:
-    data_not_found: We were unable to retrieve your data from the relevant authorities. You must attach proof of your family quotient.
+    data_not_found: We were unable to locate any beneficiary folder from the authoritie. You must attach proof of your family quotient.
+    data_not_recovered: We were unable to retrieve your data from the relevant authorities. You must attach proof of your family quotient.
     libelle: Proof of family quotient

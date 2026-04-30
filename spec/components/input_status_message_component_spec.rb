@@ -55,6 +55,19 @@ RSpec.describe Dsfr::InputStatusMessageComponent, type: :component do
           expect(subject).to have_css(".fr-message--info", text: /Dossier/)
         end
       end
+
+      context "when the linked dossier has been hidden by the user" do
+        let(:linked_dossier) do
+          create(:dossier, :en_instruction, hidden_by_user_at: Time.zone.local(2026, 3, 15))
+        end
+
+        it "renders the hidden_by_user message" do
+          expect(subject).to have_css(
+            ".fr-message--info",
+            text: /Dossier déposé le .* sur la démarche .* mais supprimé le 15 mars 2026/
+          )
+        end
+      end
     end
 
     context 'with referentiel champs' do
@@ -96,7 +109,7 @@ RSpec.describe Dsfr::InputStatusMessageComponent, type: :component do
     end
 
     context 'with piece_justificative champs (RIB)' do
-      let(:types_de_champ_public) { [{ type: :piece_justificative, nature: 'RIB' }] }
+      let(:types_de_champ_public) { [{ type: :piece_justificative, nature: 'rib' }] }
       let(:state) { :idle }
       let(:value_json) { {} }
 
@@ -148,6 +161,22 @@ RSpec.describe Dsfr::InputStatusMessageComponent, type: :component do
       let(:types_de_champ_public) { [{ type: :siret }] }
       let(:errors_on_attribute) { false }
       let(:error_full_messages) { [] }
+
+      context "when the champ has direct validation errors (external_error with code_404)" do
+        let(:form) { instance_double(ActionView::Helpers::FormBuilder, object_name: "dossier[champs_public_attributes]", object: champ) }
+        let(:champ_component) { EditableChamp::SiretComponent.new(form:, champ:) }
+
+        before do
+          champ.update_columns(external_id: '80879023200025', external_state: 'external_error')
+          champ.errors.add(:value, :code_404)
+        end
+
+        it "renders the error message with error styling, not valid styling" do
+          expect(subject).to have_css(".fr-message--error")
+          expect(subject).not_to have_css(".fr-message--valid")
+          expect(subject).to have_text("Résultat introuvable. Vérifiez vos informations.")
+        end
+      end
 
       context "when etablissement is non-diffusible (diffusable_commercialement: false)" do
         before do

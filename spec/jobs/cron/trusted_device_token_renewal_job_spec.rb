@@ -75,4 +75,53 @@ describe Cron::TrustedDeviceTokenRenewalJob do
       subject
     end
   end
+
+  context 'when the instructeur has a more recent valid token not yet expiring' do
+    before do
+      create(:trusted_device_token,
+        instructeur: token_to_notify.instructeur,
+        activated_at: 1.week.ago,
+        renewal_notified_at: nil)
+    end
+
+    it 'skips entirely: no email, no marking, no new token' do
+      expect(InstructeurMailer).not_to receive(:trusted_device_token_renewal)
+      expect { subject }.not_to change { TrustedDeviceToken.count }
+      expect(token_to_notify.reload.renewal_notified_at).to be_nil
+    end
+  end
+
+  context 'when the instructeur was already notified recently' do
+    before do
+      create(:trusted_device_token,
+        instructeur: token_to_notify.instructeur,
+        activated_at: (TrustedDeviceConcern::TRUSTED_DEVICE_PERIOD - 2.days).ago,
+        renewal_notified_at: 2.days.ago)
+    end
+
+    it 'skips: no email, no marking' do
+      expect(InstructeurMailer).not_to receive(:trusted_device_token_renewal)
+      subject
+      expect(token_to_notify.reload.renewal_notified_at).to be_nil
+    end
+  end
+
+  context 'when tokens enter the expiring window on consecutive days' do
+    before do
+      create(:trusted_device_token,
+        instructeur: token_to_notify.instructeur,
+        activated_at: (TrustedDeviceConcern::TRUSTED_DEVICE_PERIOD - 4.days).ago,
+        renewal_notified_at: nil)
+    end
+
+    it 'sends only one email across two runs on consecutive days' do
+      expect(InstructeurMailer)
+        .to receive(:trusted_device_token_renewal).once
+        .and_return(double(deliver_later: true))
+
+      described_class.new.perform_now
+      travel_to(now + 1.day)
+      described_class.new.perform_now
+    end
+  end
 end

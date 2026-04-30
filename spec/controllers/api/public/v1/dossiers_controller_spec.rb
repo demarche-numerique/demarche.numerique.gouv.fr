@@ -61,6 +61,29 @@ RSpec.describe API::Public::V1::DossiersController, type: :controller do
             end
           end
 
+          context 'when prefill values contain malicious non-string inputs' do
+            let!(:type_de_champ) { create(:type_de_champ_text, procedure: procedure) }
+            let(:params) {
+              {
+                id: procedure.id,
+                "champ_#{type_de_champ.to_typed_id_for_query}" => { "injected" => "x" },
+                "identite_prenom" => { "injected" => "x" },
+                "identite_nom" => ["array"],
+                "identite_genre" => { "injected" => "x" },
+              }
+            }
+
+            it "ignores malicious values and does not persist them" do
+              create_request
+
+              dossier = Dossier.last
+              expect(find_champ_by_stable_id(dossier, type_de_champ.stable_id).value).to be_blank
+              expect(dossier.individual.prenom).to be_blank
+              expect(dossier.individual.nom).to be_blank
+              expect(dossier.individual.gender).to be_blank
+            end
+          end
+
           context 'when prefill given values contains more than one rows for repetitions' do
             let(:procedure) { create(:procedure, :published, types_de_champ_public:) }
             let(:types_de_champ_public) do

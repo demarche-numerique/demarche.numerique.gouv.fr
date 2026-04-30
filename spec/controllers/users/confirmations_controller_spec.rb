@@ -69,6 +69,26 @@ describe Users::ConfirmationsController, type: :controller do
         expect(flash.notice).to include("Votre compte a déjà été activé")
       end
     end
+
+    context 'when the confirmation link is replayed within the auto-sign-in delay after the account was already confirmed' do
+      let!(:user) { create(:user, confirmed_at: 30.minutes.ago, confirmation_sent_at: 30.minutes.ago, confirmation_token: "mytoken") }
+
+      subject do
+        get :show, params: { confirmation_token: confirmation_token }
+      end
+
+      it 'does not sign the user in' do
+        expect(user).to be_confirmed
+        subject
+        expect(controller.current_user).to be_nil
+        expect(controller.current_instructeur).to be_nil
+        expect(controller.current_administrateur).to be_nil
+      end
+
+      it 'redirects to the sign-in path' do
+        expect(subject).to redirect_to(new_user_session_path)
+      end
+    end
   end
 
   describe '#new' do

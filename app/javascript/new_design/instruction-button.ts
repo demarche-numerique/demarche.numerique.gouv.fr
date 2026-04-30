@@ -1,5 +1,5 @@
-import { isInputElement } from '@coldwired/utils';
-import { show, hide, disable, enable } from '@coldwired/actions';
+import { disable, enable, hide, show } from 'coldwired/actions';
+import { isInputElement } from 'coldwired/utils';
 
 export function showMotivation(event: Event, state: string) {
   event.preventDefault();

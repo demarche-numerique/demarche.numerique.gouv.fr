@@ -29,19 +29,9 @@ module Mails
 
     def attachment_for_dossier(dossier)
       {
-        filename: I18n.t('users.dossiers.show.papertrail.filename', dossier_id: dossier.id),
-        content: deposit_receipt_for_dossier(dossier),
+        filename: I18n.t('users.dossiers.show.attestation_depot.filename', dossier_id: dossier.id),
+        content: dossier.generate_or_reuse_attestation_depot,
       }
-    end
-
-    private
-
-    def deposit_receipt_for_dossier(dossier)
-      ApplicationController.render(
-        template: 'users/dossiers/papertrail',
-        formats: [:pdf],
-        assigns: { dossier: dossier }
-      )
     end
   end
 end

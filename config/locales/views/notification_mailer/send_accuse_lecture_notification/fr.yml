@@ -1,0 +1,4 @@
+fr:
+  notification_mailer:
+    send_accuse_lecture_notification:
+      subject: "La décision a été rendue pour votre dossier n°%{dossier_id} (%{libelle})"

@@ -1,0 +1,23 @@
+<tr>
+  <td class="cell-data">
+    <%= type_de_champ.libelle %>
+
+    <% if type_de_champ.mandatory? %>
+      <span class="manager-mandatory">*</span>
+    <% end %>
+  </td>
+
+  <td class="cell-data">
+    <%= I18n.t("activerecord.attributes.type_de_champ.type_champs.#{type_de_champ.type_champ}") %>
+  </td>
+
+  <td class="cell-data">
+    <% if type_de_champ.type_champ == 'piece_justificative' %>
+      <%= form_for type_de_champ, url: change_piece_justificative_template_manager_procedure_path, method: :post  do |form| %>
+        <%= form.hidden_field :id %>
+        <%= form.file_field :piece_justificative_template %>
+        <%= form.submit 'modifier' %>
+      <% end %>
+    <% end %>
+  </td>
+</tr>

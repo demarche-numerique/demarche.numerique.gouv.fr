@@ -1,3 +1,14 @@
+- if ENV.fetch("ADMIN_TABLEAU_SURVEY_ENABLED", "enabled") == "enabled"
+  = render Dsfr::NoticeComponent.new(closable: true, data_attributes: { "data-notice-name" => "admin-sondage-champ-tableau" }) do |c|
+    - c.with_title do
+      Votre avis compte !
+    - c.with_desc do
+      En tant qu’administrateur·trice de formulaire, vous auriez besoin d’un nouveau champ de type ”tableau“ ?
+    - c.with_link do
+      -# haml-lint:disable ApplicationNameLinter
+      = link_to "Répondre au sondage", "https://demarche.numerique.gouv.fr/commencer/sondage-champ-de-type-tableau", class: "fr-notice__link", **external_link_attributes
+      -# haml-lint:enable ApplicationNameLinter
+
 .sub-header
   .fr-container
     %h1.fr-h3 Mes démarches

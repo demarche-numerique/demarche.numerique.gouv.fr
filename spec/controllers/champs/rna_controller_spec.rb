@@ -4,6 +4,19 @@ describe Champs::RNAController, type: :controller do
   let(:user) { create(:user) }
   let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :rna }]) }
 
+  describe 'ensure_legitimate_access' do
+    let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :text }]) }
+    let(:dossier) { create(:dossier, user: user, procedure: procedure) }
+    let(:champ) { dossier.project_champs_public.first }
+
+    before { sign_in user }
+
+    it 'returns not found when the champ is not a rna' do
+      get :show, params: { dossier_id: champ.dossier_id, stable_id: champ.stable_id, dossier: { champs_public_attributes: { champ.public_id => { value: 'W111111111' } } } }, format: :turbo_stream
+      expect(response).to have_http_status(:not_found)
+    end
+  end
+
   describe '#show' do
     let(:dossier) { create(:dossier, user: user, procedure: procedure) }
     let(:champ) { dossier.project_champs_public.first }

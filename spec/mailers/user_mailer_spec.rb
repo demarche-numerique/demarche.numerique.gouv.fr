@@ -126,7 +126,7 @@ RSpec.describe UserMailer, type: :mailer do
       let(:role) { create(:instructeur) }
       it 'sends email with correct links to instructeur' do
         expect(subject.to).to eq([role.user.email])
-        expect(subject.body).to have_link('Consulter mes archives', href: instructeur_archives_url(procedure))
+        expect(subject.body).to have_link('Consulter mes archives', href: list_instructeur_archives_url(procedure))
         expect(subject.body).to have_link("#{procedure.id} − #{procedure.libelle}", href: instructeur_procedure_url(procedure))
       end
     end

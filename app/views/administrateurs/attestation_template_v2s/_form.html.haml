@@ -124,6 +124,7 @@
   - if attestation_template.draft?
     - content_for(:sticky_header) do
       = render partial: "sticky_header", locals: { procedure: procedure, attestation_kind:, attestation_templates_for_kind: procedure.attestation_templates_v2_for(attestation_kind) }
+  - render_procedure_sticky_title(procedure)
 
   .padded-fixed-footer
     .fixed-footer#fixed_footer

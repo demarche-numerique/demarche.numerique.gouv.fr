@@ -3,7 +3,7 @@
 class TypesDeChamp::TypeDeChampBase
   include ActiveModel::Validations
 
-  delegate :description, :libelle, :mandatory, :mandatory?, :stable_id, :fillable?, :public?, :type_champ, :options_for_select, :drop_down_options, :drop_down_other?, :drop_down_advanced?, :referentiel, :RIB?, :justificatif_domicile?, :titre_identite_nature?, to: :@type_de_champ
+  delegate :description, :libelle, :mandatory, :mandatory?, :stable_id, :fillable?, :public?, :type_champ, :options_for_select, :drop_down_options, :drop_down_other?, :drop_down_advanced?, :referentiel, :rib?, :justificatif_domicile?, :titre_identite?, to: :@type_de_champ
 
   FILL_DURATION_SHORT  = 10.seconds
   FILL_DURATION_MEDIUM = 1.minute

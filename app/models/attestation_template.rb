@@ -84,6 +84,9 @@ class AttestationTemplate < ApplicationRecord
 
     pdf_data = build_pdf(dossier)
 
+    # Guard against race condition: dossier state may have changed during PDF generation
+    return unless dossier.reload.accepte? || dossier.refuse?
+
     attestation = Attestation.new(dossier:)
     attestation.title = replace_tags(title, dossier, escape: false) if version == 1
     attestation.pdf.attach(

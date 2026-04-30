@@ -69,6 +69,14 @@ fr:
         question: Je souhaite ouvrir un compte administrateur avec une adresse électronique Orange, Wanadoo, etc.
       admin_autre:
         question: Autre sujet
+    prefill:
+      autosave:
+        subject: 'Erreur d’enregistrement automatique'
+        body: |
+          Bonjour,
+
+          Je rencontre une erreur lors de l’enregistrement automatique de mon dossier (code erreur : %{error_id}).
+          Préciser ci-dessous le champ concerné et toute information utile, capture d’écran etc… :
     create:
       direct_message_sent: Votre message a été envoyé sur la messagerie de votre dossier.
       message_sent: Votre message a été envoyé.

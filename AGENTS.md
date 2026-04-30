@@ -230,7 +230,7 @@ Controllers are organized by user role:
 - **Image Processing**: Uploaded images are processed based on their nature
   - Identity documents (`Champs::TitreIdentiteChamp`) receive watermarks for privacy protection
   - Different attachment types get appropriate representations (previews, thumbnails)
-  - Processing logic in `BlobImageProcessorConcern`
+  - Processing logic in `BlobProcessorConcern`
 - AGPL license - all code must be compatible
 - Commits should be signed (GPG for core team)
 - Brakeman security scanner runs in CI

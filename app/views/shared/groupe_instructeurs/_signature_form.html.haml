@@ -1,5 +1,5 @@
 %h2.fr-h3#tampon-attestation Tampon de l’attestation d’acceptation
-.card.mt-2
+.card.fr-mt-4v
   = render NestedForms::FormOwnerComponent.new
   = form_with url: { action: :add_signature }, method: :post, html: { multipart: true , 'data-controller': 'enable-submit-if-uploaded' } do |f|
     %p

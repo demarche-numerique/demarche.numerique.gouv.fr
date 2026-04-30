@@ -3,9 +3,8 @@ fr:
     dossiers:
       beneficiaire: '%{mandataire} (pour %{beneficiaire})'
       france_connect_informations:
-        details_no_name: "Le dossier a été déposé par un compte FranceConnect."
-        details: "Le dossier a été déposé par le compte de %{name}."
-        details_updated: "Le dossier a été déposé par le compte de %{name}, authentifié par FranceConnect le %{date}."
+        details_no_name: "Le dossier a été déposé par un compte authentifié par FranceConnect."
+        details: "Le dossier a été déposé par le compte de %{name}, authentifié par FranceConnect."
       motivation:
         refused_by_svr: "Le service traitant n’a pas été en mesure de traiter votre demande dans le délai imparti par la règle du Silence Vaut Rejet."
       header:

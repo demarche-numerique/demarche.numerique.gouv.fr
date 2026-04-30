@@ -1,3 +1,5 @@
+- render_procedure_sticky_title(@procedure)
+
 = render partial: 'administrateurs/breadcrumbs',
   locals: { steps: [['Démarches', admin_procedures_back_path(@procedure)],
                     [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)],
@@ -16,7 +18,7 @@
       - dossiers = revision.dossiers.visible_by_administration
       - dossiers_en_construction_count = dossiers.state_en_construction.count
       - dossiers_en_instruction_count = dossiers.state_en_instruction.count
-      .card.mb-4
+      .card.fr-mb-8v
         %h2.card-title
           - if revision.administrateur.present?
             = "Modifications publiées le #{l(revision.published_at, format: :long_with_time)} par #{revision.administrateur.user.email}"

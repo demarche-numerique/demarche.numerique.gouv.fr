@@ -13,7 +13,7 @@
   %h1.fr-h2= t('.title')
 
 = form_with model: @procedure, url: admin_procedure_api_particulier_sources_path, local: true, html: { class: 'form' } do |f|
-  .fr-container#sources-particulier-form.mb-2
+  .fr-container#sources-particulier-form.fr-mb-4v
     = render Dsfr::AlertComponent.new(state: :info, size: :sm, extra_class_names: 'fr-mb-2w') do |c|
       - c.with_body do
         %p

@@ -2,7 +2,7 @@
 
 source 'https://gem.coop'
 
-gem 'rails', '~> 7.2.2' # allows update to security fixes at any time
+gem 'rails', '~> 7.2.3' # allows update to security fixes at any time
 
 gem 'aasm'
 gem 'active_model_serializers'
@@ -21,6 +21,7 @@ gem 'charlock_holmes'
 gem 'chartkick'
 gem 'clamav-client', require: 'clamav/client'
 gem "concurrent-ruby", "< 1.3.5" # force version to avoid https://github.com/rails/rails/pull/54264, should be removed after rails 7.2.x
+gem 'connection_pool', '< 3' # connection_pool 3.0 changed initialize signature, incompatible with activesupport 7.2 RedisCacheStore
 gem 'daemons'
 gem 'deep_cloneable' # Enable deep clone of active record models
 gem 'delayed_cron_job', require: false # Cron jobs
@@ -91,7 +92,6 @@ gem 'redis'
 gem 'rexml' # add missing gem due to ruby3 (https://github.com/Shopify/bootsnap/issues/325)
 gem 'rqrcode'
 gem 'ruby-openai'
-gem 'saml_idp'
 gem 'sassc-rails' # Use SCSS for stylesheets
 gem 'sentry-delayed_job'
 gem 'sentry-rails'
@@ -111,6 +111,7 @@ gem 'ttfunk', '~> 1.7.0'
 gem 'turbo-rails'
 gem 'typhoeus'
 gem 'ulid-ruby', require: 'ulid'
+gem 'vernier'
 gem 'view_component'
 gem 'vite_rails'
 gem 'warden'

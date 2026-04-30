@@ -22,6 +22,7 @@ describe 'Sign in', js: true do
     fill_in(:user_email, with: user.email)
     fill_in(:user_password, with: 'wrong password')
     click_on("Sign in")
-    expect(page).to have_content("Invalid Email or password.")
+
+    expect(page).to have_content("Invalid email or password.")
   end
 end

@@ -168,18 +168,18 @@ describe 'instructeurs/dossiers/show', type: :view do
     end
   end
 
-  context 'when the user is logged in with france connect' do
+  context 'when the dossier was submitted with FranceConnect' do
     let(:france_connect_information) { build(:france_connect_information) }
     let(:user) { build(:user, france_connect_informations: [france_connect_information]) }
     let(:procedure1) { create(:procedure, :with_type_de_champ, for_individual: true) }
-    let(:dossier) { create(:dossier, procedure: procedure1, user: user) }
+    let(:dossier) { create(:dossier, procedure: procedure1, user: user, submitted_with_france_connect: true) }
 
     before do
       render
     end
 
     it 'fills the individual with the informations from France Connect' do
-      expect(view.content_for(:notice_info)).to have_text("Le dossier a été déposé par le compte de #{france_connect_information.given_name} #{france_connect_information.family_name}, authentifié par FranceConnect le #{I18n.l(france_connect_information.updated_at.to_date)}")
+      expect(rendered).to have_text("Le dossier a été déposé par le compte de #{france_connect_information.given_name} #{france_connect_information.family_name}, authentifié par FranceConnect")
     end
   end
 

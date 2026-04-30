@@ -1,4 +1,4 @@
-<%# Shared identity block: DINUM name + site name, used in header and footer %>
+<%# Shared identity block: direction label + site name, used in header and footer %>
 <table
   style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"
   width="300"
@@ -27,19 +27,21 @@
           <td>&nbsp;</td>
         </tr>
 
-        <tr>
-          <td
-            class="darkmode-1"
-            style="line-height:16px; font-size:10px; color:#6b6b6b; font-family:'Marianne', Arial, Helvetica, sans-serif; white-space:nowrap;"
-            align="right"
-          >
-            <span
-              style="font-family:'Marianne', Arial, Helvetica, sans-serif !important;"
+        <%- if DIRECTION_LABEL.present? -%>
+          <tr>
+            <td
+              class="darkmode-1"
+              style="line-height:16px; font-size:10px; color:#6b6b6b; font-family:'Marianne', Arial, Helvetica, sans-serif; white-space:nowrap;"
+              align="right"
             >
-              <%= t('links.footer.dinum.alt') %>
-            </span>
-          </td>
-        </tr>
+              <span
+                style="font-family:'Marianne', Arial, Helvetica, sans-serif !important;"
+              >
+                <%= DIRECTION_LABEL %>
+              </span>
+            </td>
+          </tr>
+        <%- end -%>
 
         <tr>
           <td

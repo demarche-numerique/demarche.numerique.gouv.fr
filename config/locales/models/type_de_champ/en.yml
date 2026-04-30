@@ -82,8 +82,8 @@ en:
           archive: "Compressed archive"
         natures:
           non_specifie: "Not specified"
-          TITRE_IDENTITE: "Identity document"
-          RIB: "Bank details (RIB)"
+          titre_identite: "Identity document"
+          rib: "Bank details (RIB)"
           justificatif_domicile: "Proof of address"
     errors:
       type_de_champ:

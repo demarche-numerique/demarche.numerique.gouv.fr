@@ -63,7 +63,7 @@ class APIParticulier::QuotientFamilial
     body = JSON.parse(response.body, symbolize_names: true)
 
     if response.success?
-      return Failure(retryable: false, error: StandardError.new("Not retryable: invalid schema"), code: :invalid_schema) if !schema.valid?(body[:data])
+      return Failure(retryable: false, error: StandardError.new("Not retryable: invalid schema"), code: :invalid_schema) if !schema.valid?(body)
 
       Success(body[:data])
     else

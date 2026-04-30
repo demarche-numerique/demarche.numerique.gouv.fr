@@ -45,11 +45,11 @@ class EditableChamp::DropDownListComponent < EditableChamp::EditableChampBaseCom
       class: 'fr-mt-1w',
       name: @form.field_name(:value),
       placeholder: t('views.components.single_combobox'),
-      selected_key: @champ.selected,
+      value: @champ.selected,
       items:,
-      empty_filter_key: @champ.drop_down_other? ? Champs::DropDownListChamp::OTHER : nil,
+      always_show_key: @champ.drop_down_other? ? Champs::DropDownListChamp::OTHER : nil,
       ariaLabelledbyPrefix: aria_labelledby_prefix,
-      labelId: input_label_id(@champ)
+      label_id: input_label_id(@champ)
     )
   end
 

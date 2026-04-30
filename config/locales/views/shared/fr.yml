@@ -27,6 +27,7 @@ fr:
         already_user: "J’ai déjà un compte"
         create: "Créer un compte %{application_name}"
         signin: "Se connecter"
+        professional: "Professionnel"
         email_unverified: "Votre adresse électronique n’est pas vérifiée, vous ne recevrez donc pas les messages de %{application_name}. Veuillez vérifier votre boîte de réception et cliquer sur le lien de vérification. Vous n’avez pas reçu l’email ?"
         cta_email_unverified: "Renvoyer l’email de vérification"
       messages:

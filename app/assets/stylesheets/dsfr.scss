@@ -138,7 +138,7 @@ input[type='radio'] {
   display: block; // Pour cette valeur spécifique, on récupère celle de .fr-label
 }
 
-// We use the DSFR badge design to highlight the email in France Connect page
+// We use the DSFR badge design to highlight the email in FranceConnect page
 // but we don't want it to be uppercase
 .fr-badge--lowercase {
   text-transform: lowercase;
@@ -250,6 +250,13 @@ input[type='radio'] {
 .unhidden-md {
   @media (min-width: 48em) {
     display: initial !important;
+  }
+}
+
+// Variante pour afficher en flex à partir de md.
+.unhidden-flex-md {
+  @media (min-width: 48em) {
+    display: flex !important;
   }
 }
 

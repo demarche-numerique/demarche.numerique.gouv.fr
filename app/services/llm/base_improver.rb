@@ -41,7 +41,7 @@ module LLM
       'date' => "pour sélectionner une date.",
       'datetime' => "pour sélectionner une date et heure.",
       'piece_justificative' => "pour téléverser des pièces justificatives (inutile de l’enfermer dans une répétition : plusieurs fichiers sont déjà possibles).",
-      'titre_identite' => "pour téléverser un titre d’identité de manière sécurisée.",
+
       'checkbox' => "pour une case à cocher unique.",
       'drop_down_list' => "pour un choix unique dans une liste déroulante (options configurées ailleurs par l’administration).",
       'multiple_drop_down_list' => "pour un choix multiple dans une liste déroulante (options configurées ailleurs par l’administration).",
@@ -68,7 +68,7 @@ module LLM
     FIELD_GROUPS = {
       "Champs structurels" => ["header_section", "repetition", "explication"],
       "Champs personnels" => ["civilite", "email", "phone", "address", "communes", "departements", "regions", "pays", "iban", "siret"],
-      "Champs saisie" => ["text", "textarea", "number", "decimal_number", "integer_number", "formatted", "date", "datetime", "piece_justificative", "titre_identite", "checkbox", "drop_down_list", "multiple_drop_down_list", "linked_drop_down_list", "yes_no", "dossier_link"],
+      "Champs saisie" => ["text", "textarea", "number", "decimal_number", "integer_number", "formatted", "date", "datetime", "piece_justificative", "checkbox", "drop_down_list", "multiple_drop_down_list", "linked_drop_down_list", "yes_no", "dossier_link"],
       "Champs référentiels" => ["annuaire_education", "rna", "rnf", "carte", "cnaf", "dgfip", "pole_emploi", "mesri", "epci", "cojo", "referentiel", "engagement_juridique"],
     }.freeze
 

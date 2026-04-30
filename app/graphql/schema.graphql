@@ -881,6 +881,11 @@ type DateChamp implements Champ {
 
 type DateChampDescriptor implements ChampDescriptor {
   """
+  Ce champ est une date de naissance.
+  """
+  birthdate: Boolean
+
+  """
   Description des champs d’un bloc répétable.
   """
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
@@ -1737,6 +1742,13 @@ type Dossier {
   avis(id: ID): [Avis!]!
   champs(id: ID): [Champ!]!
   connectionUsager: ConnectionUsager!
+
+  """
+  Date à laquelle l’usager a pris connaissance de la décision. Null si l’accusé
+  de lecture n’est pas activé sur la démarche ou si l’usager n’a pas encore pris
+  connaissance de la décision.
+  """
+  dateAccuseLectureAgreement: ISO8601DateTime
 
   """
   Date de dépôt.
@@ -5036,6 +5048,16 @@ type Row {
   id: ID!
 }
 
+type Rpg implements GeoArea {
+  commune: String
+  description: String
+  geometry: GeoJSON!
+  id: ID!
+  numero: String
+  source: GeoAreaSource!
+  surface: Float
+}
+
 type SelectionUtilisateur implements GeoArea {
   description: String
   geometry: GeoJSON!
@@ -5575,11 +5597,6 @@ enum TypeDeChamp {
   Texte long
   """
   textarea
-
-  """
-  Titre identité
-  """
-  titre_identite
 
   """
   Oui/Non

@@ -26,7 +26,9 @@ module TreeableConcern
     types_de_champ.each do |type_de_champ|
       if type_de_champ.header_section?
         new_tree = [type_de_champ]
-        walk[type_de_champ.header_section_level_value - 1].push(new_tree)
+        parent_level = type_de_champ.header_section_level_value - 1
+        parent_level -= 1 while parent_level > 0 && walk[parent_level].nil?
+        walk[parent_level].push(new_tree)
         current_tree = walk[type_de_champ.header_section_level_value] = new_tree
       else
         current_tree.push(type_de_champ)

@@ -41,7 +41,7 @@ describe Instructeurs::AvisController, type: :controller do
         let!(:avis) { create(:avis, dossier: dossier, claimant: instructeur, experts_procedure: experts_procedure) }
 
         it 'sends a reminder to the expert' do
-          get :remind, params: { procedure_id: procedure.id, id: avis.id, statut: 'a-suivre' }
+          patch :remind, params: { procedure_id: procedure.id, id: avis.id, statut: 'a-suivre' }
           expect(AvisMailer).to have_received(:avis_invitation_and_confirm_email)
           expect(flash.notice).to eq("Un mail de relance a été envoyé à #{avis.expert.email}")
           expect(avis.reload.reminded_at).to be_present
@@ -52,10 +52,22 @@ describe Instructeurs::AvisController, type: :controller do
         let!(:avis) { create(:avis, dossier: dossier, claimant: instructeur, experts_procedure: experts_procedure, question_label: '123') }
 
         it 'sends a reminder to the expert' do
-          get :remind, params: { procedure_id: procedure.id, id: avis.id, statut: 'a-suivre' }
+          patch :remind, params: { procedure_id: procedure.id, id: avis.id, statut: 'a-suivre' }
           expect(AvisMailer).to have_received(:avis_invitation_and_confirm_email)
           expect(flash.notice).to eq("Un mail de relance a été envoyé à #{avis.expert.email}")
           expect(avis.reload.reminded_at).to be_present
+        end
+      end
+
+      context 'CSRF protection: GET no longer routes to remind' do
+        let!(:avis) { create(:avis, dossier: dossier, claimant: instructeur, experts_procedure: experts_procedure) }
+
+        it 'GET /remind is not routable' do
+          expect(get: remind_instructeur_avis_path(procedure, 'a-suivre', avis)).not_to be_routable
+        end
+
+        it 'PATCH /remind is routable' do
+          expect(patch: remind_instructeur_avis_path(procedure, 'a-suivre', avis)).to be_routable
         end
       end
     end

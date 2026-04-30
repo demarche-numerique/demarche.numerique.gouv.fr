@@ -364,6 +364,24 @@ describe ProcedureCloneConcern, type: :model do
       end
     end
 
+    context 'with a default procedure_presentation active' do
+      let(:procedure) { create(:procedure) }
+      let(:procedure_presentation) { build(:procedure_presentation, assign_to: assign_to) }
+      let(:instructeur) { create(:instructeur) }
+      let(:assign_to) { create(:assign_to, procedure: procedure, instructeur: instructeur) }
+
+      before do
+        procedure.update!(
+          admin_default_procedure_presentation_active: true,
+          admin_default_procedure_presentation_id: procedure_presentation.id
+        )
+      end
+      it 'should not clone default procedure_presentation attributes ' do
+        expect(subject.admin_default_procedure_presentation_active).to be false
+        expect(subject.admin_default_procedure_presentation_id).to be nil
+      end
+    end
+
     context 'with canonical procedure' do
       let(:canonical_procedure) { create(:procedure) }
       let(:procedure) { create(:procedure, canonical_procedure: canonical_procedure, received_mail: received_mail, service: service) }
@@ -407,6 +425,28 @@ describe ProcedureCloneConcern, type: :model do
         it 'should not clone feature for actor' do
           expect(subject.feature_enabled?(:dossier_pdf_vide)).to be true
           expect(Flipper.feature(:dossier_pdf_vide).enabled_gate_names).not_to include(:actor)
+        end
+      end
+
+      context 'with a feature flag enabled by percentage of actors' do
+        before do
+          Flipper.enable_percentage_of_actors(:dossier_pdf_vide, 50)
+          Flipper.enable(:dossier_pdf_vide, procedure)
+        end
+
+        it 'should not clone actor gate for percentage-based feature' do
+          expect(Flipper.feature(:dossier_pdf_vide).actors_value).not_to include(subject.flipper_id)
+        end
+      end
+
+      context 'with a feature flag enabled by percentage of time' do
+        before do
+          Flipper.enable_percentage_of_time(:dossier_pdf_vide, 50)
+          Flipper.enable(:dossier_pdf_vide, procedure)
+        end
+
+        it 'should not clone actor gate for percentage-based feature' do
+          expect(Flipper.feature(:dossier_pdf_vide).actors_value).not_to include(subject.flipper_id)
         end
       end
 

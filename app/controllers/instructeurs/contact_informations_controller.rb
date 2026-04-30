@@ -43,8 +43,10 @@ module Instructeurs
     private
 
     def assign_procedure_and_groupe_instructeur
-      @procedure = current_instructeur.procedures.find params[:procedure_id]
-      @groupe_instructeur = current_instructeur.groupe_instructeurs.find params[:groupe_id]
+      @procedure = current_instructeur.procedures.find(params[:procedure_id])
+      @groupe_instructeur = @procedure.groupe_instructeurs
+        .merge(current_instructeur.groupe_instructeurs)
+        .find(params[:groupe_id])
     end
 
     def contact_information_params

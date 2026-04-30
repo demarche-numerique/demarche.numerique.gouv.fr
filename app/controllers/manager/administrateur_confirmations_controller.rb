@@ -36,6 +36,11 @@ module Manager
     def decrypt_params
       @inviter_id = decrypted_params[:inviter_id]
       @invited_email = decrypted_params[:email]
+
+      if decrypted_params[:procedure_id].present? && decrypted_params[:procedure_id].to_s != params[:procedure_id].to_s
+        flash[:error] = "Le lien que vous avez utilisé est invalide. Veuillez contacter la personne qui vous l’a envoyé."
+        redirect_to manager_procedure_path(@procedure)
+      end
     rescue ActiveSupport::MessageEncryptor::InvalidMessage
       flash[:error] = "Le lien que vous avez utilisé est invalide. Veuillez contacter la personne qui vous l’a envoyé."
       redirect_to manager_procedure_path(@procedure)

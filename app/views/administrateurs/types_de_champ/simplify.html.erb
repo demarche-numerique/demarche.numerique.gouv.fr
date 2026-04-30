@@ -1,4 +1,5 @@
 <% content_for :title, "Amélioration de la qualité du formulaire « #{@procedure.libelle} »" %>
+<% render_procedure_sticky_title(@procedure) %>
 
 <%= render partial: 'administrateurs/breadcrumbs',
   locals: { steps: [['Démarches', admin_procedures_path],
@@ -8,21 +9,5 @@
 <%= render LLM::StepperComponent.new(step_component: LLM::SuggestionFormComponent.new(llm_rule_suggestion: @llm_rule_suggestion)) do |stepper| %>
   <% stepper.with_header do %>
     <%= render LLM::HeaderComponent.new(llm_rule_suggestion: @llm_rule_suggestion) %>
-  <% end %>
-
-  <% if LLM::Rule.last?(@llm_rule_suggestion.rule) || true %>
-    <%= render Dsfr::AlertComponent.new(state: :success) do |component| %>
-      <% component.with_body do %>
-        <p>
-          🎉 <strong>Félicitations</strong>, nous n’avons aucune suggestion
-          pertinente à proposer, ce qui signifie probablement que les libellés
-          du formulaire sont déjà de qualité!
-        </p>
-
-        <p class="fr-mt-2w">
-          <%= link_to "Revenir à l’écran de gestion", admin_procedure_path(@procedure), class: 'fr-link fr-icon-arrow-left-line fr-link--icon--left fr-icon--sm' %>
-        </p>
-      <% end %>
-    <% end %>
   <% end %>
 <% end %>

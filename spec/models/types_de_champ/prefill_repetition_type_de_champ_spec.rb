@@ -29,6 +29,23 @@ RSpec.describe TypesDeChamp::PrefillRepetitionTypeDeChamp, type: :model do
     }
   end
 
+  describe '#possible_values does not contain unescaped HTML (XSS prevention)' do
+    let(:xss_payload) { '<script>alert("XSS")</script>' }
+    let(:procedure_with_dropdown) { create(:procedure, types_de_champ_public: [{ type: :repetition, children: [{ type: :drop_down_list }] }]) }
+    let(:repetition_tdc) { procedure_with_dropdown.draft_types_de_champ_public.find(&:repetition?) }
+
+    before do
+      sub_tdc = procedure_with_dropdown.active_revision.children_of(repetition_tdc).first
+      sub_tdc.update!(drop_down_options: [xss_payload, "safe"])
+    end
+
+    subject(:possible_values) { described_class.new(repetition_tdc, procedure_with_dropdown.active_revision).possible_values }
+
+    it 'does not contain raw script tags from sub-champ drop_down_options' do
+      expect(possible_values).not_to include('<script>alert("XSS")</script>')
+    end
+  end
+
   describe '#example_value' do
     subject(:example_value) { described_class.new(type_de_champ, procedure.active_revision).example_value }
     let(:expected_value) { [{ "champ_#{text_repetition.to_typed_id_for_query}" => "Texte court", "champ_#{integer_repetition.to_typed_id_for_query}" => "42", "champ_#{region_repetition.to_typed_id_for_query}" => "53" }, { "champ_#{text_repetition.to_typed_id_for_query}" => "Texte court", "champ_#{integer_repetition.to_typed_id_for_query}" => "42", "champ_#{region_repetition.to_typed_id_for_query}" => "53" }] }

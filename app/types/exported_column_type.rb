@@ -21,7 +21,14 @@ class ExportedColumnType < ActiveRecord::Type::Value
   end
 
   # db -> ruby
-  def deserialize(value) = cast(value&.then { JSON.parse(_1) })
+  # Returns nil when the referenced column no longer exists in the procedure
+  # (e.g. a type_de_champ was removed after the export template was saved).
+  # Callers of exported_columns must compact the resulting array.
+  def deserialize(value)
+    cast(value&.then { JSON.parse(_1) })
+  rescue ActiveRecord::RecordNotFound
+    nil
+  end
 
   # ruby -> db
   def serialize(value)

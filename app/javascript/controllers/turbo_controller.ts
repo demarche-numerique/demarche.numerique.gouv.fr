@@ -1,7 +1,7 @@
-import { Actions } from '@coldwired/actions';
-import { createReactPlugin, createRoot, type Root } from '@coldwired/react';
-import { parseTurboStream } from '@coldwired/turbo-stream';
 import { session as TurboSession, type StreamElement } from '@hotwired/turbo';
+import { Actions } from 'coldwired/actions';
+import { createReactPlugin, createRoot, type Root } from 'coldwired/react';
+import { parseTurboStream } from 'coldwired/turbo-stream';
 import { makeRetriable } from 'p-retry';
 import type { ComponentType } from 'react';
 import invariant from 'tiny-invariant';

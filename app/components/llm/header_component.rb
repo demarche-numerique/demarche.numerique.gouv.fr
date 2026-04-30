@@ -9,11 +9,13 @@ module LLM
     end
 
     def show_last_suggestion_status?
-      [llm_rule_suggestion.pending?, llm_rule_suggestion.queued?].none?
+      previous_completed_suggestion.present?
     end
 
     def last_suggestion_status_label
-      searched_at = I18n.l(llm_rule_suggestion.created_at, format: :human)
+      return unless previous_completed_suggestion
+
+      searched_at = I18n.l(previous_completed_suggestion.created_at, format: :human)
       t('.last_refresh', searched_at:)
     end
 
@@ -22,6 +24,19 @@ module LLM
     end
 
     class AccordionContentComponent < ApplicationComponent
+    end
+
+    private
+
+    def previous_completed_suggestion
+      @previous_completed_suggestion ||= llm_rule_suggestion
+        .procedure_revision
+        .llm_rule_suggestions
+        .where(tunnel_id: llm_rule_suggestion.tunnel_id)
+        .where.not(id: llm_rule_suggestion.id)
+        .where(state: [:accepted, :skipped, :completed])
+        .order(created_at: :desc)
+        .first
     end
   end
 end

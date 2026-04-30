@@ -1,5 +1,5 @@
 %h1 Groupe « #{@groupe_instructeur.label} »
-.card.mt-2
+.card.fr-mt-4v
   = form_for @groupe_instructeur,
     url: admin_procedure_groupe_instructeur_path(@procedure, @groupe_instructeur),
     html: { class: 'form' } do |f|

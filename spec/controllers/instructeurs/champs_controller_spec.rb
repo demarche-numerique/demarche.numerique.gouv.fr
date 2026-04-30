@@ -3,7 +3,7 @@
 describe Instructeurs::ChampsController, type: :controller do
   let(:instructeur) { create(:instructeur) }
   let(:instructeurs) { [instructeur] }
-  let(:types_de_champ_public) { [{ type: :piece_justificative, nature: 'RIB' }] }
+  let(:types_de_champ_public) { [{ type: :piece_justificative, nature: 'rib' }] }
   let(:procedure) { create(:procedure, instructeurs:, types_de_champ_public:) }
   let(:dossier) { create(:dossier, :en_construction, procedure:) }
   let(:champ) { dossier.champs.first }

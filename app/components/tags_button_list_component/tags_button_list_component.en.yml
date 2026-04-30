@@ -7,3 +7,4 @@ en:
     champ_public: Form data
     champ_private: Private annotations
     properties: JSON properties
+    url_tags: Insert form fields preceding this field to build the dynamic URL

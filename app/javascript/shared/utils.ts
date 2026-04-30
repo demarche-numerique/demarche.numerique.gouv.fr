@@ -150,11 +150,13 @@ export function delegate<E extends Event = Event>(
 export class ResponseError extends Error {
   readonly response: Response;
   readonly errors: string[];
+  readonly isNetworkError: boolean;
 
-  constructor(response: Response, errors?: string[]) {
+  constructor(response: Response, errors?: string[], isNetworkError = false) {
     super(String(response.statusText || errors?.at(0) || response.status));
     this.response = response;
     this.errors = errors || [];
+    this.isNetworkError = isNetworkError;
   }
 }
 
@@ -179,12 +181,14 @@ export function httpRequest(
   {
     csrf = true,
     timeout = FETCH_TIMEOUT,
+    handleAuth = true,
     json,
     ...init
   }: RequestInit & {
     csrf?: boolean;
     json?: unknown;
     timeout?: number | false;
+    handleAuth?: boolean;
   } = {}
 ) {
   const headers = init.headers ? new Headers(init.headers) : new Headers();
@@ -219,17 +223,23 @@ export function httpRequest(
     }
 
     const response = await fetch(url, init).catch((error) => {
-      const body = (error as Error).message;
-      return new Response(body, {
-        status: 418,
-        headers: { 'content-type': 'text/plain' }
-      });
+      if (error instanceof TypeError) {
+        throw new ResponseError(
+          Response.error(),
+          [(error as Error).message],
+          true
+        );
+      }
+      throw error;
     });
 
     if (response.ok) {
       return response;
-    } else if (response.status == 401 || response.status == 403) {
-      location.reload(); // reload whole page so Devise will redirect to sign-in
+    } else if (
+      handleAuth &&
+      (response.status == 401 || response.status == 403)
+    ) {
+      location.reload();
       return null;
     } else {
       const errors = await getResponseErrors(response);

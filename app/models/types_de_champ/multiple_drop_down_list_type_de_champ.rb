@@ -19,20 +19,19 @@ class TypesDeChamp::MultipleDropDownListTypeDeChamp < TypesDeChamp::TypeDeChampB
 
   def columns(procedure:, displayable: true, prefix: nil)
     if drop_down_advanced?
-      path = referentiel.present? ? referentiel_path_to_get_user_value : nil
-      path.present? ? [
+      referentiel.present? ? referentiel.headers_with_path.map do |(header, path)|
         Columns::MultipleDropDownColumn.new(
           procedure_id: procedure.id,
           stable_id:,
           tdc_type: type_champ,
-          label: libelle,
+          label: "#{libelle_with_prefix(prefix)} – Référentiel #{header}",
           type: :enum,
           jsonpath: "$.referentiels.*.data.row.#{path}",
           displayable:,
           options_for_select: referentiel.options_for_path(path),
           mandatory: mandatory?
-        ),
-      ] : []
+        )
+      end : []
     else
       super
     end
@@ -50,10 +49,6 @@ class TypesDeChamp::MultipleDropDownListTypeDeChamp < TypesDeChamp::TypeDeChampB
     end
   rescue JSON::ParserError
     []
-  end
-
-  def referentiel_path_to_get_user_value
-    referentiel.headers_with_path.first.second
   end
 
   private

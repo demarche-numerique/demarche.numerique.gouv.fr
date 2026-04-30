@@ -16,7 +16,7 @@ module NavigationHelper
   private
 
   def procedure_management_section?
-    return true if params[:action].in?(['administrateurs', 'history', 'stats', 'email_notifications', 'deleted_dossiers'])
+    return true if params[:action].in?(['administrateurs', 'history', 'stats', 'email_notifications', 'notification_preferences', 'deleted_dossiers'])
     return true if params[:controller] == 'instructeurs/groupe_instructeurs'
 
     false

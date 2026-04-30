@@ -64,13 +64,17 @@ class FranceConnectService
     [user_info, access_token.id_token]
   end
 
+  # rubocop:disable DS/ApplicationName
+  ALLOWED_HOSTS = %w[demarche.numerique.gouv.fr www.demarches-simplifiees.fr].freeze
+  # rubocop:enable DS/ApplicationName
+
   def self.conf
     config = FRANCE_CONNECT.deep_dup
 
     # TODO: remove this block when migration to new domain is done
     # dirty hack to redirect to the right domain
-    if !Rails.env.test? && Current.host != ENV.fetch("APP_HOST")
-      config[:redirect_uri] = config[:redirect_uri].gsub(ENV.fetch("APP_HOST"), Current.host)
+    if !Rails.env.test? && Current.host != ENV.fetch("APP_HOST") && ALLOWED_HOSTS.include?(Current.host)
+      config[:redirect_uri] = config[:redirect_uri].sub("//#{ENV.fetch("APP_HOST")}/", "//#{Current.host}/")
     end
 
     config

@@ -9,7 +9,7 @@ class OCRService
   def self.analyze(blob, nature:)
     blob_url = blob.url
     case nature
-    when "RIB"                    then analyze_rib(blob_url)
+    when "rib"                    then analyze_rib(blob_url)
     when "justificatif_domicile"  then analyze_2ddoc(blob_url)
     else raise ArgumentError, "OCRService: unknown nature '#{nature}'"
     end

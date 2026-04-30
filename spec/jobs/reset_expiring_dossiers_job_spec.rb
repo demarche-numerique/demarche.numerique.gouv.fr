@@ -3,6 +3,8 @@
 describe ResetExpiringDossiersJob do
   subject { described_class.new(procedure).perform_now }
 
+  around { |example| travel_to(Time.zone.local(2023, 6, 15, 12, 0, 0)) { example.run } }
+
   let(:duree_conservation_dossiers_dans_ds) { 2 }
   let(:procedure) { create(:procedure, duree_conservation_dossiers_dans_ds:) }
 

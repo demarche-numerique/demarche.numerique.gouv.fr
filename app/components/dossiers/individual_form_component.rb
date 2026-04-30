@@ -16,12 +16,14 @@ class Dossiers::IndividualFormComponent < ApplicationComponent
   end
 
   def identity_locked?
-    !for_tiers? && @dossier.france_connected_with_one_identity?
+    !for_tiers? && @dossier.identity_from_fc?
   end
 
   def mandataire_identity_locked?
-    @dossier.france_connected_with_one_identity?
+    @dossier.identity_from_fc?
   end
+
+  private
 
   def back_url
     helpers.commencer_path(path: @dossier.procedure.path)

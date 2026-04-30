@@ -92,8 +92,9 @@ class Attachment::FileFieldComponent < ApplicationComponent
     Attachment::HintsComponent.new(
       champ:,
       attached_file:,
-      show_identity_hint: champ&.titre_identite_nature?,
-      html_id: describedby_hint_id
+      show_identity_hint: champ&.titre_identite?,
+      html_id: describedby_hint_id,
+      max: @max
     )
   end
 
@@ -111,6 +112,14 @@ class Attachment::FileFieldComponent < ApplicationComponent
     return nil if @drop_zone == :none
 
     @drop_zone_decorator ||= Attachment::DropZoneDecorator.new(mode: :integrated)
+  end
+
+  def field_name
+    file_input_component.field_name_or_default
+  end
+
+  def attachment_rerender_after_validation_error?
+    attached_file.record.new_record? && @attachments.any?
   end
 
   private

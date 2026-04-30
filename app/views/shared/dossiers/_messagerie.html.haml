@@ -1,13 +1,6 @@
 .messagerie.fr-container
-  %ol.messages-list{ data: { controller: 'scroll-to' } }
-    - grouped_commentaires_by_date(dossier.preloaded_commentaires).each do |date, commentaires_of_the_day|
-      %li
-        .date-header
-          = human_date(date)
-
-      - commentaires_of_the_day.each do |commentaire|
-        %li.message{ class: commentaire_is_from_me_class(commentaire, connected_user), id: dom_id(commentaire) }
-          = render Dossiers::MessageComponent.new(commentaire: commentaire, connected_user: connected_user, messagerie_seen_at: messagerie_seen_at, heading_level: 'h2', instructeurs_seen_at: local_assigns[:instructeurs_messagerie_seen_at])
+  %ol#commentaire-list.messages-list{ data: { controller: 'scroll-to' } }
+    = render Dossiers::CommentaireListComponent.new(dossier: dossier, connected_user: connected_user, messagerie_seen_at: messagerie_seen_at, instructeurs_seen_at: local_assigns[:instructeurs_messagerie_seen_at])
 
 .padded-fixed-footer
   .fixed-footer
@@ -15,9 +8,9 @@
       .fr-grid-row
         .fr-col-12
           - if dossier.messagerie_available?
-            %div{ data: { controller: 'hide-target' } }
-              %button.fr-btn.fr-icon-add-line.fr-btn--icon-left.fr-mb-2w.width-100-for-xs{ type: 'button', data: { 'hide-target-target': 'source', 'hide-target-hide-source': 'true' } } Nouveau message
-              .fr-hidden{ data: { 'hide-target-target': 'toHide' } }
+            #commentaire-form{ data: { controller: 'hide-target' } }
+              %button#commentaire-new-btn.fr-btn.fr-icon-add-line.fr-btn--icon-left.fr-mb-2w.width-100-for-xs{ type: 'button', data: { 'hide-target-target': 'source', 'hide-target-hide-source': 'true' } } Nouveau message
+              #commentaire-form-body.fr-hidden{ data: { 'hide-target-target': 'toHide' } }
                 .fr-grid-row
                   .fr-col-12.fr-col-offset-md-2.fr-col-md-8
                     = render partial: "shared/dossiers/messages/form", locals: { commentaire: new_commentaire, form_url: form_url, dossier: dossier, connected_user: connected_user }

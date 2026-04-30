@@ -1,0 +1,15 @@
+fr:
+  users:
+    activate:
+      new:
+        expired_link_html: "Le lien de validation du compte instructeur a expiré, %{contact_link} pour obtenir un nouveau lien."
+      create:
+        password_registered: Mot de passe enregistré
+      confirm_email:
+        already_verified: Votre adresse électronique est déjà vérifiée
+        email_verified: Votre adresse électronique a bien été vérifiée
+        expired_link: "Ce lien n’est plus valable, un nouveau lien a été envoyé à l’adresse %{email}"
+        error: "Un problème est survenu, vous pouvez nous contacter sur %{contact_email}"
+      resend_verification_email:
+        email_sent: "Un nouvel email de vérification a été envoyé à l’adresse %{email}."
+        already_verified: "Votre adresse électronique est déjà vérifiée ou vous n’êtes pas connecté."

@@ -44,15 +44,23 @@ export class ApiTokenAutorisationController extends ApplicationController {
   }
 
   addProcedureToSelect(option: HTMLOptionElement) {
-    const template = [
-      `<li class='flex align-center'>`,
-      option.text,
-      "<button class='fr-btn fr-icon-delete-line fr-btn--tertiary-no-outline fr-ml-1w' data-action='click->api-token-autorisation#deleteProcedure'></button>",
-      `<input type='hidden' name='[targets][]' value='${option.value}' />`,
-      `</li>`
-    ].join('');
+    const li = document.createElement('li');
+    li.className = 'flex align-center';
+    li.append(option.text);
 
-    this.proceduresTarget.insertAdjacentHTML('beforeend', template);
+    const button = document.createElement('button');
+    button.className =
+      'fr-btn fr-icon-delete-line fr-btn--tertiary-no-outline fr-ml-1w';
+    button.dataset.action = 'click->api-token-autorisation#deleteProcedure';
+    li.append(button);
+
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = '[targets][]';
+    input.value = option.value;
+    li.append(input);
+
+    this.proceduresTarget.append(li);
   }
 
   deleteProcedure(e: Event) {

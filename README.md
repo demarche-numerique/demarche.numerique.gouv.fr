@@ -160,6 +160,17 @@ The project uses several linters to check code readability and quality.
 
 See deployment notes in [DEPLOYMENT.md](doc/DEPLOYMENT.md)
 
+> [!IMPORTANT]
+> The application must be deployed behind a reverse proxy (e.g. nginx, HAProxy) that overwrites the `X-Forwarded-For` header with the real client IP.
+>
+> Several IP-based security mechanisms rely on `request.remote_ip` to identify the client:
+>
+> - rate limiting (`Rack::Attack`)
+> - trusted networks gate (skip 2FA for instructeurs coming from a trusted IP)
+> - IP allow-lists for API tokens (`whitelisted_ip_*` on API tokens)
+>
+> Without a proxy that sanitizes `X-Forwarded-For`, a client can spoof the header and bypass these protections.
+
 ## Common tasks
 
 ### Super-admin account management tasks

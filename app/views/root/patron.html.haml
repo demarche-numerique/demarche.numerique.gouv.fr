@@ -298,7 +298,7 @@
 
     %h1 Dsfr::NoticeComponent
     %p= link_to "Documentation DSFR Bandeau d’information", "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/bandeau-d-information-importante", **external_link_attributes
-    .my-3
+    .fr-my-6v
       = render Dsfr::NoticeComponent.new(closable: true) do |c|
         - c.with_title do
           Titre de cette notice

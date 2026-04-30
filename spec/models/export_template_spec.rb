@@ -8,7 +8,7 @@ describe ExportTemplate do
   let(:types_de_champ_public) do
     [
       { type: :piece_justificative, libelle: "Justificatif de domicile", mandatory: true, stable_id: 3 },
-      { type: :titre_identite, libelle: "CNI", mandatory: true, stable_id: 5 },
+      { type: :piece_justificative, nature: 'titre_identite', libelle: "CNI", mandatory: true, stable_id: 5 },
     ]
   end
 

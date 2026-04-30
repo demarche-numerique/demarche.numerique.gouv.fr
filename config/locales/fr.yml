@@ -472,7 +472,7 @@ fr:
       avis:
         introduction_file_explaination: "Fichier joint à la demande d’avis"
       search:
-        dossier_not_in_instructor_group: "Le dossier n° %{dossier_id} de la procédure « %{procedure_libelle} » correspond à votre recherche mais il est rattaché au groupe d’instructeurs « %{groupe_instructeur_label} »."
+        dossier_not_in_instructor_group: "Le dossier n° %{dossier_id} de la procédure « %{procedure_libelle} » correspond à votre recherche mais il est rattaché à un autre groupe d’instructeurs."
         deleted_dossier: "Le dossier n° %{dossier_id} de la procédure « %{procedure_libelle} » correspond à votre recherche mais il a été supprimé le %{deleted_at}."
         hidden_dossier: "Le dossier n° %{dossier_id} de la procédure « %{procedure_libelle} » correspond à votre recherche mais il a été placé dans la "
         hidden_dossier_link: "corbeille"
@@ -642,7 +642,7 @@ fr:
           no_mail: "Vous n’avez pas reçu l’email ?"
           check_spams: "Vérifiez la boite Indésirables ou Spam de votre boite email."
           check_account_html: "Avez-vous bien créé un compte <strong>%{application_name}</strong> avec l’adresse <strong>%{email}</strong> ? Si aucun compte n’existe avec cette adresse, vous ne recevrez pas de message."
-          check_france_connect_html: "Vous êtes-vous connecté avec France Connect par le passé ? Dans ce cas <a href=\"%{href}\">essayez à nouveau avec France Connect</a>."
+          check_france_connect_html: "Vous êtes-vous connecté avec FranceConnect par le passé ? Dans ce cas <a href=\"%{href}\">essayez à nouveau avec FranceConnect</a>."
           check_gpdr: "Le compte a pu être supprimé en cas d’inactivité prolongée et sans dossier en cours. Dans ce cas vous devrez recréer un compte à partir d’une démarche."
           title: "Lien de réinitialisation du mot de passe envoyé"
       shared:
@@ -819,7 +819,6 @@ fr:
   errors:
     format: "Le champ « %{attribute} » %{message}"
     messages:
-      saml_not_authorized: "Vous n’êtes pas autorisé à accéder à ce service."
       dossier_not_found: "Le dossier n’existe pas ou vous n’y avez pas accès."
       # dossier_map_not_activated: "Le dossier n’a pas accès à la cartographie."
       targeted_user_link_expired: "Ce lien d’invitation n’est plus valable ou le dossier n’est plus accessible."
@@ -829,7 +828,7 @@ fr:
         email_domain_not_allowed: "Votre domaine d’email n’est pas autorisé à utiliser ProConnect sur cette plateforme."
       france_connect:
         connexion: "Une erreur est survenue lors de la connexion avec FranceConnect. Veuillez réessayer."
-        forbidden_html: "Seul-e-s les usagers peuvent se connecter via France Connect. En tant qu’instructeur ou administrateur, veuillez vous identifier avec ProConnect ou vous connecter avec votre compte %{app_name}."
+        forbidden_html: "Seul-e-s les usagers peuvent se connecter via FranceConnect. En tant qu’instructeur ou administrateur, veuillez vous identifier avec ProConnect ou vous connecter avec votre compte %{app_name}."
         internal_error: "Une erreur est survenue lors de la connexion avec FranceConnect. Veuillez essayer un autre mode de connexion."
       siret:
         network_error: 'Désolé, la récupération des informations SIRET est temporairement indisponible. Veuillez réessayer dans quelques instants.'
@@ -853,6 +852,7 @@ fr:
       not_in_range: "doit être un nombre compris entre %{min} et %{max}"
       limit_min: "doit être un nombre supérieur ou égal à %{min}"
       limit_max: "doit être un nombre inférieur ou égal à %{max}"
+      invalid_birthdate: "doit être une date de naissance valide (entre le 1er janvier 1900 et aujourd’hui)"
       date_in_past: "doit être une date dans le passé"
       not_in_range_date: "doit être une date comprise entre le %{start_date} et le %{end_date}"
       limit_start_date: "doit être une date supérieure ou égale au %{start_date}"
@@ -966,7 +966,7 @@ fr:
         identity_saved: "Identité enregistrée"
       attestation:
         not_available: "L’attestation n’est pas disponible, veuillez réessayer plus tard."
-      papertrail:
+      attestation_depot:
         receipt: "Attestation de dépôt"
         description: "Ce document atteste que %{user_name} a déposé le %{date} un dossier sur la démarche « %{procedure} »."
         file_submitted_at: "Dossier déposé le"
@@ -976,13 +976,13 @@ fr:
           en_instruction: "en cours d’instruction par l’administration"
           accepte: "accepté"
           refuse: "refusé"
-          sans suite: "classé sans suite"
+          sans_suite: "classé sans suite"
         administrative_service: "Service administratif"
         generated_at: "Fait le %{date},"
         signature: "La direction de %{app_name}"
       show:
-        papertrail:
-          get_papertrail: "Obtenir une attestation de dépôt de dossier"
+        attestation_depot:
+          get_attestation_depot: "Obtenir une attestation de dépôt de dossier"
           filename: "attestation-depot_dossier-%{dossier_id}.pdf"
       show_in_trash:
         page_title: "Dossier n° %{numero} - En corbeille"
@@ -1018,6 +1018,11 @@ fr:
       alert_error_annotations: Les annotations privées n’ont pas été correctement renseignées. Elles sont indispensables à l’instruction du dossier.
       alert_error_annotations_link: Compléter les annotations privées
       alert_unspecified_attestation_champs: 'Attention, les valeurs suivantes n’ont pas été renseignées mais sont nécessaires pour pouvoir envoyer une attestation valide :'
+    avis:
+      revoquer:
+        revoked: "%{email} ne peut plus donner son avis sur ce dossier."
+      remind:
+        reminded: "Un mail de relance a été envoyé à %{email}"
     procedure_presentation:
       customize_filters:
         exit_customization: "Quitter la personnalisation"
@@ -1053,7 +1058,7 @@ fr:
     jetons:
       index:
         api_entreprise_description_html: "%{app_name} utilise <a target=\"_blank\" rel=\"noopener\" title=\"En savoir plus sur API Entreprise — Nouvel onglet\" href=\"https://entreprise.api.gouv.fr/\">API Entreprise</a> qui permet de récupérer les informations administratives des entreprises et des associations.<br />Si vous avez besoin d’informations complémentaires, vous pouvez demander votre propre habilitation API Entreprise en cliquant sur le lien suivant <a target=\"_blank\" rel=\"noopener\" title=\"Demander une habilitation API Entreprise — Nouvel onglet\" href=\"https://api.gouv.fr/les-api/api-entreprise/demande-acces\">https://api.gouv.fr/les-api/api-entreprise/demande-acces</a>."
-        api_particulier_description_html: "%{app_name} utilise <a target=\"_blank\" rel=\"noopener\" title=\"En savoir plus sur API Particulier — Nouvel onglet\" href=\"https://api.gouv.fr/les-api/api-particulier\">API Particulier</a> qui permet d’accéder aux données familiales (CAF), aux données fiscales (DGFiP), au statut pôle-emploi et au statut étudiant d’un citoyen.<br />Pour en bénéficier, demandez une habilitation API Particulier en cliquant sur le lien suivant <a target=\"_blank\" rel=\"noopener\" title=\"Demander une habilitation API Particulier — Nouvel onglet\" href=\"https://api.gouv.fr/les-api/api-particulier/demande-acces\">https://api.gouv.fr/les-api/api-particulier/demande-acces</a>."
+        api_particulier_description_html: "%{app_name} utilise <a target=\"_blank\" rel=\"noopener\" title=\"En savoir plus sur API Particulier — Nouvel onglet\" href=\"https://api.gouv.fr/les-api/api-particulier\">API Particulier</a> qui permet d’accéder aux données familiales (CAF ou MSA).<br />Pour en bénéficier, demandez une habilitation API Particulier en cliquant sur le lien suivant <a target=\"_blank\" rel=\"noopener\" title=\"Demander une habilitation API Particulier — Nouvel onglet\" href=\"https://api.gouv.fr/les-api/api-particulier/demande-acces\">https://api.gouv.fr/les-api/api-particulier/demande-acces</a>."
       update_particulier:
         token_ok: "Le jeton a bien été mis à jour"
         no_scopes_token: "Mise à jour impossible : le jeton n’a pas acces aux données.<br><br>Vérifiez-le auprès de <a href='https://datapass.api.gouv.fr/'>https://datapass.api.gouv.fr/</a>"
@@ -1087,6 +1092,11 @@ fr:
       use_another_email: Non, utiliser une autre adresse électronique
       email_suggest:
         wanna_say: 'Voulez-vous dire ?'
+    confirm_email_merge_password:
+      title: Confirmer l’association à votre compte
+      intro_html: "Un compte existe déjà à l’adresse <b>%{email}</b>. Pour autoriser son association à FranceConnect, veuillez saisir le mot de passe de ce compte."
+      password_label: Mot de passe
+      submit: Confirmer
     merge:
       title: "Fusion des comptes FranceConnect et %{application_name}"
       subtitle_html: "Bonjour,<br><br>Votre compte FranceConnect utilise <b class='bold'>%{email}</b> comme adresse électronique de contact.<br>Or il existe un compte sur %{application_name} avec cette adresse électronique."

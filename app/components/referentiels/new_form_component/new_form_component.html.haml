@@ -11,19 +11,15 @@
         = form.hidden_field :type
 
       - if @referentiel.type == 'Referentiels::APIReferentiel'
-        = render Dsfr::InputComponent.new(form:, attribute: :url, opts: { data: { controller: 'autosubmit', no_autosubmit: 'input' } }) do |c|
-          - c.with_describedby do
-            - if @referentiel.url.blank? || @referentiel.errors.where(:url).present?
-              = render Dsfr::AlertComponent.new(state: :warning, title: nil, size: :sm, heading_level: :p, extra_class_names: 'fr-mt-2w') do |c|
-                - c.with_body do
-                  %p
-                    Pour des raisons de sécurité,
-                    %strong seuls les domaines se terminant par .gouv.fr sont automatiquement autorisés
-                    (à l’exception de .beta.gouv.fr). Les autres domaines sont soumis à une validation manuelle de notre part, merci de nous en faire la demande par mail à "
-                    = mail_to CONTACT_EMAIL, CONTACT_EMAIL, class: 'fr-link'
-                    = "."
-            - else
-              .fr-mt-1w.fr-message.fr-message--info Attention si vous appelez une API qui renvoie de la donnée personnelle, vous devez en informer votre DPO.
+        #url-tiptap{ data: { controller: 'tiptap', tiptap_insert_after_tag_value: '', tiptap_single_line_value: 'true' } }
+          .fr-input-group.fr-mb-3w
+            %label.fr-label.fr-mb-1w URL du référentiel
+            #editor.tiptap-editor.tiptap-inline{ data: { tiptap_target: 'editor', turbo_force: :browser } }
+            = hidden_field_tag "referentiel[url_tiptap]", @referentiel.url_tiptap&.to_json, data: { tiptap_target: 'input', action: 'input->autosubmit-validate-url#debounce' }
+            = render partial: 'administrateurs/referentiels/url_validation_feedback', locals: { referentiel: @referentiel }
+          .fr-mb-3w
+            = render TagsButtonListComponent.new(tags:)
+        = render partial: 'administrateurs/referentiels/test_data_fields', locals: { referentiel: @referentiel, test_data_tags: test_data_tags }
 
 
       - elsif @referentiel.type == 'Referentiels::CsvReferentiel'
@@ -42,7 +38,6 @@
         Mode de remplissage du champ par l’usager
 
       = render Dsfr::InputComponent.new(form:, attribute: :hint)
-      = render Dsfr::InputComponent.new(form:, attribute: :test_data)
       .clearfix
 
     - if @referentiel.type == 'Referentiels::APIReferentiel'

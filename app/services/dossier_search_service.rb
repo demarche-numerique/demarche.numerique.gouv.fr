@@ -39,8 +39,8 @@ class DossierSearchService
   def self.dossier_by_full_text(dossiers, search_terms, with_annotations: false)
     columns = with_annotations ? 'search_terms || \' \' || private_search_terms' : 'search_terms'
 
-    ts_vector = "to_tsvector('french', unaccent(#{columns}))"
-    ts_query = "to_tsquery('french', unaccent(#{Dossier.connection.quote(to_tsquery(search_terms))}))"
+    ts_vector = "to_tsvector('french_unaccent', #{columns})"
+    ts_query = "to_tsquery('french_unaccent', #{Dossier.connection.quote(to_tsquery(search_terms))})"
 
     dossiers
       .where("#{ts_vector} @@ #{ts_query}")

@@ -455,7 +455,7 @@ describe Users::CommencerController, type: :controller do
       it 'set the path to return after sign-up to the procedure start page' do
         subject
         expect(controller.stored_location_for(:user)).to eq(commencer_path(path: published_procedure.path))
-        expect(subject).to redirect_to(pro_connect_login_path)
+        expect(subject).to redirect_to(pro_connect_path)
       end
 
       context 'when a prefill token is given' do

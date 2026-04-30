@@ -57,13 +57,7 @@ describe API::V2::GraphqlController do
     context 'with query' do
       let(:query) { 'query getDossier($dossierNumber: Int!) { dossier(number: $dossierNumber) { id } }' }
 
-      it { expect(gql_errors.first[:message]).to eq('Without a token, only persisted queries are allowed') }
-    end
-
-    context 'with queryId' do
-      let(:query_id) { 'ds-query-v2' }
-
-      it { expect(gql_errors.first[:message]).to eq('An object of type Dossier was hidden due to permissions') }
+      it { expect(gql_errors.first[:message]).to eq('Without a token, only the public getDemarcheDescriptor query and introspection are allowed') }
     end
   end
 
@@ -94,7 +88,7 @@ describe API::V2::GraphqlController do
       before { allow_any_instance_of(API::V2::Schema::Timeout).to receive(:max_seconds).and_return(0) }
 
       it {
-        expect(gql_errors.first[:message]).to eq('Timeout on Query.dossier')
+        expect(gql_errors.first[:message]).to start_with('Timeout on ')
         expect(gql_errors.first[:extensions]).to eq({ code: 'timeout' })
       }
     end

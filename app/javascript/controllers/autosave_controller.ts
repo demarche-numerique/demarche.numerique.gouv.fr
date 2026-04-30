@@ -1,5 +1,5 @@
-import { isButtonElement, matchInputElement } from '@coldwired/utils';
 import { getConfig, httpRequest, ResponseError } from '@utils';
+import { matchInputElement } from 'coldwired/utils';
 
 import { AutoUpload } from '../shared/activestorage/auto-upload';
 import {
@@ -8,8 +8,8 @@ import {
   FileUploadError
 } from '../shared/activestorage/file-upload-error';
 import {
-  showAttachmentError,
-  hideAttachmentError
+  hideAttachmentError,
+  showAttachmentError
 } from '../shared/attachment-error';
 import { ApplicationController } from './application_controller';
 
@@ -31,7 +31,7 @@ const AUTOSAVE_CONDITIONAL_SPINNER_DEBOUNCE_DELAY = 200;
 
 // This is a controller we attach to each "champ" in the main form. It performs
 // the save and dispatches a few events that allow `AutosaveStatusController` to
-// coordinate notifications and retries:
+// coordinate notifications:
 // * `autosave:enqueue` - dispatched when a new save attempt starts
 // * `autosave:end` - dispatched after sucessful save
 // * `autosave:error` - dispatched when an error occures
@@ -51,25 +51,6 @@ export class AutosaveController extends ApplicationController {
   disconnect() {
     this.#abortController?.abort();
     this.#latestPromise = Promise.resolve();
-  }
-
-  onClickRetryButton(event: Event) {
-    const target = event.target;
-    if (isButtonElement(target)) {
-      const inputTargetSelector = target.dataset.inputTarget;
-      if (inputTargetSelector) {
-        const target =
-          this.element.querySelector<HTMLInputElement>(inputTargetSelector);
-        if (
-          target &&
-          target.type == 'file' &&
-          target.dataset.autoAttachUrl &&
-          target.files?.length
-        ) {
-          this.enqueueAutouploadRequest(target, target.files[0]);
-        }
-      }
-    }
   }
 
   private onChange(event: Event) {
@@ -231,7 +212,15 @@ export class AutosaveController extends ApplicationController {
 
     const formData = new FormData();
     for (const input of inputs) {
-      if (input.type == 'checkbox') {
+      if (input instanceof HTMLSelectElement) {
+        if (input.multiple && input.selectedOptions.length > 0) {
+          for (const option of input.selectedOptions) {
+            formData.append(input.name, option.value);
+          }
+        } else {
+          formData.append(input.name, input.value);
+        }
+      } else if (input.type == 'checkbox') {
         formData.append(input.name, input.checked ? input.value : '');
       } else if (input.type == 'radio') {
         if (input.checked) {
@@ -257,7 +246,8 @@ export class AutosaveController extends ApplicationController {
           form.dataset.turboMethod?.toUpperCase() || 'PATCH'
       },
       signal: this.#abortController.signal,
-      timeout: AUTOSAVE_TIMEOUT_DELAY
+      timeout: AUTOSAVE_TIMEOUT_DELAY,
+      handleAuth: false
     }).turbo();
   }
 
@@ -269,7 +259,7 @@ export class AutosaveController extends ApplicationController {
     const element = this.element as HTMLElement;
 
     return [
-      ...element.querySelectorAll<HTMLInputElement>(
+      ...element.querySelectorAll<HTMLInputElement | HTMLSelectElement>(
         'input:not([type=file]), textarea, select'
       )
     ].filter((element) => !element.disabled);

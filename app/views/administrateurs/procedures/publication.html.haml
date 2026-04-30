@@ -19,10 +19,10 @@
 
         %div{ style: 'margin-top: 30px;' }
           - if @procedure.close? || @procedure.depubliee?
-            %p.mb-4= t('.closed_procedure_html')
+            %p.fr-mb-8v= t('.closed_procedure_html')
             = render partial: 'publication_form', locals: { procedure: @procedure, administrateur: @current_administrateur }
           - elsif @procedure.draft_changed?
-            %p.mb-4= t('.draft_changed_procedure_html')
+            %p.fr-mb-8v= t('.draft_changed_procedure_html')
             = render partial: 'publication_form', locals: { procedure: @procedure, administrateur: @current_administrateur }
           - elsif @procedure.publiee?
             %p= t('.published_procedure_html')

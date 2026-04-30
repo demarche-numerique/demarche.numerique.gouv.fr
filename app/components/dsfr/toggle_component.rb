@@ -10,13 +10,14 @@ class Dsfr::ToggleComponent < ApplicationComponent
   attr_reader :data
   attr_reader :extra_class_names
 
-  def initialize(form:, target:, title: nil, html_title: nil, disabled: nil, hint: nil, toggle_labels: { checked: 'Activé', unchecked: 'Désactivé' }, opt: nil, extra_class_names: "fr-toggle--label-left")
+  def initialize(form:, target:, title: nil, html_title: nil, disabled: nil, checked: nil, hint: nil, toggle_labels: { checked: 'Activé', unchecked: 'Désactivé' }, opt: nil, extra_class_names: "fr-toggle--label-left")
     @form = form
     @target = target
     @title = title
     @html_title = html_title
     @hint = hint
     @disabled = disabled
+    @checked = checked
     @toggle_labels = toggle_labels
     @data = opt
     @extra_class_names = extra_class_names
@@ -24,19 +25,33 @@ class Dsfr::ToggleComponent < ApplicationComponent
 
   private
 
-  def label_for
-    return input_id if @form.object.present?
+  def check_box_options
+    opts = { class: 'fr-toggle__input', disabled: disabled }
+    opts[:id] = input_id if @form.object.present?
+    opts[:checked] = @checked unless @checked.nil?
+    opts[:data] = @data if @data.present?
+    opts
+  end
 
-    return "#{@form.options[:namespace]}_#{target}" if @form.options[:namespace].present?
-
-    target.to_s
+  def label_options
+    opts = { data: label_data, class: 'fr-toggle__label' }
+    opts[:for] = input_id if @form.object.present?
+    opts
   end
 
   def input_id
-    if @form.object.present?
-      dom_id(@form.object, target)
+    dom_id(@form.object, target)
+  end
+
+  def label_data
+    if toggle_labels
+      {
+        'fr-checked-label': toggle_labels[:checked],
+        'fr-unchecked-label': toggle_labels[:unchecked],
+        'fr-js-toggle-status-label': true,
+      }
     else
-      target.to_s
+      { 'fr-js-toggle-status-label': true }
     end
   end
 end

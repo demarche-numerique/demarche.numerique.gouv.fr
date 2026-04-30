@@ -24,6 +24,7 @@ en:
             svr_decision_before: SVR decision date before
             user_from_france_connect?: "France connecté ?"
             for_tiers: "For tiers"
+            submitted_with_france_connect: "FranceConnect authentication"
             mandataire_last_name: "Tier last name"
             mandataire_first_name: "Tier first name"
             accuse_lecture_agreement_at: 'Read receipt'

@@ -1,0 +1,46 @@
+<div id="test-data-fields">
+  <% if test_data_tags.present? %>
+    <p class="fr-text--sm fr-mb-1w">
+      Renseignez des valeurs de test pour chaque paramètre afin de vérifier que
+      l’URL du référentiel fonctionne correctement.
+    </p>
+    <div class="fr-table fr-table--bordered fr-table--no-caption fr-mb-4w">
+      <div class="fr-table__wrapper">
+        <div class="fr-table__container">
+          <div class="fr-table__content">
+            <table>
+              <thead>
+                <tr>
+                  <th class="fr-py-2w">Paramètre</th>
+                  <th class="fr-py-2w">Valeur de test</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% test_data_tags.each do |tag| %>
+                  <% has_error = referentiel.errors.has_key?(:"test_data_tiptap_#{tag[:id]}") %>
+
+                  <tr>
+                    <td class="fr-py-2w">
+                      <span class="fr-tag fr-tag--sm"><%= tag[:label] %></span>
+                    </td>
+
+                    <td class="fr-py-2w">
+                      <div class="fr-input-group <%= 'fr-input-group--error' if has_error %>">
+                        <%= text_field_tag "referentiel[test_data_tiptap][#{tag[:id]}]", referentiel.test_data_tiptap&.dig(tag[:id]), class: "fr-input fr-input--sm", placeholder: "ex : valeur de test", required: true, "aria-invalid": has_error %>
+
+                        <% if has_error %>
+                          <p class="fr-error-text">Valeur de test requise</p>
+                        <% end %>
+                      </div>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

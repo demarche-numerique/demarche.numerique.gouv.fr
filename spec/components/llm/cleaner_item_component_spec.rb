@@ -10,7 +10,7 @@ RSpec.describe LLM::CleanerItemComponent, type: :component do
 
   describe '.step_title' do
     it 'returns the correct title' do
-      expect(described_class.step_title).to eq("Nettoyage des champs redondants")
+      expect(described_class.step_title).to eq("Demande unique d’information")
     end
   end
 

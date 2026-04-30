@@ -1,9 +1,3 @@
-<% if dossier.france_connected_with_one_identity? && current_user.instructeur? && !current_user.owns_or_invite?(dossier) %>
-  <% content_for(:notice_info) do %>
-    <%= render partial: "shared/dossiers/france_connect_informations_notice", locals: { user_information: dossier.user.france_connect_informations.first } %>
-  <% end %>
-<% end %>
-
 <div
   class="counter-start-header-section dossier-show <%= class_names("dossier-show-instructeur" => profile == "instructeur") %>"
   data-controller="lightbox clipboard2"
@@ -74,6 +68,10 @@
       <% end %>
     </div>
   </div>
+
+  <% if dossier.submitted_with_france_connect? && dossier.user.france_connect_informations.present? && current_user.instructeur? && !current_user.owns_or_invite?(dossier) %>
+    <%= render partial: "shared/dossiers/france_connect_informations_notice", locals: { user_information: dossier.user.france_connect_informations.first } %>
+  <% end %>
 
   <dl class="fr-pl-0">
     <%= render partial: "shared/dossiers/user_infos", locals: { user_deleted: dossier.user_deleted?, email: dossier.user_email_for(:display), for_tiers: dossier.for_tiers?, beneficiaire_mail: dossier.for_tiers? ? dossier.individual.email : ""} %>

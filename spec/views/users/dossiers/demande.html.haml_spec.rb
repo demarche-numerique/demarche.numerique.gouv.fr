@@ -36,7 +36,7 @@ describe 'users/dossiers/demande', type: :view do
     it { expect(rendered).not_to have_text('Déposé le') }
   end
 
-  context 'when the user is logged in with france connect' do
+  context 'when the user is logged in with FranceConnect' do
     let(:france_connect_information) { build(:france_connect_information) }
     let(:user) { build(:user, france_connect_informations: [france_connect_information]) }
     let(:procedure1) { create(:procedure, :with_type_de_champ, for_individual: true) }
@@ -46,8 +46,8 @@ describe 'users/dossiers/demande', type: :view do
       render
     end
 
-    it 'does not fill the individual with the informations from France Connect' do
-      expect(view.content_for(:notice_info)).not_to have_text("Le dossier a été déposé par le compte de #{france_connect_information.given_name} #{france_connect_information.family_name}, authentifié par FranceConnect le #{france_connect_information.updated_at.strftime('%d/%m/%Y')}")
+    it 'does not fill the individual with the informations from FranceConnect' do
+      expect(rendered).not_to have_text("Le dossier a été déposé par le compte de #{france_connect_information.given_name} #{france_connect_information.family_name}, authentifié par FranceConnect")
     end
   end
 

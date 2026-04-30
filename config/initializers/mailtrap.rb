@@ -10,10 +10,10 @@ if ENV.enabled?("MAILTRAP")
     ActionMailer::Base.mailtrap_settings = {
       user_name: ENV.fetch("MAILTRAP_USERNAME"),
       password: ENV.fetch("MAILTRAP_PASSWORD"),
-      address: 'sandbox.smtp.mailtrap.io',
-      domain: 'sandbox.smtp.mailtrap.io',
-      port: '2525',
-      authentication: :login,
+      address: ENV.fetch("MAILTRAP_ADDRESS", 'sandbox.smtp.mailtrap.io'),
+      domain: ENV.fetch("MAILTRAP_DOMAIN", 'sandbox.smtp.mailtrap.io'),
+      port: ENV.fetch("MAILTRAP_PORT", '2525'),
+      authentication: ENV.fetch("MAILTRAP_AUTHENTICATION", :login),
     }
   end
 end

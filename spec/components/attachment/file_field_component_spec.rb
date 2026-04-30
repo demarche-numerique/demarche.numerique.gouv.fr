@@ -90,7 +90,7 @@ RSpec.describe Attachment::FileFieldComponent, type: :component do
     subject { render_inline(described_class.new(context:, drop_zone: :integrated)).to_html }
 
     context 'when champ is a piece_justificative with titre_identite nature' do
-      let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :piece_justificative, nature: 'TITRE_IDENTITE' }]) }
+      let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :piece_justificative, nature: 'titre_identite' }]) }
       let(:dossier) { create(:dossier, procedure:) }
       let(:champ) { dossier.champs.first }
       let(:context) { Attachment::Context.new(champ:) }
@@ -108,7 +108,7 @@ RSpec.describe Attachment::FileFieldComponent, type: :component do
       let(:context) { Attachment::Context.new(champ:) }
 
       it 'does not render format info, only max size' do
-        expect(subject).to have_content(/Taille maximale autorisée/)
+        expect(subject).to have_content(/Taille maximale par fichier/)
         expect(subject).to have_no_content('Formats acceptés')
       end
     end
@@ -159,7 +159,7 @@ RSpec.describe Attachment::FileFieldComponent, type: :component do
     end
 
     context 'when champ is a piece_justificative with RIB nature' do
-      let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :piece_justificative, nature: 'RIB' }]) }
+      let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :piece_justificative, nature: 'rib' }]) }
       let(:dossier) { create(:dossier, procedure:) }
       let(:champ) { dossier.champs.first }
       let(:context) { Attachment::Context.new(champ:) }

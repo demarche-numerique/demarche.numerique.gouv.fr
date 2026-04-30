@@ -33,6 +33,8 @@ class ProcedurePresentation < ApplicationRecord
   attribute :expirant_filters, :filtered_column, array: true
   attribute :archives_filters, :filtered_column, array: true
 
+  attr_writer :admin_default_procedure_presentation_active_virtual
+
   before_create { self.displayed_columns = procedure.default_displayed_columns }
   before_create :set_default_filters
 
@@ -92,16 +94,6 @@ class ProcedurePresentation < ApplicationRecord
 
   def filters_name_for(statut) = statut.tr('-', '_').then { "#{_1}_filters" }
 
-  def displayed_fields_for_headers
-    columns = [
-      procedure.dossier_id_column,
-      *displayed_columns,
-      procedure.dossier_state_column,
-    ]
-    columns.concat(procedure.sva_svr_columns.filter(&:displayable)) if procedure.sva_svr_enabled?
-    columns
-  end
-
   def set_default_filters
     default_filters_for_all_statuts = [
       FilteredColumn.new(column: procedure.dossier_state_column),
@@ -111,6 +103,22 @@ class ProcedurePresentation < ApplicationRecord
 
     ALL_FILTERS.each do |filters_by_status|
       send("#{filters_by_status}=", default_filters_for_all_statuts) if send(filters_by_status).blank?
+    end
+  end
+
+  def admin_default_procedure_presentation_active_virtual
+    return @admin_default_procedure_presentation_active_virtual if !@admin_default_procedure_presentation_active_virtual.nil?
+
+    procedure&.admin_default_procedure_presentation_active
+  end
+
+  def effective_displayed_columns
+    if procedure.admin_default_procedure_presentation_active && !customized
+      ProcedurePresentation
+        .find(procedure.admin_default_procedure_presentation_id)
+        .displayed_columns
+    else
+      displayed_columns
     end
   end
 end

@@ -107,7 +107,9 @@ describe Experts::AvisController, type: :controller do
     describe '#bilans_bdf' do
       let(:avis) { avis_without_answer }
 
-      before { get :bilans_bdf, params: { id: avis, procedure_id: } }
+      before { get :bilans_bdf, params: { id: avis, procedure_id:, format: } }
+
+      let(:format) { :xlsx }
 
       it { expect(response).to redirect_to(expert_avis_path(avis_without_answer)) }
 
@@ -115,6 +117,16 @@ describe Experts::AvisController, type: :controller do
         let(:avis) { revoked_avis }
 
         it { expect(response).to redirect_to(root_path) }
+      end
+
+      context 'with bilans bdf present and a disallowed format' do
+        let(:etablissement) { create(:etablissement, entreprise_bilans_bdf: [{ foo: 'bar' }]) }
+        let(:dossier) { create(:dossier, :en_construction, procedure:, etablissement:) }
+        let(:format) { :inline }
+
+        it 'redirects without invoking the dynamic render' do
+          expect(response).to redirect_to(expert_avis_path(avis_without_answer))
+        end
       end
     end
 
@@ -289,15 +301,22 @@ describe Experts::AvisController, type: :controller do
           expect(DossierMailer).to receive(:notify_new_avis_to_instructeur).once.with(avis_without_answer, instructeur_with_instant_avis_notification.email).and_return(double(deliver_later: true))
           subject
         end
+
+        it 'notifies the instructeur even when the expert answers within 30 minutes of the avis creation' do
+          avis_without_answer.update_column(:updated_at, 13.minutes.ago)
+
+          expect(DossierMailer).to receive(:notify_new_avis_to_instructeur).once
+            .with(avis_without_answer, instructeur_with_instant_avis_notification.email)
+            .and_return(double(deliver_later: true))
+          subject
+        end
       end
 
       context 'with attachment' do
         let(:file) { fixture_file_upload('spec/fixtures/files/piece_justificative_0.pdf', 'application/pdf') }
 
         before do
-          expect(ClamavService).to receive(:safe_file?).and_return(true)
           post :update, params: { id: avis_without_answer.id, procedure_id:, avis: { answer: 'answer', piece_justificative_file: file } }
-          perform_enqueued_jobs
           avis_without_answer.reload
         end
 
@@ -596,14 +615,20 @@ describe Experts::AvisController, type: :controller do
     let(:procedure_id) { procedure.id }
 
     describe '#sign_up' do
+      let(:valid_confirmation_token) { "1234" }
+      let(:confirmation_token) { valid_confirmation_token }
+      before { avis.expert.user.update(confirmation_token: valid_confirmation_token) }
+
       subject do
-        get :sign_up, params: { id: avis.id, procedure_id:, email: avis.expert.email }
+        get :sign_up, params: { id: avis.id, procedure_id:, email: avis.expert.email, confirmation_token: }
       end
 
+      # Sécurité: l’état de révocation d’un avis ne doit pas être observable
+      # par un attaquant non authentifié (IDOR / information disclosure).
       context 'when the avis is revoked' do
         before { avis.update(revoked_at: Time.zone.now) }
 
-        it { is_expected.to redirect_to(root_path) }
+        it { is_expected.to have_http_status(:success) }
       end
 
       context 'when the expert hasn’t signed up yet' do
@@ -626,6 +651,14 @@ describe Experts::AvisController, type: :controller do
             before { sign_out(expert.user) }
 
             it { is_expected.to redirect_to new_user_session_url }
+
+            # Sécurité: sans confirmation_token valide, l’assignation d’un expert
+            # à un avis ne doit pas être observable par un attaquant.
+            context 'and no confirmation_token is provided' do
+              let(:confirmation_token) { nil }
+
+              it { is_expected.not_to redirect_to new_user_session_url }
+            end
           end
         end
 
@@ -664,13 +697,52 @@ describe Experts::AvisController, type: :controller do
         it { is_expected.to redirect_to(root_path) }
       end
 
+      # Sécurité: un confirmation_token absent ou vide ne doit jamais matcher,
+      # même si un expert déjà confirmé a confirmation_token = NULL en base
+      # (cas d’un user créé via User.create_or_promote_to_expert avec confirmed_at).
+      context 'when the expert user has a NULL confirmation_token in database' do
+        let(:password) { '{Another-$3cure-p4ssWord}' }
+        before { avis.expert.user.update_column(:confirmation_token, nil) }
+
+        context 'when the confirmation_token param is omitted' do
+          subject do
+            post :update_expert, params: {
+              id: avis_id,
+              procedure_id:,
+              email:,
+              user: { password: },
+            }
+          end
+
+          it { is_expected.to redirect_to(root_path) }
+
+          it 'does not change the expert password' do
+            subject
+            expect(avis.expert.user.reload.valid_password?(password)).to be false
+          end
+        end
+
+        context 'when the confirmation_token param is empty' do
+          let(:confirmation_token) { "" }
+
+          it { is_expected.to redirect_to(root_path) }
+
+          it 'does not change the expert password' do
+            subject
+            expect(avis.expert.user.reload.valid_password?(password)).to be false
+          end
+        end
+      end
+
       context 'when valid token is provided' do
         let(:confirmation_token) { valid_confirmation_token }
 
+        # Sécurité: l’état de révocation d’un avis ne doit pas être observable
+        # par un attaquant non authentifié (IDOR / information disclosure).
         context 'when the avis is revoked' do
           before { avis.update(revoked_at: Time.zone.now) }
 
-          it { is_expected.to redirect_to(root_path) }
+          it { is_expected.to redirect_to(expert_all_avis_path) }
         end
 
         context 'when the expert hasn’t signed up yet' do

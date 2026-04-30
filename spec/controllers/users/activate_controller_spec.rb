@@ -11,7 +11,7 @@ describe Users::ActivateController, type: :controller do
         expect {
           post :resend_verification_email
         }.to change { user.reload.confirmation_token }
-        expect(flash[:notice]).to eq("Un nouvel email de vérification a été envoyé à l’adresse #{user.email}.")
+        expect(flash[:notice]).to eq(I18n.t("users.activate.resend_verification_email.email_sent", email: user.email))
         expect(response).to redirect_to(root_path(user))
       end
     end
@@ -21,7 +21,7 @@ describe Users::ActivateController, type: :controller do
 
       it 'does not send mail and shows an alert' do
         post :resend_verification_email
-        expect(flash[:alert]).to eq("Votre adresse électronique est déjà vérifié ou vous n'êtes pas connecté.")
+        expect(flash[:alert]).to eq(I18n.t('users.activate.resend_verification_email.already_verified'))
         expect(response).to redirect_to(root_path(user))
       end
     end
@@ -35,7 +35,9 @@ describe Users::ActivateController, type: :controller do
     context 'when the token is ok' do
       before { get :new, params: { token: token } }
 
-      it { expect(controller).to have_received(:trust_device) }
+      it do
+        expect(user.reload.email_verified_at).to be_present
+      end
     end
 
     context 'when the token is bad' do
@@ -50,12 +52,46 @@ describe Users::ActivateController, type: :controller do
     let(:token) { user.send(:set_reset_password_token) }
     let(:password) { '{another-password-ok?}' }
 
-    before { post :create, params: { user: { reset_password_token: token, password: password } } }
+    before do
+      allow(controller).to receive(:trust_device)
+      post :create, params: { user: { reset_password_token: token, password: password } }
+    end
 
     context 'when the token is ok' do
       it do
         expect(user.reload.valid_password?(password)).to be true
-        expect(response).to redirect_to(instructeur_procedures_path)
+        expect(controller).not_to have_received(:trust_device)
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    context 'when the token is ok and user is instructeur' do
+      let!(:user) { create(:instructeur).user }
+
+      it 'trusts the device' do
+        expect(user.reload.valid_password?(password)).to be true
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    context 'when the token is ok and user is admin' do
+      let(:admin) { administrateurs(:default_admin) }
+      let!(:user) { admin.user }
+
+      it 'trusts the device because admin has an instructeur profile' do
+        expect(user.reload.valid_password?(password)).to be true
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    context 'when the token is ok and user is gestionnaire' do
+      let(:gestionnaire) { create(:gestionnaire) }
+      let!(:user) { gestionnaire.user }
+
+      it 'does not trust the device' do
+        expect(user.reload.valid_password?(password)).to be true
+        expect(controller).not_to have_received(:trust_device)
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -64,6 +100,17 @@ describe Users::ActivateController, type: :controller do
 
       it do
         expect(user.reload.valid_password?(password)).to be false
+        expect(controller).not_to have_received(:trust_device)
+        expect(response).to redirect_to(users_activate_path(token: token))
+      end
+    end
+
+    context 'when the password is not strong' do
+      let(:password) { 'password-ok?' }
+
+      it do
+        expect(user.reload.valid_password?(password)).to be false
+        expect(controller).not_to have_received(:trust_device)
         expect(response).to redirect_to(users_activate_path(token: token))
       end
     end
@@ -88,7 +135,7 @@ describe Users::ActivateController, type: :controller do
 
       it 'redirects to root path with a success notice' do
         expect(response).to redirect_to(root_path(user))
-        expect(flash[:notice]).to eq('Votre adresse électronique a bien été vérifié')
+        expect(flash[:notice]).to eq(I18n.t('users.activate.confirm_email.email_verified'))
       end
     end
 
@@ -100,7 +147,7 @@ describe Users::ActivateController, type: :controller do
 
       it 'redirects to root path with an explanation notice' do
         expect(response).to redirect_to(root_path(user))
-        expect(flash[:notice]).to eq('Votre adresse électronique est déjà vérifié')
+        expect(flash[:notice]).to eq(I18n.t('users.activate.confirm_email.already_verified'))
       end
     end
 
@@ -114,7 +161,7 @@ describe Users::ActivateController, type: :controller do
       it 'redirects to root path with an explanation notice and it send a new link if user present' do
         expect { subject }.to have_enqueued_mail(UserMailer, :resend_confirmation_email)
         expect(response).to redirect_to(root_path(user))
-        expect(flash[:alert]).to eq("Ce lien n’est plus valable, un nouveau lien a été envoyé à l’adresse #{user.email}")
+        expect(flash[:alert]).to eq(I18n.t("users.activate.confirm_email.expired_link", email: user.email))
       end
     end
   end

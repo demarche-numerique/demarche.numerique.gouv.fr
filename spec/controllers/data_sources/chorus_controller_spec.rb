@@ -37,6 +37,21 @@ describe DataSources::ChorusController do
       get :search_centre_couts, params: { q: "Dépenses" }
       expect(response.parsed_body.size).to eq(mock_api_response.size)
     end
+
+    context 'when API Bretagne login returns 403 (invalid credentials)' do
+      before do
+        allow_any_instance_of(APIBretagneService).to receive(:search_centre_couts).and_call_original
+        allow_any_instance_of(API::Client).to receive(:call)
+          .and_return(Dry::Monads::Failure(API::Client::Error[:http, 403, true, "Forbidden"]))
+      end
+
+      it 'returns an empty JSON array and logs to Sentry' do
+        expect(Sentry).to receive(:capture_message).with("APIBretagneService error", extra: { code: 403, error: "Forbidden" })
+        get :search_centre_couts, params: { q: "Dépenses" }
+        expect(response).to have_http_status(:ok)
+        expect(response.parsed_body).to eq([])
+      end
+    end
   end
 
   describe 'search_ref_programmation' do

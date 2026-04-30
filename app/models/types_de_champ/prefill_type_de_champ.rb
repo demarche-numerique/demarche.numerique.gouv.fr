@@ -48,11 +48,11 @@ class TypesDeChamp::PrefillTypeDeChamp < SimpleDelegator
 
   def possible_values
     values = []
-    values << description if description.present?
+    values << ERB::Util.html_escape(description) if description.present?
     if too_many_possible_values?
       values << link_to_all_possible_values
     else
-      values << all_possible_values.to_sentence
+      values << all_possible_values.map { ERB::Util.html_escape(_1) }.to_sentence
     end
     values.compact.join('<br>').html_safe # rubocop:disable Rails/OutputSafety
   end
@@ -68,7 +68,20 @@ class TypesDeChamp::PrefillTypeDeChamp < SimpleDelegator
   end
 
   def to_assignable_attributes(champ, value)
+    return nil if !acceptable_prefill_value?(value)
     { id: champ.id, value: value }
+  end
+
+  def acceptable_prefill_value?(value)
+    case value
+    when Hash  then false
+    when Array then value.none? { _1.is_a?(Hash) || _1.is_a?(Array) }
+    else true
+    end
+  end
+
+  def scalar_prefill_value?(value)
+    value.is_a?(String) || value.is_a?(Numeric)
   end
 
   private

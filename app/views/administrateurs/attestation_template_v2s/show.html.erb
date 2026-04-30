@@ -1,0 +1,45 @@
+<div class="a4-container <%= 'official-layout' if @attestation_template.official_layout? %>">
+  <div class="content">
+    <header class="first-header">
+      <div class="left">
+        <%- if @attestation_template.official_layout? -%>
+          <%= image_tag('centered_marianne.svg', alt: '', class: 'marianne') %>
+          <div class="bloc-marque">
+            <%= simple_format @attestation_template.label_logo.presence || "INTITULE de\nVOTRE INSTITUTION", class: "intitule" %>
+            <%= image_tag('liberte2.svg', alt: '', class: 'devise') %>
+          </div>
+        <%- elsif @attestation_template.logo.present? -%>
+          <div class="bloc-marque logo-free-layout">
+            <%= image_tag(@attestation_template.logo_url) %>
+          </div>
+        <%- end -%>
+      </div>
+
+      <div class="right">
+        <%- if @attestation_template.official_layout? && @attestation_template.logo.present? -%>
+          <div class="logo-co-emetteur">
+            <%= image_tag(@attestation_template.logo_url) %>
+          </div>
+        <%- end -%>
+
+        <%- if @attestation_template.label_direction.present? -%>
+          <%= simple_format @attestation_template.label_direction, class: "direction" %>
+        <%- end -%>
+      </div>
+    </header>
+
+    <%- if @attestation_template.footer.present? -%>
+      <footer><%= simple_format @attestation_template.footer %></footer>
+    <%- end -%>
+
+    <div class="main">
+      <%= sanitize(@body, attributes: %w[class style], tags: Rails.configuration.action_view.sanitized_allowed_tags + %w[header]) %>
+
+      <%- if @signature&.attached? -%>
+        <div class="signature">
+          <%= image_tag(Rails.application.routes.url_helpers.url_for(@signature)) %>
+        </div>
+      <%- end -%>
+    </div>
+  </div>
+</div>

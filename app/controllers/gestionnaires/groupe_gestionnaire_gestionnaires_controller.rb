@@ -54,9 +54,9 @@ module Gestionnaires
       if @groupe_gestionnaire.is_root? && @groupe_gestionnaire.gestionnaires.one?
         flash[:alert] = I18n.t('groupe_gestionnaires.flash.alert.groupe_gestionnaire_gestionnaire.destroy_at_least_one')
       else
-        @gestionnaire = Gestionnaire.find(params[:id])
+        @gestionnaire = @groupe_gestionnaire.gestionnaires.find(params[:id])
 
-        if !@groupe_gestionnaire.in?(@gestionnaire.groupe_gestionnaires) || !@gestionnaire.groupe_gestionnaires.destroy(@groupe_gestionnaire)
+        if !@gestionnaire.groupe_gestionnaires.destroy(@groupe_gestionnaire)
           flash[:alert] = I18n.t('groupe_gestionnaires.flash.alert.groupe_gestionnaire_gestionnaire.not_in_groupe_gestionnaire', email: @gestionnaire.email)
         else
           if @gestionnaire.groupe_gestionnaires.empty?

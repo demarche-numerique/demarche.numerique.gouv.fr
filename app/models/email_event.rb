@@ -9,7 +9,7 @@ class EmailEvent < ApplicationRecord
     dispatch_error: 'dispatch_error',
   }
 
-  scope :sendinblue, -> { where(method: 'sendinblue') }
+  scope :brevo, -> { where(method: 'brevo') }
   scope :outdated, -> { where(created_at: ...RETENTION_DURATION.ago) }
 
   class << self

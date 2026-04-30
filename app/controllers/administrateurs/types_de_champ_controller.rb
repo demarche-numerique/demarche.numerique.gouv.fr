@@ -31,6 +31,10 @@ module Administrateurs
         errors = "« #{type_de_champ.libelle} » est utilisé pour le routage, vous ne pouvez pas modifier son type."
         @morphed = [champ_component_from(@coordinate, focused: false, errors:)]
         flash.alert = errors
+      elsif @coordinate.used_by_referentiel_urls? && changing_of_type?(type_de_champ)
+        errors = "« #{type_de_champ.libelle} » est utilisé par un référentiel, vous ne pouvez pas modifier son type."
+        @morphed = [champ_component_from(@coordinate, focused: false, errors:)]
+        flash.alert = errors
       elsif type_de_champ.update(type_de_champ_update_params)
         reload_procedure_with_includes
         @morphed = champ_components_starting_at(@coordinate)
@@ -110,7 +114,11 @@ module Administrateurs
     def destroy
       coordinate, type_de_champ = draft.coordinate_and_tdc(params[:stable_id])
 
-      if coordinate&.used_by_routing_rules?
+      if coordinate&.used_by_referentiel_urls?
+        errors = "« #{type_de_champ.libelle} » est utilisé par un référentiel, vous ne pouvez pas le supprimer."
+        @morphed = [champ_component_from(coordinate, focused: false, errors:)]
+        flash.alert = errors
+      elsif coordinate&.used_by_routing_rules?
         errors = "« #{type_de_champ.libelle} » est utilisé pour le routage, vous ne pouvez pas le supprimer."
         @morphed = [champ_component_from(coordinate, focused: false, errors:)]
         flash.alert = errors
@@ -217,6 +225,7 @@ module Administrateurs
         :min_number,
         :max_number,
         :range_number,
+        :birthdate,
         :date_in_past,
         :range_date,
         :start_date,
@@ -233,6 +242,8 @@ module Administrateurs
         :expression_reguliere_exemple_text,
         :expression_reguliere_error_message,
         :nature,
+        :procedures_limit,
+        dossier_link_procedure_ids: [],
         editable_options: [
           :cadastres,
           :rpg,

@@ -229,8 +229,15 @@ class Procedure < ApplicationRecord
   validates :administrateurs, presence: true
 
   validates :lien_site_web, presence: true, if: :publiee?
+
   validates :lien_notice, url: { no_local: true, allow_blank: true }
+  validates :lien_notice, no_private_ip_url: true, allow_blank: true
+
   validates :lien_dpo, url: { no_local: true, allow_blank: true, accept_email: true }
+  validates :lien_dpo, no_private_ip_url: true, allow_blank: true
+
+  validates :web_hook_url, url: { no_local: true, allow_blank: true }
+  validates :web_hook_url, no_private_ip_url: true, allow_blank: true
 
   validates :draft_types_de_champ_public,
     'types_de_champ/condition': true,
@@ -743,13 +750,17 @@ class Procedure < ApplicationRecord
     label_ids_positions = ordered_label_ids.each.with_index.to_h
     Label.transaction do
       label_ids_positions.each do |label_id, position|
-        Label.where(id: label_id).update(position:)
+        labels.where(id: label_id).update(position:)
       end
     end
   end
 
   def used_by_routing_rules?(type_de_champ)
     type_de_champ.stable_id.in?(stable_ids_used_by_routing_rules)
+  end
+
+  def used_by_referentiel_urls?(type_de_champ)
+    type_de_champ.stable_id.in?(stable_ids_used_by_referentiel_urls)
   end
 
   # We need this to unfuck administrate + aasm
@@ -838,6 +849,15 @@ class Procedure < ApplicationRecord
 
   def stable_ids_used_by_routing_rules
     @stable_ids_used_by_routing_rules ||= groupe_instructeurs.flat_map { _1.routing_rule&.sources }.compact.uniq
+  end
+
+  def stable_ids_used_by_referentiel_urls
+    @stable_ids_used_by_referentiel_urls ||= draft_revision
+      .types_de_champ
+      .filter_map(&:referentiel)
+      .filter { it.is_a?(Referentiels::APIReferentiel) }
+      .flat_map(&:tiptap_mention_stable_ids)
+      .uniq
   end
 
   def published_revisions_types_de_champ(parent: nil, with_header_section: false)

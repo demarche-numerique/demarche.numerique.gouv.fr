@@ -30,14 +30,14 @@
     - waiting_email = current_user.unconfirmed_email || current_user.requested_merge_into&.email
 
     - if waiting_email.present?
-      %p.mb-4
+      %p.fr-mb-8v
         = t('.pending_change')
         %span.email-address= waiting_email
         %br
         = t('.finalize_email_change')
 
     - if current_user.instructeur?
-      %p.mb-4
+      %p.fr-mb-8v
         = t('.email_explications_html',
           contact_email: Current.contact_email,
           application_name: Current.application_name,

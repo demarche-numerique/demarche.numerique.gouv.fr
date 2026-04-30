@@ -1,0 +1,117 @@
+<nav
+  class="fr-translate fr-nav"
+  role="navigation"
+  aria-label="<%= t('.my_account') %>"
+>
+  <div class="fr-nav__item">
+    <button
+      class="account-btn fr-translate__btn fr-btn"
+      aria-controls="account"
+      aria-expanded="false"
+      title="<%= t('.my_account') %>"
+    >
+      <span class="fr-mr-1w"><%= current_email %></span>
+
+      <%- if france_connected? -%>
+        <span>&nbsp;via FranceConnect</span>
+      <%- end -%>
+
+      <%- if show_profile_badge? -%>
+        <span class="fr-badge fr-badge--sm <%= color_by_role(nav_bar_profile) %>">
+          <%= t(nav_bar_profile, scope: :layouts) %>
+        </span>
+      <%- end -%>
+    </button>
+
+    <div id="account" class="fr-collapse fr-menu">
+      <ul class="fr-menu__list max-content">
+        <%- if multiple_devise_profile_connect? -%>
+          <li>
+            <%= link_to "#", class: "fr-nav__link", "aria-current" => "true" do %>
+              <%= t('.connected_as', profile: t(nav_bar_profile, scope: :layouts)) %>
+            <% end %>
+          </li>
+          <%- if user_signed_in? && nav_bar_profile != :user -%>
+            <li>
+              <%= link_to dossiers_path, class: "fr-nav__link" do %>
+                <span>
+                  <span class="fr-icon-refresh-line fr-icon--sm"></span>
+                  <%= t('.go_user') %>
+                </span>
+              <% end %>
+            </li>
+          <%- end -%>
+          <%- if instructeur_signed_in? && nav_bar_profile != :instructeur -%>
+            <li>
+              <%= link_to instructeur_path, class: "fr-nav__link" do %>
+                <span>
+                  <span class="fr-icon-refresh-line fr-icon--sm"></span>
+                  <%= t('.go_instructor') %>
+                </span>
+              <% end %>
+            </li>
+          <%- end -%>
+          <%- if expert_signed_in? && nav_bar_profile != :expert -%>
+            <li>
+              <%= link_to expert_all_avis_path, class: "fr-nav__link" do %>
+                <span>
+                  <span class="fr-icon-refresh-line fr-icon--sm"></span>
+                  <%= t('.go_expert') %>
+                </span>
+              <% end %>
+            </li>
+          <%- end -%>
+          <%- if administrateur_signed_in? && nav_bar_profile != :administrateur -%>
+            <li>
+              <%= link_to admin_path, class: "fr-nav__link" do %>
+                <span>
+                  <span class="fr-icon-refresh-line fr-icon--sm"></span>
+                  <%= t('.go_admin') %>
+                </span>
+              <% end %>
+            </li>
+          <%- end -%>
+          <%- if gestionnaire_signed_in? && nav_bar_profile != :gestionnaire -%>
+            <li>
+              <%= link_to gestionnaire_groupe_gestionnaires_path, class: "fr-nav__link" do %>
+                <span>
+                  <span class="fr-icon-refresh-line fr-icon--sm"></span>
+                  <%= t('.go_gestionnaire') %>
+                </span>
+              <% end %>
+            </li>
+          <%- end -%>
+        <%- end -%>
+
+        <%- if super_admin_signed_in? && nav_bar_profile != :superadmin -%>
+          <li>
+            <%= link_to manager_root_path, class: "fr-nav__link" do %>
+              <span>
+                <span class="fr-icon-shield-line fr-icon--sm"></span>
+                <%= t('.go_superadmin') %>
+              </span>
+            <% end %>
+          </li>
+        <%- end -%>
+
+        <li>
+          <%= link_to profil_path, class: "fr-nav__link" do %>
+            <span>
+              <span class="fr-icon-user-line fr-icon--sm"></span>
+              <%= t('.profile') %>
+            </span>
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to destroy_user_session_path, method: :delete, class: "fr-nav__link" do %>
+            <span>
+              <span class="fr-icon-logout-box-r-line fr-icon--sm"></span>
+              <%= t('.logout') %>
+            </span>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

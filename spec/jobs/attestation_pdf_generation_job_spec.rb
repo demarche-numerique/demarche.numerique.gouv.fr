@@ -80,6 +80,18 @@ RSpec.describe AttestationPdfGenerationJob, type: :job do
       end
     end
 
+    context 'when dossier state changed to sans_suite before job runs' do
+      let(:dossier) { create(:dossier, :sans_suite, procedure: procedure) }
+
+      it 'does not generate an attestation' do
+        expect {
+          AttestationPdfGenerationJob.perform_now(dossier)
+        }.not_to change { Attestation.count }
+
+        expect(dossier.reload.attestation).to be_nil
+      end
+    end
+
     context 'for a refused dossier' do
       let(:attestation_template) { create(:attestation_template, :refus, procedure: procedure, kind: :refus, state: :published) }
       let(:dossier) { create(:dossier, :refuse, procedure: procedure) }

@@ -1,4 +1,4 @@
-import { isInputElement } from '@coldwired/utils';
+import { isInputElement } from 'coldwired/utils';
 import { ApplicationController } from './application_controller';
 
 export class NumberInputController extends ApplicationController {

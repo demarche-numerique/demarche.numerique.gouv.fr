@@ -81,7 +81,7 @@ describe AccountDropdownComponent, type: :component do
       user.france_connect_informations << build(:france_connect_information, user:)
     end
 
-    it 'shows france connect badge' do
+    it 'shows FranceConnect badge' do
       expect(subject).to have_text('via FranceConnect')
     end
   end

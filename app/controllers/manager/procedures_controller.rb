@@ -193,7 +193,7 @@ module Manager
     end
 
     def type_de_champ
-      TypeDeChamp.find(params[:type_de_champ][:id])
+      procedure.draft_revision.revision_types_de_champ.find_by!(type_de_champ_id: params[:type_de_champ][:id]).type_de_champ
     end
 
     def type_de_champ_params

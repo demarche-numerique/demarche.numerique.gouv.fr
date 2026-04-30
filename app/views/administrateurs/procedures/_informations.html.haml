@@ -124,13 +124,11 @@
       Par des mots ou des expressions que vous attribuez aux démarches pour décrire leur contenu et pour les retrouver.
       Les thèmes sont partagées avec la communauté, ce qui vous permet de voir les thèmes attribués aux démarches créées par les autres administrateurs.
     %react-fragment
-      = render ReactComponent.new "ComboBox/MultiComboBox",
+      = render ReactComponent.new "Select/MultipleSelect",
         id: "procedure_tags_combo",
         items: ProcedureTag.order(:name).pluck(:name),
-        selected_keys: @procedure.procedure_tags.pluck(:name),
+        value: @procedure.procedure_tags.pluck(:name),
         name: 'procedure[procedure_tag_names][]',
-        value_separator: ',|;',
-        allows_custom_value: false,
         'aria-label': 'Tags',
         'aria-describedby': 'procedure-tags'
 

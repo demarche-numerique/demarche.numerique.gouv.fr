@@ -32,7 +32,7 @@
               <%= t('.drop_zone_label', count: @max) %>
             </p>
 
-            <p class="fr-hr-or fr-mb-2v fr-hidden fr-unhidden-md">
+            <p class="fr-hr-or fr-mb-2v fr-hidden unhidden-flex-md">
               <%= t('.or') %>
             </p>
 
@@ -60,24 +60,25 @@
   <%# Progress bars container — preserved during turbo morph %>
   <div
     id="<%= progress_container_id %>"
-    data-turbo-force="browser"
+    data-turbo-force="<%= attachment_rerender_after_validation_error? ? 'server' : 'browser' %>"
     data-progress-container
   ></div>
 
   <%# Existing files %>
   <% if @attachments.any? %>
+    <% row_field_name = attachment_rerender_after_validation_error? ? field_name : nil %>
     <% if show_as_list? %>
       <%# Multiple files: show as list %>
       <ul class="fr-my-1v attachment-files-list">
         <% @attachments.each do |attachment| %>
           <li id="<%= dom_id(attachment) %>">
-            <%= render Attachment::AttachmentRowComponent.new(attachment:, context:) %>
+            <%= render Attachment::AttachmentRowComponent.new(attachment:, context:, field_name: row_field_name) %>
           </li>
         <% end %>
       </ul>
     <% else %>
       <%# Single file: show as replacement (no list) %>
-      <%= render Attachment::AttachmentRowComponent.new(attachment: @attachments.first, context:) %>
+      <%= render Attachment::AttachmentRowComponent.new(attachment: @attachments.first, context:, field_name: row_field_name) %>
     <% end %>
   <% end %>
 </div>

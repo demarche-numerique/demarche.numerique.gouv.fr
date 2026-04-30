@@ -1,5 +1,21 @@
-= form_with model: [:instructeur, @procedure_presentation], class: 'dropdown-form large columns-form' do
+= form_with model: [:instructeur, @procedure_presentation], class: 'dropdown-form large columns-form' do |f|
   %react-fragment
-    = render ReactComponent.new "ComboBox/MultiComboBox", items: @displayable_columns_for_select, selected_keys: @displayable_columns_selected, name: 'displayed_columns[]', 'aria-label': 'Colonne à afficher', focus_on_select: dom_id(@procedure_presentation, "submit"), value_separator: false
+    = render ReactComponent.new "Select/MultipleSelect", items: @displayable_columns_for_select, value: @displayable_columns_selected, name: 'displayed_columns[]', 'aria-label': 'Colonne à afficher', class_name: "fr-mb-2v"
 
-  = submit_tag t('.save'), id: dom_id(@procedure_presentation, "submit"), class: 'fr-btn fr-btn--secondary'
+  - if instructeur_is_admin?
+    .fr-pb-2w
+      = render Dsfr::ToggleComponent.new(form: f,
+        target: :admin_default_procedure_presentation_active_virtual,
+        title: 'Appliquer cette personnalisation pour tous les instructeurs de la démarche',
+        extra_class_names: '',
+        disabled: toggle_disabled?,
+        checked: toggle_checked?,
+        toggle_labels: nil)
+
+    - if another_admin_active_default_presentation?
+      .fr-background-alt--grey.fr-p-1w.fr-mb-2w
+        = dsfr_icon('fr-icon-lock-fill', :sm)
+        %span.fr-text--sm
+          Personnalisation déjà appliquée par l'administrateur #{default_admin&.email}
+
+  = submit_tag t('.save'), id: dom_id(@procedure_presentation, "submit"), class: 'fr-btn fr-btn--secondary fr-ml-0'

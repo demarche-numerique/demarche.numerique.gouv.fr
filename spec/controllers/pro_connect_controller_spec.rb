@@ -241,6 +241,20 @@ describe ProConnectController, type: :controller do
       end
     end
 
+    context 'when no state cookie is set and no state param is provided' do
+      let(:code) { 'correct' }
+
+      before { cookies.delete(controller.class::STATE_COOKIE_NAME) }
+
+      subject { get :callback, params: { code: } }
+
+      it 'rejects the callback (no nil == nil bypass)' do
+        expect(ProConnectService).not_to receive(:user_info)
+        expect { subject }.to change { User.count }.by(0)
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
     context 'when the callback code is blank' do
       let(:code) { '' }
       let(:state) { original_state }

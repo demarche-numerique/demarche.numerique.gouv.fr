@@ -139,6 +139,7 @@ describe DossierRebaseConcern do
 
     context "when revision is published" do
       before do
+        stub_request(:post, WEASYPRINT_URL).to_return(body: '%PDF-1.4 fake')
         procedure.publish!(procedure.administrateurs.first)
         procedure.draft_revision.add_type_de_champ({
           type_champ: TypeDeChamp.type_champs.fetch(:text),

@@ -24,11 +24,15 @@ class LLM::SuggestionFormComponent < ApplicationComponent
   end
 
   def restart_link
-    helpers.simplify_admin_procedure_types_de_champ_path(procedure, rule: 'improve_label')
+    helpers.new_simplify_admin_procedure_types_de_champ_path(procedure)
   end
 
   def next_link
-    helpers.simplify_admin_procedure_types_de_champ_path(procedure, rule: LLM::Rule.next_rule(rule))
+    helpers.simplify_admin_procedure_types_de_champ_path(
+      procedure,
+      tunnel_id: llm_rule_suggestion.tunnel_id,
+      rule: LLM::Rule.next_rule(rule)
+    )
   end
 
   def suggestions_count
@@ -64,7 +68,13 @@ class LLM::SuggestionFormComponent < ApplicationComponent
     if llm_rule_suggestion.state.in?(['running', 'queued'])
       tag.span(**button_options) { enqueue_button_text }
     else
-      button_to enqueue_button_text, enqueue_simplify_admin_procedure_types_de_champ_path(procedure, rule:), button_options
+      button_to enqueue_button_text,
+        enqueue_simplify_admin_procedure_types_de_champ_path(
+          procedure,
+          tunnel_id: llm_rule_suggestion.tunnel_id,
+          rule:
+        ),
+        button_options
     end
   end
 
@@ -82,24 +92,12 @@ class LLM::SuggestionFormComponent < ApplicationComponent
     ])
   end
 
-  def tunnel
-    @tunnel ||= LLM::TunnelFinder.new(llm_rule_suggestion.procedure_revision_id)
-  end
-
-  def tunnel_first_step
-    tunnel.first_step
-  end
-
-  def tunnel_last_step_finished
-    tunnel.final_step
-  end
-
   def last_rule?
     LLM::Rule.last?(llm_rule_suggestion.rule)
   end
 
   def stepper_finished?
-    tunnel_first_step.present? && tunnel_last_step_finished.present? && last_rule?
+    tunnel_query.finished? && last_rule?
   end
 
   def should_poll?
@@ -111,10 +109,21 @@ class LLM::SuggestionFormComponent < ApplicationComponent
   end
 
   def poll_url
-    helpers.poll_simplify_admin_procedure_types_de_champ_path(procedure, rule: rule)
+    helpers.poll_simplify_admin_procedure_types_de_champ_path(
+      procedure,
+      tunnel_id: llm_rule_suggestion.tunnel_id,
+      rule:
+    )
   end
 
   private
+
+  def tunnel_query
+    @tunnel_query ||= LLM::TunnelQuery.new(
+      procedure_revision: llm_rule_suggestion.procedure_revision,
+      tunnel_id: llm_rule_suggestion.tunnel_id
+    )
+  end
 
   def render?
     llm_rule_suggestion.present?

@@ -24,16 +24,17 @@ describe 'As an administrateur', js: true do
     token_params = confirmation_email.body.match(/token=[^"]+/)
 
     visit "admin/activate?#{token_params}"
-    fill_in :administrateur_password, with: weak_password
+
+    fill_in :user_password, with: weak_password
 
     expect(page).to have_text('Mot de passe très vulnérable')
-    expect(page).to have_button('Continuer', disabled: true)
+    expect(page).to have_button('Créer un compte', disabled: true)
 
-    fill_in :administrateur_password, with: strong_password
+    fill_in :user_password, with: strong_password
     expect(page).to have_text('Mot de passe suffisamment fort et sécurisé')
-    expect(page).to have_button('Continuer', disabled: false)
+    expect(page).to have_button('Créer un compte', disabled: false)
 
-    click_button 'Continuer'
+    click_button 'Créer un compte'
 
     expect(page).to have_content 'Mot de passe enregistré'
 

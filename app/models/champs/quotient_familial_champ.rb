@@ -13,6 +13,10 @@ class Champs::QuotientFamilialChamp < Champ
     fetched? && fc_data_approved? == false
   end
 
+  def fc_data_not_found?
+    external_error? && self.fetch_external_data_exceptions.first&.code == 404
+  end
+
   def ready_for_external_call?
     dossier.user_from_france_connect? && !dossier.for_tiers? && dossier.procedure.for_individual? && !dossier.for_procedure_preview?
   end

@@ -13,16 +13,17 @@ class Users::SessionsController < Devise::SessionsController
   skip_before_action :redirect_if_untrusted, only: [:reset_link_sent]
   # POST /resource/sign_in
   def create
-    user = User.find_by(user_email_params)
-
-    if user&.valid_password?(user_password_params[:password])
+    # NOTE: do not look up the user or check the password before delegating to
+    # `super`. Devise's paranoid mode normalises the bcrypt timing for unknown
+    # emails inside `warden.authenticate!`; a manual pre-check would only run
+    # bcrypt for existing accounts and reintroduce a timing-based enumeration.
+    super do |resource|
       delete_france_connect_cookies
       delete_pro_connect_session_info_cookie
-      user.update(loged_in_with_france_connect: nil)
-      user.update_preferred_domain(Current.host)
+      resource.update(loged_in_with_france_connect: nil)
+      resource.update_preferred_domain(Current.host)
     end
 
-    super
     if current_account.count > 1
       flash[:notice] = t("devise.sessions.signed_in_multiple_profile", roles: current_account.keys.map { |role| t("layouts.#{role}") }.to_sentence)
     end
@@ -94,6 +95,10 @@ class Users::SessionsController < Devise::SessionsController
       flash[:alert] = 'Votre lien est invalide.'
 
       redirect_to root_path
+    elsif instructeur_signed_in? && current_user != instructeur.user
+      flash[:alert] = 'Votre lien est invalide.'
+
+      redirect_to root_path
     elsif trusted_device_token.token_valid?
       trust_device(trusted_device_token.created_at, trusted_device_token)
 
@@ -147,13 +152,5 @@ class Users::SessionsController < Devise::SessionsController
     Instructeur.by_email(email)
   rescue ActiveSupport::MessageVerifier::InvalidSignature, ActiveSupport::MessageEncryptor::InvalidMessage
     nil
-  end
-
-  def user_email_params
-    params.require(:user).permit(:email)
-  end
-
-  def user_password_params
-    params.require(:user).permit(:password)
   end
 end

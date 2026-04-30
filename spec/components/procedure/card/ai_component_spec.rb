@@ -23,46 +23,6 @@ RSpec.describe Procedure::Card::AiComponent, type: :component do
     end
   end
 
-  describe '#next_rule' do
-    before { Flipper.enable_actor(:llm_nightly_improve_procedure, procedure) }
-
-    context 'when no suggestions exist' do
-      it 'returns improve_label' do
-        expect(subject.next_rule).to eq('improve_label')
-      end
-    end
-
-    context 'when last suggestion is cleaner and finished' do
-      let(:schema_hash) { Digest::SHA256.hexdigest(draft_revision.schema_to_llm.to_json) }
-      before do
-        create(:llm_rule_suggestion,
-          procedure_revision: draft_revision,
-          rule: LLM::Rule::SEQUENCE.last,
-          state: 'accepted',
-          schema_hash: schema_hash)
-      end
-
-      it 'returns cleaner' do
-        expect(subject.next_rule).to eq(LLM::Rule::SEQUENCE.last)
-      end
-    end
-
-    context 'when last suggestion is not finished' do
-      let(:schema_hash) { Digest::SHA256.hexdigest(draft_revision.schema_to_llm.to_json) }
-      before do
-        create(:llm_rule_suggestion,
-          procedure_revision: draft_revision,
-          rule: 'improve_label',
-          state: 'accepted',
-          schema_hash: schema_hash)
-      end
-
-      it 'returns the next rule in sequence' do
-        expect(subject.next_rule).to eq(LLM::Rule.next_rule('improve_label'))
-      end
-    end
-  end
-
   describe '#any_tunnel_finished?' do
     before { Flipper.enable_actor(:llm_nightly_improve_procedure, procedure) }
     let(:schema_hash) { Digest::SHA256.hexdigest(draft_revision.schema_to_llm.to_json) }
@@ -136,7 +96,7 @@ RSpec.describe Procedure::Card::AiComponent, type: :component do
         it do
           render_inline(subject)
           expect(page).to have_css('.fr-badge--warning', text: 'À faire')
-          expect(page.all("a").map { it['href'] }).to include(simplify_admin_procedure_types_de_champ_path(procedure, rule: 'improve_structure'))
+          expect(page.all("a").map { it['href'] }).to include(new_simplify_admin_procedure_types_de_champ_path(procedure))
         end
       end
 
@@ -155,7 +115,7 @@ RSpec.describe Procedure::Card::AiComponent, type: :component do
         it do
           render_inline(subject)
           expect(page).to have_css('.fr-badge--warning', text: 'À faire')
-          expect(page.all("a").map { it['href'] }).to include(simplify_admin_procedure_types_de_champ_path(procedure, rule: LLM::Rule::SEQUENCE.last))
+          expect(page.all("a").map { it['href'] }).to include(new_simplify_admin_procedure_types_de_champ_path(procedure))
         end
       end
 
@@ -166,7 +126,7 @@ RSpec.describe Procedure::Card::AiComponent, type: :component do
         it do
           render_inline(subject)
           expect(page).to have_css('.fr-badge--success', text: 'Amélioré')
-          expect(page.all("a").map { it['href'] }).to include(simplify_admin_procedure_types_de_champ_path(procedure, rule: LLM::Rule::SEQUENCE.last))
+          expect(page.all("a").map { it['href'] }).to include(new_simplify_admin_procedure_types_de_champ_path(procedure))
         end
       end
 
@@ -185,10 +145,10 @@ RSpec.describe Procedure::Card::AiComponent, type: :component do
         let(:rule) { 'improve_types' }
         let(:state) { :failed }
 
-        it 'shows À faire badge and links to first rule (failed not considered finished)' do
+        it 'shows À faire badge and links to new_simplify (failed not considered finished)' do
           render_inline(subject)
           expect(page).to have_css('.fr-badge--warning', text: 'À faire')
-          expect(page.all("a").map { it['href'] }).to include(simplify_admin_procedure_types_de_champ_path(procedure, rule: 'improve_label'))
+          expect(page.all("a").map { it['href'] }).to include(new_simplify_admin_procedure_types_de_champ_path(procedure))
         end
       end
 
@@ -196,10 +156,10 @@ RSpec.describe Procedure::Card::AiComponent, type: :component do
         let(:rule) { 'improve_label' }
         let(:state) { :running }
 
-        it 'shows À faire badge and links to first rule (running not considered finished)' do
+        it 'shows À faire badge and links to new_simplify (running not considered finished)' do
           render_inline(subject)
           expect(page).to have_css('.fr-badge--warning', text: 'À faire')
-          expect(page.all("a").map { it['href'] }).to include(simplify_admin_procedure_types_de_champ_path(procedure, rule: 'improve_label'))
+          expect(page.all("a").map { it['href'] }).to include(new_simplify_admin_procedure_types_de_champ_path(procedure))
         end
       end
 
@@ -207,10 +167,10 @@ RSpec.describe Procedure::Card::AiComponent, type: :component do
         let(:rule) { LLM::Rule::SEQUENCE.last }
         let(:state) { :queued }
 
-        it 'shows À faire badge and links to first rule (queued not considered finished)' do
+        it 'shows À faire badge and links to new_simplify (queued not considered finished)' do
           render_inline(subject)
           expect(page).to have_css('.fr-badge--warning', text: 'À faire')
-          expect(page.all("a").map { it['href'] }).to include(simplify_admin_procedure_types_de_champ_path(procedure, rule: 'improve_label'))
+          expect(page.all("a").map { it['href'] }).to include(new_simplify_admin_procedure_types_de_champ_path(procedure))
         end
       end
     end
@@ -219,7 +179,7 @@ RSpec.describe Procedure::Card::AiComponent, type: :component do
       before { render_inline(subject) }
       it 'shows À faire badge' do
         expect(page).to have_css('.fr-badge--warning', text: 'À faire')
-        expect(page.all("a").map { it['href'] }).to include(simplify_admin_procedure_types_de_champ_path(procedure, rule: 'improve_label'))
+        expect(page.all("a").map { it['href'] }).to include(new_simplify_admin_procedure_types_de_champ_path(procedure))
       end
     end
   end

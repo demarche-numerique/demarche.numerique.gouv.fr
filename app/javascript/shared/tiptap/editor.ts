@@ -21,6 +21,7 @@ import Link from '@tiptap/extension-link';
 
 import {
   Editor,
+  Extension,
   type EditorOptions,
   type JSONContent,
   type Extensions
@@ -29,12 +30,27 @@ import {
 import { DocumentWithHeader, Title, Header, HeaderColumn } from './nodes';
 import { createSuggestionMenu, type TagSchema } from './tags';
 
+const SingleLineDocument = Document.extend({
+  content: 'block'
+});
+
+const SingleLine = Extension.create({
+  name: 'singleLine',
+  addKeyboardShortcuts() {
+    return {
+      Enter: () => true, // block keys
+      'Shift-Enter': () => true
+    };
+  }
+});
+
 export function createEditor({
   editorElement,
   content,
   tags,
   buttons,
   attributes,
+  singleLine = false,
   onChange
 }: {
   editorElement: Element;
@@ -43,13 +59,15 @@ export function createEditor({
   buttons: string[];
   onChange(change: { editor: Editor }): void;
   attributes?: Record<string, string>;
+  singleLine?: boolean;
 }): Editor {
   const options = getEditorOptions(
     editorElement,
     tags,
     buttons,
     content,
-    attributes
+    attributes,
+    singleLine
   );
   const editor = new Editor(options);
   editor.on('transaction', onChange);
@@ -61,7 +79,8 @@ function getEditorOptions(
   tags: TagSchema[],
   actions: string[],
   content?: JSONContent,
-  attributes?: Record<string, string>
+  attributes?: Record<string, string>,
+  singleLine = false
 ): Partial<EditorOptions> {
   const extensions: Extensions = [];
   for (const action of actions) {
@@ -141,17 +160,24 @@ function getEditorOptions(
     );
   }
 
+  const documentExtension = singleLine
+    ? SingleLineDocument
+    : actions.includes('title')
+      ? DocumentWithHeader
+      : Document;
+
   return {
     element,
     content,
     editorProps: { attributes },
     extensions: [
-      actions.includes('title') ? DocumentWithHeader : Document,
+      documentExtension,
       Hystory,
       Typography,
       Gapcursor,
       Paragraph,
       Text,
+      ...(singleLine ? [SingleLine] : []),
       ...extensions
     ]
   };

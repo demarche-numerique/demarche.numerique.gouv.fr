@@ -43,6 +43,16 @@ class AdministrateurMailer < ApplicationMailer
       reply_to: CONTACT_EMAIL)
   end
 
+  def api_entreprise_token_expiration(administrateur, procedure)
+    @procedure = procedure
+    @expires_at = procedure.api_entreprise_token.expires_at
+    subject = "[Action requise] Votre jeton API Entreprise expire bientôt (démarche nº#{procedure.id})"
+
+    mail(to: administrateur.user.email,
+      subject:,
+      reply_to: CONTACT_EMAIL)
+  end
+
   def self.critical_email?(action_name)
     action_name == "activate_before_expiration"
   end

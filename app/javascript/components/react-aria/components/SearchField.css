@@ -1,0 +1,69 @@
+@import './theme.css';
+
+.react-aria-SearchField {
+  display: grid;
+  grid-template-areas:
+    'label label label'
+    'icon input button'
+    'help help  help';
+  grid-template-columns: 0px 1fr auto;
+  align-items: center;
+  width: auto;
+  color: var(--text-color);
+
+  .lucide-search {
+    grid-area: icon;
+    z-index: 2;
+    margin-inline-start: 0.5rem;
+  }
+
+  &[data-disabled] .lucide-search {
+    color: var(--text-color-disabled);
+  }
+
+  .react-aria-Label {
+    grid-area: label;
+  }
+
+  .react-aria-Input {
+    grid-area: input;
+    width: 100%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-decoration {
+      -webkit-appearance: none;
+    }
+  }
+
+  .clear-button {
+    all: unset;
+    grid-area: button;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 9999px;
+    margin-left: -1.5rem;
+    text-align: center;
+    background: var(--text-mention-grey);
+    color: var(--text-inverted-grey);
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+
+    &[data-pressed] {
+      background: var(--text-default-grey);
+    }
+
+    &[data-disabled] {
+      background: var(--text-color-disabled);
+    }
+  }
+
+  &[data-empty] .clear-button {
+    display: none;
+  }
+}

@@ -14,6 +14,12 @@ class TrustedDeviceToken < ApplicationRecord
           renewal_notified_at: nil)
   end
 
+  scope :renewal_not_needed, -> do
+    not_expiring_soon = where(activated_at: (TrustedDeviceConcern::TRUSTED_DEVICE_PERIOD - 1.week).ago..)
+    recently_notified = where(renewal_notified_at: 1.week.ago..)
+    not_expiring_soon.or(recently_notified)
+  end
+
   def token_valid?
     LOGIN_TOKEN_VALIDITY.ago < created_at
   end

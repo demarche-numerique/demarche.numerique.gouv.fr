@@ -613,7 +613,7 @@ class EmailChecker
     'ac-verseilles.fr',
     'ac-ais-marseille.fr',
     'ac-horizon.fr',
-    'ac-bordeaux.ft',
+    'ac-bordeaux.fr',
     'ac-toulouses.fr',
     'ac-toulous.fr',
   ].freeze
@@ -638,17 +638,10 @@ class EmailChecker
 
   def self.closest_domains(domain:)
     KNOWN_DOMAINS.filter do |known_domain|
-      close_by_distance_of(domain, known_domain, distance: 1) ||
-      with_same_chars_and_close_by_distance_of(domain, known_domain, distance: 2)
+      next false if (known_domain.size - domain.size).abs > 2
+      distance = String::Similarity.levenshtein_distance(domain, known_domain)
+      distance == 1 || (distance == 2 && domain.chars.sort == known_domain.chars.sort)
     end
-  end
-
-  def self.close_by_distance_of(a, b, distance:)
-    String::Similarity.levenshtein_distance(a, b) == distance
-  end
-
-  def self.with_same_chars_and_close_by_distance_of(a, b, distance:)
-    close_by_distance_of(a, b, distance: 2) && a.chars.sort == b.chars.sort
   end
 
   def self.suggestions(parsed_email:, similar_domains:)

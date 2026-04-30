@@ -25,5 +25,14 @@ RSpec.describe Attachment::ThumbnailComponent, type: :component do
     it do
       expect(subject).to have_css("a[title='Visualiser #{libelle} -- #{filename}']")
     end
+
+    context 'when the blob is infected' do
+      before { attachment.blob.update!(virus_scan_result: ActiveStorage::VirusScanner::INFECTED) }
+
+      it 'does not render the gallery link' do
+        expect(subject).not_to have_css('a.lightGalleryLink')
+        expect(subject).to have_text('Aperçu non disponible')
+      end
+    end
   end
 end

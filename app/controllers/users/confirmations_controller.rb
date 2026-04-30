@@ -42,6 +42,12 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   # If the user clicks the confirmation link before the maximum delay,
   # they will be signed in directly.
   def sign_in_after_confirmation?(resource)
+    # Only auto-sign-in when the confirmation actually just happened.
+    # When the token is replayed after the account was already confirmed,
+    # Devise adds an :already_confirmed error: in that case, the link must
+    # not be turned into a reusable login token.
+    return false if resource.errors.any?
+
     # Avoid keeping auto-sign-in links in users inboxes for too long.
     # 95% of users confirm their account within two hours.
     auto_sign_in_timeout = 2.hours

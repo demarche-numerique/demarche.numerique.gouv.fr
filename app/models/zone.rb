@@ -39,7 +39,6 @@ class Zone < ApplicationRecord
   end
 
   def self.default_for(tchap_hs)
-    sanitized_sql = ActiveRecord::Base.sanitize_sql "'#{tchap_hs}' = ANY (tchap_hs)"
-    Zone.where(sanitized_sql)
+    Zone.where("? = ANY (tchap_hs)", tchap_hs)
   end
 end

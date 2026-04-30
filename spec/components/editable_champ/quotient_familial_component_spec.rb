@@ -61,11 +61,23 @@ describe EditableChamp::QuotientFamilialComponent, type: :component do
 
   context "when data have not been recovered from API Particulier" do
     context "when there was an external_error" do
-      before { champ.update(external_state: 'external_error') }
+      let(:exception) { ExternalDataException.new(error: StandardError.new("Not valid token").inspect, code: 401) }
+
+      before { champ.update(external_state: 'external_error', fetch_external_data_exceptions: [exception]) }
 
       it 'renders piece justifcative input' do
         expect(subject).to have_text('Justificatif de quotient familial')
         expect(subject).to have_css('input[type="file"]')
+      end
+    end
+
+    context 'when the user does not have a beneficiary folder' do
+      let(:exception) { ExternalDataException.new(error: StandardError.new("Not folder now").inspect, code: 404) }
+
+      before { champ.update(external_state: 'external_error', fetch_external_data_exceptions: [exception]) }
+
+      it 'informs the user that he does not have a beneficiary record' do
+        expect(subject).to have_text('Nous n’avons pas trouvé de dossier allocataire')
       end
     end
 

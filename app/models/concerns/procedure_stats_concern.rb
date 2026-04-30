@@ -77,9 +77,10 @@ module ProcedureStatsConcern
     traitement_times(first_processed_at..last_considered_processed_at)
       .group_by { |t| t[:processed_at].beginning_of_month }
       .transform_values { |month| month.map { |h| h[:processed_at] - h[:depose_at] } }
-      .transform_values { |traitement_times_for_month| winsorized_mean(traitement_times_for_month).ceil }
-      .transform_values { |seconds| seconds == 0 ? nil : seconds }
-      .transform_values { |seconds| convert_seconds_in_days(seconds) }
+      .transform_values do |traitement_times_for_month|
+        seconds = winsorized_mean(traitement_times_for_month).ceil
+        seconds == 0 ? nil : convert_seconds_in_days(seconds)
+      end
       .transform_keys { |month| pretty_month(month) }
   end
 

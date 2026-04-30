@@ -6,6 +6,7 @@ class TypesDeChamp::PrefillSiretTypeDeChamp < TypesDeChamp::PrefillTypeDeChamp
   end
 
   def to_assignable_attributes(champ, value)
-    { id: champ.id, external_id: value.presence }
+    return nil if !scalar_prefill_value?(value)
+    { id: champ.id, external_id: value.to_s.presence }
   end
 end

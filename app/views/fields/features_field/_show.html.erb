@@ -1,0 +1,14 @@
+<% user = field.resource.user %>
+<% url = enable_feature_manager_user_path(user) %>
+
+<table id="features">
+  <% field.available_features.each do |feature| %>
+    <tr>
+      <td><%= feature %></td>
+
+      <td>
+        <%= check_box_tag "enable-feature", "enable", feature.enabled?(user), data: { url: url, key: feature.key } %>
+      </td>
+    </tr>
+  <% end %>
+</table>

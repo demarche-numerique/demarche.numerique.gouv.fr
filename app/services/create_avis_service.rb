@@ -42,7 +42,13 @@ class CreateAvisService
       emails.flat_map do |email|
         user = User.create_or_promote_to_expert(email, SecureRandom.hex)
         allowed_dossiers.map do |dossier|
-          experts_procedure = user.valid? ? ExpertsProcedure.find_or_create_by(procedure: dossier.procedure, expert: user.expert) : nil
+          experts_procedure = if user.valid?
+            begin
+              ExpertsProcedure.find_or_create_by(procedure: dossier.procedure, expert: user.expert)
+            rescue ActiveRecord::RecordNotUnique
+              ExpertsProcedure.find_by!(procedure: dossier.procedure, expert: user.expert)
+            end
+          end
 
           {
             email: email,

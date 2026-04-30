@@ -53,6 +53,26 @@ describe RdvService do
         )
       end
 
+      context 'when the external API returns a non-numeric id with path separators' do
+        let(:rdv_plan_result) {
+          {
+            "rdv_plan":
+            {
+              "id": "../../admin/destroy_all",
+              "created_at": "2025-01-23 15:15:20 +0100",
+              "rdv": nil,
+              "updated_at": "2025-01-23 15:15:20 +0100",
+              "url": "https://demo.rdv.anct.gouv.fr/agents/rdv_plans/10",
+              "user_id": 6425,
+            },
+          }
+        }
+
+        it 'does not persist the rdv with the untrusted id' do
+          expect { subject rescue nil }.not_to change(Rdv, :count)
+        end
+      end
+
       context 'when token is expired' do
         let(:new_token) do
           instance_double(OAuth2::AccessToken,
@@ -120,6 +140,26 @@ describe RdvService do
           starts_at: Time.zone.parse("2025-02-11 10:30:00 +0100"),
           location_type: "phone"
         )
+      end
+    end
+
+    context 'when the external API returns a non-numeric rdv id' do
+      let(:rdv_plan_result) {
+        {
+          "rdv_plan": {
+            "id": 10,
+            "rdv": {
+              "id": "../../admin/destroy_all",
+              "status": "unknown",
+              "starts_at": "2025-02-11 10:30:00 +0100",
+              "location_type": "phone",
+            },
+          },
+        }
+      }
+
+      it 'does not persist the untrusted id on the pending rdv' do
+        expect { subject rescue nil }.not_to change { pending_rdv.reload.rdv_external_id }
       end
     end
   end

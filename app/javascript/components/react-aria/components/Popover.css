@@ -1,0 +1,27 @@
+@import './theme.css';
+
+.react-aria-Popover {
+  outline: 1px solid var(--overlay-border);
+  box-sizing: border-box;
+  filter: drop-shadow(var(--popover-shadow));
+  border-radius: 0.5rem;
+  background: var(--overlay-background);
+  color: var(--text-color);
+  transition:
+    transform 200ms,
+    opacity 200ms;
+
+  &[data-entering],
+  &[data-exiting] {
+    transform: var(--origin);
+    opacity: 0;
+  }
+
+  &[data-placement='top'] {
+    --origin: translateY(8px);
+  }
+
+  &[data-placement='bottom'] {
+    --origin: translateY(-8px);
+  }
+}

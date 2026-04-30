@@ -1,7 +1,9 @@
 fr:
   groupe_instructeur_mailer:
     notify_added_instructeurs:
+      title: "Affectation à une démarche"
       email_body:
         html:
-          one: "Vous avez été affecté(e) à la démarche <a href=\"%{procedure_url}\">%{procedure}</a> par %{email}."
-          other: "Vous avez été ajouté(e) au groupe %{groupe} par %{email}, en charge de la démarche <a href=\"%{procedure_url}\">%{procedure}</a>."
+          one: "Vous avez été affecté(e) à la démarche <strong>%{procedure}</strong> par %{email}."
+          other: "Vous avez été ajouté(e) au groupe <strong>%{groupe}</strong> par %{email}, en charge de la démarche <strong>%{procedure}</strong>."
+      access_button: "Accéder à la démarche"

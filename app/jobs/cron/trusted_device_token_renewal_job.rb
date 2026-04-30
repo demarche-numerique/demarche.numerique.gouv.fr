@@ -10,7 +10,12 @@ class Cron::TrustedDeviceTokenRenewalJob < Cron::CronJob
       .distinct
       .find_each do |instructeur|
         begin
-          tokens = instructeur.trusted_device_tokens.expiring_in_one_week
+          # Skip if the instructeur still has a valid token not yet approaching expiration,
+          # or if we already sent a renewal email recently.
+          # The goal is to send exactly one email before the *last* token expires.
+          next if instructeur.trusted_device_tokens.renewal_not_needed.exists?
+
+          tokens = instructeur.trusted_device_tokens
 
           ActiveRecord::Base.transaction do
             tokens.update_all(renewal_notified_at: Time.current)

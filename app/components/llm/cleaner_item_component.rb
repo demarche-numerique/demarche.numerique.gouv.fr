@@ -2,7 +2,7 @@
 
 class LLM::CleanerItemComponent < LLM::SuggestionItemComponent
   def self.step_title
-    "Nettoyage des champs redondants"
+    "Demande unique d’information"
   end
 
   def render?

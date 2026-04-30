@@ -35,7 +35,7 @@ class NotificationMailer < ApplicationMailer
       return
     end
 
-    @subject = "Votre dossier rempli par le mandataire #{@dossier.mandataire_first_name} #{@dossier.mandataire_last_name} a été mis à jour"
+    @subject = default_i18n_subject(first_name: @dossier.mandataire_first_name, last_name: @dossier.mandataire_last_name)
     @email = @dossier.individual.email
     @logo_url = procedure_logo_url(@dossier.procedure)
 
@@ -45,7 +45,7 @@ class NotificationMailer < ApplicationMailer
   def send_accuse_lecture_notification(dossier)
     @dossier = dossier
     @dossier.with_revision
-    @subject = "La décision a été rendue pour votre dossier n°#{@dossier.id} (#{@dossier.procedure.libelle.truncate_words(50)})"
+    @subject = default_i18n_subject(dossier_id: @dossier.id, libelle: @dossier.procedure.libelle.truncate_words(50))
     @email = @dossier.user_email_for(:notification)
 
     @logo_url = procedure_logo_url(@dossier.procedure)

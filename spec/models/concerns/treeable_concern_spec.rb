@@ -142,6 +142,27 @@ describe TreeableConcern do
       end
     end
 
+    context 'with skipped header level (h1 then h3, no h2)' do
+      let(:header_1_3) { { type: :header_section, level: 3, stable_id: 799 } }
+      let(:header_1_3_tdc) { procedure.active_revision.types_de_champ_public.find { _1.stable_id == 799 } }
+
+      let(:types_de_champ_public) do
+        [
+          header_1,
+          champ_text,
+          header_1_3,
+          champ_textarea,
+        ]
+      end
+
+      it 'attaches to nearest existing ancestor instead of crashing' do
+        expect(subject.size).to eq(1)
+        expect(subject).to eq([
+          [header_1_tdc, champ_text_tdc, [header_1_3_tdc, champ_textarea_tdc]],
+        ])
+      end
+    end
+
     context 'with one sub sections and one subsub section' do
       let(:header_1_2_3) { { type: :header_section, level: 3, stable_id: 799 } }
       let(:header_1_2_3_tdc) { procedure.active_revision.types_de_champ_public.find { _1.stable_id == 799 } }

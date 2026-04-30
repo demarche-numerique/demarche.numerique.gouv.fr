@@ -45,11 +45,16 @@
                       = t('.file_size_limit', max_file_size: number_to_human_size(csv_max_size))
                     .flex.column{ data: { action: 'input->enable-submit-if-uploaded#upload' } }
                       = file_field_tag :csv_file, required: true, accept: 'text/csv', class: 'fr-mb-2w', id: 'csv_file_groupes', data: { 'enable-submit-if-uploaded-target': 'input' }
-                      %ul.fr-btns-group.fr-btns-group--inline-sm
-                        %li
-                          %button.fr-btn.fr-btn--secondary{ type: 'button', aria: { controls: 'modal-import' } }= t('.cancel')
-                        %li
-                          = submit_tag t('.import_file'), class: 'fr-btn', data: { disable_with: "Envoi...", confirm: t('.groupes.confirm'), 'enable-submit-if-uploaded-target': 'submit' }, disabled: true
+                    .fr-toggle.fr-mb-1w
+                      %input.fr-toggle__input{ type: 'checkbox', id: 'overwrite_groupes', name: 'overwrite', value: '1' }
+                      %label.fr-toggle__label{ for: 'overwrite_groupes', 'data-fr-checked-label': 'Activé', 'data-fr-unchecked-label': 'Désactivé' }
+                        = t('.overwrite.routed_label')
+                    %p.fr-hint-text.fr-mb-2w= t('.overwrite.hint')
+                    %ul.fr-btns-group.fr-btns-group--inline-sm
+                      %li
+                        %button.fr-btn.fr-btn--secondary{ type: 'button', aria: { controls: 'modal-import' } }= t('.cancel')
+                      %li
+                        = submit_tag t('.import_file'), class: 'fr-btn', data: { disable_with: "Envoi...", confirm: t('.groupes.confirm'), 'enable-submit-if-uploaded-target': 'submit' }, disabled: true
 
                 #panel-import-contact.fr-tabs__panel{ role: 'tabpanel', 'aria-labelledby': 'tab-import-contact' }
                   %p.fr-mb-2w= t(".contact_informations.notice_html")
@@ -96,8 +101,13 @@
                   = t('.file_size_limit', max_file_size: number_to_human_size(csv_max_size))
                 .flex.column{ data: { action: 'input->enable-submit-if-uploaded#upload' } }
                   = file_field_tag :csv_file, required: true, accept: 'text/csv', class: 'fr-mb-2w', id: 'csv_file_instructeurs', data: { 'enable-submit-if-uploaded-target': 'input' }
-                  %ul.fr-btns-group.fr-btns-group--inline-sm
-                    %li
-                      %button.fr-btn.fr-btn--secondary{ type: 'button', aria: { controls: 'modal-import' } }= t('.cancel')
-                    %li
-                      = submit_tag t('.import_file'), class: 'fr-btn', data: { disable_with: "Envoi...", confirm: t('.instructeurs.confirm'), 'enable-submit-if-uploaded-target': 'submit' }, disabled: true
+                .fr-toggle.fr-mb-1w
+                  %input.fr-toggle__input{ type: 'checkbox', id: 'overwrite_instructeurs', name: 'overwrite', value: '1' }
+                  %label.fr-toggle__label{ for: 'overwrite_instructeurs', 'data-fr-checked-label': 'Activé', 'data-fr-unchecked-label': 'Désactivé' }
+                    = t('.overwrite.not_routed_label')
+                %p.fr-hint-text.fr-mb-2w= t('.overwrite.hint')
+                %ul.fr-btns-group.fr-btns-group--inline-sm
+                  %li
+                    %button.fr-btn.fr-btn--secondary{ type: 'button', aria: { controls: 'modal-import' } }= t('.cancel')
+                  %li
+                    = submit_tag t('.import_file'), class: 'fr-btn', data: { disable_with: "Envoi...", confirm: t('.instructeurs.confirm'), 'enable-submit-if-uploaded-target': 'submit' }, disabled: true

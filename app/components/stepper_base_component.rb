@@ -36,4 +36,8 @@ class StepperBaseComponent < ViewComponent::Base
   def step_state
     "Étape #{current_step} sur #{step_count}"
   end
+
+  def show_stepper?
+    true
+  end
 end

@@ -86,6 +86,7 @@ class API::V2::Schema < GraphQL::Schema
     Types::Champs::ExplicationChampType,
     Types::GeoAreas::ParcelleCadastraleType,
     Types::GeoAreas::SelectionUtilisateurType,
+    Types::GeoAreas::RpgType,
     Types::PersonneMoraleType,
     Types::PersonneMoraleIncompleteType,
     Types::PersonnePhysiqueType,
@@ -193,7 +194,7 @@ class API::V2::Schema < GraphQL::Schema
 
   use Timeout, max_seconds: 30
   use GraphQL::Batch
-  use GraphQL::Backtrace
+  use GraphQL::Backtrace if Rails.env.development?
   use GraphQL::Schema::Visibility
 
   if Rails.env.development?

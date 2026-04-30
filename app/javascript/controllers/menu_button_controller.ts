@@ -84,6 +84,7 @@ export class MenuButtonController extends ApplicationController {
   private isClickOutside(target: HTMLElement) {
     return (
       target.isConnected &&
+      target != document.body &&
       !this.element.contains(target) &&
       !target.closest('reach-portal') &&
       !target.closest('#rac-portal') &&

@@ -15,4 +15,4 @@
                 = link_to('Cloner', admin_procedure_clone_settings_path(procedure.id, from_new_from_existing: true), 'data-method' => :get, class: 'button small primary')
                 = link_to('Contacter', "mailto:#{procedure.administrateurs.map(&:email) * ","}", class: 'button small')
     - else
-      %p.mt-2 aucun résultat
+      %p.fr-mt-4v aucun résultat

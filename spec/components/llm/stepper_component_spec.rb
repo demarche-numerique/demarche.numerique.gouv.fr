@@ -17,8 +17,8 @@ RSpec.describe LLM::StepperComponent, type: :component do
     let(:rule) { LLMRuleSuggestion.rules.fetch('improve_label') }
     it 'shows the first step and the correct next step' do
       expect(rendered_component.css('.fr-stepper__state').text).to eq('Étape 1 sur 4')
-      expect(rendered_component.css('.fr-stepper__title').text).to include("Amélioration des libellés")
-      expect(rendered_component.css('.fr-stepper__details').text).to include("Amélioration de la structure")
+      expect(rendered_component.css('.fr-stepper__title').text).to include("Libellés et descriptions des champs")
+      expect(rendered_component.css('.fr-stepper__details').text).to include("Structure du formulaire")
     end
   end
 
@@ -26,7 +26,7 @@ RSpec.describe LLM::StepperComponent, type: :component do
     let(:rule) { LLMRuleSuggestion.rules.fetch(LLM::Rule::SEQUENCE.last) }
     it 'marks the fourth step and shows no further step' do
       expect(rendered_component.css('.fr-stepper__state').text).to eq('Étape 4 sur 4')
-      expect(rendered_component.css('.fr-stepper__title').text).to include("Nettoyage des champs redondants")
+      expect(rendered_component.css('.fr-stepper__title').text).to include("Demande unique d’information")
     end
   end
 end

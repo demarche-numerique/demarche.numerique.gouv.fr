@@ -1,7 +1,12 @@
 en:
   groupe_instructeur_mailer:
     confirm_and_notify_added_instructeur:
+      title: "Procedure assignment"
       email_body:
         html:
-          one: "You were assigned to the procedure <a href=\"%{procedure_url}\">%{procedure}</a> by %{email}."
-          other: "You were assigned to the group %{groupe} by %{email}, in charge of procedure <a href=\"%{procedure_url}\">%{procedure}</a>."
+          one: "You were assigned to the procedure <strong>%{procedure}</strong> by %{email}."
+          other: "You were assigned to the group <strong>%{groupe}</strong> by %{email}, in charge of procedure <strong>%{procedure}</strong>."
+      account_created_html: "An instructor account has been created for the email address <strong>%{email}</strong>. To activate it, click the button below."
+      activate_button: "Activate my account"
+      next_connections_html: "For your next connections on %{application_name}, click the \"<em>Sign in</em>\" button at the top of the page or use this link: <a href=\"%{sign_in_url}\">%{sign_in_url}</a>"
+      tutorial_html: "We also invite you to read our <a href=\"%{tutorial_url}\">instructor tutorial</a>."

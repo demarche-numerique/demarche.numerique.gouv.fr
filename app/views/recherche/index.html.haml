@@ -4,7 +4,7 @@
 
   - if @dossier_not_in_instructor_group.present?
     .fr-alert.fr-alert--info.fr-alert--sm.fr-mt-3w
-      = p t('views.instructeurs.search.dossier_not_in_instructor_group', dossier_id: @dossier_not_in_instructor_group.id, procedure_libelle: @dossier_not_in_instructor_group.procedure.libelle, groupe_instructeur_label: @dossier_not_in_instructor_group.groupe_instructeur.label)
+      = p t('views.instructeurs.search.dossier_not_in_instructor_group', dossier_id: @dossier_not_in_instructor_group.id, procedure_libelle: @dossier_not_in_instructor_group.procedure.libelle)
   - elsif @deleted_dossier.present?
     .fr-alert.fr-alert--info.fr-alert--sm.fr-mt-3w
       = p t('views.instructeurs.search.deleted_dossier', dossier_id: @deleted_dossier.dossier_id, procedure_libelle: @deleted_dossier.procedure.libelle, deleted_at: l(@deleted_dossier.deleted_at))

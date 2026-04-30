@@ -1,12 +1,31 @@
 - dossier = Dossier.includes(:procedure).find_by(id: champ.to_s)
-- if dossier
-  - path = dossier_linked_path(current_instructeur || current_user, dossier)
-  - if path.present?
-    %p= link_to("Dossier n° #{dossier.id}", path, target: '_blank', rel: 'noopener')
-  - else
-    %p Dossier n° #{dossier.id}
+- deleted_dossier = dossier.nil? ? DeletedDossier.includes(:procedure).find_by(dossier_id: champ.to_s) : nil
+- profile = controller.try(:nav_bar_profile)
+- hidden_at = dossier && ((profile == :user && dossier.hidden_by_user_at) || (profile == :instructeur && dossier.hidden_by_administration_at))
+- if deleted_dossier
+  %p Dossier n° #{champ}
   %br
   .copy-zone
-    %p= sanitize(dossier.text_summary)
+    %p= t('shared.champs.dossier_link.deleted', procedure_libelle: deleted_dossier.procedure&.libelle)
+- elsif dossier
+  - if dossier.hidden_by_expired_at.present?
+    %p Dossier n° #{dossier.id}
+    %br
+    .copy-zone
+      %p= t('shared.champs.dossier_link.expired', depose_at: l(dossier.depose_at.to_date), procedure_libelle: dossier.procedure.libelle, expired_at: l(dossier.hidden_by_expired_at.to_date))
+  - elsif hidden_at.present?
+    %p Dossier n° #{dossier.id}
+    %br
+    .copy-zone
+      %p= t('shared.champs.dossier_link.hidden', depose_at: l(dossier.depose_at.to_date), procedure_libelle: dossier.procedure.libelle, hidden_at: l(hidden_at.to_date))
+  - else
+    - path = dossier_linked_path(current_instructeur || current_user, dossier)
+    - if path.present?
+      %p= link_to("Dossier n° #{dossier.id}", path, target: '_blank', rel: 'noopener')
+    - else
+      %p Dossier n° #{dossier.id}
+    %br
+    .copy-zone
+      %p= sanitize(dossier.text_summary)
 - else
   %p Pas de dossier associé

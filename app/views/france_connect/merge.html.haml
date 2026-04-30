@@ -22,7 +22,7 @@
 
     = render partial: 'password_confirmation', locals: { fci: @fci, wrong_password: @wrong_password }
 
-    .mt-2
+    .fr-mt-4v
       = button_to t('.link_confirm_by_email'),
         france_connect_send_email_merge_request_path,
         params: { email: @fci.email_france_connect, merge_token: @fci.merge_token },
@@ -32,10 +32,10 @@
   .new-account.hidden
     %p= t('.title_fill_in_email', application_name: Current.application_name)
 
-    = form_tag france_connect_send_email_merge_request_path, class: 'mt-2 form' do
+    = form_tag france_connect_send_email_merge_request_path, class: 'fr-mt-4v form' do
       = hidden_field_tag :merge_token, @fci.merge_token, id: dom_id(@fci, :new_account_merge_token)
       = label_tag :email, t('views.registrations.new.email_label'), for: dom_id(@fci, :new_account_email), class: 'fr-label'
-      = email_field_tag :email, "", required: true, id: dom_id(@fci, :new_account_email), class: 'mb-1 fr-input'
+      = email_field_tag :email, "", required: true, id: dom_id(@fci, :new_account_email), class: 'fr-mb-2v fr-input'
       = submit_tag t('.button_use_this_email'), class: 'fr-btn'
 
 

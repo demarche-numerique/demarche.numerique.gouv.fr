@@ -50,7 +50,7 @@ class TypeDeChamp < ApplicationRecord
     date: STANDARD,
     datetime: STANDARD,
     piece_justificative: STANDARD,
-    titre_identite: PIECES_JOINTES,
+
     checkbox: CHOICE,
     drop_down_list: CHOICE,
     multiple_drop_down_list: CHOICE,
@@ -93,7 +93,7 @@ class TypeDeChamp < ApplicationRecord
     date: 'date',
     datetime: 'datetime',
     piece_justificative: 'piece_justificative',
-    titre_identite: 'titre_identite',
+
     checkbox: 'checkbox',
     drop_down_list: 'drop_down_list',
     multiple_drop_down_list: 'multiple_drop_down_list',
@@ -113,16 +113,7 @@ class TypeDeChamp < ApplicationRecord
     quotient_familial: 'quotient_familial',
   }
 
-  enum :nature, {
-    non_specifie: 'NON_SPECIFIE',
-    TITRE_IDENTITE: 'TITRE_IDENTITE',
-    RIB: 'RIB',
-    justificatif_domicile: 'JUSTIFICATIF_DOMICILE',
-  }
-
-  def titre_identite_nature?
-    TITRE_IDENTITE?
-  end
+  enum :nature, %w[non_specifie titre_identite rib justificatif_domicile].index_by(&:itself)
 
   SIMPLE_ROUTABLE_TYPES = [
     type_champs.fetch(:drop_down_list),
@@ -156,6 +147,7 @@ class TypeDeChamp < ApplicationRecord
                  :min_number,
                  :max_number,
                  :range_number,
+                 :birthdate,
                  :date_in_past,
                  :range_date,
                  :start_date,
@@ -177,7 +169,9 @@ class TypeDeChamp < ApplicationRecord
                  :referentiel_mapping,
                  :pj_limit_formats,
                  :pj_format_families,
-                 :pj_auto_purge
+                 :pj_auto_purge,
+                 :procedures_limit,
+                 :dossier_link_procedure_ids
 
   has_many :revision_types_de_champ, -> { revision_ordered }, class_name: 'ProcedureRevisionTypeDeChamp', dependent: :destroy, inverse_of: :type_de_champ
 
@@ -241,6 +235,8 @@ class TypeDeChamp < ApplicationRecord
   before_validation :reset_pj_format_options_if_forced_nature
 
   before_save :remove_attachment, if: -> { type_champ_changed? }
+  before_save :clean_referentiel
+  before_save :clear_conflicting_date_options, if: :birthdate?
 
   def valid?(context = nil)
     super
@@ -353,6 +349,10 @@ class TypeDeChamp < ApplicationRecord
     range_number == "1"
   end
 
+  def birthdate?
+    birthdate == "1"
+  end
+
   def date_in_past?
     date_in_past == "1"
   end
@@ -367,6 +367,16 @@ class TypeDeChamp < ApplicationRecord
 
   def collapsible_explanation_enabled?
     collapsible_explanation_enabled == "1"
+  end
+
+  def procedures_limit?
+    procedures_limit == "1"
+  end
+
+  def dossier_link_procedure_ids = Array.wrap(super)
+
+  def dossier_link_procedure_ids=(value)
+    super(Array.wrap(value).map(&:to_i).reject(&:zero?).uniq)
   end
 
   def prefillable?
@@ -484,7 +494,7 @@ class TypeDeChamp < ApplicationRecord
       if drop_down_advanced?
         Array.wrap(referentiel&.options_for_select)
       else
-        drop_down_options.map { [_1, _1] }
+        drop_down_options.uniq.map { [_1, _1] }
       end
     elsif yes_no?
       Champs::YesNoChamp.options
@@ -576,7 +586,7 @@ class TypeDeChamp < ApplicationRecord
       :enum
     when type_champs.fetch(:checkbox), type_champs.fetch(:yes_no)
       :boolean
-    when type_champs.fetch(:titre_identite), type_champs.fetch(:piece_justificative)
+    when type_champs.fetch(:piece_justificative)
       :attachments
     else
       :text
@@ -646,7 +656,6 @@ class TypeDeChamp < ApplicationRecord
     # logic (RNA, SIRET, etc.)
     case type_champ
     when type_champs.fetch(:carte),
-      type_champs.fetch(:titre_identite),
       type_champs.fetch(:rna)
       false
     else
@@ -713,7 +722,7 @@ class TypeDeChamp < ApplicationRecord
     type_champs.fetch(:textarea) => [:character_limit],
     type_champs.fetch(:integer_number) => [:positive_number, :min_number, :max_number, :range_number],
     type_champs.fetch(:decimal_number) => [:positive_number, :min_number, :max_number, :range_number],
-    type_champs.fetch(:date) => [:date_in_past, :start_date, :end_date, :range_date],
+    type_champs.fetch(:date) => [:birthdate, :date_in_past, :start_date, :end_date, :range_date],
     type_champs.fetch(:datetime) => [:date_in_past, :start_date, :end_date, :range_date],
     type_champs.fetch(:carte) => TypesDeChamp::CarteTypeDeChamp::LAYERS,
     type_champs.fetch(:drop_down_list) => [:drop_down_other, :drop_down_options, :drop_down_mode],
@@ -727,13 +736,13 @@ class TypeDeChamp < ApplicationRecord
       :pj_format_families,
       :pj_auto_purge,
     ],
-    type_champs.fetch(:titre_identite) => [:old_pj, :skip_pj_validation, :skip_content_type_pj_validation],
     type_champs.fetch(:formatted) => [
       :formatted_mode, :numbers_accepted, :letters_accepted, :special_characters_accepted,
       :min_character_length, :max_character_length,
       :expression_reguliere, :expression_reguliere_indications, :expression_reguliere_exemple_text, :expression_reguliere_error_message,
     ],
     type_champs.fetch(:referentiel) => [:referentiel_mapping],
+    type_champs.fetch(:dossier_link) => [:procedures_limit, :dossier_link_procedure_ids],
   }
 
   def clean_options
@@ -750,11 +759,11 @@ class TypeDeChamp < ApplicationRecord
   end
 
   def pj_auto_purge?
-    titre_identite_nature? || [true, '1'].include?(options[:pj_auto_purge])
+    titre_identite? || [true, '1'].include?(options[:pj_auto_purge])
   end
 
   def max_file_size_bytes
-    if titre_identite_nature?
+    if titre_identite?
       IDENTITY_FILE_MAX_SIZE
     else
       FILE_MAX_SIZE
@@ -762,9 +771,9 @@ class TypeDeChamp < ApplicationRecord
   end
 
   def allowed_content_types
-    if titre_identite_nature? || titre_identite?
+    if titre_identite?
       families_to_content_types(%w[image_scan])
-    elsif RIB?
+    elsif rib?
       families_to_content_types(%w[document_texte image_scan])
     elsif pj_limit_formats? && pj_format_families.present?
       families_to_content_types(pj_format_families)
@@ -851,13 +860,6 @@ class TypeDeChamp < ApplicationRecord
 
   CHAMP_TYPE_TO_TYPE_CHAMP = type_champs.values.index_by { type_champ_to_champ_class_name(_1) }
 
-  def piece_justificative_or_titre_identite?
-    type_champ.in?([
-      TypeDeChamp.type_champs.fetch(:piece_justificative),
-      TypeDeChamp.type_champs.fetch(:titre_identite),
-    ])
-  end
-
   def any_drop_down_list?
     type_champ.in?([
       TypeDeChamp.type_champs.fetch(:drop_down_list),
@@ -874,6 +876,13 @@ class TypeDeChamp < ApplicationRecord
   end
 
   private
+
+  def clear_conflicting_date_options
+    self.date_in_past = nil
+    self.range_date = nil
+    self.start_date = nil
+    self.end_date = nil
+  end
 
   def families_to_content_types(families)
     return AUTHORIZED_CONTENT_TYPES if families.blank?
@@ -894,11 +903,16 @@ class TypeDeChamp < ApplicationRecord
   end
 
   def remove_attachment
-    if !piece_justificative_or_titre_identite? && piece_justificative_template.attached?
+    if !piece_justificative? && piece_justificative_template.attached?
       piece_justificative_template.purge_later
     elsif !explication? && notice_explicative.attached?
       notice_explicative.purge_later
     end
+  end
+
+  def clean_referentiel
+    return unless persisted? && type_champ_changed? && referentiel_id?
+    self.referentiel_id = nil
   end
 
   def set_drop_down_list_options
@@ -914,7 +928,7 @@ class TypeDeChamp < ApplicationRecord
   end
 
   def reset_pj_format_options_if_forced_nature
-    if titre_identite_nature? || RIB?
+    if titre_identite? || rib?
       self.pj_limit_formats = nil
       self.pj_format_families = []
     end

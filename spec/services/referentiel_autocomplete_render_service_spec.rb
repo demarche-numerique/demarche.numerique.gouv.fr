@@ -17,21 +17,25 @@ RSpec.describe ReferentielAutocompleteRenderService do
 
   describe '.format_response' do
     it 'formats the response for autocomplete' do
-      expect(subject.format_response).to match_array([
+      result = subject.format_response
+      expect(result).to match_array([
         {
+          id: Digest::MD5.hexdigest({ 'finess' => 'Tango', 'ej_rs' => 'Charlie' }.to_json),
           label: 'Tango (Charlie)',
-          value: '0:Tango (Charlie)',
+          value: 'Tango (Charlie)',
           data: anything,
         },
         {
+          id: Digest::MD5.hexdigest({ 'finess' => 'Bob', 'ej_rs' => 'Delta' }.to_json),
           label: 'Bob (Delta)',
-          value: '1:Bob (Delta)',
+          value: 'Bob (Delta)',
           data: anything,
         },
       ])
+      expect(result.map { |item| item[:id] }.uniq.count).to eq(2)
     end
 
-    context 'with duplicate labels' do
+    context 'with duplicate data' do
       let(:api_response) do
         {
           'items' => [
@@ -41,10 +45,11 @@ RSpec.describe ReferentielAutocompleteRenderService do
         }
       end
 
-      it 'ensures unique values to prevent infinite loops' do
+      it 'deduplicates by id since data is identical' do
         result = subject.format_response
-        expect(result.map { |item| item[:value] }.uniq.count).to eq(2)
-        expect(result.map { |item| item[:value] }).to match_array(['0:Dupli (A)', '1:Dupli (A)'])
+        expect(result.count).to eq(1)
+        expect(result.first[:id]).to eq(Digest::MD5.hexdigest({ 'finess' => 'Dupli', 'ej_rs' => 'A' }.to_json))
+        expect(result.first[:value]).to eq('Dupli (A)')
       end
     end
   end

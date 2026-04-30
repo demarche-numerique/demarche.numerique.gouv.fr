@@ -36,7 +36,10 @@ class Gestionnaire < ApplicationRecord
   def unread_commentaires?(groupe_gestionnaire)
     commentaires = CommentaireGroupeGestionnaire
       .joins(:groupe_gestionnaire)
-      .joins("LEFT JOIN follow_commentaire_groupe_gestionnaires ON follow_commentaire_groupe_gestionnaires.groupe_gestionnaire_id = commentaire_groupe_gestionnaires.groupe_gestionnaire_id AND follow_commentaire_groupe_gestionnaires.sender_id = commentaire_groupe_gestionnaires.sender_id AND follow_commentaire_groupe_gestionnaires.sender_type = commentaire_groupe_gestionnaires.sender_type AND follow_commentaire_groupe_gestionnaires.gestionnaire_id = #{self.id}")
+      .joins(ActiveRecord::Base.sanitize_sql_array([
+        "LEFT JOIN follow_commentaire_groupe_gestionnaires ON follow_commentaire_groupe_gestionnaires.groupe_gestionnaire_id = commentaire_groupe_gestionnaires.groupe_gestionnaire_id AND follow_commentaire_groupe_gestionnaires.sender_id = commentaire_groupe_gestionnaires.sender_id AND follow_commentaire_groupe_gestionnaires.sender_type = commentaire_groupe_gestionnaires.sender_type AND follow_commentaire_groupe_gestionnaires.gestionnaire_id = ?",
+        self.id,
+      ]))
       .where(groupe_gestionnaire_id: groupe_gestionnaire.id, sender_type: "Administrateur")
     unless groupe_gestionnaire.child_ids.empty?
       commentaires = commentaires.or(CommentaireGroupeGestionnaire.where(groupe_gestionnaire_id: groupe_gestionnaire.child_ids, sender_type: "Gestionnaire"))

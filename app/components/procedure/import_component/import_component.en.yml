@@ -19,6 +19,10 @@ en:
     notice_html: "To import instructors, your csv file must have <strong>1 column: Email</strong> listing the email addresses of the instructors. The file size must be less than %{csv_max_size} (see template file below)."
     alert_email_notifications_html: "All instructors you add to the procedure <strong>will be notified by email.</strong>"
     confirm: All instructors added to the procedure will be notified by email. Do you want to continue?
+  overwrite:
+    routed_label: Overwrite existing groups and instructors
+    not_routed_label: Overwrite existing instructors
+    hint: If you enable this option, your current configuration will be lost and replaced by the content of the imported file.
   contact_informations:
     notice_html: "To import contact information by groups, your csv file must have 6 columns: <strong>Groupe</strong>, <strong>Nom_du_service</strong>, <strong>Adresse_electronique_de_contact</strong>, <strong>Telephone</strong>, <strong>Horaires</strong> and <strong>Adresse_postale</strong>. The file size must be less than 1 MB (see template file below)."
     info_1_html: If you have already entered contact information for a group, it <strong>will be overwritten</strong> by the content of the imported file.

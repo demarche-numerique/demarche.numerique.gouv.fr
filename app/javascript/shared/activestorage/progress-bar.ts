@@ -60,12 +60,6 @@ export default class ProgressBar {
       if (errorMessage) {
         errorMessage.textContent = error;
       }
-      const retryButton = element.querySelector<HTMLButtonElement>(
-        '.direct-upload__retry'
-      );
-      if (retryButton) {
-        retryButton.classList.remove('hidden');
-      }
 
       // Show the error zone
       const errorZone = element.querySelector<HTMLElement>(

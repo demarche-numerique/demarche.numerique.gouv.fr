@@ -32,7 +32,10 @@ module Instructeurs
     end
 
     def update
-      if !@procedure_presentation.update(procedure_presentation_params)
+      if @procedure_presentation.update(procedure_presentation_params)
+        toggle_admin_default = params.dig(:procedure_presentation, :admin_default_procedure_presentation_active_virtual)
+        set_admin_pp_default if toggle_admin_default.present?
+      else
         # complicated way to display inner error messages
         flash.alert = @procedure_presentation.errors
           .flat_map { _1.detail[:value].flat_map { |c| c.errors.full_messages } }
@@ -86,6 +89,15 @@ module Instructeurs
       FilteredColumnType.new.cast(params_hash)
     end
 
+    def set_admin_pp_default
+      admin_active_default = ActiveModel::Type::Boolean.new.cast(params[:procedure_presentation][:admin_default_procedure_presentation_active_virtual])
+
+      @procedure_presentation.procedure.update(
+        admin_default_procedure_presentation_active: admin_active_default,
+        admin_default_procedure_presentation_id: admin_active_default ? @procedure_presentation.id : nil
+      )
+    end
+
     def procedure = @procedure_presentation.procedure
 
     def procedure_presentation_params
@@ -96,10 +108,14 @@ module Instructeurs
         h[filter_name] = h.delete("filters") # move filters to the right key, ex: tous_filters
       end
 
-      # React ComboBox/MultiComboBox return [''] when no value is selected
-      # We need to remove them
       if h[:displayed_columns].present?
+        # React ComboBox/MultiComboBox return [''] when no value is selected
+        # We need to remove them
         h[:displayed_columns] = h[:displayed_columns].reject(&:empty?)
+
+        # when instructeur update displayed_columns, `customized` becomes true
+        # we consider he knows how to use the personnalization
+        h[:customized] = true
       end
 
       h

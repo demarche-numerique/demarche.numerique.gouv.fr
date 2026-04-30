@@ -1036,6 +1036,33 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
         expect(procedure.reload.routing_enabled).to be_truthy
       end
     end
+
+    context 'instructeurs_self_management_enabled toggle reflects the database value' do
+      let(:selector) { 'input[name="procedure[instructeurs_self_management_enabled]"]' }
+
+      context 'when instructeurs_self_management_enabled is true' do
+        let!(:procedure) { create(:procedure, administrateurs: [admin], instructeurs_self_management_enabled: true) }
+
+        before { get :options, params: { procedure_id: procedure.id } }
+
+        it 'renders the toggle as checked' do
+          expect(response).to have_http_status(:ok)
+          expect(response.body).to have_selector("#{selector}[checked=checked]")
+        end
+      end
+
+      context 'when instructeurs_self_management_enabled is false' do
+        let!(:procedure) { create(:procedure, administrateurs: [admin], instructeurs_self_management_enabled: false) }
+
+        before { get :options, params: { procedure_id: procedure.id } }
+
+        it 'renders the toggle as unchecked' do
+          expect(response).to have_http_status(:ok)
+          expect(response.body).to have_selector(selector)
+          expect(response.body).not_to have_selector("#{selector}[checked=checked]")
+        end
+      end
+    end
   end
 
   describe '#create_simple_routing' do
@@ -1272,7 +1299,7 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
     let!(:other_instructeur) { create(:instructeur) }
 
     before do
-      allow(GroupeInstructeurMailer).to receive(:notify_removed_instructeur_from_all_groupes)
+      allow(GroupeInstructeurMailer).to receive(:notify_removed_instructeur_from_many_groupes)
         .and_return(double(deliver_later: true))
       procedure.groupe_instructeurs.active.each do |gi|
         gi.add_instructeurs(emails: [instructeur_to_remove.email, other_instructeur.email])

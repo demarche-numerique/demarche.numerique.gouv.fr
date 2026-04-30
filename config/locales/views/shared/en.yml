@@ -27,6 +27,7 @@ en:
         already_user: "I already have an account"
         create: 'Create an account on %{application_name}'
         signin: 'Sign in'
+        professional: "Professional"
         email_unverified: "Your email address is not verified, so you will not receive messages from %{application_name}. Please check your inbox and click on the verification link. Didn't receive the email?"
         cta_email_unverified: "Resend verification email"
       messages:

@@ -172,6 +172,26 @@ describe 'Inviting an expert:', js: true do
       end
     end
 
+    context 'when avis is pending' do
+      let(:experts_procedure) { create(:experts_procedure, expert:, procedure:) }
+      let!(:pending_avis) { create(:avis, dossier:, claimant: instructeur, experts_procedure:) }
+
+      scenario 'I can remind the expert' do
+        login_as instructeur.user, scope: :user
+        visit instructeur_dossier_path(procedure, dossier)
+
+        click_on 'Avis externes'
+        expect(page).to have_content(expert.email)
+        accept_confirm("Souhaitez-vous relancer #{expert.email}") do
+          click_on "Relancer l’expert"
+        end
+
+        expect(page).to have_content("Un mail de relance a été envoyé à #{expert.email}")
+        expect(page).to have_content('Relance effectuée le')
+        expect(pending_avis.reload.reminded_at).to be_present
+      end
+    end
+
     context 'when experts submitted their answer' do
       let(:experts_procedure) { create(:experts_procedure, expert: expert, procedure: procedure) }
       let!(:answered_avis) { create(:avis, :with_answer, dossier: dossier, claimant: instructeur, experts_procedure: experts_procedure) }

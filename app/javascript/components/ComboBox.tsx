@@ -20,6 +20,7 @@ import {
 import { useMemo, useRef, createContext, useContext, useId } from 'react';
 import type { RefObject } from 'react';
 import * as s from 'superstruct';
+import { Trans, useLingui } from '@lingui/react/macro';
 
 import {
   useDispatchChangeEvent,
@@ -28,6 +29,7 @@ import {
   useRemoteList,
   useOnFormReset,
   createLoader,
+  getKey,
   type ComboBoxProps
 } from './react-aria/hooks';
 import {
@@ -243,7 +245,7 @@ export function SingleComboBox({
         sections={filteredSections}
         {...props}
       >
-        {(item) => <ComboBoxItem id={item.value}>{item.label}</ComboBoxItem>}
+        {(item) => <ComboBoxItem id={getKey(item)}>{item.label}</ComboBoxItem>}
       </ComboBox>
       {children || name ? (
         <span ref={ref}>
@@ -292,6 +294,8 @@ export function MultiComboBox(maybeProps: MultiComboBoxProps) {
   const { ref, dispatch } = useDispatchChangeEvent();
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const { t } = useLingui();
+
   const {
     selectedItems,
     hiddenInputValues,
@@ -335,7 +339,7 @@ export function MultiComboBox(maybeProps: MultiComboBoxProps) {
             <Tag
               key={item.value}
               id={item.value}
-              textValue={`Supprimer ${item.label}`}
+              textValue={t`Supprimer ${item.label}`}
               className="fr-tag fr-tag--sm fr-tag--dismiss"
             >
               {item.label}
@@ -345,7 +349,9 @@ export function MultiComboBox(maybeProps: MultiComboBoxProps) {
                 slot="remove"
                 className="fr-tag--dismiss"
               >
-                <span className="fr-sr-only">Supprimer {item.label}</span>
+                <span className="fr-sr-only">
+                  <Trans>Supprimer {item.label}</Trans>
+                </span>
               </Button>
             </Tag>
           ))}
@@ -372,7 +378,7 @@ export function MultiComboBox(maybeProps: MultiComboBoxProps) {
         disabledKeys={disabledKeys}
         {...props}
       >
-        {(item) => <ComboBoxItem id={item.value}>{item.label}</ComboBoxItem>}
+        {(item) => <ComboBoxItem id={getKey(item)}>{item.label}</ComboBoxItem>}
       </ComboBox>
       {tagsBelow ? tagGroup : null}
       {name ? (
@@ -470,7 +476,7 @@ export function RemoteComboBox({
         {...comboBoxProps}
         {...props}
       >
-        {(item) => <ComboBoxItem id={item.value}>{item.label}</ComboBoxItem>}
+        {(item) => <ComboBoxItem id={getKey(item)}>{item.label}</ComboBoxItem>}
       </ComboBox>
       {children || name ? (
         <span ref={ref}>

@@ -1,5 +1,5 @@
 = render NestedForms::FormOwnerComponent.new
-= form_for(commentaire, url: form_url, html: { multipart: local_assigns.has_key?(:dossier), data: { controller: 'persisted-form', persisted_form_key_value: dom_id(local_assigns.fetch(:dossier, local_assigns.fetch(:last_commentaire, current_user))) } }) do |f|
+= form_for(commentaire, url: form_url, html: { multipart: local_assigns.has_key?(:dossier), data: { turbo: true, controller: 'persisted-form', persisted_form_key_value: dom_id(local_assigns.fetch(:dossier, local_assigns.fetch(:last_commentaire, current_user))) } }) do |f|
   - placeholder = t('views.shared.dossiers.messages.form.write_message_to_administration_placeholder')
   - if local_assigns.has_key?(:last_commentaire)
     = f.hidden_field :last_commentaire, value: last_commentaire.id, name: :id
@@ -10,10 +10,13 @@
     - pj_input_id = dom_id(commentaire, :piece_jointe)
     - drop_zone_attrs = Attachment::DropZoneDecorator.new(mode: :remote, input_selector: "##{pj_input_id}").data_attributes
 
-  = f.label :body, class: "fr-label" do
-    = t('views.shared.dossiers.messages.form.message_label_mandatory')
-    = render EditableChamp::AsteriskMandatoryComponent.new
-  = f.text_area :body, rows: '5', placeholder: placeholder, title: placeholder, required: true, class: 'fr-input message-textarea', data: local_assigns.has_key?(:dossier) ? { 'hide-target-target': 'focus' }.merge(drop_zone_attrs) : { 'hide-target-target': 'focus' }
+  .fr-input-group{ class: class_names("fr-input-group--error" => commentaire.errors.include?(:body)) }
+    = f.label :body, class: "fr-label" do
+      = t('views.shared.dossiers.messages.form.message_label_mandatory')
+      = render EditableChamp::AsteriskMandatoryComponent.new
+    = f.text_area :body, rows: '5', placeholder: placeholder, title: placeholder, required: true, class: class_names('fr-input message-textarea', 'fr-input--error' => commentaire.errors.include?(:body)), aria: { describedby: commentaire.errors.include?(:body) ? 'commentaire-body-error' : nil }, data: local_assigns.has_key?(:dossier) ? { 'hide-target-target': 'focus' }.merge(drop_zone_attrs) : { 'hide-target-target': 'focus' }
+    - if commentaire.errors.include?(:body)
+      %p#commentaire-body-error.fr-error-text= commentaire.errors.full_messages_for(:body).first
 
   - if local_assigns.has_key?(:dossier)
     .fr-mt-3w.fr-input-group

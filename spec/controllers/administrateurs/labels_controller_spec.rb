@@ -135,6 +135,43 @@ describe Administrateurs::LabelsController, type: :controller do
     end
   end
 
+  describe '#update_order_positions' do
+    before do
+      sign_in(admin.user)
+    end
+
+    subject { patch :update_order_positions, params: }
+
+    context 'when reordering labels of own procedure' do
+      let!(:label_a) { create(:label, procedure:, position: 0) }
+      let!(:label_b) { create(:label, procedure:, position: 1) }
+      let(:params) { { procedure_id: procedure.id, ordered_label_ids: [label_b.id, label_a.id] } }
+
+      it 'updates positions of procedure labels' do
+        subject
+        expect(label_a.reload.position).to eq(1)
+        expect(label_b.reload.position).to eq(0)
+      end
+    end
+
+    context 'when ordered_label_ids reference labels of another procedure' do
+      let!(:other_label_first)  { create(:label, procedure: procedure_2, position: 0) }
+      let!(:other_label_second) { create(:label, procedure: procedure_2, position: 1) }
+      let!(:other_label_third)  { create(:label, procedure: procedure_2, position: 2) }
+
+      let(:params) do
+        {
+          procedure_id: procedure.id,
+          ordered_label_ids: [other_label_third.id, other_label_second.id, other_label_first.id],
+        }
+      end
+
+      it 'does not change positions of labels belonging to another procedure' do
+        expect { subject }.not_to change { Label.where(procedure: procedure_2).order(:id).pluck(:position) }
+      end
+    end
+  end
+
   describe '#destroy' do
     let(:label) { create(:label, procedure:) }
 

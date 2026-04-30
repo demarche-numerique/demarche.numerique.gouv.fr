@@ -190,7 +190,10 @@ module Instructeurs
         .page(page)
         .per(ITEMS_PER_PAGE)
 
-      @projected_dossiers = DossierProjectionService.project(@filtered_sorted_paginated_ids, procedure_presentation.displayed_columns)
+      @displayed_columns = procedure_presentation.effective_displayed_columns
+
+      @projected_dossiers = DossierProjectionService.project(@filtered_sorted_paginated_ids, @displayed_columns)
+
       @disable_checkbox_all = @projected_dossiers.all? { _1.batch_operation_id.present? }
 
       @batch_operations = BatchOperation.joins(:groupe_instructeurs)
@@ -200,7 +203,7 @@ module Instructeurs
 
       @statut_with_notifications = DossierNotification.notifications_sticker_for_instructeur_procedure(groupe_instructeur_ids, current_instructeur)
       @notifications = DossierNotification.notifications_for_instructeur_dossiers(current_instructeur, @filtered_sorted_paginated_ids)
-      @has_export_notification = notify_exports?
+      @has_export_notification = notify_exports?(@instructeur_procedure)
       @has_unseen_revision_notification = notify_unseen_revisions?(@instructeur_procedure)
 
       cache_show_procedure_state # don't move in callback, inherited by Instructeurs::DossiersController
@@ -310,12 +313,7 @@ module Instructeurs
     def exports
       @procedure = procedure
       @exports = Export.for_groupe_instructeurs(groupe_instructeur_ids).ante_chronological
-      cookies.encrypted[cookies_export_key] = {
-        value: DateTime.current,
-        expires: Export::MAX_DUREE_GENERATION + Export::MAX_DUREE_CONSERVATION_EXPORT,
-        httponly: true,
-        secure: Rails.env.production?,
-      }
+      find_or_create_instructeur_procedure(@procedure).update!(last_export_seen_at: Time.current)
 
       respond_to do |format|
         format.turbo_stream
@@ -405,7 +403,9 @@ module Instructeurs
 
     def reachable_brouillons
       if procedure.routing_enabled?
-        procedure.dossiers.state_brouillon.visible_by_user.where(groupe_instructeur_id: groupe_instructeur_ids_params)
+        allowed_ids = groupe_instructeur_ids.intersection(groupe_instructeur_ids_params.compact.map(&:to_i))
+        allowed_ids.concat([nil]) if groupe_instructeur_ids_params.include?(nil)
+        procedure.dossiers.state_brouillon.visible_by_user.where(groupe_instructeur_id: allowed_ids)
       else
         procedure.dossiers.state_brouillon.visible_by_user
       end
@@ -445,7 +445,15 @@ module Instructeurs
     end
 
     def export_template
-      @export_template ||= ExportTemplate.find(params[:export_template_id]) if params[:export_template_id].present?
+      return @export_template if defined?(@export_template)
+      return @export_template = nil if params[:export_template_id].blank?
+
+      template_id = params[:export_template_id].to_i
+      own = current_instructeur.export_templates_for(procedure).find { it.id == template_id }
+      @export_template = own || procedure.export_templates.shareable.find_by(id: template_id)
+      raise ActiveRecord::RecordNotFound if @export_template.nil?
+
+      @export_template
     end
 
     def export_options
@@ -515,17 +523,19 @@ module Instructeurs
       params.require(:bulk_message).permit(:body)
     end
 
-    def notify_exports?
-      last_seen_at = begin
-                       DateTime.parse(cookies.encrypted[cookies_export_key])
-                     rescue
-                       nil
-                     end
-
+    def notify_exports?(instructeur_procedure)
       scope = Export.generated.for_groupe_instructeurs(groupe_instructeur_ids)
+      # TODO: remove legacy cookie support once deployed (Export retention is 48h)
+      last_seen_at = instructeur_procedure.last_export_seen_at || legacy_cookie_export_seen_at
       scope = scope.where(updated_at: last_seen_at...) if last_seen_at
 
       scope.exists?
+    end
+
+    def legacy_cookie_export_seen_at
+      DateTime.parse(cookies.encrypted["exports_#{@procedure.id}_seen_at"])
+    rescue
+      nil
     end
 
     def notify_unseen_revisions?(instructeur_procedure)
@@ -538,10 +548,6 @@ module Instructeurs
 
     def last_export_for(statut)
       Export.where(user_profile: current_instructeur, statut: statut, updated_at: 1.hour.ago..).last
-    end
-
-    def cookies_export_key
-      "exports_#{@procedure.id}_seen_at"
     end
 
     def ordered_procedure_ids_params

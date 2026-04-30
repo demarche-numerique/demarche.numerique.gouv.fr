@@ -45,6 +45,22 @@ end
     end
   end
 
+  describe '.api_entreprise_token_expiration' do
+    let(:administrateur) { create(:administrateur) }
+    let(:token) { JWT.encode({ exp: 2.weeks.from_now.to_i }, nil, 'none') }
+    let(:procedure) { create(:procedure, administrateurs: [administrateur], api_entreprise_token: token) }
+
+    subject { described_class.api_entreprise_token_expiration(administrateur, procedure) }
+
+    it do
+      expect(subject.to).to eq([administrateur.user.email])
+      expect(subject.subject).to include("[Action requise]")
+      expect(subject.subject).to include("nº#{procedure.id}")
+      expect(subject.body).to include(procedure.libelle)
+      expect(subject.body).to include("empêcher la création")
+    end
+  end
+
   describe '.notify_service_without_siret' do
     subject { described_class.notify_service_without_siret(admin_email) }
 

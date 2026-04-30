@@ -1,28 +1,21 @@
-<div class="autosave" data-controller="autosave-status">
+<div
+  class="autosave fr-mb-3v fr-mb-lg-0"
+  data-controller="autosave-status"
+  data-autosave-status-dossier-id-value="<%= dossier.id %>"
+  data-autosave-status-contact-path-value="<%= contact_path %>"
+>
   <p
     class="autosave-status fr-info-text fr-text--sm fr-m-0"
     data-autosave-status-target="idle"
   >
-    <% if annotation? %>
-      <%= t('.annotations.explanation') %>
-    <% elsif dossier.en_construction? %>
-      <%= t('.en_construction.explanation') %>
-    <% else %>
-      <%= t('.brouillon.explanation') %>
-    <% end %>
+    <%= t(".#{context}.explanation") %>
   </p>
 
   <p
     class="autosave-status succeeded fr-valid-text fr-text--sm fr-m-0 fr-hidden"
     data-autosave-status-target="succeeded"
   >
-    <% if annotation? %>
-      <%= t('.annotations.confirmation_html') %>
-    <% elsif dossier.en_construction? %>
-      <%= t('.en_construction.confirmation_html') %>
-    <% else %>
-      <%= t('.brouillon.confirmation_html') %>
-    <% end %>
+    <%= t(".#{context}.confirmation_html") %>
   </p>
 
   <p
@@ -30,13 +23,23 @@
     tabindex="-1"
     role="alert"
     data-autosave-status-target="failed"
-  >
-    <% if annotation? %>
-      <%= t('.annotations.error_html') %>
-    <% elsif dossier.en_construction? %>
-      <%= t('.en_construction.error_html') %>
-    <% else %>
-      <%= t('.brouillon.error_html') %>
-    <% end %>
-  </p>
+  ></p>
+
+  <template data-autosave-status-target="serverErrorTemplate">
+    <%= t(".#{context}.error_server_html", contact_path:) %>
+
+    <small
+      class="fr-text-mention--grey"
+      data-error-id
+      data-error-format="<%= t('.error_code_format') %>"
+    ></small>
+  </template>
+
+  <template data-autosave-status-target="authErrorTemplate">
+    <%= t(".#{context}.error_auth_html", sign_in_path: request.path) %>
+  </template>
+
+  <template data-autosave-status-target="networkErrorTemplate">
+    <%= t(".#{context}.error_network_html") %>
+  </template>
 </div>

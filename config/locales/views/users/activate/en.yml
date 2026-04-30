@@ -1,0 +1,15 @@
+en:
+  users:
+    activate:
+      new:
+        expired_link_html: "The account activation link has expired, %{contact_link} to get a new one."
+      create:
+        password_registered: Password saved
+      confirm_email:
+        already_verified: Your email address is already verified
+        email_verified: Your email address has been verified
+        expired_link: "This link is no longer valid, a new link has been sent to %{email}"
+        error: "An error occurred, you can contact us at %{contact_email}"
+      resend_verification_email:
+        email_sent: "A new verification email has been sent to %{email}."
+        already_verified: "Your email address is already verified or you are not signed in."

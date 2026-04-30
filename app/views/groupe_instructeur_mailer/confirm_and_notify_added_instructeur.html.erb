@@ -1,0 +1,25 @@
+<% content_for(:title, t(".title")) %>
+
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<p>
+  <%= t(".email_body.html",
+      count: @group.procedure.groupe_instructeurs.count,
+      groupe: @group.label,
+      email: @current_instructeur_email,
+      procedure: @group.procedure.libelle) %>
+</p>
+
+<p><%= t(".account_created_html", email: @instructeur.email) %></p>
+
+<p>
+  <%= dsfr_button(t(".activate_button"), users_activate_url(token: @reset_password_token), :primary) %>
+</p>
+
+<p>
+  <%= t(".next_connections_html", application_name: APPLICATION_NAME, sign_in_url: new_user_session_url) %>
+</p>
+
+<p><%= t(".tutorial_html", tutorial_url: INSTRUCTEUR_TUTORIAL_URL) %></p>
+
+<%= render partial: "layouts/mailers/signature" %>

@@ -7,6 +7,10 @@ describe Instructeurs::ContactInformationsController, type: :controller do
   let(:gi) { assign_to.groupe_instructeur }
   let(:from_admin) { nil }
 
+  let(:other_procedure) { create(:procedure) }
+  let(:other_assign_to) { create(:assign_to, instructeur: instructeur, groupe_instructeur: build(:groupe_instructeur, procedure: other_procedure)) }
+  let(:other_gi) { other_assign_to.groupe_instructeur }
+
   before do
     sign_in(instructeur.user)
   end
@@ -114,6 +118,71 @@ describe Instructeurs::ContactInformationsController, type: :controller do
       expect(flash.alert).to be_nil
       expect(flash.notice).to eq("Les informations de contact ont bien été supprimées")
       expect(response).to redirect_to(instructeur_groupe_path(gi, procedure_id: procedure.id))
+    end
+  end
+
+  context 'when procedure_id and groupe_id belong to different procedures' do
+    before do
+      gi       # instructeur has legitimate access to `procedure` via gi
+      other_gi # instructeur is also a member of other_gi on other_procedure
+    end
+
+    let(:valid_contact_information_params) do
+      {
+        nom: 'cross service',
+        email: 'email@toto.com',
+        telephone: '1234',
+        horaires: 'horaires',
+        adresse: 'adresse',
+      }
+    end
+
+    describe '#create' do
+      subject(:mismatched_create) do
+        post :create, params: {
+          contact_information: valid_contact_information_params,
+          procedure_id: procedure.id,
+          groupe_id: other_gi.id,
+        }
+      end
+
+      it 'does not create a contact_information on the other procedure groupe' do
+        expect { mismatched_create rescue nil }.not_to change { ContactInformation.count }
+        expect(other_gi.reload.contact_information).to be_nil
+      end
+    end
+
+    describe '#update' do
+      let!(:other_contact_information) { create(:contact_information, groupe_instructeur: other_gi, nom: 'original') }
+
+      subject(:mismatched_update) do
+        patch :update, params: {
+          id: other_contact_information.id,
+          contact_information: { nom: 'tampered' },
+          procedure_id: procedure.id,
+          groupe_id: other_gi.id,
+        }
+      end
+
+      it 'does not modify the other procedure groupe contact_information' do
+        expect { mismatched_update rescue nil }.not_to change { other_contact_information.reload.nom }
+      end
+    end
+
+    describe '#destroy' do
+      let!(:other_contact_information) { create(:contact_information, groupe_instructeur: other_gi) }
+
+      subject(:mismatched_destroy) do
+        delete :destroy, params: {
+          id: other_contact_information.id,
+          procedure_id: procedure.id,
+          groupe_id: other_gi.id,
+        }
+      end
+
+      it 'does not destroy the other procedure groupe contact_information' do
+        expect { mismatched_destroy rescue nil }.not_to change { ContactInformation.exists?(other_contact_information.id) }
+      end
     end
   end
 end

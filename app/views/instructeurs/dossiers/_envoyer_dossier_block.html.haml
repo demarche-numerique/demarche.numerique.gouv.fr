@@ -4,10 +4,10 @@
   %p.tab-paragraph
     Vous êtes le seul instructeur assigné sur cette démarche
 - else
-  %p.tab-paragrah.mb-1
+  %p.tab-paragrah.fr-mb-2v
     Le destinataire suivra automatiquement le dossier
   = form_for dossier, url: send_to_instructeurs_instructeur_dossier_path(dossier.procedure, dossier), method: :post, html: { class: 'form recipients-form fr-mb-4w' } do |f|
     %react-fragment
-      = render ReactComponent.new "ComboBox/MultiComboBox", items: potential_recipients.map { [_1.email, _1.id] }, name: 'recipients[]', 'aria-label': 'Emails'
+      = render ReactComponent.new "Select/MultipleSelect", items: potential_recipients.map { [_1.email, _1.id] }, name: 'recipients[]', 'aria-label': 'Emails'
 
     = f.submit "Envoyer", class: "fr-btn fr-mt-2w"

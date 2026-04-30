@@ -1,0 +1,25 @@
+<div id="url-validation-feedback">
+  <% errors = referentiel.errors.where(:url_tiptap) %>
+
+  <% if errors.any? %>
+    <%= render Dsfr::AlertComponent.new(state: :error, title: nil, size: :sm, heading_level: :p, extra_class_names: 'fr-mt-2w') do |c| %>
+      <% c.with_body do %>
+        <% if errors.one? %>
+          <p><%= errors.first.full_message %></p>
+        <% else %>
+          <p>URL du référentiel :</p>
+          <ul>
+            <% errors.each do |error| %>
+              <li><%= error.message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% elsif referentiel.url_tiptap.present? %>
+    <div class="fr-mt-1w fr-message fr-message--info">
+      Attention si vous appelez une API qui renvoie de la donnée personnelle,
+      vous devez en informer votre DPO.
+    </div>
+  <% end %>
+</div>

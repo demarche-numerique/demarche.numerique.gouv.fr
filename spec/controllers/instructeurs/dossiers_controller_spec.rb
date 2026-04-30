@@ -2067,7 +2067,7 @@ describe Instructeurs::DossiersController, type: :controller do
       expect(response.body).to include('Pièce jointe à l’avis')
       expect(assigns(:gallery_attachments).count).to eq 4
       expect(assigns(:gallery_attachments)).to all(be_a(ActiveStorage::Attachment))
-      expect([Champs::PieceJustificativeChamp, Champs::TitreIdentiteChamp, Commentaire, Avis]).to include(*assigns(:gallery_attachments).map { _1.record.class })
+      expect([Champs::PieceJustificativeChamp, Commentaire, Avis]).to include(*assigns(:gallery_attachments).map { _1.record.class })
     end
   end
 
@@ -2125,6 +2125,31 @@ describe Instructeurs::DossiersController, type: :controller do
       it 'should not crash' do
         expect { subject }.not_to raise_error
         expect(response).to have_http_status(:ok)
+      end
+    end
+  end
+
+  describe '#bilans_bdf' do
+    let(:etablissement) { create(:etablissement, entreprise_bilans_bdf: [{ "date_arret_exercice" => "2024", "chiffre_affaires_ht" => "1000" }]) }
+    let(:dossier) { create(:dossier, :en_construction, :with_individual, procedure:, etablissement:) }
+
+    subject { get :bilans_bdf, params: { procedure_id: procedure.id, dossier_id: dossier.id, format: } }
+
+    context 'with an allowed format' do
+      let(:format) { :csv }
+
+      it 'returns the spreadsheet' do
+        subject
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'with a disallowed format' do
+      let(:format) { :inline }
+
+      it 'redirects without invoking the dynamic render' do
+        subject
+        expect(response).to redirect_to(instructeur_procedure_path(procedure))
       end
     end
   end

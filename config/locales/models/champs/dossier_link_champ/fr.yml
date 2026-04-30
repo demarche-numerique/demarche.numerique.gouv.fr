@@ -11,3 +11,5 @@ fr:
           attributes:
             value:
               not_found: "Le dossier n’existe pas"
+              brouillon_not_allowed: "Le dossier n’a pas encore été déposé"
+              not_in_allowed_procedures: "Ce dossier n’est pas dans une démarche autorisée"

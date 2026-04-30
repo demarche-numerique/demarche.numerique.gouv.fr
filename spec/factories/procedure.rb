@@ -239,6 +239,7 @@ FactoryBot.define do
         end
         build(:type_de_champ_drop_down_list, :long, procedure: procedure, mandatory: true, libelle: 'simple_choice_drop_down_list_long', position: TypeDeChamp.type_champs.size)
         build(:type_de_champ_multiple_drop_down_list, :long, procedure: procedure, mandatory: true, libelle: 'multiple_choice_drop_down_list_long', position: TypeDeChamp.type_champs.size + 1)
+        build(:type_de_champ_piece_justificative, nature: 'titre_identite', mandatory: true, libelle: "titre_identité", procedure: procedure, position: TypeDeChamp.type_champs.size + 2)
       end
     end
 

@@ -12,3 +12,11 @@
             %span.fr-badge.fr-badge--new.fr-badge--no-icon.fr-ml-1w= helpers.current_expert.avis_summary[:unanswered]
 
     = render MainNavigation::AnnouncesLinkComponent.new
+
+    - if instructeur? && controller.try(:nav_bar_profile) == :instructeur
+      %li.fr-nav__item
+        = link_to t("links.main_navigation.doc.label"), INSTRUCTEUR_TUTORIAL_URL, title: t("links.main_navigation.doc.instructeur_title"), class: "fr-nav__link", **helpers.external_link_attributes
+
+    - if expert? && controller.try(:nav_bar_profile) == :expert
+      %li.fr-nav__item
+        = link_to t("links.main_navigation.doc.label"), EXPERT_TUTORIAL_URL, title: t("links.main_navigation.doc.expert_title"), class: "fr-nav__link", **helpers.external_link_attributes

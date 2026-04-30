@@ -260,8 +260,7 @@ describe "procedure filters" do
 
   def add_column(column_name)
     click_on 'Personnaliser le tableau'
-    scroll_to(find('input[aria-label="Colonne à afficher"]'), align: :center)
-    select_combobox('Colonne à afficher', column_name)
+    select_autocomplete('Colonne à afficher', column_name)
     click_button "Enregistrer"
   end
 

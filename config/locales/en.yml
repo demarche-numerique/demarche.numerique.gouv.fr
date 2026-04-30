@@ -468,7 +468,7 @@ en:
       avis:
         introduction_file_explaination: "File attached to the request for advice"
       search:
-        dossier_not_in_instructor_group: "File no. %{dossier_id} of the procedure “%{procedure_libelle}” matches your search but it is attached to the “%{groupe_instructeur_label}” instructor group."
+        dossier_not_in_instructor_group: "File no. %{dossier_id} of the procedure “%{procedure_libelle}” matches your search but it is attached to another instructor group."
         deleted_dossier: "The File no. %{dossier_id} of the procedure “%{procedure_libelle}” matches your search but it was deleted on %{deleted_at}."
         hidden_dossier: "The File no. %{dossier_id} of the procedure “%{procedure_libelle}” matches your search but it was move to the "
         hidden_dossier_link: "bin"
@@ -638,7 +638,7 @@ en:
           no_mail: Didn't receive the email?
           check_spams: Check your junk or spam email.
           check_account_html: Have you created a <strong> %{application_name} </strong>account with the adress <strong> %{email}</strong>? You will not receive any message if no account is linked to your email adress.
-          check_france_connect_html: Have you once logged in with France Connect? If yes, <a href=\"%{href}\">try again with France Connect</a>.
+          check_france_connect_html: Have you once logged in with FranceConnect? If yes, <a href=\"%{href}\">try again with FranceConnect</a>.
           check_gpdr: "The account may have been deleted in the event of prolonged inactivity and no current file. In this case you will have to recreate an account from a procedure."
           title: "Password reset link sent"
       shared:
@@ -821,9 +821,9 @@ en:
         network_error: 'Sorry, SIRET information retrieval is temporarily unavailable. Please try again shortly.'
         not_found: "We haven't found an establishment corresponding to this SIRET number."
       france_connect:
-        connexion: "Error trying to connect to France Connect."
+        connexion: "Error trying to connect to FranceConnect."
         forbidden_html: "Only citizen can use FranceConnect. As an instructor or administrator, please identify yourself with ProConnect or log in with your %{app_name} account."
-        internal_error: "Error trying to connect to France Connect. Please try another way to connect."
+        internal_error: "Error trying to connect to FranceConnect. Please try another way to connect."
       missing_range_rules: The minimum and maximum values ​​must be specified.
       invalid_range_rules: The minimum value must be less than the maximum value.
       invalid_positive_range_rules: The maximum value must be greater than 0 for the number to be positive.
@@ -843,6 +843,7 @@ en:
       not_in_range: "must be a number between %{min} and %{max}"
       limit_min: "must be a number greater than or equal to %{min}"
       limit_max: "must be a number less than or equal to %{max}"
+      invalid_birthdate: "must be a valid birthdate (between January 1, 1900 and today)"
       date_in_past: "must be a date in the past"
       not_in_range_date: "must be a date between %{start_date} and %{end_date}"
       limit_start_date: "must be a date greater than or equal to %{start_date}"
@@ -926,10 +927,6 @@ en:
   administrateurs:
     procedures_menu: "My procedures"
     preview_menu: "Procedure « %{libelle} »"
-    activate:
-      new:
-        title: Pick a password
-        continue: Continue
     procedures:
       created_at: created at
       published_at: published at
@@ -937,11 +934,6 @@ en:
       updated_at: updated at
       closed_at: closed at
       auto_archive_on: will close at
-  gestionnaires:
-    activate:
-      new:
-        title: Pick a password
-        continue: Continue
   users:
     dossiers:
       test_procedure: "This file is submitted on a test procedure. Any modification of the procedure by the administrator (addition of a field, publication of the procedure, etc.) will result in the removal of the file."
@@ -970,8 +962,8 @@ en:
       attestation:
         not_available: "The certificate is not available, please try again later."
       show:
-        papertrail:
-          get_papertrail: "Get a deposit receipt"
+        attestation_depot:
+          get_attestation_depot: "Get a deposit receipt"
           filename: "deposit-receipt_file-%{dossier_id}.pdf"
       show_in_trash:
         page_title: "File n° %{numero} - In trash"
@@ -988,7 +980,7 @@ en:
         reason_user_request: "It was moved to trash at your request, then automatically deleted."
         reason_automatic: "It was deleted because its maximum retention period has been reached."
         history_link_html: "You can find all deleted files from your account (except \"DRAFT\") on the <a href=\"%{history_link}\" class=\"fr-link\">Deleted files history</a> page."
-      papertrail:
+      attestation_depot:
         receipt: "Deposit receipt"
         description: "This document attests that on the %{date}, %{user_name} submitted a file on the procedure “%{procedure}”."
         file_submitted_at: "File submission date"
@@ -998,7 +990,7 @@ en:
           en_instruction: "processing"
           accepte: "accepted"
           refuse: "declined"
-          sans suite: "closed, no further action"
+          sans_suite: "closed, no further action"
         administrative_service: "Administrative department"
         generated_at: "Made on %{date},"
         signature: "%{app_name}"
@@ -1021,6 +1013,11 @@ en:
       alert_error_annotations: The private annotations were not filled out correctly and are necessary to make a decision on the file.
       alert_error_annotations_link: Complete the private annotations
       alert_unspecified_attestation_champs: 'Please note, the following values have not been entered but are necessary to send a valid certificate:'
+    avis:
+      revoquer:
+        revoked: "%{email} can no longer give their opinion on this file."
+      remind:
+        reminded: "A reminder email has been sent to %{email}"
     procedure_presentation:
       customize_filters:
         exit_customization: "Exit customization"
@@ -1036,6 +1033,11 @@ en:
       alternative_email: "Please provide the email to use for contacting you."
       keep_fc_email_html: Yes, use <b class='bold'>%{email}</b> as contact email.
       use_another_email: No, use another address.
+    confirm_email_merge_password:
+      title: Confirm the association with your account
+      intro_html: "An account already exists for <b>%{email}</b>. To authorise its association with FranceConnect, please enter the password of this account."
+      password_label: Password
+      submit: Confirm
     merge:
       title: "Merge your account FranceConnect and %{application_name}"
       subtitle_html: "Hello,<br><br>Your account FranceConnect uses <b class='bold'>%{email}</b> as contact email.<br>But there is an existing %{application_name} account using this email."

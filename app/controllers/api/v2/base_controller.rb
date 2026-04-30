@@ -12,7 +12,7 @@ class API::V2::BaseController < ApplicationController
   before_action :authenticate_from_token
   before_action :ensure_authorized_network, if: -> { @api_token.present? }
   before_action :ensure_token_is_not_expired, if: -> { @api_token.present? }
-  before_action :allow_only_persisted_queries, if: -> { @api_token.blank? && current_administrateur.blank? }
+  before_action :allow_only_public_queries, if: -> { unauthenticated? }
 
   before_action do
     Current.browser = 'api'
@@ -62,10 +62,16 @@ class API::V2::BaseController < ApplicationController
     end
   end
 
-  def allow_only_persisted_queries
-    if params[:queryId].blank?
-      render json: graphql_error('Without a token, only persisted queries are allowed', :forbidden), status: :forbidden
-    end
+  def unauthenticated? = @api_token.blank? && current_administrateur.blank?
+
+  def allow_only_public_queries
+    query_id = params[:queryId]
+    operation_name = params[:operationName]
+
+    return if query_id == 'introspection'
+    return if query_id == 'ds-query-v2' && operation_name == 'getDemarcheDescriptor'
+
+    render json: graphql_error('Without a token, only the public getDemarcheDescriptor query and introspection are allowed', :forbidden), status: :forbidden
   end
 
   def ensure_authorized_network

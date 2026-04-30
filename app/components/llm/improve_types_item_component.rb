@@ -2,7 +2,7 @@
 
 class LLM::ImproveTypesItemComponent < LLM::SuggestionItemComponent
   def self.step_title
-    "Amélioration des types de champs"
+    "Bonne utilisation des types de champs"
   end
 
   def render?

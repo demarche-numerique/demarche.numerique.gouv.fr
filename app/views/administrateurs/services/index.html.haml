@@ -1,3 +1,5 @@
+- render_procedure_sticky_title(@procedure)
+
 = render partial: 'administrateurs/breadcrumbs',
   locals: { steps: [['Démarches', admin_procedures_path],
                     [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)],
@@ -6,7 +8,7 @@
 #services-index.fr-container
   %h1.fr-h2 Service
 
-  = link_to "Nouveau service", new_admin_service_path(procedure_id: @procedure.id), class: "fr-btn fr-btn--primary fr-btn--icon-left fr-icon-add-circle-line mb-3"
+  = link_to "Nouveau service", new_admin_service_path(procedure_id: @procedure.id), class: "fr-btn fr-btn--primary fr-btn--icon-left fr-icon-add-circle-line fr-mb-6v"
 
   .fr-table.fr-table--layout-fixed
     %table
@@ -24,7 +26,7 @@
             %td
               = service.nom
             %td.fr-col-4
-              .fr-container.flex.px-0
+              .fr-container.flex.fr-px-0
                 .fr-col-4.fr-col--middle
                   - if @procedure.service == service
                     %p.fr-badge.fr-badge--success.fr-badge--sm

@@ -11,9 +11,22 @@ describe 'As an administateur i can setup a DossierSubmittedMessage', js: true d
     editor = find('.tiptap-editor')
     editor.click
 
-    editor.send_keys('Texte super important')
-    editor.send_keys(*Array.new(15, [:shift, :left])) # Select "super important"
-    click_on 'Gras'
+    # La sélection via shift+left peut rater des caractères, on retente si besoin
+    bold_ok = false
+    3.times do
+      editor.send_keys('Texte super important')
+      editor.send_keys(*Array.new(15, [:shift, :left])) # Select "super important"
+      click_on 'Gras'
+
+      within('#tiptap-preview .tiptap-content') do
+        bold_ok = page.has_css?("strong", text: "super important", wait: 1)
+      end
+      break if bold_ok
+
+      # Raté : on efface tout et on recommence
+      editor.send_keys([:control, 'a'])
+      editor.send_keys(:backspace)
+    end
 
     within('#tiptap-preview .tiptap-content') do
       expect(page).to have_css("strong", text: "super important")

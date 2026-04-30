@@ -10,3 +10,6 @@
     - if current_user.deleted_dossiers.present?
       %li.fr-nav__item
         = link_to t('views.instructeurs.dossiers.show_deleted_dossiers'), deleted_dossiers_path(), class: 'fr-nav__link', aria: { current: action_name == 'deleted_dossiers' ? 'true' : nil }
+
+    %li.fr-nav__item
+      = link_to t("links.main_navigation.doc.label"), USAGER_TUTORIAL_URL, title: t("links.main_navigation.doc.user_title"), class: "fr-nav__link", **external_link_attributes

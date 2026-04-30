@@ -101,17 +101,29 @@ class SuggestionMenu {
     this.#element ??= this.createMenu();
     const list = this.#element.firstChild as HTMLUListElement;
 
-    const html = this.#props.items
-      .map((item, i) => {
-        return `<li><button class="fr-tag fr-tag--sm" aria-pressed="${
-          i == this.#selectedIndex ? 'true' : 'false'
-        }" data-tag-index="${i}">${item.label}</button></li>`;
-      })
-      .join('');
+    list.textContent = '';
 
-    const hint =
-      '<li><span class="fr-hint-text">Tapez le nom d’une balise, naviguez avec les flèches, validez avec Entrée ou en cliquant sur la balise.</span></li>';
-    list.innerHTML = hint + html;
+    const hintLi = document.createElement('li');
+    const hintSpan = document.createElement('span');
+    hintSpan.className = 'fr-hint-text';
+    hintSpan.textContent =
+      'Tapez le nom d\u2019une balise, naviguez avec les flèches, validez avec Entrée ou en cliquant sur la balise.';
+    hintLi.append(hintSpan);
+    list.append(hintLi);
+
+    this.#props.items.forEach((item, i) => {
+      const li = document.createElement('li');
+      const button = document.createElement('button');
+      button.className = 'fr-tag fr-tag--sm';
+      button.setAttribute(
+        'aria-pressed',
+        i == this.#selectedIndex ? 'true' : 'false'
+      );
+      button.dataset.tagIndex = String(i);
+      button.textContent = item.label;
+      li.append(button);
+      list.append(li);
+    });
     list.querySelector<HTMLElement>('.selected')?.focus();
   }
 

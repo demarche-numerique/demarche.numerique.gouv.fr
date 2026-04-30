@@ -673,21 +673,17 @@ describe ProcedureRevision do
         let(:procedure) { create(:procedure, types_de_champ_public:) }
         let(:referentiel_1) do
           create(
-            :referentiel,
+            :api_referentiel,
+            :exact_match,
             name: SecureRandom.uuid,
-            url: 'https://rnb-api.beta.gouv.fr/api/alpha/buildings/{id}/',
-            mode: 'exact_match',
-            test_data: 'PG46YY6YWCX8',
             hint: 'Saisissez le code de votre reference'
           )
         end
         let(:referentiel_2) do
           create(
-            :referentiel,
+            :api_referentiel,
+            :autocomplete,
             name: SecureRandom.uuid,
-            url: 'https://rnb-api.beta.gouv.fr/api/alpha/buildings/{id}/v2',
-            mode: 'autocomplete',
-            test_data: 'une autre',
             hint: 'Saisissez le code de votre autre reference'
           )
         end
@@ -708,15 +704,15 @@ describe ProcedureRevision do
           updated_tdc.update(referentiel: referentiel_2, referentiel_mapping: { key: 'value2' })
         end
 
-        it 'detects changes in referentiel url' do
+        it 'detects changes in referentiel fields' do
           is_expected.to include({
-            :attribute => :referentiel_url,
-            :from => "https://rnb-api.beta.gouv.fr/api/alpha/buildings/{id}/",
+            :attribute => :referentiel_url_tiptap,
+            :from => referentiel_1.url_tiptap,
             :label => "libelle",
             :op => :update,
             :private => false,
             :stable_id => 123,
-            :to => "https://rnb-api.beta.gouv.fr/api/alpha/buildings/{id}/v2",
+            :to => referentiel_2.url_tiptap,
           })
           is_expected.to include({
             :attribute => :referentiel_mode,
@@ -737,13 +733,13 @@ describe ProcedureRevision do
             :to => 'Saisissez le code de votre autre reference',
           })
           is_expected.to include({
-            :attribute => :referentiel_test_data,
-            :from => 'PG46YY6YWCX8',
+            :attribute => :referentiel_test_data_tiptap,
+            :from => referentiel_1.test_data_tiptap,
             :label => "libelle",
             :op => :update,
             :private => false,
             :stable_id => 123,
-            :to => 'une autre',
+            :to => referentiel_2.test_data_tiptap,
           })
           is_expected.to include({
             :attribute => :referentiel_mapping,
@@ -754,6 +750,55 @@ describe ProcedureRevision do
             :stable_id => 123,
             :to => { "key" => "value2" },
           })
+        end
+      end
+
+      context 'when a dossier_link type de champ has procedures_limit and procedure_ids changed' do
+        let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :dossier_link, libelle: 'Dossier lié' }]) }
+
+        context 'when procedures_limit is enabled' do
+          before do
+            updated_tdc = new_draft.find_and_ensure_exclusive_use(first_tdc.stable_id)
+            updated_tdc.update(procedures_limit: "1")
+          end
+
+          it do
+            is_expected.to eq([
+              {
+                op: :update,
+                attribute: :procedures_limit,
+                label: "Dossier lié",
+                private: false,
+                stable_id: first_tdc.stable_id,
+                from: nil,
+                to: "1",
+              },
+            ])
+          end
+        end
+
+        context 'when dossier_link_procedure_ids are changed' do
+          let!(:proc_a) { create(:procedure, libelle: "Démarche A") }
+          let!(:proc_b) { create(:procedure, libelle: "Démarche B") }
+
+          before do
+            updated_tdc = new_draft.find_and_ensure_exclusive_use(first_tdc.stable_id)
+            updated_tdc.update(dossier_link_procedure_ids: [proc_a.id, proc_b.id])
+          end
+
+          it do
+            is_expected.to eq([
+              {
+                op: :update,
+                attribute: :dossier_link_procedure_ids,
+                label: "Dossier lié",
+                private: false,
+                stable_id: first_tdc.stable_id,
+                from: [],
+                to: [{ id: proc_a.id, libelle: "Démarche A" }, { id: proc_b.id, libelle: "Démarche B" }],
+              },
+            ])
+          end
         end
       end
     end

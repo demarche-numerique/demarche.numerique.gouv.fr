@@ -6,28 +6,28 @@ module LLM
 
     CONFIG = {
       'improve_label' => {
-        title: "Amélioration des libellés",
+        title: "Libellés et descriptions des champs",
         component_class: 'LLM::ImproveLabelItemComponent',
         service_class: 'LLM::LabelImprover',
         ordering: -> (suggestion) { LLM::SuggestionOrderingService.ordered_label_suggestions(suggestion) },
         summary: "Cette étape propose une mise à jour des libellés pour les rendre plus clairs et compréhensibles pour l'usager.",
       },
       'improve_structure' => {
-        title: "Amélioration de la structure",
+        title: "Structure du formulaire",
         component_class: 'LLM::ImproveStructureItemComponent',
         service_class: 'LLM::StructureImprover',
         ordering: -> (suggestion) { LLM::SuggestionOrderingService.ordered_structure_suggestions(suggestion) },
         summary: "Cette étape propose des suggestions d'amélioration de la structure du formulaire (réorganisation des champs, ajout de sections) pour le rendre plus clair et lisible pour l'usager.",
       },
       'improve_types' => {
-        title: "Amélioration des types de champs",
+        title: "Bonne utilisation des types de champs",
         component_class: 'LLM::ImproveTypesItemComponent',
         service_class: 'LLM::TypesImprover',
         ordering: -> (suggestion) { LLM::SuggestionOrderingService.ordered_label_suggestions(suggestion) },
         summary: "Cette étape permet d'utiliser les types de champs appropriés (email, adresse, etc.) pour un affichage optimisé et une validation automatique.",
       },
       'cleaner' => {
-        title: "Nettoyage des champs redondants",
+        title: "Demande unique d’information",
         component_class: 'LLM::CleanerItemComponent',
         service_class: 'LLM::CleanerImprover',
         ordering: -> (suggestion) { LLM::SuggestionOrderingService.ordered_label_suggestions(suggestion) },
@@ -81,6 +81,7 @@ module LLM
     end
 
     def self.next_rule(current_rule)
+      return SEQUENCE.first if current_rule.nil?
       new(current_rule).next_rule
     end
 

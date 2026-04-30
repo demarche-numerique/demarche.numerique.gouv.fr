@@ -41,6 +41,91 @@ describe AttachmentsController, type: :controller do
       end
     end
 
+    context 'when another user tries to view (public champ)' do
+      let(:other_user) { create(:user) }
+      before { sign_in(other_user) }
+
+      it { is_expected.to have_http_status(404) }
+    end
+
+    context 'when invite views the attachment' do
+      let(:invited_user) { create(:user) }
+      let(:invite) { create(:invite, dossier:, user: invited_user) }
+      before do
+        invite
+        sign_in(invited_user)
+      end
+
+      it { is_expected.to have_http_status(200) }
+    end
+
+    context 'when instructeur belongs to the procedure (private champ)' do
+      let(:instructeur) { create(:instructeur) }
+      let(:procedure) { create(:procedure, instructeurs: [instructeur], types_de_champ_private: [{ type: :piece_justificative }]) }
+      let(:dossier) { create(:dossier, :with_populated_annotations, procedure:) }
+      let(:champ) { dossier.champs.private_only.first }
+
+      before { sign_in(instructeur.user) }
+
+      it { is_expected.to have_http_status(200) }
+    end
+
+    context 'when instructeur does not belong to the procedure (private champ)' do
+      let(:other_instructeur) { create(:instructeur) }
+      let(:instructeur) { create(:instructeur) }
+      let(:procedure) { create(:procedure, instructeurs: [instructeur], types_de_champ_private: [{ type: :piece_justificative }]) }
+      let(:dossier) { create(:dossier, :with_populated_annotations, procedure:) }
+      let(:champ) { dossier.champs.private_only.first }
+
+      before { sign_in(other_instructeur.user) }
+
+      it { is_expected.to have_http_status(404) }
+    end
+
+    context 'when expert owns the avis' do
+      let(:expert) { create(:expert) }
+      let(:procedure) { create(:procedure) }
+      let(:experts_procedure) { create(:experts_procedure, procedure:, expert:) }
+      let(:avis) { create(:avis, dossier:, experts_procedure:) }
+      let(:attachment) { avis.piece_justificative_file.attachments.first }
+      let(:signed_id) { attachment.blob.signed_id }
+
+      before do
+        avis.piece_justificative_file.attach({ io: Rails.root.join('spec/fixtures/files/Contrat.pdf').open, filename: 'Contrat.pdf' })
+        sign_in(expert.user)
+      end
+
+      it { is_expected.to have_http_status(200) }
+    end
+
+    context 'when another expert tries to view avis attachment' do
+      let(:expert) { create(:expert) }
+      let(:other_expert) { create(:expert) }
+      let(:procedure) { create(:procedure) }
+      let(:experts_procedure) { create(:experts_procedure, procedure:, expert:) }
+      let(:avis) { create(:avis, dossier:, experts_procedure:) }
+      let(:attachment) { avis.piece_justificative_file.attachments.first }
+      let(:signed_id) { attachment.blob.signed_id }
+
+      before do
+        avis.piece_justificative_file.attach({ io: Rails.root.join('spec/fixtures/files/Contrat.pdf').open, filename: 'Contrat.pdf' })
+        sign_in(other_expert.user)
+      end
+
+      it { is_expected.to have_http_status(404) }
+    end
+
+    context 'when admin views procedure logo (non-sensitive)' do
+      let(:procedure) { create(:procedure, :with_logo) }
+      let(:administrateur) { procedure.administrateurs.first }
+      let(:attachment) { procedure.logo.attachments.first }
+      let(:signed_id) { attachment.blob.signed_id }
+
+      before { sign_in(administrateur.user) }
+
+      it { is_expected.to have_http_status(200) }
+    end
+
     context 'when not authenticated' do
       it { is_expected.to redirect_to(new_user_session_path) }
     end
@@ -77,9 +162,11 @@ describe AttachmentsController, type: :controller do
       context 'and dossier en_construction is owned by user' do
         let(:dossier) { create(:dossier, :en_construction, :with_populated_champs, user:, procedure:) }
 
-        it 'removes the attachment' do
+        it 'removes the attachment and renders the footer with enabled submit button' do
           is_expected.to have_http_status(200)
           expect(user_buffer_champ.piece_justificative_file.attached?).to be(false)
+          expect(response.body).to include('Déposer les modifications')
+          expect(response.body).not_to include('disabled')
         end
       end
 

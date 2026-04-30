@@ -8,11 +8,30 @@ describe TypesDeChamp::MultipleDropDownListTypeDeChamp do
     end
     let(:multiple_dropdown_list_tdc) { procedure.active_revision.types_de_champ.first }
 
-    it 'returns a collection of columns in advanced mode' do
+    it 'returns one column per referentiel header in advanced mode' do
       columns = multiple_dropdown_list_tdc.columns(procedure:)
 
-      expect(columns).to be_an(Array)
-      expect(columns).to contain_exactly(an_instance_of(Columns::MultipleDropDownColumn))
+      expect(columns.size).to eq(3)
+      expect(columns).to all(be_an_instance_of(Columns::MultipleDropDownColumn))
+      expect(columns.map(&:label)).to eq([
+        "#{multiple_dropdown_list_tdc.libelle} – Référentiel option",
+        "#{multiple_dropdown_list_tdc.libelle} – Référentiel calorie (kcal)",
+        "#{multiple_dropdown_list_tdc.libelle} – Référentiel poids (g)",
+      ])
+    end
+  end
+
+  describe '#libelles_for_export' do
+    let(:referentiel) { create(:csv_referentiel, :with_items) }
+    let(:procedure) do
+      create(:procedure, types_de_champ_public: [{ type: :multiple_drop_down_list, referentiel:, drop_down_mode: 'advanced' }])
+    end
+    let(:multiple_dropdown_list_tdc) { procedure.active_revision.types_de_champ.first }
+
+    it 'returns a single column with path :value for standard export' do
+      libelles = multiple_dropdown_list_tdc.libelles_for_export
+
+      expect(libelles).to eq([[multiple_dropdown_list_tdc.libelle, :value]])
     end
   end
 

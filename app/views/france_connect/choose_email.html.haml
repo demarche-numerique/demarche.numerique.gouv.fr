@@ -2,7 +2,7 @@
   .fr-grid-row.fr-col-offset-md-2.fr-col-md-8
     .fr-col-12
 
-      %h1.text-center.mt-1= t('.choose_email_contact')
+      %h1.text-center.fr-mt-2v= t('.choose_email_contact')
 
       %p= t('.intro_html', email: @fci.email_france_connect)
 
@@ -11,6 +11,7 @@
       %fieldset.fr-fieldset
         = form_with url: france_connect_merge_using_fc_email_path,
           method: :post,
+          authenticity_token: form_authenticity_token,
           data: { controller: 'email-france-connect',
             email_france_connect_fc_email_path_value: france_connect_merge_using_fc_email_path,
             email_france_connect_custom_email_path_value: france_connect_send_email_merge_request_path,
@@ -51,7 +52,7 @@
               }
 
               = f.label :email, t('.alternative_email'), class: "fr-label"
-              %span.fr-hint-text.mb-1= t('activerecord.attributes.user.hints.email')
+              %span.fr-hint-text.fr-mb-2v= t('activerecord.attributes.user.hints.email')
               = f.email_field :email,
                 data: { action: "email-france-connect#triggerSubmitDisabled", email_france_connect_target: "emailInput" },
                 class: "fr-input"

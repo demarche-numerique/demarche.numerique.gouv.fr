@@ -114,6 +114,7 @@ export class AutoUpload {
     );
 
     if (retryButton) {
+      retryButton.classList.remove('hidden');
       retryButton.addEventListener(
         'click',
         () => {

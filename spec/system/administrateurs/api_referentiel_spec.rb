@@ -24,30 +24,33 @@ describe 'Referentiel API:' do
 
     before { visit champs_admin_procedure_path(procedure) }
 
-    scenario 'Setup as admin, fails with invalid url', js: true do
+    scenario 'Setup as admin, fails with invalid url (tiptap)', js: true do
       click_on('Configurer le champ')
 
-      find("#referentiel_url").fill_in(with: 'google.com')
-      fill_in("Indications à fournir à l’usager concernant le format de saisie attendu", with: "focusout")
+      fill_in_tiptap_url('http://google.com')
 
-      expect(page).to have_content("n’est pas au format d’une URL, saisissez une URL valide ex https://api_1.ext/")
-      find("#referentiel_url").fill_in(with: 'https://google.com')
-      fill_in("Indications à fournir à l’usager concernant le format de saisie attendu", with: "focusout")
+      expect(page).to have_content('Seuls les domaines se terminant par .gouv.fr sont automatiquement autorisés')
+      expect(page).to have_content('doit commencer par https://')
+      expect(page).to have_content('doit contenir au moins un paramètre dynamique (tag)')
+      expect(page).to have_content('doit être autorisée par notre équipe.')
 
-      expect(page).to have_content("doit être autorisée par notre équipe. Veuillez nous contacter par mail (contact@demarche.numerique.gouv.fr) et nous indiquer l’URL et la documentation de l’API que vous souhaitez intégrer.")
-      find("#referentiel_url").fill_in(with: 'https://rnb-api.beta.gouv.fr/api/alpha/buildings/{id}/')
-      fill_in("Indications à fournir à l’usager concernant le format de saisie attendu", with: "focusout")
+      fill_in_tiptap_url('https://rnb-api.beta.gouv.fr/api/alpha/buildings/')
+      insert_tiptap_tag("Valeur saisie par l’usager", insert_after: '/')
 
-      expect(page).to have_content("Attention si vous appelez une API qui renvoie de la donnée personnelle, vous devez en informer votre DPO.")
+      expect(page).to have_content('Attention si vous appelez une API qui renvoie de la donnée personnelle, vous devez en informer votre DPO.')
     end
 
     scenario 'Setup as admin, back/forth auth does not changes preselected option', js: true do
       visit champs_admin_procedure_path(procedure)
       click_on('Configurer le champ')
       expect(page).to have_unchecked_field("Ajouter une méthode d’authentification")
-      find("#referentiel_url").fill_in(with: 'google.com')
-      fill_in("Indications à fournir à l’usager concernant le format de saisie attendu", with: "focusout")
-      expect(page).to have_content("Le champ « URL de l’API » n’est pas au format d’une URL, saisissez une URL valide ex https://api_1.ext/")
+
+      fill_in_tiptap_url('http://google.com')
+
+      expect(page).to have_content('Seuls les domaines se terminant par .gouv.fr sont automatiquement autorisés')
+      expect(page).to have_content('doit commencer par https://')
+      expect(page).to have_content('doit contenir au moins un paramètre dynamique (tag)')
+      expect(page).to have_content('doit être autorisée par notre équipe.')
       expect(page).to have_unchecked_field("Ajouter une méthode d’authentification")
     end
   end
@@ -78,10 +81,12 @@ describe 'Referentiel API:' do
 
         # configure connection
         VCR.use_cassette('referentiel/rnb_as_admin') do
-          find("#referentiel_url").fill_in(with: 'https://rnb-api.beta.gouv.fr/api/alpha/buildings/{id}/')
+          fill_in_tiptap_url('https://rnb-api.beta.gouv.fr/api/alpha/buildings/')
+          insert_tiptap_tag("Valeur saisie par l’usager", insert_after: '/')
+          wait_for_tiptap_test_data_fields
+          find("input[name='referentiel[test_data_tiptap][{query}]']").fill_in(with: "PG46YY6YWCX8")
           find('label[for="referentiel_mode_exact_match"]').click
           fill_in("Indications à fournir à l’usager concernant le format de saisie attendu", with: "Saisir votre numero de bâtiment")
-          fill_in("Exemple de saisie valide (affiché à l’usager et utilisé pour tester la requête)", with: "PG46YY6YWCX8")
           click_on('Étape suivante')
           wait_until { Referentiel.count == 1 }
           expect(page).to have_content("Pré remplissage des champs et/ou affichage des données récupérées")
@@ -237,10 +242,12 @@ describe 'Referentiel API:' do
 
         # configure connection
         VCR.use_cassette('referentiel/datagouv-finess') do # referentiel is called at autocomplete setup
-          find("#referentiel_url").fill_in(with: 'https://tabular-api.data.gouv.fr/api/resources/796dfff7-cf54-493a-a0a7-ba3c2024c6f3/data/?finess__contains={id}')
+          fill_in_tiptap_url('https://tabular-api.data.gouv.fr/api/resources/796dfff7-cf54-493a-a0a7-ba3c2024c6f3/data/?finess__contains=')
+          insert_tiptap_tag("Valeur saisie par l’usager")
+          wait_for_tiptap_test_data_fields
+          find("input[name='referentiel[test_data_tiptap][{query}]']").fill_in(with: "010002699")
           find('label[for="referentiel_mode_autocomplete"]').click
           fill_in("Indications à fournir à l’usager concernant le format de saisie attendu", with: "Saisir votre finess")
-          fill_in("Exemple de saisie valide (affiché à l’usager et utilisé pour tester la requête)", with: "010002699")
           click_on('Étape suivante')
           wait_until { Referentiel.count == 1 }
           expect(page).to have_content("Configuration de l’autocomplétion ")
@@ -334,7 +341,7 @@ describe 'Referentiel API:' do
             type: :referentiel,
             libelle: 'Numero de bâtiment public',
             stable_id: public_referentiel_stable_id,
-            referentiel: create(:api_referentiel, :exact_match, :with_exact_match_response, url: "https://rnb-api.beta.gouv.fr/api/alpha/buildings/{id}/"),
+            referentiel: create(:api_referentiel, :exact_match, :with_exact_match_response),
           },
         ]
       end
@@ -408,7 +415,7 @@ describe 'Referentiel API:' do
             children: [
               {
                 type: :referentiel,
-                referentiel_id: create(:api_referentiel, :exact_match, :with_exact_match_response, url: "https://rnb-api.beta.gouv.fr/api/alpha/buildings/{id}/").id,
+                referentiel_id: create(:api_referentiel, :exact_match, :with_exact_match_response).id,
                 libelle: 'Numero de bâtiment private inside repetition',
                 stable_id: private_referentiel_stable_id,
               },
@@ -489,10 +496,12 @@ describe 'Referentiel API:' do
 
         # configure connection
         VCR.use_cassette('referentiel/datagouv-finess') do # referentiel is called at autocomplete setup
-          find("#referentiel_url").fill_in(with: 'https://tabular-api.data.gouv.fr/api/resources/796dfff7-cf54-493a-a0a7-ba3c2024c6f3/data/?finess__contains={id}')
+          fill_in_tiptap_url('https://tabular-api.data.gouv.fr/api/resources/796dfff7-cf54-493a-a0a7-ba3c2024c6f3/data/?finess__contains=')
+          insert_tiptap_tag("Valeur saisie par l’usager")
+          wait_for_tiptap_test_data_fields
+          find("input[name='referentiel[test_data_tiptap][{query}]']").fill_in(with: "010002699")
           find('label[for="referentiel_mode_autocomplete"]').click
           fill_in("Indications à fournir à l’usager concernant le format de saisie attendu", with: "Saisir votre finess")
-          fill_in("Exemple de saisie valide (affiché à l’usager et utilisé pour tester la requête)", with: "010002699")
           click_on('Étape suivante')
           wait_until { Referentiel.count == 1 }
           expect(page).to have_content("Configuration de l’autocomplétion ")
@@ -581,5 +590,35 @@ describe 'Referentiel API:' do
       click_on 'Continuer'
     end
     expect(page).to have_content("Identité enregistrée")
+  end
+
+  def tiptap_editor
+    find('.tiptap-editor')
+  end
+
+  def fill_in_tiptap_url(url)
+    editor = tiptap_editor
+    editor.click
+    editor.send_keys([:control, 'a'], :backspace) # clear
+    editor.send_keys(url)
+  end
+
+  def insert_tiptap_tag(label, insert_after: '')
+    if insert_after.present?
+      page.execute_script(
+        "document.querySelector('[data-controller*=\"tiptap\"]').dataset.tiptapInsertAfterTagValue = arguments[0]",
+        insert_after
+      )
+    end
+    find('.fr-tags-group button', text: label).click
+    if insert_after.present?
+      page.execute_script(
+        "document.querySelector('[data-controller*=\"tiptap\"]').dataset.tiptapInsertAfterTagValue = ''"
+      )
+    end
+  end
+
+  def wait_for_tiptap_test_data_fields
+    expect(page).to have_css('#test-data-fields table')
   end
 end

@@ -1,9 +1,9 @@
 - content_for(:title, "Whoops. Mauvais compte")
 
-.merci.text-center.mb-7
+.merci.text-center.fr-mb-14v
   .container
-    = image_tag('user/envoi-dossier.svg', alt: '', class: 'mt-8')
-    %h1.mt-4.mb-3.mx-0 Attention, ce lien ne vous est pas destiné
+    = image_tag('user/envoi-dossier.svg', alt: '', class: 'fr-mt-16v')
+    %h1.fr-mt-8v.fr-mb-6v.fr-mx-0 Attention, ce lien ne vous est pas destiné
     %p.send.fr-text--lg
       L’invitation est à destination de
       %strong.test-target-email= @targeted_user_link.target_email

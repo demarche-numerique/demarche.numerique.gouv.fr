@@ -1,0 +1,17 @@
+<% if field.data.any? %>
+  <table class="collection-data" aria-labelledby="page-title">
+    <thead>
+      <tr>
+        <td class="cell-label">Libelle</td>
+        <td class="cell-label">Type de champ</td>
+        <td class="cell-label">Rempli</td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= render Manager::DossierChampRowComponent.with_collection(field.data) %>
+    </tbody>
+  </table>
+<% else %>
+  Aucun
+<% end %>

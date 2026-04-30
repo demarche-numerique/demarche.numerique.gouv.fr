@@ -36,7 +36,7 @@ describe EditableChamp::PieceJustificativeComponent, type: :component do
   end
 
   context 'RIB nature' do
-    let(:types_de_champ_public) { [{ type: :piece_justificative, nature: 'RIB' }] }
+    let(:types_de_champ_public) { [{ type: :piece_justificative, nature: 'rib' }] }
     before { allow_any_instance_of(ApplicationController).to receive(:administrateur_signed_in?).and_return(false) }
 
     it 'limits to a single file' do

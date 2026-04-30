@@ -4,7 +4,8 @@ class AttachmentsController < ApplicationController
   before_action :authenticate_logged_user!
   include ActiveStorage::SetBlob
   before_action :set_attachment
-  before_action :ensure_legitimate_access, only: :destroy
+  before_action :ensure_legitimate_access_show, only: :show
+  before_action :ensure_legitimate_access_destroy, only: :destroy
 
   def show
     @user_can_edit = cast_bool(params[:user_can_edit])
@@ -41,8 +42,17 @@ class AttachmentsController < ApplicationController
 
   private
 
-  def ensure_legitimate_access
-    return if user_or_invite_changing_its_dossier?
+  def ensure_legitimate_access_show
+    return if user_or_invite_changing_an_attachment?
+    return if instructeur_changing_a_private_attachment?
+    return if expert_changing_its_avis?
+    return unless champ? || avis?
+
+    head :not_found
+  end
+
+  def ensure_legitimate_access_destroy
+    return if user_or_invite_changing_an_attachment?
     return if instructeur_changing_a_private_attachment?
     return if admin_changing_its_procedure?
     return if admin_changing_its_attestation_template?
@@ -58,7 +68,7 @@ class AttachmentsController < ApplicationController
     @attachment = @blob.attachments.find(params[:id])
   end
 
-  def user_or_invite_changing_its_dossier?
+  def user_or_invite_changing_an_attachment?
     champ&.public? && current_user.owns_or_invite?(champ.dossier)
   end
 

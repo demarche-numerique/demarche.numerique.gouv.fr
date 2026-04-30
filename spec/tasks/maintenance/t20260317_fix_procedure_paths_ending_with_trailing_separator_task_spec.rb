@@ -102,6 +102,21 @@ module Maintenance
         end
       end
 
+      context "when the associated procedure is discarded" do
+        let(:procedure) { create(:procedure) }
+        let(:procedure_path) { procedure.procedure_paths.first }
+
+        before do
+          procedure_path.update_columns(path: "orphan-path-")
+          procedure.discard
+          procedure_path.reload
+        end
+
+        it "does nothing" do
+          expect { described_class.process(procedure_path) }.not_to change { ProcedurePath.count }
+        end
+      end
+
       context "when the procedure_path is not the canonical path" do
         let(:procedure) { create(:procedure) }
         let(:old_path) { procedure.procedure_paths.first }

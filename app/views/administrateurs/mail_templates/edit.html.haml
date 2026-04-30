@@ -1,4 +1,6 @@
 - content_for(:root_class, 'scroll-margins-for-sticky-footer')
+- render_procedure_sticky_title(@procedure)
+
 - if params[:id] == 'closed_mail'
   = render partial: 'admin/mail_template_attestation_inconsistency_alert',
            locals: { procedure: @procedure, state: @procedure.mail_template_attestation_inconsistency_state(:acceptation),

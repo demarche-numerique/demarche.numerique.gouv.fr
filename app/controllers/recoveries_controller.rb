@@ -38,6 +38,12 @@ class RecoveriesController < ApplicationController
     redirect_to support_recovery_path(error: :no_dossier) if @recoverables.empty?
   end
 
+  # Security note: previous_email comes from params in plaintext here. This is NOT an IDOR
+  # because the user already provides this email freely at the identification step.
+  # The encryption between post_identification and selection only prevents email leakage
+  # in the URL — it is not an access control mechanism.
+  # The actual authorization is enforced by RecoveryService.recover_procedure! which
+  # filters dossiers by the current instructeur's SIRET.
   def post_selection
     previous_user = User.find_by(email: previous_email)
 

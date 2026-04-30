@@ -32,9 +32,19 @@ class AssignTo < ApplicationRecord
         "Destroying invalid ProcedurePresentation",
         extra: { procedure_presentation_id: procedure_presentation.id, errors: errors.full_messages }
       )
+
+      begin
+        if procedure_presentation.procedure&.admin_default_procedure_presentation_id == procedure_presentation.id
+          procedure_presentation.procedure.update!(
+            admin_default_procedure_presentation_active: false,
+            admin_default_procedure_presentation_id: nil
+          )
+        end
+      rescue ActiveRecord::RecordNotFound
+      end
+
       self.procedure_presentation = nil
     end
-
     errors
   end
 end

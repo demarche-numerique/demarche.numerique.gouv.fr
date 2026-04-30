@@ -27,6 +27,6 @@
 
   %body{ class: browser.platform.ios? ? 'ios' : nil, data: { controller: 'turbo' } }
     .page-wrapper
-      %main.m-6
+      %main.fr-m-12v
         = content_for?(:content) ? yield(:content) : yield
       %turbo-events

@@ -151,7 +151,7 @@ describe Users::DossiersController, type: :controller do
     end
   end
 
-  describe 'identite with france connect' do
+  describe 'identite with FranceConnect' do
     let(:procedure) { create(:procedure, :for_individual, for_tiers_enabled: true) }
     let(:dossier) { create(:dossier, user:, procedure:) }
 
@@ -297,13 +297,13 @@ describe Users::DossiersController, type: :controller do
       end
     end
 
-    context 'when user is connected via France Connect' do
+    context 'when user is connected via FranceConnect' do
       let(:user) { create(:user, :with_fci) }
 
       context 'when dossier is for self' do
         let(:dossier) { create(:dossier, :with_individual, user:, procedure:) }
 
-        it 'ignores attempts to modify locked identity attributes and uses France Connect values' do
+        it 'ignores attempts to modify locked identity attributes and uses FranceConnect values' do
           fc_info = user.france_connect_informations.first
 
           post :update_identite, params: {
@@ -317,7 +317,7 @@ describe Users::DossiersController, type: :controller do
           }
 
           dossier.reload
-          # Identity should be locked to France Connect values, ignoring submitted params
+          # Identity should be locked to FranceConnect values, ignoring submitted params
           expect(dossier.individual.nom).to eq(fc_info.family_name)
           expect(dossier.individual.prenom).to eq(fc_info.given_name)
         end
@@ -343,7 +343,7 @@ describe Users::DossiersController, type: :controller do
           }
 
           dossier.reload
-          # Mandataire should be locked to France Connect values
+          # Mandataire should be locked to FranceConnect values
           expect(dossier.mandataire_first_name).to eq(fc_info.given_name)
           expect(dossier.mandataire_last_name).to eq(fc_info.family_name)
           # Beneficiary should be updated
@@ -370,7 +370,7 @@ describe Users::DossiersController, type: :controller do
           dossier.reload
           # Dossier switched to "for self" mode
           expect(dossier.for_tiers).to be false
-          # But identity is still locked to France Connect values
+          # But identity is still locked to FranceConnect values
           expect(dossier.individual.nom).to eq(fc_info.family_name)
           expect(dossier.individual.prenom).to eq(fc_info.given_name)
         end
@@ -670,6 +670,26 @@ describe Users::DossiersController, type: :controller do
         expect(dossier.traitements.last.browser_name).to eq('Unknown Browser')
       end
     end
+
+    context 'when user logged via france connect' do
+      before { user.update!(loged_in_with_france_connect: 'particulier') }
+
+      it 'sets submitted_with_france_connect to true' do
+        subject
+        dossier.reload
+        expect(dossier.submitted_with_france_connect).to be true
+      end
+    end
+
+    context 'when user not logged via france connect' do
+      before { user.update!(loged_in_with_france_connect: nil) }
+
+      it 'sets submitted_with_france_connect to false' do
+        subject
+        dossier.reload
+        expect(dossier.submitted_with_france_connect).to be false
+      end
+    end
   end
 
   describe '#submit_en_construction (stream)' do
@@ -835,6 +855,33 @@ describe Users::DossiersController, type: :controller do
           expect(response).to redirect_to(root_path)
           expect(flash.alert).to include("Vous n’avez pas accès à ce dossier")
         end
+      end
+    end
+
+    context 'when owner logged via france connect' do
+      before do
+        sign_in(owner)
+        owner.update!(loged_in_with_france_connect: 'particulier')
+      end
+
+      it 'sets submitted_with_france_connect to true' do
+        subject
+        dossier.reload
+        expect(dossier.submitted_with_france_connect).to be true
+      end
+    end
+
+    context 'when owner not logged via france connect' do
+      before do
+        sign_in(owner)
+        owner.update!(loged_in_with_france_connect: nil)
+        dossier.update!(submitted_with_france_connect: true)
+      end
+
+      it 'sets submitted_with_france_connect to false' do
+        subject
+        dossier.reload
+        expect(dossier.submitted_with_france_connect).to be false
       end
     end
   end
@@ -1458,6 +1505,58 @@ describe Users::DossiersController, type: :controller do
         expect { subject }.to have_enqueued_job(ChampFetchExternalDataJob)
       end
     end
+
+    context 'when the champ is an autocomplete with prefillable private champs' do
+      render_views
+      let(:datasource) { '$.data' }
+      let(:referentiel) { create(:api_referentiel, :autocomplete, :with_autocomplete_response, datasource:) }
+      let(:referentiel_stable_id) { 1 }
+      let(:types_de_champ_public) do
+        [
+          {
+            type: :referentiel,
+            referentiel: referentiel,
+            stable_id: referentiel_stable_id,
+            referentiel_mapping: {
+              "$.data[0].finess" => { prefill: "1", prefill_stable_id: 100 },
+            },
+          },
+        ]
+      end
+      let(:types_de_champ_private) do
+        [
+          {
+            type: :text,
+            stable_id: 100,
+          },
+        ]
+      end
+      let(:procedure) { create(:procedure, :published, types_de_champ_public:, types_de_champ_private:) }
+      let(:suggestion_value) { 'osf' }
+      let(:suggestion_data) { { finess: "123" } }
+      let(:message_encryptor_service) { MessageEncryptorService.new }
+      let(:submit_payload) do
+        {
+          id: dossier.id,
+          dossier: {
+            champs_public_attributes: {
+              first_champ.public_id => {
+                value: suggestion_value,
+                data: message_encryptor_service.encrypt_and_sign(suggestion_data, purpose: :storage, expires_in: 1.hour),
+              },
+            },
+          },
+        }
+      end
+
+      it 'prefills the private annotation from the referentiel data' do
+        subject
+
+        dossier.reload
+        annotation = dossier.project_champs_private.find { it.stable_id == 100 }
+        expect(annotation.value).to eq(suggestion_data[:finess])
+      end
+    end
   end
 
   describe '#index' do
@@ -1813,19 +1912,35 @@ describe Users::DossiersController, type: :controller do
     end
   end
 
-  describe "#papertrail" do
+  describe "#attestation_depot" do
     before { sign_in(user) }
 
     subject do
-      get :papertrail, format: :pdf, params: { id: dossier.id }
+      get :attestation_depot, format: :pdf, params: { id: dossier.id }
     end
 
     context 'when the dossier has been submitted' do
-      let(:dossier) { create(:dossier, :en_construction, user: user) }
+      let(:dossier) { create(:dossier, :en_construction, :with_individual, user: user) }
 
-      it 'renders a PDF document' do
+      before do
+        allow(WeasyprintService).to receive(:generate_pdf).and_return("%PDF-1.4 fake")
+      end
+
+      it 'sends a PDF document' do
         subject
-        expect(response).to render_template(:papertrail)
+        expect(response.headers['Content-Type']).to include('application/pdf')
+      end
+
+      it 'calls WeasyPrint with the correct context' do
+        subject
+        expect(WeasyprintService).to have_received(:generate_pdf)
+          .with(a_string_matching(/#{dossier.procedure.libelle}/), { procedure_id: dossier.procedure.id, dossier_id: dossier.id })
+      end
+
+      it 'includes dossier identity in the HTML' do
+        subject
+        expect(WeasyprintService).to have_received(:generate_pdf)
+          .with(a_string_matching(/#{dossier.individual.prenom}/), anything)
       end
     end
 
@@ -2026,11 +2141,27 @@ describe Users::DossiersController, type: :controller do
 
     subject { controller.dossier_for_help }
 
-    context 'when the id matches an existing dossier' do
-      let(:dossier) { create(:dossier) }
+    context 'when the id matches a dossier owned by the current user' do
+      let(:dossier) { create(:dossier, user:) }
       let(:dossier_id) { dossier.id }
 
       it { is_expected.to eq dossier }
+    end
+
+    context 'when the id matches a dossier the current user was invited to' do
+      let(:dossier) { create(:dossier) }
+      let(:dossier_id) { dossier.id }
+      before { create(:invite, dossier:, user:) }
+
+      it { is_expected.to eq dossier }
+    end
+
+    context 'when the id matches a dossier from another user' do
+      let(:other_user) { create(:user) }
+      let(:other_dossier) { create(:dossier, user: other_user) }
+      let(:dossier_id) { other_dossier.id }
+
+      it { is_expected.to be nil }
     end
 
     context 'when the id doesn’t match an existing dossier' do
@@ -2040,7 +2171,7 @@ describe Users::DossiersController, type: :controller do
 
     context 'when the id is empty' do
       let(:dossier_id) { nil }
-      it { is_expected.to be_falsy }
+      it { is_expected.to be nil }
     end
   end
 

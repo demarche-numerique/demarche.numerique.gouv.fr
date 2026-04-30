@@ -74,6 +74,10 @@ class FranceConnectInformation < ApplicationRecord
     self.requested_email = nil
   end
 
+  def complete?(with_gender:)
+    given_name.present? && family_name.present? && (!with_gender || gender.present?)
+  end
+
   def full_name
     [given_name, family_name].compact.join(" ")
   end

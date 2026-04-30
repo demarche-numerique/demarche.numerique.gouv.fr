@@ -40,7 +40,10 @@ module Administrateurs
     end
 
     def export_template
-      @export_template ||= ExportTemplate.find(params[:export_template_id]) if params[:export_template_id].present?
+      return @export_template if defined?(@export_template)
+      return @export_template = nil if params[:export_template_id].blank?
+
+      @export_template = @procedure.export_templates.find(params[:export_template_id])
     end
 
     def export_options

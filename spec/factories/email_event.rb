@@ -6,6 +6,6 @@ FactoryBot.define do
     subject { "Thank you" }
     processed_at { Time.zone.now }
     status { "dispatched" }
-    add_attribute(:method) { "sendinblue" }
+    add_attribute(:method) { "brevo" }
   end
 end

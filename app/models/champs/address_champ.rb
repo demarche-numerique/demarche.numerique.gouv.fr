@@ -264,11 +264,12 @@ class Champs::AddressChamp < Champs::TextChamp
     end
 
     self.value_json = address_data.compact
-    self.value = address_label
 
     if full_address? && !ban?
       self.value_json['label'] = format_label
     end
+
+    self.value = address_label
   end
 
   private

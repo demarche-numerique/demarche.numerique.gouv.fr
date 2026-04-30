@@ -61,14 +61,14 @@ module Instructeurs
       if groupe_instructeur.instructeurs.one?
         flash[:alert] = "Suppression impossible : il doit y avoir au moins un instructeur dans le groupe"
       else
-        instructeur = Instructeur.find(instructeur_id)
-        if groupe_instructeur.remove(instructeur)
+        instructeur = groupe_instructeur.instructeurs.find_by(id: instructeur_id)
+        if instructeur && groupe_instructeur.remove(instructeur)
           flash[:notice] = "L’instructeur « #{instructeur.email} » a été retiré du groupe."
           GroupeInstructeurMailer
             .notify_removed_instructeur(groupe_instructeur, instructeur, current_user.email)
             .deliver_later
         else
-          flash[:alert] = "L’instructeur « #{instructeur.email} » n’est pas dans le groupe."
+          flash[:alert] = "L’instructeur n’est pas dans le groupe."
         end
       end
 

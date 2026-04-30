@@ -97,7 +97,8 @@ class ProConnectController < ApplicationController
   end
 
   def check_state
-    if cookies.encrypted[STATE_COOKIE_NAME] != params[:state]
+    expected_state = cookies.encrypted[STATE_COOKIE_NAME]
+    if expected_state.blank? || expected_state != params[:state]
       flash.alert = t('errors.messages.france_connect.connexion')
       redirect_to(new_user_session_path)
     else

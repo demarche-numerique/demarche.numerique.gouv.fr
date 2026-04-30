@@ -56,7 +56,7 @@ class PrefillChamps
     end
 
     def prefillable?
-      champ.prefillable? && valid? && champ_attributes.present?
+      champ.prefillable? && champ_attributes.present? && valid?
     end
 
     def champ_attributes

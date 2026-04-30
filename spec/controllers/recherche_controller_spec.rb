@@ -79,6 +79,15 @@ describe RechercheController, type: :controller do
           expect(assigns(:projected_dossiers)).to eq(nil)
           expect(assigns(:dossier_not_in_instructor_group)).to eq(dossier3)
         end
+
+        context 'rendered response' do
+          render_views
+
+          it 'does not disclose the label of the other groupe instructeur' do
+            subject
+            expect(response.body).not_to include(gi_p1_2.label)
+          end
+        end
       end
 
       context 'when dossier is deleted' do

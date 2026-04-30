@@ -1,7 +1,5 @@
 @import 'constants';
 @import 'colors';
-@import 'mixins';
-@import 'placeholders';
 
 $landing-breakpoint: 1040px;
 
@@ -40,7 +38,12 @@ $landing-breakpoint: 1040px;
 }
 
 .features {
-  @extend %horizontal-list;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0px;
+  display: flex;
+  flex-wrap: wrap;
   width: 100%;
   align-items: baseline;
   justify-content: space-between;
@@ -51,7 +54,7 @@ $landing-breakpoint: 1040px;
 }
 
 .feature {
-  @extend %horizontal-list-item;
+  display: inline-block;
   width: 260px;
 
   @media (max-width: $landing-breakpoint) {
@@ -76,7 +79,12 @@ $landing-breakpoint: 1040px;
 }
 
 .quotes {
-  @extend %horizontal-list;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0px;
+  display: flex;
+  flex-wrap: wrap;
   width: 100%;
   justify-content: space-between;
   margin-bottom: 30px;
@@ -87,7 +95,7 @@ $landing-breakpoint: 1040px;
 }
 
 .quote {
-  @extend %horizontal-list-item;
+  display: inline-block;
   max-width: 500px;
   width: 100%;
   background-color: #ffffff;
@@ -126,7 +134,12 @@ $landing-breakpoint: 1040px;
 
 .landing {
   .numbers {
-    @extend %horizontal-list;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0px;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     width: 100%;
   }
@@ -173,7 +186,12 @@ html[lang='fr'] .landing .number-label-third::before {
 $users-breakpoint: 950px;
 
 .users {
-  @extend %horizontal-list;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0px;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
 
@@ -191,7 +209,7 @@ $users-breakpoint: 950px;
 }
 
 .user {
-  @extend %horizontal-list-item;
+  display: inline-block;
   width: 170px;
 
   &:hover {
@@ -272,22 +290,18 @@ $users-breakpoint: 950px;
   }
 }
 
-$cta-panel-button-border-size: 2px;
-
-@mixin cta-panel-button {
-  @include horizontal-padding(40px);
-  @include vertical-padding(15px);
+.cta-panel-button-white {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   display: block;
   border-radius: 100px;
   font-size: 22px;
   text-align: center;
   cursor: pointer;
   margin-top: 20px;
-}
-
-.cta-panel-button-white {
-  @include cta-panel-button;
-  border: $cta-panel-button-border-size solid #ffffff;
+  border: 2px solid #ffffff;
   color: #ffffff;
 
   &:hover {

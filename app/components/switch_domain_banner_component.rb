@@ -9,7 +9,7 @@ class SwitchDomainBannerComponent < ApplicationComponent
 
   def render?
     return false unless helpers.switch_domain_enabled?(request)
-    return false if user&.preferred_domain_demarche_numerique_gouv_fr? && requested_from_new_domain?
+    return false if requested_from_new_domain?
 
     true
   end

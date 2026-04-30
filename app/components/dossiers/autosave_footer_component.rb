@@ -19,4 +19,14 @@ class Dossiers::AutosaveFooterComponent < ApplicationComponent
   def owner?
     @owner
   end
+
+  def context
+    if annotation?
+      'annotations'
+    elsif dossier.en_construction?
+      'en_construction'
+    else
+      'brouillon'
+    end
+  end
 end

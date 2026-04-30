@@ -109,7 +109,7 @@
                 <% end %>
               <% end %>
             <% elsif attribute.name == 'tags' %>
-              <%= form_for procedure, url: add_tags_manager_procedure_path(procedure), html: { class: 'form procedure-form__column--form fr-background-alt--blue-france mt-1' }  do %>
+              <%= form_for procedure, url: add_tags_manager_procedure_path(procedure), html: { class: 'form procedure-form__column--form fr-background-alt--blue-france fr-mt-2v' }  do %>
                 <react-fragment>
                   <%= render ReactComponent.new "ComboBox/MultiComboBox",
                     items: Procedure.tags,
@@ -120,10 +120,10 @@
                     'aria-label': 'Tags' %>
                 </react-fragment>
 
-                <button class="mt-1">Ajouter des tags</button>
+                <button class="fr-mt-2v">Ajouter des tags</button>
               <% end %>
             <% elsif attribute.name == 'template' %>
-              <%= form_for procedure, url: update_template_status_manager_procedure_path(procedure), html: { method: :patch, class: 'procedure-form__column--form fr-background-alt--blue-france mt-1', id: 'template-form' } do |f| %>
+              <%= form_for procedure, url: update_template_status_manager_procedure_path(procedure), html: { method: :patch, class: 'procedure-form__column--form fr-background-alt--blue-france fr-mt-2v', id: 'template-form' } do |f| %>
                 <%= f.label :template, 'Marquer comme modèle', for: 'template_checkbox' %>
                 <%= f.check_box :template, id: 'template_checkbox', onchange: 'this.form.submit();' %>
               <% end %>

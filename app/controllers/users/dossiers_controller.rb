@@ -10,7 +10,7 @@ module Users
     layout 'procedure_context', only: [:identite, :update_identite, :siret, :update_siret]
 
     ACTIONS_ALLOWED_TO_ANY_USER = [:index, :new,  :deleted_dossiers]
-    ACTIONS_ALLOWED_TO_OWNER_OR_INVITE = [:show, :destroy, :demande, :messagerie, :brouillon, :modifier, :update, :create_commentaire, :papertrail, :restore, :champ, :check_completude, :notify_owner_for_changes]
+    ACTIONS_ALLOWED_TO_OWNER_OR_INVITE = [:show, :destroy, :demande, :messagerie, :brouillon, :modifier, :update, :create_commentaire, :attestation_depot, :restore, :champ, :check_completude, :notify_owner_for_changes]
     TRASH_ACTIONS = [:show_in_trash, :show_deleted]
 
     before_action :ensure_ownership!, except: ACTIONS_ALLOWED_TO_ANY_USER + ACTIONS_ALLOWED_TO_OWNER_OR_INVITE + TRASH_ACTIONS
@@ -137,9 +137,14 @@ module Users
       raise ActiveRecord::RecordNotFound if @deleted_dossier.nil?
     end
 
-    def papertrail
+    def attestation_depot
       raise ActionController::BadRequest if dossier.brouillon?
       @dossier = dossier
+      pdf = @dossier.generate_or_reuse_attestation_depot
+      send_data pdf,
+        filename: I18n.t('users.dossiers.show.attestation_depot.filename', dossier_id: @dossier.id),
+        type: 'application/pdf',
+        disposition: 'attachment'
     end
 
     def set_accuse_lecture_agreement_at
@@ -155,7 +160,9 @@ module Users
       @no_description = true
 
       respond_to do |format|
-        format.html
+        format.html do
+          @dossier.prefill_individual_from_france_connect if @dossier.identity_from_fc?
+        end
         format.turbo_stream do
           @dossier.assign_for_tiers(params.dig(:dossier, :for_tiers) == 'true')
         end
@@ -269,6 +276,7 @@ module Users
 
       if @dossier.errors.blank? && @dossier.can_passer_en_construction?
         begin
+          @dossier.submitted_with_france_connect = current_user.loged_in_with_france_connect.present?
           @dossier.passer_en_construction!
           redirect_to merci_dossier_path(@dossier)
           return
@@ -312,6 +320,7 @@ module Users
       submit_dossier_and_compute_errors
 
       if dossier.errors.blank? && dossier.can_passer_en_construction?
+        dossier.submitted_with_france_connect = current_user.loged_in_with_france_connect.present?
         dossier.merge_user_buffer_stream!
         dossier.usager_submit_en_construction!
 
@@ -400,10 +409,29 @@ module Users
         dossier.resolve_pending_response!
 
         flash.notice = t('.message_send')
-        redirect_to messagerie_dossier_path(dossier)
+
+        respond_to do |format|
+          format.turbo_stream do
+            @dossier = dossier
+            @connected_user = current_user
+            @form_url = commentaire_dossier_path(dossier)
+            render template: 'shared/dossiers/create_commentaire'
+          end
+          format.html { redirect_to messagerie_dossier_path(dossier) }
+        end
       else
-        flash.now.alert = @commentaire.errors.full_messages
-        render :messagerie
+        respond_to do |format|
+          format.turbo_stream do
+            @dossier = dossier
+            @connected_user = current_user
+            @form_url = commentaire_dossier_path(dossier)
+            render template: 'shared/dossiers/create_commentaire', status: :unprocessable_entity
+          end
+          format.html do
+            flash.now.alert = @commentaire.errors.full_messages
+            render :messagerie, status: :unprocessable_entity
+          end
+        end
       end
     end
 
@@ -456,8 +484,14 @@ module Users
     end
 
     def dossier_for_help
+      return @dossier if @dossier
+
       dossier_id = params[:id] || params[:dossier_id]
-      @dossier || (dossier_id.present? && Dossier.visible_by_user.find_by(id: dossier_id.to_i))
+      return nil if dossier_id.blank?
+
+      id = dossier_id.to_i
+      current_user.dossiers.visible_by_user.find_by(id:) ||
+        current_user.dossiers_invites.visible_by_user.find_by(id:)
     end
 
     def transferer
@@ -488,11 +522,11 @@ module Users
     private
 
     def identity_locked?(dossier)
-      dossier.france_connected_with_one_identity?
+      dossier.identity_from_fc?
     end
 
     def mandataire_identity_locked?(dossier)
-      dossier.for_tiers? && dossier.france_connected_with_one_identity?
+      dossier.for_tiers? && dossier.identity_from_fc?
     end
 
     # if the status tab is filled, then this tab

@@ -333,7 +333,7 @@ module Administrateurs
         still_assigned = instructeur.groupe_instructeurs.where(procedure:).any?
 
         GroupeInstructeurMailer
-          .notify_removed_instructeur_from_all_groupes(procedure, removed_from_groupes, instructeur, current_administrateur.email, still_assigned)
+          .notify_removed_instructeur_from_many_groupes(procedure, removed_from_groupes, instructeur, current_administrateur.email, still_assigned)
           .deliver_later
 
         if still_assigned
@@ -410,23 +410,41 @@ module Administrateurs
       else
         csv_content = parse_csv(csv_file)
 
+        if csv_content.blank?
+          flash_message_for_invalid_csv
+          return redirect_to admin_procedure_groupe_instructeurs_path(procedure)
+        end
+
         if csv_content.first.has_key?("groupe") && csv_content.first.has_key?("email")
           groupes_emails = csv_content.map { |r| r.to_h.slice('groupe', 'email') }
 
-          groupes_by_instructeur, invalid_emails = InstructeursImportService.import_groupes(procedure, groupes_emails)
+          groupes_by_instructeur, invalid_emails, preserved_groupes, removed_groupes_by_instructeur = InstructeursImportService.import_groupes(procedure, groupes_emails, overwrite: params[:overwrite] == '1', administrateur: current_administrateur)
 
           groupes_by_instructeur.each do |instructeur, groupes|
             notify_instructeur_added_in_many_groupes(instructeur, groupes)
           end
 
-          flash_message_for_import(invalid_emails)
+          removed_groupes_by_instructeur.each do |instructeur, removed_from_groupes|
+            still_assigned = instructeur.groupe_instructeurs.where(procedure:).any?
+            GroupeInstructeurMailer
+              .notify_removed_instructeur_from_many_groupes(procedure, removed_from_groupes, instructeur, current_administrateur.email, still_assigned)
+              .deliver_later
+          end
+
+          flash_message_for_import(invalid_emails, preserved_groupes)
 
         elsif csv_content.first.has_key?("email") && !csv_content.map(&:to_h).first.keys.many? && procedure.groupe_instructeurs.one?
           instructors_emails = csv_content.map(&:to_h)
 
-          added_instructeurs, invalid_emails = InstructeursImportService.import_instructeurs(procedure, instructors_emails)
+          added_instructeurs, invalid_emails, removed_instructeurs = InstructeursImportService.import_instructeurs(procedure, instructors_emails, overwrite: params[:overwrite] == '1')
           if added_instructeurs.present?
             notify_instructeurs(groupe_instructeur, added_instructeurs, current_administrateur)
+          end
+
+          removed_instructeurs.each do |instructeur|
+            GroupeInstructeurMailer
+              .notify_removed_instructeur(groupe_instructeur, instructeur, current_administrateur.email)
+              .deliver_later
           end
           flash_message_for_import(invalid_emails)
         else
@@ -640,11 +658,21 @@ module Administrateurs
       { routing_enabled: params.require(:routing) == 'enable' }
     end
 
-    def flash_message_for_import(result)
-      if result.blank?
-        flash[:notice] = "La liste des instructeurs a été importée avec succès"
+    def flash_message_for_import(invalid_emails, preserved_groupes = [])
+      messages = []
+
+      if invalid_emails.present?
+        messages << "Import terminé. Cependant les adresses électroniques suivantes ne sont pas prises en compte : #{invalid_emails.join(', ')}"
+      end
+
+      if preserved_groupes.present?
+        messages << "Les groupes suivants ont été conservés car des dossiers leur sont affectés : #{preserved_groupes.join(', ')}. Veuillez réaffecter les dossiers si vous souhaitez supprimer ces groupes."
+      end
+
+      if messages.any?
+        flash[:alert] = messages.join(' ')
       else
-        flash[:alert] = "Import terminé. Cependant les adresses électroniques suivantes ne sont pas prises en compte : #{result.join(', ')}"
+        flash[:notice] = "La liste des instructeurs a été importée avec succès"
       end
     end
 

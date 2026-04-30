@@ -1,19 +1,19 @@
 ---
 fr:
   states:
-    pending: 'Lancez la recheche pour obtenir des suggestions d’amélioration.'
-    failed: 'La génération des suggestions a echoué, veuillez ré-essayer'
-    accepted: 'Vous avez déjà accepté des suggestions, vous pouvez les regénérer.'
-    skipped: 'Vous avez déjà ignoré des suggestions, souhaitez-vous en regénérer ?'
+    pending: 'Lancez la recherche pour obtenir des suggestions d’amélioration.'
+    failed: 'La recherche de suggestions a échoué, veuillez réessayer.'
+    accepted: 'Vous avez déjà accepté des suggestions, vous pouvez relancer la recherche.'
+    skipped: 'Vous avez déjà ignoré des suggestions, souhaitez-vous relancer la recherche ?'
   buttons:
     pending: 'Lancer la recherche de suggestions'
     queued: 'Recherche en cours'
     running: 'Recherche en cours'
-    failed: 'Regénérer les suggestions'
-    accepted: 'Regénérer les suggestions'
-    skipped: 'Regénérer les suggestions'
+    failed: 'Relancer la recherche de suggestions'
+    accepted: 'Relancer la recherche de suggestions'
+    skipped: 'Relancer la recherche de suggestions'
   summary:
-    title: À quoi servent ces suggestions ?
+    title: À quoi servent ces suggestions ?
     improve_label_html: |
       <p>Cette étape propose une mise à jour des libellés de champs détectés comme <strong>trop longs</strong>, en <strong>majuscules</strong>
       ou <strong>difficiles à comprendre</strong>.</p>
@@ -24,13 +24,37 @@ fr:
       (réorganisation des champs, ajout de sections)</strong> pour le rendre plus clair et lisible pour l’usager.</p>
 
     improve_types_html: |
-      <p>Cette étape permet d’<strong>utiliser les types de champs appropriés</strong> (email, adresse, etc.)
-      pour un affichage optimisé et une validation automatique.</p>
-      <p>Les champs spécialisés permettent de récupérer automatiquement des données complémentaires
-      (ex: le champ adresse fournit directement la commune, département, etc…).</p>
+      <p>Cette étape propose d’utiliser <strong>les types de champs appropriés</strong> (adresse électronique, adresse, etc.)
+      pour faciliter le remplissage des champs par l’usager et fiabiliser le recueil des données pour l’administration.
+      Certains champs spécialisés permettent de récupérer automatiquement des données complémentaires
+      (exemple : le champ « Adresse » fournit directement les données « Commune », « Département », etc.).</p>
 
     cleaner_html: |
       <p>Cette étape applique le principe <strong>« Dites-le nous une fois »</strong> :
       l’administration ne doit pas redemander des informations déjà collectées ou connues par ailleurs.</p>
-      <p>Nous proposons la suppression des champs qui demandent une information déjà disponible
-      via un autre champ du formulaire (ex: un champ « Commune » quand un champ « Adresse » existe).</p>
+      <p>Les suggestions proposent de supprimer des champs qui demandent une information déjà disponible
+      via un autre champ du formulaire (exemple : suppression d’un champ « Commune » quand un champ « Adresse »
+      est présent dans le formulaire et permet de récupérer automatiquement la commune).</p>
+  no_suggestion_html: |
+    🎉 <strong>Félicitations</strong>, nous n’avons aucune suggestion
+    pertinente à proposer sur ce thème, ce qui signifie probablement que
+    votre formulaire est déjà de qualité !
+  continue: Poursuivre
+  suggestions_count:
+    one: "%{count} suggestion"
+    other: "%{count} suggestions"
+  ai_disclaimer: Ces suggestions utilisent l’IA. Vérifiez toujours ce qui est proposé.
+  select_legend: "Sélectionnez les suggestions que vous souhaitez appliquer pour améliorer votre formulaire :"
+  skip_and_continue: Ignorer cette étape et poursuivre
+  skip_and_finish: Ignorer cette étape et terminer
+  apply_and_continue: Appliquer les suggestions et poursuivre
+  apply_and_finish: Appliquer les suggestions et terminer
+  finished_html: |
+    <strong>Ce parcours d’amélioration de la qualité du formulaire est terminé.</strong>
+    Vous pourrez obtenir de nouvelles suggestions en recommençant le parcours.
+  restart: Recommencer le parcours
+  already_processed_html:
+    accepted: Vous avez déjà accepté des suggestions
+    skipped: Vous avez déjà ignoré des suggestions
+  back_link: "Revenir à l’écran de gestion"
+  next_link: "Poursuivre le parcours d’amélioration"

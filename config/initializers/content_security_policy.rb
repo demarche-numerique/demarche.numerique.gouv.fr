@@ -13,7 +13,7 @@ Rails.application.configure do
     images_whitelist << URI(MATOMO_IFRAME_URL).host if MATOMO_IFRAME_URL.present?
     policy.img_src(:self, :data, :blob, *images_whitelist)
 
-    # Javascript: allow us, SendInBlue and Matomo.
+    # Javascript: allow us, Brevo and Matomo.
     # We need unsafe_inline because miniprofiler and us have some inline buttons :(
     scripts_whitelist = ["client.crisp.chat", "cdn.jsdelivr.net", "integration.lasuite.numerique.gouv.fr", "unpkg.com"]
     scripts_whitelist << URI(MATOMO_IFRAME_URL).host if MATOMO_IFRAME_URL.present?

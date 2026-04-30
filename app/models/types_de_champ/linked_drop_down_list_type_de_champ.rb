@@ -11,7 +11,7 @@ class TypesDeChamp::LinkedDropDownListTypeDeChamp < TypesDeChamp::TypeDeChampBas
   end
 
   def primary_options
-    unpack_options.map(&:first)
+    unpack_options.map(&:first).uniq
   end
 
   def primary_input_label_id
@@ -143,7 +143,7 @@ class TypesDeChamp::LinkedDropDownListTypeDeChamp < TypesDeChamp::TypeDeChampBas
 
     chunked.map do |chunk|
       primary, *secondary = chunk
-      [PRIMARY_PATTERN.match(primary)&.[](1), secondary]
+      [PRIMARY_PATTERN.match(primary)&.[](1), secondary.uniq]
     end
   end
 

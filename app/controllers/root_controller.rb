@@ -72,7 +72,9 @@ class RootController < ApplicationController
               ]
             type_de_champ.save
           elsif type_de_champ.referentiel?
-            type_de_champ.referentiel = Referentiels::APIReferentiel.new(url: Referentiels::APIReferentiel.stub_url, mode: :autocomplete, name: SecureRandom.uuid, test_data: 'kkk')
+            stub_url = Referentiels::APIReferentiel.stub_url
+            url_tiptap = { "type" => "doc", "content" => [{ "type" => "paragraph", "content" => [{ "type" => "text", "text" => "#{stub_url}?q=" }, { "type" => "mention", "attrs" => { "id" => "{query}", "label" => "Valeur saisie par l'usager" } }] }] }
+            type_de_champ.referentiel = Referentiels::APIReferentiel.new(url_tiptap:, mode: :autocomplete, name: SecureRandom.uuid, test_data_tiptap: { "{query}" => "kkk" })
             type_de_champ.save
           end
         end

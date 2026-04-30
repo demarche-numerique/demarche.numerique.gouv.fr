@@ -167,6 +167,16 @@ describe ColumnsConcern do
         expect(column.type).to eq(:boolean)
         expect(column.options_for_select).to eq(Champs::YesNoChamp.options)
       end
+
+      it 'defines yes/no options for the submitted_with_france_connect boolean column' do
+        column = procedure.columns.find { _1.column == 'submitted_with_france_connect' }
+
+        expect(column).to be_present
+        expect(column.type).to eq(:boolean)
+        expect(column.options_for_select).to eq(Champs::YesNoChamp.options)
+        expect(column.filterable).to be true
+        expect(column.displayable).to be true
+      end
     end
 
     context 'when the procedure is sva' do
@@ -209,11 +219,11 @@ describe ColumnsConcern do
             procedure.find_column(label: "N° dossier"),
             procedure.find_column(label: "Adresse électronique"),
             procedure.find_column(label: "France connecté ?"),
-            procedure.find_column(label: "Nom"),
-            procedure.find_column(label: "Prénom"),
+            procedure.find_column(label: "Nom [Identité du demandeur]"),
+            procedure.find_column(label: "Prénom [Identité du demandeur]"),
             procedure.find_column(label: "Dépôt pour un tiers"),
-            procedure.find_column(label: "Nom du mandataire"),
-            procedure.find_column(label: "Prénom du mandataire"),
+            procedure.find_column(label: "Nom [Identité du mandataire]"),
+            procedure.find_column(label: "Prénom [Identité du mandataire]"),
           ]
           actuals = procedure.usager_columns_for_export.map(&:h_id)
           expected.each do |expected_col|

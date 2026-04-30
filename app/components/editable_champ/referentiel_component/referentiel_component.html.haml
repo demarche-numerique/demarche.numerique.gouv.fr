@@ -1,4 +1,6 @@
-- if exact_match?
+- if referentiel.blank?
+  = @form.text_field :value, input_opts(id: @champ.focusable_input_id, class: "fr-input", disabled: true)
+- elsif exact_match?
   = @form.text_field :external_id, input_opts(id: @champ.focusable_input_id, required: @champ.required?, class: "width-33-desktop fr-input", novalidate: 'true', aria: { **labelledby_id_attr, describedby: "#{@champ.describedby_id} #{@champ.error_id(:value)}" })
 - else
   .fr-input-group.address-ban

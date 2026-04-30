@@ -161,6 +161,23 @@ describe ProcedurePathConcern do
     end
   end
 
+  describe 'validate(:publication) with legacy path ending with separator' do
+    let(:procedure) { create(:procedure, :published) }
+
+    before do
+      # Simulate a path created before the format validation was added
+      legacy_path = procedure.procedure_paths.create!(path: 'ma-demarche-test')
+      legacy_path.update_column(:path, 'ma-demarche-')
+      procedure.reload
+    end
+
+    it 'does not block publication because of a legacy path' do
+      expect(procedure.procedure_paths.map(&:path)).to include('ma-demarche-')
+      expect(procedure.validate(:publication)).to be_truthy
+      expect(procedure.errors[:procedure_paths]).to be_empty
+    end
+  end
+
   describe '#previous_paths' do
     let!(:procedure) { create(:procedure) }
 

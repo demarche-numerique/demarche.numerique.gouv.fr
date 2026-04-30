@@ -2,11 +2,12 @@
 
 module Experts
   class AvisController < ExpertController
+    include BilansBdfConcern
     include Zipline
     include AvisCreationConcern
 
     before_action :authenticate_expert!, except: [:sign_up, :update_expert]
-    before_action :check_if_avis_revoked, except: [:index, :procedure, :notification_settings, :update_notification_settings]
+    before_action :check_if_avis_revoked, except: [:index, :procedure, :notification_settings, :update_notification_settings, :sign_up, :update_expert]
     before_action :redirect_if_no_sign_up_needed, only: [:sign_up, :update_expert]
     before_action :set_avis_and_dossier, only: [:show, :instruction, :avis_list, :avis_new, :create_avis, :messagerie, :create_commentaire, :update, :telecharger_pjs]
     before_action :check_messaging_allowed, only: [:messagerie, :create_commentaire]
@@ -103,6 +104,7 @@ module Experts
     end
 
     def update
+      was_unanswered = @avis.answer.nil?
       updated_recently = @avis.updated_recently?
       if @avis.update(avis_answer_params)
         flash.notice = 'Votre réponse est enregistrée.'
@@ -115,7 +117,7 @@ module Experts
         DossierNotification.destroy_notifications_by_dossier_and_type(@avis.dossier, :attente_avis) if @avis.dossier.avis.without_answer.empty?
         DossierNotification.create_notification(@avis.dossier, :avis_externe)
 
-        if !updated_recently
+        if was_unanswered || !updated_recently
           @avis.dossier.followers_instructeurs
             .with_instant_email_new_expert_avis(@avis.procedure)
             .each do |instructeur|
@@ -142,7 +144,11 @@ module Experts
       procedure_id = params[:procedure_id]
       avis_id = params[:id]
       email = params[:email]
-      confirmation_token = params[:user][:confirmation_token]
+      confirmation_token = params.dig(:user, :confirmation_token).presence
+      if confirmation_token.nil?
+        return redirect_to root_path, alert: "Vous n’avez pas accès à cet avis."
+      end
+
       avis = Avis.joins(:procedure, expert: :user)
         .find_by(id: avis_id, procedure: { id: procedure_id }, user: { email:, confirmation_token: })
       if avis.nil?
@@ -178,20 +184,34 @@ module Experts
         DossierNotification.create_notification(avis.dossier, :message)
 
         flash.notice = "Message envoyé"
-        redirect_to messagerie_expert_avis_path(avis.procedure, avis)
+
+        respond_to do |format|
+          format.turbo_stream do
+            @dossier = avis.dossier
+            @connected_user = current_expert
+            @form_url = commentaire_expert_avis_path(avis)
+            render template: 'shared/dossiers/create_commentaire'
+          end
+          format.html { redirect_to messagerie_expert_avis_path(avis.procedure, avis) }
+        end
       else
-        flash.alert = @commentaire.errors.full_messages
-        render :messagerie
+        respond_to do |format|
+          format.turbo_stream do
+            @dossier = avis.dossier
+            @connected_user = current_expert
+            @form_url = commentaire_expert_avis_path(avis)
+            render template: 'shared/dossiers/create_commentaire', status: :unprocessable_entity
+          end
+          format.html do
+            flash.alert = @commentaire.errors.full_messages
+            render :messagerie, status: :unprocessable_entity
+          end
+        end
       end
     end
 
     def bilans_bdf
-      if avis.dossier.etablissement&.entreprise_bilans_bdf.present?
-        extension = params[:format]
-        render extension.to_sym => avis.dossier.etablissement.entreprise_bilans_bdf_to_sheet(extension)
-      else
-        redirect_to expert_avis_path(avis)
-      end
+      bilans_bdf_response(avis.dossier.etablissement, params[:format], expert_avis_path(avis))
     end
 
     def telecharger_pjs
@@ -221,11 +241,15 @@ module Experts
 
     def redirect_if_no_sign_up_needed
       avis = Avis.find(params[:id])
+      submitted_token = params[:confirmation_token] || params.dig(:user, :confirmation_token)
 
       if current_expert.present?
         # an expert is authenticated ... lets see if it can view the dossier
         redirect_to expert_avis_url(avis.procedure, avis)
-      elsif avis.expert&.email == params[:email] && avis.expert.user.active?.present?
+      elsif avis.expert&.email == params[:email] &&
+            avis.expert.user.confirmation_token.present? &&
+            avis.expert.user.confirmation_token == submitted_token &&
+            avis.expert.user.active?
         # The expert already used the sign-in page to change their password: ask them to sign-in instead.
         redirect_to new_user_session_url
       end

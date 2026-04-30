@@ -68,6 +68,14 @@ en:
         question: I want to open an admin account with an Orange, Wanadoo, etc. email
       admin_autre:
         question: Other topic
+    prefill:
+      autosave:
+        subject: 'Autosave error'
+        body: |
+          Hello,
+
+          I encountered an error during autosave of my file (error code: %{error_id}).
+          Please describe below which field(s) were affected and any other useful information:
     create:
       direct_message_sent: Your message has been sent to the mailbox in your file.
       message_sent: Your message has been sent.

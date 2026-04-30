@@ -1,7 +1,12 @@
 fr:
   groupe_instructeur_mailer:
     confirm_and_notify_added_instructeur_in_many_groupes:
+      title: "Affectation à une démarche"
       email_body:
         html:
-          one: "Vous avez été ajouté(e) au groupe instructeur « %{groupe} » de la démarche « <a href=\"%{procedure_url}\">%{procedure}</a> » par %{email}."
-          other: "Vous avez été ajouté(e) à %{count} groupes instructeurs de la démarche « <a href=\"%{procedure_url}\">%{procedure}</a> » par %{email} :"
+          one: "Vous avez été ajouté(e) au groupe instructeur « <strong>%{groupe}</strong> » de la démarche « <strong>%{procedure}</strong> » par %{email}."
+          other: "Vous avez été ajouté(e) à %{count} groupes instructeurs de la démarche « <strong>%{procedure}</strong> » par %{email} :"
+      account_created_html: "Un compte instructeur a été créé pour l\u2019adresse électronique <strong>%{email}</strong>. Pour l\u2019activer, cliquez sur le bouton ci-dessous."
+      activate_button: "Activer mon compte"
+      next_connections_html: "Lors de vos prochaines connexions sur %{application_name}, cliquez sur le bouton « <em>Se connecter</em> » positionné en haut de page ou bien sur ce lien : <a href=\"%{sign_in_url}\">%{sign_in_url}</a>"
+      tutorial_html: "Nous vous invitons aussi à consulter notre <a href=\"%{tutorial_url}\">tutoriel à destination des instructeurs</a>."

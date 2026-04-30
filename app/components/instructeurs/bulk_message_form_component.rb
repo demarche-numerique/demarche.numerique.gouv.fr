@@ -100,7 +100,7 @@ class Instructeurs::BulkMessageFormComponent < ApplicationComponent
     safe_join([
       tag.span(
         "",
-        class: "fr-icon-information-line fr-icon--sm ml-1",
+        class: "fr-icon-information-line fr-icon--sm fr-ml-2v",
         id: "link-#{groupe_instructeur.id}",
         aria: { describedby: "tooltip-#{groupe_instructeur.id}" }
       ),

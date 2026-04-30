@@ -1,6 +1,6 @@
 #breadcrumbs.sub-header
   .fr-container.flex.justify-between.align-baseline.column
-    %nav.fr-breadcrumb.mt-0{ role: "navigation", aria: { label: t('you_are_here', scope: [:layouts, :breadcrumb]) } }
+    %nav.fr-breadcrumb.fr-mt-0{ role: "navigation", aria: { label: t('you_are_here', scope: [:layouts, :breadcrumb]) } }
       %button.fr-breadcrumb__button{ aria: { expanded: "false", controls: "breadcrumb-1" } }
         = t('show', scope: [:layouts, :breadcrumb])
       .fr-collapse#breadcrumb-1
@@ -11,6 +11,6 @@
             - else
               %li= link_to step[0], step[1], class: 'fr-breadcrumb__link'
     - if defined?(metadatas)
-      .metadatas.pb-3
+      .metadatas.fr-pb-6v
         %h1.fr-h6.fr-mb-1w
           = @groupe_gestionnaire.name

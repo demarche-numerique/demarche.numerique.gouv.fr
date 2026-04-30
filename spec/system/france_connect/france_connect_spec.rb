@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe 'France Connect Connexion' do
+describe 'FranceConnect Connexion' do
   let(:code) { 'plop' }
   let(:state) { 'state' }
   let(:id_token) { 'id_token' }
@@ -32,11 +32,11 @@ describe 'France Connect Connexion' do
       visit new_user_session_path
     end
 
-    scenario 'link to France Connect is present' do
+    scenario 'link to FranceConnect is present' do
       expect(page).to have_css('.fr-connect')
     end
 
-    context 'and click on france connect link' do
+    context 'and click on FranceConnect link' do
       context 'when authentification is ok' do
         before do
           allow(FranceConnectService).to receive(:authorization_uri)
@@ -121,7 +121,7 @@ describe 'France Connect Connexion' do
             context 'and the user wants an email that belongs to another account', js: true do
               let!(:another_user) { create(:user, email: 'an_existing_email@a.com', password: SECURE_PASSWORD) }
 
-              scenario 'it uses another email that belongs to another account' do
+              scenario 'it asks for the existing account password before sending the confirmation email' do
                 find('label[for="it-is-not-mine"]').click
 
                 expect(page).to have_css('.new-account', visible: true)
@@ -131,7 +131,30 @@ describe 'France Connect Connexion' do
                   click_on 'Utiliser cette adresse électronique'
                 end
 
+                expect(page).to have_content('Confirmer l’association à votre compte')
+
+                fill_in 'Mot de passe', with: SECURE_PASSWORD
+                click_on 'Confirmer'
+
                 expect(page).to have_content('Nous venons de vous envoyer le mail de confirmation')
+              end
+
+              scenario 'it refuses to send the email when the password is wrong' do
+                find('label[for="it-is-not-mine"]').click
+
+                expect(page).to have_css('.new-account', visible: true)
+
+                within '.new-account' do
+                  fill_in 'email', with: 'an_existing_email@a.com'
+                  click_on 'Utiliser cette adresse électronique'
+                end
+
+                expect(page).to have_content('Confirmer l’association à votre compte')
+
+                fill_in 'Mot de passe', with: 'wrong_password'
+                click_on 'Confirmer'
+
+                expect(page).to have_content('Mot de passe incorrect')
               end
             end
           end

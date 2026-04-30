@@ -83,6 +83,28 @@ describe ExportTemplate do
     end
   end
 
+  describe 'exported_columns with a stale column reference' do
+    it 'filters out columns that no longer exist in the procedure' do
+      export_template.exported_columns = [
+        ExportedColumn.new(libelle: 'Ça va ?', column: procedure.find_column(label: "Ca va ?")),
+      ]
+      export_template.save!
+
+      # Inject a stale column reference directly in the DB (simulates a TDC removed on a test procedure after template was saved)
+      stale_entry = JSON.generate(id: { procedure_id: procedure.id, column_id: "type_de_champ/580046" }, libelle: "Removed field")
+      valid_entry = ExportedColumnType.new.serialize(export_template.exported_columns.first)
+
+      ExportTemplate.where(id: export_template.id)
+        .update_all(Arel.sql("exported_columns = ARRAY[#{ActiveRecord::Base.connection.quote(valid_entry)}::jsonb, #{ActiveRecord::Base.connection.quote(stale_entry)}::jsonb]"))
+
+      Current.procedure_columns = {}
+      reloaded = ExportTemplate.find(export_template.id)
+      expect { reloaded.exported_columns }.not_to raise_error
+      expect(reloaded.exported_columns.size).to eq(1)
+      expect(reloaded.exported_columns.first.libelle).to eq('Ça va ?')
+    end
+  end
+
   describe 'dossier_exported_columns' do
     context 'when exported_columns is empty' do
       it 'returns an empty array' do

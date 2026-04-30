@@ -31,7 +31,10 @@ class APIBretagneService
   def request(endpoint:, code_or_label:)
     return [] if (code_or_label || "").strip.size < 3
     url = build_url(endpoint)
-    fetch_page(url:, params: { query: code_or_label, page_number: 1 })[:items] || []
+    result = fetch_page(url:, params: { query: code_or_label, page_number: 1 })
+    return result if result.is_a?(Dry::Monads::Failure)
+
+    result[:items] || []
   end
 
   def fetch_page(url:, params:, remaining_retry_count: 1)
@@ -43,7 +46,7 @@ class APIBretagneService
         login
         fetch_page(url:, params:, remaining_retry_count: 0)
       else
-        fail "APIBretagneService, #{error} #{code}"
+        result
       end
     in Success(body:)
       body
@@ -53,7 +56,10 @@ class APIBretagneService
   end
 
   def call(url:, params:)
-    API::Client.new.(url:, params:, authorization_token:, method:)
+    token = authorization_token
+    return token if token.is_a?(Dry::Monads::Failure)
+
+    API::Client.new.(url:, params:, authorization_token: token, method:)
   end
 
   def method
@@ -61,12 +67,13 @@ class APIBretagneService
   end
 
   def authorization_token
-    result = login
-    case result
+    return @token if @token
+
+    case login
     in Success(token:)
       @token = token
-    in Failure(error:, code:)
-      fail "APIBretagneService, #{error} #{code}"
+    in Failure => failure
+      return failure
     end
   end
 
@@ -80,7 +87,7 @@ class APIBretagneService
     case result
     in Success(body:)
       Success(token: body.split("Bearer ")[1])
-    in Failure(code:, error:) if code.in?(403)
+    in Failure(code:, error:) if code == 403
       Failure(API::Client::Error[:invalid_credential, code, false, error])
     else
       Failure(API::Client::Error[:api_down])

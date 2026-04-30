@@ -514,7 +514,7 @@ describe Champ do
           expect(subject.piece_justificative_file.first.virus_scanner.started?).to be_truthy
         end
 
-        it 'marks the file as safe once the scan completes' do
+        it 'marks the file as safe once the scan completes', :external_deps do
           subject
           perform_enqueued_jobs
           expect(champ.reload.piece_justificative_file.first.virus_scanner.safe?).to be_truthy
@@ -524,8 +524,8 @@ describe Champ do
   end
 
   describe '#enqueue_watermark_job' do
-    context 'when type_champ is type_de_champ_titre_identite' do
-      let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :titre_identite }]) }
+    context 'when type_champ is piece_justificative with titre_identite nature' do
+      let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative, nature: 'titre_identite' }]) }
       let(:dossier) { create(:dossier, procedure:) }
       let(:champ) { dossier.champs.first }
 
@@ -547,10 +547,10 @@ describe Champ do
         subject
         blob = champ.piece_justificative_file.first.blob
 
-        perform_enqueued_jobs(only: VirusScannerJob)
+        perform_enqueued_jobs(only: BlobProcessorJob)
         expect(blob.reload.virus_scanner.safe?).to be_truthy
 
-        perform_enqueued_jobs(only: ImageProcessorJob)
+        perform_enqueued_jobs(only: BlobProcessorJob)
         expect(champ.reload.piece_justificative_file.first.watermark_pending?).to be_falsy
         expect(champ.reload.piece_justificative_file.first.blob.watermark_done?).to be_truthy
       end

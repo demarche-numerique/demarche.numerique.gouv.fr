@@ -25,7 +25,7 @@ module Maintenance
 
     def process(dossier)
       pjs = dossier.project_champs_public
-        .filter { it.type == "Champs::PieceJustificativeChamp" && it.RIB? == true }
+        .filter { it.type == "Champs::PieceJustificativeChamp" && it.rib? == true }
 
       pjs.filter(&:idle?).each do |pj|
         # ! the old method external_data_fetched? is now removed

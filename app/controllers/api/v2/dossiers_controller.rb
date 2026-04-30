@@ -3,7 +3,7 @@
 class API::V2::DossiersController < API::V2::BaseController
   before_action :ensure_dossier_present
   skip_before_action :authenticate_from_token
-  skip_before_action :allow_only_persisted_queries
+  skip_before_action :allow_only_public_queries
 
   def pdf
     @dossier = dossier.with_champs

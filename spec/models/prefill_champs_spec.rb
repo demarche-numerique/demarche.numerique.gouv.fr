@@ -203,7 +203,6 @@ RSpec.describe PrefillChamps do
     it_behaves_like "a champ public value that is unauthorized", :integer_number, "non integer string"
     it_behaves_like "a champ public value that is unauthorized", :number, "value"
     it_behaves_like "a champ public value that is unauthorized", :dossier_link, "value"
-    it_behaves_like "a champ public value that is unauthorized", :titre_identite, "value"
     it_behaves_like "a champ public value that is unauthorized", :civilite, "value"
     it_behaves_like "a champ public value that is unauthorized", :date, "value"
     # Does not care because it's going to be normalized anyway
@@ -244,6 +243,50 @@ RSpec.describe PrefillChamps do
       let(:params) { { "champ_#{type_de_champ.to_typed_id_for_query}" => ["{\"wrong\":\"value\"}", "{\"wrong\":\"value2\"}"] } }
 
       it "builds an array of hash(id, value) matching the given params" do
+        expect(prefill_champs_array).to match([])
+      end
+    end
+
+    context "when the value is a Hash (malicious input)" do
+      let(:types_de_champ_public) { [{ type: :text }] }
+      let(:type_de_champ) { procedure.published_revision.types_de_champ_public.first }
+
+      let(:params) { { "champ_#{type_de_champ.to_typed_id_for_query}" => { "injected" => "x" } } }
+
+      it "rejects the non-string value" do
+        expect(prefill_champs_array).to match([])
+      end
+    end
+
+    context "when the value is an Array containing a Hash on a simple type" do
+      let(:types_de_champ_public) { [{ type: :text }] }
+      let(:type_de_champ) { procedure.published_revision.types_de_champ_public.first }
+
+      let(:params) { { "champ_#{type_de_champ.to_typed_id_for_query}" => [{ "injected" => "x" }] } }
+
+      it "rejects the non-string value" do
+        expect(prefill_champs_array).to match([])
+      end
+    end
+
+    context "when the address value is a Hash (malicious input)" do
+      let(:types_de_champ_public) { [{ type: :address }] }
+      let(:type_de_champ) { procedure.published_revision.types_de_champ_public.first }
+
+      let(:params) { { "champ_#{type_de_champ.to_typed_id_for_query}" => { "injected" => "x" } } }
+
+      it "rejects the non-string value" do
+        expect(prefill_champs_array).to match([])
+      end
+    end
+
+    context "when the siret value is a Hash (malicious input)" do
+      let(:types_de_champ_public) { [{ type: :siret }] }
+      let(:type_de_champ) { procedure.published_revision.types_de_champ_public.first }
+
+      let(:params) { { "champ_#{type_de_champ.to_typed_id_for_query}" => { "injected" => "x" } } }
+
+      it "does not set external_id to a hash" do
         expect(prefill_champs_array).to match([])
       end
     end

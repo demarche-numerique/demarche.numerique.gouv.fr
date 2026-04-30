@@ -47,6 +47,7 @@ describe Instructeurs::ProcedurePresentationController, type: :controller do
 
         filtered_column = FilteredColumn.new(column: state_column, filter: 'en_construction')
         expect(procedure_presentation.tous_filters).to eq([filtered_column])
+        expect(procedure_presentation.customized).to eq(true)
       end
     end
 
@@ -85,6 +86,33 @@ describe Instructeurs::ProcedurePresentationController, type: :controller do
         expect(flash.alert).to include(/ne peut pas être vide/)
       end
     end
+
+    context 'with an admin who set presentation as default for other instructeurs' do
+      before { sign_in(instructeur.user) }
+
+      let(:presentation_params) do
+        {
+          displayed_columns: [state_column.id],
+          sorted_column: { order: 'asc', id: state_column.id },
+          filters: [{ id: state_column.id, filter: 'en_construction' }],
+          procedure_presentation: { admin_default_procedure_presentation_active_virtual: true },
+          statut: 'tous',
+        }
+      end
+
+      it 'updates the procedure_presentation and set as default' do
+        expect(procedure_presentation.displayed_columns).to eq(procedure.default_displayed_columns)
+        expect(procedure_presentation.procedure.admin_default_procedure_presentation_id).to eq(nil)
+        expect(procedure_presentation.procedure.admin_default_procedure_presentation_active).to eq(false)
+
+        subject
+        expect(response).to redirect_to(instructeur_procedure_url(procedure))
+        procedure_presentation.reload
+        expect(procedure_presentation.displayed_columns).to eq([state_column])
+        expect(procedure_presentation.procedure.admin_default_procedure_presentation_id).to eq(instructeur.procedure_presentation_for_procedure_id(procedure.id).id)
+        expect(procedure_presentation.procedure.admin_default_procedure_presentation_active).to eq(true)
+      end
+    end
   end
 
   describe '#update_filter' do
@@ -108,6 +136,7 @@ describe Instructeurs::ProcedurePresentationController, type: :controller do
         expect(response.body).to include('<turbo-stream action="refresh">')
 
         expect(procedure_presentation.reload.tous_filters).to eq([FilteredColumn.new(column:, filter: { operator: 'in', value: ['Marseille'] })])
+        expect(procedure_presentation.reload.customized).to eq(false)
       end
     end
 

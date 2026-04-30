@@ -11,7 +11,7 @@ class Champs::ReferentielChamp < Champ
   before_save :clear_previous_result, if: -> { external_id_changed? }
 
   def fetch_external_data
-    ReferentielService.new(referentiel:).call(external_id).fmap do |data|
+    ReferentielService.new(referentiel:).call(external_id, dossier:).fmap do |data|
       {
         data:, # keep raw API response
         value: external_id, # now that we have the data, we can set the value
@@ -212,9 +212,15 @@ class Champs::ReferentielChamp < Champ
   end
 
   def update_prefillable_champ(type_de_champ:, raw_value:, row_id: nil)
-    prefill_champ = dossier.champ_for_update(type_de_champ, row_id:, updated_by: :api)
-
-    prefill_champ.update(cast_value_for_type_de_champ(raw_value, type_de_champ))
+    if type_de_champ.private?
+      dossier.with_main_stream do
+        prefill_champ = dossier.champ_for_update(type_de_champ, row_id:, updated_by: :api)
+        prefill_champ.update(cast_value_for_type_de_champ(raw_value, type_de_champ))
+      end
+    else
+      prefill_champ = dossier.champ_for_update(type_de_champ, row_id:, updated_by: :api)
+      prefill_champ.update(cast_value_for_type_de_champ(raw_value, type_de_champ))
+    end
   end
 
   def rewrap_selected_object_in_datasource(data)

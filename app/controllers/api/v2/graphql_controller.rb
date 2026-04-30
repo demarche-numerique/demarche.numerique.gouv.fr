@@ -3,6 +3,8 @@
 class API::V2::GraphqlController < API::V2::BaseController
   include GcTrackingConcern
 
+  around_action :profile_with_vernier, only: :execute, if: :vernier_profile_requested?
+
   def execute
     result = API::V2::Schema.execute(query:, variables:, context:, operation_name:)
     @query_info = result.context.query_info
@@ -21,6 +23,19 @@ class API::V2::GraphqlController < API::V2::BaseController
   end
 
   private
+
+  def vernier_profile_requested?
+    params[:profile].present?
+  end
+
+  def profile_with_vernier(&block)
+    require 'vernier'
+
+    out = Rails.root.join("tmp/vernier-graphql-#{Time.current.strftime('%Y%m%d-%H%M%S-%L')}.vernier.json").to_s
+    Vernier.profile(out:, hooks: [:rails], &block)
+    Rails.logger.info("[Vernier] GraphQL profile written to #{out}")
+    Rails.logger.info("[Vernier] Open with: https://vernier.prof  — or  https://profiler.firefox.com")
+  end
 
   def request_logs(logs)
     super

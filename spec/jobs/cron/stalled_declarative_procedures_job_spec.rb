@@ -45,5 +45,41 @@ RSpec.describe Cron::StalledDeclarativeProceduresJob, type: :job do
         expect(ProcessStalledDeclarativeDossierJob).not_to have_been_enqueued
       }
     end
+
+    context "declarative procedure in brouillon" do
+      let(:procedure) { create(:procedure, :for_individual, :with_instructeur, declarative_with_state: Dossier.states.fetch(:en_instruction)) }
+
+      it {
+        perform_job
+        expect(ProcessStalledDeclarativeDossierJob).not_to have_been_enqueued.with(en_construction)
+      }
+    end
+
+    context "declarative procedure recently closed" do
+      let(:procedure) { create(:procedure, :closed, :for_individual, :with_instructeur, declarative_with_state: Dossier.states.fetch(:en_instruction), closed_at: 1.hour.ago) }
+
+      it {
+        perform_job
+        expect(ProcessStalledDeclarativeDossierJob).to have_been_enqueued.with(en_construction)
+      }
+    end
+
+    context "declarative procedure closed more than 24h ago" do
+      let(:procedure) { create(:procedure, :closed, :for_individual, :with_instructeur, declarative_with_state: Dossier.states.fetch(:en_instruction), closed_at: 2.days.ago) }
+
+      it {
+        perform_job
+        expect(ProcessStalledDeclarativeDossierJob).not_to have_been_enqueued.with(en_construction)
+      }
+    end
+
+    context "declarative procedure depubliee" do
+      let(:procedure) { create(:procedure, :unpublished, :for_individual, :with_instructeur, declarative_with_state: Dossier.states.fetch(:en_instruction)) }
+
+      it {
+        perform_job
+        expect(ProcessStalledDeclarativeDossierJob).to have_been_enqueued.with(en_construction)
+      }
+    end
   end
 end

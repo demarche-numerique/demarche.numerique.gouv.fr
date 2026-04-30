@@ -16,6 +16,8 @@ module GalleryHelper
     else
       if attachment.name == 'justificatif_motivation'
         'Pièce jointe à la décision'
+      else
+        record.class.model_name.human
       end
     end
   end

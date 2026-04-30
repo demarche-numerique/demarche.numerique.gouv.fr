@@ -9,7 +9,7 @@ RSpec.describe Attachment::Validation do
 
   describe '#allowed_extensions' do
     context 'with RIB nature (multiple specific formats)' do
-      let(:types_de_champ_public) { [{ type: :piece_justificative, libelle: 'RIB', nature: 'RIB' }] }
+      let(:types_de_champ_public) { [{ type: :piece_justificative, libelle: 'RIB', nature: 'rib' }] }
 
       it 'returns extensions sorted according to EXTENSIONS_ORDER first, then alphabetically' do
         extensions = validation.allowed_extensions
@@ -38,7 +38,7 @@ RSpec.describe Attachment::Validation do
 
   describe '#accept_attribute' do
     context 'with titre_identite nature (image formats only)' do
-      let(:types_de_champ_public) { [{ type: :piece_justificative, libelle: 'Titre identité', nature: 'TITRE_IDENTITE' }] }
+      let(:types_de_champ_public) { [{ type: :piece_justificative, libelle: 'Titre identité', nature: 'titre_identite' }] }
 
       it 'returns only image mime types' do
         accept = validation.accept_attribute
@@ -48,11 +48,36 @@ RSpec.describe Attachment::Validation do
         expect(accept).not_to include('application/pdf')
       end
     end
+
+    context 'with donnees format family (KML, GPX)' do
+      let(:types_de_champ_public) { [{ type: :piece_justificative, libelle: 'Données géo', pj_limit_formats: '1', pj_format_families: ['donnees'] }] }
+
+      it 'includes both mime types and file extensions for browser compatibility' do
+        accept = validation.accept_attribute
+
+        expect(accept).to include('application/vnd.google-earth.kml+xml')
+        expect(accept).to include('.kml')
+        expect(accept).to include('application/gpx+xml')
+        expect(accept).to include('.gpx')
+      end
+    end
+
+    context 'with standard piece_justificative (all formats)' do
+      let(:types_de_champ_public) { [{ type: :piece_justificative, libelle: 'Document' }] }
+
+      it 'includes file extensions alongside mime types' do
+        accept = validation.accept_attribute
+
+        expect(accept).to include('application/pdf')
+        expect(accept).to include('.pdf')
+        expect(accept).to include('.kml')
+      end
+    end
   end
 
   describe '#max_file_size' do
     context 'with titre_identite nature' do
-      let(:types_de_champ_public) { [{ type: :piece_justificative, libelle: 'Titre identité', nature: 'TITRE_IDENTITE' }] }
+      let(:types_de_champ_public) { [{ type: :piece_justificative, libelle: 'Titre identité', nature: 'titre_identite' }] }
 
       it 'returns 20 megabytes' do
         expect(validation.max_file_size).to eq(20.megabytes)

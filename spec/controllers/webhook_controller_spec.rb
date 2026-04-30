@@ -46,5 +46,27 @@ describe WebhookController, type: :controller do
       post :crisp, params: body, as: :json
       expect(response).not_to have_http_status(:ok)
     end
+
+    it 'compares signatures using a constant-time primitive' do
+      expect(Crisp::WebhookProcessor).not_to receive(:new)
+      expect(ActiveSupport::SecurityUtils).to receive(:secure_compare).at_least(:once).and_call_original
+
+      request.headers.merge!({
+        'X-Crisp-Request-Timestamp' => timestamp,
+        'X-Crisp-Signature' => '0' * 64,
+      })
+
+      post :crisp, params: body, as: :json
+      expect(response).to have_http_status(:bad_request)
+    end
+
+    it 'rejects requests with a missing signature header without invoking the comparison' do
+      expect(Crisp::WebhookProcessor).not_to receive(:new)
+
+      request.headers['X-Crisp-Request-Timestamp'] = timestamp
+
+      post :crisp, params: body, as: :json
+      expect(response).to have_http_status(:bad_request)
+    end
   end
 end

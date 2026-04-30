@@ -9,9 +9,6 @@ describe 'As an administrateur, I want to manage the procedure’s attestation',
 
   before do
     login_as(administrateur.user, scope: :user)
-
-    response = Typhoeus::Response.new(code: 200, body: 'Hello world')
-    Typhoeus.stub(WEASYPRINT_URL).and_return(response)
   end
 
   def find_attestation_card(v2: true, with_nested_selector: nil)

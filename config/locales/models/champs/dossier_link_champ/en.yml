@@ -11,3 +11,5 @@ en:
           attributes:
             value:
               not_found: "File not found"
+              brouillon_not_allowed: "This file has not been submitted yet"
+              not_in_allowed_procedures: "This file is not in an allowed procedure"

@@ -17,7 +17,7 @@
     - if @commentaires_parent_group.present?
       = render partial: 'list_commentaires', locals: { commentaires: @commentaires_parent_group, groupe_gestionnaire: @groupe_gestionnaire }
     - else
-      %table.fr-table.width-100.mt-3
+      %table.fr-table.width-100.fr-mt-6v
         %thead
           %tr
             %th= 'Adresse électronique'

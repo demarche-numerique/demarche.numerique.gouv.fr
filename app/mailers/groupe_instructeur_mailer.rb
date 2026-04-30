@@ -16,7 +16,7 @@ class GroupeInstructeurMailer < ApplicationMailer
     mail(to: removed_instructeur.email, subject: subject)
   end
 
-  def notify_removed_instructeur_from_all_groupes(procedure, removed_from_groupes, removed_instructeur, current_instructeur_email, still_assigned)
+  def notify_removed_instructeur_from_many_groupes(procedure, removed_from_groupes, removed_instructeur, current_instructeur_email, still_assigned)
     @procedure = procedure
     @removed_from_groupes = removed_from_groupes
     @current_instructeur_email = current_instructeur_email

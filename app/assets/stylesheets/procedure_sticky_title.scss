@@ -1,0 +1,43 @@
+.procedure-sticky-title {
+  background-color: var(--background-default-grey);
+  border-bottom: 1px solid var(--border-default-grey);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    max-height 150ms ease,
+    opacity 150ms ease,
+    padding 150ms ease;
+  pointer-events: none;
+  padding: 0;
+
+  &.visible {
+    max-height: 4rem;
+    opacity: 1;
+    padding: 0.5rem 0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 0;
+  }
+
+  &__label {
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
+
+  @media (max-width: 62em) {
+    font-size: 0.875rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}

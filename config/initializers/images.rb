@@ -14,16 +14,17 @@ HEADER_LOGO_ALT = ENV.fetch("HEADER_LOGO_ALT", "Liberté, égalité, fraternité
 HEADER_LOGO_WIDTH = ENV.fetch("HEADER_LOGO_WIDTH", "65")
 HEADER_LOGO_HEIGHT = ENV.fetch("HEADER_LOGO_HEIGHT", "56")
 
-# Two logos can be shown in the email header, each with a light and dark variant:
-# - Marianne logo (left). Set to an empty value to hide it entirely.
-# - Application/instance logo (right of Marianne, or alone if Marianne is hidden). Mandatory.
+# Institution logo and Marianne logo, used in emails and PDF documents (attestations, etc.).
+# Set LOGO_MARIANNE_SRC to an empty value to hide the Marianne logo entirely.
+# DIRECTION_LABEL is displayed next to APPLICATION_NAME in document headers (e.g. "Direction Interministérielle du Numérique").
 # For deeper customization, you can override the email layout partials:
 # app/views/layouts/mailers/_dsfr_header.html.erb, _dsfr_identity.html.erb, _dsfr_footer.html.erb
 # See https://github.com/demarche-numerique/demarche.numerique.gouv.fr/blob/main/doc/customization.md
-MAILER_LOGO_MARIANNE_SRC = ENV.fetch("MAILER_LOGO_MARIANNE_SRC", "mailer/Marianne-Light@2x.png")
-MAILER_LOGO_MARIANNE_DARK_SRC = ENV.fetch("MAILER_LOGO_MARIANNE_DARK_SRC", "mailer/Marianne-Dark@2x.png")
-MAILER_LOGO_SRC = ENV.fetch("MAILER_LOGO_SRC", "mailer/logo-demarche-numerique@2x.png")
-MAILER_LOGO_DARK_SRC = ENV.fetch("MAILER_LOGO_DARK_SRC", "mailer/logo-demarche-numerique@2x.png")
+LOGO_SRC = ENV.fetch("LOGO_SRC", "logo-demarche-numerique@2x.png")
+LOGO_MARIANNE_SRC = ENV.fetch("LOGO_MARIANNE_SRC", "Marianne-Light@2x.png")
+LOGO_DARK_SRC = ENV.fetch("LOGO_DARK_SRC", "logo-demarche-numerique@2x.png")
+LOGO_MARIANNE_DARK_SRC = ENV.fetch("LOGO_MARIANNE_DARK_SRC", "Marianne-Dark@2x.png")
+DIRECTION_LABEL = ENV.fetch("DIRECTION_LABEL", "")
 
 # Default logo of a procedure
 PROCEDURE_DEFAULT_LOGO_SRC = ENV.fetch("PROCEDURE_DEFAULT_LOGO_SRC", "republique-francaise-logo.svg")

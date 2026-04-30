@@ -5,7 +5,7 @@ en:
   routing_not_configured:
     You have not configured routing.
   routing_configured_html:
-    You have configured routing with <strong>%{groupe_informers_count} instructor groups.</strong>
+    You have configured routing with <strong>%{groupe_instructeurs_count} instructor groups.</strong>
   routing_configuration_notice_2_html: |
     To configure it, your form must contain
     at least one <strong>"routable field"</strong>, i.e., a field of the following type:
@@ -13,7 +13,7 @@ en:
     Add this field to the <a href="%{path}">form fields</a> edit page.
   delete_title: No files will be deleted. Instructor groups will be deleted. Only instructors in the "%{defaut_label}" group will remain assigned to the process.
   delete_confirmation: |
-    Please note: All files will be moved to the "%{default_label}" group, and only instructors in this group will remain assigned to the process. Do you wish to continue?
+    Please note: All files will be moved to the "%{defaut_label}" group, and only instructors in this group will remain assigned to the process. Do you wish to continue?
   routing_doc:
     title: "Routing Documentation"
   anonymisation_callout:

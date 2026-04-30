@@ -98,6 +98,10 @@ class ProcedureRevisionTypeDeChamp < ApplicationRecord
     procedure.used_by_routing_rules?(type_de_champ)
   end
 
+  def used_by_referentiel_urls?
+    procedure.used_by_referentiel_urls?(type_de_champ)
+  end
+
   def used_by_ineligibilite_rules?
     revision.ineligibilite_enabled? && stable_id.in?(revision.ineligibilite_rules&.sources || [])
   end

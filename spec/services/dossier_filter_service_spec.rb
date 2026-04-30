@@ -235,13 +235,13 @@ describe DossierFilterService do
       end
 
       context 'for prenom column' do
-        let(:column) { procedure.find_column(label: 'Prénom') }
+        let(:column) { procedure.find_column(label: 'Prénom [Identité du demandeur]') }
 
         it { is_expected.to eq([first_dossier, last_dossier].map(&:id)) }
       end
 
       context 'for nom column' do
-        let(:column) { procedure.find_column(label: 'Nom') }
+        let(:column) { procedure.find_column(label: 'Nom [Identité du demandeur]') }
 
         it { is_expected.to eq([first_dossier, last_dossier].map(&:id)) }
       end
@@ -804,19 +804,19 @@ describe DossierFilterService do
       end
 
       context 'for prenom column' do
-        let(:filter) { ['Prénom', 'Josephine'] }
+        let(:filter) { ['Prénom [Identité du demandeur]', 'Josephine'] }
 
         it { is_expected.to contain_exactly(kept_dossier.id) }
       end
 
       context 'for nom column' do
-        let(:filter) { ['Nom', 'Baker'] }
+        let(:filter) { ['Nom [Identité du demandeur]', 'Baker'] }
 
         it { is_expected.to contain_exactly(kept_dossier.id) }
       end
 
       context 'with multiple search values' do
-        let(:filters) { [['Prénom', 'Josephine'], ['Prénom', 'Romuald']] }
+        let(:filters) { [['Prénom [Identité du demandeur]', 'Josephine'], ['Prénom [Identité du demandeur]', 'Romuald']] }
 
         let!(:other_kept_dossier) { create(:dossier, procedure:, individual: build(:individual, gender: 'M', prenom: 'Romuald', nom: 'Pistis')) }
 

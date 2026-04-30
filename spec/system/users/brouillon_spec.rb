@@ -37,11 +37,10 @@ describe 'The user', js: true do
     find('.fr-checkbox-group label', text: 'val3').click
     select('bravo', from: form_id_for('simple_choice_drop_down_list_long'))
 
-    scroll_to(find_field('multiple_choice_drop_down_list_long'), align: :center)
-    select_combobox('multiple_choice_drop_down_list_long', 'alpha')
+    select_autocomplete('multiple_choice_drop_down_list_long', 'alpha')
     wait_until { champ_value_for('multiple_choice_drop_down_list_long') == ['alpha'].to_json }
 
-    select_combobox('multiple_choice_drop_down_list_long', 'charly')
+    select_autocomplete('multiple_choice_drop_down_list_long', 'charly')
     wait_until { champ_value_for('multiple_choice_drop_down_list_long') == ['alpha', 'charly'].to_json }
 
     select('Australie', from: form_id_for('pays'))
@@ -59,7 +58,9 @@ describe 'The user', js: true do
     # wait_until { champ_for('annuaire_education').external_id == "0030323K" }
 
     fill_in('dossier_link', with: '123')
-    find('.editable-champ-piece_justificative input[type=file]').attach_file(Rails.root + 'spec/fixtures/files/file.pdf')
+    within("##{champ_for('piece_justificative').input_group_id}") do
+      find('input[type=file]').attach_file(Rails.root + 'spec/fixtures/files/file.pdf')
+    end
 
     expect(page).to have_css('p.autosave-status', text: 'Enregistrement automatique du dossier', visible: true)
     wait_for_autosave
@@ -642,7 +643,7 @@ describe 'The user', js: true do
       expect(page).to have_field('texte obligatoire', with: 'a valid user input')
     end
 
-    scenario 'autosave redirects to sign-in after being disconnected' do
+    scenario 'autosave shows reconnection link after being disconnected' do
       log_in(user, simple_procedure)
       fill_individual
 
@@ -651,15 +652,18 @@ describe 'The user', js: true do
       logout(:user)
       fill_in('texte obligatoire', with: 'a valid user input')
 
-      # … they are redirected to the sign-in page.
-      expect(page).to have_current_path(new_user_session_path)
+      # … an auth error message appears with a reconnection link (instead of a redirect)
+      expect(page).to have_css('.autosave-status.failed', text: 'vous reconnecter')
+      expect(page).to have_button('Déposer le dossier', disabled: true)
+      click_link('vous reconnecter')
 
-      # After sign-in, they are redirected back to their brouillon
+      # The link points to the current page; Devise intercepts and redirects to sign-in
       sign_in_with(user.email, password)
       expect(page).to have_current_path(brouillon_dossier_path(user_dossier))
 
       fill_in('texte obligatoire', with: 'a valid user input')
       wait_for_autosave
+      expect(page).to have_button('Déposer le dossier', disabled: false)
     end
   end
 

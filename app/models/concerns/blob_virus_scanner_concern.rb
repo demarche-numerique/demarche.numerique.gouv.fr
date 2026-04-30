@@ -12,15 +12,8 @@ module BlobVirusScannerConcern
     ActiveStorage::VirusScanner.new(self)
   end
 
-  def scan_for_virus_later
-    VirusScannerJob.perform_later(self)
-  end
-
   def virus_scanner_error?
-    return true if virus_scanner.infected?
-    return true if virus_scanner.corrupt?
-
-    false
+    virus_scanner.infected? || virus_scanner.corrupt?
   end
 
   private

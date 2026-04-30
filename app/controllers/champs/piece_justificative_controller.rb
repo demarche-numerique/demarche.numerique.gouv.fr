@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Champs::PieceJustificativeController < Champs::ChampController
+  before_action :ensure_legitimate_access
+
   def show
     respond_to do |format|
       format.turbo_stream
@@ -22,14 +24,14 @@ class Champs::PieceJustificativeController < Champs::ChampController
 
   private
 
-  def attach_piece_justificative
-    save_succeed = nil
+  def ensure_legitimate_access
+    return if @champ.piece_justificative? || @champ.quotient_familial?
 
-    ActiveStorage::Attachment.transaction do
-      @champ.piece_justificative_file.attach(params[:blob_signed_id])
-      context = @champ.public? ? :champs_public_value : :champs_private_value
-      save_succeed = @champ.save(context:)
-    end
+    head :not_found
+  end
+
+  def attach_piece_justificative
+    save_succeed = Attachment::PieceJustificativeService.attach_champ_pj(@champ, params[:blob_signed_id])
 
     if save_succeed
       @champ.fetch_later! if @champ.has_async_external_data? && @champ.may_fetch_later?

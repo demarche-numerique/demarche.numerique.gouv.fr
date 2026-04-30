@@ -505,7 +505,7 @@ class ProcedureRevision < ApplicationRecord
           from_type_de_champ.carte_optional_layers,
           to_type_de_champ.carte_optional_layers)
       end
-    elsif to_type_de_champ.piece_justificative_or_titre_identite?
+    elsif to_type_de_champ.piece_justificative?
       if from_type_de_champ.checksum_for_attachment(:piece_justificative_template) != to_type_de_champ.checksum_for_attachment(:piece_justificative_template)
         changes << ProcedureRevisionChange::UpdateChamp.new(from_type_de_champ,
           :piece_justificative_template,
@@ -519,7 +519,8 @@ class ProcedureRevision < ApplicationRecord
           to_type_de_champ.nature)
       end
 
-      if !(to_type_de_champ.titre_identite_nature? || from_type_de_champ.titre_identite_nature? || to_type_de_champ.RIB? || from_type_de_champ.RIB?)
+      # titre d'identité, RIB et justificatif de domicile ont des règles spécifiques, pas besoin de comparer les limit de pj (tous limite a 1), les format (tous du scan, et de comparer l'autopurge)
+      if [to_type_de_champ, from_type_de_champ].none? { |it| it.titre_identite? || it.rib? || it.justificatif_domicile? }
         if from_type_de_champ.pj_limit_formats != to_type_de_champ.pj_limit_formats
           changes << ProcedureRevisionChange::UpdateChamp.new(from_type_de_champ,
             :pj_limit_formats,
@@ -668,6 +669,23 @@ class ProcedureRevision < ApplicationRecord
       compare_referentiel_changes(from_type_de_champ, to_type_de_champ).each do |change|
         changes << change
       end
+    elsif to_type_de_champ.dossier_link?
+      if from_type_de_champ.procedures_limit != to_type_de_champ.procedures_limit
+        changes << ProcedureRevisionChange::UpdateChamp.new(from_type_de_champ,
+          :procedures_limit,
+          from_type_de_champ.procedures_limit,
+          to_type_de_champ.procedures_limit)
+      end
+      if from_type_de_champ.dossier_link_procedure_ids != to_type_de_champ.dossier_link_procedure_ids
+        all_ids = (from_type_de_champ.dossier_link_procedure_ids + to_type_de_champ.dossier_link_procedure_ids).uniq
+        procedures_by_id = Procedure.with_discarded.where(id: all_ids).pluck(:id, :libelle).to_h
+        from = from_type_de_champ.dossier_link_procedure_ids.map { { id: _1, libelle: procedures_by_id[_1] } }
+        to = to_type_de_champ.dossier_link_procedure_ids.map { { id: _1, libelle: procedures_by_id[_1] } }
+        changes << ProcedureRevisionChange::UpdateChamp.new(from_type_de_champ,
+          :dossier_link_procedure_ids,
+          from,
+          to)
+      end
     end
     changes
   end
@@ -677,7 +695,7 @@ class ProcedureRevision < ApplicationRecord
     from_referentiel = from_type_de_champ.referentiel
     to_referentiel = to_type_de_champ.referentiel
 
-    [:url, :mode, :hint, :test_data].each do |field|
+    [:url_tiptap, :mode, :hint, :test_data_tiptap].each do |field|
       if from_referentiel&.send(field) != to_referentiel&.send(field)
         changes << ProcedureRevisionChange::UpdateChamp.new(from_type_de_champ,
           "referentiel_#{field}".to_sym,

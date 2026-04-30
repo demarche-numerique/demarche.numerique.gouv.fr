@@ -45,7 +45,7 @@
   - if @champ.external_error?
     = render Dsfr::NoticeComponent.new(closable: false, data_attributes: { "data-notice-name" => "donnees-qf-non-trouvees", class: 'fr-mb-1w'}) do |c|
       - c.with_title do
-        = t('.piece_justificative_champ.data_not_found')
+        = t(@champ.fc_data_not_found? ? '.piece_justificative_champ.data_not_found' : '.piece_justificative_champ.data_not_recovered')
   = t('.piece_justificative_champ.libelle')
   = render EditableChamp::AsteriskMandatoryComponent.new
   = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(champ: @champ, form_object_name: @form.object_name, aria_labelledby: labelledby_id), max: 1, drop_zone: :integrated)

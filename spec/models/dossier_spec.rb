@@ -40,16 +40,16 @@ describe Dossier, type: :model do
     end
 
     describe 'by_statut' do
-      let(:procedure) { create(:procedure) }
-      let(:dossier_en_construction) { create(:dossier, :en_construction, procedure:) }
-      let(:dossier_en_instruction) { create(:dossier, :en_instruction, procedure:) }
-      let(:dossier_accepte) { create(:dossier, :accepte, procedure:) }
-      let(:dossier_refuse) { create(:dossier, :refuse, procedure:) }
-      let(:dossier_accepte_archive) { create(:dossier, :accepte, :archived, procedure:) }
-      let(:dossier_accepte_deleted) { create(:dossier, :accepte, :hidden_by_administration, procedure:) }
-      let(:dossier_accepte_archive_deleted) { create(:dossier, :accepte, :archived, :hidden_by_administration, procedure:) }
+      let_it_be(:procedure) { create(:procedure) }
+      let_it_be(:dossier_en_construction) { create(:dossier, :en_construction, procedure:) }
+      let_it_be(:dossier_en_instruction) { create(:dossier, :en_instruction, procedure:) }
+      let_it_be(:dossier_accepte) { create(:dossier, :accepte, procedure:) }
+      let_it_be(:dossier_refuse) { create(:dossier, :refuse, procedure:) }
+      let_it_be(:dossier_accepte_archive) { create(:dossier, :accepte, :archived, procedure:) }
+      let_it_be(:dossier_accepte_deleted) { create(:dossier, :accepte, :hidden_by_administration, procedure:) }
+      let_it_be(:dossier_accepte_archive_deleted) { create(:dossier, :accepte, :archived, :hidden_by_administration, procedure:) }
 
-      let!(:dossiers) { [dossier_en_construction, dossier_en_instruction, dossier_accepte, dossier_refuse] }
+      let(:dossiers) { [dossier_en_construction, dossier_en_instruction, dossier_accepte, dossier_refuse] }
 
       context 'tous' do
         it do
@@ -165,12 +165,12 @@ describe Dossier, type: :model do
   end
 
   describe 'brouillon_close_to_expiration' do
-    let(:procedure) { create(:procedure, :published, duree_conservation_dossiers_dans_ds: 6) }
-    let!(:young_dossier) { create(:dossier, :en_construction, procedure: procedure) }
-    let!(:expiring_dossier) { create(:dossier, updated_at: 85.days.ago, procedure: procedure) }
-    let!(:expiring_dossier_with_notification) { create(:dossier, updated_at: 85.days.ago, brouillon_close_to_expiration_notice_sent_at: Time.zone.now, procedure: procedure) }
-    let!(:just_expired_dossier) { create(:dossier, updated_at: (6.months + 1.hour + 10.seconds).ago, procedure: procedure) }
-    let!(:long_expired_dossier) { create(:dossier, updated_at: 1.year.ago, procedure: procedure) }
+    let_it_be(:procedure) { create(:procedure, :published, duree_conservation_dossiers_dans_ds: 6) }
+    let_it_be(:young_dossier) { create(:dossier, :en_construction, procedure:) }
+    let_it_be(:expiring_dossier) { create(:dossier, updated_at: 85.days.ago, procedure:) }
+    let_it_be(:expiring_dossier_with_notification) { create(:dossier, updated_at: 85.days.ago, brouillon_close_to_expiration_notice_sent_at: Time.zone.now, procedure:) }
+    let_it_be(:just_expired_dossier) { create(:dossier, updated_at: (6.months + 1.hour + 10.seconds).ago, procedure:) }
+    let_it_be(:long_expired_dossier) { create(:dossier, updated_at: 1.year.ago, procedure:) }
 
     subject { Dossier.brouillon_close_to_expiration }
 
@@ -215,12 +215,12 @@ describe Dossier, type: :model do
   end
 
   describe 'en_construction_close_to_expiration' do
-    let(:procedure) { create(:procedure, :published, duree_conservation_dossiers_dans_ds: 6) }
-    let!(:young_dossier) { create(:dossier, procedure: procedure) }
-    let!(:expiring_dossier) { create(:dossier, :en_construction, en_construction_at: 175.days.ago, procedure: procedure) }
-    let!(:expiring_dossier_with_notification) { create(:dossier, :en_construction, en_construction_at: 175.days.ago, en_construction_close_to_expiration_notice_sent_at: Time.zone.now, procedure: procedure) }
-    let!(:just_expired_dossier) { create(:dossier, :en_construction, en_construction_at: (6.months + 1.hour + 10.seconds).ago, procedure: procedure) }
-    let!(:long_expired_dossier) { create(:dossier, :en_construction, en_construction_at: 1.year.ago, procedure: procedure) }
+    let_it_be(:procedure) { create(:procedure, :published, duree_conservation_dossiers_dans_ds: 6) }
+    let_it_be(:young_dossier) { create(:dossier, procedure:) }
+    let_it_be(:expiring_dossier) { create(:dossier, :en_construction, en_construction_at: 175.days.ago, procedure:) }
+    let_it_be(:expiring_dossier_with_notification) { create(:dossier, :en_construction, en_construction_at: 175.days.ago, en_construction_close_to_expiration_notice_sent_at: Time.zone.now, procedure:) }
+    let_it_be(:just_expired_dossier) { create(:dossier, :en_construction, en_construction_at: (6.months + 1.hour + 10.seconds).ago, procedure:) }
+    let_it_be(:long_expired_dossier) { create(:dossier, :en_construction, en_construction_at: 1.year.ago, procedure:) }
 
     subject { Dossier.en_construction_close_to_expiration }
 
@@ -276,12 +276,12 @@ describe Dossier, type: :model do
   end
 
   describe 'termine_close_to_expiration' do
-    let(:procedure) { create(:procedure, :published, duree_conservation_dossiers_dans_ds: 6, procedure_expires_when_termine_enabled: true) }
-    let!(:young_dossier) { create(:dossier, state: :accepte, procedure: procedure, processed_at: 2.days.ago) }
-    let!(:expiring_dossier) { create(:dossier, state: :accepte, procedure: procedure, processed_at: 175.days.ago) }
-    let!(:expiring_dossier_with_notification) { create(:dossier, state: :accepte, procedure: procedure, processed_at: 175.days.ago, termine_close_to_expiration_notice_sent_at: Time.zone.now) }
-    let!(:just_expired_dossier) { create(:dossier, state: :accepte, procedure: procedure, processed_at: (6.months + 1.hour + 10.seconds).ago) }
-    let!(:long_expired_dossier) { create(:dossier, state: :accepte, procedure: procedure, processed_at: 1.year.ago) }
+    let_it_be(:procedure) { create(:procedure, :published, duree_conservation_dossiers_dans_ds: 6, procedure_expires_when_termine_enabled: true) }
+    let_it_be(:young_dossier) { create(:dossier, state: :accepte, procedure:, processed_at: 2.days.ago) }
+    let_it_be(:expiring_dossier) { create(:dossier, state: :accepte, procedure:, processed_at: 175.days.ago) }
+    let_it_be(:expiring_dossier_with_notification) { create(:dossier, state: :accepte, procedure:, processed_at: 175.days.ago, termine_close_to_expiration_notice_sent_at: Time.zone.now) }
+    let_it_be(:just_expired_dossier) { create(:dossier, state: :accepte, procedure:, processed_at: (6.months + 1.hour + 10.seconds).ago) }
+    let_it_be(:long_expired_dossier) { create(:dossier, state: :accepte, procedure:, processed_at: 1.year.ago) }
 
     subject { Dossier.termine_close_to_expiration }
 
@@ -396,20 +396,20 @@ describe Dossier, type: :model do
           expect(dossier.individual.gender).to be_nil
         end
 
-        context 'and the user signs-in using France Connect' do
+        context 'and the user signs-in using FranceConnect' do
           let(:user) { create(:user, france_connect_informations: [build(:france_connect_information)]) }
 
-          it 'fills the individual with the informations from France Connect' do
+          it 'fills the individual with the informations from FranceConnect' do
             subject
             expect(dossier.individual.nom).to eq('DUBOIS')
             expect(dossier.individual.prenom).to eq('Angela Claire Louise')
             expect(dossier.individual.gender).to eq(Individual::GENDER_FEMALE)
           end
         end
-        context 'and the user signs-in using France Connect many times' do
+        context 'and the user signs-in using FranceConnect many times' do
           let(:user) { create(:user, france_connect_informations: [build(:france_connect_information), build(:france_connect_information)]) }
 
-          it 'fills the individual with the informations from France Connect' do
+          it 'fills the individual with the informations from FranceConnect' do
             subject
             expect(dossier.individual.nom).to eq(nil)
             expect(dossier.individual.prenom).to eq(nil)
@@ -565,13 +565,13 @@ describe Dossier, type: :model do
   end
 
   describe '#avis_for' do
-    let!(:instructeur) { create(:instructeur) }
-    let!(:procedure) { create(:procedure, :published, instructeurs: [instructeur]) }
-    let!(:dossier) { create(:dossier, procedure: procedure, state: Dossier.states.fetch(:en_construction)) }
-    let!(:experts_procedure) { create(:experts_procedure, expert: expert_1, procedure: procedure) }
-    let!(:experts_procedure_2) { create(:experts_procedure, expert: expert_2, procedure: procedure) }
-    let!(:expert_1) { create(:expert) }
-    let!(:expert_2) { create(:expert) }
+    let_it_be(:instructeur) { create(:instructeur) }
+    let_it_be(:expert_1) { create(:expert) }
+    let_it_be(:expert_2) { create(:expert) }
+    let_it_be(:procedure) { create(:procedure, :published, instructeurs: [instructeur]) }
+    let_it_be(:dossier) { create(:dossier, procedure:, state: Dossier.states.fetch(:en_construction)) }
+    let_it_be(:experts_procedure) { create(:experts_procedure, expert: expert_1, procedure:) }
+    let_it_be(:experts_procedure_2) { create(:experts_procedure, expert: expert_2, procedure:) }
 
     context 'when there is a public advice asked from the dossiers instructeur' do
       let!(:avis) { create(:avis, dossier: dossier, claimant: instructeur, experts_procedure: experts_procedure, confidentiel: false) }
@@ -2444,15 +2444,15 @@ describe Dossier, type: :model do
   end
 
   describe "with_notifiable_procedure" do
-    let(:test_procedure) { create(:procedure) }
-    let(:published_procedure) { create(:procedure, :published) }
-    let(:closed_procedure) { create(:procedure, :closed) }
-    let(:unpublished_procedure) { create(:procedure, :unpublished) }
+    let_it_be(:test_procedure) { create(:procedure) }
+    let_it_be(:published_procedure) { create(:procedure, :published) }
+    let_it_be(:closed_procedure) { create(:procedure, :closed) }
+    let_it_be(:unpublished_procedure) { create(:procedure, :unpublished) }
 
-    let!(:dossier_on_test_procedure) { create(:dossier, procedure: test_procedure) }
-    let!(:dossier_on_published_procedure) { create(:dossier, procedure: published_procedure) }
-    let!(:dossier_on_closed_procedure) { create(:dossier, procedure: closed_procedure) }
-    let!(:dossier_on_unpublished_procedure) { create(:dossier, procedure: unpublished_procedure) }
+    let_it_be(:dossier_on_test_procedure) { create(:dossier, procedure: test_procedure) }
+    let_it_be(:dossier_on_published_procedure) { create(:dossier, procedure: published_procedure) }
+    let_it_be(:dossier_on_closed_procedure) { create(:dossier, procedure: closed_procedure) }
+    let_it_be(:dossier_on_unpublished_procedure) { create(:dossier, procedure: unpublished_procedure) }
 
     let(:notify_on_closed) { false }
     let(:dossiers) { Dossier.with_notifiable_procedure(notify_on_closed: notify_on_closed) }
@@ -2831,7 +2831,7 @@ describe Dossier, type: :model do
   end
 
   describe '#update_champs_timestamps' do
-    let(:procedure) { create(:procedure, types_de_champ_public: [{}, { type: :piece_justificative }, { type: :titre_identite }]) }
+    let(:procedure) { create(:procedure, types_de_champ_public: [{}, { type: :piece_justificative }, { type: :piece_justificative, nature: 'titre_identite' }]) }
     let(:dossier) { create(:dossier, procedure:, brouillon_close_to_expiration_notice_sent_at: 10.days.ago) }
     let(:changed_champs) { dossier.champs.filter(&:text?) }
 
@@ -2862,11 +2862,11 @@ describe Dossier, type: :model do
   end
 
   describe '#never_touched_brouillon_expired' do
-    let!(:dossier) { travel_to(3.weeks.ago) { create(:dossier, :brouillon, last_champ_updated_at: nil) } }
-    let!(:dossier_2) { travel_to(1.week.ago) { create(:dossier, :brouillon, last_champ_updated_at: nil) } }
-    let!(:dossier_with_champ_updated) { travel_to(3.weeks.ago) { create(:dossier, :brouillon, last_champ_updated_at: 1.day.ago) } }
+    let_it_be(:dossier) { travel_to(3.weeks.ago) { create(:dossier, :brouillon, last_champ_updated_at: nil) } }
+    let_it_be(:dossier_2) { travel_to(1.week.ago) { create(:dossier, :brouillon, last_champ_updated_at: nil) } }
+    let_it_be(:dossier_with_champ_updated) { travel_to(3.weeks.ago) { create(:dossier, :brouillon, last_champ_updated_at: 1.day.ago) } }
 
-    let!(:dossier_en_construction) { create(:dossier, :en_construction, last_champ_updated_at: nil) }
+    let_it_be(:dossier_en_construction) { create(:dossier, :en_construction, last_champ_updated_at: nil) }
 
     subject { Dossier.never_touched_brouillon_expired }
 

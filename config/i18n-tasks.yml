@@ -134,6 +134,8 @@ ignore_unused:
 - 'views.shared.actions.edit'
 - 'insee_down'
 - 'clipboard.copy_procedure_link'
+- 'links.main_navigation.doc.expert_title'
+- 'links.main_navigation.doc.instructeur_title'
 # - '{devise,kaminari,will_paginate}.*'
 # - 'simple_form.{yes,no}'
 # - 'simple_form.{placeholders,hints,labels}.*'

@@ -219,6 +219,10 @@ class User < ApplicationRecord
     france_connect_informations.size == 1
   end
 
+  def can_prefill_from_fc?(with_gender:)
+    france_connected_with_one_identity? && france_connect_informations.first.complete?(with_gender:)
+  end
+
   def can_be_deleted?
     !administrateur? && !instructeur? && !expert?
   end

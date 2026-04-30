@@ -16,9 +16,12 @@ class ReferentielService
     @timeout = timeout
   end
 
-  def call(query_params)
+  def call(query_params, dossier: nil)
+    resolved_url = url(query_params, dossier:)
+    return Failure(retryable: false, error: StandardError.new("URL could not be resolved"), code: nil) if resolved_url.nil?
+
     result = API::Client.new.call(
-      url: url(query_params),
+      url: resolved_url,
       timeout: @timeout,
       headers:,
       maxfilesize: MAX_FILE_SIZE
@@ -26,12 +29,12 @@ class ReferentielService
     handle_api_result(result)
   end
 
-  def url(query_params)
-    referentiel.url.gsub('{id}', URI.encode_www_form_component(query_params.to_s))
+  def url(query_params, dossier: nil)
+    resolve_tiptap_url(query_params, dossier || referentiel.test_data_tiptap)
   end
 
   def test_url
-    url(@referentiel.test_data)
+    url(referentiel.effective_test_data)
   end
 
   def test_headers
@@ -41,11 +44,11 @@ class ReferentielService
   def validate_referentiel
     case referentiel
     when Referentiels::APIReferentiel
-      result = call(referentiel.test_data)
+      result = call(referentiel.effective_test_data)
+
       case result
       in Success
-        body = result.value!
-        referentiel.update_column(:last_response, { status: 200, body: })
+        referentiel.update_column(:last_response, { status: 200, body: result.value! })
         true
       in Failure(data)
         referentiel.update_column(:last_response, { status: data[:code], body: data[:body] })
@@ -74,6 +77,43 @@ class ReferentielService
       { referentiel.authentication_data_header => referentiel.authentication_header_token }
     else
       {}
+    end
+  end
+
+  def resolve_tiptap_url(query_params, values_source)
+    substitutions = build_substitutions(query_params, values_source)
+    return nil if substitutions.nil?
+
+    return nil if referentiel.url_tiptap.blank?
+
+    TiptapService.new.to_texts_and_tags(
+      referentiel.url_tiptap.deep_symbolize_keys,
+      substitutions
+    )
+  end
+
+  def build_substitutions(query_params, values_source)
+    referentiel.tiptap_mention_ids.each_with_object({}) do |id, hash|
+      value = if id == "{query}"
+        query_params.presence&.to_s
+      else
+        extract_value(values_source, id)
+      end
+      return nil if value.blank?
+      hash[id] = URI.encode_www_form_component(value)
+    end
+  end
+
+  def extract_value(values_source, tag_id)
+    case values_source
+    when NilClass
+      nil
+    when Hash
+      values_source[tag_id]
+    else
+      stable_id = tag_id.delete_prefix("tdc").to_i
+      champ = values_source.champs.find { _1.stable_id == stable_id }
+      champ&.value
     end
   end
 end

@@ -25,6 +25,41 @@ describe FranceConnectService do
     end
   end
 
+  describe '.conf' do
+    subject { described_class.send(:conf)[:redirect_uri] }
+
+    before do
+      stub_const('FRANCE_CONNECT', { redirect_uri: 'https://demarche.numerique.gouv.fr/france_connect/particulier/callback' })
+      ENV['APP_HOST'] = 'demarche.numerique.gouv.fr'
+      allow(Rails.env).to receive(:test?).and_return(false)
+      Current.host = host
+    end
+
+    after { Current.host = nil }
+
+    context 'when Current.host matches APP_HOST' do
+      let(:host) { 'demarche.numerique.gouv.fr' }
+      it { is_expected.to eq('https://demarche.numerique.gouv.fr/france_connect/particulier/callback') }
+    end
+
+    context 'when Current.host is an allowlisted alternate domain' do
+      let(:host) { 'www.demarches-simplifiees.fr' }
+      it { is_expected.to eq('https://www.demarches-simplifiees.fr/france_connect/particulier/callback') }
+    end
+
+    context 'when Current.host is a malicious lookalike (substring attack)' do
+      let(:host) { 'demarche.numerique.gouv.fr.evil.com' }
+      it 'does not substitute the host' do
+        is_expected.to eq('https://demarche.numerique.gouv.fr/france_connect/particulier/callback')
+      end
+    end
+
+    context 'when Current.host is an arbitrary unrelated host' do
+      let(:host) { 'evil.com' }
+      it { is_expected.to eq('https://demarche.numerique.gouv.fr/france_connect/particulier/callback') }
+    end
+  end
+
   describe '.retrieve_user_informations' do
     let(:code) { 'plop' }
     let(:given_name) { 'plop1' }

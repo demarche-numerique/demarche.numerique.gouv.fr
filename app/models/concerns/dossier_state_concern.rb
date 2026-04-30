@@ -300,6 +300,7 @@ module DossierStateConcern
       .classer_sans_suite(motivation: motivation, instructeur: instructeur)
       .processed_at
     self.expired_at = expiration_date
+    attestation&.destroy
 
     save!
 
@@ -424,7 +425,18 @@ module DossierStateConcern
   end
 
   def clear_titres_identite!
-    champ_to_clear_stable_ids = champs.filter { _1.class == Champs::TitreIdentiteChamp }.to_set(&:stable_id)
+    champ_to_clear_stable_ids = champs.filter do |champ|
+      # Use STI type to avoid querying type_de_champ for orphaned champs
+      next false unless champ.is_a?(Champs::PieceJustificativeChamp)
+
+      begin
+        champ.titre_identite?
+      rescue RuntimeError
+        # Champ has no type_de_champ in current revision (orphaned), skip it
+        false
+      end
+    end.to_set(&:stable_id)
+
     champs.where(stable_id: champ_to_clear_stable_ids).find_each(&:clear)
   end
 

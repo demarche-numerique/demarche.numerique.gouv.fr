@@ -27,16 +27,19 @@ namespace :pjs do
 
   desc "Watermark demo. Usage: noglob rake pjs:watermark_demo[tmp/carte-identite-demo-1.jpg]"
   task :watermark_demo, [:file_path] => :environment do |_t, args|
+    require "vips"
+
     file = Pathname.new(args[:file_path])
     output_file = Rails.root.join('tmp', "#{file.basename(file.extname)}_watermarked#{file.extname}")
+    format = file.extname.downcase.in?(['.jpg', '.jpeg']) ? 'image/jpeg' : 'image/png'
 
-    processed = WatermarkService.new.process(file, output_file)
+    image = Vips::Image.new_from_file(file.to_s, access: :sequential)
+    watermarked = WatermarkService.new.apply(image, format: format)
+    watermarked.write_to_file(output_file.to_s)
 
-    if processed
-      rake_puts "Watermarked: #{processed}"
-    else
-      rake_puts "File #{file} not watermarked. Read application log for more information"
-    end
+    rake_puts "Watermarked: #{output_file}"
+  rescue WatermarkService::Error => e
+    rake_puts "File #{file} not watermarked: #{e.message}"
   end
 
   desc "Watermark demo all defined demo files. Usage: noglob rake pjs:watermark_demo_all"

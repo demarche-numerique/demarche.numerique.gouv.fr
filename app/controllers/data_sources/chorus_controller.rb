@@ -4,27 +4,32 @@ class DataSources::ChorusController < ApplicationController
   before_action :authenticate_administrateur!
 
   def search_domaine_fonct
-    result_json = APIBretagneService.new.search_domaine_fonct(code_or_label: params[:q])
-    render json: format_result(result_json:,
-                               label_formatter: ChorusConfiguration.method(:format_domaine_fonctionnel_label))
+    result = APIBretagneService.new.search_domaine_fonct(code_or_label: params[:q])
+    render json: format_or_error(result:,
+                                 label_formatter: ChorusConfiguration.method(:format_domaine_fonctionnel_label))
   end
 
   def search_centre_couts
-    result_json = APIBretagneService.new.search_centre_couts(code_or_label: params[:q])
-    render json: format_result(result_json:,
-                               label_formatter: ChorusConfiguration.method(:format_centre_de_cout_label))
-    end
+    result = APIBretagneService.new.search_centre_couts(code_or_label: params[:q])
+    render json: format_or_error(result:,
+                                 label_formatter: ChorusConfiguration.method(:format_centre_de_cout_label))
+  end
 
   def search_ref_programmation
-    result_json = APIBretagneService.new.search_ref_programmation(code_or_label: params[:q])
-    render json: format_result(result_json:,
-                               label_formatter: ChorusConfiguration.method(:format_ref_programmation_label))
+    result = APIBretagneService.new.search_ref_programmation(code_or_label: params[:q])
+    render json: format_or_error(result:,
+                                 label_formatter: ChorusConfiguration.method(:format_ref_programmation_label))
   end
 
   private
 
-  def format_result(result_json:, label_formatter:)
-    result_json.map do |item|
+  def format_or_error(result:, label_formatter:)
+    if result.is_a?(Dry::Monads::Failure)
+      Sentry.capture_message("APIBretagneService error", extra: { code: result.failure.code, error: result.failure.error.to_s })
+      return []
+    end
+
+    result.map do |item|
       {
         label: label_formatter.call(item),
         value: item[:code],

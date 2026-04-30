@@ -2,7 +2,7 @@
 
 RSpec.describe Attachment::AttachmentRowComponent, type: :component do
   let(:procedure) { create(:procedure, :published, types_de_champ_public:) }
-  let(:types_de_champ_public) { [{ type: :titre_identite }] }
+  let(:types_de_champ_public) { [{ type: :piece_justificative, nature: 'titre_identite' }] }
   let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
   let(:champ) { dossier.champs.first }
   let(:attached_file) { champ.piece_justificative_file }
@@ -44,7 +44,7 @@ RSpec.describe Attachment::AttachmentRowComponent, type: :component do
 
       it 'renders a complete download interface with details to download the file' do
         expect(subject).to have_link(text: filename)
-        expect(subject).to have_text(/PNG.+\d+ octets/)
+        expect(subject).to have_text(/txt/)
       end
     end
 
@@ -68,6 +68,29 @@ RSpec.describe Attachment::AttachmentRowComponent, type: :component do
         expect(subject).to have_link(text: filename)
         expect(subject).not_to have_text(/PNG.+\d+ octets/)
       end
+    end
+  end
+
+  context 'when the attachment is not persisted (e.g. model validation error)' do
+    let(:blob) do
+      ActiveStorage::Blob.create_and_upload!(io: StringIO.new("test"), filename: "test.txt", content_type: "text/plain")
+    end
+    let(:attachment) do
+      ActiveStorage::Attachment.new(
+        name: 'piece_jointe',
+        record: dossier.commentaires.build,
+        blob: blob
+      )
+    end
+    let(:context) do
+      Attachment::Context.new(attached_file: attachment.record.piece_jointe)
+    end
+
+    it 'renders a JS remove button instead of the server delete button' do
+      expect(attachment).not_to be_persisted
+      expect(subject).to have_content("test.txt")
+      expect(subject).not_to have_selector('input[name="_method"][value="delete"]')
+      expect(subject).to have_selector('button[data-action="element-remove#remove"]')
     end
   end
 

@@ -11,7 +11,7 @@
       locals: { procedure: @procedure }
 
 .container
-  %h1.mb-2.fr-h4 Téléchargement mensuel
+  %h1.fr-mb-4v.fr-h4 Téléchargement mensuel
 
   = render partial: "shared/archives/notice"
   = render partial: "shared/archives/table", locals: {count_dossiers_termines_by_month: @count_dossiers_termines_by_month, archives: @archives, average_dossier_weight: @average_dossier_weight, procedure: @procedure }

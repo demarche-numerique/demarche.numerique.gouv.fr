@@ -55,7 +55,7 @@ describe Champs::PieceJustificativeChamp do
 
   describe 'dynamic validations' do
     context 'titre_identite nature' do
-      let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative, nature: 'TITRE_IDENTITE' }]) }
+      let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative, nature: 'titre_identite' }]) }
       let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
       let(:champ) { dossier.champs.first }
 
@@ -125,7 +125,7 @@ describe Champs::PieceJustificativeChamp do
   end
 
   describe '#ocr_result' do
-    let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative, nature: 'JUSTIFICATIF_DOMICILE' }]) }
+    let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative, nature: 'justificatif_domicile' }]) }
     let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
     let(:champ) { dossier.champs.first }
 

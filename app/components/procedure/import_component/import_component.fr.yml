@@ -19,6 +19,10 @@ fr:
     notice_html: "Pour importer des instructeurs, votre fichier csv doit comporter <strong>1 seule colonne : Email</strong> listant les adresses électroniques des instructeurs. Le poids du fichier doit être inférieur à %{csv_max_size} (voir modèle de fichier ci-dessous)."
     alert_email_notifications_html: "Tous les instructeurs que vous ajouterez à la démarche <strong>seront notifiés par email.</strong>"
     confirm: Tous les instructeurs ajoutés à la démarche vont être notifiés par email. Voulez-vous continuer ?
+  overwrite:
+    routed_label: Écraser les groupes et instructeurs existants
+    not_routed_label: Écraser les instructeurs existants
+    hint: Si vous activez cette option, votre configuration actuelle sera perdue et sera remplacée par le contenu du fichier importé.
   contact_informations:
     notice_html: "Pour importer des informations de contact par groupes, votre fichier csv doit comporter 6 colonnes : <strong>Groupe</strong>, <strong>Nom_du_service</strong>, <strong>Adresse_electronique_de_contact</strong>, <strong>Telephone</strong>, <strong>Horaires</strong> et <strong>Adresse_postale</strong>. Le poids du fichier doit être inférieur à 1 Mo (voir modèle de fichier ci-dessous)."
     info_1_html: Si vous avez déjà renseigné des informations de contact pour un groupe, celles-ci <strong>seront écrasées</strong> par le contenu du fichier importé.

@@ -132,24 +132,6 @@ FactoryBot.define do
       end
     end
 
-    factory :champ_do_not_use_titre_identite, class: 'Champs::TitreIdentiteChamp' do
-      transient do
-        skip_default_attachment { false }
-      end
-
-      after(:build) do |champ, evaluator|
-        next if evaluator.skip_default_attachment
-
-        champ.piece_justificative_file.attach(
-          io: StringIO.new("toto"),
-          filename: "toto.png",
-          content_type: "image/png",
-          # we don't want to run virus scanner on this file
-          metadata: { virus_scan_result: ActiveStorage::VirusScanner::SAFE }
-        )
-      end
-    end
-
     factory :champ_do_not_use_carte, class: 'Champs::CarteChamp' do
       geo_areas { build_list(:geo_area, 2) }
     end

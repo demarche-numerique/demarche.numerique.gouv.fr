@@ -10,22 +10,17 @@ class BatchOperationProcessOneJob < ApplicationJob
       ActiveRecord::Base.transaction do
         batch_operation.process_one(dossier)
         batch_operation.track_processed_dossier(true, dossier)
-
-        if batch_operation.dossiers.empty?
-          batch_operation.after_all_processed
-        end
       end
     rescue => error
       ActiveRecord::Base.transaction do
         batch_operation.track_processed_dossier(false, dossier)
-
-        if batch_operation.dossiers.empty?
-          batch_operation.after_all_processed
-        end
       end
       raise error
+    ensure
+      batch_operation.finalize_if_complete!
     end
   rescue ActiveRecord::RecordNotFound
     dossier.update_column(:batch_operation_id, nil)
+    batch_operation.finalize_if_complete!
   end
 end

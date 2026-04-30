@@ -1,6 +1,5 @@
 @import 'constants';
 @import 'colors';
-@import 'placeholders';
 
 .form {
   input.unstyled {
@@ -388,7 +387,10 @@
 
   input[type='checkbox'],
   input[type='radio'] {
-    @extend %outline;
+    &:active:not(:disabled),
+    &:focus {
+      outline: 3px solid $blue-france-500;
+    }
 
     // Firefox tends to display some controls smaller than other browsers.
     // Ensure a consistency of size between browsers.

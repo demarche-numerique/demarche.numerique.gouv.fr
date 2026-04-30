@@ -1,4 +1,4 @@
-import { isButtonElement } from '@coldwired/utils';
+import { isButtonElement } from 'coldwired/utils';
 
 import { ApplicationController } from './application_controller';
 
@@ -41,7 +41,9 @@ export class AutosaveSubmitController extends ApplicationController {
   private didFail() {
     this.#isSaving = false;
     this.#shouldSubmit = false;
-    this.enableButton();
+    if (isButtonElement(this.element)) {
+      this.element.disabled = true;
+    }
   }
 
   private disableButton() {

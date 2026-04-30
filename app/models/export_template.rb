@@ -87,6 +87,11 @@ class ExportTemplate < ApplicationRecord
     @template_exported_columns.include?(exported_column.column)
   end
 
+  # Filter out stale column references (e.g. type_de_champ removed from procedure after template was saved)
+  def exported_columns
+    super.compact
+  end
+
   def set_default_export_items
     self.dossier_folder ||= ExportItem.default(prefix: 'dossier')
     self.export_pdf ||= ExportItem.default(prefix: 'export')

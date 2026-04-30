@@ -43,14 +43,14 @@ describe "Dossier en_construction", js: true do
   end
 
   context "with a mandatory titre identite" do
-    let(:types_de_champ_public) { [{ type: :titre_identite, stable_id: 99, mandatory: true }] }
+    let(:types_de_champ_public) { [{ type: :piece_justificative, nature: 'titre_identite', stable_id: 99, mandatory: true }] }
 
     scenario 'remplace a mandatory titre identite' do
       visit_dossier(dossier)
 
-      find("button", text: "Supprimer le fichier toto.png").click
+      find("button", text: "Supprimer le fichier toto.txt").click
       live_region_selector = "##{champ.focusable_input_id}-aria-live"
-      expect(page).to have_css(live_region_selector, text: "La pièce jointe (toto.png) a bien été supprimée.", visible: :all)
+      expect(page).to have_css(live_region_selector, text: "La pièce jointe (toto.txt) a bien été supprimée.", visible: :all)
 
       input_selector = "##{champ.focusable_input_id}"
       expect(page).to have_selector(input_selector)

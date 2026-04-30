@@ -31,7 +31,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     CurrentConfirmation.prefill_token = @prefill_token
 
     # Handle existing user trying to sign up again
-    existing_user = User.find_by(user_email_params)
+    existing_user = user_email_param.present? ? User.find_by(email: user_email_param) : nil
     if existing_user.present?
       if existing_user.confirmed?
         UserMailer.new_account_warning(existing_user, @procedure).deliver_later
@@ -96,7 +96,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
 
-  def user_email_params
-    params.require(:user).permit(:email)
+  def user_email_param
+    # Strong Parameters silently filters non-scalar values, so a hash like
+    # `user[email][]=x` would fall through to `find_by({})` and return the first user.
+    email = params.require(:user).permit(:email)[:email]
+    email.is_a?(String) ? email : nil
   end
 end

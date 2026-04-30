@@ -42,8 +42,6 @@ class ExportedColumnFormatter
 
   def self.format_attachments(column:, raw_value:)
     case column.tdc_type
-    when TypeDeChamp.type_champs[:titre_identite]
-      raw_value.present? ? 'présent' : 'absent'
     when TypeDeChamp.type_champs[:piece_justificative]
       raw_value.map { _1.blob.filename }.join(", ")
     end

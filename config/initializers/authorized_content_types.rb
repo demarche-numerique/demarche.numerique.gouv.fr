@@ -28,6 +28,7 @@ AUTHORIZED_SPREADSHEET_TYPES = [
   'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
   'application/vnd.oasis.opendocument.spreadsheet',
   'application/vnd.ms-excel.sheet.macroenabled.12',
+  'application/vnd.ms-excel.sheet.macroEnabled.12', # .xlsm (variante sensible à la casse renvoyée par MiniMime)
   'application/vnd.openxmlformats-officedocument.spreadsheetml.template',
   'application/vnd.ms-excel.sheet.binary.macroenabled.12',
   'application/vnd.oasis.opendocument.spreadsheet-template',
@@ -50,6 +51,7 @@ AUTHORIZED_CONTENT_TYPES = PROCESSABLE_TYPES + AUTHORIZED_SPREADSHEET_TYPES + [
   'application/zip', # program x 25831
   'application/octet-stream', # program x 8923 autodesk, citadel
   'text/x-adasrc', # program x 5116 agricultaral data
+  'application/vnd.ms-outlook', # program .msg outlook
   'application/x-ole-storage', # program x 5015 msg message microsoft
   'application/x-zip-compressed', # program x 3242
   'text/csv', # program x 1901
@@ -75,6 +77,7 @@ AUTHORIZED_CONTENT_TYPES = PROCESSABLE_TYPES + AUTHORIZED_SPREADSHEET_TYPES + [
   'application/vnd.oasis.opendocument.text', # text x 46229
   'application/msword', # text x 30167
   'text/plain', # text x 24477
+  'text/markdown', # text .md
   'application/vnd.openxmlformats-officedocument.presentationml.presentation', # text x 3231
   'application/rtf', # text x 1438
   'application/vnd.apple.pages', # text x 609
@@ -108,6 +111,7 @@ FORMAT_FAMILIES = {
     'application/vnd.oasis.opendocument.text',
     'application/msword',
     'text/plain',
+    'text/markdown',
     'application/rtf',
     'application/vnd.apple.pages',
   ],
@@ -140,8 +144,8 @@ FORMAT_FAMILY_EXAMPLES = {
 }.freeze
 
 NATURE_DISPLAY_FORMATS = {
-  TITRE_IDENTITE: '.jpg, .jpeg, .png',
-  RIB: '.pdf, .doc, .docx, .jpg, .jpeg, .png',
+  titre_identite: '.jpg, .jpeg, .png',
+  rib: '.pdf, .doc, .docx, .jpg, .jpeg, .png',
 }.freeze
 
 FORMAT_FAMILY_TOP_FORMATS = {

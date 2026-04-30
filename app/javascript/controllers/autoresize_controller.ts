@@ -1,6 +1,6 @@
-import { ApplicationController } from './application_controller';
 import { attach } from '@frsource/autoresize-textarea';
-import { isTextAreaElement } from '@coldwired/utils';
+import { isTextAreaElement } from 'coldwired/utils';
+import { ApplicationController } from './application_controller';
 
 export class AutoresizeController extends ApplicationController {
   declare observer: IntersectionObserver;

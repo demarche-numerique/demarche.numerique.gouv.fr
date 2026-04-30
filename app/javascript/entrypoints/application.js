@@ -25,6 +25,10 @@ import {
 } from '../new_design/instruction-button';
 import { showFusion, showNewAccount } from '../new_design/fc-fusion';
 
+import { setupLocale } from '../shared/i18n';
+
+await setupLocale();
+
 const application = Application.start();
 registerControllers(application);
 

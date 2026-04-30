@@ -46,10 +46,17 @@ module Manager
       redirect_to manager_user_path(user)
     end
 
+    # Only the administrateur dashboard currently exposes FeaturesField;
+    # revisit (e.g. accept the group as a param) if usager/instructeur dashboards start using it.
+    FEATURES_GROUP = "administrateur"
+
     def enable_feature
       user = User.find(params[:id])
+      allowed_keys = FeaturesField.available_features(FEATURES_GROUP).map(&:key).to_set
 
-      params[:features].each do |key, enable|
+      params.fetch(:features, {}).each do |key, enable|
+        next unless allowed_keys.include?(key)
+
         if enable
           Flipper.enable_actor(key.to_sym, user)
         else
@@ -77,7 +84,7 @@ module Manager
       @user = User.find(params[:id])
 
       email_services = [
-        Sendinblue::API.new,
+        Brevo::API.new,
         Scaleway::API.new,
       ].filter(&:properly_configured?)
 
@@ -94,10 +101,10 @@ module Manager
 
     def unblock_email
       @user = User.find(params[:user_id])
-      if Sendinblue::API.new.unblock_user(@user.email)
-        flash.notice = "L’adresse électronique a été débloquée auprès de Sendinblue"
+      if Brevo::API.new.unblock_user(@user.email)
+        flash.notice = "L’adresse électronique a été débloquée auprès de Brevo"
       else
-        flash.alert = "Impossible de débloquer cette adresse électronique auprès de Sendinblue"
+        flash.alert = "Impossible de débloquer cette adresse électronique auprès de Brevo"
       end
       redirect_to emails_manager_user_path(@user)
     end

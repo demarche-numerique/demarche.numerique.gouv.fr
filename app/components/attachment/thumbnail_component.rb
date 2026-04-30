@@ -13,7 +13,7 @@ class Attachment::ThumbnailComponent < ApplicationComponent
 
   def size_class = small ? 'thumbnail-100' : 'thumbnail-200'
 
-  def galleryable? = displayable_image?(blob) || displayable_pdf?(blob)
+  def galleryable? = blob.virus_scanner.safe? && (displayable_image?(blob) || displayable_pdf?(blob))
 
   def gallery_link(&block)
     if displayable_image?(blob)

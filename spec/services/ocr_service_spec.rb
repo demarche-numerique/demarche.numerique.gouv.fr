@@ -34,7 +34,7 @@ describe OCRService do
         end
 
         it 'returns a success with the correct value_json' do
-          analysis = described_class.analyze(blob, nature: 'RIB')
+          analysis = described_class.analyze(blob, nature: 'rib')
           expect(analysis).to eq(Success(value_json: body))
         end
       end
@@ -47,7 +47,7 @@ describe OCRService do
         end
 
         it 'handles the error gracefully' do
-          analysis = described_class.analyze(blob, nature: 'RIB')
+          analysis = described_class.analyze(blob, nature: 'rib')
           expect(analysis.failure?).to be true
           expect(analysis.failure[:code]).to eq(422)
           expect(analysis.failure[:error].to_s).to include('Invalid')

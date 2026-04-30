@@ -11,6 +11,18 @@ module ProcedureHelper
     end
   end
 
+  def procedure_badge_class(procedure)
+    if procedure.brouillon?
+      'fr-badge--new'
+    elsif procedure.publiee?
+      'fr-badge--success'
+    elsif procedure.close?
+      'fr-badge--error'
+    else
+      'fr-badge--warning'
+    end
+  end
+
   def procedure_publish_label(procedure, key)
     # i18n-tasks-use t('modal.publish.body.publish')
     # i18n-tasks-use t('modal.publish.body.reopen')

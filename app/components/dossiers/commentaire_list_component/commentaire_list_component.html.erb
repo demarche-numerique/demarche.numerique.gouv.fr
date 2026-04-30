@@ -1,0 +1,14 @@
+<% grouped_commentaires.each do |date, commentaires_of_the_day| %>
+  <li id="date-header-<%= date.iso8601 %>">
+    <div class="date-header"><%= helpers.human_date(date) %></div>
+  </li>
+
+  <% commentaires_of_the_day.each do |commentaire| %>
+    <li
+      class="message <%= commentaire_is_from_me_class(commentaire, connected_user) %>"
+      id="<%= dom_id(commentaire) %>"
+    >
+      <%= render Dossiers::MessageComponent.new(commentaire: commentaire, connected_user: connected_user, messagerie_seen_at: messagerie_seen_at, heading_level: 'h2', instructeurs_seen_at: instructeurs_seen_at) %>
+    </li>
+  <% end %>
+<% end %>

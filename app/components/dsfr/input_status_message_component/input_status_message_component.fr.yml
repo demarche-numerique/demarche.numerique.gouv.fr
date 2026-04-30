@@ -8,6 +8,7 @@ fr:
     fetched: "%{raison_sociale_or_name} %{forme_juridique}"
     error: "Une erreur est survenue lors de la récupération des informations SIRET."
   referentiel:
+    not_configured: "Ce champ n’est pas encore configuré par l’administrateur."
     fetching: "Recherche en cours."
     error: "Aucun élément trouvé pour la référence : %{value}"
     success: "Référence trouvée : %{value}"

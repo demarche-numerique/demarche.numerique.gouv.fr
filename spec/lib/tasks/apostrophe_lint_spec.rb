@@ -146,7 +146,7 @@ describe 'lint:apostrophe' do
       end
     end
 
-    context "with aujourd'hui" do
+    context "aujourd'hui" do
       before do
         File.write(temp_file, <<~YAML)
           fr:

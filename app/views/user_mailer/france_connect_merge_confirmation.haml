@@ -11,7 +11,7 @@
 %p
   Vous pouvez aussi visiter ce lien : #{link_to merge_link, merge_link}
 
-%p Ce lien est valide #{distance_of_time_in_words(FranceConnectInformation::MERGE_VALIDITY)}, jusqu'à #{I18n.l(@email_merge_token_created_at, format: :long_with_time_and_timezone)}
+%p Ce lien est valide #{distance_of_time_in_words(FranceConnectInformation::MERGE_VALIDITY)}, jusqu'à #{I18n.l(@email_merge_token_created_at + FranceConnectInformation::MERGE_VALIDITY, format: :long_with_time_and_timezone)}
 
 %p
   Si vous n’êtes pas à l’origine de cette demande, vous pouvez ignorer ce message. Et si vous avez besoin d’assistance, n’hésitez pas à nous contacter à

@@ -3,6 +3,10 @@
 module InstructeurEmailNotificationConcern
   extend ActiveSupport::Concern
 
+  # Tout user dont email_verified_at est nil — y compris un compte préexistant non encore
+  # activé — reçoit le mail d'activation. Choix UX assumé : ces comptes peuvent activer
+  # leur accès en un clic depuis le mail d'ajout au groupe, sans repasser par
+  # « mot de passe oublié ».
   def notify_instructeurs(groupe, added_instructeurs, current_user)
     known_instructeurs, new_instructeurs = added_instructeurs.partition { |instructeur| instructeur.user.email_verified_at }
 

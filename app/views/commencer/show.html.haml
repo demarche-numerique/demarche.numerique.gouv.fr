@@ -1,6 +1,7 @@
 - content_for(:title, @procedure.libelle)
 - content_for(:meta_robots, @procedure.publiee? && @procedure.robots_indexable? ? "index,follow" : "noindex,nofollow")
-- content_for(:hide_header_login, true)
+- content_for(:hide_header_signin, true)
+- content_for(:pro_connect_path, commencer_pro_connect_path(path: @procedure.path, prefill_token: @prefilled_dossier&.prefill_token))
 
 .commencer.form
   - if !user_signed_in?

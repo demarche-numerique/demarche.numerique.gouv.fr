@@ -11,7 +11,7 @@ class API::Public::V1::DossiersController < API::Public::V1::BaseController
     )
     dossier.build_default_values
     if dossier.save
-      dossier.prefill!(PrefillChamps.new(dossier, params.to_unsafe_h).to_a, PrefillIdentity.new(dossier, params.to_unsafe_h).to_h)
+      dossier.prefill!(PrefillChamps.new(dossier, params.to_unsafe_h).to_a, PrefillIdentity.new(dossier, identity_params).to_h)
       render json: serialize_dossier(dossier), status: :created
     else
       render_bad_request(dossier.errors.full_messages.to_sentence)
@@ -29,6 +29,10 @@ class API::Public::V1::DossiersController < API::Public::V1::BaseController
   end
 
   private
+
+  def identity_params
+    params.permit(:identite_prenom, :identite_nom, :identite_genre).to_h
+  end
 
   def serialize_dossier(dossier)
     if dossier.orphan?

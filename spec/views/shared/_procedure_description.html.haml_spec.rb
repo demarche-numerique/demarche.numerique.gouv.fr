@@ -62,7 +62,7 @@ describe 'shared/_procedure_description', type: :view do
   end
 
   context 'when the procedure has pieces jointes' do
-    let(:procedure) { create(:procedure, :draft, types_de_champ_public: [{ type: :titre_identite }, { type: :piece_justificative }, { type: :siret }]) }
+    let(:procedure) { create(:procedure, :draft, types_de_champ_public: [{ type: :piece_justificative, nature: 'titre_identite' }, { type: :piece_justificative }, { type: :siret }]) }
     it 'shows the pieces jointes list for draft procedure' do
       subject
       expect(rendered).to have_text('Quelles sont les pièces justificatives à fournir')

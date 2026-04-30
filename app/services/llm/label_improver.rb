@@ -52,7 +52,7 @@ module LLM
         Si différence → Recommence Phase 1 pour les champs manquants.
 
         TYPES AUTO-SUFFISANTS (ne nécessitent JAMAIS de description) :
-        yes_no, text, textarea, email, phone, siret, rna, rnf, iban, date, datetime, carte, commune, epci, dossier_link, titre_identite, piece_justificative, drop_down_list, linked_drop_down_list, multiple_drop_down_list, decimal_number
+        yes_no, text, textarea, email, phone, siret, rna, rnf, iban, date, datetime, carte, commune, epci, dossier_link, piece_justificative, drop_down_list, linked_drop_down_list, multiple_drop_down_list, decimal_number
 
         Ces types ont une UI claire ou génèrent automatiquement des indications.
         Exception : Si description existante contient info factuelle critique (seuil légal, contrainte réglementaire précise), la préserver.
@@ -206,7 +206,7 @@ module LLM
 
             • Le libellé ne DOIT PAS être une répétition de la description et inversement.
 
-            • JAMAIS ajouter de description sur les types auto-suffisants (yes_no, text, textarea, email, phone, siret, rna, rnf, iban, date, datetime, carte, commune, epci, dossier_link, titre_identite, piece_justificative, drop_down_list, linked_drop_down_list, multiple_drop_down_list, decimal_number)
+            • JAMAIS ajouter de description sur les types auto-suffisants (yes_no, text, textarea, email, phone, siret, rna, rnf, iban, date, datetime, carte, commune, epci, dossier_link, piece_justificative, drop_down_list, linked_drop_down_list, multiple_drop_down_list, decimal_number)
 
             • JAMAIS ajouter de description qui décrit une action impossible dans le champ actuel
               KO yes_no avec description "Si oui, indiquez le numéro dans le champ suivant"

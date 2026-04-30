@@ -5,8 +5,13 @@ class ContactController < ApplicationController
   before_action :reject_invalid_attachment, only: [:create]
 
   def index
+    prefill = contact_form_params
     @form = ContactForm.new(dossier_id: dossier&.id)
     @form.user = current_user
+
+    if prefill[:origin].present?
+      prefill_from_origin(prefill[:origin], prefill[:error_id])
+    end
   end
 
   def admin
@@ -76,8 +81,19 @@ class ContactController < ApplicationController
     if params.key?(:contact_form) # submitting form
       params.require(:contact_form).permit(*keys)
     else
-      params.permit(:dossier_id) # prefilling form
+      params.permit(:dossier_id, :origin, :error_id) # prefilling form
     end
+  end
+
+  PREFILL_ORIGINS = %w[autosave].freeze
+
+  def prefill_from_origin(origin, error_id)
+    return unless origin.in?(PREFILL_ORIGINS)
+
+    error_id = error_id&.truncate(50)
+    @form.question_type = ContactForm::TYPE_AUTRE
+    @form.subject = t("contact.prefill.#{origin}.subject")
+    @form.text = t("contact.prefill.#{origin}.body", error_id: error_id.presence || '-')
   end
 
   def reject_invalid_attachment

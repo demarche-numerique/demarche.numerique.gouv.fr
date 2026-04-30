@@ -12,7 +12,7 @@ class Commentaire < ApplicationRecord
 
   has_many_attached :piece_jointe
 
-  validates :body, presence: { message: "ne peut être vide" }, unless: :discarded?
+  validates :body, presence: { message: "ne peut être vide" }, unless: -> { discarded? || piece_jointe.attached? }
 
   normalizes :body, with: NORMALIZES_NON_PRINTABLE_PROC
 

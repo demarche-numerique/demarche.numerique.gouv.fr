@@ -29,8 +29,4 @@
   <%= link_to "Annonces", super_admins_release_notes_path, class: "navigation__link" %>
   <%= link_to "Import data via CSV", manager_import_procedure_tags_path, class: "navigation__link" %>
   <%= link_to "Export CSV data", manager_data_exports_path, class: "navigation__link" %>
-
-  <% if ENV.key?("SENDINBLUE_BALANCING_VALUE") && ENV.enabled?("SAML_IDP") %>
-    <%= link_to "Sendinblue", ENV.fetch("SENDINBLUE_LOGIN_URL"), class: "navigation__link", target: '_blank' %>
-  <% end %>
 </nav>

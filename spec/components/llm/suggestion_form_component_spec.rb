@@ -69,8 +69,8 @@ RSpec.describe LLM::SuggestionFormComponent, type: :component do
       end
 
       context 'when there are no suggestions' do
-        it 'shows "Passer à la suite" button' do
-          expect(subject).to have_button("Passer à la suite")
+        it 'shows "Poursuivre" button' do
+          expect(subject).to have_button("Poursuivre")
 
           expect(subject).not_to have_css(".fr-badge", text: "suggestion")
           expect(subject).not_to have_button("Appliquer les suggestions et poursuivre")
@@ -81,8 +81,8 @@ RSpec.describe LLM::SuggestionFormComponent, type: :component do
       let(:state) { 'failed' }
 
       it 'shows error message and retry button' do
-        expect(subject).to have_content("La génération des suggestions a echoué, veuillez ré-essayer")
-        expect(subject).to have_button("Regénérer les suggestions")
+        expect(subject).to have_content("La recherche de suggestions a échoué, veuillez réessayer.")
+        expect(subject).to have_button("Relancer la recherche de suggestions")
       end
     end
     context 'when state is accepted' do
@@ -108,12 +108,15 @@ RSpec.describe LLM::SuggestionFormComponent, type: :component do
   describe '#stepper_finished?' do
     let(:state) { 'accepted' }
     let(:component) { described_class.new(llm_rule_suggestion: llm_rule_suggestion) }
+    let(:tunnel_id) { SecureRandom.hex(3) }
 
     context 'when tunnel is complete' do
       let(:rule) { LLMRuleSuggestion.rules.fetch(LLM::Rule::SEQUENCE.last) }
+      let(:llm_rule_suggestion) { create(:llm_rule_suggestion, procedure_revision: procedure.draft_revision, tunnel_id:, rule:, schema_hash:, state:) }
       let!(:first_step) do
         create(:llm_rule_suggestion,
           procedure_revision: procedure.draft_revision,
+          tunnel_id:,
           rule: LLMRuleSuggestion::RULE_SEQUENCE.first,
           state: 'accepted',
           created_at: 2.days.ago)

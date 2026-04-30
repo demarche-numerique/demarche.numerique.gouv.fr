@@ -78,10 +78,16 @@
   flex-shrink: 0;
 }
 
-@for $i from 1 through 3 {
-  .flex-gap-#{$i} {
-    gap: $i * $default-spacer;
-  }
+.flex-gap-1 {
+  gap: 0.5rem;
+}
+
+.flex-gap-2 {
+  gap: 1rem;
+}
+
+.flex-gap-3 {
+  gap: 1.5rem;
 }
 
 .flex-1 {

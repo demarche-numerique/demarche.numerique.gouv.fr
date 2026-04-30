@@ -10,7 +10,7 @@ RSpec.describe LLM::ImproveTypesItemComponent, type: :component do
 
   describe '.step_title' do
     it 'returns the correct title' do
-      expect(described_class.step_title).to eq("Amélioration des types de champs")
+      expect(described_class.step_title).to eq("Bonne utilisation des types de champs")
     end
   end
 

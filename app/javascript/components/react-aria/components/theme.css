@@ -1,0 +1,19 @@
+/* Map react-aria theme variables to DSFR design tokens */
+.react-aria-Select,
+.fr-ds-select_multiple,
+.select-popover {
+  --text-color: var(--text-label-grey);
+  --text-color-placeholder: var(--text-mention-grey);
+  --text-color-disabled: var(--text-disabled-grey);
+  --border-color: var(--border-default-grey);
+  --field-background: var(--background-contrast-grey);
+  --overlay-background: var(--background-default-grey);
+  --overlay-border: var(--border-default-grey);
+  --highlight-background: var(--background-action-high-blue-france);
+  --highlight-background-pressed: var(--background-action-high-blue-france-active);
+  --highlight-foreground: var(--text-inverted-blue-france);
+  --highlight-hover: var(--background-default-grey-hover);
+  --highlight-pressed: var(--background-default-grey-active);
+  --focus-ring-color: var(--border-action-high-blue-france);
+  --popover-shadow: var(--overlap-shadow);
+}

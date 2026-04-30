@@ -117,6 +117,21 @@ describe AttestationTemplate, type: :model do
       end
     end
 
+    context 'when dossier is not in accepte or refuse state' do
+      let(:attestation_template) do
+        build(:attestation_template, title: 'title', body: 'body')
+      end
+      let(:dossier) { create(:dossier, :sans_suite, procedure:) }
+
+      it 'does not create an attestation' do
+        expect {
+          attestation_template.generate_attestation_for(dossier)
+        }.not_to change { Attestation.count }
+
+        expect(dossier.attestation).to be_nil
+      end
+    end
+
     context 'attestation v2' do
       let(:attestation_template) do
         build(:attestation_template, :v2, :with_files, label_logo: "Ministère des specs")

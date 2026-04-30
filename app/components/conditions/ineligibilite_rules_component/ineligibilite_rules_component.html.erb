@@ -1,0 +1,94 @@
+<div id="<%= dom_id(@draft_revision, :ineligibilite_rules) %>">
+  <%= render Procedure::PendingRepublishComponent.new(procedure: @draft_revision.procedure, render_if: pending_changes?) %>
+  <%= render Conditions::ConditionsErrorsComponent.new(conditions: condition_per_row, source_tdcs: @source_tdcs) %>
+
+  <div class="fr-fieldset">
+    <%= form_for(@draft_revision, url: change_admin_procedure_ineligibilite_rules_path(@draft_revision.procedure_id), html: { id: 'ineligibilite_form', class: 'width-100', novalidate: true }) do |f| %>
+      <div class="fr-fieldset__element">
+        <div class="fr-toggle fr-toggle--label-left">
+          <%= f.check_box :ineligibilite_enabled, class: 'fr-toggle__input', data: @opt %>
+          <%= f.label :ineligibilite_enabled, t(".toggle_label"), data: { 'fr-checked-label': t(".enabled"), 'fr-unchecked-label': t(".disabled") }, class: 'fr-toggle__label' %>
+        </div>
+      </div>
+
+      <div class="fr-fieldset__element">
+        <%= render Dsfr::InputComponent.new(form: f, attribute: :ineligibilite_message, input_type: :text_area, opts: { rows: 5 }) %>
+      </div>
+    <% end %>
+
+    <div class="fr-mx-1w fr-label fr-py-0 fr-mb-1w fr-mt-2w">
+      <%= t(".conditions_title") %>
+      <span class="fr-hint-text"><%= t(".conditions_hint") %></span>
+    </div>
+
+    <div class="fr-fieldset__element">
+      <%= form_tag admin_procedure_ineligibilite_rules_path(@draft_revision.procedure_id), method: :patch, data: { turbo: true, controller: 'autosave' }, class: 'form width-100' do %>
+        <div class="conditionnel width-100">
+          <table class="condition-table">
+            <% if rows.size > 0 %>
+              <thead>
+                <tr>
+                  <th class="fr-pt-0 far-left"></th>
+                  <th class="fr-pt-0 target"><%= t(".target_header") %></th>
+                  <th class="fr-pt-0 operator"><%= t(".operator_header") %></th>
+                  <th class="fr-pt-0 value"><%= t(".value_header") %></th>
+                  <th class="fr-pt-0 delete-column"></th>
+                </tr>
+              </thead>
+            <% end %>
+
+            <tbody>
+              <% rows.each.with_index do |(targeted_champ, operator_name, value), row_index| %>
+                <tr>
+                  <td class="far-left"><%= far_left_tag(row_index) %></td>
+
+                  <td class="target">
+                    <%= left_operand_tag(targeted_champ, row_index) %>
+                  </td>
+
+                  <td class="operator">
+                    <%= operator_tag(operator_name, targeted_champ, row_index) %>
+                  </td>
+
+                  <td class="value">
+                    <%= right_operand_tag(targeted_champ, value, row_index, operator_name) %>
+                  </td>
+
+                  <td class="delete-column">
+                    <%= delete_condition_tag(row_index) %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+
+            <tfoot>
+              <tr>
+                <td class="text-right" colspan="5"><%= add_condition_tag %></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="padded-fixed-footer">
+    <div class="fixed-footer">
+      <div class="fr-container">
+        <div class="fr-grid-row fr-col-offset-md-2 fr-col-md-8">
+          <div class="fr-col-12">
+            <ul class="fr-btns-group fr-btns-group--inline-md">
+              <li>
+                <%= link_to t(".cancel"), admin_procedure_path(id: @draft_revision.procedure), class: 'fr-btn fr-btn--secondary', data: { confirm: t(".cancel_confirm") } %>
+              </li>
+
+              <li>
+                <%= button_tag t(".save"), class: "fr-btn", form: 'ineligibilite_form' %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

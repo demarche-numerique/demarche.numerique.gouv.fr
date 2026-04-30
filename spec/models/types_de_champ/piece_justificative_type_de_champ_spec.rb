@@ -5,7 +5,7 @@ describe TypesDeChamp::PieceJustificativeTypeDeChamp do
     let(:procedure) { create(:procedure) }
 
     it 'adds RIB columns' do
-      tdc = create(:type_de_champ_piece_justificative, procedure:, nature: 'RIB')
+      tdc = create(:type_de_champ_piece_justificative, procedure:, nature: 'rib')
       cols = tdc.dynamic_type.columns(procedure:, displayable: true)
       labels = cols.map(&:label)
       expect(labels.any? { _1.include?('Titulaire') }).to be true
@@ -16,8 +16,8 @@ describe TypesDeChamp::PieceJustificativeTypeDeChamp do
   end
 
   describe '#champ_value_for_export' do
-    context 'when nature is TITRE_IDENTITE' do
-      let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative, nature: 'TITRE_IDENTITE' }]) }
+    context 'when nature is titre_identite' do
+      let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative, nature: 'titre_identite' }]) }
       let(:dossier) { create(:dossier, procedure:) }
       let(:champ) { dossier.champs.first }
       let(:type_de_champ) { champ.type_de_champ }
@@ -32,7 +32,7 @@ describe TypesDeChamp::PieceJustificativeTypeDeChamp do
       end
     end
 
-    context 'when nature is not TITRE_IDENTITE' do
+    context 'when nature is not titre_identite' do
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative }]) }
       let(:dossier) { create(:dossier, procedure:) }
       let(:champ) { dossier.champs.first }

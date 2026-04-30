@@ -1,0 +1,51 @@
+name: Claude Code Security Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  merge_group:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  security-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Skip in merge queue
+        if: github.event_name == 'merge_group'
+        run: echo "Merge queue — security review already done on PR, skipping."
+
+      - name: Check PR approval status
+        if: github.event_name == 'pull_request'
+        id: approval
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          APPROVED=$(gh api repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/reviews \
+            --jq '[.[] | select(.state == "APPROVED")] | length')
+          if [ "$APPROVED" -eq 0 ]; then
+            echo "PR not yet approved, skipping security review"
+            echo "approved=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "PR approved, running security review"
+            echo "approved=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: github.event_name == 'pull_request' && steps.approval.outputs.approved == 'true'
+        with:
+          fetch-depth: 2
+
+      - uses: anthropics/claude-code-security-review@main
+        if: github.event_name == 'pull_request' && steps.approval.outputs.approved == 'true'
+        id: scan
+        with:
+          claude-api-key: ${{ secrets.CLAUDE_API_KEY }}
+
+      - name: Fail if security findings
+        if: github.event_name == 'pull_request' && steps.approval.outputs.approved == 'true' && steps.scan.outputs.findings-count > 0
+        run: |
+          echo "::error::Security review found ${{ steps.scan.outputs.findings-count }} finding(s). Review the comments on this PR."
+          exit 1

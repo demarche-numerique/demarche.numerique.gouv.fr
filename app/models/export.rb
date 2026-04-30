@@ -84,6 +84,8 @@ class Export < ApplicationRecord
 
     recent_export = pending
       .or(generated.where(updated_at: (5.minutes.ago)..))
+      .joins(:groupe_instructeurs)
+      .where(groupe_instructeurs: { id: groupe_instructeurs })
       .includes(:procedure_presentation)
       .find_by(attributes)
 

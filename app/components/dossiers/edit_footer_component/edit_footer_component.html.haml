@@ -4,7 +4,7 @@
       .flex.align-baseline.justify-between.no-flex-md
         = render Dossiers::AutosaveFooterComponent.new(dossier: @dossier, annotation: annotation?, owner: owner?)
 
-        %ul.fr-btns-group.fr-btns-group--inline-lg
+        %ul.fr-btns-group.fr-btns-group--inline-lg.flex-no-shrink
 
           - if show_for_user?
             - if show_submit?
@@ -14,7 +14,7 @@
               %li= button_to submit_button_label, submit_button_path, submit_button_options
 
             - if !owner?
-              %li= button_to t('.check_completude'), check_completude_dossier_path(@dossier), class: "fr-btn", method: :post
-              %li= button_to t('.notify_owner_for_changes'), notify_owner_for_changes_dossier_path(@dossier), class: "fr-btn fr-btn--secondary", method: :post, data: { confirm: t('.notify_owner_for_changes_alert')}
+              %li= button_to t('.check_completude'), check_completude_dossier_path(@dossier), class: "fr-btn", method: :post, data: { controller: 'autosave-submit' }
+              %li= button_to t('.notify_owner_for_changes'), notify_owner_for_changes_dossier_path(@dossier), class: "fr-btn fr-btn--secondary", method: :post, data: { confirm: t('.notify_owner_for_changes_alert'), controller: 'autosave-submit' }
 
       = render partial: "shared/dossiers/submit_is_over", locals: { dossier: @dossier }

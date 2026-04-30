@@ -4,7 +4,7 @@ fr:
       models:
         referentiels/api_referentiel:
           attributes:
-            url:
+            url_tiptap:
               invalid_format: "The URL format is invalid, please enter a valid URL, e.g., https://api_1.ext/"
               not_allowed: "must be authorized by our team. Please contact us by email (%{contact_email}) and provide the URL and the API documentation you wish to integrate."
     models:

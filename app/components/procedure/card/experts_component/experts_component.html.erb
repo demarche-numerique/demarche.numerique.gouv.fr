@@ -1,0 +1,20 @@
+<div class="fr-col-6 fr-col-md-4 fr-col-lg-3">
+  <%= link_to admin_procedure_experts_path(@procedure), class: "fr-tile fr-enlarge-link" do %>
+    <div class="fr-tile__body flex column align-center justify-between">
+      <% if configured? %>
+        <p class="fr-badge fr-badge--success"><%= t(".configured") %></p>
+      <% else %>
+        <p class="fr-badge fr-badge--info"><%= t(".unconfigured") %></p>
+      <% end %>
+
+      <div>
+        <h3 class="fr-h6 fr-mt-10v"><%= t(".title") %></h3>
+        <p class="fr-tile-subtitle"><%= t(".subtitle") %></p>
+      </div>
+
+      <p class="fr-btn fr-btn--tertiary">
+        <%= t("views.shared.actions.edit") %>
+      </p>
+    </div>
+  <% end %>
+</div>

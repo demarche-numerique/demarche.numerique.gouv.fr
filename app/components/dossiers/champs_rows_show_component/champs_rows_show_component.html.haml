@@ -22,7 +22,7 @@
             = render partial: "shared/champs/drop_down_list/show", locals: { champ: champ }
           - when TypeDeChamp.type_champs.fetch(:multiple_drop_down_list)
             = render partial: "shared/champs/multiple_drop_down_list/show", locals: { champ: champ }
-          - when TypeDeChamp.type_champs.fetch(:piece_justificative), TypeDeChamp.type_champs.fetch(:titre_identite)
+          - when TypeDeChamp.type_champs.fetch(:piece_justificative)
             = render partial: "shared/champs/piece_justificative/show", locals: { champ: champ, profile: @profile  }
           - when TypeDeChamp.type_champs.fetch(:siret)
             - etablissement = champ.etablissement

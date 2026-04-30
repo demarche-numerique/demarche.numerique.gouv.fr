@@ -20,7 +20,7 @@ describe 'Dossier details:' do
 
   scenario 'the user can download a deposit receipt' do
     visit dossier_path(dossier)
-    expect(page).to have_link("Obtenir une attestation de dépôt de dossier", href: %r{dossiers/#{dossier.id}/papertrail.pdf})
+    expect(page).to have_link("Obtenir une attestation de dépôt de dossier", href: %r{dossiers/#{dossier.id}/attestation_depot.pdf})
   end
 
   describe "the user can see the mean time they are expected to wait" do

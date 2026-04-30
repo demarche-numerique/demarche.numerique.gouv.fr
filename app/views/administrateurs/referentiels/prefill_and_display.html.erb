@@ -1,3 +1,5 @@
+<% render_procedure_sticky_title(@procedure) %>
+
 <%= render Referentiels::StepperComponent.new(
   step_component: Referentiels::PrefillAndDisplayComponent.new(
     referentiel: @referentiel,

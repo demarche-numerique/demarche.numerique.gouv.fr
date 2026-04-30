@@ -65,5 +65,16 @@ describe Gestionnaires::GroupeGestionnaireGestionnairesController, type: :contro
         expect(flash.alert).to eq('Suppression impossible : il doit y avoir au moins un gestionnaire dans le groupe racine')
       end
     end
+
+    context 'when the id belongs to a gestionnaire outside the group' do
+      let(:unrelated_gestionnaire) { create(:gestionnaire) }
+
+      subject(:cross_group_request) { remove_gestionnaire(unrelated_gestionnaire) }
+
+      it 'does not disclose the unrelated gestionnaire email' do
+        expect { cross_group_request }.to raise_error(ActiveRecord::RecordNotFound)
+        expect(flash.alert.to_s).not_to include(unrelated_gestionnaire.email)
+      end
+    end
   end
 end

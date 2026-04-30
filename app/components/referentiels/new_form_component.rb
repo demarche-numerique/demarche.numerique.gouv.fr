@@ -14,7 +14,7 @@ class Referentiels::NewFormComponent < Referentiels::MappingFormBase
   end
 
   def form_url
-    if @referentiel.persisted? && @referentiel.valid?
+    if @referentiel.persisted?
       admin_procedure_referentiel_path(@procedure, @type_de_champ.stable_id, @referentiel)
     else
       admin_procedure_referentiels_path(@procedure, @type_de_champ.stable_id)
@@ -23,7 +23,7 @@ class Referentiels::NewFormComponent < Referentiels::MappingFormBase
 
   def form_options
     {
-      data: { turbo: 'true', controller: 'referentiel-new-form' },
+      data: { turbo: 'true', controller: 'referentiel-new-form autosubmit-validate-url', 'autosubmit-validate-url-url-value': validate_url_path },
       html: { novalidate: 'novalidate', id: },
     }
   end
@@ -58,6 +58,10 @@ class Referentiels::NewFormComponent < Referentiels::MappingFormBase
     options
   end
 
+  def validate_url_path
+    validate_url_admin_procedure_referentiels_path(@procedure, @type_de_champ.stable_id)
+  end
+
   def submit_options
     if referentiel.type.nil?
       { class: 'fr-btn', disabled: true }
@@ -65,4 +69,22 @@ class Referentiels::NewFormComponent < Referentiels::MappingFormBase
       { class: 'fr-btn' }
     end
   end
+
+  def coordinate
+    @coordinate ||= @procedure.draft_revision.coordinate_for(@type_de_champ)
+  end
+
+  def tags
+    eligible_types = %w[text email phone number integer_number decimal_number formatted iban siret drop_down_list dossier_link rna rnf annuaire_education]
+
+    field_tags = coordinate.upper_coordinates
+      .filter { eligible_types.include?(_1.type_champ) }
+      .map { |coord| { id: "tdc#{coord.stable_id}", libelle: coord.libelle } }
+
+    query_tag = { id: "{query}", libelle: "Valeur saisie par l’usager", highlight: true }
+
+    { url_tags: [query_tag] + field_tags }
+  end
+
+  delegate :test_data_tags, to: :referentiel
 end

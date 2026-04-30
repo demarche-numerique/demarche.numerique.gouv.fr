@@ -37,6 +37,8 @@ module Types
 
     field :date_derniere_correction_en_attente, GraphQL::Types::ISO8601DateTime, "Date de la dernière demande de correction qui n’a pas encore été traitée par l’usager.", null: true
 
+    field :date_accuse_lecture_agreement, GraphQL::Types::ISO8601DateTime, "Date à laquelle l’usager a pris connaissance de la décision. Null si l’accusé de lecture n’est pas activé sur la démarche ou si l’usager n’a pas encore pris connaissance de la décision.", null: true, method: :accuse_lecture_agreement_at
+
     field :datePrevisionnelleDecisionSVASVR, GraphQL::Types::ISO8601Date, "Date prévisionnelle de décision automatique par le SVA/SVR.", null: true, method: :sva_svr_decision_on, camelize: false
     field :dateTraitementSVASVR, GraphQL::Types::ISO8601DateTime, "Date du traitement automatique par le SVA/SVR.", null: true, method: :sva_svr_decision_triggered_at, camelize: false
 

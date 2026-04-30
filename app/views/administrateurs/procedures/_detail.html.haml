@@ -15,12 +15,12 @@
   %td
     - if procedure.respond_to?(:parsed_latest_zone_labels)
       - procedure.parsed_latest_zone_labels.uniq.each do |zone_label|
-        %span.mb-2= zone_label
-        .mb-2
+        %span.fr-mb-4v= zone_label
+        .fr-mb-4v
     - else
       - procedure.zones.uniq.each do |zone|
         %span= zone.current_label
-        .mb-1
+        .fr-mb-2v
 
   %td= t procedure.aasm_state, scope: 'activerecord.attributes.procedure.aasm_state'
   %td= l(procedure.published_at.to_date, format: :short) if procedure.published_at

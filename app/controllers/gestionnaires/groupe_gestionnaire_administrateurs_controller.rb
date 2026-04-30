@@ -66,36 +66,28 @@ module Gestionnaires
     end
 
     def destroy
-      @administrateur = Administrateur.find(params[:id])
-      if @groupe_gestionnaire.id != @administrateur.groupe_gestionnaire_id
-        flash[:alert] = I18n.t('groupe_gestionnaires.flash.alert.groupe_gestionnaire_administrateur.not_in_groupe_gestionnaire', email: @administrateur.email)
-      else
-        result = AdministrateurDeletionService.new(current_gestionnaire, @administrateur).call
+      @administrateur = @groupe_gestionnaire.administrateurs.find(params[:id])
+      result = AdministrateurDeletionService.new(current_gestionnaire, @administrateur).call
 
-        case result
-        in Dry::Monads::Result::Success
-          logger.info("L’administrateur #{@administrateur.id} est supprimé par le gestionnaire #{current_gestionnaire.id} depuis le groupe gestionnaire #{@groupe_gestionnaire.id}")
-          flash[:notice] = I18n.t('groupe_gestionnaires.flash.notice.groupe_gestionnaire_administrateur.destroy', email: @administrateur.email)
-          GroupeGestionnaireMailer
-            .notify_removed_administrateur(@groupe_gestionnaire, @administrateur.email, current_gestionnaire.email)
-            .deliver_later
-        in Dry::Monads::Result::Failure(reason)
-          flash[:alert] = I18n.t('groupe_gestionnaires.flash.alert.groupe_gestionnaire_administrateur.cannot_be_deleted', email: @administrateur.email)
-        end
+      case result
+      in Dry::Monads::Result::Success
+        logger.info("L’administrateur #{@administrateur.id} est supprimé par le gestionnaire #{current_gestionnaire.id} depuis le groupe gestionnaire #{@groupe_gestionnaire.id}")
+        flash[:notice] = I18n.t('groupe_gestionnaires.flash.notice.groupe_gestionnaire_administrateur.destroy', email: @administrateur.email)
+        GroupeGestionnaireMailer
+          .notify_removed_administrateur(@groupe_gestionnaire, @administrateur.email, current_gestionnaire.email)
+          .deliver_later
+      in Dry::Monads::Result::Failure(reason)
+        flash[:alert] = I18n.t('groupe_gestionnaires.flash.alert.groupe_gestionnaire_administrateur.cannot_be_deleted', email: @administrateur.email)
       end
     end
 
     def remove
-      @administrateur = Administrateur.find(params[:id])
-      if @groupe_gestionnaire.id != @administrateur.groupe_gestionnaire_id
-        flash[:alert] = I18n.t('groupe_gestionnaires.flash.alert.groupe_gestionnaire_administrateur.not_in_groupe_gestionnaire', email: @administrateur.email)
-      else
-        @administrateur.update(groupe_gestionnaire_id: nil)
-        flash[:notice] = I18n.t('groupe_gestionnaires.flash.notice.groupe_gestionnaire_administrateur.remove', email: @administrateur.email)
-        GroupeGestionnaireMailer
-          .notify_removed_administrateur(@groupe_gestionnaire, @administrateur.email, current_gestionnaire.email)
-          .deliver_later
-      end
+      @administrateur = @groupe_gestionnaire.administrateurs.find(params[:id])
+      @administrateur.update(groupe_gestionnaire_id: nil)
+      flash[:notice] = I18n.t('groupe_gestionnaires.flash.notice.groupe_gestionnaire_administrateur.remove', email: @administrateur.email)
+      GroupeGestionnaireMailer
+        .notify_removed_administrateur(@groupe_gestionnaire, @administrateur.email, current_gestionnaire.email)
+        .deliver_later
     end
   end
 end

@@ -9,20 +9,20 @@ class GroupeInstructeurMailerPreview < ActionMailer::Preview
     GroupeInstructeurMailer.notify_removed_instructeur(groupe, instructeur, current_instructeur_email)
   end
 
-  def notify_removed_instructeur_from_all_groupes_unassigned
+  def notify_removed_instructeur_from_many_groupes_unassigned
     procedure = Procedure.new(id: 1, libelle: 'une superbe procedure')
     groups = [GroupeInstructeur.new(id: 1, label: 'Val-De-Marne', procedure:), GroupeInstructeur.new(id: 2, label: 'Seine-Saint-Denis', procedure:)]
     current_instructeur_email = 'admin@dgfip.com'
     instructeur = Instructeur.last
-    GroupeInstructeurMailer.notify_removed_instructeur_from_all_groupes(procedure, groups, instructeur, current_instructeur_email, false)
+    GroupeInstructeurMailer.notify_removed_instructeur_from_many_groupes(procedure, groups, instructeur, current_instructeur_email, false)
   end
 
-  def notify_removed_instructeur_from_all_groupes_still_assigned
+  def notify_removed_instructeur_from_many_groupes_still_assigned
     procedure = Procedure.new(id: 1, libelle: 'une superbe procedure')
     groups = [GroupeInstructeur.new(id: 1, label: 'Val-De-Marne', procedure:), GroupeInstructeur.new(id: 2, label: 'Seine-Saint-Denis', procedure:)]
     current_instructeur_email = 'admin@dgfip.com'
     instructeur = Instructeur.last
-    GroupeInstructeurMailer.notify_removed_instructeur_from_all_groupes(procedure, groups, instructeur, current_instructeur_email, true)
+    GroupeInstructeurMailer.notify_removed_instructeur_from_many_groupes(procedure, groups, instructeur, current_instructeur_email, true)
   end
 
   def notify_added_instructeurs

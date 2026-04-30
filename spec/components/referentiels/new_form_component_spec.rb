@@ -15,26 +15,25 @@ RSpec.describe Referentiels::NewFormComponent, type: :component do
     end
 
     context 'when referentiel was not persisted' do
-      let(:referentiel) { type_de_champ.build_referentiel() }
+      let(:referentiel) { type_de_champ.build_referentiel }
 
       it 'render back button as destroy' do
         expect(page).to have_link("Annuler", href: url_helpers.champs_admin_procedure_path(procedure))
       end
 
       context 'when mode was not selected' do
-        it 'forward referentiel_id if present in params' do
+        it 'renders form with hidden fields and no legacy inputs' do
           inputs = {
             referentiel_id: 1,
-            test_data: 1,
             hint: 1,
-            url: 0,
           }
           input[:type] = 2 if Referentiels::APIReferentiel.csv_available?
 
           expect(page).to have_css('form[method=post]')
           expect(page).to have_css("form[action=\"#{url_helpers.admin_procedure_referentiels_path(procedure, type_de_champ.stable_id)}\"]")
           expect(page).not_to have_selector('input[type="file"]')
-          expect(page).not_to have_selector('input[name="referentiel_url"]')
+          expect(page).not_to have_selector('input[name="referentiel[url]"]')
+          expect(page).not_to have_selector('input[name="referentiel[test_data]"]')
           inputs.each do |input_name, count|
             expect(page).to have_selector("input[name=\"referentiel[#{input_name}]\"]", count:)
           end
@@ -44,15 +43,18 @@ RSpec.describe Referentiels::NewFormComponent, type: :component do
 
       context 'with api was selected' do
         let(:referentiel) { type_de_champ.build_referentiel(type: "Referentiels::APIReferentiel") }
-        it 'renders url' do
-          expect(page).to have_selector('input[name="referentiel[url]"]')
+        it 'renders tiptap editor with url_tiptap input' do
+          expect(page).to have_selector('.tiptap-editor')
+          expect(page).to have_selector('input[name="referentiel[url_tiptap]"]')
+          expect(page).not_to have_selector('input[name="referentiel[url]"]')
+          expect(page).not_to have_selector('input[name="referentiel[test_data]"]')
           expect(page).to have_selector('input[type=submit][disabled]', count: 0)
         end
       end
 
       context 'with csv was selected' do
         let(:referentiel) { type_de_champ.build_referentiel(type: "Referentiels::CsvReferentiel") }
-        it 'renders url' do
+        it 'renders file input' do
           expect(page).to have_selector('input[type="file"]')
           expect(page).to have_selector('input[type=submit][disabled]', count: 0)
         end
@@ -60,7 +62,7 @@ RSpec.describe Referentiels::NewFormComponent, type: :component do
     end
 
     context 'when referentiel was persisted' do
-      let(:referentiel) { create(:api_referentiel, types_de_champ: [type_de_champ], url: "https://rnb-api.beta.gouv.fr", mode: 'autocomplete', test_data: 'kkk') }
+      let(:referentiel) { create(:api_referentiel, :autocomplete, types_de_champ: [type_de_champ]) }
       it 'render form to update' do
         expect(page).to have_css('form[method=post]')
         expect(page).to have_css('input[name=_method][value=patch]')

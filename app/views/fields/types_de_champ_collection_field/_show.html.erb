@@ -1,0 +1,27 @@
+<% revision = page.resource.is_a?(Procedure) ? page.resource.active_revision : page.resource.revision %>
+
+<% if field.data.any? %>
+  <table class="collection-data" aria-labelledby="page-title">
+    <thead>
+      <tr>
+        <td class="cell-label">Libelle</td>
+        <td class="cell-label">Type de champ</td>
+        <td class="cell-label">Modifier le modèle</td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% field.data.each do |type_de_champ| %>
+        <%= render partial: 'fields/types_de_champ_collection_field/type_champ_line', locals: { type_de_champ: type_de_champ } %>
+
+        <% if type_de_champ.type_champ == 'repetition' %>
+          <% revision.children_of(type_de_champ).each do |sub_champ| %>
+            <%= render partial: 'fields/types_de_champ_collection_field/type_champ_line', locals: { type_de_champ: sub_champ } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  Aucun
+<% end %>

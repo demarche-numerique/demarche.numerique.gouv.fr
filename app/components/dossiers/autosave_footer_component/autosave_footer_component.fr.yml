@@ -1,14 +1,21 @@
 ---
 fr:
+  error_code_format: "(code\u00A0erreur\u00A0: %{id})"
   brouillon:
     explanation: Enregistrement automatique du dossier
     confirmation_html: 'Brouillon du dossier enregistré'
-    error_html: '<span class="fr-sr-only">Attention :</span> Impossible d’enregistrer le dossier, <a href="/contact" target="_blank">contactez-nous</a> si le problème persiste.'
+    error_server_html: '<span class="fr-sr-only">Attention :</span> Impossible d’enregistrer le dossier, <a href="%{contact_path}" target="_blank">contactez-nous</a> si le problème persiste.'
+    error_auth_html: '<span class="fr-sr-only">Attention :</span> Impossible d’enregistrer le dossier, vous devez <a href="%{sign_in_path}">vous reconnecter</a>.'
+    error_network_html: '<span class="fr-sr-only">Attention :</span> Impossible d’enregistrer le dossier, vérifiez votre connexion Internet.'
   en_construction:
     explanation: Enregistrement automatique des modifications
     confirmation_html: 'Modifications enregistrées <span class="fr-sr-only">avec succès</span>'
-    error_html: '<span class="fr-sr-only">Attention :</span> Impossible d’enregistrer les modifications, <a href="/contact" target="_blank">contactez-nous</a> si le problème persiste.'
+    error_server_html: '<span class="fr-sr-only">Attention :</span> Impossible d’enregistrer les modifications, <a href="%{contact_path}" target="_blank">contactez-nous</a> si le problème persiste.'
+    error_auth_html: '<span class="fr-sr-only">Attention :</span> Impossible d’enregistrer les modifications, vous devez <a href="%{sign_in_path}">vous reconnecter</a>.'
+    error_network_html: '<span class="fr-sr-only">Attention :</span> Impossible d’enregistrer les modifications, vérifiez votre connexion Internet.'
   annotations:
     explanation: Enregistrement automatique des annotations
     confirmation_html: 'Annotations enregistrées <span class="fr-sr-only">avec succès</span>'
-    error_html: '<span class="fr-sr-only">Attention :</span> Impossible d’enregistrer les annotations, <a href="/contact" target="_blank">contactez-nous</a> si le problème persiste.'
+    error_server_html: '<span class="fr-sr-only">Attention :</span> Impossible d’enregistrer les annotations, <a href="%{contact_path}" target="_blank">contactez-nous</a> si le problème persiste.'
+    error_auth_html: '<span class="fr-sr-only">Attention :</span> Impossible d’enregistrer les annotations, vous devez <a href="%{sign_in_path}">vous reconnecter</a>.'
+    error_network_html: '<span class="fr-sr-only">Attention :</span> Impossible d’enregistrer les annotations, vérifiez votre connexion Internet.'

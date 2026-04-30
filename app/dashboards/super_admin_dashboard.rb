@@ -12,7 +12,6 @@ class SuperAdminDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     email: Field::String,
-    encrypted_password: Field::String,
     reset_password_sent_at: Field::DateTime,
     remember_created_at: Field::DateTime,
     sign_in_count: Field::Number,

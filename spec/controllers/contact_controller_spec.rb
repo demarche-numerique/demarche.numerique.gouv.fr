@@ -27,6 +27,35 @@ describe ContactController, question_type: :controller do
         expect(response.status).to eq(200)
         expect(response.body).to include((dossier.id).to_s)
       end
+
+      context 'with origin=autosave' do
+        it 'prefills the form with autosave error context' do
+          get :index, params: { dossier_id: dossier.id, origin: 'autosave', error_id: 'abc123def' }
+
+          expect(response.status).to eq(200)
+          expect(assigns(:form).question_type).to eq(ContactForm::TYPE_AUTRE)
+          expect(assigns(:form).subject).to eq(I18n.t('contact.prefill.autosave.subject'))
+          expect(assigns(:form).text).to match(%r{automatique.+abc123def})
+        end
+      end
+
+      context 'with unknown origin' do
+        it 'does not prefill subject or text' do
+          get :index, params: { dossier_id: dossier.id, origin: 'unknown' }
+
+          expect(assigns(:form).subject).to be_nil
+          expect(assigns(:form).text).to be_nil
+        end
+      end
+
+      context 'without origin' do
+        it 'does not prefill subject or text' do
+          get :index, params: { dossier_id: dossier.id }
+
+          expect(assigns(:form).subject).to be_nil
+          expect(assigns(:form).text).to be_nil
+        end
+      end
     end
 
     describe "send form" do

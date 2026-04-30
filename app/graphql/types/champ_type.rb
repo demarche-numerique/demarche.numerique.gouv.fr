@@ -17,7 +17,7 @@ module Types
     end
 
     def columns
-      if object.repetition? || object.titre_identite?
+      if object.repetition?
         []
       else
         object.type_de_champ.columns(procedure: object.procedure)
@@ -76,7 +76,7 @@ module Types
         when ::Champs::DossierLinkChamp
           Types::Champs::DossierLinkChampType
         when ::Champs::PieceJustificativeChamp
-          if object.titre_identite_nature? && context.has_fragment?(:TitreIdentiteChamp)
+          if object.titre_identite? && context.has_fragment?(:TitreIdentiteChamp)
             Types::Champs::TitreIdentiteChampType
           else
             Types::Champs::PieceJustificativeChampType
@@ -97,8 +97,6 @@ module Types
           Types::Champs::LinkedDropDownListChampType
         when ::Champs::CiviliteChamp
           Types::Champs::CiviliteChampType
-        when ::Champs::TitreIdentiteChamp
-          Types::Champs::TitreIdentiteChampType
         when ::Champs::EpciChamp
           Types::Champs::EpciChampType
         when ::Champs::RNAChamp

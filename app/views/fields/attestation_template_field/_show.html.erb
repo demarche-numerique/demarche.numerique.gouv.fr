@@ -1,0 +1,34 @@
+<% if field.data %>
+  <strong>Activée</strong>
+  <p><%= field.data.activated %></p>
+  <strong>Logo</strong>
+  <p>
+    <% if field.data.logo.attached? %>
+      <%= image_tag field.data.logo_url %>
+    <% else %>
+      Aucun
+    <% end %>
+  </p>
+  <strong>Titre</strong>
+  <pre style="white-space: pre-wrap;">
+    <%= field.data.title %>
+  </pre>
+  <strong>Corps</strong>
+  <pre style="white-space: pre-wrap;">
+    <%= field.data.body %>
+  </pre>
+  <strong>Signature</strong>
+  <p>
+    <% if field.data.signature.attached? %>
+      <%= image_tag field.data.signature %>
+    <% else %>
+      Aucun
+    <% end %>
+  </p>
+  <strong>Pied de page</strong>
+  <pre style="white-space: pre-wrap;">
+    <%= field.data.footer %>
+  </pre>
+<% else %>
+  Aucun modèle d’attestation
+<% end %>

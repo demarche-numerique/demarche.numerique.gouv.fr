@@ -13,7 +13,7 @@ RSpec.describe Attachment::HintsComponent, type: :component do
   subject { render_inline(component).to_html }
 
   context 'when champ is a piece_justificative with titre_identite nature' do
-    let(:types_de_champ_public) { [{ type: :piece_justificative, nature: 'TITRE_IDENTITE' }] }
+    let(:types_de_champ_public) { [{ type: :piece_justificative, nature: 'titre_identite' }] }
 
     it 'renders exhaustive format list without tooltip' do
       expect(subject).to have_content('.jpg, .jpeg, .png')
@@ -22,7 +22,7 @@ RSpec.describe Attachment::HintsComponent, type: :component do
   end
 
   context 'when champ is a piece_justificative with RIB nature' do
-    let(:types_de_champ_public) { [{ type: :piece_justificative, nature: 'RIB' }] }
+    let(:types_de_champ_public) { [{ type: :piece_justificative, nature: 'rib' }] }
 
     it 'renders exhaustive format list without tooltip' do
       expect(subject).to have_content('.pdf, .doc, .docx, .jpg, .jpeg, .png')

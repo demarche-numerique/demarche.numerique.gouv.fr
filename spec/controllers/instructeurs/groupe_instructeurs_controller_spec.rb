@@ -211,6 +211,29 @@ describe Instructeurs::GroupeInstructeursController, type: :controller do
         expect(response).to redirect_to(instructeur_groupe_path(procedure, gi_1_1))
       end
     end
+
+    context 'when the instructeur id belongs to an instructeur of another group' do
+      let(:other_instructeur) { create(:instructeur, email: 'other-instructeur@example.com') }
+
+      before do
+        gi_2_2.instructeurs << other_instructeur
+        delete :remove_instructeur,
+          params: {
+            procedure_id: procedure.id,
+            id: gi_1_1.id,
+            instructeur: { id: other_instructeur.id },
+          }
+      end
+
+      it 'does not reference the other instructeur email in flash messages' do
+        expect(flash[:notice].to_s).not_to include(other_instructeur.email)
+        expect(flash[:alert].to_s).not_to include(other_instructeur.email)
+      end
+
+      it 'does not remove the instructeur from their own group' do
+        expect(gi_2_2.reload.instructeurs).to include(other_instructeur)
+      end
+    end
   end
 
   describe '#add_signature' do

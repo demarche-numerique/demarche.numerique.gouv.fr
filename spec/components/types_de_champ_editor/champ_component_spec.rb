@@ -199,7 +199,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       let(:tdc) { procedure.draft_revision.types_de_champ.first }
 
       before do
-        tdc.update!(nature: 'TITRE_IDENTITE')
+        tdc.update!(nature: 'titre_identite')
         render_inline(component)
       end
 
@@ -214,11 +214,11 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       end
     end
 
-    context 'when nature is RIB' do
+    context 'when nature is rib' do
       let(:tdc) { procedure.draft_revision.types_de_champ.first }
 
       before do
-        tdc.update!(nature: 'RIB')
+        tdc.update!(nature: 'rib')
         render_inline(component)
       end
 

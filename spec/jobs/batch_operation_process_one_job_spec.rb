@@ -25,6 +25,13 @@ describe BatchOperationProcessOneJob, type: :job do
       expect(batch_operation.dossier_operations.error.pluck(:dossier_id)).to eq([dossier_job.id])
     end
 
+    it 'calls finalize_if_complete! even when process_one raises' do
+      allow_any_instance_of(BatchOperation).to receive(:process_one).with(dossier_job).and_raise("boom")
+      expect_any_instance_of(BatchOperation).to receive(:finalize_if_complete!)
+
+      expect { subject.perform_now }.to raise_error("boom")
+    end
+
     context 'when operation is "archiver"' do
       it 'archives the dossier in the batch' do
         expect { subject.perform_now }

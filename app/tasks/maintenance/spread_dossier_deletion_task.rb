@@ -5,7 +5,7 @@ module Maintenance
     # Contourne un égorgement de suppression de millions de dossiers qui aurait eu lieu le même jour
     # 2024-05-27-01 PR #10062
     ERROR_OCCURED_AT = Date.new(2024, 2, 14)
-    ERROR_OCCURED_RANGE = ERROR_OCCURED_AT.at_midnight..(ERROR_OCCURED_AT + 1.day)
+    ERROR_OCCURED_RANGE = ERROR_OCCURED_AT.at_midnight...(ERROR_OCCURED_AT + 1.day)
     SPREAD_DURATION_IN_DAYS = 150
 
     def collection

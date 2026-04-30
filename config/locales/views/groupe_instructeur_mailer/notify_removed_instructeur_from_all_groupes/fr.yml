@@ -1,6 +1,6 @@
 fr:
   groupe_instructeur_mailer:
-    notify_removed_instructeur_from_all_groupes:
+    notify_removed_instructeur_from_many_groupes:
       email_body:
         assigned:
           one: "Vous avez été retiré(e) du groupe « %{groupe} » de la démarche « %{procedure} » par « %{email} »."

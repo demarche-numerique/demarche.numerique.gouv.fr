@@ -109,6 +109,11 @@ ul[data-file-input-reset-target='fileList'] {
       background-color: transparent;
       text-align: left;
       padding: 0 !important;
+
+      .fr-icon-upload-line,
+      p {
+        display: none;
+      }
     }
   }
   .fr-hr-or {

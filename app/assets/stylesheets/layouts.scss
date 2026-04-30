@@ -1,6 +1,5 @@
 @import 'colors';
 @import 'constants';
-@import 'placeholders';
 
 .two-columns {
   @media (min-width: $two-columns-breakpoint) {
@@ -15,7 +14,11 @@
 
   .columns-container {
     // TODO: https://github.com/demarche-numerique/demarche.numerique.gouv.fr/issues/7882, once implemented, we won't need container anymore
-    @extend %container;
+    padding-left: $default-padding;
+    padding-right: $default-padding;
+    max-width: $page-width + 2 * $default-padding;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;

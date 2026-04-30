@@ -1,4 +1,4 @@
-import { isFormInputElement, matchInputElement } from '@coldwired/utils';
+import { isFormInputElement, matchInputElement } from 'coldwired/utils';
 
 import { ApplicationController } from './application_controller';
 

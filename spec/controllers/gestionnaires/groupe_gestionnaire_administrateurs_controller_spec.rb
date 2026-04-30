@@ -68,11 +68,11 @@ describe Gestionnaires::GroupeGestionnaireAdministrateursController, type: :cont
 
     context 'when administrateur is not in the groupe_gestionnaire' do
       let(:other_administrateur) { administrateurs(:default_admin) }
-      before { destroy(other_administrateur) }
 
-      it do
+      it 'does not disclose the unrelated administrateur email' do
+        expect { destroy(other_administrateur) }.to raise_error(ActiveRecord::RecordNotFound)
         expect(groupe_gestionnaire.reload.administrateurs.count).to eq(1)
-        expect(flash.alert).to eq("L’administrateur « #{other_administrateur.email} » n’est pas dans le groupe gestionnaire.")
+        expect(flash.alert.to_s).not_to include(other_administrateur.email)
       end
     end
   end
@@ -105,11 +105,11 @@ describe Gestionnaires::GroupeGestionnaireAdministrateursController, type: :cont
 
     context 'when administrateur is not in the groupe_gestionnaire' do
       let(:other_administrateur) { create(:administrateur) }
-      before { remove(other_administrateur) }
 
-      it do
+      it 'does not disclose the unrelated administrateur email' do
+        expect { remove(other_administrateur) }.to raise_error(ActiveRecord::RecordNotFound)
         expect(groupe_gestionnaire.reload.administrateurs.count).to eq(1)
-        expect(flash.alert).to eq("L’administrateur « #{other_administrateur.email} » n’est pas dans le groupe gestionnaire.")
+        expect(flash.alert.to_s).not_to include(other_administrateur.email)
       end
     end
   end

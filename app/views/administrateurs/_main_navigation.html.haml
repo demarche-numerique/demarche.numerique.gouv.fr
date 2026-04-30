@@ -7,3 +7,6 @@
       %li.fr-nav__item= link_to 'Mon groupe gestionnaire', admin_groupe_gestionnaire_path, class:'fr-nav__link', 'aria-current': current_page?(admin_groupe_gestionnaire_path) ? 'page' : nil
 
     = render MainNavigation::AnnouncesLinkComponent.new
+
+    %li.fr-nav__item
+      = link_to t("links.main_navigation.doc.label"), ADMINISTRATEUR_TUTORIAL_URL, title: t("links.main_navigation.doc.admin_title"), class: "fr-nav__link", **external_link_attributes

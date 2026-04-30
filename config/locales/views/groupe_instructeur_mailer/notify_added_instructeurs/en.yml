@@ -1,7 +1,9 @@
 en:
   groupe_instructeur_mailer:
     notify_added_instructeurs:
+      title: "Procedure assignment"
       email_body:
         html:
-          one: "You were assigned to the procedure <a href=\"%{procedure_url}\">%{procedure}</a> by %{email}."
-          other: "You were assigned to the group %{groupe} by %{email}, in charge of procedure <a href=\"%{procedure_url}\">%{procedure}</a>."
+          one: "You were assigned to the procedure <strong>%{procedure}</strong> by %{email}."
+          other: "You were assigned to the group <strong>%{groupe}</strong> by %{email}, in charge of procedure <strong>%{procedure}</strong>."
+      access_button: "Access the procedure"

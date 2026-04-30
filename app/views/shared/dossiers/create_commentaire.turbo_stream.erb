@@ -1,0 +1,26 @@
+<% if @commentaire.errors.empty? %>
+  <%= turbo_stream.update 'commentaire-list' do %>
+    <%= render Dossiers::CommentaireListComponent.new(dossier: @dossier, connected_user: @connected_user) %>
+  <% end %>
+
+  <%= turbo_stream.replace 'commentaire-form' do %>
+    <div id="commentaire-form" data-controller="hide-target" data-turbo-force="server">
+      <button id="commentaire-new-btn" class="fr-btn fr-icon-add-line fr-btn--icon-left fr-mb-2w width-100-for-xs" type="button" data-hide-target-target="source" data-hide-target-hide-source="true">Nouveau message</button>
+      <div id="commentaire-form-body" class="fr-hidden" data-hide-target-target="toHide">
+        <div class="fr-grid-row">
+          <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
+            <%= render partial: "shared/dossiers/messages/form", locals: { commentaire: Commentaire.new, form_url: @form_url, dossier: @dossier, connected_user: @connected_user } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <%= turbo_stream.update 'commentaire-form-body' do %>
+    <div class="fr-grid-row">
+      <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
+        <%= render partial: "shared/dossiers/messages/form", locals: { commentaire: @commentaire, form_url: @form_url, dossier: @dossier, connected_user: @connected_user } %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

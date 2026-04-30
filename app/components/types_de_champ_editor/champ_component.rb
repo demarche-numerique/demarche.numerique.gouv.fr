@@ -28,7 +28,6 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
     !type_de_champ.type_champ.in?([
       TypeDeChamp.type_champs.fetch(:quotient_familial),
       TypeDeChamp.type_champs.fetch(:header_section),
-      TypeDeChamp.type_champs.fetch(:titre_identite),
     ])
   end
 
@@ -146,10 +145,6 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
   end
 
   def filter_type_champ(type_champ)
-    if type_champ == TypeDeChamp.type_champs.fetch(:titre_identite)
-      return type_de_champ.titre_identite?
-    end
-
     case type_champ
     when TypeDeChamp.type_champs.fetch(:number)
       has_legacy_number?

@@ -2,10 +2,7 @@
 
 # We need to ensure the embed code is not any random string in order to avoid injections
 class MonAvisEmbedValidator < ActiveModel::Validator
-  # from time to time, they decide to change domain just for fun. if it breaks, check the new subdomain
-  KNOWN_SUBDOMAIN = ['jedonnemonavis', 'monavis', 'voxusagers']
-  HREF_CHECKER = /https:\/\/#{KNOWN_SUBDOMAIN.join('|')}.numerique.gouv.fr\/Demarches\/\d+.*key=[[:alnum:]]+.*/
-  IMG_CHECKER = /https:\/\/#{KNOWN_SUBDOMAIN.join('|')}.numerique.gouv.fr\/(monavis-)?static\/bouton-blanc|bleu.png|svg/
+  DOMAIN_CHECKER = /\Ahttps:\/\/[a-z0-9-]+\.numerique\.gouv\.fr\//
 
   ALLOWED_TAGS = %w[a img].freeze
   ALLOWED_ATTRIBUTES = %w[href src alt title target rel].freeze
@@ -28,7 +25,7 @@ class MonAvisEmbedValidator < ActiveModel::Validator
 
     href = links.first['href'].to_s.strip
     record.errors.add(:monavis_embed, :forbidden_scheme) unless allowed_scheme?(href)
-    record.errors.add(:monavis_embed, :bad_domain_link) unless HREF_CHECKER.match?(href)
+    record.errors.add(:monavis_embed, :bad_domain_link) unless DOMAIN_CHECKER.match?(href)
   end
 
   def check_img(record, imgs)
@@ -37,7 +34,7 @@ class MonAvisEmbedValidator < ActiveModel::Validator
     img = imgs.first
     src = img['src'].to_s.strip
     record.errors.add(:monavis_embed, :forbidden_scheme) unless allowed_scheme?(src)
-    record.errors.add(:monavis_embed, :bad_domain_image) unless IMG_CHECKER.match?(src)
+    record.errors.add(:monavis_embed, :bad_domain_image) unless DOMAIN_CHECKER.match?(src)
   end
 
   private

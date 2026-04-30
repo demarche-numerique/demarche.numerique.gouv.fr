@@ -24,7 +24,11 @@ class Attachment::Validation
   end
 
   def accept_attribute
-    return champ.allowed_content_types.join(', ') if champ.present?
+    content_types = if champ.present?
+      champ.allowed_content_types
+    end
+
+    return content_types_with_extensions(content_types) if content_types.present?
     accept_from_attached_type_de_champ || (has_content_type_validator? ? accept_content_type : nil)
   end
 
@@ -76,11 +80,19 @@ class Attachment::Validation
       &.find { |validator| validator.class == ActiveStorageValidations::ContentTypeValidator }
   end
 
+  def content_types_with_extensions(content_types)
+    extensions = content_types.filter_map { |ct| MiniMime.lookup_by_content_type(ct)&.extension }
+      .uniq
+      .map { |ext| ".#{ext}" }
+
+    (content_types + extensions).join(', ')
+  end
+
   def accept_content_type
     list = content_type_validator.options[:in].dup
     # Special case: acidcsa files are detected as octet-stream
     list << ".acidcsa" if list.include?("application/octet-stream")
-    list.join(', ')
+    content_types_with_extensions(list)
   end
 
   def accept_from_attached_type_de_champ
@@ -93,6 +105,8 @@ class Attachment::Validation
     end
 
     content_types = tdc&.send(:allowed_content_types).presence
-    content_types&.join(', ')
+    return nil if content_types.nil?
+
+    content_types_with_extensions(content_types)
   end
 end

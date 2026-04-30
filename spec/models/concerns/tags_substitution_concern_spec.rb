@@ -36,9 +36,7 @@ describe TagsSubstitutionConcern, type: :model do
 
   describe 'tags_substitutions' do
     let(:individual) { nil }
-    let(:etablissement) { create(:etablissement) }
-    let(:dossier) { create(:dossier, :en_construction, procedure:, individual:, etablissement:) }
-    let(:instructeur) { create(:instructeur) }
+    let(:dossier) { create(:dossier, :en_construction, procedure:, individual:) }
     let(:tags) { Set.new([["dossier_number", "numéro de dossier"]]) }
 
     subject { template_concern.tags_substitutions(tags, dossier) }
@@ -78,9 +76,8 @@ describe TagsSubstitutionConcern, type: :model do
 
   describe 'replace_tags' do
     let(:individual) { nil }
-    let(:etablissement) { create(:etablissement) }
-    let!(:dossier) { create(:dossier, procedure: procedure, individual: individual, etablissement: etablissement) }
-    let(:instructeur) { create(:instructeur) }
+    let(:etablissement) { nil }
+    let(:dossier) { create(:dossier, procedure: procedure, individual: individual, etablissement: etablissement) }
 
     before { freeze_time }
 
@@ -318,7 +315,7 @@ describe TagsSubstitutionConcern, type: :model do
     end
 
     context 'when the dossier has a motivation' do
-      let(:dossier) { create(:dossier, :accepte, motivation: 'motivation') }
+      let(:dossier) { create(:dossier, :accepte, procedure:, motivation: 'motivation') }
 
       context 'and the template has some dossier tags' do
         let(:template) { '--motivation-- --numéro du dossier--' }
@@ -391,6 +388,9 @@ describe TagsSubstitutionConcern, type: :model do
     end
 
     context "when using a date tag" do
+      let(:instructeur) { create(:instructeur) }
+      let(:etablissement) { create(:etablissement) }
+
       before do
         travel_to Time.zone.local(2001, 2, 3)
         dossier.passer_en_construction!
@@ -405,36 +405,18 @@ describe TagsSubstitutionConcern, type: :model do
         dossier.accepter!(instructeur: instructeur)
       end
 
-      context "with date de dépôt" do
-        let(:template) { '--date de dépôt--' }
-
-        it '', :slow do
-          is_expected.to eq('03/02/2001')
-        end
-      end
-
-      context "with date de passage en instruction" do
-        let(:template) { '--date de passage en instruction--' }
-
-        it { is_expected.to eq('06/05/2004') }
-      end
-
-      context "with date de décision" do
-        let(:template) { '--date de décision--' }
-
-        it { is_expected.to eq('09/08/2007') }
-      end
-
-      context "with date last ,champ updated at" do
-        let(:template) { '--date de mise à jour--' }
-
-        it { is_expected.to eq('03/01/2003') }
+      it 'replaces date tags', :slow, :aggregate_failures do
+        expect(template_concern.send(:replace_tags, '--date de dépôt--', dossier)).to eq('03/02/2001')
+        expect(template_concern.send(:replace_tags, '--date de passage en instruction--', dossier)).to eq('06/05/2004')
+        expect(template_concern.send(:replace_tags, '--date de décision--', dossier)).to eq('09/08/2007')
+        expect(template_concern.send(:replace_tags, '--date de mise à jour--', dossier)).to eq('03/01/2003')
       end
     end
 
     context "with date decision sva/svr" do
       let(:template) { '--date prévisionnelle SVA/SVR--' }
       let(:procedure) { create(:procedure, :published, :sva) }
+      let(:etablissement) { create(:etablissement) }
       let(:state) { dossier.state }
 
       before do
@@ -449,6 +431,7 @@ describe TagsSubstitutionConcern, type: :model do
     context "with a contact information name tag" do
       let(:template) { '--nom du service instructeur--' }
       let(:procedure) { create(:procedure, :routee) }
+      let(:etablissement) { create(:etablissement) }
       let(:groupe_instructeur) { procedure.defaut_groupe_instructeur }
       let!(:contact_information) { create(:contact_information, groupe_instructeur:, nom: 'Service local') }
 
@@ -464,37 +447,21 @@ describe TagsSubstitutionConcern, type: :model do
     end
 
     context "match breaking and non breaking spaces" do
+      let(:template) { '--mon tag--' }
+      let(:types_de_champ_public) { [{ libelle: "mon\u00A0tag" }] }
+
       before { dossier.project_champs_public.first.update(value: 'valeur') }
 
-      shared_examples "treat all kinds of space as equivalent" do
-        context 'and the champ has a non breaking space' do
-          let(:types_de_champ_public) { [{ libelle: 'mon tag' }] }
-
-          it { is_expected.to eq('valeur') }
-        end
-
-        context 'and the champ has an ordinary space' do
-          let(:types_de_champ_public) { [{ libelle: 'mon tag' }] }
-
-          it { is_expected.to eq('valeur') }
-        end
-      end
-
-      context "when the tag has a non breaking space" do
-        let(:template) { '--mon tag--' }
-
-        it_behaves_like "treat all kinds of space as equivalent"
-      end
-
-      context "when the tag has an ordinary space" do
-        let(:template) { '--mon tag--' }
-
-        it_behaves_like "treat all kinds of space as equivalent"
+      it 'treats all kinds of space as equivalent', :aggregate_failures do
+        # tag with NBSP in template, champ with NBSP in libelle
+        expect(template_concern.send(:replace_tags, "--mon\u00A0tag--", dossier)).to eq('valeur')
+        # tag with regular space in template, champ with NBSP in libelle
+        expect(template_concern.send(:replace_tags, '--mon tag--', dossier)).to eq('valeur')
       end
     end
 
     context 'when generating a document for a dossier that is not termine' do
-      let(:dossier) { create(:dossier) }
+      let(:dossier) { create(:dossier, procedure:) }
       let(:template) { 'text --motivation-- --date de décision--' }
       let(:state) { Dossier.states.fetch(:en_instruction) }
 
@@ -515,20 +482,9 @@ describe TagsSubstitutionConcern, type: :model do
         procedure.publish_revision!(procedure.administrateurs.first)
       end
 
-      context "when using the champ's original label" do
-        let(:template) { '--mon ancien libellé--' }
-
-        it "replaces the tag" do
-          is_expected.to eq('valeur')
-        end
-      end
-
-      context "when using the champ's revised label" do
-        let(:template) { '--mon nouveau libellé--' }
-
-        it "replaces the tag" do
-          is_expected.to eq('valeur')
-        end
+      it 'replaces tags using both original and revised labels', :aggregate_failures do
+        expect(template_concern.send(:replace_tags, '--mon ancien libellé--', dossier)).to eq('valeur')
+        expect(template_concern.send(:replace_tags, '--mon nouveau libellé--', dossier)).to eq('valeur')
       end
     end
 
@@ -552,8 +508,6 @@ describe TagsSubstitutionConcern, type: :model do
   end
 
   describe 'tags' do
-    subject { template_concern.tags }
-
     let(:types_de_champ_public) do
       [
         { libelle: 'public' },
@@ -563,42 +517,41 @@ describe TagsSubstitutionConcern, type: :model do
     end
     let(:types_de_champ_private) { [{ libelle: 'privé' }] }
 
-    context 'do not generate tags for champs that cannot have usager content' do
-      it do
-        is_expected.not_to include(include({ libelle: 'entête de section' }))
-        is_expected.not_to include(include({ libelle: 'explication' }))
+    def tags_for(state)
+      klass = Class.new do
+        include TagsSubstitutionConcern
+        def initialize(p, s) = (@procedure = p; self.class.const_set(:DOSSIER_STATE, s))
+        def procedure = @procedure
       end
+      klass.new(procedure, state).tags
     end
 
-    context 'when generating a document for a dossier terminé' do
-      it do
-        is_expected.to include(include({ libelle: 'motivation' }))
-        is_expected.to include(include({ libelle: 'date de décision' }))
-        is_expected.to include(include({ libelle: 'public' }))
-        is_expected.to include(include({ libelle: 'privé' }))
-      end
-    end
+    it 'returns appropriate tags per dossier state', :aggregate_failures do
+      tags_accepte = tags_for(Dossier.states.fetch(:accepte))
+      tags_instruction = tags_for(Dossier.states.fetch(:en_instruction))
+      tags_construction = tags_for(Dossier.states.fetch(:en_construction))
 
-    context 'when generating a document for a dossier en instruction' do
-      let(:state) { Dossier.states.fetch(:en_instruction) }
+      # champs that cannot have usager content are excluded
+      expect(tags_accepte).not_to include(include({ libelle: 'entête de section' }))
+      expect(tags_accepte).not_to include(include({ libelle: 'explication' }))
 
-      it do
-        is_expected.not_to include(include({ libelle: 'motivation' }))
-        is_expected.not_to include(include({ libelle: 'date de décision' }))
-        is_expected.to include(include({ libelle: 'public' }))
-        is_expected.to include(include({ libelle: 'privé' }))
-      end
-    end
+      # dossier terminé includes motivation, date de décision, public and privé
+      expect(tags_accepte).to include(include({ libelle: 'motivation' }))
+      expect(tags_accepte).to include(include({ libelle: 'date de décision' }))
+      expect(tags_accepte).to include(include({ libelle: 'public' }))
+      expect(tags_accepte).to include(include({ libelle: 'privé' }))
 
-    context 'when generating a document for a dossier en construction' do
-      let(:state) { Dossier.states.fetch(:en_construction) }
+      # dossier en instruction excludes motivation/date de décision, includes public and privé
+      expect(tags_instruction).not_to include(include({ libelle: 'motivation' }))
+      expect(tags_instruction).not_to include(include({ libelle: 'date de décision' }))
+      expect(tags_instruction).to include(include({ libelle: 'public' }))
+      expect(tags_instruction).to include(include({ libelle: 'privé' }))
 
-      it do
-        is_expected.not_to include(include({ libelle: 'motivation' }))
-        is_expected.not_to include(include({ libelle: 'date de décision' }))
-        is_expected.not_to include(include({ libelle: 'privé' }))
-        is_expected.to include(include({ libelle: 'public' }))
-      end
+      # dossier en construction excludes motivation/date de décision/privé
+      expect(tags_construction).not_to include(include({ libelle: 'motivation' }))
+      expect(tags_construction).not_to include(include({ libelle: 'date de décision' }))
+      expect(tags_construction).not_to include(include({ libelle: 'privé' }))
+      expect(tags_construction).to include(include({ libelle: 'public' }))
     end
 
     context 'when generating document for dossier having conditional' do
@@ -614,6 +567,8 @@ describe TagsSubstitutionConcern, type: :model do
         ]
       end
 
+      subject { template_concern.tags }
+
       it do
         is_expected.to include(include({ libelle: 'public' }))
         is_expected.not_to include(include({ libelle: 'conditional' }))
@@ -621,9 +576,8 @@ describe TagsSubstitutionConcern, type: :model do
     end
   end
 
-  describe 'used_tags_for' do
+  describe 'used_tags_for and used_type_de_champ_tags' do
     let(:text) { 'hello world --public--, --numéro du dossier--, --yolo--' }
-    subject { template_concern.used_tags_for(text) }
 
     let(:types_de_champ_public) do
       [
@@ -633,22 +587,11 @@ describe TagsSubstitutionConcern, type: :model do
       ]
     end
 
-    it { is_expected.to eq(["tdc#{procedure.draft_revision.types_de_champ.first.stable_id}", 'dossier_number', 'yolo']) }
-  end
-
-  describe 'used_type_de_champ_tags' do
-    let(:text) { 'hello world --public--, --numéro du dossier--, --yolo--' }
-    subject { template_concern.used_type_de_champ_tags(text) }
-
-    let(:types_de_champ_public) do
-      [
-        { libelle: 'public' },
-        { type: :header_section, libelle: 'entête de section' },
-        { type: :explication, libelle: 'explication' },
-      ]
+    it :aggregate_failures do
+      stable_id = procedure.draft_revision.types_de_champ.first.stable_id
+      expect(template_concern.used_tags_for(text)).to eq(["tdc#{stable_id}", 'dossier_number', 'yolo'])
+      expect(template_concern.used_type_de_champ_tags(text)).to eq([["public", stable_id], ['yolo']])
     end
-
-    it { is_expected.to eq([["public", procedure.draft_revision.types_de_champ.first.stable_id], ['yolo']]) }
   end
 
   describe 'tags_categorized' do

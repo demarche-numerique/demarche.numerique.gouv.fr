@@ -9,6 +9,18 @@
 }
 
 .tiptap-editor {
+  &.tiptap--single-line .tiptap {
+    min-height: auto;
+    max-height: none;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 0.5rem 1rem;
+
+    p {
+      margin: 0;
+    }
+  }
+
   // Tags
   .fr-menu__list {
     max-height: 500px;

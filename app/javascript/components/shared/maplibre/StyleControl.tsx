@@ -45,7 +45,7 @@ export function StyleSwitch({
       <Popover className="react-aria-popover">
         <Dialog className="fr-modal__body">
           <form
-            className="fr-modal__content flex m-2"
+            className="fr-modal__content flex fr-m-4v"
             onSubmit={(event) => event.preventDefault()}
           >
             <div className="fr-fieldset">
@@ -99,7 +99,7 @@ export function StyleSwitch({
                         onChange={(value) => {
                           setLayerOpacity(layer, value);
                         }}
-                        className="fr-range fr-range--sm mt-1"
+                        className="fr-range fr-range--sm fr-mt-2v"
                         title={`Réglage de l’opacité de la couche «${NBS}${name}${NBS}»`}
                         getAriaLabel={() =>
                           `Réglage de l’opacité de la couche «${NBS}${name}${NBS}»`

@@ -1,3 +1,5 @@
+- render_procedure_sticky_title(@procedure)
+
 = render partial: 'administrateurs/breadcrumbs',
   locals: { steps: [['Démarches', admin_procedures_path],
                     [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)],
@@ -62,42 +64,48 @@
   %p
     = t('.api_particulier_description_html', app_name: Current.application_name)
 
+  - if @procedure.api_particulier_token.present?
+    .fr-table.fr-table--lg
+      .fr-table__wrapper
+        .fr-table__container
+          .fr-table__content
+            %table
+              %thead
+                %tr
+                  %th{ scope: "col" }
+                    Jeton
+                  %th.change.fr-col-2{ scope: "col" }
+                    Actions
+
+              %tbody
+                %tr
+                  %td
+                    .fr-badge
+                      API particulier
+                  %td.change
+
+                    = link_to 'Modifier',
+                      api_particulier_admin_procedure_jetons_path(@procedure),
+                      class: 'fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-pencil-line'
+
+                    = link_to 'Supprimer',
+                      api_particulier_admin_procedure_jetons_path(@procedure),
+                      method: :delete,
+                      data: { confirm: "Êtes-vous sûr de vouloir supprimer le jeton API Particulier?"} ,
+                      class: 'fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-delete-line fr-ml-1w'
+
+    = render Dsfr::AlertComponent.new(state: :info, size: :sm) do |c|
+      - c.with_body do
+        %p
+          Pour activer les champs relatifs à API Particulier, contactez-nous sur
+          = link_to CONTACT_EMAIL, "mailto:#{CONTACT_EMAIL}", external_link_attributes
+
+  - else
+    = link_to 'Ajouter un jeton API Particulier',
+                      api_particulier_admin_procedure_jetons_path(@procedure),
+                      class: 'fr-btn'
+
   - if @procedure.feature_enabled?(:api_particulier)
-    - if @procedure.api_particulier_token.present?
-      .fr-table.fr-table--lg
-        .fr-table__wrapper
-          .fr-table__container
-            .fr-table__content
-              %table
-                %thead
-                  %tr
-                    %th{ scope: "col" }
-                      Jeton
-                    %th.change.fr-col-2{ scope: "col" }
-                      Actions
-
-                %tbody
-                  %tr
-                    %td
-                      .fr-badge
-                        API particulier
-                    %td.change
-
-                      = link_to 'Modifier',
-                        api_particulier_admin_procedure_jetons_path(@procedure),
-                        class: 'fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-pencil-line'
-
-                      = link_to 'Supprimer',
-                        api_particulier_admin_procedure_jetons_path(@procedure),
-                        method: :delete,
-                        data: { confirm: "Êtes-vous sûr de vouloir supprimer le jeton API Particulier?"} ,
-                        class: 'fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-delete-line fr-ml-1w'
-
-    - else
-      = link_to 'Ajouter un jeton API Particulier',
-                        api_particulier_admin_procedure_jetons_path(@procedure),
-                        class: 'fr-btn'
-
     - if @procedure.api_particulier_scopes.present?
       .fr-pt-4w.fr-px-4w.fr-pb-2w.fr-background-alt--blue-france
         .flex.align-start
@@ -118,12 +126,4 @@
         - else
           Pas de source de données définies
 
-
-  - else
-    = render Dsfr::AlertComponent.new(state: :info, size: :sm) do |c|
-      - c.with_body do
-        %p
-          Pour activer le paramétrage de cette fonctionnalité, contactez-nous sur
-          = link_to CONTACT_EMAIL, "mailto:#{CONTACT_EMAIL}", external_link_attributes
-          en indiquant votre numéro de démarche (#{@procedure.id}) et le cadre d’application de l'API particulier.
 = render Procedure::FixedFooterComponent.new(procedure: @procedure)

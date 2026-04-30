@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   include NavBarProfileConcern
   include Pundit::Authorization
   include Devise::StoreLocationExtension
-  include MigrateCsrfToken
   include ApplicationController::ErrorHandling
   include ProConnectSessionConcern
 
@@ -43,10 +42,8 @@ class ApplicationController < ActionController::Base
     Current.application_base_url = APPLICATION_BASE_URL
   end
 
-  before_action :redirect_transitoire_domain
-
   def staging_authenticate
-    # france connect sector identifier system does not support basic auth
+    # FranceConnect sector identifier system does not support basic auth
     return if request.path == france_connect_redirect_uris_path
 
     if StagingAuthService.enabled? && !authenticate_with_http_basic { |username, password| StagingAuthService.authenticate(username, password) }
@@ -285,7 +282,7 @@ class ApplicationController < ActionController::Base
       user_agent: request.user_agent,
       user_id: current_user&.id,
       user_roles: current_user_roles,
-      client_ip: request.headers['X-Forwarded-For'],
+      client_ip: request.remote_ip,
       request_id: Current.request_id,
     })
 
@@ -321,7 +318,7 @@ class ApplicationController < ActionController::Base
     if instructeur_signed_in? &&
         sensitive_path &&
         !current_instructeur.bypass_email_login_token &&
-        !IPService.ip_trusted?(request.headers['X-Forwarded-For']) &&
+        !IPService.ip_trusted?(request.remote_ip) &&
         !trusted_device? &&
         !pro_connect_mfa?
 
@@ -334,12 +331,6 @@ class ApplicationController < ActionController::Base
       send_login_token_or_bufferize(current_instructeur)
       signed_email = message_encryptor_service.encrypt_and_sign(current_instructeur.email, purpose: :reset_link, expires_in: 1.hour)
       redirect_to link_sent_path(email: signed_email)
-    end
-  end
-
-  def redirect_transitoire_domain
-    if request.host.include?('demarches.numerique.gouv.fr')
-      redirect_to "http://#{ENV['APP_HOST']}#{request.fullpath}", allow_other_host: true, status: 301
     end
   end
 

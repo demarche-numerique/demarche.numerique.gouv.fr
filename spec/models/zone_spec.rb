@@ -131,6 +131,11 @@ describe Zone do
         expect(Zone.default_for('agent.education.tchap.gouv.fr').map(&:acronym)).to match_array(['MEN', 'ESR'])
         expect(Zone.default_for('agent.tchap.gouv.fr').map(&:acronym)).to eq []
       end
+
+      it 'safely handles values with quotes (no SQL injection)' do
+        expect(Zone.default_for("x') OR 1=1 OR ('").map(&:acronym)).to eq []
+        expect(Zone.default_for("agent's.tchap.gouv.fr").map(&:acronym)).to eq []
+      end
     end
   end
 end

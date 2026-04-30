@@ -82,6 +82,37 @@ describe Manager::UsersController, type: :controller do
     end
   end
 
+  describe '#enable_feature' do
+    let(:user) { create(:user) }
+
+    subject do
+      put :enable_feature, params: { id: user.id, features: features }
+    end
+
+    before do
+      Flipper.add(:administrateur_web_hook)
+      Flipper.add(:arbitrary_unrelated_flag)
+    end
+
+    context 'with an allow-listed feature key' do
+      let(:features) { { administrateur_web_hook: "true" } }
+
+      it 'enables the flag for the user' do
+        subject
+        expect(Flipper.enabled?(:administrateur_web_hook, user)).to be true
+      end
+    end
+
+    context 'with a key outside the administrateur allow-list' do
+      let(:features) { { arbitrary_unrelated_flag: "true" } }
+
+      it 'ignores the key' do
+        subject
+        expect(Flipper.enabled?(:arbitrary_unrelated_flag, user)).to be false
+      end
+    end
+  end
+
   describe '#reactivate' do
     subject { put :reactivate, params: { id: user.id } }
 

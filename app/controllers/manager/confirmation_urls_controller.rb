@@ -8,7 +8,7 @@ module Manager
     def new
       @url = new_manager_procedure_administrateur_confirmation_url(
         procedure.id,
-        q: encrypt({ email: params[:email], inviter_id: current_super_admin.id })
+        q: encrypt({ email: params[:email], inviter_id: current_super_admin.id, procedure_id: procedure.id })
       )
     end
 

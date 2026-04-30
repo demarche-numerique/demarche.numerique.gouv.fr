@@ -10,7 +10,7 @@ class ProcedurePath < ApplicationRecord
 
   normalizes :path, with: -> path { path.strip.downcase }
 
-  validates :path, presence: true, format: { with: PATH_REGEX }, uniqueness: true
+  validates :path, presence: true, format: { with: PATH_REGEX, if: -> { new_record? || path_changed? } }, uniqueness: true
 
   def ensure_one_path
     return if procedure.procedure_paths.count > 1 || destroyed_by_association

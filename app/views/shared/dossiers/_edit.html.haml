@@ -1,4 +1,4 @@
-- if dossier.france_connected_with_one_identity?  && current_user.instructeur? && !current_user.owns_or_invite?(dossier)
+- if dossier.submitted_with_france_connect? && dossier.user.france_connect_informations.present? && current_user.instructeur? && !current_user.owns_or_invite?(dossier)
   - content_for(:notice_info) do
     = render partial: "shared/dossiers/france_connect_informations_notice", locals: { user_information: dossier.user.france_connect_informations.first }
 
@@ -9,7 +9,7 @@
   = form_for dossier, url: brouillon_dossier_url(dossier), method: :patch, html: { id: 'dossier-edit-form', class: 'form', multipart: true, novalidate: 'novalidate', data: { controller: 'prevent-submit-on-enter' } } do |f|
 
     = render Dossiers::ErrorsFullMessagesComponent.new(dossier:)
-    %header.mb-6
+    %header.fr-mb-12v
       .fr-highlight
         %p.fr-text--sm
           %strong

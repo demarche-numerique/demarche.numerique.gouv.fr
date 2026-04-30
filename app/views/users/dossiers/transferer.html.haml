@@ -11,10 +11,9 @@
       .fr-highlight
         %p= t(".irrevocable_html").html_safe
 
-      = form_for @transfer, url: transfers_path, class: "fr-mt-4w" do |f|
+      = form_for @transfer, url: transfer_dossier_path(@dossier), class: "fr-mt-4w" do |f|
         .fr-input-group
           = f.label :email, t('.email_label'), class: "fr-label"
           = f.email_field :email, required: true, class: "fr-input"
 
-        = f.hidden_field :dossier, value: @dossier.id
         = f.submit t('.submit'), class: 'fr-btn'

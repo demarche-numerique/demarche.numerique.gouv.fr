@@ -3,7 +3,11 @@
   id="direct-upload-<%= id %>"
   data-direct-upload-id="<%= id %>"
 >
-  <div class="direct-upload__error fr-messages-group hidden">
+  <div
+    class="direct-upload__error fr-messages-group hidden"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
     <p class="fr-message fr-message--error fr-mt-0 direct-upload__error-message"></p>
   </div>
 

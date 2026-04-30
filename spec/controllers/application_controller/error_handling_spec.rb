@@ -7,10 +7,17 @@ RSpec.describe ApplicationController::ErrorHandling, type: :controller do
     def invalid_authenticity_token
       raise ActionController::InvalidAuthenticityToken
     end
+
+    def show
+      render template: 'nonexistent/template'
+    end
   end
 
   before do
-    routes.draw { post 'invalid_authenticity_token' => 'anonymous#invalid_authenticity_token' }
+    routes.draw do
+      post 'invalid_authenticity_token' => 'anonymous#invalid_authenticity_token'
+      get 'show' => 'anonymous#show'
+    end
   end
 
   describe 'handling ActionController::InvalidAuthenticityToken' do
@@ -26,6 +33,21 @@ RSpec.describe ApplicationController::ErrorHandling, type: :controller do
     it 'returns a 403 forbidden status' do
       post :invalid_authenticity_token
       expect(response).to have_http_status(:forbidden)
+    end
+  end
+
+  describe 'handling unsupported format requests' do
+    it 'returns 406 for unsupported formats like zip' do
+      get :show, format: :zip
+      expect(response).to have_http_status(:not_acceptable)
+    end
+
+    it 'raises MissingTemplate for html format' do
+      expect { get :show, format: :html }.to raise_error(ActionView::MissingTemplate)
+    end
+
+    it 'raises MissingTemplate for turbo_stream format' do
+      expect { get :show, format: :turbo_stream }.to raise_error(ActionView::MissingTemplate)
     end
   end
 end

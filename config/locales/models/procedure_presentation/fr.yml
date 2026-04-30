@@ -24,8 +24,9 @@ fr:
             svr_decision_before: Date décision SVR avant
             user_from_france_connect?: "France connecté ?"
             for_tiers: "Dépôt pour un tiers"
-            mandataire_last_name: "Nom du mandataire"
-            mandataire_first_name: "Prénom du mandataire"
+            submitted_with_france_connect: "Authentification FranceConnect"
+            mandataire_last_name: "Nom [Identité du mandataire]"
+            mandataire_first_name: "Prénom [Identité du mandataire]"
             archived: 'Archivé'
             dossier_state: 'État du dossier'
             last_champ_updated_at: Date de dernière modification (usager)
@@ -48,8 +49,8 @@ fr:
             id: Groupe instructeur
             label: Groupe instructeur
           individual:
-            prenom: Prénom
-            nom: Nom
+            prenom: Prénom [Identité du demandeur]
+            nom: Nom [Identité du demandeur]
             gender: Civilité
           avis:
             answer: Avis

@@ -87,3 +87,10 @@ fr:
       contact:
         label: Nous contacter
       display_params: Paramètres d’affichage
+    main_navigation:
+      doc:
+        label: Documentation
+        user_title: Documentation usager
+        admin_title: Documentation administrateur
+        instructeur_title: Documentation instructeur
+        expert_title: Documentation expert

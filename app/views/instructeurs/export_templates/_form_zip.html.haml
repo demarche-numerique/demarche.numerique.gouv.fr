@@ -23,7 +23,7 @@
         - else
           = f.hidden_field :groupe_instructeur_id
 
-        .fr-input-group{ data: { controller: 'tiptap', 'tiptap-attributes-value': { spellcheck: false }.to_json } }
+        .fr-input-group{ data: { controller: 'tiptap', 'tiptap-attributes-value': { spellcheck: false }.to_json, 'tiptap-single-line-value': 'true' } }
           = f.label '[dossier_folder][template]', class: "fr-label" do
             = "#{ExportTemplate.human_attribute_name('dossier_folder')} #{asterisk}"
             %span.fr-hint-text Nom du répertoire contenant les différents fichiers à exporter

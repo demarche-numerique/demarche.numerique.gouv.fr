@@ -12,7 +12,7 @@ module ChampHelper
   def auto_attach_url(object, procedure_id: nil)
     if object.is_a?(Champ)
       champs_piece_justificative_url(object.dossier, object.stable_id, row_id: object.row_id)
-    elsif object.is_a?(TypeDeChamp) && object.piece_justificative_or_titre_identite?
+    elsif object.is_a?(TypeDeChamp) && object.piece_justificative?
       piece_justificative_template_admin_procedure_type_de_champ_url(stable_id: object.stable_id, procedure_id:)
     elsif object.is_a?(TypeDeChamp) && object.explication?
       notice_explicative_admin_procedure_type_de_champ_url(stable_id: object.stable_id, procedure_id:)

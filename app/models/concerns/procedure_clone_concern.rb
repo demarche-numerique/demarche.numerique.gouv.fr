@@ -84,6 +84,9 @@ module ProcedureCloneConcern
     'no_gender',
     'pro_connect_restriction',
     'robots_indexable',
+    'admin_default_procedure_presentation_active',
+    'admin_default_procedure_presentation_id',
+    'api_entreprise_token_expiration_notice_sent_at',
   ]
 
   NEW_MAX_DUREE_CONSERVATION = Expired::DEFAULT_DOSSIER_RENTENTION_IN_MONTH
@@ -132,7 +135,7 @@ module ProcedureCloneConcern
 
     Flipper.features.each do |feature|
       next if feature.enabled? # don't clone features globally enabled
-      next if feature.percentage_of_time_value > 0 # don't clone randomly enabled features
+      next if feature.percentage_of_time_value > 0 || feature.percentage_of_actors_value > 0 # don't clone percentage-based features
       next unless feature_enabled?(feature.key)
 
       Flipper.enable(feature.key, procedure)
@@ -185,6 +188,9 @@ module ProcedureCloneConcern
     procedure.routing_alert = false
     procedure.pro_connect_restriction = :none
     procedure.robots_indexable = true
+    procedure.admin_default_procedure_presentation_active = false
+    procedure.admin_default_procedure_presentation_id = nil
+    procedure.api_entreprise_token_expiration_notice_sent_at = nil
     procedure
   end
 

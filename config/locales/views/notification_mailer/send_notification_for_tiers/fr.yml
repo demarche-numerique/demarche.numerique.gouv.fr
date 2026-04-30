@@ -1,0 +1,4 @@
+fr:
+  notification_mailer:
+    send_notification_for_tiers:
+      subject: "Votre dossier rempli par le mandataire %{first_name} %{last_name} a été mis à jour"

@@ -7,3 +7,4 @@ fr:
     champ_public: Formulaire
     champ_private: Annotations privées
     properties: Cliquez sur les étiquettes que vous souhaitez pour construire les autosuggestions
+    url_tags: Insérez les champs du formulaire précédant ce champ pour construire l’URL dynamique

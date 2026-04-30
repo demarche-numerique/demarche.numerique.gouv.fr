@@ -33,3 +33,31 @@ $ cp config/locales/links.fr.yml config/custom_locales
 ```
 
 And _voila!_ You can now edit your own locales.
+
+## Step 4. Customize institution logos and document headers
+
+Institution logos are used in **emails** and **PDF documents** (deposit receipt, etc.).
+Place your image files in `app/assets/images/` and configure the following environment variables:
+
+| Variable | Default | Description | Can be empty |
+|---|---|---|---|
+| `LOGO_SRC` | `logo-demarche-numerique@2x.png` | Institution logo displayed in email headers and PDF documents. | No |
+| `LOGO_DARK_SRC` | `logo-demarche-numerique@2x.png` | Dark variant of the institution logo, for dark mode email clients. | No |
+| `LOGO_MARIANNE_SRC` | `Marianne-Light@2x.png` | Marianne logo displayed on the left of email/PDF headers. | Yes — hides the Marianne logo entirely |
+| `LOGO_MARIANNE_DARK_SRC` | `Marianne-Dark@2x.png` | Dark variant of the Marianne logo, for dark mode email clients. | No |
+| `DIRECTION_LABEL` | _(empty)_ | Label displayed above the platform name in email and PDF headers (e.g. `Direction Interministérielle du Numérique`). | Yes — hides the label |
+
+Example `.env` configuration:
+
+```bash
+LOGO_SRC=my-institution-logo.png
+LOGO_DARK_SRC=my-institution-logo-dark.png
+LOGO_MARIANNE_SRC=Marianne-Light@2x.png
+LOGO_MARIANNE_DARK_SRC=Marianne-Dark@2x.png
+DIRECTION_LABEL=My Department Name
+```
+
+For deeper customization of email layout, you can override these partials in `app/custom_views/`:
+- `layouts/mailers/_dsfr_header.html.erb`
+- `layouts/mailers/_dsfr_identity.html.erb`
+- `layouts/mailers/_dsfr_footer.html.erb`

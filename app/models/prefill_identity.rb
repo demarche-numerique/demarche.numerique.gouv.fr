@@ -9,14 +9,21 @@ class PrefillIdentity
   end
 
   def to_h
-    if dossier.procedure.for_individual?
-      {
-        prenom: params["identite_prenom"],
-        nom: params["identite_nom"],
-        gender: dossier.procedure.no_gender? ? nil : ["M.", "Mme"].include?(params["identite_genre"]) ? params["identite_genre"] : nil,
-      }
-    else
-      {}
-    end
+    return {} if !dossier.procedure.for_individual?
+
+    {
+      prenom: params["identite_prenom"],
+      nom: params["identite_nom"],
+      gender: gender_param,
+    }
+  end
+
+  private
+
+  def gender_param
+    return if dossier.procedure.no_gender?
+
+    valid_genders = [Individual::GENDER_MALE, Individual::GENDER_FEMALE]
+    params["identite_genre"].presence_in(valid_genders)
   end
 end

@@ -18,6 +18,24 @@ describe Champs::CarteController, type: :controller do
   end
   let(:champ) { dossier.champs.first }
 
+  describe 'ensure_legitimate_access' do
+    before do
+      sign_in user
+      request.accept = "application/json"
+      request.content_type = "application/json"
+    end
+
+    context 'when the champ is not a carte' do
+      let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :text }]) }
+      let(:champ) { dossier.project_champs_public.first }
+
+      it 'returns not found' do
+        get :index, params: { dossier_id: champ.dossier_id, stable_id: champ.stable_id }, format: :turbo_stream
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+  end
+
   describe 'features' do
     let(:feature) { attributes_for(:geo_area, :polygon) }
     let(:geo_area) { create(:geo_area, :selection_utilisateur, :polygon, champ: champ) }

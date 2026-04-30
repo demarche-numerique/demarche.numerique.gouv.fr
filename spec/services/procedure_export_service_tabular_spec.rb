@@ -105,6 +105,13 @@ describe ProcedureExportService do
         it { expect(dossiers_sheet.data.last.last).to eq "toto.txt, toto.txt" }
       end
 
+      context 'with TypeDeChamp::PieceJustificativeTypeDeChamp (titre_identite)' do
+        let(:types_de_champ_public) { [{ type: :piece_justificative, libelle: "Titre d'identité", nature: :titre_identite }] }
+        let(:exported_columns) { [ExportedColumn.new(libelle: "Titre d'identité – filled", column: procedure.find_column(label: "Titre d'identité – filled"))] }
+        before { create(:dossier, :with_populated_champs, procedure:) }
+        it { expect(dossiers_sheet.data.last.last).to eq 'présent' }
+      end
+
       context 'with TypeDeChamp::MutlipleDropDownListTypeDeChamp' do
         let(:types_de_champ_public) { [{ type: :multiple_drop_down_list, libelle: "multiple_drop_down_list", mandatory: true }] }
         let(:exported_columns) { [ExportedColumn.new(libelle: 'Date du dernier évènement', column: procedure.find_column(label: 'multiple_drop_down_list'))] }

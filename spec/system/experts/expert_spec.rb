@@ -49,11 +49,11 @@ describe 'Inviting an expert:', js: true do
 
     context 'when I already have an existing account' do
       before do
-        avis.expert.user.update!(last_sign_in_at: Time.zone.now)
+        avis.expert.user.update!(last_sign_in_at: Time.zone.now, confirmation_token: "abc123")
         avis.expert.user.reload
       end
       scenario 'I can sign in' do
-        visit sign_up_expert_avis_path(avis.dossier.procedure, avis, email: avis.expert.email)
+        visit sign_up_expert_avis_path(avis.dossier.procedure, avis, email: avis.expert.email, confirmation_token: "abc123")
 
         expect(page).to have_current_path(new_user_session_path)
         login_as avis.expert.user, scope: :user

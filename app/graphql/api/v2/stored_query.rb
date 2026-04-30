@@ -284,6 +284,7 @@ class API::V2::StoredQuery
     datePassageEnConstruction
     datePassageEnInstruction
     dateTraitement
+    dateAccuseLectureAgreement
     dateExpiration
     dateSuppressionParUsager
     dateDerniereCorrectionEnAttente @include(if: $includeCorrections)

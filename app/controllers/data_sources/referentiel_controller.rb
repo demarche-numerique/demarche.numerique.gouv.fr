@@ -2,7 +2,7 @@
 
 class DataSources::ReferentielController < ApplicationController
   before_action :authenticate_user!
-  before_action :mark_as_retryable, :referentiel_service, :referentiel
+  before_action :mark_as_retryable, :referentiel_service, :referentiel, :set_dossier
   MIN_QUERY_LENGTH = 3
   MAX_QUERY_SIZE = 100
 
@@ -11,7 +11,7 @@ class DataSources::ReferentielController < ApplicationController
       return render json: [] if referentiel&.autocomplete_configuration.blank?
 
       begin
-        result = referentiel_service.call(query)
+        result = referentiel_service.call(query, dossier: @dossier)
 
         case result
         in Dry::Monads::Success
@@ -61,6 +61,15 @@ class DataSources::ReferentielController < ApplicationController
     return @referentiel if defined?(@referentiel)
 
     @referentiel = Referentiel.find_by(id: params[:referentiel_id])
+  end
+
+  def set_dossier
+    return if params[:dossier_id].blank?
+
+    @dossier = current_user.dossiers.find_by(id: params[:dossier_id]) ||
+      current_user.instructeur&.dossiers&.find_by(id: params[:dossier_id])
+
+    DossierPreloader.load_one(@dossier) if @dossier
   end
 
   class RetryableError < StandardError; end

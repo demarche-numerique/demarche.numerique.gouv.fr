@@ -5,11 +5,6 @@ require 'sidekiq/cron/web'
 
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
-  get '/saml/auth' => 'saml_idp#new'
-  post '/saml/auth' => 'saml_idp#create'
-  get '/saml/metadata' => 'saml_idp#show'
-
   #
   # Manager
   #
@@ -144,7 +139,6 @@ Rails.application.routes.draw do
 
   devise_for :super_admins, skip: [:registrations], controllers: {
     sessions: 'super_admins/sessions',
-    passwords: 'super_admins/passwords',
   }
 
   namespace :super_admins do
@@ -299,8 +293,8 @@ Rails.application.routes.draw do
   get 'admin/procedures/new' => 'administrateurs/procedures#new', as: :new_admin_procedure
 
   namespace :admin do
-    get 'activate' => '/administrateurs/activate#new'
-    patch 'activate' => '/administrateurs/activate#create'
+    get 'activate' => '/users/activate#new'
+    patch 'activate' => '/users/activate#create'
     get 'procedures/archived', to: redirect('/admin/procedures?statut=archivees')
     get 'procedures/draft', to: redirect('/admin/procedures?statut=brouillons')
 
@@ -395,14 +389,16 @@ Rails.application.routes.draw do
         patch 'restore', to: 'dossiers#restore'
         get 'attestation'
         get 'transferer', to: 'dossiers#transferer'
-        get 'papertrail', format: :pdf
+        post 'transferer', to: 'transfers#create', as: :transfer
+        get 'attestation_depot', format: :pdf
+        get 'papertrail', to: 'dossiers#attestation_depot', format: :pdf
         get 'set_accuse_lecture_agreement_at'
         get 'corbeille', to: 'dossiers#show_in_trash'
         get 'supprime', to: 'dossiers#show_deleted'
       end
 
       collection do
-        resources :transfers, only: [:create, :update, :destroy]
+        resources :transfers, only: [:update, :destroy]
       end
     end
 
@@ -545,7 +541,7 @@ Rails.application.routes.draw do
           resources :avis, only: [], path: "(:statut)/dossiers", defaults: { statut: 'a-suivre' } do
             member do
               patch 'revoquer'
-              get 'remind'
+              patch 'remind'
             end
           end
 
@@ -635,8 +631,8 @@ Rails.application.routes.draw do
     end
 
     namespace :gestionnaires do
-      get 'activate' => '/gestionnaires/activate#new'
-      patch 'activate' => '/gestionnaires/activate#create'
+      get 'activate' => '/users/activate#new'
+      patch 'activate' => '/users/activate#create'
     end
   end
 
@@ -793,10 +789,29 @@ Rails.application.routes.draw do
         end
 
         collection do
-          get 'simplify/:rule', action: :simplify, as: :simplify, constraints: { rule: /#{LLMRuleSuggestion.rules.keys.join('|')}/ }
-          get 'simplify/poll/:rule', action: :poll_simplify, as: :poll_simplify, constraints: { rule: /#{LLMRuleSuggestion.rules.keys.join('|')}/ }
-          post 'accept_simplification/:llm_suggestion_rule_id', action: :accept_simplification, as: :accept_simplification
-          post 'simplify/enqueue/:rule', action: :enqueue_simplify, as: :enqueue_simplify, constraints: { rule: /#{LLMRuleSuggestion.rules.keys.join('|')}/ }
+          # Entry point for Simpliscore workflow
+          get 'simplify/new', action: :new_simplify, as: :new_simplify
+
+          # Routes with explicit tunnel_id
+          get 'simplify/:tunnel_id/:rule',
+            action: :simplify,
+            as: :simplify,
+            constraints: { rule: /#{LLMRuleSuggestion.rules.keys.join('|')}/ }
+
+          get 'simplify/:tunnel_id/:rule/poll',
+            action: :poll_simplify,
+            as: :poll_simplify,
+            constraints: { rule: /#{LLMRuleSuggestion.rules.keys.join('|')}/ }
+
+          post 'simplify/:tunnel_id/:rule/enqueue',
+            action: :enqueue_simplify,
+            as: :enqueue_simplify,
+            constraints: { rule: /#{LLMRuleSuggestion.rules.keys.join('|')}/ }
+
+          post 'simplify/:tunnel_id/:rule/accept/:id',
+            action: :accept_simplification,
+            as: :accept_simplification,
+            constraints: { rule: /#{LLMRuleSuggestion.rules.keys.join('|')}/ }
         end
       end
 
@@ -824,6 +839,10 @@ Rails.application.routes.draw do
       end
 
       resources :referentiels, only: [:new, :create, :edit, :update], path: ':stable_id', constraints: { stable_id: /\d+/ } do
+        collection do
+          patch :validate_url
+          post :validate_url
+        end
         member do
           get :configuration_error
           patch :update_autocomplete_configuration

@@ -78,6 +78,29 @@ describe TypeDeChamp do
       end
     end
 
+    describe 'changing the type_champ clears referentiel_id' do
+      let(:csv_referentiel) { create(:csv_referentiel) }
+      let(:tdc) { create(:type_de_champ_drop_down_list, referentiel: csv_referentiel) }
+
+      context 'from drop_down_list to referentiel' do
+        before { tdc.update(type_champ: TypeDeChamp.type_champs.fetch(:referentiel)) }
+
+        it { expect(tdc.referentiel_id).to be_nil }
+      end
+
+      context 'from drop_down_list to text' do
+        before { tdc.update(type_champ: TypeDeChamp.type_champs.fetch(:text)) }
+
+        it { expect(tdc.referentiel_id).to be_nil }
+      end
+
+      context 'from drop_down_list to multiple_drop_down_list (both use csv referentiel)' do
+        before { tdc.update(type_champ: TypeDeChamp.type_champs.fetch(:multiple_drop_down_list)) }
+
+        it { expect(tdc.referentiel_id).to be_nil }
+      end
+    end
+
     describe 'changing the type_champ from a drop_down_list' do
       let(:tdc) { create(:type_de_champ_drop_down_list) }
 
@@ -137,12 +160,12 @@ describe TypeDeChamp do
   describe 'piece_justificative nature and options' do
     describe '#allowed_content_types' do
       it 'returns jpeg/png for titre_identite' do
-        tdc = create(:type_de_champ_piece_justificative, nature: 'TITRE_IDENTITE')
+        tdc = create(:type_de_champ_piece_justificative, nature: 'titre_identite')
         expect(tdc.allowed_content_types).to match_array(['image/jpeg', 'image/png'])
       end
 
       it 'includes doc and image types for RIB' do
-        tdc = create(:type_de_champ_piece_justificative, nature: 'RIB')
+        tdc = create(:type_de_champ_piece_justificative, nature: 'rib')
         expect(tdc.allowed_content_types).to include('application/pdf').or include('application/msword')
         expect(tdc.allowed_content_types).to include('image/jpeg').or include('image/png')
       end
@@ -162,7 +185,7 @@ describe TypeDeChamp do
 
     describe '#max_file_size_bytes' do
       it 'is 20MB for titre_identite' do
-        tdc = create(:type_de_champ_piece_justificative, nature: 'TITRE_IDENTITE')
+        tdc = create(:type_de_champ_piece_justificative, nature: 'titre_identite')
         expect(tdc.max_file_size_bytes).to eq(20.megabytes)
       end
 
@@ -174,7 +197,7 @@ describe TypeDeChamp do
 
     describe '#pj_auto_purge?' do
       it 'is true for titre_identite' do
-        tdc = create(:type_de_champ_piece_justificative, nature: 'TITRE_IDENTITE')
+        tdc = create(:type_de_champ_piece_justificative, nature: 'titre_identite')
         expect(tdc.pj_auto_purge?).to be true
       end
 
@@ -313,7 +336,6 @@ describe TypeDeChamp do
     it_behaves_like "a prefillable type de champ", :type_de_champ_siret
 
     it_behaves_like "a non-prefillable type de champ", :type_de_champ_number
-    it_behaves_like "a non-prefillable type de champ", :type_de_champ_titre_identite
     it_behaves_like "a non-prefillable type de champ", :type_de_champ_linked_drop_down_list
     it_behaves_like "a non-prefillable type de champ", :type_de_champ_header_section
     it_behaves_like "a non-prefillable type de champ", :type_de_champ_explication
@@ -350,6 +372,20 @@ describe TypeDeChamp do
 
         it { expect(type_de_champ.libelle).to eq("Customized libelle") }
       end
+    end
+  end
+
+  describe '#dossier_link_procedure_ids=' do
+    let(:type_de_champ) { build(:type_de_champ_dossier_link) }
+
+    it 'stores strings as integers' do
+      expect(type_de_champ.dossier_link_procedure_ids).to eq([])
+
+      type_de_champ.dossier_link_procedure_ids = ["", "1", "2", "1"]
+      expect(type_de_champ.dossier_link_procedure_ids).to eq([1, 2])
+
+      type_de_champ.dossier_link_procedure_ids = nil
+      expect(type_de_champ.dossier_link_procedure_ids).to eq([])
     end
   end
 
@@ -480,6 +516,19 @@ describe TypeDeChamp do
 
       it 'keeping the positive number options' do
         is_expected.to eq({ "positive_number" => "1", "range_number" => '1', "min_number" => '2.5', "max_number" => '18' })
+      end
+    end
+
+    context "Date with birthdate" do
+      let(:type_de_champ) { create(:type_de_champ_date, procedure:) }
+
+      before do
+        type_de_champ.update!(options: { 'birthdate' => '1', 'key' => 'value' })
+        procedure.publish_revision!(procedure.administrateurs.first)
+      end
+
+      it 'keeping only the date options including birthdate' do
+        is_expected.to eq({ 'birthdate' => '1' })
       end
     end
 

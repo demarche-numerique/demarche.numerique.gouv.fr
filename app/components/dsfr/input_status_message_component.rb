@@ -32,11 +32,11 @@ module Dsfr
     end
 
     def referentiel_support_statut?
-      type_de_champ.referentiel? && !@champ.idle?
+      type_de_champ.referentiel? && (!@champ.idle? || type_de_champ.referentiel.blank?)
     end
 
     def pjs_statut?
-      @champ.RIB? && !@champ.idle?
+      @champ.rib? && !@champ.idle?
     end
 
     def dossier_link_support_statut?
@@ -63,12 +63,38 @@ module Dsfr
       when TypeDeChamp.type_champs[:rna]
         { state: :info, text: t(".rna.data_fetched", title: @champ.title, address: @champ.full_address) }
       when TypeDeChamp.type_champs[:dossier_link]
-        dossier = Dossier.visible_by_administration.find_by(id: @champ.value)
-        if dossier.present?
-          { state: :info, text: dossier.text_summary }
+        dossier = Dossier.find_by(id: @champ.value)
+        deleted_dossier = DeletedDossier.find_by(dossier_id: @champ.value) if dossier.nil?
+        if deleted_dossier.present?
+          {
+            state: :info, text: I18n.t('shared.champs.dossier_link.hidden',
+                                       depose_at: l(deleted_dossier.depose_at),
+                                       procedure_libelle: deleted_dossier.procedure.libelle,
+                                       hidden_at: l(deleted_dossier.deleted_at.to_date)),
+          }
+        elsif dossier.present?
+          if dossier.hidden_by_expired_at.present?
+            {
+              state: :info, text: I18n.t('shared.champs.dossier_link.expired',
+                                         depose_at: l(dossier.depose_at.to_date),
+                                         procedure_libelle: dossier.procedure.libelle,
+                                         expired_at: l(dossier.hidden_by_expired_at.to_date)),
+            }
+          elsif dossier.hidden_by_user_at.present?
+            {
+              state: :info, text: I18n.t('shared.champs.dossier_link.hidden',
+                                         depose_at: l(dossier.depose_at.to_date),
+                                         procedure_libelle: dossier.procedure.libelle,
+                                         hidden_at: l(dossier.hidden_by_user_at.to_date)),
+            }
+          else
+            { state: :info, text: dossier.text_summary }
+          end
         end
       when TypeDeChamp.type_champs[:referentiel]
-        if @champ.pending?
+        if type_de_champ.referentiel.blank?
+          { state: :error, text: t(".referentiel.not_configured") }
+        elsif @champ.pending?
           { state: :info, text: t(".referentiel.fetching") }
         elsif @champ.external_error?
           { state: :info, text: t(".referentiel.error", value: @champ.external_id) }

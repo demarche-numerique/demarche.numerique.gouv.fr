@@ -15,7 +15,12 @@ class LLMRuleSuggestion < ApplicationRecord
   }
 
   validates :schema_hash, presence: true
-  validates :rule, presence: true
+  validates :rule, presence: true, inclusion: { in: LLM::Rule::SEQUENCE }
+  validates :tunnel_id, presence: true
+  validates :tunnel_id, format: { with: /\A[a-f0-9]{6}\z/ }
+  # rubocop:disable Rails/UniqueValidationWithoutIndex : required to run backfill task before adding DB index
+  validates :tunnel_id, uniqueness: { scope: [:procedure_revision_id, :rule, :schema_hash] }
+  # rubocop:enable Rails/UniqueValidationWithoutIndex : required to run backfill task before adding DB index
 
   accepts_nested_attributes_for :llm_rule_suggestion_items
 

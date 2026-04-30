@@ -2,7 +2,7 @@
 
 class LLM::ImproveStructureItemComponent < LLM::SuggestionItemComponent
   def self.step_title
-    "Amélioration de la structure"
+    "Structure du formulaire"
   end
 
   def op_kind

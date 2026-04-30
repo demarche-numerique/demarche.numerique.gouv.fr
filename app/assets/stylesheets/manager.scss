@@ -1,15 +1,16 @@
 @import 'constants';
 
+/* DSFR utility classes inlined (DSFR not loaded in manager layout) */
+.fr-mt-2v {
+  margin-top: 0.5rem;
+}
+
+.fr-pl-16v {
+  padding-left: 4rem;
+}
+
 .hidden {
   display: none;
-}
-
-.mt-1 {
-  margin-top: $default-spacer !important;
-}
-
-.pl-8 {
-  padding-left: ($default-spacer * 8) !important;
 }
 
 .cell-group-header {

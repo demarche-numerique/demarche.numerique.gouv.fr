@@ -156,6 +156,33 @@ describe Commentaire do
     end
   end
 
+  describe 'body validation' do
+    let(:dossier) { create(:dossier, :en_construction) }
+
+    context 'when body is blank and no piece_jointe' do
+      let(:commentaire) { build(:commentaire, dossier:, body: '') }
+
+      it { expect(commentaire).not_to be_valid }
+      it { expect { commentaire.valid? }.to change { commentaire.errors[:body] }.to(["ne peut être vide"]) }
+    end
+
+    context 'when body is blank but piece_jointe is attached' do
+      let(:commentaire) { build(:commentaire, dossier:, body: '') }
+
+      before do
+        commentaire.piece_jointe.attach(io: StringIO.new('fake'), filename: 'doc.pdf', content_type: 'application/pdf')
+      end
+
+      it { expect(commentaire).to be_valid }
+    end
+
+    context 'when body is present and no piece_jointe' do
+      let(:commentaire) { build(:commentaire, dossier:, body: 'Hello') }
+
+      it { expect(commentaire).to be_valid }
+    end
+  end
+
   describe 'normalization' do
     it 'removes non-printable characters from body' do
       commentaire = build(:commentaire, body: "Valid\x00Body\x1F")

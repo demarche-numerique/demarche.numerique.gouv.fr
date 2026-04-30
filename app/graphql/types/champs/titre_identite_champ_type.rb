@@ -4,16 +4,20 @@ module Types::Champs
   class TitreIdentiteChampType < Types::BaseObject
     implements Types::ChampType
 
+    # Constants moved from deleted TypesDeChamp::TitreIdentiteTypeDeChamp (kept for GraphQL backward compatibility)
+    FRANCE_CONNECT = 'france_connect'
+    PIECE_JUSTIFICATIVE = 'piece_justificative'
+
     class TitreIdentiteGrantTypeType < Types::BaseEnum
-      value(TypesDeChamp::TitreIdentiteTypeDeChamp::FRANCE_CONNECT, "Françe Connect")
-      value(TypesDeChamp::TitreIdentiteTypeDeChamp::PIECE_JUSTIFICATIVE, "Pièce justificative")
+      value(FRANCE_CONNECT, "Françe Connect")
+      value(PIECE_JUSTIFICATIVE, "Pièce justificative")
     end
 
     field :grant_type, TitreIdentiteGrantTypeType, null: false
     field :filled, Boolean, null: false
 
     def grant_type
-      TypesDeChamp::TitreIdentiteTypeDeChamp::PIECE_JUSTIFICATIVE
+      PIECE_JUSTIFICATIVE
     end
 
     def filled

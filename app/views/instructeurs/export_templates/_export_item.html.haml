@@ -14,7 +14,7 @@
           .fr-mt-2w
             %button.fr-btn.fr-btn--tertiary.fr-btn--sm{ type: 'button', data: { 'hide-target_target': 'source' } } Renommer le fichier
 
-        .fr-mt-2w.fr-hidden{ data: { controller: 'tiptap', 'tiptap-attributes-value': { spellcheck: false }.to_json, hide_target_target: 'toHide' } }
+        .fr-mt-2w.fr-hidden{ data: { controller: 'tiptap', 'tiptap-attributes-value': { spellcheck: false }.to_json, 'tiptap-single-line-value': 'true', hide_target_target: 'toHide' } }
           %span Renommer le fichier :
           .fr-mt-2w.tiptap-editor{ data: { tiptap_target: 'editor' } }
             = hidden_field_tag "#{prefix}[template]", item.template_json, data: { tiptap_target: 'input' }, id: nil

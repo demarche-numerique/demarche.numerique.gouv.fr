@@ -128,6 +128,15 @@ describe ProcedureStatsConcern do
         expect(procedure.usual_traitement_time_by_month_in_days['juin 2019']).to eq nil
       end
     end
+
+    context 'when a month has a winsorized mean traitement time of 0 seconds' do
+      let(:delays_by_month) { [[], [0.seconds, 0.seconds]] }
+
+      it 'returns nil for that month instead of raising NoMethodError' do
+        expect { procedure.usual_traitement_time_by_month_in_days }.not_to raise_error
+        expect(procedure.usual_traitement_time_by_month_in_days['mai 2019']).to be_nil
+      end
+    end
   end
 
   private

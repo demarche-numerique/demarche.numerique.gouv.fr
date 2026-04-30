@@ -1,0 +1,32 @@
+<%- content_for(:title, "Renouvelez votre jeton API Entreprise") %>
+
+<p>Bonjour,</p>
+
+<p>
+  Vous êtes administrateur de la démarche
+  <%= link_to "« #{@procedure.libelle} »", admin_procedure_url(@procedure) %>.
+</p>
+
+<p>
+  <strong>
+    Le jeton API Entreprise associé à cette démarche expirera le
+    <%= I18n.l(@expires_at, format: :long_with_time) %>.
+  </strong>
+</p>
+
+<p>
+  <strong>Attention :</strong> si votre jeton expire sans être renouvelé, selon
+  la structure de votre démarche, cela pourrait empêcher la création ou le
+  dépôt de dossiers.
+</p>
+
+<p>
+  Pour renouveler votre jeton, rapprochez-vous de
+  <%= link_to 'Datapass', 'https://datapass.api.gouv.fr' %>, puis copiez-collez
+  le nouveau jeton sur <%= APPLICATION_NAME %> depuis la page de configuration
+  de votre démarche :
+  <br>
+  <%= link_to api_entreprise_admin_procedure_jetons_url(@procedure), api_entreprise_admin_procedure_jetons_url(@procedure) %>
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>

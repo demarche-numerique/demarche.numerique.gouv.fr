@@ -41,6 +41,47 @@ describe BatchOperation, type: :model do
         expect(subject).to receive(:dossiers_safe_scope).and_return(subject.dossiers)
         subject.enqueue_all
       end
+
+      it 'sets run_at' do
+        expect { subject.enqueue_all }
+          .to change { subject.reload.run_at }
+          .from(nil)
+          .to(anything)
+      end
+    end
+  end
+
+  describe '#finalize_if_complete!' do
+    let(:instructeur) { create(:instructeur) }
+    let(:procedure) { create(:simple_procedure, instructeurs: [instructeur]) }
+    let(:dossier) { create(:dossier, :accepte, :with_individual, archived: true, procedure: procedure) }
+    let(:batch_operation) { create(:batch_operation, operation: :archiver, instructeur: instructeur, dossiers: [dossier]) }
+
+    context 'when dossiers remain' do
+      it 'does not set finished_at' do
+        expect { batch_operation.finalize_if_complete! }
+          .not_to change { batch_operation.reload.finished_at }
+      end
+    end
+
+    context 'when all dossiers are processed' do
+      before { batch_operation.dossiers.delete_all }
+
+      it 'sets finished_at' do
+        expect { batch_operation.finalize_if_complete! }
+          .to change { batch_operation.reload.read_attribute(:finished_at) }
+          .from(nil)
+          .to(anything)
+      end
+
+      it 'is idempotent (only one caller wins)' do
+        batch_operation.finalize_if_complete!
+        finished_at = batch_operation.reload.read_attribute(:finished_at)
+
+        expect { batch_operation.finalize_if_complete! }
+          .not_to change { batch_operation.reload.read_attribute(:finished_at) }
+          .from(finished_at)
+      end
     end
   end
 
@@ -85,32 +126,6 @@ describe BatchOperation, type: :model do
           .to change { batch_operation.dossier_operations.error.pluck(:dossier_id) }
           .from([])
           .to([dossier.id])
-      end
-    end
-
-    context 'when it is the first job' do
-      it 'sets run_at at first' do
-        expect { batch_operation.track_processed_dossier(false, dossier) }
-          .to change { batch_operation.reload.run_at }
-          .from(nil)
-          .to(anything)
-      end
-    end
-
-    context 'when it is the second job (meaning run_at was already set) but not the last' do
-      let(:batch_operation) { create(:batch_operation, operation: :archiver, instructeur: instructeur, dossiers: [dossier], run_at: 2.days.ago) }
-      it 'does not change run_at' do
-        expect { batch_operation.track_processed_dossier(true, dossier) }
-          .not_to change { batch_operation.reload.run_at }
-      end
-    end
-
-    context 'when it is the last job' do
-      it 'sets finished_at' do
-        expect { batch_operation.track_processed_dossier(true, dossier) }
-          .to change { batch_operation.reload.finished_at }
-          .from(nil)
-          .to(anything)
       end
     end
   end

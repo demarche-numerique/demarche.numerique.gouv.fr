@@ -24,6 +24,8 @@ module Types
           Types::GeoAreas::ParcelleCadastraleType
         when GeoArea.sources.fetch(:selection_utilisateur)
           Types::GeoAreas::SelectionUtilisateurType
+        when GeoArea.sources.fetch(:rpg)
+          Types::GeoAreas::RpgType
         end
       end
     end

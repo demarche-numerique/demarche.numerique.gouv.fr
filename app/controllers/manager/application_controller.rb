@@ -2,6 +2,7 @@
 
 module Manager
   class ApplicationController < Administrate::ApplicationController
+    protect_from_forgery with: :exception, store: :cookie
     before_action :authenticate_super_admin!
     before_action :default_params
 

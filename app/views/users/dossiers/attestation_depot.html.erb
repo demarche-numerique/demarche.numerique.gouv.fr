@@ -1,0 +1,119 @@
+<div class="a4-container official-layout attestation-depot">
+  <%- official_layout = LOGO_MARIANNE_SRC.present? -%>
+
+  <div class="content">
+    <header class="first-header attestation-depot-header">
+      <div class="left">
+        <%- if official_layout -%>
+          <div class="bloc-marque">
+            <%= image_tag(image_url(LOGO_MARIANNE_SRC), alt: 'Logo Marianne, République Française', class: 'marianne-with-devise') %>
+          </div>
+        <%- end -%>
+
+        <div class="logo-site">
+          <%= image_tag(image_url(LOGO_SRC), alt: APPLICATION_NAME) %>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="direction-block">
+          <%- if DIRECTION_LABEL.present? -%>
+            <p class="direction-label"><%= DIRECTION_LABEL %></p>
+          <%- end -%>
+
+          <p class="direction-site"><%= APPLICATION_NAME %></p>
+        </div>
+      </div>
+    </header>
+
+    <div class="main">
+      <h1 class="attestation-depot-title"><%= t('.receipt') %></h1>
+
+      <p class="attestation-depot-procedure">
+        <%= @dossier.procedure.libelle %>
+      </p>
+
+      <p class="attestation-depot-description">
+        <%= t('.description',
+          user_name: attestation_depot_requester_identity(@dossier),
+          procedure: @dossier.procedure.libelle,
+          date: l(@dossier.depose_at, format: '%e %B %Y')) %>
+      </p>
+
+      <section class="attestation-depot-section">
+        <h2><%= t('views.shared.dossiers.demande.requester_identity') %></h2>
+
+        <%- if @dossier.individual.present? -%>
+          <dl>
+            <dt><%= Individual.human_attribute_name(:prenom) %></dt>
+            <dd><%= @dossier.individual.prenom %></dd>
+            <dt><%= Individual.human_attribute_name(:nom) %></dt>
+            <dd><%= @dossier.individual.nom.upcase %></dd>
+            <dt><%= User.human_attribute_name(:email) %></dt>
+            <dd><%= @dossier.user_email_for(:display) %></dd>
+          </dl>
+        <%- end -%>
+
+        <%- if @dossier.etablissement.present? -%>
+          <dl>
+            <dt><%= Etablissement.human_attribute_name(:denomination) %></dt>
+            <dd><%= raison_sociale_or_name(@dossier.etablissement) %></dd>
+            <dt><%= Etablissement.human_attribute_name(:siret) %></dt>
+            <dd><%= @dossier.etablissement.siret %></dd>
+            <dt><%= User.human_attribute_name(:email) %></dt>
+            <dd><%= @dossier.user_email_for(:display) %></dd>
+          </dl>
+        <%- end -%>
+      </section>
+
+      <section class="attestation-depot-section">
+        <h2><%= Dossier.model_name.human %></h2>
+
+        <dl>
+          <dt><%= Dossier.human_attribute_name(:id) %></dt>
+          <dd><%= @dossier.id %></dd>
+          <dt><%= t('.file_submitted_at') %></dt>
+          <dd><%= l(@dossier.depose_at, format: '%e %B %Y') %></dd>
+          <dt><%= t('.dossier_state') %></dt>
+          <dd><%= attestation_depot_dossier_state(@dossier) %></dd>
+        </dl>
+      </section>
+
+      <%- service = @dossier.service_or_contact_information -%>
+
+      <%- if service.present? -%>
+        <section class="attestation-depot-section">
+          <h2><%= t('.administrative_service') %></h2>
+
+          <dl>
+            <dt><%= Service.model_name.human %></dt>
+
+            <dd><%= [service.nom, service.organisme].join(', ') %></dd>
+
+            <dt><%= Service.human_attribute_name(:adresse) %></dt>
+
+            <dd><%= service.adresse %></dd>
+
+            <%- if service.email.present? -%>
+              <dt><%= Service.human_attribute_name(:email) %></dt>
+              <dd><%= service.email %></dd>
+            <%- end -%>
+
+            <%- if service.telephone.present? -%>
+              <dt><%= Service.human_attribute_name(:telephone) %></dt>
+              <dd><%= service.telephone %></dd>
+            <%- end -%>
+          </dl>
+        </section>
+      <%- end -%>
+
+      <div class="signature">
+        <p>
+          <%= t('.generated_at', date: l(Time.zone.now.to_date, format: :long)) %>
+        </p>
+
+        <p><%= t('.signature', app_name: APPLICATION_NAME) %></p>
+      </div>
+    </div>
+  </div>
+</div>

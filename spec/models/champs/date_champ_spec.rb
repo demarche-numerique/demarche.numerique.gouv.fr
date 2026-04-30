@@ -138,6 +138,52 @@ describe Champs::DateChamp do
     end
   end
 
+  context 'when birthdate option is enabled' do
+    let(:champ) { dossier.champs.first.tap { _1.update(value:) } }
+    subject { champ.validate(:champs_public_value) }
+
+    before { champ.type_de_champ.update(options: { birthdate: "1" }) }
+
+    context 'valid birthdate' do
+      let(:value) { "1990-05-15" }
+
+      it { is_expected.to be_truthy }
+    end
+
+    context 'born today is valid' do
+      let(:value) { Date.today.iso8601 }
+
+      it { is_expected.to be_truthy }
+    end
+
+    context 'date before 1900 is not valid' do
+      let(:value) { "1899-12-31" }
+
+      it 'is not valid and contains errors' do
+        is_expected.to be_falsey
+        expect(champ.errors.where(:value, :invalid_birthdate)).to be_present
+      end
+    end
+
+    context 'date in the future is not valid' do
+      let(:value) { (Date.today + 1).iso8601 }
+
+      it 'is not valid and contains errors' do
+        is_expected.to be_falsey
+        expect(champ.errors.where(:value, :invalid_birthdate)).to be_present
+      end
+    end
+
+    context 'birthdate takes precedence over date_in_past and range_date' do
+      before { champ.type_de_champ.update(options: { birthdate: "1", date_in_past: '1', range_date: '1', start_date: '2020-01-01', end_date: '2020-12-31' }) }
+      let(:value) { "1990-05-15" }
+
+      it 'validates as birthdate, ignoring other constraints' do
+        is_expected.to be_truthy
+      end
+    end
+  end
+
   def champ_with_value(number)
     date_champ.tap { |c| c.value = number }
   end

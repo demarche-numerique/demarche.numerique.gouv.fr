@@ -95,7 +95,6 @@ describe ProcedureExportService do
             "piece_justificative",
             "rna",
             "carte",
-            "titre_identite",
             "iban",
             "siret",
             "annuaire_education",

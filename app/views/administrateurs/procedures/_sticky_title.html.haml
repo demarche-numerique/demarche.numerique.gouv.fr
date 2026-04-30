@@ -1,0 +1,7 @@
+.procedure-sticky-title{ data: { controller: "procedure-sticky-title" }, "aria-hidden": "true" }
+  .fr-container
+    .procedure-sticky-title__inner
+      %span.procedure-sticky-title__label
+        = procedure_libelle_with_number(procedure)
+      %span.fr-badge.fr-badge--sm{ class: procedure_badge_class(procedure) }
+        = t(procedure.aasm_state, scope: 'activerecord.attributes.procedure.aasm_state')

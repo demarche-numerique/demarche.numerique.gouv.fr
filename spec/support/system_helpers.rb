@@ -117,7 +117,31 @@ module SystemHelpers
         expect(option).to be_visible
         sleep 0.1 # wait for any animation to complete
         option.click
+        option.send_keys(:escape) if attached?(option)
       end
+    end
+  end
+
+  def attached?(node)
+    node.text # or any method that touches the node
+    true
+  rescue Capybara::Playwright::Node::StaleReferenceError
+    false
+  end
+
+  def select_autocomplete(libelle, value)
+    label = find(:by_label, libelle, match: :first)
+    scroll_to(label)
+    label.click
+    page.active_element.send_keys(value)
+
+    within '[role="listbox"]' do
+      option = find('[role="option"]', text: value)
+      expect(option).to be_visible
+      sleep 0.1 # wait for any animation to complete
+      option.click
+      option.send_keys(:escape)
+      option.send_keys(:escape)
     end
   end
 
@@ -184,4 +208,8 @@ end
 
 RSpec.configure do |config|
   config.include SystemHelpers, type: :system
+
+  config.before(:each, type: :system) do
+    stub_request(:post, WEASYPRINT_URL).to_return(body: '%PDF-1.4 fake pdf for tests') if WEASYPRINT_URL
+  end
 end

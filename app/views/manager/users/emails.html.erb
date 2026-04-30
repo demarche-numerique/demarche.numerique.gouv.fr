@@ -23,7 +23,7 @@
     <p>
       Cet historique contient les 30 derniers jours. Pour un recherche plus
       fine, il faut fouiller les
-      <a href="https://app-smtp.sendinblue.com/log">logs de SendInblue</a>.
+      <a href="https://app.brevo.com/transactional/email/logs">logs de Brevo</a>.
     </p>
     <table>
       <thead>
@@ -106,7 +106,7 @@
       Historique indisponible. Cette adresse électronique n’existe pas chez nos
       prestataires d’envoi, ou nous n’avons pas réussi à en charger des
       données. Vous pouvez éventuellement fouiller les
-      <a href="https://app-smtp.sendinblue.com/log">logs de SendInBlue</a>.
+      <a href="https://app.brevo.com/transactional/email/logs">logs de Brevo</a>.
     </p>
   <% end %>
 
@@ -171,8 +171,9 @@ Cordialement</pre>
 
   <p>
     <strong>
-      Compte <a href="https://app-smtp.sendinblue.com/block">bloqué</a> chez
-      Sendinblue?
+      Compte
+      <a href="https://app.brevo.com/transactional/email/settings/blocked-contacts">bloqué</a>
+      chez Brevo?
     </strong>
     Vous pouvez le
     <%= link_to('débloquer', manager_user_unblock_email_path(@user), method: :put, class: 'button') %>
@@ -199,19 +200,19 @@ Bien cordialement
   </pre>
 
   <p>
-    <strong>Problème chez Sendinblue ?</strong>
+    <strong>Problème chez Brevo ?</strong>
     Regardez leur
-    <a href="https://status.sendinblue.com/">page de status</a>
+    <a href="https://status.brevo.com/">page de status</a>
     .
     <button
       class="btn btn-secondary btn-small"
-      onclick="reveal_email('#pb-sendinblue')"
+      onclick="reveal_email('#pb-brevo')"
     >
       Voir la suggestion d’email
     </button>
   </p>
 
-  <pre class="hidden" id="pb-sendinblue">
+  <pre class="hidden" id="pb-brevo">
 Bonjour,
 Désolé, notre prestataire d’envoi d’email subit actuellement des soucis avec sa plateforme ;
 vous allez recevoir cet email sous peu.

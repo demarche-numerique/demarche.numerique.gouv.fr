@@ -64,7 +64,7 @@
                 - menu.with_button_inner_html do
                   = t('views.instructeurs.dossiers.customize')
                 - menu.with_form do
-                  = render Instructeurs::ColumnPickerComponent.new(procedure: @procedure, procedure_presentation: @procedure_presentation)
+                  = render Instructeurs::ColumnPickerComponent.new(procedure: @procedure, procedure_presentation: @procedure_presentation, instructeur: current_instructeur)
 
 
         = render batch_operation_component
@@ -82,7 +82,7 @@
                             %input{ type: "checkbox", disabled: @disable_checkbox_all, checked: @disable_checkbox_all, data: { action: "batch-operation#onCheckAll" }, id: dom_id(BatchOperation.new, :checkbox_all), aria: { label: t('views.instructeurs.dossiers.select_all') } }
                             = label_tag dom_id(BatchOperation.new, :checkbox_all), "Sélectionner tous les dossiers", class: 'fr-label'
 
-                      = render Instructeurs::ColumnTableHeaderComponent.new(procedure_presentation: @procedure_presentation)
+                      = render Instructeurs::ColumnTableHeaderComponent.new(procedure_presentation: @procedure_presentation, displayed_columns: @displayed_columns )
 
                       %th.follow-col{ scope: 'col' }
                         Actions
@@ -124,7 +124,7 @@
                                   = tag_notification(notif)
 
 
-                        - @procedure_presentation.displayed_columns.each do |column|
+                        - @displayed_columns.each do |column|
                           %td.fr-cell--multiline
                             - if dossier.hidden_by_administration_at.present?
                               %span

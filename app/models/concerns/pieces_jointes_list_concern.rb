@@ -35,10 +35,13 @@ module PiecesJointesListConcern
 
     coordinates = coordinates.public_only if public_only
 
-    type_champ = ['piece_justificative']
-    type_champ << 'titre_identite' if !exclude_titre_identite
+    coordinates = coordinates.where(types_de_champ: { type_champ: 'piece_justificative' })
 
-    coordinates = coordinates.where(types_de_champ: { type_champ: })
+    # Exclude titre_identite (now piece_justificative with nature=titre_identite)
+    coordinates = coordinates.to_a
+    if exclude_titre_identite
+      coordinates = coordinates.reject { _1.type_de_champ.titre_identite? }
+    end
 
     return coordinates.map(&:type_de_champ) if !wrap_with_parent
 

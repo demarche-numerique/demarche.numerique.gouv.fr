@@ -116,5 +116,33 @@ describe Users::RegistrationsController, type: :controller do
         end
       end
     end
+
+    context 'when the email param is sent as a non-scalar value' do
+      let!(:other_user) { create(:user, email: 'someone-else@example.com', confirmed_at: Time.zone.now) }
+
+      before do
+        allow(UserMailer).to receive(:new_account_warning).and_return(double(deliver_later: 'deliver'))
+      end
+
+      subject(:non_scalar_email_request) do
+        post :create, params: { user: { email: ['anything'], password: password } }
+      end
+
+      it 'does not look up an unrelated existing user' do
+        expect(UserMailer).not_to receive(:new_account_warning).with(other_user, anything)
+
+        non_scalar_email_request
+      end
+
+      it 'does not redirect to a confirmation page that discloses an unrelated user email' do
+        non_scalar_email_request
+
+        if response.redirect? && response.location.match?(/\/users\/confirmation\/new\?email=/)
+          email_param = CGI.parse(URI.parse(response.location).query)['email'].first
+          decrypted_email = controller.message_encryptor_service.decrypt_and_verify(email_param, purpose: :email_confirmation)
+          expect(decrypted_email).not_to eq(other_user.email)
+        end
+      end
+    end
   end
 end

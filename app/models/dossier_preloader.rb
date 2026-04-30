@@ -50,7 +50,7 @@ class DossierPreloader
 
     blob_include = if pj_template
       {
-        # avoid N+1 from BlobImageProcessorConcern:
+        # avoid N+1 from BlobProcessorConcern:
         attachments: :record,
 
         # equivalent scope of with_all_variant_records
@@ -109,7 +109,7 @@ class DossierPreloader
     champs.each do |champ|
       champ.association(:dossier).target = dossier
 
-      # assign dossier to attachment records to avoid N+1 in BlobImageProcessorConcern
+      # assign dossier to attachment records to avoid N+1 in BlobProcessorConcern
       if champ.respond_to?(:piece_justificative_file) && champ.piece_justificative_file.attached?
         champ.piece_justificative_file.attachments.each do |attachment|
           if attachment.blob.attachments.loaded?

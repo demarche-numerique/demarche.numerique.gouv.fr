@@ -43,6 +43,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
          batch_operation.track_processed_dossier(true, dossier)
          batch_operation.track_processed_dossier(true, dossier_2)
+         batch_operation.finalize_if_complete!
          batch_operation.reload
        }
 
@@ -58,6 +59,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
         batch_operation.track_processed_dossier(false, dossier)
         batch_operation.track_processed_dossier(true, dossier_2)
+        batch_operation.finalize_if_complete!
         batch_operation.reload
       }
 
@@ -103,6 +105,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
          batch_operation.track_processed_dossier(true, dossier)
          batch_operation.track_processed_dossier(true, dossier_2)
+         batch_operation.finalize_if_complete!
          batch_operation.reload
        }
 
@@ -118,6 +121,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
         batch_operation.track_processed_dossier(false, dossier)
         batch_operation.track_processed_dossier(true, dossier_2)
+        batch_operation.finalize_if_complete!
         batch_operation.reload
       }
 
@@ -163,6 +167,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
          batch_operation.track_processed_dossier(true, dossier)
          batch_operation.track_processed_dossier(true, dossier_2)
+         batch_operation.finalize_if_complete!
          batch_operation.reload
        }
 
@@ -178,6 +183,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
         batch_operation.track_processed_dossier(false, dossier)
         batch_operation.track_processed_dossier(true, dossier_2)
+        batch_operation.finalize_if_complete!
         batch_operation.reload
       }
 
@@ -223,6 +229,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
          batch_operation.track_processed_dossier(true, dossier)
          batch_operation.track_processed_dossier(true, dossier_2)
+         batch_operation.finalize_if_complete!
          batch_operation.reload
        }
 
@@ -238,6 +245,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
         batch_operation.track_processed_dossier(false, dossier)
         batch_operation.track_processed_dossier(true, dossier_2)
+        batch_operation.finalize_if_complete!
         batch_operation.reload
       }
 
@@ -283,6 +291,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
          batch_operation.track_processed_dossier(true, dossier)
          batch_operation.track_processed_dossier(true, dossier_2)
+         batch_operation.finalize_if_complete!
          batch_operation.reload
        }
 
@@ -298,6 +307,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
         batch_operation.track_processed_dossier(false, dossier)
         batch_operation.track_processed_dossier(true, dossier_2)
+        batch_operation.finalize_if_complete!
         batch_operation.reload
       }
 
@@ -343,6 +353,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
          batch_operation.track_processed_dossier(true, dossier)
          batch_operation.track_processed_dossier(true, dossier_2)
+         batch_operation.finalize_if_complete!
          batch_operation.reload
        }
 
@@ -383,6 +394,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
          batch_operation.track_processed_dossier(true, dossier)
          batch_operation.track_processed_dossier(true, dossier_2)
+         batch_operation.finalize_if_complete!
          batch_operation.reload
        }
 
@@ -423,6 +435,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
          batch_operation.track_processed_dossier(true, dossier)
          batch_operation.track_processed_dossier(true, dossier_2)
+         batch_operation.finalize_if_complete!
          batch_operation.reload
        }
 
@@ -438,6 +451,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
         batch_operation.track_processed_dossier(false, dossier)
         batch_operation.track_processed_dossier(true, dossier_2)
+        batch_operation.finalize_if_complete!
         batch_operation.reload
       }
 
@@ -483,6 +497,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
          batch_operation.track_processed_dossier(true, dossier)
          batch_operation.track_processed_dossier(true, dossier_2)
+         batch_operation.finalize_if_complete!
          batch_operation.reload
        }
 
@@ -498,6 +513,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
         batch_operation.track_processed_dossier(false, dossier)
         batch_operation.track_processed_dossier(true, dossier_2)
+        batch_operation.finalize_if_complete!
         batch_operation.reload
       }
 
@@ -543,6 +559,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
          batch_operation.track_processed_dossier(true, dossier)
          batch_operation.track_processed_dossier(true, dossier_2)
+         batch_operation.finalize_if_complete!
          batch_operation.reload
        }
 
@@ -558,6 +575,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
         batch_operation.track_processed_dossier(false, dossier)
         batch_operation.track_processed_dossier(true, dossier_2)
+        batch_operation.finalize_if_complete!
         batch_operation.reload
       }
 
@@ -603,6 +621,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
          batch_operation.track_processed_dossier(true, dossier)
          batch_operation.track_processed_dossier(true, dossier_2)
+         batch_operation.finalize_if_complete!
          batch_operation.reload
        }
 
@@ -618,6 +637,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
         batch_operation.track_processed_dossier(false, dossier)
         batch_operation.track_processed_dossier(true, dossier_2)
+        batch_operation.finalize_if_complete!
         batch_operation.reload
       }
 
@@ -663,6 +683,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
          batch_operation.track_processed_dossier(true, dossier)
          batch_operation.track_processed_dossier(true, dossier_2)
+         batch_operation.finalize_if_complete!
          batch_operation.reload
        }
 
@@ -678,6 +699,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
         batch_operation.track_processed_dossier(false, dossier)
         batch_operation.track_processed_dossier(true, dossier_2)
+        batch_operation.finalize_if_complete!
         batch_operation.reload
       }
 
@@ -723,6 +745,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
          batch_operation.track_processed_dossier(true, dossier)
          batch_operation.track_processed_dossier(true, dossier_2)
+         batch_operation.finalize_if_complete!
          batch_operation.reload
        }
 
@@ -738,6 +761,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
         batch_operation.track_processed_dossier(false, dossier)
         batch_operation.track_processed_dossier(true, dossier_2)
+        batch_operation.finalize_if_complete!
         batch_operation.reload
       }
 
@@ -783,6 +807,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
          batch_operation.track_processed_dossier(true, dossier)
          batch_operation.track_processed_dossier(true, dossier_2)
+         batch_operation.finalize_if_complete!
          batch_operation.reload
        }
 
@@ -798,6 +823,7 @@ RSpec.describe Dossiers::BatchAlertComponent, type: :component do
       before {
         batch_operation.track_processed_dossier(false, dossier)
         batch_operation.track_processed_dossier(true, dossier_2)
+        batch_operation.finalize_if_complete!
         batch_operation.reload
       }
 

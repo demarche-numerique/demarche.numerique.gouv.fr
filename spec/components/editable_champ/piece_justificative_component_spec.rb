@@ -11,7 +11,7 @@ describe EditableChamp::PieceJustificativeComponent, type: :component do
     subject { component.max }
 
     context 'when champ is a piece_justificative with titre_identite nature' do
-      let(:types_de_champ_public) { [{ type: :piece_justificative, nature: 'TITRE_IDENTITE' }] }
+      let(:types_de_champ_public) { [{ type: :piece_justificative, nature: 'titre_identite' }] }
 
       it { is_expected.to eq(1) }
     end

@@ -45,6 +45,15 @@ Sentry.init do |config|
   end
 
   # config.excluded_exceptions += []
+
+  # Note: sentry-ruby's :graphql patch is intentionally NOT enabled here.
+  # It attaches GraphQL::Tracing::SentryTrace which wraps every field resolution
+  # with a span + clock_gettime calls. On large API V2 responses (tens of
+  # thousands of fields) this adds measurable request latency (cf. Skylight's
+  # NotificationsTrace probe, disabled in config/application.rb for the same
+  # reason). If enabling later via `config.enabled_patches << :graphql`, plan
+  # for a per-field-off custom trace (only execute_multiplex/execute_query).
+
   config.delayed_job.report_after_job_retries = false # don't wait for all attempts before reporting
 
   config.rails.active_job_report_on_retry_error = true # https://github.com/getsentry/sentry-ruby/pull/2617

@@ -59,7 +59,7 @@ RSpec.describe Attachment::FileInputComponent, type: :component do
   end
 
   context 'piece justificative nature titre_identite' do
-    let(:types_de_champ_public) { [{ type: :piece_justificative, nature: 'TITRE_IDENTITE' }] }
+    let(:types_de_champ_public) { [{ type: :piece_justificative, nature: 'titre_identite' }] }
 
     it 'sets accept to jpg/jpeg/png only' do
       expect(subject).to have_selector("input[accept*='image/jpeg']")

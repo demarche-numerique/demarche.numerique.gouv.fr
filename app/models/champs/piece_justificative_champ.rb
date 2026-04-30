@@ -33,7 +33,7 @@ class Champs::PieceJustificativeChamp < Champ
   def ocr_result
     return nil if !fetched? || value_json.nil?
 
-    if RIB?
+    if rib?
       RIB.new(value_json.dig('rib'))
     elsif justificatif_domicile?
       JustificatifDomicile.new(value_json)
@@ -43,7 +43,7 @@ class Champs::PieceJustificativeChamp < Champ
   private
 
   def fetch_external_data_later(wait: nil)
-    nil # the job is already enqueued by the ImageProcessorJob when the blob is attached
+    nil # the job is already enqueued by the BlobProcessorJob when the blob is attached
   end
 
   def ready_for_external_call?
@@ -67,10 +67,10 @@ class Champs::PieceJustificativeChamp < Champ
     allowed_types = nil
     max_size = nil
 
-    if type_de_champ.titre_identite_nature?
+    if type_de_champ.titre_identite?
       allowed_types = type_de_champ.allowed_content_types
       max_size = type_de_champ.max_file_size_bytes
-    elsif type_de_champ.RIB?
+    elsif type_de_champ.rib?
       allowed_types = type_de_champ.allowed_content_types
     elsif type_de_champ.pj_limit_formats? && type_de_champ.pj_format_families.present?
       allowed_types = type_de_champ.allowed_content_types

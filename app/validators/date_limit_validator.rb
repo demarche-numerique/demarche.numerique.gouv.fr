@@ -1,15 +1,28 @@
 # frozen_string_literal: true
 
 class DateLimitValidator < ActiveModel::Validator
+  BIRTHDATE_MIN = Date.new(1900, 1, 1)
+
   def validate(champ)
     date = safe_date(champ.value)
     return if date.nil?
 
-    validate_in_past(champ, date) if champ.type_de_champ.date_in_past?
-    validate_in_range(champ, date) if champ.type_de_champ.range_date?
+    if champ.type_de_champ.birthdate?
+      validate_birthdate(champ, date)
+    else
+      validate_in_past(champ, date) if champ.type_de_champ.date_in_past?
+      validate_in_range(champ, date) if champ.type_de_champ.range_date?
+    end
   end
 
   private
+
+  def validate_birthdate(champ, date)
+    if !(BIRTHDATE_MIN..Date.today).cover?(date)
+      # i18n-tasks-use t('errors.messages.invalid_birthdate')
+      champ.errors.add(:value, :invalid_birthdate)
+    end
+  end
 
   def validate_in_past(champ, date)
     if date >= Date.today

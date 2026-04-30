@@ -184,7 +184,7 @@ describe 'Instructing a dossier:', js: true do
     expect(page).to have_text(instructeur2.email)
   end
 
-  scenario 'A instructeur can send a dossier to several instructeurs', chrome: true do
+  scenario 'A instructeur can send a dossier to several instructeurs' do
     instructeur_2 = create(:instructeur)
     instructeur_3 = create(:instructeur)
     procedure.defaut_groupe_instructeur.instructeurs << [instructeur_2, instructeur_3]
@@ -200,8 +200,8 @@ describe 'Instructing a dossier:', js: true do
 
     click_on 'Personnes impliquées'
 
-    select_combobox('Emails', instructeur_2.email)
-    select_combobox('Emails', instructeur_3.email)
+    select_autocomplete('Emails', instructeur_2.email)
+    select_autocomplete('Emails', instructeur_3.email)
 
     click_on 'Envoyer'
 

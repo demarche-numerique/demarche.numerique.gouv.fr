@@ -36,7 +36,7 @@ class Champ < ApplicationRecord
     :description,
     :max_file_size_bytes,
     :allowed_content_types,
-    :titre_identite_nature?,
+    :titre_identite?,
     :pj_limit_formats?,
     :pj_format_families,
     :pj_auto_purge?,
@@ -66,6 +66,8 @@ class Champ < ApplicationRecord
     :max_number,
     :range_number,
     :range_number?,
+    :birthdate,
+    :birthdate?,
     :date_in_past,
     :date_in_past?,
     :range_date,
@@ -82,13 +84,13 @@ class Champ < ApplicationRecord
     :expression_reguliere,
     :expression_reguliere_exemple_text,
     :expression_reguliere_error_message,
-    :RIB?,
+    :rib?,
     :france_connect?,
     :justificatif_domicile?,
     to: :type_de_champ
 
   delegate(*TypeDeChamp.type_champs.values.map { "#{_1}?".to_sym }, to: :type_de_champ)
-  delegate :piece_justificative_or_titre_identite?, :any_drop_down_list?, to: :type_de_champ
+  delegate :any_drop_down_list?, to: :type_de_champ
 
   delegate :to_typed_id, :to_typed_id_for_query, to: :type_de_champ, prefix: true
 
@@ -337,7 +339,7 @@ class Champ < ApplicationRecord
     dossier.update_columns(attributes)
   end
 
-  def ocr_compatible? = RIB? || justificatif_domicile?
+  def ocr_compatible? = rib? || justificatif_domicile?
 
   class NotImplemented < ::StandardError
     def initialize(method)

@@ -20,10 +20,10 @@ development:
 
 test:
   <<: *default
-  database: tps_test
-  host: localhost
-  username: tps_test
-  password: tps_test
+  database: <%= ENV.fetch("DB_DATABASE_TEST", "tps_test") %>
+  host: <%= ENV.fetch("DB_HOST_TEST", "localhost") %>
+  username: <%= ENV.fetch("DB_USERNAME_TEST", "tps_test") %>
+  password: <%= ENV.fetch("DB_PASSWORD_TEST", "tps_test") %>
   port: <%= ENV["DB_PORT"] || 5432 %>
   # Workaround for https://github.com/ged/ruby-pg/issues/311
   gssencmode: disable

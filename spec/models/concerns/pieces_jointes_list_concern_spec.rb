@@ -12,7 +12,7 @@ describe PiecesJointesListConcern do
           { type: :piece_justificative, libelle: "pj1", stable_id: 910 },
           { type: :piece_justificative, libelle: "pj-cond", stable_id: 911, condition: ds_eq(champ_value(900), constant(1)) },
           { type: :repetition, libelle: "Répétition", stable_id: 920, children: [{ type: :piece_justificative, libelle: "pj2", stable_id: 921 }] },
-          { type: :titre_identite, libelle: "pj3", stable_id: 930 },
+          { type: :piece_justificative, nature: 'titre_identite', libelle: "pj3", stable_id: 930 },
         ]
       end
 

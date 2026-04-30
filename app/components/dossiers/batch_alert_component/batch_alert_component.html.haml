@@ -1,12 +1,10 @@
-.batch-alert-component{ data: !@batch.finished_at? ? { controller: "turbo-poll", turbo_poll_url_value: polling_batch_operation_instructeur_procedure_path(@procedure, batch: @batch), turbo_poll_interval_value: 2_000 } : {} }
+.batch-alert-component{ data: should_refresh? ? { controller: "turbo-poll", turbo_poll_url_value: polling_batch_operation_instructeur_procedure_path(@procedure, batch: @batch), turbo_poll_interval_value: 2_000 } : {} }
   .fr-mb-5v
     - if @batch.finished_at.present?
       = render Dsfr::AlertComponent.new(title: t(".title.finish"), state: (@batch.errors? ? :warning : :success), heading_level: 'h2', extra_class_names: 'fr-my-2w') do |c|
         - c.with_body do
           %p
             = t(".#{batch.operation}.finish.text_success", count: @batch.total_count, success_count: @batch.success_count)
-
-
     - else
       = render Dsfr::AlertComponent.new(title: t(".title.in_progress"), state: :info, heading_level: 'h2', extra_class_names: 'fr-my-2w') do |c|
         - c.with_body do

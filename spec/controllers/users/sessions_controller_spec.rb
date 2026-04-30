@@ -148,11 +148,11 @@ describe Users::SessionsController, type: :controller do
       expect(user.loged_in_with_france_connect.present?).to be_falsey
     end
 
-    context 'when user is connect with france connect particulier' do
+    context 'when user is connect with FranceConnect particulier' do
       let(:logged_in_with_france_connect) { true }
       let(:loged_in_with_france_connect) { User.loged_in_with_france_connects.fetch(:particulier) }
 
-      it 'redirect to france connect logout page' do
+      it 'redirect to FranceConnect logout page' do
         h = { id_token_hint: 'id_token', post_logout_redirect_uri: root_url, state: 'state' }
         expect(response).to redirect_to("#{FRANCE_CONNECT[:end_session_endpoint]}?#{h.to_query}")
 
@@ -166,7 +166,7 @@ describe Users::SessionsController, type: :controller do
       end
     end
 
-    context 'when user is not connect with france connect' do
+    context 'when user is not connect with FranceConnect' do
       it 'redirect to root page' do
         expect(response).to redirect_to(root_path)
       end
@@ -285,6 +285,25 @@ describe Users::SessionsController, type: :controller do
             expect(controller).to have_received(:send_login_token_or_bufferize)
           end
         end
+      end
+    end
+
+    context 'when a different instructeur is signed in than the one bound to the token' do
+      let(:link_instructeur) { create(:instructeur) }
+      let(:other_instructeur) { create(:instructeur) }
+      let!(:link_token) { link_instructeur.create_trusted_device_token }
+
+      before do
+        sign_in(other_instructeur.user)
+        allow_any_instance_of(TrustedDeviceToken).to receive(:token_valid?).and_return(true)
+      end
+
+      subject(:cross_instructeur_request) do
+        post :sign_in_by_link, params: { id: link_instructeur.id, jeton: link_token }
+      end
+
+      it 'does not mark the signed-in user email as verified using another instructeur token' do
+        expect { cross_instructeur_request }.not_to change { other_instructeur.user.reload.email_verified_at }
       end
     end
   end

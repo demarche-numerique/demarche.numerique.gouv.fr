@@ -118,6 +118,21 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       end
     end
 
+    context 'rejected if type changed and referentiel url involved' do
+      let(:params) do
+        default_params.deep_merge(type_de_champ: { type_champ: 'text', stable_id: third_coordinate.stable_id })
+      end
+
+      before do
+        allow_any_instance_of(ProcedureRevisionTypeDeChamp).to receive(:used_by_referentiel_urls?).and_return(true)
+      end
+
+      it do
+        is_expected.to have_http_status(:ok)
+        expect(flash.alert).to include("utilisé par un référentiel")
+      end
+    end
+
     context 'with a dropdown list with a referentiel' do
       let(:referentiel_file) { fixture_file_upload('spec/fixtures/files/modele-import-referentiel.csv', 'text/csv') }
       let(:drop_down_list_type_de_champ) do
@@ -380,6 +395,21 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         expect(flash.alert).to include("utilisé pour le routage")
       end
     end
+
+    context 'rejected if referentiel url involved' do
+      let(:params) do
+        { procedure_id: procedure.id, stable_id: third_coordinate.stable_id }
+      end
+
+      before do
+        allow_any_instance_of(ProcedureRevisionTypeDeChamp).to receive(:used_by_referentiel_urls?).and_return(true)
+      end
+
+      it do
+        is_expected.to have_http_status(:ok)
+        expect(flash.alert).to include("utilisé par un référentiel")
+      end
+    end
   end
 
   describe '#notice_explicative' do
@@ -423,21 +453,24 @@ describe Administrateurs::TypesDeChampController, type: :controller do
     let(:procedure) { create(:procedure, types_de_champ_public:) }
     let(:types_de_champ_public) { [{ type: :text, libelle: 'Ancien', stable_id: 123 }] }
     let(:rule) { LLMRuleSuggestion.rules.fetch('improve_label') }
+    let(:tunnel_id) { SecureRandom.hex(3) }
     let(:procedure_revision) { procedure.draft_revision }
     let(:schema_hash) { Digest::SHA256.hexdigest(procedure_revision.schema_to_llm.to_json) }
     before { Flipper.enable_actor(:llm_nightly_improve_procedure, procedure) }
-    subject { get :simplify, params: { procedure_id: procedure.id, rule: llm_rule_suggestion.rule } }
+    subject { get :simplify, params: { procedure_id: procedure.id, tunnel_id:, rule: llm_rule_suggestion.rule } }
 
     context 'without LLM Suggestion' do
+      # Create a suggestion for a different rule to establish the tunnel
+      let!(:tunnel_seed) { create(:llm_rule_suggestion, procedure_revision:, tunnel_id:, rule: 'improve_structure', state: 'accepted', schema_hash:) }
       let(:llm_rule_suggestion) { double(rule:) }
       it 'builds a new LLMRuleSuggestion when none exists' do
         expect(subject).to have_http_status(:ok)
-        expect(assigns(:llm_rule_suggestion)).to an_instance_of(LLMRuleSuggestion)
+        expect(assigns(:llm_rule_suggestion)).to be_an_instance_of(LLMRuleSuggestion)
       end
     end
 
     context 'with queued suggestion' do
-      let(:llm_rule_suggestion) { create(:llm_rule_suggestion, procedure_revision:, schema_hash:, state: 'queued', rule: rule) }
+      let(:llm_rule_suggestion) { create(:llm_rule_suggestion, procedure_revision:, tunnel_id:, schema_hash:, state: 'queued', rule: rule) }
 
       it 'renders' do
         expect(subject).to have_http_status(:ok)
@@ -445,14 +478,14 @@ describe Administrateurs::TypesDeChampController, type: :controller do
     end
 
     context 'with running llm suggestion' do
-      let(:llm_rule_suggestion) { create(:llm_rule_suggestion, procedure_revision:, schema_hash:, state: 'running', rule: rule) }
+      let(:llm_rule_suggestion) { create(:llm_rule_suggestion, procedure_revision:, tunnel_id:, schema_hash:, state: 'running', rule: rule) }
       it 'renders' do
         expect(subject).to have_http_status(:ok)
       end
     end
 
     context 'with existing ready suggestion' do
-      let(:llm_rule_suggestion) { create(:llm_rule_suggestion, procedure_revision:, schema_hash:, state: 'completed', rule: rule) }
+      let(:llm_rule_suggestion) { create(:llm_rule_suggestion, procedure_revision:, tunnel_id:, schema_hash:, state: 'completed', rule: rule) }
 
       it 'assigns label suggestions from stored LLMRuleSuggestion items' do
         expect(subject).to have_http_status(:ok)
@@ -461,31 +494,31 @@ describe Administrateurs::TypesDeChampController, type: :controller do
     end
 
     context 'with accepted suggestion' do
-      let(:llm_rule_suggestion) { create(:llm_rule_suggestion, procedure_revision:, schema_hash:, state: 'accepted', rule: rule) }
+      let(:llm_rule_suggestion) { create(:llm_rule_suggestion, procedure_revision:, tunnel_id:, schema_hash:, state: 'accepted', rule: rule) }
 
-      it 'redirects to next rule' do
-        expect(subject).to redirect_to(simplify_admin_procedure_types_de_champ_path(procedure, rule: LLM::Rule.next_rule(llm_rule_suggestion.rule)))
+      it 'redirects to next step when visiting accepted suggestion' do
+        expect(subject).to redirect_to(simplify_admin_procedure_types_de_champ_path(procedure, tunnel_id:, rule: LLM::Rule.next_rule(rule)))
       end
     end
 
     context 'when accepted suggestion is the last one, render the form' do
-      let!(:first_accepted_rule) { create(:llm_rule_suggestion, procedure_revision:, schema_hash:, state: 'accepted', rule: LLMRuleSuggestion.rules.keys.first, created_at: 1.minute.ago) }
-      let(:llm_rule_suggestion) { create(:llm_rule_suggestion, procedure_revision:, schema_hash:, state: 'accepted', rule: LLMRuleSuggestion.rules.keys.last) }
+      let!(:first_accepted_rule) { create(:llm_rule_suggestion, procedure_revision:, tunnel_id:, schema_hash:, state: 'accepted', rule: LLMRuleSuggestion.rules.keys.first, created_at: 1.minute.ago) }
+      let(:llm_rule_suggestion) { create(:llm_rule_suggestion, procedure_revision:, tunnel_id:, schema_hash:, state: 'accepted', rule: LLMRuleSuggestion.rules.keys.last) }
 
       it 'renders the procedure form' do
         expect(subject).to have_http_status(:ok)
       end
     end
 
-    context 'when tunnel completed, can re-render first rule' do
-      let!(:first_accepted_rule) { create(:llm_rule_suggestion, procedure_revision:, schema_hash:, state: 'accepted', rule: LLMRuleSuggestion.rules.keys.first, created_at: 2.minutes.ago) }
-      let!(:last_rule_suggestion) { create(:llm_rule_suggestion, procedure_revision:, schema_hash:, state: 'accepted', rule: LLMRuleSuggestion.rules.keys.last, created_at: 1.minute.ago) }
+    context 'when tunnel completed, visiting an accepted step' do
+      let!(:first_accepted_rule) { create(:llm_rule_suggestion, procedure_revision:, tunnel_id:, schema_hash:, state: 'accepted', rule: LLMRuleSuggestion.rules.keys.first, created_at: 2.minutes.ago) }
+      let!(:last_rule_suggestion) { create(:llm_rule_suggestion, procedure_revision:, tunnel_id:, schema_hash:, state: 'accepted', rule: LLMRuleSuggestion.rules.keys.last, created_at: 1.minute.ago) }
       let(:rule) { LLMRuleSuggestion.rules.fetch('improve_label') }
-      let(:llm_rule_suggestion) { double(rule:) }
+      subject { get :simplify, params: { procedure_id: procedure.id, tunnel_id:, rule: } }
 
-      it 'builds a new LLMRuleSuggestion when none exists' do
-        expect(subject).to have_http_status(:ok)
-        expect(assigns(:llm_rule_suggestion)).to an_instance_of(LLMRuleSuggestion)
+      it 'redirects to last step when visiting first accepted step' do
+        subject
+        expect(response).to redirect_to(simplify_admin_procedure_types_de_champ_path(procedure, tunnel_id:, rule: LLMRuleSuggestion.rules.keys.last))
       end
     end
   end
@@ -493,37 +526,48 @@ describe Administrateurs::TypesDeChampController, type: :controller do
   describe '#enqueue_simplify' do
     let(:procedure) { create(:procedure, :published) }
     let(:schema_hash) { Digest::SHA256.hexdigest(procedure.draft_revision.schema_to_llm.to_json) }
+    let(:tunnel_id) { SecureRandom.hex(3) }
 
-    before { Flipper.enable_actor(:llm_nightly_improve_procedure, procedure) }
+    before {
+      Flipper.enable_actor(:llm_nightly_improve_procedure, procedure)
+      # Create a suggestion with different rule in the tunnel so ensure_valid_tunnel passes
+      # This simulates that the tunnel already exists from a previous step
+      create(:llm_rule_suggestion,
+        procedure_revision: procedure.draft_revision,
+        tunnel_id:,
+        rule: LLMRuleSuggestion.rules.fetch('improve_structure'),
+        state: 'accepted',
+        schema_hash:)
+    }
     let(:rule) { LLMRuleSuggestion.rules.fetch('improve_label') }
-    subject { post :enqueue_simplify, params: { procedure_id: procedure.id, rule: } }
+    subject { post :enqueue_simplify, params: { procedure_id: procedure.id, tunnel_id:, rule: } }
 
     it 'enqueues the improve procedure job when no analysis is running' do
-      expect(LLM::ImproveProcedureJob).to receive(:perform_now).with(procedure, rule, action: 'enqueue_simplify', user_id: procedure.administrateurs.first.user.id)
+      expect(LLM::ImproveProcedureJob).to receive(:perform_now).with(procedure, tunnel_id, rule, action: 'enqueue_simplify', user_id: procedure.administrateurs.first.user.id)
 
-      expect(subject).to redirect_to(simplify_admin_procedure_types_de_champ_path(procedure, rule:))
+      expect(subject).to redirect_to(simplify_admin_procedure_types_de_champ_path(procedure, tunnel_id:, rule:))
       expect(flash[:notice]).to be_present
     end
 
     it 'does not enqueue when analysis already running' do
-      create(:llm_rule_suggestion, procedure_revision: procedure.draft_revision, rule:, state: 'queued', schema_hash:)
-      expect(LLM::ImproveProcedureJob).not_to receive(:perform_now).with(procedure, rule, action: 'enqueue_simplify', user_id: procedure.administrateurs.first.user.id)
+      create(:llm_rule_suggestion, procedure_revision: procedure.draft_revision, tunnel_id:, rule:, state: 'queued', schema_hash:)
+      expect(LLM::ImproveProcedureJob).not_to receive(:perform_now)
 
-      expect(subject).to redirect_to(simplify_admin_procedure_types_de_champ_path(procedure, rule:))
+      expect(subject).to redirect_to(simplify_admin_procedure_types_de_champ_path(procedure, tunnel_id:, rule:))
       expect(flash[:notice]).to eq('Une recherche est déjà en cours pour cette règle.')
     end
 
     it 'does not enqueue when feature disabled' do
       Flipper.disable_actor(:llm_nightly_improve_procedure, procedure)
-      expect(LLM::ImproveProcedureJob).not_to receive(:perform_now).with(procedure, rule, action: 'enqueue_simplify', user_id: procedure.administrateurs.first.user.id)
+      expect(LLM::ImproveProcedureJob).not_to receive(:perform_now)
 
       expect(subject).to redirect_to(admin_procedure_path(procedure))
       expect(flash[:alert]).to eq('Les appels aux modèles de langage ne sont pas activés pour cette procédure.')
     end
 
     it 're-enqueues after a failure' do
-      create(:llm_rule_suggestion, procedure_revision: procedure.draft_revision, rule:, state: 'failed', schema_hash:)
-      expect(LLM::ImproveProcedureJob).to receive(:perform_now).with(procedure, rule, action: 'enqueue_simplify', user_id: procedure.administrateurs.first.user.id)
+      create(:llm_rule_suggestion, procedure_revision: procedure.draft_revision, tunnel_id:, rule:, state: 'failed', schema_hash:)
+      expect(LLM::ImproveProcedureJob).to receive(:perform_now).with(procedure, tunnel_id, rule, action: 'enqueue_simplify', user_id: procedure.administrateurs.first.user.id)
 
       subject
 
@@ -539,11 +583,14 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         { type: :text, libelle: 'B' },
       ]
     end
+    let(:tunnel_id) { SecureRandom.hex(3) }
     before { Flipper.enable_actor(:llm_nightly_improve_procedure, procedure) }
     subject do
       post :accept_simplification, params: {
         procedure_id: procedure.id,
-        llm_suggestion_rule_id: suggestion.id,
+        tunnel_id:,
+        rule: suggestion.rule,
+        id: suggestion.id,
         llm_rule_suggestion: {
           llm_rule_suggestion_items_attributes: {
             "0" => { id: accepted_suggestion_item.id, verify_status: 'accepted' },
@@ -552,13 +599,13 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         },
       }
     end
-    let(:suggestion) { create(:llm_rule_suggestion, procedure_revision: procedure.draft_revision, rule: 'improve_label', state: 'completed', schema_hash: Digest::SHA256.hexdigest(procedure.published_revision.schema_to_llm.to_json)) }
+    let(:suggestion) { create(:llm_rule_suggestion, procedure_revision: procedure.draft_revision, tunnel_id:, rule: 'improve_label', state: 'completed', schema_hash: Digest::SHA256.hexdigest(procedure.published_revision.schema_to_llm.to_json)) }
     let(:accepted_suggestion_item) { create(:llm_rule_suggestion_item, llm_rule_suggestion: suggestion, op_kind: 'update', stable_id: 123, payload: { 'stable_id' => 123, 'libelle' => 'Nouveau' }, justification: 'clarity') }
     let(:skipped_suggestion_item) { create(:llm_rule_suggestion_item, llm_rule_suggestion: suggestion, op_kind: 'update', stable_id: 123, payload: { 'stable_id' => 123, 'libelle' => 'Nouveau' }, justification: 'clarity') }
 
     it 'applies only selected operations from posted changes_json' do
       expect { subject }.to change { suggestion.reload.state }.from('completed').to('accepted')
-      expect(response).to redirect_to(simplify_admin_procedure_types_de_champ_path(procedure, rule: 'improve_structure'))
+      expect(response).to redirect_to(simplify_admin_procedure_types_de_champ_path(procedure, tunnel_id:, rule: 'improve_structure'))
 
       libelles = procedure.draft_revision.reload.types_de_champ_public.map(&:libelle)
       expect(libelles).to include('Nouveau')
@@ -577,13 +624,15 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       subject do
         post :accept_simplification, params: {
           procedure_id: procedure.id,
-          llm_suggestion_rule_id: suggestion.id,
+          tunnel_id:,
+          rule: suggestion.rule,
+          id: suggestion.id,
         }
       end
 
       it 'transitions state from completed to skipped and redirect' do
         expect { subject }.to change { suggestion.reload.state }.from('completed').to('skipped')
-        expect(response).to redirect_to(simplify_admin_procedure_types_de_champ_path(procedure, rule: 'improve_structure'))
+        expect(response).to redirect_to(simplify_admin_procedure_types_de_champ_path(procedure, tunnel_id:, rule: 'improve_structure'))
       end
     end
 
@@ -591,23 +640,25 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       let(:initial_schema_hash) { Digest::SHA256.hexdigest(procedure.draft_revision.schema_to_llm.to_json) }
 
       # Create all 4 suggestions for the tunnel
-      let!(:step1) { create(:llm_rule_suggestion, procedure_revision: procedure.draft_revision, rule: 'improve_label', state: 'accepted', schema_hash: initial_schema_hash) }
-      let!(:step2) { create(:llm_rule_suggestion, procedure_revision: procedure.draft_revision, rule: 'improve_structure', state: 'accepted', schema_hash: initial_schema_hash) }
-      let!(:step3) { create(:llm_rule_suggestion, procedure_revision: procedure.draft_revision, rule: 'improve_types', state: 'accepted', schema_hash: initial_schema_hash) }
-      let(:suggestion) { create(:llm_rule_suggestion, procedure_revision: procedure.draft_revision, rule: 'cleaner', state: 'completed', schema_hash: initial_schema_hash) }
+      let!(:step1) { create(:llm_rule_suggestion, procedure_revision: procedure.draft_revision, tunnel_id:, rule: 'improve_label', state: 'accepted', schema_hash: initial_schema_hash) }
+      let!(:step2) { create(:llm_rule_suggestion, procedure_revision: procedure.draft_revision, tunnel_id:, rule: 'improve_structure', state: 'accepted', schema_hash: initial_schema_hash) }
+      let!(:step3) { create(:llm_rule_suggestion, procedure_revision: procedure.draft_revision, tunnel_id:, rule: 'improve_types', state: 'accepted', schema_hash: initial_schema_hash) }
+      let(:suggestion) { create(:llm_rule_suggestion, procedure_revision: procedure.draft_revision, tunnel_id:, rule: 'cleaner', state: 'completed', schema_hash: initial_schema_hash) }
       let(:accepted_suggestion_item) { nil }
       let(:skipped_suggestion_item) { nil }
 
       subject do
         post :accept_simplification, params: {
           procedure_id: procedure.id,
-          llm_suggestion_rule_id: suggestion.id,
+          tunnel_id:,
+          rule: suggestion.rule,
+          id: suggestion.id,
         }
       end
 
-      it 'redirects to champs page with completion message' do
+      it 'redirects to cleaner page with completion message' do
         expect { subject }.to change { suggestion.reload.state }.from('completed').to('skipped')
-        expect(response).to redirect_to(simplify_admin_procedure_types_de_champ_path(procedure, rule: LLMRuleSuggestion.rules.keys.last))
+        expect(response).to redirect_to(simplify_admin_procedure_types_de_champ_path(procedure, tunnel_id:, rule: 'cleaner'))
         expect(flash[:notice]).to include("Toutes les suggestions ont été examinées")
       end
     end
@@ -617,6 +668,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
     let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :text, libelle: 'Champ A', stable_id: 100 }]) }
     let(:draft) { procedure.draft_revision }
     let(:initial_schema_hash) { Digest::SHA256.hexdigest(draft.schema_to_llm.to_json) }
+    let(:tunnel_id) { SecureRandom.hex(3) }
 
     before { Flipper.enable_actor(:llm_nightly_improve_procedure, procedure) }
 
@@ -629,10 +681,12 @@ describe Administrateurs::TypesDeChampController, type: :controller do
     end
 
     describe '#simplify tunnel continuation' do
+      # OBSOLETE: Schema change mid-tunnel no longer triggers automatic suggestion renewal
       context 'when schema changes mid-tunnel after accepting step 1' do
         let!(:step1_suggestion) do
           create(:llm_rule_suggestion,
             procedure_revision: draft,
+            tunnel_id:,
             rule: 'improve_label',
             state: 'accepted',
             schema_hash: initial_schema_hash)
@@ -641,15 +695,16 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         before { change_schema! }
 
         it 'allows accessing step 2 after schema changed' do
-          get :simplify, params: { procedure_id: procedure.id, rule: 'improve_structure' }
+          get :simplify, params: { procedure_id: procedure.id, tunnel_id:, rule: 'improve_structure' }
 
           expect(response).to have_http_status(:ok)
           expect(assigns(:llm_rule_suggestion)).not_to be_persisted
+          expect(assigns(:llm_rule_suggestion).schema_hash).to eq(current_schema_hash)
         end
 
         it 'creates step 2 suggestion with new schema_hash' do
           expect {
-            post :enqueue_simplify, params: { procedure_id: procedure.id, rule: 'improve_structure' }
+            post :enqueue_simplify, params: { procedure_id: procedure.id, tunnel_id:, rule: 'improve_structure' }
           }.to change(LLMRuleSuggestion, :count).by(1)
 
           new_suggestion = LLMRuleSuggestion.last
@@ -657,10 +712,11 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         end
       end
 
-      context 'when accessing cleaner (last step) while tunnel is in progress' do
+      context 'when accessing cleaner (last step) while tunnel is in progress and schema changed' do
         let!(:step1_suggestion) do
           create(:llm_rule_suggestion,
             procedure_revision: draft,
+            tunnel_id:,
             rule: 'improve_label',
             state: 'accepted',
             schema_hash: initial_schema_hash)
@@ -668,6 +724,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         let!(:step2_suggestion) do
           create(:llm_rule_suggestion,
             procedure_revision: draft,
+            tunnel_id:,
             rule: 'improve_structure',
             state: 'accepted',
             schema_hash: initial_schema_hash)
@@ -675,6 +732,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         let!(:step3_suggestion) do
           create(:llm_rule_suggestion,
             procedure_revision: draft,
+            tunnel_id:,
             rule: 'improve_types',
             state: 'accepted',
             schema_hash: initial_schema_hash)
@@ -682,6 +740,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         let!(:cleaner_suggestion) do
           create(:llm_rule_suggestion,
             procedure_revision: draft,
+            tunnel_id:,
             rule: 'cleaner',
             state: 'completed',
             schema_hash: initial_schema_hash)
@@ -690,7 +749,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         before { change_schema! }
 
         it 'allows accessing cleaner step (tunnel not finished yet)' do
-          get :simplify, params: { procedure_id: procedure.id, rule: 'cleaner' }
+          get :simplify, params: { procedure_id: procedure.id, tunnel_id:, rule: 'cleaner' }
 
           expect(response).to have_http_status(:ok)
           expect(assigns(:llm_rule_suggestion)).not_to be_persisted
@@ -699,12 +758,13 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       end
     end
 
-    describe '#simplify tunnel restart' do
+    describe '#simplify tunnel restart when schema changed' do
       context 'when tunnel is complete and schema has changed' do
         let!(:suggestions) do
           LLMRuleSuggestion::RULE_SEQUENCE.map do |rule|
             create(:llm_rule_suggestion,
               procedure_revision: draft,
+              tunnel_id:,
               rule: rule,
               state: 'accepted',
               schema_hash: initial_schema_hash)
@@ -714,20 +774,11 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         before { change_schema! }
 
         it 'allows starting a new tunnel on step 1' do
-          get :simplify, params: { procedure_id: procedure.id, rule: 'improve_label' }
+          get :simplify, params: { procedure_id: procedure.id, tunnel_id:, rule: 'improve_label' }
 
           expect(response).to have_http_status(:ok)
           expect(assigns(:llm_rule_suggestion)).not_to be_persisted
-        end
-
-        it 'creates new suggestion with current schema_hash for new tunnel' do
-          expect {
-            post :enqueue_simplify, params: { procedure_id: procedure.id, rule: 'improve_label' }
-          }.to change(LLMRuleSuggestion, :count).by(1)
-
-          new_suggestion = LLMRuleSuggestion.last
-          expect(new_suggestion.schema_hash).to eq(current_schema_hash)
-          expect(new_suggestion.schema_hash).not_to eq(initial_schema_hash)
+          expect(assigns(:llm_rule_suggestion).schema_hash).to eq(current_schema_hash)
         end
       end
     end
@@ -738,21 +789,23 @@ describe Administrateurs::TypesDeChampController, type: :controller do
           LLMRuleSuggestion::RULE_SEQUENCE.map do |rule|
             create(:llm_rule_suggestion,
               procedure_revision: draft,
+              tunnel_id:,
               rule: rule,
               state: 'accepted',
               schema_hash: initial_schema_hash)
           end
         end
 
-        it 'redirects to next step when visiting step 1 (already finished)' do
-          get :simplify, params: { procedure_id: procedure.id, rule: 'improve_label' }
+        it 'redirects to last step (cleaner) when visiting step 1 (already finished)' do
+          get :simplify, params: { procedure_id: procedure.id, tunnel_id:, rule: 'improve_label' }
 
-          expect(response).to have_http_status(:ok)
+          # Devrait rediriger vers cleaner (dernière étape)
+          expect(response).to redirect_to(simplify_admin_procedure_types_de_champ_path(procedure, tunnel_id:, rule: 'cleaner'))
         end
 
         it 'does not create new suggestion when enqueuing step 1 (job detects duplicate)' do
           expect {
-            post :enqueue_simplify, params: { procedure_id: procedure.id, rule: 'improve_label' }
+            post :enqueue_simplify, params: { procedure_id: procedure.id, tunnel_id:, rule: 'improve_label' }
           }.not_to change(LLMRuleSuggestion, :count)
 
           # Note: Controller triggers the job but job returns early when it detects existing suggestion
@@ -766,6 +819,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
     let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :text, libelle: 'Champ A', stable_id: 100 }]) }
     let(:draft) { procedure.draft_revision }
     let(:initial_schema_hash) { Digest::SHA256.hexdigest(draft.schema_to_llm.to_json) }
+    let(:tunnel_id) { SecureRandom.hex(3) }
 
     before { Flipper.enable_actor(:llm_nightly_improve_procedure, procedure) }
 
@@ -782,6 +836,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         let!(:step1_suggestion) do
           create(:llm_rule_suggestion,
             procedure_revision: draft,
+            tunnel_id:,
             rule: 'improve_label',
             state: 'accepted',
             schema_hash: initial_schema_hash)
@@ -790,23 +845,28 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         before { change_schema! }
 
         it 'allows accessing step 2 after schema changed' do
-          get :simplify, params: { procedure_id: procedure.id, rule: 'improve_structure' }
+          get :simplify, params: { procedure_id: procedure.id, tunnel_id:, rule: 'improve_structure' }
 
           expect(response).to have_http_status(:ok)
           expect(assigns(:llm_rule_suggestion)).not_to be_persisted
+          expect(assigns(:llm_rule_suggestion).schema_hash).to eq(current_schema_hash)
         end
 
-        it 'creates step 2 suggestion with original tunnel schema_hash' do
+        it 'creates step 2 suggestion with current schema_hash' do
           expect {
-            post :enqueue_simplify, params: { procedure_id: procedure.id, rule: 'improve_structure' }
+            post :enqueue_simplify, params: { procedure_id: procedure.id, tunnel_id:, rule: 'improve_structure' }
           }.to change(LLMRuleSuggestion, :count).by(1)
+
+          new_suggestion = LLMRuleSuggestion.last
+          expect(new_suggestion.schema_hash).to eq(current_schema_hash)
         end
       end
 
-      context 'when accessing cleaner (last step) while tunnel is in progress' do
+      context 'when accessing cleaner (last step) while tunnel is in progress and schema changed' do
         let!(:step1_suggestion) do
           create(:llm_rule_suggestion,
             procedure_revision: draft,
+            tunnel_id:,
             rule: 'improve_label',
             state: 'accepted',
             schema_hash: initial_schema_hash,
@@ -815,6 +875,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         let!(:step2_suggestion) do
           create(:llm_rule_suggestion,
             procedure_revision: draft,
+            tunnel_id:,
             rule: 'improve_structure',
             state: 'accepted',
             schema_hash: initial_schema_hash + "2",
@@ -823,6 +884,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         let!(:step3_suggestion) do
           create(:llm_rule_suggestion,
             procedure_revision: draft,
+            tunnel_id:,
             rule: 'improve_types',
             state: 'accepted',
             schema_hash: initial_schema_hash + "3",
@@ -831,6 +893,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         let!(:cleaner_suggestion) do
           create(:llm_rule_suggestion,
             procedure_revision: draft,
+            tunnel_id:,
             rule: 'cleaner',
             state: 'completed',
             schema_hash: initial_schema_hash + "4")
@@ -839,21 +902,23 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         before { change_schema! }
 
         it 'allows accessing cleaner step (tunnel not finished yet) and renew suggestion' do
-          get :simplify, params: { procedure_id: procedure.id, rule: 'cleaner' }
+          get :simplify, params: { procedure_id: procedure.id, tunnel_id:, rule: 'cleaner' }
 
           expect(response).to have_http_status(:ok)
           expect(assigns(:llm_rule_suggestion)).not_to be_persisted
+          expect(assigns(:llm_rule_suggestion).schema_hash).to eq(current_schema_hash)
           expect(assigns(:llm_rule_suggestion)).not_to eq(cleaner_suggestion)
         end
       end
     end
 
-    describe '#simplify tunnel restart' do
+    describe '#simplify tunnel restart when schema changed (duplicate test)' do
       context 'when tunnel is complete and schema has changed' do
         let!(:suggestions) do
           LLMRuleSuggestion::RULE_SEQUENCE.map do |rule|
             create(:llm_rule_suggestion,
               procedure_revision: draft,
+              tunnel_id:,
               rule: rule,
               state: 'accepted',
               schema_hash: initial_schema_hash)
@@ -863,39 +928,24 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         before { change_schema! }
 
         it 'allows starting a new tunnel on step 1' do
-          get :simplify, params: { procedure_id: procedure.id, rule: 'improve_label' }
+          get :simplify, params: { procedure_id: procedure.id, tunnel_id:, rule: 'improve_label' }
 
           expect(response).to have_http_status(:ok)
           expect(assigns(:llm_rule_suggestion).rule).to eq('improve_label')
+          expect(assigns(:llm_rule_suggestion).schema_hash).to eq(current_schema_hash)
           expect(response).not_to be_redirect
         end
       end
     end
 
     describe '#simplify' do
-      context 'when tunnel is complete' do
-        let!(:suggestions) do
-          LLMRuleSuggestion::RULE_SEQUENCE.reverse.map.with_index do |rule, index|
-            create(:llm_rule_suggestion,
-              procedure_revision: draft,
-              rule: rule,
-              state: 'accepted',
-              schema_hash: initial_schema_hash,
-              created_at: (index + 1).minutes.ago)
-          end
-        end
-
-        it 'allows access to first step (already finished)' do
-          get :simplify, params: { procedure_id: procedure.id, rule: 'improve_label' }
-
-          expect(response).to have_http_status(:ok)
-        end
-      end
+      # Groupe 8: Tunnel en cours (steps 1-3 accepted), visite step 1 → redirige vers cleaner
       context 'when tunnel is ongoing' do
         let!(:suggestions) do
           LLMRuleSuggestion::RULE_SEQUENCE.take(3).reverse.map.with_index do |rule, index|
             create(:llm_rule_suggestion,
               procedure_revision: draft,
+              tunnel_id:,
               rule: rule,
               state: 'accepted',
               schema_hash: initial_schema_hash,
@@ -904,9 +954,9 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         end
 
         it 'redirects from first step (already finished) to next incomplete step' do
-          get :simplify, params: { procedure_id: procedure.id, rule: 'improve_label' }
+          get :simplify, params: { procedure_id: procedure.id, tunnel_id:, rule: 'improve_label' }
 
-          expect(response).to redirect_to(simplify_admin_procedure_types_de_champ_path(procedure, rule: 'cleaner'))
+          expect(response).to redirect_to(simplify_admin_procedure_types_de_champ_path(procedure, tunnel_id:, rule: 'cleaner'))
         end
       end
     end

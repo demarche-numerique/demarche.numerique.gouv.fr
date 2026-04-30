@@ -1,3 +1,6 @@
 ---
 fr:
   title: Avis externes
+  subtitle: Gérer les avis des experts
+  configured: Validé
+  unconfigured: À configurer

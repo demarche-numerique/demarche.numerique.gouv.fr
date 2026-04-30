@@ -76,3 +76,10 @@ en:
       contact:
         label: Contact
       display_params: Display params
+    main_navigation:
+      doc:
+        label: Documentation
+        user_title: User documentation
+        admin_title: Administrator documentation
+        instructeur_title: Instructor documentation
+        expert_title: Expert documentation

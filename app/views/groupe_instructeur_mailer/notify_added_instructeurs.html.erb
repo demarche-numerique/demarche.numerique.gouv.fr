@@ -1,0 +1,17 @@
+<% content_for(:title, t(".title")) %>
+
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<p>
+  <%= t(".email_body.html",
+      count: @group.procedure.groupe_instructeurs.count,
+      groupe: @group.label,
+      email: @current_instructeur_email,
+      procedure: @group.procedure.libelle) %>
+</p>
+
+<p>
+  <%= dsfr_button(t(".access_button"), instructeur_procedure_url(@group.procedure), :primary) %>
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>

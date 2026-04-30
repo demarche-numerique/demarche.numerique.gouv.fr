@@ -1,0 +1,28 @@
+<%= render component %>
+
+<%# Error states are normally triggered by the Stimulus autosave-status controller
+    in response to autosave:error events. Since we can't simulate real autosave failures
+    in a static preview, we use a script to manually clone the appropriate error template
+    and display it in the failed target, mimicking what the controller does. %>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tpl = document.querySelector('template[data-autosave-status-target="<%= error_type %>ErrorTemplate"]');
+    const failed = document.querySelector('[data-autosave-status-target="failed"]');
+    const idle = document.querySelector('[data-autosave-status-target="idle"]');
+
+    if (!tpl || !failed || !idle) return;
+
+    idle.classList.add('fr-hidden');
+    failed.classList.remove('fr-hidden');
+
+    const content = tpl.content.cloneNode(true);
+    const errorId = content.querySelector('[data-error-id]');
+    if (errorId) {
+      const format = errorId.dataset.errorFormat || '(%{id})';
+      errorId.textContent = format.replace('%{id}', 'a1b2c3d4-e5f6-7890-abcd-ef1234567890');
+    }
+
+    failed.innerHTML = '';
+    failed.appendChild(content);
+  });
+</script>

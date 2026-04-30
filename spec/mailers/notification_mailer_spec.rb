@@ -11,7 +11,7 @@ RSpec.describe NotificationMailer, type: :mailer do
     subject { described_class.send_notification_for_tiers(dossier_for_tiers) }
 
     it 'verifies email subject, recipient, and body content for updated dossier by mandataire' do
-      expect(subject.subject).to include("Votre dossier rempli par le mandataire #{dossier_for_tiers.mandataire_first_name} #{dossier_for_tiers.mandataire_last_name} a été mis à jour")
+      expect(subject.subject).to include(I18n.t("notification_mailer.send_notification_for_tiers.subject", first_name: dossier_for_tiers.mandataire_first_name, last_name: dossier_for_tiers.mandataire_last_name))
       expect(subject.to).to eq([dossier_for_tiers.individual.email])
       expect(subject.body).to include("a été déposé le")
       expect(subject.body).to include("Pour en savoir plus, veuillez vous rapprocher de\r\n<a href=\"mailto:#{dossier_for_tiers.user.email}\">#{dossier_for_tiers.user.email}</a>.")
@@ -24,7 +24,7 @@ RSpec.describe NotificationMailer, type: :mailer do
     subject { described_class.send_notification_for_tiers(dossier_for_tiers, repasser_en_instruction: true) }
 
     it 'verifies email subject, recipient, and body content for dossier re-examination notification' do
-      expect(subject.subject).to include("Votre dossier rempli par le mandataire #{dossier_for_tiers.mandataire_first_name} #{dossier_for_tiers.mandataire_last_name} a été mis à jour")
+      expect(subject.subject).to include(I18n.t("notification_mailer.send_notification_for_tiers.subject", first_name: dossier_for_tiers.mandataire_first_name, last_name: dossier_for_tiers.mandataire_last_name))
       expect(subject.to).to eq([dossier_for_tiers.individual.email])
       expect(subject.body).to include("va être réexaminé, la précédente décision sur ce dossier est caduque.")
       expect(subject.body).to include("Pour en savoir plus, veuillez vous rapprocher de\r\n<a href=\"mailto:#{dossier_for_tiers.user.email}\">#{dossier_for_tiers.user.email}</a>.")
@@ -37,7 +37,7 @@ RSpec.describe NotificationMailer, type: :mailer do
     subject { described_class.send_notification_for_tiers(dossier_for_tiers) }
 
     it 'sends proper notification for tiers with correct subject, recipient, and body content' do
-      expect(subject.subject).to include("Votre dossier rempli par le mandataire #{dossier_for_tiers.mandataire_first_name} #{dossier_for_tiers.mandataire_last_name} a été mis à jour")
+      expect(subject.subject).to include(I18n.t("notification_mailer.send_notification_for_tiers.subject", first_name: dossier_for_tiers.mandataire_first_name, last_name: dossier_for_tiers.mandataire_last_name))
       expect(subject.to).to eq([dossier_for_tiers.individual.email])
       expect(subject.body).to include("a été traité le")
       expect(subject.body).to include("Pour en savoir plus, veuillez vous rapprocher de\r\n<a href=\"mailto:#{dossier_for_tiers.user.email}\">#{dossier_for_tiers.user.email}</a>.")
@@ -49,13 +49,15 @@ RSpec.describe NotificationMailer, type: :mailer do
     subject { described_class.send_accuse_lecture_notification(dossier) }
 
     it "works" do
-      expect(subject.subject).to include("La décision a été rendue pour votre dossier n°#{dossier.id} (#{dossier.procedure.libelle})")
+      expect(subject.subject).to include(I18n.t("notification_mailer.send_accuse_lecture_notification.subject", dossier_id: dossier.id, libelle: dossier.procedure.libelle))
       expect(subject.body).to include("Pour en connaitre la nature, veuillez consulter votre dossier dans votre compte #{APPLICATION_NAME}")
       expect(subject.body).to have_link("Consulter mon dossier", href: dossier_url(dossier))
     end
   end
 
   describe 'send_en_construction_notification' do
+    before { stub_request(:post, WEASYPRINT_URL).to_return(body: '%PDF-1.4 fake') }
+
     let(:dossier) { create(:dossier, :en_construction, :with_individual, user: user, procedure:) }
 
     subject(:mail) { described_class.send_en_construction_notification(dossier) }

@@ -51,7 +51,7 @@ RSpec.describe ChampValidateConcern do
     end
 
     context 'attachments' do
-      let(:types_de_champ_public) { [{ type: :piece_justificative }, { type: :titre_identite }] }
+      let(:types_de_champ_public) { [{ type: :piece_justificative }, { type: :piece_justificative, nature: 'titre_identite' }] }
 
       before {
         dossier.revision.revision_types_de_champ.delete_all
@@ -81,7 +81,7 @@ RSpec.describe ChampValidateConcern do
     end
 
     context 'external_data which needs validation but is not in revision' do
-      let(:types_de_champ_public) { [{ type: :piece_justificative, nature: 'RIB' }] }
+      let(:types_de_champ_public) { [{ type: :piece_justificative, nature: 'rib' }] }
 
       before do
         allow_any_instance_of(Champs::PieceJustificativeChamp).to receive(:external_data_needed_for_validation?).and_return(true)

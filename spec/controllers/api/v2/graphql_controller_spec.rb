@@ -151,7 +151,7 @@ describe API::V2::GraphqlController do
         end
 
         it {
-          expect(gql_errors.first[:message]).to eq("Without a token, only persisted queries are allowed")
+          expect(gql_errors.first[:message]).to eq("Without a token, only the public getDemarcheDescriptor query and introspection are allowed")
         }
       end
 
@@ -178,7 +178,7 @@ describe API::V2::GraphqlController do
 
         it {
           expect(token).not_to be_nil
-          expect(gql_errors.first[:message]).to eq("Without a token, only persisted queries are allowed")
+          expect(gql_errors.first[:message]).to eq("Without a token, only the public getDemarcheDescriptor query and introspection are allowed")
         }
       end
 
@@ -410,6 +410,7 @@ describe API::V2::GraphqlController do
               datePassageEnInstruction
               dateTraitement
               dateDepot
+              dateAccuseLectureAgreement
               motivation
               motivationAttachment {
                 url
@@ -498,6 +499,7 @@ describe API::V2::GraphqlController do
             dateDepot: dossier.depose_at.iso8601,
             datePassageEnInstruction: nil,
             dateTraitement: nil,
+            dateAccuseLectureAgreement: nil,
             motivation: nil,
             motivationAttachment: nil,
             demarche: {

@@ -1,6 +1,63 @@
 # frozen_string_literal: true
 
 describe Procedure do
+  [:lien_notice, :lien_dpo, :web_hook_url].each do |field|
+    describe "#{field} validation" do
+        let(:procedure) { build(:procedure) }
+
+        it 'accepts a valid https URL' do
+          procedure.send("#{field}=".to_sym, 'https://example.com/')
+          expect(procedure).to be_valid
+        end
+
+        it 'accepts blank value' do
+          procedure.send("#{field}=".to_sym, '')
+          expect(procedure).to be_valid
+        end
+
+        it 'rejects localhost URL' do
+          procedure.send("#{field}=".to_sym, 'http://localhost:3000/admin')
+          expect(procedure).not_to be_valid
+          expect(procedure.errors[field]).to be_present
+        end
+
+        it 'rejects 127.0.0.1' do
+          procedure.send("#{field}=".to_sym, 'http://127.0.0.1/admin')
+          expect(procedure).not_to be_valid
+        end
+
+        it 'rejects link-local metadata endpoint (169.254.169.254)' do
+          procedure.send("#{field}=".to_sym, 'http://169.254.169.254/latest/meta-data/')
+          expect(procedure).not_to be_valid
+        end
+
+        it 'rejects private network 10.x.x.x' do
+          procedure.send("#{field}=".to_sym, 'http://10.0.0.1/admin')
+          expect(procedure).not_to be_valid
+        end
+
+        it 'rejects private network 172.16.x.x' do
+          procedure.send("#{field}=".to_sym, 'http://172.16.0.1/admin')
+          expect(procedure).not_to be_valid
+        end
+
+        it 'rejects private network 192.168.x.x' do
+          procedure.send("#{field}=".to_sym, 'http://192.168.1.1/admin')
+          expect(procedure).not_to be_valid
+        end
+
+        it 'rejects 0.0.0.0' do
+          procedure.send("#{field}=".to_sym, 'http://0.0.0.0/')
+          expect(procedure).not_to be_valid
+        end
+
+        it 'rejects ::1 (IPv6 loopback)' do
+          procedure.send("#{field}=".to_sym, 'http://[::1]/admin')
+          expect(procedure).not_to be_valid
+        end
+      end
+  end
+
   describe 'mail templates' do
     subject { create(:procedure) }
 
@@ -422,7 +479,17 @@ describe Procedure do
           </a>
         MSG
         let(:procedure) { build(:procedure, monavis_embed: monavis_jedonnemonavis) }
-        it { is_expected.to eq(["Le code MonAvis contient un lien pointant vers un domaine invalide"]) }
+        it { is_expected.to include("Le code MonAvis contient un lien pointant vers un domaine invalide") }
+      end
+
+      context 'rejects a link to an arbitrary domain containing monavis as a substring (regex bypass)' do
+        malicious_embed = <<-MSG
+          <a href="https://evil.com/phishing?ref=monavis&nd_source=button&key=abc123">
+            <img src="https://monavis.numerique.gouv.fr/monavis-static/bouton-bleu.png" alt="avis" />
+          </a>
+        MSG
+        let(:procedure) { build(:procedure, monavis_embed: malicious_embed) }
+        it { is_expected.to be_present }
       end
 
       context 'when YWH-PGM5381-46 pentester won' do
@@ -432,6 +499,32 @@ describe Procedure do
         MSG
         let(:procedure) { build(:procedure, monavis_embed: monavis_ywh_pgm5381_46) }
         it { is_expected.to eq(["Le code MonAvis contient un attribut interdit : onerror"]) }
+      end
+
+      context 'Monavis embed code with new design (march 26) button Thème clair' do
+       monavis_blanc = <<-MSG
+        <a href="https://jedonnemonavis.numerique.gouv.fr/Demarches/4079?button=4509" target='_blank' rel="noopener noreferrer" title="Je donne mon avis - nouvelle fenêtre">
+
+          <img src="https://jedonnemonavis.numerique.gouv.fr/static/bouton-bleu-clair.svg" alt="Je donne mon avis" />
+
+          </a>
+        MSG
+
+       let(:procedure) { build(:procedure, monavis_embed: monavis_blanc) }
+       it { is_expected.to eq([]) }
+     end
+
+      context 'Monavis embed code with new design (march 26) button Thème sombre' do
+        monavis_blanc = <<-MSG
+        <a href="https://jedonnemonavis.numerique.gouv.fr/Demarches/4079?button=4509" target='_blank' rel="noopener noreferrer" title="Je donne mon avis - nouvelle fenêtre">
+
+          <img src="https://jedonnemonavis.numerique.gouv.fr/static/bouton-bleu-sombre.svg" alt="Je donne mon avis" />
+
+        </a>
+        MSG
+
+        let(:procedure) { build(:procedure, monavis_embed: monavis_blanc) }
+        it { is_expected.to eq([]) }
       end
     end
 
@@ -1899,6 +1992,73 @@ describe Procedure do
         expect { procedure.update_all_groupes_rule_statuses }
           .to change { gi.reload.valid_routing_rule }.from(false).to(true)
           .and change { gi.reload.unique_routing_rule }.from(false).to(true)
+      end
+    end
+  end
+
+  describe '#used_by_referentiel_urls?' do
+    let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :text, stable_id: 100 }, { type: :referentiel, stable_id: 200 }]) }
+    let(:text_tdc) { procedure.draft_revision.types_de_champ.find { _1.stable_id == 100 } }
+    let(:ref_tdc) { procedure.draft_revision.types_de_champ.find { _1.stable_id == 200 } }
+
+    context 'when referentiel url_tiptap references the text field' do
+      before do
+        ref_tdc.update!(referentiel: create(:api_referentiel, :exact_match, url_tiptap: {
+          "type" => "doc",
+          "content" => [
+            {
+              "type" => "paragraph",
+                        "content" => [
+                          { "type" => "text", "text" => "https://api.gouv.fr/" },
+                          { "type" => "mention", "attrs" => { "id" => "tdc100", "label" => "Texte" } },
+                        ],
+            },
+          ],
+        }, test_data_tiptap: { "tdc100" => "test" }))
+      end
+
+      it 'returns true for the referenced field' do
+        expect(procedure.used_by_referentiel_urls?(text_tdc)).to be true
+      end
+
+      it 'returns false for the referentiel field itself' do
+        expect(procedure.used_by_referentiel_urls?(ref_tdc)).to be false
+      end
+    end
+
+    context 'when a drop_down_list type de champ has a CsvReferentiel' do
+      let(:referentiel) { create(:csv_referentiel) }
+      let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :text, stable_id: 100 }, { type: :drop_down_list, stable_id: 200, referentiel:, drop_down_mode: 'advanced' }]) }
+
+      it 'returns false without raising' do
+        expect(procedure.used_by_referentiel_urls?(text_tdc)).to be false
+      end
+    end
+
+    context 'when no referentiel' do
+      it 'returns false' do
+        expect(procedure.used_by_referentiel_urls?(text_tdc)).to be false
+      end
+    end
+
+    context 'when referentiel has only {query} tag' do
+      before do
+        ref_tdc.update!(referentiel: create(:api_referentiel, :exact_match, url_tiptap: {
+          "type" => "doc",
+          "content" => [
+            {
+              "type" => "paragraph",
+                        "content" => [
+                          { "type" => "text", "text" => "https://api.gouv.fr/" },
+                          { "type" => "mention", "attrs" => { "id" => "{query}", "label" => "Query" } },
+                        ],
+            },
+          ],
+        }, test_data_tiptap: { "{query}" => "test" }))
+      end
+
+      it 'returns false (query tag does not protect any field)' do
+        expect(procedure.used_by_referentiel_urls?(text_tdc)).to be false
       end
     end
   end
