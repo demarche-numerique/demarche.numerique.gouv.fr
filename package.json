@@ -43,7 +43,7 @@
     "@vitest/browser": "^4.1.8",
     "@vitest/browser-playwright": "^4.1.8",
     "chartkick": "^5.0.1",
-    "coldwired": "^0.18.4",
+    "coldwired": "^0.19.0",
     "core-js": "^3.49.0",
     "date-fns": "^4.1.0",
     "debounce": "^2.2.0",

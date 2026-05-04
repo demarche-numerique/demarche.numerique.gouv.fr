@@ -16,14 +16,15 @@ class Conditions::ChampsConditionsComponent < Conditions::ConditionsComponent
       submit_tag(
         t('.enable_conditionnel'),
         formaction: add_condition_path,
-        class: html_class
+        class: html_class,
+        data: { disable_with: false }
       )
     else
       submit_tag(
         t('.disable_conditionnel'),
         formmethod: 'delete',
         formnovalidate: true,
-        data: { confirm: t('.disable_conditionnel_alert') },
+        data: { confirm: t('.disable_conditionnel_alert'), disable_with: false },
         class: html_class
       )
     end

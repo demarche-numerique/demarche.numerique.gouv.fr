@@ -9,9 +9,9 @@
           - if show_for_user?
             - if show_submit?
               - if !can_passer_en_construction?
-                %li.dossier-edit-footer--ineligibilite-link.fr-mt-1w.fr-mb-2w= link_to t('.submit_disabled'), "#", disabled_submit_button_options
+                %li.dossier-edit-footer--ineligibilite-link.fr-mt-1w.fr-mb-2w{ id: 'dossier-edit-footer-ineligibilite' }= link_to t('.submit_disabled'), "#", disabled_submit_button_options
 
-              %li= button_to submit_button_label, submit_button_path, submit_button_options
+              %li{ id: 'dossier-edit-footer-submit' }= button_to submit_button_label, submit_button_path, submit_button_options
 
             - if !owner?
               %li= button_to t('.check_completude'), check_completude_dossier_path(@dossier), class: "fr-btn", method: :post, data: { controller: 'autosave-submit' }
