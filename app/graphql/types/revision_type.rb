@@ -10,7 +10,7 @@ module Types
     field :annotation_descriptors, [Types::ChampDescriptorType], null: false
 
     def annotation_descriptors
-      if context.authorized_demarche?(object.procedure, opendata: true)
+      if context.authorized_demarche?(object.procedure)
         object.revision_types_de_champ_private
       else
         []

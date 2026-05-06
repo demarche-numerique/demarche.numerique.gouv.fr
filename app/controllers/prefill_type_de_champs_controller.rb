@@ -14,7 +14,7 @@ class PrefillTypeDeChampsController < ApplicationController
   end
 
   def set_prefill_type_de_champ
-    type_de_champ = @procedure.active_revision.types_de_champ.filter(&:fillable?).find { _1.stable_id == params[:id].to_i }
+    type_de_champ = @procedure.active_revision.types_de_champ_public.filter(&:fillable?).find { _1.stable_id == params[:id].to_i }
     raise ActiveRecord::RecordNotFound if type_de_champ.blank?
     @type_de_champ = TypesDeChamp::PrefillTypeDeChamp.build(type_de_champ, @procedure.active_revision)
   end

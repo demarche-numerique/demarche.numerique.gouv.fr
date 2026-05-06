@@ -82,7 +82,7 @@ class API::V2::Context < GraphQL::Query::Context
 
   def compute_demarche_authorization(demarche)
     # procedure_ids and token are passed from graphql controller
-    self[:procedure_ids].include?(demarche.id)
+    self[:procedure_ids]&.include?(demarche.id) || false
   end
 
   # This is a query AST visitor that we use to check

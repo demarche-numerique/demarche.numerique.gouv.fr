@@ -53,6 +53,17 @@ RSpec.describe PrefillTypeDeChampsController, type: :controller do
 
         it { expect { show_request }.to raise_error(ActiveRecord::RecordNotFound) }
       end
+
+      context 'when the requested type de champ is a private annotation' do
+        let(:procedure) { create(:procedure, :published, opendata: true) }
+        let(:type_de_champ) { create(:type_de_champ_text, :private, procedure: procedure) }
+
+        subject(:show_request) { get :show, params: { path: procedure.path, id: type_de_champ.stable_id } }
+
+        it 'does not expose the private annotation' do
+          expect { show_request }.to raise_error(ActiveRecord::RecordNotFound)
+        end
+      end
     end
 
     context 'when the procedure is not found' do
