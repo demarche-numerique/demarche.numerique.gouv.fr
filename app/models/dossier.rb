@@ -1177,8 +1177,14 @@ class Dossier < ApplicationRecord
     submitted_revision_id.present? && submitted_revision_id != revision_id
   end
 
-  def enqueue_fetch_external_data_jobs
-    project_champs.each do |champ|
+  def enqueue_fetch_external_data_jobs(user_email)
+    champs_on_main_stream.each do |main_stream_champ|
+      champ = if main_stream_champ.public?
+        champ_for_update(main_stream_champ.type_de_champ, row_id: main_stream_champ.row_id, updated_by: user_email)
+      else
+        main_stream_champ
+      end
+
       if champ.has_async_external_data? && champ.may_fetch_later?
         champ.fetch_later!
       end

@@ -25,7 +25,7 @@ class Champs::ReferentielChamp < Champ
       update!(hash.merge(fetch_external_data_exceptions: [])) # void previous errors
       propagate_prefill(hash[:data])
     end
-    dossier.with_champ_stream(self).enqueue_fetch_external_data_jobs
+    dossier.with_champ_stream(self).enqueue_fetch_external_data_jobs(self.updated_by)
   end
 
   def data=(data)
@@ -41,7 +41,7 @@ class Champs::ReferentielChamp < Champ
       self.value_json = cast_displayable_values(data)
       propagate_prefill(data)
 
-      dossier.with_champ_stream(self).enqueue_fetch_external_data_jobs
+      dossier.with_champ_stream(self).enqueue_fetch_external_data_jobs(self.updated_by)
     end
   end
 

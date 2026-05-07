@@ -12,6 +12,6 @@ module DossierPrefillableConcern
     reload
     assign_attributes(attributes)
     save(validate: false)
-    with_update_stream(user).enqueue_fetch_external_data_jobs
+    with_update_stream(user).enqueue_fetch_external_data_jobs(user&.email)
   end
 end
