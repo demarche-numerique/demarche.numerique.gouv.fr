@@ -1,0 +1,328 @@
+/* ================================
+   FONT
+   ================================ */
+@font-face {
+  font-family: "Marianne";
+  src: url("/assets/Roboto-Flex-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+}
+
+/* ================================
+   TOKENS
+   ================================ */
+:root {
+  /* Cunningham brand */
+  --brand-primary:          #3E5DE7;
+  --brand-bg-light:         #EDF0FF;
+  --brand-bg-medium:        #C8D3FF;
+  --brand-bg-dark:          #A8BEFF;
+  --brand-text-on-light-bg: #20467F;
+
+  /* Cunningham neutral */
+  --neutral-border:       #D2D4D8;
+  --neutral-border-light: #E1E2E5;
+  --neutral-bg:           #F0F1F2;
+  --neutral-bg-light:     #F7F8F8;
+  --neutral-surface:      #FFFFFF;
+
+  /* Cunningham semantic */
+  --error-primary:   #D80000;
+  --error-bg:        #FCEDED;
+  --success-primary: #427816;
+  --warning-primary: #b34000;
+
+  /* DSFR overrides — tokens de fond */
+  --blue-france-925-125:        var(--brand-bg-medium);
+  --blue-france-925-125-hover:  var(--brand-bg-dark);
+  --blue-france-925-125-active: #ABC9F0;
+  --blue-france-950-100:        var(--brand-bg-medium);
+  --blue-france-950-100-hover:  var(--brand-bg-dark);
+  --blue-france-950-100-active: #ABC9F0;
+  --blue-france-975-75:         var(--neutral-bg-light);
+  --blue-france-975-75-hover:   var(--brand-bg-medium);
+  --blue-france-975-75-active:  var(--brand-bg-dark);
+  --blue-france-975-sun-113:    var(--brand-bg-light);
+  --blue-france-850-200:        var(--brand-bg-dark);
+  --blue-france-main-525:       var(--brand-primary);
+
+  /* DSFR overrides — tokens de couleur */
+  --blue-france-sun-113-625:        var(--brand-primary);
+  --blue-france-sun-113-625-hover:  #2845C1;
+  --blue-france-sun-113-625-active: #1F379F;
+  --text-action-high-blue-france:   var(--brand-primary);
+  --background-contrast-grey:       var(--neutral-surface);
+}
+
+/* ================================
+   ÉTATS INTERACTIFS SUR FOND BRAND
+   Regroupés ici car ils partagent tous la même logique :
+   fond brand-bg-* + texte brand-text-on-light-bg.
+   Nécessite de matcher la spécificité du sélecteur global DSFR
+   a[href]:hover, button:not(:disabled):hover, etc.
+   ================================ */
+
+/* Éléments expanded (nav, accordéon, translate) */
+.fr-nav__btn[aria-expanded="true"],
+.fr-accordion__btn[aria-expanded="true"],
+.fr-translate .fr-translate__btn[aria-expanded="true"] {
+  color: var(--brand-text-on-light-bg);
+}
+
+.fr-accordion__btn[aria-expanded="true"]:hover,
+.fr-accordion__btn[aria-expanded="true"]:active,
+.fr-translate .fr-translate__btn[aria-expanded="true"]:hover,
+.fr-translate .fr-translate__btn[aria-expanded="true"]:active {
+  background-color: var(--brand-bg-light);
+  color: var(--brand-text-on-light-bg);
+}
+
+/* Onglets */
+.fr-tabs__tab[aria-selected="true"],
+.fr-tabs__tab:hover {
+  color: var(--brand-text-on-light-bg);
+}
+
+.fr-tabs__tab[aria-selected="true"] { background-color: var(--brand-bg-light); }
+.fr-tabs__tab:hover                 { background-color: var(--brand-bg-medium); }
+
+/* Bouton secondaire — spécificité élevée requise */
+a[href].fr-btn--secondary:hover,
+button.fr-btn--secondary:not(:disabled):hover,
+input[type="button"].fr-btn--secondary:not(:disabled):hover,
+input[type="submit"].fr-btn--secondary:not(:disabled):hover,
+input[type="reset"].fr-btn--secondary:not(:disabled):hover {
+  background-color: var(--brand-bg-light);
+  color: var(--brand-text-on-light-bg);
+}
+
+a[href].fr-btn--secondary:active,
+button.fr-btn--secondary:not(:disabled):active,
+input[type="button"].fr-btn--secondary:not(:disabled):active,
+input[type="submit"].fr-btn--secondary:not(:disabled):active,
+input[type="reset"].fr-btn--secondary:not(:disabled):active {
+  background-color: var(--brand-bg-medium);
+  color: var(--brand-text-on-light-bg);
+}
+
+/* Onglets active — spécificité élevée requise */
+button.fr-tabs__tab:not(:disabled):active {
+  background-color: var(--brand-bg-medium);
+  color: var(--brand-text-on-light-bg);
+}
+
+/* ================================
+   BOUTONS
+   ================================ */
+.fr-btn {
+  border-radius: 4px;
+  transition: all 0.25s cubic-bezier(0.33, 1, 0.68, 1);
+  font-weight: 500;
+}
+
+/* ================================
+   FORMULAIRES
+   ================================ */
+.fr-input,
+.fr-select {
+  background-color: var(--background-contrast-grey);
+  box-shadow: none;
+  border: 1px solid var(--neutral-border);
+  border-radius: 4px;
+}
+
+.fr-input:focus,
+.fr-select:focus {
+  border-color: var(--brand-primary);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--brand-bg-light);
+}
+
+.fr-input:disabled {
+  background-color: var(--neutral-bg);
+  border-color: var(--neutral-border-light);
+}
+
+.fr-input-group--error .fr-input,
+.fr-fieldset--error .fr-input,
+.fr-fieldset--error .fr-select,
+.fr-select-group--error .fr-select {
+  border-color: var(--error-primary);
+  box-shadow: none;
+}
+
+.fr-input-group--error .fr-input:focus {
+  box-shadow: 0 0 0 2px var(--error-bg);
+}
+
+.fr-input-group--valid .fr-input {
+  border-color: var(--success-primary);
+  box-shadow: none;
+}
+
+.fr-search-bar .fr-input {
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+  box-shadow: none;
+}
+
+.fr-search-bar .fr-input:focus {
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 2px var(--brand-bg-light);
+}
+
+.fr-search-bar .fr-btn { border-radius: 0 4px 4px 0; }
+
+/* couleur codée en dur dans les SVG (%233E5DE7 = #3E5DE7)
+   À mettre à jour manuellement si --brand-primary change */
+.fr-toggle label::before {
+  --data-uri-svg: url("data:image/svg+xml;charset=utf-8,<svg width='40' stroke='%233E5DE7' height='24' viewBox='0 0 40 24' fill='transparent' xmlns='http://www.w3.org/2000/svg'><rect x='0.5' y='0.5' width='39' height='23' rx='11.5' /></svg>");
+}
+.fr-toggle input[type="checkbox"]:checked ~ .fr-toggle__label::before {
+  --data-uri-svg: url("data:image/svg+xml;charset=utf-8,<svg width='40' stroke='%233E5DE7' height='24' viewBox='0 0 40 24' fill='%233E5DE7' xmlns='http://www.w3.org/2000/svg'><rect x='0.5' y='0.5' width='39' height='23' rx='11.5' /></svg>");
+}
+.fr-toggle input[type="checkbox"]:checked ~ .fr-toggle__label::after {
+  --data-uri-svg: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%233E5DE7' d='M10 15.17l9.2-9.2 1.4 1.42L10 18l-6.36-6.36 1.4-1.42z'/></svg>");
+}
+
+/* ================================
+   CARDS & TILES
+   ================================ */
+.card,
+.fr-card:not(.fr-card--no-border):not(.fr-card--shadow),
+.fr-tile:not(.fr-tile--no-border):not(.fr-tile--shadow) {
+  background-image: none;
+  border: 1px solid var(--neutral-border-light);
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.fr-card:not(.fr-card--no-border):not(.fr-card--shadow) { padding: 0; }
+
+ul.procedure-stats {
+  --background-alt-grey: var(--neutral-surface);
+  border: 1px solid var(--neutral-border-light);
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+ul.procedure-stats li { border-radius: 0; }
+
+/* ================================
+   ALERTES
+   ================================ */
+.fr-alert { border-radius: 4px; }
+
+.fr-alert--info,
+.fr-alert--success,
+.fr-alert--error,
+.fr-alert--warning {
+  background-image: none;
+  background-size: auto;
+}
+
+.fr-alert--info {
+  background-color: color-mix(in srgb, var(--brand-bg-light), transparent 70%);
+  border: 1px solid var(--brand-bg-dark);
+  border-left: 3px solid var(--brand-bg-dark);
+  color: var(--brand-text-on-light-bg);
+}
+.fr-alert--success {
+  background-color: color-mix(in srgb, #E4F7D4, transparent 70%);
+  border: 1px solid #AAE579;
+  border-left: 3px solid #AAE579;
+}
+.fr-alert--error {
+  background-color: color-mix(in srgb, var(--error-bg), transparent 70%);
+  border: 1px solid #F7C9C9;
+  border-left: 3px solid #F7C9C9;
+}
+.fr-alert--warning {
+  background-color: color-mix(in srgb, #FFF1BD, transparent 70%);
+  border: 1px solid #FFCF25;
+  border-left: 3px solid #FFCF25;
+}
+
+.fr-alert--info::before    { color: var(--brand-text-on-light-bg); }
+.fr-alert--success::before { color: var(--success-primary); }
+.fr-alert--error::before   { color: var(--error-primary); }
+.fr-alert--warning::before { color: var(--warning-primary); }
+
+/* ================================
+   DARK MODE
+   ================================ */
+:root[data-fr-theme="dark"] {
+  --blue-france-sun-113-625: #4A7DC0;
+  --blue-france-sun-113-625-hover: #5C8FD2;
+  --blue-france-sun-113-625-active: #3A6AAF;
+  --text-action-high-blue-france:   #96BCEC;
+  --blue-france-975-75:         #1A2638;
+  --blue-france-975-75-hover:   #203C63;
+  --blue-france-975-75-active:  #1D314C;
+  --blue-france-925-125:        #203C63;
+  --blue-france-925-125-hover:  #1D314C;
+  --blue-france-925-125-active: #1A2638;
+  --blue-france-950-100:        #1D314C;
+  --blue-france-950-100-hover:  #1A2638;
+  --blue-france-950-100-active: #141C28;
+  --blue-france-975-sun-113:    #EAF1FB;
+  --blue-france-850-200:        #203C63;
+  --blue-france-main-525:       #6CA0E4;
+  --neutral-border-light: #3A3B3E;
+  --neutral-border:       #45474A;
+  --neutral-surface:      #242424;
+}
+
+[data-fr-theme="dark"] .fr-alert--info {
+  background-color: #1A2638;
+  border-color: #20467F;
+  border-left-color: #20467F;
+  color: #96BCEC;
+}
+[data-fr-theme="dark"] .fr-alert--success {
+  background-color: #1E281A;
+  border-color: #3A6A14;
+  border-left-color: #3A6A14;
+  color: #AAE579;
+}
+[data-fr-theme="dark"] .fr-alert--error {
+  background-color: #2A1414;
+  border-color: #9E2219;
+  border-left-color: #9E2219;
+  color: #F7C9C9;
+}
+[data-fr-theme="dark"] .fr-alert--warning {
+  background-color: #2A2619;
+  border-color: #836703;
+  border-left-color: #836703;
+  color: #FFE176;
+}
+
+[data-fr-theme="dark"] .fr-alert--info::before    { color: #6CA0E4; }
+[data-fr-theme="dark"] .fr-alert--success::before { color: #AAE579; }
+[data-fr-theme="dark"] .fr-alert--error::before   { color: #F7C9C9; }
+[data-fr-theme="dark"] .fr-alert--warning::before { color: #FFE176; }
+
+[data-fr-theme="dark"] .fr-search-bar .fr-input {
+  box-shadow: none;
+  border: 1px solid #3A3B3E;
+  border-right: none;
+}
+
+[data-fr-theme="dark"] .fr-tabs__tab:hover {
+  background-color: var(--blue-france-925-125-hover); /* #1D314C */
+  color: #96BCEC;
+}
+
+[data-fr-theme="dark"] .fr-tabs__tab[aria-selected="true"] {
+  background-color: var(--blue-france-925-125); /* #203C63 */
+  color: #96BCEC;
+}
+
+:root[data-fr-theme="dark"] .fr-toggle label::before {
+  --data-uri-svg: url("data:image/svg+xml;charset=utf-8,<svg width='40' stroke='%236CA0E4' height='24' viewBox='0 0 40 24' fill='transparent' xmlns='http://www.w3.org/2000/svg'><rect x='0.5' y='0.5' width='39' height='23' rx='11.5' /></svg>");
+}
+:root[data-fr-theme="dark"] .fr-toggle input[type="checkbox"]:checked ~ .fr-toggle__label::before {
+  --data-uri-svg: url("data:image/svg+xml;charset=utf-8,<svg width='40' stroke='%236CA0E4' height='24' viewBox='0 0 40 24' fill='%236CA0E4' xmlns='http://www.w3.org/2000/svg'><rect x='0.5' y='0.5' width='39' height='23' rx='11.5' /></svg>");
+}
+:root[data-fr-theme="dark"] .fr-toggle input[type="checkbox"]:checked ~ .fr-toggle__label::after {
+  --data-uri-svg: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%236CA0E4' d='M10 15.17l9.2-9.2 1.4 1.42L10 18l-6.36-6.36 1.4-1.42z'/></svg>");
+}
