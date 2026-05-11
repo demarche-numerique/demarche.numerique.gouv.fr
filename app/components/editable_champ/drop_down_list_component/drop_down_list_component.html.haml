@@ -2,7 +2,12 @@
   .fr-fieldset__content
     - items.each do |value, option_id|
       .fr-radio-group
-        = @form.radio_button :value, option_id, id: @champ.radio_id(option_id), translate: 'no', aria: labelledby_id_attr(input_label_id(@champ, option_id))
+        = @form.radio_button :value,
+          option_id,
+          checked: @champ.selected == option_id,
+          id: @champ.radio_id(option_id),
+          translate: 'no',
+          aria: labelledby_id_attr(input_label_id(@champ, option_id))
         %label.fr-label{ for: @champ.radio_id(option_id), id: input_label_id(@champ, option_id) }
           = value
 
