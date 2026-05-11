@@ -73,6 +73,26 @@ describe OCRService do
     let(:headers) { { 'X-API-KEY': document_ia_key } }
     let(:url) { "#{document_ia_url}/api/v1/workflows/document-barcode-extraction/execute-sync" }
     let(:body) { File.read('spec/fixtures/files/doc_ia/success.json') }
+    let(:ban_query) { '123 RUE DES PIETONS 38000 GRENOBLE' }
+    let(:ban_body) do
+      {
+        features: [{
+          type: 'Feature',
+          geometry: { type: 'Point', coordinates: [5.7245, 45.1885] },
+          properties: {
+            label: '123 Rue des Piétons 38000 Grenoble',
+            name: '123 Rue des Piétons',
+            housenumber: '123',
+            street: 'Rue des Piétons',
+            postcode: '38000',
+            citycode: '38185',
+            city: 'Grenoble',
+            context: '38, Isère, Auvergne-Rhône-Alpes',
+            type: 'housenumber'
+          }
+        }]
+      }.to_json
+    end
 
     subject { described_class.analyze(blob, nature: 'justificatif_domicile') }
 
@@ -85,6 +105,9 @@ describe OCRService do
 
       stub_request(:post, url).with(headers:, body: { file_url: blob.url })
         .to_return(body:, status: 200)
+      stub_request(:get, "#{API_ADRESSE_URL}/search")
+        .with(query: { q: ban_query, limit: 1 })
+        .to_return(body: ban_body, status: 200)
     end
 
     context 'when there is no document ia url' do
@@ -94,10 +117,33 @@ describe OCRService do
     end
 
     context 'when the result is ok' do
-      it do
-        expected = { "address" => "123 RUE DES PIETONS", "beneficiary" => "ROBERT JEAN", "country" => "FR", "issue_date" => Date.parse("2026-01-02"), "locality" => "GRENOBLE", "postal_code" => "38000", "two_ddoc" => true }
+      it 'returns a BAN-normalized address merged with 2ddoc fields' do
+        value_json = subject.value![:value_json]
 
-        expect(subject.value![:value_json]).to eq(expected)
+        expect(value_json).to include(
+          "label" => '123 Rue des Piétons 38000 Grenoble',
+          "street_address" => '123 Rue des Piétons',
+          "postal_code" => '38000',
+          "city_code" => '38185',
+          "city_name" => 'Grenoble',
+          "department_code" => '38',
+          "department_name" => 'Isère',
+          "region_code" => '84',
+          "region_name" => 'Auvergne-Rhône-Alpes',
+          "country_code" => 'FR',
+          "beneficiary" => 'ROBERT JEAN',
+          "issue_date" => Date.parse('2026-01-02'),
+          "two_ddoc" => true
+        )
+      end
+    end
+
+    context 'when BAN returns no feature' do
+      let(:ban_body) { { features: [] }.to_json }
+
+      it 'returns nil value_json (raw data kept for replay)' do
+        expect(subject.value![:value_json]).to be_nil
+        expect(subject.value![:data]).not_to be_nil
       end
     end
 

@@ -41,34 +41,47 @@ class OCRService
   end
 
   def self.extract_2ddoc(body)
-    barcode = body
+    ddoc = body
       .dig(:data, :result, :barcodes)
       &.find { it[:type] == '2D_DOC' && it[:is_valid] } # take the first valid 2ddoc
 
-    return nil if barcode.nil?
+    return nil if ddoc.nil?
 
-    ddoc = barcode[:raw_data]
-    return nil if ddoc.nil? || !justif_domicile?(ddoc)
+    raw_data = ddoc[:raw_data]
+    return nil if raw_data.nil? || !justif_domicile?(ddoc)
 
-    fields = ddoc[:fields]
+    query = [raw_data[:"22"], raw_data[:"24"], raw_data[:"25"]].compact_blank.join(' ')
+    ban_address = fetch_ban_address(query)
+    return nil if ban_address.nil?
+
     # format : '2026-01-02'
-    issue_date = barcode[:issue_date]&.then { Date.strptime(it, '%Y-%m-%d') }
+    issue_date = ddoc[:issue_date]&.then { Date.strptime(it, '%Y-%m-%d') }
 
-    attr = {
-      beneficiary: fields[:"10"]&.tr('/', ' '),
-      address: fields[:"22"],
-      postal_code: fields[:"24"],
-      locality: fields[:"25"],
-      country: fields[:"26"],
+    attr = ban_address.except(:geometry).merge(
+      beneficiary: raw_data[:"10"]&.tr('/', ' '),
       issue_date:,
-      two_ddoc: true,
-    }
+      two_ddoc: true
+    )
 
     # force parsing to ensure compat
     JustificatifDomicile.new(attr).attributes
   end
 
   def self.justif_domicile?(ddoc) = ddoc[:doc_type].in?(['00', '01', '02'])
+
+  def self.fetch_ban_address(query)
+    return nil if query.blank?
+
+    response = Typhoeus.get("#{API_ADRESSE_URL}/search", params: { q: query, limit: 1 }, timeout: 3)
+    return nil unless response.success?
+
+    feature = JSON.parse(response.body, symbolize_names: true)[:features]&.first
+    return nil if feature.nil?
+
+    APIGeoService.parse_ban_address(feature.deep_stringify_keys)
+  rescue JSON::ParserError
+    nil
+  end
 
   def self.ocr_url = ENV.fetch("OCR_SERVICE_URL", nil)
   def self.document_ia_url = ENV.fetch("DOCUMENT_IA_URL", nil)
