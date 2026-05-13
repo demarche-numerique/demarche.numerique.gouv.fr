@@ -1,6 +1,14 @@
 <div class="mes-dossiers-header">
   <h1 class="fr-h3"><%= t('views.users.dossiers.index.dossiers') %></h1>
 
+  <% if current_user.dossiers_personnalisables? %>
+    <%= link_to edit_users_dossiers_personnalisation_path,
+        class: 'fr-link fr-link--icon-left fr-icon-settings-5-line',
+        title: t('views.users.dossiers.index.personnaliser_la_liste') do %>
+      <span class="fr-sr-only"><%= t('views.users.dossiers.index.personnaliser_la_liste') %></span>
+    <% end %>
+  <% end %>
+
   <% if corbeille_count.positive? %>
     <%= link_to t('views.users.dossiers.index.corbeille_link.label', count: corbeille_count),
         trash_path,

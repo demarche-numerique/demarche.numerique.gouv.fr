@@ -570,6 +570,7 @@ fr:
         dossier_menu: "Dossier numéro %{id}"
         index:
           dossiers: "Mes dossiers"
+          personnaliser_la_liste: "Personnaliser la liste des dossiers"
           administration_no_longer_processes: "L’administration ne traitera plus votre demande."
           metas:
             title: "Mes dossiers"
