@@ -30,6 +30,12 @@ class TypesDeChamp::DropDownListTypeDeChamp < TypesDeChamp::TypeDeChampBase
     if drop_down_advanced?
       referentiel_columns = if referentiel.present?
         referentiel.headers_with_path.map do |(header, path)|
+          options_for_select = referentiel.options_for_path(path)
+
+          if drop_down_other?
+            options_for_select << [I18n.t('shared.champs.drop_down_list.other'), Champs::DropDownListChamp::OTHER]
+          end
+
           Columns::JSONPathColumn.new(
             procedure_id:,
             stable_id:,
@@ -38,7 +44,7 @@ class TypesDeChamp::DropDownListTypeDeChamp < TypesDeChamp::TypeDeChampBase
             type: :enum,
             jsonpath: "$.referentiel.data.row.#{path}",
             displayable:,
-            options_for_select: referentiel.options_for_path(path),
+            options_for_select:,
             mandatory: mandatory?
           )
         end

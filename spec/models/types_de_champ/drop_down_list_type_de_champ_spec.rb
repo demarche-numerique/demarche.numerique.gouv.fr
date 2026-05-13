@@ -7,6 +7,7 @@ describe TypesDeChamp::DropDownListTypeDeChamp do
     let(:referentiel) { create(:csv_referentiel, :with_items) }
     let(:dropdown_list_tdc) { procedure.active_revision.types_de_champ.first }
     subject { dropdown_list_tdc.columns(procedure_id: procedure.id) }
+    let(:column) { dropdown_list_tdc.columns(procedure_id: procedure.id).first }
 
     context 'when drop_down_mode is advanced (referentiel)' do
       let(:drop_down_mode) { 'advanced' }
@@ -35,6 +36,16 @@ describe TypesDeChamp::DropDownListTypeDeChamp do
 
         it { expect(calorie_column.options_for_select).to eq([["100", "100"], ["170", "170"]]) }
       end
+
+      context 'with other on' do
+        let(:types_de_champ_public) { [{ type: :drop_down_list, referentiel:, drop_down_mode: 'advanced', drop_down_other: true }] }
+
+        it 'exposes other as a choice in the enum' do
+          option_labels = column.options_for_select.map(&:first)
+
+          expect(option_labels).to eq(['fromage', 'dessert', 'fruit', 'Entrer une autre option'])
+        end
+      end
     end
 
     context 'when drop_down_mode is simple' do
@@ -50,7 +61,6 @@ describe TypesDeChamp::DropDownListTypeDeChamp do
 
     context 'other true and referentiel off' do
       let(:types_de_champ_public) { [{ type: :drop_down_list, drop_down_options: ['1', '2'], drop_down_other: true }] }
-      let(:column) { dropdown_list_tdc.columns(procedure:).first }
       let(:column_value) { Logic::ColumnValue.new(column) }
 
       it 'exposes other as a choice in the enum' do
