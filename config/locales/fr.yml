@@ -1013,6 +1013,8 @@ fr:
     dossiers_personnalisation:
       edit:
         titre: "Personnaliser la liste des dossiers"
+      flash:
+        success: "La liste des dossiers a bien été personnalisée."
     dossiers:
       test_procedure: "Ce dossier est déposé sur une démarche en test. Toute modification de la démarche par l’administrateur (ajout d’un champ, publication de la démarche...) entraînera sa suppression."
       no_access_html: "Vous n’avez pas accès à ce dossier.<br>Vérifiez que votre adresse électronique de connexion <b>%{email}</b> est bien celle utilisée pour remplir cette démarche.<br> Si ce n’est pas le cas, déconnectez-vous"
