@@ -20,7 +20,7 @@ describe 'Personnaliser la liste des dossiers ETQ usager', type: :system, js: tr
   scenario "l'usager personnalise sa liste de dossiers" do
     visit dossiers_path
 
-    expect(page).to have_link(edit_users_dossiers_personnalisation_path)
+    expect(page).to have_link(href: edit_users_dossiers_personnalisation_path)
 
     visit edit_users_dossiers_personnalisation_path
 
@@ -45,6 +45,6 @@ describe 'Personnaliser la liste des dossiers ETQ usager', type: :system, js: tr
   scenario "l'icône n'apparaît pas pour un usager avec 5 dossiers ou moins" do
     user.dossiers.first.update!(hidden_by_user_at: Time.current)
     visit dossiers_path
-    expect(page).not_to have_link(edit_users_dossiers_personnalisation_path)
+    expect(page).not_to have_link(href: edit_users_dossiers_personnalisation_path)
   end
 end
