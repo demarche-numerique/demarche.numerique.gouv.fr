@@ -17,7 +17,13 @@ class Logic::ColumnValue < Logic::Term
     return nil if !targeted_champ.visible?
     return nil if targeted_champ.blank? && !targeted_champ.drop_down_other?
 
-    @champ_column.value(targeted_champ)
+    # if it s a dropdown champ and a dropdown tdc (no cast)
+    # and the dropdown is other, return other
+    if targeted_champ.is_type?(@champ_column.tdc_type) && targeted_champ.drop_down_list? && targeted_champ.other?
+      Champs::DropDownListChamp::OTHER
+    else
+      @champ_column.value(targeted_champ)
+    end
   end
 
   def type(_type_de_champs)
