@@ -503,7 +503,7 @@ class TypeDeChamp < ApplicationRecord
       if drop_down_advanced?
         Array.wrap(referentiel&.options_for_select)
       else
-        drop_down_options.uniq.map { [_1, _1] }
+        options_for_select_with_other
       end
     elsif yes_no?
       Champs::YesNoChamp.options
@@ -515,11 +515,17 @@ class TypeDeChamp < ApplicationRecord
   end
 
   def options_for_select_with_other
-    if drop_down_other?
-      options_for_select + [[I18n.t('shared.champs.drop_down_list.other'), Champs::DropDownListChamp::OTHER]]
+    options = if drop_down_advanced?
+      Array.wrap(referentiel&.options_for_select)
     else
-      options_for_select
+      drop_down_options.uniq.map { [it, it] }
     end
+
+    if drop_down_other?
+      options << [I18n.t('shared.champs.drop_down_list.other'), Champs::DropDownListChamp::OTHER]
+    end
+
+    options
   end
 
   def drop_down_options_from_text=(text)
