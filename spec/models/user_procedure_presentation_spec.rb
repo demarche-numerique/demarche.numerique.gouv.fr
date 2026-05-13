@@ -13,6 +13,16 @@ RSpec.describe UserProcedurePresentation, type: :model do
     end
   end
 
+  describe 'validations' do
+    it 'délègue la validation aux Column' do
+      column = procedure.find_column(label: 'Demandeur')
+      allow(column).to receive(:valid?).and_return(false)
+      presentation = described_class.new(user:, procedure:, displayed_columns: [column])
+
+      expect(presentation).not_to be_valid
+    end
+  end
+
   describe 'displayed_columns' do
     it 'défaut à un tableau vide' do
       presentation = described_class.new(user:, procedure:)
@@ -31,7 +41,16 @@ RSpec.describe UserProcedurePresentation, type: :model do
       described_class.create!(user:, procedure:)
       expect {
         described_class.create!(user:, procedure:)
-      }.to raise_error(ActiveRecord::RecordNotUnique)
+      }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    it "valide l'unicité au niveau du modèle" do
+      described_class.create!(user:, procedure:)
+
+      duplicate = described_class.new(user:, procedure:)
+
+      expect(duplicate).not_to be_valid
+      expect(duplicate.errors[:user_id]).to include(I18n.t('errors.messages.taken'))
     end
   end
 end
