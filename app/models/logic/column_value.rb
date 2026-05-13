@@ -80,4 +80,9 @@ class Logic::ColumnValue < Logic::Term
   end
 
   def to_s(_type_de_champ) = label
+
+  def remap_procedure_id(new_procedure_id)
+    current_h_id = @champ_column&.h_id || @column_h_id
+    self.class.from_h("term" => self.class.name, "column_id" => current_h_id.merge(procedure_id: new_procedure_id))
+  end
 end

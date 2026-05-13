@@ -14,4 +14,6 @@ class Logic::Term
   end
 
   def terms = [self]
+
+  def remap_procedure_id(_new_procedure_id) = self
 end
