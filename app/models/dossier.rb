@@ -1124,6 +1124,25 @@ class Dossier < ApplicationRecord
     enqueue_fetch_external_data_jobs(prefilled_champs)
   end
 
+  def displayed_columns_for(user)
+    presentation = user.user_procedure_presentations.find_by(procedure_id: procedure.id)
+    return [] if presentation.blank?
+
+    revision_stable_ids = revision.revision_types_de_champ.map { _1.type_de_champ.stable_id }
+
+    presentation.displayed_columns.filter_map do |column|
+      next unless revision_stable_ids.include?(column.stable_id)
+      data = if column.champ_column?
+        Champ.find_by(dossier_id: id, stable_id: column.stable_id, stream: 'main')
+      else
+        self
+      end
+      value = column.value(data)
+      next if value.blank?
+      [column, value]
+    end
+  end
+
   private
 
   def build_default_champs
