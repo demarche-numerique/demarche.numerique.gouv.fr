@@ -458,5 +458,49 @@ describe ProcedureCloneConcern, type: :model do
         end
       end
     end
+
+    context 'with column_value conditions referencing the source procedure' do
+      include Logic
+
+      let(:types_de_champ_public) do
+        [
+          { type: :yes_no, libelle: 'gate' },
+          { type: :integer_number, libelle: 'value' },
+        ]
+      end
+      let(:options) { super().merge(clone_ineligibilite: true) }
+      let(:gate_tdc) { procedure.draft_revision.types_de_champ_public.first }
+      let(:value_tdc) { procedure.draft_revision.types_de_champ_public.second }
+      let(:gate_column) { procedure.find_column(label: 'gate') }
+
+      before do
+        value_tdc.update!(condition: ds_eq(column_value(gate_column), constant(true)))
+        procedure.draft_revision.update!(ineligibilite_rules: ds_eq(column_value(gate_column), constant(false)))
+        groupe_instructeur_1.update!(routing_rule: ds_eq(column_value(gate_column), constant(true)))
+      end
+
+      it 'rewrites procedure_id in tdc conditions to the cloned procedure' do
+        cloned_value_tdc = subject.draft_revision.types_de_champ_public.find { _1.libelle == 'value' }
+
+        expect(cloned_value_tdc.condition.left).to be_a(Logic::ColumnValue)
+        expect(cloned_value_tdc.condition.left.to_h.dig("column_id", :procedure_id)).to eq(subject.id)
+      end
+
+      it 'rewrites procedure_id in ineligibilite_rules' do
+        expect(subject.draft_revision.ineligibilite_rules.left.to_h.dig("column_id", :procedure_id)).to eq(subject.id)
+      end
+
+      it 'rewrites procedure_id in routing_rules' do
+        cloned_gi = subject.groupe_instructeurs.find_by(label: 'groupe_1')
+
+        expect(cloned_gi.routing_rule.left.to_h.dig("column_id", :procedure_id)).to eq(subject.id)
+      end
+
+      it 'leaves the source procedure conditions untouched' do
+        subject # trigger clone
+
+        expect(value_tdc.reload.condition.left.to_h.dig("column_id", :procedure_id)).to eq(procedure.id)
+      end
+    end
   end
 end
