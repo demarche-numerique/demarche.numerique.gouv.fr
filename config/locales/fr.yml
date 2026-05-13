@@ -1013,6 +1013,21 @@ fr:
     dossiers_personnalisation:
       edit:
         titre: "Personnaliser la liste des dossiers"
+        combobox_placeholder: "Sélectionnez un ou plusieurs champs"
+        affichage_non_personnalise: "Affichage non personnalisé pour les dossiers de cette démarche."
+        informations_supplementaires: "Informations supplémentaires à afficher dans la vue des dossiers de la liste :"
+        pourquoi_personnaliser:
+          titre: "Pourquoi personnaliser la liste ?"
+          contenu_html: |
+            <p>Pour chaque dossier, les informations suivantes sont systématiquement affichées :</p>
+            <ul>
+              <li>N° de dossier</li>
+              <li>Identité du demandeur</li>
+              <li>Date de dépôt (ou de création / modification)</li>
+            </ul>
+            <p>Afin de faciliter la distinction des dossiers entre eux dans la liste (notamment si vous déposez plusieurs dossiers sur une même démarche), vous pouvez définir une ou plusieurs informations complémentaires à afficher, issues des données renseignées dans les champs du formulaire.</p>
+        annuler: "Annuler"
+        enregistrer: "Enregistrer"
       flash:
         success: "La liste des dossiers a bien été personnalisée."
     dossiers:
