@@ -27,6 +27,7 @@ class User < ApplicationRecord
   has_many :requested_merge_from, class_name: 'User', dependent: :nullify, inverse_of: :requested_merge_into, foreign_key: :requested_merge_into_id
   has_many :france_connect_informations, dependent: :destroy
   has_many :pro_connect_informations, dependent: :destroy
+  has_many :user_procedure_presentations, dependent: :destroy
 
   has_one :instructeur, dependent: :destroy
   has_one :administrateur, dependent: :destroy
@@ -71,6 +72,10 @@ class User < ApplicationRecord
     Dossier.includes(:procedure, :user, :individual, :etablissement, transfer: { dossiers: :user })
       .where(dossier_transfer_id: DossierTransfer.for_email(email).pending)
       .order(updated_at: :desc)
+  end
+
+  def dossiers_personnalisables?
+    dossiers.visible_by_user.count > 5
   end
 
   def owns?(dossier)

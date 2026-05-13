@@ -747,4 +747,30 @@ describe User, type: :model do
       end
     end
   end
+
+  describe '#dossiers_personnalisables?' do
+    let(:user) { create(:user) }
+
+    context 'avec 5 dossiers ou moins' do
+      before { create_list(:dossier, 5, user:) }
+
+      it { expect(user.dossiers_personnalisables?).to eq(false) }
+    end
+
+    context 'avec plus de 5 dossiers' do
+      before { create_list(:dossier, 6, user:) }
+
+      it { expect(user.dossiers_personnalisables?).to eq(true) }
+    end
+  end
+
+  describe 'has_many :user_procedure_presentations' do
+    it 'est détruit avec l\'utilisateur' do
+      user = create(:user)
+      procedure = create(:procedure)
+      UserProcedurePresentation.create!(user:, procedure:)
+
+      expect { user.destroy }.to change(UserProcedurePresentation, :count).by(-1)
+    end
+  end
 end
