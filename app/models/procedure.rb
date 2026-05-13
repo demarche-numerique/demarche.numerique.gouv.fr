@@ -128,6 +128,14 @@ class Procedure < ApplicationRecord
     types_de_champ_for_tags.private_only
   end
 
+  def types_de_champ_personnalisables(revision = active_revision)
+    TypeDeChamp
+      .personnalisables_par_usager
+      .joins(:revision_types_de_champ)
+      .where(revision_types_de_champ: { revision_id: revision.id, parent_id: nil })
+      .order('revision_types_de_champ.position', 'revision_types_de_champ.id')
+  end
+
   def revisions_with_pending_dossiers
     @revisions_with_pending_dossiers ||= begin
       ids = dossiers
