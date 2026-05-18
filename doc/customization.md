@@ -61,3 +61,14 @@ For deeper customization of email layout, you can override these partials in `ap
 - `layouts/mailers/_dsfr_header.html.erb`
 - `layouts/mailers/_dsfr_identity.html.erb`
 - `layouts/mailers/_dsfr_footer.html.erb`
+
+
+## Step 5. Override the DSFR theme
+
+If your instance is not officially allowed to use the DSFR, you can enable a ready-made theme that overrides the DSFR visual identity with a neutral, Cunningham-inspired design (design system of La Suite Numérique / DINUM).
+
+Set the following environment variable:
+
+```bash
+OVERRIDE_DSFR_ENABLED="enabled"
+```
