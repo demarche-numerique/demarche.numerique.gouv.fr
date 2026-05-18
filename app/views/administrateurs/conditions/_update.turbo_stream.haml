@@ -6,6 +6,12 @@
 = turbo_stream.update "sticky-header" do
   = render partial: "administrateurs/procedures/unpublished_changes_sticky_header", locals: { procedure: @procedure }
 
+- if @procedure.draft_changed?
+  = turbo_stream.update "sticky-header" do
+    = render partial: "administrateurs/procedures/unpublished_changes_sticky_header", locals: { procedure: @procedure }
+- else
+  = turbo_stream.update "sticky-header", ""
+
 = turbo_stream.replace 'errors-summary', render(Procedure::ErrorsSummary.new(procedure: @procedure, validation_context: @tdc.public? ? :types_de_champ_public_editor : :types_de_champ_private_editor))
 
 - rendered = render @condition_component
