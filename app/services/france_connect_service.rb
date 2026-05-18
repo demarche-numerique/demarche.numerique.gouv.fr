@@ -55,7 +55,7 @@ class FranceConnectService
 
     access_token = client.access_token!(client_auth_method: :secret)
 
-    id_token = OpenIDConnect::ResponseObject::IdToken.decode(access_token.id_token, FranceConnectConfig.jwks)
+    id_token = OpenIDConnect::ResponseObject::IdToken.decode(access_token.id_token, FranceConnectConfig.jwks_for(access_token.id_token))
 
     id_token.verify!(conf.merge(nonce:))
 

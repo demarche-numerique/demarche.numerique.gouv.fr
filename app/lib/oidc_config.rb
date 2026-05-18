@@ -12,6 +12,12 @@ class OidcConfig
   def endpoints = data.fetch(:endpoints)
   def jwks = JSON::JWK::Set.new(data.fetch(:jwks))
 
+  def jwks_for_raw_token(raw_id_token)
+    kid = JSON::JWT.decode(raw_id_token, :skip_verification).kid
+    refresh! if jwks[kid].nil?
+    jwks
+  end
+
   def refresh!
     discover = OpenIDConnect::Discovery::Provider::Config.discover!(@base_url)
     payload = {

@@ -97,7 +97,7 @@ describe FranceConnectService do
 
       allow(OpenIDConnect::ResponseObject::IdToken).to receive(:decode).and_return(double(verify!: true))
       allow(FranceConnectConfig).to receive(:client_config).and_return({ identifier: 'identifier' })
-      allow(FranceConnectConfig).to receive(:jwks).and_return(double)
+      allow(FranceConnectConfig).to receive(:jwks_for).and_return(double)
     end
 
     context "when there is no existing fci" do

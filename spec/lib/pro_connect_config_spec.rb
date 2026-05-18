@@ -50,11 +50,11 @@ RSpec.describe ProConnectConfig, :caching do
     end
   end
 
-  describe ".jwks" do
-    it "delegates to OidcConfig#jwks" do
-      described_class.refresh!
+  describe ".jwks_for" do
+    it "delegates to OidcConfig#jwks_for_raw_token" do
+      raw_id_token = JSON::JWT.new(sub: "user-1", exp: 1.hour.from_now.to_i, iat: Time.current.to_i).sign(jwk, :RS256).to_s
 
-      expect(described_class.jwks).to be_a(JSON::JWK::Set)
+      expect(described_class.jwks_for(raw_id_token)).to be_a(JSON::JWK::Set)
     end
   end
 end

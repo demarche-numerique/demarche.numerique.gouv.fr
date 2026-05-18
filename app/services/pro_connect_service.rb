@@ -57,7 +57,7 @@ class ProConnectService
 
     access_token = client.access_token!(client_auth_method: :secret)
 
-    id_token = ResponseObject::IdToken.decode(access_token.id_token, ProConnectConfig.jwks)
+    id_token = ResponseObject::IdToken.decode(access_token.id_token, ProConnectConfig.jwks_for(access_token.id_token))
     id_token.verify!(conf.merge(nonce: nonce))
 
     amr = id_token.amr.present? ? JSON.parse(id_token.amr) : []

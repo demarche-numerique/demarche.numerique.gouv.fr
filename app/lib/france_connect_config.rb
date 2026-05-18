@@ -12,7 +12,7 @@ module FranceConnectConfig
     )
   end
 
-  def jwks = oidc.jwks
+  def jwks_for(raw_id_token) = oidc.jwks_for_raw_token(raw_id_token)
 
   def refresh! = oidc.refresh!
 
