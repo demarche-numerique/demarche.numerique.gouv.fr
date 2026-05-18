@@ -22,9 +22,10 @@
         id="search"
         name="search"
         class="fr-input"
+        autocomplete="off"
         placeholder="<%= t('views.users.dossiers.index.search.placeholder_text', default: 'Saisissez votre recherche') %>"
         value="<%= search_terms %>"
-      />
+      >
 
       <button class="fr-btn" type="submit">
         <%= t('views.users.dossiers.index.search.submit', default: 'Rechercher') %>

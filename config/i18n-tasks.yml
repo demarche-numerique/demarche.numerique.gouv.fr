@@ -94,9 +94,16 @@ search:
 ## Do not consider these keys missing:
 ignore_missing:
 - 'dossiers.user_filter_panel_component.*'
+- 'views.users.dossiers.dossiers_list.no_result_text_with_search'
+- 'views.users.dossiers.dossiers_list.no_result_reset_search'
+- 'views.users.dossiers.index.results_count'
+- 'views.users.dossiers.search.result_term_title'
+- 'views.users.dossiers.search.result_title'
 
 ## Consider these keys used:
 ignore_unused:
+  - 'views.users.dossiers.dossiers_list.no_result_search_*'
+  - 'views.users.dossiers.index.search.*'
   - 'errors.format'
   - 'user_mailer.*.subject'
   - 'activerecord.models.*'
