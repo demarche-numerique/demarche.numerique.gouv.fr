@@ -70,3 +70,13 @@ For deeper customization of email layout, you can override these partials in `ap
 Information banners (maintenance notices, etc.) are managed per instance from the
 Manager interface at `/manager/banners`, with no env var or redeploy required.
 See [doc/banners.md](banners.md).
+
+## Step 6. Override the DSFR theme
+
+If your instance is not officially allowed to use the DSFR, you can enable a ready-made theme that overrides the DSFR visual identity with a neutral, Cunningham-inspired design (design system of La Suite Numérique / DINUM).
+
+Set the following environment variable:
+
+```bash
+OVERRIDE_DSFR_ENABLED="enabled"
+```
