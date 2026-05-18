@@ -138,7 +138,7 @@ describe 'Prefilling a dossier (with a GET request):', js: true do
 
   context 'when unauthenticated' do
     before do
-      stub_const('FRANCE_CONNECT', identifier: 'identifier')
+      allow(FranceConnectConfig).to receive(:client_config).and_return({ identifier: 'identifier' })
       allow(FranceConnectService).to receive(:enabled?).and_return(true)
 
       visit entry_path

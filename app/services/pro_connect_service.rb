@@ -57,7 +57,7 @@ class ProConnectService
 
     access_token = client.access_token!(client_auth_method: :secret)
 
-    id_token = ResponseObject::IdToken.decode(access_token.id_token, conf[:jwks])
+    id_token = ResponseObject::IdToken.decode(access_token.id_token, ProConnectConfig.jwks)
     id_token.verify!(conf.merge(nonce: nonce))
 
     amr = id_token.amr.present? ? JSON.parse(id_token.amr) : []
@@ -68,21 +68,21 @@ class ProConnectService
   def self.logout_url(id_token, host_with_port:)
     app_logout = Rails.application.routes.url_helpers.logout_url(host: host_with_port)
     h = { id_token_hint: id_token, post_logout_redirect_uri: app_logout }
-    "#{PRO_CONNECT[:end_session_endpoint]}?#{h.to_query}"
+    "#{conf[:end_session_endpoint]}?#{h.to_query}"
   end
 
   private
 
   # TODO: remove this block when migration to new domain is done
   def self.conf
+    config = ProConnectConfig.client_config
+
     # rubocop:disable DS/ApplicationName
-    if Current.host.end_with?('demarche.numerique.gouv.fr')
-      h = PRO_CONNECT.dup
-      h[:redirect_uri] = h[:redirect_uri].gsub('www.demarches-simplifiees.fr', 'demarche.numerique.gouv.fr')
-      h
-    else
-      PRO_CONNECT
+    if Current.host&.end_with?('demarche.numerique.gouv.fr')
+      config[:redirect_uri] = config[:redirect_uri].gsub('www.demarches-simplifiees.fr', 'demarche.numerique.gouv.fr')
     end
     # rubocop:enable DS/ApplicationName
+
+    config
   end
 end

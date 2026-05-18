@@ -10,7 +10,7 @@ describe FranceConnectService do
     subject { described_class.authorization_uri }
 
     before do
-      stub_const('FRANCE_CONNECT', identifier: 'identifier')
+      allow(FranceConnectConfig).to receive(:client_config).and_return({ identifier: 'identifier' })
       allow(OpenIDConnect::Client).to receive(:new).and_return(client)
       allow(SecureRandom).to receive(:alphanumeric).with(32).and_return(state, nonce)
       allow(client).to receive(:authorization_uri).with(
@@ -29,7 +29,7 @@ describe FranceConnectService do
     subject { described_class.send(:conf)[:redirect_uri] }
 
     before do
-      stub_const('FRANCE_CONNECT', { redirect_uri: 'https://demarche.numerique.gouv.fr/france_connect/particulier/callback' })
+      allow(FranceConnectConfig).to receive(:client_config).and_return({ redirect_uri: 'https://demarche.numerique.gouv.fr/france_connect/particulier/callback' })
       ENV['APP_HOST'] = 'demarche.numerique.gouv.fr'
       allow(Rails.env).to receive(:test?).and_return(false)
       Current.host = host
@@ -96,7 +96,8 @@ describe FranceConnectService do
       allow(access_token).to receive(:id_token).and_return('id_token')
 
       allow(OpenIDConnect::ResponseObject::IdToken).to receive(:decode).and_return(double(verify!: true))
-      stub_const('FRANCE_CONNECT', identifier: 'identifier')
+      allow(FranceConnectConfig).to receive(:client_config).and_return({ identifier: 'identifier' })
+      allow(FranceConnectConfig).to receive(:jwks).and_return(double)
     end
 
     context "when there is no existing fci" do

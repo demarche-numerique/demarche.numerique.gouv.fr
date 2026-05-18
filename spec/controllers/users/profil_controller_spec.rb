@@ -237,7 +237,7 @@ describe Users::ProfilController, type: :controller do
 
     context 'when the user is logged in with FranceConnect' do
       before do
-        stub_const('FRANCE_CONNECT', { end_session_endpoint: 'https://logout.franceconnect.gouv.fr' })
+        allow(FranceConnectConfig).to receive(:client_config).and_return({ end_session_endpoint: 'https://logout.franceconnect.gouv.fr' })
         cookies.encrypted[FranceConnectController::ID_TOKEN_COOKIE_NAME] = 'id_token'
         cookies.encrypted[FranceConnectController::STATE_COOKIE_NAME] = 'state'
       end

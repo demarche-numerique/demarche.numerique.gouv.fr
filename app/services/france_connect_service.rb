@@ -12,7 +12,7 @@ class FranceConnectService
   }.freeze
 
   def self.enabled?
-    ENV.fetch("FRANCE_CONNECT_ENABLED", "enabled") == "enabled"
+    ENV.fetch("FRANCE_CONNECT_ENABLED", "enabled") == "enabled" && ENV['FC_PARTICULIER_BASE_URL_V2'].present?
   end
 
   def self.authorization_uri
@@ -44,7 +44,7 @@ class FranceConnectService
 
   def self.logout_url(id_token:, state:, callback:)
     h = { id_token_hint: id_token, state:, post_logout_redirect_uri: callback }
-    "#{FRANCE_CONNECT[:end_session_endpoint]}?#{h.to_query}"
+    "#{conf[:end_session_endpoint]}?#{h.to_query}"
   end
 
   private
@@ -55,9 +55,9 @@ class FranceConnectService
 
     access_token = client.access_token!(client_auth_method: :secret)
 
-    id_token = OpenIDConnect::ResponseObject::IdToken.decode(access_token.id_token, FRANCE_CONNECT[:jwks])
+    id_token = OpenIDConnect::ResponseObject::IdToken.decode(access_token.id_token, FranceConnectConfig.jwks)
 
-    id_token.verify!(FRANCE_CONNECT.merge(nonce:))
+    id_token.verify!(conf.merge(nonce:))
 
     user_info = access_token.userinfo!.raw_attributes
 
@@ -72,7 +72,7 @@ class FranceConnectService
   # rubocop:enable DS/ApplicationName
 
   def self.conf
-    config = FRANCE_CONNECT.deep_dup
+    config = FranceConnectConfig.client_config
 
     # TODO: remove this block when migration to new domain is done
     # dirty hack to redirect to the right domain

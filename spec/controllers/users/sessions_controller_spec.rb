@@ -124,8 +124,8 @@ describe Users::SessionsController, type: :controller do
     let(:logged_in_with_france_connect) { false }
 
     before do
-      stub_const("PRO_CONNECT", { end_session_endpoint: 'http://pro-connect/logout' })
-      stub_const("FRANCE_CONNECT", { end_session_endpoint: 'http://france-connect/logout' })
+      allow(ProConnectConfig).to receive(:client_config).and_return({ end_session_endpoint: 'http://pro-connect/logout' })
+      allow(FranceConnectConfig).to receive(:client_config).and_return({ end_session_endpoint: 'http://france-connect/logout' })
 
       sign_in user
 
@@ -154,7 +154,7 @@ describe Users::SessionsController, type: :controller do
 
       it 'redirect to FranceConnect logout page' do
         h = { id_token_hint: 'id_token', post_logout_redirect_uri: root_url, state: 'state' }
-        expect(response).to redirect_to("#{FRANCE_CONNECT[:end_session_endpoint]}?#{h.to_query}")
+        expect(response).to redirect_to("http://france-connect/logout?#{h.to_query}")
 
         [
           FranceConnectController::ID_TOKEN_COOKIE_NAME,

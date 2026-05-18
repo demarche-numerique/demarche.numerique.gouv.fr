@@ -5,9 +5,7 @@ describe ProConnectService do
     let(:id_token) { 'id_token' }
 
     before do
-      ::PRO_CONNECT ||= {}
-      allow(PRO_CONNECT).to receive(:[])
-        .with(:end_session_endpoint).and_return("https://www.proconnect.gouv.fr/logout")
+      allow(ProConnectConfig).to receive(:client_config).and_return({ end_session_endpoint: "https://www.proconnect.gouv.fr/logout" })
     end
 
     subject { described_class.logout_url(id_token, host_with_port: 'test.host') }
