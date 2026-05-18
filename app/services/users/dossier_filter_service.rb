@@ -92,12 +92,10 @@ module Users
 
     def model_states
       Array(@params[:state])
-        .map { |s| Users::DossierStateMapping.model_state_for(s) }
-        .compact
     end
 
     def alert_scopes
-      Array(@params[:alert]).map { |a| ALERT_SCOPES[a] }.compact
+      Array(@params[:alert]).filter_map { |a| ALERT_SCOPES[a] }
     end
 
     def alert_ids
@@ -125,8 +123,8 @@ module Users
 
     def count_states
       scope = scope_without(:state)
-      Users::DossierStateMapping::UI_STATES.index_with do |ui_state|
-        scope.where(state: Users::DossierStateMapping.model_state_for(ui_state)).count
+      Users::DossierStateMapping::UI_STATES.index_with do |state|
+        scope.where(state: state).count
       end
     end
 

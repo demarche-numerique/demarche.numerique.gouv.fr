@@ -10,7 +10,7 @@ RSpec.describe Dossiers::UserFilterPanelComponent, type: :component do
       total_count: 12,
       counts: {
         procedure_ids: {},
-        states: { 'brouillon' => 1, 'depose' => 5, 'en_instruction' => 0, 'accepte' => 0, 'refuse' => 0, 'sans_suite' => 0 },
+        states: { 'brouillon' => 1, 'en_construction' => 5, 'en_instruction' => 0, 'accepte' => 0, 'refuse' => 0, 'sans_suite' => 0 },
         alerts: { 'nouveau_message' => 0, 'message_avec_attente_de_reponse' => 3, 'a_corriger' => 0, 'expire_bientot' => 0 },
         shared_with_me: 0,
       })
@@ -31,7 +31,7 @@ RSpec.describe Dossiers::UserFilterPanelComponent, type: :component do
   end
 
   it 'renders state counters inline' do
-    expect(subject.to_html).to include('(5)') # depose count
+    expect(subject.to_html).to include('(5)') # en_construction count
     expect(subject.to_html).to include('(3)') # pending responses count
   end
 

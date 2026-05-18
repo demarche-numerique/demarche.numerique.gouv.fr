@@ -601,7 +601,7 @@ fr:
               other: "Partagé avec moi (%{count})"
             states:
               brouillon: "Brouillon"
-              depose: "Déposé"
+              en_construction: "Déposé"
               en_instruction: "En instruction"
               accepte: "Accepté"
               refuse: "Refusé"

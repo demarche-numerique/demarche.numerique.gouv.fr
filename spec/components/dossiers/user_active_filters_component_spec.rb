@@ -6,12 +6,12 @@ RSpec.describe Dossiers::UserActiveFiltersComponent, type: :component do
   let(:tags) do
     [
       { group: :procedure_id, value: '42', label: 'Demande de subvention' },
-      { group: :state, value: 'depose', label: 'Déposé' },
+      { group: :state, value: 'en_construction', label: 'Déposé' },
     ]
   end
 
   subject do
-    render_inline(described_class.new(tags: tags, current_filter_params: { state: ['depose'], procedure_id: '42' }))
+    render_inline(described_class.new(tags: tags, current_filter_params: { state: ['en_construction'], procedure_id: '42' }))
   end
 
   it 'renders one chip per tag' do

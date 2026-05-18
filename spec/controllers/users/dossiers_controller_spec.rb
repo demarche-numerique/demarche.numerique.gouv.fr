@@ -1630,7 +1630,7 @@ describe Users::DossiersController, type: :controller do
     end
 
     it 'passes filter params to the service' do
-      get :index, params: { state: ['depose'], alert: ['a_corriger'], procedure_id: '42' }
+      get :index, params: { state: ['en_construction'], alert: ['a_corriger'], procedure_id: '42' }
       expect(assigns(:filter)).to be_a(Users::DossierFilterService)
       expect(response).to have_http_status(:ok)
     end
