@@ -88,7 +88,7 @@ class FranceConnectService
 
     access_token = client.access_token!(client_auth_method: :secret)
 
-    id_token = OpenIDConnect::ResponseObject::IdToken.decode(access_token.id_token, conf[:jwks])
+    id_token = OpenIDConnect::ResponseObject::IdToken.decode(access_token.id_token, jwks_for_raw_token(access_token.id_token))
 
     id_token.verify!(conf.merge(nonce:))
 
@@ -98,5 +98,20 @@ class FranceConnectService
   rescue OpenIDConnect::HttpError => e
     Sentry.set_extras(france_connect_status: e.status, france_connect_body: e.response.body)
     raise
+  end
+
+  def self.jwks_for_raw_token(raw_id_token)
+    kid = JSON::JWT.decode(raw_id_token, :skip_verification).kid
+    refresh! if jwks[kid].nil?
+    jwks
+  end
+
+  def self.jwks
+    init_conf[:jwks]
+  end
+
+  def self.refresh!
+    Rails.cache.delete("france_connect/init_conf")
+    init_conf
   end
 end
