@@ -111,6 +111,9 @@ class FranceConnectService
   end
 
   def self.refresh!
+    flag = Kredis.flag("france_connect/refresh_lock", expires_in: 1.minute)
+    return if flag.marked?
+    flag.mark
     Rails.cache.delete("france_connect/init_conf")
     init_conf
   end
