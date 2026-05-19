@@ -3,6 +3,7 @@
 class Users::PasswordsController < Devise::PasswordsController
   include DevisePopulatedResource
 
+  before_action :reject_email_with_null_byte, only: [:create]
   after_action :try_to_authenticate_instructeur, only: [:update]
   after_action :try_to_authenticate_administrateur, only: [:update]
   after_action :update_email_verified_at, only: [:update]
@@ -68,5 +69,13 @@ class Users::PasswordsController < Devise::PasswordsController
     if user_signed_in?
       current_user.update!(email_verified_at: Time.zone.now)
     end
+  end
+
+  private
+
+  def reject_email_with_null_byte
+    email = params.dig(:user, :email)
+    return unless email.is_a?(String) && email.bytes.include?(0)
+    params[:user][:email] = ''
   end
 end

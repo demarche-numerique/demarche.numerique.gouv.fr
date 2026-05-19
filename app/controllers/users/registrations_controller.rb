@@ -6,6 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   before_action :restore_procedure_context, only: [:new, :create]
+  before_action :reject_email_with_null_byte, only: [:create]
 
   layout 'login', only: [:new, :create]
 
@@ -101,5 +102,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # `user[email][]=x` would fall through to `find_by({})` and return the first user.
     email = params.require(:user).permit(:email)[:email]
     email.is_a?(String) ? email : nil
+  end
+
+  def reject_email_with_null_byte
+    email = params.dig(:user, :email)
+    return unless email.is_a?(String) && email.bytes.include?(0)
+    params[:user][:email] = ''
   end
 end
