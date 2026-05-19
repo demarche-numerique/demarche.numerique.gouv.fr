@@ -66,18 +66,20 @@ class FranceConnectService
   private
 
   def self.init_conf
-    discover = OpenIDConnect::Discovery::Provider::Config.discover!("#{ENV.fetch('FC_PARTICULIER_BASE_URL_V2')}/api/v2")
+    Rails.cache.fetch("france_connect/init_conf", expires_in: 24.hours) do
+      discover = OpenIDConnect::Discovery::Provider::Config.discover!("#{ENV.fetch('FC_PARTICULIER_BASE_URL_V2')}/api/v2")
 
-    protocol = Rails.env.production? ? 'https' : 'http'
-    redirect_uri = "#{protocol}://#{ENV['APP_HOST']}/france_connect/callback"
+      protocol = Rails.env.production? ? 'https' : 'http'
+      redirect_uri = "#{protocol}://#{ENV['APP_HOST']}/france_connect/callback"
 
-    discover.as_json.merge(
-      client_id: ENV.fetch('FC_PARTICULIER_ID_V2'),
-      identifier: ENV.fetch('FC_PARTICULIER_ID_V2'),
-      jwks: discover.jwks,
-      redirect_uri:,
-      secret: ENV.fetch('FC_PARTICULIER_SECRET_V2')
-    )
+      discover.as_json.merge(
+        client_id: ENV.fetch('FC_PARTICULIER_ID_V2'),
+        identifier: ENV.fetch('FC_PARTICULIER_ID_V2'),
+        jwks: discover.jwks,
+        redirect_uri:,
+        secret: ENV.fetch('FC_PARTICULIER_SECRET_V2')
+      )
+    end
   end
 
   def self.retrieve_user_informations(code, nonce)
