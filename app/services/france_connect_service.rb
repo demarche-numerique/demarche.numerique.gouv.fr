@@ -44,27 +44,7 @@ class FranceConnectService
 
   def self.logout_url(id_token:, state:, callback:)
     h = { id_token_hint: id_token, state:, post_logout_redirect_uri: callback }
-    "#{FRANCE_CONNECT[:end_session_endpoint]}?#{h.to_query}"
-  end
-
-  private
-
-  def self.retrieve_user_informations(code, nonce)
-    client = OpenIDConnect::Client.new(conf)
-    client.authorization_code = code
-
-    access_token = client.access_token!(client_auth_method: :secret)
-
-    id_token = OpenIDConnect::ResponseObject::IdToken.decode(access_token.id_token, FRANCE_CONNECT[:jwks])
-
-    id_token.verify!(FRANCE_CONNECT.merge(nonce:))
-
-    user_info = access_token.userinfo!.raw_attributes
-
-    [user_info, access_token.id_token]
-  rescue OpenIDConnect::HttpError => e
-    Sentry.set_extras(france_connect_status: e.status, france_connect_body: e.response.body)
-    raise
+    "#{conf[:end_session_endpoint]}?#{h.to_query}"
   end
 
   # rubocop:disable DS/ApplicationName
@@ -81,5 +61,25 @@ class FranceConnectService
     end
 
     config
+  end
+
+  private
+
+  def self.retrieve_user_informations(code, nonce)
+    client = OpenIDConnect::Client.new(conf)
+    client.authorization_code = code
+
+    access_token = client.access_token!(client_auth_method: :secret)
+
+    id_token = OpenIDConnect::ResponseObject::IdToken.decode(access_token.id_token, conf[:jwks])
+
+    id_token.verify!(conf.merge(nonce:))
+
+    user_info = access_token.userinfo!.raw_attributes
+
+    [user_info, access_token.id_token]
+  rescue OpenIDConnect::HttpError => e
+    Sentry.set_extras(france_connect_status: e.status, france_connect_body: e.response.body)
+    raise
   end
 end

@@ -185,7 +185,7 @@ class FranceConnectController < ApplicationController
     elsif is_ds_prod
       ds_prod_redirect_uris
     else
-      [FRANCE_CONNECT[:redirect_uri]]
+      [FranceConnectService.conf[:redirect_uri]]
     end
 
     render json: redirect_uris
