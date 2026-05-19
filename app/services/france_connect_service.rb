@@ -52,7 +52,7 @@ class FranceConnectService
   # rubocop:enable DS/ApplicationName
 
   def self.conf
-    config = FRANCE_CONNECT.deep_dup
+    config = init_conf
 
     # TODO: remove this block when migration to new domain is done
     # dirty hack to redirect to the right domain
@@ -64,6 +64,21 @@ class FranceConnectService
   end
 
   private
+
+  def self.init_conf
+    discover = OpenIDConnect::Discovery::Provider::Config.discover!("#{ENV.fetch('FC_PARTICULIER_BASE_URL_V2')}/api/v2")
+
+    protocol = Rails.env.production? ? 'https' : 'http'
+    redirect_uri = "#{protocol}://#{ENV['APP_HOST']}/france_connect/callback"
+
+    discover.as_json.merge(
+      client_id: ENV.fetch('FC_PARTICULIER_ID_V2'),
+      identifier: ENV.fetch('FC_PARTICULIER_ID_V2'),
+      jwks: discover.jwks,
+      redirect_uri:,
+      secret: ENV.fetch('FC_PARTICULIER_SECRET_V2')
+    )
+  end
 
   def self.retrieve_user_informations(code, nonce)
     client = OpenIDConnect::Client.new(conf)
