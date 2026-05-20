@@ -27,7 +27,13 @@ module Users
     end
 
     def permitted_presentations
-      params.fetch(:presentations, {}).permit!.to_h
+      presentations_params = params.fetch(:presentations, ActionController::Parameters.new)
+      permitted = {}
+      presentations_params.each do |procedure_id, attrs|
+        next unless attrs.respond_to?(:permit)
+        permitted[procedure_id] = attrs.permit(displayed_column_ids: [])
+      end
+      permitted
     end
 
     def user_procedure_from_param(procedure_id)
