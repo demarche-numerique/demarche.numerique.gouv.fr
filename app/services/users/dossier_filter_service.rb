@@ -62,7 +62,7 @@ module Users
         tags << { group: :shared_with_me, value: '1', label: I18n.t('views.users.dossiers.index.filter_panel.groups.shared_with_me') }
       end
       Array(@params[:state]).each do |s|
-        tags << { group: :state, value: s, label: I18n.t("dossiers.user_filter_panel_component.states.#{s}", default: s) }
+        tags << { group: :state, value: s, label: Users::DossierStateMapping.state_label(s) }
       end
       Array(@params[:alert]).each do |a|
         tags << { group: :alert, value: a, label: I18n.t("views.users.dossiers.index.filter_panel.alerts.#{a}") }

@@ -134,7 +134,9 @@ ignore_unused:
   - 'links.main_navigation.doc.expert_title'
   - 'links.main_navigation.doc.instructeur_title'
   - 'shared.dossiers.geo.*'
+  # used in app/components/dossiers/user_filter_panel_component (excluded from search above)
   - 'views.users.dossiers.index.filter_panel.*'
+  # used in app/components/dossiers/user_active_filters_component (excluded from search above)
   - 'views.users.dossiers.index.active_filters.*'
 # - '{devise,kaminari,will_paginate}.*'
 # - 'simple_form.{yes,no}'

@@ -588,13 +588,6 @@ en:
             shared_with_me:
               one: "Shared with me (%{count})"
               other: "Shared with me (%{count})"
-            states:
-              brouillon: "Draft"
-              en_construction: "Submitted"
-              en_instruction: "Under review"
-              accepte: "Accepted"
-              refuse: "Rejected"
-              sans_suite: "Closed without follow-up"
             alerts:
               nouveau_message: "New message"
               message_avec_attente_de_reponse: "Message pending response"

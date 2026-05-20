@@ -19,7 +19,7 @@ class Dossiers::UserFilterPanelComponent < ApplicationComponent
   end
 
   def state_label(ui_state)
-    t("filter_panel.states.#{ui_state}", scope: 'views.users.dossiers.index')
+    Users::DossierStateMapping.state_label(ui_state)
   end
 
   def alert_label(alert_key)

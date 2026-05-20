@@ -598,13 +598,6 @@ fr:
             shared_with_me:
               one: "Partagé avec moi (%{count})"
               other: "Partagé avec moi (%{count})"
-            states:
-              brouillon: "Brouillon"
-              en_construction: "Déposé"
-              en_instruction: "En instruction"
-              accepte: "Accepté"
-              refuse: "Refusé"
-              sans_suite: "Classé sans suite"
             alerts:
               nouveau_message: "Nouveau message"
               message_avec_attente_de_reponse: "Message avec attente de réponse"
