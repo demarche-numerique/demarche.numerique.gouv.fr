@@ -1,11 +1,7 @@
 <div class="user-search-bar">
   <%= form_with url: dossiers_path, method: :get, data: { turbo_frame: "dossiers_list", turbo_action: "advance" }, class: "user-search-bar__form" do %>
-    <% filter_params.each do |key, value| %>
-      <% next if key.to_s == 'search' %>
-
-      <% Array(value).each do |v| %>
-        <%= hidden_field_tag "#{key}#{Array === value ? '[]' : ''}", v %>
-      <% end %>
+    <% filter_hidden_inputs.each do |name, value| %>
+      <%= hidden_field_tag name, value %>
     <% end %>
 
     <label for="search" class="fr-label">

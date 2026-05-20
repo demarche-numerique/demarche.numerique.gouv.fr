@@ -20,4 +20,11 @@ class Dossiers::UserSearchComponent < ApplicationComponent
   def filter_button_visibility_class
     'fr-hidden' if search_terms.present?
   end
+
+  def filter_hidden_inputs
+    filter_params.to_h.reject { |key, _value| key.to_s == 'search' }.flat_map do |key, value|
+      multiple = value.is_a?(Array)
+      Array(value).map { |v| [multiple ? "#{key}[]" : key.to_s, v] }
+    end
+  end
 end

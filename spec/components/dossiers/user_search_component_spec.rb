@@ -34,4 +34,25 @@ RSpec.describe Dossiers::UserSearchComponent, type: :component do
       expect(subject.css('input[name=search]').first['value']).to eq('Dupont')
     end
   end
+
+  describe 'filter persistence in hidden fields' do
+    let(:filter_params) do
+      ActionController::Parameters.new(
+        procedure_id: '42',
+        state: ['en_construction', 'accepte'],
+        shared_with_me: '1',
+        search: 'noise'
+      ).permit(:procedure_id, :shared_with_me, :search, state: [])
+    end
+
+    it 'emits a hidden field per scalar filter and one per element for arrays' do
+      hidden_names = subject.css('input[type=hidden]').map { |i| i['name'] }
+      expect(hidden_names).to contain_exactly('procedure_id', 'state[]', 'state[]', 'shared_with_me')
+    end
+
+    it 'excludes the search filter from hidden fields' do
+      hidden_names = subject.css('input[type=hidden]').map { |i| i['name'] }
+      expect(hidden_names).not_to include('search')
+    end
+  end
 end
