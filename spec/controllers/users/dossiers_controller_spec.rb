@@ -1643,6 +1643,23 @@ describe Users::DossiersController, type: :controller do
 
       it { expect(assigns(:first_brouillon_recently_updated)).to match(own_dossier_2) }
     end
+
+    context '#procedures_for_select' do
+      let(:procedure_a) { create(:procedure, libelle: 'Alpha') }
+      let(:procedure_b) { create(:procedure, libelle: 'Bêta') }
+      let(:procedure_c) { create(:procedure, libelle: 'Gamma') }
+
+      it 'returns procedures from user dossiers and invitations sorted by libelle' do
+        create(:dossier, :en_construction, user: user, procedure: procedure_a)
+        invited_dossier = create(:dossier, :en_construction, procedure: procedure_b)
+        create(:invite, dossier: invited_dossier, user: user)
+        create(:dossier, :en_construction, procedure: procedure_c)
+
+        get :index
+
+        expect(assigns(:procedures_for_select)).to eq([['Alpha', procedure_a.id], ['Bêta', procedure_b.id]])
+      end
+    end
   end
 
   describe '#show' do

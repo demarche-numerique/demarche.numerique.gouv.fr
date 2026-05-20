@@ -507,13 +507,11 @@ module Users
     end
 
     def procedures_for_select
-      user_rev = current_user.dossiers.visible_by_user.select(:revision_id).to_sql
-      invite_rev = current_user.dossiers_invites.select(:revision_id).to_sql
-      all_rev = "(#{user_rev}) UNION (#{invite_rev})"
-      Procedure.where(id: ProcedureRevision.where("id IN (#{all_rev})").select(:procedure_id))
-        .distinct(:procedure_id)
-        .order(:libelle)
-        .pluck(:libelle, :id)
+      revision_ids = ProcedureRevision
+        .where(id: current_user.dossiers.visible_by_user.select(:revision_id))
+        .or(ProcedureRevision.where(id: current_user.dossiers_invites.select(:revision_id)))
+        .select(:procedure_id)
+      Procedure.where(id: revision_ids).distinct.order(:libelle).pluck(:libelle, :id)
     end
 
     def store_user_location!
