@@ -71,6 +71,10 @@ describe Dossier, type: :model do
         expect { dossier.purge_discarded }
           .not_to have_enqueued_job(ActiveStorage::PurgeJob)
       end
+
+      it 'does not propagate the exception so the upstream find_each loop continues' do
+        expect { dossier.purge_discarded }.not_to raise_error
+      end
     end
 
     context 'batching order' do

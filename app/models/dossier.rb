@@ -1105,6 +1105,8 @@ class Dossier < ApplicationRecord
       destroy
     rescue => e
       Sentry.capture_exception(e, extra: { dossier: id })
+      # Rollback explicite : sans cela, le rescue avale l'erreur et la transaction
+      # commit un état partiel (champs deja batch-destroy, dossier intact).
       raise ActiveRecord::Rollback
     end
   end
