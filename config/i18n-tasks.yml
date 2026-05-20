@@ -93,7 +93,6 @@ search:
 
 ## Consider these keys used:
 ignore_unused:
-  - 'views.users.dossiers.index.search.*'
   - 'errors.format'
   - 'user_mailer.*.subject'
   - 'activerecord.models.*'

@@ -580,10 +580,6 @@ fr:
               one: "Corbeille (%{count})"
               other: "Corbeille (%{count})"
           search:
-            placeholder_label: "Rechercher un dossier"
-            placeholder_hint: "Par n° de dossier, nom / prénom, SIRET, mots-clés…"
-            placeholder_text: "Saisissez votre recherche"
-            submit: "Rechercher"
             back_to_list: "← Mes dossiers"
             result_title: "Résultat de la recherche pour « %{search_terms} »"
           filter_panel:

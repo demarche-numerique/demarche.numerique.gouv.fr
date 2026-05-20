@@ -5,11 +5,11 @@
     <% end %>
 
     <label for="search" class="fr-label">
-      <%= t('views.users.dossiers.index.search.placeholder_label', default: 'Rechercher un dossier') %>
+      <%= t('.label') %>
     </label>
 
     <span class="fr-hint-text">
-      <%= t('views.users.dossiers.index.search.placeholder_hint', default: 'Par n° de dossier, nom / prénom, SIRET, mots-clés…') %>
+      <%= t('.hint') %>
     </span>
 
     <div class="fr-search-bar">
@@ -19,12 +19,12 @@
         name="search"
         class="fr-input"
         autocomplete="off"
-        placeholder="<%= t('views.users.dossiers.index.search.placeholder_text', default: 'Saisissez votre recherche') %>"
+        placeholder="<%= t('.placeholder') %>"
         value="<%= search_terms %>"
       >
 
       <button class="fr-btn" type="submit">
-        <%= t('views.users.dossiers.index.search.submit', default: 'Rechercher') %>
+        <%= t('.submit') %>
       </button>
     </div>
   <% end %>

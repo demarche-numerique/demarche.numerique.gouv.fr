@@ -570,10 +570,6 @@ en:
               one: "Trash (%{count})"
               other: "Trash (%{count})"
           search:
-            placeholder_label: "Search a file"
-            placeholder_hint: "By file number, name, SIRET, keywords..."
-            placeholder_text: "Enter your search"
-            submit: "Search"
             back_to_list: "← My files"
             result_title: "Search results for \"%{search_terms}\""
           filter_panel:
