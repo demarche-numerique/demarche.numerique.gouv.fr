@@ -215,6 +215,41 @@ RSpec.describe Users::DossierFilterService do
     end
   end
 
+  describe '#dossiers preloading' do
+    def count_queries
+      count = 0
+      counter = lambda do |_name, _started, _finished, _id, payload|
+        next if %w[SCHEMA TRANSACTION CACHE].include?(payload[:name])
+        count += 1
+      end
+      ActiveSupport::Notifications.subscribed(counter, 'sql.active_record') { yield }
+      count
+    end
+
+    def touch_partial_associations(dossiers)
+      dossiers.each do |d|
+        d.procedure.libelle
+        d.invites.to_a
+        d.transfer
+        d.pending_correction?
+        d.pending_response?
+        d.user_email_for(:display)
+      end
+    end
+
+    it 'keeps the query count constant when listing more dossiers (no N+1)' do
+      isolated_user = create(:user)
+      queries_for = lambda do |n|
+        Dossier.where(user: isolated_user).destroy_all
+        n.times { create(:dossier, :en_construction, user: isolated_user) }
+        service = described_class.new(user: isolated_user, params: ActionController::Parameters.new)
+        count_queries { touch_partial_associations(service.dossiers) }
+      end
+
+      expect(queries_for.call(5)).to eq(queries_for.call(1))
+    end
+  end
+
   describe '#dossiers with alert filter' do
     let!(:dossier_pending_correction) { create(:dossier, :en_construction, user: user) }
     let!(:dossier_pending_response) { create(:dossier, :en_construction, user: user) }

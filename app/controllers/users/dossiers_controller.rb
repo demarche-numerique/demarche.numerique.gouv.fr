@@ -483,7 +483,7 @@ module Users
       @dossiers = current_user.dossiers
         .hidden_by_user
         .or(current_user.dossiers.hidden_by_expired)
-        .includes(:procedure)
+        .includes(*Users::DossierFilterService::USER_LIST_PRELOADS)
         .order(updated_at: :desc)
         .page(page)
         .per(ITEMS_PER_PAGE)

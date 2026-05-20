@@ -130,7 +130,7 @@
         <% end %>
       <% end %>
 
-      <% if dossier.awaiting_response.present? %>
+      <% if dossier.pending_response? %>
         <%= render Dsfr::AlertComponent.new(state: :warning, size: :sm, extra_class_names: "fr-mb-2w") do |c| %>
           <% c.with_body do %>
             <h4 class="card-title fr-mb-1v">

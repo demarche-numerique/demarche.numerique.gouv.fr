@@ -11,19 +11,33 @@ module Users
       'expire_bientot'                  => :close_to_expiration,
     }.freeze
 
+    USER_LIST_PRELOADS = [
+      :user,
+      :invites,
+      :transfer,
+      :pending_corrections,
+      :awaiting_responses,
+      :individual,
+      :etablissement,
+      { procedure: :replaced_by_procedure },
+    ].freeze
+
     def initialize(user:, params:)
       @user = user
       @params = params.respond_to?(:permit) ? params.permit(*ALLOWED_PARAMS) : ActionController::Parameters.new(params).permit(*ALLOWED_PARAMS)
     end
 
     def base_scope
-      return user_dossiers if search_terms.blank?
-
-      user_dossiers.merge(DossierSearchService.matching_dossiers_for_user(search_terms, @user))
+      @base_scope ||=
+        if search_terms.blank?
+          user_dossiers
+        else
+          user_dossiers.merge(DossierSearchService.matching_dossiers_for_user(search_terms, @user))
+        end
     end
 
     def dossiers
-      scope_without(:none).order(updated_at: :desc)
+      scope_without(:none).includes(*USER_LIST_PRELOADS).order(updated_at: :desc)
     end
 
     def total_count
