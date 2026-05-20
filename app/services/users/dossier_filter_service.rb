@@ -118,7 +118,7 @@ module Users
     end
 
     def count_procedure_ids
-      scope_without(:procedure_id).joins(:procedure).group('procedures.id').count
+      scope_without(:procedure_id).reorder(nil).joins(:procedure).group('procedures.id').count
     end
 
     def count_states

@@ -163,6 +163,11 @@ RSpec.describe Users::DossierFilterService do
       service = described_class.new(user: user, params: ActionController::Parameters.new)
       expect(service.counts[:shared_with_me]).to eq(1)
     end
+
+    it 'does not raise PG::GroupingError when a search is active' do
+      service = described_class.new(user: user, params: ActionController::Parameters.new(search: 'foo'))
+      expect { service.counts }.not_to raise_error
+    end
   end
 
   describe '#active_filter_tags' do
