@@ -50,5 +50,27 @@ describe Dossier, type: :model do
         expect(Champ.where(dossier_id: dossier.id)).to be_empty
       end
     end
+
+    context 'when destroy raises after champs batching' do
+      let(:procedure) { create(:procedure_with_dossiers, :published) }
+      let(:dossier) { procedure.dossiers.first }
+      let(:type_de_champ) { create(:type_de_champ_text, procedure:, libelle: 'Test') }
+      let!(:champ) { dossier.champs.create!(type_de_champ:, value: 'kept') }
+
+      before do
+        allow(dossier).to receive(:destroy).and_raise(StandardError, 'boom')
+        allow(Sentry).to receive(:capture_exception)
+      end
+
+      it 'rolls back the transaction so no champ is destroyed' do
+        dossier.purge_discarded
+        expect(Champ.where(id: champ.id)).to exist
+      end
+
+      it 'does not enqueue ActiveStorage::PurgeJob (after_destroy_commit gated by commit)' do
+        expect { dossier.purge_discarded }
+          .not_to have_enqueued_job(ActiveStorage::PurgeJob)
+      end
+    end
   end
 end
