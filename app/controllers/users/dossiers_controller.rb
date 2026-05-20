@@ -15,6 +15,7 @@ module Users
     ACTIONS_ALLOWED_TO_OWNER_OR_INVITE = [:show, :destroy, :demande, :messagerie, :brouillon, :modifier, :update, :create_commentaire, :attestation_depot, :restore, :champ, :check_completude, :notify_owner_for_changes]
     TRASH_ACTIONS = [:show_in_trash, :show_deleted]
     ITEMS_PER_PAGE = 25
+    SIMPLE_LIST_THRESHOLD = 10
 
     before_action :ensure_ownership!, except: ACTIONS_ALLOWED_TO_ANY_USER + ACTIONS_ALLOWED_TO_OWNER_OR_INVITE + TRASH_ACTIONS
     before_action :redirect_if_hidden_or_deleted_dossier, only: [:show]
@@ -45,6 +46,7 @@ module Users
       @pending_transfers_count = current_user.dossier_transfers_received_pending.count
       @procedures_for_select = procedures_for_select
       @first_brouillon_recently_updated = current_user.dossiers.visible_by_user.brouillons_recently_updated.first
+      @show_simple_list = params[:search].blank? && !@filter.active? && total_user_dossiers <= SIMPLE_LIST_THRESHOLD
     end
 
     def show
@@ -498,6 +500,10 @@ module Users
 
     def mandataire_identity_locked?(dossier)
       dossier.for_tiers? && dossier.identity_from_fc?
+    end
+
+    def total_user_dossiers
+      current_user.dossiers.visible_by_user.count + current_user.dossiers_invites.visible_by_user.count
     end
 
     def procedures_for_select

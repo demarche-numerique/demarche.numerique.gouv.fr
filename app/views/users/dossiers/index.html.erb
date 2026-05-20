@@ -36,9 +36,7 @@
         </h2>
       <% end %>
 
-      <% total_user_dossiers = current_user.dossiers.visible_by_user.count + current_user.dossiers_invites.visible_by_user.count %>
-
-      <% if total_user_dossiers <= 5 && params[:search].blank? && !@filter.active? %>
+      <% if @show_simple_list %>
         <%= render partial: 'dossiers_list', locals: { dossiers: @dossiers, filter: nil, search: false, statut: nil } %>
       <% else %>
         <turbo-frame id="dossiers_list">

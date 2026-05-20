@@ -6,7 +6,7 @@ describe 'user dossiers list', js: true do
   before { login_as user, scope: :user }
 
   describe 'dossiers list' do
-    before { create_list(:dossier, 3, :en_construction, user: user) }
+    before { create_list(:dossier, 11, :en_construction, user: user) }
 
     it 'shows search and filter UI' do
       visit dossiers_path
@@ -86,7 +86,7 @@ describe 'user dossiers list', js: true do
   end
 
   describe 'filter panel' do
-    before { create_list(:dossier, 6, :en_construction, user: user) }
+    before { create_list(:dossier, 11, :en_construction, user: user) }
 
     it 'opens the filter modal when clicking the filter button' do
       visit dossiers_path
