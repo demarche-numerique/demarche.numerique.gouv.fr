@@ -100,6 +100,8 @@ ignore_unused:
   - 'activemodel.attributes.map_filter.*'
   - 'activemodel.attributes.justificatif_domicile.*' # used in ocr_viewer_component
   - 'activemodel.attributes.avis_impot.*' # used in ocr_viewer_component
+  - 'users.dossiers_personnalisation.edit.combobox_placeholder' # used in demarche_card_component
+  - 'users.dossiers_personnalisation.edit.affichage_non_personnalise' # used in demarche_card_component
   - 'activemodel.errors.models.*'
   - 'activerecord.errors.*'
   - 'errors.messages.blank'
