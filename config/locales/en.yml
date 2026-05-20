@@ -621,11 +621,6 @@ en:
           no_result_reset_filter: Reset filters
           no_result_text_with_search: found matching your search
           no_result_reset_search: Reset search
-          no_result_search_title: No file matches your search
-          no_result_search_intro: "You can:"
-          no_result_search_modify: "Modify your search"
-          no_result_search_back_prefix: "Or"
-          no_result_search_back_link: go back to your files list
           pending_correction_html: '<h4 class="card-title fr-mb-1v">This file is waiting for your corrections</h4><p>Consult the changes to be made in the <a href="%{link}" class="fr-link">messaging system <span class="fr-sr-only">of file number %{id}</span></a>.</p>'
           pending_response:
             title: "This file is waiting for your response"

@@ -631,11 +631,6 @@ fr:
           no_result_reset_filter: Réinitialiser les filtres
           no_result_text_with_search: ne correspond à votre recherche
           no_result_reset_search: Réinitialiser la recherche
-          no_result_search_title: Aucun dossier ne correspond à votre recherche
-          no_result_search_intro: "Vous pouvez :"
-          no_result_search_modify: "Modifier votre recherche"
-          no_result_search_back_prefix: "Ou"
-          no_result_search_back_link: revenir à la liste de vos dossiers
           procedure_closed:
             brouillon:
               internal_procedure_html: <h4 class="card-title fr-mb-1v">Cette démarche est close</h4><p>Vous ne pouvez pas déposer ce dossier. Nous vous invitons à en déposer un nouveau sur la %{link} qui la remplace.</p>
