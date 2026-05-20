@@ -1111,12 +1111,6 @@ class Dossier < ApplicationRecord
     end
   end
 
-  def self.purge_discarded
-    en_brouillon_expired_to_delete.find_each(&:purge_discarded)
-    en_construction_expired_to_delete.find_each(&:purge_discarded)
-    termine_expired_to_delete.find_each(&:purge_discarded)
-  end
-
   def skip_user_notification_email?
     return true if brouillon? && procedure.declarative?
     return true if for_procedure_preview?
