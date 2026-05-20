@@ -376,7 +376,7 @@ RSpec.describe DossierMailer, type: :mailer do
       end
       it 'includes a direct URL to transfers' do
         expect(subject.body).to include('Afin de pouvoir accepter ou refuser la demande vous devez vous connectez sur')
-        expect(subject.body).to include(dossiers_url)
+        expect(subject.body).to include(transferts_url)
       end
     end
 
