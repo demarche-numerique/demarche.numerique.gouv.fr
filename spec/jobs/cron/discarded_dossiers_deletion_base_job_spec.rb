@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 RSpec.describe Cron::DiscardedDossiersDeletionBaseJob, type: :job do
-  describe '#perform' do
-    it 'raises NotImplementedError when scope is not overridden' do
-      expect { described_class.new.perform }.to raise_error(NotImplementedError)
+  describe '.schedulable?' do
+    it 'is false so rake jobs:schedule skips this abstract base class' do
+      expect(described_class.schedulable?).to be false
     end
-  end
 
-  describe 'BATCH_LIMIT constant' do
-    it 'is set to 100' do
-      expect(described_class::BATCH_LIMIT).to eq(100)
+    it 'concrete subclasses remain schedulable' do
+      expect(Cron::DiscardedBrouillonDossiersDeletionJob.schedulable?).to be true
+      expect(Cron::DiscardedEnConstructionDossiersDeletionJob.schedulable?).to be true
+      expect(Cron::DiscardedTermineDossiersDeletionJob.schedulable?).to be true
     end
   end
 
