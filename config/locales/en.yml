@@ -562,6 +562,9 @@ en:
           administration_no_longer_processes: "The administration will no longer process your request."
           metas:
             title: "My files"
+          results_count:
+            one: "1 - %{page_to} of 1 file"
+            other: "1 - %{page_to} of %{count} files"
           corbeille_link:
             label:
               one: "Trash (%{count})"
@@ -616,6 +619,8 @@ en:
           no_result_text_html: "To fill a procedure, contact your administration asking for the procedure link. <br> It should look like %{app_base}/commencer/xxx."
           no_result_text_with_filter: found with selected filters
           no_result_reset_filter: Reset filters
+          no_result_text_with_search: found matching your search
+          no_result_reset_search: Reset search
           no_result_search_title: No file matches your search
           no_result_search_intro: "You can:"
           no_result_search_modify: "Modify your search"

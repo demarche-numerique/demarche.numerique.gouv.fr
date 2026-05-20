@@ -1,5 +1,4 @@
 <% if dossiers.present? %>
-  <h2 class="fr-h6 fr-my-2w"><%= page_entries_info dossiers %></h2>
   <% dossiers.each do |dossier| %>
     <div class="card" id="dossier_<%= dossier.id %>">
       <div class="flex justify-between">

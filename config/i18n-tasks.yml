@@ -91,15 +91,6 @@ search:
 #   # Get an API key and subscription at https://www.deepl.com/pro to use DeepL Pro
 #   deepl_api_key: "48E92789-57A3-466A-9959-1A1A1A1A1A1A"
 
-## Do not consider these keys missing:
-ignore_missing:
-- 'dossiers.user_filter_panel_component.*'
-- 'views.users.dossiers.dossiers_list.no_result_text_with_search'
-- 'views.users.dossiers.dossiers_list.no_result_reset_search'
-- 'views.users.dossiers.index.results_count'
-- 'views.users.dossiers.search.result_term_title'
-- 'views.users.dossiers.search.result_title'
-
 ## Consider these keys used:
 ignore_unused:
   - 'views.users.dossiers.dossiers_list.no_result_search_*'

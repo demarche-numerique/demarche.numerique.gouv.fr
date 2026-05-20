@@ -59,13 +59,13 @@ module Users
         tags << { group: :procedure_id, value: @params[:procedure_id].to_s, label: procedure.libelle }
       end
       if shared_with_me?
-        tags << { group: :shared_with_me, value: '1', label: I18n.t('dossiers.user_filter_panel_component.shared_with_me', default: 'Partagé avec moi') }
+        tags << { group: :shared_with_me, value: '1', label: I18n.t('views.users.dossiers.index.filter_panel.groups.shared_with_me') }
       end
       Array(@params[:state]).each do |s|
         tags << { group: :state, value: s, label: I18n.t("dossiers.user_filter_panel_component.states.#{s}", default: s) }
       end
       Array(@params[:alert]).each do |a|
-        tags << { group: :alert, value: a, label: I18n.t("dossiers.user_filter_panel_component.alerts.#{a}", default: a) }
+        tags << { group: :alert, value: a, label: I18n.t("views.users.dossiers.index.filter_panel.alerts.#{a}") }
       end
       if from_created_at_date
         tags << { group: :from_created_at_date, value: @params[:from_created_at_date], label: @params[:from_created_at_date].to_s }
