@@ -1097,9 +1097,15 @@ class Dossier < ApplicationRecord
     transaction do
       DeletedDossier.create_from_dossier(self, hidden_by_reason)
       dossier_operation_logs.purge_discarded
+      # Vider les champs par lots libère leur cascade (geo_areas, etablissement,
+      # AS attachments) avant le destroy du dossier, évitant le pic mémoire dû
+      # au chargement complet de la cascade dependent: :destroy.
+      # Important: destroy_all (et non delete_all) preserve les callbacks Rails.
+      champs.in_batches(of: 50).each(&:destroy_all)
       destroy
     rescue => e
       Sentry.capture_exception(e, extra: { dossier: id })
+      raise ActiveRecord::Rollback
     end
   end
 

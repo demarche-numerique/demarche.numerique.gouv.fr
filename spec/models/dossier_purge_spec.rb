@@ -72,5 +72,14 @@ describe Dossier, type: :model do
           .not_to have_enqueued_job(ActiveStorage::PurgeJob)
       end
     end
+
+    context 'batching order' do
+      let(:dossier) { create(:dossier) }
+
+      it 'destroys champs in batches of 50 before destroying the dossier' do
+        expect(dossier.champs).to receive(:in_batches).with(hash_including(of: 50)).at_least(:once).and_call_original
+        dossier.purge_discarded
+      end
+    end
   end
 end
