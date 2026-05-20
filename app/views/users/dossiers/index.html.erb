@@ -43,13 +43,13 @@
           <%= render Dossiers::UserSearchComponent.new(
                 search_terms: params[:search],
                 active_filter_count: @filter.active_filter_tags.count,
-                filter_params: params.to_unsafe_h.symbolize_keys.slice(:search, :procedure_id, :shared_with_me, :state, :alert, :from_created_at_date, :from_depose_at_date)
+                filter_params: filter_params_slice
               ) %>
 
           <% if @filter.active? %>
             <%= render Dossiers::UserActiveFiltersComponent.new(
                   tags: @filter.active_filter_tags,
-                  current_filter_params: params.to_unsafe_h.symbolize_keys.slice(:search, :procedure_id, :shared_with_me, :state, :alert, :from_created_at_date, :from_depose_at_date)
+                  current_filter_params: filter_params_slice
                 ) %>
           <% end %>
 
@@ -65,7 +65,7 @@
         </turbo-frame>
         <%= render Dossiers::UserFilterPanelComponent.new(
               filter: @filter,
-              filter_params: params.to_unsafe_h.symbolize_keys.slice(:search, :procedure_id, :shared_with_me, :state, :alert, :from_created_at_date, :from_depose_at_date),
+              filter_params: filter_params_slice,
               procedures_for_select: @procedures_for_select,
               has_invites: current_user.dossiers_invites.exists?
             ) %>

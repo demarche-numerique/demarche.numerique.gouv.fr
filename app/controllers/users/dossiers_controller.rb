@@ -17,6 +17,8 @@ module Users
     ITEMS_PER_PAGE = 25
     SIMPLE_LIST_THRESHOLD = 10
 
+    helper_method :filter_params_slice
+
     before_action :ensure_ownership!, except: ACTIONS_ALLOWED_TO_ANY_USER + ACTIONS_ALLOWED_TO_OWNER_OR_INVITE + TRASH_ACTIONS
     before_action :redirect_if_hidden_or_deleted_dossier, only: [:show]
     before_action :ensure_ownership_or_invitation!, only: ACTIONS_ALLOWED_TO_OWNER_OR_INVITE
@@ -500,6 +502,10 @@ module Users
 
     def mandataire_identity_locked?(dossier)
       dossier.for_tiers? && dossier.identity_from_fc?
+    end
+
+    def filter_params_slice
+      params.permit(*Users::DossierFilterService::ALLOWED_PARAMS)
     end
 
     def total_user_dossiers
