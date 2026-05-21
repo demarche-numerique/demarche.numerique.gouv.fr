@@ -203,6 +203,30 @@ describe Logic::ColumnValue do
     end
   end
 
+  describe 'revision' do
+    let(:procedure) { create(:procedure, :published, types_de_champ_public: [linked_drop_down]) }
+    let(:linked_drop_down) do
+      { type: :linked_drop_down_list, libelle: 'linked', drop_down_options: ['--section 1--', 'option A', '--section 2--', 'option B'] }
+    end
+
+    let(:menu_options) do
+      [
+        "--Primary 1--",
+        "secondary 1.1",
+        "--Primary 2--",
+        "secondary 2.1",
+      ]
+    end
+    let(:column) { procedure.find_column(label: 'linked (Secondaire)') }
+    let(:column_value) { Logic::ColumnValue.new(column) }
+
+    it do
+      tdcs = procedure.published_revision.types_de_champ
+      expect(column_value.options(tdcs).map(&:first)).to eq(['option A', 'option B'])
+    end
+
+  end
+
   describe '#remap_procedure_id' do
     it 'returns a ColumnValue whose to_h carries the new procedure_id' do
       remapped = column_value.remap_procedure_id(42)

@@ -201,6 +201,7 @@ class Conditions::ConditionsComponent < ApplicationComponent
         class: 'fr-select'
       )
     when :enum, :enums, :commune_enum, :epci_enum, :departement_enum, :address
+      binding.irb
       enums_for_select = left.options(@source_tdcs, operator_name)
 
       if right_invalid

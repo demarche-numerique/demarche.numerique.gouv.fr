@@ -26,21 +26,33 @@ class Logic::ColumnValue < Logic::Term
     end
   end
 
-  def type(_type_de_champs)
+  def type(type_de_champs)
     return :unmanaged if @champ_column.nil?
 
-    case @champ_column.type
+    procedure = Procedure.find(@champ_column.h_id[:procedure_id])
+    # new
+    targeted_column = type_de_champs
+      .find { it.stable_id == stable_id }
+      .column(procedure:, column_h_id: @champ_column.h_id)
+
+    case targeted_column.type
     when :integer, :decimal
       Logic::ChampValue::CHAMP_VALUE_TYPE.fetch(:number)
     else
-      @champ_column.type
+      targeted_column.type
     end
   end
 
-  def options(_type_de_champs, _other = nil)
+  def options(type_de_champs, _operator_name = nil)
     return [] if @champ_column.nil?
 
     @champ_column.options_for_select
+
+    # targeted_tdc = type_de_champs.find { it.stable_id == stable_id }
+
+    # on a plusieurs  options possible donc c est pas bon
+    # il faut rajouter la methdoe targeted_column(type_de_champ, h_id)
+    # targeted_tdc.options_for_select
   end
 
   def label = @champ_column&.label
@@ -85,4 +97,8 @@ class Logic::ColumnValue < Logic::Term
     current_h_id = @champ_column&.h_id || @column_h_id
     self.class.from_h("term" => self.class.name, "column_id" => current_h_id.merge(procedure_id: new_procedure_id))
   end
+
+  private
+
+  def targeted_tdc(tdcs) = tdcs.find { it.stable_id == stable_id }
 end

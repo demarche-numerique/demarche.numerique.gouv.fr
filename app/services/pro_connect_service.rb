@@ -29,7 +29,7 @@ class ProConnectService
       # acr (Authentication Context Class Reference) force the level of security
       # https://partenaires.proconnect.gouv.fr/docs/fournisseur-service/double_authentification
       claims[:id_token][:acr] = {
-        essential: true,
+        essential: false,
         values: [
           "eidas2", # login / pwd + 2FA
           "eidas3", # physical card with PIN + certificates

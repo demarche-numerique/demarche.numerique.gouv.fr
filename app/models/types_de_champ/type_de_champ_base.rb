@@ -95,6 +95,10 @@ class TypesDeChamp::TypeDeChampBase
   def champ_blank?(champ) = champ.value.blank?
   def champ_blank_or_invalid?(champ) = champ_blank?(champ)
 
+  def column(procedure:, column_h_id:)
+    columns(procedure:).find { it.h_id == column_h_id }
+  end
+
   def columns(procedure:, displayable: true, prefix: nil)
     if fillable?
       [
