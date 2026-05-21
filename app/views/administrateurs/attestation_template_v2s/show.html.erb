@@ -33,7 +33,7 @@
     <%- end -%>
 
     <div class="main">
-      <%= sanitize(@body, attributes: %w[class style], tags: Rails.configuration.action_view.sanitized_allowed_tags + %w[header]) %>
+      <%= sanitize(@body, attributes: %w[class style href target rel], tags: Rails.configuration.action_view.sanitized_allowed_tags + %w[header a]) %>
 
       <%- if @signature&.attached? -%>
         <div class="signature">
