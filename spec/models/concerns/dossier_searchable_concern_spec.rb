@@ -112,6 +112,19 @@ describe DossierSearchableConcern do
     end
   end
 
+  describe 'on destroy' do
+    let(:user) { create(:user) }
+    let(:dossier) { create(:dossier, :brouillon, user: user) }
+
+    before { dossier.debounce_index_search_terms_flag.remove }
+
+    it 'does not enqueue an indexing job' do
+      assert_enqueued_jobs(0, only: DossierIndexSearchTermsJob) do
+        dossier.destroy
+      end
+    end
+  end
+
   describe 'after passer_en_construction' do
     let(:user) { create(:user) }
     let(:dossier) { create(:dossier, :brouillon, user: user) }

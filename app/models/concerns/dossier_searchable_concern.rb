@@ -8,7 +8,7 @@ module DossierSearchableConcern
   LIGHT_USER_DOSSIERS_THRESHOLD = 5
 
   included do
-    after_commit :index_search_terms_later, if: -> { previously_new_record? || user_previously_changed? || mandataire_first_name_previously_changed? || mandataire_last_name_previously_changed? }
+    after_commit :index_search_terms_later, on: [:create, :update], if: -> { previously_new_record? || user_previously_changed? || mandataire_first_name_previously_changed? || mandataire_last_name_previously_changed? }
 
     kredis_flag :debounce_index_search_terms_flag
   end
