@@ -31,3 +31,4 @@ fr:
       drop_down_list:
         other: Entrer une autre option
         other_label: Saisir votre option
+        other_short: autre

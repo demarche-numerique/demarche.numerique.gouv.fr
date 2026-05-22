@@ -22,3 +22,4 @@ en:
       drop_down_list:
         other: Enter another option
         other_label: Enter your option
+        other_short: other

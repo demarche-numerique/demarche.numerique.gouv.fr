@@ -17,4 +17,8 @@
       %span{ data: { copy_message_placeholder: true } }
 
   - else
-    %p= champ.value
+    - if champ.other?
+      - other_label = I18n.t('shared.champs.drop_down_list.other_short')
+      %p= champ.value.present? ? "#{other_label} : #{champ.value}" : other_label
+    - else
+      %p= champ.value
