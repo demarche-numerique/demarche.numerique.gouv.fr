@@ -105,19 +105,25 @@ describe Logic::ColumnValue do
   end
 
   describe '#options' do
-    context 'when options_for_select is a list of [label, value] pairs' do
-      let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :drop_down_list, libelle: 'menu' }]) }
-      let(:column) { procedure.find_column(label: 'menu') }
-
-      it 'returns them as-is' do
-        expect(column_value.options([])).to match_array([["val1", "val1"], ["val2", "val2"], ["val3", "val3"]])
+    describe 'when there are different revision' do
+      let(:procedure) { create(:procedure, :published, types_de_champ_public: [linked_drop_down]) }
+      let(:draft_tdcs) { procedure.draft_revision.types_de_champ }
+      let(:linked_drop_down) do
+        { type: :linked_drop_down_list, libelle: 'linked', drop_down_options: }
       end
-    end
+      let(:drop_down_options) { ['--1--', 'A', '--2--', 'B'] }
+      let(:linked_drop_down_stable_id) { procedure.active_revision.types_de_champ.first.stable_id }
+      let(:column) { procedure.find_column(label: 'linked (Secondaire)') }
+      let(:column_value) { Logic::ColumnValue.new(column) }
 
-    context 'when options_for_select is empty' do
-      before { column.options_for_select = [] }
+      before do
+        procedure.draft_revision
+          .find_and_ensure_exclusive_use(linked_drop_down_stable_id).update(drop_down_options: ['--1--', 'A', '--2--', 'C'])
+      end
 
-      it { expect(column_value.options([])).to eq([]) }
+      it 'are based on the tdc given as arg' do
+        expect(column_value.options(draft_tdcs).map(&:first)).to eq(['A', 'C'])
+      end
     end
   end
 

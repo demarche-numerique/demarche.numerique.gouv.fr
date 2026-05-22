@@ -37,10 +37,10 @@ class Logic::ColumnValue < Logic::Term
     end
   end
 
-  def options(_type_de_champs, _other = nil)
+  def options(type_de_champs, _operator_name = nil)
     return [] if @champ_column.nil?
 
-    @champ_column.options_for_select
+    targeted_column(type_de_champs).options_for_select
   end
 
   def label = @champ_column&.label
@@ -85,4 +85,10 @@ class Logic::ColumnValue < Logic::Term
     current_h_id = @champ_column&.h_id || @column_h_id
     self.class.from_h("term" => self.class.name, "column_id" => current_h_id.merge(procedure_id: new_procedure_id))
   end
+
+  private
+
+  def targeted_tdc(tdcs) = tdcs.find { it.stable_id == stable_id }
+  def targeted_column(tdcs) = targeted_tdc(tdcs).columns(procedure:).find { it.h_id == @champ_column.h_id }
+  def procedure = Procedure.new(id: @champ_column.h_id[:procedure_id])
 end
