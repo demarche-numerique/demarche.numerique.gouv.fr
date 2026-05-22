@@ -132,26 +132,13 @@ describe Administrateurs::ConditionsController, type: :controller do
     end
 
     describe '#change_targeted_champ on a draft-only referentiel column' do
-      let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :integer_number }]) }
-      let(:referentiel) { create(:csv_referentiel, :with_items) }
-      let(:integer_tdc) { procedure.draft_revision.types_de_champ.first }
-      let!(:dropdown_tdc) do
-        procedure.draft_revision.add_type_de_champ(
-          type_champ: 'drop_down_list',
-          libelle: 'liste csv',
-          drop_down_mode: 'advanced',
-          referentiel_id: referentiel.id,
-          after_stable_id: integer_tdc.stable_id
-        )
-      end
-      let!(:text_tdc) do
-        procedure.draft_revision.add_type_de_champ(
-          type_champ: 'text',
-          libelle: 'commentaire',
-          after_stable_id: dropdown_tdc.stable_id
-        )
-      end
-      let(:dessert_column) { dropdown_tdc.columns(procedure:).first }
+      let(:procedure) { create(:procedure, :published, types_de_champ_public: []) }
+      let(:draft) { procedure.draft_revision }
+
+      let!(:dropdown_tdc) { draft.add_type_de_champ(type_champ: 'integer_number') }
+      let!(:text_tdc) { draft.add_type_de_champ(type_champ: 'text', after_stable_id: dropdown_tdc.stable_id) }
+
+      let(:int_column) { dropdown_tdc.columns(procedure:).first }
 
       before do
         Flipper.enable(:column_conditions)
@@ -165,7 +152,7 @@ describe Administrateurs::ConditionsController, type: :controller do
               condition_form: {
                 rows: [
                   {
-                    targeted_champ: column_value(dessert_column).to_json,
+                    targeted_champ: column_value(int_column).to_json,
                                     operator_name: Logic::EmptyOperator.name,
                                     value: empty.to_json,
                   },
@@ -176,11 +163,12 @@ describe Administrateurs::ConditionsController, type: :controller do
           format: :turbo_stream
       end
 
-      it 'binds the column from the draft so the rendered component sees a typed left operand' do
+      it 'binds the column from the draft revision so the rendered component sees a typed left operand' do
+        draft_tdcs = procedure.draft_revision.types_de_champ
         condition = assigns(:tdc).condition
         expect(condition).to be_a(Logic::Eq)
         expect(condition.left).to be_a(Logic::ColumnValue)
-        expect(condition.left.type([])).to eq(:enum)
+        expect(condition.left.type(draft_tdcs)).to eq(:number)
       end
     end
   end

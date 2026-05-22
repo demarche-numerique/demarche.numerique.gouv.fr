@@ -26,14 +26,16 @@ class Logic::ColumnValue < Logic::Term
     end
   end
 
-  def type(_type_de_champs)
-    return :unmanaged if @champ_column.nil?
+  def type(type_de_champs)
+    return :unmanaged if @champ_column.nil? || targeted_tdc(type_de_champs).nil?
 
-    case @champ_column.type
+    type = targeted_column(type_de_champs).type
+
+    case type
     when :integer, :decimal
       Logic::ChampValue::CHAMP_VALUE_TYPE.fetch(:number)
     else
-      @champ_column.type
+      type
     end
   end
 

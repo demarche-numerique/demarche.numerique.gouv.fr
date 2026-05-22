@@ -74,7 +74,8 @@ describe Logic::ColumnValue do
   end
 
   describe '#type' do
-    subject { Logic::ColumnValue.new(procedure.find_column(label:)).type([]) }
+    let(:draft_tdcs) { procedure.draft_revision.types_de_champ }
+    subject { Logic::ColumnValue.new(procedure.find_column(label:)).type(draft_tdcs) }
 
     context 'integer column' do
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :integer_number, libelle: 'n' }]) }
@@ -97,10 +98,22 @@ describe Logic::ColumnValue do
     end
 
     context 'drop_down_list column' do
-      let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :drop_down_list, libelle: 'menu' }]) }
+      let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :drop_down_list, libelle: 'menu' }]) }
       let(:label) { 'menu' }
 
       it { is_expected.to eq(:enum) }
+
+      context 'when a tdc has changed between revision' do
+        let(:stable_id) { procedure.active_revision.types_de_champ.first.stable_id }
+
+        before do
+          procedure.draft_revision
+            .find_and_ensure_exclusive_use(stable_id)
+            .update(type_champ: 'multiple_drop_down_list')
+        end
+
+        it { is_expected.to eq(:enums) }
+      end
     end
   end
 
