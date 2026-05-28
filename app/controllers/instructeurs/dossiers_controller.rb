@@ -236,8 +236,8 @@ module Instructeurs
 
     def repasser_en_instruction
       begin
-        flash.notice = "Le dossier #{dossier.id} a été repassé en instruction."
         dossier.repasser_en_instruction!(instructeur: current_instructeur)
+        flash.notice = "Le dossier #{dossier.id} a été repassé en instruction."
       rescue AASM::InvalidTransition => e
         flash.alert = aasm_error_message(e, target_state: :en_instruction)
       end

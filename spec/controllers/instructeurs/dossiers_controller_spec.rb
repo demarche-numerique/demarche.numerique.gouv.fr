@@ -311,10 +311,11 @@ describe Instructeurs::DossiersController, type: :controller do
     context 'when the dossier has already been put en_instruction' do
       let(:dossier) { create(:dossier, :en_instruction, procedure: procedure) }
 
-      it 'warns about the error' do
+      it 'warns about the error without a misleading success notice' do
         expect(dossier.reload.state).to eq(Dossier.states.fetch(:en_instruction))
         expect(response).to have_http_status(:ok)
         expect(response.body).to include('Le dossier est déjà en&nbsp;instruction.')
+        expect(response.body).not_to include('a été repassé en instruction')
       end
     end
 
