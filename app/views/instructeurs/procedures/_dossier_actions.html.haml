@@ -8,7 +8,7 @@
     = button_to restore_instructeur_dossier_path(procedure_id, dossier_id), method: :patch, class: "fr-btn fr-icon-refresh-line" do
       = t('views.instructeurs.dossiers.restore')
 
-- elsif close_to_expiration || Dossier::TERMINE.include?(state)
+- elsif Dossier::TERMINE.include?(state)
   %li
     - if close_to_expiration
       = button_to repasser_en_instruction_instructeur_dossier_path(procedure_id, dossier_id), method: :post, class: 'fr-btn fr-btn--secondary fr-icon-edit-line', form: { data: { turbo: turbo ? 'true' : 'false' } } do
