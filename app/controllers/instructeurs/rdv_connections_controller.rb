@@ -10,7 +10,7 @@ module Instructeurs
     def destroy
       current_instructeur.rdv_connection.destroy
       flash.notice = "Votre compte #{Current.application_name} n’est plus connecté à RDV Service Public."
-      redirect_to params[:redirect_path] || profil_path
+      redirect_to url_from(params[:redirect_path]) || profil_path
     end
   end
 end
