@@ -168,6 +168,31 @@ RSpec.describe Users::DossierFilterService do
       service = described_class.new(user: user, params: ActionController::Parameters.new(search: 'foo'))
       expect { service.counts }.not_to raise_error
     end
+
+    it 'bounds every alert subquery to the user dossiers instead of scanning the whole table' do
+      service = described_class.new(user: user, params: ActionController::Parameters.new)
+
+      described_class::ALERT_SCOPES.each_value do |scope_name|
+        sql = service.send(:bounded_alert_subquery, scope_name).to_sql
+        expect(sql).to include(%("dossiers"."user_id" = #{user.id}))
+      end
+    end
+
+    it 'runs a constant number of queries regardless of dossier volume (no N+1)' do
+      queries_for = lambda do |volume|
+        owner = create(:user)
+        create_list(:dossier, volume, :en_construction, user: owner)
+        service = described_class.new(user: owner, params: ActionController::Parameters.new)
+        count = 0
+        counter = lambda do |_name, _started, _finished, _id, payload|
+          count += 1 unless %w[SCHEMA TRANSACTION CACHE].include?(payload[:name])
+        end
+        ActiveSupport::Notifications.subscribed(counter, 'sql.active_record') { service.counts }
+        count
+      end
+
+      expect(queries_for.call(5)).to eq(queries_for.call(1))
+    end
   end
 
   describe '#active_filter_tags' do
