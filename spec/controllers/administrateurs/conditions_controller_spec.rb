@@ -138,7 +138,7 @@ describe Administrateurs::ConditionsController, type: :controller do
       let!(:dropdown_tdc) { draft.add_type_de_champ(type_champ: 'integer_number') }
       let!(:text_tdc) { draft.add_type_de_champ(type_champ: 'text', after_stable_id: dropdown_tdc.stable_id) }
 
-      let(:int_column) { dropdown_tdc.columns(procedure:).first }
+      let(:int_column) { dropdown_tdc.columns(procedure_id: procedure.id).first }
 
       before do
         Flipper.enable(:column_conditions)

@@ -131,7 +131,7 @@ module Logic
 
   def champ_value(stable_id) = Logic::ChampValue.new(stable_id)
 
-  def column_value(column) = Logic::ColumnValue.new(column)
+  def column_value(column) = Logic::ColumnValue.new(column.stable_id, column.h_id[:column_id])
 
   def empty = Logic::Empty.new
 

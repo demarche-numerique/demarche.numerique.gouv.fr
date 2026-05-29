@@ -13,10 +13,6 @@ class Logic::NAryOperator < Logic::Term
 
   def terms = [self] + @operands.flat_map(&:terms)
 
-  def remap_procedure_id(new_procedure_id)
-    self.class.new(@operands.map { _1.remap_procedure_id(new_procedure_id) })
-  end
-
   def to_h
     {
       "term" => self.class.name,

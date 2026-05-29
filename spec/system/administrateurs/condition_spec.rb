@@ -147,7 +147,7 @@ describe 'As an administrateur I can edit types de champ condition', js: true do
     before { Flipper.enable(:column_conditions) }
     after { Flipper.disable(:column_conditions) }
 
-    let(:target_value) { column_value(first_tdc.columns(procedure:).first) }
+    let(:target_value) { column_value(first_tdc.columns(procedure_id: procedure.id).first) }
 
     include_examples 'condition editor'
   end

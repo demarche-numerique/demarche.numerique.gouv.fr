@@ -120,8 +120,6 @@ module ProcedureCloneConcern
     procedure.draft_revision.revision_types_de_champ.private_only.each(&:destroy) if !options[:clone_annotations]
     procedure.labels = [] if !options[:clone_labels]
 
-    remap_column_value_procedure_ids(procedure)
-
     if !same_admin?(admin) || options[:cloned_from_library]
       procedure.draft_revision.types_de_champ_public.each { |tdc| tdc.options&.delete(:old_pj) }
     end
@@ -144,30 +142,6 @@ module ProcedureCloneConcern
   end
 
   private
-
-  # Les conditions clonées via deep_clone embarquent encore le procedure_id de
-  # la procédure d'origine dans leurs Logic::ColumnValue. On les réécrit pour
-  # pointer vers la nouvelle procédure, sinon les references croisent entre
-  # procédures (et cassent si l'originale est supprimée).
-  def remap_column_value_procedure_ids(new_procedure)
-    new_id = new_procedure.id
-
-    new_procedure.draft_revision.types_de_champ.each do |tdc|
-      next if tdc.condition.nil?
-      tdc.update!(condition: tdc.condition.remap_procedure_id(new_id))
-    end
-
-    if new_procedure.draft_revision.ineligibilite_rules.present?
-      new_procedure.draft_revision.update!(
-        ineligibilite_rules: new_procedure.draft_revision.ineligibilite_rules.remap_procedure_id(new_id)
-      )
-    end
-
-    new_procedure.groupe_instructeurs.each do |gi|
-      next if gi.routing_rule.nil?
-      gi.update!(routing_rule: gi.routing_rule.remap_procedure_id(new_id))
-    end
-  end
 
   def populate_champ_stable_ids
     TypeDeChamp
