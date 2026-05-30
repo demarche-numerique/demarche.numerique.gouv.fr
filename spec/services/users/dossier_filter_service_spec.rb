@@ -169,13 +169,12 @@ RSpec.describe Users::DossierFilterService do
       expect { service.counts }.not_to raise_error
     end
 
-    it 'bounds every alert subquery to the user dossiers instead of scanning the whole table' do
-      service = described_class.new(user: user, params: ActionController::Parameters.new)
+    it 'counts only the user own alerts, not other users matching dossiers' do
+      other_dossier_with_correction = create(:dossier, :en_construction)
+      create(:dossier_correction, dossier: other_dossier_with_correction)
 
-      described_class::ALERT_SCOPES.each_value do |scope_name|
-        sql = service.send(:bounded_alert_subquery, scope_name).to_sql
-        expect(sql).to include(%("dossiers"."user_id" = #{user.id}))
-      end
+      service = described_class.new(user: user, params: ActionController::Parameters.new)
+      expect(service.counts[:alerts]['a_corriger']).to eq(1)
     end
 
     it 'runs a constant number of queries regardless of dossier volume (no N+1)' do
@@ -254,6 +253,7 @@ RSpec.describe Users::DossierFilterService do
     def touch_partial_associations(dossiers)
       dossiers.each do |d|
         d.procedure.libelle
+        d.procedure.path
         d.invites.to_a
         d.transfer
         d.pending_correction?

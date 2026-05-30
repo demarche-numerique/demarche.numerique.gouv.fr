@@ -19,7 +19,7 @@ module Users
       :awaiting_responses,
       :individual,
       :etablissement,
-      { procedure: :replaced_by_procedure },
+      { procedure: [:procedure_paths, { replaced_by_procedure: :procedure_paths }] },
     ].freeze
 
     def initialize(user:, params:)
