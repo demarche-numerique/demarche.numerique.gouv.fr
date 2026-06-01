@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_05_21_105001) do
+ActiveRecord::Schema[7.2].define(version: 2026_06_01_101322) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_stat_statements"
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "postgis"
-  disable_extension "postgis_tiger_geocoder"
   enable_extension "sslinfo"
   enable_extension "unaccent"
 
@@ -403,6 +401,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_05_21_105001) do
     t.bigint "batch_operation_id", null: false
     t.datetime "created_at", null: false
     t.bigint "dossier_id", null: false
+    t.string "error_message"
     t.string "state", default: "pending", null: false
     t.datetime "updated_at", null: false
     t.index ["batch_operation_id"], name: "index_dossier_batch_operations_on_batch_operation_id"
@@ -514,7 +513,6 @@ ActiveRecord::Schema[7.2].define(version: 2026_05_21_105001) do
     t.bigint "dossier_transfer_id"
     t.bigint "editing_fork_origin_id"
     t.datetime "en_construction_at", precision: nil
-    t.datetime "en_construction_close_to_expiration_notice_sent_at", precision: nil
     t.datetime "en_instruction_at", precision: nil
     t.datetime "expired_at"
     t.boolean "for_procedure_preview", default: false, null: false
@@ -1011,9 +1009,9 @@ ActiveRecord::Schema[7.2].define(version: 2026_05_21_105001) do
     t.datetime "created_at", precision: nil
     t.boolean "customized", default: false, null: false
     t.jsonb "displayed_columns", default: [], null: false, array: true
-    t.jsonb "displayed_fields", default: [{"label"=>"Demandeur", "table"=>"user", "column"=>"email"}], null: false
+    t.jsonb "displayed_fields", default: [{"label" => "Demandeur", "table" => "user", "column" => "email"}], null: false
     t.jsonb "expirant_filters", default: [], null: false, array: true
-    t.jsonb "filters", default: {"tous"=>[], "suivis"=>[], "traites"=>[], "a-suivre"=>[], "archives"=>[], "expirant"=>[], "supprimes"=>[]}, null: false
+    t.jsonb "filters", default: {"tous" => [], "suivis" => [], "traites" => [], "a-suivre" => [], "archives" => [], "expirant" => [], "supprimes" => []}, null: false
     t.boolean "filters_expanded", default: true, null: false
     t.jsonb "sort", default: {"order" => "desc", "table" => "notifications", "column" => "notifications"}, null: false
     t.jsonb "sorted_column"
