@@ -28,6 +28,12 @@ class Champ < ApplicationRecord
   # look like it was edited. Revert blank-equivalent JSON columns before saving.
   before_save :nullify_blank_json_columns
 
+  # Overridable extension point. Return true on a champ to restore the historical
+  # blocking behavior of ExternalDataChampValidator.
+  def external_data_required_for_conditions?
+    false
+  end
+
   def type_de_champ
     @type_de_champ ||= dossier.revision
       .types_de_champ
