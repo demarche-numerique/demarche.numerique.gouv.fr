@@ -505,7 +505,6 @@ class Dossier < ApplicationRecord
   def expiration_started?
     [
       brouillon_close_to_expiration_notice_sent_at,
-      en_construction_close_to_expiration_notice_sent_at,
       termine_close_to_expiration_notice_sent_at,
     ].any?(&:present?)
   end
@@ -679,8 +678,6 @@ class Dossier < ApplicationRecord
   def after_notification_expiration_date
     if brouillon? && brouillon_close_to_expiration_notice_sent_at.present?
       brouillon_close_to_expiration_notice_sent_at + Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks
-    elsif en_construction? && en_construction_close_to_expiration_notice_sent_at.present?
-      en_construction_close_to_expiration_notice_sent_at + Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks
     elsif termine? && termine_close_to_expiration_notice_sent_at.present?
       termine_close_to_expiration_notice_sent_at + Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks
     end
@@ -701,7 +698,6 @@ class Dossier < ApplicationRecord
   def extend_conservation(conservation_extension)
     update(conservation_extension: self.conservation_extension + conservation_extension,
       brouillon_close_to_expiration_notice_sent_at: nil,
-      en_construction_close_to_expiration_notice_sent_at: nil,
       termine_close_to_expiration_notice_sent_at: nil)
     update_expired_at
     DossierNotification.destroy_notifications_by_dossier_and_type(self, :dossier_expirant)

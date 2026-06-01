@@ -11,7 +11,6 @@ class ResetExpiringDossiersJob < ApplicationJob
           DossierNotification.destroy_notifications_by_dossier_and_type(dossier, :dossier_expirant)
           DossierNotification.destroy_notifications_by_dossier_and_type(dossier, :dossier_suppression) if dossier.hidden_by_expired?
           dossier.update(brouillon_close_to_expiration_notice_sent_at: nil,
-                        en_construction_close_to_expiration_notice_sent_at: nil,
                         termine_close_to_expiration_notice_sent_at: nil,
                         hidden_by_expired_at: nil)
         end

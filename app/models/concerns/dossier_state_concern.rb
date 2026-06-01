@@ -61,7 +61,6 @@ module DossierStateConcern
     instructeur = h[:instructeur]
     instructeur.follow(self)
 
-    self.en_construction_close_to_expiration_notice_sent_at = nil
     self.conservation_extension = 0.days
     self.en_instruction_at = self.traitements
       .passer_en_instruction(instructeur: instructeur)
@@ -93,7 +92,6 @@ module DossierStateConcern
   end
 
   def after_passer_automatiquement_en_instruction
-    self.en_construction_close_to_expiration_notice_sent_at = nil
     self.conservation_extension = 0.days
     self.en_instruction_at = traitements.passer_en_instruction.processed_at
     self.expired_at = expiration_date
@@ -125,7 +123,6 @@ module DossierStateConcern
 
     create_missing_traitemets
 
-    self.en_construction_close_to_expiration_notice_sent_at = nil
     self.conservation_extension = 0.days
     self.en_construction_at = self.traitements
       .passer_en_construction(instructeur: instructeur)

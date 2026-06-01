@@ -31,7 +31,6 @@ RSpec.describe DossierCloneConcern do
       expect(new_dossier.deleted_user_email_never_send).to be_nil
       expect(new_dossier.depose_at).to be_nil
       expect(new_dossier.en_construction_at).to be_nil
-      expect(new_dossier.en_construction_close_to_expiration_notice_sent_at).to be_nil
       expect(new_dossier.en_instruction_at).to be_nil
       expect(new_dossier.for_procedure_preview).to be_falsey
       expect(new_dossier.groupe_instructeur_updated_at).to be_nil

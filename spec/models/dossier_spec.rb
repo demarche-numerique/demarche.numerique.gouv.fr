@@ -232,7 +232,6 @@ describe Dossier, type: :model do
     end
 
     it "has not expired" do
-      dossier.update_column(:en_construction_close_to_expiration_notice_sent_at, 1.month.ago)
       expect(dossier.has_expired?).to be(false)
     end
 
@@ -1594,7 +1593,7 @@ describe Dossier, type: :model do
   end
 
   describe '#passer_en_instruction!' do
-    let(:dossier) { create(:dossier, :en_construction, en_construction_close_to_expiration_notice_sent_at: Time.zone.now) }
+    let(:dossier) { create(:dossier, :en_construction) }
     let(:last_operation) { dossier.dossier_operation_logs.last }
     let(:operation_serialized) { last_operation.data }
     let(:instructeur) { create(:instructeur) }
@@ -1607,7 +1606,6 @@ describe Dossier, type: :model do
 
       expect(dossier.state).to eq('en_instruction')
       expect(dossier.followers_instructeurs).to include(instructeur)
-      expect(dossier.en_construction_close_to_expiration_notice_sent_at).to be_nil
       expect(last_operation.operation).to eq('passer_en_instruction')
       expect(last_operation.automatic_operation?).to be_falsey
       expect(operation_serialized['operation']).to eq('passer_en_instruction')
@@ -1635,7 +1633,7 @@ describe Dossier, type: :model do
     let(:instructeur) { create(:instructeur) }
 
     context "via procedure declarative en instruction" do
-      let(:dossier) { create(:dossier, :en_construction, :with_declarative_en_instruction, en_construction_close_to_expiration_notice_sent_at: Time.zone.now) }
+      let(:dossier) { create(:dossier, :en_construction, :with_declarative_en_instruction) }
 
       subject do
         dossier.process_declarative!
@@ -1644,7 +1642,6 @@ describe Dossier, type: :model do
 
       it 'passes dossier en instruction' do
         expect(subject.followers_instructeurs).not_to include(instructeur)
-        expect(subject.en_construction_close_to_expiration_notice_sent_at).to be_nil
         expect(subject.declarative_triggered_at).to be_within(1.second).of(Time.current)
         expect(last_operation.operation).to eq('passer_en_instruction')
         expect(last_operation.automatic_operation?).to be_truthy
