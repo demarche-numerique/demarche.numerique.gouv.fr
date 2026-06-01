@@ -21,6 +21,14 @@ class Champ < ApplicationRecord
   delegate :procedure, to: :dossier
   normalizes :value, with: NORMALIZES_NON_PRINTABLE_PROC
 
+  # Overridable extension point. Return true on a champ to restore the historical
+  # blocking behavior of ExternalDataChampValidator (any pending/external_error
+  # blocks submission). Will be used when a logic condition of another field
+  # references this champ's value_json.
+  def external_data_required_for_conditions?
+    false
+  end
+
   def type_de_champ
     @type_de_champ ||= dossier.revision
       .types_de_champ

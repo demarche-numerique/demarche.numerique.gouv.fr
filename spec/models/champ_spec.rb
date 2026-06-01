@@ -642,4 +642,10 @@ describe Champ do
       expect(target_champ.external_state).to eq('fetched')
     end
   end
+
+  describe '#external_data_required_for_conditions?' do
+    it 'returns false by default' do
+      expect(Champs::TextChamp.new.external_data_required_for_conditions?).to be(false)
+    end
+  end
 end
