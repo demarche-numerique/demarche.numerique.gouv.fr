@@ -35,13 +35,13 @@ class Champs::SiretChamp < Champ
   def fetch_external_data
     case APIEntrepriseService.create_etablissement_with_fallback(self, external_id.delete(" "), dossier.user&.id)
     in Success(etablissement) if etablissement.as_degraded_mode?
-      Failure(retryable: true, error: StandardError.new("API Entreprise: degraded mode"), code: 503)
+      Failure(retryable: true, error: StandardError.new("API Entreprise: degraded mode"), code: 503, kind: :technical_error)
     in Success(etablissement)
       Success(etablissement:, value: external_id)
     in Failure(type: :not_found, **)
-      Failure(retryable: false, error: StandardError.new('NotFound'), code: 404)
+      Failure(retryable: false, error: StandardError.new('NotFound'), code: 404, kind: :not_found)
     in Failure(type:, code:, retryable:, **)
-      Failure(retryable:, error: StandardError.new("API Entreprise: #{type}"), code:)
+      Failure(retryable:, error: StandardError.new("API Entreprise: #{type}"), code:, kind: :technical_error)
     end
   end
 
@@ -49,9 +49,12 @@ class Champs::SiretChamp < Champ
     etablissement.present? ? etablissement.search_terms : [value]
   end
 
-  def save_additional_job_exception(exception, code)
+  # kind: defaults to :technical_error. Reason: this method is
+  # invoked from infrastructure exception catches in jobs (timeouts, transport
+  # errors), which are technical by nature. Callers can still override.
+  def save_additional_job_exception(exception, code, kind: :technical_error)
     exceptions = fetch_external_data_exceptions || []
-    exceptions << ExternalDataException.new(error: exception.inspect, code:)
+    exceptions << ExternalDataException.new(error: exception.inspect, code:, kind:)
     update_columns(fetch_external_data_exceptions: exceptions)
   end
 

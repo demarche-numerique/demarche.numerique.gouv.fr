@@ -53,7 +53,7 @@ describe Champs::SiretChamp do
 
     context 'when external fetch failed' do
       let(:external_id) { "12345678901245" }
-      let(:exception) { ExternalDataException.new(error: 'Not retryable', code: 404) }
+      let(:exception) { ExternalDataException.new(error: 'Not retryable', code: 404, kind: :not_found) }
 
       before do
         champ.update_columns(
@@ -145,6 +145,50 @@ describe Champs::SiretChamp do
       it "fetches the entreprise raison sociale" do
         fetch_external_data
         expect(champ.reload.etablissement.entreprise_raison_sociale).to eq("DIRECTION INTERMINISTERIELLE DU NUMERIQUE")
+      end
+    end
+  end
+
+  describe '#fetch_external_data (kind classification)' do
+    let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :siret }]) }
+    let(:dossier) { create(:dossier, procedure:) }
+    let(:champ) { dossier.champs.first }
+    before { champ.update_column(:external_id, '12345678901234') }
+
+    context 'when API returns not_found' do
+      before do
+        allow(APIEntrepriseService).to receive(:create_etablissement_with_fallback)
+          .and_return(Dry::Monads::Failure(type: :not_found, code: 404, retryable: false))
+      end
+
+      it 'wraps as kind: :not_found' do
+        result = champ.fetch_external_data
+        expect(result).to be_failure
+        expect(result.failure[:kind]).to eq(:not_found)
+        expect(result.failure[:code]).to eq(404)
+      end
+    end
+
+    context 'when API returns a generic technical failure' do
+      before do
+        allow(APIEntrepriseService).to receive(:create_etablissement_with_fallback)
+          .and_return(Dry::Monads::Failure(type: :network, code: 503, retryable: true))
+      end
+
+      it 'wraps as kind: :technical_error' do
+        expect(champ.fetch_external_data.failure[:kind]).to eq(:technical_error)
+      end
+    end
+
+    context 'when API returns Success in degraded mode' do
+      let(:etablissement) { instance_double(Etablissement, as_degraded_mode?: true) }
+      before do
+        allow(APIEntrepriseService).to receive(:create_etablissement_with_fallback)
+          .and_return(Dry::Monads::Success(etablissement))
+      end
+
+      it 'wraps degraded mode as kind: :technical_error' do
+        expect(champ.fetch_external_data.failure[:kind]).to eq(:technical_error)
       end
     end
   end
