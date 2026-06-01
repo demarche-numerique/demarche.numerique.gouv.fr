@@ -95,13 +95,17 @@ module ChampExternalDataConcern
       in Success(hash)
         update_external_data!(hash)
         external_data_fetched!
-      in Failure(retryable: true, error:, code:)
-        save_external_error(error, code)
+      in Failure(retryable: true, error:, code:, **rest)
+        save_external_error(error, code, rest[:kind])
         retry!
         raise RetryableFetchError.new(error)
-      in Failure(retryable: false, error:, code:)
-        save_external_error(error, code)
+      in Failure(retryable: false, error:, code:, **rest)
+        save_external_error(error, code, rest[:kind])
         Sentry.capture_exception(error) if code != 404
+        external_data_error!
+      in Failure(retryable: false, error:)
+        save_external_error(error, nil)
+        Sentry.capture_exception(error)
         external_data_error!
       end
     elsif result.present?
@@ -114,9 +118,9 @@ module ChampExternalDataConcern
     update!(hash.merge(fetch_external_data_exceptions: []))
   end
 
-  def save_external_error(error, code)
+  def save_external_error(error, code, kind = nil)
     exceptions = fetch_external_data_exceptions || []
-    exceptions << ExternalDataException.new(error: error.inspect, code:)
+    exceptions << ExternalDataException.new(error: error.inspect, code:, kind:)
     update_columns(fetch_external_data_exceptions: exceptions)
   end
 

@@ -9,8 +9,72 @@ RSpec.describe ChampExternalDataConcern do
     let(:champ) { dossier.champs.first }
     context "add execption to the log" do
       it do
-        champ.send(:save_external_error, double(inspect: 'PAN'), 404)
+        champ.send(:save_external_error, double(inspect: 'PAN'), 404, :not_found)
         expect { champ.reload }.not_to raise_error
+      end
+    end
+
+    it 'persists kind on the exception' do
+      champ.send(:save_external_error, StandardError.new('boom'), 503, :technical_error)
+      expect(champ.reload.fetch_external_data_exceptions.first.kind).to eq(:technical_error)
+    end
+  end
+
+  describe '#handle_result' do
+    let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :rnf }]) }
+    let(:dossier) { create(:dossier, procedure:) }
+    let(:champ) { dossier.champs.first }
+
+    context 'with Failure(:not_found)' do
+      it 'persists an exception with kind: :not_found' do
+        allow(champ).to receive(:ready_for_external_call?).and_return(true)
+        champ.fetch_later!
+
+        result = Failure(retryable: false, error: StandardError.new('NotFound'), code: 404, kind: :not_found)
+        allow(champ).to receive(:fetch_external_data).and_return(result)
+        champ.fetch!
+
+        expect(champ.reload.fetch_external_data_exceptions.first.kind).to eq(:not_found)
+      end
+    end
+
+    context 'with Failure(:technical_error, retryable: true)' do
+      it 'persists an exception with kind: :technical_error and raises RetryableFetchError' do
+        allow(champ).to receive(:ready_for_external_call?).and_return(true)
+        champ.fetch_later!
+
+        result = Failure(retryable: true, error: StandardError.new('boom'), code: 503, kind: :technical_error)
+        allow(champ).to receive(:fetch_external_data).and_return(result)
+
+        expect { champ.fetch! }.to raise_error(RetryableFetchError)
+        expect(champ.reload).to be_waiting_for_job
+        expect(champ.fetch_external_data_exceptions.first.kind).to eq(:technical_error)
+      end
+    end
+
+    context 'with Failure without kind (legacy service — API::Client::Error or un-migrated service)' do
+      it 'persists nil kind for non-retryable failure with code' do
+        allow(champ).to receive(:ready_for_external_call?).and_return(true)
+        champ.fetch_later!
+
+        result = Failure(retryable: false, error: StandardError.new('some error'), code: 503)
+        allow(champ).to receive(:fetch_external_data).and_return(result)
+        champ.fetch!
+
+        expect(champ.reload).to be_external_error
+        expect(champ.fetch_external_data_exceptions.first.kind).to be_nil
+      end
+
+      it 'persists nil kind for non-retryable failure without code' do
+        allow(champ).to receive(:ready_for_external_call?).and_return(true)
+        champ.fetch_later!
+
+        result = Failure(retryable: false, error: StandardError.new('not configured'))
+        allow(champ).to receive(:fetch_external_data).and_return(result)
+        champ.fetch!
+
+        expect(champ.reload).to be_external_error
+        expect(champ.fetch_external_data_exceptions.first.kind).to be_nil
       end
     end
   end
@@ -125,7 +189,7 @@ RSpec.describe ChampExternalDataConcern do
         allow(champ).to receive(:ready_for_external_call?).and_return(true)
         champ.fetch_later!
 
-        failure = Failure(retryable: false, error: Exception.new('nop'), code:)
+        failure = Failure(retryable: false, error: Exception.new('nop'), code:, kind: :technical_error)
         allow(champ).to receive(:fetch_external_data).and_return(failure)
         allow(Sentry).to receive(:capture_exception)
         champ.fetch!
@@ -152,7 +216,7 @@ RSpec.describe ChampExternalDataConcern do
         allow(champ).to receive(:ready_for_external_call?).and_return(true)
         champ.fetch_later!
 
-        failure = Failure(retryable: true, error: Exception.new('nop'), code: 404)
+        failure = Failure(retryable: true, error: Exception.new('nop'), code: 404, kind: :technical_error)
         allow(champ).to receive(:fetch_external_data).and_return(failure)
       end
 
