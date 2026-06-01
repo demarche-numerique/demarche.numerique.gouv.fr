@@ -47,7 +47,8 @@ RSpec.describe ChampExternalDataConcern do
         allow(champ).to receive(:fetch_external_data).and_return(result)
 
         expect { champ.fetch! }.to raise_error(RetryableFetchError)
-        expect(champ.reload.fetch_external_data_exceptions.first.kind).to eq(:technical_error)
+        expect(champ.reload).to be_waiting_for_job
+        expect(champ.fetch_external_data_exceptions.first.kind).to eq(:technical_error)
       end
     end
   end
