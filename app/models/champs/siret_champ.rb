@@ -49,6 +49,10 @@ class Champs::SiretChamp < Champ
     etablissement.present? ? etablissement.search_terms : [value]
   end
 
+  # kind: defaults to :technical_error here (unlike ExternalDataException.new and
+  # save_external_error which require an explicit kind). Reason: this method is
+  # invoked from infrastructure exception catches in jobs (timeouts, transport
+  # errors), which are technical by nature. Callers can still override.
   def save_additional_job_exception(exception, code, kind: :technical_error)
     exceptions = fetch_external_data_exceptions || []
     exceptions << ExternalDataException.new(error: exception.inspect, code:, kind:)
