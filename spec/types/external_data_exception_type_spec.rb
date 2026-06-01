@@ -33,6 +33,11 @@ RSpec.describe ExternalDataExceptionType do
       result = type.cast(error: 'x', code: 503)
       expect(result.kind).to be_nil
     end
+
+    it 'parses a hash with kind: nil explicitly' do
+      result = type.cast(error: 'x', code: 503, kind: nil)
+      expect(result.kind).to be_nil
+    end
   end
 
   describe '#serialize' do
