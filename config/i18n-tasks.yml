@@ -138,6 +138,10 @@ ignore_unused:
   - 'views.users.dossiers.index.filter_panel.*'
   # used in app/components/dossiers/user_active_filters_component (excluded from search above)
   - 'views.users.dossiers.index.active_filters.*'
+  # used in app/components/dossiers/user_search_component mobile search panel (excluded from search above)
+  - 'views.users.dossiers.index.search.open'
+  - 'views.users.dossiers.index.search.panel_title'
+  - 'views.users.dossiers.index.search.close'
 # - '{devise,kaminari,will_paginate}.*'
 # - 'simple_form.{yes,no}'
 # - 'simple_form.{placeholders,hints,labels}.*'

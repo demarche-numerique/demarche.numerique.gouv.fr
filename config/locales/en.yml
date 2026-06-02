@@ -576,6 +576,9 @@ en:
             placeholder_hint: "By file number, name, SIRET, keywords..."
             placeholder_text: "Enter your search"
             submit: "Search"
+            open: "Search"
+            panel_title: "Search"
+            close: "Close"
           filter_panel:
             open: "Filter files"
             title: "Filter files"

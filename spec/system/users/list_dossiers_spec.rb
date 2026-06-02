@@ -38,6 +38,29 @@ describe 'user dossiers list', js: true do
     end
   end
 
+  describe 'mobile search panel' do
+    let!(:target_dossier) { create(:dossier, :en_construction, user: user) }
+
+    before { create_list(:dossier, 11, :en_construction, user: user) }
+
+    it 'opens the panel and runs a search' do
+      Capybara.page.current_window.resize_to(375, 812)
+      visit dossiers_path
+
+      expect(page).not_to have_selector('.user-search-bar__form input[name=search]', visible: true)
+
+      find('.user-search-bar__search-trigger').click
+
+      within('#dossiers-search-modal') do
+        fill_in 'search-mobile', with: target_dossier.id.to_s
+        click_button('Rechercher')
+      end
+
+      expect(page).to have_content('Résultat de la recherche pour')
+      expect(page).to have_link('← Mes dossiers', href: dossiers_path)
+    end
+  end
+
   describe 'corbeille link' do
     it 'is hidden when no hidden dossiers' do
       create_list(:dossier, 2, :en_construction, user: user)

@@ -17,33 +17,37 @@
 
 .user-search-bar {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   gap: 1rem;
   margin-bottom: 1rem;
 
   @media (min-width: 768px) {
-    flex-direction: row;
     align-items: flex-end;
-    justify-content: space-between;
   }
 
   &__form {
     flex: 1;
+
+    @media (max-width: 767px) {
+      display: none;
+    }
 
     @media (min-width: 768px) {
       flex: 0 1 50%;
     }
   }
 
+  &__search-trigger {
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+
   &__filter-count {
     margin-left: 0.25rem;
     color: var(--text-default-error);
-  }
-}
-
-@media (max-width: 767px) {
-  .user-search-bar__form--hidden-mobile {
-    display: none !important;
   }
 }
 
@@ -58,6 +62,26 @@
   &__chip {
     background-color: var(--background-action-high-blue-france);
     color: var(--text-inverted-blue-france);
+  }
+}
+
+.user-filter-panel,
+.user-search-panel {
+  .fr-modal__header {
+    padding-bottom: 0;
+  }
+
+  .fr-modal__title {
+    margin: 0 -1rem 1rem;
+    padding: 0 1rem 1rem;
+    border-bottom: 3px solid var(--border-plain-blue-france);
+
+    @media (min-width: 768px) {
+      margin-right: -2rem;
+      margin-left: -2rem;
+      padding-right: 2rem;
+      padding-left: 2rem;
+    }
   }
 }
 
@@ -84,12 +108,18 @@
   &__actions {
     position: sticky;
     bottom: 0;
+    margin: 0 -1rem;
     padding: 1rem;
     background: var(--background-default-grey);
-    border-top: 1px solid var(--border-default-grey);
+    border-top: 3px solid var(--border-plain-blue-france);
     display: flex;
     justify-content: space-between;
     gap: 1rem;
+
+    @media (min-width: 768px) {
+      margin: 0 -2rem;
+      padding: 1rem 2rem;
+    }
   }
 
   @media (min-width: 768px) {
@@ -118,10 +148,8 @@
 
 .trash-list-header {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
 }
 
 .transfer-requests-close-bottom {

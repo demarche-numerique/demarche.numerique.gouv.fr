@@ -10,8 +10,10 @@ describe 'users/dossiers/index', type: :view do
 
   before do
     allow(view).to receive(:new_demarche_url).and_return('#')
+    allow(view).to receive(:filter_params_slice).and_return(ActionController::Parameters.new.permit!)
     allow(controller).to receive(:current_user) { user }
     assign(:dossiers, Kaminari.paginate_array(user_dossiers).page(1))
+    assign(:total_count, user_dossiers.size)
     assign(:filter, filter)
     assign(:procedures_for_select, user_dossiers.map(&:procedure))
     assign(:corbeille_count, 0)

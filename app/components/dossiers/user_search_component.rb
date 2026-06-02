@@ -21,6 +21,6 @@ class Dossiers::UserSearchComponent < ApplicationComponent
   end
 
   def form_class
-    helpers.class_names('user-search-bar__form', 'user-search-bar__form--hidden-mobile': search_terms.present?)
+    'user-search-bar__form'
   end
 end

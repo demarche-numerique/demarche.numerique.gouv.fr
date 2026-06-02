@@ -10,6 +10,18 @@
   <button
     type="button"
     class="
+      fr-btn fr-btn--tertiary-no-outline fr-icon-search-line
+      fr-btn--icon-left user-search-bar__search-trigger
+    "
+    data-fr-opened="false"
+    aria-controls="dossiers-search-modal"
+  >
+    <%= t('views.users.dossiers.index.search.open') %>
+  </button>
+
+  <button
+    type="button"
+    class="
       fr-btn fr-btn--tertiary-no-outline fr-icon-equalizer-line
       fr-btn--icon-left
       <%= filter_button_visibility_class %>
@@ -18,8 +30,53 @@
     aria-controls="dossiers-filter-modal"
   >
     <%= t('views.users.dossiers.index.filter_panel.open') %>
+
     <% if active_filter_count.positive? %>
-      <span class="user-search-bar__filter-count">(<%= active_filter_count %>)</span>
+      <span class="user-search-bar__filter-count">
+        (<%= active_filter_count %>)
+      </span>
     <% end %>
   </button>
 </div>
+
+<dialog
+  id="dossiers-search-modal"
+  class="fr-modal user-search-panel"
+  aria-labelledby="dossiers-search-title"
+  role="dialog"
+>
+  <div class="fr-container fr-container--fluid fr-container-md">
+    <div class="fr-grid-row fr-grid-row--center">
+      <div class="fr-col-12 fr-col-md-8">
+        <div class="fr-modal__body">
+          <div class="fr-modal__header">
+            <button
+              type="button"
+              class="fr-btn--close fr-btn"
+              aria-controls="dossiers-search-modal"
+            >
+              <%= t('views.users.dossiers.index.search.close') %>
+            </button>
+          </div>
+
+          <div class="fr-modal__content">
+            <h1
+              id="dossiers-search-title"
+              class="fr-modal__title fr-icon-arrow-right-line"
+            >
+              <%= t('views.users.dossiers.index.search.panel_title') %>
+            </h1>
+
+            <%= form_with url: dossiers_path, method: :get, data: { turbo_frame: "dossiers_list", turbo_action: "advance" } do %>
+              <% filter_hidden_inputs.each do |name, value| %>
+                <%= hidden_field_tag name, value %>
+              <% end %>
+
+              <%= render partial: 'users/dossiers/search_input', locals: { search_terms: search_terms, input_id: 'search-mobile' } %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>

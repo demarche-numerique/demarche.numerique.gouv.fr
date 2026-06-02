@@ -16,6 +16,11 @@
         </h1>
       <% else %>
         <%= render partial: 'index_header', locals: { corbeille_count: @corbeille_count } %>
+        <% if @pending_transfers_count.positive? %>
+          <div class="fr-my-2w">
+            <%= render Dossiers::PendingTransfersBannerComponent.new(count: @pending_transfers_count) %>
+          </div>
+        <% end %>
       <% end %>
 
       <% if !@show_simple_list %>
@@ -28,12 +33,6 @@
     </div>
   </section>
 
-  <% if params[:search].blank? && @pending_transfers_count.positive? %>
-    <div class="fr-container">
-      <%= render Dossiers::PendingTransfersBannerComponent.new(count: @pending_transfers_count) %>
-    </div>
-  <% end %>
-
   <div class="fr-container">
     <% if @show_simple_list %>
       <%= render partial: 'dossiers_list', locals: { dossiers: @dossiers, filter: nil, search: false, statut: nil } %>
@@ -44,7 +43,6 @@
               current_filter_params: filter_params_slice
             ) %>
       <% end %>
-
       <% if @dossiers.any? %>
         <p class="results-count">
           <%= t('views.users.dossiers.index.results_count',
@@ -53,7 +51,6 @@
                 count: @total_count) %>
         </p>
       <% end %>
-
       <%= render partial: 'dossiers_list', locals: { dossiers: @dossiers, filter: @filter, search: params[:search].present?, statut: nil } %>
     <% end %>
   </div>
