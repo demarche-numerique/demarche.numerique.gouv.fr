@@ -578,7 +578,6 @@ en:
             submit: "Search"
             open: "Search"
             panel_title: "Search"
-            close: "Close"
           filter_panel:
             open: "Filter files"
             title: "Filter files"

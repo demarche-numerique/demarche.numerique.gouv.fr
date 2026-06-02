@@ -1,5 +1,5 @@
 <div class="user-search-bar">
-  <%= form_with url: dossiers_path, method: :get, data: { turbo_frame: "dossiers_list", turbo_action: "advance" }, class: form_class do %>
+  <%= form_with url: dossiers_path, method: :get, data: { turbo_frame: "dossiers_list", turbo_action: "advance" }, class: "user-search-bar__form" do %>
     <% filter_hidden_inputs.each do |name, value| %>
       <%= hidden_field_tag name, value %>
     <% end %>
@@ -55,7 +55,7 @@
               class="fr-btn--close fr-btn"
               aria-controls="dossiers-search-modal"
             >
-              <%= t('views.users.dossiers.index.search.close') %>
+              <%= t('utils.modal_close') %>
             </button>
           </div>
 

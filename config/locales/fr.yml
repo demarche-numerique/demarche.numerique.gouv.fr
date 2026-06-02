@@ -588,7 +588,6 @@ fr:
             submit: "Rechercher"
             open: "Rechercher"
             panel_title: "Rechercher"
-            close: "Fermer"
           filter_panel:
             open: "Filtrer les dossiers"
             title: "Filtrer les dossiers"

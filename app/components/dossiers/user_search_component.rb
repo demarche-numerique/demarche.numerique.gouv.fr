@@ -19,8 +19,4 @@ class Dossiers::UserSearchComponent < ApplicationComponent
       Array(value).map { |v| [multiple ? "#{key}[]" : key.to_s, v] }
     end
   end
-
-  def form_class
-    'user-search-bar__form'
-  end
 end
