@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Champs::RNFChamp < Champ
+  include Dry::Monads[:result]
+
   RNF_REGEXP = /\A[A-Za-z0-9-]{12,20}\z/i.freeze
 
   store_accessor :data, :title, :email, :phone, :createdAt, :updatedAt, :dissolvedAt, :address
@@ -17,7 +19,13 @@ class Champs::RNFChamp < Champ
   end
 
   def fetch_external_data
-    RNFService.new.(rnf_id:).fmap { |data| { data:, value_json: extract_value_json(data:) } }
+    case RNFService.new.(rnf_id:)
+    in Success(data)
+      Success(data:, value_json: extract_value_json(data:))
+    in Failure(API::Client::Error => error)
+      kind = error.code == 404 ? :not_found : :technical_error
+      Failure(retryable: error.retryable, error: error.error, code: error.code, kind:)
+    end
   end
 
   def has_async_external_data?

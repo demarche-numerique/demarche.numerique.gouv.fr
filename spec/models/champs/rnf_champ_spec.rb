@@ -40,7 +40,7 @@ describe Champs::RNFChamp, type: :model do
     end
 
     context 'when fetch_external_data_exceptions contains a non-retryable error' do
-      let(:error) { ExternalDataException.new(error: 'Not retryable', code: 404) }
+      let(:error) { ExternalDataException.new(error: 'Not retryable', code: 404, kind: :not_found) }
 
       before { champ.update_columns(external_state: 'external_error', fetch_external_data_exceptions: [error]) }
 
@@ -179,8 +179,8 @@ describe Champs::RNFChamp, type: :model do
     context 'failure (schema)' do
       let(:response_type) { 'invalid' }
       it {
-        expect(subject.failure.retryable).to be_falsey
-        expect(subject.failure.error).to be_a(API::Client::SchemaError)
+        expect(subject.failure[:retryable]).to be_falsey
+        expect(subject.failure[:kind]).to eq(:technical_error)
       }
     end
 
@@ -188,8 +188,8 @@ describe Champs::RNFChamp, type: :model do
       let(:status) { 500 }
       let(:response_type) { 'invalid' }
       it {
-        expect(subject.failure.retryable).to be_truthy
-        expect(subject.failure.error).to be_a(API::Client::HTTPError)
+        expect(subject.failure[:retryable]).to be_truthy
+        expect(subject.failure[:kind]).to eq(:technical_error)
       }
     end
 
@@ -197,8 +197,8 @@ describe Champs::RNFChamp, type: :model do
       let(:status) { 401 }
       let(:response_type) { 'invalid' }
       it {
-        expect(subject.failure.retryable).to be_falsey
-        expect(subject.failure.error).to be_a(API::Client::HTTPError)
+        expect(subject.failure[:retryable]).to be_falsey
+        expect(subject.failure[:kind]).to eq(:technical_error)
       }
     end
 
@@ -206,8 +206,8 @@ describe Champs::RNFChamp, type: :model do
       let(:status) { 400 }
       let(:response_type) { 'invalid' }
       it {
-        expect(subject.failure.retryable).to be_falsey
-        expect(subject.failure.error).to be_a(API::Client::HTTPError)
+        expect(subject.failure[:retryable]).to be_falsey
+        expect(subject.failure[:kind]).to eq(:technical_error)
       }
     end
 
@@ -215,8 +215,9 @@ describe Champs::RNFChamp, type: :model do
       let(:status) { 404 }
       let(:response_type) { 'invalid' }
       it {
-        expect(subject.failure.retryable).to be_falsey
-        expect(subject.failure.error).to be_a(API::Client::HTTPError)
+        expect(subject.failure[:retryable]).to be_falsey
+        expect(subject.failure[:kind]).to eq(:not_found)
+        expect(subject.failure[:code]).to eq(404)
       }
     end
 
@@ -241,6 +242,38 @@ describe Champs::RNFChamp, type: :model do
         }
 
         expect(subject.value![:value_json]).to eq(value_json)
+      end
+    end
+  end
+
+  describe '#fetch_external_data (kind classification)' do
+    include Dry::Monads[:result]
+
+    let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :rnf }]) }
+    let(:dossier) { create(:dossier, procedure:) }
+    let(:champ) { dossier.champs.find(&:rnf?) }
+    before { champ.update_columns(external_id: '075-FDD-00001-01') }
+
+    context 'when RNF API returns 404 (not_found)' do
+      before do
+        allow_any_instance_of(RNFService).to receive(:call)
+          .and_return(Failure(API::Client::Error[:bad_request, 404, false, 'not found']))
+      end
+
+      it 'wraps as kind: :not_found' do
+        expect(champ.fetch_external_data.failure[:kind]).to eq(:not_found)
+        expect(champ.fetch_external_data.failure[:code]).to eq(404)
+      end
+    end
+
+    context 'when RNF API returns a generic technical failure' do
+      before do
+        allow_any_instance_of(RNFService).to receive(:call)
+          .and_return(Failure(API::Client::Error[:http, 500, true, 'boom']))
+      end
+
+      it 'wraps as kind: :technical_error' do
+        expect(champ.fetch_external_data.failure[:kind]).to eq(:technical_error)
       end
     end
   end
