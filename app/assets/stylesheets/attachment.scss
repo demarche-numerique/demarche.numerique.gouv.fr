@@ -94,7 +94,9 @@ ul[data-file-input-reset-target='fileList'] {
 .attachment-drop-zone {
   .attachment-drop-area {
     width: 100%;
-    border: 2px dashed var(--border-default-grey);
+    // --border-contrast-grey keeps a >=3:1 contrast with the zone background
+    // in both light and dark themes (RGAA 3.3); --border-default-grey was 1.36:1.
+    border: 2px dashed var(--border-contrast-grey);
     border-radius: 0.25rem;
     cursor: pointer;
     text-align: center;
