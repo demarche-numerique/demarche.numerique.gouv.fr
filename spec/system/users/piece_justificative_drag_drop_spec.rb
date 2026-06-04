@@ -43,7 +43,7 @@ describe 'Piece justificative drag and drop', js: true do
 
         # Textes et boutons (PJ uses MultipleComponent with default max=10, so plural)
         expect(page).to have_text('Faites glisser et déposez vos fichiers ici')
-        expect(page).to have_button('Choisir des fichiers')
+        expect(page).to have_css('.fr-btn--secondary', text: 'Choisir des fichiers')
 
         # Accessibilité ARIA
         expect(drop_area['role']).to eq('button')
@@ -242,7 +242,7 @@ describe 'Piece justificative drag and drop', js: true do
 
         # Drop zone should STILL be visible (max not reached)
         expect(page).to have_css('.attachment-drop-zone')
-        expect(page).to have_button('Choisir des fichiers')
+        expect(page).to have_css('.fr-btn--secondary', text: 'Choisir des fichiers')
 
         # Upload second file
         attach_file('All types', Rails.root.join('spec/fixtures/files/white.png'))
@@ -253,7 +253,7 @@ describe 'Piece justificative drag and drop', js: true do
 
         # Drop zone should still be visible after deletion
         expect(page).to have_css('.attachment-drop-zone')
-        expect(page).to have_button('Choisir des fichiers')
+        expect(page).to have_css('.fr-btn--secondary', text: 'Choisir des fichiers')
 
         # Upload third file
         attach_file('All types', Rails.root.join('spec/fixtures/files/black.png'))
