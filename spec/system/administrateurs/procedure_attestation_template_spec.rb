@@ -177,6 +177,31 @@ describe 'As an administrateur, I want to manage the procedure’s attestation',
       expect(page).to have_text(/La nouvelle version de l’attestation/)
     end
 
+    scenario 'pressing Enter with no text after the cursor creates a new paragraph' do
+      visit edit_admin_procedure_attestation_template_v2_path(procedure, attestation_kind: :acceptation)
+      expect(page).to have_css('#editor .ProseMirror')
+
+      editor = find('#editor .ProseMirror')
+      editor.click
+
+      # Place the caret at the very end of the document, so there is no text
+      # after it when Enter is pressed.
+      page.execute_script(<<~JS)
+        const el = document.querySelector('#editor .ProseMirror');
+        const range = document.createRange();
+        range.selectNodeContents(el);
+        range.collapse(false);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+      JS
+
+      editor.send_keys('Hello', :enter, 'World')
+
+      expect(page).to have_css('#editor .ProseMirror p', exact_text: 'World')
+      expect(page).to have_no_css('#editor .ProseMirror p', text: 'HelloWorld')
+    end
+
     context "tag in error" do
       before do
         tdc = procedure.active_revision.add_type_de_champ(type_champ: :integer_number, libelle: 'age')

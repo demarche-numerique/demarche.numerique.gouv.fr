@@ -14,7 +14,17 @@ logger.warn = (msg, options) => {
 };
 
 export default defineConfig({
-  resolve: { alias: { '@utils': '/shared/utils.ts' } },
+  resolve: {
+    alias: { '@utils': '/shared/utils.ts' },
+    dedupe: [
+      'prosemirror-model',
+      'prosemirror-state',
+      'prosemirror-view',
+      'prosemirror-transform',
+      'prosemirror-keymap',
+      'prosemirror-commands'
+    ]
+  },
   build: { sourcemap: true, assetsInlineLimit: 0 },
   customLogger: logger,
   css: {
