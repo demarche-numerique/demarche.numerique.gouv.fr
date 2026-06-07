@@ -1,7 +1,7 @@
 <div class="user-active-filters">
   <% tags.each do |tag| %>
     <%= link_to dossiers_path(remove_params_for(tag)),
-        class: 'user-active-filters__chip fr-tag fr-tag--dismiss',
+        class: 'user-active-filters__chip fr-tag fr-tag--sm fr-tag--dismiss',
         data: { turbo_frame: 'dossiers_list', turbo_action: 'advance' },
         aria: { label: t('views.users.dossiers.index.active_filters.remove_tag', label: tag[:label]) } do %>
       <%= tag[:label] %>
@@ -10,6 +10,6 @@
 
   <%= link_to t('views.users.dossiers.index.active_filters.reset'),
       dossiers_path(reset_params),
-      class: 'fr-link',
+      class: 'fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-ml-1w',
       data: { turbo_frame: 'dossiers_list', turbo_action: 'advance' } %>
 </div>

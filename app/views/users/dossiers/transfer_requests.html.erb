@@ -1,22 +1,18 @@
 <% content_for(:title, t('views.users.dossiers.transfer_requests.title')) %>
 
-<section class="dossiers-headers sub-header">
-  <div class="fr-container">
-    <div class="mes-dossiers-header">
-      <h1 class="fr-h3">
-        <span class="fr-icon-user-add-line" aria-hidden="true"></span>
-        <%= t('views.users.dossiers.transfer_requests.title') %>
-      </h1>
-
-      <%= link_to dossiers_path, class: 'fr-link fr-icon-close-line fr-link--icon-right mes-dossiers-header__corbeille' do %>
-        <%= t('views.users.dossiers.transfer_requests.close') %>
-      <% end %>
-    </div>
-  </div>
-</section>
-
 <div class="fr-container fr-py-4w">
-  <p class="fr-text--bold fr-mb-3w">
+  <div class="transfer-requests-close-top">
+    <%= link_to dossiers_path, class: 'fr-btn fr-btn--tertiary-no-outline fr-icon-close-line fr-btn--icon-right' do %>
+      <%= t('views.users.dossiers.transfer_requests.close') %>
+    <% end %>
+  </div>
+
+  <h1 class="fr-h3">
+    <span class="fr-icon-user-shared-line" aria-hidden="true"></span>
+    <%= t('views.users.dossiers.transfer_requests.title') %>
+  </h1>
+
+  <p class="results-count fr-mb-3w">
     <%= t('views.users.dossiers.transfer_requests.count', count: @pending_transfers.size) %>
   </p>
 

@@ -575,12 +575,15 @@ fr:
           results_count:
             one: "%{page_from} - %{page_to} sur 1 dossier"
             other: "%{page_from} - %{page_to} sur %{count} dossiers"
+          dossiers_count:
+            one: "1 dossier"
+            other: "%{count} dossiers"
           corbeille_link:
             label:
               one: "Corbeille (%{count})"
               other: "Corbeille (%{count})"
           search:
-            back_to_list: "← Mes dossiers"
+            back_to_list: "Mes dossiers"
             result_title: "Résultat de la recherche pour « %{search_terms} »"
             placeholder_label: "Rechercher un dossier"
             placeholder_hint: "Par n° de dossier, nom / prénom, SIRET, mots-clés…"
@@ -665,7 +668,7 @@ fr:
           other_actions: "Autres actions"
         trash:
           title: "Corbeille"
-          back_to_list: "← Mes dossiers"
+          back_to_list: "Mes dossiers"
           deleted_history_link: "Historique des dossiers supprimés"
           count:
             one: "1 dossier"

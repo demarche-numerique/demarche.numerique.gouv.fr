@@ -42,7 +42,7 @@
       - if has_transfer_action
         - menu.with_item do
           = link_to(transferer_dossier_path(dossier), role: 'menuitem') do
-            = dsfr_icon('fr-icon-user-add-fill', :sm)
+            = dsfr_icon('fr-icon-user-shared-line', :sm)
             .dropdown-description
               = t('views.users.dossiers.dossier_action.transfer_dossier')
               %span.fr-sr-only

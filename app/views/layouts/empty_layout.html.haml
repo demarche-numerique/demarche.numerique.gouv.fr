@@ -26,7 +26,9 @@
     = render partial: 'layouts/setup_theme'
 
   %body{ class: browser.platform.ios? ? 'ios' : nil, data: { controller: 'turbo' } }
+    = render partial: 'layouts/skiplinks'
+
     .page-wrapper
-      %main
+      %main#contenu{ role: 'main' }
         = render partial: "layouts/flash_messages"
         = content_for?(:content) ? yield(:content) : yield

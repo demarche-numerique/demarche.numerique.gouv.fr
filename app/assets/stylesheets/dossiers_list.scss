@@ -1,9 +1,13 @@
 .mes-dossiers-header {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 1rem;
+
+  h1 {
+    margin-bottom: 0;
+  }
 
   &__corbeille {
     white-space: nowrap;
@@ -47,6 +51,14 @@
     margin-left: 0.25rem;
     color: var(--text-default-error);
   }
+
+  @media (max-width: 767px) {
+    .fr-btn--tertiary-no-outline {
+      padding-left: 0;
+      padding-right: 0;
+      white-space: nowrap;
+    }
+  }
 }
 
 .user-active-filters {
@@ -68,11 +80,13 @@
     padding-bottom: 0;
   }
 
+  .fr-modal__content {
+    margin-bottom: 0;
+  }
+
   .fr-modal__title {
     @media (min-width: 768px) {
-      margin: 0 -2rem 1rem;
-      padding: 0 2rem 1rem;
-      border-bottom: 3px solid var(--border-plain-blue-france);
+      margin-bottom: 1rem;
     }
   }
 
@@ -90,6 +104,25 @@
     }
   }
 
+  .fr-fieldset {
+    margin: 0 0 1rem;
+    padding: 0;
+  }
+
+  .fr-fieldset__legend {
+    margin: 0;
+    padding: 0 0 0.75rem;
+  }
+
+  .fr-fieldset__element {
+    margin-bottom: 0.75rem;
+    padding: 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
   .fr-fieldset:not(:last-of-type) {
     border-bottom: 1px solid var(--border-default-grey);
     padding-bottom: 1rem;
@@ -103,12 +136,16 @@
     background: var(--background-default-grey);
     border-top: 3px solid var(--border-plain-blue-france);
     display: flex;
-    justify-content: space-between;
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 
     @media (min-width: 768px) {
       margin: 0 -2rem;
       padding: 1rem 2rem;
+    }
+
+    .fr-btn {
+      white-space: nowrap;
     }
   }
 
@@ -146,6 +183,8 @@
 }
 
 .results-count {
+  font-size: 1.25rem;
+  line-height: 1.5rem;
   font-weight: bold;
   margin: 1rem 0 0.5rem;
 }
@@ -153,7 +192,12 @@
 .trash-list-header {
   display: flex;
   justify-content: flex-end;
-  margin-top: 1rem;
+  margin-top: 0;
+}
+
+.transfer-requests-close-top {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .transfer-requests-close-bottom {

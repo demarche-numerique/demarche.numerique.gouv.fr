@@ -59,5 +59,13 @@ describe 'Transfer dossier flow', js: true do
       expect(page).to have_current_path(dossiers_path)
       expect(dossier.reload.dossier_transfer_id).to be_nil
     end
+
+    it 'renders as a dedicated screen while keeping accessibility landmarks' do
+      visit transferts_path
+
+      expect(page).not_to have_selector('header.fr-header')
+      expect(page).to have_selector('.fr-skiplinks a[href="#contenu"]', visible: :all)
+      expect(page).to have_selector('main#contenu')
+    end
   end
 end

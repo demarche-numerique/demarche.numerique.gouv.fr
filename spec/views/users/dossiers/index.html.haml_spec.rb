@@ -41,6 +41,23 @@ describe 'users/dossiers/index', type: :view do
     expect(rendered).to have_selector('h1', text: 'Mes dossiers')
   end
 
+  it 'shows the dossier count without pagination on a single page' do
+    expect(rendered).to have_selector('.results-count', text: '3 dossiers')
+    expect(rendered).not_to have_text('sur 3 dossiers')
+  end
+
+  context 'when the list is paginated (more than 25 dossiers)' do
+    before do
+      assign(:dossiers, Kaminari.paginate_array(user_dossiers, total_count: 30).page(1).per(25))
+      assign(:total_count, 30)
+      render
+    end
+
+    it 'shows the "1 - X of XX dossiers" indication' do
+      expect(rendered).to have_selector('.results-count', text: 'sur 30 dossiers')
+    end
+  end
+
   context 'quand il n’y a aucun dossier' do
     let(:user_dossiers) { [] }
 

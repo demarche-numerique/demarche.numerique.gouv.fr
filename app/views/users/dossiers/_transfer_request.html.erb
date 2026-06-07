@@ -1,7 +1,7 @@
 <div class="card">
   <%= render partial: 'dossier_card_content', locals: { dossier: dossier, linkable: false } %>
 
-  <%= render Dsfr::AlertComponent.new(state: :info, with_prefix: false) do |c| %>
+  <%= render Dsfr::AlertComponent.new(state: :info, with_prefix: false, size: :sm) do |c| %>
     <% c.with_body do %>
       <p class="fr-text--bold">
         <%= t('views.users.dossiers.transfer_requests.received_from', email: dossier.transfer.sender) %>

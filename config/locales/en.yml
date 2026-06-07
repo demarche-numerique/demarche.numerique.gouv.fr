@@ -565,12 +565,15 @@ en:
           results_count:
             one: "%{page_from} - %{page_to} of 1 file"
             other: "%{page_from} - %{page_to} of %{count} files"
+          dossiers_count:
+            one: "1 file"
+            other: "%{count} files"
           corbeille_link:
             label:
               one: "Trash (%{count})"
               other: "Trash (%{count})"
           search:
-            back_to_list: "← My files"
+            back_to_list: "My files"
             result_title: "Search results for \"%{search_terms}\""
             placeholder_label: "Search a file"
             placeholder_hint: "By file number, name, SIRET, keywords..."
@@ -642,7 +645,7 @@ en:
             this_procedure: this procedure
         trash:
           title: "Trash"
-          back_to_list: "← My files"
+          back_to_list: "My files"
           deleted_history_link: "Deleted files history"
           count:
             one: "1 file"

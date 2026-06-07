@@ -9,7 +9,7 @@
     <div class="fr-container">
       <% if params[:search].present? %>
         <p class="fr-mb-3w">
-          <%= link_to t('views.users.dossiers.index.search.back_to_list'), dossiers_path, class: 'fr-link' %>
+          <%= link_to t('views.users.dossiers.index.search.back_to_list'), dossiers_path, class: 'fr-link fr-icon-arrow-left-line fr-link--icon-left' %>
         </p>
         <h1 class="fr-h3">
           <%= t('views.users.dossiers.index.search.result_title', search_terms: params[:search]) %>
@@ -17,7 +17,7 @@
       <% else %>
         <%= render partial: 'index_header', locals: { corbeille_count: @corbeille_count } %>
         <% if @pending_transfers_count.positive? %>
-          <div class="fr-my-2w">
+          <div class="fr-my-3w">
             <%= render Dossiers::PendingTransfersBannerComponent.new(count: @pending_transfers_count) %>
           </div>
         <% end %>
@@ -45,10 +45,14 @@
       <% end %>
       <% if @dossiers.any? %>
         <p class="results-count">
-          <%= t('views.users.dossiers.index.results_count',
-                page_from: @dossiers.offset_value + 1,
-                page_to: [@dossiers.offset_value + @dossiers.size, @total_count].min,
-                count: @total_count) %>
+          <% if @dossiers.total_pages > 1 %>
+            <%= t('views.users.dossiers.index.results_count',
+                  page_from: @dossiers.offset_value + 1,
+                  page_to: [@dossiers.offset_value + @dossiers.size, @total_count].min,
+                  count: @total_count) %>
+          <% else %>
+            <%= t('views.users.dossiers.index.dossiers_count', count: @total_count) %>
+          <% end %>
         </p>
       <% end %>
       <%= render partial: 'dossiers_list', locals: { dossiers: @dossiers, filter: @filter, search: params[:search].present?, statut: nil } %>

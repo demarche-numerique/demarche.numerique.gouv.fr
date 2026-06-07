@@ -479,6 +479,7 @@ module Users
 
     def transfer_requests
       @pending_transfers = current_user.dossier_transfers_received_pending
+      render layout: 'empty_layout'
     end
 
     def trash

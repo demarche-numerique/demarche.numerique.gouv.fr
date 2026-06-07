@@ -34,7 +34,7 @@ describe 'user dossiers list', js: true do
       visit dossiers_path(search: target_dossier.id.to_s)
 
       expect(page).to have_content('Résultat de la recherche pour')
-      expect(page).to have_link('← Mes dossiers', href: dossiers_path)
+      expect(page).to have_link('Mes dossiers', href: dossiers_path)
     end
   end
 
@@ -57,7 +57,7 @@ describe 'user dossiers list', js: true do
       end
 
       expect(page).to have_content('Résultat de la recherche pour')
-      expect(page).to have_link('← Mes dossiers', href: dossiers_path)
+      expect(page).to have_link('Mes dossiers', href: dossiers_path)
     end
   end
 
@@ -85,7 +85,7 @@ describe 'user dossiers list', js: true do
 
       expect(page).to have_current_path(trash_path)
       expect(page).to have_content('Corbeille')
-      expect(page).to have_link('← Mes dossiers')
+      expect(page).to have_link('Mes dossiers')
       expect(page).to have_link('Historique des dossiers supprimés')
     end
 
