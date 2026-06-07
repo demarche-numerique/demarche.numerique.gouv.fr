@@ -15,7 +15,7 @@ module Users
     ACTIONS_ALLOWED_TO_OWNER_OR_INVITE = [:show, :destroy, :demande, :messagerie, :brouillon, :modifier, :update, :create_commentaire, :attestation_depot, :restore, :champ, :check_completude, :notify_owner_for_changes]
     TRASH_ACTIONS = [:show_in_trash, :show_deleted]
     ITEMS_PER_PAGE = 25
-    SIMPLE_LIST_THRESHOLD = 10
+    SIMPLE_LIST_THRESHOLD = 5
 
     helper_method :filter_params_slice
 

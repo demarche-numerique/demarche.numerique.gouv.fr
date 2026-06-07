@@ -1629,6 +1629,20 @@ describe Users::DossiersController, type: :controller do
       expect(assigns(:pending_transfers_count)).to be_a(Integer)
     end
 
+    context 'simple list threshold' do
+      it 'shows the simple list with up to 5 dossiers' do
+        create_list(:dossier, 5, :en_construction, user: user)
+        get :index
+        expect(assigns(:show_simple_list)).to be(true)
+      end
+
+      it 'shows the full list (search and filters) from 6 dossiers' do
+        create_list(:dossier, 6, :en_construction, user: user)
+        get :index
+        expect(assigns(:show_simple_list)).to be(false)
+      end
+    end
+
     it 'passes filter params to the service' do
       get :index, params: { state: ['en_construction'], alert: ['a_corriger'], procedure_id: '42' }
       expect(assigns(:filter)).to be_a(Users::DossierFilterService)
