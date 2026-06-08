@@ -41,7 +41,7 @@ module Users
     end
 
     def total_count
-      dossiers.count
+      @total_count ||= dossiers.count
     end
 
     def counts

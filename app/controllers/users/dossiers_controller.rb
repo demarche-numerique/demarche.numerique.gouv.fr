@@ -42,12 +42,11 @@ module Users
     def index
       @filter = Users::DossierFilterService.new(user: current_user, params: params)
       @dossiers = @filter.dossiers.page(page).per(ITEMS_PER_PAGE)
-      @total_count = @filter.total_count
+      @total_count = @dossiers.total_count
       @counts = @filter.counts
       @corbeille_count = current_user.dossiers.hidden_by_user.or(current_user.dossiers.hidden_by_expired).count
       @pending_transfers_count = current_user.dossier_transfers_received_pending.count
       @procedures_for_select = procedures_for_select
-      @first_brouillon_recently_updated = current_user.dossiers.visible_by_user.brouillons_recently_updated.first
       @show_simple_list = params[:search].blank? && !@filter.active? && total_user_dossiers <= SIMPLE_LIST_THRESHOLD
     end
 

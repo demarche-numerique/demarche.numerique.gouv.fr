@@ -1649,15 +1649,6 @@ describe Users::DossiersController, type: :controller do
       expect(response).to have_http_status(:ok)
     end
 
-    context 'when the user has dossier in brouillon recently updated' do
-      let!(:own_dossier) { create(:dossier, user: user) }
-      let!(:own_dossier_2) { create(:dossier, user: user) }
-
-      before { get(:index) }
-
-      it { expect(assigns(:first_brouillon_recently_updated)).to match(own_dossier_2) }
-    end
-
     context '#procedures_for_select' do
       let(:procedure_a) { create(:procedure, libelle: 'Alpha') }
       let(:procedure_b) { create(:procedure, libelle: 'Bêta') }
