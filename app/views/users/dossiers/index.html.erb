@@ -56,6 +56,7 @@
           <% if @dossiers.any? %>
             <p class="results-count">
               <%= t('views.users.dossiers.index.results_count',
+                    page_from: @dossiers.offset_value + 1,
                     page_to: [@dossiers.offset_value + @dossiers.size, @total_count].min,
                     count: @total_count) %>
             </p>

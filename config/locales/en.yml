@@ -563,8 +563,8 @@ en:
           metas:
             title: "My files"
           results_count:
-            one: "1 - %{page_to} of 1 file"
-            other: "1 - %{page_to} of %{count} files"
+            one: "%{page_from} - %{page_to} of 1 file"
+            other: "%{page_from} - %{page_to} of %{count} files"
           corbeille_link:
             label:
               one: "Trash (%{count})"

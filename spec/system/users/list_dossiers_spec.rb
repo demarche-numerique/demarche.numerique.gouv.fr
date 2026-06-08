@@ -15,6 +15,16 @@ describe 'user dossiers list', js: true do
     end
   end
 
+  describe 'pagination count' do
+    before { create_list(:dossier, 30, :en_construction, user: user) }
+
+    it 'shows the current range, not always starting at 1, on page 2' do
+      visit dossiers_path(page: 2)
+
+      expect(page).to have_css('.results-count', text: '26 - 30 sur 30 dossiers')
+    end
+  end
+
   describe 'search result page' do
     let!(:target_dossier) { create(:dossier, :en_construction, user: user) }
 

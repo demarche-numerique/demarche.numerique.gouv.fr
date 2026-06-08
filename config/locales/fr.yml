@@ -573,8 +573,8 @@ fr:
           metas:
             title: "Mes dossiers"
           results_count:
-            one: "1 - %{page_to} sur 1 dossier"
-            other: "1 - %{page_to} sur %{count} dossiers"
+            one: "%{page_from} - %{page_to} sur 1 dossier"
+            other: "%{page_from} - %{page_to} sur %{count} dossiers"
           corbeille_link:
             label:
               one: "Corbeille (%{count})"
