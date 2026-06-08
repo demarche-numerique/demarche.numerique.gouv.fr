@@ -167,6 +167,7 @@ RSpec.describe Users::DossierFilterService do
 
   describe '#active_filter_tags' do
     let(:procedure) { create(:procedure, libelle: 'Demande de subvention') }
+    let!(:dossier_in_procedure) { create(:dossier, :en_construction, user: user, procedure: procedure) }
 
     it 'returns one tag per active filter value' do
       service = described_class.new(user: user, params: ActionController::Parameters.new(
@@ -186,6 +187,26 @@ RSpec.describe Users::DossierFilterService do
     it 'returns an empty list when no filter is active' do
       service = described_class.new(user: user, params: ActionController::Parameters.new)
       expect(service.active_filter_tags).to eq([])
+    end
+
+    context 'when procedure_id targets a procedure the user has no dossier in' do
+      let!(:foreign_procedure) { create(:procedure, libelle: 'Démarche confidentielle') }
+
+      it 'does not leak the procedure libelle' do
+        service = described_class.new(user: user, params: ActionController::Parameters.new(procedure_id: foreign_procedure.id.to_s))
+        labels = service.active_filter_tags.map { |t| t[:label] }
+        expect(labels).not_to include('Démarche confidentielle')
+      end
+    end
+
+    context 'when procedure_id targets a procedure the user has a dossier in' do
+      let!(:own_procedure_dossier) { create(:dossier, :en_construction, user: user, procedure: create(:procedure, libelle: 'Ma démarche')) }
+
+      it 'shows the procedure libelle' do
+        service = described_class.new(user: user, params: ActionController::Parameters.new(procedure_id: own_procedure_dossier.procedure.id.to_s))
+        labels = service.active_filter_tags.map { |t| t[:label] }
+        expect(labels).to include('Ma démarche')
+      end
     end
   end
 

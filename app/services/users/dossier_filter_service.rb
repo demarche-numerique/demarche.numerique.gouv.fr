@@ -17,12 +17,9 @@ module Users
     end
 
     def base_scope
-      scope = Dossier.where(id: @user.dossiers.visible_by_user).or(
-        Dossier.where(id: @user.dossiers_invites.visible_by_user)
-      )
-      return scope if search_terms.blank?
+      return user_dossiers if search_terms.blank?
 
-      scope.merge(DossierSearchService.matching_dossiers_for_user(search_terms, @user))
+      user_dossiers.merge(DossierSearchService.matching_dossiers_for_user(search_terms, @user))
     end
 
     def dossiers
@@ -44,9 +41,8 @@ module Users
 
     def active_filter_tags
       tags = []
-      if @params[:procedure_id].present?
-        procedure = Procedure.find_by(id: @params[:procedure_id])
-        tags << { group: :procedure_id, value: @params[:procedure_id].to_s, label: procedure&.libelle.to_s }
+      if @params[:procedure_id].present? && (procedure = filtered_procedure)
+        tags << { group: :procedure_id, value: @params[:procedure_id].to_s, label: procedure.libelle }
       end
       if shared_with_me?
         tags << { group: :shared_with_me, value: '1', label: I18n.t('dossiers.user_filter_panel_component.shared_with_me', default: 'Partagé avec moi') }
@@ -67,15 +63,24 @@ module Users
     end
 
     def active?
-      @params[:procedure_id].present? ||
-        shared_with_me? ||
-        Array(@params[:state]).any? ||
-        Array(@params[:alert]).any? ||
-        from_created_at_date.present? ||
-        from_depose_at_date.present?
+      active_filter_tags.any?
     end
 
     private
+
+    def user_dossiers
+      invited_ids = @user.dossiers_invites.visible_by_user.pluck(:id)
+      own = @user.dossiers.visible_by_user
+      return own if invited_ids.empty?
+      own.or(Dossier.visible_by_user.where(id: invited_ids))
+    end
+
+    def filtered_procedure
+      Procedure
+        .where(id: @params[:procedure_id])
+        .where(id: user_dossiers.joins(:procedure).select('procedures.id'))
+        .first
+    end
 
     def search_terms
       @params[:search].presence
