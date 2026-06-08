@@ -668,7 +668,6 @@ en:
       attachment:
         successfully_deleted_with_anchor: 'The attachment (%{attachment}) has been deleted. You can now <a href="#%{champ}">add another</a>.'
         successfully_deleted_without_anchor: 'The attachment (%{attachment}) has been deleted.'
-        antivirus_pending: 'Antivirus scanning in progress…'
 
     attributes:
       default_attributes: &default_attributes

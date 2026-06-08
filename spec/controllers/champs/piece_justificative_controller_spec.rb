@@ -145,6 +145,11 @@ describe Champs::PieceJustificativeController, type: :controller do
         attachment = champ.reload.piece_justificative_file.attachments.last
         expect(response.body).to include(%(<turbo-stream action="focus" targets="#persisted_row_attachment_#{attachment.id} [data-attachment-delete-button]">))
       end
+
+      it 'does not push any aria-live announcement after upload (no visual equivalent)' do
+        subject
+        expect(response.body).not_to include(%(<turbo-stream action="update" target="#{champ.focusable_input_id}-aria-live">))
+      end
     end
 
     context 'when the file is invalid' do

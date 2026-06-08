@@ -5,9 +5,7 @@
 <% end %>
 
 <% last_attached_file = @champ.piece_justificative_file.attachments.last %>
+
 <% if last_attached_file %>
   <%= turbo_stream.focus_all "#persisted_row_attachment_#{last_attached_file.id} [data-attachment-delete-button]" %>
-  <% if last_attached_file.virus_scanner.pending? %>
-    <%= turbo_stream.update "#{@champ.focusable_input_id}-aria-live", t('activerecord.models.attachment.antivirus_pending') %>
-  <% end %>
 <% end %>
