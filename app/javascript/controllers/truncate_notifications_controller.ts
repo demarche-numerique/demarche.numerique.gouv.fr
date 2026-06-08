@@ -6,7 +6,7 @@ export class TruncateNotificationsController extends ApplicationController {
       this.calculateNotificationContainerWidth();
 
     const notifications = document.querySelectorAll<HTMLElement>(
-      '.notification-dossiers'
+      '.notification-container-type'
     );
     notifications.forEach((notificationType) => {
       const notificationDossiers = Array.from(
@@ -55,7 +55,7 @@ export class TruncateNotificationsController extends ApplicationController {
   ) {
     if (truncateContainer == false) {
       if (hiddenCount > 0) {
-        indicator!.textContent = `... +${hiddenCount}`;
+        indicator!.innerHTML = `<span aria-hidden="true">…</span> +${hiddenCount}`;
       }
       notification.style.overflow = 'hidden';
     } else {
