@@ -45,10 +45,12 @@ describe 'Piece justificative drag and drop', js: true do
         expect(page).to have_text('Faites glisser et déposez vos fichiers ici')
         expect(page).to have_css('.fr-btn--secondary', text: 'Choisir des fichiers')
 
-        # Accessibilité ARIA
+        # Accessibilité ARIA : la zone est reliée au label et aux hints du champ (#13104)
         expect(drop_area['role']).to eq('button')
         expect(drop_area['tabindex']).to eq('0')
-        expect(drop_area['aria-label']).to include('Zone de glisser-déposer')
+        expect(drop_area['aria-label']).to be_nil
+        expect(find_by_id(drop_area['aria-labelledby']).text).to include('Document')
+        expect(find_by_id(drop_area['aria-describedby'].split.first).text).to include('Taille maximale par fichier')
         expect(page).to have_selector('[data-attachment-error][aria-live="assertive"]')
       end
     end

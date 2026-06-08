@@ -86,6 +86,26 @@ RSpec.describe Attachment::FileFieldComponent, type: :component do
     end
   end
 
+  describe 'drop zone accessible name (issue #13104)' do
+    include ChampAriaLabelledbyHelper
+
+    let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :piece_justificative }]) }
+    let(:dossier) { create(:dossier, procedure:) }
+    let(:champ) { dossier.champs.first }
+    let(:context) { Attachment::Context.new(champ:) }
+
+    let(:drop_area) { render_inline(described_class.new(context:, drop_zone: :integrated)).at_css('.attachment-drop-area') }
+
+    it 'names the drop zone via the field label instead of a generic aria-label' do
+      expect(drop_area['aria-label']).to be_nil
+      expect(drop_area['aria-labelledby']).to eq(input_label_id(champ))
+    end
+
+    it 'describes the drop zone via the format/size hints' do
+      expect(drop_area['aria-describedby']).to include("#{champ.focusable_input_id}-hint")
+    end
+  end
+
   describe 'format indication hints' do
     subject { render_inline(described_class.new(context:, drop_zone: :integrated)).to_html }
 

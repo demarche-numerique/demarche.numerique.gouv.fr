@@ -20,7 +20,14 @@
             class="attachment-drop-area fr-p-2w"
             role="button"
             tabindex="0"
-            aria-label="<%= t('.drop_zone_aria_label') %>"
+            <% if drop_zone_labelledby_id %>
+              aria-labelledby="<%= drop_zone_labelledby_id %>"
+            <% else %>
+              aria-label="<%= t('.drop_zone_aria_label') %>"
+            <% end %>
+            <% if drop_zone_describedby_ids %>
+              aria-describedby="<%= drop_zone_describedby_ids %>"
+            <% end %>
             data-action="click->drop-target#openFilePicker keydown.enter->drop-target#openFilePicker keydown.space->drop-target#openFilePicker"
           >
             <span

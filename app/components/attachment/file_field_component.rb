@@ -88,6 +88,19 @@ class Attachment::FileFieldComponent < ApplicationComponent
     "#{champ.focusable_input_id}-hint"
   end
 
+  def drop_zone_labelledby_id
+    return nil if champ.nil?
+    helpers.input_label_id(champ)
+  end
+
+  def drop_zone_describedby_ids
+    return nil if champ.nil?
+
+    ids = [describedby_hint_id]
+    ids << champ.describedby_id if champ.description.present?
+    ids.compact.join(' ').presence
+  end
+
   def error_wrapper_id
     champ.present? ? "attachment-error-#{champ.public_id}" : "attachment-error-generic"
   end
