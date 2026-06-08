@@ -62,6 +62,7 @@ gem 'langchainrb'
 gem 'listen' # Required by ActiveSupport::EventedFileUpdateChecker
 gem 'lograge'
 gem 'logstash-event'
+gem 'mail', '~> 2.8.1' # pin to 2.8.x: mail 2.9 stopped normalizing 8bit (non-ASCII) bodies to CRLF, sending bare LF in emails. Migrate separately.
 gem 'maintenance_tasks'
 gem 'matrix' # needed by prawn and not default in ruby 3.1
 gem 'net-imap', require: false # See https://github.com/mikel/mail/pull/1439
