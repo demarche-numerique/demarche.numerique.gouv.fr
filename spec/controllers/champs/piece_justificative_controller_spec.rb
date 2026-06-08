@@ -137,6 +137,16 @@ describe Champs::PieceJustificativeController, type: :controller do
       end
     end
 
+    context 'accessibility feedback after a successful upload (#13104)' do
+      let(:file) { fixture_file_upload('spec/fixtures/files/piece_justificative_0.pdf', 'application/pdf') }
+
+      it 'emits a focus action targeting the delete link of the newly added attachment' do
+        subject
+        attachment = champ.reload.piece_justificative_file.attachments.last
+        expect(response.body).to include(%(<turbo-stream action="focus" targets="#persisted_row_attachment_#{attachment.id} [data-attachment-delete-button]">))
+      end
+    end
+
     context 'when the file is invalid' do
       let(:file) { fixture_file_upload('spec/fixtures/files/invalid_file_format.json', 'bad/bad') }
 

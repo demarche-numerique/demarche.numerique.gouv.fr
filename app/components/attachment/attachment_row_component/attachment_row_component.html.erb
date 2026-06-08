@@ -20,7 +20,7 @@
 
       <% if user_can_destroy? %>
         <p class="fr-mb-0">
-          <%= render NestedForms::OwnedButtonComponent.new(formaction: destroy_attachment_path, http_method: :delete, opt: {class: "fr-btn fr-btn--tertiary fr-btn--sm", title: t(".delete_file_title", filename: attachment.filename)}) do %>
+          <%= render NestedForms::OwnedButtonComponent.new(formaction: destroy_attachment_path, http_method: :delete, opt: {class: "fr-btn fr-btn--tertiary fr-btn--sm", title: t(".delete_file_title", filename: attachment.filename), data: {attachment_delete_button: true}}) do %>
             <span class="fr-icon--sm fr-icon-delete-line fr-mr-1w"></span>
             <%= t('.delete_file') %>
 
