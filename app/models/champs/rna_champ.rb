@@ -59,9 +59,18 @@ class Champs::RNAChamp < Champ
   private
 
   def ensure_association_found
-    if value&.match(RNA_REGEXP) && data.blank?
-      errors.add(:value, :not_found)
-    end
+    return if value.blank?
+    return if value.match?(RNA_REGEXP) && data.present?
+    return unless value.match?(RNA_REGEXP)
+
+    # Valid format but no data: only block when the last fetch explicitly
+    # classified the RNA as :not_found. A technical error or a legacy/never
+    # fetched state (nil kind) must not block submission.
+    last_kind = fetch_external_data_exceptions&.first&.kind
+    return if last_kind == :technical_error
+    return if last_kind.nil? && fetch_external_data_exceptions.blank?
+
+    errors.add(:value, :not_found)
   end
 
   def extract_value_json(data:)

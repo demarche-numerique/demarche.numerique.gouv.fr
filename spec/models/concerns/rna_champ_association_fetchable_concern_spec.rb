@@ -1,96 +1,75 @@
 # frozen_string_literal: true
 
 RSpec.describe RNAChampAssociationFetchableConcern do
-  describe '.fetch_association!' do
+  describe '#fetch_association!' do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :rna }]) }
-    let(:dossier) do
-      create(:dossier, :with_populated_champs, procedure:).tap do
-        _1.champs.first.update(data: "not nil data", value: 'W173847273')
-      end
-    end
-    let!(:champ) { dossier.champs.first }
+    let(:dossier) { create(:dossier, procedure:) }
+    let(:champ) { dossier.champs.find(&:rna?) }
+    let(:rna) { 'W595001988' }
 
     before do
       stub_request(:get, /https:\/\/entreprise.api.gouv.fr\/v4\/djepva\/api-association\/associations\/open_data\/#{rna}/)
-        .to_return(body: body, status: status)
+        .to_return(body:, status:)
     end
 
     subject(:fetch_association!) { champ.fetch_association!(rna) }
 
-    shared_examples "an association fetcher" do |expected_result, expected_error, expected_value, expected_data|
-      it { expect { fetch_association! }.to change { champ.reload.value }.to(expected_value) }
-
-      it { expect { fetch_association! }.to change { champ.reload.data }.to(expected_data) }
-
-      it { expect(fetch_association!).to eq(expected_result) }
-
-      it 'populates model errors' do
-        fetch_association!
-        if expected_error
-          expect(champ.errors.where(:value, expected_error).present?).to be_truthy
-        else
-          expect(champ.errors.where(:value, expected_error).present?).to be_falsey
-        end
-      end
-    end
-
-    context 'when the RNA is empty' do
-      let(:rna) { '' }
-      let(:status) { 422 }
-      let(:body) { '' }
-
-      it_behaves_like "an association fetcher", true, nil, '', nil
-    end
-
-    context 'when the RNA is invalid' do
-      let(:rna) { '1234' }
-      let(:status) { 422 }
-      let(:body) { '' }
-
-      it_behaves_like "an association fetcher", true, nil, '1234', nil
-    end
-
-    context 'when the RNA is unknow' do
-      let(:rna) { 'W111111111' }
-      let(:status) { 404 }
-      let(:body) { '' }
-
-      it_behaves_like "an association fetcher", true, nil, 'W111111111', nil
-    end
-
-    context 'when the API is unavailable due to network error' do
-      let(:rna) { 'W595001988' }
-      let(:status) { 503 }
-      let(:body) { File.read('spec/fixtures/files/api_entreprise/associations.json') }
-
-      before { allow(APIEntreprise::HealthChecker).to receive(:provider_up?).with(:djepva_association).and_return(false) }
-
-      it_behaves_like "an association fetcher", false, :network_error, 'W595001988', nil
-    end
-
-    context 'when the RNA informations are retrieved successfully' do
-      let(:rna) { 'W595001988' }
+    context 'when the association is found' do
       let(:status) { 200 }
       let(:body) { File.read('spec/fixtures/files/api_entreprise/associations.json') }
 
-      it_behaves_like "an association fetcher", true, nil, 'W595001988', {
-        "association_titre" => "LA PRÉVENTION ROUTIERE",
-        "association_objet" => "L’association a pour objet de promouvoir la pratique du sport de haut niveau et de contribuer à la formation des jeunes sportifs.",
-        "association_date_creation" => "2015-01-01",
-        "association_date_declaration" => "2019-01-01",
-        "association_date_publication" => "2018-01-01",
-        "association_rna" => "W751080001",
-        "adresse" => {
-          "complement" => "",
-          "numero_voie" => "33",
-          "type_voie" => "rue",
-          "libelle_voie" => "de Modagor",
-          "distribution" => "dummy",
-          "code_insee" => "75108",
-          "code_postal" => "75009",
-          "commune" => "Paris",
-        },
-      }
+      it 'is a pure side-effect (returns nil)' do
+        expect(fetch_association!).to be_nil
+      end
+
+      it 'stores the data and clears any previous exception' do
+        fetch_association!
+        expect(champ.reload.data).to be_present
+        expect(champ.fetch_external_data_exceptions).to be_empty
+      end
+    end
+
+    context 'when the RNA is unknown (API returns 404)' do
+      let(:status) { 404 }
+      let(:body) { '' }
+
+      it 'records a :not_found exception and stores no data' do
+        fetch_association!
+        expect(champ.reload.data).to be_nil
+        expect(champ.fetch_external_data_exceptions.first.kind).to eq(:not_found)
+      end
+    end
+
+    context 'when the provider is down (retryable error + djepva_association down)' do
+      let(:status) { 503 }
+      let(:body) { File.read('spec/fixtures/files/api_entreprise/associations.json') }
+
+      before do
+        allow(APIEntreprise::HealthChecker).to receive(:provider_up?).with(:djepva_association).and_return(false)
+      end
+
+      it 'records a :technical_error, adds no validation error and does not report' do
+        expect(APIEntrepriseService).not_to receive(:report_error)
+        fetch_association!
+        expect(champ.errors[:value]).to be_empty
+        expect(champ.reload.data).to be_nil
+        expect(champ.fetch_external_data_exceptions.first.kind).to eq(:technical_error)
+      end
+    end
+
+    context 'when the API errors while the provider is up' do
+      let(:status) { 502 }
+      let(:body) { '' }
+
+      before do
+        allow(APIEntreprise::HealthChecker).to receive(:provider_up?).with(:djepva_association).and_return(true)
+      end
+
+      it 'records a :technical_error and reports the error' do
+        expect(APIEntrepriseService).to receive(:report_error)
+        fetch_association!
+        expect(champ.fetch_external_data_exceptions.first.kind).to eq(:technical_error)
+      end
     end
   end
 end

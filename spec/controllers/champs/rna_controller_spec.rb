@@ -122,8 +122,9 @@ describe Champs::RNAController, type: :controller do
           expect(champ.reload.data).to be_nil
         end
 
-        it 'displays a “API is unavailable” error message' do
-          expect(response.body).to include("une erreur réseau a empêché l’association liée à ce RNA d’être trouvée, réessayez plus tard")
+        it 'does not block submission with a network error message' do
+          expect(response.body).not_to include("une erreur réseau a empêché l’association liée à ce RNA d’être trouvée, réessayez plus tard")
+          expect(champ.reload.errors[:value]).to be_empty
         end
       end
 

@@ -7,10 +7,9 @@ class Champs::RNAController < Champs::ChampController
     champs_attributes = params.dig(:dossier, :champs_public_attributes) || params.dig(:dossier, :champs_private_attributes)
     rna = champs_attributes.values.first[:value]
 
-    if @champ.fetch_association!(rna)
-      validation_context = @champ.public? ? :champs_public_value : :champs_private_value
-      @champ.valid?(validation_context)
-    end
+    @champ.fetch_association!(rna)
+    validation_context = @champ.public? ? :champs_public_value : :champs_private_value
+    @champ.valid?(validation_context)
 
     @champ.update_timestamps
   end
