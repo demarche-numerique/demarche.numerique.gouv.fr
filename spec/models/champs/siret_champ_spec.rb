@@ -46,8 +46,8 @@ describe Champs::SiretChamp do
 
       before { champ.update_columns(external_state: 'waiting_for_job') }
 
-      it 'adds a pending error on value' do
-        expect(subject.errors[:value]).to include(I18n.t('activerecord.errors.messages.api_response_pending'))
+      it 'does not block submission (pending is non-blocking)' do
+        expect(subject).to be_valid
       end
     end
 
