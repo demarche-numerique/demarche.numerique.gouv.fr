@@ -10,5 +10,7 @@ en:
         submit: Send transfer request
         notice_sent: The transfer request has been sent successfully
         accepted: The transfer request has been accepted.
+        nothing_to_transfer: This transfer request no longer involves any file
+        unauthorized: You don't have the authorization to accept this transfer request
         destroy: The transfer request has been deleted successfully
         unauthorized_destroy: You don't have the authorization to delete this transfer request

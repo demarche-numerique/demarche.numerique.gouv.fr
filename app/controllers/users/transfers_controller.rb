@@ -18,10 +18,15 @@ module Users
     end
 
     def update
-      if DossierTransfer.accept(params[:id], current_user)
-        flash.notice = t("users.dossiers.transferer.accepted")
+      transfer = DossierTransfer.pending.find_by(id: params[:id], email: current_user.email)
+
+      if transfer.nil?
+        flash.alert = t("users.dossiers.transferer.unauthorized")
+      elsif transfer.dossiers.blank?
+        flash.alert = t("users.dossiers.transferer.nothing_to_transfer")
       else
-        flash.alert = t("users.dossiers.transferer.unauthorized_destroy")
+        DossierTransfer.accept(params[:id], current_user)
+        flash.notice = t("users.dossiers.transferer.accepted")
       end
       redirect_to dossiers_path
     end
