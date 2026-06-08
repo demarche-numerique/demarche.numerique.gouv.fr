@@ -1649,6 +1649,22 @@ describe Users::DossiersController, type: :controller do
       expect(response).to have_http_status(:ok)
     end
 
+    context 'cross-user isolation' do
+      let!(:own_dossier) { create(:dossier, :en_construction, user: user) }
+      let!(:other_user_dossier) { create(:dossier, :en_construction) }
+
+      it 'does not list another user dossiers' do
+        get :index
+        expect(assigns(:dossiers)).to include(own_dossier)
+        expect(assigns(:dossiers)).not_to include(other_user_dossier)
+      end
+
+      it 'does not return another user dossier when searching by its id' do
+        get :index, params: { search: other_user_dossier.id.to_s }
+        expect(assigns(:dossiers)).not_to include(other_user_dossier)
+      end
+    end
+
     context '#procedures_for_select' do
       let(:procedure_a) { create(:procedure, libelle: 'Alpha') }
       let(:procedure_b) { create(:procedure, libelle: 'Bêta') }
