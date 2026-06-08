@@ -310,4 +310,44 @@ RSpec.describe Users::DossierFilterService do
       expect(service.dossiers).not_to include(dossier_pending_response)
     end
   end
+
+  describe 'hidden decision (accusé de lecture)' do
+    let(:procedure_al) { create(:procedure, :accuse_lecture) }
+    let!(:masked) { create(:dossier, :accepte, user: user, procedure: procedure_al, accuse_lecture_agreement_at: nil) }
+    let!(:acknowledged) { create(:dossier, :accepte, user: user, procedure: procedure_al, accuse_lecture_agreement_at: Time.current) }
+
+    it 'excludes decision-masked dossiers when filtering on a terminé state' do
+      service = described_class.new(user: user, params: ActionController::Parameters.new(state: ['accepte']))
+      expect(service.dossiers).to include(acknowledged)
+      expect(service.dossiers).not_to include(masked)
+    end
+
+    it 'does not count decision-masked dossiers in the terminé state count' do
+      service = described_class.new(user: user, params: ActionController::Parameters.new)
+      expect(service.counts[:states]['accepte']).to eq(1)
+    end
+
+    it 'still lists masked dossiers when no state filter is applied' do
+      service = described_class.new(user: user, params: ActionController::Parameters.new)
+      expect(service.dossiers).to include(masked, acknowledged)
+    end
+  end
+
+  describe 'param validation' do
+    it 'ignores an unknown alert value in active_filter_tags' do
+      service = described_class.new(user: user, params: ActionController::Parameters.new(alert: ['nimportequoi']))
+      expect(service.active_filter_tags.map { |t| t[:group] }).not_to include(:alert)
+    end
+
+    it 'ignores an unknown state value in active_filter_tags' do
+      service = described_class.new(user: user, params: ActionController::Parameters.new(state: ['nimportequoi']))
+      expect(service.active_filter_tags.map { |t| t[:group] }).not_to include(:state)
+    end
+
+    it 'does not apply an unknown state to the query' do
+      own = create(:dossier, :en_construction, user: user)
+      service = described_class.new(user: user, params: ActionController::Parameters.new(state: ['nimportequoi']))
+      expect(service.dossiers).to include(own)
+    end
+  end
 end

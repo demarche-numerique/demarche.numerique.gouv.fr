@@ -61,10 +61,10 @@ module Users
       if shared_with_me?
         tags << { group: :shared_with_me, value: '1', label: I18n.t('views.users.dossiers.index.filter_panel.groups.shared_with_me') }
       end
-      Array(@params[:state]).each do |s|
+      model_states.each do |s|
         tags << { group: :state, value: s, label: Users::DossierStateMapping.state_label(s) }
       end
-      Array(@params[:alert]).each do |a|
+      model_alerts.each do |a|
         tags << { group: :alert, value: a, label: I18n.t("views.users.dossiers.index.filter_panel.alerts.#{a}") }
       end
       if from_created_at_date
@@ -105,11 +105,15 @@ module Users
     end
 
     def model_states
-      Array(@params[:state])
+      Array(@params[:state]) & Users::DossierStateMapping::UI_STATES
+    end
+
+    def model_alerts
+      Array(@params[:alert]) & ALERT_SCOPES.keys
     end
 
     def alert_scopes
-      Array(@params[:alert]).filter_map { |a| ALERT_SCOPES[a] }
+      model_alerts.map { |a| ALERT_SCOPES[a] }
     end
 
     def alert_subquery
@@ -144,7 +148,9 @@ module Users
     def count_states
       scope = scope_without(:state)
       Users::DossierStateMapping::UI_STATES.index_with do |state|
-        scope.where(state: state).count
+        state_scope = scope.where(state: state)
+        state_scope = without_hidden_decisions(state_scope) if Dossier::TERMINE.include?(state)
+        state_scope.count
       end
     end
 
@@ -155,11 +161,21 @@ module Users
       end
     end
 
+    def without_hidden_decisions(scope)
+      scope.joins(:procedure).where(
+        'NOT (procedures.accuse_lecture = TRUE AND dossiers.state IN (:termine) AND dossiers.accuse_lecture_agreement_at IS NULL)',
+        termine: Dossier::TERMINE
+      )
+    end
+
     def scope_without(group)
       scope = base_scope
       scope = scope.joins(:procedure).where(procedures: { id: @params[:procedure_id] }) if @params[:procedure_id].present? && group != :procedure_id
       scope = scope.where(id: @user.dossiers_invites.visible_by_user) if shared_with_me? && group != :shared_with_me
-      scope = scope.where(state: model_states) if model_states.any? && group != :state
+      if model_states.any? && group != :state
+        scope = scope.where(state: model_states)
+        scope = without_hidden_decisions(scope) if (model_states & Dossier::TERMINE).any?
+      end
       scope = scope.where(id: alert_subquery) if alert_scopes.any? && group != :alert
       scope = scope.where(dossiers: { created_at: from_created_at_date.. }) if from_created_at_date && group != :from_created_at_date
       scope = scope.where(dossiers: { depose_at: from_depose_at_date.. }) if from_depose_at_date && group != :from_depose_at_date
