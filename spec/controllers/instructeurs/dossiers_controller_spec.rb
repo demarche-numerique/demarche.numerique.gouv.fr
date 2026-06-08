@@ -1709,38 +1709,9 @@ describe Instructeurs::DossiersController, type: :controller do
     end
   end
 
-  describe "#telecharger_pjs" do
-    subject do
-      get :telecharger_pjs, params: {
-        procedure_id: procedure.id,
-        dossier_id: dossier.id,
-      }
-    end
-
-    before do
-      allow_any_instance_of(PiecesJustificativesService).to receive(:generate_dossiers_export).with([dossier]).and_call_original
-    end
-
-    it 'includes an attachment' do
-      expect(subject.headers['Content-Disposition']).to start_with('attachment; ')
-    end
-
-    it 'the attachment.zip is extractable' do
-      Tempfile.create(['test', '.zip']) do |f|
-        f.binmode
-        f.write(subject.body)
-        f.close
-
-        file_names = []
-        Zip::File.open(f.path) do |zip|
-          file_names = zip.entries.map(&:name)
-        end
-
-        expect(file_names.size).to eq(1)
-        expect(file_names.first).to start_with("dossier-#{dossier.id}/export-")
-      end
-    end
-  end
+  # #telecharger_pjs streams the zip via zip_kit; its body can only be asserted
+  # through the full Rack stack, so it is covered in
+  # spec/requests/instructeurs/telecharger_pjs_spec.rb
 
   describe "#destroy" do
     let(:batch_operation) {}
