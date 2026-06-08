@@ -42,12 +42,8 @@ module DossierHelper
   def dossier_display_state(dossier_or_state, lower: false, profile: nil)
     state = dossier_or_state.is_a?(Dossier) ? dossier_or_state.state : dossier_or_state
 
-    # Use 'depose' translation for users when the state is 'en_construction'
-    if profile == :user && state == 'en_construction'
-      display_state = Dossier.human_attribute_name("state.depose")
-    else
-      display_state = Dossier.human_attribute_name("state.#{state}")
-    end
+    key = profile == :user ? Users::DossierStateMapping::USER_FACING_LABEL_KEYS.fetch(state, state) : state
+    display_state = Dossier.human_attribute_name("state.#{key}")
 
     lower ? display_state.downcase : display_state
   end
