@@ -1031,7 +1031,9 @@ describe API::V2::GraphqlController do
         context 'with correction' do
           let(:input) { super().merge(correction: :incorrect) }
 
-          it 'should create a correction' do
+          it 'creates a correction and notifies the user' do
+            expect { subject }.to have_enqueued_mail(DossierMailer, :notify_pending_correction)
+
             expect(gql_data).to eq(dossierEnvoyerMessage: {
               message: {
                 body: "Bonjour",

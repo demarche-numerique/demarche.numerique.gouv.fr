@@ -14,17 +14,20 @@ module Mutations
     field :errors, [Types::ValidationErrorType], null: true
 
     def resolve(dossier:, instructeur:, body:, attachment: nil, correction: nil)
-      message = CommentaireService.create(instructeur, dossier, body: body, piece_jointe: attachment)
+      message = CommentaireService.build(instructeur, dossier, body: body, piece_jointe: attachment)
 
-      if message.errors.empty?
-        if correction
-          dossier.flag_as_pending_correction!(message, correction)
-        end
+      return { errors: message.errors.full_messages } if message.invalid?
 
-        { message: }
+      if correction && dossier.may_flag_as_pending_correction?
+        # flag_as_pending_correction! assigns the correction to the commentaire
+        # in-memory, then saves it, so Commentaire#notify (after_create) enqueues
+        # notify_pending_correction rather than notify_new_answer.
+        dossier.flag_as_pending_correction!(message, correction)
       else
-        { errors: message.errors.full_messages }
+        message.save!
       end
+
+      { message: }
     end
 
     def authorized_before_load?(attachment: nil, **args)

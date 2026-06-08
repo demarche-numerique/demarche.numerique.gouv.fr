@@ -123,8 +123,13 @@ class Commentaire < ApplicationRecord
     piece_jointe.each(&:purge_later) if piece_jointe.attached?
   end
 
+  # #notify runs in after_create to pick the right mailer, but a DossierCorrection
+  # cannot exist yet at that point: its commentaire_id FK requires this commentaire
+  # to be inserted first. DossierCorrectableConcern#flag_as_pending_correction!
+  # therefore assigns the (still unsaved) correction in-memory before saving, so the
+  # association is visible here regardless of insert ordering (which Rails 8 changed).
   def flagged_pending_correction?
-    DossierCorrection.exists?(commentaire: self)
+    dossier_correction.present?
   end
 
   private

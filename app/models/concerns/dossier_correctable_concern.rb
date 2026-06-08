@@ -20,7 +20,8 @@ module DossierCorrectableConcern
 
     reason ||= :incorrect
 
-    corrections.create!(commentaire:, reason:)
+    commentaire.dossier_correction = corrections.build(commentaire:, reason:)
+    commentaire.dossier_correction.save!
 
     create_dossier_notifications(commentaire.instructeur)
 
