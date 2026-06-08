@@ -61,7 +61,7 @@ describe EditableChamp::QuotientFamilialComponent, type: :component do
 
   context "when data have not been recovered from API Particulier" do
     context "when there was an external_error" do
-      let(:exception) { ExternalDataException.new(error: StandardError.new("Not valid token").inspect, code: 401) }
+      let(:exception) { ExternalDataException.new(error: StandardError.new("Not valid token").inspect, code: 401, kind: :technical_error) }
 
       before { champ.update(external_state: 'external_error', fetch_external_data_exceptions: [exception]) }
 
@@ -72,7 +72,7 @@ describe EditableChamp::QuotientFamilialComponent, type: :component do
     end
 
     context 'when the user does not have a beneficiary folder' do
-      let(:exception) { ExternalDataException.new(error: StandardError.new("Not folder now").inspect, code: 404) }
+      let(:exception) { ExternalDataException.new(error: StandardError.new("Not folder now").inspect, code: 404, kind: :not_found) }
 
       before { champ.update(external_state: 'external_error', fetch_external_data_exceptions: [exception]) }
 
