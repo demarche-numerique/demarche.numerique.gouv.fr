@@ -9,7 +9,7 @@
             %h1.fr-h2= t('users.dossiers.show_in_trash.title', numero: @hidden_dossier.id)
 
             - is_manual_brouillon = @hidden_dossier.brouillon? && @hidden_dossier.hidden_by_reason == 'user_request'
-            %p.fr-mb-4w= raw t('users.dossiers.show_in_trash.explanation_html', trash_link: dossiers_path(statut: 'dossiers-supprimes'))
+            %p.fr-mb-4w= raw t('users.dossiers.show_in_trash.explanation_html', trash_link: trash_path)
             .card.fr-mb-4w
               %ul
                 - if is_manual_brouillon
@@ -20,5 +20,5 @@
                     %li= raw t('users.dossiers.show_in_trash.automatic_info')
 
             = link_to t('users.dossiers.show_in_trash.consult_trash'),
-                      dossiers_path(statut: 'dossiers-supprimes'),
+                      trash_path,
                       class: 'fr-btn'

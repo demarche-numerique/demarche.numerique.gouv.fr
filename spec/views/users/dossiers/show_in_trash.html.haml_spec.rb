@@ -15,6 +15,10 @@ describe 'users/dossiers/show_in_trash', type: :view do
       expect(rendered).not_to have_text('Si ce dossier"')
     end
 
+    it 'links to the trash page' do
+      expect(rendered).to have_link('Consulter la corbeille', href: trash_path)
+    end
+
     it 'displays the restore option' do
       expect(rendered).to have_text('restaurer')
       expect(rendered).not_to have_text('télécharger')
