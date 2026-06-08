@@ -1671,7 +1671,7 @@ describe Users::DossiersController, type: :controller do
       let(:procedure_c) { create(:procedure, libelle: 'Gamma') }
 
       it 'returns procedures from user dossiers and invitations sorted by libelle' do
-        create(:dossier, :en_construction, user: user, procedure: procedure_a)
+        create_list(:dossier, 6, :en_construction, user: user, procedure: procedure_a)
         invited_dossier = create(:dossier, :en_construction, procedure: procedure_b)
         create(:invite, dossier: invited_dossier, user: user)
         create(:dossier, :en_construction, procedure: procedure_c)
@@ -1679,6 +1679,25 @@ describe Users::DossiersController, type: :controller do
         get :index
 
         expect(assigns(:procedures_for_select)).to eq([['Alpha', procedure_a.id], ['Bêta', procedure_b.id]])
+      end
+
+      it 'excludes procedures from invited dossiers hidden by the user' do
+        create_list(:dossier, 6, :en_construction, user: user, procedure: procedure_a)
+        hidden_invited = create(:dossier, :en_construction, procedure: procedure_b, hidden_by_user_at: Time.current)
+        create(:invite, dossier: hidden_invited, user: user)
+
+        get :index
+
+        expect(assigns(:procedures_for_select)).to eq([['Alpha', procedure_a.id]])
+      end
+
+      it 'is empty in simple list mode (no filters shown)' do
+        create(:dossier, :en_construction, user: user, procedure: procedure_a)
+
+        get :index
+
+        expect(assigns(:show_simple_list)).to be(true)
+        expect(assigns(:procedures_for_select)).to eq([])
       end
     end
   end

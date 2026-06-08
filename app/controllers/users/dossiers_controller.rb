@@ -46,8 +46,8 @@ module Users
       @counts = @filter.counts
       @corbeille_count = current_user.dossiers.hidden_by_user.or(current_user.dossiers.hidden_by_expired).count
       @pending_transfers_count = current_user.dossier_transfers_received_pending.count
-      @procedures_for_select = procedures_for_select
-      @show_simple_list = params[:search].blank? && !@filter.active? && total_user_dossiers <= SIMPLE_LIST_THRESHOLD
+      @show_simple_list = params[:search].blank? && !@filter.active? && @total_count <= SIMPLE_LIST_THRESHOLD
+      @procedures_for_select = @show_simple_list ? [] : procedures_for_select
     end
 
     def show
@@ -507,14 +507,10 @@ module Users
       params.permit(*Users::DossierFilterService::ALLOWED_PARAMS)
     end
 
-    def total_user_dossiers
-      current_user.dossiers.visible_by_user.count + current_user.dossiers_invites.visible_by_user.count
-    end
-
     def procedures_for_select
       revision_ids = ProcedureRevision
         .where(id: current_user.dossiers.visible_by_user.select(:revision_id))
-        .or(ProcedureRevision.where(id: current_user.dossiers_invites.select(:revision_id)))
+        .or(ProcedureRevision.where(id: current_user.dossiers_invites.visible_by_user.select(:revision_id)))
         .select(:procedure_id)
       Procedure.where(id: revision_ids).distinct.order(:libelle).pluck(:libelle, :id)
     end
