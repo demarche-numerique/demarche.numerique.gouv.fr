@@ -80,6 +80,10 @@ module Users
       active_filter_tags.any?
     end
 
+    def has_invites?
+      @user.dossiers_invites.visible_by_user.exists?
+    end
+
     private
 
     def user_dossiers

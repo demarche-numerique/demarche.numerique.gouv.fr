@@ -9,6 +9,12 @@ class Dossiers::UserSearchComponent < ApplicationComponent
 
   attr_reader :search_terms, :active_filter_count, :filter_params
 
+  FILTER_PANEL_FRAME_ID = Dossiers::UserFilterPanelComponent::FRAME_ID
+
+  def filter_panel_src
+    helpers.dossiers_path(filter_params.to_h.merge(filter_panel: 1))
+  end
+
   def filter_button_visibility_class
     helpers.class_names('fr-hidden': search_terms.present?)
   end

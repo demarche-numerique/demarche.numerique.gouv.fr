@@ -595,6 +595,7 @@ fr:
             open: "Filtrer les dossiers"
             title: "Filtrer les dossiers"
             close: "Fermer"
+            loading: "Chargement des filtres…"
             groups:
               procedure: "Par démarche"
               shared_with_me: "Partagé avec moi"

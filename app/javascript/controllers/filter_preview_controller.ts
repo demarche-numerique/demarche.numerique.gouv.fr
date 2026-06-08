@@ -35,6 +35,7 @@ export default class FilterPreviewController extends ApplicationController {
 
     const url = new URL(form.action, window.location.origin);
     url.search = params.toString();
+    url.searchParams.set('filter_panel', '1');
     frame.src = url.toString();
   };
 }

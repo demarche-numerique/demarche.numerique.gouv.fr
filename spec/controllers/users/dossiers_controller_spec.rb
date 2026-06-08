@@ -1629,6 +1629,23 @@ describe Users::DossiersController, type: :controller do
       expect(assigns(:pending_transfers_count)).to be_a(Integer)
     end
 
+    context 'filter panel-only request' do
+      before { create_list(:dossier, 6, :en_construction, user: user) }
+
+      it 'skips the dossier list workload when the filter_panel param is set' do
+        get :index, params: { filter_panel: '1' }
+        expect(assigns(:filter)).to be_present
+        expect(assigns(:procedures_for_select)).to be_present
+        expect(assigns(:dossiers)).to be_nil
+        expect(assigns(:total_count)).to be_nil
+      end
+
+      it 'renders the dossier list for a normal request (no filter_panel param)' do
+        get :index
+        expect(assigns(:dossiers)).to be_present
+      end
+    end
+
     context 'simple list threshold' do
       it 'shows the simple list with up to 5 dossiers' do
         create_list(:dossier, 5, :en_construction, user: user)

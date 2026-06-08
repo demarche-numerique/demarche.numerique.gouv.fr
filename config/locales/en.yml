@@ -585,6 +585,7 @@ en:
             open: "Filter files"
             title: "Filter files"
             close: "Close"
+            loading: "Loading filters…"
             groups:
               procedure: "By procedure"
               shared_with_me: "Shared with me"

@@ -28,6 +28,10 @@
     "
     data-fr-opened="false"
     aria-controls="dossiers-filter-modal"
+    data-controller="lazy-frame"
+    data-action="lazy-frame#load"
+    data-lazy-frame-frame-id-value="<%= Dossiers::UserSearchComponent::FILTER_PANEL_FRAME_ID %>"
+    data-lazy-frame-src-value="<%= filter_panel_src %>"
   >
     <%= t('views.users.dossiers.index.filter_panel.open') %>
 

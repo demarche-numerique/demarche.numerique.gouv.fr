@@ -143,6 +143,33 @@ describe 'user dossiers list', js: true do
       click_button(text: /Filtrer les dossiers/i)
       expect(page).to have_selector('#dossiers-filter-modal[open]')
     end
+
+    it 'lazy-loads the filter form and counts only when the drawer is opened' do
+      visit dossiers_path
+      expect(page).to have_selector('#dossiers-filter-modal', visible: :all)
+
+      # The frame must NOT auto-load: no src is set and no form is present until the
+      # user opens the drawer (otherwise the count queries would run on every load).
+      expect(find('turbo-frame#filter_panel', visible: :all)[:src]).to be_blank
+      expect(page).to have_no_selector('#dossiers-filter-modal input[name="state[]"]', visible: :all)
+
+      click_button(text: /Filtrer les dossiers/i)
+
+      # Opening the drawer fetches the frame: the form, its counts and the apply button appear
+      expect(page).to have_selector('#dossiers-filter-modal input[name="state[]"]', visible: :all, wait: 5)
+      expect(page).to have_button('Afficher les 11 dossiers', wait: 5)
+    end
+
+    it 'applies from the drawer without breaking the dossier list (no Content missing)' do
+      visit dossiers_path
+      click_button(text: /Filtrer les dossiers/i)
+      expect(page).to have_button('Afficher les 11 dossiers', wait: 5)
+
+      within('#dossiers-filter-modal') { click_button('Afficher les 11 dossiers') }
+
+      expect(page).not_to have_content(/content missing/i)
+      expect(page).to have_css('.dossiers-headers', wait: 5)
+    end
   end
 
   describe 'active filter with no result' do

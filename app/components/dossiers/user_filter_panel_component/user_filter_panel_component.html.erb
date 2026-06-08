@@ -4,135 +4,40 @@
   aria-labelledby="dossiers-filter-title"
   role="dialog"
 >
-  <turbo-frame id="filter_panel">
-    <div class="fr-container fr-container--fluid fr-container-md">
-      <div class="fr-grid-row fr-grid-row--center">
-        <div class="fr-col-12 fr-col-md-4 user-filter-panel__content">
-          <div class="fr-modal__body">
-            <div class="fr-modal__header">
-              <button
-                type="button"
-                class="fr-btn--close fr-btn"
-                aria-controls="dossiers-filter-modal"
-              >
-                <%= t('views.users.dossiers.index.filter_panel.close') %>
-              </button>
-            </div>
+  <div class="fr-container fr-container--fluid fr-container-md">
+    <div class="fr-grid-row fr-grid-row--center">
+      <div class="fr-col-12 fr-col-md-4 user-filter-panel__content">
+        <div class="fr-modal__body">
+          <div class="fr-modal__header">
+            <button
+              type="button"
+              class="fr-btn--close fr-btn"
+              aria-controls="dossiers-filter-modal"
+            >
+              <%= t('views.users.dossiers.index.filter_panel.close') %>
+            </button>
+          </div>
 
-            <div class="fr-modal__content">
-              <h1
-                id="dossiers-filter-title"
-                class="fr-modal__title fr-icon-arrow-right-line"
-              >
-                <%= t('views.users.dossiers.index.filter_panel.title') %>
-              </h1>
+          <div class="fr-modal__content">
+            <h1
+              id="dossiers-filter-title"
+              class="fr-modal__title fr-icon-arrow-right-line"
+            >
+              <%= t('views.users.dossiers.index.filter_panel.title') %>
+            </h1>
 
-              <%= form_with url: dossiers_path, method: :get, data: { turbo_frame: "dossiers_list", turbo_action: "advance", controller: "filter-preview", filter_preview_frame_value: "filter_panel" } do %>
-                <% if filter_params[:search].present? %>
-                  <%= hidden_field_tag :search, filter_params[:search] %>
-                <% end %>
-
-                <% if show_procedure_filter? %>
-                  <fieldset class="fr-fieldset">
-                    <legend class="fr-fieldset__legend">
-                      <%= t('views.users.dossiers.index.filter_panel.groups.procedure') %>
-                    </legend>
-
-                    <div class="fr-fieldset__element">
-                      <%= select_tag :procedure_id,
-                          options_for_select([[t('views.users.dossiers.index.filter_panel.procedure_placeholder'), '']] + procedures_for_select, filter_params[:procedure_id]),
-                          class: 'fr-select',
-                          data: { action: 'change->filter-preview#preview' } %>
-                    </div>
-                  </fieldset>
-                <% end %>
-
-                <% if has_invites %>
-                  <fieldset class="fr-fieldset">
-                    <div class="fr-fieldset__element">
-                      <div class="fr-checkbox-group">
-                        <%= check_box_tag :shared_with_me, '1', filter_params[:shared_with_me] == '1', data: { action: 'change->filter-preview#preview' } %>
-
-                        <label class="fr-label" for="shared_with_me">
-                          <%= t('views.users.dossiers.index.filter_panel.groups.shared_with_me') %>
-                          <%= labeled_count(filter.counts[:shared_with_me]) %>
-                        </label>
-                      </div>
-                    </div>
-                  </fieldset>
-                <% end %>
-
-                <fieldset class="fr-fieldset">
-                  <legend class="fr-fieldset__legend">
-                    <%= t('views.users.dossiers.index.filter_panel.groups.state') %>
-                  </legend>
-
-                  <% Users::DossierStateMapping::UI_STATES.each do |s| %>
-                    <div class="fr-fieldset__element">
-                      <div class="fr-checkbox-group">
-                        <%= check_box_tag 'state[]', s, state_checked?(s), id: "state_#{s}", data: { action: 'change->filter-preview#preview' } %>
-
-                        <label class="fr-label" for="state_<%= s %>">
-                          <%= state_label(s) %>
-                          <%= labeled_count(filter.counts[:states][s]) %>
-                        </label>
-                      </div>
-                    </div>
-                  <% end %>
-                </fieldset>
-
-                <fieldset class="fr-fieldset">
-                  <legend class="fr-fieldset__legend">
-                    <%= t('views.users.dossiers.index.filter_panel.groups.alert') %>
-                  </legend>
-
-                  <% alert_keys.each do |a| %>
-                    <div class="fr-fieldset__element">
-                      <div class="fr-checkbox-group">
-                        <%= check_box_tag 'alert[]', a, alert_checked?(a), id: "alert_#{a}", data: { action: 'change->filter-preview#preview' } %>
-
-                        <label class="fr-label" for="alert_<%= a %>">
-                          <%= alert_label(a) %>
-                          <%= labeled_count(filter.counts[:alerts][a]) %>
-                        </label>
-                      </div>
-                    </div>
-                  <% end %>
-                </fieldset>
-
-                <fieldset class="fr-fieldset">
-                  <div class="fr-fieldset__element">
-                    <label class="fr-label" for="from_created_at_date">
-                      <%= t('views.users.dossiers.index.filter_panel.from_created_at_date') %>
-                    </label>
-
-                    <%= date_field_tag :from_created_at_date, filter_params[:from_created_at_date], class: 'fr-input', data: { action: 'change->filter-preview#preview' } %>
-                  </div>
-                </fieldset>
-
-                <fieldset class="fr-fieldset">
-                  <div class="fr-fieldset__element">
-                    <label class="fr-label" for="from_depose_at_date">
-                      <%= t('views.users.dossiers.index.filter_panel.from_depose_at_date') %>
-                    </label>
-
-                    <%= date_field_tag :from_depose_at_date, filter_params[:from_depose_at_date], class: 'fr-input', data: { action: 'change->filter-preview#preview' } %>
-                  </div>
-                </fieldset>
-
-                <div class="user-filter-panel__actions">
-                  <%= link_to t('views.users.dossiers.index.filter_panel.reset'),
-                      dossiers_path(search: filter_params[:search]),
-                      class: 'fr-btn fr-btn--secondary',
-                      data: { turbo_frame: 'dossiers_list', turbo_action: 'advance' } %>
-
-                  <%= submit_tag t('views.users.dossiers.index.filter_panel.apply', count: filter.total_count), class: 'fr-btn', disabled: apply_disabled? %>
-                </div>
+            <turbo-frame id="<%= FRAME_ID %>">
+              <% if render_content %>
+                <%= render Dossiers::UserFilterPanelFormComponent.new(filter: filter, filter_params: filter_params, procedures_for_select: procedures_for_select, has_invites: has_invites) %>
+              <% else %>
+                <p class="fr-mb-0" aria-busy="true">
+                  <%= t('views.users.dossiers.index.filter_panel.loading') %>
+                </p>
               <% end %>
-            </div>
+            </turbo-frame>
           </div>
         </div>
       </div>
     </div>
-  </turbo-frame>
+  </div>
 </dialog>
