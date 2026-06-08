@@ -24,10 +24,9 @@ describe Champs::RNFChamp, type: :model do
     context 'when the champ is pending' do
       before { champ.update_columns(external_state: 'waiting_for_job') }
 
-      it 'adds the correct error message' do
-        champ.validate(:champs_public_value)
-
-        expect(champ.errors[:value]).to include(I18n.t('activerecord.errors.messages.api_response_pending'))
+      it 'does not block submission (pending is non-blocking)' do
+        expect(champ.validate(:champs_public_value)).to be_truthy
+        expect(champ.errors[:value]).to be_empty
       end
     end
 
@@ -54,9 +53,9 @@ describe Champs::RNFChamp, type: :model do
     context 'when the champ is in error but fetch_external_data_exceptions is empty' do
       before { champ.update_columns(external_state: 'external_error', fetch_external_data_exceptions: []) }
 
-      it 'adds the code_unknown error message without raising an error' do
+      it 'does not block submission and does not raise on empty exceptions' do
         expect { champ.validate(:champs_public_value) }.not_to raise_error
-        expect(champ.errors[:value]).to include(I18n.t('activerecord.errors.messages.code_unknown'))
+        expect(champ.errors[:value]).to be_empty
       end
     end
   end
