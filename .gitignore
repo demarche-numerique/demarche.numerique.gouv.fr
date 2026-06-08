@@ -36,6 +36,10 @@ yarn-debug.log*
 /config/initializers/config.local.rb
 /coverage
 
+# Vitest browser-mode artifacts (failure screenshots, run attachments)
+__screenshots__/
+/.vitest-attachments
+
 # Local Netlify folder
 .netlify
 

@@ -4,6 +4,11 @@ const PENDING_CLASS = 'direct-upload--pending';
 const ERROR_CLASS = 'direct-upload--error';
 const COMPLETE_CLASS = 'direct-upload--complete';
 
+// Minimum time the progress bar stays visible once shown, so a fast upload
+// (small file or fast connection) doesn't make it flash by too quickly to be
+// perceived — including by assistive technologies. See #13104.
+const MIN_DISPLAY_MS = 1500;
+
 /**
   ProgressBar is and utility class responsible for
   rendering upload progress bar. It is used to handle
@@ -100,10 +105,18 @@ export default class ProgressBar {
   }
 
   id: string;
+  #minDisplayElapsed = false;
+  #removalRequested = false;
 
   constructor(input: HTMLInputElement, id: string, file: File) {
     ProgressBar.init(input, id, file);
     this.id = id;
+    setTimeout(() => {
+      this.#minDisplayElapsed = true;
+      if (this.#removalRequested) {
+        this.#removeElement();
+      }
+    }, MIN_DISPLAY_MS);
   }
 
   start() {
@@ -123,6 +136,14 @@ export default class ProgressBar {
   }
 
   destroy() {
+    if (this.#minDisplayElapsed) {
+      this.#removeElement();
+    } else {
+      this.#removalRequested = true;
+    }
+  }
+
+  #removeElement() {
     const element = getDirectUploadElement(this.id);
     element?.remove();
   }
