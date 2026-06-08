@@ -955,6 +955,12 @@ Rails/SquishedSQLHeredocs:
 Rails/StripHeredoc:
   Enabled: true
 
+# Activated by Rails 8 (params.expect). Migrating require/permit to params.expect
+# is a behavior change (raises on malformed params instead of filtering) and the
+# autocorrect is unsafe: deferred to a dedicated PR.
+Rails/StrongParametersExpect:
+  Enabled: false
+
 Rails/ThreeStateBooleanColumn:
   Enabled: true
   Exclude:
