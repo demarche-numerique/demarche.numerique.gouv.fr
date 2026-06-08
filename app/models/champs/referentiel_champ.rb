@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Champs::ReferentielChamp < Champ
+  include Dry::Monads[:result]
+
   delegate :referentiel,
            :referentiel_mapping_displayable,
            :referentiel_mapping_prefillable_with_stable_id,
@@ -11,12 +13,16 @@ class Champs::ReferentielChamp < Champ
   before_save :clear_previous_result, if: -> { external_id_changed? }
 
   def fetch_external_data
-    ReferentielService.new(referentiel:).call(external_id, dossier:).fmap do |data|
-      {
+    case ReferentielService.new(referentiel:).call(external_id, dossier:)
+    in Success(data)
+      Success(
         data:, # keep raw API response
         value: external_id, # now that we have the data, we can set the value
-        value_json: cast_displayable_values(data.with_indifferent_access), # columnize the data
-      }
+        value_json: cast_displayable_values(data.with_indifferent_access) # columnize the data
+      )
+    in Failure(code:, retryable:, error:)
+      kind = code == 404 ? :not_found : :technical_error
+      Failure(retryable:, error:, code:, kind:)
     end
   end
 

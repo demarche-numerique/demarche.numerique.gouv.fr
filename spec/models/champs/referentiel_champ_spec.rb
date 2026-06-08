@@ -30,7 +30,7 @@ describe Champs::ReferentielChamp, type: :model do
 
     context 'when the champ is in error with a non-retryable error' do
       let(:external_data_exceptions) do
-        ExternalDataException.new(error: 'Not retryable: 404, 400, 403, 401', code: 404)
+        ExternalDataException.new(error: 'Not retryable: 404, 400, 403, 401', code: 404, kind: :not_found)
       end
 
       before { champ.update_columns(external_state: 'external_error', fetch_external_data_exceptions: [external_data_exceptions]) }
@@ -86,6 +86,48 @@ describe Champs::ReferentielChamp, type: :model do
         it 'does not raise an error' do
           expect { subject }.to raise_error(StandardError)
         end
+      end
+    end
+  end
+
+  describe '#fetch_external_data (kind classification)' do
+    include Dry::Monads[:result]
+
+    let(:service) { instance_double(ReferentielService) }
+
+    before { allow(ReferentielService).to receive(:new).and_return(service) }
+
+    context 'when the service returns a non-retryable 404 (search not found)' do
+      before do
+        allow(service).to receive(:call)
+          .and_return(Failure(retryable: false, error: StandardError.new('Not retryable: 404'), code: 404))
+      end
+
+      it 'wraps as kind: :not_found' do
+        expect(champ.fetch_external_data.failure[:kind]).to eq(:not_found)
+        expect(champ.fetch_external_data.failure[:code]).to eq(404)
+      end
+    end
+
+    context 'when the service returns a retryable failure (5xx)' do
+      before do
+        allow(service).to receive(:call)
+          .and_return(Failure(retryable: true, error: StandardError.new('Retryable: 503'), code: 503))
+      end
+
+      it 'wraps as kind: :technical_error' do
+        expect(champ.fetch_external_data.failure[:kind]).to eq(:technical_error)
+      end
+    end
+
+    context 'when the service returns a non-retryable auth error (401)' do
+      before do
+        allow(service).to receive(:call)
+          .and_return(Failure(retryable: false, error: StandardError.new('Not retryable: 401'), code: 401))
+      end
+
+      it 'wraps as kind: :technical_error (admin config/auth issue must not block the user)' do
+        expect(champ.fetch_external_data.failure[:kind]).to eq(:technical_error)
       end
     end
   end
