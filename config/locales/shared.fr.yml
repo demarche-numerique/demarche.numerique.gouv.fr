@@ -25,6 +25,9 @@ fr:
       move_down: Déplacer vers le bas
 
     champs:
+      external_data:
+        pending: "La vérification automatique du numéro est en cours. Vous pouvez poursuivre le dépôt ; les informations seront récupérées dès que possible."
+        technical_error: "La vérification automatique est temporairement indisponible. Vous pouvez poursuivre le dépôt ; les informations seront récupérées dès que possible."
       rna:
         show:
           not_filled: non renseigné

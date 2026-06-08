@@ -1,9 +1,9 @@
 = @form.text_field :external_id, input_opts(id: @champ.focusable_input_id, required: @champ.required?, class: "width-33-desktop fr-input", aria: { **labelledby_id_attr, describedby: "#{@champ.describedby_id} #{@champ.error_id(:value)}" })
 
 .rnf-info{ id: dom_id(@champ, :rnf_info), role: 'status' }
-  - if @champ.external_error?
+  - if @champ.external_data_status_message.present?
+    %p.fr-info-text= t("shared.champs.external_data.#{@champ.external_data_status_message}")
+  - elsif @champ.external_error?
     %p.fr-error-text= t('.rnf_info_error')
-  - elsif @champ.pending?
-    %p.fr-info-text= t('.rnf_info_pending')
   - elsif @champ.data?
     %p.fr-info-text= t('.rnf_info_success', title: @champ.title, address: @champ.full_address)

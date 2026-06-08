@@ -67,6 +67,18 @@ module ChampExternalDataConcern
   def pending? = waiting_for_job? || fetching?
   def done? = fetched? || external_error?
 
+  # Non-blocking status surfaced to the usager while they can still submit.
+  # Returns :pending or :technical_error, or nil when there is nothing to show:
+  # fetched, an explicit :not_found (handled by a blocking validation error),
+  # or when the data is required for a logic condition (legacy blocking).
+  def external_data_status_message
+    return nil if external_data_required_for_conditions?
+    return :pending if pending?
+    return :technical_error if external_error? && fetch_external_data_exceptions&.first&.kind != :not_found
+
+    nil
+  end
+
   def has_async_external_data? = false
 
   def external_data_needed_for_validation? = has_async_external_data?

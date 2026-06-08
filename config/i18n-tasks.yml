@@ -99,6 +99,7 @@ search:
 ## Consider these keys used:
 ignore_unused:
   - 'errors.format'
+  - 'shared.champs.external_data.*' # dynamic key: t("shared.champs.external_data.#{external_data_status_message}")
   - 'user_mailer.*.subject'
   - 'activerecord.models.*'
   - 'activerecord.attributes.*'

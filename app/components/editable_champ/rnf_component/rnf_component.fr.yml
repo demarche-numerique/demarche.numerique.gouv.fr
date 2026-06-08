@@ -1,5 +1,4 @@
 ---
 fr:
   rnf_info_error: Aucune fondation trouvée
-  rnf_info_pending: Vérification du RNF en cours
   rnf_info_success: "Ce RNF correspond à : %{title}, %{address}"

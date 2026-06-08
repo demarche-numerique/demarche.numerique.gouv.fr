@@ -36,5 +36,15 @@ describe EditableChamp::ReferentielComponent, type: :component do
     it 'includes dossier_id in loader URL' do
       expect(subject.to_html).to include("dossier_id=#{dossier.id}")
     end
+
+    it 'renders a non-blocking info message when external data is in technical error' do
+      allow(champ).to receive(:external_data_status_message).and_return(:technical_error)
+      expect(subject).to have_text(I18n.t('shared.champs.external_data.technical_error'))
+    end
+
+    it 'renders no info message when external data is fetched' do
+      allow(champ).to receive(:external_data_status_message).and_return(nil)
+      expect(subject).not_to have_text(I18n.t('shared.champs.external_data.technical_error'))
+    end
   end
 end

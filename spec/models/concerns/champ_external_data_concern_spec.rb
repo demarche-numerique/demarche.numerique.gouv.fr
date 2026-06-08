@@ -53,6 +53,43 @@ RSpec.describe ChampExternalDataConcern do
     end
   end
 
+  describe '#external_data_status_message' do
+    let(:champ) { Champs::SiretChamp.new }
+
+    it 'returns nil when fetched' do
+      allow(champ).to receive_messages(pending?: false, external_error?: false)
+      expect(champ.external_data_status_message).to be_nil
+    end
+
+    it 'returns :pending when pending and not required for conditions' do
+      allow(champ).to receive_messages(pending?: true, external_error?: false, external_data_required_for_conditions?: false)
+      expect(champ.external_data_status_message).to eq(:pending)
+    end
+
+    it 'returns :technical_error on external_error with non-not_found kind' do
+      allow(champ).to receive_messages(
+        pending?: false, external_error?: true,
+        external_data_required_for_conditions?: false,
+        fetch_external_data_exceptions: [ExternalDataException.new(error: 'x', code: 503, kind: :technical_error)]
+      )
+      expect(champ.external_data_status_message).to eq(:technical_error)
+    end
+
+    it 'returns nil on :not_found (handled by the validation error)' do
+      allow(champ).to receive_messages(
+        pending?: false, external_error?: true,
+        external_data_required_for_conditions?: false,
+        fetch_external_data_exceptions: [ExternalDataException.new(error: 'x', code: 404, kind: :not_found)]
+      )
+      expect(champ.external_data_status_message).to be_nil
+    end
+
+    it 'returns nil when external_data_required_for_conditions? is true' do
+      allow(champ).to receive_messages(pending?: true, external_error?: false, external_data_required_for_conditions?: true)
+      expect(champ.external_data_status_message).to be_nil
+    end
+  end
+
   describe 'the state machine' do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :rnf }]) }
     let(:dossier) { create(:dossier, procedure:) }

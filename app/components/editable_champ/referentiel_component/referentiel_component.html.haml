@@ -7,3 +7,6 @@
     %react-fragment
       = render ReactComponent.new "ComboBox/RemoteComboBox", **react_autocomplete_props do
         = render ReactComponent.new "ComboBox/ComboBoxValueSlot", field: :data, name: @form.field_name(:data)
+
+- if @champ.external_data_status_message.present?
+  %p.fr-info-text{ role: 'status' }= t("shared.champs.external_data.#{@champ.external_data_status_message}")

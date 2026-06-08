@@ -1,5 +1,4 @@
 ---
 en:
   rnf_info_error: No foundation found
-  rnf_info_pending: RNF verification pending
   rnf_info_success: "This RNF matches: %{title}, %{address}"

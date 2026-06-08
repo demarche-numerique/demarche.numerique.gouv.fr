@@ -1,1 +1,4 @@
 = @form.text_field(:external_id, input_opts(value: pretty_siret(@champ.external_id), id: @champ.focusable_input_id, aria: { **labelledby_id_attr, describedby: "#{@champ.describedby_id} #{@champ.error_id(:value)}" }, data: { controller: 'format', format: 'siret',  }, required: @champ.required?, class: "width-33-desktop"))
+
+- if @champ.external_data_status_message.present?
+  %p.fr-info-text{ role: 'status' }= t("shared.champs.external_data.#{@champ.external_data_status_message}")
