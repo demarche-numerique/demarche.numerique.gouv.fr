@@ -34,6 +34,12 @@ class Champ < ApplicationRecord
     false
   end
 
+  # Overridable extension point. Override to true in a champ subclass to opt into
+  # lenient external data validation
+  def lenient_external_data_validation?
+    false
+  end
+
   def type_de_champ
     @type_de_champ ||= dossier.revision
       .types_de_champ

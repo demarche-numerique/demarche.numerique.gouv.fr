@@ -9,6 +9,10 @@ class Champs::SiretChamp < Champ
     true
   end
 
+  def lenient_external_data_validation?
+    true
+  end
+
   def focusable_input_id(attribute = :value)
     [input_id, :value].compact.join('-')
   end

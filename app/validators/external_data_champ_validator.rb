@@ -3,22 +3,40 @@
 class ExternalDataChampValidator < ActiveModel::Validator
   # Required checks are delegated to check_mandatory_and_visible_champs_public.
   def validate(record)
-    if record.pending?
-      # User filled the field, but background job is still running.
-      record.errors.add(:external_id, :api_response_pending)
-    elsif record.external_error?
-      # User filled the field, but background job failed.
-      record.errors.add(:external_id, error_key_for_api_response_code(record))
+    if record.lenient_external_data_validation? && !record.external_data_required_for_conditions?
+      lenient_validate(record)
+    else
+      legacy_validate(record)
     end
   end
 
   private
 
-  def error_key_for_api_response_code(record)
-    first_exception = record.fetch_external_data_exceptions&.first
-    return :code_unknown if first_exception.nil?
+  # Historical behavior: any pending or external_error blocks submission.
+  # Used when another field's logic condition depends on this champ's value_json.
+  def legacy_validate(record)
+    if record.pending?
+      # User filled the field, but background job is still running.
+      record.errors.add(:external_id, :api_response_pending)
+    elsif record.external_error?
+      # User filled the field, but background job failed.
+      record.errors.add(:external_id, error_key_for(record, record.fetch_external_data_exceptions&.first))
+    end
+  end
 
-    http_status = first_exception.code
+  # Lenient behavior: only a not-found result (kind :not_found, or a legacy 404)
+  # blocks submission. Pending and technical errors let the user submit.
+  # Exceptions accumulate across retries: only the most recent one is conclusive.
+  def lenient_validate(record)
+    return unless record.external_data_not_found?
+
+    record.errors.add(:value, error_key_for(record, record.fetch_external_data_exceptions.last))
+  end
+
+  def error_key_for(record, exception)
+    return :code_unknown if exception.nil?
+
+    http_status = exception.code
     error_key = :"code_#{http_status}"
 
     if http_status && translation_exists_for?(error_key, record)
