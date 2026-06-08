@@ -282,7 +282,7 @@ class Dossier < ApplicationRecord
   scope :with_unread_messages_for_user, -> {
     joins(:commentaires)
       .where(commentaires: { discarded_at: nil, seen_by_recipient_at: nil })
-      .where('commentaires.instructeur_id IS NOT NULL OR commentaires.expert_id IS NOT NULL')
+      .merge(Commentaire.sent_by_agent)
       .distinct
   }
 

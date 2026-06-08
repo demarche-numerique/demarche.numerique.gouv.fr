@@ -291,4 +291,25 @@ describe Commentaire do
       expect(commentaire.reload.body).to eq(original_body)
     end
   end
+
+  describe '.mark_agent_messages_as_seen' do
+    let(:dossier) { create(:dossier, :en_construction) }
+    let!(:instructeur_message) { create(:commentaire, dossier: dossier, instructeur: create(:instructeur), seen_by_recipient_at: nil) }
+    let!(:expert_message) { create(:commentaire, dossier: dossier, expert: create(:expert), seen_by_recipient_at: nil) }
+    let!(:user_message) { create(:commentaire, dossier: dossier, seen_by_recipient_at: nil) }
+
+    before { Commentaire.mark_agent_messages_as_seen(dossier) }
+
+    it 'marks unseen instructeur messages as seen' do
+      expect(instructeur_message.reload.seen_by_recipient_at).to be_present
+    end
+
+    it 'marks unseen expert messages as seen' do
+      expect(expert_message.reload.seen_by_recipient_at).to be_present
+    end
+
+    it 'leaves the user own messages untouched' do
+      expect(user_message.reload.seen_by_recipient_at).to be_nil
+    end
+  end
 end
