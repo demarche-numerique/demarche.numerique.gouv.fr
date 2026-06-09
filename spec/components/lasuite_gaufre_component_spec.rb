@@ -21,10 +21,10 @@ describe LasuiteGaufreComponent, type: :component do
     let(:administrateur) { false }
     let(:instructeur) { true }
 
-    it 'loads the v2 widget script and initializes it from the services API' do
-      html = subject.to_html
-      expect(html).to include(LasuiteGaufreComponent::WIDGET_SCRIPT_URL)
-      expect(html).to include(LasuiteGaufreComponent::SERVICES_API_URL)
+    it 'loads the v2 widget script and wires the controller to the services API' do
+      expect(subject).to have_css("script[src='#{LasuiteGaufreComponent::WIDGET_SCRIPT_URL}']", visible: false)
+      expect(subject).to have_css("[data-controller='lasuite-gaufre']")
+      expect(subject.to_html).to include(LasuiteGaufreComponent::SERVICES_API_URL)
     end
 
     it 'initializes the widget with localized labels' do
