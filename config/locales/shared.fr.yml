@@ -30,6 +30,8 @@ fr:
       move_down: Déplacer vers le bas
 
     champs:
+      external_data:
+        technical_error: "La vérification automatique est temporairement indisponible. Vous pouvez poursuivre le dépôt ; les informations seront récupérées dès que possible."
       rna:
         association:
           data_fetched: "Ce RNA correspond à : %{title}, %{address}"

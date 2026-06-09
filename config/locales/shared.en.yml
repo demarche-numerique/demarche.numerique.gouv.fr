@@ -28,6 +28,8 @@ en:
       move_down: Move down
 
     champs:
+      external_data:
+        technical_error: "Automatic verification is temporarily unavailable. You can continue submitting; the information will be retrieved as soon as possible."
       drop_down_list:
         other: Enter another option
         other_label: Enter your option

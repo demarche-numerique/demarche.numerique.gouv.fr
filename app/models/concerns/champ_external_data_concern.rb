@@ -68,6 +68,13 @@ module ChampExternalDataConcern
   def done? = fetched? || external_error?
   def external_data_not_found? = external_error? && fetch_external_data_exceptions.last.not_found?
 
+  def external_data_status_message
+    return nil if external_data_required_for_conditions?
+    return :technical_error if external_error? && !external_data_not_found?
+
+    nil
+  end
+
   def has_async_external_data? = false
 
   def external_data_needed_for_validation? = has_async_external_data?
