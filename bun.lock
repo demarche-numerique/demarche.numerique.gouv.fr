@@ -1,12 +1,10 @@
 {
   "lockfileVersion": 1,
-  "configVersion": 0,
   "workspaces": {
     "": {
       "dependencies": {
         "@formatjs/intl-listformat": "^8.3.9",
         "@frsource/autoresize-textarea": "^2.0.203",
-        "@gouvfr-lasuite/integration": "^1.0.2",
         "@gouvfr/dsfr": "^1.14.3",
         "@graphiql/plugin-explorer": "^5.1.1",
         "@graphiql/toolkit": "^0.11.3",
@@ -251,8 +249,6 @@
     "@formatjs/intl-localematcher": ["@formatjs/intl-localematcher@0.8.9", "", { "dependencies": { "@formatjs/fast-memoize": "3.1.5" } }, "sha512-GmB0F/gYh4Hdl4rLWjgDsgT+x4pB54fkJeRh8kAZ4XFzKeCK8dGs+SBJWXO42QZtOUni+IDWKNuCw6wiL4lTvw=="],
 
     "@frsource/autoresize-textarea": ["@frsource/autoresize-textarea@2.0.203", "", {}, "sha512-Q5TRtGVhwLoVur1pRTLnrjzLgSYi21ClxJU7HSKIQTuOHhk8u1focmgXa0BONuwDsB7+dHwLJ3EBrh6lgqheYw=="],
-
-    "@gouvfr-lasuite/integration": ["@gouvfr-lasuite/integration@1.0.2", "", { "peerDependencies": { "@types/react": "*", "@types/react-dom": "*", "react": "*", "react-dom": "*", "typescript": "*" } }, "sha512-npOotZQSyu6SffHiPP+jQVOkJ3qW2KE2cANhEK92sNLX9uZqQaCqljO5GhzsBmh0lB76fiXnrr9i8SIpnDUSZg=="],
 
     "@gouvfr/dsfr": ["@gouvfr/dsfr@1.14.3", "", {}, "sha512-UTplClQLp635J4vRHx/rJ7SKEi+bepc1FisvzTS8efQGQ3Gm8LttZf11NJ+4XhEMYLbCf8TBvFFwWBZ9ztRFkg=="],
 

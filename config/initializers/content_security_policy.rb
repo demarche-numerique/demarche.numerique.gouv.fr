@@ -23,7 +23,7 @@ Rails.application.configure do
     # It's too complicated to be fixed right now (and it wouldn't add value: this is hardcoded in views, so not subject to injections)
     policy.style_src(:self, :unsafe_inline, "client.crisp.chat", "unpkg.com", "cdn.jsdelivr.net")
 
-    connect_whitelist = ["client.crisp.chat", "wss://client.relay.crisp.chat", "storage.crisp.chat", "integration.lasuite.numerique.gouv.fr", "app.franceconnect.gouv.fr", "openmaptiles.data.gouv.fr", "openmaptiles.geo.data.gouv.fr", "openmaptiles.github.io", "tiles.geo.api.gouv.fr", "data.geopf.fr", "object.data.gouv.fr"]
+    connect_whitelist = ["client.crisp.chat", "wss://client.relay.crisp.chat", "storage.crisp.chat", "integration.lasuite.numerique.gouv.fr", "lasuite.numerique.gouv.fr", "app.franceconnect.gouv.fr", "openmaptiles.data.gouv.fr", "openmaptiles.geo.data.gouv.fr", "openmaptiles.github.io", "tiles.geo.api.gouv.fr", "data.geopf.fr", "object.data.gouv.fr"]
     connect_whitelist << ENV.fetch('APP_HOST')
     connect_whitelist << ENV.fetch('APP_HOST_LEGACY') if ENV.key?('APP_HOST_LEGACY') && ENV['APP_HOST_LEGACY'] != ENV['APP_HOST']
     connect_whitelist << "*.amazonaws.com" if Rails.configuration.active_storage.service == :amazon
