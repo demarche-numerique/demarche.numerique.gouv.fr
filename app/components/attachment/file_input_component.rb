@@ -10,12 +10,13 @@ class Attachment::FileInputComponent < ApplicationComponent
   delegate :champ, :direct_upload, :aria_labelledby,
            :parent_hint_id, :form_object_name, :attached_file, to: :context
 
-  def initialize(context:, max: nil, current_count: 0, hidden: false, id: nil)
+  def initialize(context:, max: nil, current_count: 0, hidden: false, id: nil, keyboard_focusable: true)
     @context = context
     @max = max
     @current_count = current_count
     @hidden = hidden
     @input_id = id
+    @keyboard_focusable = keyboard_focusable
   end
 
   # Automatically deduce from ActiveStorage type
@@ -64,6 +65,9 @@ class Attachment::FileInputComponent < ApplicationComponent
     options.merge!(accept.present? ? { accept: } : {})
     options[:multiple] = true if as_multiple?
     options[:disabled] = true if @max && @current_count >= @max
+    # Inside an integrated drop zone the role="button" zone is the keyboard
+    # target; keep this input out of the tab order to avoid a redundant stop.
+    options[:tabindex] = -1 unless @keyboard_focusable
 
     options
   end

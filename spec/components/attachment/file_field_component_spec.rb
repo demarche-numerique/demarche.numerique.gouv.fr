@@ -106,6 +106,29 @@ RSpec.describe Attachment::FileFieldComponent, type: :component do
     end
   end
 
+  describe 'drop zone file input tab order (issue #13104)' do
+    let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :piece_justificative }]) }
+    let(:dossier) { create(:dossier, procedure:) }
+    let(:champ) { dossier.champs.first }
+    let(:context) { Attachment::Context.new(champ:) }
+
+    context 'with an integrated drop zone' do
+      subject { render_inline(described_class.new(context:, drop_zone: :integrated)).to_html }
+
+      it 'takes the file input out of the tab order (the drop zone button is the keyboard target)' do
+        expect(subject).to have_selector('input[type="file"][tabindex="-1"]')
+      end
+    end
+
+    context 'without a drop zone' do
+      subject { render_inline(described_class.new(context:, drop_zone: :none)).to_html }
+
+      it 'keeps the file input keyboard-focusable' do
+        expect(subject).to have_no_selector('input[type="file"][tabindex]')
+      end
+    end
+  end
+
   describe 'format indication hints' do
     subject { render_inline(described_class.new(context:, drop_zone: :integrated)).to_html }
 

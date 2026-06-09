@@ -121,7 +121,8 @@ class Attachment::FileFieldComponent < ApplicationComponent
       max: @max,
       current_count: @current_count,
       hidden: @hidden,
-      id: @input_id
+      id: @input_id,
+      keyboard_focusable: @drop_zone != :integrated
     )
   end
 

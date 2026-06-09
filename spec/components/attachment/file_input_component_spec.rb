@@ -50,6 +50,22 @@ RSpec.describe Attachment::FileInputComponent, type: :component do
     end
   end
 
+  describe 'keyboard_focusable (issue #13104)' do
+    context 'when keyboard_focusable: false (input wrapped in a drop zone)' do
+      let(:kwargs) { { keyboard_focusable: false } }
+
+      it 'takes the input out of the tab order with tabindex=-1' do
+        expect(subject).to have_selector('input[type="file"][tabindex="-1"]')
+      end
+    end
+
+    context 'by default' do
+      it 'leaves the input keyboard-focusable (no tabindex)' do
+        expect(subject).to have_no_selector('input[type="file"][tabindex]')
+      end
+    end
+  end
+
   describe 'custom id for remote drop zones' do
     let(:kwargs) { { id: 'custom-file-123' } }
 
