@@ -8,6 +8,11 @@ const BUTTON_IDS = ['lasuite-gaufre-mobile', 'lasuite-gaufre-desktop'];
 // Id the widget gives its Shadow DOM host once it has booted.
 const SHADOW_HOST_ID = 'lasuite-widget-lagaufre-shadow';
 
+// The widget is a single instance keyed by name; initializing it twice would bind
+// two panels that toggle together. This module-level flag keeps init to once per
+// page load (reset on a full reload, which is what happens with Turbo Drive off).
+let widgetInitialized = false;
+
 // Initializes the La Suite "gaufre" v2 widget (loaded via the script tag rendered
 // by LasuiteGaufreComponent) and themes its Shadow DOM panel for dark mode.
 export default class extends Controller {
@@ -19,7 +24,7 @@ export default class extends Controller {
   #hostObserver?: MutationObserver;
 
   connect() {
-    const queue = (window._lasuite_widget ||= []);
+    if (widgetInitialized) return;
 
     // There are two trigger buttons (mobile navbar + desktop toolbar), only one
     // visible per breakpoint. The widget is a single instance keyed by name and
@@ -30,6 +35,8 @@ export default class extends Controller {
     );
     if (!button) return;
 
+    widgetInitialized = true;
+    const queue = (window._lasuite_widget ||= []);
     queue.push([
       'lagaufre',
       'init',
