@@ -19,7 +19,8 @@ class LasuiteGaufreComponent < ApplicationComponent
   def widget_config
     {
       api: SERVICES_API_URL,
-      label: t(".label"),
+      # Shared with the trigger button's aria-label, so it lives in a global key.
+      label: t("lasuite_gaufre.label"),
       closeLabel: t(".close_label"),
       headerLabel: t(".header_label"),
       loadingText: t(".loading_text"),
