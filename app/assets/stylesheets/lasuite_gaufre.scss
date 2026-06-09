@@ -19,12 +19,6 @@
     height: 1.25rem;
   }
 
-  // The icon SVG hardcodes fill="#000091"; override it with a DSFR token so the
-  // icon stays visible in dark mode (the token lightens with the dark scheme).
-  svg path {
-    fill: var(--text-action-high-blue-france);
-  }
-
   &:hover {
     background-color: var(--background-action-low-blue-france-hover);
   }
