@@ -35,9 +35,39 @@
       <script
         id="lasuite-gaufre-script"
         async
-        defer
-        src="https://integration.lasuite.numerique.gouv.fr/api/v1/gaufre.js"
+        type="module"
+        src="https://integration.lasuite.numerique.gouv.fr/widgets/dist/lagaufre.js"
       ></script>
+      <script nonce="<%= request.content_security_policy_nonce %>">
+        window._lasuite_widget = window._lasuite_widget || [];
+        document.addEventListener('DOMContentLoaded', () => {
+          // There are two trigger buttons (mobile navbar + desktop toolbar), only one
+          // visible per breakpoint. The widget is a single instance keyed by name and
+          // toggles every bound button at once, so we bind it to a single button: the
+          // one visible at load (mobile devices load at the mobile breakpoint).
+          const button = ['lasuite-gaufre-mobile', 'lasuite-gaufre-desktop']
+            .map((id) => document.getElementById(id))
+            .find((el) => el && el.offsetParent !== null);
+          if (!button) return;
+          window._lasuite_widget.push(['lagaufre', 'init', {
+            api: 'https://lasuite.numerique.gouv.fr/api/services',
+            label: 'Les services de La Suite numérique',
+            closeLabel: 'Fermer le menu',
+            headerLabel: 'À propos',
+            loadingText: 'Chargement…',
+            newWindowLabelSuffix: ' (nouvelle fenêtre)',
+            buttonElement: button,
+            position: () => {
+              const rect = button.getBoundingClientRect();
+              return {
+                position: 'fixed',
+                top: rect.bottom + 8,
+                right: window.innerWidth - rect.right
+              };
+            }
+          }]);
+        });
+      </script>
     <% end %>
 
     <title>
