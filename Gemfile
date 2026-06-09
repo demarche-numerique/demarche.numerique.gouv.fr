@@ -20,7 +20,6 @@ gem 'browser'
 gem 'charlock_holmes'
 gem 'chartkick'
 gem 'clamav-client', require: 'clamav/client'
-gem 'connection_pool', '< 3' # connection_pool 3.0 changed initialize signature, incompatible with activesupport 7.2 RedisCacheStore
 gem 'daemons'
 gem 'deep_cloneable' # Enable deep clone of active record models
 gem 'delayed_cron_job', require: false # Cron jobs
