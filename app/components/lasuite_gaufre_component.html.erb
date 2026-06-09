@@ -1,0 +1,70 @@
+<script
+  id="lasuite-gaufre-script"
+  async
+  type="module"
+  src="<%= WIDGET_SCRIPT_URL %>"
+></script>
+
+<script nonce="<%= request.content_security_policy_nonce %>">
+  window._lasuite_widget = window._lasuite_widget || [];
+  document.addEventListener('DOMContentLoaded', () => {
+    // There are two trigger buttons (mobile navbar + desktop toolbar), only one
+    // visible per breakpoint. The widget is a single instance keyed by name and
+    // toggles every bound button at once, so we bind it to a single button: the
+    // one visible at load (mobile devices load at the mobile breakpoint).
+    const button = <%= raw BUTTON_IDS.to_json %>
+      .map((id) => document.getElementById(id))
+      .find((el) => el && el.offsetParent !== null);
+    if (!button) return;
+    window._lasuite_widget.push(['lagaufre', 'init', Object.assign(<%= raw widget_config.to_json %>, {
+      buttonElement: button,
+      position: () => {
+        const rect = button.getBoundingClientRect();
+        return {
+          position: 'fixed',
+          top: rect.bottom + 8,
+          right: window.innerWidth - rect.right
+        };
+      }
+    })]);
+
+    // The v2 widget renders its panel in a Shadow DOM with a hardcoded light
+    // theme. Inject a dark-mode override (scoped to the host via :host(.lasuite-dark))
+    // and toggle it from the DSFR theme so the panel follows the app's dark scheme.
+    const DARK_CSS = ':host(.lasuite-dark) .wrapper-dialog{background:#1e1e1e;border-color:#353535}' +
+      ':host(.lasuite-dark) #header,:host(.lasuite-dark) #more-apps,:host(.lasuite-dark) #footer{border-color:#353535}' +
+      ':host(.lasuite-dark) .service-name{color:#8585f6}' +
+      ':host(.lasuite-dark) .service-card:hover{background-color:#2a2a2a}' +
+      ':host(.lasuite-dark) .maturity-badge{background:#2a2a2a;color:#8585f6}' +
+      ':host(.lasuite-dark) #close,:host(.lasuite-dark) #show-more-button,:host(.lasuite-dark) #loading{color:#cecece}' +
+      ':host(.lasuite-dark) #close:hover,:host(.lasuite-dark) #show-more-button:hover{background-color:#2a2a2a;color:#fff}';
+    const setupDarkMode = (host) => {
+      const style = document.createElement('style');
+      style.textContent = DARK_CSS;
+      host.shadowRoot.appendChild(style);
+      const sync = () => host.classList.toggle(
+        'lasuite-dark',
+        document.documentElement.getAttribute('data-fr-theme') === 'dark'
+      );
+      sync();
+      new MutationObserver(sync).observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-fr-theme']
+      });
+    };
+    // The host is created asynchronously once the widget script has loaded.
+    const existing = document.getElementById('lasuite-widget-lagaufre-shadow');
+    if (existing && existing.shadowRoot) {
+      setupDarkMode(existing);
+    } else {
+      const observer = new MutationObserver(() => {
+        const host = document.getElementById('lasuite-widget-lagaufre-shadow');
+        if (host && host.shadowRoot) {
+          observer.disconnect();
+          setupDarkMode(host);
+        }
+      });
+      observer.observe(document.body, { childList: true });
+    }
+  });
+</script>
