@@ -8,9 +8,6 @@ class LasuiteGaufreComponent < ApplicationComponent
   WIDGET_SCRIPT_URL = "https://integration.lasuite.numerique.gouv.fr/widgets/dist/lagaufre.js"
   SERVICES_API_URL = "https://lasuite.numerique.gouv.fr/api/services"
 
-  # Ids of the trigger buttons rendered in the header (mobile + desktop).
-  BUTTON_IDS = ["lasuite-gaufre-mobile", "lasuite-gaufre-desktop"].freeze
-
   def render?
     helpers.administrateur_signed_in? || helpers.instructeur_signed_in?
   end
