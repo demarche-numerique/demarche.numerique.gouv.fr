@@ -27,24 +27,33 @@ export default class extends Controller {
     if (widgetInitialized) return;
 
     // There are two trigger buttons (mobile navbar + desktop toolbar), only one
-    // visible per breakpoint. The widget is a single instance keyed by name and
-    // toggles every bound button at once, so we bind it to a single button: the
-    // one visible at load (mobile devices load at the mobile breakpoint).
-    const button = BUTTON_IDS.map((id) => document.getElementById(id)).find(
-      (el) => el && el.offsetParent !== null
+    // visible per breakpoint. The widget binds a single, permanent buttonElement
+    // (no re-bind command), so handing it one button leaves the other inert after
+    // a resize across the breakpoint. Instead we omit buttonElement and wire both
+    // buttons ourselves, anchoring the panel to whichever one is currently visible.
+    const buttons = BUTTON_IDS.map((id) => document.getElementById(id)).filter(
+      (el): el is HTMLElement => el != null
     );
-    if (!button) return;
+    if (buttons.length === 0) return;
 
     widgetInitialized = true;
+
+    // Only one button is visible per breakpoint, and the user can only interact
+    // with the visible one, so we always resolve "the button" at call time rather
+    // than caching a reference. This keeps the panel anchored to (and focus
+    // restored to) the right button even after the window is resized across the
+    // breakpoint while the page stays loaded.
+    const triggerButton = () =>
+      buttons.find((el) => el.offsetParent !== null) ?? buttons[0];
+
     const queue = (window._lasuite_widget ||= []);
     queue.push([
       'lagaufre',
       'init',
       {
         ...this.configValue,
-        buttonElement: button,
         position: () => {
-          const rect = button.getBoundingClientRect();
+          const rect = triggerButton().getBoundingClientRect();
           return {
             position: 'fixed',
             top: rect.bottom + 8,
@@ -53,6 +62,30 @@ export default class extends Controller {
         }
       }
     ]);
+
+    for (const button of buttons) {
+      button.addEventListener('click', () =>
+        queue.push(['lagaufre', 'toggle'])
+      );
+    }
+
+    // Without a buttonElement the widget no longer manages aria-expanded or
+    // restores focus on close, so we mirror its open/close events onto the visible
+    // button. Restoring focus on close is the accessibility fix this migration is
+    // about. The `isOpen` guard ignores any spurious close dispatched before the
+    // panel was ever opened (e.g. on init).
+    let isOpen = false;
+    document.addEventListener('lasuite-widget-lagaufre-opened', () => {
+      isOpen = true;
+      triggerButton().setAttribute('aria-expanded', 'true');
+    });
+    document.addEventListener('lasuite-widget-lagaufre-closed', () => {
+      if (!isOpen) return;
+      isOpen = false;
+      const button = triggerButton();
+      button.setAttribute('aria-expanded', 'false');
+      button.focus();
+    });
 
     this.#themeWidgetPanel();
   }
