@@ -1,0 +1,4 @@
+en:
+  lasuite_gaufre:
+    # Shared between the trigger button (aria-label) and the widget panel title.
+    label: La Suite numérique services
