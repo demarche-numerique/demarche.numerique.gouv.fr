@@ -390,6 +390,126 @@ describe 'Referentiel API:' do
         end
       end
     end
+
+    context 'when referentiel is exact match and prefills civilite and address champs' do
+      let(:prefill_civilite_stable_id) { 336 }
+      let(:prefill_address_stable_id) { 672 }
+
+      let(:custom_referentiel_response) do
+        {
+          "rnb_id" => "TEST123",
+          "civilite" => "Monsieur",
+          "adresse" => "20 avenue de Ségur, 75007 Paris",
+          "is_active" => true,
+        }
+      end
+
+      let(:ban_api_response) do
+        {
+          type: "FeatureCollection",
+          features: [{
+            type: "Feature",
+            geometry: { type: "Point", coordinates: [2.3088, 48.8534] },
+            properties: {
+              label: "20 Avenue de Ségur 75007 Paris",
+              type: "housenumber",
+              name: "20 Avenue de Ségur",
+              postcode: "75007",
+              citycode: "75107",
+              city: "Paris",
+              context: "75, Paris, Île-de-France",
+              housenumber: "20",
+              street: "Avenue de Ségur",
+            },
+          }],
+        }
+      end
+
+      let(:types_de_champ_public) do
+        [
+          {
+            type: :referentiel,
+            libelle: 'Numero de bâtiment',
+            stable_id: referentiel_stable_id,
+            referentiel: create(:api_referentiel, :exact_match, last_response: { status: 200, body: custom_referentiel_response }),
+          },
+          { type: :textarea, libelle: 'un autre champ' },
+          { type: :civilite, libelle: 'Civilité préfillée', stable_id: prefill_civilite_stable_id },
+          { type: :address, libelle: 'Adresse préfillée', stable_id: prefill_address_stable_id },
+        ]
+      end
+
+      before do
+        stub_request(:get, /rnb-api\.beta\.gouv\.fr/)
+          .to_return(status: 200, body: custom_referentiel_response.to_json, headers: { 'Content-Type' => 'application/json' })
+
+        stub_request(:get, /#{Regexp.escape(API_ADRESSE_URL)}/)
+          .to_return(status: 200, body: ban_api_response.to_json, headers: { 'Content-Type' => 'application/json' })
+      end
+
+      scenario 'civilite and address are prefilled from referentiel data', js: true do
+        visit champs_admin_procedure_path(procedure)
+        click_on('Configurer le champ')
+
+        # admin: URL already configured by factory, fetch test data and go to mapping
+        click_on('Étape suivante')
+        expect(page).to have_content("Pré remplissage des champs et/ou affichage des données récupérées")
+
+        # check civilite and address fields for prefill
+        custom_check("civilite")
+        custom_check("adresse")
+
+        click_on('Étape suivante')
+        expect(page).to have_content("La configuration du mapping a bien été enregistrée")
+
+        # select target champs for prefill
+        expect(page).to have_content("$.civilite")
+        page.find("select[name='type_de_champ[referentiel_mapping][$.civilite][prefill_stable_id]']")
+          .select('Civilité préfillée')
+
+        expect(page).to have_content("$.adresse")
+        page.find("select[name='type_de_champ[referentiel_mapping][$.adresse][prefill_stable_id]']")
+          .select('Adresse préfillée')
+
+        click_on("Valider")
+
+        referentiel_tdc = Referentiel.first.types_de_champ.first
+        wait_until { referentiel_tdc.reload.referentiel_mapping.dig("$.civilite", "prefill_stable_id").present? }
+        expect(referentiel_tdc.referentiel_mapping.dig("$.civilite", "prefill_stable_id").to_s).to eq(prefill_civilite_stable_id.to_s)
+        expect(referentiel_tdc.referentiel_mapping.dig("$.adresse", "prefill_stable_id").to_s).to eq(prefill_address_stable_id.to_s)
+
+        publish(procedure)
+        commencer(procedure)
+
+        # user fills in referentiel
+        fill_in("Numero de bâtiment", with: "TEST123")
+        fill_in("un autre champ", with: "focus out for autosave")
+
+        perform_enqueued_jobs do
+          expect(page).to have_content("Référence trouvée : TEST123")
+
+          dossier = Dossier.last
+          dossier.reload
+
+          # check civilite was prefilled with normalized value
+          civilite_champ = dossier.project_champs_public_all.find { it.stable_id.to_s == prefill_civilite_stable_id.to_s }
+          expect(civilite_champ.value).to eq("M.")
+
+          # check address was prefilled and resolved via BAN API
+          address_champ = dossier.project_champs_public_all.find { it.stable_id.to_s == prefill_address_stable_id.to_s }
+          expect(address_champ.external_id).to eq("20 avenue de Ségur, 75007 Paris")
+          expect(address_champ.value).to be_present
+          expect(address_champ.value_json).to be_present
+
+          # check UI shows prefilled badges
+          expect(page).to have_content("Donnée remplie automatiquement.", count: 2)
+
+          # check we can create a dossier
+          click_on("Déposer le dossier")
+          wait_until { Dossier.en_construction.count == 1 }
+        end
+      end
+    end
   end
 
   context 'when instructeur fill in types_de_champ_private' do
