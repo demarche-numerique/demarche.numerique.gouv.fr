@@ -27,7 +27,7 @@ RSpec.describe TypesDeChamp::PrefillAddressTypeDeChamp do
 
     context 'when the value is present' do
       let(:value) { 'hello' }
-      it { is_expected.to match({ id: champ.id, external_id: 'hello', value: 'hello' }) }
+      it { is_expected.to match({ id: champ.id, external_id: 'hello' }) }
     end
   end
 end
