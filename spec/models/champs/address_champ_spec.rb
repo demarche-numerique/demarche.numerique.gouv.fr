@@ -235,4 +235,127 @@ describe Champs::AddressChamp do
       end
     end
   end
+
+  describe '#has_async_external_data?' do
+    it { expect(champ.has_async_external_data?).to be true }
+  end
+
+  describe '#ready_for_external_call?' do
+    context 'when external_id present and value_json blank' do
+      before { champ.update_columns(external_id: '20 avenue de Segur', value_json: nil) }
+
+      it { expect(champ.ready_for_external_call?).to be true }
+    end
+
+    context 'when external_id present and value_json present' do
+      let(:value_json) { { "city_code" => "75107" } }
+      before { champ.update_columns(external_id: '20 avenue de Segur') }
+
+      it { expect(champ.ready_for_external_call?).to be false }
+    end
+
+    context 'when external_id blank' do
+      it { expect(champ.ready_for_external_call?).to be false }
+    end
+  end
+
+  describe '#after_reset_external_data' do
+    let(:value_json) { { "city_code" => "75107", "street_address" => "20 Avenue de Segur" } }
+
+    before { champ.update_columns(data: { foo: 'bar' }.to_json) }
+
+    it 'clears data but preserves value_json' do
+      champ.after_reset_external_data
+      champ.reload
+      expect(champ.data).to be_nil
+      expect(champ.value_json).to be_present
+      expect(champ.fetch_external_data_exceptions).to eq([])
+    end
+  end
+
+  describe '#fetch_external_data' do
+    let(:ban_response_body) { Rails.root.join('spec/fixtures/files/api_address/address.json').read }
+    let(:ban_response) { Typhoeus::Response.new(code: 200, body: ban_response_body, mock: true) }
+
+    before { allow(Typhoeus).to receive(:get).and_return(ban_response) }
+
+    context 'when BAN returns a valid result' do
+      before { champ.update_columns(external_id: '20 avenue de Segur Paris', value_json: nil) }
+
+      it 'returns Success with value_json' do
+        result = champ.fetch_external_data
+        expect(result).to be_success
+        expect(result.value![:value_json]).to include(city_code: '75056')
+      end
+    end
+
+    context 'when BAN returns no result' do
+      let(:ban_response) { Typhoeus::Response.new(code: 200, body: { features: [] }.to_json, mock: true) }
+
+      before { champ.update_columns(external_id: 'zzzzz unknown', value_json: nil) }
+
+      it 'returns Failure with code 404' do
+        result = champ.fetch_external_data
+        expect(result).to be_failure
+        expect(result.failure[:code]).to eq(404)
+        expect(result.failure[:retryable]).to be false
+      end
+    end
+
+    context 'when BAN times out' do
+      let(:ban_response) { Typhoeus::Response.new(code: 0, mock: true, return_code: :operation_timedout) }
+      before do
+        allow(ban_response).to receive(:timed_out?).and_return(true)
+        champ.update_columns(external_id: '20 avenue de Segur', value_json: nil)
+      end
+
+      it 'returns Failure with retryable true' do
+        result = champ.fetch_external_data
+        expect(result).to be_failure
+        expect(result.failure[:retryable]).to be true
+        expect(result.failure[:code]).to eq(0)
+      end
+    end
+
+    context 'when BAN returns 500' do
+      let(:ban_response) { Typhoeus::Response.new(code: 500, body: 'Internal Server Error', mock: true) }
+
+      before { champ.update_columns(external_id: '20 avenue de Segur', value_json: nil) }
+
+      it 'returns Failure with retryable true' do
+        result = champ.fetch_external_data
+        expect(result).to be_failure
+        expect(result.failure[:retryable]).to be true
+        expect(result.failure[:code]).to eq(500)
+      end
+    end
+
+    context 'when value_json already present (race condition guard)' do
+      let(:value_json) { { "city_code" => "75107" } }
+      before { champ.update_columns(external_id: 'query') }
+
+      it 'returns nil without calling BAN' do
+        expect(champ.fetch_external_data).to be_nil
+        expect(Typhoeus).not_to have_received(:get)
+      end
+    end
+
+    context 'when query too short (< 3 chars)' do
+      before { champ.update_columns(external_id: 'ab', value_json: nil) }
+
+      it 'returns nil' do
+        expect(champ.fetch_external_data).to be_nil
+        expect(Typhoeus).not_to have_received(:get)
+      end
+    end
+  end
+
+  describe 'normal editing flow (non-regression)' do
+    let(:value_json) { { "city_code" => "75107", "street_address" => "20 Avenue de Segur" } }
+
+    it 'ready_for_external_call? is false when external_id is nil' do
+      expect(champ.external_id).to be_nil
+      expect(champ.ready_for_external_call?).to be false
+    end
+  end
 end

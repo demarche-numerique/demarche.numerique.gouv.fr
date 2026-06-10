@@ -13,3 +13,8 @@ fr:
               required: Renseigner la ville
             postal_code:
               required: Renseigner un code postal
+            value:
+              api_response_pending: "Recherche d'adresse en cours... Veuillez patienter."
+              api_response_error: "L'adresse n'a pas pu être trouvée."
+              code_404: "Aucune adresse trouvée. L'usager pourra la saisir manuellement."
+              code_0: "La recherche d'adresse a dépassé le délai imparti. Veuillez réessayer."

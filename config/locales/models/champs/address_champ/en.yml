@@ -13,3 +13,8 @@ en:
               required: Fill in a city
             postal_code:
               required: Fill in a postal code
+            value:
+              api_response_pending: 'Address lookup in progress... Please wait.'
+              api_response_error: 'Address could not be found.'
+              code_404: 'No address found. The user can fill it in manually.'
+              code_0: 'Address lookup timed out. Please try again.'

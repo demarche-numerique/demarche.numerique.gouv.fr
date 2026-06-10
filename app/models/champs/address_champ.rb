@@ -191,6 +191,56 @@ class Champs::AddressChamp < Champs::TextChamp
     false
   end
 
+  def has_async_external_data?
+    true
+  end
+
+  def ready_for_external_call?
+    external_id.present? && value_json.blank?
+  end
+
+  def after_reset_external_data(opts = {})
+    update(opts.merge(data: nil, fetch_external_data_exceptions: []))
+  end
+
+  def fetch_external_data
+    return if value_json.present?
+
+    query = APIGeoService.clean_address_query(external_id)
+    return if query.blank?
+
+    response = Typhoeus.get(
+      "#{API_ADRESSE_URL}/search",
+      params: { q: query, limit: 1 },
+      timeout: 3
+    )
+
+    if response.timed_out?
+      return Failure(retryable: true, error: StandardError.new("BAN API timeout"), code: 0)
+    end
+
+    unless response.success?
+      retryable = response.code >= 500
+      return Failure(retryable:, error: StandardError.new("BAN API error: #{response.code}"), code: response.code)
+    end
+
+    results = JSON.parse(response.body, symbolize_names: true)
+    feature = results[:features]&.first
+
+    if feature.blank?
+      return Failure(retryable: false, error: StandardError.new("No BAN result for: #{query}"), code: 404)
+    end
+
+    parsed = APIGeoService.parse_ban_address(feature.deep_stringify_keys)
+    if parsed.blank?
+      return Failure(retryable: false, error: StandardError.new("parse_ban_address returned nil"), code: 422)
+    end
+
+    Success(value_json: parsed)
+  rescue JSON::ParserError => e
+    Failure(retryable: false, error: e, code: 422)
+  end
+
   def validate_completed
     if ban? && mandatory? && !full_address?
       errors.add(:value, :missing)
