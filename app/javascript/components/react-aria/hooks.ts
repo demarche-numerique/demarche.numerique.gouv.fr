@@ -472,7 +472,9 @@ export function useRemoteList({
   if (prevDefaultSelectedKey != defaultSelectedKey) {
     setPrevDefaultSelectedKey(defaultSelectedKey);
     const item = defaultSelectedKey
-      ? items.find((item) => item.value == defaultSelectedKey)
+      ? (items.find((item) => item.value == defaultSelectedKey) ??
+        defaultItems?.find((item) => item.value == defaultSelectedKey) ??
+        null)
       : null;
     if (item) {
       setSelectedItem(item);
