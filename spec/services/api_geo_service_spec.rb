@@ -293,4 +293,32 @@ describe APIGeoService do
       expect(first).to be_frozen
     end
   end
+
+  describe '.clean_address_query' do
+    it 'strips and normalizes whitespace' do
+      expect(described_class.clean_address_query("  20  avenue   Segur  ")).to eq("20 avenue Segur")
+    end
+
+    it 'removes leading non-alphanumeric chars' do
+      expect(described_class.clean_address_query("...Paris")).to eq("Paris")
+    end
+
+    it 'returns nil for queries shorter than 3 chars' do
+      expect(described_class.clean_address_query("ab")).to be_nil
+    end
+
+    it 'returns nil for nil input' do
+      expect(described_class.clean_address_query(nil)).to be_nil
+    end
+
+    it 'truncates queries longer than 200 chars' do
+      long_query = "a" * 250
+      result = described_class.clean_address_query(long_query)
+      expect(result.length).to eq(200)
+    end
+
+    it 'returns a valid query as-is' do
+      expect(described_class.clean_address_query("20 avenue de Segur")).to eq("20 avenue de Segur")
+    end
+  end
 end

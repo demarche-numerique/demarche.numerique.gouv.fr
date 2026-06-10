@@ -171,6 +171,17 @@ class APIGeoService
       }.merge(territory)
     end
 
+    def clean_address_query(query)
+      sanitized = query.to_s.strip
+      sanitized = sanitized.gsub(/\s+/, " ")
+      sanitized = sanitized.sub(/\A[^[:alnum:]]+/, "")
+
+      return nil if sanitized.length < 3
+      sanitized = sanitized[0...200] if sanitized.length > 200
+
+      sanitized
+    end
+
     def parse_rna_address(address)
       postal_code = address[:code_postal]
       city_name_fallback = address[:commune]

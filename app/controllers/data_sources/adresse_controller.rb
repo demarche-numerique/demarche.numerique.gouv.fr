@@ -37,17 +37,7 @@ class DataSources::AdresseController < DataSources::BaseController
   private
 
   def clean_query(query)
-    # this method prevents API errors :
-    # {"code":400,"message":"Failed parsing query","detail":["q: must contain between 3 and 200 chars and start with a number or a letter"]}
-
-    sanitized = query.to_s.strip
-    sanitized = sanitized.gsub(/\s+/, " ") # replace multiple spaces with a single space
-    sanitized = sanitized.sub(/\A[^[:alnum:]]+/, "") # remove leading non-alphanumeric characters
-
-    return nil if sanitized.length < 3
-    sanitized = sanitized[0...200] if sanitized.length > 200
-
-    sanitized
+    APIGeoService.clean_address_query(query)
   end
 
   def fetch_results(query)
