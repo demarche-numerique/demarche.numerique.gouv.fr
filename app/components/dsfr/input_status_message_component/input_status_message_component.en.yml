@@ -12,6 +12,9 @@ en:
     fetching: "Search in progress."
     error: "No item found for the reference: %{value}"
     success: "Reference found: %{value}"
+  address:
+    fetching: "Looking up address \"%{value}\"…"
+    error: "An error occurred while looking up the address."
   prefilled: "Prefilled data."
   pj:
     info: "The file content will be analyzed …"

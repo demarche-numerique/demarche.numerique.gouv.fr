@@ -108,6 +108,35 @@ RSpec.describe Dsfr::InputStatusMessageComponent, type: :component do
       end
     end
 
+    context 'with address champs' do
+      let(:types_de_champ_public) { [{ type: :address }] }
+      let(:state) { :idle }
+
+      before do
+        allow(champ).to receive(:idle?).and_return((state == :idle))
+        allow(champ).to receive(:pending?).and_return((state == :pending))
+        allow(champ).to receive(:external_error?).and_return((state == :external_error))
+        allow(champ).to receive(:external_id).and_return("20 avenue de Ségur, 75007 Paris")
+      end
+
+      context "when pending" do
+        let(:state) { :pending }
+
+        it "renders the fetching message with address" do
+          expect(subject).to have_css(".fr-message--info")
+          expect(subject).to have_text("20 avenue de Ségur, 75007 Paris")
+        end
+      end
+
+      context "when external_error" do
+        let(:state) { :external_error }
+
+        it "renders the error message" do
+          expect(subject).to have_css(".fr-message--warning")
+        end
+      end
+    end
+
     context 'with piece_justificative champs (RIB)' do
       let(:types_de_champ_public) { [{ type: :piece_justificative, nature: 'rib' }] }
       let(:state) { :idle }

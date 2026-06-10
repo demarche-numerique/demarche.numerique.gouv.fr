@@ -18,6 +18,7 @@ module Dsfr
       siret_support_status? ||
       rna_support_statut? ||
       referentiel_support_statut? ||
+      address_support_statut? ||
       dossier_link_support_statut? ||
       prefilled? ||
       pjs_statut?
@@ -37,6 +38,10 @@ module Dsfr
 
     def pjs_statut?
       @champ.rib? && !@champ.idle?
+    end
+
+    def address_support_statut?
+      type_de_champ.address? && !@champ.idle?
     end
 
     def dossier_link_support_statut?
@@ -100,6 +105,12 @@ module Dsfr
           { state: :info, text: t(".referentiel.error", value: @champ.external_id) }
         elsif @champ.value.present?
           { state: :valid, text: t(".referentiel.success", value: @champ.value) }
+        end
+      when TypeDeChamp.type_champs[:address]
+        if @champ.pending?
+          { state: :info, text: t(".address.fetching", value: @champ.external_id) }
+        elsif @champ.external_error?
+          { state: :warning, text: t(".address.error") }
         end
       when TypeDeChamp.type_champs[:piece_justificative]
         value_json = @champ.value_json
