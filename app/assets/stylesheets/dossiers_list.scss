@@ -29,6 +29,13 @@
 
   @media (min-width: 768px) {
     align-items: flex-end;
+    margin-bottom: 1.5rem;
+
+    // Le bouton est déjà poussé à droite ; on retire son padding droit pour que
+    // le libellé soit flush au bord (aligné avec le lien « Corbeille » au-dessus).
+    .fr-btn--tertiary-no-outline {
+      padding-right: 0;
+    }
   }
 
   &__form {
@@ -136,7 +143,7 @@
     background: var(--background-default-grey);
     border-top: 3px solid var(--border-plain-blue-france);
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 0.5rem;
 
     @media (min-width: 768px) {
@@ -145,6 +152,8 @@
     }
 
     .fr-btn {
+      width: 100%;
+      justify-content: center;
       white-space: nowrap;
     }
   }
@@ -186,7 +195,13 @@
   font-size: 1.25rem;
   line-height: 1.5rem;
   font-weight: bold;
-  margin: 1rem 0 0.5rem;
+  margin: 1.5rem 0;
+
+  // Corbeille sans lien « Historique » : le compteur est le premier élément,
+  // on remonte le contenu au lieu de laisser un trou blanc.
+  &:first-child {
+    margin-top: 0;
+  }
 }
 
 .trash-list-header {
@@ -198,13 +213,13 @@
 .transfer-requests-close-top {
   display: flex;
   justify-content: flex-end;
+  margin-bottom: 1rem;
 }
 
 .transfer-requests-close-bottom {
+  // bordure haute, fond, position et padding-haut viennent de .fixed-footer
   display: flex;
   justify-content: center;
-  border-top: 2px solid var(--border-default-blue-france);
-  padding: 1rem 0;
 }
 
 .no-result-search__form {

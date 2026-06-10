@@ -45,16 +45,7 @@
             ) %>
         <% end %>
         <% if @dossiers.any? %>
-          <p class="results-count">
-            <% if @dossiers.total_pages > 1 %>
-              <%= t('views.users.dossiers.index.results_count',
-                  page_from: @dossiers.offset_value + 1,
-                  page_to: [@dossiers.offset_value + @dossiers.size, @total_count].min,
-                  count: @total_count) %>
-            <% else %>
-              <%= t('views.users.dossiers.index.dossiers_count', count: @total_count) %>
-            <% end %>
-          </p>
+          <h2 class="fr-h6 fr-my-2w"><%= page_entries_info @dossiers %></h2>
         <% end %>
         <%= render partial: 'dossiers_list', locals: { dossiers: @dossiers, filter: @filter, search: params[:search].present?, statut: nil } %>
       <% end %>

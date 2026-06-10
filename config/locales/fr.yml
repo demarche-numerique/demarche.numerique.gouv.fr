@@ -572,12 +572,6 @@ fr:
           administration_no_longer_processes: "L’administration ne traitera plus votre demande."
           metas:
             title: "Mes dossiers"
-          results_count:
-            one: "%{page_from} - %{page_to} sur 1 dossier"
-            other: "%{page_from} - %{page_to} sur %{count} dossiers"
-          dossiers_count:
-            one: "1 dossier"
-            other: "%{count} dossiers"
           corbeille_link:
             label:
               one: "Corbeille (%{count})"
@@ -612,7 +606,7 @@ fr:
             reset: "Réinitialiser"
             apply:
               zero: "Aucun dossier ne correspond"
-              one: "Afficher le %{count} dossier"
+              one: "Afficher le dossier"
               other: "Afficher les %{count} dossiers"
           active_filters:
             reset: "Réinitialiser les filtres"

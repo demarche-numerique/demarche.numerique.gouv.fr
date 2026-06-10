@@ -408,7 +408,7 @@ Rails.application.routes.draw do
     resource :feedback, only: [:create]
     get 'demarches' => 'demarches#index'
     get 'deleted_dossiers' => 'dossiers#deleted_dossiers'
-    get 'trash' => 'dossiers#trash'
+    get 'corbeille', to: 'dossiers#trash', as: :trash
     get 'transferts' => 'dossiers#transfer_requests'
 
     get 'profil' => 'profil#show'

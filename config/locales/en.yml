@@ -562,12 +562,6 @@ en:
           administration_no_longer_processes: "The administration will no longer process your request."
           metas:
             title: "My files"
-          results_count:
-            one: "%{page_from} - %{page_to} of 1 file"
-            other: "%{page_from} - %{page_to} of %{count} files"
-          dossiers_count:
-            one: "1 file"
-            other: "%{count} files"
           corbeille_link:
             label:
               one: "Trash (%{count})"
@@ -602,7 +596,7 @@ en:
             reset: "Reset"
             apply:
               zero: "No matching file"
-              one: "Show %{count} file"
+              one: "Show the file"
               other: "Show %{count} files"
           active_filters:
             reset: "Reset filters"

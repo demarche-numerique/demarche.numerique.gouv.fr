@@ -21,7 +21,7 @@ describe 'user dossiers list', js: true do
     it 'shows the current range, not always starting at 1, on page 2' do
       visit dossiers_path(page: 2)
 
-      expect(page).to have_css('.results-count', text: '26 - 30 sur 30 dossiers')
+      expect(page).to have_css('h2.fr-h6', text: '26 - 30 sur 30 dossiers')
     end
   end
 
@@ -80,6 +80,7 @@ describe 'user dossiers list', js: true do
 
     it 'navigates to the trash page' do
       create(:dossier, :en_construction, :hidden_by_user, user: user)
+      create(:deleted_dossier, user_id: user.id)
       visit dossiers_path
       find('.mes-dossiers-header__corbeille').click
 
@@ -120,8 +121,9 @@ describe 'user dossiers list', js: true do
 
     it 'links to the deleted dossiers history page' do
       create(:dossier, :en_construction, :hidden_by_user, user: user)
+      create(:deleted_dossier, user_id: user.id)
       visit trash_path
-      click_link 'Historique des dossiers supprimés'
+      within('.trash-list-header') { click_link 'Historique des dossiers supprimés' }
 
       expect(page).to have_current_path(deleted_dossiers_path)
     end

@@ -1,6 +1,9 @@
-<%= render Dsfr::AlertComponent.new(state: :info, with_prefix: false, size: :sm) do |c| %>
+<%= render Dsfr::AlertComponent.new(state: :info, size: :sm, extra_class_names: "fr-pb-1w fr-mb-2w") do |c| %>
   <% c.with_body do %>
-    <p class="fr-text--bold"><%= t('.title') %></p>
-    <%= link_to t('.link', count: count), transferts_path, class: 'fr-link', data: { turbo_frame: '_top' } %>
+    <p class="fr-alert__title"><%= t('.title') %></p>
+
+    <p>
+      <%= link_to t('.link', count: count), transferts_path, class: 'fr-link', data: { turbo_frame: '_top' } %>
+    </p>
   <% end %>
 <% end %>

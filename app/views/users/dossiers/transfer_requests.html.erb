@@ -1,6 +1,6 @@
 <% content_for(:title, t('views.users.dossiers.transfer_requests.title')) %>
 
-<div class="fr-container fr-py-4w">
+<div class="fr-container fr-pt-2w fr-pt-md-4w fr-mb-15w">
   <div class="transfer-requests-close-top">
     <%= link_to dossiers_path, class: 'fr-btn fr-btn--tertiary-no-outline fr-icon-close-line fr-btn--icon-right' do %>
       <%= t('views.users.dossiers.transfer_requests.close') %>
@@ -21,6 +21,6 @@
   <% end %>
 </div>
 
-<div class="transfer-requests-close-bottom">
+<div class="fixed-footer transfer-requests-close-bottom fr-py-1w">
   <%= link_to t('views.users.dossiers.transfer_requests.close'), dossiers_path, class: 'fr-btn fr-btn--secondary' %>
 </div>
