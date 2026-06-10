@@ -149,6 +149,16 @@ class Champs::ReferentielChamp < Champ
       ActiveModel::Type::Boolean.new.cast(v)
     in [:array, Array => arr] if ReferentielMappingUtils.array_of_supported_simple_types?(arr)
       Array(arr)
+    in [:civilite, v] if v.present?
+      normalized = v.to_s.strip.downcase
+      case normalized
+      when 'm.', 'm', 'mr', 'monsieur', 'male', 'homme'
+        Individual::GENDER_MALE
+      when 'mme', 'madame', 'mlle', 'mademoiselle', 'female', 'femme'
+        Individual::GENDER_FEMALE
+      end
+    in [:address, v] if v.present?
+      v.to_s
     in [:string, v]
       v.to_s
     else
@@ -158,7 +168,7 @@ class Champs::ReferentielChamp < Champ
 
   def cast_value_for_type_de_champ(value, type_de_champ)
     case type_de_champ.type_champ.to_sym
-    when :siret, :referentiel
+    when :siret, :referentiel, :address
       { external_id: call_caster(type_de_champ.type_champ, value, type_de_champ) }
     else
       { value: call_caster(type_de_champ.type_champ, value, type_de_champ) }

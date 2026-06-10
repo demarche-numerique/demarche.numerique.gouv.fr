@@ -8,7 +8,7 @@ class Referentiels::ReferentielPrefillComponent < Referentiels::MappingFormBase
   delegate :draft_revision, to: :procedure
 
   MAPPING_TYPE_TO_TYPE_DE_CHAMP = {
-    Referentiels::MappingFormComponent::TYPES[:string] => %w[text textarea engagement_juridique dossier_link email phone iban siret drop_down_list formatted referentiel],
+    Referentiels::MappingFormComponent::TYPES[:string] => %w[text textarea engagement_juridique dossier_link email phone iban siret drop_down_list formatted referentiel civilite address],
     Referentiels::MappingFormComponent::TYPES[:decimal_number] => %w[decimal_number],
     Referentiels::MappingFormComponent::TYPES[:integer_number] => %w[integer_number referentiel],
     Referentiels::MappingFormComponent::TYPES[:boolean] => %w[checkbox yes_no],

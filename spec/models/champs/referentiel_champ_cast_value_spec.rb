@@ -465,6 +465,107 @@ describe Champs::ReferentielChamp, type: :model do
         end
       end
 
+      context 'when data is mapped to civilite' do
+        let(:prefilled_type_de_champ_type) { :civilite }
+
+        context 'when data is "Monsieur"' do
+          let(:data) { { ok: 'Monsieur' } }
+          it 'casts to "M."' do
+            expect { subject }
+              .to change { dossier.reload.project_champs.find(&:civilite?).value }.from(nil).to("M.")
+          end
+        end
+
+        context 'when data is "M"' do
+          let(:data) { { ok: 'M' } }
+          it 'casts to "M."' do
+            expect { subject }
+              .to change { dossier.reload.project_champs.find(&:civilite?).value }.from(nil).to("M.")
+          end
+        end
+
+        context 'when data is "male"' do
+          let(:data) { { ok: 'male' } }
+          it 'casts to "M."' do
+            expect { subject }
+              .to change { dossier.reload.project_champs.find(&:civilite?).value }.from(nil).to("M.")
+          end
+        end
+
+        context 'when data is "Mme"' do
+          let(:data) { { ok: 'Mme' } }
+          it 'casts to "Mme"' do
+            expect { subject }
+              .to change { dossier.reload.project_champs.find(&:civilite?).value }.from(nil).to("Mme")
+          end
+        end
+
+        context 'when data is "Mademoiselle"' do
+          let(:data) { { ok: 'Mademoiselle' } }
+          it 'casts to "Mme" (CNIL conformity)' do
+            expect { subject }
+              .to change { dossier.reload.project_champs.find(&:civilite?).value }.from(nil).to("Mme")
+          end
+        end
+
+        context 'when data is "female"' do
+          let(:data) { { ok: 'female' } }
+          it 'casts to "Mme"' do
+            expect { subject }
+              .to change { dossier.reload.project_champs.find(&:civilite?).value }.from(nil).to("Mme")
+          end
+        end
+
+        context 'when data is unknown value' do
+          let(:data) { { ok: 'Dr' } }
+          it 'does not update the civilite' do
+            expect { subject }
+              .not_to change { dossier.reload.project_champs.find(&:civilite?).value }
+          end
+        end
+
+        context 'when data is blank' do
+          let(:data) { { ok: '' } }
+          it 'does not update the civilite' do
+            expect { subject }
+              .not_to change { dossier.reload.project_champs.find(&:civilite?).value }
+          end
+        end
+      end
+
+      context 'when data is mapped to address' do
+        let(:prefilled_type_de_champ_type) { :address }
+
+        context 'when data is a valid string' do
+          let(:data) { { ok: '20 avenue de Segur Paris' } }
+          it 'sets external_id on the address champ' do
+            expect { subject }
+              .to change { dossier.reload.project_champs.find(&:address?).external_id }.from(nil).to("20 avenue de Segur Paris")
+          end
+
+          it 'does not set value (stays nil until async BAN resolution)' do
+            expect { subject }
+              .not_to change { dossier.reload.project_champs.find(&:address?).value }
+          end
+        end
+
+        context 'when data is blank' do
+          let(:data) { { ok: '' } }
+          it 'does not update the address champ' do
+            expect { subject }
+              .not_to change { dossier.reload.project_champs.find(&:address?).external_id }
+          end
+        end
+
+        context 'when data is nil' do
+          let(:data) { { ok: nil } }
+          it 'does not update the address champ' do
+            expect { subject }
+              .not_to change { dossier.reload.project_champs.find(&:address?).external_id }
+          end
+        end
+      end
+
       context 'when data is mapped to repetition from root' do
         let(:types_de_champ_public) do
           [
