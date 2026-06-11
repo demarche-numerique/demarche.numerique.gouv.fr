@@ -6,12 +6,19 @@ module Dsfr
     delegate :type_de_champ, to: :@champ
     delegate :prefilled?, to: :@champ
 
-    def initialize(champ_component:, champ:, row_number: nil)
-      @errors_on_attribute = champ_component.errors_on_attribute?
-      @error_full_messages = champ_component.error_full_messages
-      @error_id = champ.error_id(champ_component.attribute)
+    def initialize(champ:, champ_component: nil, row_number: nil, as_announcement: false)
+      @errors_on_attribute = champ_component&.errors_on_attribute?
+      @error_full_messages = champ_component&.error_full_messages || []
+      @error_id = champ_component ? champ.error_id(champ_component.attribute) : nil
       @champ = champ
       @row_number = row_number
+      @as_announcement = as_announcement
+    end
+
+    # True when there is a status message worth announcing (excludes validation
+    # errors and the static "prefilled" notice, which are not live updates).
+    def status_announcement?
+      statutable? && statut_message.present?
     end
 
     def statutable?
@@ -48,6 +55,12 @@ module Dsfr
     end
 
     def statut_message
+      @statut_message ||= compute_statut_message
+    end
+
+    private
+
+    def compute_statut_message
       case @champ.type_de_champ.type_champ
       when TypeDeChamp.type_champs[:siret]
         # TODO: use fetched? after T20251029backfillChampSiretExternalStateTask
@@ -118,8 +131,6 @@ module Dsfr
         end
       end
     end
-
-    private
 
     def displayable_raison_sociale_or_name(etablissement)
       if etablissement.diffusable_commercialement
