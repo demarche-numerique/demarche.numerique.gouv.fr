@@ -2349,6 +2349,35 @@ describe Users::DossiersController, type: :controller do
       end
     end
 
+    context 'live announcement of a RIB status (polling anti-spam)' do
+      render_views
+      let(:types_de_champ_public) { [{ type: :piece_justificative, nature: 'rib', stable_id: }] }
+      let(:champ) { dossier.project_champs_public.first }
+      let(:region_id) { "#{champ.focusable_input_id}-aria-live" }
+
+      def announced_region(body)
+        Nokogiri::HTML5.fragment(body).css(%(turbo-stream[action="update"][target="#{region_id}"]))
+      end
+
+      context 'while the analysis is still pending' do
+        before { dossier.champs.first.update_column(:external_state, :waiting_for_job) }
+
+        it 'does not re-announce the pending status on a poll' do
+          subject
+          expect(announced_region(response.body)).to be_empty
+        end
+      end
+
+      context 'when the analysis has completed' do
+        before { dossier.champs.first.update_columns(external_state: :fetched, value_json: { 'rib' => { 'iban' => 'FR7612345' } }) }
+
+        it 'announces the result on the poll that observes completion' do
+          subject
+          expect(announced_region(response.body).text).to include('FR7612345')
+        end
+      end
+    end
+
     context 'when champ is pollable' do
       let(:referentiel) { create(:api_referentiel, :exact_match) }
       let(:types_de_champ_public) { [{ type: :referentiel, referentiel:, stable_id: }] }
