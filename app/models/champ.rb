@@ -105,6 +105,13 @@ class Champ < ApplicationRecord
     !private?
   end
 
+  # Champs that can surface an external/async status message (rendered by
+  # Dsfr::InputStatusMessageComponent) and therefore need a persistent
+  # live region to announce it to screen readers.
+  def status_announceable?
+    siret? || rna? || referentiel? || dossier_link? || piece_justificative?
+  end
+
   def prefilled_from_france_connect_information?
     data&.dig("prefilled_from_france_connect_information") == true
   end

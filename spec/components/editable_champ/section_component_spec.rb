@@ -116,6 +116,25 @@ describe EditableChamp::SectionComponent, type: :component do
     end
   end
 
+  context 'persistent live region for status-bearing champs' do
+    context 'with a SIRET champ' do
+      let(:types_de_champ_public) { [{ type: :siret }] }
+
+      it 'renders a persistent sr-only polite live region' do
+        champ = dossier.project_champs_public.first
+        expect(page).to have_css("##{champ.focusable_input_id}-aria-live.fr-sr-only[aria-live='polite']", visible: :all)
+      end
+    end
+
+    context 'with a plain text champ' do
+      let(:types_de_champ_public) { [{ type: :text }] }
+
+      it 'does not render a live region' do
+        expect(page).not_to have_css(".fr-sr-only[aria-live='polite']", visible: :all)
+      end
+    end
+  end
+
   context 'with complex markup structure' do
     def check_fieldset_structure(fieldset)
       expect(fieldset[:class]).to include('fr-fieldset')
