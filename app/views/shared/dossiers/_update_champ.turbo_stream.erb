@@ -8,4 +8,19 @@
       <%= render EditableChamp::ChampLabelContentComponent.new champ:, form: %>
     <% end %>
   <% end %>
+
+  <%# Announce the champ status (and any caller-provided notice, e.g. antivirus scan) %>
+  <%# into the champ's persistent sr-only live region, which is never recreated by %>
+  <%# the replace above. See EditableChamp::SectionComponent. %>
+  <% polling = local_assigns.fetch(:polling, false) %>
+  <% extra_announcement = local_assigns.fetch(:extra_announcement, nil) %>
+  <% if full && (champ.status_announceable? || extra_announcement.present?) && !(polling && champ.pending?) %>
+    <% status = render(Dsfr::InputStatusMessageComponent.new(champ:, as_announcement: true)) %>
+    <% parts = [] %>
+    <% parts << extra_announcement if extra_announcement.present? %>
+    <% parts << status if status.to_s.strip.present? %>
+    <% if parts.any? %>
+      <%= turbo_stream.update "#{champ.focusable_input_id}-aria-live" do %><%= safe_join(parts, ' ') %><% end %>
+    <% end %>
+  <% end %>
 <% end %>

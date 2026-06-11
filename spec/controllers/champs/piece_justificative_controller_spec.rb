@@ -146,9 +146,31 @@ describe Champs::PieceJustificativeController, type: :controller do
         expect(response.body).to include(%(<turbo-stream action="focus" targets="#persisted_row_attachment_#{attachment.id} [data-attachment-delete-button]">))
       end
 
-      it 'does not push any aria-live announcement after upload (no visual equivalent)' do
+      it 'does not push any aria-live announcement for a plain PJ (no visual equivalent)' do
         subject
         expect(response.body).not_to include(%(<turbo-stream action="update" target="#{champ.focusable_input_id}-aria-live">))
+      end
+    end
+
+    context 'when the champ is a RIB whose content analysis is pending (#13104)' do
+      let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :piece_justificative, nature: 'rib' }]) }
+      let(:dossier) { create(:dossier, user: user, procedure: procedure) }
+      let(:champ) { dossier.project_champs_public.first }
+      let(:file) { fixture_file_upload('spec/fixtures/files/piece_justificative_0.pdf', 'application/pdf') }
+
+      before do
+        allow_any_instance_of(Champs::PieceJustificativeChamp).to receive(:has_async_external_data?).and_return(true)
+        allow_any_instance_of(Champs::PieceJustificativeChamp).to receive(:fetch_later!)
+        allow_any_instance_of(Champs::PieceJustificativeChamp).to receive(:idle?).and_return(false)
+        allow_any_instance_of(Champs::PieceJustificativeChamp).to receive(:pending?).and_return(true)
+      end
+
+      it 'announces the OCR status inside the champ’s persistent live region' do
+        subject
+        doc = Nokogiri::HTML5.fragment(response.body)
+        region = doc.css(%(turbo-stream[action="update"][target="#{champ.focusable_input_id}-aria-live"]))
+        expect(region).to be_present
+        expect(region.text).to include('Contenu du fichier en cours')
       end
     end
 
