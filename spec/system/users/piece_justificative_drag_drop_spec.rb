@@ -94,6 +94,31 @@ describe 'Piece justificative drag and drop', js: true do
         expect(page).to have_text('Formats acceptés : .pdf, .doc, .docx, .jpg, .jpeg, .png')
       end
     end
+
+    scenario 'announces the RIB analysis status in the persistent live region after upload (#13104)' do
+      procedure_rib = create(:procedure, :published, :for_individual, types_de_champ_public: [{ type: :piece_justificative, libelle: 'RIB', nature: 'rib' }])
+      login_as(user, scope: :user)
+      visit commencer_path(path: procedure_rib.path)
+      click_on 'Commencer la démarche'
+      fill_individual
+
+      # Capture the persistent live region id before upload: a RIB is single-file,
+      # so the labelled input disappears once a file is attached.
+      file_input = find_field('RIB', visible: :all)
+      live_region_selector = "##{file_input[:id]}-aria-live"
+
+      attach_file('RIB', Rails.root.join('spec/fixtures/files/file.pdf'))
+      expect(page).to have_text('file.pdf')
+
+      # The status is announced into the champ's persistent sr-only live region
+      # (which survives the turbo_stream.replace), not into the recreated champ.
+      expect(page).to have_css(
+        live_region_selector,
+        text: 'Contenu du fichier en cours',
+        visible: :all,
+        wait: 5
+      )
+    end
   end
 
   context 'client-side validation and error handling' do
