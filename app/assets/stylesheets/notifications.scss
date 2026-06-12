@@ -45,7 +45,7 @@ span.notifications {
 
 .notification-dossier:not(:last-child)::after {
   content: '';
-  margin: 0 1rem;
+  margin: 0.25rem 1rem 0;
   width: 1px;
   height: 0.875rem;
   background-color: var(--text-default-grey);
@@ -54,15 +54,20 @@ span.notifications {
 .notification-dossier-contenu {
   font-size: 0.875rem;
   line-height: 1.25rem;
+  word-break: break-word;
+}
+
+.notification-dossier-contenu.fr-link {
+  word-break: keep-all;
 }
 
 .notification-indicator {
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding-left: 1rem;
   list-style: none;
-  background-image: linear-gradient(to right,
-  transparent 5%,
-  var(--background-alt-grey) 60%);
+  margin: 0.25rem 0 0;
+  padding: 0;
+}
+
+.notification-dossier:not(.hidden):has(+ .notification-indicator)::after,
+.notification-dossier:not(.hidden) + .notification-indicator {
+  display: none;
 }
