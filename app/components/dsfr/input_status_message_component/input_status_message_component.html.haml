@@ -8,7 +8,7 @@
         = "« #{libelle} » "
 
         = @error_full_messages.to_sentence
-    - elsif statutable? && statut_message.present?
+    - elsif status_announcement?
       %p.fr-message{ class: "fr-message--#{statut_message[:state]}" }= sanitize(statut_message[:text])
 
     - if prefilled?

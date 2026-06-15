@@ -15,8 +15,9 @@ module Dsfr
       @as_announcement = as_announcement
     end
 
-    # True when there is a status message worth announcing (excludes validation
-    # errors and the static "prefilled" notice, which are not live updates).
+    # True when the champ has an external/async status message to surface.
+    # Validation errors and the static "prefilled" notice are handled separately
+    # (they are not produced by statut_message).
     def status_announcement?
       statutable? && statut_message.present?
     end
