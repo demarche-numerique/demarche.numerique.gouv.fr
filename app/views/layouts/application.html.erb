@@ -64,11 +64,18 @@
       <%= vite_javascript_tag 'chatbot' %>
     <% end %>
 
-    <%= preload_link_tag(asset_url("Marianne-Regular.woff2")) %>
+    <% unless OVERRIDE_DSFR %>
+      <%= preload_link_tag(asset_url("Marianne-Regular.woff2")) %>
+    <% end %>
+
     <%= preload_link_tag(asset_url("Spectral-Regular.ttf")) %>
 
     <%= vite_stylesheet_tag 'main', media: 'all' %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
+
+    <% if OVERRIDE_DSFR %>
+      <%= vite_stylesheet_tag 'dsfr_override_theme', media: 'all' %>
+    <% end %>
 
     <%= yield(:invisible_captcha_styles) %>
     <%= render partial: 'layouts/setup_theme' %>

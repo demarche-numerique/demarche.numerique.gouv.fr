@@ -15,10 +15,13 @@
           .fr-header__brand.fr-enlarge-link
             .fr-header__brand-top
               .fr-header__logo
-                %p.fr-logo{ lang: "fr" }
-                  République
-                  = succeed "Française" do
-                    %br/
+                - if OVERRIDE_DSFR && HEADER_LOGO_SRC.present?
+                  = image_tag HEADER_LOGO_SRC, alt: HEADER_LOGO_ALT, width: HEADER_LOGO_WIDTH, height: HEADER_LOGO_HEIGHT
+                - else
+                  %p.fr-logo{ lang: "fr" }
+                    République
+                    = succeed "Française" do
+                      %br/
               .fr-header__navbar
                 - if is_search_enabled
                   %button.fr-btn--search.fr-btn{ "aria-controls" => "search-modal", "aria-haspopup" => "dialog", "data-fr-opened" => "false", :title => t('views.users.dossiers.search.search_file') }= t('views.users.dossiers.search.search_file')
