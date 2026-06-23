@@ -102,7 +102,7 @@ gem 'sib-api-v3-sdk'
 # Sidekiq must be >= 8.1 before bumping to connection_pool 3.x; keep < 3 until then.
 gem 'connection_pool', '< 3'
 gem 'sidekiq', '< 7.3' # 7.3 needs to migrate to sidekiq-cron 2.0
-gem 'sidekiq-cron', '< 2.0' # wait for a release without "keys command"
+gem 'sidekiq-cron', '< 3.0' # wait for a release without "keys command"
 gem 'siret_validator', github: "CodeursenLiberte/siret_validator", ref: "ba421bb"
 gem 'skylight'
 gem 'smarter_csv'
