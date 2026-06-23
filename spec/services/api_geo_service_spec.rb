@@ -23,9 +23,9 @@ describe APIGeoService do
 
   describe 'regions' do
     it 'return sorted results' do
-      expect(APIGeoService.regions.size).to eq(18)
+      expect(APIGeoService.regions.size).to eq(19)
       expect(APIGeoService.regions.first).to eq(code: '84', name: 'Auvergne-Rhône-Alpes')
-      expect(APIGeoService.regions.last).to eq(code: '93', name: 'Provence-Alpes-Côte d’Azur')
+      expect(APIGeoService.regions.last).to eq(code: '99', name: 'Etranger')
     end
   end
 

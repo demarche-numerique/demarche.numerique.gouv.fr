@@ -108,6 +108,14 @@ describe Champs::RegionChamp, type: :model do
       expect(champ.selected).to eq('01')
       expect(champ.to_s).to eq('Guadeloupe')
     end
+
+    it 'with Etranger code' do
+      champ.value = '99'
+      expect(champ.external_id).to eq('99')
+      expect(champ.value).to eq('Etranger')
+      expect(champ.selected).to eq('99')
+      expect(champ.to_s).to eq('Etranger')
+    end
   end
 
   describe 'double-write of canonical value_json keys' do

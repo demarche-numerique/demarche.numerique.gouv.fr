@@ -38,7 +38,7 @@ class APIGeoService
 
     def regions
       memoize(:regions) do
-        get_from_api_geo(:regions).sort_by { I18n.transliterate(_1[:name]) }.freeze
+        (get_from_api_geo(:regions).sort_by { I18n.transliterate(_1[:name]) } + [{ code: '99', name: 'Etranger' }]).freeze
       end
     end
 
