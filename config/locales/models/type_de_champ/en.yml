@@ -23,7 +23,7 @@ en:
           email: 'Email'
           phone: 'Phone'
           address: 'Adress'
-          communes: 'Municipality'
+          communes: 'Current French municipality'
           departements: 'County'
           regions: 'Region'
           pays: 'Country'
