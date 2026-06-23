@@ -50,6 +50,10 @@ module Users
 
       @dossiers = @filter.dossiers.page(page).per(ITEMS_PER_PAGE)
       @total_count = @dossiers.total_count
+      list_title = @filter.model_alerts.any? ? "filters.alerts" : "filters.no_alert"
+      Skylight.instrument(title: list_title) do
+        @dossiers.load
+      end
       @corbeille_count = current_user.dossiers.hidden_by_user.or(current_user.dossiers.hidden_by_expired).count
       @pending_transfers_count = current_user.dossier_transfers_received_pending.count
       @show_simple_list = params[:search].blank? && !@filter.active? && @total_count <= SIMPLE_LIST_THRESHOLD
