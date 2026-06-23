@@ -47,7 +47,7 @@ module Users
     def counts
       @counts ||= {
         states:         count_states,
-        alerts:         count_alerts,
+        alerts:         Skylight.instrument(title: "counts.alerts") { count_alerts },
         shared_with_me: scope_without(:shared_with_me).where(id: @user.dossiers_invites.visible_by_user).count,
       }
     end
