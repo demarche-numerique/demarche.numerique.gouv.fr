@@ -26,7 +26,8 @@ module Administrateurs
       @api_token, @packed_token = APIToken.generate(current_administrateur)
 
       @api_token.update!(name:, write_access:,
-                         allowed_procedure_ids:, authorized_networks:, expires_at:)
+                         allowed_procedure_ids:, authorized_networks:,
+                         expires_at:, requires_ip_filtering: true)
 
       @curl_command = curl_command(@packed_token, @api_token.procedure_ids.first)
     end
@@ -176,7 +177,7 @@ module Administrateurs
           Date.parse(params[:customLifetime]),
           1.year.from_now,
         ].min
-      in 'infinite' if authorized_networks.present?
+      in 'infinite' if authorized_networks.present? || params[:networkFiltering] == 'autoAssign'
         nil
       else
         1.week.from_now.to_date

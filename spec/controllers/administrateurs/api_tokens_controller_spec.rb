@@ -26,12 +26,13 @@ describe Administrateurs::APITokensController, type: :controller do
     context 'with write access, no filtering, one week' do
       let(:params) { default_params }
 
-      it 'creates a token' do
+      it 'creates a token with requires_ip_filtering' do
         expect(token.name).to eq('Test')
         expect(token.write_access?).to be true
         expect(token.full_access?).to be true
         expect(token.authorized_networks).to be_blank
         expect(token.expires_at).to eq(1.week.from_now.to_date)
+        expect(token.requires_ip_filtering).to be true
       end
     end
 
@@ -73,6 +74,24 @@ describe Administrateurs::APITokensController, type: :controller do
       let(:params) { default_params.merge(networkFiltering: 'customNetworks', networks:, lifetime: 'infinite') }
 
       it { expect(token.expires_at).to eq(nil) }
+    end
+
+    context 'with auto-assign network filtering' do
+      let(:params) { default_params.merge(networkFiltering: 'autoAssign') }
+
+      it 'creates token with requires_ip_filtering and empty networks' do
+        expect(token.requires_ip_filtering).to be true
+        expect(token.authorized_networks).to be_empty
+      end
+    end
+
+    context 'with auto-assign and infinite lifetime' do
+      let(:params) { default_params.merge(networkFiltering: 'autoAssign', lifetime: 'infinite') }
+
+      it 'allows infinite lifetime' do
+        expect(token.expires_at).to be_nil
+        expect(token.requires_ip_filtering).to be true
+      end
     end
 
     context 'with procedure filtering' do
