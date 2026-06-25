@@ -4,7 +4,6 @@ export class ApiTokenSecuriteController extends ApplicationController {
   static targets = [
     'continueButton',
     'networkFiltering',
-    'infiniteLifetime',
     'customLifetime',
     'customLifetimeInput',
     'networks'
@@ -12,7 +11,6 @@ export class ApiTokenSecuriteController extends ApplicationController {
 
   declare readonly continueButtonTarget: HTMLButtonElement;
   declare readonly networkFilteringTarget: HTMLElement;
-  declare readonly infiniteLifetimeTarget: HTMLInputElement;
   declare readonly customLifetimeTarget: HTMLElement;
   declare readonly customLifetimeInputTarget: HTMLInputElement;
   declare readonly networksTarget: HTMLInputElement;
@@ -24,14 +22,11 @@ export class ApiTokenSecuriteController extends ApplicationController {
   showNetworkFiltering() {
     this.networkFilteringTarget.classList.remove('hidden');
     this.setContinueButtonState();
-    this.infiniteLifetimeTarget.disabled = false;
   }
 
   hideNetworkFiltering() {
     this.networkFilteringTarget.classList.add('hidden');
     this.setContinueButtonState();
-    this.infiniteLifetimeTarget.checked = false;
-    this.infiniteLifetimeTarget.disabled = true;
   }
 
   showCustomLifetime() {
@@ -55,7 +50,7 @@ export class ApiTokenSecuriteController extends ApplicationController {
   networkDefined() {
     if (
       this.element.querySelectorAll(
-        "[name='networkFiltering'][value='none']:checked"
+        "[name='networkFiltering'][value='autoAssign']:checked"
       ).length > 0
     ) {
       return true;

@@ -28,15 +28,15 @@
 
     = render Dsfr::RadioButtonListComponent.new(form: f,
       target: :networkFiltering,
-      buttons: [ { label: 'Je veux spécifier les réseaux autorisées à utiliser mon jeton',
+      buttons: [ { label: 'Détection automatique au 1er appel API',
+        hint: "L'adresse IP de votre premier appel sera automatiquement autorisée",
+        value: :autoAssign,
+        checked: params[:networkFiltering] != 'customNetworks',
+        'data-action': 'click->api-token-securite#hideNetworkFiltering' },
+        { label: 'Saisie manuelle des réseaux autorisés',
         value: :customNetworks,
         checked: params[:networkFiltering] == 'customNetworks',
-        'data-action': 'click->api-token-securite#showNetworkFiltering' },
-        { label: 'Mon jeton peut être utilisé depuis nʼimporte quelle adresse IP dans le monde',
-        hint: 'dangereux',
-        value: :none,
-        checked: params[:networkFiltering] == 'none',
-        'data-action': 'click->api-token-securite#hideNetworkFiltering' }]) do
+        'data-action': 'click->api-token-securite#showNetworkFiltering' }]) do
       Filtrage réseau :
 
     .fr-input-group.fr-mb-4w{
@@ -68,11 +68,9 @@
         value: :custom,
         checked: params[:lifetime] == 'custom',
         'data-action': 'click->api-token-securite#showCustomLifetime'},
-        { label: 'Infini (le filtrage réseau doit être activé)',
+        { label: 'Infini',
         value: :infinite,
         checked: params[:lifetime] == 'infinite',
-        disabled: true,
-        'data-api-token-securite-target': 'infiniteLifetime',
         'data-action': 'click->api-token-securite#hideCustomLifetime' }]) do
       Durée de vie du jeton :
 
