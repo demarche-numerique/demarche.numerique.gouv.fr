@@ -199,6 +199,63 @@ describe APIToken, type: :model do
     end
   end
 
+  describe '#assign_first_ip!' do
+    let(:api_token) { APIToken.generate(administrateur).first }
+
+    context 'when requires_ip_filtering is true and no networks defined' do
+      before { api_token.update!(requires_ip_filtering: true) }
+
+      it 'assigns the IP as authorized network' do
+        api_token.assign_first_ip!('192.168.1.1')
+        expect(api_token.reload.authorized_networks).to eq([IPAddr.new('192.168.1.1')])
+      end
+
+      it 'works with IPv6' do
+        api_token.assign_first_ip!('2001:41d0:304:400::52f')
+        expect(api_token.reload.authorized_networks).to eq([IPAddr.new('2001:41d0:304:400::52f')])
+      end
+    end
+
+    context 'when requires_ip_filtering is false' do
+      before { api_token.update!(requires_ip_filtering: false) }
+
+      it 'does nothing' do
+        api_token.assign_first_ip!('192.168.1.1')
+        expect(api_token.reload.authorized_networks).to be_empty
+      end
+    end
+
+    context 'when authorized_networks already set' do
+      before do
+        api_token.update!(requires_ip_filtering: true, authorized_networks: [IPAddr.new('10.0.0.1')])
+      end
+
+      it 'does not overwrite' do
+        api_token.assign_first_ip!('192.168.1.1')
+        expect(api_token.reload.authorized_networks).to eq([IPAddr.new('10.0.0.1')])
+      end
+    end
+  end
+
+  describe '#pending_auto_ip?' do
+    let(:api_token) { APIToken.generate(administrateur).first }
+
+    it 'returns true when requires_ip_filtering and no networks' do
+      api_token.update!(requires_ip_filtering: true, authorized_networks: [])
+      expect(api_token.pending_auto_ip?).to be true
+    end
+
+    it 'returns false when requires_ip_filtering is false' do
+      api_token.update!(requires_ip_filtering: false, authorized_networks: [])
+      expect(api_token.pending_auto_ip?).to be false
+    end
+
+    it 'returns false when networks are present' do
+      api_token.update!(requires_ip_filtering: true, authorized_networks: [IPAddr.new('10.0.0.1')])
+      expect(api_token.pending_auto_ip?).to be false
+    end
+  end
+
   describe '#expiring_within' do
     let(:api_token) { APIToken.generate(administrateur).first }
 

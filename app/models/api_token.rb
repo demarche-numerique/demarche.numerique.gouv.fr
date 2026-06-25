@@ -87,6 +87,16 @@ class APIToken < ApplicationRecord
     authorized_networks.none? { |range| range.include?(ip) }
   end
 
+  def assign_first_ip!(ip)
+    return unless requires_ip_filtering? && authorized_networks.empty?
+
+    update!(authorized_networks: [IPAddr.new(ip)])
+  end
+
+  def pending_auto_ip?
+    requires_ip_filtering? && authorized_networks.empty?
+  end
+
   def expired?
     expires_at&.past?
   end
