@@ -107,14 +107,6 @@ const EDITOR_ACTIONS: Record<string, (editor: Editor) => EditorAction> = {
     isActive: () => false,
     isDisabled: () => !editor.can().chain().focus().redo().run()
   }),
-  hardBreak: (editor) => ({
-    run: () => editor.chain().focus().setHardBreak().run(),
-    isActive: () => false,
-    isDisabled: () =>
-      editor.isActive('title') ||
-      editor.isActive('header') ||
-      editor.isActive('footer')
-  }),
   link: (editor) => ({
     run: () => {
       // Link action is handled directly by the controller's menuButton method

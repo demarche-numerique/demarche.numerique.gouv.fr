@@ -180,6 +180,12 @@ describe Administrateurs::AttestationTemplateV2sController, type: :controller do
           expect(response.body).not_to have_button("Souligner")
           expect(response.body).not_to include('data-tiptap-action="underline"')
         end
+
+        it 'renders the editor toolbar without a line break button' do
+          subject
+          expect(response.body).not_to have_button("Saut de ligne")
+          expect(response.body).not_to include('data-tiptap-action="hardBreak"')
+        end
       end
 
       context 'if an attestation template already exist on v1' do
