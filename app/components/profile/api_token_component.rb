@@ -20,6 +20,8 @@ class Profile::APITokenComponent < ApplicationComponent
   def network_filtering
     if @api_token.authorized_networks.present?
       "filtrage : #{@api_token.authorized_networks_for_ui}"
+    elsif @api_token.pending_auto_ip?
+      tag.span('en attente de détection IP (1er appel)', class: 'fr-badge fr-badge--sm fr-badge--info')
     else
       tag.span('aucun filtrage réseau', class: 'fr-text-default--warning')
     end
