@@ -25,16 +25,13 @@ describe 'As an administrateur I create an API token', js: true do
     expect(page).to have_no_css('img[src="x"]')
   end
 
-  scenario 'token creation' do
+  scenario 'token creation with auto-assign IP' do
     visit profil_path
     expect(page).to have_content('Profil')
 
     click_on 'Créer un nouveau jeton'
-    expect(page).to have_content("Création d’un nouveau jeton")
-
     fill_in 'Nom du jeton', with: 'mon jeton'
     click_on 'Continuer'
-    expect(page).to have_content("Privilèges du jeton « mon jeton »")
 
     custom_check "target_custom"
     select "#{procedure.id} - #{procedure.libelle}"
@@ -43,9 +40,36 @@ describe 'As an administrateur I create an API token', js: true do
     click_on 'Continuer'
     expect(page).to have_content("Sécurité")
 
-    custom_check 'networkFiltering_none'
+    custom_check 'networkFiltering_autoassign'
     custom_check 'lifetime_oneweek'
     click_on('Créer le jeton')
     expect(page).to have_content("Votre jeton est prêt")
+
+    token = APIToken.last
+    expect(token.requires_ip_filtering).to be true
+    expect(token.authorized_networks).to be_empty
+  end
+
+  scenario 'token creation with manual IP' do
+    visit profil_path
+
+    click_on 'Créer un nouveau jeton'
+    fill_in 'Nom du jeton', with: 'jeton manuel'
+    click_on 'Continuer'
+
+    custom_check 'access_read_write'
+    custom_check 'target_all'
+    click_on 'Continuer'
+    expect(page).to have_content("Sécurité")
+
+    custom_check 'networkFiltering_customnetworks'
+    fill_in 'networks', with: '192.168.1.0/24'
+    custom_check 'lifetime_oneweek'
+    click_on('Créer le jeton')
+    expect(page).to have_content("Votre jeton est prêt")
+
+    token = APIToken.last
+    expect(token.requires_ip_filtering).to be true
+    expect(token.authorized_networks).to eq([IPAddr.new('192.168.1.0/24')])
   end
 end
