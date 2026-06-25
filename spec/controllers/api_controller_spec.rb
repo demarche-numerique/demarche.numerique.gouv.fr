@@ -73,6 +73,30 @@ describe APIController, type: :controller do
         it { is_expected.to have_http_status(:unauthorized) }
       end
 
+      context 'when requires_ip_filtering is true and no networks defined (auto-assign)' do
+        before { token.update!(requires_ip_filtering: true, authorized_networks: []) }
+
+        context 'first call assigns the IP and succeeds' do
+          let(:remote_ip) { '10.20.30.40' }
+
+          it do
+            is_expected.to have_http_status(:ok)
+            expect(token.reload.authorized_networks).to eq([IPAddr.new('10.20.30.40')])
+          end
+        end
+      end
+
+      context 'when requires_ip_filtering is false and no networks defined (legacy)' do
+        before { token.update!(requires_ip_filtering: false, authorized_networks: []) }
+
+        let(:remote_ip) { '10.20.30.40' }
+
+        it 'does not auto-assign' do
+          is_expected.to have_http_status(:ok)
+          expect(token.reload.authorized_networks).to be_empty
+        end
+      end
+
       context 'when a single authorized network is defined' do
         before do
           token.update!(authorized_networks: [IPAddr.new('192.168.1.0/24')])

@@ -56,6 +56,7 @@ class API::V2::BaseController < ApplicationController
 
     if @api_token.present?
       @api_token.touch(:last_v2_authenticated_at)
+      @api_token.assign_first_ip!(request.remote_ip)
       @api_token.store_new_ip(request.remote_ip)
       @current_user = @api_token.administrateur.user
       Current.user = @current_user
