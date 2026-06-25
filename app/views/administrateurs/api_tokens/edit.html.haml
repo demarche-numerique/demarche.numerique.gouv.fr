@@ -27,25 +27,31 @@
 
           %button.fr-btn.fr-btn--secondary.fr-ml-1w Renommer
 
-    = form_with url: admin_api_token_path(@api_token), method: :patch, html: { class: 'fr-mt-2w' } do |f|
-      .fr-input-group.fr-mb-4w{
-        class: class_names('fr-input-group--error': @invalid_network_message.present?) }
-        = f.label :name, class: 'fr-label' do
-          = @api_token.eternal? ? "Entrez au moins 1 réseau autorisé" : "Entrez les adresses ip autorisées"
-          %span.fr-hint-text adresses réseaux séparées par des espaces. ex: 176.31.79.200 192.168.33.0/24 2001:41d0:304:400::52f/128
-        .flex
-          = f.text_field :networks,
-            class: class_names('fr-input': true, 'fr-input--error': @invalid_network_message.present?),
-            autocomplete: 'off',
-            autocapitalize: 'off',
-            autocorrect: 'off',
-            spellcheck: false,
-            value: @api_token.authorized_networks_for_ui.gsub(/,/, ' ')
+    - if @api_token.pending_auto_ip?
+      .fr-callout.fr-callout--blue-ecume.fr-mt-2w
+        %p.fr-callout__text
+          Ce jeton est en attente de détection IP. L'adresse IP sera automatiquement verrouillée lors du premier appel API.
 
-          %button.fr-btn.fr-btn--secondary.fr-ml-1w Modifier
+    - else
+      = form_with url: admin_api_token_path(@api_token), method: :patch, html: { class: 'fr-mt-2w' } do |f|
+        .fr-input-group.fr-mb-4w{
+          class: class_names('fr-input-group--error': @invalid_network_message.present?) }
+          = f.label :name, class: 'fr-label' do
+            = @api_token.eternal? ? "Entrez au moins 1 réseau autorisé" : "Entrez les adresses ip autorisées"
+            %span.fr-hint-text adresses réseaux séparées par des espaces. ex: 176.31.79.200 192.168.33.0/24 2001:41d0:304:400::52f/128
+          .flex
+            = f.text_field :networks,
+              class: class_names('fr-input': true, 'fr-input--error': @invalid_network_message.present?),
+              autocomplete: 'off',
+              autocapitalize: 'off',
+              autocorrect: 'off',
+              spellcheck: false,
+              value: @api_token.authorized_networks_for_ui.gsub(/,/, ' ')
 
-        - if @invalid_network_message.present?
-          %p.fr-error-text= @invalid_network_message
+            %button.fr-btn.fr-btn--secondary.fr-ml-1w Modifier
+
+          - if @invalid_network_message.present?
+            %p.fr-error-text= @invalid_network_message
 
     = form_with url: admin_api_token_path(@api_token), method: :patch, html: { class: 'fr-mt-2w' } do |f|
       .fr-mb-4w
