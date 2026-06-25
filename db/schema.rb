@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_06_25_153605) do
+ActiveRecord::Schema[8.0].define(version: 2026_06_25_153641) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_stat_statements"
@@ -118,7 +118,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_06_25_153605) do
     t.datetime "last_v1_authenticated_at"
     t.datetime "last_v2_authenticated_at"
     t.string "name", null: false
-    t.boolean "requires_ip_filtering", default: false, null: false
+    t.boolean "requires_ip_filtering", default: true, null: false
     t.inet "stored_ips", default: [], array: true
     t.datetime "updated_at", null: false
     t.integer "version", default: 3, null: false
