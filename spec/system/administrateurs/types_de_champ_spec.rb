@@ -245,12 +245,20 @@ describe 'As an administrateur I can edit types de champ', js: true do
     add_champ
     hide_autonotice_message
 
+    # Each autosave responds with a `turbo_stream.replace` of the whole champ editor,
+    # so a field whose value is not yet persisted gets wiped when a previous save's
+    # response lands. We therefore wait for each field to be persisted before editing
+    # the next one, to avoid concurrent saves racing each other (debounce is 0 in test).
     select('Choix simple', from: 'Type de champ')
-    fill_in 'Libellé du champ', with: 'Libellé de champ menu déroulant', fill_options: { clear: :backspace }
-    fill_in 'Options de la liste', with: 'Un menu', fill_options: { clear: :backspace }
-    check "Proposer une option « autre » avec un texte libre"
+    wait_until { procedure.active_revision.reload.types_de_champ_public.first.drop_down_list? }
 
+    fill_in 'Libellé du champ', with: 'Libellé de champ menu déroulant', fill_options: { clear: :backspace }
+    wait_until { procedure.active_revision.reload.types_de_champ_public.first.libelle == 'Libellé de champ menu déroulant' }
+
+    fill_in 'Options de la liste', with: 'Un menu', fill_options: { clear: :backspace }
     wait_until { procedure.active_revision.reload.types_de_champ_public.first.drop_down_options == ['Un menu'] }
+
+    check "Proposer une option « autre » avec un texte libre"
     wait_until { procedure.active_revision.reload.types_de_champ_public.first.drop_down_other == "1" }
     expect(page).to have_content('Formulaire enregistré')
 
