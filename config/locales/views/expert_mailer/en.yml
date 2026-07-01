@@ -1,0 +1,8 @@
+en:
+  expert_mailer:
+    send_dossier_decision:
+      subject: "File no. %{id} has been %{decision} - %{libelle}"
+      decision:
+        accepte: "accepted"
+        sans_suite: "closed without follow-up"
+        refuse: "refused"
