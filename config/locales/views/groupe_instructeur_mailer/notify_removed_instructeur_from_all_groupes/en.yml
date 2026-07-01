@@ -1,6 +1,10 @@
 en:
   groupe_instructeur_mailer:
     notify_removed_instructeur_from_many_groupes:
+      subject_assigned:
+        one: "You were removed from group \"%{groupe}\" of procedure \"%{procedure}\""
+        other: "You were removed from %{count} groups of procedure \"%{procedure}\""
+      subject_unassigned: "You were unassigned from procedure \"%{procedure}\""
       email_body:
         assigned:
           one: "You were removed from group « %{groupe} » of procedure « %{procedure} » by « %{email} »."

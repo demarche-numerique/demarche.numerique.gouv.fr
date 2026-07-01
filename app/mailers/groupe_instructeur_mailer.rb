@@ -8,9 +8,9 @@ class GroupeInstructeurMailer < ApplicationMailer
     @current_instructeur_email = current_instructeur_email
     @still_assigned_to_procedure = removed_instructeur.in?(group.procedure.instructeurs)
     subject = if @still_assigned_to_procedure
-      "Vous avez été retiré(e) du groupe \"#{group.label}\" de la démarche \"#{group.procedure.libelle}\""
+      t(".subject_assigned", groupe: group.label, procedure: group.procedure.libelle)
     else
-      "Vous avez été désaffecté(e) de la démarche \"#{group.procedure.libelle}\""
+      t(".subject_unassigned", procedure: group.procedure.libelle)
     end
 
     mail(to: removed_instructeur.email, subject: subject)
@@ -23,13 +23,9 @@ class GroupeInstructeurMailer < ApplicationMailer
     @still_assigned_to_procedure = still_assigned
 
     subject = if @still_assigned_to_procedure
-      if removed_from_groupes.one?
-        "Vous avez été retiré(e) du groupe \"#{removed_from_groupes.first.label}\" de la démarche \"#{procedure.libelle}\""
-      else
-        "Vous avez été retiré(e) de #{removed_from_groupes.count} groupes de la démarche \"#{procedure.libelle}\""
-      end
+      t(".subject_assigned", count: removed_from_groupes.count, groupe: removed_from_groupes.first.label, procedure: procedure.libelle)
     else
-      "Vous avez été désaffecté(e) de la démarche \"#{procedure.libelle}\""
+      t(".subject_unassigned", procedure: procedure.libelle)
     end
 
     mail(to: removed_instructeur.email, subject: subject)
@@ -40,11 +36,7 @@ class GroupeInstructeurMailer < ApplicationMailer
     @group = group
     @current_instructeur_email = current_instructeur_email
 
-    subject = if group.procedure.groupe_instructeurs.many?
-      "Vous avez été ajouté(e) au groupe « #{group.label} » de la démarche « #{group.procedure.libelle} »"
-    else
-      "Vous avez été affecté(e) à la démarche « #{group.procedure.libelle} »"
-    end
+    subject = t(".subject", count: group.procedure.groupe_instructeurs.count, groupe: group.label, procedure: group.procedure.libelle)
 
     mail(bcc: added_instructeur_emails, subject: subject)
   end
@@ -55,11 +47,7 @@ class GroupeInstructeurMailer < ApplicationMailer
     @current_instructeur_email = current_instructeur_email
     @reset_password_token = instructeur.user.send(:set_reset_password_token)
 
-    subject = if group.procedure.groupe_instructeurs.many?
-      "Vous avez été ajouté(e) au groupe \"#{group.label}\" de la démarche \"#{group.procedure.libelle}\""
-    else
-      "Vous avez été affecté(e) à la démarche \"#{group.procedure.libelle}\""
-    end
+    subject = t(".subject", count: group.procedure.groupe_instructeurs.count, groupe: group.label, procedure: group.procedure.libelle)
 
     bypass_unverified_mail_protection!
 
@@ -72,12 +60,7 @@ class GroupeInstructeurMailer < ApplicationMailer
     @procedure = groups.first.procedure
     @current_instructeur_email = current_instructeur_email
 
-    group_labels = groups.map(&:label).join(', ')
-    subject = if groups.count == 1
-      "Vous avez été ajouté(e) au groupe instructeur « #{group_labels} » de la démarche « #{@procedure.libelle} »"
-    else
-      "Vous avez été ajouté(e) à #{groups.count} groupes instructeurs de la démarche « #{@procedure.libelle} »"
-    end
+    subject = t(".subject", count: groups.count, groupe: groups.first.label, procedure: @procedure.libelle)
 
     mail(to: instructeur.email, subject: subject)
   end
@@ -93,12 +76,7 @@ class GroupeInstructeurMailer < ApplicationMailer
     @current_instructeur_email = current_instructeur_email
     @reset_password_token = instructeur.user.send(:set_reset_password_token)
 
-    group_labels = groups.map(&:label).join(', ')
-    subject = if groups.count == 1
-      "Vous avez été ajouté(e) au groupe \"#{group_labels}\" de la démarche \"#{@procedure.libelle}\""
-    else
-      "Vous avez été ajouté(e) à #{groups.count} groupes de la démarche \"#{@procedure.libelle}\""
-    end
+    subject = t(".subject", count: groups.count, groupe: groups.first.label, procedure: @procedure.libelle)
 
     bypass_unverified_mail_protection!
 

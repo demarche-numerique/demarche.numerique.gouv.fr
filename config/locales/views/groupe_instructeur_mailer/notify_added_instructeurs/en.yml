@@ -1,6 +1,9 @@
 en:
   groupe_instructeur_mailer:
     notify_added_instructeurs:
+      subject:
+        one: "You were assigned to procedure « %{procedure} »"
+        other: "You were added to group « %{groupe} » of procedure « %{procedure} »"
       title: "Procedure assignment"
       email_body:
         html:

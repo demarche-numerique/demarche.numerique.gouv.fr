@@ -1,6 +1,8 @@
 fr:
   groupe_instructeur_mailer:
     notify_removed_instructeur:
+      subject_assigned: "Vous avez été retiré(e) du groupe \"%{groupe}\" de la démarche \"%{procedure}\""
+      subject_unassigned: "Vous avez été désaffecté(e) de la démarche \"%{procedure}\""
       email_body:
         assigned: "Vous avez été retiré(e) du groupe « %{groupe} » par « %{email} », en charge de la démarche « %{procedure} »."
         unassigned: "Vous avez été désaffecté(e) de la démarche « %{procedure} » par « %{email} »."

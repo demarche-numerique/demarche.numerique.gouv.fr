@@ -1,6 +1,9 @@
 fr:
   groupe_instructeur_mailer:
     confirm_and_notify_added_instructeur:
+      subject:
+        one: "Vous avez été affecté(e) à la démarche \"%{procedure}\""
+        other: "Vous avez été ajouté(e) au groupe \"%{groupe}\" de la démarche \"%{procedure}\""
       title: "Affectation à une démarche"
       email_body:
         html:
