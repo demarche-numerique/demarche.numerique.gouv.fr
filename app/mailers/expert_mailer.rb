@@ -9,7 +9,7 @@ class ExpertMailer < ApplicationMailer
     @dossier = @avis.dossier
     email = @avis.expert.email
     @decision = decision_dossier(@dossier)
-    subject = "Dossier n° #{@dossier.id} a été #{@decision} - #{@dossier.procedure.libelle}"
+    subject = default_i18n_subject(id: @dossier.id, decision: @decision, libelle: @dossier.procedure.libelle)
 
     mail(to: email, subject: subject)
   end
@@ -19,7 +19,7 @@ class ExpertMailer < ApplicationMailer
     @dossier = @avis.dossier
     email = @avis.expert.email
     @decision = decision_dossier(@dossier)
-    subject = "Dossier n° #{@dossier.id} a été #{@decision} - #{@dossier.procedure.libelle}"
+    subject = I18n.t("expert_mailer.send_dossier_decision.subject", id: @dossier.id, decision: @decision, libelle: @dossier.procedure.libelle)
 
     mail(template_name: 'send_dossier_decision', to: email, subject: subject)
   end
@@ -31,10 +31,10 @@ end
 
 def decision_dossier(dossier)
   if dossier.accepte?
-    'accepté'
+    I18n.t("expert_mailer.send_dossier_decision.decision.accepte")
   elsif dossier.sans_suite?
-    'classé sans suite'
+    I18n.t("expert_mailer.send_dossier_decision.decision.sans_suite")
   elsif dossier.refuse?
-    'refusé'
+    I18n.t("expert_mailer.send_dossier_decision.decision.refuse")
   end
 end

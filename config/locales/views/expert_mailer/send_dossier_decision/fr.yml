@@ -1,0 +1,8 @@
+fr:
+  expert_mailer:
+    send_dossier_decision:
+      subject: "Dossier n° %{id} a été %{decision} - %{libelle}"
+      decision:
+        accepte: accepté
+        sans_suite: classé sans suite
+        refuse: refusé
