@@ -1,4 +1,5 @@
 fr:
   groupe_gestionnaire_mailer:
     notify_removed_gestionnaire:
+      subject: "Vous avez été retiré(e) du groupe gestionnaire \"%{name}\""
       email_body: "Vous venez d’être supprimé(e) du groupe gestionnaire %{groupe_gestionnaire_name} sur %{application_name} par « %{email} »."

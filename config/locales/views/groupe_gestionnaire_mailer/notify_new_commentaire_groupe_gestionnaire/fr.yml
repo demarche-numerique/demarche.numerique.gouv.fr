@@ -1,5 +1,6 @@
 fr:
   groupe_gestionnaire_mailer:
     notify_new_commentaire_groupe_gestionnaire:
+      subject: "Vous avez un nouveau message dans le groupe gestionnaire \"%{name}\""
       body: Vous avez un nouveau message envoyé de la part de %{sender_email} dans la messagerie du groupe gestionnaire %{groupe_gestionnaire_name}
       see_message: "Consulter le message"

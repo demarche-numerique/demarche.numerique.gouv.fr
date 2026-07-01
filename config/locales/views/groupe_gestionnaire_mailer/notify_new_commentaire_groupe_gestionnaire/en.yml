@@ -1,0 +1,6 @@
+en:
+  groupe_gestionnaire_mailer:
+    notify_new_commentaire_groupe_gestionnaire:
+      subject: "You have a new message in the admins group \"%{name}\""
+      body: You have a new message from %{sender_email} in the admins group %{groupe_gestionnaire_name} messaging
+      see_message: "View the message"

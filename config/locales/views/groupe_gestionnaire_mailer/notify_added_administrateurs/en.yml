@@ -1,4 +1,5 @@
 en:
   groupe_gestionnaire_mailer:
     notify_added_administrateurs:
+      subject: "You have been added as administrator of the admins group \"%{name}\""
       email_body: "You were assigned as administrateur on the admins group %{groupe_gestionnaire_name} on %{application_name} by « %{email} »"
