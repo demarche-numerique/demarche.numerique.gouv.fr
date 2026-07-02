@@ -37,6 +37,11 @@ describe Dsfr::InputStatusMessageComponent, type: :component do
         expect(page).to have_css('.fr-messages-group')
         expect(page).not_to have_css('.fr-messages-group[aria-live]')
       end
+
+      it 'hides the visible status message from screen readers to avoid a duplicate announcement' do
+        render_inline(described_class.new(champ:, champ_component: no_error_component))
+        expect(page).to have_css('p.fr-message[aria-hidden="true"]')
+      end
     end
 
     context 'with a validation error' do
