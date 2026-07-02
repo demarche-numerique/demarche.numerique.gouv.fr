@@ -85,6 +85,42 @@ describe Champs::SiretChamp do
     end
   end
 
+  describe '#mandatory_blank?' do
+    let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :siret, mandatory: true }]) }
+    let(:external_id) { "12345678901245" }
+
+    context 'when the fetch is pending' do
+      before { champ.update_columns(external_state: 'waiting_for_job') }
+
+      it 'is not mandatory_blank (a syntactically valid SIRET is enough while pending)' do
+        expect(champ.mandatory_blank?).to be false
+      end
+    end
+
+    context 'when the fetch failed with a technical error' do
+      let(:exception) { ExternalDataException.new(error: 'API down', code: 503, kind: :technical_error) }
+
+      before do
+        champ.update_columns(
+          external_state: 'external_error',
+          fetch_external_data_exceptions: [exception]
+        )
+      end
+
+      it 'is not mandatory_blank (a syntactically valid SIRET is enough despite the technical error)' do
+        expect(champ.mandatory_blank?).to be false
+      end
+    end
+
+    context 'when the format is invalid' do
+      let(:external_id) { "12345" }
+
+      it 'is mandatory_blank' do
+        expect(champ.mandatory_blank?).to be true
+      end
+    end
+  end
+
   describe '.fetch_external_data' do
     let(:api_etablissement_status) { 200 }
     let(:api_etablissement_body) { File.read('spec/fixtures/files/api_entreprise/etablissements.json') }

@@ -2062,7 +2062,7 @@ describe Dossier, type: :model do
       let(:champ_siret) { dossier.champs.first }
 
       before do
-        champ_siret.update(value: '44011762001530')
+        champ_siret.update(external_id: '44011762001530', value: '44011762001530', etablissement: build(:etablissement, siret: '44011762001530'))
       end
 
       it 'should not have errors' do
@@ -2071,7 +2071,7 @@ describe Dossier, type: :model do
 
       context "and invalid SIRET" do
         before do
-          champ_siret.update(value: "1234")
+          champ_siret.update(external_id: "1234", value: "1234")
           dossier.reload
         end
 

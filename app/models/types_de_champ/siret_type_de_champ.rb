@@ -7,7 +7,10 @@ class TypesDeChamp::SiretTypeDeChamp < TypesDeChamp::TypeDeChampBase
     FILL_DURATION_MEDIUM
   end
 
-  def champ_blank_or_invalid?(champ) = Siret.new(siret: champ.value).invalid?
+  # A syntactically valid external_id is enough to satisfy the mandatory
+  # check while the async fetch is pending or failed non-blockingly:
+  # the actual blocking decision belongs to ExternalDataChampValidator.
+  def champ_blank_or_invalid?(champ) = Siret.new(siret: champ.external_id).invalid?
 
   def columns(procedure_id:, displayable: true, prefix: nil)
     super
