@@ -87,6 +87,14 @@ module Types
       Loaders::Association.for(object.class, :service).load(object)
     end
 
+    def labels
+      Loaders::Association.for(object.class, labels: :procedure).load(object)
+    end
+
+    def administrateurs
+      Loaders::Association.for(object.class, administrateurs: :user).load(object)
+    end
+
     def revisions
       Loaders::Association.for(object.class, revisions: :revision_types_de_champ).load(object)
     end
