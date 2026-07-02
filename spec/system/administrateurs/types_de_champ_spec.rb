@@ -195,6 +195,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
     hide_autonotice_message
 
     select('Bloc répétable', from: 'Type de champ')
+    expect(page).to have_content('Formulaire enregistré')
     fill_in 'Libellé du champ', with: 'libellé de champ'
 
     expect(page).to have_content('Formulaire enregistré')
@@ -213,6 +214,9 @@ describe 'As an administrateur I can edit types de champ', js: true do
 
     within '.type-de-champ:nth-child(2)' do
       select('Bloc répétable', from: 'Type de champ')
+    end
+    expect(page).to have_content('Formulaire enregistré')
+    within '.type-de-champ:nth-child(2)' do
       fill_in 'Libellé du champ', with: 'libellé de champ 2'
     end
 
@@ -224,11 +228,12 @@ describe 'As an administrateur I can edit types de champ', js: true do
     hide_autonotice_message
 
     select('Carte', from: 'Type de champ')
+    expect(page).to have_content('Formulaire enregistré')
     fill_in 'Libellé du champ', with: 'Libellé de champ carte', fill_options: { clear: :backspace }
     check 'Cadastres'
 
-    wait_until { procedure.active_revision.types_de_champ_public.first.layer_enabled?(:cadastres) }
-    wait_until { procedure.active_revision.types_de_champ_public.first.libelle == 'Libellé de champ carte' }
+    wait_until { procedure.active_revision.reload.types_de_champ_public.first.layer_enabled?(:cadastres) }
+    wait_until { procedure.active_revision.reload.types_de_champ_public.first.libelle == 'Libellé de champ carte' }
     expect(page).to have_content('Formulaire enregistré')
 
     page.refresh
@@ -246,6 +251,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
     hide_autonotice_message
 
     select('Choix simple', from: 'Type de champ')
+    expect(page).to have_content('Formulaire enregistré')
     fill_in 'Libellé du champ', with: 'Libellé de champ menu déroulant', fill_options: { clear: :backspace }
     fill_in 'Options de la liste', with: 'Un menu', fill_options: { clear: :backspace }
     check "Proposer une option « autre » avec un texte libre"
