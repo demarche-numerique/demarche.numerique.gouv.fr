@@ -47,7 +47,7 @@ describe Champs::SiretChamp do
       before { champ.update_columns(external_state: 'waiting_for_job') }
 
       it 'does not block submission (pending is non-blocking)' do
-        expect(subject).to be_valid
+        expect(subject.errors).to be_empty
       end
     end
 
@@ -65,6 +65,22 @@ describe Champs::SiretChamp do
       it 'adds the external error on value only' do
         expect(subject.errors[:value]).to include(I18n.t('activerecord.errors.messages.code_404'))
         expect(subject.errors[:external_id]).to be_empty
+      end
+    end
+
+    context 'when external fetch failed with a technical error' do
+      let(:external_id) { "12345678901245" }
+      let(:exception) { ExternalDataException.new(error: 'API down', code: 503, kind: :technical_error) }
+
+      before do
+        champ.update_columns(
+          external_state: 'external_error',
+          fetch_external_data_exceptions: [exception]
+        )
+      end
+
+      it 'does not block submission (technical error is non-blocking)' do
+        expect(subject.errors).to be_empty
       end
     end
   end

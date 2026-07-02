@@ -72,6 +72,9 @@ class Champs::SiretChamp < Champ
     return if external_id.blank?
     return if etablissement.present?
     return if pending?
+    # Blocking on external_error is ExternalDataChampValidator's job (kind-aware);
+    # this validation only covers the synchronous idle/format-check path.
+    return if external_error?
 
     validator = ActiveModel::Validations::SiretValidator.new(attributes: { value: true })
 
