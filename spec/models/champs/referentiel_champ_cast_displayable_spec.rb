@@ -10,7 +10,7 @@ describe Champs::ReferentielChamp, type: :model do
   let(:types_de_champ_public) { [{ type: :referentiel, referentiel: }] }
   let(:procedure) { create(:procedure, types_de_champ_public:) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:referentiel_champ) { dossier.champ_data.find(&:referentiel?) }
+  let(:referentiel_champ) { dossier.project_champs_public.find(&:referentiel?).writable! }
 
   describe '#cast_displayable_values' do
     before do

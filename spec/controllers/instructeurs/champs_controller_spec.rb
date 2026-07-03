@@ -11,7 +11,7 @@ describe Instructeurs::ChampsController, type: :controller do
   before { sign_in(instructeur.user) }
 
   describe '#edit' do
-    subject { get :edit, params: { dossier_id: dossier.id, public_id: champ.public_id } }
+    subject { get :edit, params: { dossier_id: dossier.id, id: champ.public_id } }
 
     it do
       is_expected.to have_http_status(:ok)
@@ -38,7 +38,7 @@ describe Instructeurs::ChampsController, type: :controller do
 
     before { champ.update!(external_state: :fetched) }
 
-    subject { put :update, params: { dossier_id: dossier.id, public_id: champ.public_id, rib: rib_params } }
+    subject { put :update, params: { dossier_id: dossier.id, id: champ.public_id, rib: rib_params } }
 
     it 'updates the RIB champ and redirects' do
       is_expected.to redirect_to(instructeur_dossier_path(procedure, dossier))
@@ -63,13 +63,13 @@ describe Instructeurs::ChampsController, type: :controller do
         ]
       end
 
-      let(:address_champ) { dossier.champ_data.find { _1.type_champ == TypeDeChamp.type_champs.fetch(:address) } }
+      let(:address_champ) { dossier.champ_data.find { _1.is_type?(TypeDeChamp.type_champs.fetch(:address)) } }
       let(:original_address) { { 'label' => '12 rue du Test, 75000 Paris', 'postal_code' => '75000', 'city_name' => 'Paris' } }
 
       before { address_champ.update!(value: original_address['label'], value_json: original_address) }
 
       subject(:cross_type_request) do
-        put :update, params: { dossier_id: dossier.id, public_id: address_champ.public_id, rib: rib_params }
+        put :update, params: { dossier_id: dossier.id, id: address_champ.public_id, rib: rib_params }
       end
 
       it 'rejects the request and does not overwrite the address champ' do

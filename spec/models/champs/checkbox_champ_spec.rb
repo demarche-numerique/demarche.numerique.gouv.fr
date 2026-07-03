@@ -4,7 +4,7 @@ describe Champs::CheckboxChamp do
   let(:types_de_champ_public) { [{ type: :checkbox }] }
   let(:procedure) { create(:procedure, types_de_champ_public:) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:boolean_champ) { dossier.champ_data.first.tap { _1.update_column(:value, value) } }
+  let(:boolean_champ) { dossier.project_champs_public.first.tap { _1.update_column(:value, value) } }
   let(:value) { '' }
   it_behaves_like "a boolean champ", false
 

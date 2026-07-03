@@ -3,7 +3,7 @@
 describe Champs::DepartementChamp, type: :model do
   let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :departements }]) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.project_champs_public.first.tap { _1.update_columns(value:, external_id:) } }
+  let(:champ) { dossier.project_champs_public.first.writable!.tap { _1.update_columns(value:, external_id:) } }
   let(:value) { nil }
   let(:external_id) { nil }
 
@@ -95,8 +95,8 @@ describe Champs::DepartementChamp, type: :model do
     end
 
     it 'with nil' do
-      champ.write_attribute(:value, 'Ain')
-      champ.write_attribute(:external_id, '01')
+      write_champ_data_attributes(champ, value: 'Ain')
+      write_champ_data_attributes(champ, external_id: '01')
       champ.value = nil
       expect(champ.external_id).to be_nil
       expect(champ.code).to be_nil
@@ -107,8 +107,8 @@ describe Champs::DepartementChamp, type: :model do
     end
 
     it 'with blank' do
-      champ.write_attribute(:value, 'Ain')
-      champ.write_attribute(:external_id, '01')
+      write_champ_data_attributes(champ, value: 'Ain')
+      write_champ_data_attributes(champ, external_id: '01')
       champ.value = ''
       expect(champ.external_id).to be_nil
       expect(champ.value).to be_nil
@@ -117,7 +117,7 @@ describe Champs::DepartementChamp, type: :model do
     end
 
     it 'with initial nil' do
-      champ.write_attribute(:value, nil)
+      write_champ_data_attributes(champ, value: nil)
       expect(champ.external_id).to be_nil
       expect(champ.code).to be_nil
       expect(champ.name).to be_nil
@@ -127,7 +127,7 @@ describe Champs::DepartementChamp, type: :model do
     end
 
     it 'with initial code and name' do
-      champ.write_attribute(:value, '01 - Ain')
+      write_champ_data_attributes(champ, value: '01 - Ain')
       expect(champ.external_id).to be_nil
       expect(champ.code).to eq('01')
       expect(champ.name).to eq('Ain')
@@ -137,7 +137,7 @@ describe Champs::DepartementChamp, type: :model do
     end
 
     it 'with initial code and alphanumeric name' do
-      champ.write_attribute(:value, '2B - Haute-Corse')
+      write_champ_data_attributes(champ, value: '2B - Haute-Corse')
       expect(champ.external_id).to be_nil
       expect(champ.code).to eq('2B')
       expect(champ.name).to eq('Haute-Corse')

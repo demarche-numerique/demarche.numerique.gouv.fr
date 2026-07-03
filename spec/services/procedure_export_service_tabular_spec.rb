@@ -160,7 +160,7 @@ describe ProcedureExportService do
         let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
         before { dossier }
         it do
-          champ_value = Time.zone.parse(dossier.champ_data.first.value)
+          champ_value = Time.zone.parse(dossier.project_champs_public.first.value)
           offset = champ_value.utc_offset
           sheet_value = Time.zone.at(dossiers_sheet.data.last.last - offset.seconds)
           expect(sheet_value).to eq(champ_value.round)
@@ -175,6 +175,7 @@ describe ProcedureExportService do
           dossier
             .filled_champs_public
             .first
+            .writable!
             .update(value: "franco￾allemand")
         end
         it 'can be read with BOM content' do

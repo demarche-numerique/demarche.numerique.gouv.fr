@@ -749,8 +749,8 @@ describe API::V2::GraphqlController do
       context "champs" do
         let(:procedure) { create(:procedure, :published, :for_individual, administrateurs: [admin], types_de_champ_public: [{ type: :date }, { type: :datetime }]) }
         let(:dossier) { create(:dossier, :en_construction, procedure: procedure) }
-        let(:champ_date) { dossier.project_champs_public.first }
-        let(:champ_datetime) { dossier.project_champs_public.second }
+        let(:champ_date) { dossier.project_champs_public.first.writable! }
+        let(:champ_datetime) { dossier.project_champs_public.second.writable! }
 
         before do
           champ_date.update(value: '2019-07-10')
@@ -872,7 +872,7 @@ describe API::V2::GraphqlController do
 
     describe "champ piece_justificative" do
       let(:types_de_champ_public) { [{ type: :piece_justificative }] }
-      let(:champ) { dossier.champ_data.first }
+      let(:champ) { dossier.project_champs_public.first }
       let(:byte_size) { 2712286911 }
 
       context "with deprecated file field" do
@@ -1600,7 +1600,7 @@ describe API::V2::GraphqlController do
                 },
                 errors: nil,
               })
-              expect(dossier.champ_data.first.value).not_to be_nil
+              expect(dossier.project_champs_private.first.value).not_to be_nil
             end
           end
         end

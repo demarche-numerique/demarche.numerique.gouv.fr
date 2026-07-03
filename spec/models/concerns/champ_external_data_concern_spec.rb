@@ -6,7 +6,7 @@ RSpec.describe ChampExternalDataConcern do
   describe '#save_external_error' do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :rnf }]) }
     let(:dossier) { create(:dossier, procedure:) }
-    let(:champ) { dossier.champ_data.first }
+    let(:champ) { dossier.project_champs_public.first.writable! }
     context "add execption to the log" do
       it do
         champ.send(:save_external_error, double(inspect: 'PAN'), 404)
@@ -18,7 +18,7 @@ RSpec.describe ChampExternalDataConcern do
   describe '#external_data_not_found?' do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :rnf }]) }
     let(:dossier) { create(:dossier, procedure:) }
-    let(:champ) { dossier.champ_data.first }
+    let(:champ) { dossier.project_champs_public.first.writable! }
 
     before do
       champ.external_state = external_state
@@ -50,7 +50,7 @@ RSpec.describe ChampExternalDataConcern do
   describe 'the state machine' do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :rnf }]) }
     let(:dossier) { create(:dossier, procedure:) }
-    let(:champ) { dossier.champ_data.first }
+    let(:champ) { dossier.project_champs_public.first.writable! }
 
     describe 'initial state' do
       it { expect(champ).to be_idle }

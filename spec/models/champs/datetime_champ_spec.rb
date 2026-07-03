@@ -4,7 +4,7 @@ describe Champs::DatetimeChamp do
   let(:types_de_champ_public) { [{ type: :datetime }] }
   let(:procedure) { create(:procedure, types_de_champ_public:) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:datetime_champ) { dossier.project_champs_public.first }
+  let(:datetime_champ) { dossier.project_champs_public.first.writable! }
 
   describe '#normalizes' do
     it 'preserves nil' do
@@ -55,7 +55,7 @@ describe Champs::DatetimeChamp do
 
   describe '#valid?' do
     it 'should not change the value' do
-      sql = "UPDATE champs SET value = 'invalid' WHERE id = #{datetime_champ.id}"
+      sql = "UPDATE champs SET value = 'invalid' WHERE id = #{datetime_champ.champ_data.id}"
       ActiveRecord::Base.connection.execute(sql)
       datetime_champ.reload
       expect(datetime_champ.value).to eq("invalid")
@@ -104,7 +104,7 @@ describe Champs::DatetimeChamp do
   end
 
   context 'when there is a range' do
-    let(:champ) { dossier.project_champs_public.first.tap { _1.update(value:) } }
+    let(:champ) { dossier.project_champs_public.first.tap { _1.writable!.update(value:) } }
     subject { champ.validate(:champ_value) }
 
     before { champ.type_de_champ.update(options: { range_date: '1', start_date: '2017-11-30', end_date: '2017-12-31' }) }

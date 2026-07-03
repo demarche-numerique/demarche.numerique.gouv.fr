@@ -28,8 +28,7 @@ RSpec.describe TypesDeChamp::PrefillCommuneTypeDeChamp do
   end
 
   describe '#to_assignable_attributes' do
-    let(:champ) { Champs::CommuneChamp.new() }
-    before { allow(champ).to receive(:type_de_champ).and_return(type_de_champ) }
+    let(:champ) { build_projected_champ(type_de_champ, value: nil) }
     subject(:to_assignable_attributes) do
       described_class.build(type_de_champ, procedure.active_revision).to_assignable_attributes(champ, value)
     end

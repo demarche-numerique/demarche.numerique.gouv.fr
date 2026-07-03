@@ -5,7 +5,7 @@ require "rails_helper"
 RSpec.describe Dsfr::InputStatusMessageComponent, type: :component do
   let(:procedure) { create(:procedure, types_de_champ_public:) }
   let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-  let(:champ) { dossier.champ_data.first }
+  let(:champ) { dossier.project_champs_public.first.writable! }
   let(:champ_component) { instance_double("ChampComponent", errors_on_attribute?: errors_on_attribute, error_full_messages:, attribute: :value) }
   let(:component) { described_class.new(champ_component:, champ:) }
 

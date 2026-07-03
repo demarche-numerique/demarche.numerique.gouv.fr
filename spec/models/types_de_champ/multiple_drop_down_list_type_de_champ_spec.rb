@@ -43,7 +43,7 @@ describe TypesDeChamp::MultipleDropDownListTypeDeChamp do
     let(:multiple_dropdown_list_tdc) { procedure.active_revision.types_de_champ.first }
     let(:selected_items) { referentiel.items.first(2) }
     let(:champ) do
-      multiple_dropdown_list_tdc.build_champ(value: selected_items.map(&:id).to_json).tap do |c|
+      build_projected_champ(multiple_dropdown_list_tdc, value: selected_items.map(&:id).to_json).tap do |c|
         c.referentiels = selected_items.each_with_object({}) do |item, acc|
           acc[item.id.to_s] = { 'data' => item.data.merge('headers' => referentiel.headers) }
         end
@@ -58,7 +58,7 @@ describe TypesDeChamp::MultipleDropDownListTypeDeChamp do
       let(:procedure) do
         create(:procedure, types_de_champ_public: [{ type: :multiple_drop_down_list, drop_down_mode: 'simple' }])
       end
-      let(:champ) { multiple_dropdown_list_tdc.build_champ(value: ['val1', 'val2'].to_json) }
+      let(:champ) { multiple_dropdown_list_tdc.build_champ_data(value: ['val1', 'val2'].to_json) }
 
       it 'returns selected option labels' do
         expect(multiple_dropdown_list_tdc.champ_value_for_export(champ)).to eq('val1, val2')

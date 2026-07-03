@@ -3,7 +3,7 @@
 describe Dsfr::InputStatusMessageComponent, type: :component do
   let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative, nature: 'rib' }]) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.champ_data.first }
+  let(:champ) { dossier.project_champs_public.first }
 
   describe 'announcement mode' do
     context 'when the RIB analysis is pending' do

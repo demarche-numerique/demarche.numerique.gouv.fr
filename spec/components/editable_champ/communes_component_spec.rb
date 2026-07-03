@@ -4,7 +4,7 @@ describe EditableChamp::CommunesComponent, type: :component do
   let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :communes }]) }
   let(:dossier) { create(:dossier, procedure:) }
   let(:tdc) { procedure.active_revision.types_de_champ.first }
-  let(:champ) { dossier.champ_data.first }
+  let(:champ) { dossier.project_champs_public.first }
 
   describe 'aria-describedby' do
     let(:react_component) { page.find('react-component') }

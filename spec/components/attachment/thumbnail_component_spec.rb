@@ -3,7 +3,7 @@
 RSpec.describe Attachment::ThumbnailComponent, type: :component do
   let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :piece_justificative }]) }
   let(:dossier) { create(:dossier, :en_construction, procedure:) }
-  let(:champ_pj) { dossier.champ_data.first }
+  let(:champ_pj) { dossier.project_champs_public.first }
   let(:attachment) do
     champ_pj.piece_justificative_file.attach(
       io: file,

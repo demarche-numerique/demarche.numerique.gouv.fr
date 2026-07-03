@@ -39,7 +39,7 @@ RSpec.describe Traitement do
 
     it "is true for a correction traitement" do
       traitement = submit_usager_correction do
-        dossier.public_champ_for_update('99', updated_by: dossier.user.email)
+        dossier.public_champ_data_for_update('99', updated_by: dossier.user.email)
           .assign_attributes(value: "Nouvelle valeur")
       end
 
@@ -60,7 +60,7 @@ RSpec.describe Traitement do
     context "when the traitement is a usager correction" do
       subject(:traitement) do
         submit_usager_correction do
-          dossier.public_champ_for_update('99', updated_by: dossier.user.email)
+          dossier.public_champ_data_for_update('99', updated_by: dossier.user.email)
             .assign_attributes(value: "Nouvelle valeur")
         end
       end
@@ -81,7 +81,7 @@ RSpec.describe Traitement do
       subject(:traitement) do
         row_id = repetition_row_id
         submit_usager_correction do
-          dossier.public_champ_for_update("994-#{row_id}", updated_by: dossier.user.email)
+          dossier.public_champ_data_for_update("994-#{row_id}", updated_by: dossier.user.email)
             .assign_attributes(value: "Valeur dans la répétition")
         end
       end
@@ -100,7 +100,7 @@ RSpec.describe Traitement do
 
       subject(:traitement) do
         submit_instructeur_correction(instructeur) do
-          dossier.public_champ_for_update('99', updated_by: instructeur.email)
+          dossier.public_champ_data_for_update('99', updated_by: instructeur.email)
             .assign_attributes(value: "Correction instructeur")
         end
       end
@@ -118,7 +118,7 @@ RSpec.describe Traitement do
       # in-memory champ checkpoint, otherwise #changed_columns comes up empty.
       it "returns the changed column without reloading the dossier" do
         dossier.with_instructeur_buffer_stream do
-          dossier.public_champ_for_update('99', updated_by: instructeur.email)
+          dossier.public_champ_data_for_update('99', updated_by: instructeur.email)
             .assign_attributes(value: "Correction sans reload")
         end
         dossier.save!

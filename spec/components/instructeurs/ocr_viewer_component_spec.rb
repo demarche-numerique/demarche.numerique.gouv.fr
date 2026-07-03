@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 RSpec.describe Instructeurs::OCRViewerComponent, type: :component do
-  let(:champ) { double('champ', ocr_result: doc, dossier_id:, public_id:) }
+  let(:champ) { double('champ', ocr_result: doc, dossier_id:, id: champ_id) }
   let(:component) { described_class.new(champ:) }
 
   let(:dossier_id) { 1 }
-  let(:public_id) { 'public-id-123' }
+  let(:champ_id) { 'champ-id-123' }
 
   describe '#render?' do
     context 'when doc is present' do
@@ -40,7 +40,7 @@ RSpec.describe Instructeurs::OCRViewerComponent, type: :component do
 
       it 'renders header with title and edit button' do
         expect(subject).to have_css('.fr-text-mention--grey', text: 'Données récupérées')
-        expect(subject).to have_link('Modifier', href: "/instructeurs/dossiers/#{dossier_id}/champs/#{public_id}/edit")
+        expect(subject).to have_link('Modifier', href: "/instructeurs/dossiers/#{dossier_id}/champs/#{champ_id}/edit")
       end
     end
 

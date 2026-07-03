@@ -310,7 +310,7 @@ def dossier_factory_create_champ_or_repetition(type_de_champ, dossier)
     types_de_champ = dossier.revision.children_of(type_de_champ)
     2.times do
       row_id = ULID.generate
-      dossier.champ_data << type_de_champ.build_champ(row_id:)
+      dossier.champ_data << type_de_champ.build_champ_data(row_id:)
       types_de_champ.each do |type_de_champ|
         dossier_factory_create_champ(type_de_champ, dossier, row_id:)
       end

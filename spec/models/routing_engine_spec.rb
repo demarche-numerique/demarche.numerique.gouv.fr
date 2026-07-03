@@ -125,7 +125,7 @@ describe RoutingEngine, type: :model do
       context 'with a matching rule' do
         before do
           gi_2.update(routing_rule: ds_in_departement(champ_value(communes_tdc.stable_id), constant('92')))
-          dossier.champ_data.first.update(code_postal: '92500', external_id: '92063')
+          dossier.project_champs_public.first.writable!.update(code_postal: '92500', external_id: '92063')
         end
 
         it { is_expected.to eq(gi_2) }

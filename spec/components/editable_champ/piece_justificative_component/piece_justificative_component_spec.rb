@@ -4,7 +4,7 @@ describe EditableChamp::PieceJustificativeComponent, type: :component do
   let(:procedure) { create(:procedure, :published, types_de_champ_public:) }
   let(:types_de_champ_public) { [{ type: :piece_justificative }] }
   let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-  let(:champ) { dossier.champ_data.first }
+  let(:champ) { dossier.project_champs_public.first }
 
   let(:component) {
     described_class.new(form: instance_double(ActionView::Helpers::FormBuilder, object_name: "dossier[champs_public_attributes]"), champ:)

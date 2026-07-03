@@ -622,7 +622,7 @@ describe Users::DossiersController, type: :controller do
     let(:procedure) { create(:procedure, :published, types_de_champ_public:) }
     let(:types_de_champ_public) { [{ type: :text, mandatory: false }] }
     let!(:dossier) { create(:dossier, user:, procedure:) }
-    let(:first_champ) { dossier.project_champs_public.first }
+    let(:first_champ) { dossier.project_champs_public.first.writable! }
     let(:value) { 'beautiful value' }
     let(:now) { Time.zone.parse('01/01/2100') }
     let(:payload) { { id: dossier.id } }
@@ -979,7 +979,7 @@ describe Users::DossiersController, type: :controller do
     let(:procedure) { create(:procedure, :published, types_de_champ_public:) }
     let(:types_de_champ_public) { [{}, { type: :piece_justificative, mandatory: false }] }
     let(:dossier) { create(:dossier, user:, procedure:, brouillon_close_to_expiration_notice_sent_at: 10.days.ago) }
-    let(:first_champ) { dossier.project_champs_public.first }
+    let(:first_champ) { dossier.project_champs_public.first.writable! }
     let(:piece_justificative_champ) { dossier.project_champs_public.last }
     let(:value) { 'beautiful value' }
     let(:file) { fixture_file_upload('spec/fixtures/files/piece_justificative_0.pdf', 'application/pdf') }
@@ -993,7 +993,7 @@ describe Users::DossiersController, type: :controller do
     end
     let(:champs_public_attributes) do
       {
-        first_champ.public_id => { value: value },
+        first_champ.id => { value: value },
       }
     end
     let(:payload) { submit_payload }
@@ -1016,7 +1016,7 @@ describe Users::DossiersController, type: :controller do
           id: dossier.id,
           dossier: {
             champs_public_attributes: {
-              first_champ.public_id => {
+              first_champ.id => {
                 value: value,
               },
             },
@@ -1048,7 +1048,7 @@ describe Users::DossiersController, type: :controller do
           id: dossier.id,
           dossier: {
             champs_public_attributes: {
-              first_champ.public_id => {
+              first_champ.id => {
                 value:,
               },
             },
@@ -1070,7 +1070,7 @@ describe Users::DossiersController, type: :controller do
 
     context 'when the champ is an address' do
       let(:types_de_champ_public) { [{ type: :address }] }
-      let(:address_champ) { dossier.champ_data.first }
+      let(:address_champ) { dossier.project_champs_public.first.writable! }
       let(:initial_value_json) do
         {
           'label' => '33 Rue Rébeval 75019 Paris',
@@ -1087,7 +1087,7 @@ describe Users::DossiersController, type: :controller do
 
       context 'when not_in_ban is not set (regular BAN address)' do
         let(:champs_public_attributes) do
-          { address_champ.public_id => { street_address: 'donnée injectée' } }
+          { address_champ.id => { street_address: 'donnée injectée' } }
         end
 
         it 'does not permit the out-of-BAN address fields and keeps the original data intact' do
@@ -1099,7 +1099,7 @@ describe Users::DossiersController, type: :controller do
       context 'when not_in_ban is true' do
         let(:champs_public_attributes) do
           {
-            address_champ.public_id => {
+            address_champ.id => {
               not_in_ban: 'true',
               street_address: '12 rue du Test',
               city_name: 'Lyon',
@@ -1143,7 +1143,7 @@ describe Users::DossiersController, type: :controller do
       context 'updates the pj' do
         let(:champs_public_attributes) do
           {
-            piece_justificative_champ.public_id => { piece_justificative_file: file },
+            piece_justificative_champ.id => { piece_justificative_file: file },
           }
         end
 
@@ -1173,7 +1173,7 @@ describe Users::DossiersController, type: :controller do
         # See https://github.com/rails/rails/issues/26726
         let(:champs_public_attributes) do
           {
-            piece_justificative_champ.public_id => { piece_justificative_file: file },
+            piece_justificative_champ.id => { piece_justificative_file: file },
           }
         end
 
@@ -1189,7 +1189,7 @@ describe Users::DossiersController, type: :controller do
         let(:types_de_champ_public) { [{ type: :siret }] }
         let(:champs_public_attributes) do
           {
-            first_champ.public_id => { external_id: },
+            first_champ.id => { external_id: },
           }
         end
 
@@ -1226,12 +1226,12 @@ describe Users::DossiersController, type: :controller do
         let(:types_de_champ_public) { [{ type: :rnf }] }
         let(:champs_public_attributes) do
           {
-            first_champ.public_id => { external_id: '075-FDD-00003-01' },
+            first_champ.id => { external_id: '075-FDD-00003-01' },
           }
         end
 
         before do
-          expect_any_instance_of(ChampData).to receive(:fetch_external_data_later)
+          expect_any_instance_of(Champs::RNFChamp).to receive(:fetch_external_data_later)
           first_champ.update_columns(external_state: 'fetched', value_json: 'a value')
         end
 
@@ -1262,7 +1262,7 @@ describe Users::DossiersController, type: :controller do
         {
           id: dossier.id,
           dossier: {
-            champs_public_attributes: { first_champ.public_id => { value: } },
+            champs_public_attributes: { first_champ.id => { value: } },
           },
         }
       end
@@ -1300,7 +1300,7 @@ describe Users::DossiersController, type: :controller do
           validate:,
           dossier: {
             champs_public_attributes: {
-              number_champ.public_id => { value: },
+              number_champ.id => { value: },
             },
           },
         }
@@ -1385,7 +1385,7 @@ describe Users::DossiersController, type: :controller do
           id: dossier.id,
           dossier: {
             champs_public_attributes: {
-              first_champ.public_id => {
+              first_champ.id => {
                 value: suggestion_value,
                 data: message_encryptor_service.encrypt_and_sign(suggestion_data, purpose: :storage, expires_in: 1.hour),
               },
@@ -1426,7 +1426,7 @@ describe Users::DossiersController, type: :controller do
             id: dossier.id,
             dossier: {
               champs_public_attributes: {
-                first_champ.public_id => {
+                first_champ.id => {
                   refresh_external_data: '1',
                 },
               },
@@ -1462,12 +1462,12 @@ describe Users::DossiersController, type: :controller do
 
         before do
           first_champ.update!(
-            updated_at: 2.days.ago,
             external_state: 'fetched',
             data:,
             value_json:,
             value: 'true'
           )
+          first_champ.update_columns(updated_at: 2.days.ago)
         end
 
         it "first resets external data" do
@@ -1497,7 +1497,7 @@ describe Users::DossiersController, type: :controller do
     let(:types_de_champ_public) { [{}, { type: :piece_justificative }] }
     let(:procedure) { create(:procedure, :published, types_de_champ_public:) }
     let!(:dossier) { create(:dossier, :en_construction, user:, procedure:) }
-    let(:first_champ) { dossier.project_champs_public.first }
+    let(:first_champ) { dossier.project_champs_public.first.writable! }
     let(:first_champ_user_buffer) { dossier.with_update_stream(dossier.user) { dossier.project_champs_public.first } }
     let(:piece_justificative_champ) { dossier.project_champs_public.last }
     let(:piece_justificative_champ_user_buffer) { dossier.with_update_stream(dossier.user) { dossier.project_champs_public.last } }
@@ -1513,7 +1513,7 @@ describe Users::DossiersController, type: :controller do
     end
     let(:champs_public_attributes) do
       {
-        first_champ.public_id => { value: value },
+        first_champ.id => { value: value },
       }
     end
     let(:payload) { submit_payload }
@@ -1541,7 +1541,7 @@ describe Users::DossiersController, type: :controller do
       before { pre_rempli_champ.update_column(:value, 'original') }
 
       let(:champs_public_attributes) do
-        { pre_rempli_champ.public_id => { value: 'forged' } }
+        { pre_rempli_champ.id => { value: 'forged' } }
       end
 
       it 'ignores the update (early return)' do
@@ -1563,7 +1563,7 @@ describe Users::DossiersController, type: :controller do
       context 'updates the pj' do
         let(:champs_public_attributes) do
           {
-            piece_justificative_champ.public_id => { piece_justificative_file: file },
+            piece_justificative_champ.id => { piece_justificative_file: file },
           }
         end
 
@@ -1599,7 +1599,7 @@ describe Users::DossiersController, type: :controller do
             id: dossier.id,
             dossier: {
               champs_public_attributes: {
-                piece_justificative_champ.public_id => {
+                piece_justificative_champ.id => {
                   piece_justificative_file: file,
                 },
               },
@@ -1674,7 +1674,7 @@ describe Users::DossiersController, type: :controller do
           id: dossier.id,
           dossier: {
             champs_public_attributes: {
-              first_champ.public_id => {
+              first_champ.id => {
                 value: value,
               },
             },
@@ -1720,7 +1720,7 @@ describe Users::DossiersController, type: :controller do
           id: dossier.id,
           dossier: {
             champs_public_attributes: {
-              first_champ.public_id => {
+              first_champ.id => {
                 external_id:,
               },
             },
@@ -1767,7 +1767,7 @@ describe Users::DossiersController, type: :controller do
           id: dossier.id,
           dossier: {
             champs_public_attributes: {
-              first_champ.public_id => {
+              first_champ.id => {
                 value: suggestion_value,
                 data: message_encryptor_service.encrypt_and_sign(suggestion_data, purpose: :storage, expires_in: 1.hour),
               },
@@ -1805,7 +1805,7 @@ describe Users::DossiersController, type: :controller do
             id: dossier.id,
             dossier: {
               champs_public_attributes: {
-                first_champ.public_id => {
+                first_champ.id => {
                   refresh_external_data: '1',
                 },
               },
@@ -1841,12 +1841,12 @@ describe Users::DossiersController, type: :controller do
 
         before do
           first_champ.update!(
-            updated_at: 2.days.ago,
             external_state: 'fetched',
             data:,
             value_json:,
             value: 'true'
           )
+          first_champ.update_columns(updated_at: 2.days.ago)
         end
 
         it "first resets external data on user_buffer_stream" do
@@ -2578,7 +2578,7 @@ describe Users::DossiersController, type: :controller do
     let(:types_de_champ_public) { [{ type: :text, stable_id: }] }
     let(:procedure) { create(:procedure, types_de_champ_public:) }
     let(:dossier) { create(:dossier, :en_construction, :with_populated_champs, procedure:, user:) }
-    let(:champ) { dossier.champ_data.first }
+    let(:champ) { dossier.project_champs_public.first }
 
     before do
       sign_in(user)
@@ -2616,7 +2616,7 @@ describe Users::DossiersController, type: :controller do
       end
 
       context 'while the analysis is still pending' do
-        before { dossier.champ_data.first.update_column(:external_state, :waiting_for_job) }
+        before { dossier.project_champs_public.first.update_column(:external_state, :waiting_for_job) }
 
         it 'does not re-announce the pending status on a poll' do
           subject
@@ -2625,7 +2625,7 @@ describe Users::DossiersController, type: :controller do
       end
 
       context 'when the analysis has completed' do
-        before { dossier.champ_data.first.update_columns(external_state: :fetched, value_json: { 'rib' => { 'iban' => 'FR7612345' } }) }
+        before { dossier.project_champs_public.first.update_columns(external_state: :fetched, value_json: { 'rib' => { 'iban' => 'FR7612345' } }) }
 
         it 'announces the result on the poll that observes completion' do
           subject
@@ -2639,7 +2639,7 @@ describe Users::DossiersController, type: :controller do
       let(:types_de_champ_public) { [{ type: :referentiel, referentiel:, stable_id: }] }
 
       context 'when the requested external_id had not been fetched' do
-        before { dossier.champ_data.first.update_columns(external_id: 'kthxbye') }
+        before { dossier.project_champs_public.first.update_columns(external_id: 'kthxbye') }
 
         it 'does not validates errors' do
           subject
@@ -2648,7 +2648,7 @@ describe Users::DossiersController, type: :controller do
       end
 
       context 'when the requested external_id had been fetched' do
-        before { dossier.champ_data.find(&:referentiel?).update_columns(external_id: 'kthxbye', value: "OK", data: {}) }
+        before { dossier.project_champs_public.find(&:referentiel?).update_columns(external_id: 'kthxbye', value: "OK", data: {}) }
         it 'validates errors' do
           subject
           expect(response).not_to include('Référence trouvée : OK')
@@ -2683,7 +2683,11 @@ describe Users::DossiersController, type: :controller do
           end
 
           it 'inclut le champ principal et les champs pré-remplis dans @to_update' do
-            dossier.champ_data.find(&:referentiel?).update_external_data!(data: { ok: 'valeur préremplie', repetition: [{ nom: 'Jeanne' }, { nom: "Bob" }, {}] })
+            referentiel_champ = dossier.with_update_stream(dossier.user) do
+              type_de_champ = dossier.find_type_de_champ_by_stable_id(referentiel_stable_id)
+              dossier.champ_for_update(type_de_champ, updated_by: dossier.user.email)
+            end
+            referentiel_champ.update_external_data!(data: { ok: 'valeur préremplie', repetition: [{ nom: 'Jeanne' }, { nom: "Bob" }, {}] })
 
             get :champ, params: { id: dossier.id, stable_id: referentiel_stable_id }, format: :turbo_stream
 
@@ -2697,7 +2701,7 @@ describe Users::DossiersController, type: :controller do
       end
 
       context 'when the requested external_id is in error' do
-        before { dossier.champ_data.first.update_columns(external_id: 'kthxbye', value: "OK", fetch_external_data_exceptions: [ExternalDataException.new(error: "thxbye", code: 429)]) }
+        before { dossier.project_champs_public.first.update_columns(external_id: 'kthxbye', value: "OK", fetch_external_data_exceptions: [ExternalDataException.new(error: "thxbye", code: 429)]) }
         it 'validates errors' do
           subject
           expect(response).not_to include('Trop de demandes. Nous réessayons pour vous.')
@@ -2721,7 +2725,7 @@ describe Users::DossiersController, type: :controller do
         let(:stable_id) { async_stable_id }
 
         before do
-          dossier.champ_data.find(&:referentiel?).update_columns(external_id: 'kthxbye', value: 'OK', data: {})
+          dossier.project_champs_public.find(&:referentiel?).update_columns(external_id: 'kthxbye', value: 'OK', data: {})
           dossier.champ_data.find { _1.stable_id == checkbox_stable_id }.update_columns(value: 'true')
         end
 

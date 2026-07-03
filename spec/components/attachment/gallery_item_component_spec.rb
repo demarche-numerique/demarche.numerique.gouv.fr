@@ -16,7 +16,7 @@ RSpec.describe Attachment::GalleryItemComponent, type: :component do
 
   context "when attachment is from a public piece justificative champ" do
     let(:champ) do
-      dossier.champ_data.where(private: false).first
+      dossier.project_champs_public.find(&:piece_justificative?)
     end
     let(:libelle) { champ.libelle }
     let(:attachment) { champ.piece_justificative_file.attachments.first }
@@ -49,7 +49,7 @@ RSpec.describe Attachment::GalleryItemComponent, type: :component do
 
   context "when attachment is from a private piece justificative champ" do
     let(:annotation) do
-      dossier.champ_data.where(private: true).first
+      dossier.project_champs_private.find(&:piece_justificative?)
     end
     let(:libelle) { annotation.libelle }
     let(:attachment) { annotation.piece_justificative_file.attachments.first }

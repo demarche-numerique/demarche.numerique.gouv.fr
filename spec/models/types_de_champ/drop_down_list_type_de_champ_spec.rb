@@ -72,14 +72,15 @@ describe TypesDeChamp::DropDownListTypeDeChamp do
 
       describe 'when a champ has a other value' do
         let(:dossier) { create(:dossier, procedure:) }
-        let(:champ) { dossier.project_champs.first }
+        let(:champ) { dossier.project_champs.first.writable! }
 
         it 'matches other' do
           champ.value = '__other__'
           champ.value_other = 'something'
+          champ.save!
 
           expect(champ.value).to eq('something')
-          expect(column.value(champ)).to eq('something')
+          expect(column.value(champ.champ_data)).to eq('something')
           expect(champ_column_value.compute([champ])).to eq('__other__')
         end
       end

@@ -4,7 +4,7 @@ describe Champs::CarteChamp do
   let(:types_de_champ_public) { [{ type: :carte }] }
   let(:procedure) { create(:procedure, types_de_champ_public:) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.champ_data.first.tap { _1.update(geo_areas:) } }
+  let(:champ) { dossier.project_champs_public.first.tap { _1.writable!.update(geo_areas:) } }
   let(:coordinates) { [[[2.3859214782714844, 48.87442541960633], [2.3850631713867183, 48.87273183590832], [2.3809432983398438, 48.87081237174292], [2.3859214782714844, 48.87442541960633]]] }
   let(:geo_json) do
     {

@@ -46,7 +46,7 @@ describe Users::DossiersController, type: :controller do
           dossier: {
             groupe_instructeur_id: dossier.groupe_instructeur_id,
             champs_public_attributes: {
-              last_champ.public_id => {
+              last_champ.id => {
                 with_public_id: true,
                 value: true,
               },

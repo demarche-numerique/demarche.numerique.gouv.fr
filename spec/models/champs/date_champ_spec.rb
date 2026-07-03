@@ -4,7 +4,7 @@ describe Champs::DateChamp do
   let(:types_de_champ_public) { [{ type: :date }] }
   let(:procedure) { create(:procedure, types_de_champ_public:) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:date_champ) { dossier.champ_data.first }
+  let(:date_champ) { dossier.project_champs_public.first }
 
   describe '#convert_to_iso8601_date' do
     it 'preserves nil' do
@@ -69,7 +69,7 @@ describe Champs::DateChamp do
   end
 
   context 'when the value is not in the past' do
-    let(:champ) { dossier.project_champs_public.first.tap { _1.update(value:) } }
+    let(:champ) { dossier.project_champs_public.first.tap { _1.writable!.update(value:) } }
     subject { champ.validate(:champ_value) }
 
     context 'all dates are accepted' do
@@ -90,7 +90,7 @@ describe Champs::DateChamp do
   end
 
   context 'when there is a range' do
-    let(:champ) { dossier.project_champs_public.first.tap { _1.update(value:) } }
+    let(:champ) { dossier.project_champs_public.first.tap { _1.writable!.update(value:) } }
     subject { champ.validate(:champ_value) }
 
     before { champ.type_de_champ.update(options: { range_date: '1', start_date: '2017-11-30', end_date: '2017-12-31' }) }
@@ -145,7 +145,7 @@ describe Champs::DateChamp do
   end
 
   context 'when birthdate option is enabled' do
-    let(:champ) { dossier.project_champs_public.first.tap { _1.update(value:) } }
+    let(:champ) { dossier.project_champs_public.first.tap { _1.writable!.update(value:) } }
     subject { champ.validate(:champ_value) }
 
     before { champ.type_de_champ.update(options: { birthdate: "1" }) }

@@ -22,8 +22,8 @@ describe TypesDeChamp::AddressTypeDeChamp do
     describe 'main value column' do
       let(:main_column) { columns.find { _1.label == 'addr' } }
       let(:champ) do
-        Champs::AddressChamp.new(
-          type_de_champ: address_tdc,
+        build_projected_champ(
+          address_tdc,
           value: '2 rue des Démarches',
           value_json: {
             'label' => '2 rue des Démarches grenoble (38100)',
@@ -35,7 +35,7 @@ describe TypesDeChamp::AddressTypeDeChamp do
       end
 
       it 'returns the canonical address label, like the PDF and the UI (not the raw value)' do
-        expect(main_column.value(champ)).to eq('2 rue des Démarches grenoble (38100)')
+        expect(main_column.value(champ.champ_data)).to eq('2 rue des Démarches grenoble (38100)')
       end
     end
 

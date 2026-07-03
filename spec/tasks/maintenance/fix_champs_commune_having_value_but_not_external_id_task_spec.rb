@@ -7,9 +7,9 @@ module Maintenance
     describe "#process" do
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :communes }]) }
       let(:dossier) { create(:dossier, state, :with_populated_champs, procedure:) }
-      let(:champ) { dossier.champ_data.first }
+      let(:champ) { dossier.project_champs_public.first }
       subject(:process) do
-        described_class.process(champ)
+        described_class.process(champ.champ_data)
       end
 
       context 'when search find one result', vcr: { cassette_name: 'fix-champs-commune-with-one-results' } do

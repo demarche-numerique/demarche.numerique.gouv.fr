@@ -26,13 +26,13 @@ describe EditableChamp::DatetimeComponent, type: :component do
     end
 
     context 'when the value is not a valid datetime' do
-      let(:champ) { Champs::DatetimeChamp.new(value: 'invalid', dossier:, stable_id: 99) }
+      let(:champ) { build_projected_champ(build(:type_de_champ_datetime, stable_id: 99), dossier:, value: nil).tap { _1.value = 'invalid' } }
 
       it { is_expected.to be_nil }
     end
 
     context 'when the value is a valid datetime' do
-      let(:champ) { Champs::DatetimeChamp.new(value: '2020-01-01T00:00:00+01:00', dossier:, stable_id: 99) }
+      let(:champ) { build_projected_champ(build(:type_de_champ_datetime, stable_id: 99), dossier:, value: '2020-01-01T00:00:00+01:00') }
 
       it { is_expected.to eq('2020-01-01T00:00') }
     end

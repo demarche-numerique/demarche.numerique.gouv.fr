@@ -4,7 +4,7 @@ describe Champs::PreRempliChamp do
   let(:types_de_champ_public) { [{ type: :pre_rempli }] }
   let(:procedure) { create(:procedure, types_de_champ_public:) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.champ_data.first.tap { _1.update_column(:value, value) } }
+  let(:champ) { dossier.project_champs_public.first.tap { _1.update_column(:value, value) } }
 
   describe '#selected' do
     subject { champ.selected }

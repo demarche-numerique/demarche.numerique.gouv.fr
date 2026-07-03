@@ -4,7 +4,7 @@ describe Champs::COJOChamp, type: :model do
   let(:types_de_champ_public) { [{ type: :cojo }] }
   let(:procedure) { create(:procedure, types_de_champ_public:) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.champ_data.first }
+  let(:champ) { dossier.project_champs_public.first }
 
   let(:external_id) { nil }
   let(:url) { COJOService.new.send(:url) }

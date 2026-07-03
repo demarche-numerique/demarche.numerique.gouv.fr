@@ -31,7 +31,7 @@ describe 'Quotient familial piece justificative upload', js: true do
     end
 
     dossier = Dossier.last
-    champ = dossier.champ_data.find { _1.type_champ == 'quotient_familial' }
+    champ = dossier.champ_data.find { _1.is_type?('quotient_familial') }
     wait_until { champ.reload.piece_justificative_file.attached? }
 
     expect(champ.piece_justificative_file).to be_attached

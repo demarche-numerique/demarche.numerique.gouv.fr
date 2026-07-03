@@ -4,7 +4,7 @@ describe Champs::QuotientFamilialChamp, type: :model do
   let(:types_de_champ_public) { [{ type: :quotient_familial }] }
   let(:procedure) { create(:procedure, types_de_champ_public:, for_individual: true) }
   let(:dossier) { create(:dossier, procedure:, for_tiers: false, for_procedure_preview: false) }
-  let(:champ) { dossier.champ_data.first }
+  let(:champ) { dossier.project_champs_public.first }
   let!(:fci) { create(:france_connect_information, user: dossier.user) }
 
   describe '#ready_for_external_call?' do

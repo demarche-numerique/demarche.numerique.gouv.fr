@@ -39,7 +39,7 @@ describe TypesDeChamp::PieceJustificativeTypeDeChamp do
     context 'when nature is titre_identite' do
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative, nature: 'titre_identite' }]) }
       let(:dossier) { create(:dossier, procedure:) }
-      let(:champ) { dossier.champ_data.first }
+      let(:champ) { dossier.project_champs_public.first }
       let(:type_de_champ) { champ.type_de_champ }
 
       it 'returns "absent" when no file attached' do
@@ -55,7 +55,7 @@ describe TypesDeChamp::PieceJustificativeTypeDeChamp do
     context 'when nature is not titre_identite' do
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative }]) }
       let(:dossier) { create(:dossier, procedure:) }
-      let(:champ) { dossier.champ_data.first }
+      let(:champ) { dossier.project_champs_public.first }
       let(:type_de_champ) { champ.type_de_champ }
 
       it 'returns filenames' do
@@ -72,7 +72,7 @@ describe TypesDeChamp::PieceJustificativeTypeDeChamp do
   describe '#champ_value_for_api' do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative }]) }
     let(:dossier) { create(:dossier, procedure:) }
-    let(:champ) { dossier.champ_data.first }
+    let(:champ) { dossier.project_champs_public.first }
 
     before { allow(ClamavService).to receive(:safe_file?).and_return(true) }
 

@@ -3,7 +3,7 @@
 describe Champs::RegionChamp, type: :model do
   let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :regions }]) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.project_champs_public.first.tap { _1.update(value:, external_id:) } }
+  let(:champ) { dossier.project_champs_public.first.tap { _1.writable!.update(value:, external_id:) } }
   let(:value) { nil }
   let(:external_id) { nil }
 
@@ -74,8 +74,8 @@ describe Champs::RegionChamp, type: :model do
     end
 
     it 'with nil' do
-      champ.write_attribute(:value, 'Guadeloupe')
-      champ.write_attribute(:external_id, '01')
+      write_champ_data_attributes(champ, value: 'Guadeloupe')
+      write_champ_data_attributes(champ, external_id: '01')
       champ.value = nil
       expect(champ.external_id).to be_nil
       expect(champ.value).to be_nil
@@ -84,8 +84,8 @@ describe Champs::RegionChamp, type: :model do
     end
 
     it 'with blank' do
-      champ.write_attribute(:value, 'Guadeloupe')
-      champ.write_attribute(:external_id, '01')
+      write_champ_data_attributes(champ, value: 'Guadeloupe')
+      write_champ_data_attributes(champ, external_id: '01')
       champ.value = ''
       expect(champ.external_id).to be_nil
       expect(champ.value).to be_nil
@@ -94,7 +94,7 @@ describe Champs::RegionChamp, type: :model do
     end
 
     it 'with initial nil' do
-      champ.write_attribute(:value, nil)
+      write_champ_data_attributes(champ, value: nil)
       expect(champ.external_id).to be_nil
       expect(champ.value).to be_nil
       expect(champ.selected).to be_nil
@@ -102,7 +102,7 @@ describe Champs::RegionChamp, type: :model do
     end
 
     it 'with initial name' do
-      champ.write_attribute(:value, 'Guadeloupe')
+      write_champ_data_attributes(champ, value: 'Guadeloupe')
       expect(champ.external_id).to be_nil
       expect(champ.value).to eq('Guadeloupe')
       expect(champ.selected).to eq('01')

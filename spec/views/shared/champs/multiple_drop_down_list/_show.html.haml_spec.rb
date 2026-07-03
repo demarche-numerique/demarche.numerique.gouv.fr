@@ -3,7 +3,7 @@
 describe 'views/shared/champs/multiple_drop_down_list/_show', type: :view do
   let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :multiple_drop_down_list }]) }
   let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-  let(:champ) { dossier.champ_data.first }
+  let(:champ) { dossier.project_champs_public.first }
 
   before { champ.update(value: champ.drop_down_options) }
   subject { render partial: 'shared/champs/multiple_drop_down_list/show', locals: { champ: } }

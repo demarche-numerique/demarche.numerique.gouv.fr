@@ -8,20 +8,22 @@ describe Logic::NotInRegionOperator do
 
   let(:tdc_commune) { procedure.active_revision.types_de_champ.first }
   let(:champ_commune) do
-    Champs::CommuneChamp.new(code_postal: '92500', external_id: '92063', stable_id: tdc_commune.stable_id, dossier:)
+    build_projected_champ(tdc_commune, dossier:, external_id: '92063')
+      .tap { |c| c.code_postal = '92500' }
       .tap { |c| c.send(:on_codes_change) } # private method called before save to fill value, which is required for compute
   end
 
   let(:tdc_epci) { procedure.active_revision.types_de_champ.second }
   let(:champ_epci) do
-    Champs::EpciChamp.new(code_departement: '43', code_region: '32', external_id: '244301016', stable_id: tdc_epci.stable_id, dossier:)
+    build_projected_champ(tdc_epci, dossier:, external_id: '244301016')
+      .tap { |c| c.code_departement = '43' }
       .tap do |c|
         c.send(:on_epci_name_changes)
       end # private method called before save to fill value, which is required for compute
   end
 
   let(:tdc_departement) { procedure.active_revision.types_de_champ.third }
-  let(:champ_departement) { Champs::DepartementChamp.new(value: '01', stable_id: tdc_departement.stable_id, dossier:) }
+  let(:champ_departement) { build_projected_champ(tdc_departement, dossier:, value: nil).tap { |c| c.value = '01' } }
 
   # let(:champ_commune) { create(:champ_communes, code_postal: '92500', external_id: '92063') }
   # let(:champ_epci) { create(:champ_epci, code_departement: '02', code_region: "32") }

@@ -6,7 +6,7 @@ RSpec.describe Champs::AnnuaireEducationChamp do
   describe '#update_external_data!' do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :annuaire_education }]) }
     let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-    let(:champ) { dossier.champ_data.first.tap { _1.update_column(:data, 'any data') } }
+    let(:champ) { dossier.project_champs_public.first.writable!.tap { _1.update_column(:data, 'any data') } }
     subject { champ.send(:update_external_data!, data: data) }
 
     shared_examples "a data updater (without updating the value)" do |data|

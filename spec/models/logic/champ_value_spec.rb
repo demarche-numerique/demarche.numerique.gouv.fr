@@ -14,7 +14,7 @@ describe Logic::ChampValue do
 
     context 'yes_no tdc' do
       let(:tdc_type) { :yes_no }
-      let(:champ) { Champs::YesNoChamp.new(value: value, stable_id: tdc.stable_id, dossier:) }
+      let(:champ) { build_projected_champ(tdc, dossier:, value:) }
       let(:value) { 'true' }
 
       it { expect(champ_value(champ.stable_id).type([champ.type_de_champ])).to eq(:boolean) }
@@ -40,7 +40,7 @@ describe Logic::ChampValue do
 
     context 'integer tdc' do
       let(:tdc_type) { :integer_number }
-      let(:champ) { Champs::IntegerNumberChamp.new(value:, stable_id: tdc.stable_id, dossier:) }
+      let(:champ) { build_projected_champ(tdc, dossier:, value:) }
       let(:value) { '42' }
 
       it do
@@ -57,7 +57,7 @@ describe Logic::ChampValue do
 
     context 'decimal tdc' do
       let(:tdc_type) { :decimal_number }
-      let(:champ) { Champs::DecimalNumberChamp.new(value:, stable_id: tdc.stable_id, dossier:) }
+      let(:champ) { build_projected_champ(tdc, dossier:, value:) }
       let(:value) { '42.01' }
 
       it do
@@ -68,7 +68,7 @@ describe Logic::ChampValue do
 
     context 'dropdown tdc' do
       let(:tdc_type) { :drop_down_list }
-      let(:champ) { Champs::DropDownListChamp.new(value:, other:, stable_id: tdc.stable_id, dossier:) }
+      let(:champ) { build_projected_champ(tdc, dossier:, value:).tap { |c| c.other = other } }
       let(:value) { 'val1' }
       let(:other) { nil }
 
@@ -97,7 +97,7 @@ describe Logic::ChampValue do
 
     context 'pre_rempli tdc' do
       let(:tdc_type) { :pre_rempli }
-      let(:champ) { Champs::PreRempliChamp.new(value:, stable_id: tdc.stable_id, dossier:) }
+      let(:champ) { build_projected_champ(tdc, dossier:, value:) }
       let(:value) { 'option1' }
 
       it do
@@ -127,7 +127,7 @@ describe Logic::ChampValue do
 
     context 'checkbox tdc' do
       let(:tdc_type) { :checkbox }
-      let(:champ) { Champs::CheckboxChamp.new(value:, stable_id: tdc.stable_id, dossier:) }
+      let(:champ) { build_projected_champ(tdc, dossier:, value:) }
       let(:value) { 'true' }
 
       it do
@@ -138,7 +138,7 @@ describe Logic::ChampValue do
 
     context 'departement tdc' do
       let(:tdc_type) { :departements }
-      let(:champ) { Champs::DepartementChamp.new(value:, stable_id: tdc.stable_id, dossier:) }
+      let(:champ) { build_projected_champ(tdc, dossier:, value: nil).tap { |c| c.value = value } }
       let(:value) { '02' }
 
       it do
@@ -149,7 +149,7 @@ describe Logic::ChampValue do
 
     context 'region tdc' do
       let(:tdc_type) { :regions }
-      let(:champ) { Champs::RegionChamp.new(value:, stable_id: tdc.stable_id, dossier:) }
+      let(:champ) { build_projected_champ(tdc, dossier:, value: nil).tap { |c| c.value = value } }
       let(:value) { 'La Réunion' }
 
       it { is_expected.to eq('04') }
@@ -158,7 +158,8 @@ describe Logic::ChampValue do
     context 'commune tdc' do
       let(:tdc_type) { :communes }
       let(:champ) do
-        Champs::CommuneChamp.new(code_postal:, external_id:, stable_id: tdc.stable_id, dossier:)
+        build_projected_champ(tdc, dossier:, external_id:)
+          .tap { |c| c.code_postal = code_postal }
           .tap { |c| c.send(:on_codes_change) } # private method called before save to fill value, which is required for compute
       end
       let(:code_postal) { '92500' }
@@ -172,7 +173,8 @@ describe Logic::ChampValue do
     context 'epci tdc' do
       let(:tdc_type) { :epci }
       let(:champ) do
-        Champs::EpciChamp.new(code_departement:, external_id:, stable_id: tdc.stable_id, dossier:)
+        build_projected_champ(tdc, dossier:, external_id:)
+          .tap { |c| c.code_departement = code_departement }
           .tap { |c| c.send(:on_epci_name_changes) } # private method called before save to fill value, which is required for compute
       end
       let(:code_departement) { '43' }
@@ -183,7 +185,7 @@ describe Logic::ChampValue do
 
     describe 'errors' do
       let(:tdc_type) { :number }
-      let(:champ) { Champs::IntegerNumberChamp.new(value: nil, stable_id: tdc.stable_id, dossier:) }
+      let(:champ) { build_projected_champ(tdc, dossier:) }
 
       it do
         expect(champ_value(champ.stable_id).errors([champ.type_de_champ])).to be_empty
@@ -193,7 +195,7 @@ describe Logic::ChampValue do
 
     describe '#sources' do
       let(:tdc_type) { :number }
-      let(:champ) { Champs::IntegerNumberChamp.new(value: nil, stable_id: tdc.stable_id, dossier:) }
+      let(:champ) { build_projected_champ(tdc, dossier:) }
 
       it { expect(champ_value(champ.stable_id).sources).to eq([champ.stable_id]) }
     end

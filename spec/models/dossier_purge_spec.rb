@@ -28,7 +28,7 @@ describe Dossier, type: :model do
       before do
         51.times do |i|
           type_de_champ = create(:type_de_champ_text, procedure:, libelle: "Test #{i}")
-          dossier.champ_data << type_de_champ.build_champ(value: "value #{i}")
+          dossier.champ_data << type_de_champ.build_champ_data(value: "value #{i}")
         end
         dossier.save!
       end
@@ -44,7 +44,7 @@ describe Dossier, type: :model do
       let(:procedure) { create(:procedure_with_dossiers, :published) }
       let(:dossier) { procedure.dossiers.first }
       let(:type_de_champ) { create(:type_de_champ_text, procedure:, libelle: 'Test') }
-      let!(:champ) { dossier.champ_data.create!(type_de_champ:, value: 'kept') }
+      let!(:champ) { dossier.champ_data.create!(**type_de_champ.params_for_champ_data, value: 'kept') }
 
       before do
         allow(dossier).to receive(:destroy).and_raise(StandardError, 'boom')
@@ -90,7 +90,7 @@ describe Dossier, type: :model do
       before do
         51.times do |i|
           type_de_champ = create(:type_de_champ_text, procedure:, libelle: "Test #{i}")
-          dossier.champ_data << type_de_champ.build_champ(value: "value #{i}")
+          dossier.champ_data << type_de_champ.build_champ_data(value: "value #{i}")
         end
         dossier.save!
       end
@@ -106,7 +106,7 @@ describe Dossier, type: :model do
       let(:procedure) { create(:procedure_with_dossiers, :published) }
       let(:dossier) { procedure.dossiers.first }
       let(:type_de_champ) { create(:type_de_champ_text, procedure:, libelle: 'Test') }
-      let!(:champ) { dossier.champ_data.create!(type_de_champ:, value: 'kept') }
+      let!(:champ) { dossier.champ_data.create!(**type_de_champ.params_for_champ_data, value: 'kept') }
 
       before do
         allow(dossier).to receive(:destroy).and_raise(StandardError, 'boom')

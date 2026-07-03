@@ -155,7 +155,8 @@ RSpec.describe DossierPrefillableConcern do
     private
 
     def find_champ_by_stable_id(dossier, stable_id)
-      dossier.champ_data.find_by(stable_id:)
+      # Production builds prefill champs through champ_for_update (writable).
+      dossier.project_champs.find { it.stable_id == stable_id }&.writable!
     end
   end
 end

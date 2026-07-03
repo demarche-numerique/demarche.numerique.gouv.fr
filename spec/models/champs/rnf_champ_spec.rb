@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe Champs::RNFChamp, type: :model do
-  let(:champ) { described_class.new(external_id:) }
+  let(:champ) { build_projected_champ(build(:type_de_champ_rnf), external_id:) }
   let(:external_id) { '075-FDD-00003-01' }
   let(:body) { Rails.root.join('spec', 'fixtures', 'files', 'api_rnf', "#{response_type}.json").read }
   let(:response_type) { 'valid' }
@@ -246,7 +246,7 @@ describe Champs::RNFChamp, type: :model do
   end
 
   describe 'for_export' do
-    let(:champ) { described_class.new(external_id:, data: JSON.parse(body)) }
+    let(:champ) { build_projected_champ(build(:type_de_champ_rnf), external_id:, data: JSON.parse(body)) }
     before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_rnf)) }
     it do
       expect(champ.type_de_champ.champ_value_for_export(champ, :value)).to eq '075-FDD-00003-01'

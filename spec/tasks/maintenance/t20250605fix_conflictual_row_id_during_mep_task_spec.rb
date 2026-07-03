@@ -11,7 +11,7 @@ module Maintenance
       let(:type_de_champ) { dossier.revision.types_de_champ_public.first }
 
       before {
-        dossier.champ_data.create(**type_de_champ.params_for_champ.merge(row_id: 'N'))
+        dossier.champ_data.create(**type_de_champ.params_for_champ_data.merge(row_id: 'N'))
       }
 
       it { expect { subject }.not_to change { dossier.reload.updated_at } }

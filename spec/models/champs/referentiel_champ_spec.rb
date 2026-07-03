@@ -8,8 +8,8 @@ describe Champs::ReferentielChamp, type: :model do
   let(:types_de_champ_public) { [{ type: :referentiel, referentiel: }] }
   let(:procedure) { create(:procedure, types_de_champ_public:) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:referentiel_champ) { dossier.champ_data.find(&:referentiel?) }
-  let(:champ) { dossier.project_champs_public.find(&:referentiel?) }
+  let(:referentiel_champ) { dossier.project_champs_public.find(&:referentiel?).writable! }
+  let(:champ) { referentiel_champ }
 
   describe '#valid?' do
     context 'when the champ is pending' do

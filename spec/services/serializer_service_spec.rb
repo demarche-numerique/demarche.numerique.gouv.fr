@@ -3,7 +3,7 @@
 describe SerializerService do
   let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :siret }]) }
   let(:dossier) { create(:dossier, :en_construction, :with_populated_champs, procedure:) }
-  let(:champ) { dossier.champ_data.first }
+  let(:champ) { dossier.project_champs_public.first }
   let(:etablissement) { champ.etablissement }
 
   describe 'champ' do

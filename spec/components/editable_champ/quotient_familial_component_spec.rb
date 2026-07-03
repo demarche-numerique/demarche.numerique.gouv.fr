@@ -3,7 +3,7 @@
 describe EditableChamp::QuotientFamilialComponent, type: :component do
   let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :quotient_familial }]) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.project_champs_public.first }
+  let(:champ) { dossier.project_champs_public.first.writable! }
 
   subject(:render) do
     component = nil
@@ -59,7 +59,7 @@ describe EditableChamp::QuotientFamilialComponent, type: :component do
     end
 
     context "when last update is older than refresh delay" do
-      before { champ.update(updated_at: 2.days.ago) }
+      before { champ.update_columns(updated_at: 2.days.ago) }
 
       it "renders enabled refresh button" do
         expect(subject).to have_button('Actualiser mes données', disabled: false)
@@ -67,7 +67,7 @@ describe EditableChamp::QuotientFamilialComponent, type: :component do
     end
 
     context "when last update is recent (< refresh delay)" do
-      before { champ.update(updated_at: 1.hour.ago) }
+      before { champ.update_columns(updated_at: 1.hour.ago) }
 
       it "renders disabled refresh button" do
         expect(subject).to have_button('Actualiser mes données', disabled: true)

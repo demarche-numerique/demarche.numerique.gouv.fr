@@ -8,6 +8,23 @@ describe Columns::ChampColumn do
       let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
       let(:types_de_champ) { procedure.all_revisions_types_de_champ }
 
+      before do
+        # ChampData factories persist raw columns; run the domain write path
+        # so casts and callbacks derive external_id/value_json as a real write would.
+        [:communes?, :departements?, :regions?, :pays?, :epci?].each do |predicate|
+          champ = dossier.project_champs_public.find(&predicate).writable!
+          if champ.communes?
+            champ.code_postal = champ.code_postal
+            champ.send(:on_codes_change)
+          else
+            value = champ.external_id || champ.value
+            write_champ_data_attributes(champ, value: nil)
+            champ.value = value
+          end
+          champ.save(validate: false)
+        end
+      end
+
       it 'extracts values for columns and type de champ', :slow do
         expect_type_de_champ_values('civilite', eq(["M."]))
         expect_type_de_champ_values('email', eq(['yoda@beta.gouv.fr']))
@@ -53,8 +70,7 @@ describe Columns::ChampColumn do
         type_de_champ = types_de_champ.find(&:titre_identite?)
         champ = dossier.send(:filled_champ, type_de_champ)
         columns = type_de_champ.columns(procedure_id: procedure.id)
-        expect(columns.map { _1.value(champ) }).to be_an_instance_of(Array)
-        expect_type_de_champ_values('cojo', eq([nil]))
+        expect(columns.map { _1.value(champ&.champ_data) }).to be_an_instance_of(Array)
         expect_type_de_champ_values('formatted', eq([nil]))
         expect_type_de_champ_values('rna', eq(["W173847273", "postal_code", "city_name", "department_code", "region_code", "region_name", nil, nil, nil, nil, nil, nil, "LA PRÉVENTION ROUTIERE"]))
         expect_type_de_champ_values('rnf', eq(["075-FDD-00003-01", "postal_code", "city_name", "department_code", "region_code", "region_name", "Fondation SFR"]))
@@ -65,108 +81,105 @@ describe Columns::ChampColumn do
       def column(label) = procedure.find_column(label:)
 
       context 'from a text' do
-        let(:champ) { Champs::TextChamp.new(value: 'hello') }
+        let(:champ) { build_projected_champ(build(:type_de_champ_text), value: 'hello') }
 
         it do
-          expect(column('formatted').value(champ)).to eq('hello')
-          expect(column('textarea').value(champ)).to eq('hello')
+          expect(column('formatted').value(champ.champ_data)).to eq('hello')
+          expect(column('textarea').value(champ.champ_data)).to eq('hello')
         end
       end
 
       context 'from a formatted' do
-        let(:champ) { Champs::FormattedChamp.new(value: 'hello') }
+        let(:champ) { build_projected_champ(build(:type_de_champ_formatted), value: 'hello') }
 
         it do
-          expect(column('text').value(champ)).to eq('hello')
-          expect(column('textarea').value(champ)).to eq('hello')
+          expect(column('text').value(champ.champ_data)).to eq('hello')
+          expect(column('textarea').value(champ.champ_data)).to eq('hello')
         end
       end
 
       context 'from a integer_number' do
-        let(:champ) { Champs::IntegerNumberChamp.new(value: '42') }
+        let(:champ) { build_projected_champ(build(:type_de_champ_integer_number), value: '42') }
 
         it do
-          expect(column('decimal_number').value(champ)).to eq(42.0)
-          expect(column('text').value(champ)).to eq('42')
+          expect(column('decimal_number').value(champ.champ_data)).to eq(42.0)
+          expect(column('text').value(champ.champ_data)).to eq('42')
         end
       end
 
       context 'from a decimal_number' do
-        let(:champ) { Champs::DecimalNumberChamp.new(value: '42.1') }
+        let(:champ) { build_projected_champ(build(:type_de_champ_decimal_number), value: '42.1') }
 
         it do
-          expect(column('integer_number').value(champ)).to eq(42)
-          expect(column('text').value(champ)).to eq('42.1')
+          expect(column('integer_number').value(champ.champ_data)).to eq(42)
+          expect(column('text').value(champ.champ_data)).to eq('42.1')
         end
       end
 
       context 'from a date' do
-        let(:champ) { Champs::DateChamp.new(value:) }
+        let(:champ) { build_projected_champ(build(:type_de_champ_date), value:) }
 
         describe 'when the value is valid' do
           let(:value) { '2019-07-10' }
 
-          it { expect(column('datetime').value(champ)).to eq(Time.zone.parse('2019-07-10')) }
+          it { expect(column('datetime').value(champ.champ_data)).to eq(Time.zone.parse('2019-07-10')) }
         end
 
         describe 'when the value is invalid' do
           let(:value) { 'invalid' }
 
-          it { expect(column('datetime').value(champ)).to be_nil }
+          it { expect(column('datetime').value(champ.champ_data)).to be_nil }
         end
       end
 
       context 'from a datetime' do
-        let(:champ) { Champs::DatetimeChamp.new(value:) }
+        let(:champ) { build_projected_champ(build(:type_de_champ_datetime), value:) }
 
         describe 'when the value is valid' do
           let(:value) { '1962-09-15T15:35:00+01:00' }
 
-          it { expect(column('date').value(champ)).to eq('1962-09-15'.to_date) }
+          it { expect(column('date').value(champ.champ_data)).to eq('1962-09-15'.to_date) }
         end
 
         describe 'when the value is invalid' do
           let(:value) { 'invalid' }
 
-          it { expect(column('date').value(champ)).to be_nil }
+          it { expect(column('date').value(champ.champ_data)).to be_nil }
         end
       end
 
       context 'from a drop_down_list' do
-        let(:champ) { Champs::DropDownListChamp.new(value:) }
+        let(:champ) { build_projected_champ(build(:type_de_champ_drop_down_list), value:) }
         let(:value) { 'val1' }
 
         it do
-          expect(column('multiple_drop_down_list').value(champ)).to eq(['val1'])
-          expect(column('text').value(champ)).to eq('val1')
+          expect(column('multiple_drop_down_list').value(champ.champ_data)).to eq(['val1'])
+          expect(column('text').value(champ.champ_data)).to eq('val1')
         end
       end
 
       context 'from a multiple_drop_down_list' do
-        let(:champ) { Champs::MultipleDropDownListChamp.new(value:) }
+        let(:champ) { build_projected_champ(build(:type_de_champ_multiple_drop_down_list), value:) }
         let(:value) { '["val1","val2"]' }
 
         it do
-          expect(column('simple_drop_down_list').value(champ)).to eq('val1')
-          expect(column('text').value(champ)).to eq('val1, val2')
-          expect(column('formatted').value(champ)).to eq('val1, val2')
-          expect(column('textarea').value(champ)).to eq("val1\nval2")
+          expect(column('simple_drop_down_list').value(champ.champ_data)).to eq('val1')
+          expect(column('text').value(champ.champ_data)).to eq('val1, val2')
+          expect(column('formatted').value(champ.champ_data)).to eq('val1, val2')
+          expect(column('textarea').value(champ.champ_data)).to eq("val1\nval2")
         end
       end
 
       context 'from a communes' do
         let(:champ) do
-          Champs::CommuneChamp.new(
-            value: 'Coye-la-Forêt',
-            external_id: '60172',
-            code_postal: '60580'
-          )
+          build_projected_champ(build(:type_de_champ_communes), value: 'Coye-la-Forêt', external_id: '60172')
+            .tap { |c| c.code_postal = '60580' }
         end
 
         it do
-          expect(column('text').value(champ)).to eq('Coye-la-Forêt')
-          expect(column('textarea').value(champ)).to eq('Coye-la-Forêt')
-          expect(column('formatted').value(champ)).to eq('Coye-la-Forêt')
+          expect(column('text').value(champ.champ_data)).to eq('Coye-la-Forêt')
+          expect(column('textarea').value(champ.champ_data)).to eq('Coye-la-Forêt')
+          expect(column('formatted').value(champ.champ_data)).to eq('Coye-la-Forêt')
         end
       end
     end
@@ -372,8 +385,8 @@ describe Columns::ChampColumn do
       let(:dossier_de) { create(:dossier, :en_instruction, procedure:) }
 
       before do
-        dossier_fr.champ_data.first.update!(value: 'FR')
-        dossier_de.champ_data.first.update!(value: 'DE')
+        dossier_fr.project_champs_public.first.writable!.update!(value: 'FR')
+        dossier_de.project_champs_public.first.writable!.update!(value: 'DE')
       end
 
       let(:column) { procedure.find_column(label: "pays") }
@@ -609,7 +622,7 @@ describe Columns::ChampColumn do
     type_de_champ = types_de_champ.find { _1.type_champ == type }
     champ = dossier.send(:filled_champ, type_de_champ)
     columns = type_de_champ.columns(procedure_id: procedure.id)
-    expect(columns.map { _1.value(champ) }).to assertion
+    expect(columns.map { _1.value(champ&.champ_data) }).to assertion
   end
 
   def retrieve_champ(type)

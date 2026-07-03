@@ -196,12 +196,12 @@ RSpec.describe DossierChampsConcern do
   describe '#filled_champs_public' do
     let(:types_de_champ_public) do
       [
-        { type: :header_section },
-        { type: :text, libelle: "Un champ text" },
-        { type: :text, libelle: "Un autre champ text" },
-        { type: :yes_no, libelle: "Un champ yes no" },
-        { type: :repetition, libelle: "Un champ répétable", mandatory: true, children: [{ type: :text, libelle: 'Nom' }] },
-        { type: :explication },
+        { type: :header_section, stable_id: 9910 },
+        { type: :text, libelle: "Un champ text", stable_id: 9911 },
+        { type: :text, libelle: "Un autre champ text", stable_id: 9912 },
+        { type: :yes_no, libelle: "Un champ yes no", stable_id: 9913 },
+        { type: :repetition, libelle: "Un champ répétable", stable_id: 9914, mandatory: true, children: [{ type: :text, libelle: 'Nom', stable_id: 9915 }] },
+        { type: :explication, stable_id: 9916 },
       ]
     end
     let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
@@ -216,9 +216,9 @@ RSpec.describe DossierChampsConcern do
   describe '#filled_champs_private' do
     let(:types_de_champ_private) do
       [
-        { type: :header_section },
-        { type: :text, libelle: "Une annotation" },
-        { type: :explication },
+        { type: :header_section, stable_id: 9950 },
+        { type: :text, libelle: "Une annotation", stable_id: 9951 },
+        { type: :explication, stable_id: 9952 },
       ]
     end
     subject { dossier.filled_champs_private }
@@ -292,7 +292,7 @@ RSpec.describe DossierChampsConcern do
     }
 
     context "missing champ" do
-      before { dossier; Champs::TextChamp.destroy_all }
+      before { dossier; ChampData.where(type: "Champs::TextChamp").destroy_all }
 
       it {
         expect(subject.size).to eq(2)
@@ -302,14 +302,14 @@ RSpec.describe DossierChampsConcern do
     end
   end
 
-  describe "#champ_for_update" do
+  describe "#champ_data_for_update" do
     let(:type_de_champ_repetition) { dossier.find_type_de_champ_by_stable_id(993) }
     let(:type_de_champ_public) { dossier.find_type_de_champ_by_stable_id(99) }
     let(:type_de_champ_private) { dossier.find_type_de_champ_by_stable_id(995) }
     let(:row_id) { nil }
 
     context "public champ" do
-      subject { dossier.champ_for_update(type_de_champ_public, row_id:, updated_by: dossier.user.email) }
+      subject { dossier.champ_data_for_update(type_de_champ_public, row_id:, updated_by: dossier.user.email) }
 
       it {
         expect(subject.persisted?).to be_truthy
@@ -327,11 +327,11 @@ RSpec.describe DossierChampsConcern do
       end
 
       context "missing champ" do
-        before { dossier; Champs::TextChamp.destroy_all }
+        before { dossier; ChampData.where(type: "Champs::TextChamp").destroy_all }
 
         it {
           expect(subject.persisted?).to be_truthy
-          expect(subject.is_a?(Champs::TextChamp)).to be_truthy
+          expect(subject.type).to eq("Champs::TextChamp")
         }
 
         context "in repetition" do
@@ -340,7 +340,7 @@ RSpec.describe DossierChampsConcern do
 
           it {
             expect(subject.persisted?).to be_truthy
-            expect(subject.is_a?(Champs::TextChamp)).to be_truthy
+            expect(subject.type).to eq("Champs::TextChamp")
             expect(subject.row_id).to eq(row_id)
           }
         end
@@ -361,7 +361,7 @@ RSpec.describe DossierChampsConcern do
 
         it {
           expect(subject.persisted?).to be_truthy
-          expect(subject.is_a?(Champs::CheckboxChamp)).to be_truthy
+          expect(subject.type).to eq("Champs::CheckboxChamp")
           expect(subject.value).to be_nil
           expect(project_champ.is_a?(Champs::CheckboxChamp)).to be_truthy
         }
@@ -373,7 +373,7 @@ RSpec.describe DossierChampsConcern do
 
         it {
           expect(subject.persisted?).to be_truthy
-          expect(subject.is_a?(Champs::CarteChamp)).to be_truthy
+          expect(subject.type).to eq("Champs::CarteChamp")
           expect(subject.stream).to eq(Dossier::MAIN_STREAM)
           expect(subject.geo_areas.size).to eq(0)
         }
@@ -393,7 +393,7 @@ RSpec.describe DossierChampsConcern do
 
           it {
             expect(subject.persisted?).to be_truthy
-            expect(subject.is_a?(Champs::CarteChamp)).to be_truthy
+            expect(subject.type).to eq("Champs::CarteChamp")
             expect(subject.stream).to eq(Dossier::USER_BUFFER_STREAM)
             expect(subject.geo_areas.size).to eq(2)
             expect(subject.geo_areas.size).to eq(main_champ.geo_areas.size)
@@ -404,7 +404,7 @@ RSpec.describe DossierChampsConcern do
     end
 
     context "private champ" do
-      subject { dossier.champ_for_update(type_de_champ_private, row_id:, updated_by: dossier.user.email) }
+      subject { dossier.champ_data_for_update(type_de_champ_private, row_id:, updated_by: dossier.user.email) }
 
       it {
         expect(subject.persisted?).to be_truthy
@@ -413,7 +413,7 @@ RSpec.describe DossierChampsConcern do
     end
   end
 
-  describe "#public_champ_for_update" do
+  describe "#public_champ_data_for_update" do
     let(:type_de_champ_repetition) { dossier.find_type_de_champ_by_stable_id(993) }
     let(:row_id) { ULID.generate }
 
@@ -425,14 +425,15 @@ RSpec.describe DossierChampsConcern do
       }
     end
 
-    let(:champ_99) { dossier.project_champ(dossier.find_type_de_champ_by_stable_id(99)) }
-    let(:champ_991) { dossier.project_champ(dossier.find_type_de_champ_by_stable_id(991)) }
-    let(:champ_994) { dossier.project_champ(dossier.find_type_de_champ_by_stable_id(994), row_id:) }
+    def champ_99 = @assigned_champs.fetch("99")
+    def champ_991 = @assigned_champs.fetch("991")
+    def champ_994 = @assigned_champs.fetch("994-#{row_id}")
 
     def assign_champs_attributes(attributes)
-      attributes.each do |public_id, attributes|
+      @assigned_champs = attributes.to_h do |public_id, champ_attributes|
         champ = dossier.public_champ_for_update(public_id, updated_by: dossier.user.email)
-        champ.assign_attributes(attributes)
+        champ.assign_attributes(champ_attributes)
+        [public_id, champ]
       end
     end
 
@@ -451,7 +452,7 @@ RSpec.describe DossierChampsConcern do
     }
 
     context "missing champs" do
-      before { dossier; Champs::TextChamp.destroy_all; }
+      before { dossier; ChampData.where(type: "Champs::TextChamp").destroy_all; }
 
       it {
         subject
@@ -568,19 +569,20 @@ RSpec.describe DossierChampsConcern do
     end
   end
 
-  describe "#private_champ_for_update" do
+  describe "#private_champ_data_for_update" do
     let(:attributes) do
       {
         "995" => { value: "Hello" },
       }
     end
 
-    let(:annotation_995) { dossier.project_champ(dossier.find_type_de_champ_by_stable_id(995)) }
+    def annotation_995 = @assigned_champs.fetch("995")
 
     def assign_champs_attributes(attributes)
-      attributes.each do |public_id, attributes|
+      @assigned_champs = attributes.to_h do |public_id, champ_attributes|
         champ = dossier.private_champ_for_update(public_id, updated_by: dossier.user.email)
-        champ.assign_attributes(attributes)
+        champ.assign_attributes(champ_attributes)
+        [public_id, champ]
       end
     end
 
@@ -594,7 +596,7 @@ RSpec.describe DossierChampsConcern do
     }
 
     context "missing champs" do
-      before { dossier; Champs::TextChamp.destroy_all; }
+      before { dossier; ChampData.where(type: "Champs::TextChamp").destroy_all; }
 
       it {
         subject
@@ -608,7 +610,7 @@ RSpec.describe DossierChampsConcern do
   context 'en_construction(user)' do
     let(:dossier) { create(:dossier, :en_construction, procedure:) }
 
-    describe "#public_champ_for_update" do
+    describe "#public_champ_data_for_update" do
       let(:type_de_champ_repetition) { dossier.find_type_de_champ_by_stable_id(993) }
       let(:row_ids) { dossier.project_champ(type_de_champ_repetition).row_ids }
       let(:row_id) { row_ids.first }
@@ -655,9 +657,8 @@ RSpec.describe DossierChampsConcern do
       def draft_champ_994 = draft_champ(994, row_id)
 
       def assign_champs_attributes(attributes)
-        attributes.each do |public_id, attributes|
-          champ = dossier.public_champ_for_update(public_id, updated_by: dossier.user.email)
-          champ.assign_attributes(attributes)
+        attributes.each do |public_id, champ_attributes|
+          dossier.public_champ_for_update(public_id, updated_by: dossier.user.email).update(champ_attributes)
         end
       end
 
@@ -721,7 +722,7 @@ RSpec.describe DossierChampsConcern do
       }
 
       context "missing champs" do
-        before { dossier; Champs::TextChamp.destroy_all; dossier.champ_data.reload }
+        before { dossier; ChampData.where(type: "Champs::TextChamp").destroy_all; dossier.champ_data.reload }
 
         it {
           subject
@@ -752,10 +753,10 @@ RSpec.describe DossierChampsConcern do
 
         subject do
           dossier.with_update_stream(dossier.user) do
-            champ = dossier.public_champ_for_update('98', updated_by: dossier.user.email)
+            champ = dossier.public_champ_data_for_update('98', updated_by: dossier.user.email)
             champ.piece_justificative_file.attach({ io: Rails.root.join('spec/fixtures/files/Contrat.pdf').open, filename: 'Contrat.pdf' })
             champ.save!
-            champ = dossier.public_champ_for_update('99', updated_by: dossier.user.email)
+            champ = dossier.public_champ_data_for_update('99', updated_by: dossier.user.email)
             champ.piece_justificative_file.purge
           end
         end
@@ -829,7 +830,7 @@ RSpec.describe DossierChampsConcern do
   context 'en_construction(instructeur)' do
     let(:dossier) { create(:dossier, procedure:) }
 
-    describe "#public_champ_for_update" do
+    describe "#public_champ_data_for_update" do
       let(:type_de_champ_repetition) { dossier.find_type_de_champ_by_stable_id(993) }
       let(:row_ids) { dossier.project_champ(type_de_champ_repetition).row_ids }
       let(:row_id) { row_ids.first }
@@ -907,9 +908,8 @@ RSpec.describe DossierChampsConcern do
       def user_history_champ_994 = user_history_champ(994, row_id)
 
       def assign_champs_attributes(attributes)
-        attributes.each do |public_id, attributes|
-          champ = dossier.public_champ_for_update(public_id, updated_by: dossier.user.email)
-          champ.assign_attributes(attributes)
+        attributes.each do |public_id, champ_attributes|
+          dossier.public_champ_for_update(public_id, updated_by: dossier.user.email).update(champ_attributes)
         end
       end
 
@@ -1151,7 +1151,7 @@ RSpec.describe DossierChampsConcern do
     context "when the user buffer stream has pending changes" do
       before do
         dossier.with_update_stream(dossier.user) do
-          dossier.public_champ_for_update('99', updated_by: dossier.user.email)
+          dossier.public_champ_data_for_update('99', updated_by: dossier.user.email)
             .assign_attributes(value: "Nouvelle valeur")
         end
         dossier.save!
@@ -1178,7 +1178,7 @@ RSpec.describe DossierChampsConcern do
 
       before do
         dossier.with_update_stream(dossier.user) do
-          dossier.public_champ_for_update("994-#{row_id}", updated_by: dossier.user.email)
+          dossier.public_champ_data_for_update("994-#{row_id}", updated_by: dossier.user.email)
             .assign_attributes(value: "Valeur dans la répétition")
         end
         dossier.save!
@@ -1200,7 +1200,7 @@ RSpec.describe DossierChampsConcern do
 
       before do
         dossier.with_update_stream(dossier.user) do
-          champ = dossier.public_champ_for_update('996', updated_by: dossier.user.email)
+          champ = dossier.public_champ_data_for_update('996', updated_by: dossier.user.email)
           champ.update(geo_areas: [geo_area])
         end
         dossier.save!
@@ -1225,7 +1225,7 @@ RSpec.describe DossierChampsConcern do
 
       before do
         dossier.with_update_stream(dossier.user) do
-          champ = dossier.public_champ_for_update('997', updated_by: dossier.user.email)
+          champ = dossier.public_champ_data_for_update('997', updated_by: dossier.user.email)
           champ.piece_justificative_file.attach(io: Rails.root.join('spec/fixtures/files/Contrat.pdf').open, filename: 'Contrat.pdf')
           champ.save!
         end
@@ -1253,7 +1253,7 @@ RSpec.describe DossierChampsConcern do
     context "when the instructeur buffer stream has pending changes" do
       before do
         dossier.with_instructeur_buffer_stream do
-          dossier.public_champ_for_update('99', updated_by: 'instructeur@exemple.fr')
+          dossier.public_champ_data_for_update('99', updated_by: 'instructeur@exemple.fr')
             .assign_attributes(value: "Correction instructeur")
         end
         dossier.save!
@@ -1278,7 +1278,7 @@ RSpec.describe DossierChampsConcern do
 
       before do
         dossier.with_instructeur_buffer_stream do
-          champ = dossier.public_champ_for_update('997', updated_by: 'instructeur@exemple.fr')
+          champ = dossier.public_champ_data_for_update('997', updated_by: 'instructeur@exemple.fr')
           champ.piece_justificative_file.attach(io: Rails.root.join('spec/fixtures/files/Contrat.pdf').open, filename: 'Contrat.pdf')
           champ.save!
         end

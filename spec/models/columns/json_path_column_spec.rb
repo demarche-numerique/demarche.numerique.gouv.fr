@@ -5,7 +5,7 @@ describe Columns::JSONPathColumn do
   let(:dossier) { create(:dossier, procedure:) }
   let(:champ) { dossier.champ_data.first }
   let(:stable_id) { champ.stable_id }
-  let(:tdc_type) { champ.type_champ }
+  let(:tdc_type) { champ.last_write_type_champ }
   let(:column) { described_class.new(procedure_id: procedure.id, label: 'label', stable_id:, tdc_type:, jsonpath:, displayable: true, mandatory: true) }
 
   describe '#value' do

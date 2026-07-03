@@ -80,7 +80,7 @@ describe 'linked dropdown lists', js: true do
 
       # The error summary link and the secondary select both target the secondary input,
       # and the secondary select is associated to the error region for screen readers.
-      champ = user_dossier.champ_data.first
+      champ = user_dossier.project_champs_public.first
       expect(page).to have_link('Valeur secondaire dépendant de la première', href: "##{champ.focusable_input_id(:secondary_value)}")
       expect(find("##{champ.focusable_input_id(:secondary_value)}")['aria-describedby']).to include(champ.error_id(:value))
     end

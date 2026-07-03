@@ -75,11 +75,11 @@ describe AttestationTemplate, type: :model do
     before do
       dossier.project_champs_public
         .find { |champ| champ.libelle == 'libelleA' }
-        .update(value: 'libelle1')
+        .writable!.update(value: 'libelle1')
 
       dossier.project_champs_public
         .find { |champ| champ.libelle == 'libelleB' }
-        .update(value: 'libelle2')
+        .writable!.update(value: 'libelle2')
     end
 
     subject {
@@ -120,7 +120,7 @@ describe AttestationTemplate, type: :model do
         before do
           dossier.project_champs_public
             .find { |champ| champ.libelle == 'libelleB' }
-            .update(value: 'age < 18')
+            .writable!.update(value: 'age < 18')
         end
 
         it 'renders < literally in the PDF body, not as &lt;' do

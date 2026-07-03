@@ -12,7 +12,7 @@ RSpec.describe TypesDeChamp::PrefillAddressTypeDeChamp do
   end
 
   describe '#to_assignable_attributes' do
-    let(:champ) { dossier.champ_data.first }
+    let(:champ) { dossier.project_champ(type_de_champ) }
     subject { described_class.build(type_de_champ, procedure.active_revision).to_assignable_attributes(champ, value) }
 
     context 'when the value is nil' do

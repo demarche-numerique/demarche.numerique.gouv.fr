@@ -5,7 +5,7 @@ require "rails_helper"
 module Maintenance
   RSpec.describe T20260623backfillRNAExternalStateTask do
     describe "#process" do
-      subject(:process) { described_class.process(champ) }
+      subject(:process) { described_class.process(champ.champ_data) }
 
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :rna }]) }
       let(:dossier) { create(:dossier, procedure:) }
@@ -28,7 +28,7 @@ module Maintenance
 
         it "relance le workflow async" do
           expect { process }.to change { champ.reload.external_state }.from('idle').to('waiting_for_job')
-            .and have_enqueued_job(ChampFetchExternalDataJob).with(champ, 'W173847273')
+            .and have_enqueued_job(ChampFetchExternalDataJob).with(champ.champ_data, "W173847273")
         end
       end
 

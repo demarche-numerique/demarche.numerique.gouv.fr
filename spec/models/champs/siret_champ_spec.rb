@@ -3,7 +3,7 @@
 describe Champs::SiretChamp do
   let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :siret }]) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.project_champs_public.first.tap { _1.update(external_id:, etablissement:) } }
+  let(:champ) { dossier.project_champs_public.first.tap { _1.writable!.update(external_id:, etablissement:) } }
   let(:external_id) { "" }
   let(:etablissement) { nil }
 
@@ -75,7 +75,7 @@ describe Champs::SiretChamp do
     let(:token_expired) { false }
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :siret }]) }
     let(:dossier) { create(:dossier, procedure:) }
-    let!(:champ) { dossier.champ_data.first.tap { _1.update!(etablissement: create(:etablissement), external_id: siret, external_state: 'waiting_for_job') } }
+    let!(:champ) { dossier.project_champs_public.first.tap { _1.writable!.update!(etablissement: create(:etablissement), external_id: siret, external_state: 'waiting_for_job') } }
 
     before do
       stub_request(:get, /https:\/\/entreprise.api.gouv.fr\/v4\/insee\/sirene\/etablissements\/#{siret}/)

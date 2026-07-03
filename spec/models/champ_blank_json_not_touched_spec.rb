@@ -29,7 +29,7 @@ RSpec.describe 'A blank champ must not be touched when another champ is correcte
   def correct_text_only
     edited = Dossier.find(dossier.id)
     edited.with_update_stream(user) do
-      edited.public_champ_for_update('99', updated_by: user.email).assign_attributes(value: 'corrigé')
+      edited.public_champ_data_for_update('99', updated_by: user.email).assign_attributes(value: 'corrigé')
     end
     edited.save!
 

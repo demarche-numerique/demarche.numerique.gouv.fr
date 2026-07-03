@@ -10,12 +10,12 @@ module Maintenance
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :siret }]) }
       let(:dossier) { create(:dossier, procedure:) }
       let(:champ) { dossier.project_champs_public.first }
-      let(:element) { { "champ_id" => champ.id.to_s } }
+      let(:element) { { "champ_id" => champ.champ_data.id.to_s } }
       let(:task) { described_class.new }
       let(:csv_content) do
         <<~CSV
           champ_id
-          #{champ.id}
+          #{champ.champ_data.id}
         CSV
       end
 

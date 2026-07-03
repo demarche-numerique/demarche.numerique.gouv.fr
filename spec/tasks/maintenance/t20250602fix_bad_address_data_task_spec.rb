@@ -8,7 +8,7 @@ module Maintenance
       subject(:process) { described_class.process(address_champ) }
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :address }]) }
       let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-      let(:address_champ) { dossier.champ_data.first }
+      let(:address_champ) { dossier.project_champs_public.first }
 
       context "when the address is a partial address with international data" do
         let(:value_json) do

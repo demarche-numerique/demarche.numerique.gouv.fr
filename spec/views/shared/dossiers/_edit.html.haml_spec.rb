@@ -99,7 +99,7 @@ describe 'shared/dossiers/edit', type: :view do
 
   context 'with a multiple-values list' do
     let(:types_de_champ_public) { [{ type: :multiple_drop_down_list, options: }] }
-    let(:champ) { dossier.champ_data.first }
+    let(:champ) { dossier.project_champs_public.first }
     let(:type_de_champ) { champ.type_de_champ }
     let(:options) { type_de_champ.drop_down_options }
     let(:enabled_options) { type_de_champ.drop_down_options }
@@ -128,7 +128,7 @@ describe 'shared/dossiers/edit', type: :view do
 
   context 'with a mandatory piece justificative' do
     let(:types_de_champ_public) { [{ type: :piece_justificative, mandatory: true }] }
-    let(:champ) { dossier.champ_data.first }
+    let(:champ) { dossier.project_champs_public.first }
 
     context 'when dossier is en construction (stream)' do
       let(:dossier) { create(:dossier, :en_construction, :with_populated_champs, procedure:).then { |dossier| dossier.with_update_stream(dossier.user) } }
@@ -150,7 +150,7 @@ describe 'shared/dossiers/edit', type: :view do
     let(:procedure) { create(:procedure, :routee, groupe_instructeurs: [groupe_instructeur], types_de_champ_public: [{ type: :drop_down_list, options: }]) }
     let(:options) { [groupe_instructeur.label] }
     let(:dossier) { create(:dossier, procedure:) }
-    let(:champ_drop_down) { dossier.champ_data.first }
+    let(:champ_drop_down) { dossier.project_champs_public.first }
 
     it 'renders the libelle of the type de champ used for routing' do
       expect(subject).to include(champ_drop_down.libelle)

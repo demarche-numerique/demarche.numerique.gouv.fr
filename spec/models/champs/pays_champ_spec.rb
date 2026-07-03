@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 describe Champs::PaysChamp, type: :model do
-  let(:champ) { described_class.new(value: nil) }
-  before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_pays)) }
+  let(:champ) { build_projected_champ(build(:type_de_champ_pays), value: nil) }
 
   describe 'value' do
     it 'with code' do
@@ -28,8 +27,8 @@ describe Champs::PaysChamp, type: :model do
     end
 
     it 'with nil' do
-      champ.write_attribute(:value, 'Royaume-Uni')
-      champ.write_attribute(:external_id, 'GB')
+      write_champ_data_attributes(champ, value: 'Royaume-Uni')
+      write_champ_data_attributes(champ, external_id: 'GB')
       champ.value = nil
       expect(champ.external_id).to be_nil
       expect(champ.value).to be_nil
@@ -38,8 +37,8 @@ describe Champs::PaysChamp, type: :model do
     end
 
     it 'with blank' do
-      champ.write_attribute(:value, 'Royaume-Uni')
-      champ.write_attribute(:external_id, 'GB')
+      write_champ_data_attributes(champ, value: 'Royaume-Uni')
+      write_champ_data_attributes(champ, external_id: 'GB')
       champ.value = ''
       expect(champ.external_id).to be_nil
       expect(champ.value).to be_nil
@@ -48,7 +47,7 @@ describe Champs::PaysChamp, type: :model do
     end
 
     it 'with initial nil' do
-      champ.write_attribute(:value, nil)
+      write_champ_data_attributes(champ, value: nil)
       expect(champ.external_id).to be_nil
       expect(champ.value).to be_nil
       expect(champ.selected).to be_nil
@@ -56,7 +55,7 @@ describe Champs::PaysChamp, type: :model do
     end
 
     it 'with initial name' do
-      champ.write_attribute(:value, 'Royaume-Uni')
+      write_champ_data_attributes(champ, value: 'Royaume-Uni')
       expect(champ.external_id).to be_nil
       expect(champ.value).to eq('Royaume-Uni')
       expect(champ.selected).to eq('GB')
@@ -64,7 +63,7 @@ describe Champs::PaysChamp, type: :model do
     end
 
     it 'with initial bad name' do
-      champ.write_attribute(:value, 'ROYAUME-UNIS')
+      write_champ_data_attributes(champ, value: 'ROYAUME-UNIS')
       expect(champ.external_id).to be_nil
       expect(champ.value).to eq('ROYAUME-UNIS')
       expect(champ.selected).to eq('ROYAUME-UNIS')

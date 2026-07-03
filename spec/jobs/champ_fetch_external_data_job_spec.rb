@@ -13,26 +13,28 @@ RSpec.describe ChampFetchExternalDataJob, type: :job do
   describe 'perform' do
     let(:external_state) { 'waiting_for_job' }
 
+    let(:projected_champ) { instance_double(Champs::RNFChamp, fetch!: true) }
+
     before do
       champ.update_columns(external_state:)
-      allow(champ).to receive(:fetch!)
+      allow(Champ).to receive(:from_data).with(champ).and_return(projected_champ)
       described_class.new.perform(champ, external_id)
     end
 
     context 'when external_id matches the champ external_id' do
-      it { expect(champ).to have_received(:fetch!) }
+      it { expect(projected_champ).to have_received(:fetch!) }
     end
 
     context 'when external_id does not match the champ external_id' do
       let(:external_id) { "something else" }
 
-      it { expect(champ).not_to have_received(:fetch!) }
+      it { expect(projected_champ).not_to have_received(:fetch!) }
     end
 
     context 'when champ is not in waiting_for_job state' do
       let(:external_state) { 'fetched' }
 
-      it { expect(champ).not_to have_received(:fetch!) }
+      it { expect(projected_champ).not_to have_received(:fetch!) }
     end
   end
 

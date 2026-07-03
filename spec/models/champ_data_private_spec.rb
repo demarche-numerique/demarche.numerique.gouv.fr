@@ -3,7 +3,7 @@
 describe ChampData do
   describe '#private?' do
     let(:type_de_champ) { build(:type_de_champ, :private) }
-    let(:champ) { type_de_champ.build_champ }
+    let(:champ) { type_de_champ.build_champ_data }
 
     it do
       expect(champ.private?).to be_truthy

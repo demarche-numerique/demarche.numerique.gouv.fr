@@ -6,7 +6,7 @@ describe Logic::IncludeOperator do
   let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :multiple_drop_down_list }]) }
   let(:tdc) { procedure.active_revision.types_de_champ.first }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { Champs::MultipleDropDownListChamp.new(value: '["val1", "val2"]', stable_id: tdc.stable_id, dossier:) }
+  let(:champ) { build_projected_champ(tdc, dossier:, value: '["val1", "val2"]') }
 
   describe '#compute' do
     it do

@@ -63,7 +63,7 @@ describe ExportTemplate do
       let(:champ_pj) { dossier.project_champs_public.first }
       let(:export_template) { create(:export_template, groupe_instructeur:, pjs: [ExportItem.default(stable_id: 3, prefix: "justif", enabled: true)]) }
 
-      let(:attachment) { ActiveStorage::Attachment.new(name: 'pj', record: champ_pj, blob: ActiveStorage::Blob.new(filename: "superpj.png")) }
+      let(:attachment) { ActiveStorage::Attachment.new(name: 'pj', record: champ_pj.champ_data, blob: ActiveStorage::Blob.new(filename: "superpj.png")) }
 
       it 'returns pj and custom name for pj' do
         expect(export_template.attachment_path(dossier, attachment, champ: champ_pj)).to eq("dossier-#{dossier.id}/justif-#{dossier.id}-01.png")

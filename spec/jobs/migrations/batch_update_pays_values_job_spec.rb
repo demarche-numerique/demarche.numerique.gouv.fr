@@ -4,10 +4,10 @@ describe Migrations::BatchUpdatePaysValuesJob, type: :job do
   let(:procedure) { create(:procedure, :published, types_de_champ_public:) }
   let(:types_de_champ_public) { [{ type: :pays, mandatory: }] }
   let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-  let(:pays_champ) { dossier.champ_data.first }
+  let(:pays_champ) { dossier.project_champs_public.first }
   let(:mandatory) { true }
   before { pays_champ.update_columns(attributes) }
-  subject { described_class.perform_now([pays_champ.id]) }
+  subject { described_class.perform_now([pays_champ.champ_data.id]) }
 
   context "the value is correct" do
     let(:attributes) { { value: 'France', external_id: 'FR' } }
@@ -57,7 +57,7 @@ describe Migrations::BatchUpdatePaysValuesJob, type: :job do
 
     it 'skips the champ without raising' do
       # call perform directly to bypass retry_on, which swallows the error
-      expect { described_class.new.perform([pays_champ.id]) }.not_to raise_error
+      expect { described_class.new.perform([pays_champ.champ_data.id]) }.not_to raise_error
       expect(pays_champ.reload.value).to eq('RUSSIE')
     end
   end

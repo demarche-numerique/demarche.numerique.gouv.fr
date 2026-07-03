@@ -42,7 +42,7 @@ RSpec.describe DossierStateConcern do
       expect(dossier.champ_data.filter { _1.row? && _1.stable_id.in?([95, 96]) }.size).to eq(4)
       expect(dossier.champ_data.filter { _1.stable_id.in?([90, 92, 93, 97, 961, 951]) }.size).to eq(8)
 
-      champ_text = dossier.project_champs_public.find { _1.stable_id == 90 }
+      champ_text = dossier.project_champs_public.find { _1.stable_id == 90 }.writable!
       champ_text.update(value: '')
 
       dossier.passer_en_construction!
@@ -52,7 +52,7 @@ RSpec.describe DossierStateConcern do
       expect(dossier.champ_data.filter { _1.row? && _1.stable_id == 94 }.size).to eq(1)
       expect(dossier.champ_data.filter { _1.row? && _1.discarded? }.size).to eq(0)
       expect(dossier.champ_data.filter { _1.row? && _1.stable_id.in?([95, 96]) }.size).to eq(0)
-      expect(dossier.champ_data.filter { _1.stable_id.in?([90, 92, 93, 97, 961, 951]) && !(_1.blank? || !_1.visible?) }.size).to eq(0)
+      expect((dossier.project_champs_public_all + dossier.project_champs_private_all).filter { _1.stable_id.in?([90, 92, 93, 97, 961, 951]) && !(_1.blank? || !_1.visible?) }.size).to eq(0)
       expect(dossier.submitted_revision_id).to eq(dossier.revision_id)
     end
 
@@ -96,7 +96,7 @@ RSpec.describe DossierStateConcern do
       expect(dossier.champ_data.filter { _1.row? && _1.stable_id == 94 }.size).to eq(1)
       expect(dossier.champ_data.filter { _1.row? && _1.discarded? }.size).to eq(0)
       expect(dossier.champ_data.filter { _1.row? && _1.stable_id.in?([95, 96]) }.size).to eq(0)
-      expect(dossier.champ_data.filter { _1.stable_id.in?([92, 93, 97, 961, 951]) && !(_1.blank? || !_1.visible?) }.size).to eq(0)
+      expect((dossier.project_champs_public_all + dossier.project_champs_private_all).filter { _1.stable_id.in?([92, 93, 97, 961, 951]) && !(_1.blank? || !_1.visible?) }.size).to eq(0)
       expect(dossier.submitted_revision_id).to eq(dossier.revision_id)
     end
 
@@ -190,7 +190,7 @@ RSpec.describe DossierStateConcern do
 
       expect(dossier.champ_data.size).to eq(17)
       expect(dossier.champ_data.filter { _1.row? && _1.stable_id == 94 }.size).to eq(1)
-      expect(dossier.champ_data.filter { _1.stable_id.in?([93, 98]) && _1.blank? }.size).to eq(2)
+      expect((dossier.project_champs_public_all + dossier.project_champs_private_all).filter { _1.stable_id.in?([93, 98]) && _1.blank? }.size).to eq(2)
     end
 
     context "when dossier has attente_avis notification" do
@@ -218,7 +218,7 @@ RSpec.describe DossierStateConcern do
 
       expect(dossier.champ_data.size).to eq(17)
       expect(dossier.champ_data.filter { _1.row? && _1.stable_id == 94 }.size).to eq(1)
-      expect(dossier.champ_data.filter { _1.stable_id.in?([93, 98]) && _1.blank? }.size).to eq(2)
+      expect((dossier.project_champs_public_all + dossier.project_champs_private_all).filter { _1.stable_id.in?([93, 98]) && _1.blank? }.size).to eq(2)
     end
 
     context "when dossier has attente_avis notification" do
@@ -246,7 +246,7 @@ RSpec.describe DossierStateConcern do
 
       expect(dossier.champ_data.size).to eq(17)
       expect(dossier.champ_data.filter { _1.row? && _1.stable_id == 94 }.size).to eq(1)
-      expect(dossier.champ_data.filter { _1.stable_id.in?([93, 98]) && _1.blank? }.size).to eq(2)
+      expect((dossier.project_champs_public_all + dossier.project_champs_private_all).filter { _1.stable_id.in?([93, 98]) && _1.blank? }.size).to eq(2)
     end
 
     context "when dossier has an attestation from a previous acceptation" do
@@ -290,7 +290,7 @@ RSpec.describe DossierStateConcern do
 
         expect(dossier.champ_data.size).to eq(17)
         expect(dossier.champ_data.filter { _1.row? && _1.stable_id == 94 }.size).to eq(1)
-        expect(dossier.champ_data.filter { _1.stable_id.in?([93, 98]) && _1.blank? }.size).to eq(2)
+        expect((dossier.project_champs_public_all + dossier.project_champs_private_all).filter { _1.stable_id.in?([93, 98]) && _1.blank? }.size).to eq(2)
       end
     end
 
@@ -374,7 +374,7 @@ RSpec.describe DossierStateConcern do
       let(:dossier) { create(:dossier, :brouillon, :with_individual, procedure:) }
 
       before do
-        champ = dossier.project_champs_public.find { _1.stable_id == 100 }
+        champ = dossier.project_champs_public.find { _1.stable_id == 100 }.writable!
         champ.update(value: "valeur cachée")
       end
 
@@ -392,7 +392,7 @@ RSpec.describe DossierStateConcern do
       let(:dossier) { create(:dossier, :brouillon, :with_individual, procedure:) }
 
       before do
-        champ = dossier.project_champs_public.find { _1.stable_id == 101 }
+        champ = dossier.project_champs_public.find { _1.stable_id == 101 }.writable!
         champ.update(value: "valeur conditionnelle")
       end
 

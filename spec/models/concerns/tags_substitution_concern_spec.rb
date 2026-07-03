@@ -170,11 +170,11 @@ describe TagsSubstitutionConcern, type: :model do
           before do
             dossier.project_champs_public
               .find { |champ| champ.libelle == 'libelleA' }
-              .update(value: 'libelle1')
+              .writable!.update(value: 'libelle1')
 
             dossier.project_champs_public
               .find { |champ| champ.libelle == "libelle\xc2\xA0B".encode('utf-8') }
-              .update(value: 'libelle2')
+              .writable!.update(value: 'libelle2')
           end
 
           it { is_expected.to eq('libelle1 libelle2') }
@@ -196,7 +196,7 @@ describe TagsSubstitutionConcern, type: :model do
           before do
             dossier.project_champs_public
               .find { |champ| champ.libelle == "Intitulé de l'’«\"évènement\"»’" }
-              .update(value: 'ceci est mon évènement')
+              .writable!.update(value: 'ceci est mon évènement')
           end
 
           it { is_expected.to eq('ceci est mon évènement') }
@@ -218,7 +218,7 @@ describe TagsSubstitutionConcern, type: :model do
           before do
             dossier.project_champs_public
               .find { |champ| champ.libelle == "bon pote -- c’est top" }
-              .update(value: 'ceci est mon évènement')
+              .writable!.update(value: 'ceci est mon évènement')
           end
 
           it { is_expected.to eq('ceci est mon évènement') }
@@ -256,8 +256,8 @@ describe TagsSubstitutionConcern, type: :model do
 
       context 'with cadastre geo areas' do
         before do
-          create(:geo_area, :cadastre, champ:)
-          create(:geo_area, :cadastre, champ:, properties: { numero: '0103', section: 'CD', prefixe: '000', commune: '75056', contenance: 5678, id: '75056000CD0103' })
+          create(:geo_area, :cadastre, champ: champ.champ_data)
+          create(:geo_area, :cadastre, champ: champ.champ_data, properties: { numero: '0103', section: 'CD', prefixe: '000', commune: '75056', contenance: 5678, id: '75056000CD0103' })
           dossier.reload
         end
 
@@ -266,7 +266,7 @@ describe TagsSubstitutionConcern, type: :model do
 
       context 'with legacy cadastre geo areas' do
         before do
-          create(:geo_area, :legacy_cadastre, champ:, properties: { numero: '42', section: 'A11', code_com: '127', code_dep: '75', code_arr: '000', surface_parcelle: 1234, surface_intersection: 1234 })
+          create(:geo_area, :legacy_cadastre, champ: champ.champ_data, properties: { numero: '42', section: 'A11', code_com: '127', code_dep: '75', code_arr: '000', surface_parcelle: 1234, surface_intersection: 1234 })
           dossier.reload
         end
 
@@ -275,7 +275,7 @@ describe TagsSubstitutionConcern, type: :model do
 
       context 'with selection_utilisateur polygon' do
         before do
-          create(:geo_area, :selection_utilisateur, :polygon, champ:)
+          create(:geo_area, :selection_utilisateur, :polygon, champ: champ.champ_data)
           dossier.reload
         end
 
@@ -284,7 +284,7 @@ describe TagsSubstitutionConcern, type: :model do
 
       context 'with selection_utilisateur line_string' do
         before do
-          create(:geo_area, :selection_utilisateur, :line_string, champ:)
+          create(:geo_area, :selection_utilisateur, :line_string, champ: champ.champ_data)
           dossier.reload
         end
 
@@ -293,7 +293,7 @@ describe TagsSubstitutionConcern, type: :model do
 
       context 'with selection_utilisateur point' do
         before do
-          create(:geo_area, :selection_utilisateur, :point, champ:)
+          create(:geo_area, :selection_utilisateur, :point, champ: champ.champ_data)
           dossier.reload
         end
 
@@ -316,7 +316,8 @@ describe TagsSubstitutionConcern, type: :model do
 
       context 'and the champ has a primary value' do
         before do
-          dossier.champ_for_update(type_de_champ, updated_by: 'test').update(primary_value: 'primo')
+          dossier.champ_data_for_update(type_de_champ, updated_by: 'test')
+          dossier.project_champ(type_de_champ).writable!.update(primary_value: 'primo')
           dossier.reload
         end
 
@@ -324,7 +325,8 @@ describe TagsSubstitutionConcern, type: :model do
 
         context 'and the champ has a secondary value' do
           before do
-            dossier.champ_for_update(type_de_champ, updated_by: 'test').update(secondary_value: 'secundo')
+            dossier.champ_data_for_update(type_de_champ, updated_by: 'test')
+            dossier.project_champ(type_de_champ).writable!.update(secondary_value: 'secundo')
             dossier.reload
           end
 
@@ -352,7 +354,7 @@ describe TagsSubstitutionConcern, type: :model do
 
       before do
         dropdown_list_tdc.update(referentiel:, drop_down_mode: 'advanced')
-        champ = dossier.project_champs_public.first
+        champ = dossier.project_champs_public.first.writable!
         item = referentiel.items.first
         champ.update(value: item.id)
       end
@@ -390,7 +392,7 @@ describe TagsSubstitutionConcern, type: :model do
         let(:template) { '--libelleA--' }
 
         context 'and its value in the dossier is not nil' do
-          before { dossier.project_champs_private.first.update(value: 'libelle1') }
+          before { dossier.project_champs_private.first.writable!.update(value: 'libelle1') }
 
           it { is_expected.to eq('libelle1') }
         end
@@ -413,7 +415,7 @@ describe TagsSubstitutionConcern, type: :model do
       context 'champs publics are valid tags' do
         let(:types_de_champ_public) { [{ libelle: 'libelleA' }] }
 
-        before { dossier.project_champs_public.first.update(value: 'libelle1') }
+        before { dossier.project_champs_public.first.writable!.update(value: 'libelle1') }
 
         it { is_expected.to eq('libelle1') }
       end
@@ -434,11 +436,11 @@ describe TagsSubstitutionConcern, type: :model do
           before do
             dossier.project_champs_public
               .find { |champ| champ.type_champ == TypeDeChamp.type_champs.fetch(:date) }
-              .update(value: '2017-04-15')
+              .writable!.update(value: '2017-04-15')
 
             dossier.project_champs_public
               .find { |champ| champ.type_champ == TypeDeChamp.type_champs.fetch(:datetime) }
-              .update(value: '2017-09-13 09:00')
+              .writable!.update(value: '2017-09-13 09:00')
           end
 
           it { is_expected.to eq('15 avril 2017 13 septembre 2017 09:00') }
@@ -509,7 +511,7 @@ describe TagsSubstitutionConcern, type: :model do
       let(:template) { '--mon tag--' }
       let(:types_de_champ_public) { [{ libelle: "mon\u00A0tag" }] }
 
-      before { dossier.project_champs_public.first.update(value: 'valeur') }
+      before { dossier.project_champs_public.first.writable!.update(value: 'valeur') }
 
       it 'treats all kinds of space as equivalent', :aggregate_failures do
         # tag with NBSP in template, champ with NBSP in libelle
@@ -537,7 +539,7 @@ describe TagsSubstitutionConcern, type: :model do
 
       before do
         draft_type_de_champ.update(libelle: 'mon nouveau libellé')
-        dossier.project_champs_public.first.update(value: 'valeur')
+        dossier.project_champs_public.first.writable!.update(value: 'valeur')
         procedure.publish_revision!(procedure.administrateurs.first)
       end
 
@@ -559,7 +561,7 @@ describe TagsSubstitutionConcern, type: :model do
       context 'in a champ' do
         let(:types_de_champ_public) { [{ libelle: 'libelleA' }] }
 
-        before { dossier.project_champs_public.first.update(value: 'hey <a href="https://oops.com">anchor</a>') }
+        before { dossier.project_champs_public.first.writable!.update(value: 'hey <a href="https://oops.com">anchor</a>') }
 
         it { is_expected.to eq('hey &lt;a href=&quot;https://oops.com&quot;&gt;anchor&lt;/a&gt; --nom--') }
       end

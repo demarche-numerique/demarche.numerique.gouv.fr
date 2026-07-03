@@ -146,8 +146,8 @@ RSpec.describe Types::DossierType, type: :graphql do
     end
 
     before do
-      dossier.project_champs_public.find { _1.type_champ == TypeDeChamp.type_champs.fetch(:address) }.update(value_json: address)
-      dossier.project_champs_public.find { _1.type_champ == TypeDeChamp.type_champs.fetch(:rna) }.update(data: rna)
+      dossier.project_champs_public.find { _1.type_champ == TypeDeChamp.type_champs.fetch(:address) }.writable!.update(value_json: address)
+      dossier.project_champs_public.find { _1.type_champ == TypeDeChamp.type_champs.fetch(:rna) }.writable!.update(data: rna)
     end
 
     it '', :slow do
@@ -258,7 +258,7 @@ RSpec.describe Types::DossierType, type: :graphql do
     let(:checkbox_value) { 'true' }
 
     before do
-      dossier.project_champs_public.first.update(value: checkbox_value)
+      dossier.project_champs_public.first.writable!.update(value: checkbox_value)
     end
 
     context 'when checkbox is true' do
@@ -311,7 +311,7 @@ RSpec.describe Types::DossierType, type: :graphql do
     let(:variables) { { number: dossier.id } }
 
     before do
-      dossier.project_champs_public.first.update(value: linked_dossier.id)
+      dossier.project_champs_public.first.writable!.update(value: linked_dossier.id)
     end
 
     context 'en_construction' do
@@ -361,7 +361,7 @@ RSpec.describe Types::DossierType, type: :graphql do
     let(:large_integer) { 3400936534933 }
 
     before do
-      integer_champ = dossier.project_champs_public.first
+      integer_champ = dossier.project_champs_public.first.writable!
       integer_champ.update(value: large_integer.to_s)
     end
 
@@ -510,8 +510,8 @@ RSpec.describe Types::DossierType, type: :graphql do
     let(:query) { DOSSIER_WITH_DATE_CHAMPS_QUERY }
     let(:variables) { { number: dossier.id } }
 
-    let(:champ_date) { dossier.project_champs_public.first }
-    let(:champ_datetime) { dossier.project_champs_public.second }
+    let(:champ_date) { dossier.project_champs_public.first.writable! }
+    let(:champ_datetime) { dossier.project_champs_public.second.writable! }
 
     before do
       champ_date.update(value: '2026-01-01')
@@ -579,7 +579,7 @@ RSpec.describe Types::DossierType, type: :graphql do
     context 'when the usager submits a correction' do
       before do
         dossier.with_update_stream(dossier.user) do
-          dossier.public_champ_for_update('99', updated_by: dossier.user.email)
+          dossier.public_champ_data_for_update('99', updated_by: dossier.user.email)
             .assign_attributes(value: "Nouvelle valeur")
         end
         dossier.save!
@@ -605,7 +605,7 @@ RSpec.describe Types::DossierType, type: :graphql do
 
       before do
         dossier.with_update_stream(dossier.user) do
-          dossier.public_champ_for_update("994-#{row_id}", updated_by: dossier.user.email)
+          dossier.public_champ_data_for_update("994-#{row_id}", updated_by: dossier.user.email)
             .assign_attributes(value: "Valeur dans la répétition")
         end
         dossier.save!
@@ -626,7 +626,7 @@ RSpec.describe Types::DossierType, type: :graphql do
 
       before do
         dossier.with_instructeur_buffer_stream do
-          dossier.public_champ_for_update('99', updated_by: instructeur.email)
+          dossier.public_champ_data_for_update('99', updated_by: instructeur.email)
             .assign_attributes(value: "Correction instructeur")
         end
         dossier.save!
@@ -665,7 +665,7 @@ RSpec.describe Types::DossierType, type: :graphql do
 
       before do
         dossier.with_update_stream(dossier.user) do
-          champ = dossier.public_champ_for_update('996', updated_by: dossier.user.email)
+          champ = dossier.public_champ_data_for_update('996', updated_by: dossier.user.email)
           champ.update(geo_areas: [geo_area])
         end
         dossier.save!
@@ -687,7 +687,7 @@ RSpec.describe Types::DossierType, type: :graphql do
     context 'when the usager attaches a file to a piece justificative champ' do
       before do
         dossier.with_update_stream(dossier.user) do
-          champ = dossier.public_champ_for_update('997', updated_by: dossier.user.email)
+          champ = dossier.public_champ_data_for_update('997', updated_by: dossier.user.email)
           champ.piece_justificative_file.attach(io: Rails.root.join('spec/fixtures/files/Contrat.pdf').open, filename: 'Contrat.pdf')
           champ.save!
         end

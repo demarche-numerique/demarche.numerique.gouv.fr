@@ -6,7 +6,7 @@ RSpec.describe Dossiers::RNAComponent, type: :component do
   let(:external_id) { 'W173847273' }
 
   let(:champ) do
-    Champs::RNAChamp.new(external_state:, external_id:, data: rna_data, fetch_external_data_exceptions:)
+    build_projected_champ(build(:type_de_champ_rna), external_state:, external_id:, data: rna_data, fetch_external_data_exceptions:)
       .tap { |c| allow(c).to receive(:to_s).and_return('W173847273') }
   end
 

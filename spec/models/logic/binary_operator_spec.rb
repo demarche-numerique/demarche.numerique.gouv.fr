@@ -24,8 +24,8 @@ describe Logic::BinaryOperator do
   end
 
   describe '#sources' do
-    let(:champ) { Champs::IntegerNumberChamp.new(value: nil, stable_id: 1) }
-    let(:champ2) { Champs::IntegerNumberChamp.new(value: nil, stable_id: 2) }
+    let(:champ) { build_projected_champ(build(:type_de_champ_integer_number, stable_id: 1)) }
+    let(:champ2) { build_projected_champ(build(:type_de_champ_integer_number, stable_id: 2)) }
 
     it do
       expect(two_greater_than_one.sources).to eq([])
@@ -49,7 +49,7 @@ describe Logic::GreaterThan do
   let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :integer_number }]) }
   let(:tdc) { procedure.active_revision.types_de_champ.first }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { Champs::IntegerNumberChamp.new(value: nil, stable_id: tdc.stable_id, dossier:) }
+  let(:champ) { build_projected_champ(tdc, dossier:, value: nil) }
 
   it 'computes' do
     expect(greater_than(constant(1), constant(1)).compute).to be(false)

@@ -123,9 +123,9 @@ describe DossierRebaseConcern do
     let(:datetime_type_de_champ) { types_de_champ.find { _1.stable_id == 103 } }
     let(:yes_no_type_de_champ) { types_de_champ.find { _1.stable_id == 104 } }
 
-    let(:text_champ) { dossier.project_champs_public.find { _1.stable_id == 1 } }
+    let(:text_champ) { dossier.project_champs_public.find { _1.stable_id == 1 }.writable! }
     let(:repetition_champ) { dossier.project_champs_public.find { _1.stable_id == 101 } }
-    let(:datetime_champ) { dossier.project_champs_public.find { _1.stable_id == 103 } }
+    let(:datetime_champ) { dossier.project_champs_public.find { _1.stable_id == 103 }.writable! }
 
     let(:rebased_text_champ) { dossier.project_champs_public.find { _1.stable_id == 1 } }
     let(:rebased_repetition_champ) { dossier.project_champs_public.find { _1.stable_id == 101 } }
@@ -223,7 +223,7 @@ describe DossierRebaseConcern do
         dossier.reload
 
         expect(rebased_private_text_champ.type_champ).to eq(TypeDeChamp.type_champs.fetch(:textarea))
-        expect(rebased_private_text_champ.type).to eq("Champs::TextareaChamp")
+        expect(rebased_private_text_champ).to be_an_instance_of(Champs::TextareaChamp)
       end
     end
 
@@ -261,7 +261,7 @@ describe DossierRebaseConcern do
 
       context 'when a dropdown option is added' do
         before do
-          dossier.project_champs_public.first.update(value: 'v1')
+          dossier.project_champs_public.first.writable!.update(value: 'v1')
 
           stable_id = procedure.draft_revision.types_de_champ.find { _1.libelle == 'l1' }
           tdc_to_update = procedure.draft_revision.find_and_ensure_exclusive_use(stable_id)
@@ -273,7 +273,7 @@ describe DossierRebaseConcern do
 
       context 'when a dropdown option is removed' do
         before do
-          dossier.project_champs_public.first.update(value: 'v1')
+          dossier.project_champs_public.first.writable!.update(value: 'v1')
 
           stable_id = procedure.draft_revision.types_de_champ.find { _1.libelle == 'l1' }
           tdc_to_update = procedure.draft_revision.find_and_ensure_exclusive_use(stable_id)
@@ -285,7 +285,7 @@ describe DossierRebaseConcern do
 
       context 'when a dropdown unused option is removed' do
         before do
-          dossier.project_champs_public.first.update(value: 'v1')
+          dossier.project_champs_public.first.writable!.update(value: 'v1')
 
           stable_id = procedure.draft_revision.types_de_champ.find { _1.libelle == 'l1' }
           tdc_to_update = procedure.draft_revision.find_and_ensure_exclusive_use(stable_id)
@@ -307,7 +307,7 @@ describe DossierRebaseConcern do
 
       context 'when a dropdown option is added' do
         before do
-          dossier.project_champs_public.first.update(value: '["v1"]')
+          dossier.project_champs_public.first.writable!.update(value: '["v1"]')
 
           stable_id = procedure.draft_revision.types_de_champ.find { _1.libelle == 'l1' }
           tdc_to_update = procedure.draft_revision.find_and_ensure_exclusive_use(stable_id)
@@ -319,7 +319,7 @@ describe DossierRebaseConcern do
 
       context 'when a dropdown option is removed' do
         before do
-          dossier.project_champs_public.first.update(value: '["v1", "option"]')
+          dossier.project_champs_public.first.writable!.update(value: '["v1", "option"]')
 
           stable_id = procedure.draft_revision.types_de_champ.find { _1.libelle == 'l1' }
           tdc_to_update = procedure.draft_revision.find_and_ensure_exclusive_use(stable_id)
@@ -331,7 +331,7 @@ describe DossierRebaseConcern do
 
       context 'when a dropdown unused option is removed' do
         before do
-          dossier.project_champs_public.first.update(value: '["v1"]')
+          dossier.project_champs_public.first.writable!.update(value: '["v1"]')
 
           stable_id = procedure.draft_revision.types_de_champ.find { _1.libelle == 'l1' }
           tdc_to_update = procedure.draft_revision.find_and_ensure_exclusive_use(stable_id)
@@ -353,7 +353,7 @@ describe DossierRebaseConcern do
 
       context 'when a dropdown option is added' do
         before do
-          dossier.project_champs_public.first.update(value: '["titre1",""]')
+          dossier.project_champs_public.first.writable!.update(value: '["titre1",""]')
 
           stable_id = procedure.draft_revision.types_de_champ.find { _1.libelle == 'l1' }
           tdc_to_update = procedure.draft_revision.find_and_ensure_exclusive_use(stable_id)
@@ -365,7 +365,7 @@ describe DossierRebaseConcern do
 
       context 'when a dropdown option is removed' do
         before do
-          dossier.project_champs_public.first.update(value: '["titre2","option2"]')
+          dossier.project_champs_public.first.writable!.update(value: '["titre2","option2"]')
 
           stable_id = procedure.draft_revision.types_de_champ.find { _1.libelle == 'l1' }
           tdc_to_update = procedure.draft_revision.find_and_ensure_exclusive_use(stable_id)
@@ -377,7 +377,7 @@ describe DossierRebaseConcern do
 
       context 'when a dropdown unused option is removed' do
         before do
-          dossier.project_champs_public.first.update(value: '["titre2",""]')
+          dossier.project_champs_public.first.writable!.update(value: '["titre2",""]')
 
           stable_id = procedure.draft_revision.types_de_champ.find { _1.libelle == 'l1' }
           tdc_to_update = procedure.draft_revision.find_and_ensure_exclusive_use(stable_id)
@@ -399,7 +399,7 @@ describe DossierRebaseConcern do
 
       context 'and the cadastre are removed' do
         before do
-          dossier.project_champs_public.first.update(value: 'v1', geo_areas: [build(:geo_area, :cadastre)])
+          dossier.project_champs_public.first.writable!.update(value: 'v1', geo_areas: [build(:geo_area, :cadastre)])
 
           stable_id = procedure.draft_revision.types_de_champ.find { _1.libelle == 'l1' }
           tdc_to_update = procedure.draft_revision.find_and_ensure_exclusive_use(stable_id)
@@ -457,7 +457,7 @@ describe DossierRebaseConcern do
       end
 
       context 'when the first tdc type is updated' do
-        def first_champ = dossier.project_champs_public.first
+        def first_champ = dossier.project_champs_public.first.writable!
 
         before do
           first_champ.update(value: 'v1', external_id: '123', geo_areas: [build(:geo_area)])

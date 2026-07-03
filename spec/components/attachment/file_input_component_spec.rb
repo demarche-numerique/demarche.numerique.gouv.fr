@@ -6,7 +6,7 @@ RSpec.describe Attachment::FileInputComponent, type: :component do
   let_it_be(:types_de_champ_public) { [{ type: :piece_justificative }] }
   let_it_be(:procedure) { create(:procedure, :published, types_de_champ_public:) }
   let_it_be(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.champ_data.reload.first }
+  let(:champ) { dossier.reload.project_champs_public.first }
   let(:attached_file) { champ.piece_justificative_file }
   let(:context_kwargs) { {} }
   let(:kwargs) { {} }
@@ -139,7 +139,7 @@ RSpec.describe Attachment::FileInputComponent, type: :component do
     let(:parent_hint_id) { "#{champ.focusable_input_id}-pj-hint" }
     let(:context_kwargs) { { parent_hint_id: } }
     let(:describedby_attribute) { page.find('input[type="file"]')['aria-describedby'].split }
-    let(:error_wrapper_id) { "attachment-error-#{champ.public_id}" }
+    let(:error_wrapper_id) { "attachment-error-#{champ.id}" }
 
     it 'targets describedby_id, parent_hint_id and error_wrapper_id' do
       subject
@@ -175,7 +175,7 @@ RSpec.describe Attachment::FileInputComponent, type: :component do
 
   describe 'field name inference' do
     it 'by default generates input name from attached file object with [] for multiple' do
-      expect(subject).to have_selector("input[name='champs_piece_justificative_champ[piece_justificative_file][]']")
+      expect(subject).to have_selector("input[name='champ[piece_justificative_file][]']")
     end
 
     context 'when a form object_name is provided' do

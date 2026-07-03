@@ -6,7 +6,7 @@ RSpec.describe Dossiers::RNFComponent, type: :component do
   let(:external_id) { '075-FDD-00003-01' }
 
   let(:champ) do
-    Champs::RNFChamp.new(external_state:, external_id:, data: rnf_data, fetch_external_data_exceptions:)
+    build_projected_champ(build(:type_de_champ_rnf), external_state:, external_id:, data: rnf_data, fetch_external_data_exceptions:)
       .tap { |c| allow(c).to receive(:to_s).and_return('075-FDD-00003-01') }
   end
 

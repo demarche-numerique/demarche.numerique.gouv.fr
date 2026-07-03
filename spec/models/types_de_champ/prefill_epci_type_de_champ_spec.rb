@@ -3,7 +3,7 @@
 RSpec.describe TypesDeChamp::PrefillEpciTypeDeChamp do
   let(:procedure) { build(:procedure) }
   let(:type_de_champ) { build(:type_de_champ_epci, procedure: procedure) }
-  let(:champ) { Champs::EpciChamp.new }
+  let(:champ) { build_projected_champ(type_de_champ, value: nil) }
 
   describe 'ancestors' do
     subject { described_class.new(type_de_champ, procedure.active_revision) }

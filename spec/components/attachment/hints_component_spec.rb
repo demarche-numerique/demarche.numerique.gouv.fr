@@ -3,7 +3,7 @@
 RSpec.describe Attachment::HintsComponent, type: :component do
   let(:procedure) { create(:procedure, :published, types_de_champ_public:) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.champ_data.first }
+  let(:champ) { dossier.project_champs_public.first }
   let(:attached_file) { champ.piece_justificative_file }
 
   let(:component) do

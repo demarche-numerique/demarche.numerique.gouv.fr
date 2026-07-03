@@ -9,12 +9,12 @@ module Maintenance
 
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :pays }]) }
       let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-      let(:champ_pays) { dossier.champ_data.first }
+      let(:champ_pays) { dossier.project_champs_public.first }
 
       context 'when champ has a country that needs migration' do
         before { champ_pays.update_columns(value: "Guadeloupe", external_id: "GP") }
 
-        it { expect(collection).to include(champ_pays) }
+        it { expect(collection).to include(champ_pays.champ_data) }
       end
     end
 
@@ -23,7 +23,7 @@ module Maintenance
 
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :pays }]) }
       let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-      let(:champ_pays) { dossier.champ_data.first }
+      let(:champ_pays) { dossier.project_champs_public.first }
 
       context 'when migrating DOM to France' do
         before { champ_pays.update_columns(value: "Martinique", external_id: "MQ") }
@@ -47,7 +47,7 @@ module Maintenance
         before { champ_pays.update_columns(value: "Allemagne", external_id: "DE") }
 
         it 'does not update the champ' do
-          expect { subject }.not_to change { champ_pays.reload.attributes }
+          expect { subject }.not_to change { champ_pays.reload.champ_data.attributes }
         end
       end
     end

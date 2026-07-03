@@ -4,7 +4,7 @@ describe Champs::EpciChamp, type: :model do
   let(:types_de_champ_public) { [{ type: :epci }] }
   let(:procedure) { create(:procedure, types_de_champ_public:) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.project_champs_public.first.tap { _1.code_departement = code_departement } }
+  let(:champ) { dossier.project_champs_public.first.writable!.tap { _1.code_departement = code_departement } }
   let(:code_departement) { nil }
 
   describe 'validations' do

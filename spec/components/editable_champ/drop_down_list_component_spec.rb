@@ -7,7 +7,7 @@ describe EditableChamp::DropDownListComponent, type: :component do
   let(:types_de_champ_public) { [{ type: :drop_down_list }] }
   let(:dossier) { create(:dossier, procedure:) }
   let(:tdc) { procedure.active_revision.types_de_champ.first }
-  let(:champ) { dossier.champ_data.first }
+  let(:champ) { dossier.project_champs_public.first }
 
   subject(:render) do
     component = nil
@@ -66,7 +66,7 @@ describe EditableChamp::DropDownListComponent, type: :component do
           let(:types_de_champ_public) { [{ type: :repetition, children: [{ type: :drop_down_list, drop_down_options: ['Option 1', 'Option 2'], drop_down_other: true }] }] }
 
           before do
-            drop_down_list_champ.update!(value: Champs::DropDownListChamp::OTHER)
+            champ_for_update(drop_down_list_champ).update!(value: Champs::DropDownListChamp::OTHER)
             dossier.reload
           end
 

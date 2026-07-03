@@ -112,11 +112,11 @@ RSpec.describe DossierCloneConcern do
       context 'public are duplicated' do
         it do
           expect(new_dossier.project_champs_public.count).to eq(dossier.project_champs_public.count)
-          expect(new_dossier.project_champs_public.map(&:id)).not_to eq(dossier.project_champs_public.map(&:id))
+          expect(new_dossier.project_champs_public.map { it.champ_data.id }).not_to eq(dossier.project_champs_public.map { it.champ_data.id })
         end
 
         it 'keeps champs.values' do
-          original_first_champ = dossier.project_champs_public.first
+          original_first_champ = dossier.project_champs_public.first.writable!
           original_first_champ.update!(value: 'kthxbye')
 
           expect(new_dossier.project_champs_public.first.value).to eq(original_first_champ.value)
@@ -129,7 +129,7 @@ RSpec.describe DossierCloneConcern do
 
           it do
             expect(cloned_champ_repetition.rows.flatten.count).to eq(4)
-            expect(cloned_champ_repetition.rows.flatten.map(&:id)).not_to eq(champ_repetition.rows.flatten.map(&:id))
+            expect(cloned_champ_repetition.rows.flatten.map { it.champ_data.id }).not_to eq(champ_repetition.rows.flatten.map { it.champ_data.id })
             expect(cloned_champ_repetition.row_ids).to eq(champ_repetition.row_ids)
           end
         end
@@ -185,8 +185,8 @@ RSpec.describe DossierCloneConcern do
 
         it 'reset champs private values' do
           expect(new_dossier.project_champs_private.count).to eq(dossier.project_champs_private.count)
-          expect(new_dossier.project_champs_private.map(&:id)).not_to eq(dossier.project_champs_private.map(&:id))
-          original_first_champs_private = dossier.project_champs_private.first
+          expect(new_dossier.project_champs_private.map { it.champ_data.id }).not_to eq(dossier.project_champs_private.map { it.champ_data.id })
+          original_first_champs_private = dossier.project_champs_private.first.writable!
           original_first_champs_private.update!(value: 'kthxbye')
 
           expect(new_dossier.project_champs_private.first.value).not_to eq(original_first_champs_private.value)

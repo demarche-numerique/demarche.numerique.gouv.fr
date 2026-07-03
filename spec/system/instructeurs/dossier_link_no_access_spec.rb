@@ -8,7 +8,7 @@ describe 'Instructeur viewing a linked dossier they cannot access:', js: true do
   let(:dossier) { create(:dossier, :en_instruction, procedure:) }
 
   before do
-    dossier.champ_data.find { _1.is_a?(Champs::DossierLinkChamp) }.update(value: linked_dossier.id)
+    dossier.project_champs_public.find(&:dossier_link?).update(value: linked_dossier.id)
     login_as(instructeur.user, scope: :user)
     visit instructeur_dossier_path(procedure, dossier)
   end

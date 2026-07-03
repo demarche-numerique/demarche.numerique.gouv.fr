@@ -5,7 +5,7 @@ RSpec.describe AddressProxy, type: :model do
     subject { AddressProxy.new(champ_or_etablissement) }
 
     context 'when champ_or_etablissement is an instance of Champ' do
-      let(:champ_or_etablissement) { ChampData.new }
+      let(:champ_or_etablissement) { build_projected_champ(build(:type_de_champ_address)) }
 
       context 'when value_json is nil' do
         before { allow(champ_or_etablissement).to receive(:value_json).and_return(nil) }

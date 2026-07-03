@@ -3,7 +3,7 @@
 RSpec.describe Attachment::AttachmentRowComponent, type: :component do
   let_it_be(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :piece_justificative, nature: 'titre_identite' }]) }
   let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-  let(:champ) { dossier.champ_data.first }
+  let(:champ) { dossier.project_champs_public.first }
   let(:attached_file) { champ.piece_justificative_file }
   let(:attachment) { attached_file.attachments.first }
   let(:filename) { attachment.filename.to_s }

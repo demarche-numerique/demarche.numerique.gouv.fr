@@ -3,7 +3,7 @@
 RSpec.describe EditableChamp::HeaderSectionComponent, type: :component do
   subject { render_inline(component) }
 
-  let(:champ) { Champs::HeaderSectionChamp.new }
+  let(:champ) { build_projected_champ(build(:type_de_champ_header_section)) }
 
   let(:dossier) { instance_double(Dossier, auto_numbering_section_headers_for?: false) }
 

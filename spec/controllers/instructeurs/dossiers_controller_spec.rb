@@ -1153,7 +1153,7 @@ describe Instructeurs::DossiersController, type: :controller do
           context 'and the expert can access the linked dossiers' do
             let(:saved_avis) { Avis.last(2).first }
             let(:linked_avis) { Avis.last }
-            let(:linked_dossier) { Dossier.find_by(id: dossier.champ_data.first.value) }
+            let(:linked_dossier) { Dossier.find_by(id: dossier.project_champs_public.first.value) }
             let(:invite_linked_dossiers) do
               instructeur.assign_to_procedure(linked_dossier.procedure)
               true
@@ -1390,7 +1390,7 @@ describe Instructeurs::DossiersController, type: :controller do
 
         let(:champs_private_attributes) do
           {
-            champ_multiple_drop_down_list.public_id => {
+            champ_multiple_drop_down_list.id => {
               value: ['', 'val1', 'val2'],
             },
           }
@@ -1413,7 +1413,7 @@ describe Instructeurs::DossiersController, type: :controller do
         context 'datetime' do
           let(:champs_private_attributes) do
             {
-              champ_datetime.public_id => {
+              champ_datetime.id => {
                 value: '2019-12-21T13:17',
               },
             }
@@ -1430,7 +1430,7 @@ describe Instructeurs::DossiersController, type: :controller do
         context 'linked_drop_down' do
           let(:champs_private_attributes) do
             {
-              champ_linked_drop_down_list.public_id => {
+              champ_linked_drop_down_list.id => {
                 primary_value: 'primary',
                 secondary_value: 'secondary',
               },
@@ -1449,7 +1449,7 @@ describe Instructeurs::DossiersController, type: :controller do
         context 'repetition' do
           let(:champs_private_attributes) do
             {
-              champ_repetition.rows.first.first.public_id => {
+              champ_repetition.rows.first.first.id => {
                 value: 'text',
               },
             }
@@ -1483,7 +1483,7 @@ describe Instructeurs::DossiersController, type: :controller do
             end
             let(:champs_private_attributes) do
               {
-                champ_repetition.rows.first.first.public_id => {
+                champ_repetition.rows.first.first.id => {
                   external_id: 'text',
                 },
               }
@@ -1501,7 +1501,7 @@ describe Instructeurs::DossiersController, type: :controller do
         context 'drop_down_list' do
           let(:champs_private_attributes) do
             {
-              champ_drop_down_list.public_id => {
+              champ_drop_down_list.id => {
                 value: '__other__',
                 value_other: 'other value',
               },
@@ -1552,7 +1552,7 @@ describe Instructeurs::DossiersController, type: :controller do
           dossier: {
             champs_private_attributes: {},
             champs_public_attributes: {
-              champ_multiple_drop_down_list.public_id => {
+              champ_multiple_drop_down_list.id => {
                 value: ['', 'val1', 'val2'],
               },
             },
@@ -1581,7 +1581,7 @@ describe Instructeurs::DossiersController, type: :controller do
           dossier_id: dossier.id,
           dossier: {
             champs_private_attributes: {
-              champ_datetime.public_id => {
+              champ_datetime.id => {
                 value: '2024-03-30T07:03',
               },
             },
@@ -1607,7 +1607,7 @@ describe Instructeurs::DossiersController, type: :controller do
           dossier_id: dossier.id,
           dossier: {
             champs_private_attributes: {
-              champ_datetime.public_id => {
+              champ_datetime.id => {
                 value: '2024-03-30T07:03',
               },
             },
@@ -1644,7 +1644,7 @@ describe Instructeurs::DossiersController, type: :controller do
           dossier_id: dossier.id,
           dossier: {
             champs_private_attributes: {
-              pre_rempli_annotation.public_id => { value: 'forged' },
+              pre_rempli_annotation.id => { value: 'forged' },
             },
           },
         }
@@ -1681,7 +1681,7 @@ describe Instructeurs::DossiersController, type: :controller do
 
     context 'when a conditional annotation exists alongside the polled annotation' do
       before do
-        dossier.champ_data.find(&:referentiel?).update_columns(external_id: 'kthxbye', value: 'OK', data: {})
+        dossier.project_champs_private.find(&:referentiel?).update_columns(external_id: 'kthxbye', value: 'OK', data: {})
         dossier.champ_data.find { _1.stable_id == checkbox_stable_id }.update_columns(value: 'true')
       end
 
@@ -2065,7 +2065,7 @@ describe Instructeurs::DossiersController, type: :controller do
     let(:avis) { create(:avis, :with_answer, :with_piece_justificative, dossier: dossier, claimant: expert, experts_procedure: experts_procedure) }
 
     before do
-      dossier.champ_data.first.piece_justificative_file.attach(
+      dossier.project_champs_public.first.piece_justificative_file.attach(
         io: File.open(logo_path),
         filename: "logo_test_procedure.png",
         content_type: "image/png",
@@ -2102,7 +2102,7 @@ describe Instructeurs::DossiersController, type: :controller do
       expect(response.body).to include('Pièce jointe à l’avis')
       expect(assigns(:gallery_attachments).count).to eq 4
       expect(assigns(:gallery_attachments)).to all(be_a(ActiveStorage::Attachment))
-      expect([Champs::PieceJustificativeChamp, Commentaire, Avis]).to include(*assigns(:gallery_attachments).map { _1.record.class })
+      expect([ChampData, Commentaire, Avis]).to include(*assigns(:gallery_attachments).map { _1.record.class })
     end
   end
 

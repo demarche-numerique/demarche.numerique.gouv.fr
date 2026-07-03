@@ -89,13 +89,13 @@ describe 'users/dossiers/demande', type: :view do
       ]
     end
     let(:dossier) { create(:dossier, procedure: procedure) }
-    let(:champ) { dossier.champ_data.first }
+    let(:champ) { dossier.project_champs_public.first }
     let(:referentiel) { create(:csv_referentiel, :with_items) }
 
     context 'user choose an option in the list' do
       before do
-        dossier.champ_data.first.update!(value: referentiel.items.first.id.to_s)
-        dossier.champ_data.first.referentiel = { 'data' => { 'row' => { 'option' => 'fromage', 'calorie_kcal' => '145', 'poids_g' => '60' }, 'headers' => ['Option', 'Calorie (kcal)', 'Poids (g)'] } }
+        dossier.project_champs_public.first.update!(value: referentiel.items.first.id.to_s)
+        dossier.project_champs_public.first.referentiel = { 'data' => { 'row' => { 'option' => 'fromage', 'calorie_kcal' => '145', 'poids_g' => '60' }, 'headers' => ['Option', 'Calorie (kcal)', 'Poids (g)'] } }
         render
       end
 
@@ -107,7 +107,7 @@ describe 'users/dossiers/demande', type: :view do
 
     context 'user choose other option' do
       before do
-        dossier.champ_data.first.update!(value: '__other__', value_other: 'Texte libre')
+        dossier.project_champs_public.first.update!(value: '__other__', value_other: 'Texte libre')
         dossier.reload
         render
       end
@@ -125,7 +125,7 @@ describe 'users/dossiers/demande', type: :view do
       ]
     end
     let(:dossier) { create(:dossier, procedure: procedure) }
-    let(:champ) { dossier.champ_data.first }
+    let(:champ) { dossier.project_champs_public.first }
     let(:referentiel) { create(:csv_referentiel, :with_items) }
     let(:value) { [referentiel.items.first.id.to_s, referentiel.items.second.id.to_s] }
 

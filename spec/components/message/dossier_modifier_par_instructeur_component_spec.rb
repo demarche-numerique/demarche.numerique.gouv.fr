@@ -11,7 +11,7 @@ RSpec.describe Message::DossierModifierParInstructeurComponent, type: :component
     let(:instructeur) { create(:instructeur) }
     let(:changed_columns) do
       dossier.with_instructeur_buffer_stream do
-        dossier.public_champ_for_update('99', updated_by: instructeur.email)
+        dossier.public_champ_data_for_update('99', updated_by: instructeur.email)
           .assign_attributes(value: "Nouvelle valeur")
       end
       dossier.save!

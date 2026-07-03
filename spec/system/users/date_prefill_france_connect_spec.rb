@@ -41,7 +41,7 @@ describe 'Prefill date champ from FranceConnect:', js: true do
 
     # Si l'usager modifie la valeur, le flag disparaît
     champ.update!(value: '2000-01-01')
-    expect(champ.reload.data['prefilled_from_france_connect_information']).to be_nil
+    expect(champ.reload.prefilled_from_france_connect_information?).to be false
 
     visit instructeur_dossier_path(procedure, dossier)
     expect(page).not_to have_text('Source : FranceConnect')

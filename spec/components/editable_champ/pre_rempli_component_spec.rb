@@ -5,7 +5,7 @@ require 'rails_helper'
 describe EditableChamp::PreRempliComponent, type: :component do
   let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :pre_rempli }]) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.project_champs_public.first }
+  let(:champ) { dossier.project_champs_public.first.writable! }
   let(:form) do
     ActionView::Helpers::FormBuilder.new("dossier[champs_public_attributes]", champ, ActionController::Base.new.view_context, {})
   end

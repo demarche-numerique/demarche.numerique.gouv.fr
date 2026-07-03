@@ -4,7 +4,7 @@ describe Champs::AddressChamp do
   let(:types_de_champ_public) { [{ type: :address }] }
   let(:procedure) { create(:procedure, types_de_champ_public:) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.champ_data.first.tap { _1.update(value:, value_json:) } }
+  let(:champ) { dossier.project_champs_public.first.tap { _1.writable!.update(value:, value_json:) } }
   let(:value) { nil }
   let(:value_json) { nil }
 
@@ -148,10 +148,10 @@ describe Champs::AddressChamp do
       context 'when address was not refilled' do
         before do
           champ.update(value: '128 Rue Brancion 75015 Paris', value_json: nil)
-          Maintenance::T20250513BackfillNoBanAddressTask.new.process(champ)
+          Maintenance::T20250513BackfillNoBanAddressTask.new.process(champ.champ_data)
         end
         it 'to_s successfully' do
-          expect(champ.to_s).to eq('128 Rue Brancion 75015 Paris')
+          expect(champ.reload.to_s).to eq('128 Rue Brancion 75015 Paris')
         end
       end
 

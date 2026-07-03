@@ -9,7 +9,7 @@ module Maintenance
 
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :rna }]) }
       let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-      let(:element) { dossier.champ_data.first }
+      let(:element) { dossier.project_champs_public.first }
       let(:body) { File.read('spec/fixtures/files/api_entreprise/associations.json') }
       let(:data_source) { JSON.parse(body).with_indifferent_access }
       let(:data) { data_source[:data] }
@@ -26,10 +26,10 @@ module Maintenance
         }
       end
 
-      subject(:process) { described_class.process(element) }
+      subject(:process) { described_class.process(element.champ_data) }
 
       before do
-        allow(element).to receive(:fetch_external_data).and_return(
+        allow_any_instance_of(Champs::RNAChamp).to receive(:fetch_external_data).and_return(
           Success(
             data: processed_params,
             value_json: element.send(:extract_value_json, data: processed_params),

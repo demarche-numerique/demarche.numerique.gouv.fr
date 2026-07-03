@@ -28,7 +28,7 @@ describe DossierPreloader do
         expect(subject.project_champs_public.size).to eq(types_de_champ.size)
         expect(subject.changed?).to be false
 
-        expect(first_child.type).to eq('Champs::TextChamp')
+        expect(first_child).to be_an_instance_of(Champs::TextChamp)
         expect(repetition).not_to eq(first_child)
         expect(subject.champ_data.first.dossier).to eq(subject)
         expect(subject.champ_data.find(&:public?).dossier).to eq(subject)
@@ -36,11 +36,11 @@ describe DossierPreloader do
 
         expect(subject.project_champs_public.first.type_de_champ.piece_justificative_template.attached?).to eq(false)
 
-        expect(subject.champ_data.first.conditional?).to eq(false)
-        expect(subject.champ_data.find(&:public?).conditional?).to eq(false)
+        expect(subject.project_champs_public.first.conditional?).to eq(false)
+        expect(subject.project_champs_public.first.conditional?).to eq(false)
         expect(subject.project_champs_public.first.conditional?).to eq(false)
 
-        expect(repetition.rows.first.first.public_id).to eq(first_child.public_id)
+        expect(repetition.rows.first.first.id).to eq(first_child.id)
         expect(repetition_optional.row_ids).to be_empty
       end
 

@@ -2,7 +2,6 @@
 
 describe Champs::YesNoChamp do
   it_behaves_like "a boolean champ", true do
-    let(:boolean_champ) { described_class.new(value: value) }
-    before { allow(boolean_champ).to receive(:type_de_champ).and_return(build(:type_de_champ_yes_no)) }
+    let(:boolean_champ) { build_projected_champ(build(:type_de_champ_yes_no), value:) }
   end
 end
