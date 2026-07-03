@@ -3,8 +3,8 @@
 class ClonePiecesJustificativesService
   def self.clone_attachments(original, kopy)
     case original
-    when Champs::PieceJustificativeChamp
-      clone_many_attachments(original, kopy, :piece_justificative_file)
+    when ChampData
+      clone_many_attachments(original, kopy, :piece_justificative_file) if original.is_type?(TypeDeChamp.type_champs.fetch(:piece_justificative))
     when TypeDeChamp
       clone_one_attachment(original, kopy, :piece_justificative_template)
     when Procedure

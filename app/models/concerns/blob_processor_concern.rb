@@ -22,7 +22,7 @@ module BlobProcessorConcern
   private
 
   def from_champ?
-    attachments.any? { _1.record.class == Champs::PieceJustificativeChamp }
+    attachments.any? { _1.record.is_a?(ChampData) && _1.record.type == 'Champs::PieceJustificativeChamp' }
   end
 
   def from_messagerie?
@@ -48,7 +48,7 @@ module BlobProcessorConcern
   def watermark_required?
     attachments.any? do |attachment|
       record = attachment.record
-      next if !record.is_a?(Champs::PieceJustificativeChamp)
+      next if !record.is_a?(ChampData) || record.type != 'Champs::PieceJustificativeChamp'
 
       type_de_champ = record.dossier.revision.types_de_champ.find { _1.stable_id == record.stable_id }
       type_de_champ&.titre_identite?
