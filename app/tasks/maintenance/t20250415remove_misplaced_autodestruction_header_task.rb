@@ -66,12 +66,8 @@ module Maintenance
 
           # sometime the attachment as no more record
           if champ.present?
-            champ_libelle = begin
-              attachment.record.libelle
-                            # sometimes, a type de champ is found in the revision
-                            rescue StandardError
-                              ''
-            end
+            # sometimes, no type de champ is found in the revision
+            champ_libelle = champ.dossier.find_type_de_champ_by_stable_id(champ.stable_id)&.libelle || ''
 
             dossier_id = champ.dossier_id
             dossier_state = champ.dossier.state

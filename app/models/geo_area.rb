@@ -59,7 +59,7 @@ class GeoArea < ApplicationRecord
         description: description,
         filename: filename,
         id: (uuid || id).to_s,
-        champ_label: champ.libelle,
+        champ_label: champ_libelle,
         champ_id: champ.stable_id,
         champ_row: champ.row_id,
         champ_private: champ.private?,
@@ -253,6 +253,11 @@ class GeoArea < ApplicationRecord
   def surface_hectares
     return if surface.nil?
     surface.round / 10_000
+  end
+
+  # champ is a ChampData; the libelle comes from the revision.
+  def champ_libelle
+    champ.dossier.find_type_de_champ_by_stable_id(champ.stable_id)&.libelle
   end
 
   def set_default_uuid

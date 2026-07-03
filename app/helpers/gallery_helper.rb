@@ -4,7 +4,7 @@ module GalleryHelper
   def record_libelle(record)
     case record
     in ChampData
-      record.libelle
+      record.dossier.find_type_de_champ_by_stable_id(record.stable_id)&.libelle
     in Commentaire
       'Pièce jointe au message'
     in Avis

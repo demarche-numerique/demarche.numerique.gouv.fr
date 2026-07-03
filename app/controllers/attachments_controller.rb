@@ -111,8 +111,12 @@ class AttachmentsController < ApplicationController
 
   def champ
     @champ ||= if champ?
-      record.dossier.with_update_stream(current_user) if record.public?
-      record.dossier.champ_for_update(record.type_de_champ, row_id: record.row_id, updated_by: current_user.email)
+      dossier = record.dossier
+      type_de_champ = dossier.find_type_de_champ_by_stable_id(record.stable_id)
+      if type_de_champ.present?
+        dossier.with_update_stream(current_user) if record.public?
+        dossier.champ_for_update(type_de_champ, row_id: record.row_id, updated_by: current_user.email)
+      end
     end
   end
 

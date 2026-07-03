@@ -3,7 +3,7 @@
 class Etablissement < ApplicationRecord
   belongs_to :dossier, optional: true, touch: true
 
-  has_one :champ, class_name: 'Champs::SiretChamp', touch: true, inverse_of: :etablissement
+  has_one :champ, class_name: 'ChampData', touch: true, inverse_of: :etablissement
 
   has_many :exercices, dependent: :destroy
 
@@ -289,7 +289,8 @@ class Etablissement < ApplicationRecord
   end
 
   def libelle_for_export
-    champ&.libelle || 'Dossier'
+    # champ is a ChampData; the libelle comes from the revision
+    champ&.dossier&.find_type_de_champ_by_stable_id(champ.stable_id)&.libelle || 'Dossier'
   end
 
   def bilans_headers

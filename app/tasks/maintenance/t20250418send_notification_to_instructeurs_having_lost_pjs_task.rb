@@ -95,11 +95,8 @@ module Maintenance
 
     def safe_champs_libelles(champs)
       champs.filter_map do |champ|
-        begin
-          champ.libelle
-        rescue
-          # Ignore error like Type De Champ 3990816 not found in Revision 168536
-        end
+        # Orphaned champs (type de champ not in the revision) have no libelle
+        champ.dossier.find_type_de_champ_by_stable_id(champ.stable_id)&.libelle
       end
     end
 
