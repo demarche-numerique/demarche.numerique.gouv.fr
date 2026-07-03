@@ -29,6 +29,7 @@ class Champ
   include ChampConditionalConcern
   include ChampValidateConcern
   include ChampExternalDataConcern
+  include ChampStreamConcern
 
   # Error messages live under activerecord.errors.models.champ.* /
   # activerecord.errors.models.champs/*.
@@ -365,26 +366,6 @@ class Champ
 
   def stream
     champ_data&.stream || dossier.stream
-  end
-
-  def main_stream?
-    stream == ChampData::MAIN_STREAM
-  end
-
-  def user_buffer_stream?
-    stream == ChampData::USER_BUFFER_STREAM
-  end
-
-  def instructeur_buffer_stream?
-    stream == ChampData::INSTRUCTEUR_BUFFER_STREAM
-  end
-
-  def history_stream?
-    stream.start_with?(ChampData::HISTORY_STREAM)
-  end
-
-  def buffer_stream?
-    persisted? && (user_buffer_stream? || instructeur_buffer_stream?)
   end
 
   delegate :checkpoint, :source_stream, :updated_by, :rebased_at, to: :champ_data, allow_nil: true

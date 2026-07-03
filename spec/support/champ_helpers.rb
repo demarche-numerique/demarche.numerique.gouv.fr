@@ -10,7 +10,7 @@ module ChampHelpers
       ChampData.new(
         type: type_de_champ.champ_class.name,
         stable_id: type_de_champ.stable_id,
-        stream: ChampData::MAIN_STREAM,
+        stream: Dossier::MAIN_STREAM,
         private: type_de_champ.private?,
         dossier:,
         row_id:,
