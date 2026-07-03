@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Champs::DateChamp < Champ
+class Champs::DateChamp < ChampData
   attr_accessor :prefilling_from_france_connect_information
 
   validates_with DateLimitValidator, if: :should_validate_in_current_context?

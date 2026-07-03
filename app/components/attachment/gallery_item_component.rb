@@ -14,9 +14,9 @@ class Attachment::GalleryItemComponent < ApplicationComponent
 
   def origin
     case record
-    in Champ if record.public?
+    in ChampData if record.public?
       t(".dossier_usager")
-    in Champ if record.private?
+    in ChampData if record.private?
       t(".annotation_privee")
     in Commentaire if record.instructeur.present?
       t(".messagerie_instructeur")
@@ -38,7 +38,7 @@ class Attachment::GalleryItemComponent < ApplicationComponent
   end
 
   def updated?
-    record.is_a?(Champ) && record.public? && updated_at > record.dossier.depose_at
+    record.is_a?(ChampData) && record.public? && updated_at > record.dossier.depose_at
   end
 
   def updated_at

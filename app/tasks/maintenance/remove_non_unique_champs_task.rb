@@ -6,7 +6,7 @@ module Maintenance
     validates :stable_ids, presence: true
 
     def collection
-      champs = Champ.where(stable_id: stable_ids.split(',').map(&:strip).map(&:to_i))
+      champs = ChampData.where(stable_id: stable_ids.split(',').map(&:strip).map(&:to_i))
       champs
         .group_by { [_1.dossier_id, _1.stream, _1.stable_id, _1.row_id] }
         .values

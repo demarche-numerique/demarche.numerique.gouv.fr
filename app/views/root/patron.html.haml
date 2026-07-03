@@ -327,7 +327,7 @@
 
       %h3.fr-mt-4w Existing attachment, error
       - attachment.blob.metadata[:virus_scan_result] = ActiveStorage::VirusScanner::INFECTED
-      = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(champ: Champ.new), drop_zone: :none)
+      = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(champ: ChampData.new), drop_zone: :none)
 
 
       %h3.fr-mt-4w New attachment on TypeDeChamp

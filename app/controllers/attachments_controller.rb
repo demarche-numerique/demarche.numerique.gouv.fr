@@ -102,7 +102,7 @@ class AttachmentsController < ApplicationController
   end
 
   def record = @attachment.record
-  def champ? = record.is_a?(Champ)
+  def champ? = record.is_a?(ChampData)
   def procedure? = record.is_a?(Procedure)
   def avis? = record.is_a?(Avis)
   def attestation_template? = record.is_a?(AttestationTemplate)

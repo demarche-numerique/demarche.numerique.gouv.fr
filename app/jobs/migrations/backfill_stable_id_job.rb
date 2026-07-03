@@ -13,7 +13,7 @@ class Migrations::BackfillStableIdJob < ApplicationJob
     query = ActiveRecord::Base.sanitize_sql_array([sql, limit])
     ActiveRecord::Base.connection.execute(query)
 
-    if Champ.exists?(stable_id: nil)
+    if ChampData.exists?(stable_id: nil)
       Migrations::BackfillStableIdJob.set(wait: 2.seconds).perform_later(iteration + 1, limit)
     end
   end

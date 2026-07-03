@@ -3,7 +3,7 @@
 module GalleryHelper
   def record_libelle(record)
     case record
-    in Champ
+    in ChampData
       record.libelle
     in Commentaire
       'Pièce jointe au message'

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Champs::HeaderSectionChamp < Champ
+class Champs::HeaderSectionChamp < ChampData
   def search_terms
     # The user cannot enter any information here so it doesn’t make much sense to search
   end

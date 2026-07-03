@@ -110,7 +110,7 @@ module Recovery
             Etablissement.insert(champ.etablissement.attributes)
           end
 
-          Champ.insert(champ.attributes)
+          ChampData.insert(champ.attributes)
 
           if champ.geo_areas.present?
             champ.geo_areas.each { GeoArea.insert(_1.attributes) }

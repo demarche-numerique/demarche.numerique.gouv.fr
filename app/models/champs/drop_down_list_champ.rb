@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Champs::DropDownListChamp < Champ
+class Champs::DropDownListChamp < ChampData
   store_accessor :value_json, :other, :referentiel
   THRESHOLD_NB_OPTIONS_AS_RADIO = 5
   THRESHOLD_NB_OPTIONS_AS_AUTOCOMPLETE = 20

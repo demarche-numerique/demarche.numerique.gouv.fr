@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Champs::QuotientFamilialChamp < Champ
+class Champs::QuotientFamilialChamp < ChampData
   REFRESH_DELAY = 24.hours
 
   attr_accessor :preview_state

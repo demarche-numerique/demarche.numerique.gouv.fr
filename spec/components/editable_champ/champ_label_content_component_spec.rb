@@ -3,7 +3,7 @@
 RSpec.describe EditableChamp::ChampLabelContentComponent, type: :component do
   let(:form) { double(object: champ) }
 
-  let(:champ_class) { Champ }
+  let(:champ_class) { ChampData }
   let(:champ) do
     instance_double(
       champ_class,

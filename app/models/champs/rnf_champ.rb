@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Champs::RNFChamp < Champ
+class Champs::RNFChamp < ChampData
   RNF_REGEXP = /\A[A-Za-z0-9-]{12,20}\z/i.freeze
 
   store_accessor :data, :title, :email, :phone, :createdAt, :updatedAt, :dissolvedAt, :address

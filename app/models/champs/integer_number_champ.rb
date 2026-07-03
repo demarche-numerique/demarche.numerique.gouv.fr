@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Champs::IntegerNumberChamp < Champ
+class Champs::IntegerNumberChamp < ChampData
   validates_with NumberLimitValidator, if: :should_validate_in_current_context?
   before_validation :format_value
 

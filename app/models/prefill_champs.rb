@@ -20,7 +20,7 @@ class PrefillChamps
 
   def build_prefill_values
     value_by_stable_id = params
-      .map { |prefixed_typed_id, value| [Champ.stable_id_from_typed_id(prefixed_typed_id), value] }
+      .map { |prefixed_typed_id, value| [ChampData.stable_id_from_typed_id(prefixed_typed_id), value] }
       .filter { |stable_id, value| stable_id.present? && value.present? }
       .to_h
 

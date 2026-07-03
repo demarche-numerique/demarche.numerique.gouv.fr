@@ -51,7 +51,7 @@ class AddressProxy
 
   def make(champ_or_etablissement)
     case champ_or_etablissement
-    when Champ then ChampAddressPresenter.new(champ_or_etablissement)
+    when ChampData then ChampAddressPresenter.new(champ_or_etablissement)
     when Etablissement then EtablissementAddressPresenter.new(champ_or_etablissement)
     else raise NotImplementedError("Unsupported address from #{champ_or_etablissement.class.name}")
     end

@@ -24,7 +24,7 @@ class DossierSerializer < ActiveModel::Serializer
   has_one :etablissement
   has_many :cerfa
   has_many :commentaires
-  has_many :champs_private
+  has_many :champs_private, serializer: ChampSerializer
   has_many :pieces_justificatives
   has_many :types_de_piece_justificative
   has_many :avis

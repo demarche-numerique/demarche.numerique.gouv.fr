@@ -61,7 +61,7 @@ class TypesDeChamp::PrefillRepetitionTypeDeChamp < TypesDeChamp::PrefillTypeDeCh
       repetition.filter_map do |key, value|
         next if !key.is_a?(String) || !key.starts_with?("champ_")
 
-        stable_id = Champ.stable_id_from_typed_id(key)
+        stable_id = ChampData.stable_id_from_typed_id(key)
         type_de_champ = revision.types_de_champ.find { _1.stable_id == stable_id }
         next unless type_de_champ
 

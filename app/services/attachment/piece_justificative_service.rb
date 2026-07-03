@@ -11,7 +11,7 @@ class Attachment::PieceJustificativeService
     updated_by = champ.updated_by
     dossier = champ.dossier
 
-    Champ.transaction do
+    ChampData.transaction do
       champ.reload(lock: true) # SELECT FOR UPDATE + clear association cache
       # restore the stream-scoped dossier: a fresh association load defaults to
       # the main stream, and conditional visibility (the validation gate) must

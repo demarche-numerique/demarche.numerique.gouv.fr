@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Champs::EngagementJuridiqueChamp < Champ
+class Champs::EngagementJuridiqueChamp < ChampData
   # cf: https://communaute.chorus-pro.gouv.fr/documentation/creer-un-engagement/#1522314752186-a34f3662-0644b5d1-16c22add-8ea097de-3a0a
   validates_with ExpressionReguliereValidator,
                 expression_reguliere: /([A-Z]|[0-9]|\-|\_|\+|\/)+/,

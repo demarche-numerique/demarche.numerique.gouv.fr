@@ -32,7 +32,7 @@ module Maintenance
       # "Champs::MESRIChamp",
       # "Champs::PoleEmploiChamp",
 
-      Champ.where(type: targets)
+      ChampData.where(type: targets)
     end
 
     def process(champ)

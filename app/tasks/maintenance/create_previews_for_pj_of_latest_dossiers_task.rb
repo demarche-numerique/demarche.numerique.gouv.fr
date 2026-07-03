@@ -23,7 +23,7 @@ module Maintenance
     def process(dossier)
       require "vips"
 
-      champ_ids = Champ
+      champ_ids = ChampData
         .where(dossier_id: dossier)
         .where(type: "Champs::PieceJustificativeChamp")
         .ids

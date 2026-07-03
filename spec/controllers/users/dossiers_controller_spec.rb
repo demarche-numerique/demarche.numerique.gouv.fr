@@ -1231,7 +1231,7 @@ describe Users::DossiersController, type: :controller do
         end
 
         before do
-          expect_any_instance_of(Champ).to receive(:fetch_external_data_later)
+          expect_any_instance_of(ChampData).to receive(:fetch_external_data_later)
           first_champ.update_columns(external_state: 'fetched', value_json: 'a value')
         end
 

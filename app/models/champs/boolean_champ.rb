@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Champs::BooleanChamp < Champ
+class Champs::BooleanChamp < ChampData
   TRUE_VALUE = 'true'
   FALSE_VALUE = 'false'
 

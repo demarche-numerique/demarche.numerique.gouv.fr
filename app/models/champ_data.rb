@@ -1,13 +1,33 @@
 # frozen_string_literal: true
 
-class Champ < ApplicationRecord
+class ChampData < ApplicationRecord
   include ChampConditionalConcern
   include ChampValidateConcern
   include ChampRevisionConcern
   include ChampExternalDataConcern
   include ChampStreamConcern
 
+  self.table_name = 'champs'
   self.ignored_columns += [:type_de_champ_id, :parent_id]
+
+  # Polymorphic references (active_storage_attachments.record_type) predate the
+  # rename and store 'Champ'; keep writing the historical name so old and new
+  # rows stay uniform. The read side is resolved by
+  # ChampDataPolymorphicNameResolution (initializer).
+  def self.polymorphic_name
+    'Champ'
+  end
+
+  # i18n lookups (activerecord.errors.models.champ.*) and dom ids predate the
+  # rename. Scoped to the base class so STI subclasses keep their own
+  # champs/* i18n keys.
+  def self.model_name
+    if self == ChampData
+      @champ_model_name ||= ActiveModel::Name.new(self, nil, 'Champ')
+    else
+      super
+    end
+  end
 
   attr_readonly :stable_id
 
@@ -17,7 +37,10 @@ class Champ < ApplicationRecord
   # We declare champ specific relationships (Champs::CarteChamp, Champs::SiretChamp and Champs::RepetitionChamp)
   # here because otherwise we can't easily use includes in our queries.
   has_many :geo_areas, -> { order(:created_at) }, dependent: :destroy, inverse_of: :champ
-  belongs_to :etablissement, optional: true, dependent: :destroy
+  # inverse_of can no longer be inferred automatically: Rails derives the
+  # inverse name from the defining class (:champ_data), but the association
+  # on the other side is still named :champ.
+  belongs_to :etablissement, optional: true, dependent: :destroy, inverse_of: :champ
 
   delegate :procedure, to: :dossier
   normalizes :value, with: NORMALIZES_NON_PRINTABLE_PROC
@@ -257,7 +280,7 @@ class Champ < ApplicationRecord
     relationships = !private? ? [:etablissement, :geo_areas] : []
 
     deep_clone(only: champ_attributes + value_attributes, include: relationships, validate: true) do |original, kopy|
-      if original.is_a?(Champ)
+      if original.is_a?(ChampData)
         kopy.write_attribute(:stable_id, original.stable_id)
         kopy.write_attribute(:stream, Dossier::MAIN_STREAM)
       end
@@ -279,7 +302,7 @@ class Champ < ApplicationRecord
 
   def clear
     update_columns(value: nil, value_json: nil, external_id: nil, data: nil)
-    Champ.no_touching do
+    ChampData.no_touching do
       etablissement&.destroy
       geo_areas.destroy_all
       piece_justificative_file.purge_later

@@ -9,7 +9,7 @@ module Maintenance
     validates :champ_ids, presence: true
 
     def collection
-      Champ.where(id: champ_ids.split(',').map(&:strip).map(&:to_i))
+      ChampData.where(id: champ_ids.split(',').map(&:strip).map(&:to_i))
     end
 
     def process(champ)

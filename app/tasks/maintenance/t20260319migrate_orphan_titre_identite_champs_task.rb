@@ -15,7 +15,7 @@ module Maintenance
     no_collection
 
     def process
-      Champ.where(type: "Champs::TitreIdentiteChamp")
+      ChampData.where(type: "Champs::TitreIdentiteChamp")
         .update_all(type: "Champs::PieceJustificativeChamp")
     end
   end

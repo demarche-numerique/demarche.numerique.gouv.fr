@@ -8,8 +8,8 @@ module Maintenance
     RANGE_SIZE = 50_000
 
     def collection
-      min_id = Champ.minimum(:id) || 0
-      max_id = Champ.maximum(:id) || 0
+      min_id = ChampData.minimum(:id) || 0
+      max_id = ChampData.maximum(:id) || 0
       (min_id..max_id).step(RANGE_SIZE).map { |from| from...(from + RANGE_SIZE) }
     end
 

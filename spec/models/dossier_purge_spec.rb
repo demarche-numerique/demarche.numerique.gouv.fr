@@ -36,7 +36,7 @@ describe Dossier, type: :model do
       it 'destroys all champs even when count exceeds in_batches size' do
         expect(dossier.champ_data.count).to be > 50
         dossier.purge_discarded
-        expect(Champ.where(dossier_id: dossier.id)).to be_empty
+        expect(ChampData.where(dossier_id: dossier.id)).to be_empty
       end
     end
 
@@ -53,7 +53,7 @@ describe Dossier, type: :model do
 
       it 'rolls back the transaction so no champ is destroyed' do
         dossier.purge_discarded
-        expect(Champ.where(id: champ.id)).to exist
+        expect(ChampData.where(id: champ.id)).to exist
       end
 
       it 'does not enqueue ActiveStorage::PurgeJob (after_destroy_commit gated by commit)' do
@@ -98,7 +98,7 @@ describe Dossier, type: :model do
       it 'destroys all champs even when count exceeds in_batches size' do
         expect(dossier.champ_data.count).to be > 50
         dossier.purge_without_notice
-        expect(Champ.where(dossier_id: dossier.id)).to be_empty
+        expect(ChampData.where(dossier_id: dossier.id)).to be_empty
       end
     end
 
@@ -115,7 +115,7 @@ describe Dossier, type: :model do
 
       it 'rolls back so no champ is destroyed and does not propagate the exception' do
         expect { dossier.purge_without_notice }.not_to raise_error
-        expect(Champ.where(id: champ.id)).to exist
+        expect(ChampData.where(id: champ.id)).to exist
       end
     end
   end

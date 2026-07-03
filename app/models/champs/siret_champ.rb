@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Champs::SiretChamp < Champ
+class Champs::SiretChamp < ChampData
   include Dry::Monads[:result]
   validate :validate_etablissement, if: :should_validate_in_current_context?
   normalizes :external_id, with: -> siret { siret.gsub(/[[:space:]]/, "") }

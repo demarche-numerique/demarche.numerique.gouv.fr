@@ -9,7 +9,7 @@ class BackfillVariantsForDossierJob < ApplicationJob
   def perform(dossier_id, file_type)
     dossier = Dossier.find(dossier_id)
 
-    champ_ids = Champ
+    champ_ids = ChampData
       .where(dossier_id: dossier)
       .where(type: "Champs::PieceJustificativeChamp")
       .ids

@@ -12,7 +12,7 @@ module Maintenance
     # Examples:
     # def collection
     #   with_statement_timeout("0") do
-    #     Champ.all.pluck(:id)
+    #     ChampData.all.pluck(:id)
     #     # No effect with Dossier.all because the collection will be lazy loaded later in batches by MaintenanceTask.
     #   end
     # end

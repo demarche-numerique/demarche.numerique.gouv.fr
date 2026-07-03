@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Champs::PreRempliChamp < Champ
+class Champs::PreRempliChamp < ChampData
   def selected
     value
   end

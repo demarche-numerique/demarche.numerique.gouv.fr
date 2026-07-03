@@ -559,7 +559,7 @@ describe DossierRebaseConcern do
         end
 
         it { expect { subject }.to change { dossier.project_champs_public.find(&:repetition?)&.libelle }.from('p1').to(nil) }
-        it { expect { subject }.not_to change { Champ.count } }
+        it { expect { subject }.not_to change { ChampData.count } }
       end
     end
   end

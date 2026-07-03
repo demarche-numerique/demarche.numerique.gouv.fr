@@ -89,7 +89,7 @@ class DossierPreloader
       },
     ]
 
-    all_champs = Champ
+    all_champs = ChampData
       .includes(to_include)
       .where(dossier_id: dossiers)
       .to_a
@@ -136,7 +136,7 @@ class DossierPreloader
         champ.piece_justificative_file.attachments.each do |attachment|
           if attachment.blob.attachments.loaded?
             attachment.blob.attachments.each do |blob_attachment|
-              if blob_attachment.record.is_a?(Champ)
+              if blob_attachment.record.is_a?(ChampData)
                 blob_attachment.record.association(:dossier).target = dossier
               end
             end

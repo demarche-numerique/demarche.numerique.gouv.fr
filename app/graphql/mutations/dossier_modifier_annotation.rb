@@ -41,7 +41,7 @@ module Mutations
     end
 
     def find_annotation(dossier, annotation_id)
-      stable_id, row_id = Champ.decode_typed_id(annotation_id)
+      stable_id, row_id = ChampData.decode_typed_id(annotation_id)
       type_de_champ = dossier.find_type_de_champ_by_stable_id(stable_id, :private)
 
       return nil if type_de_champ.nil? || !type_de_champ.type_champ.in?(annotation_type_champ)

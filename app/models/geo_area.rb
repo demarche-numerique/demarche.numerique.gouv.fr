@@ -2,7 +2,7 @@
 
 class GeoArea < ApplicationRecord
   include ActionView::Helpers::NumberHelper
-  belongs_to :champ, optional: false
+  belongs_to :champ, class_name: 'ChampData', optional: false, inverse_of: :geo_areas
   before_create :set_default_uuid
 
   enum :cadastre_state, %w[cadastre_fetched cadastre_error].index_by(&:itself)

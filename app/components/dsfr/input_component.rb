@@ -77,7 +77,7 @@ class Dsfr::InputComponent < ApplicationComponent
 
   def error_id
     case object
-    when Champ
+    when ChampData
       object.error_id(@attribute)
     else
       describedby_id

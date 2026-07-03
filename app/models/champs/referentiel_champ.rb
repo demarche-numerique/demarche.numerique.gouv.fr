@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Champs::ReferentielChamp < Champ
+class Champs::ReferentielChamp < ChampData
   delegate :referentiel,
            :referentiel_mapping_displayable,
            :referentiel_mapping_prefillable_with_stable_id,

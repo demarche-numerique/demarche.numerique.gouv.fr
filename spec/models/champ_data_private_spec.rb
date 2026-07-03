@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe Champ do
+describe ChampData do
   describe '#private?' do
     let(:type_de_champ) { build(:type_de_champ, :private) }
     let(:champ) { type_de_champ.build_champ }

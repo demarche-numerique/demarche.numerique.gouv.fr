@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Champs::PieceJustificativeChamp < Champ
+class Champs::PieceJustificativeChamp < ChampData
   FILE_MAX_SIZE = 200.megabytes
 
   has_many_attached :piece_justificative_file

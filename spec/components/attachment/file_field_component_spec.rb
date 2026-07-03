@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Attachment::FileFieldComponent, type: :component do
-  describe 'with has_many_attached (Champ.piece_justificative_file)' do
+  describe 'with has_many_attached (ChampData.piece_justificative_file)' do
     let_it_be(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :piece_justificative }]) }
     let(:dossier) { create(:dossier, procedure:) }
     let(:champ) { dossier.champ_data.first }

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :champ_do_not_use, class: 'Champ' do
+  factory :champ_do_not_use, class: 'ChampData' do
     stream { Dossier::MAIN_STREAM }
     add_attribute(:private) { false }
 

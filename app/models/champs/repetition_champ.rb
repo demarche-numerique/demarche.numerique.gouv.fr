@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Champs::RepetitionChamp < Champ
+class Champs::RepetitionChamp < ChampData
   delegate :libelle_for_export, to: :type_de_champ
 
   def row_libelle

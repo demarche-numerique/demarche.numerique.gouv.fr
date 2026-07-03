@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Champs::RNAChamp < Champ
+class Champs::RNAChamp < ChampData
   RNA_REGEXP = /\AW[0-9A-Z]{9}\z/
 
   validates :external_id, allow_blank: true, format: {

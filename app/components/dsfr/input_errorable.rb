@@ -31,7 +31,7 @@ module Dsfr
       def errors_on_attribute?
         # When the object is a Champ, errors can be stored as nested errors on the dossier
         # or directly on the champ object
-        if object.is_a?(Champ)
+        if object.is_a?(ChampData)
           dossier_errors_for_champ.any? || errors.any?
         else
           errors.has_key?(attribute_or_rich_body)
@@ -43,7 +43,7 @@ module Dsfr
         # When the object is a Champ, errors can be stored as nested errors on the dossier
         # because validation adds errors to champ instances that may differ from the form object
         # or directly on the champ object
-        if object.is_a?(Champ)
+        if object.is_a?(ChampData)
           # Keep only message text (without attribute prefix) to avoid displaying
           # the same error twice with two different formats.
           (dossier_errors_for_champ + errors.map(&:message)).uniq

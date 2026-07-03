@@ -119,7 +119,7 @@ class DossierOperationLog < ApplicationRecord
       case subject
       when Dossier
         SerializerService.dossier(subject)
-      when Champ
+      when ChampData
         SerializerService.champ(subject)
       when Avis
         SerializerService.avis(subject)

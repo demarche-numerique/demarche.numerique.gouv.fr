@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Champs::IbanChamp < Champ
+class Champs::IbanChamp < ChampData
   validates_with IbanValidator, if: :should_validate_in_current_context?
   after_validation :format_iban
 
