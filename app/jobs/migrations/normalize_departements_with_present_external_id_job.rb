@@ -2,7 +2,7 @@
 
 class Migrations::NormalizeDepartementsWithPresentExternalIdJob < ApplicationJob
   def perform(ids)
-    Champs::DepartementChamp.where(id: ids).find_each do |champ|
+    ChampData.where(type: "Champs::DepartementChamp").where(id: ids).find_each do |champ|
       next if champ.external_id.blank?
 
       if champ.value.blank?

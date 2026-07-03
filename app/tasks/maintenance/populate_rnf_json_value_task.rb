@@ -9,7 +9,7 @@ module Maintenance
     include Dry::Monads[:result]
 
     def collection
-      Champs::RNFChamp.where("external_id != null and data != null") # had been found
+      ChampData.where(type: "Champs::RNFChamp").where("external_id != null and data != null") # had been found
       # Collection to be iterated over
       # Must be Active Record Relation or Array
     end

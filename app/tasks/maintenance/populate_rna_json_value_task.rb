@@ -10,7 +10,7 @@ module Maintenance
 
     def collection
       # on regarde value et non external_id car avant le refacto #12725, on stockait directement dans value
-      Champs::RNAChamp.where.not(value: nil)
+      ChampData.where(type: "Champs::RNAChamp").where.not(value: nil)
     end
 
     def process(champ)

@@ -2,7 +2,7 @@
 
 class Migrations::NormalizeCommunesJob < ApplicationJob
   def perform(ids)
-    Champs::CommuneChamp.where(id: ids).find_each do |champ|
+    ChampData.where(type: "Champs::CommuneChamp").where(id: ids).find_each do |champ|
       if champ.external_id.blank?
         champ.value = nil
         champ.value_json = {}

@@ -21,7 +21,7 @@ module Maintenance
 
     def collection
       # external_state idle est stocké à NULL ; sans external_id aucune des deux branches ne s'applique
-      Champs::RNAChamp.where(external_state: nil).where.not(external_id: nil)
+      ChampData.where(type: "Champs::RNAChamp").where(external_state: nil).where.not(external_id: nil)
     end
 
     def process(champ)

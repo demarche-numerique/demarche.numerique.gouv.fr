@@ -10,7 +10,7 @@ module Maintenance
     include StatementsHelpersConcern
 
     def collection
-      Champs::AddressChamp.all
+      ChampData.where(type: "Champs::AddressChamp")
     end
 
     def process(champ)

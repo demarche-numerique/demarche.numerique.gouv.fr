@@ -12,12 +12,12 @@ module Maintenance
     # run_on_first_deploy
 
     def collection
-      Champs::SiretChamp.all
+      ChampData.where(type: "Champs::SiretChamp")
     end
 
     def process(champ)
       return if champ.value.present? || champ.external_id.present?
-      return if champ.external_state != Champs::SiretChamp.external_states[:fetched]
+      return if champ.external_state != ChampData.external_states[:fetched]
       return if champ.etablissement.nil?
 
       champ.update_columns(

@@ -41,7 +41,7 @@ module Maintenance
     }.freeze
 
     def collection
-      Champs::PaysChamp.select(:id, :value, :external_id)
+      ChampData.where(type: "Champs::PaysChamp").select(:id, :value, :external_id)
     end
 
     def process(champ)

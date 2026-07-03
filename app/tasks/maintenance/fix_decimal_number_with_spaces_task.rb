@@ -7,7 +7,7 @@ module Maintenance
 
     ANY_SPACES = /[[:space:]]/
     def collection
-      Champs::DecimalNumberChamp.where.not(value: nil)
+      ChampData.where(type: "Champs::DecimalNumberChamp").where.not(value: nil)
     end
 
     def process(element)

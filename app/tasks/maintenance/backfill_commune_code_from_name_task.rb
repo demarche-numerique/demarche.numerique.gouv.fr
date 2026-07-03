@@ -10,7 +10,7 @@ module Maintenance
 
     def collection
       procedure = Procedure.find(procedure_id.strip.to_i)
-      Champs::CommuneChamp.where(dossier_id: procedure.dossiers.not_brouillon)
+      ChampData.where(type: "Champs::CommuneChamp").where(dossier_id: procedure.dossiers.not_brouillon)
     end
 
     def process(champ)

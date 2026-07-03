@@ -3,7 +3,7 @@
 module Maintenance
   class NormalizeRNAValuesTask < MaintenanceTasks::Task
     def collection
-      Champs::RNAChamp.where.not(value: nil)
+      ChampData.where(type: "Champs::RNAChamp").where.not(value: nil)
     end
 
     def process(element)

@@ -12,7 +12,7 @@ module Maintenance
     run_on_first_deploy
 
     def collection
-      Champs::SiretChamp.where.not(value: nil)
+      ChampData.where(type: "Champs::SiretChamp").where.not(value: nil)
     end
 
     def process(champ)

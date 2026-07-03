@@ -16,7 +16,8 @@ module Maintenance
     no_collection
 
     def process
-      Champs::RNAChamp
+      ChampData
+        .where(type: "Champs::RNAChamp")
         .where(external_id: nil)
         .where.not(value: nil)
         .update_all('external_id = value')

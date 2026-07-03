@@ -36,7 +36,7 @@ module Maintenance
     end
 
     def update_drop_down_list_champs(type_de_champ)
-      Champs::DropDownListChamp.where(stable_id: type_de_champ.stable_id).where.not(value: nil).find_each do |champ|
+      ChampData.where(type: "Champs::DropDownListChamp").where(stable_id: type_de_champ.stable_id).where.not(value: nil).find_each do |champ|
         new_value = normalize_value(champ.value)
         next if champ.value == new_value
 
@@ -45,7 +45,7 @@ module Maintenance
     end
 
     def update_multiple_drop_down_list_champs(type_de_champ)
-      Champs::MultipleDropDownListChamp.where(stable_id: type_de_champ.stable_id).where.not(value: nil).find_each do |champ|
+      ChampData.where(type: "Champs::MultipleDropDownListChamp").where(stable_id: type_de_champ.stable_id).where.not(value: nil).find_each do |champ|
         old_values = parse_json_array(champ.value)
         next if old_values.nil?
 

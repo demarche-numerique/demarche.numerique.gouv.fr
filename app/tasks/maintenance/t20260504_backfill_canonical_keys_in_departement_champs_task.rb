@@ -14,7 +14,7 @@ module Maintenance
     end
 
     def process(range)
-      Champs::DepartementChamp.where(id: range).update_all(<<~SQL.squish)
+      ChampData.where(type: "Champs::DepartementChamp").where(id: range).update_all(<<~SQL.squish)
         value_json = COALESCE(value_json, '{}'::jsonb) || jsonb_strip_nulls(jsonb_build_object(
           'department_code', external_id,
           'region_code',     value_json->>'code_region'

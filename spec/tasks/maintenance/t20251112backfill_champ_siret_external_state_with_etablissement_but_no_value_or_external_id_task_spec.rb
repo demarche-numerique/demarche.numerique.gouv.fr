@@ -10,7 +10,7 @@ module Maintenance
       let(:champ1) { dossier1.project_champs_public.first }
       let(:etablissement1) { create(:etablissement, siret: "12345678901234") }
 
-      subject(:process) { described_class.process(Champs::SiretChamp.first) }
+      subject(:process) { described_class.process(ChampData.where(type: "Champs::SiretChamp").first) }
       before do
         champ1.update(etablissement: etablissement1, external_state: 'fetched', external_id: nil, value: nil)
       end

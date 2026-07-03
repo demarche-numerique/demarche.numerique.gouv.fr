@@ -12,11 +12,12 @@ module Maintenance
     run_on_first_deploy
 
     def collection
-      Champs::SiretChamp.in_batches
+      ChampData.where(type: "Champs::SiretChamp").in_batches
     end
 
     def process(batch)
-      Champs::SiretChamp
+      ChampData
+        .where(type: "Champs::SiretChamp")
         .where(id: batch.pluck(:id), external_state: 'idle')
         .where.not(etablissement_id: nil)
         .update_all(external_state: 'fetched', external_id: Arel.sql('champs.value'))

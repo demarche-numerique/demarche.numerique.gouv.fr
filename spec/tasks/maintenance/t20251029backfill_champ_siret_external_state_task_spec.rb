@@ -9,7 +9,7 @@ module Maintenance
       let(:dossier) { create(:dossier, procedure:) }
       let(:champ) { dossier.project_champs_public.first }
 
-      subject(:process) { described_class.process(Champs::SiretChamp.all) }
+      subject(:process) { described_class.process(ChampData.where(type: "Champs::SiretChamp")) }
 
       context 'when champs was filled with SiretController' do
         it 'works' do

@@ -9,7 +9,7 @@ module Maintenance
     run_on_first_deploy
 
     def collection
-      Champs::AddressChamp.where.not(data: nil)
+      ChampData.where(type: "Champs::AddressChamp").where.not(data: nil)
     end
 
     def process(champ)
