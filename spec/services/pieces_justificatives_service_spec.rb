@@ -567,7 +567,7 @@ describe PiecesJustificativesService do
       pj_4 = repet_1.rows.second.first
       pj_5 = repet_1.rows.second.second
 
-      is_expected.to eq({ pj_0.id => 0, pj_1.id => 1, pj_2.id => 0, pj_3.id => 0, pj_4.id => 1, pj_5.id => 1 })
+      is_expected.to eq({ [pj_0.dossier_id, pj_0.id] => 0, [pj_1.dossier_id, pj_1.id] => 1, [pj_2.dossier_id, pj_2.id] => 0, [pj_3.dossier_id, pj_3.id] => 0, [pj_4.dossier_id, pj_4.id] => 1, [pj_5.dossier_id, pj_5.id] => 1 })
     end
   end
 

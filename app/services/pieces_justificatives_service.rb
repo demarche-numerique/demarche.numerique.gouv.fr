@@ -143,7 +143,7 @@ class PiecesJustificativesService
 
     champs.flat_map do |champ|
       champ.piece_justificative_file_attachments.filter { |a| safe_attachment(a) }.map.with_index do |attachment, index|
-        row_index = champs_id_row_index[champ.id]
+        row_index = champs_id_row_index[[champ.dossier_id, champ.id]]
 
         if @export_template
           [attachment, @export_template.attachment_path(champ.dossier, attachment, index:, row_index:, champ:)]
@@ -344,7 +344,7 @@ class PiecesJustificativesService
   def compute_champ_id_row_index(champs)
     champs.filter(&:child?).group_by(&:dossier_id).values.each_with_object({}) do |children_for_dossier, hash|
       children_for_dossier.group_by(&:stable_id).values.each do |champs_for_stable_id|
-        champs_for_stable_id.sort_by(&:row_id).each.with_index { |c, index| hash[c.id] = index }
+        champs_for_stable_id.sort_by(&:row_id).each.with_index { |c, index| hash[[c.dossier_id, c.id]] = index }
       end
     end
   end
