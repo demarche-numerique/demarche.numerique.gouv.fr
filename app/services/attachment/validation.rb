@@ -14,7 +14,9 @@ class Attachment::Validation
   end
 
   def champ
-    @champ ||= record if record.is_a?(ChampData)
+    return @champ if defined?(@champ)
+
+    @champ = record.is_a?(ChampData) ? Champ.from_data(record) : nil
   end
 
   def max_file_size

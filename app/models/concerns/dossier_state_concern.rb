@@ -415,27 +415,22 @@ module DossierStateConcern
       .reject(&:repetition?)
       .filter { _1.blank? || !_1.visible? }
 
-    champ_data.where(id: champs_to_clear, stream: Dossier::MAIN_STREAM).find_each(&:clear)
+    champ_data.where(id: champs_to_clear.filter_map(&:champ_data_id), stream: Dossier::MAIN_STREAM).find_each(&:clear)
   end
 
   def clear_france_connect_champs_piece_justificatives!
-    champs_to_clear = project_champs_public.filter(&:france_connect?)
+    champs_to_clear = project_champs_public.filter(&:france_connect?).filter(&:persisted?)
 
     return if champs_to_clear.empty?
-    champ_data.where(id: champs_to_clear).find_each(&:clear_piece_justificative)
+    champs_to_clear.each(&:clear_piece_justificative)
   end
 
   def clear_titres_identite!
     champ_to_clear_stable_ids = champ_data.filter do |champ|
-      # Use STI type to avoid querying type_de_champ for orphaned champ_data
-      next false unless champ.is_a?(Champs::PieceJustificativeChamp)
+      # Use the last write type to avoid querying type_de_champ for orphaned champ_data
+      next false unless champ.type == 'Champs::PieceJustificativeChamp'
 
-      begin
-        champ.titre_identite?
-      rescue RuntimeError
-        # Champ has no type_de_champ in current revision (orphaned), skip it
-        false
-      end
+      find_type_de_champ_by_stable_id(champ.stable_id)&.titre_identite? || false
     end.to_set(&:stable_id)
 
     champ_data.where(stable_id: champ_to_clear_stable_ids).find_each(&:clear)

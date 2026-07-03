@@ -7,7 +7,9 @@ module Types::Champs
     field :geo_areas, [Types::GeoAreaType], null: false
 
     def geo_areas
-      dataloader.with(Sources::Association, :geo_areas).load(object)
+      return [] if object.champ_data.nil?
+
+      dataloader.with(Sources::Association, :geo_areas).load(object.champ_data)
     end
   end
 end

@@ -21,6 +21,6 @@ class Migrations::BatchUpdateDatetimeValuesJob < ApplicationJob
   def update_value_to_nil_if_possible(datetime_champ)
     return if datetime_champ.value.nil?
 
-    datetime_champ.update_columns(value: nil) unless datetime_champ.required?
+    datetime_champ.update_columns(value: nil) unless Champ.from_data(datetime_champ)&.required?
   end
 end

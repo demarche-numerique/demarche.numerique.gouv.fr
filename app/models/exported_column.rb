@@ -10,6 +10,8 @@ class ExportedColumn
 
   def id = { id: column.id, libelle: }.to_json
 
+  # Takes the dossier for dossier columns, the champ's ChampData (or nil when
+  # the champ was never filled) for champ columns.
   def libelle_with_value(champ_or_dossier, format:)
     [libelle, ExportedColumnFormatter.format(column:, champ_or_dossier:, format:), spreadsheet_architect_type]
   end

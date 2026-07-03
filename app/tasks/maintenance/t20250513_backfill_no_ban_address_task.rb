@@ -13,7 +13,10 @@ module Maintenance
       ChampData.where(type: "Champs::AddressChamp")
     end
 
-    def process(champ)
+    def process(champ_data)
+      champ = Champ.from_data(champ_data)
+      return if champ.nil?
+
       if champ.legacy_not_ban?
         value_json = {
           not_in_ban: 'true',

@@ -75,7 +75,8 @@ class Migrations::BatchUpdatePaysValuesJob < ApplicationJob
 
   def perform(ids)
     ids.each do |id|
-      pays_champ = Champs::PaysChamp.find(id)
+      pays_champ = Champ.from_data(ChampData.find(id))
+      next if pays_champ.nil?
 
       # orphaned champs (stable_id no longer in the dossier revision) can not
       # be validated: resolving their type_de_champ raises

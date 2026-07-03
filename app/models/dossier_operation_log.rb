@@ -120,7 +120,7 @@ class DossierOperationLog < ApplicationRecord
       when Dossier
         SerializerService.dossier(subject)
       when ChampData
-        SerializerService.champ(subject)
+        Champ.from_data(subject)&.then { SerializerService.champ(it) }
       when Avis
         SerializerService.avis(subject)
       when Commentaire

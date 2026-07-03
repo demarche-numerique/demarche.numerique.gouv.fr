@@ -9,7 +9,7 @@ module Types
     field :string_value, String, "La valeur de la colonne sous forme texte.", null: true, extras: [:parent]
 
     def string_value(parent:)
-      value = object.value(parent)
+      value = object.value(column_target(parent))
       return if value.blank?
       case object.type
       when :enums
@@ -19,6 +19,14 @@ module Types
       else
         value.to_s
       end
+    end
+
+    # In the champ → columns path the parent is the projected Champ, but champ
+    # columns evaluate against the persisted ChampData. In the changedColumns
+    # path the parent is a Traitement and the object is a ChangedColumn holding
+    # a precomputed value that ignores the argument.
+    def column_target(parent)
+      parent.is_a?(Champ) ? parent.champ_data : parent
     end
 
     definition_methods do

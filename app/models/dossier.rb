@@ -60,10 +60,11 @@ class Dossier < ApplicationRecord
   has_one_attached :justificatif_motivation
   has_one_attached :attestation_depot_pdf
 
-  # autosave persists champ changes when saving the dossier; champ validation
-  # is driven by DossierValidateConcern over projected champs, so `validate: false`
-  # keeps autosave from cascading validation into every loaded champ.
-  has_many :champ_data, dependent: :destroy, class_name: 'ChampData', autosave: true, validate: false
+  # Champ validation is driven by DossierValidateConcern over projected champs;
+  # `validate: false` keeps autosave from cascading validation into every
+  # loaded champ data, while `autosave: true` keeps `dossier.save` persisting dirty
+  # loaded champ data (assign + save flows on buffer streams).
+  has_many :champ_data, dependent: :destroy, class_name: 'ChampData', validate: false, autosave: true
   has_many :commentaires, inverse_of: :dossier, dependent: :destroy
   has_many :commentaires_chronological, -> { chronological }, class_name: 'Commentaire', inverse_of: :dossier
   has_many :preloaded_commentaires, -> { includes(:dossier_correction, :dossier_pending_response, :instructeur, :expert, piece_jointe_attachments: :blob).order(created_at: :desc) }, class_name: 'Commentaire', inverse_of: :dossier
@@ -1012,7 +1013,7 @@ class Dossier < ApplicationRecord
   end
 
   def geo_data?
-    GeoArea.exists?(champ_id: filled_champs)
+    GeoArea.exists?(champ_id: filled_champs.filter_map(&:champ_data_id))
   end
 
   def to_feature_collection
@@ -1161,10 +1162,10 @@ class Dossier < ApplicationRecord
     self.champ_data << types_de_champ.filter(&:fillable?).filter_map do |type_de_champ|
       if type_de_champ.repetition?
         if type_de_champ.private? || type_de_champ.mandatory?
-          type_de_champ.build_champ(dossier: self, row_id: ULID.generate)
+          type_de_champ.build_champ_data(dossier: self, row_id: ULID.generate)
         end
       else
-        type_de_champ.build_champ(dossier: self, row_id: nil)
+        type_de_champ.build_champ_data(dossier: self, row_id: nil)
       end
     end
   end

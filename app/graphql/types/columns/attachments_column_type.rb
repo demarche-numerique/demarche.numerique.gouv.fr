@@ -7,13 +7,10 @@ module Types::Columns
     field :value, [Types::File], null: true, extras: [:parent]
 
     def value(parent:)
-      # In the dossier → champs → columns path, `parent` is a Champ and we
-      # batch-preload attachments. In the changedColumns path, `parent` is a
-      # Traitement and the value is already precomputed by ChangedColumn.
-      return object.value(parent) unless parent.is_a?(ChampData)
-
-      dataloader.with(Sources::Association, piece_justificative_file_attachments: :blob).load(parent)
-      object.value(parent)
+      # Batch-preload attachments in the champ → columns path.
+      champ_data = column_target(parent)
+      dataloader.with(Sources::Association, piece_justificative_file_attachments: :blob).load(champ_data) if champ_data.is_a?(ChampData)
+      object.value(champ_data)
     end
   end
 end

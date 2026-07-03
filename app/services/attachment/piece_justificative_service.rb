@@ -9,14 +9,13 @@ class Attachment::PieceJustificativeService
   # the attachments left by the previous one.
   def self.attach_champ_pj(champ, blob_signed_id)
     updated_by = champ.updated_by
-    dossier = champ.dossier
 
     ChampData.transaction do
-      champ.reload(lock: true) # SELECT FOR UPDATE + clear association cache
-      # restore the stream-scoped dossier: a fresh association load defaults to
-      # the main stream, and conditional visibility (the validation gate) must
-      # be computed on the stream being edited
-      champ.association(:dossier).target = dossier
+      # SELECT FOR UPDATE on the champ data row + clear its association cache;
+      # the projected champ keeps its stream-scoped dossier, so conditional
+      # visibility (the validation gate) is still computed on the stream being
+      # edited
+      champ.reload(lock: true)
       champ.updated_by = updated_by # keep record dirty so attach defers save to us
       champ.piece_justificative_file.attach(blob_signed_id)
 

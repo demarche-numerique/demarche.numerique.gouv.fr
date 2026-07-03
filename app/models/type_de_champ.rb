@@ -311,9 +311,8 @@ class TypeDeChamp < ApplicationRecord
     referentiel_mapping_displayable.filter { |_jsonpath, mapping| mapping[:display_usager] == "1" }
   end
 
-  def params_for_champ
+  def params_for_champ_data
     {
-      type_de_champ: self,
       private: private?,
       type: champ_class.name,
       stable_id:,
@@ -325,8 +324,8 @@ class TypeDeChamp < ApplicationRecord
     self.class.type_champ_to_champ_class_name(type_champ).constantize
   end
 
-  def build_champ(params = {})
-    champ_class.new(params_for_champ.merge(params))
+  def build_champ_data(params = {})
+    ChampData.new(params_for_champ_data.merge(params))
   end
 
   def check_mandatory

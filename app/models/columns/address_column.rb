@@ -5,7 +5,7 @@ class Columns::AddressColumn < Columns::ChampColumn
 
   # The raw `value` column is not guaranteed to match the canonical address
   # label stored in `value_json` (eg. BAN addresses). The PDF, the UI and the
-  # API all display `address_label`, so exports and dossiers lists must too.
-  # Fallback to the raw value for champs of another type (eg. after a rebase).
-  def string_value(champ) = champ.respond_to?(:address_label) ? champ.address_label : super
+  # API all display the label, so exports and dossiers lists must too. Events
+  # written under another champ type go through the cast table as usual.
+  def typed_value(champ_data) = champ_data.value_json&.dig('label') || super
 end

@@ -132,7 +132,7 @@ class DossierPreloader
       champ.association(:dossier).target = dossier
 
       # assign dossier to attachment records to avoid N+1 in BlobProcessorConcern
-      if champ.respond_to?(:piece_justificative_file) && champ.piece_justificative_file.attached?
+      if champ.piece_justificative_file.attached?
         champ.piece_justificative_file.attachments.each do |attachment|
           if attachment.blob.attachments.loaded?
             attachment.blob.attachments.each do |blob_attachment|

@@ -3,7 +3,7 @@
 class Columns::MultipleDropDownColumn < Columns::JSONPathColumn
   private
 
-  def typed_value(champ)
-    JsonPath.on(champ.value_json, jsonpath).join(', ')
+  def typed_value(champ_data)
+    JsonPath.on(champ_data.value_json, jsonpath).join(', ')
   end
 end

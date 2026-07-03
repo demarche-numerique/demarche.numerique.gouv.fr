@@ -5,16 +5,14 @@ module DossierChampsConcern
 
   def project_champ(type_de_champ, row_id: nil)
     check_valid_row_id_on_read?(type_de_champ, row_id)
-    champ = champs_by_public_id[type_de_champ.public_id(row_id)]
-    if champ.nil? || !champ.is_type?(type_de_champ.type_champ)
-      value = type_de_champ.champ_blank?(champ) ? nil : champ.value
-      updated_at = champ&.updated_at || depose_at || created_at
-      rebased_at = champ&.rebased_at
-      type_de_champ.build_champ(dossier: self, row_id:, updated_at:, rebased_at:, value:, stream:)
-    else
-      champ.type_de_champ = type_de_champ
-      champ
-    end
+    public_id = type_de_champ.public_id(row_id)
+    @projected_champs_by_public_id ||= {}
+    @projected_champs_by_public_id[public_id] ||= type_de_champ.champ_class.new(
+      dossier: self,
+      type_de_champ:,
+      row_id:,
+      data: champs_by_public_id[public_id]
+    )
   end
 
   def project_champs_public
@@ -114,7 +112,13 @@ module DossierChampsConcern
       .types_de_champ
       .filter { _1.stable_id.in?(stable_ids) }
       .filter { !_1.child?(revision) }
-      .map { _1.repetition? ? project_champ(_1) : champ_for_update(_1, updated_by: nil) }
+      .map do |type_de_champ|
+        if type_de_champ.repetition?
+          project_champ(type_de_champ)
+        else
+          champ_for_update(type_de_champ, updated_by: nil)
+        end
+      end
   end
 
   def champ_value_for_tag(type_de_champ, path = :value)
@@ -126,10 +130,35 @@ module DossierChampsConcern
     type_de_champ.champ_value_for_tag(champ, path)
   end
 
+  def champ_data_for_update(type_de_champ, row_id: nil, updated_by:)
+    data = champ_upsert_by!(type_de_champ, row_id)
+    data.updated_by = updated_by
+    data
+  end
+
+  # Project the champ, upsert its champ data on the current stream and attach
+  # it as the writable instance.
   def champ_for_update(type_de_champ, row_id: nil, updated_by:)
-    champ = champ_upsert_by!(type_de_champ, row_id)
-    champ.updated_by = updated_by
-    champ
+    project_champ(type_de_champ, row_id:).prepare_for_update!(updated_by)
+  end
+
+  # Memoize a projected champ (see Champ#prepare_for_update!: the upsert
+  # resets the projection cache, but the prepared instance stays current).
+  def register_projected_champ(champ)
+    @projected_champs_by_public_id ||= {}
+    @projected_champs_by_public_id[champ.id] = champ
+  end
+
+  def public_champ_data_for_update(public_id, updated_by:)
+    stable_id, row_id = public_id.split('-')
+    type_de_champ = find_type_de_champ_by_stable_id(stable_id, :public)
+    champ_data_for_update(type_de_champ, row_id:, updated_by:)
+  end
+
+  def private_champ_data_for_update(public_id, updated_by:)
+    stable_id, row_id = public_id.split('-')
+    type_de_champ = find_type_de_champ_by_stable_id(stable_id, :private)
+    champ_data_for_update(type_de_champ, row_id:, updated_by:)
   end
 
   def public_champ_for_update(public_id, updated_by:)
@@ -163,15 +192,14 @@ module DossierChampsConcern
     raise "Can't add row to non-repetition type de champ" if !type_de_champ.repetition?
 
     row_id = ULID.generate
-    champ_for_update(type_de_champ, row_id:, updated_by:)
+    champ_data_for_update(type_de_champ, row_id:, updated_by:)
     row_id
   end
 
   def repetition_remove_row(type_de_champ, row_id, updated_by:)
     raise "Can't remove row from non-repetition type de champ" if !type_de_champ.repetition?
 
-    champ = champ_for_update(type_de_champ, row_id:, updated_by:)
-    champ.discard!
+    champ_data_for_update(type_de_champ, row_id:, updated_by:).discard!
   end
 
   def stable_id_in_revision?(stable_id)
@@ -321,7 +349,13 @@ module DossierChampsConcern
     reset_champs_cache
 
     with_main_stream do
-      prefill_and_enqueue_fetch_external_data_jobs(buffer_champs.filter(&:referentiel?), types_de_champ_private_all)
+      referentiel_champs = buffer_champs
+        .filter { _1.is_type?(TypeDeChamp.type_champs.fetch(:referentiel)) }
+        .filter_map do |data|
+          type_de_champ = find_type_de_champ_by_stable_id(data.stable_id)
+          project_champ(type_de_champ, row_id: data.row_id) if type_de_champ
+        end
+      prefill_and_enqueue_fetch_external_data_jobs(referentiel_champs, types_de_champ_private_all)
     end
 
     history_stream
@@ -381,15 +415,20 @@ module DossierChampsConcern
 
   def filled_champ(type_de_champ, row_id: nil, with_discarded: false)
     champ_public_id = type_de_champ.public_id(row_id)
-    champ = champs_by_public_id[champ_public_id]
+    data = champs_by_public_id[champ_public_id]
+    discarded = discarded_champs_by_public_id.key?(champ_public_id)
 
-    if champ.nil? && with_discarded
-      champ = discarded_champs_by_public_id[champ_public_id]
+    if data.nil? && with_discarded
+      data = discarded_champs_by_public_id[champ_public_id]
     end
 
-    return nil if type_de_champ.champ_blank?(champ)
+    # Built directly (not via project_champ): the type de champ may come from
+    # another revision, and discarded champ data bypasses row id checks.
+    champ = type_de_champ.champ_class.new(dossier: self, type_de_champ:, row_id:, data:)
 
-    if discarded_champs_by_public_id.key?(champ_public_id)
+    return nil if champ.blank?
+
+    if discarded
       champ
     elsif !champ.visible?
       nil
@@ -403,41 +442,40 @@ module DossierChampsConcern
     check_valid_row_id_on_write?(type_de_champ, row_id)
 
     # FIXME: Try to find the champ in memory before querying the database
-    champ = champ_data.find { _1.stream == stream && _1.public_id == type_de_champ.public_id(row_id) }
+    data = champ_data.find { _1.stream == stream && _1.public_id == type_de_champ.public_id(row_id) }
 
-    if champ.nil?
-      champ = Dossier.no_touching do
+    if data.nil?
+      data = Dossier.no_touching do
         champ_data
-          .create_with(**type_de_champ.params_for_champ, source_stream: stream)
+          .create_with(**type_de_champ.params_for_champ_data, source_stream: stream)
           .create_or_find_by!(stable_id: type_de_champ.stable_id, row_id:, stream:)
       end
     end
 
     # Needed when a revision change the champ type in this case, we reset the champ data
-    if champ.class != type_de_champ.champ_class
-      champ = champ.becomes!(type_de_champ.champ_class)
-      champ.assign_attributes(value: nil, value_json: nil, external_id: nil, data: nil)
-    elsif !main_stream? && champ.previously_new_record?
-      main_stream_champ = champ_data.find_by(stable_id: type_de_champ.stable_id, row_id:, stream: Dossier::MAIN_STREAM)
-      champ.clone_value_from(main_stream_champ) if main_stream_champ.present?
+    if !data.is_type?(type_de_champ.type_champ)
+      data.assign_attributes(type: type_de_champ.champ_class.name, value: nil, value_json: nil, external_id: nil, data: nil)
+    elsif !main_stream? && data.previously_new_record?
+      main_stream_data = champ_data.find_by(stable_id: type_de_champ.stable_id, row_id:, stream: Dossier::MAIN_STREAM)
+      data.clone_value_from(main_stream_data) if main_stream_data.present?
     end
 
-    # If the champ returned from `create_or_find_by` is not the same as the one already loaded in `dossier.champ_data`, we need to update the association cache
-    loaded_champ = champ_data.find { [_1.stream, _1.public_id] == [champ.stream, champ.public_id] }
-    if loaded_champ.present? && loaded_champ.object_id != champ.object_id
-      association(:champ_data).target = champ_data - [loaded_champ] + [champ]
+    # If the champ data returned from `create_or_find_by` is not the same as the one already loaded in `dossier.champ_data`, we need to update the association cache
+    loaded_data = champ_data.find { [_1.stream, _1.public_id] == [data.stream, data.public_id] }
+    if loaded_data.present? && loaded_data.object_id != data.object_id
+      association(:champ_data).target = champ_data - [loaded_data] + [data]
     end
 
-    # If the dossier instance on champ has changed we need to update the association cache
-    if champ.dossier.object_id != object_id
-      champ.association(:dossier).target = self
+    # If the dossier instance on the champ data has changed we need to update the association cache
+    if data.dossier.object_id != object_id
+      data.association(:dossier).target = self
     end
 
     reset_champs_cache
 
-    champ.save!
-    champ.type_de_champ = type_de_champ
-    champ
+    data.save!
+
+    data
   end
 
   def check_valid_stream_on_write?(type_de_champ)
@@ -471,6 +509,7 @@ module DossierChampsConcern
   end
 
   def reset_champs_cache
+    @projected_champs_by_public_id = nil
     @champs_by_public_id = nil
     @discarded_champs_by_public_id = nil
     @filled_champs_public = nil

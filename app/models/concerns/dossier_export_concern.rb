@@ -21,7 +21,7 @@ module DossierExportConcern
       if export_template.present?
         export_template
           .columns_for_stable_id(type_de_champ.stable_id)
-          .map { |exported_column| exported_column.libelle_with_value(champ, format:) }
+          .map { |exported_column| exported_column.libelle_with_value(champ&.champ_data, format:) }
       else
         type_de_champ.libelles_for_export.map do |(libelle, path)|
           [libelle, type_de_champ.champ_value_for_export(champ, path)]

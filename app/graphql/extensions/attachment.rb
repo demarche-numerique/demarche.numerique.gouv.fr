@@ -27,6 +27,10 @@ module Extensions
     # (it's the same as defining a method within a type)
     def resolve(object:, context:, **_rest)
       root_instance = object.public_send(root)
+      # Attachments live on the persisted champ data, not on the projected champ.
+      root_instance = root_instance.champ_data if root_instance.is_a?(Champ)
+      return if root_instance.nil?
+
       context.dataloader.with(Sources::Association, attachment_assoc => :blob).load(root_instance)
     end
 

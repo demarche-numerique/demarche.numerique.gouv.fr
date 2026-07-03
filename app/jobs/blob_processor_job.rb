@@ -140,17 +140,19 @@ class BlobProcessorJob < ApplicationJob
 
   instrument_method
   def add_ocr_data
-    champ = attachment.record
-    return if !ocr_compatible?(champ)
-    return if !champ.may_fetch?
+    record = attachment.record
+    return if !ocr_compatible?(record)
+
+    champ = Champ.from_data(record)
+    return if champ.nil? || !champ.may_fetch?
 
     champ.fetch!
   end
 
-  def ocr_compatible?(maybe_champ)
-    return false if !maybe_champ.is_a?(Champs::PieceJustificativeChamp)
+  def ocr_compatible?(record)
+    return false if !record.is_a?(ChampData) || record.type != 'Champs::PieceJustificativeChamp'
 
-    maybe_champ.ocr_compatible?
+    Champ.from_data(record)&.ocr_compatible? || false
   end
 
   def mark_processed

@@ -6,7 +6,10 @@ class Columns::ChampColumn < Column
   def initialize(procedure_id:, label:, stable_id:, tdc_type:, displayable: true, filterable: true, type: :text, options_for_select: [], mandatory:)
     @stable_id = stable_id
     @tdc_type = tdc_type
-    column = tdc_type.in?(['departements', 'regions', 'pays']) ? :external_id : :value
+    # For these champ types the user-facing identifier is persisted in
+    # external_id; the value column holds a derived label (or, for rnf,
+    # nothing at all).
+    column = tdc_type.in?(['departements', 'regions', 'pays', 'rnf']) ? :external_id : :value
 
     super(
       procedure_id:,
@@ -21,14 +24,17 @@ class Columns::ChampColumn < Column
     )
   end
 
-  def value(champ)
-    return if champ.nil?
+  # Takes the persisted ChampData (or nil when the champ was never filled),
+  # not the projected Champ: the stored value is interpreted according to the
+  # type that last wrote it (`champ_data.type`), which the projection hides.
+  def value(champ_data)
+    return if champ_data.nil?
 
-    # nominal case
-    if champ.is_type?(@tdc_type)
-      typed_value(champ)
+    # nominal case: the value was written under the column's champ type
+    if champ_data.is_type?(@tdc_type)
+      typed_value(champ_data)
     else
-      cast_value(champ)
+      cast_value(champ_data)
     end
   end
 
@@ -105,10 +111,10 @@ class Columns::ChampColumn < Column
     start_date..end_date
   end
 
-  def string_value(champ) = champ.public_send(column)
+  def string_value(champ_data) = champ_data.public_send(column)
 
-  def typed_value(champ)
-    value = string_value(champ)
+  def typed_value(champ_data)
+    value = string_value(champ_data)
 
     return if value.blank?
 
@@ -132,12 +138,12 @@ class Columns::ChampColumn < Column
     end
   end
 
-  def cast_value(champ)
-    value = string_value(champ)
+  def cast_value(champ_data)
+    value = string_value(champ_data)
 
     return if value.blank?
 
-    from_type = champ.last_write_type_champ.to_sym
+    from_type = champ_data.last_write_type_champ.to_sym
     to_type = @tdc_type.to_sym
 
     value = case from_type

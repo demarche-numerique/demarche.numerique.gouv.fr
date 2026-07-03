@@ -12,7 +12,7 @@ class Migrations::BackfillDossierRepetitionJob < ApplicationJob
             type_de_champ.type_champ == 'repetition' && dossier.champ_data.none? { _1.stable_id == type_de_champ.stable_id }
           end
           .each do |type_de_champ|
-            dossier.champ_data << type_de_champ.build_champ
+            dossier.champ_data << type_de_champ.build_champ_data
           end
       end
   end

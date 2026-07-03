@@ -48,7 +48,7 @@ module DossierRebaseConcern
       .types_de_champ
       .filter { _1.repetition? && _1.stable_id.in?(added_stable_ids) && (_1.mandatory? || _1.private?) }
       .each do |type_de_champ|
-        self.champ_data << type_de_champ.build_champ(row_id: ULID.generate, rebased_at: Time.zone.now)
+        self.champ_data << type_de_champ.build_champ_data(row_id: ULID.generate, rebased_at: Time.zone.now)
       end
   end
 end

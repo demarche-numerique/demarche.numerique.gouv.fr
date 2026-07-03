@@ -5,7 +5,7 @@ module Instructeurs
     before_action :set_dossier
     before_action :set_dossier_stream
     before_action :set_rib_champ, only: [:edit]
-    before_action :set_rib_champ_for_update, only: [:update]
+    before_action :set_rib_champ_data_for_update, only: [:update]
 
     def edit
       render layout: "empty_layout"
@@ -14,11 +14,11 @@ module Instructeurs
     def update
       rib = RIB.new(rib_params).to_h
 
-      @rib_champ_for_update.update!(value_json: { rib:, hint: 'rib' })
+      @rib_champ_data_for_update.update!(value_json: { rib:, hint: 'rib' })
 
       @dossier.merge_instructeur_buffer_stream!
 
-      redirect_to instructeur_dossier_path(@dossier.procedure, @dossier), notice: t(".success", libelle: @rib_champ_for_update.libelle)
+      redirect_to instructeur_dossier_path(@dossier.procedure, @dossier), notice: t(".success", libelle: @rib_libelle)
     end
 
     private
@@ -38,9 +38,10 @@ module Instructeurs
       @rib_champ = @dossier.project_champ(type_de_champ, row_id:)
     end
 
-    def set_rib_champ_for_update
+    def set_rib_champ_data_for_update
       type_de_champ, row_id = find_rib_type_de_champ!
-      @rib_champ_for_update = @dossier.champ_for_update(type_de_champ, row_id:, updated_by: current_instructeur.email)
+      @rib_libelle = type_de_champ.libelle
+      @rib_champ_data_for_update = @dossier.champ_data_for_update(type_de_champ, row_id:, updated_by: current_instructeur.email)
     end
 
     def find_rib_type_de_champ!

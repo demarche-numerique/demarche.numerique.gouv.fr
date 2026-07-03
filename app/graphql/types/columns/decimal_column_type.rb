@@ -7,7 +7,7 @@ module Types::Columns
     field :value, Float, null: true, extras: [:parent]
 
     def value(parent:)
-      object.value(parent)
+      object.value(column_target(parent))
     end
   end
 end

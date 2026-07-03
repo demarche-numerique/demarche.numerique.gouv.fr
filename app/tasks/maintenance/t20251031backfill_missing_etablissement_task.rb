@@ -10,10 +10,13 @@ module Maintenance
     csv_collection
 
     def process(row)
-      champ = Champs::SiretChamp.find_by(id: row["champ_id"].to_i)
+      champ_data = ChampData.where(type: "Champs::SiretChamp").find_by(id: row["champ_id"].to_i)
 
+      return if champ_data.nil?
+      return if champ_data.external_id.nil?
+
+      champ = Champ.from_data(champ_data)
       return if champ.nil?
-      return if champ.external_id.nil?
 
       champ.reset_external_data!
       if champ.may_fetch_later?

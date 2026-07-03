@@ -23,7 +23,7 @@ class Logic::ChampColumnValue < Logic::Term
     if targeted_champ.is_type?(column.tdc_type) && targeted_champ.drop_down_list? && targeted_champ.other?
       Champs::DropDownListChamp::OTHER
     else
-      column.value(targeted_champ)
+      column.value(targeted_champ.champ_data)
     end
   end
 

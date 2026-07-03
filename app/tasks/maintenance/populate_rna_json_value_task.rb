@@ -13,8 +13,11 @@ module Maintenance
       ChampData.where(type: "Champs::RNAChamp").where.not(value: nil)
     end
 
-    def process(champ)
-      return if champ&.dossier&.procedure&.id.blank?
+    def process(champ_data)
+      return if champ_data&.dossier&.procedure&.id.blank?
+      champ = Champ.from_data(champ_data)
+      return if champ.nil?
+
       result = champ.send(:fetch_external_data)
       case result
       in Success(data:, value_json:, value:)

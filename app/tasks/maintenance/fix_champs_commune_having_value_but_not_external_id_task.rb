@@ -7,10 +7,12 @@ module Maintenance
     DEFAULT_INSTRUCTEUR_EMAIL = ENV.fetch('DEFAULT_INSTRUCTEUR_EMAIL') { CONTACT_EMAIL }
 
     def collection
-      Champs::CommuneChamp.select(:id, :value, :external_id)
+      Champs::CommuneChamp.select(:id, :value, :external_id, :dossier_id, :stable_id, :row_id, :stream)
     end
 
-    def process(champ)
+    def process(champ_data)
+      champ = Champ.from_data(champ_data)
+      return if champ.nil?
       return if !(champ.value.present? && champ.external_id.blank?)
       champ.reload
       return if !fixable?(champ)

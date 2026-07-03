@@ -76,7 +76,7 @@ class PrefillChamps
     def valid?
       return true unless NEED_VALIDATION_TYPES_DE_CHAMPS.include?(champ.type_champ)
 
-      champ.assign_attributes(champ_attributes)
+      champ.assign_attributes(champ_attributes.except(:id))
       champ.valid?(:prefill)
     end
   end

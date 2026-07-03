@@ -16,7 +16,9 @@ class Columns::QuotientFamilialColumn < Columns::JSONPathColumn
 
   private
 
-  def typed_value(champ)
-    return super if champ.fc_data_correct?
+  # Mirrors Champs::QuotientFamilialChamp#fc_data_correct?: the fetched data
+  # only counts once approved by the user (`value` stores the approval flag).
+  def typed_value(champ_data)
+    return super if champ_data.fetched? && ActiveModel::Type::Boolean.new.cast(champ_data.value)
   end
 end

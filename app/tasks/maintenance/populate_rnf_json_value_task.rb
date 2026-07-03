@@ -14,7 +14,10 @@ module Maintenance
       # Must be Active Record Relation or Array
     end
 
-    def process(champ)
+    def process(champ_data)
+      champ = Champ.from_data(champ_data)
+      return if champ.nil?
+
       result = champ.fetch_external_data
       case result
       in Success(data:, value_json:)

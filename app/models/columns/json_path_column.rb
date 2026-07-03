@@ -90,8 +90,8 @@ class Columns::JSONPathColumn < Columns::ChampColumn
     @jsonpath_for_sql ||= jsonpath.split('.').map { _1.match?(/\A\d/) ? "\"#{_1}\"" : _1 }.join('.')
   end
 
-  def typed_value(champ)
-    JsonPath.on(champ.value_json, jsonpath).first
+  def typed_value(champ_data)
+    JsonPath.on(champ_data.value_json, jsonpath).first
   end
 
   def quote_string(string) = ActiveRecord::Base.connection.quote_string(string)

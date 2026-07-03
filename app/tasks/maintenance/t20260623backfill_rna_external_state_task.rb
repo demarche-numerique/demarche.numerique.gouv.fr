@@ -24,13 +24,14 @@ module Maintenance
       ChampData.where(type: "Champs::RNAChamp").where(external_state: nil).where.not(external_id: nil)
     end
 
-    def process(champ)
-      return unless champ.idle?
+    def process(champ_data)
+      return unless champ_data.idle?
 
-      if champ.data.present?
-        champ.update_column(:external_state, 'fetched')
-      elsif champ.may_fetch_later?
-        champ.fetch_later!(wait: rand(0..MAX_WAIT))
+      if champ_data.data.present?
+        champ_data.update_column(:external_state, 'fetched')
+      else
+        champ = Champ.from_data(champ_data)
+        champ.fetch_later!(wait: rand(0..MAX_WAIT)) if champ&.may_fetch_later?
       end
     end
 
