@@ -240,6 +240,21 @@ RSpec.describe Dsfr::InputStatusMessageComponent, type: :component do
         end
       end
 
+      context "when external fetch failed with a technical error (non-blocking)" do
+        before do
+          champ.update!(etablissement: nil)
+          champ.update_columns(
+            external_id: '80879023200025',
+            external_state: 'external_error',
+            fetch_external_data_exceptions: [ExternalDataException.new(error: 'API down', code: 503, kind: :technical_error)]
+          )
+        end
+
+        it "does not render a warning message (the non-blocking info banner already covers it)" do
+          expect(subject).not_to have_css(".fr-message--warning")
+        end
+      end
+
       context "when etablissement is non-diffusible (diffusable_commercialement: false)" do
         before do
           etablissement = create(:etablissement, :non_diffusable, entreprise_raison_sociale: "SECRET EI", entreprise_forme_juridique: "Entrepreneur individuel")
