@@ -30,14 +30,14 @@ class EditableChamp::RepetitionComponent < EditableChamp::EditableChampBaseCompo
     return false if dossier.errors.empty?
 
     children_types = dossier.revision.children_of(@champ.type_de_champ)
-    public_ids = children_types.map { |tdc| tdc.public_id(row_id) }.to_set
+    champ_ids = children_types.map { |tdc| tdc.public_id(row_id) }.to_set
 
-    public_ids.intersect?(errors_public_ids)
+    champ_ids.intersect?(errors_champ_ids)
   end
 
-  def errors_public_ids
-    @errors_public_ids ||= @champ.dossier.errors.filter_map do |error|
-      error.inner_error.base.public_id if error.is_a?(ActiveModel::NestedError) && error.inner_error.base.respond_to?(:public_id)
+  def errors_champ_ids
+    @errors_champ_ids ||= @champ.dossier.errors.filter_map do |error|
+      error.inner_error.base.id if error.is_a?(ActiveModel::NestedError) && error.inner_error.base.is_a?(Champ)
     end.to_set
   end
 

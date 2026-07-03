@@ -6,7 +6,7 @@ module TurboChampsConcern
   private
 
   def champs_to_turbo_update(params, champs)
-    to_update = champs.filter { it.public_id.in?(params.keys) }
+    to_update = champs.filter { it.id.in?(params.keys) }
       .filter { it.refresh_after_update? || it.buffer_stream? }
       .flat_map { [it].concat(it.prefillable_champs) }
     to_show, to_hide = champs_to_toggle(champs, to_update)

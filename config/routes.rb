@@ -654,7 +654,7 @@ Rails.application.routes.draw do
 
   namespace :instructeurs, defaults: { nav_bar_profile: :instructeur } do
     resources :dossiers, only: [] do
-      resources :champs, only: [:edit, :update], param: :public_id
+      resources :champs, only: [:edit, :update]
     end
   end
 

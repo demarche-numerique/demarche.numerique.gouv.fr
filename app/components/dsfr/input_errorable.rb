@@ -79,10 +79,10 @@ module Dsfr
       def dossier_errors_for_champ
         object.dossier.errors
           .filter do |error|
-            # Match nested errors where the champ public_id matches this champ's public_id
+            # Match nested errors where the champ id matches this champ's id
             error.is_a?(ActiveModel::NestedError) &&
-            error.inner_error.base.respond_to?(:public_id) &&
-            error.inner_error.base.public_id == object.public_id
+            error.inner_error.base.is_a?(Champ) &&
+            error.inner_error.base.id == object.id
           end.map(&:message)
       end
 

@@ -76,11 +76,11 @@ class Attachment::FileFieldComponent < ApplicationComponent
   end
 
   def empty_component_id
-    champ.present? ? "attachment-empty-#{champ.public_id}" : "attachment-empty-generic"
+    champ.present? ? "attachment-empty-#{champ.id}" : "attachment-empty-generic"
   end
 
   def progress_container_id
-    champ.present? ? "attachment-progress-#{champ.public_id}" : "attachment-progress-generic"
+    champ.present? ? "attachment-progress-#{champ.id}" : "attachment-progress-generic"
   end
 
   def describedby_hint_id
@@ -102,7 +102,7 @@ class Attachment::FileFieldComponent < ApplicationComponent
   end
 
   def error_wrapper_id
-    champ.present? ? "attachment-error-#{champ.public_id}" : "attachment-error-generic"
+    champ.present? ? "attachment-error-#{champ.id}" : "attachment-error-generic"
   end
 
   def hints_component

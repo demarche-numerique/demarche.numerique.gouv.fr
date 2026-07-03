@@ -5,7 +5,7 @@ class EditableChamp::ReferentielDisplayComponent < Referentiels::ReferentielDisp
   delegate :referentiel_mapping_displayable_for_usager, to: :type_de_champ
 
   def accordion_id
-    "#{@champ.id}_referentiel_accordion"
+    "#{champ.id}_referentiel_accordion"
   end
 
   def data

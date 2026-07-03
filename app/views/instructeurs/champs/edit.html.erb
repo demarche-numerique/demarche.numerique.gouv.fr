@@ -31,7 +31,7 @@
       <p><%= t('.attachment_data') %></p>
 
       <%= form_with model: RIB.new(@rib_champ.value_json&.dig('rib')),
-        url: instructeurs_dossier_champ_path(@rib_champ.dossier_id, @rib_champ.public_id), 
+        url: instructeurs_dossier_champ_path(@rib_champ.dossier_id, @rib_champ.id),
         method: :patch,
         html: { id: 'attachment-data-form', class: 'border-background-contrast-grey fr-p-2w' } do |f| %>
         <div class="fr-input-group">

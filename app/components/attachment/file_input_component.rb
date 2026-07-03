@@ -98,7 +98,7 @@ class Attachment::FileInputComponent < ApplicationComponent
   end
 
   def error_wrapper_id
-    "attachment-error-#{champ.public_id}"
+    "attachment-error-#{champ.id}"
   end
 
   def final_input_id
