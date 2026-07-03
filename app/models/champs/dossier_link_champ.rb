@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Champs::DossierLinkChamp < ChampData
+class Champs::DossierLinkChamp < Champ
   validate :value_integerable, if: -> { value.present? }, on: :prefill
   validate :dossier_exists, if: -> { should_validate_in_current_context? && value.present? }
   validate :dossier_in_allowed_procedures, if: -> { should_validate_in_current_context? && value.present? }

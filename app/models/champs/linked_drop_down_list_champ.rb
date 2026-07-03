@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Champs::LinkedDropDownListChamp < ChampData
+class Champs::LinkedDropDownListChamp < Champ
   delegate :primary_options, :secondary_options, to: :type_de_champ
 
   def primary_value

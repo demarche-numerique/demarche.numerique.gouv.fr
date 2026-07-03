@@ -283,9 +283,9 @@ class Champs::AddressChamp < Champs::TextChamp
   end
 
   def set_full_address
-    address_data = self.value_json
+    address_data = value_json || {}
     if become_france? || become_international?
-      address_data.merge!(
+      address_data = address_data.merge(
         'department_code' => nil,
         'department_name' => nil,
         'region_code' => nil,
@@ -296,32 +296,32 @@ class Champs::AddressChamp < Champs::TextChamp
         'postal_code' => nil
       )
       if become_international?
-        address_data['department_code'] = '99'
-        address_data['department_name'] = APIGeoService.departement_name('99')
+        address_data = address_data.merge('department_code' => '99', 'department_name' => APIGeoService.departement_name('99'))
       end
     elsif become_ban?
-      address_data = { 'not_in_ban': '', 'country_code': 'FR' }
+      address_data = { 'not_in_ban' => '', 'country_code' => 'FR' }
     elsif become_not_ban?
-      address_data = { 'not_in_ban': 'true' }
+      address_data = { 'not_in_ban' => 'true' }
     end
 
     if france?
       if @commune_code.present?
         city_data = APIGeoService.parse_city_code_and_postal_code(@commune_code)
-        address_data.merge!(city_data) if city_data.present?
+        address_data = address_data.merge(city_data) if city_data.present?
       end
 
       # Only default the country code when the champ actually carries address
-      # data. Otherwise a blank champ — whose value_json may have been silently
-      # initialized to `{}` by an incidental store_accessor read — would be
-      # fabricated into a non-blank "France" address and persisted.
-      address_data['country_code'] ||= 'FR' if address_data.present?
+      # data. Otherwise a blank champ would be fabricated into a non-blank
+      # "France" address and persisted.
+      if address_data.present? && address_data['country_code'].nil?
+        address_data = address_data.merge('country_code' => 'FR')
+      end
     end
 
     self.value_json = address_data.compact.presence
 
     if full_address? && !ban?
-      self.value_json['label'] = format_label
+      update_value_json('label' => format_label)
     end
 
     self.value = address_label

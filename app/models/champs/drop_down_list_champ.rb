@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Champs::DropDownListChamp < ChampData
+class Champs::DropDownListChamp < Champ
   store_accessor :value_json, :other, :referentiel
   THRESHOLD_NB_OPTIONS_AS_RADIO = 5
   THRESHOLD_NB_OPTIONS_AS_AUTOCOMPLETE = 20
@@ -48,10 +48,10 @@ class Champs::DropDownListChamp < ChampData
   def value=(value)
     if value == OTHER
       self.other = true
-      write_attribute(:value, nil)
+      super(nil)
     else
       self.other = false
-      write_attribute(:value, value)
+      super(value)
     end
   end
 
@@ -65,7 +65,8 @@ class Champs::DropDownListChamp < ChampData
 
   def value_other=(value)
     if other?
-      write_attribute(:value, value)
+      # Write the raw value, bypassing value= which would reset the other flag.
+      @value = value
     end
   end
 

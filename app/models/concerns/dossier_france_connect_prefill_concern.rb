@@ -41,8 +41,7 @@ module DossierFranceConnectPrefillConcern
 
       champ.prefilling_from_france_connect_information = true
       champ.value = fc_info.birthdate.iso8601
-      champ.data ||= {}
-      champ.data["prefilled_from_france_connect_information"] = true
+      champ.data = (champ.data || {}).merge("prefilled_from_france_connect_information" => true)
       champ.save!
     end
   end

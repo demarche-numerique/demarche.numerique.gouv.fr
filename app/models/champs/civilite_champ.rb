@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Champs::CiviliteChamp < ChampData
+class Champs::CiviliteChamp < Champ
   validates :value, inclusion: ["M.", "Mme"], allow_nil: true, allow_blank: false, if: :should_validate_in_current_context?
 
   def legend_label?

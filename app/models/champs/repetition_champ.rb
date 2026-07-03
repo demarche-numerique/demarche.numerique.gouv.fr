@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Champs::RepetitionChamp < ChampData
+class Champs::RepetitionChamp < Champ
   delegate :libelle_for_export, to: :type_de_champ
 
   def row_libelle
@@ -30,14 +30,6 @@ class Champs::RepetitionChamp < ChampData
 
   def focusable_input_id(attribute = :value)
     rows.last&.first&.focusable_input_id(attribute)
-  end
-
-  def discarded?
-    discarded_at.present?
-  end
-
-  def discard!
-    touch(:discarded_at)
   end
 
   def search_terms

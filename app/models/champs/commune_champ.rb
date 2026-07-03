@@ -9,17 +9,17 @@ class Champs::CommuneChamp < Champs::TextChamp
 
   def code_postal=(v)
     super
-    value_json['postal_code'] = v
+    update_value_json('postal_code' => v)
   end
 
   def code_departement=(v)
     super
-    value_json['department_code'] = v
+    update_value_json('department_code' => v)
   end
 
   def code_region=(v)
     super
-    value_json['region_code'] = v
+    update_value_json('region_code' => v)
   end
 
   def departement_name
@@ -108,15 +108,13 @@ class Champs::CommuneChamp < Champs::TextChamp
       self.code_departement = commune[:departement_code]
       self.code_region = commune[:region_code]
       self.value = commune[:name]
-      value_json['city_name'] = commune[:name]
-      value_json['city_code'] = commune[:code]
+      update_value_json('city_name' => commune[:name], 'city_code' => commune[:code])
     else
       self.code_departement = nil
       self.code_postal = nil
       self.external_id = nil
       self.value = nil
-      value_json['city_name'] = nil
-      value_json['city_code'] = nil
+      update_value_json('city_name' => nil, 'city_code' => nil)
     end
   end
 

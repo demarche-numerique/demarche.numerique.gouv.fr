@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
-class Champs::DatetimeChamp < ChampData
+class Champs::DatetimeChamp < Champ
   validates_with DateLimitValidator, if: :should_validate_in_current_context?
-  normalizes :value, with: -> v { DateDetectionUtils.convert_to_iso8601_datetime(v) }
   validate :iso_8601
+
+  def value=(value)
+    super(DateDetectionUtils.convert_to_iso8601_datetime(value))
+  end
 
   def search_terms
     # Text search is pretty useless for datetimes so we’re not including these champs

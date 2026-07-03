@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class Champs::COJOChamp < ChampData
-  store :external_id, accessors: [:accreditation_number, :accreditation_birthdate], coder: JSON
+class Champs::COJOChamp < Champ
+  json_string_store :external_id, :accreditation_number, :accreditation_birthdate
   store_accessor :data, :accreditation_success, :accreditation_first_name, :accreditation_last_name
 
   def accreditation_birthdate

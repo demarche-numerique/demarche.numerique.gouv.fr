@@ -9,7 +9,7 @@ class Champs::DepartementChamp < Champs::TextChamp
 
   def code_region=(v)
     super
-    value_json['region_code'] = v
+    update_value_json('region_code' => v)
   end
 
   def selected
@@ -62,6 +62,6 @@ class Champs::DepartementChamp < Champs::TextChamp
 
   def store_code_region
     self.code_region = code_region
-    value_json['department_code'] = code
+    update_value_json('department_code' => code)
   end
 end

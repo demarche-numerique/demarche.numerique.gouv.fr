@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Champs::ReferentielChamp < ChampData
+class Champs::ReferentielChamp < Champ
   delegate :referentiel,
            :referentiel_mapping_displayable,
            :referentiel_mapping_prefillable_with_stable_id,
@@ -23,7 +23,7 @@ class Champs::ReferentielChamp < ChampData
   def update_external_data!(hash)
     dossier.with_champ_stream(self)
 
-    transaction do
+    ChampData.transaction do
       update!(hash.merge(fetch_external_data_exceptions: [])) # void previous errors
       dossier.prefill_and_enqueue_fetch_external_data_jobs(self, prefillable_types_de_champ)
     end

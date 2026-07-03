@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Champs::DateChamp < ChampData
+class Champs::DateChamp < Champ
   attr_accessor :prefilling_from_france_connect_information
 
   validates_with DateLimitValidator, if: :should_validate_in_current_context?
@@ -19,7 +19,7 @@ class Champs::DateChamp < ChampData
     return if !value_changed?
     return if data.blank?
 
-    data.delete("prefilled_from_france_connect_information")
+    self.data = data.except("prefilled_from_france_connect_information").presence
   end
 
   def convert_to_iso8601_date

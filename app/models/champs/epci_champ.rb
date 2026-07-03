@@ -11,12 +11,12 @@ class Champs::EpciChamp < Champs::TextChamp
 
   def code_departement=(v)
     super
-    value_json['department_code'] = v
+    update_value_json('department_code' => v)
   end
 
   def code_region=(v)
     super
-    value_json['region_code'] = v
+    update_value_json('region_code' => v)
   end
 
   def departement_name

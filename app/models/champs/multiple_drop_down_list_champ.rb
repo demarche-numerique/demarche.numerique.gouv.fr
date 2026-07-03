@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Champs::MultipleDropDownListChamp < ChampData
+class Champs::MultipleDropDownListChamp < Champ
   store_accessor :value_json, :referentiels
   validate :values_are_in_options, if: -> { value.present? && should_validate_in_current_context? }
   before_save :store_referentiels, if: :drop_down_advanced?
