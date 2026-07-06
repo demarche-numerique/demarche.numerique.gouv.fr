@@ -3,22 +3,35 @@
 class ExternalDataChampValidator < ActiveModel::Validator
   # Required checks are delegated to Champ#validate_completed (:champ_completeness context).
   def validate(record)
-    if record.pending?
-      # User filled the field, but background job is still running.
-      record.errors.add(:external_id, :api_response_pending)
-    elsif record.external_error?
-      # User filled the field, but background job failed.
-      record.errors.add(:external_id, error_key_for_api_response_code(record))
+    if record.permissive_external_data_validation?
+      permissive_validate(record)
+    else
+      strict_validate(record)
     end
   end
 
   private
 
-  def error_key_for_api_response_code(record)
-    first_exception = record.fetch_external_data_exceptions&.first
-    return :code_unknown if first_exception.nil?
+  def strict_validate(record)
+    if record.pending?
+      # User filled the field, but background job is still running.
+      record.errors.add(:external_id, :api_response_pending)
+    elsif record.external_error?
+      # User filled the field, but background job failed.
+      record.errors.add(:external_id, error_key_for(record, record.fetch_external_data_exceptions&.last))
+    end
+  end
 
-    http_status = first_exception.code
+  def permissive_validate(record)
+    return unless record.external_data_not_found?
+
+    record.errors.add(:value, error_key_for(record, record.fetch_external_data_exceptions.last))
+  end
+
+  def error_key_for(record, exception)
+    return :code_unknown if exception.nil?
+
+    http_status = exception.code
     error_key = :"code_#{http_status}"
 
     if http_status && translation_exists_for?(error_key, record)

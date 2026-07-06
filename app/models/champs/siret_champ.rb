@@ -9,6 +9,10 @@ class Champs::SiretChamp < ChampData
     true
   end
 
+  def permissive_external_data_validation?
+    true
+  end
+
   def focusable_input_id(attribute = :value)
     [input_id, :value].compact.join('-')
   end
@@ -65,6 +69,7 @@ class Champs::SiretChamp < ChampData
     return if external_id.blank?
     return if etablissement.present?
     return if pending?
+    return if external_error?
 
     validator = ActiveModel::Validations::SiretValidator.new(attributes: { value: true })
 

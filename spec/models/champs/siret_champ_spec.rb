@@ -46,8 +46,8 @@ describe Champs::SiretChamp do
 
       before { champ.update_columns(external_state: 'waiting_for_job') }
 
-      it 'adds a pending error on external_id' do
-        expect(subject.errors[:external_id]).to include(I18n.t('activerecord.errors.messages.api_response_pending'))
+      it 'does not block submission (pending is non-blocking)' do
+        expect(subject.errors).to be_empty
       end
     end
 
@@ -62,9 +62,69 @@ describe Champs::SiretChamp do
         )
       end
 
-      it 'adds the external error on external_id only' do
-        expect(subject.errors[:external_id]).to include(I18n.t('activerecord.errors.messages.code_404'))
-        expect(subject.errors[:value]).to be_empty
+      it 'adds the external error on value only' do
+        expect(subject.errors[:value]).to include(I18n.t('activerecord.errors.messages.code_404'))
+        expect(subject.errors[:external_id]).to be_empty
+      end
+    end
+
+    context 'when external fetch failed with a technical error' do
+      let(:external_id) { "12345678901245" }
+      let(:exception) { ExternalDataException.new(error: 'API down', code: 503) }
+
+      before do
+        champ.update_columns(
+          external_state: 'external_error',
+          fetch_external_data_exceptions: [exception]
+        )
+      end
+
+      it 'does not block submission (technical error is non-blocking)' do
+        expect(subject.errors).to be_empty
+      end
+    end
+
+    context 'with a degraded-mode etablissement and no depending condition' do
+      let(:external_id) { "12345678901245" }
+      let(:etablissement) { Etablissement.new(siret: external_id) }
+
+      it { is_expected.to be_valid }
+    end
+
+  end
+
+  describe '#mandatory_blank?' do
+    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :siret, mandatory: true }]) }
+    let(:external_id) { "12345678901245" }
+
+    context 'when the fetch is pending' do
+      before { champ.update_columns(external_state: 'waiting_for_job') }
+
+      it 'is not mandatory_blank (a syntactically valid SIRET is enough while pending)' do
+        expect(champ.mandatory_blank?).to be false
+      end
+    end
+
+    context 'when the fetch failed with a technical error' do
+      let(:exception) { ExternalDataException.new(error: 'API down', code: 503) }
+
+      before do
+        champ.update_columns(
+          external_state: 'external_error',
+          fetch_external_data_exceptions: [exception]
+        )
+      end
+
+      it 'is not mandatory_blank (a syntactically valid SIRET is enough despite the technical error)' do
+        expect(champ.mandatory_blank?).to be false
+      end
+    end
+
+    context 'when the format is invalid' do
+      let(:external_id) { "12345" }
+
+      it 'is mandatory_blank' do
+        expect(champ.mandatory_blank?).to be true
       end
     end
   end
@@ -147,6 +207,39 @@ describe Champs::SiretChamp do
         expect(champ.reload.etablissement.entreprise_raison_sociale).to eq("DIRECTION INTERMINISTERIELLE DU NUMERIQUE")
       end
     end
+  end
+
+  describe '#fetch_external_data (result mapping)' do
+    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :siret }]) }
+    let(:dossier) { create(:dossier, procedure:) }
+    let(:champ) { dossier.champ_data.first }
+    before { champ.update_column(:external_id, '12345678901234') }
+
+    context 'when API returns not_found' do
+      before do
+        allow(APIEntrepriseService).to receive(:create_etablissement_with_fallback)
+          .and_return(Dry::Monads::Failure(type: :not_found, code: 404, retryable: false))
+      end
+
+      it 'wraps as a non-retryable 404 failure' do
+        result = champ.fetch_external_data
+        expect(result).to be_failure
+        expect(result.failure[:code]).to eq(404)
+        expect(result.failure[:retryable]).to be_falsey
+      end
+    end
+
+    context 'when API returns a generic technical failure' do
+      before do
+        allow(APIEntrepriseService).to receive(:create_etablissement_with_fallback)
+          .and_return(Dry::Monads::Failure(type: :network, code: 503, retryable: true))
+      end
+
+      it 'keeps the failure code' do
+        expect(champ.fetch_external_data.failure[:code]).to eq(503)
+      end
+    end
+
   end
 
   describe '#reset_external_data!' do
