@@ -215,7 +215,7 @@ module Users
       end
 
       case APIEntrepriseService.create_etablissement_with_fallback(@dossier, sanitized_siret, current_user.id)
-      in Success
+      in Success | Failure(degraded: true, **)
         current_user.update!(siret: sanitized_siret)
         @dossier.update!(autorisation_donnees: true, last_champ_updated_at: Time.zone.now)
         redirect_to etablissement_dossier_path

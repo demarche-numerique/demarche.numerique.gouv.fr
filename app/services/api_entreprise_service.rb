@@ -42,15 +42,20 @@ class APIEntrepriseService
 
     # Tries to create an etablissement; falls back to degraded mode if API is unavailable.
     #
-    # Returns Success(etablissement) on success or degraded fallback
-    # Returns Failure(type: :not_found, ...) if SIRET not found
-    # Returns Failure(type:, code:, retryable:, raw_response:) on non-recoverable errors
+    # Returns Success(etablissement) when the data is complete
+    # Returns Failure(degraded: true, etablissement:, type:, code:) when only a
+    #   stub could be built: the caller can carry on, a backfill completes it later
+    # Returns Failure(type:, code:, retryable:, raw_response:) on a plain failure
     def create_etablissement_with_fallback(dossier_or_champ, siret, user_id = nil)
       case create_etablissement(dossier_or_champ, siret, user_id)
-      in Failure(type: :rate_limited, **)
-        Success(create_etablissement_as_degraded_mode(dossier_or_champ, siret, user_id))
-      in Failure(retryable: true, **) if !APIEntreprise::HealthChecker.provider_up?(:insee_sirene)
-        Success(create_etablissement_as_degraded_mode(dossier_or_champ, siret, user_id))
+      in Success(etablissement) if etablissement.as_degraded_mode?
+        Failure(degraded: true, etablissement:, type: :incomplete_payload, code: 200)
+      in Success(etablissement)
+        Success(etablissement)
+      in Failure(type: :rate_limited => type, code:, **)
+        degraded(dossier_or_champ, siret, user_id, type:, code:)
+      in Failure(type:, code:, retryable: true, **) if !APIEntreprise::HealthChecker.provider_up?(:insee_sirene)
+        degraded(dossier_or_champ, siret, user_id, type:, code:)
       in result
         result
       end
@@ -84,6 +89,11 @@ class APIEntrepriseService
       end
 
       APIEntreprise::AttestationFiscaleJob.set(wait:).perform_later(etablissement.id, procedure_id, user_id)
+    end
+
+    def degraded(dossier_or_champ, siret, user_id, type:, code:)
+      Failure(degraded: true, type:, code:,
+        etablissement: create_etablissement_as_degraded_mode(dossier_or_champ, siret, user_id))
     end
 
     def report_error(failure, extra = {})

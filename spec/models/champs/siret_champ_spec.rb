@@ -198,9 +198,18 @@ describe Champs::SiretChamp do
 
       it { expect { fetch_external_data }.to change { Etablissement.count }.by(1) }
 
-      it 'returns a retryable failure to trigger job retry' do
-        expect(fetch_external_data).to be_failure
-        expect(fetch_external_data.failure[:retryable]).to be true
+      it 'returns a degraded failure carrying the stub (no retry loop, backfill jobs are scheduled)' do
+        result = fetch_external_data
+        expect(result).to be_failure
+        expect(result.failure[:degraded]).to be true
+        expect(result.failure[:etablissement]).to be_as_degraded_mode
+      end
+
+      it 'puts the champ in the degraded state' do
+        champ.update_columns(external_state: 'fetching')
+        champ.send(:handle_result, fetch_external_data)
+
+        expect(champ.reload).to be_degraded
       end
     end
 
@@ -260,6 +269,44 @@ describe Champs::SiretChamp do
       it 'keeps the failure code' do
         expect(champ.fetch_external_data.failure[:code]).to eq(503)
       end
+    end
+
+    context 'when the service falls back to degraded mode' do
+      let(:etablissement) { instance_double(Etablissement) }
+      before do
+        allow(APIEntrepriseService).to receive(:create_etablissement_with_fallback)
+          .and_return(Dry::Monads::Failure(degraded: true, etablissement:, type: :service_unavailable, code: 503))
+      end
+
+      it 'forwards the stub as a degraded failure (data will be backfilled later)' do
+        result = champ.fetch_external_data
+        expect(result).to be_failure
+        expect(result.failure[:degraded]).to be true
+        expect(result.failure[:etablissement]).to eq(etablissement)
+      end
+    end
+  end
+
+  describe '#handle_exhausted_external_data_retries!' do
+    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :siret }]) }
+    let(:dossier) { create(:dossier, procedure:) }
+    let(:champ) { dossier.champ_data.first }
+
+    before do
+      champ.update_columns(
+        external_id: '41816609600051',
+        external_state: 'waiting_for_job',
+        fetch_external_data_exceptions: [ExternalDataException.new(error: 'boom', code: 503)]
+      )
+    end
+
+    it 'converges to the degraded state instead of external_error' do
+      expect { champ.handle_exhausted_external_data_retries! }
+        .to have_enqueued_job(APIEntreprise::EtablissementJob)
+
+      champ.reload
+      expect(champ).to be_degraded
+      expect(champ.etablissement).to be_as_degraded_mode
     end
   end
 

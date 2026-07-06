@@ -109,6 +109,10 @@ module ChampExternalDataConcern
     in Success(hash)
       update_external_data!(hash)
       external_data_fetched!
+    in Failure(degraded: true, error:, code:, **data)
+      update_external_data!(data)
+      save_external_error(error, code)
+      external_data_degraded!
     in Failure(retryable: true, error:, code:)
       save_external_error(error, code)
       retry!

@@ -6,7 +6,12 @@ class ChampFetchExternalDataJob < ApplicationJob
 
   retry_on RetryableFetchError, attempts: 3, wait: :polynomially_longer do |job, err|
     champ = job.arguments.first
-    champ.handle_exhausted_external_data_retries!
+    begin
+      champ.handle_exhausted_external_data_retries!
+    rescue StandardError => e
+      # Never let this escape: the champ would stay stuck in waiting_for_job.
+      Sentry.capture_exception(e)
+    end
 
     # Don't raise, otherwise it will pop forever as "working" queue without doing anything
     Sentry.capture_exception(err.cause)
