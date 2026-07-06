@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 describe Champs::SiretChamp do
+  include Logic
+
   let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :siret }]) }
   let(:dossier) { create(:dossier, procedure:) }
   let(:champ) { dossier.root_champs_public.first.tap { _1.update(external_id:, etablissement:) } }
@@ -88,9 +90,29 @@ describe Champs::SiretChamp do
       let(:external_id) { "12345678901245" }
       let(:etablissement) { Etablissement.new(siret: external_id) }
 
+      before { champ.update_columns(external_state: 'fetched') }
+
       it { is_expected.to be_valid }
     end
 
+    context 'in degraded state when the champ feeds a condition' do
+      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :siret }, { type: :text }]) }
+      let(:champ) { dossier.champ_data.find(&:siret?).tap { _1.update(external_id:, etablissement:) } }
+      let(:external_id) { "12345678901245" }
+      let(:etablissement) { Etablissement.new(siret: external_id) }
+
+      before do
+        champ.update_columns(external_state: 'degraded')
+        siret_tdc = procedure.draft_revision.type_de_champs_for(scope: :public).first
+        text_tdc = procedure.draft_revision.type_de_champs_for(scope: :public).second
+        naf_column = siret_tdc.columns(procedure_id: procedure.id).find { _1.label.match?(/NAF/i) }
+        text_tdc.update!(condition: ds_eq(champ_column_value(naf_column), constant('4950Z')))
+      end
+
+      it 'blocks submission until the backfill completes the etablissement' do
+        expect(subject.errors[:external_id]).to include(I18n.t('activerecord.errors.messages.api_response_pending'))
+      end
+    end
   end
 
   describe '#mandatory_blank?' do
@@ -239,7 +261,48 @@ describe Champs::SiretChamp do
         expect(champ.fetch_external_data.failure[:code]).to eq(503)
       end
     end
+  end
 
+  describe '#external_data_required_for_conditions?' do
+    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :siret }, { type: :text }]) }
+    let(:siret_tdc) { procedure.draft_revision.type_de_champs_for(scope: :public).first }
+    let(:text_tdc) { procedure.draft_revision.type_de_champs_for(scope: :public).second }
+    let(:champ) { dossier.champ_data.find(&:siret?) }
+
+    context 'when no other champ has a condition based on the siret champ' do
+      it { expect(champ.external_data_required_for_conditions?).to be false }
+    end
+
+    context 'when another champ has a condition based on a column of the siret champ' do
+      before do
+        naf_column = siret_tdc.columns(procedure_id: procedure.id).find { _1.label.match?(/NAF/i) }
+        text_tdc.update!(condition: ds_eq(champ_column_value(naf_column), constant('4950Z')))
+      end
+
+      it { expect(champ.external_data_required_for_conditions?).to be true }
+    end
+  end
+
+  describe '#permissive_external_data_validation?' do
+    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :siret }, { type: :text }]) }
+    let(:champ) { dossier.champ_data.find(&:siret?) }
+
+    it 'is permissive by default' do
+      expect(champ.permissive_external_data_validation?).to be true
+    end
+
+    context 'when another champ has a condition based on a column of the siret champ' do
+      before do
+        siret_tdc = procedure.draft_revision.type_de_champs_for(scope: :public).first
+        text_tdc = procedure.draft_revision.type_de_champs_for(scope: :public).second
+        naf_column = siret_tdc.columns(procedure_id: procedure.id).find { _1.label.match?(/NAF/i) }
+        text_tdc.update!(condition: ds_eq(champ_column_value(naf_column), constant('4950Z')))
+      end
+
+      it 'restores the blocking validation' do
+        expect(champ.permissive_external_data_validation?).to be false
+      end
+    end
   end
 
   describe '#reset_external_data!' do

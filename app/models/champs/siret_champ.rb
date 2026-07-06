@@ -9,8 +9,14 @@ class Champs::SiretChamp < ChampData
     true
   end
 
+  # A condition based on one of this champ's columns (value_json) cannot be
+  # evaluated until the data is fetched: restore the blocking validation.
   def permissive_external_data_validation?
-    true
+    !external_data_required_for_conditions?
+  end
+
+  def external_data_required_for_conditions?
+    dependent_conditions?
   end
 
   def focusable_input_id(attribute = :value)
@@ -67,6 +73,7 @@ class Champs::SiretChamp < ChampData
   # SIRET controller creates an etablissement in degraded mode
   def validate_etablissement
     return if external_id.blank?
+
     return if etablissement.present?
     return if pending?
     return if external_error?

@@ -13,8 +13,7 @@ class ExternalDataChampValidator < ActiveModel::Validator
   private
 
   def strict_validate(record)
-    if record.pending?
-      # User filled the field, but background job is still running.
+    if record.pending? || record.degraded?
       record.errors.add(:external_id, :api_response_pending)
     elsif record.external_error?
       # User filled the field, but background job failed.

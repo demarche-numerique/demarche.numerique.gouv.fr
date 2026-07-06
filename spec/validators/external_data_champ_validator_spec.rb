@@ -16,42 +16,81 @@ RSpec.describe ExternalDataChampValidator do
     it { expect { validator.validate(champ) }.to change { champ.errors[:value].size }.by(1) }
   end
 
+  shared_examples 'adds a strict error' do
+    it { expect { validator.validate(champ) }.to change { champ.errors[:external_id].size }.by(1) }
+  end
+
   context 'fetched' do
-    before { allow(champ).to receive_messages(pending?: false, external_error?: false) }
+    before { allow(champ).to receive_messages(pending?: false, external_error?: false, external_data_required_for_conditions?: false) }
     include_examples 'no error added'
   end
 
-  context 'pending' do
+  context 'pending and not required for conditions' do
     before do
-      allow(champ).to receive_messages(pending?: true, external_error?: false)
+      allow(champ).to receive_messages(pending?: true, external_error?: false, external_data_required_for_conditions?: false)
     end
     include_examples 'no error added'
   end
 
-  context 'external_error 404 (not found)' do
+  context 'pending and required for conditions' do
+    before do
+      allow(champ).to receive_messages(pending?: true, external_error?: false, external_data_required_for_conditions?: true)
+    end
+    include_examples 'adds a strict error'
+  end
+
+  context 'degraded and not required for conditions' do
+    before do
+      allow(champ).to receive_messages(pending?: false, degraded?: true, external_error?: false, external_data_required_for_conditions?: false)
+    end
+    include_examples 'no error added'
+  end
+
+  context 'degraded and required for conditions' do
+    before do
+      allow(champ).to receive_messages(pending?: false, degraded?: true, external_error?: false, external_data_required_for_conditions?: true)
+    end
+    include_examples 'adds a strict error'
+  end
+
+  context 'external_error 404 (not found) and not required for conditions' do
     before do
       allow(champ).to receive_messages(
         pending?: false, external_error?: true,
+        external_data_required_for_conditions?: false,
         fetch_external_data_exceptions: [ExternalDataException.new(error: 'NF', code: 404)]
       )
     end
     include_examples 'adds a permissive error'
   end
 
-  context 'external_error with a technical code' do
+  context 'external_error with a technical code and not required for conditions' do
     before do
       allow(champ).to receive_messages(
         pending?: false, external_error?: true,
+        external_data_required_for_conditions?: false,
         fetch_external_data_exceptions: [ExternalDataException.new(error: 'boom', code: 503)]
       )
     end
     include_examples 'no error added'
   end
 
+  context 'external_error with a technical code and required for conditions' do
+    before do
+      allow(champ).to receive_messages(
+        pending?: false, external_error?: true,
+        external_data_required_for_conditions?: true,
+        fetch_external_data_exceptions: [ExternalDataException.new(error: 'boom', code: 503)]
+      )
+    end
+    include_examples 'adds a strict error'
+  end
+
   context 'external_error with a technical retry followed by a 404 (exceptions accumulate)' do
     before do
       allow(champ).to receive_messages(
         pending?: false, external_error?: true,
+        external_data_required_for_conditions?: false,
         fetch_external_data_exceptions: [
           ExternalDataException.new(error: 'boom', code: 503),
           ExternalDataException.new(error: 'NF', code: 404),
@@ -66,10 +105,30 @@ RSpec.describe ExternalDataChampValidator do
     end
   end
 
-  context 'external_error with a non-404 code and no translation' do
+  context 'external_error with accumulated exceptions and required for conditions (strict path)' do
     before do
       allow(champ).to receive_messages(
         pending?: false, external_error?: true,
+        external_data_required_for_conditions?: true,
+        fetch_external_data_exceptions: [
+          ExternalDataException.new(error: 'boom', code: 503),
+          ExternalDataException.new(error: 'NF', code: 404),
+        ]
+      )
+    end
+    include_examples 'adds a strict error'
+
+    it 'uses the error key of the most recent exception' do
+      validator.validate(champ)
+      expect(champ.errors.map(&:type)).to include(:code_404)
+    end
+  end
+
+  context 'external_error with a non-404 code and no translation (no condition)' do
+    before do
+      allow(champ).to receive_messages(
+        pending?: false, external_error?: true,
+        external_data_required_for_conditions?: false,
         fetch_external_data_exceptions: [ExternalDataException.new(error: 'old', code: 500)]
       )
     end
