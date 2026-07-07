@@ -48,6 +48,10 @@
         <% end %>
       <% end %>
 
+      <% if show_new_message_notification?(dossier) %>
+        <%= render 'message_notice', dossier: %>
+      <% end %>
+
       <% if dossier.transfer.present? %>
         <%= render Dsfr::AlertComponent.new(state: :info, size: :sm, extra_class_names: "fr-pb-1w fr-mb-2w") do |c| %>
           <% c.with_body do %>

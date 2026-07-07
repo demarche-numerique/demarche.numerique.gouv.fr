@@ -7,6 +7,8 @@
   = render partial: 'users/dossiers/show/header', locals: { dossier: @dossier }
 
   .fr-container
+    - if show_new_message_notification?(@dossier)
+      = render 'message_notice', dossier: @dossier
     = render partial: 'users/dossiers/show/status_overview', locals: { dossier: @dossier }
     = render partial: 'users/dossiers/show/attestation_depot', locals: { dossier: @dossier }
 
