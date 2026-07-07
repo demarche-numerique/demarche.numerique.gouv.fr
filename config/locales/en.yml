@@ -618,6 +618,9 @@ en:
           no_result_search_modify: "Modify your search"
           no_result_search_back_html: "Or %{link}"
           no_result_search_back_link: "go back to your files list"
+          new_message:
+            title: "New message from the administration"
+            body_html: 'Check your <a href="%{link}" class="fr-link">messages</a>.'
           pending_correction:
             title: "Warning"
             body_html: 'Consult the corrections to be made to your file in the <a href="%{link}" class="fr-link">messaging system<span class="fr-sr-only"> of file number %{id}</span></a>.'

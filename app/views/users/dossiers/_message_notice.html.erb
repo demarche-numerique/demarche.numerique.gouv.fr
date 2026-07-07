@@ -1,0 +1,8 @@
+<%= render Dsfr::NoticeComponent.new(state: 'new', extra_class_names: "fr-mb-2w") do |c| %>
+  <% c.with_title do %>
+    <span class="fr-icon-flashlight-fill" aria-hidden="true"></span>
+    <%= t('views.users.dossiers.dossiers_list.new_message.title') %>
+  <% end %>
+
+  <% c.with_desc { t('views.users.dossiers.dossiers_list.new_message.body_html', link: messagerie_dossier_path(dossier)) } %>
+<% end %>
