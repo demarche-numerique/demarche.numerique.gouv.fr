@@ -128,6 +128,13 @@ module DossierHelper
     )
   end
 
+  def new_message_badge(html_class: nil)
+    tag.span(
+      Dossier.human_attribute_name("new_message.for_user"),
+      class: class_names("fr-badge fr-badge--sm fr-badge--new", html_class => true)
+    )
+  end
+
   def pending_correction_badge(profile, html_class: nil)
     tag.span(Dossier.human_attribute_name("pending_correction.#{profile}"), class:
       class_names(

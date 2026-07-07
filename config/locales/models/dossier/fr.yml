@@ -41,6 +41,8 @@ fr:
         for_instructeur: "en attente de réponse"
         responded: "Réponse donnée"
         discarded: "Demande de réponse annulée"
+      new_message:
+        for_user: "MESSAGE"
       partage:
         for_user: "Partagé avec moi"
       traitement:

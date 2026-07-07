@@ -40,6 +40,8 @@ en:
         for_user: "PENDING RESPONSE"
         for_instructeur: "pending response"
         responded: "Response given"
+      new_message:
+        for_user: "MESSAGE"
       partage:
         for_user: "Shared with me"
       traitement:
