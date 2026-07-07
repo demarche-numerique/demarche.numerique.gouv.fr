@@ -32,6 +32,10 @@
           <%= pending_response_badge(:for_user) %>
         <% end %>
 
+        <% if show_new_message_notification?(dossier) %>
+          <%= new_message_badge %>
+        <% end %>
+
         <%= expiration_badge(dossier) %>
 
         <%= partage_badge unless current_user.owns?(dossier) %>
@@ -93,6 +97,10 @@
 
       <% if dossier.pending_response? %>
         <%= pending_response_badge(:for_user) %>
+      <% end %>
+
+      <% if show_new_message_notification?(dossier) %>
+        <%= new_message_badge %>
       <% end %>
 
       <%= expiration_badge(dossier) %>
