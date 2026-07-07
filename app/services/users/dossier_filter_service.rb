@@ -86,7 +86,7 @@ module Users
 
     def alerts_enabled?
       return @alerts_enabled if defined?(@alerts_enabled)
-      @alerts_enabled = Flipper.enabled?(:usager_dossiers_alert_filters, @user)
+      @alerts_enabled = @user.dossiers_alerts_enabled?
     end
 
     def model_alerts

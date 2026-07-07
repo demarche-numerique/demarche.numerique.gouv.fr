@@ -135,6 +135,10 @@ module DossierHelper
     )
   end
 
+  def show_new_message_notification?(dossier)
+    current_user.dossiers_alerts_enabled? && dossier.unread_message_for_user?
+  end
+
   def pending_correction_badge(profile, html_class: nil)
     tag.span(Dossier.human_attribute_name("pending_correction.#{profile}"), class:
       class_names(

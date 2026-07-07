@@ -212,6 +212,10 @@ class User < ApplicationRecord
     expert.present?
   end
 
+  def dossiers_alerts_enabled?
+    Flipper.enabled?(:usager_dossiers_alert_filters, self)
+  end
+
   def crisp_segments
     segments = []
     segments << 'administrateur' if administrateur?
