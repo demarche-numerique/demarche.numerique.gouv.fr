@@ -13,7 +13,7 @@
     .fr-container--fluid{ data: { turbo: 'true' } }
       %turbo-frame#procedures.fr-grid-row.fr-grid-row--gutters{ 'data-turbo-action': 'advance' }
         .fr-col-12.fr-col-lg-3
-          = form_with(url: all_admin_procedures_path, method: :get, data: { controller: 'autosubmit', turbo_frame: 'procedures' }) do |f|
+          = form_with(url: procedures_filter_path, method: :get, data: { controller: 'autosubmit', turbo_frame: 'procedures' }) do |f|
 
             %fieldset.sidebar-filter
               %legend
@@ -21,7 +21,7 @@
                   %span.fr-icon-filter-fill.fr-icon--sm.fr-mr-1w{ 'aria-hidden': 'true' }
                   Filtrer
                 .reinit
-                  = link_to all_admin_procedures_path(zone_ids: current_administrateur.zones), { data: { turbo: 'false' } } do
+                  = link_to procedures_filter_path(zone_ids: current_administrateur.zones), { data: { turbo: 'false' } } do
                     %span.fr-icon-arrow-go-back-line Réinitialiser
               %ul
 

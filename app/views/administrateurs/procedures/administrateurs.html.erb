@@ -31,7 +31,7 @@
   <% if @filter.selected_zones.present? %>
     <div class="selected-zones fr-mb-2w">
       <% @filter.selected_zones.each do |zone| %>
-        <%= link_to zone.current_label, all_admin_procedures_path(@filter.without(:zone_ids, zone.id)), class: 'fr-tag fr-tag--dismiss fr-mb-1w' %>
+        <%= link_to zone.current_label, administrateurs_admin_procedures_path(@filter.without(:zone_ids, zone.id)), class: 'fr-tag fr-tag--dismiss fr-mb-1w' %>
       <% end %>
     </div>
   <% end %>
@@ -39,14 +39,14 @@
   <% if @filter.statuses.present? %>
     <div class="selected-statuses fr-mb-2w">
       <% @filter.statuses.each do |status| %>
-        <%= link_to status, all_admin_procedures_path(@filter.without(:statuses, status)), class: 'fr-tag fr-tag--dismiss fr-mb-1w' %>
+        <%= link_to status, administrateurs_admin_procedures_path(@filter.without(:statuses, status)), class: 'fr-tag fr-tag--dismiss fr-mb-1w' %>
       <% end %>
     </div>
   <% end %>
 
   <% if @filter.from_publication_date.present? %>
     <div class="selected-from-publication-date fr-mb-2w">
-      <%= link_to t('.since_date', date: l(@filter.from_publication_date)), all_admin_procedures_path(@filter.without(:from_publication_date)), class: 'fr-tag fr-tag--dismiss fr-mb-1w' %>
+      <%= link_to t('.since_date', date: l(@filter.from_publication_date)), administrateurs_admin_procedures_path(@filter.without(:from_publication_date)), class: 'fr-tag fr-tag--dismiss fr-mb-1w' %>
     </div>
   <% end %>
 
