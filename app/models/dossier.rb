@@ -6,6 +6,7 @@ class Dossier < ApplicationRecord
   include DossierCloneConcern
   include DossierCorrectableConcern
   include DossierFranceConnectPrefillConcern
+  include DossierMessagerieConcern
   include DossierPendingResponseConcern
   include DossierFilteringConcern
   include DossierPrefillableConcern

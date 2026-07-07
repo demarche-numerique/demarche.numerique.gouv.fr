@@ -28,6 +28,7 @@ class Commentaire < ApplicationRecord
   scope :sent_by_usager, -> { where(instructeur_id: nil, expert_id: nil) }
   scope :sent_by_instructeur, -> { where.not(instructeur_id: nil) }
   scope :sent_by_agent, -> { where('commentaires.instructeur_id IS NOT NULL OR commentaires.expert_id IS NOT NULL') }
+  scope :unread_by_recipient, -> { where(discarded_at: nil, seen_by_recipient_at: nil) }
   scope :to_notify, -> (instructeur_id) {
     where.not(email: SYSTEM_EMAILS)
       .where(discarded_at: nil)
