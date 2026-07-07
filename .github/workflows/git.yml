@@ -10,3 +10,27 @@ jobs:
     - uses: actions/checkout@v4
     - name: Block Fixup Commit Merge
       uses: 13rac1/block-fixup-merge-action@v2.0.0
+
+  block-new-haml:
+    name: Block new HAML files
+    runs-on: ubuntu-22.04
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Fail if the PR adds new .haml files
+      env:
+        BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+      run: |
+        # New templates must be ERB, not HAML (HAML is legacy, being phased out).
+        # `--no-renames` makes a rename to a .haml path count as an addition too.
+        new_haml=$(git diff --no-renames --diff-filter=A --name-only "$BASE_SHA" "$HEAD_SHA" -- '*.haml')
+        if [ -n "$new_haml" ]; then
+          echo "::error::New HAML files are not allowed. Write ERB (.html.erb) instead — HAML is legacy and being phased out."
+          echo "The following newly added HAML file(s) must be converted to ERB:"
+          echo "$new_haml" | sed 's/^/  - /'
+          exit 1
+        fi
+        echo "No new HAML files added. 👍"
