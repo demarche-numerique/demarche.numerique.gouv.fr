@@ -16,10 +16,6 @@
       <%= f.label 'email', t('.search_label'), class: 'fr-label' %>
       <%= f.search_field 'email', size: 40, class: 'fr-input', data: { turbo_force: :server } %>
     <% end %>
-
-    <div class="actions">
-      <%= link_to t('.view_procedures'), all_admin_procedures_path(@filter.params), class: 'fr-btn fr-btn--secondary' %>
-    </div>
   </div>
 
   <% if @filter.email %>

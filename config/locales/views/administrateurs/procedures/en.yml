@@ -1,10 +1,15 @@
 en:
   administrateurs:
+    all_procedures_menu: Directory search
+    procedure_list: Procedure list
+    administrator_list: Administrator list
     procedures:
+      all:
+        title: Procedures directory
+        description_html: This directory allows you to view information about processes and administrators for all zones.<br>Search for a process to see its zone and administrators, or search for an administrator to see the processes they manage.
       administrateurs:
         title: Administrators
         search_label: Search administrators by email address
-        view_procedures: View procedures list
         since_date: "Since %{date}"
         admin_count:
           one: "%{count} administrator"

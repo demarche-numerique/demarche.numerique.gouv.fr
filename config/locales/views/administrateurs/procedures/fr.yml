@@ -1,10 +1,15 @@
 fr:
   administrateurs:
+    all_procedures_menu: Recherche dans l’annuaire
+    procedure_list: Liste des démarches
+    administrator_list: Liste des administrateurs
     procedures:
+      all:
+        title: Annuaire des démarches
+        description_html: Cet annuaire permet de consulter les informations sur les démarches et les administrateurs pour toutes les zones.<br>Recherchez une démarche pour voir sa zone et ses administrateurs, ou recherchez un administrateur pour voir les démarches qu’il gère.
       administrateurs:
         title: Administrateurs
         search_label: Rechercher des administrateurs par adresse électronique
-        view_procedures: Voir la liste des démarches
         since_date: "Depuis le %{date}"
         admin_count:
           one: "%{count} administrateur"
