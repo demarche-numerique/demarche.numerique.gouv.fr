@@ -329,6 +329,23 @@ RSpec.describe Users::DossierFilterService do
     end
   end
 
+  describe '#dossiers preloading of unread_commentaires_for_user' do
+    let(:user) { create(:user) }
+    let(:service) { described_class.new(user:, params: ActionController::Parameters.new) }
+
+    before do
+      dossier = create(:dossier, :en_construction, user:)
+      create(:commentaire, dossier:, instructeur: create(:instructeur), seen_by_recipient_at: nil)
+    end
+
+    it 'preloads unread_commentaires_for_user to avoid N+1 in the list' do
+      dossiers = service.dossiers.to_a
+
+      expect(dossiers).to be_present
+      expect(dossiers.map { it.unread_commentaires_for_user.loaded? }).to all(be(true))
+    end
+  end
+
   describe '#dossiers with alert filter' do
     let!(:dossier_pending_correction) { create(:dossier, :en_construction, user: user) }
     let!(:dossier_pending_response) { create(:dossier, :en_construction, user: user) }

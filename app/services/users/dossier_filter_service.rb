@@ -17,6 +17,7 @@ module Users
       :transfer,
       :pending_corrections,
       :awaiting_responses,
+      :unread_commentaires_for_user,
       :individual,
       :etablissement,
       { procedure: [:procedure_paths, { replaced_by_procedure: :procedure_paths }] },
