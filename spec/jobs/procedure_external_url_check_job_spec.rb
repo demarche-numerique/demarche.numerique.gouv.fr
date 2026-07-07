@@ -10,8 +10,8 @@ describe ProcedureExternalURLCheckJob do
   let(:procedure) { create(:procedure, lien_dpo:, lien_dpo_error:, lien_notice:) }
 
   before do
-    allow(Typhoeus).to receive(:get).with("https://example.com/dpo", followlocation: true).and_return(Typhoeus::Response.new(code: dpo_code, mock: true))
-    allow(Typhoeus).to receive(:get).with("https://example.com/notice", followlocation: true).and_return(Typhoeus::Response.new(code: notice_code, mock: true))
+    allow(Typhoeus).to receive(:get).with("https://example.com/dpo", followlocation: true).and_return(Typhoeus::Response.new(code: dpo_code, redirect_count: 0, mock: true))
+    allow(Typhoeus).to receive(:get).with("https://example.com/notice", followlocation: true).and_return(Typhoeus::Response.new(code: notice_code, redirect_count: 0, mock: true))
   end
 
   context 'with valid links' do
