@@ -17,10 +17,16 @@
     line-height: 1.5rem;
   }
 
+  .filter-accordion-btn {
+    display: flex;
+    align-items: center;
+  }
+
   legend {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
   .reinit a {

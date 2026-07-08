@@ -27,21 +27,20 @@
 
           %fieldset.sidebar-filter
             %legend
-              .title.fr-text--bold.fr-pl-2w
-                %span.fr-icon-filter-fill.fr-icon--sm.fr-mr-1w{ 'aria-hidden': 'true' }
-                  Filtrer
+              .title.fr-text--bold
+                Filtrer
               .reinit
-                = link_to procedures_filter_path(zone_ids: current_administrateur.zones), { data: { turbo: 'false' } } do
-                  %span.fr-icon-arrow-go-back-line Réinitialiser
+                = link_to 'Réinitialiser', procedures_filter_path(zone_ids: current_administrateur.zones), { data: { turbo: 'false' }, class: 'fr-link fr-link--icon-left fr-icon-arrow-go-back-line' }
 
             %ul
-
-              %li.fr-py-2w.fr-pl-2w{ 'data-controller': "expand" }
-                .fr-mb-1w
-                  %button{ 'data-action': 'expand#toggle' }
+              %li.fr-py-1w{ 'data-controller': "expand" }
+                .fr-my-1w
+                  %button.filter-accordion-btn{ 'data-action': 'expand#toggle' }
                     %span.fr-icon-add-line.fr-icon--sm.fr-mr-1w.fr-text-action-high--blue-france{ 'aria-hidden': 'true', 'data-expand-target': 'icon' }
                     Thématique
-                .fr-ml-1w.hidden{ 'data-expand-target': 'content' }
+                    - if @filter.tags.present?
+                      %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w= @filter.tags.size
+                .hidden{ 'data-expand-target': 'content' }
                   %div
                     = f.search_field :tags, placeholder: 'Choisissez un thème', list: 'tags_list', class: 'fr-input', data: { no_autosubmit: 'input', turbo_force: :server }, multiple: true
                     %datalist#tags_list
@@ -51,81 +50,99 @@
                       - @filter.tags.each do |tag|
                         = f.hidden_field :tags, value: tag, multiple: true, id: "tag-#{tag.tr(' ', '_')}"
 
-              %li.fr-py-2w.fr-pl-2w{ 'data-controller': "expand" }
-                .fr-mb-1w
-                  %button{ 'data-action': 'expand#toggle' }
+              %li.fr-py-1w{ 'data-controller': "expand" }
+                .fr-my-1w
+                  %button.filter-accordion-btn{ 'data-action': 'expand#toggle' }
                     %span.fr-icon-add-line.fr-icon--sm.fr-mr-1w.fr-text-action-high--blue-france{ 'aria-hidden': 'true', 'data-expand-target': 'icon' }
                     Démarches modèles
-                .fr-ml-1w.hidden{ 'data-expand-target': 'content' }
+                    - if @filter.template?
+                      %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w 1
+                .hidden{ 'data-expand-target': 'content' }
                   .fr-checkbox-group.fr-ml-2w.fr-py-1w
                     = f.check_box :template, class: 'fr-input'
                     = f.label :template, 'Modèle DS', class: 'fr-label'
-              %li.fr-py-2w.fr-pl-2w{ 'data-controller': "expand" }
-                .fr-mb-1w
-                  %button{ 'data-action': 'expand#toggle' }
+              %li.fr-py-1w{ 'data-controller': "expand" }
+                .fr-my-1w
+                  %button.filter-accordion-btn{ 'data-action': 'expand#toggle' }
                     %span.fr-icon-add-line.fr-icon--sm.fr-mr-1w.fr-text-action-high--blue-france{ 'aria-hidden': 'true', 'data-expand-target': 'icon' }
                     Autres zones
-                .fr-ml-1w.hidden{ 'data-expand-target': 'content' }
+                    - other_zones_count = @filter.other_zones.count { |z| @filter.zone_filtered?(z.id) }
+                    - if other_zones_count > 0
+                      %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w= other_zones_count
+                .hidden{ 'data-expand-target': 'content' }
                   = f.collection_check_boxes :zone_ids, @filter.other_zones, :id, :current_label, include_hidden: false do |b|
                     .fr-checkbox-group.fr-ml-2w.fr-py-1w
                       = b.check_box(checked: @filter.zone_filtered?(b.value))
                       = b.label(class: 'fr-label') { b.text }
-              %li.fr-py-2w.fr-pl-2w{ 'data-controller': "expand" }
-                .fr-mb-1w
-                  %button{ 'data-action': 'expand#toggle' }
+              %li.fr-py-1w{ 'data-controller': "expand" }
+                .fr-my-1w
+                  %button.filter-accordion-btn{ 'data-action': 'expand#toggle' }
                     %span.fr-icon-add-line.fr-icon--sm.fr-mr-1w.fr-text-action-high--blue-france{ 'aria-hidden': 'true', 'data-expand-target': 'icon' }
                     Mes zones
-                .fr-ml-1w.hidden{ 'data-expand-target': 'content' }
+                    - admin_zones_count = @filter.admin_zones.count { |z| @filter.zone_filtered?(z.id) }
+                    - if admin_zones_count > 0
+                      %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w= admin_zones_count
+                .hidden{ 'data-expand-target': 'content' }
                   = f.collection_check_boxes :zone_ids, @filter.admin_zones, :id, :current_label, include_hidden: false do |b|
                     .fr-checkbox-group.fr-ml-2w.fr-py-1w
                       = b.check_box(checked: @filter.zone_filtered?(b.value))
                       = b.label(class: 'fr-label') { b.text }
-              %li.fr-py-2w.fr-pl-2w{ 'data-controller': "expand" }
-                .fr-mb-1w
-                  %button{ 'data-action': 'expand#toggle' }
+              %li.fr-py-1w{ 'data-controller': "expand" }
+                .fr-my-1w
+                  %button.filter-accordion-btn{ 'data-action': 'expand#toggle' }
                     %span.fr-icon-add-line.fr-icon--sm.fr-mr-1w.fr-text-action-high--blue-france{ 'aria-hidden': 'true', 'data-expand-target': 'icon' }
                     Service
-                .fr-ml-1w.hidden{ 'data-expand-target': 'content' }
+                    - if @filter.service_siret.present?
+                      %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w 1
+                .hidden{ 'data-expand-target': 'content' }
                   %div
                     = f.text_field :service_siret, placeholder: 'Indiquez le SIRET', class: 'fr-input'
-              %li.fr-py-2w.fr-pl-2w{ 'data-controller': "expand" }
-                .fr-mb-1w
-                  %button{ 'data-action': 'expand#toggle' }
+              %li.fr-py-1w{ 'data-controller': "expand" }
+                .fr-my-1w
+                  %button.filter-accordion-btn{ 'data-action': 'expand#toggle' }
                     %span.fr-icon-add-line.fr-icon--sm.fr-mr-1w.fr-text-action-high--blue-france{ 'aria-hidden': 'true', 'data-expand-target': 'icon' }
                     Département
-                .fr-ml-1w.hidden{ 'data-expand-target': 'content' }
+                    - if @filter.service_departement.present?
+                      %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w 1
+                .hidden{ 'data-expand-target': 'content' }
                   %div
                     = f.select :service_departement,
                       APIGeoService.departement_options,
                       { selected: @filter.service_departement, include_blank: ''},
                       id: "service_dep_select",
                       class: 'fr-select'
-              %li.fr-py-2w.fr-pl-2w{ 'data-controller': "expand" }
-                .fr-mb-1w
-                  %button{ 'data-action': 'expand#toggle' }
+              %li.fr-py-1w{ 'data-controller': "expand" }
+                .fr-my-1w
+                  %button.filter-accordion-btn{ 'data-action': 'expand#toggle' }
                     %span.fr-icon-add-line.fr-icon--sm.fr-mr-1w.fr-text-action-high--blue-france{ 'aria-hidden': 'true', 'data-expand-target': 'icon' }
                     Type d’usager
-                .fr-ml-1w.hidden{ 'data-expand-target': 'content' }
+                    - if @filter.kind_usagers.present?
+                      %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w= @filter.kind_usagers.size
+                .hidden{ 'data-expand-target': 'content' }
                   = f.collection_check_boxes :kind_usagers, ['individual', 'personne_morale'], :to_s, :to_s, include_hidden: false do |b|
                     .fr-checkbox-group.fr-ml-2w.fr-py-1w
                       = b.check_box(checked: @filter.kind_usager_filtered?(b.value))
                       = b.label(class: 'fr-label') { t b.text, scope: 'activerecord.attributes.procedure.kind_usager' }
-              %li.fr-py-2w{ 'data-controller': "expand" }
-                .fr-mb-1w.fr-pl-2w
-                  %button{ 'data-action': 'click->expand#toggle' }
+              %li.fr-py-1w{ 'data-controller': "expand" }
+                .fr-my-1w
+                  %button.filter-accordion-btn{ 'data-action': 'click->expand#toggle' }
                     %span.fr-icon-add-line.fr-icon--sm.fr-mr-1w.fr-text-action-high--blue-france{ 'aria-hidden': 'true', 'data-expand-target': 'icon' }
                     Date de publication
+                    - if @filter.from_publication_date.present?
+                      %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w 1
                 .fr-input-group.hidden{ 'data-expand-target': 'content' }
                   = f.label 'from_publication_date', 'Depuis', class: 'fr-label'
                   .fr-input-wrap.fr-fi-calendar-line
                     = f.date_field 'from_publication_date', value: @filter.from_publication_date, class: 'fr-input'
 
-              %li.fr-py-2w.fr-pl-2w{ 'data-controller': "expand" }
-                .fr-mb-1w
-                  %button{ 'data-action': 'expand#toggle' }
+              %li.fr-py-1w{ 'data-controller': "expand" }
+                .fr-my-1w
+                  %button.filter-accordion-btn{ 'data-action': 'expand#toggle' }
                     %span.fr-icon-add-line.fr-icon--sm.fr-mr-1w.fr-text-action-high--blue-france{ 'aria-hidden': 'true', 'data-expand-target': 'icon' }
                     Statut
-                .fr-ml-1w.hidden{ 'data-expand-target': 'content' }
+                    - if @filter.statuses.present?
+                      %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w= @filter.statuses.size
+                .hidden{ 'data-expand-target': 'content' }
                   = f.collection_check_boxes :statuses, ['publiee', 'close'], :to_s, :to_s, include_hidden: false do |b|
                     .fr-checkbox-group.fr-ml-2w.fr-py-1w
                       = b.check_box(checked: @filter.status_filtered?(b.value))

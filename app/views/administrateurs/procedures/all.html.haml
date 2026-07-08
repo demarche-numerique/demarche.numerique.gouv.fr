@@ -1,6 +1,6 @@
 - content_for(:title, "Démarches")
 - content_for :results do
-  .main-filter-header.fr-my-3w
+  .main-filter-header.fr-mb-3w
     = form_with(url: all_admin_procedures_path, method: :get, data: { turbo_frame: 'procedures' }, html: { role: 'search', class: 'search' }) do |f|
       - @filter.zone_ids&.each do |zone_id|
         = hidden_field_tag 'zone_ids[]', zone_id, id: "zone_#{zone_id}"
@@ -12,8 +12,6 @@
 
       = f.label :libelle, 'Rechercher des démarches par libellé', class: 'fr-label'
       = f.search_field 'libelle', size: 30, class: 'fr-input', data: { turbo_force: :server }
-    .actions
-      .link.fr-mx-1w{ "data-turbo": "false" }= link_to 'Exporter les résultats', all_admin_procedures_path(@filter.params.merge(format: :xlsx)), class: 'fr-btn fr-btn--secondary'
 
   - if @filter.libelle
     .selected-query.fr-mb-2w
@@ -47,30 +45,35 @@
     .selected-from-publication-date.fr-mb-2w
       = link_to "Depuis #{l(@filter.from_publication_date)}", all_admin_procedures_path(@filter.without(:from_publication_date)), class: 'fr-tag fr-tag--dismiss fr-mb-1w'
 
-  .fr-table.fr-table--sm.fr-table--no-scroll.fr-table--bordered{ 'data-turbo': 'true', 'data-turbo-force': 'server' }
-    .fr-table__wrapper
-      .fr-table__container
-        .fr-table__content
-          %table
-            %caption
-              = "#{@procedures.total_count} #{t('pluralize.procedures', count: @procedures.total_count)}"
-              %span.hidden.spinner{ 'aria-hidden': 'true', 'data-turbo-target': 'spinner' }
+  - if @procedures.any?
+    .flex.align-center.fr-mt-2w
+      .fr-h6.fr-mb-0= "#{@procedures.total_count} #{t('pluralize.procedures', count: @procedures.total_count)}"
+      %span.hidden.spinner{ 'aria-hidden': 'true', 'data-turbo-target': 'spinner' }
 
-            %thead
-              %tr
-                %th{ role: 'columnheader' }
-                %th{ scope: 'col' } Démarche
-                %th{ scope: 'col' } №
-                %th{ scope: 'col' } Nombre de dossiers
-                %th{ scope: 'col' } Zones
-                %th{ scope: 'col' } Statut
-                %th{ scope: 'col' } Date
-                %th{ scope: 'col' } Action
-            %tbody
-              - @procedures.each do |procedure|
-                = render partial: 'detail', locals: { procedure: procedure, show_detail: false }
-    .fr-table__footer
-      .fr-table__footer--start
-      .fr-table__footer--middle
-        = paginate @procedures, views_prefix: 'shared'
-      .fr-table__footer--end.flex-no-grow
+      .fr-ml-auto{ "data-turbo": "false" }= link_to 'Exporter les résultats', all_admin_procedures_path(@filter.params.merge(format: :xlsx)), class: 'fr-btn fr-btn--secondary'
+    .fr-table.fr-table--sm.fr-table--no-scroll.fr-table--bordered{ 'data-turbo': 'true', 'data-turbo-force': 'server' }
+      .fr-table__wrapper
+        .fr-table__container
+          .fr-table__content
+            %table
+              %thead
+                %tr
+                  %th{ role: 'columnheader' }
+                  %th{ scope: 'col' } Démarche
+                  %th{ scope: 'col' } №
+                  %th{ scope: 'col' } Nombre de dossiers
+                  %th{ scope: 'col' } Zones
+                  %th{ scope: 'col' } Statut
+                  %th{ scope: 'col' } Date
+                  %th{ scope: 'col' } Action
+              %tbody
+                - @procedures.each do |procedure|
+                  = render partial: 'detail', locals: { procedure: procedure, show_detail: false }
+      .fr-table__footer
+        .fr-table__footer--start
+        .fr-table__footer--middle
+          = paginate @procedures, views_prefix: 'shared'
+        .fr-table__footer--end.flex-no-grow
+
+  - else
+    %p Aucune démarche trouvée.

@@ -1,7 +1,7 @@
 <% content_for(:title, t('.title')) %>
 
 <% content_for :results do %>
-  <div class="main-filter-header fr-my-3w">
+  <div class="main-filter-header fr-mb-3w">
     <%= form_with(url: administrateurs_admin_procedures_path, method: :get, data: { turbo_frame: 'procedures' }, html: { role: 'search' }) do |f| %>
       <% @filter.zone_ids&.each do |zone_id| %>
         <%= hidden_field_tag 'zone_ids[]', zone_id, id: "zone_#{zone_id}" %>
@@ -46,90 +46,96 @@
     </div>
   <% end %>
 
-  <div class="fr-table fr-table--bordered">
-    <div class="fr-table__wrapper">
-      <div class="fr-table__container">
-        <div class="fr-table__content">
-          <table id="all-admins">
-            <caption>
-              <%= t('.admin_count', count: @admins.total_count) %>
+  <% if @admins.any? %>
+    <div class="fr-table fr-table--bordered">
+      <div class="fr-table__wrapper">
+        <div class="fr-table__container">
+          <div class="fr-table__content">
+            <table id="all-admins">
+              <caption>
+                <%= t('.admin_count', count: @admins.total_count) %>
 
-              <span
-                class="hidden spinner"
-                aria-hidden="true"
-                data-turbo-target="spinner"
-              ></span>
-            </caption>
+                <span
+                  class="hidden spinner"
+                  aria-hidden="true"
+                  data-turbo-target="spinner"
+                ></span>
+              </caption>
 
-            <thead>
-              <tr>
-                <th scope="col"></th>
-                <th scope="col"><%= t('.col_administrators') %></th>
-                <th scope="col"><%= t('.col_procedures_count') %></th>
-                <th scope="col"><%= t('.col_registered_at') %></th>
-              </tr>
-            </thead>
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col"><%= t('.col_administrators') %></th>
+                  <th scope="col"><%= t('.col_procedures_count') %></th>
+                  <th scope="col"><%= t('.col_registered_at') %></th>
+                </tr>
+              </thead>
 
-            <% @admins.each do |admin| %>
-              <tbody data-controller="expand">
-                <tr class="procedure" data-action="click->expand#toggle">
-                  <th class="fr-cell--center" scope="row">
-                    <button
-                      class="fr-btn fr-btn--tertiary-no-outline"
-                      aria-expanded="false"
-                      data-action="click->expand#toggle:stop"
+              <% @admins.each do |admin| %>
+                <tbody data-controller="expand">
+                  <tr class="procedure" data-action="click->expand#toggle">
+                    <th class="fr-cell--center" scope="row">
+                      <button
+                        class="fr-btn fr-btn--tertiary-no-outline"
+                        aria-expanded="false"
+                        data-action="click->expand#toggle:stop"
+                      >
+                        <span
+                          class="
+                            fr-icon-add-line fr-icon--sm
+                            fr-text-action-high--blue-france
+                          "
+                          aria-hidden="true"
+                          data-expand-target="icon"
+                        ></span>
+
+                        <span class="fr-sr-only">
+                          <%= t('.expand_admin') %>
+                        </span>
+                      </button>
+                    </th>
+
+                    <td><%= admin.email %></td>
+
+                    <td class="fr-cell--right fr-cell--numeric">
+                      <%= admin.procedures.size %>
+                    </td>
+
+                    <td class="fr-cell--numeric">
+                      <%= l(admin.created_at.to_date, format: :short) %>
+                    </td>
+                  </tr>
+
+                  <tr class="hidden" data-expand-target="content">
+                    <td
+                      class="fr-cell--multiline fr-background-alt--green-emeraude"
+                      colspan="4"
                     >
-                      <span
-                        class="
-                          fr-icon-add-line fr-icon--sm
-                          fr-text-action-high--blue-france
-                        "
-                        aria-hidden="true"
-                        data-expand-target="icon"
-                      ></span>
-
-                      <span class="fr-sr-only"><%= t('.expand_admin') %></span>
-                    </button>
-                  </th>
-
-                  <td><%= admin.email %></td>
-
-                  <td class="fr-cell--right fr-cell--numeric">
-                    <%= admin.procedures.size %>
-                  </td>
-
-                  <td class="fr-cell--numeric">
-                    <%= l(admin.created_at.to_date, format: :short) %>
-                  </td>
-                </tr>
-
-                <tr class="hidden" data-expand-target="content">
-                  <td
-                    class="fr-cell--multiline fr-background-alt--green-emeraude"
-                    colspan="4"
-                  >
-                    <ul>
-                      <% admin.procedures.each do |procedure| %>
-                        <li><%= procedure.libelle %></li>
-                      <% end %>
-                    </ul>
-                  </td>
-                </tr>
-              </tbody>
-            <% end %>
-          </table>
+                      <ul>
+                        <% admin.procedures.each do |procedure| %>
+                          <li><%= procedure.libelle %></li>
+                        <% end %>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              <% end %>
+            </table>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="fr-table__footer">
-      <div class="fr-table__footer--start"></div>
+      <div class="fr-table__footer">
+        <div class="fr-table__footer--start"></div>
 
-      <div class="fr-table__footer--middle">
-        <%= paginate @admins, views_prefix: 'shared' %>
+        <div class="fr-table__footer--middle">
+          <%= paginate @admins, views_prefix: 'shared' %>
+        </div>
+
+        <div class="fr-table__footer--end flex-no-grow"></div>
       </div>
-
-      <div class="fr-table__footer--end flex-no-grow"></div>
     </div>
-  </div>
+  <% else %>
+    <p>Aucun administrateur trouvé.</p>
+  <% end %>
 <% end %>
