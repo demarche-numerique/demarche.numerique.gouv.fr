@@ -305,6 +305,27 @@ input[type='radio'] {
   }
 }
 
+// Bandeau « nouveau message » (usager) — état DSFR custom `fr-notice--new`.
+// Reprend la palette du badge `fr-badge--new` (yellow-moutarde). L'icône
+// flashlight-fill est portée par la classe `fr-icon-flashlight-fill` dans le partiel.
+.fr-notice--new {
+  background-color: var(--background-contrast-yellow-moutarde);
+  color: var(--text-action-high-yellow-moutarde);
+
+  .fr-notice__title {
+    color: var(--text-action-high-yellow-moutarde);
+  }
+
+  a {
+    color: var(--text-action-high-yellow-moutarde);
+    text-decoration: underline;
+
+    &:hover {
+      color: var(--yellow-moutarde-sun-348-moon-860-hover);
+    }
+  }
+}
+
 // Supprime l'ombre du composant fr-tabs pour que l'onglet actif s'affiche sans ombre
 .fr-tabs {
   box-shadow: none;
