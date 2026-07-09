@@ -353,7 +353,12 @@ RSpec.describe Users::DossierFilterService do
 
     before do
       Flipper.enable_actor(:usager_dossiers_alert_filters, user)
+      # A pending correction/response always carries an unread agent message,
+      # so these dossiers must NOT surface under the « nouveau_message » filter:
+      # their prioritary badge is « à corriger » / « en attente de réponse ».
+      create(:commentaire, dossier: dossier_pending_correction, instructeur: create(:instructeur), seen_by_recipient_at: nil)
       create(:dossier_correction, dossier: dossier_pending_correction)
+      create(:commentaire, dossier: dossier_pending_response, instructeur: create(:instructeur), seen_by_recipient_at: nil)
       create(:dossier_pending_response, dossier: dossier_pending_response)
       create(:commentaire, dossier: dossier_unread_message, instructeur: create(:instructeur), seen_by_recipient_at: nil)
     end

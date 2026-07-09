@@ -8,6 +8,18 @@ module DossierMessagerieConcern
       -> { sent_by_agent.unread_by_recipient },
       class_name: 'Commentaire',
       inverse_of: :dossier
+
+    # Équivalent SQL de #unread_message_for_user? : dossiers avec un message
+    # d'agent non lu, en excluant ceux dont le badge prioritaire est
+    # « à corriger » (pending_correction) ou « en attente de réponse »
+    # (pending_response), pour rester aligné avec le badge affiché.
+    scope :with_unread_messages_for_user, -> {
+      joins(:commentaires)
+        .merge(Commentaire.sent_by_agent.unread_by_recipient)
+        .where.not(id: with_pending_responses.select(:id))
+        .where.not(id: state_en_construction.with_pending_corrections.select(:id))
+        .distinct
+    }
   end
 
   # Un message « nouveau message » est un message d'agent non lu par l'usager.
