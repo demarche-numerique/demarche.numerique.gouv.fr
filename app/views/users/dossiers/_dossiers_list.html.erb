@@ -84,6 +84,22 @@
       <% end %>
 
       <% if @statut == "dossiers-supprimes" %>
+        <%= render Dsfr::NoticeComponent.new(state: 'warning', extra_class_names: "fr-mb-2w") do |c| %>
+          <% c.with_title { t('views.users.dossiers.dossiers_list.soon_deleted.title') } %>
+
+          <% c.with_desc do %>
+            <% if dossier.hidden_by_reason != 'expired' %>
+              <%= t('views.users.dossiers.dossiers_list.soon_deleted.restore') %>
+            <% elsif dossier.expiration_can_be_extended? %>
+              <%= t('views.users.dossiers.dossiers_list.soon_deleted.restore_and_extend') %>
+            <% else %>
+              <%= t('views.users.dossiers.dossiers_list.soon_deleted.download') %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% if @statut == "dossiers-supprimes" %>
         <div class="flex justify-end no-flex-xs">
           <% if dossier.hidden_by_reason != 'expired' %>
             <%= link_to restore_dossier_path(dossier.id), method: :patch, class: "fr-btn fr-btn--sm" do %>

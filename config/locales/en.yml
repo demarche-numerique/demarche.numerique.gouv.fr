@@ -627,6 +627,11 @@ en:
           pending_response:
             title: "Warning"
             message_html: 'Consult the <a href="%{link}" class="fr-notice__link">messaging system<span class="fr-sr-only"> of file number %{id}</span></a> and respond to the administration.'
+          soon_deleted:
+            title: "Warning"
+            restore: If you want to keep this file, you can restore it before it is permanently deleted.
+            restore_and_extend: If you want to keep this file, you can restore it and extend its retention period before it is permanently deleted.
+            download: If you want to keep a record of this file, you can download it before it is permanently deleted.
           depose_at: First submission on %{date}
           created_at: Created at %{date}
           updated_at: updated at %{date}

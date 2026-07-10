@@ -136,6 +136,27 @@ describe 'user dossiers list', js: true do
       expect(page).not_to have_button(text: /Filtrer les dossiers/i)
     end
 
+    it 'shows a "bientôt supprimé" warning notice whose content depends on the trash context' do
+      by_user = create(:dossier, :accepte, :hidden_by_user, user: user)
+      expired_brouillon = create(:dossier, :brouillon, :hidden_by_expired, user: user)
+      expired_termine   = create(:dossier, :accepte, :hidden_by_expired, user: user)
+
+      visit trash_path
+
+      within("#dossier_#{by_user.id}") do
+        expect(page).to have_css('.fr-notice.fr-notice--warning')
+        expect(page).to have_text('vous pouvez le restaurer avant qu’il ne soit supprimé définitivement')
+      end
+
+      within("#dossier_#{expired_brouillon.id}") do
+        expect(page).to have_text('vous pouvez le restaurer et étendre sa durée de conservation')
+      end
+
+      within("#dossier_#{expired_termine.id}") do
+        expect(page).to have_text('vous pouvez le télécharger avant qu’il ne soit supprimé définitivement')
+      end
+    end
+
     it 'links to the deleted dossiers history page' do
       create(:dossier, :en_construction, :hidden_by_user, user: user)
       create(:deleted_dossier, user_id: user.id)

@@ -652,6 +652,11 @@ fr:
           pending_response:
             title: "Attention"
             message_html: 'Consultez la <a href="%{link}" class="fr-notice__link">messagerie<span class="fr-sr-only"> du dossier numéro %{id}</span></a> et répondez à l''administration.'
+          soon_deleted:
+            title: "Attention"
+            restore: Si vous souhaitez conserver ce dossier, vous pouvez le restaurer avant qu’il ne soit supprimé définitivement.
+            restore_and_extend: Si vous souhaitez conserver ce dossier, vous pouvez le restaurer et étendre sa durée de conservation avant qu’il ne soit supprimé définitivement.
+            download: Si vous souhaitez conserver une trace de ce dossier, vous pouvez le télécharger avant qu’il ne soit supprimé définitivement.
           depose_at: Déposé le %{date}
           created_at: Créé le %{date}
           updated_at: modifié le %{date}
