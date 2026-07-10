@@ -620,13 +620,13 @@ en:
           no_result_search_back_link: "go back to your files list"
           new_message:
             title: "New message from the administration"
-            body_html: 'Check your <a href="%{link}" class="fr-link">messages</a>.'
+            body_html: 'Check your <a href="%{link}" class="fr-notice__link">messages</a>.'
           pending_correction:
             title: "Warning"
-            body_html: 'Consult the corrections to be made to your file in the <a href="%{link}" class="fr-link">messaging system<span class="fr-sr-only"> of file number %{id}</span></a>.'
+            body_html: 'Consult the corrections to be made to your file in the <a href="%{link}" class="fr-notice__link">messaging system<span class="fr-sr-only"> of file number %{id}</span></a>.'
           pending_response:
             title: "Warning"
-            message_html: 'Consult the <a href="%{link}" class="fr-link">messaging system<span class="fr-sr-only"> of file number %{id}</span></a> and respond to the administration.'
+            message_html: 'Consult the <a href="%{link}" class="fr-notice__link">messaging system<span class="fr-sr-only"> of file number %{id}</span></a> and respond to the administration.'
           depose_at: First submission on %{date}
           created_at: Created at %{date}
           updated_at: updated at %{date}

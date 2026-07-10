@@ -645,13 +645,13 @@ fr:
             this_procedure: cette démarche
           new_message:
             title: "Nouveau message de l’administration"
-            body_html: 'Consultez la <a href="%{link}" class="fr-link">messagerie</a>.'
+            body_html: 'Consultez la <a href="%{link}" class="fr-notice__link">messagerie</a>.'
           pending_correction:
             title: "Attention"
-            body_html: 'Consultez les corrections à apporter à votre dossier dans la <a href="%{link}" class="fr-link">messagerie<span class="fr-sr-only"> du dossier numéro %{id}</span></a>.'
+            body_html: 'Consultez les corrections à apporter à votre dossier dans la <a href="%{link}" class="fr-notice__link">messagerie<span class="fr-sr-only"> du dossier numéro %{id}</span></a>.'
           pending_response:
             title: "Attention"
-            message_html: 'Consultez la <a href="%{link}" class="fr-link">messagerie<span class="fr-sr-only"> du dossier numéro %{id}</span></a> et répondez à l''administration.'
+            message_html: 'Consultez la <a href="%{link}" class="fr-notice__link">messagerie<span class="fr-sr-only"> du dossier numéro %{id}</span></a> et répondez à l''administration.'
           depose_at: Déposé le %{date}
           created_at: Créé le %{date}
           updated_at: modifié le %{date}

@@ -39,7 +39,7 @@
                     <% c.with_desc { t(".communes_warning_desc_html") } %>
 
                     <% c.with_link do %>
-                      <%= button_tag(t(".communes_info_link"), type: :button, class: "fr-pl-0 fr-link fr-text-default--warning fr-mt-1w",
+                      <%= button_tag(t(".communes_info_link"), type: :button, class: "fr-pl-0 fr-notice__link fr-text-default--warning fr-mt-1w",
                         data: { "fr-opened" => "false", "turbo-frame" => "api-champ-columns", action: "lazy-modal#load", href: 'style' },
                         src: commune_info_admin_procedure_path(id: procedure.id, stable_id: type_de_champ.stable_id),
                         "aria-controls" => "api-champ-columns-modal",
