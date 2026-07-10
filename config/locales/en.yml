@@ -625,7 +625,7 @@ en:
             title: "Warning"
             body_html: 'Consult the corrections to be made to your file in the <a href="%{link}" class="fr-link">messaging system<span class="fr-sr-only"> of file number %{id}</span></a>.'
           pending_response:
-            title: "This file is waiting for your response"
+            title: "Warning"
             message_html: 'Consult the <a href="%{link}" class="fr-link">messaging system<span class="fr-sr-only"> of file number %{id}</span></a> and respond to the administration.'
           depose_at: First submission on %{date}
           created_at: Created at %{date}

@@ -55,16 +55,9 @@
           <% end %>
 
           <% if dossier.awaiting_response.present? %>
-            <%= render Dsfr::AlertComponent.new(state: :warning, size: :sm, extra_class_names: "fr-mb-2w") do |c| %>
-              <% c.with_body do %>
-                <h4 class="card-title fr-mb-1v">
-                  <%= t('views.users.dossiers.dossiers_list.pending_response.title') %>
-                </h4>
-
-                <p>
-                  <%= t('views.users.dossiers.dossiers_list.pending_response.message_html', link: messagerie_dossier_path(dossier), id: number_with_html_delimiter(dossier.id)).html_safe %>
-                </p>
-              <% end %>
+            <%= render Dsfr::NoticeComponent.new(state: 'warning', extra_class_names: "fr-mb-2w") do |c| %>
+              <% c.with_title { t('views.users.dossiers.dossiers_list.pending_response.title') } %>
+              <% c.with_desc { t('views.users.dossiers.dossiers_list.pending_response.message_html', link: messagerie_dossier_path(dossier), id: dossier.id) } %>
             <% end %>
           <% end %>
 
@@ -81,16 +74,9 @@
       <% elsif dossier.en_instruction? %>
         <div class="en-instruction">
           <% if dossier.awaiting_response.present? %>
-            <%= render Dsfr::AlertComponent.new(state: :warning, size: :sm, extra_class_names: "fr-mb-2w") do |c| %>
-              <% c.with_body do %>
-                <h4 class="card-title fr-mb-1v">
-                  <%= t('views.users.dossiers.dossiers_list.pending_response.title') %>
-                </h4>
-
-                <p>
-                  <%= t('views.users.dossiers.dossiers_list.pending_response.message_html', link: messagerie_dossier_path(dossier), id: number_with_html_delimiter(dossier.id)).html_safe %>
-                </p>
-              <% end %>
+            <%= render Dsfr::NoticeComponent.new(state: 'warning', extra_class_names: "fr-mb-2w") do |c| %>
+              <% c.with_title { t('views.users.dossiers.dossiers_list.pending_response.title') } %>
+              <% c.with_desc { t('views.users.dossiers.dossiers_list.pending_response.message_html', link: messagerie_dossier_path(dossier), id: dossier.id) } %>
             <% end %>
           <% end %>
 

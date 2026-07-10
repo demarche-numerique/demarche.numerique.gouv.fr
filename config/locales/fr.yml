@@ -650,7 +650,7 @@ fr:
             title: "Attention"
             body_html: 'Consultez les corrections à apporter à votre dossier dans la <a href="%{link}" class="fr-link">messagerie<span class="fr-sr-only"> du dossier numéro %{id}</span></a>.'
           pending_response:
-            title: "Ce dossier attend votre réponse"
+            title: "Attention"
             message_html: 'Consultez la <a href="%{link}" class="fr-link">messagerie<span class="fr-sr-only"> du dossier numéro %{id}</span></a> et répondez à l''administration.'
           depose_at: Déposé le %{date}
           created_at: Créé le %{date}
