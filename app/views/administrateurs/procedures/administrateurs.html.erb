@@ -7,13 +7,13 @@
         <%= hidden_field_tag 'zone_ids[]', zone_id, id: "zone_#{zone_id}" %>
       <% end %>
 
-      <% @filter.statuses&.each do |status| %>
+     <% @filter.statuses&.each do |status| %>
         <%= hidden_field_tag 'statuses[]', status, id: "status_#{status}" %>
       <% end %>
 
-      <%= hidden_field_tag 'from_publication_date', @filter.from_publication_date if @filter.from_publication_date.present? %>
+     <%= hidden_field_tag 'from_publication_date', @filter.from_publication_date if @filter.from_publication_date.present? %>
 
-      <%= f.label 'email', t('.search_label'), class: 'fr-label' %>
+     <%= f.label 'email', t('.search_label'), class: 'fr-label' %>
       <%= f.search_field 'email', size: 40, class: 'fr-input', data: { turbo_force: :server } %>
     <% end %>
   </div>

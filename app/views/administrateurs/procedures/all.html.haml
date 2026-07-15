@@ -16,6 +16,9 @@
   - if @filter.libelle
     .selected-query.fr-mb-2w
       = link_to @filter.libelle, all_admin_procedures_path(@filter.without(:libelle)), class: 'fr-tag fr-tag--dismiss fr-mb-1w'
+  - if @filter.email
+    .selected-email.fr-mb-2w
+      = link_to @filter.email, all_admin_procedures_path(@filter.without(:email)), class: 'fr-tag fr-tag--dismiss fr-mb-1w'
   - if @filter.service_siret
     .selected-query.fr-mb-2w
       = link_to @filter.service_siret, all_admin_procedures_path(@filter.without(:service_siret)), class: 'fr-tag fr-tag--dismiss fr-mb-1w'

@@ -340,6 +340,19 @@ describe Administrateurs::ProceduresController, type: :controller do
         expect(assigns(:procedures).any? { |p| p.id == procedure1.id }).to be_falsey
       end
     end
+
+    context 'with administrateur email search' do
+      let!(:admin_matching) { create(:administrateur, email: 'jesuis.surmene@education.gouv.fr') }
+      let!(:admin_other) { create(:administrateur, email: 'jesuis.alecoute@social.gouv.fr') }
+      let!(:procedure1) { create(:procedure, :published, administrateur: admin_matching) }
+      let!(:procedure2) { create(:procedure, :published, administrateur: admin_other) }
+
+      it 'returns procedures administered by an admin matching the email or domain' do
+        get :all, params: { email: 'education.gouv.fr' }
+        expect(assigns(:procedures).any? { |p| p.id == procedure1.id }).to be_truthy
+        expect(assigns(:procedures).any? { |p| p.id == procedure2.id }).to be_falsey
+      end
+    end
   end
 
   describe 'GET #administrateurs' do

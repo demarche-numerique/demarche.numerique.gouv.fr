@@ -585,6 +585,11 @@ module Administrateurs
       procedures_result = procedures_result.where(service: services) if services
       procedures_result = procedures_result.where(for_individual: filter.for_individual) if filter.for_individual.present?
       procedures_result = procedures_result.where('unaccent(libelle) ILIKE unaccent(?)', "%#{filter.libelle}%") if filter.libelle.present?
+      if filter.email.present?
+        procedures_result = procedures_result
+          .joins(administrateurs_procedures: { administrateur: :user })
+          .where('unaccent(users.email) ILIKE unaccent(?)', "%#{filter.email}%")
+      end
       procedures_sql = procedures_result.to_sql
 
       sql = "select procedures.id, libelle, published_at, aasm_state, estimated_dossiers_count, template, array_agg(distinct latest_labels.name) filter (where latest_labels.name is not null) as latest_zone_labels from administrateurs_procedures inner join procedures on procedures.id = administrateurs_procedures.procedure_id left join procedures_zones ON procedures.id = procedures_zones.procedure_id left join zones ON zones.id = procedures_zones.zone_id left join (select zone_id, name from zone_labels where (zone_id, designated_on) in (select zone_id, max(designated_on) from zone_labels group by zone_id)) as latest_labels on zones.id = latest_labels.zone_id

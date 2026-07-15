@@ -33,6 +33,21 @@
                 = link_to 'Réinitialiser', procedures_filter_path(zone_ids: current_administrateur.zones), { data: { turbo: 'false' }, class: 'fr-link fr-link--icon-left fr-icon-arrow-go-back-line' }
 
             %ul
+              - if action_name == 'all'
+                %li.fr-py-1w{ 'data-controller': "expand" }
+                  .fr-my-1w
+                    %button.filter-accordion-btn{ 'data-action': 'expand#toggle' }
+                      %span.fr-icon-add-line.fr-icon--sm.fr-mr-1w.fr-text-action-high--blue-france{ 'aria-hidden': 'true', 'data-expand-target': 'icon' }
+                      Administrateur
+                      - if @filter.email.present?
+                        %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w 1
+                  .hidden{ 'data-expand-target': 'content' }
+                    %div
+                      = f.label :email, 'Adresse électronique ou domaine', class: 'fr-label'
+                      %span.fr-hint-text.fr-mb-1w Exemple: adresse@mail.com ou @culture.gouv.fr
+                      = f.search_field :email, class: 'fr-input', data: { no_autosubmit: 'input', turbo_force: :server }
+
+
               %li.fr-py-1w{ 'data-controller': "expand" }
                 .fr-my-1w
                   %button.filter-accordion-btn{ 'data-action': 'expand#toggle' }
