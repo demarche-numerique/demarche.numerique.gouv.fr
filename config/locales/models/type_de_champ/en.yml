@@ -52,7 +52,6 @@ en:
           rnf: 'RNF'
           carte: 'Card'
           epci: 'EPCI'
-          cojo: 'Accreditation Paris 2024'
           formatted: 'Formatted field'
           referentiel: 'External data to configure (advanced)'
           quotient_familial: 'Family quotient'

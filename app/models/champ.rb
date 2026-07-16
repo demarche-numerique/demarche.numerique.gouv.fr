@@ -83,29 +83,6 @@ class Champ
       end
       include accessors
     end
-
-    # For legacy JSON serialized into a text column
-    # (`store :external_id, coder: JSON` on Champs::COJOChamp).
-    def json_string_store(column, *keys)
-      accessors = Module.new do
-        keys.flatten.each do |key|
-          key = key.to_s
-          define_method(key) do
-            raw = champ_data&.public_send(column)
-            raw.present? ? JSON.parse(raw)[key] : nil
-          rescue JSON::ParserError
-            nil
-          end
-          define_method(:"#{key}=") do |value|
-            raw = champ_data!.public_send(column)
-            hash = raw.present? ? (JSON.parse(raw) rescue {}) : {}
-            hash[key] = value
-            champ_data!.public_send(:"#{column}=", JSON.generate(hash))
-          end
-        end
-      end
-      include accessors
-    end
   end
   extend JsonStore
 

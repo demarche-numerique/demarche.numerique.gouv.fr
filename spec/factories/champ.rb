@@ -206,10 +206,6 @@ FactoryBot.define do
       type { 'Champs::PreRempliChamp' }
     end
 
-    factory :champ_do_not_use_cojo, class: 'ChampData' do
-      type { 'Champs::COJOChamp' }
-    end
-
     factory :champ_do_not_use_rnf, class: 'ChampData' do
       type { 'Champs::RNFChamp' }
       value { '075-FDD-00003-01' }

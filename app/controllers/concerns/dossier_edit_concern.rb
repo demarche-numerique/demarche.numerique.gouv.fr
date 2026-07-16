@@ -94,7 +94,7 @@ module DossierEditConcern
     [
       :id, :value, :value_other, :external_id, :code,
       :primary_value, :secondary_value, :piece_justificative_file,
-      :code_departement, :accreditation_number, :accreditation_birthdate,
+      :code_departement,
       :not_in_ban,
       *([:preview_state, :refresh_external_data] if scope == :public),
       *(not_in_ban ? [:street_address, :city_name, :country_code, :commune_code, :postal_code] : [:address]),

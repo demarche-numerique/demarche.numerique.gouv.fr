@@ -55,7 +55,6 @@ module LLM
       'rnf' => "pour les numéros RNF.",
       'carte' => "pour afficher une carte interactive.",
       'epci' => "pour les EPCI.",
-      'cojo' => "pour les données COJO.",
       'referentiel' => "pour des référentiels externes génériques.",
       'engagement_juridique' => "pour des engagements juridiques.",
     }.freeze
@@ -65,7 +64,7 @@ module LLM
       "Champs structurels" => ["header_section", "repetition", "explication"],
       "Champs personnels" => ["civilite", "email", "phone", "address", "communes", "departements", "regions", "pays", "iban", "siret"],
       "Champs saisie" => ["text", "textarea", "number", "decimal_number", "integer_number", "formatted", "date", "datetime", "piece_justificative", "checkbox", "drop_down_list", "multiple_drop_down_list", "linked_drop_down_list", "yes_no", "dossier_link"],
-      "Champs référentiels" => ["annuaire_education", "rna", "rnf", "carte", "epci", "cojo", "referentiel", "engagement_juridique"],
+      "Champs référentiels" => ["annuaire_education", "rna", "rnf", "carte", "epci", "referentiel", "engagement_juridique"],
     }.freeze
 
     def initialize(runner: nil, logger: Rails.logger)

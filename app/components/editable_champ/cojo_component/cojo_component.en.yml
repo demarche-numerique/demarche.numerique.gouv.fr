@@ -1,8 +1,0 @@
----
-en:
-  accreditation_number_label: Accreditation number
-  accreditation_number_notice: Identification number issued by Paris 2024
-  accreditation_birthdate_label: Date of birth
-  accreditation_birthdate_hint: 'Format: MM/JJ/AAAA'
-  accreditation_number_error: Invalid accreditation number
-  accreditation_number_verification_pending: Accreditation number verification in progress

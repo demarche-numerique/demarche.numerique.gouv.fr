@@ -113,8 +113,10 @@ class ChampData < ApplicationRecord
     !private?
   end
 
+  # nil for rows last written by a champ type that no longer exists
+  # (e.g. Champs::COJOChamp); they behave like wrong-type champ data.
   def last_write_type_champ
-    TypeDeChamp::CHAMP_TYPE_TO_TYPE_CHAMP.fetch(type)
+    TypeDeChamp::CHAMP_TYPE_TO_TYPE_CHAMP[type]
   end
 
   def is_type?(type_champ)

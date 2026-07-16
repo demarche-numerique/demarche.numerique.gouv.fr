@@ -5,7 +5,6 @@ class TypeDeChamp < ApplicationRecord
   IDENTITY_FILE_MAX_SIZE = 20.megabytes
   FEATURE_FLAGS = {
     engagement_juridique: :engagement_juridique_type_de_champ,
-    cojo: :cojo_type_de_champ,
     quotient_familial: :quotient_familial_type_de_champ,
     pre_rempli: :pre_rempli_type_de_champ,
   }
@@ -62,7 +61,6 @@ class TypeDeChamp < ApplicationRecord
     rna: REFERENTIEL_EXTERNE,
     rnf: REFERENTIEL_EXTERNE,
     carte: REFERENTIEL_EXTERNE,
-    cojo: REFERENTIEL_EXTERNE,
     quotient_familial: FRANCE_CONNECT,
   }
 
@@ -102,7 +100,6 @@ class TypeDeChamp < ApplicationRecord
     rnf: 'rnf',
     carte: 'carte',
     epci: 'epci',
-    cojo: 'cojo',
     referentiel: 'referentiel',
     quotient_familial: 'quotient_familial',
     pre_rempli: 'pre_rempli',

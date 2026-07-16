@@ -1,8 +1,0 @@
----
-fr:
-  accreditation_number_label: Numéro d’accréditation
-  accreditation_number_notice: Numéro d’identification délivré par Paris 2024
-  accreditation_birthdate_label: Date de naissance
-  accreditation_birthdate_hint: 'Format : JJ/MM/AAAA'
-  accreditation_number_error: Le numéro d’accréditation est incorrect
-  accreditation_number_verification_pending: Vérification du numéro d’accréditation en cours

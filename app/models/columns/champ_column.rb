@@ -143,7 +143,9 @@ class Columns::ChampColumn < Column
 
     return if value.blank?
 
-    from_type = champ_data.last_write_type_champ.to_sym
+    from_type = champ_data.last_write_type_champ&.to_sym
+    return if from_type.nil?
+
     to_type = @tdc_type.to_sym
 
     value = case from_type

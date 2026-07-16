@@ -198,9 +198,6 @@ FactoryBot.define do
     factory :type_de_champ_pre_rempli do
       type_champ { TypeDeChamp.type_champs.fetch(:pre_rempli) }
     end
-    factory :type_de_champ_cojo do
-      type_champ { TypeDeChamp.type_champs.fetch(:cojo) }
-    end
     factory :type_de_champ_rnf do
       type_champ { TypeDeChamp.type_champs.fetch(:rnf) }
     end

@@ -23,7 +23,6 @@ end
 features = [
   :administrateur_web_hook,
   :blocking_pending_correction,
-  :cojo_type_de_champ,
   :dossier_pdf_vide,
   :engagement_juridique_type_de_champ,
   :export_avec_horodatage,

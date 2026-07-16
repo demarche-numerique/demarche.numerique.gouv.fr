@@ -55,8 +55,6 @@
             <%= render Dossiers::RNFComponent.new(champ:) %>
           <% when TypeDeChamp.type_champs.fetch(:epci) %>
             <%= render Dossiers::EpciComponent.new(champ:) %>
-          <% when TypeDeChamp.type_champs.fetch(:cojo) %>
-            <%= render partial: "shared/champs/cojo/show", locals: { champ: champ, profile: @profile } %>
           <% when TypeDeChamp.type_champs.fetch(:date) %>
             <% if @profile != 'usager' && champ.prefilled_from_france_connect_information? %>
               <%= render Dossiers::DatePrefilledFromFranceConnectComponent.new(champ: champ) %>

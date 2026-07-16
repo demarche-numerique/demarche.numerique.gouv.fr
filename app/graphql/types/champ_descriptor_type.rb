@@ -95,8 +95,6 @@ module Types
           Types::Champs::Descriptor::AnnuaireEducationChampDescriptorType
         when TypeDeChamp.type_champs.fetch(:epci)
           Types::Champs::Descriptor::EpciChampDescriptorType
-        when TypeDeChamp.type_champs.fetch(:cojo)
-          Types::Champs::Descriptor::COJOChampDescriptorType
         when TypeDeChamp.type_champs.fetch(:formatted)
           Types::Champs::Descriptor::FormattedChampDescriptorType
         when TypeDeChamp.type_champs.fetch(:quotient_familial)

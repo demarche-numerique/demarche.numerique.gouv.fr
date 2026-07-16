@@ -10,7 +10,6 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   #  inflect.singular /^(ox)en/i, '\1'
   #  inflect.irregular 'person', 'people'
   #  inflect.uncountable %w( fish sheep )
-  inflect.acronym 'COJO'
   inflect.acronym 'API'
   inflect.acronym 'ASN1'
   inflect.acronym 'IP'
