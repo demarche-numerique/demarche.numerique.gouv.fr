@@ -31,5 +31,30 @@ RSpec.describe TypesDeChamp::PrefillCiviliteTypeDeChamp do
 
       it { is_expected.to be_nil }
     end
+
+    {
+      'Monsieur' => 'M.', 'M' => 'M.', 'mr' => 'M.',
+      'male' => 'M.', 'homme' => 'M.',
+      'Madame' => 'Mme', 'mlle' => 'Mme',
+      'Mademoiselle' => 'Mme', 'female' => 'Mme', 'femme' => 'Mme'
+    }.each do |input, expected|
+      context "when the value is #{input.inspect}" do
+        let(:value) { input }
+
+        it { is_expected.to eq({ value: expected }) }
+      end
+    end
+
+    context 'when the value is blank' do
+      let(:value) { '' }
+
+      it { is_expected.to be_nil }
+    end
+
+    context 'when the value is not a String' do
+      let(:value) { 42 }
+
+      it { is_expected.to be_nil }
+    end
   end
 end
