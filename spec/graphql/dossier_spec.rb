@@ -340,8 +340,8 @@ RSpec.describe Types::DossierType, type: :graphql do
     let(:variables) { { number: dossier.id } }
 
     let(:rows) do
-      dossier.root_champs_public.first.rows.map do |champs|
-        { champs: champs.map { { id: _1.to_typed_id } } }
+      dossier.root_champs_public.first.rows.map do |row|
+        { champs: row.champs.map { { id: it.to_typed_id } } }
       end
     end
 

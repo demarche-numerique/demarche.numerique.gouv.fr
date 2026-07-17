@@ -114,8 +114,8 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
     end
 
     context 'with rows' do
-      let(:annotation) { champs_private.find(&:repetition?).rows.first.first }
-      let(:other_annotation) { champs_private.find(&:repetition?).rows.second.first }
+      let(:annotation) { champs_private.find(&:repetition?).rows.first.champs.first }
+      let(:other_annotation) { champs_private.find(&:repetition?).rows.second.champs.first }
 
       it 'update champ' do
         expect(data).to eq(dossierModifierAnnotationText: {
@@ -169,8 +169,8 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
     end
 
     context 'with rows' do
-      let(:annotation) { champs_private.find(&:repetition?).rows.first.find(&:decimal_number?) }
-      let(:other_annotation) { champs_private.find(&:repetition?).rows.second.find(&:decimal_number?) }
+      let(:annotation) { champs_private.find(&:repetition?).rows.first.champs.find(&:decimal_number?) }
+      let(:other_annotation) { champs_private.find(&:repetition?).rows.second.champs.find(&:decimal_number?) }
 
       it 'update champ' do
         expect(data).to eq(dossierModifierAnnotationDecimalNumber: {
@@ -247,8 +247,8 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
     end
 
     context 'with rows' do
-      let(:annotation) { champs_private.find(&:repetition?).rows.first.find(&:decimal_number?) }
-      let(:other_annotation) { champs_private.find(&:repetition?).rows.second.find(&:decimal_number?) }
+      let(:annotation) { champs_private.find(&:repetition?).rows.first.champs.find(&:decimal_number?) }
+      let(:other_annotation) { champs_private.find(&:repetition?).rows.second.champs.find(&:decimal_number?) }
 
       it 'update annotation' do
         expect(data).to eq(dossierModifierAnnotations: {

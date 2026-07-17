@@ -128,8 +128,8 @@ RSpec.describe DossierCloneConcern do
           let(:cloned_champ_repetition) { new_dossier.root_champs_public.find(&:repetition?) }
 
           it do
-            expect(cloned_champ_repetition.rows.flatten.count).to eq(4)
-            expect(cloned_champ_repetition.rows.flatten.map(&:id)).not_to eq(champ_repetition.rows.flatten.map(&:id))
+            expect(cloned_champ_repetition.rows.flat_map(&:champs).count).to eq(4)
+            expect(cloned_champ_repetition.rows.flat_map(&:champs).map(&:id)).not_to eq(champ_repetition.rows.flat_map(&:champs).map(&:id))
             expect(cloned_champ_repetition.row_ids).to eq(champ_repetition.row_ids)
           end
         end

@@ -65,8 +65,8 @@ describe PiecesJustificativesService do
     end
 
     context 'with a repetition' do
-      let(:first_champ) { champ_for_update(repetition(dossier).rows.first.first) }
-      let(:second_champ) { champ_for_update(repetition(dossier).rows.second.first) }
+      let(:first_champ) { champ_for_update(repetition(dossier).rows.first.champs.first) }
+      let(:second_champ) { champ_for_update(repetition(dossier).rows.second.champs.first) }
 
       before do
         repetition(dossier).add_row(updated_by: 'test')
@@ -557,15 +557,15 @@ describe PiecesJustificativesService do
     it do
       champs = dossier_1.root_champs_public
       repet_0 = champs[0]
-      pj_0 = repet_0.rows.first.first
-      pj_1 = repet_0.rows.second.first
+      pj_0 = repet_0.rows.first.champs.first
+      pj_1 = repet_0.rows.second.champs.first
 
       repet_1 = champs[1]
-      pj_2 = repet_1.rows.first.first
-      pj_3 = repet_1.rows.first.second
+      pj_2 = repet_1.rows.first.champs.first
+      pj_3 = repet_1.rows.first.champs.second
 
-      pj_4 = repet_1.rows.second.first
-      pj_5 = repet_1.rows.second.second
+      pj_4 = repet_1.rows.second.champs.first
+      pj_5 = repet_1.rows.second.champs.second
 
       is_expected.to eq({ pj_0.id => 0, pj_1.id => 1, pj_2.id => 0, pj_3.id => 0, pj_4.id => 1, pj_5.id => 1 })
     end

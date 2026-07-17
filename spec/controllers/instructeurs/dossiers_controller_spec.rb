@@ -1360,7 +1360,7 @@ describe Instructeurs::DossiersController, type: :controller do
     let(:now) { Time.zone.parse('01/01/2100') }
 
     let(:champ_repetition) { dossier.root_champs_private.fourth }
-    let(:champ_text) { champ_repetition.rows.first.first }
+    let(:champ_text) { champ_repetition.rows.first.champs.first }
     let(:champ_multiple_drop_down_list) { dossier.root_champs_private.first }
     let(:champ_linked_drop_down_list) { dossier.root_champs_private.second }
     let(:champ_datetime) { dossier.root_champs_private.third }
@@ -1442,7 +1442,7 @@ describe Instructeurs::DossiersController, type: :controller do
         context 'repetition' do
           let(:champs_private_attributes) do
             {
-              champ_repetition.rows.first.first.public_id => {
+              champ_repetition.rows.first.champs.first.public_id => {
                 value: 'text',
               },
             }
@@ -1476,7 +1476,7 @@ describe Instructeurs::DossiersController, type: :controller do
             end
             let(:champs_private_attributes) do
               {
-                champ_repetition.rows.first.first.public_id => {
+                champ_repetition.rows.first.champs.first.public_id => {
                   external_id: 'text',
                 },
               }

@@ -82,7 +82,7 @@ describe 'Dossier::Recovery::LifeCycle' do
 
       expect(reloaded_dossier.champ_data.count).not_to be(0)
 
-      expect(repetition(reloaded_dossier).rows.flatten.map(&:type)).to match_array(["Champs::PieceJustificativeChamp", "Champs::PieceJustificativeChamp", "Champs::PieceJustificativeChamp"])
+      expect(repetition(reloaded_dossier).rows.flat_map(&:champs).map(&:type)).to match_array(["Champs::PieceJustificativeChamp", "Champs::PieceJustificativeChamp", "Champs::PieceJustificativeChamp"])
       expect(pj_champ(reloaded_dossier).piece_justificative_file).to be_attached
       expect(carte(reloaded_dossier).geo_areas).to be_present
 

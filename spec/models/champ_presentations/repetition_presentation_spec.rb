@@ -20,7 +20,7 @@ describe ChampPresentations::RepetitionPresentation do
   before do
     champ_repetition.add_row(updated_by: 'test')
     champ_repetition.add_row(updated_by: 'test')
-    row1, row2, row3 = champ_repetition.rows
+    row1, row2, row3 = champ_repetition.rows.map(&:champs)
 
     nom, stars = row1
     champ_for_update(nom).update(value: "ruby")

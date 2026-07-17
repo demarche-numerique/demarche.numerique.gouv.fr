@@ -189,8 +189,8 @@ describe DossierRebaseConcern do
         expect(dossier.root_champs_public.size).to eq(5)
         expect(dossier.champ_data.count(&:public?)).to eq(6)
         expect(repetition_champ.rows.size).to eq(2)
-        expect(repetition_champ.rows[0].size).to eq(1)
-        expect(repetition_champ.rows[1].size).to eq(1)
+        expect(repetition_champ.rows[0].champs.size).to eq(1)
+        expect(repetition_champ.rows[1].champs.size).to eq(1)
 
         procedure.publish_revision!(procedure.administrateurs.first)
         perform_enqueued_jobs
@@ -206,14 +206,14 @@ describe DossierRebaseConcern do
         expect(rebased_datetime_champ.type_champ).to eq(TypeDeChamp.type_champs.fetch(:date))
         expect(rebased_datetime_champ.value).to be_nil
         expect(rebased_repetition_champ.rows.size).to eq(2)
-        expect(rebased_repetition_champ.rows[0].size).to eq(2)
-        expect(rebased_repetition_champ.rows[1].size).to eq(2)
+        expect(rebased_repetition_champ.rows[0].champs.size).to eq(2)
+        expect(rebased_repetition_champ.rows[1].champs.size).to eq(2)
         expect(rebased_text_champ.rebased_at).not_to be_nil
         expect(rebased_datetime_champ.rebased_at).not_to be_nil
         expect(rebased_number_champ.rebased_at).to be_nil
         expect(rebased_new_repetition_champ).not_to be_nil
         expect(rebased_new_repetition_champ.rows.size).to eq(1)
-        expect(rebased_new_repetition_champ.rows[0].size).to eq(2)
+        expect(rebased_new_repetition_champ.rows[0].champs.size).to eq(2)
 
         dossier.passer_en_construction!
         procedure.draft_revision.find_and_ensure_exclusive_use(private_text_type_de_champ.stable_id).update(type_champ: TypeDeChamp.type_champs.fetch(:textarea))

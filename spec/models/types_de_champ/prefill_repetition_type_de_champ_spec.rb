@@ -9,8 +9,8 @@ RSpec.describe TypesDeChamp::PrefillRepetitionTypeDeChamp, type: :model do
   let(:text_repetition) { prefillable_subchamps.first }
   let(:integer_repetition) { prefillable_subchamps.second }
   let(:region_repetition) { prefillable_subchamps.third }
-  let(:text_repetition_champs) { champ.rows.flat_map(&:first) }
-  let(:integer_repetition_champs) { champ.rows.flat_map(&:second) }
+  let(:text_repetition_champs) { champ.rows.map { it.champs.first } }
+  let(:integer_repetition_champs) { champ.rows.map { it.champs.second } }
 
   describe 'ancestors' do
     subject { described_class.build(type_de_champ, procedure.active_revision) }

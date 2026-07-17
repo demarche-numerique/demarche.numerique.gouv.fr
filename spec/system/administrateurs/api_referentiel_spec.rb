@@ -663,11 +663,11 @@ describe 'Referentiel API:' do
           dossier = Dossier.last
 
           # wait until selected key had been submitted to backend
-          wait_until { dossier.reload.flat_champs_private.find(&:repetition?).rows.first.find(&:referentiel?).value&.match?(/010002699 CENTRE MEDICAL REGINA/) }
+          wait_until { dossier.reload.flat_champs_private.find(&:repetition?).rows.first.champs.find(&:referentiel?).value&.match?(/010002699 CENTRE MEDICAL REGINA/) }
 
           # wait until refreshed with prefilled values
           expect(page).to have_content("Donnée remplie automatiquement.", count: 2)
-          expect(dossier.reload.flat_champs_private.find(&:repetition?).rows.first.map(&:value)).to include("010002699")
+          expect(dossier.reload.flat_champs_private.find(&:repetition?).rows.first.champs.map(&:value)).to include("010002699")
         end
       end
     end

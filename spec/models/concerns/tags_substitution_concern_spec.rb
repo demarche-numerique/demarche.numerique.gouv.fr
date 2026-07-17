@@ -234,7 +234,7 @@ describe TagsSubstitutionConcern, type: :model do
       before do
         repetition = dossier.root_champs_public.find(&:repetition?)
         repetition.add_row(updated_by: 'test')
-        paul_champs, pierre_champs = repetition.rows
+        paul_champs, pierre_champs = repetition.rows.map(&:champs)
 
         champ_for_update(paul_champs.first).update(value: 'Paul')
         champ_for_update(paul_champs.last).update(value: 'Chavard')
