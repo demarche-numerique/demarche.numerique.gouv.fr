@@ -80,6 +80,7 @@ module ProcedureCloneConcern
     'routing_alert',
     'api_particulier_token',
     'no_gender',
+    'section_conditions_hide_champs',
     'pro_connect_restriction',
     'pro_connect_for_moral_procedure',
     'robots_indexable',

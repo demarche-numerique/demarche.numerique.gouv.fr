@@ -227,7 +227,7 @@ end
 
 def add_single_champ(pdf, champ)
   tdc = champ.type_de_champ
-  return if champ.conditional? && !champ.visible?
+  return if !champ.visible? && (champ.conditional? || champ.section_conditions_hide_champs?)
 
   case champ.type
   when 'Champs::PieceJustificativeChamp'
@@ -307,7 +307,7 @@ def add_champs(pdf, champs)
 
   champs.each do |champ|
     if champ.type == 'Champs::HeaderSectionChamp'
-      next if champ.conditional? && !champ.visible?
+      next if !champ.visible? && (champ.conditional? || champ.section_conditions_hide_champs?)
       current_indent = champ.level * section_indent_step
       add_single_champ(pdf, champ)
     elsif champ.repetition?

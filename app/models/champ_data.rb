@@ -32,6 +32,10 @@ class ChampData < ApplicationRecord
 
   attr_readonly :stable_id
 
+  # inverse_of stays disabled: the projection system builds transient champs
+  # with `dossier: self`, and an inverse would register them (and autosave
+  # them) into the loaded champ_data association. Reads share the dossier
+  # instance via DossierChampsConcern#champ_data_on_stream instead.
   belongs_to :dossier, inverse_of: false, touch: true, optional: false
   has_many_attached :piece_justificative_file
 

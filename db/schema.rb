@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_07_13_000000) do
+ActiveRecord::Schema[8.0].define(version: 2026_07_17_000000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_stat_statements"
@@ -1166,6 +1166,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_07_13_000000) do
     t.boolean "robots_indexable", default: true, null: false
     t.boolean "routing_alert", default: false, null: false
     t.boolean "routing_enabled"
+    t.boolean "section_conditions_hide_champs", default: false, null: false
     t.bigint "service_id"
     t.jsonb "sva_svr", default: {}, null: false
     t.text "tags", default: [], array: true

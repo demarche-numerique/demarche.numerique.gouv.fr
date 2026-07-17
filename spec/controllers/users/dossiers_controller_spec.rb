@@ -1004,6 +1004,39 @@ describe Users::DossiersController, type: :controller do
       end
     end
 
+    context 'when a section is conditioned by the updated champ' do
+      include Logic
+
+      let(:types_de_champ_public) do
+        [
+          { type: :yes_no, stable_id: 1 },
+          { type: :header_section, level: 1, stable_id: 10, condition: ds_eq(champ_value(1), constant(true)) },
+          { type: :text, stable_id: 11 },
+        ]
+      end
+      let(:value) { 'false' }
+
+      def selector_for(stable_id)
+        "##{assigns(:dossier).flat_champs_public.find { it.stable_id == stable_id }.input_group_id}"
+      end
+
+      it 'hides the section and the champs under it' do
+        subject
+        expect(assigns(:to_hide)).to include(selector_for(10))
+        expect(assigns(:to_hide)).to include(selector_for(11))
+      end
+
+      context 'when the procedure uses the legacy behaviour' do
+        before { procedure.update!(section_conditions_hide_champs: false) }
+
+        it 'hides only the section' do
+          subject
+          expect(assigns(:to_hide)).to include(selector_for(10))
+          expect(assigns(:to_hide)).not_to include(selector_for(11))
+        end
+      end
+    end
+
     context 'when the champ is a drop_down_list with referentiel' do
       let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :drop_down_list }]) }
 

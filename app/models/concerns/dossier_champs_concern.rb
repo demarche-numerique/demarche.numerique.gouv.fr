@@ -356,7 +356,15 @@ module DossierChampsConcern
   end
 
   def champ_data_on_stream
-    @champ_data_on_stream ||= if user_buffer_stream?
+    @champ_data_on_stream ||= champ_data_for_current_stream
+      # champ.dossier is loaded without inverse_of; share this dossier
+      # instance so tree navigation (parent, ancestors) and visibility
+      # memoization stay within one instance graph
+      .each { it.association(:dossier).target = self }
+  end
+
+  def champ_data_for_current_stream
+    if user_buffer_stream?
       (champ_data_on_user_buffer_stream + champ_data_on_main_stream).uniq(&:public_id)
     elsif instructeur_buffer_stream?
       (champ_data_on_instructeur_buffer_stream + champ_data_on_main_stream).uniq(&:public_id)

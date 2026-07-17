@@ -18,6 +18,7 @@ FactoryBot.define do
     declarative_with_state { nil }
     sva_svr { {} }
     no_gender { true }
+    section_conditions_hide_champs { true }
     api_entreprise_token { JWT.encode({ exp: 2.months.from_now.to_i }, nil, 'none') }
 
     groupe_instructeurs { [association(:groupe_instructeur, :default, procedure: instance, strategy: :build)] }

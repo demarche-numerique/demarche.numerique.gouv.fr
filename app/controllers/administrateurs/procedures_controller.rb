@@ -103,7 +103,7 @@ module Administrateurs
     end
 
     def create
-      new_procedure_params = { max_duree_conservation_dossiers_dans_ds: Expired::DEFAULT_DOSSIER_RENTENTION_IN_MONTH, no_gender: true }
+      new_procedure_params = { max_duree_conservation_dossiers_dans_ds: Expired::DEFAULT_DOSSIER_RENTENTION_IN_MONTH, no_gender: true, section_conditions_hide_champs: true }
         .merge(procedure_params)
         .merge(administrateurs: [current_administrateur])
 

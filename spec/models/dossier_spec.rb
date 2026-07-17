@@ -2095,6 +2095,29 @@ describe Dossier, type: :model do
           expect(errors).to be_empty
         end
       end
+
+      context "inside a hidden section" do
+        let(:types_de_champ) do
+          [
+            { type: :yes_no, stable_id: 99, mandatory: false },
+            { type: :header_section, level: 1, condition: ds_eq(champ_value(99), constant(true)) },
+            type_de_champ,
+          ]
+        end
+        let(:champ_with_error) { dossier.champ_data.find(&:mandatory?) }
+
+        it 'should not have errors' do
+          expect(errors).to be_empty
+        end
+
+        context "with the legacy behaviour" do
+          let(:procedure) { create(:procedure, section_conditions_hide_champs: false, types_de_champ_public: types_de_champ) }
+
+          it 'should have errors' do
+            expect(errors).not_to be_empty
+          end
+        end
+      end
     end
 
     context "with mandatory SIRET champ" do

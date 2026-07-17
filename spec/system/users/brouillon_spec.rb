@@ -552,6 +552,35 @@ describe 'The user', js: true do
       end
     end
 
+    context 'with a conditional section hiding its champs' do
+      let(:age_stable_id) { 999 }
+      let(:section_condition) { greater_than_eq(champ_value(age_stable_id), constant(18)) }
+
+      let(:procedure) do
+        create(:procedure, :published, :for_individual,
+          types_de_champ_public: [
+            { type: :integer_number, libelle: 'age du candidat', stable_id: age_stable_id, mandatory: false },
+            { type: :header_section, libelle: 'info voiture', condition: section_condition },
+            { type: :text, libelle: 'marque', mandatory: false },
+          ])
+      end
+
+      scenario 'the champs under the section toggle with it' do
+        log_in_fast(user, procedure)
+
+        expect(page).to have_no_css('legend', text: 'info voiture', visible: true)
+        expect(page).to have_no_css('label', text: 'marque', visible: true)
+
+        fill_in('age du candidat', with: '18')
+        expect(page).to have_css('legend', text: 'info voiture', visible: true)
+        expect(page).to have_css('label', text: 'marque', visible: true)
+
+        fill_in('age du candidat', with: '2')
+        expect(page).to have_no_css('legend', text: 'info voiture', visible: true)
+        expect(page).to have_no_css('label', text: 'marque', visible: true)
+      end
+    end
+
     context 'with a visibilite in cascade' do
       let(:age_stable_id) { 999 }
       let(:permis_stable_id) { 9999 }

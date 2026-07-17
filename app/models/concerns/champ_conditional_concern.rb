@@ -11,16 +11,37 @@ module ChampConditionalConcern
     dossier.revision.dependent_conditions(type_de_champ).any?
   end
 
+  def section_conditions_hide_champs?
+    dossier.procedure.section_conditions_hide_champs?
+  end
+
+  # visibility can vary with form data (own condition, repetition membership,
+  # or a conditional ancestor section)
+  def conditional_visibility?
+    conditional? || in_repetition? || (section_conditions_hide_champs? && ancestors.any?(&:conditional?))
+  end
+
   def visible?
     # Huge gain perf for cascade conditions
     return @visible if instance_variable_defined? :@visible
 
-    return false if parent_hidden?
+    # a section condition targeting a champ inside the section itself creates
+    # a cycle (invalid draft config, reachable until publication); treat the
+    # in-progress champ as hidden, so the broken condition computes to nil and
+    # the section stays hidden
+    return false if @visible_computing
 
-    @visible = if conditional?
-      type_de_champ.condition.compute(champs_for_condition)
-    else
-      true
+    @visible_computing = true
+    begin
+      return false if parent_hidden?
+
+      @visible = if conditional?
+        type_de_champ.condition.compute(champs_for_condition)
+      else
+        true
+      end
+    ensure
+      @visible_computing = false
     end
   end
 
@@ -51,11 +72,18 @@ module ChampConditionalConcern
   end
 
   def parent_hidden?
-    # if there is no row_id, it always has been a root champ
-    return false if !in_repetition?
+    if section_conditions_hide_champs?
+      # hidden as soon as the nearest ancestor (section or repetition) is
+      # hidden; the parent's own visible? recurses up the ancestor chain
+      parent.present? && !parent.visible?
+    else
+      # legacy: only the repetition ancestor can hide a champ
+      # if there is no row_id, it always has been a root champ
+      return false if !in_repetition?
 
-    # otherwise maybe the champ has been moved outside a repetition
-    parent = repetition
-    parent.present? && !parent.visible?
+      # otherwise maybe the champ has been moved outside a repetition
+      parent = repetition
+      parent.present? && !parent.visible?
+    end
   end
 end

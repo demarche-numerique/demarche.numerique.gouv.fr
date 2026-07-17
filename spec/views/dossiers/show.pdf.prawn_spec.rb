@@ -136,11 +136,31 @@ describe 'dossiers/show.pdf', type: :view do
       d
     end
 
-    it 'skips invisible header and numbers next visible as 1.1', if: PDFTOTEXT_AVAILABLE do
+    it 'skips invisible header and its champs, numbers next visible as 1.1', if: PDFTOTEXT_AVAILABLE do
       text = render_and_extract(dossier, procedure, 'invisible')
       expect(text).to include('1. Parent')
       expect(text).not_to include('Caché')
+      expect(text).not_to include('Optionnel')
       expect(text).to include('1.1. Visible')
+    end
+
+    context 'when the procedure uses the legacy behaviour' do
+      let(:procedure) do
+        create(:procedure, section_conditions_hide_champs: false, types_de_champ_public: [
+          { type: :header_section, libelle: 'Parent', level: 1 },
+          { type: :integer_number, libelle: 'Critère', stable_id: stable_id_number },
+          { type: :header_section, libelle: 'Caché', level: 2, condition: ds_eq(champ_value(stable_id_number), constant(5)) },
+          { type: :text, libelle: 'Optionnel' },
+          { type: :header_section, libelle: 'Visible', level: 2 },
+          { type: :text, libelle: 'Toujours' },
+        ])
+      end
+
+      it 'skips only the invisible header, not its champs', if: PDFTOTEXT_AVAILABLE do
+        text = render_and_extract(dossier, procedure, 'invisible_legacy')
+        expect(text).not_to include('Caché')
+        expect(text).to include('Optionnel')
+      end
     end
   end
 
