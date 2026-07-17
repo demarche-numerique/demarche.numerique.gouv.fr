@@ -13,7 +13,7 @@ module Types::Champs
     field :rows, [Row], null: false
 
     def champs
-      object.rows.flat_map { _1.filter(&:visible?) }
+      object.rows.flat_map { it.flat_champs.filter(&:visible?) }
     end
 
     def rows
@@ -21,8 +21,8 @@ module Types::Champs
         .rows
         .map do
           {
-            id: GraphQL::Schema::UniqueWithinType.encode('Row', _1.first.row_id),
-            champs: _1.filter(&:visible?),
+            id: GraphQL::Schema::UniqueWithinType.encode('Row', it.id),
+            champs: it.flat_champs.filter(&:visible?),
           }
         end
     end

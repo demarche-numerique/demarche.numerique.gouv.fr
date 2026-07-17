@@ -2,9 +2,9 @@
 
 class Champs::RepetitionController < Champs::ChampController
   def add
-    @row_id = @champ.add_row(updated_by: current_user.email)
+    row_id = @champ.add_row(updated_by: current_user.email)
+    @row = @champ.rows.find { it.id == row_id }
     @first_champ_id = @champ.focusable_input_id
-    @row_number = @row_id.nil? ? 0 : @champ.row_ids.find_index(@row_id) + 1
     @champ.update_timestamps
   end
 

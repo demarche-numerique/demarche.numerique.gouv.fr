@@ -5,7 +5,7 @@
 
       <%= form_for dossier, url: annotations_instructeur_dossier_path(dossier.procedure, dossier), html: { class: 'form', multipart: true } do |f| %>
         <fieldset class="fr-fieldset">
-          <%= render EditableChamp::SectionComponent.new(dossier:, types_de_champ: dossier.root_types_de_champ_private) %>
+          <%= render EditableChamp::SectionComponent.new(dossier:, champs: dossier.champs_private) %>
         </fieldset>
       <% end %>
 

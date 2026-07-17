@@ -48,7 +48,7 @@ class ChampSerializer < ActiveModel::Serializer
   end
 
   def rows
-    object.rows.map.with_index(1) { |champs, index| Row.new(index:, champs:) }
+    object.rows.map { Row.new(index: it.index, champs: it.flat_champs) }
   end
 
   def include_etablissement?

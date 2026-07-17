@@ -117,7 +117,7 @@ class ProcedureExportService
       .repetition
       .filter_map do |type_de_champ_repetition|
         types_de_champ = procedure.all_revisions_types_de_champ(parent: type_de_champ_repetition).to_a
-        rows = dossiers.flat_map { _1.repetition_rows_for_export(type_de_champ_repetition) }
+        rows = dossiers.flat_map { it.project_rows_for(type_de_champ_repetition) }
 
         if types_de_champ.present? && rows.present?
           {

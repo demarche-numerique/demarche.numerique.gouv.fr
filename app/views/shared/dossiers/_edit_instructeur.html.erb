@@ -21,7 +21,7 @@
     </header>
 
     <fieldset class="fr-fieldset">
-      <%= render EditableChamp::SectionComponent.new(dossier:, types_de_champ: dossier.root_types_de_champ_public) %>
+      <%= render EditableChamp::SectionComponent.new(dossier:, champs: dossier.champs_public) %>
     </fieldset>
   <% end %>
 

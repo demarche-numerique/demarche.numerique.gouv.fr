@@ -342,7 +342,7 @@ class PiecesJustificativesService
   # # # pj_champ_5 (stable_id: 2)
   # it returns { pj_0.id => 0, pj_1.id => 1, pj_2.id => 0, pj_3.id => 0, pj_4.id => 1, pj_5.id => 1 }
   def compute_champ_id_row_index(champs)
-    champs.filter(&:child?).group_by(&:dossier_id).values.each_with_object({}) do |children_for_dossier, hash|
+    champs.filter(&:in_repetition?).group_by(&:dossier_id).values.each_with_object({}) do |children_for_dossier, hash|
       children_for_dossier.group_by(&:stable_id).values.each do |champs_for_stable_id|
         champs_for_stable_id.sort_by(&:row_id).each.with_index { |c, index| hash[c.id] = index }
       end
