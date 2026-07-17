@@ -28,7 +28,7 @@ RSpec.describe Dossiers::ErrorsFullMessagesComponent, type: :component do
       context 'when champ is repetition' do
         let(:champ_repetition) { dossier.champ_data.first }
         let(:rows) { champ_repetition.rows }
-        let(:champ_child) { rows.first.first }
+        let(:champ_child) { rows.first.champs.first }
 
         let(:types_de_champ_public) { [{ libelle: "Champ parent", type: :repetition, children: [{ libelle: "Champ enfant", type: :text }] }] }
 
