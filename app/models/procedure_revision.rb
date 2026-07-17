@@ -311,10 +311,11 @@ class ProcedureRevision < ApplicationRecord
           end
         end
       elsif payload.key?(:type_champ) # TypesImprover: type change
-        stable_id, type_champ, options = payload.values_at(:stable_id, :type_champ, :options)
+        stable_id, type_champ, nature, options = payload.values_at(:stable_id, :type_champ, :nature, :options)
 
         tdc = find_and_ensure_exclusive_use(stable_id)
         update_params = { type_champ: }
+        update_params[:nature] = nature if nature.present?
         update_params[:options] = tdc.options.merge(options) if options.present?
         tdc.update(update_params)
       else # LabelImprover: mise à jour contenu

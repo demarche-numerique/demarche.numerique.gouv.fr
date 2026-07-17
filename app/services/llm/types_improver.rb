@@ -15,7 +15,14 @@ module LLM
               description: 'Changement de type',
               properties: {
                 stable_id: { type: 'integer', description: 'Identifiant du champ à modifier.' },
-                type_champ: { type: 'string', description: 'Nouveau type du champ.' },
+                type_champ: { type: 'string', description: 'Nouveau type du champ. Répéter le type actuel si seule la nature change.' },
+                nature: {
+                  type: 'string',
+                  description: <<~DESC.squish,
+                    Nature de la pièce, uniquement pour type_champ "piece_justificative".
+                    Une des valeurs : non_specifie, titre_identite, rib, justificatif_domicile, avis_impot.
+                  DESC
+                },
                 options: {
                   type: 'object',
                   description: <<~DESC.squish,
@@ -328,16 +335,19 @@ module LLM
 
       stable_id = data['stable_id']
       type_champ = data['type_champ']
+      nature = data['nature']
 
       return if stable_id.nil? || type_champ.blank?
       return unless valid_type_champ?(type_champ)
+      return if nature.present? && !valid_nature?(type_champ, nature)
 
       original_tdc = tdc_index[stable_id]
-      return if original_tdc && original_tdc.type_champ == type_champ
+      return if original_tdc && unchanged?(original_tdc, type_champ, nature)
 
       options = sanitize_options(type_champ, data['options'])
 
       payload = { 'stable_id' => stable_id, 'type_champ' => type_champ }
+      payload['nature'] = nature if nature.present?
       payload['options'] = options if options.present?
 
       {
@@ -351,6 +361,19 @@ module LLM
 
     def valid_type_champ?(type_champ)
       TypeDeChamp.type_champs.key?(type_champ.to_s)
+    end
+
+    def valid_nature?(type_champ, nature)
+      type_champ.to_s == TypeDeChamp.type_champs.fetch(:piece_justificative) &&
+        TypeDeChamp.natures.key?(nature.to_s)
+    end
+
+    def unchanged?(original_tdc, type_champ, nature)
+      return false if original_tdc.type_champ != type_champ
+      return true if nature.blank?
+
+      current_nature = original_tdc.nature || TypeDeChamp.natures.fetch(:non_specifie)
+      current_nature == nature
     end
 
     def sanitize_options(type_champ, options)

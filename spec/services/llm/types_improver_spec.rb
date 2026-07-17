@@ -215,5 +215,51 @@ RSpec.describe LLM::TypesImprover do
         )
       end
     end
+
+    context 'with nature' do
+      let(:types_de_champ) do
+        [
+          double('tdc4', stable_id: 4, type_champ: 'piece_justificative', nature: 'non_specifie'),
+          double('tdc5', stable_id: 5, type_champ: 'piece_justificative', nature: 'rib'),
+        ]
+      end
+
+      def tool_calls_for(update)
+        calls = [{ name: rule, arguments: { 'update' => update, 'justification' => 'Test' } }]
+        runner = double()
+        allow(runner).to receive(:call).with(anything).and_return([calls, usage])
+
+        described_class.new(runner:).generate_for(suggestion).first
+      end
+
+      it 'keeps a nature change on an unchanged piece_justificative' do
+        tool_calls = tool_calls_for({ 'stable_id' => 4, 'type_champ' => 'piece_justificative', 'nature' => 'justificatif_domicile' })
+
+        expect(tool_calls.size).to eq(1)
+        expect(tool_calls.first[:payload]).to include(
+          'stable_id' => 4,
+          'type_champ' => 'piece_justificative',
+          'nature' => 'justificatif_domicile'
+        )
+      end
+
+      it 'filters update when nature unchanged' do
+        tool_calls = tool_calls_for({ 'stable_id' => 5, 'type_champ' => 'piece_justificative', 'nature' => 'rib' })
+
+        expect(tool_calls).to be_empty
+      end
+
+      it 'filters invalid nature values' do
+        tool_calls = tool_calls_for({ 'stable_id' => 4, 'type_champ' => 'piece_justificative', 'nature' => 'invalid_nature' })
+
+        expect(tool_calls).to be_empty
+      end
+
+      it 'filters nature on a type that is not a piece_justificative' do
+        tool_calls = tool_calls_for({ 'stable_id' => 1, 'type_champ' => 'email', 'nature' => 'justificatif_domicile' })
+
+        expect(tool_calls).to be_empty
+      end
+    end
   end
 end

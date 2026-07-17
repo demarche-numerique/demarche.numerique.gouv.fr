@@ -19,12 +19,19 @@ module RevisionDescribableToLLMConcern
           parent_id: rtdc.parent&.stable_id,
           header_section_level: (rtdc.type_de_champ.header_section_level_value if rtdc.type_de_champ.header_section?),
           display_condition: rtdc.type_de_champ.condition.present?,
+          nature: nature_for_llm(rtdc.type_de_champ),
           options: options_for_llm(rtdc.type_de_champ),
         }.compact.reject { |k, _v| reject.include?(k) }
       end
   end
 
   private
+
+  def nature_for_llm(tdc)
+    return nil unless tdc.piece_justificative?
+
+    tdc.nature || TypeDeChamp.natures.fetch(:non_specifie)
+  end
 
   def options_for_llm(tdc)
     return nil unless TYPES_WITH_OPTIONS.include?(tdc.type_champ)
