@@ -237,6 +237,7 @@ module LLM
           - parent_id : stable_id du champ parent, ou null s’il n’y a pas de parent (donc ce champ est un enfant d’une répétition)
           - header_section_level : le niveau de section si le champ est de type header_section
           - display_condition : une condition d'affichage, optionnelle, dépendant de valeurs saisies préalablement par l'usager. Si cette condition est vraie le champ sera affiché, sinon il sera masqué, même s'il est obligatoire.
+          - nature : pour les champs piece_justificative uniquement, le document attendu (non_specifie, titre_identite, rib, justificatif_domicile, avis_impot). « non_specifie » signifie qu'aucune lecture automatique n'est activée.
 
           Les types de champ utilisés dans ce formulaire sont :
           %<field_types>s
