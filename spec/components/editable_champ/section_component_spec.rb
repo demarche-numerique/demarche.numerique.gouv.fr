@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
 describe EditableChamp::SectionComponent, type: :component do
-  include TreeableConcern
   let(:procedure) { create(:procedure, types_de_champ_public:) }
   let(:types_de_champ_public) { [] }
   let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-  let(:types_de_champ) { dossier.revision.root_types_de_champ_public }
-  let(:component) { described_class.new(types_de_champ:, dossier:) }
+  let(:component) { described_class.new(champs: dossier.champs_public, dossier:) }
   before { render_inline(component).to_html }
 
   context 'list of champs without an header_section' do

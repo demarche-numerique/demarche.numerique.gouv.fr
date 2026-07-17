@@ -3,13 +3,14 @@
 class EditableChamp::RepetitionRowComponent < ApplicationComponent
   include ChampAriaLabelledbyHelper
 
-  def initialize(form:, dossier:, champ:, row_id:, row_number:, expanded: false, seen_at: nil)
-    @form, @dossier, @champ, @row_id, @row_number, @expanded, @seen_at = form, dossier, champ, row_id, row_number, expanded, seen_at
+  def initialize(form:, dossier:, champ:, row:, expanded: false, seen_at: nil)
+    @form, @dossier, @champ, @row, @expanded, @seen_at = form, dossier, champ, row, expanded, seen_at
     @type_de_champ = champ.type_de_champ
     @types_de_champ = @type_de_champ.flat_children(dossier.revision)
   end
 
-  attr_reader :row_id, :row_number
+  def row_id = @row.id
+  def row_number = @row.index
 
   def has_fieldset?
     @types_de_champ.size > 1
@@ -18,7 +19,7 @@ class EditableChamp::RepetitionRowComponent < ApplicationComponent
   private
 
   def section_component
-    EditableChamp::SectionComponent.new(dossier: @dossier, types_de_champ: @types_de_champ, row_id:, row_number: @row_number)
+    EditableChamp::SectionComponent.new(dossier: @dossier, champs: @row.champs, row_number:)
   end
 
   def delete_button
