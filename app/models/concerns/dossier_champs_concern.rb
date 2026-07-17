@@ -7,10 +7,7 @@ module DossierChampsConcern
     check_valid_row_id_on_read?(type_de_champ, row_id)
     data = champ_data_by_public_id[type_de_champ.public_id(row_id)]
     if data.nil? || !data.is_type?(type_de_champ.type_champ)
-      value = type_de_champ.champ_blank?(data) ? nil : data.value
-      updated_at = data&.updated_at || depose_at || created_at
-      rebased_at = data&.rebased_at
-      type_de_champ.build_champ(dossier: self, row_id:, updated_at:, rebased_at:, value:, stream:)
+      projected_champ(type_de_champ, row_id:, champ_data: data)
     else
       data.type_de_champ = type_de_champ
       data
@@ -26,7 +23,18 @@ module DossierChampsConcern
   end
 
   def champs
-    root_champs_public + root_champs_private
+    flat_champs_public + flat_champs_private
+  end
+
+  # Entry points to navigate champs as a tree: first-level champs and top-level
+  # header sections. Navigate deeper with Champs::HeaderSectionChamp#children
+  # and Champs::RepetitionChamp#rows.
+  def champs_public
+    @champs_public ||= revision.types_de_champ_public.map { project_champ(it) }
+  end
+
+  def champs_private
+    @champs_private ||= revision.types_de_champ_private.map { project_champ(it) }
   end
 
   def filled_champs_public
@@ -44,7 +52,7 @@ module DossierChampsConcern
   def flat_champs_public
     @flat_champs_public ||= root_champs_public.flat_map do |champ|
       if champ.repetition?
-        [champ] + champ.rows.flatten
+        [champ] + champ.rows.flat_map(&:flat_champs)
       else
         champ
       end
@@ -54,7 +62,7 @@ module DossierChampsConcern
   def flat_champs_private
     @flat_champs_private ||= root_champs_private.flat_map do |champ|
       if champ.repetition?
-        [champ] + champ.rows.flatten
+        [champ] + champ.rows.flat_map(&:flat_champs)
       else
         champ
       end
@@ -64,11 +72,8 @@ module DossierChampsConcern
   def project_rows_for(type_de_champ)
     return [] if !type_de_champ.repetition?
 
-    children = type_de_champ.flat_children(revision)
-    row_ids = repetition_row_ids(type_de_champ)
-
-    row_ids.map do |row_id|
-      children.map { project_champ(_1, row_id:) }
+    repetition_row_ids(type_de_champ).map.with_index(1) do |row_id, index|
+      RepetitionRow.new(id: row_id, index:, dossier: self, type_de_champ:)
     end
   end
 
@@ -115,12 +120,6 @@ module DossierChampsConcern
     stable_id, row_id = public_id.split('-')
     type_de_champ = find_type_de_champ_by_stable_id(stable_id, :private)
     champ_for_update(type_de_champ, row_id:, updated_by:)
-  end
-
-  def repetition_rows_for_export(type_de_champ)
-    repetition_row_ids(type_de_champ).map.with_index(1) do |row_id, index|
-      Champs::RepetitionChamp::Row.new(index:, row_id:, dossier: self)
-    end
   end
 
   def repetition_row_ids(type_de_champ)
@@ -304,6 +303,27 @@ module DossierChampsConcern
     @champ_data_by_public_id ||= champ_data_on_stream.index_by(&:public_id)
   end
 
+  # Champs built for types de champ without a persisted champ are memoized so
+  # repeated projections of the same public_id return the same instance.
+  def projected_champ(type_de_champ, row_id:, champ_data:)
+    public_id = type_de_champ.public_id(row_id)
+    projected = champs_by_public_id[public_id]
+    if projected.nil? || !projected.is_type?(type_de_champ.type_champ)
+      value = type_de_champ.champ_blank?(champ_data) ? nil : champ_data.value
+      updated_at = champ_data&.updated_at || depose_at || created_at
+      rebased_at = champ_data&.rebased_at
+      projected = type_de_champ.build_champ(dossier: self, row_id:, updated_at:, rebased_at:, value:, stream:)
+      champs_by_public_id[public_id] = projected
+    else
+      projected.type_de_champ = type_de_champ
+    end
+    projected
+  end
+
+  def champs_by_public_id
+    @champs_by_public_id ||= {}
+  end
+
   def discarded_champ_data_by_public_id
     @discarded_champ_data_by_public_id ||= discarded_champ_data_on_main_stream.index_by(&:public_id)
   end
@@ -449,11 +469,14 @@ module DossierChampsConcern
 
   def reset_champs_cache
     @champ_data_by_public_id = nil
+    @champs_by_public_id = nil
     @discarded_champ_data_by_public_id = nil
     @filled_champs_public = nil
     @filled_champs_private = nil
     @root_champs_public = nil
     @root_champs_private = nil
+    @champs_public = nil
+    @champs_private = nil
     @flat_champs_public = nil
     @flat_champs_private = nil
     @repetition_row_ids = nil
