@@ -48,6 +48,20 @@ RSpec.describe TypesDeChamp::PrefillDateTypeDeChamp do
         it { is_expected.to be_nil }
       end
 
+      context 'when the value is a unix timestamp (Integer)' do
+        let(:date) { Date.new(2025, 7, 10) }
+        let(:value) { date.to_time.to_i }
+
+        it { is_expected.to eq({ value: '2025-07-10' }) }
+      end
+
+      context 'when the value is a unix timestamp (String)' do
+        let(:date) { Date.new(2025, 7, 10) }
+        let(:value) { date.to_time.to_i.to_s }
+
+        it { is_expected.to eq({ value: '2025-07-10' }) }
+      end
+
       context 'when the type de champ expects a date in the past' do
         before { type_de_champ.date_in_past = '1' }
 
@@ -111,6 +125,27 @@ RSpec.describe TypesDeChamp::PrefillDateTypeDeChamp do
         let(:value) { { "injected" => "x" } }
 
         it { is_expected.to be_nil }
+      end
+
+      context 'when the value is a unix timestamp (Float)' do
+        let(:datetime) { Time.zone.parse('2025-07-10T14:30:00') }
+        let(:value) { datetime.to_f }
+
+        it { is_expected.to eq({ value: datetime.iso8601 }) }
+      end
+
+      context 'when the value is a unix timestamp (Integer)' do
+        let(:datetime) { Time.zone.parse('2025-07-10T14:30:00') }
+        let(:value) { datetime.to_i }
+
+        it { is_expected.to eq({ value: datetime.iso8601 }) }
+      end
+
+      context 'when the value is a unix timestamp (String)' do
+        let(:datetime) { Time.zone.parse('2025-07-10T14:30:00') }
+        let(:value) { datetime.to_f.to_s }
+
+        it { is_expected.to eq({ value: datetime.iso8601 }) }
       end
 
       context 'when the type de champ expects a date in the past' do
