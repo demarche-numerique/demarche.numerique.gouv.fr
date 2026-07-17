@@ -54,7 +54,7 @@ describe EditableChamp::DropDownListComponent, type: :component do
         let(:fieldset) { page.find('fieldset fieldset') }
 
         let(:repetition_champ) { dossier.root_champs_public.first }
-        let(:drop_down_list_champ) { repetition_champ.rows.first.first }
+        let(:drop_down_list_champ) { repetition_champ.rows.first.champs.first }
 
         it do
           render
