@@ -66,6 +66,37 @@ RSpec.describe DossierChampsConcern do
     it { is_expected.to be_truthy }
   end
 
+  describe "#champs_public and #champs_private" do
+    let(:types_de_champ_public) do
+      [
+        { type: :text, libelle: "t1" },
+        { type: :repetition, libelle: "rep", children: [{ type: :text, libelle: "rt1" }] },
+        { type: :header_section, level: 1, libelle: "s1" },
+        { type: :text, libelle: "t2" },
+        { type: :header_section, level: 2, libelle: "s1.1" },
+        { type: :text, libelle: "t3" },
+      ]
+    end
+    let(:types_de_champ_private) do
+      [
+        { type: :header_section, level: 1, libelle: "ps1" },
+        { type: :text, libelle: "pt1" },
+      ]
+    end
+
+    it "returns first-level champs and top-level header sections" do
+      expect(dossier.champs_public.map(&:libelle)).to eq(["t1", "rep", "s1"])
+      expect(dossier.champs_private.map(&:libelle)).to eq(["ps1"])
+    end
+
+    it "composes with children and rows to navigate the tree" do
+      _, repetition, section = dossier.champs_public
+      expect(repetition.rows.flat_map(&:champs).map(&:libelle)).to eq(["rt1"])
+      expect(section.children.map(&:libelle)).to eq(["t2", "s1.1"])
+      expect(section.children.last.children.map(&:libelle)).to eq(["t3"])
+    end
+  end
+
   describe "#project_champ" do
     let(:type_de_champ_repetition) { dossier.find_type_de_champ_by_stable_id(993) }
     let(:type_de_champ_public) { dossier.find_type_de_champ_by_stable_id(99) }
@@ -102,6 +133,12 @@ RSpec.describe DossierChampsConcern do
           expect(subject.is_a?(Champs::TextChamp)).to be_truthy
           expect(subject.updated_at).not_to be_nil
         }
+
+        it "memoizes the built champ" do
+          expect(subject).to equal(dossier.project_champ(type_de_champ_public, row_id:))
+          dossier.reload
+          expect(subject).not_to equal(dossier.project_champ(type_de_champ_public, row_id:))
+        end
 
         context "in repetition" do
           let(:type_de_champ_public) { dossier.find_type_de_champ_by_stable_id(994) }
@@ -248,7 +285,13 @@ RSpec.describe DossierChampsConcern do
 
     it do
       expect(subject.size).to eq(1)
-      expect(subject.first.size).to eq(1)
+      expect(subject.first.index).to eq(1)
+      expect(subject.first.id).to be_present
+      expect(subject.first.champs.size).to eq(1)
+    end
+
+    it "projects the same champ instances across rows built separately" do
+      expect(subject.first.champs.first).to equal(dossier.project_rows_for(type_de_champ_repetition).first.champs.first)
     end
   end
 

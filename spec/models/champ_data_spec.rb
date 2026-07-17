@@ -119,7 +119,7 @@ describe ChampData do
     let(:standalone_champ) { build(:champ, type_de_champ: build(:type_de_champ), dossier: build(:dossier)) }
     let(:public_sections) { dossier.root_champs_public.filter(&:header_section?) }
     let(:private_sections) { dossier.root_champs_private.filter(&:header_section?) }
-    let(:sections_in_repetition) { dossier.root_champs_public.find(&:repetition?).rows.flatten.filter(&:header_section?) }
+    let(:sections_in_repetition) { dossier.root_champs_public.find(&:repetition?).rows.flat_map(&:champs).filter(&:header_section?) }
 
     it 'returns the sibling sections of a champ' do
       expect(public_sections).not_to be_empty
@@ -616,14 +616,55 @@ describe ChampData do
     end
   end
 
-  describe "#parent" do
-    let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :repetition, mandatory: false, children: [{ type: :text }] }]) }
+  describe "#ancestors, #parent, #section and #repetition" do
+    let(:procedure) do
+      create(:procedure, types_de_champ_public: [
+        { type: :text, libelle: 't0' },
+        { type: :header_section, level: 1, libelle: 's1' },
+        { type: :header_section, level: 2, libelle: 's1.1' },
+        {
+          type: :repetition, mandatory: false, libelle: 'rep', children: [
+            { type: :header_section, level: 1, libelle: 'rs1' },
+            { type: :text, libelle: 'rt1' },
+          ],
+        },
+      ])
+    end
     let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
+    let(:champ) { dossier.filled_champs_public.find { it.libelle == 'rt1' } }
 
-    let(:champ) { dossier.champ_data.where(type: "Champs::TextChamp").first }
+    it "returns the projected champs above, outermost first" do
+      expect(champ.ancestors.map(&:libelle)).to eq(['s1', 's1.1', 'rep', 'rs1'])
+      expect(champ.ancestors.map(&:row_id)).to eq([nil, nil, nil, champ.row_id])
+    end
 
-    it "returns the parent" do
-      expect(champ.parent).to eq(TypeDeChamp.find_by(type_champ: "repetition"))
+    it "projects each ancestor once per dossier" do
+      champ.ancestors.zip(champ.ancestors).each do |ancestor, reprojected|
+        expect(ancestor).to equal(reprojected)
+      end
+    end
+
+    it "exposes parent, section and repetition" do
+      expect(champ.parent.libelle).to eq('rs1')
+      expect(champ.parent.row_id).to eq(champ.row_id)
+      expect(champ.section.libelle).to eq('rs1')
+      expect(champ.repetition.libelle).to eq('rep')
+      expect(champ.repetition.row_id).to be_nil
+
+      root_champ = dossier.root_champs_public.find { it.libelle == 't0' }
+      expect(root_champ.ancestors).to eq([])
+      expect(root_champ.parent).to be_nil
+      expect(root_champ.section).to be_nil
+      expect(root_champ.repetition).to be_nil
+    end
+
+    it "exposes in_repetition? and in_section?" do
+      expect(champ.in_repetition?).to be(true)
+      expect(champ.in_section?).to be(true)
+
+      root_champ = dossier.root_champs_public.find { it.libelle == 't0' }
+      expect(root_champ.in_repetition?).to be(false)
+      expect(root_champ.in_section?).to be(false)
     end
   end
 

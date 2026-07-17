@@ -101,7 +101,7 @@ describe Champs::RepetitionChamp do
       let(:max_rep) { nil }
 
       before do
-        champ_for_update(champ.rows.first.first).update(value: "rb")
+        champ_for_update(champ.rows.first.champs.first).update(value: "rb")
       end
 
       it "adds a repetition_too_few error" do
@@ -130,7 +130,7 @@ describe Champs::RepetitionChamp do
       let(:max_rep) { 1 }
 
       before do
-        champ_for_update(champ.rows.first.first).update(value: "rb")
+        champ_for_update(champ.rows.first.champs.first).update(value: "rb")
         champ.add_row(updated_by: "test")
         champ.add_row(updated_by: "test")
       end
@@ -146,7 +146,7 @@ describe Champs::RepetitionChamp do
       let(:max_rep) { 3 }
 
       before do
-        champ_for_update(champ.rows.first.first).update(value: "rb")
+        champ_for_update(champ.rows.first.champs.first).update(value: "rb")
       end
 
       it "does not add any errors" do
@@ -158,7 +158,7 @@ describe Champs::RepetitionChamp do
 
   describe "#for_tag" do
     before do
-      champ_for_update(champ.rows.first.first).update(value: "rb")
+      champ_for_update(champ.rows.first.champs.first).update(value: "rb")
     end
 
     it "can render as string" do
