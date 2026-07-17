@@ -166,13 +166,13 @@ class Champs::ReferentielChamp < Champ
     end
   end
 
-  def cast_value_for_type_de_champ(value, type_de_champ)
-    case type_de_champ.type_champ.to_sym
-    when :siret, :referentiel, :address
-      { external_id: call_caster(type_de_champ.type_champ, value, type_de_champ) }
+  def normalize_api_value(value, type_de_champ)
+    case [type_de_champ.type_champ.to_sym, value]
+    in [:drop_down_list, Array => arr] if ReferentielMappingUtils.array_of_supported_simple_types?(arr)
+      arr.first.to_s
     else
-      { value: call_caster(type_de_champ.type_champ, value, type_de_champ) }
-    end.merge(prefilled: true)
+      value
+    end
   end
 
   def cast_displayable_values(json)
@@ -233,7 +233,13 @@ class Champs::ReferentielChamp < Champ
 
   def update_prefillable_champ(type_de_champ:, raw_value:, row_id: nil)
     prefill_champ = dossier.champ_for_update(type_de_champ, row_id:, updated_by:)
-    attributes = cast_value_for_type_de_champ(raw_value, type_de_champ)
+    normalized = normalize_api_value(raw_value, type_de_champ)
+    attributes = TypesDeChamp::PrefillTypeDeChamp
+      .build(type_de_champ, dossier.revision)
+      .to_assignable_attributes(prefill_champ, normalized)
+    return prefill_champ if attributes.nil?
+
+    attributes.merge!(prefilled: true)
     prefill_champ.update(attributes.merge(prefilled_original_value: attributes.except(:prefilled)))
     prefill_champ
   end

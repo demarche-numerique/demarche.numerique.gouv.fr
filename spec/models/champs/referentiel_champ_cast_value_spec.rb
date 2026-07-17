@@ -113,17 +113,17 @@ describe Champs::ReferentielChamp, type: :model do
 
         context 'when data is an integer' do
           let(:data) { { ok: 2 } }
-          it 'casts and updates the decimal_number with the jsonpath value as float' do
+          it 'casts and updates the decimal_number with the jsonpath value' do
             expect { subject }
-              .to change { dossier.reload.champs.find(&:decimal_number?).value }.from(nil).to("2.0")
+              .to change { dossier.reload.champs.find(&:decimal_number?).value }.from(nil).to("2")
           end
         end
 
         context 'when data is a string integer' do
           let(:data) { { ok: "2" } }
-          it 'casts and updates the decimal_number with the jsonpath value as float' do
+          it 'casts and updates the decimal_number with the jsonpath value' do
             expect { subject }
-              .to change { dossier.reload.champs.find(&:decimal_number?).value }.from(nil).to("2.0")
+              .to change { dossier.reload.champs.find(&:decimal_number?).value }.from(nil).to("2")
           end
         end
 
@@ -450,9 +450,9 @@ describe Champs::ReferentielChamp, type: :model do
 
         context 'when data contains invalid options' do
           let(:data) { { ok: ['valid', 'invalid_option'] } }
-          it 'allows invalid value due to validation afterward' do
+          it 'rejects the value when options are not all valid' do
             expect { subject }
-              .to change { dossier.reload.champs.find(&:multiple_drop_down_list?).value }.from(nil).to(['valid', 'invalid_option'].to_json)
+              .not_to change { dossier.reload.champs.find(&:multiple_drop_down_list?).value }
           end
         end
       end
@@ -544,9 +544,9 @@ describe Champs::ReferentielChamp, type: :model do
               .to change { dossier.reload.champs.find(&:address?).external_id }.from(nil).to("20 avenue de Segur Paris")
           end
 
-          it 'does not set value (stays nil until async BAN resolution)' do
+          it 'sets value (BAN resolution will overwrite later)' do
             expect { subject }
-              .not_to change { dossier.reload.champs.find(&:address?).value }
+              .to change { dossier.reload.champs.find(&:address?).value }.from(nil).to("20 avenue de Segur Paris")
           end
         end
 
