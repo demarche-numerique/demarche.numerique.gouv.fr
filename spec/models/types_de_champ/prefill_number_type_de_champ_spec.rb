@@ -42,10 +42,18 @@ RSpec.describe TypesDeChamp::PrefillNumberTypeDeChamp do
         it { is_expected.to eq({ value: '3000' }) }
       end
 
-      context 'when the value is a number' do
+      context 'when the value is an Integer' do
         let(:value) { 42 }
 
         it { is_expected.to eq({ value: '42' }) }
+      end
+
+      context 'when the value is a Float' do
+        let(:value) { 42.2 }
+
+        it 'truncates to integer' do
+          is_expected.to eq({ value: '42' })
+        end
       end
 
       context 'when the value is not an integer' do
@@ -119,10 +127,16 @@ RSpec.describe TypesDeChamp::PrefillNumberTypeDeChamp do
         it { is_expected.to eq({ value: '42' }) }
       end
 
-      context 'when the value is a number' do
+      context 'when the value is a Float' do
         let(:value) { 3.14 }
 
         it { is_expected.to eq({ value: '3.14' }) }
+      end
+
+      context 'when the value is an Integer' do
+        let(:value) { 2 }
+
+        it { is_expected.to eq({ value: '2' }) }
       end
 
       context 'when the value is not a number' do
