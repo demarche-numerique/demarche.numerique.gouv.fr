@@ -176,7 +176,7 @@ class ProcedureExportService::XlsxExport
 
     def collect_repetitions(dossier, export_template)
       repetition_tdcs.each do |tdc|
-        rows = dossier.repetition_rows_for_export(tdc)
+        rows = dossier.project_rows_for(tdc)
         next if rows.empty?
 
         children_tdcs = repetition_children_tdcs[tdc.stable_id]
