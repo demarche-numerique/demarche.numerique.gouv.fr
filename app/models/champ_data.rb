@@ -147,15 +147,18 @@ class ChampData < ApplicationRecord
     data&.dig("prefilled_from_france_connect_information") == true
   end
 
-  def child?
-    row_id.present? && !is_type?(TypeDeChamp.type_champs.fetch(:repetition))
+  # Sections and repetitions above this champ in the tree, outermost first.
+  # Ancestors inside the repetition share the champ's row_id.
+  def ancestors
+    type_de_champ.ancestors(dossier.revision).map { project_ancestor(it) }
   end
 
-  def parent
-    return nil if row_id.blank?
+  def parent = project_ancestor(type_de_champ.parent(dossier.revision))
+  def section = project_ancestor(type_de_champ.section(dossier.revision))
+  def repetition = project_ancestor(type_de_champ.repetition(dossier.revision))
 
-    dossier.revision.repetition_of(type_de_champ)
-  end
+  def in_repetition? = repetition.present?
+  def in_section? = section.present?
 
   def row?
     row_id.present? && is_type?(TypeDeChamp.type_champs.fetch(:repetition))
@@ -357,6 +360,14 @@ class ChampData < ApplicationRecord
   end
 
   private
+
+  # Ancestors inside the champ's repetition are projected on its row.
+  def project_ancestor(ancestor_type_de_champ)
+    return if ancestor_type_de_champ.nil?
+
+    row = ancestor_type_de_champ.in_repetition?(dossier.revision) ? row_id : nil
+    dossier.project_champ(ancestor_type_de_champ, row_id: row)
+  end
 
   def nullify_blank_json_columns
     [:value_json, :data].each do |column|

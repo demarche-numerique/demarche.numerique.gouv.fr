@@ -10,8 +10,8 @@ class ChampPresentations::RepetitionPresentation < ChampPresentations::BasePrese
   end
 
   def to_s
-    ([libelle] + rows.map do |champs|
-      champs.map do |champ|
+    ([libelle] + rows.map do |row|
+      row.flat_champs.map do |champ|
         "#{champ.libelle} : #{champ}"
       end.join("\n")
     end).join("\n\n")
@@ -21,13 +21,13 @@ class ChampPresentations::RepetitionPresentation < ChampPresentations::BasePrese
     {
       type: 'orderedList',
       attrs: { class: 'tdc-repetition' },
-      content: rows.map do |champs|
+      content: rows.map do |row|
         {
           type: 'listItem',
           content: [
             {
               type: 'descriptionList',
-              content: champs.map do |champ|
+              content: row.flat_champs.map do |champ|
                 [
                   {
                     type: 'descriptionTerm',
