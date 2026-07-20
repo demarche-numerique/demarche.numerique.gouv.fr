@@ -10,7 +10,7 @@ class TypesDeChamp::NoEmptyBlockValidator < ActiveModel::EachValidator
   private
 
   def validate_block_not_empty(procedure, attribute, parent)
-    if procedure.draft_revision.children_of(parent).empty?
+    if parent.flat_children(procedure.draft_revision).empty?
       procedure.errors.add(
         attribute,
         procedure.errors.generate_message(attribute, :empty_repetition, { value: parent.libelle }),

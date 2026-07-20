@@ -15,7 +15,7 @@
         <%= render partial: 'fields/types_de_champ_collection_field/type_champ_line', locals: { type_de_champ: type_de_champ } %>
 
         <% if type_de_champ.type_champ == 'repetition' %>
-          <% revision.children_of(type_de_champ).each do |sub_champ| %>
+          <% type_de_champ.flat_children(revision).each do |sub_champ| %>
             <%= render partial: 'fields/types_de_champ_collection_field/type_champ_line', locals: { type_de_champ: sub_champ } %>
           <% end %>
         <% end %>

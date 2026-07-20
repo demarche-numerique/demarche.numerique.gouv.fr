@@ -13,7 +13,7 @@ class TypesDeChamp::NoEmptyDropDownValidator < ActiveModel::EachValidator
   def with_children(procedure, type_de_champ)
     return [type_de_champ] unless type_de_champ.repetition?
 
-    [type_de_champ, *procedure.draft_revision.children_of(type_de_champ)]
+    [type_de_champ, *type_de_champ.flat_children(procedure.draft_revision)]
   end
 
   def validate_drop_down_not_empty(procedure, attribute, drop_down)

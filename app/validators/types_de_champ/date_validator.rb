@@ -3,7 +3,7 @@
 class TypesDeChamp::DateValidator < ActiveModel::EachValidator
   def validate_each(procedure, attribute, types_de_champ)
     date_tdcs = types_de_champ
-      .flat_map { it.repetition? ? procedure.draft_revision.children_of(it) : [it] }
+      .flat_map { it.repetition? ? it.flat_children(procedure.draft_revision) : [it] }
       .filter { |tdc| tdc.date? || tdc.datetime? }
     date_tdcs.each do |tdc|
       validate_range(procedure, attribute, tdc) if tdc.range_date?

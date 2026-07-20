@@ -6,7 +6,7 @@ class TypesDeChamp::HeaderSectionConsistencyValidator < ActiveModel::EachValidat
 
     root_tdcs_errors = errors_for_header_sections_order(procedure, attribute, public_tdcs)
     repetition_tdcs_errors = public_tdcs
-      .filter_map { _1.repetition? ? procedure.draft_revision.children_of(_1) : nil }
+      .filter_map { it.repetition? ? it.flat_children(procedure.draft_revision) : nil }
       .map { errors_for_header_sections_order(procedure, attribute, _1) }
 
     repetition_tdcs_errors + root_tdcs_errors

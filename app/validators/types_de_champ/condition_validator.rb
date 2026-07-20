@@ -32,6 +32,6 @@ class TypesDeChamp::ConditionValidator < ActiveModel::EachValidator
   # condition is validated too
   def tdcs_with_children(procedure, tdcs)
     tdcs.to_a
-      .flat_map { _1.repetition? ? [_1, *procedure.draft_revision.children_of(_1)] : _1 }
+      .flat_map { it.repetition? ? [it, *it.flat_children(procedure.draft_revision)] : it }
   end
 end

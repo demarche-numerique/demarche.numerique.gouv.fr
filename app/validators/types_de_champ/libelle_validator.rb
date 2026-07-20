@@ -7,7 +7,7 @@ class TypesDeChamp::LibelleValidator < ActiveModel::EachValidator
 
       next unless tdc.repetition?
 
-      procedure.draft_revision.children_of(tdc).each do |child|
+      tdc.flat_children(procedure.draft_revision).each do |child|
         validate_libelle(procedure, attribute, child, parent: tdc)
       end
     end

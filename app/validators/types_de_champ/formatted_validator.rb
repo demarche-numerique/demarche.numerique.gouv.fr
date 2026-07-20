@@ -3,7 +3,7 @@
 class TypesDeChamp::FormattedValidator < ActiveModel::EachValidator
   def validate_each(procedure, attribute, types_de_champ)
     types_de_champ.to_a
-      .flat_map { _1.repetition? ? procedure.draft_revision.children_of(_1) : _1 }
+      .flat_map { it.repetition? ? it.flat_children(procedure.draft_revision) : it }
       .filter(&:formatted?)
       .each do |tdc|
         validate_characters_rules(procedure, attribute, tdc)

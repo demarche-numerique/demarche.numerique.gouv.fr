@@ -82,7 +82,7 @@ module DossierChampsConcern
   def project_rows_for(type_de_champ)
     return [] if !type_de_champ.repetition?
 
-    children = revision.children_of(type_de_champ)
+    children = type_de_champ.flat_children(revision)
     row_ids = repetition_row_ids(type_de_champ)
 
     row_ids.map do |row_id|
@@ -113,7 +113,7 @@ module DossierChampsConcern
     revision
       .types_de_champ
       .filter { _1.stable_id.in?(stable_ids) }
-      .filter { !_1.child?(revision) }
+      .filter { !it.in_repetition?(revision) }
       .map { _1.repetition? ? project_champ(_1) : champ_for_update(_1, updated_by: nil) }
   end
 
@@ -463,7 +463,7 @@ module DossierChampsConcern
   end
 
   def check_valid_row_id_on_read?(type_de_champ, row_id)
-    if type_de_champ.child?(revision)
+    if type_de_champ.in_repetition?(revision)
       if row_id.blank?
         raise "type_de_champ #{type_de_champ.stable_id} in revision #{revision_id} must have a row_id because it is part of a repetition"
       end

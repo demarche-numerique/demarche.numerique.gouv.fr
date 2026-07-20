@@ -39,7 +39,7 @@ describe DossierSectionsConcern do
     context "header_section in a repetition are not auto-numbered" do
       let(:types_de_champ_public) { [{ type: :header_section, libelle: public_libelle }, { type: :repetition, mandatory: true, children: [{ type: :header_section, libelle: "Enfant" }, { type: :text }] }] }
 
-      let(:public_type_de_champ) { dossier.revision.children_of(dossier.root_types_de_champ_public[1]).first }
+      let(:public_type_de_champ) { dossier.root_types_de_champ_public[1].flat_children(dossier.revision).first }
 
       context "with parent section having headers with number" do
         let(:public_libelle) { "1. Infos" }
