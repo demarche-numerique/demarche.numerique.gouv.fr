@@ -17,6 +17,18 @@ module TreeableConcern
   #   are added to the current_tree
   # given a root_depth at 0, we build a full tree
   # given a root_depth > 0, we build a partial tree (aka, a repetition)
+  # Top level of the tree: types de champ outside any section and the sections
+  # heading them (the content of a section collapses into its header).
+  def to_tree_roots(types_de_champ:)
+    tree_roots(to_tree(types_de_champ:))
+  end
+
+  # Top level of the given tree nodes: leaves stay as-is, each section subtree
+  # ([header, *children]) collapses into its header.
+  def tree_roots(nodes)
+    nodes.map { it.is_a?(Array) ? it.first : it }
+  end
+
   def to_tree(types_de_champ:)
     rooted_tree = []
     walk = Array.new(MAX_DEPTH)
@@ -26,10 +38,14 @@ module TreeableConcern
     types_de_champ.each do |type_de_champ|
       if type_de_champ.header_section?
         new_tree = [type_de_champ]
-        parent_level = type_de_champ.header_section_level_value - 1
+        level = type_de_champ.header_section_level_value
+        parent_level = level - 1
         parent_level -= 1 while parent_level > 0 && walk[parent_level].nil?
         walk[parent_level].push(new_tree)
-        current_tree = walk[type_de_champ.header_section_level_value] = new_tree
+        current_tree = walk[level] = new_tree
+        # deeper slots belong to a previous sibling's subtree; a later section
+        # with a level gap must not attach to them
+        walk.fill(nil, level + 1)
       else
         current_tree.push(type_de_champ)
       end

@@ -2,6 +2,7 @@
 
 class ProcedureRevision < ApplicationRecord
   include Logic
+  include TreeableConcern
   include RevisionDescribableToLLMConcern
   self.implicit_order_column = :created_at
   belongs_to :administrateur, optional: true
@@ -16,6 +17,57 @@ class ProcedureRevision < ApplicationRecord
   def types_de_champ = revision_types_de_champ.map(&:type_de_champ)
   def root_types_de_champ_public = revision_types_de_champ_public.map(&:type_de_champ)
   def root_types_de_champ_private = revision_types_de_champ_private.map(&:type_de_champ)
+
+  # Entry points to navigate types de champ as a tree: first-level types de champ
+  # and top-level header sections (their content collapses into the header;
+  # navigate deeper with TypeDeChampBase#children).
+  def types_de_champ_public = to_tree_roots(types_de_champ: root_types_de_champ_public)
+  def types_de_champ_private = to_tree_roots(types_de_champ: root_types_de_champ_private)
+
+  # Sections and repetitions above the given type de champ, outermost first.
+  # Tree navigation answers from a one-pass memoized index; any mutation of the
+  # revision's coordinates or types de champ must call reset_tree_cache.
+  def ancestors_of(type_de_champ)
+    tree_cache[:ancestors][type_de_champ.stable_id] || []
+  end
+
+  # Direct children of a header section or repetition in the tree: its own
+  # types de champ and the immediate subsections (but not their content).
+  def children_of(type_de_champ)
+    tree_cache[:children][type_de_champ.stable_id] || []
+  end
+
+  # The repetition the given type de champ belongs to, nil outside a repetition.
+  def repetition_of(type_de_champ)
+    ancestors_of(type_de_champ).find(&:repetition?)
+  end
+
+  # The innermost section the given type de champ belongs to, nil outside sections.
+  def section_of(type_de_champ)
+    ancestors_of(type_de_champ).reverse.find(&:header_section?)
+  end
+
+  # The direct parent of the given type de champ in the tree, nil at the root.
+  def parent_of(type_de_champ)
+    ancestors_of(type_de_champ).last
+  end
+
+  # Every type de champ below a header section or repetition, in document
+  # order, including nested section headers and their content. A nested
+  # repetition marks a boundary: it is included, its row content is not.
+  # Internal to the tree API: use TypeDeChamp#flat_children.
+  def flat_children_of(type_de_champ)
+    tree_cache[:flat_children][type_de_champ.stable_id] || []
+  end
+
+  def reset_tree_cache
+    @tree_cache = nil
+  end
+
+  def reload(...)
+    reset_tree_cache
+    super
+  end
 
   has_one :draft_procedure, -> { with_discarded }, class_name: 'Procedure', foreign_key: :draft_revision_id, dependent: :nullify, inverse_of: :draft_revision
   has_one :published_procedure, -> { with_discarded }, class_name: 'Procedure', foreign_key: :published_revision_id, dependent: :nullify, inverse_of: :published_revision
@@ -66,6 +118,7 @@ class ProcedureRevision < ApplicationRecord
       end
 
       revision_types_de_champ.reset
+      reset_tree_cache
     end
 
     type_de_champ
@@ -75,12 +128,13 @@ class ProcedureRevision < ApplicationRecord
 
   def find_and_ensure_exclusive_use(stable_id)
     coordinate, tdc = coordinate_and_tdc(stable_id)
+    tdc = replace_type_de_champ_by_clone(coordinate) if !tdc.only_present_on_draft?
 
-    if tdc.only_present_on_draft?
-      tdc
-    else
-      replace_type_de_champ_by_clone(coordinate)
-    end
+    # the caller is about to mutate the type de champ (possibly its position in
+    # the tree, e.g. a header section level); reload lazily so the tree reflects it
+    revision_types_de_champ.reset
+    reset_tree_cache
+    tdc
   end
 
   def move_type_de_champ(stable_id, position)
@@ -97,6 +151,7 @@ class ProcedureRevision < ApplicationRecord
     end
 
     revision_types_de_champ.reset
+    reset_tree_cache
     coordinate.reload
     coordinate
   end
@@ -116,6 +171,7 @@ class ProcedureRevision < ApplicationRecord
     end
 
     revision_types_de_champ.reset
+    reset_tree_cache
     coordinate.reload
     coordinate
   end
@@ -126,7 +182,7 @@ class ProcedureRevision < ApplicationRecord
     # in case of replay
     return nil if coordinate.nil?
 
-    children = children_of(tdc).to_a
+    children = coordinate.types_de_champ.to_a
 
     transaction do
       coordinate.destroy
@@ -138,6 +194,7 @@ class ProcedureRevision < ApplicationRecord
     end
 
     revision_types_de_champ.reset
+    reset_tree_cache
     coordinate
   end
 
@@ -198,17 +255,6 @@ class ProcedureRevision < ApplicationRecord
       types_de_champ.filter(&:private?)
     else
       types_de_champ
-    end
-  end
-
-  def children_of(tdc)
-    coordinate_for(tdc).types_de_champ
-  end
-
-  def parent_of(tdc)
-    coordinate = coordinate_for(tdc)
-    if coordinate&.child?
-      revision_types_de_champ.find { _1.id == coordinate.parent_id }&.type_de_champ
     end
   end
 
@@ -332,6 +378,40 @@ class ProcedureRevision < ApplicationRecord
   end
 
   private
+
+  # One-pass indexes over the whole tree (public and private), keyed by
+  # stable_id: ancestors (outermost first), direct children in the tree and
+  # flat children. index_tree returns the flattened nodes, so each section
+  # accumulates its own content; a repetition contributes only itself to its
+  # parent, its row content being indexed separately.
+  def tree_cache
+    @tree_cache ||= begin
+      cache = { ancestors: {}, children: {}, flat_children: {} }
+      index_tree = lambda do |nodes, ancestors|
+        nodes.flat_map do |node|
+          if node.is_a?(Array)
+            header, *children = node
+            cache[:ancestors][header.stable_id] = ancestors
+            cache[:children][header.stable_id] = tree_roots(children)
+            flat_children = index_tree.call(children, [*ancestors, header])
+            cache[:flat_children][header.stable_id] = flat_children
+            [header, *flat_children]
+          else
+            cache[:ancestors][node.stable_id] = ancestors
+            if node.repetition?
+              subtree = to_tree(types_de_champ: coordinate_for(node)&.types_de_champ || [])
+              cache[:children][node.stable_id] = tree_roots(subtree)
+              cache[:flat_children][node.stable_id] = index_tree.call(subtree, [*ancestors, node])
+            end
+            [node]
+          end
+        end
+      end
+      index_tree.call(to_tree(types_de_champ: root_types_de_champ_public), [])
+      index_tree.call(to_tree(types_de_champ: root_types_de_champ_private), [])
+      cache
+    end
+  end
 
   def compute_estimated_fill_duration
     root_types_de_champ_public.sum do |tdc|

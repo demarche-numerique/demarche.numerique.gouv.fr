@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class TypesDeChamp::RepetitionTypeDeChamp < TypesDeChamp::TypeDeChampBase
+  # Direct children of the repetition: its own types de champ and top-level sections
+  # (but not the content of those sections).
+  def children(revision) = revision.children_of(@type_de_champ)
+
+  def flat_children(revision) = revision.flat_children_of(@type_de_champ)
+
   def champ_value_for_tag(champ, path = :value)
     return nil if path != :value
     ChampPresentations::RepetitionPresentation.new(libelle, champ.dossier.project_rows_for(@type_de_champ))
@@ -9,7 +15,7 @@ class TypesDeChamp::RepetitionTypeDeChamp < TypesDeChamp::TypeDeChampBase
   def estimated_fill_duration(revision)
     estimated_rows_in_repetition = 2.5
 
-    children = revision.children_of(@type_de_champ)
+    children = flat_children(revision)
 
     estimated_row_duration = children.map { _1.estimated_fill_duration(revision) }.sum
     estimated_children_read_duration = children.map(&:estimated_read_duration).sum

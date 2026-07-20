@@ -14,6 +14,26 @@ class TypesDeChamp::TypeDeChampBase
     @type_de_champ = type_de_champ
   end
 
+  # Types de champ are navigable as a tree: header sections and repetitions
+  # have children, other types are leaves.
+  def children(revision) = []
+
+  # Every type de champ below, in document order, including nested section
+  # headers and their content (but not the row content of nested repetitions).
+  def flat_children(revision) = []
+
+  # Sections and repetitions above this type de champ in the tree, outermost
+  # first.
+  def ancestors(revision) = revision.ancestors_of(@type_de_champ)
+
+  def parent(revision) = revision.parent_of(@type_de_champ)
+  def section(revision) = revision.section_of(@type_de_champ)
+  def repetition(revision) = revision.repetition_of(@type_de_champ)
+
+  # Nesting depth of a header section in the tree (1 for a top-level section).
+  # Unlike the stored header_section_level, skipped levels are collapsed.
+  def level(revision) = ancestors(revision).count(&:header_section?) + 1
+
   def tags_for_template
     type_de_champ = @type_de_champ
     conditional = type_de_champ.condition.present?

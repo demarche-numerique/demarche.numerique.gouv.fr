@@ -194,7 +194,7 @@ class TypeDeChamp < ApplicationRecord
 
   belongs_to :referentiel, optional: true, inverse_of: :types_de_champ
 
-  delegate :estimated_fill_duration, :estimated_read_duration, :tags_for_template, :libelles_for_export, :libelle_for_export, :primary_options, :secondary_options, :columns, :column, :canonical_column, :personnalisation_column, :info_columns, to: :dynamic_type
+  delegate :estimated_fill_duration, :estimated_read_duration, :tags_for_template, :libelles_for_export, :libelle_for_export, :primary_options, :secondary_options, :columns, :column, :canonical_column, :personnalisation_column, :info_columns, :children, :flat_children, :ancestors, :parent, :section, :repetition, :level, to: :dynamic_type
 
   class WithIndifferentAccess
     def self.load(options)
@@ -266,9 +266,8 @@ class TypeDeChamp < ApplicationRecord
   end
 
   def libelle_with_parent(revision)
-    if child?(revision)
-      parent_type_de_champ = revision.parent_of(self)
-      "#{parent_type_de_champ.libelle} - #{libelle}"
+    if in_repetition?(revision)
+      "#{repetition(revision).libelle} - #{libelle}"
     else
       libelle
     end
@@ -480,8 +479,12 @@ class TypeDeChamp < ApplicationRecord
 
   def api_particulier? = type_champ.in?(API_PART_FC_TDC)
 
-  def child?(revision)
-    revision.coordinate_for(self)&.child?
+  def in_repetition?(revision)
+    repetition(revision).present?
+  end
+
+  def in_section?(revision)
+    section(revision).present?
   end
 
   def filename_for_attachement(attachment_sym)
@@ -592,24 +595,6 @@ class TypeDeChamp < ApplicationRecord
       I18n.t('activerecord.errors.type_de_champ.attributes.header_section_level.gap_error', level: current_level - previous_level - 1)
     else
       nil
-    end
-  end
-
-  def current_section_level(revision)
-    tdcs = private? ? revision.root_types_de_champ_private.to_a : revision.root_types_de_champ_public.to_a
-
-    previous_section_level(tdcs.take(tdcs.find_index(self)))
-  end
-
-  def level_for_revision(revision)
-    parent_type_de_champ = revision.parent_of(self)
-
-    if parent_type_de_champ.present?
-      header_section_level_value.to_i + parent_type_de_champ.current_section_level(revision)
-    elsif header_section_level_value
-      header_section_level_value.to_i
-    else
-      0
     end
   end
 
