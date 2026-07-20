@@ -7,7 +7,7 @@
 <div class="fr-container">
   <h1>
     <%= t('administrateurs.procedures.clone.title') %>
-    <%= "« #{@procedure.libelle} » (N° #{@procedure.id})" %>
+    « <%= @procedure.libelle %> » (N° <%= @procedure.id %>)
   </h1>
 
   <%= form_with(model: @procedure, url: admin_procedure_clone_path(@procedure, from_new_from_existing: params[:from_new_from_existing]), method: :post) do |f| %>
@@ -47,7 +47,7 @@
           </div>
         <%- end -%>
 
-        <%- if @procedure.active_revision.root_types_de_champ_public.present? -%>
+        <%- if @procedure.active_revision.types_de_champ_public.present? -%>
           <div class="fr-fieldset__element">
             <div class="fr-checkbox-group">
               <%= fco.check_box 'champs', checked: true %>
@@ -56,7 +56,7 @@
                 <%= t('administrateurs.procedures.clone.types_de_champ_public') %>
 
                 <div class="fr-hint-text">
-                  <%= t('administrateurs.procedures.clone.types_de_champ_count', count: @procedure.active_revision.root_types_de_champ_public.count) %>
+                  <%= t('administrateurs.procedures.clone.types_de_champ_count', count: @procedure.active_revision.flat_types_de_champ_public.count) %>
                 </div>
               <% end %>
             </div>

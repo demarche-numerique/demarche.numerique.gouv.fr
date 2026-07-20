@@ -97,7 +97,7 @@ class Procedure < ApplicationRecord
           .where(revision_types_de_champ: { revision_id: draft_revision_id, parent_id: nil })
           .order(:private, :position)
       else
-        draft_revision.children_of(parent)
+        parent.flat_children(draft_revision)
       end
     else
       cache_key = ['all_revisions_types_de_champ', published_revision, parent, with_header_section, ActiveRecord::VERSION::STRING].compact

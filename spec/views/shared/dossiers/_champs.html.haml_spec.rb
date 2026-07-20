@@ -6,7 +6,7 @@ describe 'shared/dossiers/champs', type: :view do
   let(:profile) { "instructeur" }
   let(:procedure) { create(:procedure, types_de_champ_public:) }
   let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-  let(:types_de_champ) { dossier.revision.root_types_de_champ_public }
+  let(:types_de_champ) { dossier.root_types_de_champ_public }
 
   before do
     view.extend DossierHelper

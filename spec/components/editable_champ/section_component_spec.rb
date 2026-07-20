@@ -5,7 +5,7 @@ describe EditableChamp::SectionComponent, type: :component do
   let(:procedure) { create(:procedure, types_de_champ_public:) }
   let(:types_de_champ_public) { [] }
   let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-  let(:types_de_champ) { dossier.revision.root_types_de_champ_public }
+  let(:types_de_champ) { dossier.root_types_de_champ_public }
   let(:component) { described_class.new(types_de_champ:, dossier:) }
   before { render_inline(component).to_html }
 

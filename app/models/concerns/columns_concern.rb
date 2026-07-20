@@ -132,8 +132,7 @@ module ColumnsConcern
   end
 
   def personnalisable_columns
-    current_revision = published_revision || active_revision
-    current_revision.root_types_de_champ_public
+    active_revision.root_types_de_champ_public
       .filter { _1.type_champ.in?(TypeDeChamp::PERSONNALISABLE_TYPE_CHAMPS) }
       .filter { _1.condition.nil? }
       .filter_map { _1.personnalisation_column(procedure_id: id) }
@@ -141,8 +140,7 @@ module ColumnsConcern
   end
 
   def personnalisable_columns_by_section
-    current_revision = published_revision || active_revision
-    tdcs_public = current_revision.root_types_de_champ_public
+    tdcs_public = active_revision.root_types_de_champ_public
     auto_numbering = tdcs_public.none? { _1.header_section? && _1.libelle.match?(/^\d/) }
 
     personnalisable_by_stable_id = personnalisable_columns.index_by(&:stable_id)
@@ -155,7 +153,7 @@ module ColumnsConcern
       if type_de_champ.header_section?
         label = type_de_champ.libelle
         if auto_numbering
-          level = type_de_champ.level_for_revision(current_revision)
+          level = type_de_champ.level(active_revision)
           counters = counters.first(level)
           counters[level - 1] = (counters[level - 1] || 0) + 1
           counters.map! { it || 1 }

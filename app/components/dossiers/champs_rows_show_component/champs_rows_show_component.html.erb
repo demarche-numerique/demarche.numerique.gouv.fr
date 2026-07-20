@@ -1,6 +1,6 @@
 <% each_champ do |champ| %>
   <% if champ.repetition? %>
-    <% types_de_champ = champ.dossier.revision.children_of(champ.type_de_champ) %>
+    <% types_de_champ = champ.type_de_champ.flat_children(champ.dossier.revision) %>
     <% champ.row_ids.each.with_index(1) do |row_id, row_number| %>
       <div class="fr-background-alt--grey fr-p-2w fr-my-3w fr-ml-2w champ-repetition">
         <%= tag.send(repetition_heading_tag, t(".repetition_heading", libelle: champ.libelle, row_number: row_number), class: "fr-h6 fr-text--bold") %>

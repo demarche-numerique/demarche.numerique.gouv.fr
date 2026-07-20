@@ -10,7 +10,6 @@ class ProcedureRevisionChange
     def label = @type_de_champ.libelle
     def stable_id = @type_de_champ.stable_id
     def private? = @type_de_champ.private?
-    def child? = @type_de_champ.child?
 
     def to_h = { op:, stable_id:, label:, private: private? }
   end

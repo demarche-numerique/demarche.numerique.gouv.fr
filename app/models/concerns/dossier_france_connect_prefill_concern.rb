@@ -32,7 +32,7 @@ module DossierFranceConnectPrefillConcern
     fc_info = user.france_connect_informations.first
     return if fc_info.birthdate.blank?
 
-    revision.root_types_de_champ_public.each do |tdc|
+    root_types_de_champ_public.each do |tdc|
       next if !tdc.date?
       next if !tdc.prefill_with_france_connect_information?
 
@@ -50,7 +50,7 @@ module DossierFranceConnectPrefillConcern
   def reset_champs_from_france_connect(updated_by:)
     return if !for_tiers?
 
-    revision.root_types_de_champ_public.filter(&:prefill_with_france_connect_information?).each do |tdc|
+    root_types_de_champ_public.filter(&:prefill_with_france_connect_information?).each do |tdc|
       champ = champ_for_update(tdc, updated_by:)
       next if !champ.prefilled_from_france_connect_information?
 

@@ -416,7 +416,7 @@ describe DossierRebaseConcern do
       end
       let!(:dossier) { create(:dossier, procedure: procedure) }
 
-      def champ_libelles = dossier.revision.root_types_de_champ_public.map(&:libelle)
+      def champ_libelles = dossier.root_types_de_champ_public.map(&:libelle)
 
       context 'when a tdc is added in the middle' do
         before do
@@ -478,7 +478,7 @@ describe DossierRebaseConcern do
           tdc_to_update.update(type_champ: :integer_number)
         end
 
-        it { expect { subject }.to change { dossier.revision.root_types_de_champ_public.map(&:type_champ) }.from(['text', 'text']).to(['integer_number', 'text']) }
+        it { expect { subject }.to change { dossier.root_types_de_champ_public.map(&:type_champ) }.from(['text', 'text']).to(['integer_number', 'text']) }
         it { expect { subject }.to change { first_champ.class }.from(Champs::TextChamp).to(Champs::IntegerNumberChamp) }
         it { expect { subject }.not_to change { first_champ.to_s } }
         it { expect { subject }.to change { first_champ.external_id }.from('123').to(nil) }
@@ -511,7 +511,7 @@ describe DossierRebaseConcern do
 
       context 'when a child tdc is added in the middle' do
         before do
-          last_child = procedure.draft_revision.children_of(repetition).last
+          last_child = repetition.flat_children(procedure.draft_revision).last
           added_tdc = procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'c3', parent_stable_id: repetition.stable_id, after_stable_id: last_child)
           procedure.draft_revision.move_type_de_champ(added_tdc.stable_id, 1)
           # procedure.publish_revision!(procedure.administrateurs.first)

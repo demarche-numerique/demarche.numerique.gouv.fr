@@ -3,7 +3,7 @@
 RSpec.describe ChampValidateConcern do
   let(:procedure) { create(:procedure, :published, types_de_champ_public:) }
   let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-  let(:type_de_champ) { dossier.revision.root_types_de_champ_public.first }
+  let(:type_de_champ) { dossier.root_types_de_champ_public.first }
   let(:public_id) { type_de_champ.public_id(nil) }
   let(:types_de_champ_public) { [{ type: :email }] }
 
@@ -136,7 +136,7 @@ RSpec.describe ChampValidateConcern do
 
   context 'when in a row' do
     let(:types_de_champ_public) { [{ type: :repetition, children: [{ type: :email }], mandatory: true }] }
-    let(:type_de_champ_in_repetition) { dossier.revision.children_of(type_de_champ).first }
+    let(:type_de_champ_in_repetition) { type_de_champ.flat_children(dossier.revision).first }
     let(:row_id) { dossier.repetition_row_ids(type_de_champ).first }
     let(:public_id) { type_de_champ_in_repetition.public_id(row_id) }
 

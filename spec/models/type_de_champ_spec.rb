@@ -14,7 +14,7 @@ describe TypeDeChamp do
       let(:dossier) { dossiers.tous_champs }
 
       it do
-        dossier.revision.root_types_de_champ_public.each do |type_de_champ|
+        dossier.root_types_de_champ_public.each do |type_de_champ|
           champ = dossier.project_champ(type_de_champ)
           expect(type_de_champ.dynamic_type.class.name).to match(/^TypesDeChamp::/)
           expect(champ.class.name).to match(/^Champs::/)

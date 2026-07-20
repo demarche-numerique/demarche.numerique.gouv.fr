@@ -171,7 +171,15 @@ class Dossier < ApplicationRecord
   has_one :attestation_acceptation_template, through: :procedure
   has_one :attestation_refus_template, through: :procedure
 
-  delegate :root_types_de_champ_public, :root_types_de_champ_private, :has_france_connect_type_de_champ?, to: :revision
+  delegate :types_de_champ,
+    :types_de_champ_public,
+    :types_de_champ_private,
+    :root_types_de_champ_public,
+    :root_types_de_champ_private,
+    :flat_types_de_champ_public,
+    :flat_types_de_champ_private,
+    :has_france_connect_type_de_champ?,
+    to: :revision
 
   belongs_to :transfer, class_name: 'DossierTransfer', foreign_key: 'dossier_transfer_id', optional: true, inverse_of: :dossiers
   has_many :transfer_logs, class_name: 'DossierTransferLog', dependent: :destroy
@@ -1092,7 +1100,7 @@ class Dossier < ApplicationRecord
   end
 
   def has_annotations?
-    revision.root_types_de_champ_private.present?
+    types_de_champ_private.present?
   end
 
   def hide_info_with_accuse_lecture?
@@ -1155,8 +1163,8 @@ class Dossier < ApplicationRecord
   end
 
   def build_default_champs
-    build_default_champs_for(revision.root_types_de_champ_public) if !champ_data.any?(&:public?)
-    build_default_champs_for(revision.root_types_de_champ_private) if !champ_data.any?(&:private?)
+    build_default_champs_for(flat_types_de_champ_public) if !champ_data.any?(&:public?)
+    build_default_champs_for(flat_types_de_champ_private) if !champ_data.any?(&:private?)
   end
 
   def build_default_champs_for(types_de_champ)
@@ -1165,7 +1173,7 @@ class Dossier < ApplicationRecord
         if type_de_champ.private? || type_de_champ.mandatory?
           type_de_champ.build_champ(dossier: self, row_id: ULID.generate)
         end
-      else
+      elsif !type_de_champ.in_repetition?(revision)
         type_de_champ.build_champ(dossier: self, row_id: nil)
       end
     end

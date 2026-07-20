@@ -8,9 +8,9 @@ class ViewableChamp::HeaderSectionsSummaryComponent < ApplicationComponent
     @is_private = is_private
 
     @header_sections = if is_private
-      dossier.revision.root_types_de_champ_private
+      dossier.root_types_de_champ_private
     else
-      dossier.revision.root_types_de_champ_public
+      dossier.root_types_de_champ_public
     end.filter(&:header_section?)
   end
 

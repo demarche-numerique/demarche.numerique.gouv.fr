@@ -17,8 +17,8 @@ RSpec.describe ViewableChamp::HeaderSectionsSummaryComponent, type: :component d
   let(:procedure) { build(:procedure, types_de_champ_public: types_de_champ, types_de_champ_private: types_de_champ) }
   let(:dossier) { build(:dossier, procedure:) }
   let(:component) { described_class.new(dossier:, is_private:) }
-  let(:types_de_champ_public) { dossier.revision.root_types_de_champ_public.filter(&:header_section?) }
-  let(:types_de_champ_private) { dossier.revision.root_types_de_champ_private.filter(&:header_section?) }
+  let(:types_de_champ_public) { dossier.root_types_de_champ_public.filter(&:header_section?) }
+  let(:types_de_champ_private) { dossier.root_types_de_champ_private.filter(&:header_section?) }
 
   context 'public' do
     it do

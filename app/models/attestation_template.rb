@@ -105,7 +105,7 @@ class AttestationTemplate < ApplicationRecord
   end
 
   def unspecified_champs_for_dossier(dossier)
-    types_de_champ_by_tag_id = dossier.revision.types_de_champ.index_by { "tdc#{_1.stable_id}" }
+    types_de_champ_by_tag_id = dossier.types_de_champ.index_by { "tdc#{_1.stable_id}" }
 
     used_tags.filter_map do |used_tag|
       corresponding_type_de_champ = types_de_champ_by_tag_id[used_tag]

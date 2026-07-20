@@ -18,11 +18,11 @@ module DossierChampsConcern
   end
 
   def root_champs_public
-    @root_champs_public ||= revision.root_types_de_champ_public.map { project_champ(_1) }
+    @root_champs_public ||= root_types_de_champ_public.map { project_champ(it) }
   end
 
   def root_champs_private
-    @root_champs_private ||= revision.root_types_de_champ_private.map { project_champ(_1) }
+    @root_champs_private ||= root_types_de_champ_private.map { project_champ(it) }
   end
 
   def champs
@@ -30,27 +30,11 @@ module DossierChampsConcern
   end
 
   def filled_champs_public
-    @filled_champs_public ||= root_champs_public.flat_map do |champ|
-      if champ.repetition?
-        champ.rows.flatten.filter { _1.persisted? && _1.fillable? }
-      elsif champ.persisted? && champ.fillable?
-        champ
-      else
-        []
-      end
-    end
+    @filled_champs_public ||= flat_champs_public.filter { it.persisted? && it.fillable? }
   end
 
   def filled_champs_private
-    @filled_champs_private ||= root_champs_private.flat_map do |champ|
-      if champ.repetition?
-        champ.rows.flatten.filter { _1.persisted? && _1.fillable? }
-      elsif champ.persisted? && champ.fillable?
-        champ
-      else
-        []
-      end
-    end
+    @filled_champs_private ||= flat_champs_private.filter { it.persisted? && it.fillable? }
   end
 
   def filled_champs
@@ -58,10 +42,9 @@ module DossierChampsConcern
   end
 
   def flat_champs_public
-    @flat_champs_public ||= revision.root_types_de_champ_public.flat_map do |type_de_champ|
-      champ = project_champ(type_de_champ)
-      if type_de_champ.repetition?
-        [champ] + project_rows_for(type_de_champ).flatten
+    @flat_champs_public ||= root_champs_public.flat_map do |champ|
+      if champ.repetition?
+        [champ] + champ.rows.flatten
       else
         champ
       end
@@ -69,10 +52,9 @@ module DossierChampsConcern
   end
 
   def flat_champs_private
-    @flat_champs_private ||= revision.root_types_de_champ_private.flat_map do |type_de_champ|
-      champ = project_champ(type_de_champ)
-      if type_de_champ.repetition?
-        [champ] + project_rows_for(type_de_champ).flatten
+    @flat_champs_private ||= root_champs_private.flat_map do |champ|
+      if champ.repetition?
+        [champ] + champ.rows.flatten
       else
         champ
       end
@@ -82,7 +64,7 @@ module DossierChampsConcern
   def project_rows_for(type_de_champ)
     return [] if !type_de_champ.repetition?
 
-    children = revision.children_of(type_de_champ)
+    children = type_de_champ.flat_children(revision)
     row_ids = repetition_row_ids(type_de_champ)
 
     row_ids.map do |row_id|
@@ -93,28 +75,19 @@ module DossierChampsConcern
   def find_type_de_champ_by_stable_id(stable_id, scope = nil)
     case scope
     when :public
-      types_de_champ_public_all
+      flat_types_de_champ_public
     when :private
-      types_de_champ_private_all
+      flat_types_de_champ_private
     else
-      revision.types_de_champ
-    end.find { _1.stable_id == stable_id.to_i }
-  end
-
-  def types_de_champ_public_all
-    revision.types_de_champ.filter(&:public?)
-  end
-
-  def types_de_champ_private_all
-    revision.types_de_champ.filter(&:private?)
+      types_de_champ
+    end.find { it.stable_id == stable_id.to_i }
   end
 
   def champs_for_prefill(stable_ids)
-    revision
-      .types_de_champ
-      .filter { _1.stable_id.in?(stable_ids) }
-      .filter { !_1.child?(revision) }
-      .map { _1.repetition? ? project_champ(_1) : champ_for_update(_1, updated_by: nil) }
+    types_de_champ
+      .filter { it.stable_id.in?(stable_ids) }
+      .filter { !it.in_repetition?(revision) }
+      .map { it.repetition? ? project_champ(it) : champ_for_update(it, updated_by: nil) }
   end
 
   def champ_value_for_tag(type_de_champ, path = :value)
@@ -229,7 +202,7 @@ module DossierChampsConcern
   end
 
   def set_default_value_for_france_connect_champs(user_email)
-    revision.root_types_de_champ_public.filter(&:france_connect?).each do |type_de_champ|
+    root_types_de_champ_public.filter(&:france_connect?).each do |type_de_champ|
       existing_champ_data_on_main_stream = champ_data_on_main_stream.any? { _1.stable_id == type_de_champ.stable_id }
 
       next if existing_champ_data_on_main_stream && en_construction?
@@ -321,7 +294,7 @@ module DossierChampsConcern
     reset_champs_cache
 
     with_main_stream do
-      prefill_and_enqueue_fetch_external_data_jobs(buffer_champ_data.filter(&:referentiel?), types_de_champ_private_all)
+      prefill_and_enqueue_fetch_external_data_jobs(buffer_champ_data.filter(&:referentiel?), flat_types_de_champ_private)
     end
 
     history_stream
@@ -356,7 +329,7 @@ module DossierChampsConcern
   end
 
   def revision_stable_ids
-    @revision_stable_ids ||= revision.types_de_champ.map(&:stable_id).to_set
+    @revision_stable_ids ||= types_de_champ.map(&:stable_id).to_set
   end
 
   def champ_data_in_revision
@@ -465,7 +438,7 @@ module DossierChampsConcern
   end
 
   def check_valid_row_id_on_read?(type_de_champ, row_id)
-    if type_de_champ.child?(revision)
+    if type_de_champ.in_repetition?(revision)
       if row_id.blank?
         raise "type_de_champ #{type_de_champ.stable_id} in revision #{revision_id} must have a row_id because it is part of a repetition"
       end
