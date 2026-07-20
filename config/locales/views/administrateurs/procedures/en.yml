@@ -9,7 +9,8 @@ en:
         description_html: This directory allows you to view information about processes and administrators for all zones.<br>Search for a process to see its zone and administrators, or search for an administrator to see the processes they manage.
       administrateurs:
         title: Administrators
-        search_label: Search administrators by email address
+        search_label: Search administrators
+        search_hint: "By email address (e.g., email@mail.com) or domain (e.g., @culture.gouv.fr)"
         since_date: "Since %{date}"
         admin_count:
           one: "%{count} administrator"

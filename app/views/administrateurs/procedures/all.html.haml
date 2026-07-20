@@ -1,7 +1,7 @@
 - content_for(:title, "Démarches")
 - content_for :results do
   .main-filter-header.fr-mb-3w
-    = form_with(url: all_admin_procedures_path, method: :get, data: { turbo_frame: 'procedures' }, html: { role: 'search', class: 'search' }) do |f|
+    = form_with(url: all_admin_procedures_path, method: :get, data: { turbo_frame: 'procedures' }, html: { role: 'search', class: 'search width-66' }) do |f|
       - @filter.zone_ids&.each do |zone_id|
         = hidden_field_tag 'zone_ids[]', zone_id, id: "zone_#{zone_id}"
       - @filter.statuses&.each do |status|
@@ -11,7 +11,9 @@
       = hidden_field_tag 'from_publication_date', @filter.from_publication_date if @filter.from_publication_date.present?
 
       = f.label :libelle, 'Rechercher des démarches par libellé', class: 'fr-label'
-      = f.search_field 'libelle', size: 30, class: 'fr-input', data: { turbo_force: :server }
+      .fr-input-wrap.fr-input-wrap--addon
+        = f.search_field 'libelle', class: 'fr-input', data: { turbo_force: :server }
+        = f.button 'Rechercher', class: 'fr-btn fr-icon-search-line'
 
   - if @filter.libelle
     .selected-query.fr-mb-2w

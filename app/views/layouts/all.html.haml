@@ -39,7 +39,9 @@
                   .fr-checkbox-group
                     = f.label :email, 'Adresse électronique ou domaine', class: 'fr-label'
                     %span.fr-hint-text.fr-mb-1w Exemple: adresse@mail.com ou @culture.gouv.fr
-                    = f.search_field :email, class: 'fr-input', data: { no_autosubmit: 'input', turbo_force: :server }
+                    .fr-input-wrap.fr-input-wrap--addon
+                      = f.search_field :email, class: 'fr-input', data: { no_autosubmit: 'input', turbo_force: :server }
+                      = f.button 'Rechercher', class: 'fr-btn fr-icon-search-line'
 
 
               = render Dsfr::AccordionComponent.new(expanded: @filter.tags.present?) do |c|
@@ -97,7 +99,11 @@
                   - if @filter.service_siret.present?
                     %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w 1
                 %div
-                  = f.text_field :service_siret, placeholder: 'Indiquez le SIRET', class: 'fr-input'
+                  = f.label :service_siret, 'Numéro SIRET', class: 'fr-label'
+                  %span.fr-hint-text.fr-mb-1w Exemple : 500 001 234 56789
+                  .fr-input-wrap.fr-input-wrap--addon
+                    = f.text_field :service_siret, class: 'fr-input', data: { no_autosubmit: 'input', turbo_force: :server }
+                    = f.button 'Rechercher', class: 'fr-btn fr-icon-search-line'
 
 
               = render Dsfr::AccordionComponent.new(expanded: @filter.service_departement.present?) do |c|
@@ -131,8 +137,9 @@
                     %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w 1
                 .fr-input-group
                   = f.label 'from_publication_date', 'Depuis', class: 'fr-label'
-                  .fr-input-wrap.fr-fi-calendar-line
-                    = f.date_field 'from_publication_date', value: @filter.from_publication_date, class: 'fr-input'
+                  .fr-input-wrap.fr-input-wrap--addon
+                    = f.date_field 'from_publication_date', value: @filter.from_publication_date, class: 'fr-input', data: { no_autosubmit: 'input change blur', turbo_force: :server }
+                    = f.button 'Rechercher', class: 'fr-btn fr-icon-search-line'
 
 
               = render Dsfr::AccordionComponent.new(expanded: @filter.statuses.present?) do |c|

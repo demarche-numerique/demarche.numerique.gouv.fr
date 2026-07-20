@@ -2,7 +2,7 @@
 
 <% content_for :results do %>
   <div class="main-filter-header fr-mb-3w">
-    <%= form_with(url: administrateurs_admin_procedures_path, method: :get, data: { turbo_frame: 'procedures' }, html: { role: 'search' }) do |f| %>
+    <%= form_with(url: administrateurs_admin_procedures_path, method: :get, class: 'width-66', data: { turbo_frame: 'procedures' }, html: { role: 'search' }) do |f| %>
       <% @filter.zone_ids&.each do |zone_id| %>
         <%= hidden_field_tag 'zone_ids[]', zone_id, id: "zone_#{zone_id}" %>
       <% end %>
@@ -14,7 +14,11 @@
      <%= hidden_field_tag 'from_publication_date', @filter.from_publication_date if @filter.from_publication_date.present? %>
 
      <%= f.label 'email', t('.search_label'), class: 'fr-label' %>
-      <%= f.search_field 'email', size: 40, class: 'fr-input', data: { turbo_force: :server } %>
+     <span class="fr-hint-text fr-mb-1w"><%= t('.search_hint') %></span>
+     <div class="fr-input-wrap fr-input-wrap--addon">
+       <%= f.search_field 'email', size: 40, class: 'fr-input', data: { turbo_force: :server } %>
+       <%= f.button 'Rechercher', class: 'fr-btn fr-icon-search-line' %>
+     </div>
     <% end %>
   </div>
 
