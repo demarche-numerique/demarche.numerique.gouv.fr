@@ -62,7 +62,7 @@ class Champs::ReferentielChamp < ChampData
       dossier.root_champs_private
     end.filter do |champ|
       if champ.repetition?
-        champ.type_de_champ.flat_children(dossier.revision).any? { _1.stable_id.in?(elligible_stable_ids) }
+        champ.type_de_champ.flat_children(dossier.revision).any? { it.stable_id.in?(elligible_stable_ids) }
       else
         champ.stable_id.in?(elligible_stable_ids)
       end
