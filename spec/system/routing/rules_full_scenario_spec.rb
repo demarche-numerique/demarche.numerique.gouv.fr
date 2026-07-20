@@ -1,18 +1,33 @@
 # frozen_string_literal: true
 
 describe 'The routing with rules', js: true do
-  let(:password) { SECURE_PASSWORD }
+  let_it_be(:password) { SECURE_PASSWORD }
 
-  let(:procedure) do
-    create(:procedure, :with_service, :for_individual, :with_zone, public_type_de_champs: [
-      { type: :text, libelle: 'un premier champ text', mandatory: false },
-      { type: :drop_down_list, libelle: 'Spécialité', options: ["littéraire", "scientifique", "artistique"], mandatory: false },
-    ])
+  let_it_be(:administrateur) { administrateurs.default }
+
+  # The procedure stays a factory: its "Spécialité" drop_down options are the
+  # subject of the test (they become the routing groups), so no seeded
+  # procedure fits. Service and zone are only required to publish — reuse the
+  # seeded ones instead of rebuilding them.
+  # refind: both scenarios mutate the procedure (publication creates a new
+  # draft_revision), so each example must start from a freshly loaded record
+  # rather than the object left behind by its sibling.
+  let_it_be(:procedure, refind: true) do
+    create(:procedure, :for_individual,
+      administrateurs: [administrateur],
+      service: services.default,
+      zones: [zones.default],
+      public_type_de_champs: [
+        { type: :text, libelle: 'un premier champ text', mandatory: false },
+        { type: :drop_down_list, libelle: 'Spécialité', options: ["littéraire", "scientifique", "artistique"], mandatory: false },
+      ])
   end
-  let(:administrateur) { create(:administrateur, procedures: [procedure]) }
-  let(:scientifique_user) { create(:user, password: password) }
-  let(:litteraire_user) { create(:user, password: password) }
-  let(:artistique_user) { create(:user, password: password) }
+
+  # Not users.usager: `user_send_dossier` asserts on `user.dossiers.first`, and
+  # the seeded usager already owns five dossiers on procedures.individual.
+  let_it_be(:scientifique_user) { create(:user, password: password) }
+  let_it_be(:litteraire_user) { create(:user, password: password) }
+  let_it_be(:artistique_user) { create(:user, password: password) }
 
   before do
     procedure.defaut_groupe_instructeur.instructeurs << administrateur.instructeur
@@ -144,7 +159,7 @@ describe 'The routing with rules', js: true do
     expect(procedure.groupe_instructeurs.count).to eq(4)
 
     # add contact_information to all groupes instructeur
-    procedure.groupe_instructeurs.each { |gi| gi.update!(contact_information: create(:contact_information, nom: "Contact #{gi.label}")) }
+    procedure.groupe_instructeurs.reload.each { |gi| gi.update!(contact_information: create(:contact_information, nom: "Contact #{gi.label}")) }
 
     # publish
     publish_procedure(procedure)
