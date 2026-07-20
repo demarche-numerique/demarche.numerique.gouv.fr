@@ -1,11 +1,10 @@
-#summary{ class: header_sections.present? ? 'fr-col-12 fr-col-md-3' : '' }
-  - if header_sections.present?
+#summary{ class: sections.present? ? 'fr-col-12 fr-col-md-3' : '' }
+  - if sections.present?
     %nav.fr-sidemenu.sticky.fr-hidden.fr-unhidden-md{ "aria-labelledby" => "fr-summary-title", role: "navigation" }
       %ul.fr-sidemenu__list
-        - header_sections.each do |header|
+        - sections.each do |type_de_champ, level|
           %li.fr-sidemenu__item
-            - level = header.type_de_champ.header_section_level_value.to_i
             - if level == 1
-              %a.fr-sidemenu__link{ href: href(header) }= header.libelle
+              %a.fr-sidemenu__link{ href: href(type_de_champ) }= type_de_champ.libelle
             - else
-              %a.fr-sidemenu__link{ class: level >= 3 ? 'custom-link-grey': '', href: href(header) }= "-- #{header.libelle}"
+              %a.fr-sidemenu__link{ class: level >= 3 ? 'custom-link-grey': '', href: href(type_de_champ) }= "-- #{type_de_champ.libelle}"
