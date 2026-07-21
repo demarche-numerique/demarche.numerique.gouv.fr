@@ -58,6 +58,16 @@ describe Procedure do
       end
   end
 
+  describe 'has_many :user_procedure_presentations' do
+    it 'sont détruits avec la procédure' do
+      procedure = create(:procedure)
+      user = create(:user)
+      UserProcedurePresentation.create!(user:, procedure:)
+
+      expect { procedure.destroy }.to change(UserProcedurePresentation, :count).by(-1)
+    end
+  end
+
   describe 'mail templates' do
     subject { create(:procedure) }
 

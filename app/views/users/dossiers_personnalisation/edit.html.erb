@@ -1,0 +1,49 @@
+<% content_for(:title, t('.titre')) %>
+
+<div class="fr-container">
+  <h1><%= t('.titre') %></h1>
+
+  <details class="fr-accordion">
+    <summary class="fr-accordion__btn">
+      <%= t('.pourquoi_personnaliser.titre') %>
+    </summary>
+
+    <div class="fr-collapse">
+      <%== t('.pourquoi_personnaliser.contenu_html') %>
+    </div>
+  </details>
+
+  <%= form_with url: users_dossiers_personnalisation_path,
+                method: :patch,
+                data: { controller: 'personnalisation-footer' } do |f| %>
+    <h2 class="fr-h6 fr-mt-3w"><%= t('.informations_supplementaires') %></h2>
+
+    <% @procedures_presentations.each do |procedure, presentation| %>
+      <%= render Users::DossiersPersonnalisation::DemarcheCardComponent.new(
+            procedure: procedure,
+            presentation: presentation
+          ) %>
+    <% end %>
+
+    <div class="fixed-footer">
+      <div class="fr-container">
+        <ul class="fr-btns-group fr-btns-group--inline-md">
+          <li>
+            <%= link_to t('.annuler'), dossiers_path, class: 'fr-btn fr-btn--secondary' %>
+          </li>
+
+          <li>
+            <button
+              type="submit"
+              class="fr-btn"
+              disabled
+              data-personnalisation-footer-target="submit"
+            >
+              <%= t('.enregistrer') %>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+</div>

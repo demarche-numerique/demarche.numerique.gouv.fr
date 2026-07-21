@@ -559,6 +559,7 @@ en:
         dossier_menu: "File number %{id}"
         index:
           dossiers: "My files"
+          personnaliser_la_liste: "Customise the files list"
           administration_no_longer_processes: "The administration will no longer process your request."
           metas:
             title: "My files"
@@ -1000,6 +1001,26 @@ en:
       closed_at: closed at
       auto_archive_on: will close at
   users:
+    dossiers_personnalisation:
+      edit:
+        titre: "Customise the files list"
+        combobox_placeholder: "Select one or more fields"
+        affichage_non_personnalise: "No personalised display for the files of this procedure."
+        informations_supplementaires: "Additional information to display in the files view of the list:"
+        pourquoi_personnaliser:
+          titre: "Why customise the list?"
+          contenu_html: |
+            <p>For each file, the following information is always displayed:</p>
+            <ul>
+              <li>File number</li>
+              <li>Applicant identity</li>
+              <li>Submission date (or creation / modification)</li>
+            </ul>
+            <p>To help you distinguish files in the list (especially if you submit several files for the same procedure), you can define one or more pieces of additional information to display, taken from the data filled in the form fields.</p>
+        annuler: "Cancel"
+        enregistrer: "Save"
+      flash:
+        success: "The files list has been customised."
     dossiers:
       test_procedure: "This file is submitted on a test procedure. Any modification of the procedure by the administrator (addition of a field, publication of the procedure, etc.) will result in the removal of the file."
       no_access_html: "You do not have access to this file.<br>Check that you were signed in as <b>%{email}</b> to fill this procedure.<br>If not, please log off"

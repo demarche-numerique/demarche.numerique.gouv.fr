@@ -569,6 +569,7 @@ fr:
         dossier_menu: "Dossier numéro %{id}"
         index:
           dossiers: "Mes dossiers"
+          personnaliser_la_liste: "Personnaliser la liste des dossiers"
           administration_no_longer_processes: "L’administration ne traitera plus votre demande."
           metas:
             title: "Mes dossiers"
@@ -1007,6 +1008,26 @@ fr:
       one: Démarche
       other: Démarches
   users:
+    dossiers_personnalisation:
+      edit:
+        titre: "Personnaliser la liste des dossiers"
+        combobox_placeholder: "Sélectionnez un ou plusieurs champs"
+        affichage_non_personnalise: "Affichage non personnalisé pour les dossiers de cette démarche."
+        informations_supplementaires: "Informations supplémentaires à afficher dans la vue des dossiers de la liste :"
+        pourquoi_personnaliser:
+          titre: "Pourquoi personnaliser la liste ?"
+          contenu_html: |
+            <p>Pour chaque dossier, les informations suivantes sont systématiquement affichées :</p>
+            <ul>
+              <li>N° de dossier</li>
+              <li>Identité du demandeur</li>
+              <li>Date de dépôt (ou de création / modification)</li>
+            </ul>
+            <p>Afin de faciliter la distinction des dossiers entre eux dans la liste (notamment si vous déposez plusieurs dossiers sur une même démarche), vous pouvez définir une ou plusieurs informations complémentaires à afficher, issues des données renseignées dans les champs du formulaire.</p>
+        annuler: "Annuler"
+        enregistrer: "Enregistrer"
+      flash:
+        success: "La liste des dossiers a bien été personnalisée."
     dossiers:
       test_procedure: "Ce dossier est déposé sur une démarche en test. Toute modification de la démarche par l’administrateur (ajout d’un champ, publication de la démarche...) entraînera sa suppression."
       no_access_html: "Vous n’avez pas accès à ce dossier.<br>Vérifiez que votre adresse électronique de connexion <b>%{email}</b> est bien celle utilisée pour remplir cette démarche.<br> Si ce n’est pas le cas, déconnectez-vous"

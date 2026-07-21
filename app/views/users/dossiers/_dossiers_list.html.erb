@@ -121,6 +121,13 @@
           <% end %>
         </div>
       <% end %>
+
+      <% dossier.displayed_columns_for(current_user).each do |_column, value| %>
+        <p class="fr-mb-0 fr-text--sm">
+          <span class="fr-icon-info-line fr-icon--sm" aria-hidden="true"></span>
+          <%= value %>
+        </p>
+      <% end %>
     </div>
   <% end %>
   <%= paginate dossiers, views_prefix: 'shared' %>

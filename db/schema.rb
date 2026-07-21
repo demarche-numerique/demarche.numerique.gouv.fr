@@ -1424,6 +1424,17 @@ ActiveRecord::Schema[8.0].define(version: 2026_07_13_000000) do
     t.index ["stable_id"], name: "index_types_de_champ_on_stable_id"
   end
 
+  create_table "user_procedure_presentations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.jsonb "displayed_columns", default: [], null: false, array: true
+    t.bigint "procedure_id", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["procedure_id"], name: "index_user_procedure_presentations_on_procedure_id"
+    t.index ["user_id", "procedure_id"], name: "index_user_procedure_presentations_on_user_id_and_procedure_id", unique: true
+    t.index ["user_id"], name: "index_user_procedure_presentations_on_user_id"
+  end
+
   create_table "users", id: :serial, force: :cascade do |t|
     t.datetime "announces_seen_at"
     t.datetime "blocked_at"
@@ -1585,6 +1596,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_07_13_000000) do
   add_foreign_key "traitements", "procedure_revisions", column: "revision_id"
   add_foreign_key "trusted_device_tokens", "instructeurs"
   add_foreign_key "types_de_champ", "referentiels"
+  add_foreign_key "user_procedure_presentations", "procedures"
+  add_foreign_key "user_procedure_presentations", "users"
   add_foreign_key "users", "users", column: "requested_merge_into_id"
   add_foreign_key "without_continuation_mails", "procedures"
   add_foreign_key "zone_labels", "zones"

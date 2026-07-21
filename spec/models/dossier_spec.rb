@@ -3084,6 +3084,36 @@ describe Dossier, type: :model do
     end
   end
 
+  describe '#displayed_columns_for' do
+    let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :text, libelle: 'Titre' }]) }
+    let(:user) { create(:user) }
+    let(:dossier) { create(:dossier, user:, procedure:) }
+    let(:type_de_champ) { procedure.active_revision.types_de_champ.first }
+    let(:column) { type_de_champ.columns(procedure:).first }
+
+    context 'sans personnalisation pour la procédure' do
+      it { expect(dossier.displayed_columns_for(user)).to eq([]) }
+    end
+
+    context 'avec une personnalisation' do
+      before do
+        UserProcedurePresentation.create!(user:, procedure:, displayed_columns: [column])
+        dossier.champs.find_by(stable_id: type_de_champ.stable_id).update!(value: 'Presse Océan')
+      end
+
+      it 'retourne la valeur formatée' do
+        result = dossier.displayed_columns_for(user)
+        expect(result.size).to eq(1)
+        expect(result.first.last).to eq('Presse Océan')
+      end
+
+      it 'ignore les valeurs blank' do
+        dossier.champs.find_by(stable_id: type_de_champ.stable_id).update!(value: '')
+        expect(dossier.displayed_columns_for(user)).to eq([])
+      end
+    end
+  end
+
   private
 
   def count_for_month(archivable_by_month, month)

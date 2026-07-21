@@ -205,6 +205,8 @@ class TypeDeChamp < ApplicationRecord
 
   attr_reader :dynamic_type
 
+  include TypesDeChamp::PersonnalisableParUsager
+
   scope :public_only, -> { where(private: false) }
   scope :private_only, -> { where(private: true) }
   scope :repetition, -> { where(type_champ: type_champs.fetch(:repetition)) }

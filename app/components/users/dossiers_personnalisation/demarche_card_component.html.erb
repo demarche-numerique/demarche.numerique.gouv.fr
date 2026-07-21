@@ -1,0 +1,13 @@
+<fieldset class="fr-fieldset personnalisation-card">
+  <legend class="fr-fieldset__legend"><%= procedure.libelle %></legend>
+
+  <react-fragment>
+    <%= render ReactComponent.new "ComboBox/MultiComboBox", **react_props %>
+  </react-fragment>
+
+  <% if empty? %>
+    <p class="fr-hint-text">
+      <%= t('users.dossiers_personnalisation.edit.affichage_non_personnalise') %>
+    </p>
+  <% end %>
+</fieldset>

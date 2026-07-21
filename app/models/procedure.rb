@@ -78,6 +78,7 @@ class Procedure < ApplicationRecord
 
   has_many :bulk_messages, dependent: :destroy
   has_many :labels, -> { order(:position, :id) }, dependent: :destroy, inverse_of: :procedure
+  has_many :user_procedure_presentations, dependent: :destroy
 
   has_many :instructeurs_procedures, dependent: :destroy
 
@@ -125,6 +126,14 @@ class Procedure < ApplicationRecord
 
   def types_de_champ_private_for_tags
     types_de_champ_for_tags.private_only
+  end
+
+  def types_de_champ_personnalisables(revision = active_revision)
+    TypeDeChamp
+      .personnalisables_par_usager
+      .joins(:revision_types_de_champ)
+      .where(revision_types_de_champ: { revision_id: revision.id, parent_id: nil })
+      .order('revision_types_de_champ.position', 'revision_types_de_champ.id')
   end
 
   def revisions_with_pending_dossiers

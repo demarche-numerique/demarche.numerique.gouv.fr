@@ -409,6 +409,12 @@ Rails.application.routes.draw do
       end
     end
 
+    resource :dossiers_personnalisation,
+             only: [:edit, :update],
+             path: 'dossiers/personnalisation',
+             as: :users_dossiers_personnalisation,
+             controller: 'dossiers_personnalisation'
+
     resource :feedback, only: [:create]
     get 'demarches' => 'demarches#index'
     get 'deleted_dossiers' => 'dossiers#deleted_dossiers'
