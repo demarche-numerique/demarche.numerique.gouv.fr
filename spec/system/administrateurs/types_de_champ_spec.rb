@@ -13,7 +13,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
   end
 
   context "procedure is for individual" do
-    let(:procedure) { create(:procedure, for_individual: true) }
+    let(:procedure) { create(:procedure, :for_individual) }
 
     scenario "warn about fields already present in identity steps" do
       expect(page).to have_content("Les informations suivantes concernant le demandeur sont déjà renseignées dans la première étape Identité du formulaire :")

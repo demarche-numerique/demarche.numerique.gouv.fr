@@ -133,10 +133,13 @@ module Types
     end
 
     def demandeur
-      if object.revision.procedure.for_individual
+      case object.revision.procedure.identity_kind
+      when 'individual'
         dataloader.with(Sources::Association, :individual).load(object)
-      else
+      when 'personne_morale'
         dataloader.with(Sources::Association, :etablissement).load(object)
+      when 'anonymous'
+        object.user
       end
     end
 

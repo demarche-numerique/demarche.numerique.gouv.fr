@@ -453,17 +453,20 @@ module Users
       dossier = Dossier.new(
         revision: params[:brouillon] ? procedure.draft_revision : procedure.active_revision,
         user: current_user,
-        state: Dossier.states.fetch(:brouillon)
+        state: Dossier.states.fetch(:brouillon),
+        autorisation_donnees: procedure.for_anonymous?
       )
       dossier.build_default_values
       dossier.save!
       DossierMailer.with(dossier:).notify_new_draft.deliver_later(wait: 1.hour)
       Ami::CreateNotificationService.call(dossier:)
 
-      if dossier.procedure.for_individual
+      if dossier.procedure.for_individual?
         redirect_to identite_dossier_path(dossier)
-      else
+      elsif dossier.procedure.for_personne_morale?
         redirect_to siret_dossier_path(id: dossier.id)
+      else
+        redirect_to dossier_path(dossier)
       end
     end
 
@@ -565,7 +568,7 @@ module Users
 
     def ensure_dossier_can_be_filled
       if !dossier.autorisation_donnees
-        if dossier.procedure.for_individual
+        if dossier.procedure.for_individual?
           flash.alert = t('users.dossiers.fill_identity.individual')
           redirect_to identite_dossier_path(dossier)
         else

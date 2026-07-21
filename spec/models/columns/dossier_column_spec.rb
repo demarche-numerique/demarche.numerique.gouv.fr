@@ -7,7 +7,7 @@ describe Columns::DossierColumn do
     context 'when dossier columns' do
       context 'when procedure for individual' do
         let(:individual) { create(:individual, nom: "Sim", prenom: "Paul", gender: 'M.') }
-        let(:procedure) { create(:procedure, for_individual: true, groupe_instructeurs: [groupe_instructeur]) }
+        let(:procedure) { create(:procedure, :for_individual, groupe_instructeurs: [groupe_instructeur]) }
         let(:dossier) { create(:dossier, individual:, mandataire_first_name: "Martin", mandataire_last_name: "Christophe", for_tiers: true) }
 
         it 'retrieve individual information' do
@@ -20,7 +20,7 @@ describe Columns::DossierColumn do
       end
 
       context 'when procedure for entreprise' do
-        let(:procedure) { create(:procedure, for_individual: false, groupe_instructeurs: [groupe_instructeur]) }
+        let(:procedure) { create(:procedure, :for_personne_morale, groupe_instructeurs: [groupe_instructeur]) }
         let(:dossier) { create(:dossier, :en_instruction, :with_entreprise, procedure:) }
 
         it 'retrieve entreprise information' do
@@ -74,7 +74,7 @@ describe Columns::DossierColumn do
       end
 
       context 'when procedure for entreprise which is also an association' do
-        let(:procedure) { create(:procedure, for_individual: false, groupe_instructeurs: [groupe_instructeur]) }
+        let(:procedure) { create(:procedure, :for_personne_morale, groupe_instructeurs: [groupe_instructeur]) }
         let(:etablissement) { create(:etablissement, :is_association) }
         let(:dossier) { create(:dossier, :en_instruction, procedure:, etablissement:) }
 
@@ -89,7 +89,7 @@ describe Columns::DossierColumn do
       end
 
       context 'when sva/svr enabled' do
-        let(:procedure) { create(:procedure, :sva, for_individual: true, groupe_instructeurs: [groupe_instructeur]) }
+        let(:procedure) { create(:procedure, :sva, :for_individual, groupe_instructeurs: [groupe_instructeur]) }
         let(:dossier) { create(:dossier, :en_instruction, procedure:) }
 
         it 'does not fail' do
@@ -101,7 +101,7 @@ describe Columns::DossierColumn do
 
   describe '#filtered_ids' do
     context 'for an integer etablissement column' do
-      let(:procedure) { create(:procedure, for_individual: false) }
+      let(:procedure) { create(:procedure, :for_personne_morale) }
       let!(:dossier) { create(:dossier, :en_instruction, :with_entreprise, procedure:) }
       let(:capital) { dossier.etablissement.entreprise_capital_social }
       let(:integer_column) { procedure.find_column(label: "Entreprise capital social") }
@@ -112,7 +112,7 @@ describe Columns::DossierColumn do
     end
 
     context 'for a dossier state column' do
-      let(:procedure) { create(:procedure, for_individual: false) }
+      let(:procedure) { create(:procedure, :for_personne_morale) }
       let!(:dossier_en_instruction) { create(:dossier, :en_instruction, procedure:) }
       let!(:dossier_en_construction) { create(:dossier, :en_construction, procedure:) }
       let!(:dossier_accepte) { create(:dossier, :accepte, procedure:) }
@@ -145,7 +145,7 @@ describe Columns::DossierColumn do
     end
 
     context 'for a datetime column' do
-      let(:procedure) { create(:procedure, for_individual: false) }
+      let(:procedure) { create(:procedure, :for_personne_morale) }
       let(:date_column) { procedure.find_column(label: "Date de création") }
 
       subject { date_column.filtered_ids(procedure.dossiers, search_terms) }

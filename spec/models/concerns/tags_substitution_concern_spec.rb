@@ -12,12 +12,13 @@ describe TagsSubstitutionConcern, type: :model do
     create(:procedure,
       :published,
       libelle: 'Une magnifique démarche',
-      types_de_champ_public: types_de_champ_public,
-      types_de_champ_private: types_de_champ_private,
-      for_individual: for_individual,
-      service: service,
+      types_de_champ_public:,
+      types_de_champ_private:,
+      identity_kind:,
+      service:,
       organisation: nil)
   end
+  let(:identity_kind) { for_individual ? 'individual' : 'personne_morale' }
 
   let(:template_concern) do
     (Class.new do

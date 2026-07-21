@@ -12,7 +12,7 @@ RSpec.describe LLM::TypesImprover do
   end
   let(:rule) { 'improve_types' }
   let(:usage) { double() }
-  let(:procedure) { double('procedure', libelle: 'Test Procedure', description: 'Test description', for_individual: false) }
+  let(:procedure) { double('procedure', libelle: 'Test Procedure', description: 'Test description', identity_kind: 'personne_morale') }
   let(:types_de_champ) do
     [
       double('tdc1', stable_id: 1, type_champ: 'text'),

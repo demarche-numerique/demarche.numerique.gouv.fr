@@ -4,8 +4,9 @@ require 'csv'
 
 describe ProcedureExportService do
   let(:instructeur) { create(:instructeur) }
-  let(:procedure) { create(:procedure, types_de_champ_public:, for_individual:, ask_birthday: true, instructeurs: [instructeur]) }
+  let(:procedure) { create(:procedure, types_de_champ_public:, identity_kind:, ask_birthday: true, instructeurs: [instructeur]) }
   let(:service) { ProcedureExportService.new(procedure, procedure.dossiers, instructeur, export_template) }
+  let(:identity_kind) { for_individual ? 'individual' : 'personne_morale' }
   let(:for_individual) { true }
   let(:types_de_champ_public) do
     [

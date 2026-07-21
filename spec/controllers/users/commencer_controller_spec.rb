@@ -247,6 +247,16 @@ describe Users::CommencerController, type: :controller do
           it_behaves_like 'a prefilled brouillon dossier creator'
         end
 
+        context 'when the procedure is anonymous' do
+          let(:published_procedure) { create(:procedure, :for_anonymous, :published, types_de_champ_public:, robots_indexable:) }
+          subject { get :commencer, params: { path: path, "champ_#{type_de_champ_text.to_typed_id}" => "blabla" } }
+
+          it 'authorizes data sharing on the prefilled dossier so it can be filled without an identity step' do
+            subject
+            expect(Dossier.last.autorisation_donnees).to be(true)
+          end
+        end
+
         context 'when the user is authenticated' do
           before { sign_in user }
 
@@ -524,7 +534,7 @@ describe Users::CommencerController, type: :controller do
     before { allow(ProConnectService).to receive(:enabled?).and_return(true) }
 
     context 'when procedure is moral and flag is enabled' do
-      let(:procedure) { create(:procedure, :published, for_individual: false) }
+      let(:procedure) { create(:procedure, :published, :for_personne_morale) }
 
       it 'shows both FranceConnect and ProConnect' do
         subject
@@ -535,7 +545,7 @@ describe Users::CommencerController, type: :controller do
     end
 
     context 'when procedure is moral but flag is disabled (legacy procedure)' do
-      let(:procedure) { create(:procedure, :published, for_individual: false) }
+      let(:procedure) { create(:procedure, :published, :for_personne_morale) }
 
       before { procedure.update_column(:pro_connect_for_moral_procedure, false) }
 

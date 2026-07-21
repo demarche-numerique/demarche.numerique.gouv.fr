@@ -1966,9 +1966,77 @@ describe Procedure do
     end
   end
 
+  describe '#identity_kind' do
+    let(:procedure) { build(:procedure) }
+
+    context 'when identity_kind is set explicitly' do
+      it 'returns individual' do
+        procedure.identity_kind = 'individual'
+        expect(procedure.identity_kind).to eq('individual')
+        expect(procedure.for_individual?).to be(true)
+        expect(procedure.for_personne_morale?).to be(false)
+      end
+
+      it 'returns personne_morale' do
+        procedure.identity_kind = 'personne_morale'
+        expect(procedure.identity_kind).to eq('personne_morale')
+        expect(procedure.for_individual?).to be(false)
+        expect(procedure.for_personne_morale?).to be(true)
+      end
+
+      it 'returns anonymous' do
+        procedure.identity_kind = 'anonymous'
+        expect(procedure.identity_kind).to eq('anonymous')
+        expect(procedure.anonymous?).to be(true)
+        expect(procedure.for_individual?).to be(false)
+        expect(procedure.for_personne_morale?).to be(false)
+      end
+    end
+
+    context 'with legacy data (identity_kind column is nil)' do
+      # Simulate a row created before the identity_kind column existed, where
+      # the deprecated for_individual boolean is the only source of truth.
+      before { procedure[:identity_kind] = nil }
+
+      context 'when for_individual is true' do
+        before { procedure.for_individual = true }
+
+        it 'falls back to individual' do
+          expect(procedure.identity_kind).to eq('individual')
+          expect(procedure.for_individual?).to be(true)
+          expect(procedure.for_personne_morale?).to be(false)
+        end
+      end
+
+      context 'when for_individual is false' do
+        before { procedure.for_individual = false }
+
+        it 'falls back to personne_morale' do
+          expect(procedure.identity_kind).to eq('personne_morale')
+          expect(procedure.for_individual?).to be(false)
+          expect(procedure.for_personne_morale?).to be(true)
+        end
+      end
+    end
+
+    context 'when assigning identity_kind over legacy data' do
+      before do
+        procedure[:identity_kind] = nil
+        procedure.for_individual = true
+        procedure.identity_kind = 'personne_morale'
+      end
+
+      it 'clears the deprecated for_individual flag so the new column wins' do
+        expect(procedure.for_individual).to be_nil
+        expect(procedure.identity_kind).to eq('personne_morale')
+        expect(procedure.for_personne_morale?).to be(true)
+      end
+    end
+  end
+
   describe 'enable_pro_connect_for_moral_procedure callback' do
     context 'when creating a procedure for moral persons' do
-      let(:procedure) { create(:procedure, for_individual: false) }
+      let(:procedure) { create(:procedure, :for_personne_morale) }
 
       it 'enables pro_connect_for_moral_procedure' do
         expect(procedure.pro_connect_for_moral_procedure).to be true
@@ -1976,7 +2044,7 @@ describe Procedure do
     end
 
     context 'when creating a procedure for individuals' do
-      let(:procedure) { create(:procedure, for_individual: true) }
+      let(:procedure) { create(:procedure, :for_individual) }
 
       it 'does not enable pro_connect_for_moral_procedure' do
         expect(procedure.pro_connect_for_moral_procedure).to be false
@@ -1984,7 +2052,7 @@ describe Procedure do
     end
 
     context 'when updating an existing moral procedure with the flag disabled' do
-      let(:procedure) { create(:procedure, for_individual: false) }
+      let(:procedure) { create(:procedure, :for_personne_morale) }
 
       before do
         procedure.update_column(:pro_connect_for_moral_procedure, false)

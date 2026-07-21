@@ -44,7 +44,7 @@ describe 'users/dossiers/identite', type: :view do
     end
 
     context 'when the demarche asks for the birthdate' do
-      let(:procedure) { create(:simple_procedure, for_individual: true, ask_birthday: true) }
+      let(:procedure) { create(:simple_procedure, ask_birthday: true) }
 
       it 'has a birthday field' do
         expect(rendered).to have_field('Date de naissance')

@@ -19,6 +19,7 @@ FactoryBot.define do
     sva_svr { {} }
     no_gender { true }
     api_entreprise_token { JWT.encode({ exp: 2.months.from_now.to_i }, nil, 'none') }
+    identity_kind { 'personne_morale' }
 
     groupe_instructeurs { [association(:groupe_instructeur, :default, procedure: instance, strategy: :build)] }
     administrateurs { [administrateur] }
@@ -93,7 +94,7 @@ FactoryBot.define do
     factory :simple_procedure do
       published
 
-      for_individual { true }
+      identity_kind { 'individual' }
       types_de_champ_public { [{ type: :text, libelle: 'Texte obligatoire', mandatory: true }] }
     end
 
@@ -134,7 +135,15 @@ FactoryBot.define do
     end
 
     trait :for_individual do
-      for_individual { true }
+      identity_kind { 'individual' }
+    end
+
+    trait :for_personne_morale do
+      identity_kind { 'personne_morale' }
+    end
+
+    trait :for_anonymous do
+      identity_kind { 'anonymous' }
     end
 
     trait :with_auto_archive do

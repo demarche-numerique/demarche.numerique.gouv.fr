@@ -128,7 +128,8 @@ module Users
       @prefilled_dossier = Dossier.new(
         revision: @revision,
         state: Dossier.states.fetch(:brouillon),
-        prefilled: true
+        prefilled: true,
+        autorisation_donnees: @procedure.for_anonymous?
       )
       @prefilled_dossier.build_default_values
       if @prefilled_dossier.save

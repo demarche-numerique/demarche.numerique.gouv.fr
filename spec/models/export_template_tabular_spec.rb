@@ -4,7 +4,8 @@ describe ExportTemplate do
   let(:groupe_instructeur) { create(:groupe_instructeur, procedure:) }
   let(:export_template) { build(:export_template, kind: 'csv', groupe_instructeur:) }
   let(:tabular_export_template) { build(:tabular_export_template, groupe_instructeur:) }
-  let(:procedure) { create(:procedure_with_dossiers, :published, types_de_champ_public:, for_individual:) }
+  let(:procedure) { create(:procedure_with_dossiers, :published, types_de_champ_public:, identity_kind:) }
+  let(:identity_kind) { for_individual ? 'individual' : 'personne_morale' }
   let(:for_individual) { true }
   let(:types_de_champ_public) do
     [

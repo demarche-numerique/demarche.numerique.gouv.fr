@@ -595,7 +595,7 @@ describe Users::DossiersController, type: :controller do
       end
 
       context 'when the dossier is for an personne physique' do
-        before { dossier.procedure.update(for_individual: true) }
+        before { dossier.procedure.update(identity_kind: 'individual') }
 
         it { is_expected.to redirect_to(identite_dossier_path(dossier)) }
       end
@@ -2414,6 +2414,17 @@ describe Users::DossiersController, type: :controller do
           context 'when procedure is for particulier' do
             let(:procedure) { create(:procedure, :published, :for_individual) }
             it { is_expected.to redirect_to identite_dossier_path(id: Dossier.last) }
+          end
+
+          context 'when procedure is anonymous' do
+            let(:procedure) { create(:procedure, :published, :for_anonymous) }
+
+            it { is_expected.to redirect_to dossier_path(id: Dossier.last) }
+
+            it 'authorizes data sharing without an identity step' do
+              subject
+              expect(Dossier.last.autorisation_donnees).to be(true)
+            end
           end
 
           it 'enqueues AMI notification for created draft' do

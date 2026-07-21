@@ -95,8 +95,8 @@
           %span.fr-hint-text Si votre démarche s’adresse indifféremment à une personne morale ou un particulier, choisissez l’option « Particuliers ». Vous pourrez ajouter un champ SIRET directement dans le formulaire.
         .fr-fieldset__element
           .fr-radio-group.fr-radio-rich
-            = f.radio_button :for_individual, true
-            = f.label :for_individual, value: true, class: "fr-label" do
+            = f.radio_button :identity_kind, 'individual'
+            = f.label :identity_kind, value: 'individual', class: "fr-label" do
               Ma démarche s’adresse à un particulier
               %span.fr-hint-text En choisissant cette option, l’usager devra renseigner son nom et prénom avant d’accéder au formulaire
             .fr-radio-rich__img
@@ -107,8 +107,8 @@
 
         .fr-fieldset__element
           .fr-radio-group.fr-radio-rich
-            = f.radio_button :for_individual, false
-            = f.label :for_individual, value: false, class: 'fr-label' do
+            = f.radio_button :identity_kind, 'personne_morale'
+            = f.label :identity_kind, value: 'personne_morale', class: 'fr-label' do
               Ma démarche s’adresse à une personne morale
               %span.fr-hint-text
                 En choisissant cette option, l’usager devra renseigner son n° SIRET.<br>Grâce à l’API Entreprise, les informations sur la personne morale (raison sociale, adresse du siège, etc.) seront automatiquement renseignées.
@@ -117,6 +117,18 @@
                 %use.fr-artwork-decorative{ href: image_path("pictograms/buildings/school.svg#artwork-decorative") }
                 %use.fr-artwork-minor{ href: image_path("pictograms/buildings/school.svg#artwork-minor") }
                 %use.fr-artwork-major{ href: image_path("pictograms/buildings/school.svg#artwork-major") }
+
+        .fr-fieldset__element
+          .fr-radio-group.fr-radio-rich
+            = f.radio_button :identity_kind, 'anonymous'
+            = f.label :identity_kind, value: 'anonymous', class: 'fr-label' do
+              Ma démarche est anonyme
+              %span.fr-hint-text En choisissant cette option, l’usager n’aura pas besoin de s’identifier pour accéder au formulaire
+            .fr-radio-rich__img
+              %svg.fr-artwork{ "aria-hidden": "true", viewBox: "0 0 80 80", width: "80px", height: "80px" }
+                %use.fr-artwork-decorative{ href: image_path("pictograms/system/padlock.svg#artwork-decorative") }
+                %use.fr-artwork-minor{ href: image_path("pictograms/system/padlock.svg#artwork-minor") }
+                %use.fr-artwork-major{ href: image_path("pictograms/system/padlock.svg#artwork-major") }
 
   .fr-fieldset__element
     = f.label :tags, 'Associez des thématiques à la démarche', class: 'fr-label'

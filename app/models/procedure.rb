@@ -81,6 +81,27 @@ class Procedure < ApplicationRecord
 
   has_many :instructeurs_procedures, dependent: :destroy
 
+  def for_anonymous?
+    identity_kind == 'anonymous'
+  end
+
+  def for_individual?
+    identity_kind == 'individual'
+  end
+
+  def for_personne_morale?
+    identity_kind == 'personne_morale'
+  end
+
+  def identity_kind
+    super || (for_individual ? 'individual' : 'personne_morale')
+  end
+
+  def identity_kind=(identity_kind)
+    self.for_individual = nil
+    super
+  end
+
   def active_dossier_submitted_message
     published_dossier_submitted_message || draft_dossier_submitted_message
   end
@@ -222,6 +243,12 @@ class Procedure < ApplicationRecord
     instructeurs: 'instructeurs',
     all: 'all',
   }, prefix: true
+
+  enum :identity_kind, {
+    individual: 'individual',
+    personne_morale: 'personne_morale',
+    anonymous: 'anonymous',
+  }
 
   before_create :enable_pro_connect_for_moral_procedure
 
@@ -844,7 +871,7 @@ class Procedure < ApplicationRecord
   end
 
   def enable_pro_connect_for_moral_procedure
-    self.pro_connect_for_moral_procedure = true if !for_individual?
+    self.pro_connect_for_moral_procedure = true if for_personne_morale?
   end
 
   def stable_ids_used_by_routing_rules

@@ -9,6 +9,8 @@ module Types
     definition_methods do
       def resolve_type(object, context)
         case object
+        when User
+          Types::AnonymousType
         when Individual
           Types::PersonnePhysiqueType
         when Etablissement

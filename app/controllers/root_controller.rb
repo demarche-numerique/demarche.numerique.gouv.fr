@@ -28,7 +28,7 @@ class RootController < ApplicationController
   def patron
     description = "Allez voir le super site : #{Current.application_base_url}"
 
-    procedure = Procedure.create_with(for_individual: true,
+    procedure = Procedure.create_with(identity_kind: 'individual',
         administrateurs: [current_administrateur],
         duree_conservation_dossiers_dans_ds: 1,
         max_duree_conservation_dossiers_dans_ds: Expired::DEFAULT_DOSSIER_RENTENTION_IN_MONTH,

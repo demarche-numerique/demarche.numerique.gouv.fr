@@ -82,11 +82,11 @@ namespace :stats do
     stats = []
 
     # 1. Démarches pour personnes physiques
-    individual_procedures = base_scope.where(for_individual: true)
+    individual_procedures = base_scope.where(identity_kind: 'individual')
     add_procedure_stat(stats, "Personnes physiques", individual_procedures, total_procedures, total_dossiers_all_procedures)
 
     # 2. Démarches pour personnes morales
-    organization_procedures = base_scope.where(for_individual: false)
+    organization_procedures = base_scope.where(identity_kind: 'personne_morale')
     add_procedure_stat(stats, "Personnes morales", organization_procedures, total_procedures, total_dossiers_all_procedures)
 
     # 3. Règles d’inéligibilité activées

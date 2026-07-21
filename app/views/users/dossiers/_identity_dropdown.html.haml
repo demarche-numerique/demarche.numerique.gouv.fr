@@ -8,7 +8,7 @@
 
     #identity.fr-collapse.fr-menu
       .fr-menu__list.dossier-show.edit-identity-content
-        - if dossier.procedure.for_individual
+        - if dossier.procedure.for_individual?
           %dl.fr-pl-0
             = render partial: "shared/dossiers/identite_individual", locals: { dossier: dossier }
 

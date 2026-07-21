@@ -32,8 +32,8 @@ module ColumnsConcern
     Current.procedure_columns[id] ||= begin
       columns = dossier_columns
       columns.concat(standard_columns)
-      columns.concat(individual_columns) if for_individual
-      columns.concat(moral_columns) if !for_individual
+      columns.concat(individual_columns) if for_individual?
+      columns.concat(moral_columns) if for_personne_morale?
       columns.concat(procedure_chorus_columns) if chorusable? && chorus_configuration.complete?
       columns.concat(types_de_champ_columns)
     end
@@ -41,8 +41,8 @@ module ColumnsConcern
 
   def usager_columns_for_export
     columns = [dossier_id_column, user_email_for_display_column, user_france_connected_column]
-    columns.concat(individual_columns) if for_individual
-    columns.concat(moral_columns) if !for_individual
+    columns.concat(individual_columns) if for_individual?
+    columns.concat(moral_columns) if for_personne_morale?
     columns.concat(procedure_chorus_columns) if chorusable? && chorus_configuration.complete?
 
     # ensure the columns exist in main list
@@ -116,7 +116,7 @@ module ColumnsConcern
     columns = []
     if for_individual?
       columns.concat(individual_columns)
-    else
+    elsif for_personne_morale?
       columns.concat(moral_columns)
     end
     columns.concat([email_column])

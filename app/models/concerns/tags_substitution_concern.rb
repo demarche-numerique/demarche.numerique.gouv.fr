@@ -251,8 +251,10 @@ module TagsSubstitutionConcern
   def identity_tags
     if procedure.for_individual?
       INDIVIDUAL_TAGS
-    else
+    elsif procedure.for_personne_morale?
       ENTREPRISE_TAGS
+    else
+      []
     end
   end
 

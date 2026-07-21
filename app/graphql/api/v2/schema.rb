@@ -90,6 +90,7 @@ class API::V2::Schema < GraphQL::Schema
     Types::PersonneMoraleType,
     Types::PersonneMoraleIncompleteType,
     Types::PersonnePhysiqueType,
+    Types::AnonymousType,
     Types::Champs::Descriptor::AddressChampDescriptorType,
     Types::Champs::Descriptor::AnnuaireEducationChampDescriptorType,
     Types::Champs::Descriptor::CarteChampDescriptorType,

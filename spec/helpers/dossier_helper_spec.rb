@@ -61,7 +61,7 @@ RSpec.describe DossierHelper, type: :helper do
     end
 
     context "when the dossier is for a company" do
-      let(:procedure) { create(:procedure, for_individual: false) }
+      let(:procedure) { create(:procedure, :for_personne_morale) }
 
       context "when the company is not provided" do
         let(:etablissement) { nil }
