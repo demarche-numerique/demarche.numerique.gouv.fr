@@ -38,7 +38,7 @@
                     = f.label :email, 'Adresse électronique ou domaine', class: 'fr-label'
                     %span.fr-hint-text.fr-mb-1w Exemple: adresse@mail.com ou @culture.gouv.fr
                     .fr-input-wrap.fr-input-wrap--addon
-                      = f.search_field :email, class: 'fr-input', data: { no_autosubmit: 'input', turbo_force: :server }
+                      = f.search_field :email, value: @filter.email, class: 'fr-input', data: { no_autosubmit: 'input', turbo_force: :server }
                       = f.button 'Rechercher', class: 'fr-btn fr-icon-search-line'
 
               - if action_name == 'all'
@@ -100,7 +100,7 @@
                   = f.label :service_siret, 'Numéro SIRET', class: 'fr-label'
                   %span.fr-hint-text.fr-mb-1w Exemple : 500 001 234 56789
                   .fr-input-wrap.fr-input-wrap--addon
-                    = f.text_field :service_siret, class: 'fr-input', data: { no_autosubmit: 'input', turbo_force: :server }
+                    = f.text_field :service_siret, value: @filter.service_siret, class: 'fr-input', data: { no_autosubmit: 'input', turbo_force: :server }
                     = f.button 'Rechercher', class: 'fr-btn fr-icon-search-line'
 
 

@@ -12,7 +12,7 @@
 
       = f.label :libelle, 'Rechercher des démarches par libellé', class: 'fr-label'
       .fr-input-wrap.fr-input-wrap--addon
-        = f.search_field 'libelle', class: 'fr-input', data: { turbo_force: :server }
+        = f.search_field 'libelle', value: @filter.libelle, class: 'fr-input', data: { turbo_force: :server }
         = f.button 'Rechercher', class: 'fr-btn fr-icon-search-line'
 
   .flex.flex-gap-1.wrap.align-center

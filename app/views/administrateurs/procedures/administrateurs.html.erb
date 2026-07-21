@@ -16,7 +16,7 @@
       <%= f.label 'email', t('.search_label'), class: 'fr-label' %>
       <span class="fr-hint-text fr-mb-1w"><%= t('.search_hint') %></span>
       <div class="fr-input-wrap fr-input-wrap--addon">
-        <%= f.search_field 'email', size: 40, class: 'fr-input', data: { turbo_force: :server } %>
+        <%= f.search_field 'email', value: @filter.email, size: 40, class: 'fr-input', data: { turbo_force: :server } %>
         <%= f.button 'Rechercher', class: 'fr-btn fr-icon-search-line' %>
       </div>
     <% end %>
