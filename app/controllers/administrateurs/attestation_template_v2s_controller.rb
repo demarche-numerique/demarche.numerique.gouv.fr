@@ -7,7 +7,6 @@ module Administrateurs
     before_action :preload_revisions, only: [:edit, :update, :create]
 
     def show
-      preview_dossier = @procedure.dossier_for_preview(current_user)
       attributes = @attestation_template.render_attributes_for(dossier: preview_dossier)
 
       @body = attributes.fetch(:body)
@@ -117,6 +116,15 @@ module Administrateurs
     end
 
     private
+
+    # The editor builds its tag list from `active_revision`, so the preview must use a dossier
+    # of that same revision: a dossier frozen on an older revision does not have the champs the
+    # inserted tags point to, and TagsSubstitutionConcern silently renders their libelle instead.
+    def preview_dossier
+      revision = @procedure.active_revision
+
+      @procedure.dossier_for_preview(current_user, revision:) || revision.dossier_for_preview(current_user)
+    end
 
     def retrieve_attestation_template
       attestation_kind = params[:attestation_kind]

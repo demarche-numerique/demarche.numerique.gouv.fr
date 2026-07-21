@@ -41,7 +41,8 @@ describe Administrateurs::AttestationTemplateV2sController, type: :controller do
       render_views
 
       context 'with preview dossier' do
-        let!(:dossier) { create(:dossier, :en_construction, procedure:, for_procedure_preview: true) }
+        # real preview dossiers are always brouillon, cf ProcedureRevision#dossier_for_preview
+        let!(:dossier) { create(:dossier, :brouillon, procedure:, for_procedure_preview: true) }
 
         it do
           is_expected.to include("Mon titre pour Ma démarche")
@@ -50,8 +51,42 @@ describe Administrateurs::AttestationTemplateV2sController, type: :controller do
       end
 
       context 'without preview dossier' do
-        it do
-          is_expected.to include("Mon titre pour --dossier_procedure_libelle--")
+        it 'falls back to a preview dossier built on the active revision' do
+          is_expected.to include("Mon titre pour Ma démarche")
+
+          preview = procedure.dossiers.for_procedure_preview.sole
+          expect(preview.revision).to eq(procedure.active_revision)
+        end
+      end
+
+      context 'when a champ was deleted and recreated, and a dossier stayed on the old revision' do
+        let(:procedure) do
+          create(:procedure, :published, administrateur: admin, attestation_acceptation_template:,
+                                         libelle: "Ma démarche", types_de_champ_public: [{ type: :text, libelle: 'Ville' }])
+        end
+        let!(:old_revision) { procedure.published_revision }
+        let!(:frozen_dossier) { create(:dossier, :accepte, procedure:, revision: old_revision) }
+
+        before do
+          old_tdc = procedure.draft_revision.root_types_de_champ_public.first
+          procedure.draft_revision.remove_type_de_champ(old_tdc.stable_id)
+          new_tdc = procedure.draft_revision.add_type_de_champ({ type_champ: :text, libelle: 'Ville' })
+          procedure.publish_revision!(admin)
+          procedure.reload
+
+          procedure.attestation_acceptation_template.update!(json_body: {
+            "type" => "doc",
+            "content" => [
+              {
+                "type" => "paragraph",
+                "content" => [{ "type" => "mention", "attrs" => { "id" => "tdc#{new_tdc.stable_id}", "label" => "Ville" } }],
+              },
+            ],
+          })
+        end
+
+        it 'never renders the champ libelle in place of its value' do
+          is_expected.not_to include("Ville")
         end
       end
 

@@ -78,8 +78,8 @@ module Administrateurs
 
     private
 
-    # The preview needs a sample dossier: prefer one on the draft revision, otherwise
-    # fall back to the active (published) revision so a published procedure still previews.
+    # The preview needs a sample dossier: prefer the best existing one, whatever its revision,
+    # and otherwise build a preview dossier on the active revision so there is always one.
     def preview_dossier
       @procedure.dossier_for_preview(current_user) || @procedure.active_revision.dossier_for_preview(current_user)
     end
