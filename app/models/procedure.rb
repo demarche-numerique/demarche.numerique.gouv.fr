@@ -773,9 +773,14 @@ class Procedure < ApplicationRecord
     lien_dpo.present? && lien_dpo.match?(/@/)
   end
 
-  def dossier_for_preview(user)
+  # When `revision` is given, candidates are restricted to that revision *before* ranking:
+  # a dossier frozen on an older revision (typically `accepte`, which `can_rebase?` excludes)
+  # would otherwise win and make the preview reference champs the dossier does not have.
+  def dossier_for_preview(user, revision: nil)
+    scope = revision.present? ? dossiers.where(revision_id: revision.id) : dossiers
+
     # Try to use a preview or a dossier filled by current user
-    dossiers.where(for_procedure_preview: true).or(dossiers.visible_by_administration)
+    scope.where(for_procedure_preview: true).or(scope.visible_by_administration)
       .order(Arel.sql("CASE WHEN user_id = #{user.id} THEN 1 ELSE 0 END DESC,
                        CASE WHEN state = 'accepte' THEN 1 ELSE 0 END DESC,
                        CASE WHEN state = 'brouillon' THEN 0 ELSE 1 END DESC,

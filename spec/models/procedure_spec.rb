@@ -2249,6 +2249,52 @@ describe Procedure do
     end
   end
 
+  describe '#dossier_for_preview' do
+    let(:administrateur) { create(:administrateur) }
+    let(:user) { create(:user) }
+    let(:procedure) { create(:procedure, :published, administrateurs: [administrateur], types_de_champ_public: [{ type: :text, libelle: 'Ville' }]) }
+    # `let!` so the revision is captured *before* the `before` hook publishes a new one
+    let!(:old_revision) { procedure.published_revision }
+
+    # publish a new revision so `old_revision` is no longer the active one
+    before do
+      procedure.draft_revision.add_type_de_champ({ type_champ: :text, libelle: 'Autre' })
+      procedure.publish_revision!(administrateur)
+      procedure.reload
+    end
+
+    context 'without a revision argument' do
+      let!(:old_dossier) { create(:dossier, :accepte, procedure:, revision: old_revision, user:) }
+
+      it 'keeps the historical behaviour and may return a dossier of another revision' do
+        expect(procedure.dossier_for_preview(user)).to eq(old_dossier)
+      end
+    end
+
+    context 'with a revision argument' do
+      let(:active_revision) { procedure.published_revision }
+
+      context 'when a dossier of another revision would otherwise win' do
+        let!(:old_accepte) { create(:dossier, :accepte, procedure:, revision: old_revision, user:) }
+        let!(:current_en_instruction) { create(:dossier, :en_instruction, procedure:, revision: active_revision, user:) }
+
+        it 'filters by revision before ranking, so the on-revision dossier wins' do
+          expect(procedure.dossier_for_preview(user, revision: active_revision)).to eq(current_en_instruction)
+        end
+      end
+
+      context 'when only dossiers of another revision exist' do
+        let!(:old_accepte) { create(:dossier, :accepte, procedure:, revision: old_revision, user:) }
+
+        it { expect(procedure.dossier_for_preview(user, revision: active_revision)).to be_nil }
+      end
+
+      context 'when the revision has no dossier at all' do
+        it { expect(procedure.dossier_for_preview(user, revision: active_revision)).to be_nil }
+      end
+    end
+  end
+
   private
 
   def create_dossier_with_pj_of_size(size, procedure)
