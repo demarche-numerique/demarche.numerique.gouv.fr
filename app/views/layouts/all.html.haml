@@ -27,8 +27,6 @@
               %legend
                 .title.fr-text--bold
                   Filtrer
-                .reinit
-                  = link_to 'Réinitialiser', procedures_filter_path(zone_ids: current_administrateur.zones), { data: { turbo: 'false' }, class: 'fr-link fr-link--icon-left fr-icon-arrow-go-back-line' }
 
               - if action_name == 'all'
                 = render Dsfr::AccordionComponent.new(expanded: @filter.email.present?) do |c|

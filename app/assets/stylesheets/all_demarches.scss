@@ -24,3 +24,14 @@
     justify-content: flex-end;
   }
 }
+
+.selected-zones,
+.selected-statuses,
+.selected-kind_usagers,
+.selected-tag,
+.selected-template,
+.selected-from_publication_date,
+.selected-email,
+.selected-query {
+  display: contents;
+}
