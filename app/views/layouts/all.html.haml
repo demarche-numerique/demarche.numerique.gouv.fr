@@ -41,30 +41,30 @@
                       = f.search_field :email, class: 'fr-input', data: { no_autosubmit: 'input', turbo_force: :server }
                       = f.button 'Rechercher', class: 'fr-btn fr-icon-search-line'
 
+              - if action_name == 'all'
+                = render Dsfr::AccordionComponent.new(expanded: @filter.tags.present?) do |c|
+                  - c.with_title do
+                    Thématique
+                    - if @filter.tags.present?
+                      %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w= @filter.tags.size
+                  %div
+                    = f.search_field :tags, placeholder: 'Choisissez un thème', list: 'tags_list', class: 'fr-input', data: { no_autosubmit: 'input', turbo_force: :server }, multiple: true
+                    %datalist#tags_list
+                      - ProcedureTag.order(:name).each do |tag|
+                        %option{ value: tag.name, data: { id: tag.id } }
+                    - if @filter.tags.present?
+                      - @filter.tags.each do |tag|
+                        = f.hidden_field :tags, value: tag, multiple: true, id: "tag-#{tag.tr(' ', '_')}"
 
-              = render Dsfr::AccordionComponent.new(expanded: @filter.tags.present?) do |c|
-                - c.with_title do
-                  Thématique
-                  - if @filter.tags.present?
-                    %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w= @filter.tags.size
-                %div
-                  = f.search_field :tags, placeholder: 'Choisissez un thème', list: 'tags_list', class: 'fr-input', data: { no_autosubmit: 'input', turbo_force: :server }, multiple: true
-                  %datalist#tags_list
-                    - ProcedureTag.order(:name).each do |tag|
-                      %option{ value: tag.name, data: { id: tag.id } }
-                  - if @filter.tags.present?
-                    - @filter.tags.each do |tag|
-                      = f.hidden_field :tags, value: tag, multiple: true, id: "tag-#{tag.tr(' ', '_')}"
-
-
-              = render Dsfr::AccordionComponent.new(expanded: @filter.template?) do |c|
-                - c.with_title do
-                  Démarches modèles
-                  - if @filter.template?
-                    %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w 1
-                .fr-checkbox-group.fr-py-1w
-                  = f.check_box :template, class: 'fr-input'
-                  = f.label :template, 'Modèle DS', class: 'fr-label'
+              - if action_name == 'all'
+                = render Dsfr::AccordionComponent.new(expanded: @filter.template?) do |c|
+                  - c.with_title do
+                    Démarches modèles
+                    - if @filter.template?
+                      %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w 1
+                  .fr-checkbox-group.fr-py-1w
+                    = f.check_box :template, class: 'fr-input'
+                    = f.label :template, 'Modèle DS', class: 'fr-label'
 
               - other_zones_count = @filter.other_zones.count { |z| @filter.zone_filtered?(z.id) }
 
@@ -116,16 +116,16 @@
                     id: "service_dep_select",
                     class: 'fr-select'
 
-
-              = render Dsfr::AccordionComponent.new(expanded: @filter.kind_usagers.present?) do |c|
-                - c.with_title do
-                  Type d’usager
-                  - if @filter.kind_usagers.present?
-                    %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w= @filter.kind_usagers.size
-                = f.collection_check_boxes :kind_usagers, ['individual', 'personne_morale'], :to_s, :to_s, include_hidden: false do |b|
-                  .fr-checkbox-group.fr-ml-2w.fr-py-1w
-                    = b.check_box(checked: @filter.kind_usager_filtered?(b.value))
-                    = b.label(class: 'fr-label') { t b.text, scope: 'activerecord.attributes.procedure.kind_usager' }
+              - if action_name == 'all'
+                = render Dsfr::AccordionComponent.new(expanded: @filter.kind_usagers.present?) do |c|
+                  - c.with_title do
+                    Type d’usager
+                    - if @filter.kind_usagers.present?
+                      %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w= @filter.kind_usagers.size
+                  = f.collection_check_boxes :kind_usagers, ['individual', 'personne_morale'], :to_s, :to_s, include_hidden: false do |b|
+                    .fr-checkbox-group.fr-ml-2w.fr-py-1w
+                      = b.check_box(checked: @filter.kind_usager_filtered?(b.value))
+                      = b.label(class: 'fr-label') { t b.text, scope: 'activerecord.attributes.procedure.kind_usager' }
 
 
               = render Dsfr::AccordionComponent.new(expanded: @filter.from_publication_date.present?) do |c|

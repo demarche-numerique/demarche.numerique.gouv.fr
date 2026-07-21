@@ -19,23 +19,7 @@
     - if @filter.libelle
       .selected-query
         = link_to "Libellé : #{@filter.libelle}", all_admin_procedures_path(@filter.without(:libelle)), class: 'fr-tag fr-tag--dismiss fr-tag--sm'
-    - if @filter.email
-      .selected-email
-        = link_to "Administrateur : #{@filter.email}", all_admin_procedures_path(@filter.without(:email)), class: 'fr-tag fr-tag--dismiss fr-tag--sm'
-    - if @filter.service_siret
-      .selected-query
-        = link_to "SIRET : #{@filter.service_siret}", all_admin_procedures_path(@filter.without(:service_siret)), class: 'fr-tag fr-tag--dismiss fr-tag--sm'
-    - if @filter.service_departement
-      .selected-query
-        = link_to "Département : #{@filter.service_departement} – #{APIGeoService.departement_name(@filter.service_departement)}", all_admin_procedures_path(@filter.without(:service_departement)), class: 'fr-tag fr-tag--dismiss fr-tag--sm'
-    - if @filter.selected_zones.present?
-      .selected-zones
-        - @filter.selected_zones.each do |zone|
-          = link_to "Zone : #{zone.current_label}", all_admin_procedures_path(@filter.without(:zone_ids, zone.id)), class: 'fr-tag fr-tag--dismiss fr-tag--sm'
-    - if @filter.statuses.present?
-      .selected-statuses
-        - @filter.statuses.each do |status|
-          = link_to "Statut : #{t(status, scope: 'activerecord.attributes.procedure.aasm_state')}", all_admin_procedures_path(@filter.without(:statuses, status)), class: 'fr-tag fr-tag--dismiss fr-tag--sm'
+    = render 'administrateurs/procedures/common_filter_tags'
     - if @filter.kind_usagers.present?
       .selected-kind_usagers
         - @filter.kind_usagers.each do |kind_usager|
@@ -47,9 +31,6 @@
     - if @filter.template?
       .selected-template
         = link_to "Modèle DS", all_admin_procedures_path(@filter.without(:template)), class: 'fr-tag fr-tag--dismiss fr-tag--sm'
-    - if @filter.from_publication_date.present?
-      .selected-from-publication-date
-        = link_to "Date de publication : depuis #{l(@filter.from_publication_date)}", all_admin_procedures_path(@filter.without(:from_publication_date)), class: 'fr-tag fr-tag--dismiss fr-tag--sm'
     - if visible_filter_tags_count(@filter) >= 3
       = link_to 'Tout supprimer', procedures_filter_path, { data: { turbo: 'false' }, class: 'fr-btn fr-btn--tertiary-no-outline fr-btn--sm' }
 

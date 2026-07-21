@@ -569,7 +569,7 @@ module Administrateurs
       procedures_result = procedures_result.where(procedures_zones: { zone_id: filter.zone_ids }) if filter.zone_ids.present?
       procedures_result = procedures_result.where(hidden_at_as_template: nil)
       procedures_result = procedures_result.where(aasm_state: filter.statuses) if filter.statuses.present?
-      if filter.tags.present?
+      if filter.tags.present? && filter_applicable?(filter, :tags)
         tag_ids = ProcedureTag.where(name: filter.tags).pluck(:id).flatten
 
         if tag_ids.any?
@@ -579,12 +579,12 @@ module Administrateurs
             .distinct
         end
       end
-      procedures_result = procedures_result.where(template: true) if filter.template?
+      procedures_result = procedures_result.where(template: true) if filter.template? && filter_applicable?(filter, :template)
       procedures_result = procedures_result.where(published_at: filter.from_publication_date..) if filter.from_publication_date.present?
       procedures_result = procedures_result.where(service: service) if filter.service_siret.present?
       procedures_result = procedures_result.where(service: services) if services
-      procedures_result = procedures_result.where(for_individual: filter.for_individual) if filter.for_individual.present?
-      procedures_result = procedures_result.where('unaccent(libelle) ILIKE unaccent(?)', "%#{filter.libelle}%") if filter.libelle.present?
+      procedures_result = procedures_result.where(for_individual: filter.for_individual) if filter.for_individual.present? && filter_applicable?(filter, :for_individual)
+      procedures_result = procedures_result.where('unaccent(libelle) ILIKE unaccent(?)', "%#{filter.libelle}%") if filter.libelle.present? && filter_applicable?(filter, :libelle)
       if filter.email.present?
         procedures_result = procedures_result
           .joins(administrateurs_procedures: { administrateur: :user })
@@ -599,6 +599,14 @@ module Administrateurs
 
     def paginate(result, ordered_by)
       result.page(params[:page]).per(ITEMS_PER_PAGE).order(ordered_by)
+    end
+
+    # A procedure-only filter (see ProceduresFilter::PROCEDURE_ONLY_FILTERS) only
+    # applies on the "all" tab, since it describes the content of a procedure
+    # rather than an administrative/relational property — it doesn't make sense
+    # to restrict administrateurs by it.
+    def filter_applicable?(filter, name)
+      !filter.procedure_only_filter?(name) || action_name == 'all'
     end
 
     def draft_valid?

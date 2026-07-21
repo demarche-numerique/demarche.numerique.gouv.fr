@@ -353,6 +353,17 @@ describe Administrateurs::ProceduresController, type: :controller do
         expect(assigns(:procedures).any? { |p| p.id == procedure2.id }).to be_falsey
       end
     end
+
+    context 'with procedure-only filters (tags, template, kind_usagers, libelle)' do
+      let!(:template_procedure) { create(:procedure, :published, template: true, libelle: 'Modèle générique') }
+      let!(:other_procedure) { create(:procedure, :published, template: false, libelle: 'Autre démarche') }
+
+      it 'applies the template filter on the all action' do
+        get :all, params: { template: '1' }
+        expect(assigns(:procedures).any? { |p| p.id == template_procedure.id }).to be_truthy
+        expect(assigns(:procedures).any? { |p| p.id == other_procedure.id }).to be_falsey
+      end
+    end
   end
 
   describe 'GET #administrateurs' do
@@ -400,6 +411,16 @@ describe Administrateurs::ProceduresController, type: :controller do
         assigned_admin1 = assigns(:admins).find { it.id == admin1.id }
         expect(assigned_admin1.procedures).not_to include(published_procedure)
         expect(assigned_admin1.procedures).to include(antoher_published_procedure_for_admin1)
+      end
+    end
+
+    context 'with procedure-only filters in params' do
+      it 'ignores the template filter — admins are not restricted by procedure content' do
+        get :administrateurs, params: { template: '1' }
+        expect(assigns(:admins)).to include(admin1)
+        expect(assigns(:admins)).to include(admin2)
+        expect(assigns(:admins)).to include(admin4)
+        expect(assigns(:admins)).not_to include(admin3)
       end
     end
   end

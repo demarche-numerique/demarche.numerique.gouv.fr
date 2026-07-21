@@ -1,0 +1,39 @@
+<% if @filter.email %>
+  <div class="selected-email">
+    <%= link_to "Administrateur : #{@filter.email}", procedures_filter_path(@filter.without(:email)), class: 'fr-tag fr-tag--dismiss fr-tag--sm' %>
+  </div>
+<% end %>
+
+<% if @filter.service_siret %>
+  <div class="selected-query">
+    <%= link_to "SIRET : #{@filter.service_siret}", procedures_filter_path(@filter.without(:service_siret)), class: 'fr-tag fr-tag--dismiss fr-tag--sm' %>
+  </div>
+<% end %>
+
+<% if @filter.service_departement %>
+  <div class="selected-query">
+    <%= link_to "Département : #{@filter.service_departement} – #{APIGeoService.departement_name(@filter.service_departement)}", procedures_filter_path(@filter.without(:service_departement)), class: 'fr-tag fr-tag--dismiss fr-tag--sm' %>
+  </div>
+<% end %>
+
+<% if @filter.selected_zones.present? %>
+  <div class="selected-zones">
+    <% @filter.selected_zones.each do |zone| %>
+      <%= link_to "Zone : #{zone.current_label}", procedures_filter_path(@filter.without(:zone_ids, zone.id)), class: 'fr-tag fr-tag--dismiss fr-tag--sm' %>
+    <% end %>
+  </div>
+<% end %>
+
+<% if @filter.statuses.present? %>
+  <div class="selected-statuses">
+    <% @filter.statuses.each do |status| %>
+      <%= link_to "Statut : #{t(status, scope: 'activerecord.attributes.procedure.aasm_state')}", procedures_filter_path(@filter.without(:statuses, status)), class: 'fr-tag fr-tag--dismiss fr-tag--sm' %>
+    <% end %>
+  </div>
+<% end %>
+
+<% if @filter.from_publication_date.present? %>
+  <div class="selected-from-publication-date">
+    <%= link_to "Date de publication : depuis #{l(@filter.from_publication_date)}", procedures_filter_path(@filter.without(:from_publication_date)), class: 'fr-tag fr-tag--dismiss fr-tag--sm' %>
+  </div>
+<% end %>

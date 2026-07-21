@@ -11,7 +11,6 @@ fr:
         title: Administrateurs
         search_label: Rechercher des administrateurs
         search_hint: "Par adresse électronique (ex. : adresse@mail.com) ou domaine (ex.: @culture.gouv.fr)"
-        since_date: "Depuis le %{date}"
         admin_count:
           one: "%{count} administrateur"
           other: "%{count} administrateurs"

@@ -23,34 +23,7 @@
   </div>
 
   <div class="flex flex-gap-1 wrap align-center fr-mb-2w">
-    <% if @filter.email %>
-      <div class="selected-email">
-        <%= link_to "Administrateur : #{@filter.email}", administrateurs_admin_procedures_path(@filter.without(:email)), class: 'fr-tag fr-tag--dismiss fr-tag--sm' %>
-      </div>
-    <% end %>
-
-    <% if @filter.selected_zones.present? %>
-      <div class="selected-zones">
-        <% @filter.selected_zones.each do |zone| %>
-          <%= link_to "Zone : #{zone.current_label}", administrateurs_admin_procedures_path(@filter.without(:zone_ids, zone.id)), class: 'fr-tag fr-tag--dismiss fr-tag--sm' %>
-        <% end %>
-      </div>
-    <% end %>
-
-    <% if @filter.statuses.present? %>
-      <div class="selected-statuses">
-        <% @filter.statuses.each do |status| %>
-          <%= link_to "Statut : #{t(status, scope: 'activerecord.attributes.procedure.aasm_state')}", administrateurs_admin_procedures_path(@filter.without(:statuses, status)), class: 'fr-tag fr-tag--dismiss fr-tag--sm' %>
-        <% end %>
-      </div>
-    <% end %>
-
-    <% if @filter.from_publication_date.present? %>
-      <div class="selected-from-publication-date">
-        <%= link_to t('.since_date', date: l(@filter.from_publication_date)), administrateurs_admin_procedures_path(@filter.without(:from_publication_date)), class: 'fr-tag fr-tag--dismiss fr-tag--sm' %>
-      </div>
-    <% end %>
-
+    <%= render 'administrateurs/procedures/common_filter_tags' %>
     <% if visible_filter_tags_count(@filter) >= 3 %>
       <%= link_to 'Tout supprimer', procedures_filter_path, data: { turbo: 'false' }, class: 'fr-btn fr-btn--tertiary-no-outline fr-btn--sm' %>
     <% end %>
