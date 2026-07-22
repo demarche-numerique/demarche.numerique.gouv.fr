@@ -26,6 +26,10 @@ FactoryBot.define do
       france_connect_informations { [association(:france_connect_information)] }
     end
 
+    trait :with_pci do
+      pro_connect_informations { [association(:pro_connect_information)] }
+    end
+
     trait :with_email_verified do
       email_verified_at { Time.zone.now }
     end

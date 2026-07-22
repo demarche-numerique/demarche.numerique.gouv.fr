@@ -542,6 +542,43 @@ describe Dossier, type: :model do
         end
       end
 
+      context 'when the session is connected via ProConnect' do
+        let(:user) { create(:user, :with_pci) }
+
+        context 'switching to for_tiers' do
+          it 'prefills mandataire from ProConnect and resets individual' do
+            dossier.assign_for_tiers(true, pro_connect: true)
+
+            expect(dossier.for_tiers).to be true
+            expect(dossier.mandataire_first_name).to eq('John')
+            expect(dossier.mandataire_last_name).to eq('Doe')
+            expect(dossier.individual.nom).to be_nil
+            expect(dossier.individual.prenom).to be_nil
+          end
+        end
+
+        context 'switching from for_tiers to for self' do
+          before { dossier.update_columns(for_tiers: true) }
+
+          it 'prefills individual nom/prenom from ProConnect, leaves gender untouched' do
+            dossier.individual.update_columns(nom: nil, prenom: nil, gender: nil)
+            dossier.assign_for_tiers(false, pro_connect: true)
+
+            expect(dossier.for_tiers).to be false
+            expect(dossier.individual.nom).to eq('Doe')
+            expect(dossier.individual.prenom).to eq('John')
+            expect(dossier.individual.gender).to be_nil
+          end
+        end
+
+        it 'without the pro_connect flag, keeps individual and clears mandataire' do
+          dossier.assign_for_tiers(true)
+
+          expect(dossier.mandataire_first_name).to be_nil
+          expect(dossier.individual.nom).to eq('Dupont')
+        end
+      end
+
       context 'when user is not connected via FranceConnect' do
         let(:user) { users.usager }
 

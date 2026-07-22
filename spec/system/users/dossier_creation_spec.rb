@@ -103,6 +103,35 @@ describe 'Creating a new dossier:', js: true do
         end
       end
 
+      context 'when the session is connected via ProConnect' do
+        let(:procedure) { create(:procedure, :published, :for_individual, :with_service, no_gender: false, libelle:) }
+        let(:user) { create(:user, :with_pci) }
+
+        before do
+          allow_any_instance_of(ProConnectSessionConcern).to receive(:logged_in_with_pro_connect?).and_return(true)
+        end
+
+        it 'prefills and locks nom/prénom but lets the user pick the civilité' do
+          find('label', text: "Pour vous").click
+
+          expect(page).to have_field('Prénom', with: 'John', disabled: true)
+          expect(page).to have_field('Nom', with: 'Doe', disabled: true)
+          expect(page).to have_text("par ProConnect et ne peuvent pas être modifiés")
+
+          find('label', text: 'Madame').click
+
+          within "#identite-form" do
+            click_button('Continuer')
+          end
+
+          dossier = procedure.dossiers.last
+          expect(page).to have_current_path(brouillon_dossier_path(dossier))
+          expect(dossier.individual.reload.prenom).to eq('John')
+          expect(dossier.individual.nom).to eq('Doe')
+          expect(dossier.individual.gender).to eq(Individual::GENDER_FEMALE)
+        end
+      end
+
       context 'when for tiers is disabled' do
         let(:procedure) { create(:procedure, :published, :for_individual, :with_service, for_tiers_enabled: false, libelle:) }
 
