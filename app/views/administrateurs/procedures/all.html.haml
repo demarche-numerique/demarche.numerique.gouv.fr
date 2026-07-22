@@ -1,19 +1,11 @@
 - content_for(:title, "Démarches")
 - content_for :results do
-  .main-filter-header.fr-mb-3w
-    = form_with(url: all_admin_procedures_path, method: :get, data: { turbo_frame: 'procedures' }, html: { role: 'search', class: 'search width-66' }) do |f|
-      - @filter.zone_ids&.each do |zone_id|
-        = hidden_field_tag 'zone_ids[]', zone_id, id: "zone_#{zone_id}"
-      - @filter.statuses&.each do |status|
-        = hidden_field_tag 'statuses[]', status, id: "status_#{status}"
-      - @filter.tags&.each do|tag|
-        = hidden_field_tag 'tags[]', tag, id: "tag_#{tag}"
-      = hidden_field_tag 'from_publication_date', @filter.from_publication_date if @filter.from_publication_date.present?
+  .fr-mb-3w.width-66
+    = label_tag :libelle, 'Rechercher des démarches par libellé', class: 'fr-label'
+    .fr-input-wrap.fr-input-wrap--addon
+      = search_field_tag :libelle, @filter.libelle, class: 'fr-input', form: 'procedures-filter-form', data: { no_autosubmit: 'input', turbo_force: :server }
+      = button_tag 'Rechercher', type: 'submit', form: 'procedures-filter-form', class: 'fr-btn fr-icon-search-line'
 
-      = f.label :libelle, 'Rechercher des démarches par libellé', class: 'fr-label'
-      .fr-input-wrap.fr-input-wrap--addon
-        = f.search_field 'libelle', value: @filter.libelle, class: 'fr-input', data: { turbo_force: :server }
-        = f.button 'Rechercher', class: 'fr-btn fr-icon-search-line'
 
   .flex.flex-gap-1.wrap.align-center
     - if @filter.libelle

@@ -21,8 +21,7 @@
     .fr-container
       .fr-grid-row.fr-grid-row--gutters
         .fr-col-12.fr-col-lg-3
-          = form_with(url: procedures_filter_path, method: :get, data: { controller: 'autosubmit', turbo_frame: 'procedures' }) do |f|
-
+          = form_with(url: procedures_filter_path, method: :get, id: 'procedures-filter-form', data: { controller: 'autosubmit', turbo_frame: 'procedures' }) do |f|
             %fieldset.sidebar-filter
               %legend
                 .title.fr-text--bold

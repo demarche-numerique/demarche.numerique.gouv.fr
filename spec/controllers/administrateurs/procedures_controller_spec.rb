@@ -364,6 +364,21 @@ describe Administrateurs::ProceduresController, type: :controller do
         expect(assigns(:procedures).any? { |p| p.id == other_procedure.id }).to be_falsey
       end
     end
+
+    context 'with libelle and email filters combined' do
+      let(:admin1) { create(:administrateur, email: 'admin@education.gouv.fr') }
+      let(:admin2) { create(:administrateur, email: 'autre@test.fr') }
+      let!(:matching_procedure) { create(:procedure, :published, libelle: 'Demande de bourse', administrateur: admin1) }
+      let!(:wrong_libelle) { create(:procedure, :published, libelle: 'Autre chose', administrateur: admin1) }
+      let!(:wrong_admin) { create(:procedure, :published, libelle: 'Demande de bourse', administrateur: admin2) }
+
+      it 'applies both filters simultaneously rather than exclusively' do
+        get :all, params: { libelle: 'bourse', email: 'education.gouv.fr' }
+        expect(assigns(:procedures).any? { |p| p.id == matching_procedure.id }).to be_truthy
+        expect(assigns(:procedures).any? { |p| p.id == wrong_libelle.id }).to be_falsey
+        expect(assigns(:procedures).any? { |p| p.id == wrong_admin.id }).to be_falsey
+      end
+    end
   end
 
   describe 'GET #administrateurs' do
