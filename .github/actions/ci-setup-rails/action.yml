@@ -22,7 +22,7 @@ runs:
     - name: Setup test database
       env:
         RAILS_ENV: test
-        DATABASE_URL: 'postgres://tps_test@localhost:5432/tps_test'
+        DATABASE_URL: 'postgres://tps_test:tps_test@localhost:5432/tps_test'
       # Restoring the cached schema dump with psql is ~10x faster than
       # bin/rails db:schema:load. pg_dump runs inside the postgres service
       # container because its client version must match the server.
