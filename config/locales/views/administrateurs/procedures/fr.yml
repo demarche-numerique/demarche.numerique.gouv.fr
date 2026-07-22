@@ -6,6 +6,8 @@ fr:
     procedures:
       all:
         title: Annuaire des démarches
+        search_label: Rechercher des démarches
+        search_hint: "Par libellé ou numéro de démarche"
         description_html: Cet annuaire permet de consulter les informations sur les démarches et les administrateurs pour toutes les zones.<br>Recherchez une démarche pour voir sa zone et ses administrateurs, ou recherchez un administrateur pour voir les démarches qu’il gère.
       administrateurs:
         title: Administrateurs

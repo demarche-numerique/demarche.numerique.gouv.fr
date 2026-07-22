@@ -341,6 +341,29 @@ describe Administrateurs::ProceduresController, type: :controller do
       end
     end
 
+    context 'with libelle search matching a procedure id' do
+      let!(:procedure1) { create(:procedure, :published, libelle: 'Demande de subvention') }
+      let!(:procedure2) { create(:procedure, :published, libelle: 'Autre démarche') }
+
+      it 'returns the procedure whose id matches the numeric search term' do
+        get :all, params: { libelle: procedure1.id.to_s }
+        expect(assigns(:procedures).any? { |p| p.id == procedure1.id }).to be_truthy
+        expect(assigns(:procedures).any? { |p| p.id == procedure2.id }).to be_falsey
+      end
+
+      it 'still matches by libelle when the search term is not numeric' do
+        get :all, params: { libelle: 'subvention' }
+        expect(assigns(:procedures).any? { |p| p.id == procedure1.id }).to be_truthy
+        expect(assigns(:procedures).any? { |p| p.id == procedure2.id }).to be_falsey
+      end
+
+      it 'does not match an unrelated procedure id contained in the libelle text' do
+        other_procedure = create(:procedure, :published, libelle: procedure2.id.to_s)
+        get :all, params: { libelle: procedure1.id.to_s }
+        expect(assigns(:procedures).any? { |p| p.id == other_procedure.id }).to be_falsey
+      end
+    end
+
     context 'with administrateur email search' do
       let!(:admin_matching) { create(:administrateur, email: 'jesuis.surmene@education.gouv.fr') }
       let!(:admin_other) { create(:administrateur, email: 'jesuis.alecoute@social.gouv.fr') }

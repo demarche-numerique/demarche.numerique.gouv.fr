@@ -6,6 +6,8 @@ en:
     procedures:
       all:
         title: Procedures directory
+        search_label: Search procedures
+        search_hint: "By label or procedure number"
         description_html: This directory allows you to view information about processes and administrators for all zones.<br>Search for a process to see its zone and administrators, or search for an administrator to see the processes they manage.
       administrateurs:
         title: Administrators

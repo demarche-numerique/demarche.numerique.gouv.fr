@@ -1,7 +1,8 @@
 - content_for(:title, "Démarches")
 - content_for :results do
   .fr-mb-3w.width-66
-    = label_tag :libelle, 'Rechercher des démarches par libellé', class: 'fr-label'
+    = label_tag :libelle, t('.search_label'), class: 'fr-label'
+    %span.fr-hint-text.fr-mb-1w= t('.search_hint')
     .fr-input-wrap.fr-input-wrap--addon
       = search_field_tag :libelle, @filter.libelle, class: 'fr-input', form: 'procedures-filter-form', data: { no_autosubmit: 'input', turbo_force: :server }
       = button_tag 'Rechercher', type: 'submit', form: 'procedures-filter-form', class: 'fr-btn fr-icon-search-line'
@@ -10,7 +11,7 @@
   .flex.flex-gap-1.wrap.align-center
     - if @filter.libelle
       .selected-query
-        = link_to "Libellé : #{@filter.libelle}", all_admin_procedures_path(@filter.without(:libelle)), class: 'fr-tag fr-tag--dismiss fr-tag--sm'
+        = link_to "Libellé ou numéro : #{@filter.libelle}", all_admin_procedures_path(@filter.without(:libelle)), class: 'fr-tag fr-tag--dismiss fr-tag--sm'
     = render 'administrateurs/procedures/common_filter_tags'
     - if @filter.kind_usagers.present?
       .selected-kind_usagers

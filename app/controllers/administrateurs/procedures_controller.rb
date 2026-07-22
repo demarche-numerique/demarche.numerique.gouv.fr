@@ -584,7 +584,16 @@ module Administrateurs
       procedures_result = procedures_result.where(service: service) if filter.service_siret.present?
       procedures_result = procedures_result.where(service: services) if services
       procedures_result = procedures_result.where(for_individual: filter.for_individual) if filter.for_individual.present? && filter_applicable?(filter, :for_individual)
-      procedures_result = procedures_result.where('unaccent(libelle) ILIKE unaccent(?)', "%#{filter.libelle}%") if filter.libelle.present? && filter_applicable?(filter, :libelle)
+      if filter.libelle.present? && filter_applicable?(filter, :libelle)
+        if filter.libelle.match?(/\A\d+\z/)
+          procedures_result = procedures_result.where(
+            'unaccent(libelle) ILIKE unaccent(?) OR procedures.id = ?',
+            "%#{filter.libelle}%", filter.libelle.to_i
+          )
+        else
+          procedures_result = procedures_result.where('unaccent(libelle) ILIKE unaccent(?)', "%#{filter.libelle}%")
+        end
+      end
       if filter.email.present?
         procedures_result = procedures_result
           .joins(administrateurs_procedures: { administrateur: :user })
