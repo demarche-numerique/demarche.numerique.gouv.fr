@@ -219,7 +219,7 @@ Rails.application.routes.draw do
     # TODO remove in next release
     get ':dossier_id/:stable_id/siret', to: 'siret#show'
 
-    get ':dossier_id/:stable_id/carte/features', to: 'carte#index', as: :carte_features
+    get ':dossier_id/:stable_id/carte/features', to: 'carte#index', as: :carte_features, defaults: { format: :turbo_stream }
     post ':dossier_id/:stable_id/carte/features', to: 'carte#create'
     patch ':dossier_id/:stable_id/carte/features/:id', to: 'carte#update', as: :carte_feature
     delete ':dossier_id/:stable_id/carte/features/:id', to: 'carte#destroy'
@@ -482,7 +482,7 @@ Rails.application.routes.draw do
         patch :update_order_positions
         get :select_procedure
         get :synthese
-        get :counters
+        get :counters, defaults: { format: :turbo_stream }
       end
 
       get 'display_notifications', defaults: { format: :turbo_stream }
@@ -578,7 +578,7 @@ Rails.application.routes.draw do
             get 'telecharger_pjs' => 'dossiers#telecharger_pjs'
             get 'print' => 'dossiers#print'
             patch 'annotations' => 'dossiers#update_annotations'
-            get 'annotations/:stable_id', to: 'dossiers#annotation', as: :annotation
+            get 'annotations/:stable_id', to: 'dossiers#annotation', as: :annotation, defaults: { format: :turbo_stream }
             get 'geo_data'
             get 'apercu_attestation'
             get 'bilans_bdf'
@@ -605,7 +605,7 @@ Rails.application.routes.draw do
         get 'apercu'
         get 'download_export'
         post 'download_export'
-        get 'polling_last_export'
+        get 'polling_last_export', defaults: { format: :turbo_stream }
         get 'polling_batch_operation'
         get 'stats'
         get 'exports'
@@ -742,9 +742,9 @@ Rails.application.routes.draw do
       post 'clone'
       put 'archive'
       get 'publication' => 'procedures#publication', as: :publication
-      post 'check_path' => 'procedures#check_path', as: :check_path
+      post 'check_path' => 'procedures#check_path', as: :check_path, defaults: { format: :turbo_stream }
       # TODO remove in next release
-      get 'check_path' => 'procedures#check_path'
+      get 'check_path' => 'procedures#check_path', defaults: { format: :turbo_stream }
       get 'path'
       patch 'path', to: 'procedures#update_path', as: :update_path
       put 'publish' => 'procedures#publish', as: :publish
@@ -874,7 +874,7 @@ Rails.application.routes.draw do
       end
 
       resource :dossier_submitted_message, only: [:edit, :update, :create] do
-        post :preview, on: :member
+        post :preview, on: :member, defaults: { format: :turbo_stream }
       end
       # ADDED TO ACCESS IT FROM THE IFRAME
       get 'attestation_template/preview' => 'attestation_templates#preview'

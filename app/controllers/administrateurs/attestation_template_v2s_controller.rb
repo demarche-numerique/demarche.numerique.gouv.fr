@@ -102,7 +102,8 @@ module Administrateurs
           # - draft updated
           # - or, attestation already published, without need for publication (draft procedure)
           @attestation_template.save!
-          render :update
+          # only a turbo_stream template exists; a non-turbo submit would otherwise 500
+          render :update, formats: :turbo_stream
         end
       end
     end

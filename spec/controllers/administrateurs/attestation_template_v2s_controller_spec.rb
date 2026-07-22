@@ -339,6 +339,15 @@ describe Administrateurs::AttestationTemplateV2sController, type: :controller do
       response.body
     end
 
+    context 'without explicit format (non-turbo submission)' do
+      it 'renders the turbo_stream response instead of raising (RAILS-MAB)' do
+        patch :update, params: { procedure_id: procedure.id, attestation_template: update_params, attestation_kind: :acceptation }
+
+        expect(response).to have_http_status(:success)
+        expect(response.media_type).to eq('text/vnd.turbo-stream.html')
+      end
+    end
+
     context 'when attestation template is valid' do
       it "create a draft template" do
         expect { subject }.to change { procedure.attestation_templates.count }.by(1)
