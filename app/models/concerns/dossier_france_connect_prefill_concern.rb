@@ -25,6 +25,13 @@ module DossierFranceConnectPrefillConcern
     )
   end
 
+  # Reconcile the France Connect prefilled champs with the current identity:
+  # prefill and reset each guard on for_tiers?, so exactly one applies.
+  def sync_champs_from_france_connect(updated_by:)
+    prefill_champs_from_france_connect(updated_by:)
+    reset_champs_from_france_connect(updated_by:)
+  end
+
   def prefill_champs_from_france_connect(updated_by:)
     return if for_tiers?
     return if !france_connected_with_one_identity?

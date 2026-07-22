@@ -438,6 +438,34 @@ describe Dossier, type: :model do
       end
     end
 
+    describe '#merge_user_buffer_stream! reconciles france connect champs' do
+      let(:procedure) { create(:procedure, :for_individual, for_tiers_enabled: true, types_de_champ_public: [{ type: :date }]) }
+      let(:user) { create(:user, france_connect_informations: [build(:france_connect_information)]) }
+      let(:dossier) { create(:dossier, :en_construction, :with_individual, procedure:, user:) }
+      let(:tdc) { dossier.revision.root_types_de_champ_public.first }
+
+      before { tdc.update!(options: { 'birthdate' => '1', 'prefill_with_france_connect_information' => '1' }) }
+
+      context 'when the dossier became for_tiers after deposit (RAILS-KVR)' do
+        before do
+          dossier.project_champ(tdc).update_columns(value: '1976-02-24', data: { 'prefilled_from_france_connect_information' => true })
+          dossier.update_columns(for_tiers: true, mandataire_first_name: 'Jeanne', mandataire_last_name: 'Dupont')
+        end
+
+        it 'clears the prefilled champ when the buffer merges' do
+          dossier.reload.merge_user_buffer_stream!
+          expect(dossier.reload.project_champ(tdc).value).to be_nil
+        end
+      end
+
+      context 'when the dossier came back to a personal deposit' do
+        it 'prefills the champ when the buffer merges' do
+          dossier.merge_user_buffer_stream!
+          expect(dossier.reload.project_champ(tdc).value).to eq('1976-02-24')
+        end
+      end
+    end
+
     describe '#prefill_champs_from_france_connect' do
       let_it_be(:procedure) { create(:procedure, :for_individual, types_de_champ_public: [{ type: :date }]) }
       let(:user) { create(:user, france_connect_informations: [build(:france_connect_information)]) }

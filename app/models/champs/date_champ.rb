@@ -16,6 +16,9 @@ class Champs::DateChamp < ChampData
 
   def clear_prefilled_from_france_connect_information_flag_if_modified
     return if prefilling_from_france_connect_information
+    # a just-created record (e.g. a buffer champ cloned from the main stream)
+    # is a replication, not a user modification of the prefilled value
+    return if previously_new_record?
     return if !value_changed?
     return if data.blank?
 

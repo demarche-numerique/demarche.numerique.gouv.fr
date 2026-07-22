@@ -250,6 +250,29 @@ describe Users::DossiersController, type: :controller do
       end
     end
 
+    context 'when the dossier is en construction with a france connect prefillable champ' do
+      let(:procedure) { create(:procedure, :for_individual, for_tiers_enabled: true, types_de_champ_public: [{ type: :date }]) }
+      let(:dossier) { create(:dossier, :en_construction, :with_individual, user:, procedure:) }
+      let(:dossier_params) do
+        {
+          for_tiers: 'true',
+          mandataire_first_name: 'Jeanne',
+          mandataire_last_name: 'Dupont',
+          individual_attributes: { gender: 'Mme', nom: 'Benef', prenom: 'Iciaire', notification_method: 'no_notification' },
+        }
+      end
+
+      before do
+        dossier.revision.root_types_de_champ_public.first
+          .update!(options: { 'birthdate' => '1', 'prefill_with_france_connect_information' => '1' })
+      end
+
+      it 'defers the champ reconciliation to the buffer merge instead of crashing (RAILS-KVR)' do
+        expect { subject }.not_to change { dossier.reload.champ_data.pluck(:stream, :value) }
+        expect(response).to redirect_to(demande_dossier_path(dossier))
+      end
+    end
+
     context "when at least one instructeur wants dossier_modifie notification" do
       let(:dossier_params) { { individual_attributes: { gender: 'M', nom: 'Mouse', prenom: 'Mickey' } } }
       let(:instructeur) { create(:instructeur) }

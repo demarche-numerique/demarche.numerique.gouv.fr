@@ -183,6 +183,11 @@ module DossierChampsConcern
   end
 
   def merge_user_buffer_stream!
+    # The identity can change while the dossier is en construction: like the
+    # referentiel prefill, the France Connect champs are only reconciled when
+    # the buffer merges, so canceling the buffer does not lose or leak them.
+    with_stream(Dossier::USER_BUFFER_STREAM) { sync_champs_from_france_connect(updated_by: user&.email) }
+
     buffer_ids, changed_ids = changed_champ_data_ids_for_merge(Dossier::USER_BUFFER_STREAM)
 
     return if buffer_ids.blank?
