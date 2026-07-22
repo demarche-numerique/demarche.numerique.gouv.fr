@@ -135,10 +135,12 @@ module Users
 
       respond_to do |format|
         format.html do
-          @dossier.prefill_individual_from_france_connect if @dossier.identity_from_fc? && !@dossier.for_tiers?
+          pro_connect = logged_in_with_pro_connect?
+          source = IdentityPrefillSource.new(dossier: @dossier, pro_connect:)
+          @dossier.prefill_individual_from_identity_provider(pro_connect:) if !@dossier.for_tiers? && !source.none?
         end
         format.turbo_stream do
-          @dossier.assign_for_tiers(params.dig(:dossier, :for_tiers) == 'true')
+          @dossier.assign_for_tiers(params.dig(:dossier, :for_tiers) == 'true', pro_connect: logged_in_with_pro_connect?)
 
           # Persist the persona choice so the identity form survives a page reload:
           # `identity_updated_at` is what makes the form visible on the next GET.
@@ -151,14 +153,19 @@ module Users
       @dossier = dossier
       @no_description = true
 
-      @dossier.assign_for_tiers(dossier_params[:for_tiers] == 'true')
+      @dossier.assign_for_tiers(dossier_params[:for_tiers] == 'true', pro_connect: logged_in_with_pro_connect?)
+
+      # Construite APRÈS assign_for_tiers : la source lit dossier.for_tiers?, qui
+      # doit refléter la valeur soumise (cf. contournement du verrou en omettant
+      # le param for_tiers).
+      source = IdentityPrefillSource.new(dossier: @dossier, pro_connect: logged_in_with_pro_connect?)
 
       sanitized_params = dossier_params.dup
-      if mandataire_identity_locked?(@dossier)
+      if source.mandataire_locked?
         sanitized_params = sanitized_params.except(:mandataire_first_name, :mandataire_last_name)
-      elsif identity_locked?(@dossier)
-        # keep only birthdate for legacy procedures
-        sanitized_params[:individual_attributes] = sanitized_params[:individual_attributes]&.except(:nom, :prenom, :gender)
+      end
+      if (locked_fields = source.individual_locked_fields).any?
+        sanitized_params[:individual_attributes] = sanitized_params[:individual_attributes]&.except(*locked_fields)
         sanitized_params.delete(:individual_attributes) if sanitized_params[:individual_attributes].blank? # évite {} qui réinitialise l'individual
       end
 
@@ -564,14 +571,6 @@ module Users
     end
 
     private
-
-    def identity_locked?(dossier)
-      dossier.identity_from_fc?
-    end
-
-    def mandataire_identity_locked?(dossier)
-      dossier.for_tiers? && dossier.identity_from_fc?
-    end
 
     def filter_params_slice
       params.permit(*Users::DossierFilterService::ALLOWED_PARAMS)

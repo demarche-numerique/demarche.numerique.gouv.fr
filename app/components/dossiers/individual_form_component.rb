@@ -3,8 +3,9 @@
 class Dossiers::IndividualFormComponent < ApplicationComponent
   delegate :for_tiers?, to: :@dossier
 
-  def initialize(dossier:)
+  def initialize(dossier:, pro_connect: false)
     @dossier = dossier
+    @identity_source = IdentityPrefillSource.new(dossier:, pro_connect:)
   end
 
   def email_notifications?(individual)
@@ -15,12 +16,17 @@ class Dossiers::IndividualFormComponent < ApplicationComponent
     @dossier.has_france_connect_type_de_champ? && current_user.france_connected_with_one_identity?
   end
 
-  def identity_locked?
-    !for_tiers? && @dossier.identity_from_fc?
-  end
+  def individual_field_locked?(field) = @identity_source.individual_field_locked?(field)
 
-  def mandataire_identity_locked?
-    @dossier.identity_from_fc?
+  def individual_identity_locked? = @identity_source.individual_locked_fields.any?
+
+  def mandataire_identity_locked? = @identity_source.mandataire_locked?
+
+  def identity_locked_message
+    case @identity_source.name
+    when :france_connect then t('.identity_locked_by_france_connect')
+    when :pro_connect then t('.identity_locked_by_pro_connect')
+    end
   end
 
   private

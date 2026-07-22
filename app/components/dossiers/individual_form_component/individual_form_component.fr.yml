@@ -11,3 +11,4 @@ fr:
     beneficiaire_title: Identité du bénéficiaire
     notify_beneficiary: Informer le bénéficiaire par email du traitement de son dossier
   identity_locked_by_france_connect: Vos informations d’identité ont été transmises par FranceConnect et ne peuvent pas être modifiées.
+  identity_locked_by_pro_connect: Votre nom et votre prénom ont été transmis par ProConnect et ne peuvent pas être modifiés.
