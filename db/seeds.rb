@@ -12,6 +12,7 @@
 # - db/seeds/avis.rb         — two experts with pending, answered, confidentiel and file-attached avis
 # - db/seeds/entreprise.rb   — an entreprise procedure with en_construction and en_instruction dossiers
 # - db/seeds/messagerie.rb   — instructeur and usager messages on the en_construction dossier
+# - db/seeds/webhooks.rb     — a webhook on the individual procedure
 # - db/seeds/development/    — development-only records (super-admin, fixer instructeur)
 # - db/seeds/cases/          — scenario-specific data (champs, sva, …)
 #
@@ -23,5 +24,5 @@
 # Seeds assume an empty database and are not re-runnable: specs replant once
 # per suite, and a development database is refreshed with
 # `bin/rails db:seed:replant` (truncate + reseed).
-Oaken.seed :zones, :users, :services, :procedures, :dossiers, :avis, :entreprise, :messagerie
+Oaken.seed :zones, :users, :services, :procedures, :dossiers, :avis, :entreprise, :messagerie, :webhooks
 Oaken.seed :cases if Rails.env.development?
