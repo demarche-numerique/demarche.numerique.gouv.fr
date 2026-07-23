@@ -124,6 +124,7 @@ group :test do
   gem 'shoulda-matchers', require: false
   gem 'simplecov', require: false
   gem 'simplecov-cobertura', require: false
+  gem 'standardwebhooks' # Official verifier, checks webhook deliveries as integrators will
   gem "test-prof"
   gem 'vcr'
   gem 'webmock'
