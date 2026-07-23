@@ -89,13 +89,10 @@ module Instructeurs
       @dossier = dossier
 
       requested_label_ids = params[:label_id]&.map(&:to_i) || []
-      labels = @dossier.procedure.labels.where(id: requested_label_ids).pluck(:id)
+      requested_labels = @dossier.procedure.labels.where(id: requested_label_ids)
 
-      labels.each { |label_id| DossierLabel.find_or_create_by(dossier_id: @dossier.id, label_id:) }
-
-      all_labels = DossierLabel.where(dossier_id: @dossier.id).pluck(:label_id)
-
-      (all_labels - labels).each { DossierLabel.find_by(dossier_id: @dossier.id, label_id: _1).destroy }
+      requested_labels.each { @dossier.add_label(it) }
+      @dossier.labels.where.not(id: requested_labels.ids).find_each { @dossier.remove_label(it) }
 
       render :change_state
     end
