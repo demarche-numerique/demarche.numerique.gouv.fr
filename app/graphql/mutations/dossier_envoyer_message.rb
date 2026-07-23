@@ -26,7 +26,7 @@ module Mutations
         # notify_pending_correction rather than notify_new_answer.
         dossier.flag_as_pending_correction!(message, correction)
       else
-        message.save!
+        CommentaireService.persist!(message)
       end
 
       { message: }

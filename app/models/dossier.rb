@@ -729,12 +729,28 @@ class Dossier < ApplicationRecord
 
   def extend_conservation_and_restore(conservation_extension, author)
     extend_conservation(conservation_extension)
-    update(hidden_by_expired_at: nil, hidden_by_reason: nil)
-    restore(author)
+    restore(author, expired: true)
   end
 
   def show_procedure_state_warning?
     procedure.discarded? || (brouillon? && !procedure.dossier_can_transition_to_en_construction?)
+  end
+
+  # The only two write paths for labels: cascade deletes (a label or dossier
+  # going away) deliberately bypass them and stay silent.
+  def add_label(label)
+    dossier_label = dossier_labels.find_or_create_by(label:)
+    emit_webhook_event(:dossier_label_ajoute) if dossier_label.previously_new_record?
+    dossier_label
+  end
+
+  def remove_label(label)
+    dossier_label = dossier_labels.find_by(label:)
+    return if dossier_label.nil?
+
+    dossier_label.destroy
+    emit_webhook_event(:dossier_label_supprime) if dossier_label.destroyed?
+    dossier_label
   end
 
   def assign_to_groupe_instructeur(groupe_instructeur, mode, author = nil)
@@ -756,6 +772,10 @@ class Dossier < ApplicationRecord
 
       if author.present?
         log_dossier_operation(author, :changer_groupe_instructeur, self)
+      end
+
+      if previous_groupe_instructeur.present? && previous_groupe_instructeur != groupe_instructeur
+        emit_webhook_event(:groupe_instructeur_change)
       end
     end
   end
@@ -917,7 +937,17 @@ class Dossier < ApplicationRecord
   end
 
   def hide_and_keep_track!(author, reason)
-    transaction do
+    hidden_from_administration = false
+
+    # The row lock serializes concurrent hides: two authors hiding at once
+    # write distinct hidden_by_* columns, so without it both transactions
+    # could snapshot a visible dossier and each emit dossier_supprime. Both
+    # sides of the visibility change are read inside the lock: re-reading
+    # after it could observe a racing restore and drop this emission while
+    # the restore still emits its dossier_restaure.
+    with_lock do
+      was_visible_by_administration = Dossier.visible_by_administration.exists?(id)
+
       if is_administration?(author) && can_be_deleted_by_administration?(reason)
         update(hidden_by_administration_at: Time.zone.now, hidden_by_reason: reason)
         log_dossier_operation(author, :supprimer, self)
@@ -932,6 +962,17 @@ class Dossier < ApplicationRecord
       else
         raise "Unauthorized dossier hide attempt Dossier##{id} by #{author} for reason #{reason}"
       end
+
+      hidden_from_administration = was_visible_by_administration && !Dossier.visible_by_administration.exists?(id)
+    end
+
+    # Only a dossier the administration could see counts as deleted: hiding a
+    # brouillon or an already-hidden dossier must not emit (again). A
+    # procedure removal takes its dossiers along: announcing each of them to
+    # an integration the discarded state already suspends would only flood a
+    # dying channel (Procedure#restore undoes both silently).
+    if hidden_from_administration && reason != :procedure_removed
+      emit_webhook_event(:dossier_supprime)
     end
 
     if en_construction? && !hidden_by_administration?
@@ -943,8 +984,26 @@ class Dossier < ApplicationRecord
     end
   end
 
-  def restore(author)
-    transaction do
+  def restore(author, expired: false)
+    restored_to_administration = false
+
+    # Same row lock as hide_and_keep_track!, for the mirror races: a restore
+    # racing a hide could snapshot visibility before the hide commits and
+    # skip its dossier_restaure while undoing that hide, and two concurrent
+    # restores of a doubly-hidden dossier could both snapshot it invisible
+    # and each emit dossier_restaure. As in hide, the whole decision is taken
+    # inside the lock.
+    with_lock do
+      was_visible_by_administration = Dossier.visible_by_administration.exists?(id)
+      # Mirror of hide_and_keep_track!'s :procedure_removed silence, captured
+      # before the columns are cleared: a démarche restore undoes a removal
+      # that emitted nothing, so it must emit nothing either.
+      restored_from_procedure_removal = hidden_by_reason&.to_sym == :procedure_removed
+
+      # Inside the visibility snapshot: clearing the expired hide before it
+      # (as extend_conservation_and_restore used to) makes the dossier look
+      # already visible and swallows the dossier_restaure emission.
+      update(hidden_by_expired_at: nil, hidden_by_reason: nil) if expired
       if is_administration?(author)
         update(hidden_by_administration_at: nil)
         DossierNotification.destroy_notifications_by_dossier_and_type(self, :dossier_suppression)
@@ -963,7 +1022,11 @@ class Dossier < ApplicationRecord
       end
 
       log_dossier_operation(author, :restaurer, self)
+
+      restored_to_administration = !was_visible_by_administration && !restored_from_procedure_removal && Dossier.visible_by_administration.exists?(id)
     end
+
+    emit_webhook_event(:dossier_restaure) if restored_to_administration
   end
 
   def email_template_for(state)
