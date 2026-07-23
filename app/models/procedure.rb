@@ -77,6 +77,8 @@ class Procedure < ApplicationRecord
 
   has_many :bulk_messages, dependent: :destroy
   has_many :labels, -> { order(:position, :id) }, dependent: :destroy, inverse_of: :procedure
+  has_many :webhooks, dependent: :destroy
+  has_many :webhook_events, dependent: :delete_all
 
   # destroy and not delete_all: the foreign key refuses to leave champ matches behind.
   has_many :procedure_user_overlaps_as_left, class_name: 'ProcedureUserOverlap', foreign_key: :left_procedure_id, dependent: :destroy, inverse_of: :left_procedure

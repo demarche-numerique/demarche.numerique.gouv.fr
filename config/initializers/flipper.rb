@@ -38,6 +38,7 @@ features = [
   :brevo_api_delivery,
   :champ_matching,
   :dossier_vide_weasyprint,
+  :webhooks_api,
   :s3_storage,
 ]
 
