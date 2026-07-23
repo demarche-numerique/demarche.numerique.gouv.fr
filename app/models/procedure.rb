@@ -648,6 +648,12 @@ class Procedure < ApplicationRecord
   end
 
   def discard_and_keep_track!(author)
+    # No webhook bookkeeping: the discarded state itself suspends the
+    # integration — emission through EmitEventService's procedure check,
+    # delivery through Webhook.deliverable — so #restore resumes it by
+    # construction, in whatever enabled/disabled state each webhook was left.
+    # The dossier hides below stay silent through their :procedure_removed
+    # reason, and the undelivered backlog ages out via event retention.
     if brouillon?
       reset!
     elsif publiee?

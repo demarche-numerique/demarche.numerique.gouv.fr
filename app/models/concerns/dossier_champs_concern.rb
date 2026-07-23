@@ -178,7 +178,7 @@ module DossierChampsConcern
     revision_stable_ids.member?(stable_id.to_i)
   end
 
-  def reload
+  def reload(...)
     super.tap { reset_champs_cache }
   end
 
