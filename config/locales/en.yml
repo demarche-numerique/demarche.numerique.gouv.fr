@@ -862,6 +862,7 @@ en:
     format: "Field « %{attribute} » %{message}"
     messages:
       dossier_not_found: "The file does not exist or you do not have access to it."
+      private_ip_url: "points to a private IP address"
       # # dossier_map_not_activated: "The file does not have access to the map."
       targeted_user_link_expired: "This invitation link or the file is no longer available."
       procedure_not_found: "The procedure does not exist"

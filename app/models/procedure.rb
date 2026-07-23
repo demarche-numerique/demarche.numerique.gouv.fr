@@ -77,6 +77,8 @@ class Procedure < ApplicationRecord
 
   has_many :bulk_messages, dependent: :destroy
   has_many :labels, -> { order(:position, :id) }, dependent: :destroy, inverse_of: :procedure
+  has_many :webhooks, dependent: :destroy
+  has_many :webhook_events, dependent: :delete_all
 
   has_many :instructeurs_procedures, dependent: :destroy
 
