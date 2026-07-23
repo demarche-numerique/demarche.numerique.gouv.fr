@@ -25,9 +25,10 @@ class Webhook < ApplicationRecord
     dossier_label_supprime
   ].freeze
 
-  # with_discarded: delivery bookkeeping (auto-disable notification) must keep
-  # working for webhooks whose démarche has been discarded.
-  belongs_to :procedure, -> { with_discarded }, inverse_of: :webhooks
+  # Default-scoped (kept): a discarded démarche reads as nil here, which is
+  # how the API hides it (see Api::V2::Context#authorized_demarche?) and why
+  # delivery goes through the `deliverable` scope rather than this association.
+  belongs_to :procedure, inverse_of: :webhooks
 
   encrypts :secret
   has_secure_token :secret, length: 48
@@ -39,12 +40,32 @@ class Webhook < ApplicationRecord
 
   before_create :initialize_cursor
   before_update :sync_event_type_floors
+  before_update :invalidate_delivery_claim
 
+  # Deliverability is `enabled` — admin-owned, auto-disable flips it off too,
+  # keeping auto_disabled_at as pure diagnostics of why (see
+  # Webhooks::DeliveryJob#register_failure and #reactivate!) — plus a kept
+  # démarche: discarding one suspends its integration without touching
+  # `enabled`, so Procedure#restore resumes deliveries by construction.
+  scope :deliverable, -> { where(enabled: true).where(procedure_id: Procedure.kept.select(:id)) }
   scope :subscribed_to, -> (event_type) { where("? = ANY(event_types)", event_type) }
-  scope :deliverable, -> { where(enabled: true, auto_disabled_at: nil) }
 
-  def deliverable?
-    enabled? && auto_disabled_at.nil?
+  # Events this webhook still has to deliver, event type floors applied (see
+  # #sync_event_type_floors). Single definition shared by Webhooks::DeliveryJob
+  # (which adds batching and the safety lag) and the delivery sweeper (which
+  # only checks existence): the two must never disagree on what is pending,
+  # or the sweeper re-enqueues no-op deliveries forever.
+  def pending_events
+    scope = WebhookEvent
+      .where(procedure_id:)
+      .where("id > ?", cursor)
+      .where(event_type: event_types)
+
+    event_type_floors.each do |event_type, floor|
+      scope = scope.where("NOT (event_type = ? AND id <= ?)", event_type, floor)
+    end
+
+    scope
   end
 
   def backoff_delay
@@ -55,8 +76,20 @@ class Webhook < ApplicationRecord
     consecutive_failures > 0 && last_attempt_at.present? && Time.current < last_attempt_at + backoff_delay
   end
 
+  # Also clears the delivery claim: a claim left by a crashed worker would
+  # otherwise silently delay the catch-up delivery webhookActiver promises
+  # until the claim ages past its TTL. A delivery genuinely in flight
+  # notices the lost claim after its next HTTP call and stops without
+  # further bookkeeping (see Webhooks::DeliveryJob#deliver_pending_events).
   def reactivate!
-    update!(enabled: true, auto_disabled_at: nil, consecutive_failures: 0, last_error: nil)
+    update!(enabled: true, auto_disabled_at: nil, consecutive_failures: 0, last_error: nil, delivery_claimed_at: nil)
+  end
+
+  # Lifts a pending backoff without touching the delivery claim: used by
+  # webhookActiver on an already-enabled webhook, where clearing the claim
+  # would hand an in-flight run's work to a concurrent second job.
+  def clear_backoff!
+    update!(consecutive_failures: 0, last_error: nil)
   end
 
   private
@@ -94,5 +127,14 @@ class Webhook < ApplicationRecord
       floors = floors.merge(added.index_with { latest })
     end
     self.event_type_floors = floors
+  end
+
+  # A subscription change invalidates any in-flight delivery run in the same
+  # transaction: the run's compare-and-swap on delivery_claimed_at then fails
+  # (see Webhooks::DeliveryJob#advance_cursor), so a cursor computed under the
+  # old event_types can never skip an event only the new ones select, and no
+  # batch keeps flowing to a replaced URL.
+  def invalidate_delivery_claim
+    self.delivery_claimed_at = nil if event_types_changed? || url_changed?
   end
 end
