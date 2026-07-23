@@ -2,6 +2,8 @@
 
 module Mutations
   class BaseMutation < GraphQL::Schema::RelayClassicMutation
+    include DemarcheAuthorizationConcern
+
     private
 
     delegate :current_administrateur, to: :context
