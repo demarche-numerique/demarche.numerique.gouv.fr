@@ -12,4 +12,12 @@ class AdministrateurMailerPreview < ActionMailer::Preview
     procedure = Procedure.kept.where.not(api_entreprise_token: nil).first || Procedure.first
     AdministrateurMailer.api_entreprise_token_expiration(administrateur, procedure)
   end
+
+  def notify_webhook_auto_disabled
+    administrateur = Administrateur.first
+    webhook = Webhook.first || Webhook.new(procedure: Procedure.first, url: "https://exemple.fr/webhook", label: "Mon webhook", event_types: ["dossier_depose"])
+    webhook.auto_disabled_at ||= Time.zone.now
+    webhook.last_error ||= "HTTP 500 (Internal Server Error)"
+    AdministrateurMailer.notify_webhook_auto_disabled(administrateur, webhook)
+  end
 end
