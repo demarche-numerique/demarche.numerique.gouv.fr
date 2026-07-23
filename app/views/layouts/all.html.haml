@@ -65,26 +65,24 @@
                     = f.check_box :template, class: 'fr-input'
                     = f.label :template, 'Modèle DS', class: 'fr-label'
 
-              - other_zones_count = @filter.other_zones.count { |z| @filter.zone_filtered?(z.id) }
-
-              = render Dsfr::AccordionComponent.new(expanded: other_zones_count > 0) do |c|
-                - c.with_title do
-                  Autres zones
-                  - if other_zones_count > 0
-                    %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w= other_zones_count
-                = f.collection_check_boxes :zone_ids, @filter.other_zones, :id, :current_label, include_hidden: false do |b|
-                  .fr-checkbox-group.fr-ml-2w.fr-py-1w
-                    = b.check_box(checked: @filter.zone_filtered?(b.value))
-                    = b.label(class: 'fr-label') { b.text }
-
               - admin_zones_count = @filter.admin_zones.count { |z| @filter.zone_filtered?(z.id) }
-
               = render Dsfr::AccordionComponent.new(expanded: admin_zones_count > 0) do |c|
                 - c.with_title do
                   Mes zones
                   - if admin_zones_count > 0
                     %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w= admin_zones_count
                 = f.collection_check_boxes :zone_ids, @filter.admin_zones, :id, :current_label, include_hidden: false do |b|
+                  .fr-checkbox-group.fr-ml-2w.fr-py-1w
+                    = b.check_box(checked: @filter.zone_filtered?(b.value))
+                    = b.label(class: 'fr-label') { b.text }
+
+              - other_zones_count = @filter.other_zones.count { |z| @filter.zone_filtered?(z.id) }
+              = render Dsfr::AccordionComponent.new(expanded: other_zones_count > 0) do |c|
+                - c.with_title do
+                  Autres zones
+                  - if other_zones_count > 0
+                    %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w= other_zones_count
+                = f.collection_check_boxes :zone_ids, @filter.other_zones, :id, :current_label, include_hidden: false do |b|
                   .fr-checkbox-group.fr-ml-2w.fr-py-1w
                     = b.check_box(checked: @filter.zone_filtered?(b.value))
                     = b.label(class: 'fr-label') { b.text }
