@@ -68,19 +68,52 @@ describe Webhook, type: :model do
     end
   end
 
-  describe '#deliverable?' do
+  describe '#reactivate!' do
     let(:webhook) { webhooks.default }
 
-    it { expect(webhook).to be_deliverable }
+    it 'resets the auto disable state and the delivery claim' do
+      webhook.update!(enabled: false, auto_disabled_at: Time.current, consecutive_failures: 13, last_error: "HTTP 500", delivery_claimed_at: Time.current)
 
-    it 'is false when manually disabled' do
-      webhook.update!(enabled: false)
-      expect(webhook).not_to be_deliverable
+      webhook.reactivate!
+
+      expect(webhook.enabled?).to be(true)
+      expect(webhook.auto_disabled_at).to be_nil
+      expect(webhook.consecutive_failures).to eq(0)
+      expect(webhook.last_error).to be_nil
+      expect(webhook.delivery_claimed_at).to be_nil
     end
+  end
 
-    it 'is false when auto disabled' do
-      webhook.update!(auto_disabled_at: Time.current)
-      expect(webhook).not_to be_deliverable
+  describe '#clear_backoff!' do
+    let(:webhook) { webhooks.default }
+
+    it 'lifts the backoff without touching the delivery claim' do
+      claimed_at = Time.current.change(usec: 0)
+      webhook.update!(consecutive_failures: 3, last_attempt_at: 1.second.ago, last_error: "HTTP 500", delivery_claimed_at: claimed_at)
+      expect(webhook.in_backoff?).to be(true)
+
+      webhook.clear_backoff!
+
+      expect(webhook.in_backoff?).to be(false)
+      expect(webhook.last_error).to be_nil
+      expect(webhook.delivery_claimed_at).to eq(claimed_at)
+    end
+  end
+
+  describe 'delivery claim invalidation' do
+    let(:webhook) { webhooks.default }
+
+    it 'clears the claim when event_types or url change, not on unrelated updates' do
+      webhook.update!(delivery_claimed_at: Time.current)
+      webhook.update!(label: "Autre libellé")
+      expect(webhook.delivery_claimed_at).to be_present
+
+      webhook.update!(event_types: ["message_cree"])
+      expect(webhook.delivery_claimed_at).to be_nil
+
+      webhook.update!(delivery_claimed_at: Time.current)
+      webhook.update!(url: "https://example.com/hook2")
+      expect(webhook.delivery_claimed_at).to be_nil
     end
   end
 
