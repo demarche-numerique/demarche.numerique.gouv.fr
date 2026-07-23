@@ -2,6 +2,8 @@
 
 module Types
   class QueryType < Types::BaseObject
+    include DemarcheAuthorizationConcern
+
     field :demarche, DemarcheType, null: false, description: "Informations concernant une démarche." do
       argument :number, Int, "Numéro de la démarche.", required: true
     end
@@ -20,6 +22,14 @@ module Types
 
     field :demarche_descriptors, DemarcheDescriptorType.connection_type, null: false, description: "Liste des démarches publiques (publiées ou closes, en opendata)."
 
+    field :webhooks, [WebhookType], null: false, description: "Liste des webhooks d’une démarche." do
+      argument :demarche, DemarcheDescriptorType::FindDemarcheInput, "La démarche.", required: true
+    end
+
+    field :webhook, WebhookType, null: false, description: "Informations sur un webhook." do
+      argument :id, ID, "Identifiant du webhook.", required: true, loads: Types::WebhookType, as: :webhook
+    end
+
     def demarche_descriptors
       Procedure.publiques.includes(
         :procedure_paths,
@@ -30,10 +40,9 @@ module Types
     end
 
     def demarche_descriptor(demarche:)
-      demarche_number = demarche.number.presence || ApplicationRecord.id_from_typed_id(demarche.id)
       Procedure
         .includes(:procedure_paths, draft_revision: :procedure, published_revision: :procedure)
-        .find(demarche_number)
+        .find(demarche_number(demarche))
     end
 
     def demarche(number:)
@@ -51,6 +60,20 @@ module Types
 
     def groupe_instructeur(number:)
       GroupeInstructeur.for_api_v2.find(number)
+    end
+
+    def webhooks(demarche:)
+      procedure = find_authorized_demarche(demarche)
+
+      if procedure.nil?
+        raise GraphQL::ExecutionError.new("La démarche \"#{demarche_number(demarche)}\" n'existe pas ou vous n'avez pas le droit d'y accéder.", extensions: { code: :unauthorized })
+      end
+
+      procedure.webhooks.order(:id)
+    end
+
+    def webhook(webhook:)
+      webhook
     end
 
     def self.accessible?(context)
