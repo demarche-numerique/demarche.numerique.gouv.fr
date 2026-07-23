@@ -124,19 +124,64 @@ describe Webhook, type: :model do
     end
   end
 
-  describe '#deliverable?' do
+  describe '#reactivate!' do
     let(:webhook) { webhooks.default }
 
-    it { expect(webhook).to be_deliverable }
+    it 'resets the auto disable state and the delivery claim' do
+      webhook.update!(enabled: false, auto_disabled_at: Time.current, consecutive_failures: 13, last_error: "HTTP 500", delivery_claimed_at: Time.current)
 
-    it 'is false when manually disabled' do
-      webhook.update!(enabled: false)
-      expect(webhook).not_to be_deliverable
+      webhook.reactivate!
+
+      expect(webhook.enabled?).to be(true)
+      expect(webhook.auto_disabled_at).to be_nil
+      expect(webhook.consecutive_failures).to eq(0)
+      expect(webhook.last_error).to be_nil
+      expect(webhook.delivery_claimed_at).to be_nil
     end
+  end
 
-    it 'is false when auto disabled' do
-      webhook.update!(auto_disabled_at: Time.current)
-      expect(webhook).not_to be_deliverable
+  describe '#clear_backoff!' do
+    let(:webhook) { webhooks.default }
+
+    it 'lifts the backoff without touching the delivery claim' do
+      claimed_at = Time.current.change(usec: 0)
+      webhook.update!(consecutive_failures: 3, retry_at: 1.minute.from_now, last_error: "HTTP 500", delivery_claimed_at: claimed_at)
+
+      webhook.clear_backoff!
+
+      expect(webhook.retry_at).to be_nil
+      expect(webhook.last_error).to be_nil
+      expect(webhook.delivery_claimed_at).to eq(claimed_at)
+    end
+  end
+
+  describe 'delivery claim invalidation' do
+    let(:webhook) { webhooks.default }
+
+    it 'clears the claim when event_types or url change, not on unrelated updates' do
+      webhook.update!(delivery_claimed_at: Time.current)
+      webhook.update!(label: "Autre libellé")
+      expect(webhook.delivery_claimed_at).to be_present
+
+      webhook.update!(event_types: ["message_cree"])
+      expect(webhook.delivery_claimed_at).to be_nil
+
+      webhook.update!(delivery_claimed_at: Time.current)
+      webhook.update!(url: "https://example.com/hook2")
+      expect(webhook.delivery_claimed_at).to be_nil
+    end
+  end
+
+  describe 'url change' do
+    it 'forgets the backoff of the previous endpoint' do
+      webhook = webhooks.default
+      webhook.update!(consecutive_failures: 4, retry_at: 2.hours.from_now, last_error: "HTTP 500")
+
+      webhook.update!(label: "Autre libellé")
+      expect(webhook.retry_at).to be_present
+
+      webhook.update!(url: "https://example.com/hook2")
+      expect(webhook).to have_attributes(consecutive_failures: 0, retry_at: nil, last_error: nil)
     end
   end
 
@@ -159,17 +204,23 @@ describe Webhook, type: :model do
     end
   end
 
-  describe '#in_backoff?' do
+  describe '.claimable' do
     let(:webhook) { webhooks.default }
 
-    it 'is true only until the scheduled retry' do
-      expect(webhook.in_backoff?).to be(false)
+    it 'leaves out a webhook claimed by a live run or backing off' do
+      expect(Webhook.claimable.exists?(webhook.id)).to be(true)
+
+      webhook.update!(delivery_claimed_at: 1.minute.ago)
+      expect(Webhook.claimable.exists?(webhook.id)).to be(false)
+
+      webhook.update!(delivery_claimed_at: (Webhooks::DeliveryJob::CLAIM_TTL + 1.minute).ago)
+      expect(Webhook.claimable.exists?(webhook.id)).to be(true)
 
       webhook.update!(retry_at: 1.minute.from_now)
-      expect(webhook.in_backoff?).to be(true)
+      expect(Webhook.claimable.exists?(webhook.id)).to be(false)
 
       webhook.update!(retry_at: 1.second.ago)
-      expect(webhook.in_backoff?).to be(false)
+      expect(Webhook.claimable.exists?(webhook.id)).to be(true)
     end
   end
 
@@ -183,6 +234,20 @@ describe Webhook, type: :model do
 
       webhook.update!(event_types: ["dossier_depose"])
       expect(webhook.event_type_floors).to eq({})
+    end
+
+    it 'filters pending events below the floor until the cursor passes it' do
+      webhook = procedure.webhooks.create!(url: "https://example.com/hook", event_types: ["dossier_depose"])
+      floored = WebhookEvent.create!(procedure:, dossier_id: 1, event_type: "message_cree")
+      webhook.update!(event_types: ["dossier_depose", "message_cree"])
+      newer = WebhookEvent.create!(procedure:, dossier_id: 1, event_type: "message_cree")
+
+      expect(webhook.pending_events).to eq([newer])
+      expect(webhook.pending_events.to_sql).to include("NOT (")
+
+      webhook.update!(cursor: floored.id)
+      expect(webhook.pending_events).to eq([newer])
+      expect(webhook.pending_events.to_sql).not_to include("NOT (")
     end
   end
 end

@@ -33,9 +33,7 @@ class Webhook < ApplicationRecord
     dossier_label_supprime
   ].freeze
 
-  # with_discarded: delivery bookkeeping (auto-disable notification) must keep
-  # working for webhooks whose démarche has been discarded.
-  belongs_to :procedure, -> { with_discarded }, inverse_of: :webhooks
+  belongs_to :procedure, inverse_of: :webhooks
 
   encrypts :secret
   encrypts :previous_secret
@@ -50,12 +48,33 @@ class Webhook < ApplicationRecord
   before_validation :generate_secret, on: :create
   before_create :initialize_cursor
   before_update :sync_event_type_floors
+  before_update :invalidate_delivery_claim
+  before_update :forget_previous_endpoint_backoff, if: :url_changed?
 
+  scope :deliverable, -> { where(enabled: true).where(procedure_id: Procedure.kept.select(:id)) }
+  # One run at a time per webhook, none while it backs off. The claim
+  # expires so a killed worker cannot block the webhook.
+  scope :claimable, -> {
+    deliverable
+      .where("delivery_claimed_at IS NULL OR delivery_claimed_at < ?", Webhooks::DeliveryJob::CLAIM_TTL.ago)
+      .where("retry_at IS NULL OR retry_at <= ?", Time.current)
+  }
   scope :subscribed_to, -> (event_type) { where("? = ANY(event_types)", event_type) }
-  scope :deliverable, -> { where(enabled: true, auto_disabled_at: nil) }
 
-  def deliverable?
-    enabled? && auto_disabled_at.nil?
+  def pending_events
+    scope = WebhookEvent
+      .where(procedure_id:)
+      .where("id > ?", cursor)
+      .where(event_type: event_types)
+
+    # a floor the cursor has passed filters nothing
+    event_type_floors.each do |event_type, floor|
+      next if floor <= cursor
+
+      scope = scope.where("NOT (event_type = ? AND id <= ?)", event_type, floor)
+    end
+
+    scope
   end
 
   def self.generate_secret
@@ -79,16 +98,17 @@ class Webhook < ApplicationRecord
     [secret, (previous_secret if previous_secret_valid?)].compact
   end
 
-  def in_backoff?
-    retry_at.present? && retry_at.future?
-  end
-
   def retry_delay
     RETRY_SCHEDULE.fetch(consecutive_failures - 1, RETRY_SCHEDULE.last) * rand((1 - RETRY_JITTER)..(1 + RETRY_JITTER))
   end
 
   def reactivate!
-    update!(enabled: true, auto_disabled_at: nil, consecutive_failures: 0, retry_at: nil, last_error: nil)
+    update!(enabled: true, auto_disabled_at: nil, consecutive_failures: 0, retry_at: nil, last_error: nil, delivery_claimed_at: nil)
+  end
+
+  # Keeps the claim, unlike reactivate!: a run may be in flight.
+  def clear_backoff!
+    update!(consecutive_failures: 0, retry_at: nil, last_error: nil)
   end
 
   private
@@ -126,5 +146,17 @@ class Webhook < ApplicationRecord
       floors = floors.merge(added.index_with { latest })
     end
     self.event_type_floors = floors
+  end
+
+  # The backoff was earned by the previous endpoint.
+  def forget_previous_endpoint_backoff
+    self.consecutive_failures = 0
+    self.retry_at = nil
+    self.last_error = nil
+  end
+
+  # Stops an in-flight run working on the old subscription.
+  def invalidate_delivery_claim
+    self.delivery_claimed_at = nil if event_types_changed? || url_changed?
   end
 end
