@@ -127,6 +127,7 @@ class ProcedureRevision < ApplicationRecord
     return nil if coordinate.nil?
 
     children = children_of(tdc).to_a
+    tdc = TypeDeChamp.with_attached_notice_explicative.with_attached_piece_justificative_template.find(tdc.id)
 
     transaction do
       coordinate.destroy

@@ -27,6 +27,7 @@ module Administrateurs
       import_referentiel and return if referentiel_file.present?
 
       type_de_champ = draft.find_and_ensure_exclusive_use(params[:stable_id])
+      type_de_champ = TypeDeChamp.with_attached_notice_explicative.with_attached_piece_justificative_template.find(type_de_champ.id)
       @coordinate = draft.coordinate_for(type_de_champ)
       was_prefill_with_fc_information = type_de_champ.prefill_with_france_connect_information?
 
@@ -141,6 +142,7 @@ module Administrateurs
 
     def nullify_referentiel
       type_de_champ = draft.find_and_ensure_exclusive_use(params[:stable_id])
+      type_de_champ = TypeDeChamp.with_attached_notice_explicative.with_attached_piece_justificative_template.find(type_de_champ.id)
       type_de_champ.update!(referentiel_id: nil)
 
       @coordinate = draft.coordinate_for(type_de_champ)
