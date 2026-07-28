@@ -56,6 +56,20 @@ describe DemarchesPubliquesExportService do
 
       expect { DemarchesPubliquesExportService.new(gzip_filename).call }.to raise_error(DemarchesPubliquesExportService::Error)
     end
+
+    # DemarcheDescriptor.revision is non-nullable, so one procedure without a published
+    # revision used to raise InvalidNullError and take the whole export down with it.
+    it 'skips a procedure without a published revision instead of aborting the export' do
+      exported = procedure # the `let` is lazy: create it before the export runs
+      orphan = create(:procedure, :published, :with_zone, :with_service, :with_type_de_champ, estimated_dossiers_count: 4)
+      orphan.update_column(:published_revision_id, nil)
+
+      DemarchesPubliquesExportService.new(gzip_filename).call
+
+      numbers = JSON.parse(deflat_gzip(gzip_filename)).map { it['number'] }
+      expect(numbers).to include(exported.id)
+      expect(numbers).not_to include(orphan.id)
+    end
   end
 
   def deflat_gzip(gzip_filename)
