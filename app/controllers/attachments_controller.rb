@@ -11,7 +11,6 @@ class AttachmentsController < ApplicationController
     @user_can_edit = cast_bool(params[:user_can_edit])
     @direct_upload = cast_bool(params[:direct_upload])
     @view_as = params[:view_as]&.to_sym
-    @auto_attach_url = params[:auto_attach_url]
 
     respond_to do |format|
       format.turbo_stream
@@ -121,7 +120,6 @@ class AttachmentsController < ApplicationController
       attached_file: record.public_send(@attachment.name),
       view_as: params[:view_as]&.to_sym,
       direct_upload: params[:direct_upload] == "true",
-      auto_attach_url: params[:direct_upload] == "true" ? params[:auto_attach_url] : nil,
     }
   end
 end

@@ -50,34 +50,6 @@ module Administrateurs
       end
     end
 
-    def piece_justificative_template
-      type_de_champ = draft.find_and_ensure_exclusive_use(params[:stable_id])
-
-      if type_de_champ.piece_justificative_template.attach(params[:blob_signed_id])
-        reload_procedure_with_includes
-        @coordinate = draft.coordinate_for(type_de_champ)
-        @morphed = [champ_component_from(@coordinate)]
-
-        render :create
-      else
-        render json: { errors: type_de_champ.errors.full_messages }, status: 422
-      end
-    end
-
-    def notice_explicative
-      type_de_champ = draft.find_and_ensure_exclusive_use(params[:stable_id])
-
-      if type_de_champ.notice_explicative.attach(params[:blob_signed_id])
-        reload_procedure_with_includes
-        @coordinate = draft.coordinate_for(type_de_champ)
-        @morphed = [champ_component_from(@coordinate)]
-
-        render :create
-      else
-        render json: { errors: type_de_champ.errors.full_messages }, status: 422
-      end
-    end
-
     def move_and_morph
       source_type_de_champ = draft.find_and_ensure_exclusive_use(params[:stable_id])
       target_type_de_champ = draft.find_and_ensure_exclusive_use(params[:target_stable_id])
@@ -217,8 +189,15 @@ module Administrateurs
         .permit(:type_champ, :parent_stable_id, :private, :libelle, :after_stable_id)
     end
 
+    # Uploaded through direct upload, then submitted with the form as a blob
+    # signed id. An untouched file input submits a blank value, which would
+    # otherwise purge the attachment on every autosave.
+    ATTACHMENT_ATTRIBUTES = ['piece_justificative_template', 'notice_explicative']
+
     def type_de_champ_update_params
       params.required(:type_de_champ).permit(:type_champ,
+        :piece_justificative_template,
+        :notice_explicative,
         :libelle,
         :description,
         :mandatory,
@@ -274,6 +253,7 @@ module Administrateurs
           :zones_humides,
           :znieff,
         ])
+        .reject { |key, value| key.in?(ATTACHMENT_ATTRIBUTES) && value.blank? }
     end
 
     def draft
