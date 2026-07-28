@@ -6,7 +6,7 @@
 class Attachment::AttachmentRowComponent < ApplicationComponent
   attr_reader :attachment, :context
 
-  delegate :champ, :auto_attach_url, :direct_upload, :view_as, :user_can_destroy?,
+  delegate :champ, :direct_upload, :view_as, :user_can_destroy?,
            to: :context
 
   def initialize(attachment:, context:, field_name: nil)
@@ -23,7 +23,7 @@ class Attachment::AttachmentRowComponent < ApplicationComponent
     if champ.present?
       attachment_path
     else
-      attachment_path(auto_attach_url:, view_as:, direct_upload:)
+      attachment_path(view_as:, direct_upload:)
     end
   end
 

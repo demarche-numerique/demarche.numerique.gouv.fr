@@ -12,11 +12,13 @@ type ErrorMessage = {
   retry: boolean;
 };
 
-// Given a file input in a champ with a selected file, upload a file,
-// then attach it to the dossier.
+// Given a file input with a selected file, upload the file, and — when the
+// input carries an auto attach url — attach it right away.
 //
-// On success, the champ is replaced by an HTML fragment describing the attachment.
-// On error, a error message is displayed above the input.
+// On success, the input is replaced by an HTML fragment describing the
+// attachment, and the blob signed id is returned so a caller can submit it
+// with its form instead. On error, an error message is displayed above the
+// input.
 export class AutoUpload {
   #input: HTMLInputElement;
   #uploader: Uploader;
@@ -34,13 +36,14 @@ export class AutoUpload {
     );
   }
 
-  // Create, upload and attach the file.
+  // Create, upload and attach the file. Returns the blob signed id.
   // On failure, display an error message and throw a FileUploadError.
-  async start() {
+  async start(): Promise<string> {
     try {
       this.begin();
-      await this.#uploader.start();
+      const blobSignedId = await this.#uploader.start();
       this.succeeded();
+      return blobSignedId;
     } catch (error) {
       this.failed(error as FileUploadError);
       throw error;
