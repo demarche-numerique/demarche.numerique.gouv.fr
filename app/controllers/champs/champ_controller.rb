@@ -11,7 +11,7 @@ class Champs::ChampController < ApplicationController
     dossier = Dossier.with_revision.includes(:champ_data).find(params[:dossier_id])
     authorize dossier, :read?
 
-    type_de_champ = dossier.find_type_de_champ_by_stable_id(params[:stable_id])
+    type_de_champ = dossier.find_type_de_champ_by_stable_id!(params[:stable_id], row_id: params_row_id)
     dossier.with_update_stream(current_user) if type_de_champ.public?
     @dossier = dossier
 

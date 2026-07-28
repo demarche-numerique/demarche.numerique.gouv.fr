@@ -1016,6 +1016,27 @@ describe Users::DossiersController, type: :controller do
       end
     end
 
+    # RAILS-JYN: the admin published a revision removing this champ while the usager still
+    # had the form open, and the dossier was rebased onto it. The autosave keeps coming.
+    context 'when a newly published revision removed the champ' do
+      let!(:removed_stable_id) { first_champ.stable_id }
+      let(:champs_public_attributes) { { removed_stable_id.to_s => { value: 'still typing' } } }
+
+      before do
+        procedure.draft_revision.remove_type_de_champ(removed_stable_id)
+        procedure.publish_revision!(procedure.administrateurs.first)
+        dossier.reload.rebase!
+      end
+
+      it 'removes the orphaned input and leaves the rest of the page alone' do
+        subject
+
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to include('action="remove"')
+        expect(response.body).to include("#champ-#{removed_stable_id}")
+      end
+    end
+
     context 'when the champ is a drop_down_list with referentiel' do
       let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :drop_down_list }]) }
 
