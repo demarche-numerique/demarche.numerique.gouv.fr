@@ -931,6 +931,18 @@ describe Procedure do
     it "does not return procedures without any dossier" do
       expect(Procedure.publiques).not_to include(published_procedure_without_dossier)
     end
+
+    # DemarcheDescriptor.revision resolves to active_revision — published_revision for
+    # any of these states — and is non-nullable, so exporting such a procedure aborts
+    # the whole datagouv run.
+    it "does not return procedures without a published revision" do
+      expect(Procedure.publiques).to include(published_procedure)
+
+      published_procedure.update_column(:published_revision_id, nil)
+
+      expect(Procedure.publiques).not_to include(published_procedure.reload)
+      expect(published_procedure.active_revision).to be_nil
+    end
   end
 
   describe 'active' do

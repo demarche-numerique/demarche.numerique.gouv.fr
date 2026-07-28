@@ -194,6 +194,11 @@ class Procedure < ApplicationRecord
   scope :publiques,              -> do
     publiees_ou_closes
       .opendata
+      # None of these states is brouillon, so active_revision is published_revision.
+      # A few procedures have none; DemarcheDescriptor.revision is non-nullable, so
+      # exporting one raises InvalidNullError and aborts the whole datagouv run. A
+      # procedure with no revision has no form to describe anyway.
+      .where.not(published_revision_id: nil)
       .where(estimated_dossiers_count: 1..)
       .where.not('lien_site_web LIKE ?', '%mail%')
       .where.not('lien_site_web LIKE ?', '%intra%')
