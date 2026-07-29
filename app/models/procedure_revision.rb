@@ -33,7 +33,7 @@ class ProcedureRevision < ApplicationRecord
   def root_types_de_champ_public = flat_types_de_champ_public.filter { !it.in_repetition? }
   def root_types_de_champ_private = flat_types_de_champ_private.filter { !it.in_repetition? }
 
-  def find_type_de_champ_by_stable_id(stable_id, scope = nil)
+  def type_de_champ(stable_id, scope = nil)
     type_de_champ = tree_index[stable_id.to_i]
 
     return type_de_champ if type_de_champ.nil? || scope.nil?

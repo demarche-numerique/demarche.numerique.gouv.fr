@@ -597,7 +597,7 @@ RSpec.describe Types::DossierType, type: :graphql do
 
     context 'when the usager corrects a champ inside a repetition' do
       let(:row_id) do
-        type_de_champ = dossier.find_type_de_champ_by_stable_id(993)
+        type_de_champ = dossier.type_de_champ(993)
         dossier.project_champ(type_de_champ).row_ids.first
       end
 

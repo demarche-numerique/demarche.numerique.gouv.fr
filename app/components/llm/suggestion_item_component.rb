@@ -26,6 +26,6 @@ class LLM::SuggestionItemComponent < ApplicationComponent
   end
 
   def tdc_for(stable_id)
-    procedure_revision.find_type_de_champ_by_stable_id(stable_id)
+    procedure_revision.type_de_champ(stable_id)
   end
 end

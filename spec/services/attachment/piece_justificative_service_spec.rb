@@ -69,9 +69,9 @@ RSpec.describe Attachment::PieceJustificativeService do
         dossier.champ_data.find { _1.stable_id == 99 }.update_column(:value, 'false')
 
         dossier.with_update_stream(dossier.user)
-        yes_no_champ = dossier.champ_for_update(dossier.find_type_de_champ_by_stable_id(99), row_id: nil, updated_by: dossier.user.email)
+        yes_no_champ = dossier.champ_for_update(dossier.type_de_champ(99), row_id: nil, updated_by: dossier.user.email)
         yes_no_champ.update(value: 'true')
-        pj_champ = dossier.champ_for_update(dossier.find_type_de_champ_by_stable_id(999), row_id: nil, updated_by: dossier.user.email)
+        pj_champ = dossier.champ_for_update(dossier.type_de_champ(999), row_id: nil, updated_by: dossier.user.email)
 
         expect(described_class.attach_champ_pj(pj_champ, invalid_blob.signed_id)).to be_falsey
         expect(pj_champ.errors[:piece_justificative_file]).to be_present

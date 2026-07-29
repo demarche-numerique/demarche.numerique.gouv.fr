@@ -41,7 +41,7 @@ describe DossierSectionsConcern do
 
       let(:public_type_de_champ) do
         member = dossier.root_types_de_champ_public[1].children.first
-        dossier.revision.find_type_de_champ_by_stable_id(member.stable_id)
+        dossier.revision.type_de_champ(member.stable_id)
       end
 
       context "with parent section having headers with number" do

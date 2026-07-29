@@ -107,13 +107,13 @@ module DossierChampsConcern
 
   def public_champ_for_update(public_id, updated_by:)
     stable_id, row_id = public_id.split('-')
-    type_de_champ = find_type_de_champ_by_stable_id(stable_id, :public)
+    type_de_champ = type_de_champ(stable_id, :public)
     champ_for_update(type_de_champ, row_id:, updated_by:)
   end
 
   def private_champ_for_update(public_id, updated_by:)
     stable_id, row_id = public_id.split('-')
-    type_de_champ = find_type_de_champ_by_stable_id(stable_id, :private)
+    type_de_champ = type_de_champ(stable_id, :private)
     champ_for_update(type_de_champ, row_id:, updated_by:)
   end
 

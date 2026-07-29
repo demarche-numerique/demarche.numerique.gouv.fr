@@ -108,7 +108,7 @@ class Referentiels::ReferentielPrefillComponent < Referentiels::MappingFormBase
   # Dans une répétition, on reste dans la ligne courante (les frères en aval) ;
   # sinon, tout ce qui suit dans l'ordre du formulaire (le flatten respecte les positions).
   def tdcs_after_current(tdcs)
-    current = draft_revision.find_type_de_champ_by_stable_id(type_de_champ.stable_id)
+    current = draft_revision.type_de_champ(type_de_champ.stable_id)
     scope = current.in_repetition? ? current.enclosing_repetition.flat_children : tdcs
     scope.drop(scope.index { it.stable_id == current.stable_id } + 1)
   end

@@ -89,8 +89,8 @@ describe ProcedureRevision do
 
       it do
         expect { subject }.to change { draft.reload.types_de_champ.count }.from(4).to(5)
-        expect(draft.find_type_de_champ_by_stable_id(type_de_champ_repetition.stable_id).children.last).to eq(subject)
-        expect(draft.find_type_de_champ_by_stable_id(type_de_champ_repetition.stable_id).children.map { draft.coordinate_for(_1).position }).to eq([0, 1])
+        expect(draft.type_de_champ(type_de_champ_repetition.stable_id).children.last).to eq(subject)
+        expect(draft.type_de_champ(type_de_champ_repetition.stable_id).children.map { draft.coordinate_for(_1).position }).to eq([0, 1])
 
         expect(last_coordinate.position).to eq(1)
 
@@ -164,7 +164,7 @@ describe ProcedureRevision do
           type_champ: TypeDeChamp.type_champs.fetch(:text),
           libelle: "second child",
           parent_stable_id: type_de_champ_repetition.stable_id,
-          after_stable_id: draft.reload.find_type_de_champ_by_stable_id(type_de_champ_repetition.stable_id).children.last.stable_id,
+          after_stable_id: draft.reload.type_de_champ(type_de_champ_repetition.stable_id).children.last.stable_id,
         })
       end
 
@@ -173,24 +173,24 @@ describe ProcedureRevision do
           type_champ: TypeDeChamp.type_champs.fetch(:text),
           libelle: "last child",
           parent_stable_id: type_de_champ_repetition.stable_id,
-          after_stable_id: draft.reload.find_type_de_champ_by_stable_id(type_de_champ_repetition.stable_id).children.last.stable_id,
+          after_stable_id: draft.reload.type_de_champ(type_de_champ_repetition.stable_id).children.last.stable_id,
         })
       end
 
       it 'move down' do
-        expect(draft.find_type_de_champ_by_stable_id(type_de_champ_repetition.stable_id).children.index(second_child)).to eq(2)
+        expect(draft.type_de_champ(type_de_champ_repetition.stable_id).children.index(second_child)).to eq(2)
 
         draft.move_type_de_champ(second_child.stable_id, 3)
 
-        expect(draft.find_type_de_champ_by_stable_id(type_de_champ_repetition.stable_id).children.index(second_child)).to eq(3)
+        expect(draft.type_de_champ(type_de_champ_repetition.stable_id).children.index(second_child)).to eq(3)
       end
 
       it 'move up' do
-        expect(draft.find_type_de_champ_by_stable_id(type_de_champ_repetition.stable_id).children.index(last_child)).to eq(3)
+        expect(draft.type_de_champ(type_de_champ_repetition.stable_id).children.index(last_child)).to eq(3)
 
         draft.move_type_de_champ(last_child.stable_id, 0)
 
-        expect(draft.find_type_de_champ_by_stable_id(type_de_champ_repetition.stable_id).children.index(last_child)).to eq(0)
+        expect(draft.type_de_champ(type_de_champ_repetition.stable_id).children.index(last_child)).to eq(0)
       end
     end
   end
@@ -261,7 +261,7 @@ describe ProcedureRevision do
 
     context 'for a type_de_champ_repetition' do
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :repetition, children: [{ type: :text }, { type: :integer_number }] }]) }
-      let!(:child) { draft.find_type_de_champ_by_stable_id(type_de_champ_repetition.stable_id).children.first }
+      let!(:child) { draft.type_de_champ(type_de_champ_repetition.stable_id).children.first }
 
       it 'can remove its children' do
         draft.remove_type_de_champ(child.stable_id)
@@ -285,8 +285,8 @@ describe ProcedureRevision do
           new_draft.remove_type_de_champ(child.stable_id)
 
           expect { child.reload }.not_to raise_error
-          expect(draft.find_type_de_champ_by_stable_id(type_de_champ_repetition.stable_id).children.size).to eq(2)
-          expect(new_draft.find_type_de_champ_by_stable_id(type_de_champ_repetition.stable_id).children.size).to eq(1)
+          expect(draft.type_de_champ(type_de_champ_repetition.stable_id).children.size).to eq(2)
+          expect(new_draft.type_de_champ(type_de_champ_repetition.stable_id).children.size).to eq(1)
         end
 
         it 'can remove the parent only in the new revision' do
@@ -1050,7 +1050,7 @@ describe ProcedureRevision do
     context 'with a simple tdc' do
       let(:procedure) { create(:procedure, :with_type_de_champ) }
 
-      it { expect(draft.find_type_de_champ_by_stable_id(draft.types_de_champ.first.stable_id).children).to be_empty }
+      it { expect(draft.type_de_champ(draft.types_de_champ.first.stable_id).children).to be_empty }
     end
 
     context 'with a repetition tdc' do
@@ -1059,7 +1059,7 @@ describe ProcedureRevision do
       let!(:first_child) { draft.types_de_champ.reject(&:repetition?).first }
       let!(:second_child) { draft.types_de_champ.reject(&:repetition?).second }
 
-      it { expect(draft.find_type_de_champ_by_stable_id(parent.stable_id).children).to match([first_child, second_child]) }
+      it { expect(draft.type_de_champ(parent.stable_id).children).to match([first_child, second_child]) }
 
       context 'with multiple child' do
         let(:child_position_2) { create(:type_de_champ_text) }
@@ -1072,7 +1072,7 @@ describe ProcedureRevision do
         end
 
         it 'returns the children in order' do
-          expect(draft.reload.find_type_de_champ_by_stable_id(parent.stable_id).children).to eq([first_child, second_child, child_position_1, child_position_2])
+          expect(draft.reload.type_de_champ(parent.stable_id).children).to eq([first_child, second_child, child_position_1, child_position_2])
         end
       end
 
@@ -1092,8 +1092,8 @@ describe ProcedureRevision do
         end
 
         it 'returns the children regarding the revision' do
-          expect(draft.find_type_de_champ_by_stable_id(parent.stable_id).children).to match([first_child, second_child])
-          expect(new_draft.reload.find_type_de_champ_by_stable_id(parent.stable_id).children).to match([new_child, second_child])
+          expect(draft.type_de_champ(parent.stable_id).children).to match([first_child, second_child])
+          expect(new_draft.reload.type_de_champ(parent.stable_id).children).to match([new_child, second_child])
         end
       end
     end
