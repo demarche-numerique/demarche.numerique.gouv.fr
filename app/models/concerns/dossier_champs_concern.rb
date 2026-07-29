@@ -3,6 +3,10 @@
 module DossierChampsConcern
   extend ActiveSupport::Concern
 
+  def champ(stable_id:, row_id: nil, scope:)
+    type_de_champ(stable_id, scope)&.then { project_champ(it, row_id:) }
+  end
+
   def project_champ(type_de_champ, row_id: nil)
     check_valid_row_id_on_read?(type_de_champ, row_id)
     data = champ_data_by_public_id[type_de_champ.public_id(row_id)]
