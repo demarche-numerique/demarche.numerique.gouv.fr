@@ -78,14 +78,7 @@ module DossierChampsConcern
   end
 
   def find_type_de_champ_by_stable_id(stable_id, scope = nil)
-    case scope
-    when :public
-      flat_types_de_champ_public
-    when :private
-      flat_types_de_champ_private
-    else
-      types_de_champ
-    end.find { it.stable_id == stable_id.to_i }
+    revision.type_de_champ(stable_id, scope)
   end
 
   def champs_for_prefill(stable_ids)

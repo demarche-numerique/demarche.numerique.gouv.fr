@@ -69,9 +69,8 @@ class ChampData < ApplicationRecord
   before_save :nullify_blank_json_columns
 
   def type_de_champ
-    @type_de_champ ||= dossier.revision
-      .types_de_champ
-      .find(-> { raise "Type De Champ #{stable_id} not found in Revision #{dossier.revision_id}" }) { _1.stable_id == stable_id }
+    @type_de_champ ||= dossier.revision.type_de_champ(stable_id) ||
+      raise("Type De Champ #{stable_id} not found in Revision #{dossier.revision_id}")
   end
 
   def type_de_champ=(type_de_champ)

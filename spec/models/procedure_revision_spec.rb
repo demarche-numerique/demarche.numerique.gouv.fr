@@ -1105,6 +1105,35 @@ describe ProcedureRevision do
     end
   end
 
+  describe '#type_de_champ' do
+    let(:procedure) do
+      create(:procedure,
+        types_de_champ_public: [
+          { type: :text, libelle: 'public text' },
+          { type: :repetition, libelle: 'repetition', children: [{ type: :integer_number, libelle: 'nested number' }] },
+        ],
+        types_de_champ_private: [{ type: :text, libelle: 'private text' }])
+    end
+    let(:text) { draft.types_de_champ.find { it.libelle == 'public text' } }
+    let(:nested) { draft.types_de_champ.find { it.libelle == 'nested number' } }
+    let(:annotation) { draft.types_de_champ.find { it.libelle == 'private text' } }
+
+    it 'finds any type de champ by stable_id, repetition content included' do
+      expect(draft.type_de_champ(text.stable_id)).to eq(text)
+      expect(draft.type_de_champ(text.stable_id.to_s)).to eq(text)
+      expect(draft.type_de_champ(nested.stable_id)).to eq(nested)
+      expect(draft.type_de_champ(annotation.stable_id)).to eq(annotation)
+      expect(draft.type_de_champ(0)).to be_nil
+    end
+
+    it 'filters by scope' do
+      expect(draft.type_de_champ(text.stable_id, :public)).to eq(text)
+      expect(draft.type_de_champ(text.stable_id, :private)).to be_nil
+      expect(draft.type_de_champ(annotation.stable_id, :private)).to eq(annotation)
+      expect(draft.type_de_champ(annotation.stable_id, :public)).to be_nil
+    end
+  end
+
   describe '#estimated_fill_duration' do
     let(:mandatory) { true }
     let(:description) { nil }
