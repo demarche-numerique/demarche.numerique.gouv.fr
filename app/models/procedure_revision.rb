@@ -53,6 +53,11 @@ class ProcedureRevision < ApplicationRecord
     super
   end
 
+  def preload_revision_types_de_champ(coordinates)
+    association(:revision_types_de_champ).target = coordinates
+    reset_tree_cache
+  end
+
   has_one :draft_procedure, -> { with_discarded }, class_name: 'Procedure', foreign_key: :draft_revision_id, dependent: :nullify, inverse_of: :draft_revision
   has_one :published_procedure, -> { with_discarded }, class_name: 'Procedure', foreign_key: :published_revision_id, dependent: :nullify, inverse_of: :published_revision
 
@@ -180,6 +185,39 @@ class ProcedureRevision < ApplicationRecord
     revision_types_de_champ.reset
     reset_tree_cache
     coordinate
+  end
+
+  def remove_all_public_coordinates!
+    revision_types_de_champ.public_only.each(&:destroy)
+    revision_types_de_champ.reset
+    reset_tree_cache
+  end
+
+  def remove_all_private_coordinates!
+    revision_types_de_champ.private_only.each(&:destroy)
+    revision_types_de_champ.reset
+    reset_tree_cache
+  end
+
+  def remove_orphan_coordinates!
+    revision_types_de_champ.filter(&:orphan?).each { remove_type_de_champ(it.stable_id) }
+  end
+
+  # After a deep clone, child coordinates' parent_id still points at the source
+  # revision's parent coordinates; re-aim them (matched by stable_id) at the
+  # cloned parents.
+  def rewire_cloned_children_parents!
+    children = revision_types_de_champ
+      .includes(parent: :type_de_champ)
+      .where.not(parent_id: nil)
+    coordinates_by_stable_id = revision_types_de_champ
+      .includes(:type_de_champ)
+      .index_by(&:stable_id)
+
+    children.each do |child|
+      child.update!(parent: coordinates_by_stable_id.fetch(child.parent.stable_id))
+    end
+    reload
   end
 
   def move_up_type_de_champ(stable_id)
