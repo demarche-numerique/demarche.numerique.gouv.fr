@@ -69,9 +69,8 @@ class ChampData < ApplicationRecord
   before_save :nullify_blank_json_columns
 
   def type_de_champ
-    @type_de_champ ||= dossier.revision
-      .types_de_champ
-      .find(-> { raise "Type De Champ #{stable_id} not found in Revision #{dossier.revision_id}" }) { _1.stable_id == stable_id }
+    @type_de_champ ||= dossier.find_type_de_champ_by_stable_id(stable_id) ||
+      raise("Type De Champ #{stable_id} not found in Revision #{dossier.revision_id}")
   end
 
   def type_de_champ=(type_de_champ)
@@ -99,7 +98,6 @@ class ChampData < ApplicationRecord
     :collapsible_explanation_enabled?,
     :collapsible_explanation_text,
     :header_section_level_value,
-    :current_section_level,
     :non_fillable?,
     :fillable?,
     :mandatory?,
@@ -151,6 +149,10 @@ class ChampData < ApplicationRecord
   scope :public_only, -> { where(private: false) }
   scope :private_only, -> { where(private: true) }
 
+  attr_writer :children
+  def children = Array.wrap(@children)
+  def flat_children = children.flat_map { [it] + it.flat_children }
+
   def public?
     !private?
   end
@@ -173,7 +175,7 @@ class ChampData < ApplicationRecord
   def parent
     return nil if row_id.blank?
 
-    dossier.revision.parent_of(type_de_champ)
+    type_de_champ.enclosing_repetition
   end
 
   def row?

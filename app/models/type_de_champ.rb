@@ -281,6 +281,22 @@ class TypeDeChamp < ApplicationRecord
 
   alias_method :validate, :valid?
 
+  def children=(value)
+    @children = value
+    value&.each { it.parent = self }
+  end
+
+  def children = Array.wrap(@children)
+  def flat_children = children.flat_map { [it] + it.flat_children }
+
+  attr_accessor :parent
+  def ancestors = Array.wrap(parent) + Array.wrap(parent&.ancestors)
+
+  def level = ancestors.count { |element| !element.repetition? } + 1
+
+  def enclosing_repetition = ancestors.find(&:repetition?)
+  def in_repetition? = enclosing_repetition.present?
+
   def set_dynamic_type
     @dynamic_type = type_champ.present? ? self.class.type_champ_to_class_name(type_champ).constantize.new(self) : nil
   end
@@ -485,10 +501,6 @@ class TypeDeChamp < ApplicationRecord
 
   def api_particulier? = type_champ.in?(API_PART_FC_TDC)
 
-  def child?(revision)
-    revision.coordinate_for(self)&.child?
-  end
-
   def filename_for_attachement(attachment_sym)
     attachment = send(attachment_sym)
     if attachment.attached?
@@ -588,18 +600,6 @@ class TypeDeChamp < ApplicationRecord
     previous_header_section.header_section_level_value.to_i
   end
 
-  def check_coherent_header_level(upper_tdcs)
-    previous_level = previous_section_level(upper_tdcs)
-    current_level = header_section_level_value.to_i
-
-    difference = current_level - previous_level
-    if current_level > previous_level && difference != 1
-      I18n.t('activerecord.errors.type_de_champ.attributes.header_section_level.gap_error', level: current_level - previous_level - 1)
-    else
-      nil
-    end
-  end
-
   def current_section_level(revision)
     tdcs = private? ? revision.root_types_de_champ_private.to_a : revision.root_types_de_champ_public.to_a
 
@@ -615,6 +615,22 @@ class TypeDeChamp < ApplicationRecord
       header_section_level_value.to_i
     else
       0
+    end
+  end
+
+  def child?(revision)
+    revision.coordinate_for(self)&.child?
+  end
+
+  def check_coherent_header_level(upper_tdcs)
+    previous_level = previous_section_level(upper_tdcs)
+    current_level = header_section_level_value.to_i
+
+    difference = current_level - previous_level
+    if current_level > previous_level && difference != 1
+      I18n.t('activerecord.errors.type_de_champ.attributes.header_section_level.gap_error', level: current_level - previous_level - 1)
+    else
+      nil
     end
   end
 

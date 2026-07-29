@@ -1,6 +1,34 @@
 # frozen_string_literal: true
 
 describe TypeDeChamp do
+  describe '#level' do
+    let(:procedure) do
+      create(:procedure, types_de_champ_public: [
+        {
+          type: :repetition, libelle: 'R', children: [
+            { type: :header_section, level: 1, libelle: 'B' },
+            { type: :header_section, level: 2, libelle: 'B.1' },
+          ],
+        },
+        { type: :header_section, level: 1, libelle: 'A' },
+        { type: :header_section, level: 2, libelle: 'A.1' },
+      ])
+    end
+    let(:draft) { procedure.draft_revision }
+    def node(libelle) = draft.types_de_champ.find { it.libelle == libelle }
+
+    it 'reflects header nesting' do
+      expect(node('A').level).to eq(1)
+      expect(node('A.1').level).to eq(2)
+    end
+
+    it 'does not count the enclosing repetition as a level' do
+      expect(node('R').level).to eq(1)
+      expect(node('B').level).to eq(1)   # raw level 1, the repetition is not a level
+      expect(node('B.1').level).to eq(2) # nested under "B"
+    end
+  end
+
   describe 'validation' do
     context 'type' do
       before_all { seed "cases/champs" }
