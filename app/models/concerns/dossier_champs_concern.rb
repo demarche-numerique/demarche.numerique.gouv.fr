@@ -28,15 +28,15 @@ module DossierChampsConcern
   end
 
   def root_champs_public
-    @root_champs_public ||= champs_public.flat_map { [it] + it.flat_children }
+    @root_champs_public ||= public_champs.flat_map { [it] + it.flat_children }
   end
 
   def root_champs_private
-    @root_champs_private ||= champs_private.flat_map { [it] + it.flat_children }
+    @root_champs_private ||= private_champs.flat_map { [it] + it.flat_children }
   end
 
-  def champs_public = @champs_tree_public ||= revision.types_de_champ_public.map { project_champ(_1) }
-  def champs_private = @champs_tree_private ||= revision.types_de_champ_private.map { project_champ(_1) }
+  def public_champs = @champs_tree_public ||= revision.types_de_champ_public.map { project_champ(_1) }
+  def private_champs = @champs_tree_private ||= revision.types_de_champ_private.map { project_champ(_1) }
 
   def champs
     root_champs_public + root_champs_private
@@ -55,11 +55,11 @@ module DossierChampsConcern
   end
 
   def flat_champs_public
-    @flat_champs_public ||= champs_public.flat_map { flatten_with_rows(it) }
+    @flat_champs_public ||= public_champs.flat_map { flatten_with_rows(it) }
   end
 
   def flat_champs_private
-    @flat_champs_private ||= champs_private.flat_map { flatten_with_rows(it) }
+    @flat_champs_private ||= private_champs.flat_map { flatten_with_rows(it) }
   end
 
   def flatten_with_rows(champ)

@@ -7,7 +7,7 @@ RSpec.describe ViewableChamp::SectionComponent, type: :component do
   # Instantiation lives here so the refactor only touches this one place.
   let(:component) do
     described_class.new(
-      champs: dossier.champs_public,
+      champs: dossier.public_champs,
       demande_seen_at: nil,
       profile: 'instructeur'
     )

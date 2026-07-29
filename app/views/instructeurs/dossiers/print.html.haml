@@ -15,15 +15,15 @@
 
 %h2 Formulaire
 
-- champs_public = @dossier.champs_public
-- if champs_public.any? || @dossier.procedure.routing_enabled?
-  = render ViewableChamp::SectionComponent.new(champs: champs_public, demande_seen_at: nil, profile: 'instructeur')
+- public_champs = @dossier.public_champs
+- if public_champs.any? || @dossier.procedure.routing_enabled?
+  = render ViewableChamp::SectionComponent.new(champs: public_champs, demande_seen_at: nil, profile: 'instructeur')
 
 %h2 Annotations privées
 
-- champs_private = @dossier.champs_private
-- if champs_private.any?
-  = render ViewableChamp::SectionComponent.new(champs: champs_private, demande_seen_at: nil, profile: 'instructeur')
+- private_champs = @dossier.private_champs
+- if private_champs.any?
+  = render ViewableChamp::SectionComponent.new(champs: private_champs, demande_seen_at: nil, profile: 'instructeur')
 - else
   Aucune annotation privée
 

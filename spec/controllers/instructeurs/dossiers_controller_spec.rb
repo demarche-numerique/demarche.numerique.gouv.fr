@@ -1366,8 +1366,8 @@ describe Instructeurs::DossiersController, type: :controller do
     let(:champ_datetime) { dossier.root_champs_private.third }
     let(:champ_drop_down_list) { dossier.root_champs_private.fifth }
 
-    context 'when no invalid champs_public' do
-      context "with new values for champs_private" do
+    context 'when no invalid public_champs' do
+      context "with new values for private_champs" do
         before do
           expect(controller.current_instructeur).to receive(:mark_tab_as_seen).with(dossier, :annotations_privees)
           another_instructeur.follow(dossier)
@@ -1510,7 +1510,7 @@ describe Instructeurs::DossiersController, type: :controller do
         end
       end
 
-      context "without new values for champs_private" do
+      context "without new values for private_champs" do
         let(:params) do
           {
             procedure_id: procedure.id,
@@ -1537,7 +1537,7 @@ describe Instructeurs::DossiersController, type: :controller do
     after do
     end
 
-    context "without new values for champs_private" do
+    context "without new values for private_champs" do
       let(:params) do
         {
           procedure_id: procedure.id,
@@ -1559,7 +1559,7 @@ describe Instructeurs::DossiersController, type: :controller do
       }
     end
 
-    context "with invalid champs_public (DecimalNumberChamp)" do
+    context "with invalid public_champs (DecimalNumberChamp)" do
       let(:types_de_champ_public) do
         [
           { type: :decimal_number },
@@ -1582,7 +1582,7 @@ describe Instructeurs::DossiersController, type: :controller do
         }
       end
 
-      it 'update champs_private' do
+      it 'update private_champs' do
         too_long_float = '3.1415'
         champ_decimal_number.update_column(:value, too_long_float)
         patch :update_annotations, params: params, format: :turbo_stream
