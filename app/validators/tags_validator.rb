@@ -51,9 +51,7 @@ class TagsValidator < ActiveModel::EachValidator
   end
 
   def invalid_tags_for_revision(record, tags, revision)
-    revision_stable_ids = revision
-      .revision_types_de_champ
-      .filter { !_1.child? }
+    revision_stable_ids = (revision.root_types_de_champ_public + revision.root_types_de_champ_private)
       .map(&:stable_id)
       .uniq
 

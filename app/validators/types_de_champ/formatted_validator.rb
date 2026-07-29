@@ -2,7 +2,7 @@
 
 class TypesDeChamp::FormattedValidator < ActiveModel::EachValidator
   def validate_each(procedure, attribute, types_de_champ)
-    types_de_champ
+    types_de_champ.to_a
       .filter(&:formatted?)
       .each do |tdc|
         validate_characters_rules(procedure, attribute, tdc)

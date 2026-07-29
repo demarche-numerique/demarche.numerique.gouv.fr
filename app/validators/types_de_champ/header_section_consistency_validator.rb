@@ -5,7 +5,7 @@ class TypesDeChamp::HeaderSectionConsistencyValidator < ActiveModel::EachValidat
   # repetition's children together
   def validate_each(procedure, attribute, types_de_champ)
     types_de_champ.to_a
-      .group_by { procedure.draft_revision.parent_of(it) }
+      .group_by(&:enclosing_repetition)
       .each_value { errors_for_header_sections_order(procedure, attribute, it) }
   end
 
