@@ -270,10 +270,9 @@ class TypeDeChamp < ApplicationRecord
     errors.empty?
   end
 
-  def libelle_with_parent(revision)
-    if child?(revision)
-      parent_type_de_champ = revision.parent_of(self)
-      "#{parent_type_de_champ.libelle} - #{libelle}"
+  def libelle_with_parent
+    if in_repetition?
+      "#{enclosing_repetition.libelle} - #{libelle}"
     else
       libelle
     end

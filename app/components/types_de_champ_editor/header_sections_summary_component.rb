@@ -2,21 +2,18 @@
 
 class TypesDeChampEditor::HeaderSectionsSummaryComponent < ApplicationComponent
   def initialize(procedure:, is_private:)
-    @procedure = procedure
-    @is_private = is_private
+    @draft = procedure.draft_revision
+    @types_de_champ = is_private ? @draft.types_de_champ_private : @draft.types_de_champ_public
   end
 
-  def header_sections
-    coordinates = if @is_private
-      @procedure.draft_revision.revision_types_de_champ_private
-    else
-      @procedure.draft_revision.revision_types_de_champ_public
-    end
-
-    coordinates.filter { _1.type_de_champ.header_section? }
+  def sections
+    @types_de_champ
+      .flat_map { [it] + it.flat_children }
+      .filter { it.header_section? || it.repetition? }
   end
 
-  def href(header_section) # used by type de champ editor to anchor elements
-    "##{dom_id(header_section, :type_de_champ_editor)}"
+  def href(type_de_champ) # used by type de champ editor to anchor elements
+    coordinate = @draft.coordinate_for(type_de_champ)
+    "##{dom_id(coordinate, :type_de_champ_editor)}"
   end
 end

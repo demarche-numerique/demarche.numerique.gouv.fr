@@ -26,10 +26,6 @@ class LLM::SuggestionItemComponent < ApplicationComponent
   end
 
   def tdc_for(stable_id)
-    prtdc_index[stable_id]&.type_de_champ
-  end
-
-  def prtdc_index
-    @prtdc_index ||= procedure_revision.revision_types_de_champ.index_by(&:stable_id)
+    procedure_revision.find_type_de_champ_by_stable_id(stable_id)
   end
 end
