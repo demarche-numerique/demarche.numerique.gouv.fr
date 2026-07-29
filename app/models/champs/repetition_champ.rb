@@ -3,8 +3,10 @@
 class Champs::RepetitionChamp < ChampData
   delegate :libelle_for_export, to: :type_de_champ
 
+  def fillable? = false
+
   def row_libelle
-    children_types = dossier.revision.children_of(type_de_champ)
+    children_types = type_de_champ.flat_children
     if children_types.size == 1
       children_types.first.libelle
     else

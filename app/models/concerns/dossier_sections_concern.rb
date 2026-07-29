@@ -11,14 +11,14 @@ module DossierSectionsConcern
       when :private
         hash[parent] = revision.root_types_de_champ_private.filter(&:header_section?)
       else
-        hash[parent] = revision.children_of(parent).filter(&:header_section?)
+        hash[parent] = parent.flat_children.filter(&:header_section?)
       end
     end
-    @sections[revision.parent_of(type_de_champ) || (type_de_champ.public? ? :public : :private)]
+    @sections[type_de_champ.enclosing_repetition || (type_de_champ.public? ? :public : :private)]
   end
 
   def auto_numbering_section_headers_for?(type_de_champ)
-    return false if type_de_champ.child?(revision)
+    return false if type_de_champ.in_repetition?
 
     sections_for(type_de_champ)&.none? { _1.libelle =~ /^\d/ }
   end
@@ -31,7 +31,7 @@ module DossierSectionsConcern
       .filter(&:header_section?)
       .filter { project_champ(it).visible? }
       .each do |tdc|
-      level = tdc.level_for_revision(revision)
+      level = tdc.level
 
       # drop counter with a higher level
       # ex: counters = [1,2,2], new header of level 2, drop last

@@ -33,7 +33,7 @@
 
     %form.form
       = form_for @dossier, url: '', html: { class: 'form' } do |f|
-        = render EditableChamp::SectionComponent.new(dossier: @dossier, types_de_champ: @dossier.revision.root_types_de_champ_public)
+        = render EditableChamp::SectionComponent.new(champs: @dossier.champs_public)
 
         .editable-champ.editable-champ-text
           %label Mot de passe

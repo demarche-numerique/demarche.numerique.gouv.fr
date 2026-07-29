@@ -67,7 +67,7 @@
           %li
             = link_to admin_procedure_path(id: @procedure), class: 'fr-link fr-icon-arrow-left-line fr-link--icon-left fr-mb-2w fr-mr-2w' do
               Revenir à l’écran de gestion
-          - if @procedure.draft_revision.revision_types_de_champ_public.count > 0
+          - if @procedure.draft_revision.types_de_champ_public.any?
             %li
               = link_to t('preview', scope: [:layouts, :breadcrumb]), apercu_admin_procedure_path(@procedure), target: "_blank", rel: "noopener", class: 'fr-link fr-mb-2w'
         .fr-ml-auto

@@ -55,7 +55,7 @@ module ChampConditionalConcern
     return false if !child?
 
     # otherwise maybe the champ has been moved outside a repetition
-    parent_tdc = dossier.revision.parent_of(type_de_champ)
+    parent_tdc = type_de_champ.enclosing_repetition
 
     return false if parent_tdc.nil?
 

@@ -97,7 +97,7 @@ class Procedure < ApplicationRecord
           .where(revision_types_de_champ: { revision_id: draft_revision_id, parent_id: nil })
           .order(:private, :position)
       else
-        draft_revision.children_of(parent)
+        draft_revision.find_type_de_champ_by_stable_id(parent.stable_id).flat_children
       end
     else
       cache_key = ['all_revisions_types_de_champ', published_revision, parent, with_header_section, ActiveRecord::VERSION::STRING].compact
@@ -608,7 +608,7 @@ class Procedure < ApplicationRecord
   end
 
   def routing_champs
-    active_revision.revision_types_de_champ_public.filter(&:used_by_routing_rules?).map(&:libelle)
+    active_revision.root_types_de_champ_public.filter { used_by_routing_rules?(it) }.map(&:libelle)
   end
 
   def champ_value_in_condition?

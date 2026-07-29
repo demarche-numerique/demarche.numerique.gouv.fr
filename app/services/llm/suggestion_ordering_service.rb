@@ -9,9 +9,8 @@ class LLM::SuggestionOrderingService
   end
 
   def self.build_original_list(revision)
-    revision.revision_types_de_champ_public
-      .to_a
-   end
+    revision.root_types_de_champ_public
+  end
 
   def self.ordered_label_suggestions(llm_rule_suggestion)
     root_tdcs, children_tdcs = llm_rule_suggestion.llm_rule_suggestion_items
@@ -28,7 +27,7 @@ class LLM::SuggestionOrderingService
 
   def self.merge_suggestions_into_originals(llm_rule_suggestion)
     suggestions = llm_rule_suggestion.llm_rule_suggestion_items.to_a
-    original_items = llm_rule_suggestion.procedure_revision.revision_types_de_champ_public.to_a
+    original_items = llm_rule_suggestion.procedure_revision.root_types_de_champ_public
 
     validate_no_cycles!(suggestions)
 
