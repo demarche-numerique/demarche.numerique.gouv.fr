@@ -272,13 +272,6 @@ class ProcedureRevision < ApplicationRecord
     coordinate_for(tdc).types_de_champ
   end
 
-  def parent_of(tdc)
-    coordinate = coordinate_for(tdc)
-    if coordinate&.child?
-      revision_types_de_champ.find { _1.id == coordinate.parent_id }&.type_de_champ
-    end
-  end
-
   def dependent_conditions(tdc)
     stable_id = tdc.stable_id
 
