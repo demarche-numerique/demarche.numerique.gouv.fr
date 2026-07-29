@@ -268,10 +268,6 @@ class ProcedureRevision < ApplicationRecord
     end
   end
 
-  def children_of(tdc)
-    coordinate_for(tdc).types_de_champ
-  end
-
   def dependent_conditions(tdc)
     stable_id = tdc.stable_id
 

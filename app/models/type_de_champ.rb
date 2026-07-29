@@ -599,10 +599,6 @@ class TypeDeChamp < ApplicationRecord
     previous_header_section.header_section_level_value.to_i
   end
 
-  def child?(revision)
-    revision.coordinate_for(self)&.child?
-  end
-
   def check_coherent_header_level(upper_tdcs)
     previous_level = previous_section_level(upper_tdcs)
     current_level = header_section_level_value.to_i
