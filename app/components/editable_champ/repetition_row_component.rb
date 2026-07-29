@@ -6,19 +6,19 @@ class EditableChamp::RepetitionRowComponent < ApplicationComponent
   def initialize(form:, dossier:, champ:, row_id:, row_number:, expanded: false, seen_at: nil)
     @form, @dossier, @champ, @row_id, @row_number, @expanded, @seen_at = form, dossier, champ, row_id, row_number, expanded, seen_at
     @type_de_champ = champ.type_de_champ
-    @types_de_champ = dossier.revision.children_of(@type_de_champ)
   end
 
   attr_reader :row_id, :row_number
 
   def has_fieldset?
-    @types_de_champ.size > 1
+    @type_de_champ.flat_children.size > 1
   end
 
   private
 
   def section_component
-    EditableChamp::SectionComponent.new(dossier: @dossier, types_de_champ: @types_de_champ, row_id:, row_number: @row_number)
+    champs = @type_de_champ.children.map { @dossier.project_champ(_1, row_id: @row_id) }
+    EditableChamp::SectionComponent.new(champs:, row_number: @row_number)
   end
 
   def delete_button

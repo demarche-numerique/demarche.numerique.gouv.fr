@@ -171,7 +171,7 @@ class Dossier < ApplicationRecord
   has_one :attestation_acceptation_template, through: :procedure
   has_one :attestation_refus_template, through: :procedure
 
-  delegate :root_types_de_champ_public, :root_types_de_champ_private, :has_france_connect_type_de_champ?, to: :revision
+  delegate :root_types_de_champ_public, :root_types_de_champ_private, :has_france_connect_type_de_champ?, :find_type_de_champ_by_stable_id, to: :revision
 
   belongs_to :transfer, class_name: 'DossierTransfer', foreign_key: 'dossier_transfer_id', optional: true, inverse_of: :dossiers
   has_many :transfer_logs, class_name: 'DossierTransferLog', dependent: :destroy

@@ -16,6 +16,12 @@ class Dossiers::ChampsRowsShowComponent < ApplicationComponent
 
   private
 
+  def row_champs(repetition_champ, row_id)
+    repetition_champ.type_de_champ.children.map do
+      repetition_champ.dossier.project_champ(_1, row_id:)
+    end
+  end
+
   def row_show_component(champ)
     Dossiers::RowShowComponent.new(label: champ.libelle,
       seen_at:, profile:,

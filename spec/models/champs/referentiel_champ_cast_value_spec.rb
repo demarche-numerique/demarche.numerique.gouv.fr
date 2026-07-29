@@ -651,7 +651,7 @@ describe Champs::ReferentielChamp, type: :model do
             },
           ]
         end
-        let(:repetition_champ) { dossier.champ_data.find(&:repetition?) }
+        let(:repetition_champ) { dossier.champs_public.find(&:repetition?) }
         let(:referentiel_champ) { repetition_champ.rows.first.find(&:referentiel?) }
 
         context 'when mapping and data are arrays' do
@@ -663,8 +663,8 @@ describe Champs::ReferentielChamp, type: :model do
           let(:data) { { ok: [{ nom: 'Jeanne' }, {}] } }
 
           it 'update current row' do
-            expect { subject }.not_to change { repetition_champ.reload.rows.size }
-            champs = repetition_champ.rows.first
+            expect { subject }.not_to change { dossier.reload.champs_public.find(&:repetition?).rows.size }
+            champs = dossier.champs_public.find(&:repetition?).rows.first
             expect(champs.find(&:text?).value).to eq('Jeanne')
           end
         end

@@ -2,56 +2,38 @@
 
 class EditableChamp::SectionComponent < ApplicationComponent
   include ApplicationHelper
-  include TreeableConcern
 
-  def initialize(dossier:, nodes: nil, types_de_champ: nil, row_id: nil, row_number: nil)
-    nodes ||= to_tree(types_de_champ:)
-    @dossier = dossier
-    @row_id = row_id
+  # champs: champ tree nodes to render at this level (root list, or a section's children)
+  # header_section: the champ heading this section (nil at root)
+  def initialize(champs:, header_section: nil, row_number: nil)
+    @champs = champs
+    @header_section = header_section
     @row_number = row_number
-    @nodes = to_fieldset(nodes:)
   end
+
+  attr_reader :header_section
 
   def render_within_fieldset?
-    first_champ_is_an_header_section?
-  end
-
-  def header_section
-    node = @nodes.first
-    @dossier.project_champ(node, row_id: @row_id) if node.is_a?(TypeDeChamp) && node.header_section?
-  end
-
-  def splitted_tail
-    tail.map { split_section_champ(_1) }
-  end
-
-  def tail
-    return @nodes if !first_champ_is_an_header_section?
-    _, *rest_of_champ = @nodes
-
-    rest_of_champ
+    header_section.present?
   end
 
   def tag_for_depth
     "h#{header_section.level + 1}"
   end
 
-  def split_section_champ(node)
-    case node
-    when EditableChamp::SectionComponent
-      [node, nil]
-    else
-      [nil, @dossier.project_champ(node, row_id: @row_id)]
+  def splitted_tail
+    @champs.map do |champ|
+      if champ.header_section?
+        [nested_section(champ), nil]
+      else
+        [nil, champ]
+      end
     end
   end
 
   private
 
-  def to_fieldset(nodes:)
-    nodes.map { _1.is_a?(Array) ? EditableChamp::SectionComponent.new(dossier: @dossier, nodes: _1, row_id: @row_id) : _1 }
-  end
-
-  def first_champ_is_an_header_section?
-    header_section.present?
+  def nested_section(champ)
+    self.class.new(champs: champ.children, header_section: champ, row_number: @row_number)
   end
 end
