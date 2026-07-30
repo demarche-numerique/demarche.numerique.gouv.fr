@@ -6,8 +6,8 @@
 
 <div class="fr-container">
   <h1>
-    <%= t('administrateurs.procedures.clone.title') %>
-    « <%= @procedure.libelle %> » (N° <%= @procedure.id %>)
+    <%= t('administrateurs.procedures.clone.title') %> «
+    <%= @procedure.libelle %> » (N° <%= @procedure.id %>)
   </h1>
 
   <%= form_with(model: @procedure, url: admin_procedure_clone_path(@procedure, from_new_from_existing: params[:from_new_from_existing]), method: :post) do |f| %>
