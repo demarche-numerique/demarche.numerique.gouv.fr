@@ -5,9 +5,12 @@ fr:
       transferer:
         title: Transférer votre dossier
         detail: Vous vous apprêtez à transférer le dossier %{state} n° %{number} déposé par %{demandeur} le %{created_at} vers le compte d’un autre usager.
-        irrevocable_html: Une fois la demande de transfert acceptée, le dossier sera associé au compte du destinataire et <strong>vous ne pourrez plus y accéder</strong>.
+        irrevocable_html: Une fois la proposition de transfert acceptée, le dossier sera associé au compte du destinataire et <strong>vous ne pourrez plus y accéder</strong>.
         email_label: Adresse électronique du compte destinataire
-        submit: Envoyer la demande de transfert
-        notice_sent: L’invitation au transfert a été envoyée avec succès
-        destroy: La demande de transfert a été supprimée avec succès
-        unauthorized_destroy: Vous n’avez pas l’autorisation pour supprimer cette demande de transfert
+        submit: Envoyer la proposition de transfert
+        notice_sent: La proposition de transfert a bien été envoyée.
+        accepted: La proposition de transfert a été acceptée, le dossier est maintenant associé à votre compte.
+        expired: Cette proposition de transfert n’est plus valide.
+        rejected: La proposition de transfert a été supprimée.
+        canceled: La proposition de transfert a été annulée.
+        unauthorized_destroy: Vous n’avez pas l’autorisation d’annuler cette proposition de transfert

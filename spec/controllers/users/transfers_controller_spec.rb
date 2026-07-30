@@ -17,11 +17,10 @@ describe Users::TransfersController, type: :controller do
 
       it { expect { subject }.not_to raise_error }
 
-      it "deletes dossier transfert" do
-        subject
+      it "deletes dossier transfert and tells the recipient it was removed" do
+        expect(subject).to redirect_to(dossiers_path)
         expect { dossier_transfert.reload }.to raise_error(ActiveRecord::RecordNotFound)
-        expect { (flash.notice).to eq('La demande de transfert a été supprimée avec succès') }
-        expect { (subject).to redirect_to dossiers_path }
+        expect(flash[:notice]).to eq('La proposition de transfert a été supprimée.')
       end
     end
 
@@ -36,9 +35,10 @@ describe Users::TransfersController, type: :controller do
 
       it { expect { subject }.not_to raise_error }
 
-      it "deletes dossier transfert" do
-        subject
+      it "deletes dossier transfert and tells the sender it was canceled" do
+        expect(subject).to redirect_to(dossiers_path)
         expect { dossier_transfert.reload }.to raise_error(ActiveRecord::RecordNotFound)
+        expect(flash[:notice]).to eq('La proposition de transfert a été annulée.')
       end
     end
 
@@ -55,11 +55,33 @@ describe Users::TransfersController, type: :controller do
       it { expect { subject }.not_to raise_error }
 
       it "does not delete dossier transfert" do
-        subject
+        expect(subject).to redirect_to(dossiers_path)
+        expect(dossier_transfert.reload).to eq(dossier_transfert)
+        expect(flash[:alert]).to eq('Vous n’avez pas l’autorisation d’annuler cette proposition de transfert')
+      end
+    end
+  end
 
-        expect { dossier_transfert.reload.to eq(dossier_transfert) }
-        expect { (flash.alert).to eq("Vous n’avez pas l’autorisation pour supprimer cette demande de transfert") }
-        expect { (subject).to redirect_to dossiers_path }
+  describe 'PUT update' do
+    let(:dossier_transfert) { DossierTransfer.initiate(recipient_user.email, [dossier]) }
+
+    subject { put :update, params: { id: dossier_transfert.id } }
+
+    before { sign_in(recipient_user) }
+
+    it "accepts the transfer and tells the recipient" do
+      expect(subject).to redirect_to(dossiers_path)
+      expect(dossier.reload.user).to eq(recipient_user)
+      expect(flash[:notice]).to eq('La proposition de transfert a été acceptée, le dossier est maintenant associé à votre compte.')
+    end
+
+    context "when the transfer has expired" do
+      before { dossier_transfert.update!(created_at: (DossierTransfer::EXPIRATION_LIMIT + 1.day).ago) }
+
+      it "alerts the recipient and leaves the dossier untouched" do
+        expect(subject).to redirect_to(dossiers_path)
+        expect(dossier.reload.user).to eq(sender_user)
+        expect(flash[:alert]).to eq('Cette proposition de transfert n’est plus valide.')
       end
     end
   end

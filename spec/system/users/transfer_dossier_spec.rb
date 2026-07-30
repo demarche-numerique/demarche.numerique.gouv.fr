@@ -21,7 +21,7 @@ describe 'Transfer dossier:' do
     expect(page).to have_current_path(transferer_dossier_path(dossier))
     expect(page).to have_content("transférer le dossier en construction n° #{dossier.id}")
     fill_in 'Adresse électronique du compte destinataire', with: other_user.email
-    click_on 'Envoyer la demande de transfert'
+    click_on 'Envoyer la proposition de transfert'
 
     logout
     login_as other_user, scope: :user

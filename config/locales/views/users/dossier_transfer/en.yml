@@ -5,9 +5,12 @@ en:
       transferer:
         title: Transfer your file
         detail: "You are about to transfer the %{state} file #%{number} filed by %{demandeur} on %{created_at} to another user's account."
-        irrevocable_html: Once the transfer request is accepted, the file will be associated with the recipient's account and <strong>you will no longer be able to access it</strong>.
+        irrevocable_html: Once the transfer offer is accepted, the file will be associated with the recipient's account and <strong>you will no longer be able to access it</strong>.
         email_label: Email of the recipient account
-        submit: Send transfer request
-        notice_sent: The transfer request has been sent successfully
-        destroy: The transfer request has been deleted successfully
-        unauthorized_destroy: You don't have the authorization to delete this transfer request
+        submit: Send transfer offer
+        notice_sent: The transfer offer has been sent.
+        accepted: The transfer offer has been accepted, the file is now associated with your account.
+        expired: This transfer offer is no longer valid.
+        rejected: The transfer offer has been deleted.
+        canceled: The transfer offer has been canceled.
+        unauthorized_destroy: You don't have the authorization to cancel this transfer offer

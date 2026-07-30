@@ -18,20 +18,28 @@ module Users
     end
 
     def update
-      DossierTransfer.accept(params[:id], current_user)
+      if DossierTransfer.accept(params[:id], current_user)
+        flash.notice = t("users.dossiers.transferer.accepted")
+      else
+        flash.alert = t("users.dossiers.transferer.expired")
+      end
+
       redirect_to dossiers_path
     end
 
     def destroy
       transfer = DossierTransfer.find(params[:id])
-      authorized = (transfer.email == current_user.email || transfer.dossiers.exists?(dossiers: { user: current_user }))
 
-      if authorized
+      if transfer.email == current_user.email
         transfer.destroy_and_nullify
-        flash.notice = t("users.dossiers.transferer.destroy")
+        flash.notice = t("users.dossiers.transferer.rejected")
+      elsif transfer.dossiers.exists?(dossiers: { user: current_user })
+        transfer.destroy_and_nullify
+        flash.notice = t("users.dossiers.transferer.canceled")
       else
         flash.alert = t("users.dossiers.transferer.unauthorized_destroy")
       end
+
       redirect_to dossiers_path
     end
 
