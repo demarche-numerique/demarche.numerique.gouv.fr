@@ -1261,7 +1261,7 @@ fr:
   shared:
     procedures:
       no_siret: "Vous n’avez pas renseigné le siret du service pour certaines de vos démarches. Merci de les modifier."
-      add_siret_to_service_without_siret_html: Ajouter le siret du service <a href="%{link}">%{nom}</a>
+      add_siret_to_service_without_siret_html: Ajouter le siret du service à la démarche <a href="%{link}">%{nom}</a>
       no_service: "Certaines de vos démarches n’ont pas de service associé."
       add_service_html: <a href="%{link}">Ajouter un service</a> à la démarche %{id}
 

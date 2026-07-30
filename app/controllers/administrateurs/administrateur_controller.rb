@@ -64,18 +64,19 @@ module Administrateurs
     def alert_for_missing_siret_service
       return if flash[:alert].present?
 
-      procedures = missing_siret_services
-      if procedures.any?
-        errors = []
-        errors << I18n.t('shared.procedures.no_siret')
-        procedures.each do |p|
-          errors << I18n.t('shared.procedures.add_siret_to_service_without_siret_html', link: edit_admin_service_path(p.service, procedure_id: p.id), nom: p.service.nom)
-        end
-        flash.now.alert = errors
+      procedures = procedures_without_siret_of_service
+      return if procedures.empty?
+
+      errors = [I18n.t("shared.procedures.no_siret")]
+
+      procedures.each do |p|
+        errors << I18n.t('shared.procedures.add_siret_to_service_without_siret_html', link: edit_admin_service_path(p.service, procedure_id: p.id), nom: p.libelle)
       end
+
+      flash.now.alert = errors
     end
 
-    def missing_siret_services
+    def procedures_without_siret_of_service
       current_administrateur
         .procedures.publiees
         .joins(:service)
