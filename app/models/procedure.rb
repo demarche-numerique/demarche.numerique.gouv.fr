@@ -89,10 +89,10 @@ class Procedure < ApplicationRecord
     brouillon? ? draft_revision : published_revision
   end
 
-  def all_revisions_types_de_champ(parent: nil, with_header_section: false)
+  def all_revisions_types_de_champ(parent: nil)
     if brouillon?
       if parent.nil?
-        (with_header_section ? TypeDeChamp.with_header_section : TypeDeChamp.fillable)
+        TypeDeChamp.fillable
           .joins(:revision_types_de_champ)
           .where(revision_types_de_champ: { revision_id: draft_revision_id, parent_id: nil })
           .order(:private, :position)
@@ -100,8 +100,8 @@ class Procedure < ApplicationRecord
         parent.flat_children(draft_revision)
       end
     else
-      cache_key = ['all_revisions_types_de_champ', published_revision, parent, with_header_section, ActiveRecord::VERSION::STRING].compact
-      Rails.cache.fetch(cache_key, expires_in: 1.month) { published_revisions_types_de_champ(parent:, with_header_section:) }
+      cache_key = ['all_revisions_types_de_champ', published_revision, parent, ActiveRecord::VERSION::STRING].compact
+      Rails.cache.fetch(cache_key, expires_in: 1.month) { published_revisions_types_de_champ(parent:) }
     end
   end
 
@@ -877,7 +877,7 @@ class Procedure < ApplicationRecord
       .uniq
   end
 
-  def published_revisions_types_de_champ(parent: nil, with_header_section: false)
+  def published_revisions_types_de_champ(parent: nil)
     # all published revisions
     revision_ids = revisions.ids - [draft_revision_id]
     # fetch all parent types de champ
@@ -891,8 +891,7 @@ class Procedure < ApplicationRecord
 
     # fetch all type_de_champ.stable_id for all the revisions expect draft
     # and for each stable_id take the bigger (more recent) type_de_champ.id
-    types_de_champ_scope = with_header_section ? TypeDeChamp.with_header_section : TypeDeChamp.fillable
-    recent_ids = types_de_champ_scope
+    recent_ids = TypeDeChamp.fillable
       .joins(:revision_types_de_champ)
       .where(revision_types_de_champ: { revision_id: revision_ids, parent_id: parent_ids })
       .group(:stable_id).pluck('MAX(types_de_champ.id)')

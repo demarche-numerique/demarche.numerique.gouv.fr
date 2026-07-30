@@ -1932,10 +1932,6 @@ describe Procedure do
         expect(procedure.all_revisions_types_de_champ.size).to eq 1
       end
 
-      it 'returns also section type de champ' do
-        expect(procedure.all_revisions_types_de_champ(with_header_section: true).size).to eq 2
-      end
-
       it "returns types de champ on draft revision" do
         procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'onemorechamp')
         expect(procedure.reload.all_revisions_types_de_champ.size).to eq 2
@@ -1947,10 +1943,6 @@ describe Procedure do
 
       it 'returns one type de champ' do
         expect(procedure.all_revisions_types_de_champ.size).to eq 1
-      end
-
-      it 'returns also section type de champ' do
-        expect(procedure.all_revisions_types_de_champ(with_header_section: true).size).to eq 2
       end
 
       it "doesn't return types de champ on draft revision" do
