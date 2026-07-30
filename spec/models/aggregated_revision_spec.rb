@@ -117,6 +117,33 @@ describe AggregatedRevision do
     end
   end
 
+  describe 'caching' do
+    before { allow(Rails).to receive(:cache).and_return(ActiveSupport::Cache::MemoryStore.new) }
+
+    it 'reuses the cached merge without walking the revisions again' do
+      expect(stable_ids(AggregatedRevision.new(procedure).types_de_champ_public)).to eq([110, 120, 130, 140])
+
+      expect(procedure).not_to receive(:revisions)
+      expect(stable_ids(AggregatedRevision.new(procedure).types_de_champ_public)).to eq([110, 120, 130, 140])
+    end
+
+    it 'turns over when a new revision is published' do
+      expect(AggregatedRevision.new(procedure).type_de_champ(110).libelle).to eq('intro')
+
+      procedure.draft_revision.find_and_ensure_exclusive_use(110).update!(libelle: 'intro v2')
+      procedure.publish_revision!(administrateur)
+
+      expect(AggregatedRevision.new(procedure.reload).type_de_champ(110).libelle).to eq('intro v2')
+    end
+
+    it 'does not cache a procedure en brouillon' do
+      brouillon = create(:procedure, types_de_champ_public: [{ type: :text, libelle: 'draft', stable_id: 410 }])
+
+      expect(Rails.cache).not_to receive(:fetch)
+      expect(stable_ids(AggregatedRevision.new(brouillon).types_de_champ_public)).to eq([410])
+    end
+  end
+
   describe 'private types de champ' do
     let(:procedure) do
       create(:procedure, :published,
