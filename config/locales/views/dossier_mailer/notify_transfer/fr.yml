@@ -1,10 +1,10 @@
 fr:
   dossier_mailer:
     notify_transfer:
-      subject: Vous avez une demande de transfert en attente.
-      transfer_text: "Afin de pouvoir accepter ou refuser la demande vous devez vous connectez sur %{app_name} :"
-      transfer_link: accéder à la demande de transfert
-      no_user_transfer_text: "Afin de pouvoir accepter ou refuser la demande vous devez avoir un compte :"
+      subject: Vous avez une proposition de transfert en attente.
+      transfer_text: "Pour accepter ou refuser la proposition vous devez vous connecter sur %{app_name} :"
+      transfer_link: Accéder à la proposition de transfert
+      no_user_transfer_text: "Pour accepter ou refuser la proposition vous devez avoir un compte :"
       no_user_transfer_link: se créer un compte sur %{app_name}
-      transfert_multiple: "%{sender} vous adresse une demande de transfert pour %{count} dossiers."
-      transfert_simple: "%{sender} vous adresse une demande de transfert pour le dossier n° %{dossier_id} sur la démarche"
+      transfert_multiple: "%{sender} vous adresse une proposition de transfert pour %{count} dossiers."
+      transfert_simple: "%{sender} vous adresse une proposition de transfert pour le dossier n° %{dossier_id} sur la démarche"
