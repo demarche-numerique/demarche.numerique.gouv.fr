@@ -565,6 +565,12 @@ en:
         dossier_menu: "File number %{id}"
         index:
           dossiers: "My files"
+          pending_transfers_title:
+            one: File transfer offer
+            other: File transfer offers
+          pending_transfers_link:
+            one: See the pending offer (%{count})
+            other: See the pending offers (%{count})
           see_deleted_dossiers_history: Deleted files history
           administration_no_longer_processes: "The administration will no longer process your request."
         dossiers_list:

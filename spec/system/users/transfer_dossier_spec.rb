@@ -57,4 +57,19 @@ describe 'Transfer dossier:' do
 
     expect(page).to have_content('1 dossier en attente de transfert')
   end
+
+  scenario 'a recipient is pointed to their pending offers from another tab' do
+    create(:dossier, :en_construction, :with_individual, user: other_user, procedure: procedure)
+    DossierTransfer.initiate(other_user.email, [dossier])
+    logout
+    login_as other_user, scope: :user
+
+    visit dossiers_path(statut: 'dossiers-transferes')
+    expect(page).not_to have_link('Voir la proposition en attente (1)')
+
+    visit dossiers_path(statut: 'en-cours')
+    click_on 'Voir la proposition en attente (1)'
+
+    expect(page).to have_current_path(dossiers_path(statut: 'dossiers-transferes'))
+  end
 end

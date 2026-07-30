@@ -20,6 +20,12 @@
   .fr-container
     %h1.fr-h3= t('views.users.dossiers.index.dossiers')
 
+    - if @statut != 'dossiers-transferes' && @dossier_transferes.present?
+      - pending_transfers_count = @dossier_transferes.count
+      = render Dsfr::AlertComponent.new(state: :info, heading_level: 'h2', title: t('views.users.dossiers.index.pending_transfers_title', count: pending_transfers_count)) do |c|
+        - c.with_body do
+          %p= link_to t('views.users.dossiers.index.pending_transfers_link', count: pending_transfers_count), dossiers_path(statut: 'dossiers-transferes'), class: 'fr-link'
+
     - if current_user.dossiers.size > 2 || current_user.dossiers_invites.size > 2  || @procedures_for_select.size > 1
       .fr-grid-row.fr-grid-row--gutters
         - if current_user.dossiers.size > 2 || current_user.dossiers_invites.size > 2

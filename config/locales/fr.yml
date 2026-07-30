@@ -575,6 +575,12 @@ fr:
         dossier_menu: "Dossier numéro %{id}"
         index:
           dossiers: "Mes dossiers"
+          pending_transfers_title:
+            one: Proposition de transfert de dossier
+            other: Propositions de transfert de dossier
+          pending_transfers_link:
+            one: Voir la proposition en attente (%{count})
+            other: Voir les propositions en attente (%{count})
           see_deleted_dossiers_history: Historique des dossiers supprimés
           administration_no_longer_processes: "L’administration ne traitera plus votre demande."
         dossiers_list:
