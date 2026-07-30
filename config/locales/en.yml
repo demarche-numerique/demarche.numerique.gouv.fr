@@ -621,6 +621,7 @@ en:
           cancel_html: 'Cancel this transfer <span class="fr-sr-only">offer</span>'
           accept: Accept
           reject: Reject
+          reject_confirm: Are you sure you want to refuse this transfer offer?
         dossier_action:
           edit_dossier: "Edit the file"
           start_other_dossier: "Start another empty file"

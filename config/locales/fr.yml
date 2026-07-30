@@ -644,6 +644,7 @@ fr:
           cancel_html: 'Annuler cette proposition <span class="fr-sr-only">de transfert</span>'
           accept: Accepter
           reject: Refuser
+          reject_confirm: Êtes-vous sûr de vouloir refuser cette proposition de transfert ?
       sessions:
         new:
           sign_in: Connexion à %{application_name}

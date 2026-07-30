@@ -72,4 +72,18 @@ describe 'Transfer dossier:' do
 
     expect(page).to have_current_path(dossiers_path(statut: 'dossiers-transferes'))
   end
+
+  scenario 'the recipient confirms before refusing an offer', js: true do
+    DossierTransfer.initiate(other_user.email, [dossier])
+    logout
+    login_as other_user, scope: :user
+    visit dossiers_path(statut: 'dossiers-transferes')
+
+    accept_confirm('Êtes-vous sûr de vouloir refuser cette proposition de transfert ?') do
+      click_on 'Refuser'
+    end
+
+    expect(page).to have_content('La proposition de transfert a été supprimée.')
+    expect(dossier.reload.transfer).to be_nil
+  end
 end
