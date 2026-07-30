@@ -602,11 +602,13 @@ en:
             this_procedure: this procedure
         transfers:
           sender_from_support: Technical support
-          sender_demande_en_cours_html: '<h4 class="card-title fr-mb-1v">A transfer request is pending on file Nº %{id} to %{email}</h4>'
-          sender_demande_en_cours_from_support_html: '<h4 class="card-title fr-mb-1v">A transfer request from technical support is pending on file Nº %{id} to %{email}</h4>'
-          receiver_demande_en_cours_html: '<h4 class="card-title fr-mb-1v">Transfer request on file Nº %{id} sent by %{email}</h4>'
-          receiver_demande_en_cours_from_support_html: '<h4 class="card-title fr-mb-1v">Transfer request from technical support on file Nº %{id} of %{email}</h4>'
-          revoke_html: 'Revoke this <span class="fr-sr-only">transfer</span> request'
+          sender_pending_title_html: 'Transfer offer pending <span class="fr-sr-only">for file Nº %{id}</span>'
+          sender_pending_body: You have sent a transfer offer for this file to %{email}.
+          sender_pending_body_from_support: Technical support has sent a transfer offer for this file to %{email}.
+          receiver_pending_title_html: 'Transfer offer <span class="fr-sr-only">for file Nº %{id}</span>'
+          receiver_pending_body: Offer sent by %{email}.
+          receiver_pending_body_from_support: Offer sent by technical support on behalf of %{email}.
+          cancel_html: 'Cancel this transfer <span class="fr-sr-only">offer</span>'
           accept: Accept
           reject: Reject
         dossier_action:
@@ -615,7 +617,7 @@ en:
           clone: "Duplicate the file"
           delete_dossier: "Move file to trash"
           delete_dossier_confirm: "Do you really want to move this file to the trash?"
-          delete_dossier_with_transfer_confirm: "If you continue, you will delete this file, the information it contains and its transfer request to %{email}. Any deletion will result in the cancellation of the current procedure.\n\nConfirm deletion?"
+          delete_dossier_with_transfer_confirm: "If you continue, you will delete this file, the information it contains and its transfer offer to %{email}. Any deletion will result in the cancellation of the current procedure.\n\nConfirm deletion?"
           transfer_dossier: "Transfer the file"
           edit_draft: "Keep filling"
           restore: "Restore"
@@ -911,8 +913,8 @@ en:
       one: '<span class="fr-sr-only">in the </span>trash'
       other: '<span class="fr-sr-only">in the </span>trash'
     dossiers_transferes:
-      one: transfer request
-      other: transfer requests
+      one: transfer offer
+      other: transfer offers
     dossiers_close_to_expiration:
       one: expiring
       other: expiring

@@ -616,7 +616,7 @@ fr:
           clone: "Dupliquer le dossier"
           delete_dossier: "Mettre à la corbeille"
           delete_dossier_confirm: "Voulez-vous vraiment mettre à la corbeille ce dossier ?"
-          delete_dossier_with_transfer_confirm: "En continuant, vous allez supprimer ce dossier, les informations qu’il contient ainsi que sa demande de transfert à %{email}. Toute suppression entraîne l’annulation de la démarche en cours.\n\nConfirmer la suppression ?"
+          delete_dossier_with_transfer_confirm: "En continuant, vous allez supprimer ce dossier, les informations qu’il contient ainsi que sa proposition de transfert à %{email}. Toute suppression entraîne l’annulation de la démarche en cours.\n\nConfirmer la suppression ?"
           transfer_dossier: "Transférer le dossier"
           edit_draft: "Continuer à remplir"
           restore: "Restaurer"
@@ -625,11 +625,13 @@ fr:
           other_actions: "Autres actions"
         transfers:
           sender_from_support: Le support technique
-          sender_demande_en_cours_html: '<h4 class="card-title fr-mb-1v">Une demande de transfert est en cours sur le dossier n° %{id} pour %{email}</h4>'
-          sender_demande_en_cours_from_support_html: '<h4 class="card-title fr-mb-1v">Une demande de transfert par le support technique est en cours sur le dossier n° %{id} pour %{email}</h4>'
-          receiver_demande_en_cours_html: '<h4 class="card-title fr-mb-1v">Demande de transfert pour le dossier n° %{id} envoyé par %{email}</h4>'
-          receiver_demande_en_cours_from_support_html: '<h4 class="card-title fr-mb-1v">Demande de transfert par le support technique pour le dossier n° %{id} de %{email}</h4>'
-          revoke_html: 'Révoquer cette demande <span class="fr-sr-only">de transfert</span>'
+          sender_pending_title_html: 'Proposition de transfert en cours <span class="fr-sr-only">du dossier n° %{id}</span>'
+          sender_pending_body: Vous avez envoyé une proposition de transfert de ce dossier à %{email}.
+          sender_pending_body_from_support: Le support technique a envoyé une proposition de transfert de ce dossier à %{email}.
+          receiver_pending_title_html: 'Proposition de transfert <span class="fr-sr-only">du dossier n° %{id}</span>'
+          receiver_pending_body: Proposition envoyée par %{email}.
+          receiver_pending_body_from_support: Proposition envoyée par le support technique pour le compte de %{email}.
+          cancel_html: 'Annuler cette proposition <span class="fr-sr-only">de transfert</span>'
           accept: Accepter
           reject: Refuser
       sessions:
@@ -925,8 +927,8 @@ fr:
       one:  supprimé définitivement
       other: supprimés définitivement
     dossiers_transferes:
-      one: demande de transfert
-      other: demandes de transfert
+      one: proposition de transfert
+      other: propositions de transfert
     dossiers_close_to_expiration:
       one: expirant
       other: expirants

@@ -14,7 +14,7 @@ en:
           title_statut_invited: "Guest files"
           title_statut_expiring: "Expiring files"
           title_statut_trash: "Deleted files "
-          title_statut_transfered: "Transfer request"
+          title_statut_transfered: "Transfer offers"
         identite:
           title: "New file (%{procedure_label}) - Step 1: Identity"
         show:

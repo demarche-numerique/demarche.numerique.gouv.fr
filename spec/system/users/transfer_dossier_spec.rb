@@ -23,12 +23,29 @@ describe 'Transfer dossier:' do
     fill_in 'Adresse électronique du compte destinataire', with: other_user.email
     click_on 'Envoyer la proposition de transfert'
 
+    expect(page).to have_content('La proposition de transfert a bien été envoyée.')
+    expect(page).to have_content('Proposition de transfert en cours')
+    expect(page).to have_content("Vous avez envoyé une proposition de transfert de ce dossier à #{other_user.email}.")
+
     logout
     login_as other_user, scope: :user
+    visit dossiers_path(statut: 'dossiers-transferes')
+
+    expect(page).to have_content('Proposition de transfert')
+    expect(page).to have_content("Proposition envoyée par #{user.email}.")
+    click_on 'Accepter'
+
+    expect(page).to have_current_path(dossiers_path)
+    expect(page).to have_content('La proposition de transfert a été acceptée, le dossier est maintenant associé à votre compte.')
+  end
+
+  scenario 'the sender can cancel a pending transfer offer' do
+    DossierTransfer.initiate(other_user.email, [dossier])
     visit dossiers_path
 
-    expect(page).to have_content("Demande de transfert pour le dossier n° #{dossier.id} envoyé par #{user.email}")
-    click_on 'Accepter'
-    expect(page).to have_current_path(dossiers_path)
+    click_on 'Annuler cette proposition'
+
+    expect(page).to have_content('La proposition de transfert a été annulée.')
+    expect(dossier.reload.transfer).to be_nil
   end
 end

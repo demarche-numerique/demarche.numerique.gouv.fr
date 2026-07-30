@@ -14,7 +14,7 @@ fr:
           title_statut_invited: "Dossiers invités"
           title_statut_expiring: "Dossiers expirants"
           title_statut_trash: "Dossiers supprimés"
-          title_statut_transfered: "Demandes de transfert"
+          title_statut_transfered: "Propositions de transfert"
         identite:
           title: "Nouveau dossier (%{procedure_label}) - Étape 1 : Identité"
         show:

@@ -148,11 +148,17 @@
         <% if @statut == "dossiers-transferes" %>
           <%= render Dsfr::AlertComponent.new(state: :info, size: :sm) do |c| %>
             <% c.with_body do %>
-              <% if dossier.transfer.from_support? %>
-                <%= t('views.users.dossiers.transfers.receiver_demande_en_cours_from_support_html', id: dossier.id, email: dossier.user_email_for(:notification)) %>
-              <% else %>
-                <%= t('views.users.dossiers.transfers.receiver_demande_en_cours_html', id: dossier.id, email: dossier.user_email_for(:notification)) %>
-              <% end %>
+              <h4 class="card-title fr-mb-1v">
+                <%= t('views.users.dossiers.transfers.receiver_pending_title_html', id: dossier.id) %>
+              </h4>
+
+              <p>
+                <% if dossier.transfer.from_support? %>
+                  <%= t('views.users.dossiers.transfers.receiver_pending_body_from_support', email: dossier.user_email_for(:notification)) %>
+                <% else %>
+                  <%= t('views.users.dossiers.transfers.receiver_pending_body', email: dossier.user_email_for(:notification)) %>
+                <% end %>
+              </p>
 
               <ul class="fr-links-group fr-links-group--inline">
                 <li>
@@ -168,13 +174,19 @@
         <% else %>
           <%= render Dsfr::AlertComponent.new(state: :info, size: :sm, extra_class_names: "fr-pb-1w fr-mb-2w") do |c| %>
             <% c.with_body do %>
-              <% if dossier.transfer.from_support? %>
-                <%= t('views.users.dossiers.transfers.sender_demande_en_cours_from_support_html', id: dossier.id, email: dossier.transfer.email) %>
-              <% else %>
-                <%= t('views.users.dossiers.transfers.sender_demande_en_cours_html', id: dossier.id, email: dossier.transfer.email) %>
-              <% end %>
+              <h4 class="card-title fr-mb-1v">
+                <%= t('views.users.dossiers.transfers.sender_pending_title_html', id: dossier.id) %>
+              </h4>
 
-              <%= link_to t('views.users.dossiers.transfers.revoke_html'), transfer_path(dossier.transfer), class: 'fr-link', method: :delete %>
+              <p>
+                <% if dossier.transfer.from_support? %>
+                  <%= t('views.users.dossiers.transfers.sender_pending_body_from_support', email: dossier.transfer.email) %>
+                <% else %>
+                  <%= t('views.users.dossiers.transfers.sender_pending_body', email: dossier.transfer.email) %>
+                <% end %>
+              </p>
+
+              <%= link_to t('views.users.dossiers.transfers.cancel_html'), transfer_path(dossier.transfer), class: 'fr-link', method: :delete %>
             <% end %>
           <% end %>
         <% end %>
