@@ -20,5 +20,5 @@ Et ensuite cliquer sur **« Transférer le dossier »** en indiquant votre adr
 
 ![Image illustration l’interface de transfert de dossier vers un autre compte {aria-hidden="true"}](faq/usager-transfer-dossier.png)
 
-Vous recevrez alors un mail de transfert de dossier que vous pourrez accepter ou rejeter depuis votre interface usager.
-> **Une fois la demande de transfert acceptée, vous serez propriétaire du dossier.**
+Vous recevrez alors par email une proposition de transfert du dossier, que vous pourrez accepter ou refuser depuis votre espace usager.
+> **Une fois la proposition de transfert acceptée, vous serez propriétaire du dossier et ce dossier sera définitivement supprimé du compte initial de l’usager qui l’a transféré.**
