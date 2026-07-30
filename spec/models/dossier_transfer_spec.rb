@@ -50,6 +50,25 @@ RSpec.describe DossierTransfer, type: :model do
     end
   end
 
+  describe '.accept' do
+    let(:transfer) { DossierTransfer.initiate(other_user.email, [dossier]) }
+
+    it 'returns true when the transfer is accepted' do
+      expect(DossierTransfer.accept(transfer.id, other_user)).to be(true)
+    end
+
+    it 'returns false when the transfer has expired' do
+      transfer.update!(created_at: (DossierTransfer::EXPIRATION_LIMIT + 1.day).ago)
+
+      expect(DossierTransfer.accept(transfer.id, other_user)).to be(false)
+      expect(dossier.reload.user).to eq(user)
+    end
+
+    it 'returns false when the transfer does not exist' do
+      expect(DossierTransfer.accept(0, other_user)).to be(false)
+    end
+  end
+
   describe '#destroy_and_nullify' do
     let(:transfer) { create(:dossier_transfer) }
     let(:dossier) { create(:dossier, user: user, transfer: transfer) }

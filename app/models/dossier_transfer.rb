@@ -21,22 +21,23 @@ class DossierTransfer < ApplicationRecord
 
   def self.accept(id, current_user)
     transfer = pending.find_by(id: id, email: current_user.email)
+    return false if transfer.nil? || transfer.dossiers.empty?
 
-    if transfer && transfer.dossiers.present?
-      Invite
-        .where(dossier: transfer.dossiers, email: transfer.email)
-        .destroy_all
-      DossierTransferLog.create(transfer.dossiers.map do |dossier|
-        {
-          dossier: dossier,
-          from: dossier.user_email_for(:notification),
-          from_support: transfer.from_support,
-          to: transfer.email,
-        }
-      end)
-      transfer.dossiers.update_all(user_id: current_user.id)
-      transfer.destroy_and_nullify
-    end
+    Invite
+      .where(dossier: transfer.dossiers, email: transfer.email)
+      .destroy_all
+    DossierTransferLog.create(transfer.dossiers.map do |dossier|
+      {
+        dossier: dossier,
+        from: dossier.user_email_for(:notification),
+        from_support: transfer.from_support,
+        to: transfer.email,
+      }
+    end)
+    transfer.dossiers.update_all(user_id: current_user.id)
+    transfer.destroy_and_nullify
+
+    true
   end
 
   def user_locale
