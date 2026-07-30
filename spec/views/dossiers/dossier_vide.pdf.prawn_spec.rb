@@ -28,9 +28,9 @@ describe 'dossiers/dossier_vide', type: :view do
     end
 
     it 'renders the champs nested in the sections' do
-      allow(view).to receive(:format_in_2_lines).and_call_original
+      allow(view).to receive(:empty_format_in_2_lines).and_call_original
       subject
-      expect(view).to have_received(:format_in_2_lines).with(anything, having_attributes(libelle: 'rt1'), any_args).thrice
+      expect(view).to have_received(:empty_format_in_2_lines).with(anything, having_attributes(libelle: 'rt1'), any_args).thrice
     end
   end
 end
