@@ -105,6 +105,10 @@ class Procedure < ApplicationRecord
     end
   end
 
+  def aggregated_revision
+    @aggregated_revision ||= AggregatedRevision.new(self)
+  end
+
   def types_de_champ_for_procedure_export
     all_revisions_types_de_champ.not_repetition
   end
