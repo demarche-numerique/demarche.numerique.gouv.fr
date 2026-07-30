@@ -77,7 +77,7 @@ describe Manager::DossiersController, type: :controller do
 
     it do
       expect(@dossier.transfer).to be_nil
-      expect(flash[:notice]).to eq "La demande de transfert a été supprimée avec succès"
+      expect(flash[:notice]).to eq "La proposition de transfert a été annulée."
     end
   end
 end

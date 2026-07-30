@@ -54,7 +54,7 @@ module Manager
     def transfer_destroy
       dossier = Dossier.find(params[:id])
       dossier.transfer.destroy_and_nullify
-      redirect_to manager_dossier_path(dossier), notice: t("users.dossiers.transferer.destroy")
+      redirect_to manager_dossier_path(dossier), notice: t("users.dossiers.transferer.canceled")
     end
 
     private
