@@ -44,6 +44,7 @@ class AggregatedRevision
 
   def root_types_de_champ_public = flat_types_de_champ_public.reject { it.in_repetition?(self) }
   def root_types_de_champ_private = flat_types_de_champ_private.reject { it.in_repetition?(self) }
+  def root_types_de_champ = root_types_de_champ_public + root_types_de_champ_private
 
   def type_de_champ(stable_id, scope = nil)
     type_de_champ = tree.type_de_champ(stable_id)

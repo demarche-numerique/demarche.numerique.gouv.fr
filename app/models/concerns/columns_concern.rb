@@ -284,7 +284,7 @@ module ColumnsConcern
   end
 
   def types_de_champ_columns
-    (aggregated_revision.root_types_de_champ_public + aggregated_revision.root_types_de_champ_private)
+    aggregated_revision.root_types_de_champ
       .filter(&:fillable?)
       .flat_map { it.columns(procedure_id: id) }
   end

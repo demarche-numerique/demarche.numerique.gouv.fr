@@ -2622,7 +2622,7 @@ describe Dossier, type: :model do
         dossier
         expect {
           integer_number_type_de_champ.update(type_champ: :decimal_number)
-        }.to change { dossier.reload.champ_values_for_export(procedure.all_revisions_types_de_champ.not_repetition.to_a, format: :xlsx) }
+        }.to change { dossier.reload.champ_values_for_export(procedure.reload.types_de_champ_for_procedure_export.to_a, format: :xlsx) }
           .from([["c1", 42]]).to([["c1", 42.0]])
       end
     end
@@ -2669,7 +2669,8 @@ describe Dossier, type: :model do
         it "should have champs from all revisions" do
           expect(dossier.root_types_de_champ_public.map(&:libelle)).to eq([text_type_de_champ.libelle, datetime_type_de_champ.libelle, "Yes/no", explication_type_de_champ.libelle, commune_type_de_champ.libelle, repetition_type_de_champ.libelle])
           expect(dossier_second_revision.root_types_de_champ_public.map(&:libelle)).to eq([datetime_type_de_champ.libelle, "Updated yes/no", explication_type_de_champ.libelle, 'Commune de naissance', "Repetition", "New text field"])
-          expect(dossier_champ_values_for_export.map { |(libelle)| libelle }).to eq([datetime_type_de_champ.libelle, text_type_de_champ.libelle, "Updated yes/no", "Commune de naissance", "Commune de naissance (Code INSEE)", "Commune de naissance (Département)", "New text field"])
+          # the champ removed from the latest revision is appended after the current layout
+          expect(dossier_champ_values_for_export.map { |(libelle)| libelle }).to eq([datetime_type_de_champ.libelle, "Updated yes/no", "Commune de naissance", "Commune de naissance (Code INSEE)", "Commune de naissance (Département)", "New text field", text_type_de_champ.libelle])
           expect(dossier_champ_values_for_export).to eq(dossier_second_revision_champ_values_for_export)
         end
 
@@ -2683,7 +2684,7 @@ describe Dossier, type: :model do
             draft.add_type_de_champ(type_champ: :communes, libelle: "communes", parent_stable_id: tdc_repetition.stable_id)
 
             dossier_test = create(:dossier, procedure: proc_test)
-            type_champs = proc_test.all_revisions_types_de_champ(parent: tdc_repetition).to_a
+            type_champs = tdc_repetition.flat_children(proc_test.aggregated_revision).filter(&:fillable?)
             expect(type_champs.size).to eq(1)
             expect(dossier.champ_values_for_export(type_champs, format: :xlsx).size).to eq(3)
           end

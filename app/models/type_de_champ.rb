@@ -219,8 +219,6 @@ class TypeDeChamp < ApplicationRecord
 
   scope :public_only, -> { where(private: false) }
   scope :private_only, -> { where(private: true) }
-  scope :repetition, -> { where(type_champ: type_champs.fetch(:repetition)) }
-  scope :not_repetition, -> { where.not(type_champ: type_champs.fetch(:repetition)) }
   scope :not_condition, -> { where(condition: nil) }
   scope :fillable, -> { where.not(type_champ: [type_champs.fetch(:header_section), type_champs.fetch(:explication)]) }
   scope :mandatory, -> { where(mandatory: true) }
