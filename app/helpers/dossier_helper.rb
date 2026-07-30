@@ -281,6 +281,19 @@ module DossierHelper
     end
   end
 
+  def dossiers_list_summary(dossiers, statut)
+    return page_entries_info(dossiers) if statut != 'dossiers-transferes'
+
+    if dossiers.total_pages < 2
+      t('views.users.dossiers.dossiers_list.transfers_count', count: dossiers.total_count)
+    else
+      t('views.users.dossiers.dossiers_list.transfers_range_html',
+        first: dossiers.offset_value + 1,
+        last: dossiers.offset_value + dossiers.records.size,
+        total: dossiers.total_count)
+    end
+  end
+
   def clean_string_for_pdf(str)
     str
       &.tr("\r", "\n")

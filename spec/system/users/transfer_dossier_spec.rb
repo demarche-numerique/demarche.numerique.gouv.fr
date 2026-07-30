@@ -48,4 +48,13 @@ describe 'Transfer dossier:' do
     expect(page).to have_content('La proposition de transfert a été annulée.')
     expect(dossier.reload.transfer).to be_nil
   end
+
+  scenario 'the pending offers tab counts dossiers awaiting transfer' do
+    DossierTransfer.initiate(other_user.email, [dossier])
+    logout
+    login_as other_user, scope: :user
+    visit dossiers_path(statut: 'dossiers-transferes')
+
+    expect(page).to have_content('1 dossier en attente de transfert')
+  end
 end

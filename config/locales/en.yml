@@ -569,6 +569,10 @@ en:
           administration_no_longer_processes: "The administration will no longer process your request."
         dossiers_list:
           n_dossier: "File no."
+          transfers_count:
+            one: "%{count} file awaiting transfer"
+            other: "%{count} files awaiting transfer"
+          transfers_range_html: "%{first} - %{last} <span class='fr-text--sm'>in %{total} files awaiting transfer</span>"
           no_result_title: No files
           no_result_text_html: "To fill a procedure, contact your administration asking for the procedure link. <br> It should look like %{app_base}/commencer/xxx."
           no_result_text_with_search: found with search terms
