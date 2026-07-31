@@ -439,7 +439,10 @@ module DossierChampsConcern
 
     reset_champs_cache
 
-    data.save!
+    # An untouched champ must not be revalidated here: a legacy value stored
+    # before the current normalization rules would fail validation before the
+    # caller had a chance to assign the incoming value (RAILS-MC5)
+    data.save! if data.changed?
     data.type_de_champ = type_de_champ
     data
   end

@@ -517,6 +517,23 @@ RSpec.describe DossierChampsConcern do
         end
       end
 
+      context "champ with a stored value that predates the current normalization rules" do
+        let(:types_de_champ_public) { [{ type: :date, libelle: "Une date", stable_id: 990 }] }
+        let(:type_de_champ_public) { dossier.find_type_de_champ_by_stable_id(990) }
+
+        before do
+          # Raw SQL: any attribute write goes through the type cast, which
+          # would apply `normalizes` and hide the legacy value
+          ChampData.connection.exec_update("UPDATE champs SET value = $1 WHERE id = $2", nil, ["13/13/2023", dossier.champ_data.first.id])
+          dossier.reload
+        end
+
+        it "does not revalidate the untouched champ (RAILS-MC5)" do
+          expect { subject }.not_to raise_error
+          expect(subject.value).to eq("13/13/2023")
+        end
+      end
+
       context "champ carte" do
         let(:types_de_champ_public) { [{ type: :carte, libelle: "Un champ carte", stable_id: 996 }] }
         let(:type_de_champ_public) { dossier.find_type_de_champ_by_stable_id(996) }
