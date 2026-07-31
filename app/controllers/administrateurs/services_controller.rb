@@ -4,6 +4,7 @@ module Administrateurs
   class ServicesController < AdministrateurController
     skip_before_action :alert_for_missing_siret_service, only: :edit
     skip_before_action :alert_for_missing_service, only: :edit
+
     def index
       @procedure = procedure
       @services = ([procedure.service].compact + services.ordered).uniq
@@ -71,16 +72,22 @@ module Administrateurs
         partial: "administrateurs/services/form",
         locals: { service: @service, prefilled:, procedure: @procedure }
       )
-        end
+    end
 
     def add_to_procedure
       procedure = current_administrateur.procedures.find(procedure_params[:id])
       service = services.find(procedure_params[:service_id])
 
+      if service.siret == Service::SIRET_TEST
+        redirect_to admin_services_path(procedure_id: procedure.id),
+          alert: "Le service #{service.nom} utilise un SIRET de test et ne peut pas être affecté à une démarche."
+        return
+      end
+
       procedure.update(service: service)
 
       redirect_to admin_procedure_path(procedure.id),
-        notice: "service affecté : #{procedure.service.nom}"
+        notice: "Service affecté : #{procedure.service.nom}"
     end
 
     def destroy
