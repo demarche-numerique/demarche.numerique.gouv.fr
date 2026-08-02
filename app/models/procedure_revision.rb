@@ -18,9 +18,13 @@ class ProcedureRevision < ApplicationRecord
   def revision_types_de_champ_public = revision_types_de_champ.filter { _1.root? && _1.public? }.sort_by(&:position)
   def revision_types_de_champ_private = revision_types_de_champ.filter { _1.root? && _1.private? }.sort_by(&:position)
 
-  # treed types de champs
-  def types_de_champ_public = @types_de_champ_public ||= tree_it(revision_types_de_champ_public)
-  def types_de_champ_private = @types_de_champ_private ||= tree_it(revision_types_de_champ_private)
+  # treed coordinates
+  def coordinate_tree_public = @coordinate_tree_public ||= tree_it(revision_types_de_champ_public)
+  def coordinate_tree_private = @coordinate_tree_private ||= tree_it(revision_types_de_champ_private)
+
+  # treed types de champs — the coordinate tree projected on its types de champ
+  def types_de_champ_public = @types_de_champ_public ||= coordinate_tree_public.each(&:apply_tree_to_tdc).map(&:type_de_champ)
+  def types_de_champ_private = @types_de_champ_private ||= coordinate_tree_private.each(&:apply_tree_to_tdc).map(&:type_de_champ)
 
   # flatten treed types de champ WITH repetition children inlined after their repetition
   def flat_types_de_champ_public = types_de_champ_public.flat_map { [it] + it.flat_children }
@@ -399,6 +403,8 @@ class ProcedureRevision < ApplicationRecord
   end
 
   def reset_tree_memo
+    @coordinate_tree_public = nil
+    @coordinate_tree_private = nil
     @types_de_champ_public = nil
     @types_de_champ_private = nil
     @tree_index = nil
