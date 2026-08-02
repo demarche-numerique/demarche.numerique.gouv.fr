@@ -37,6 +37,8 @@ module ProcedurePublishConcern
 
     transaction { publish_new_revision(administrateur) }
 
+    reset_aggregated_types_de_champ_cache
+
     dossiers
       .state_not_termine
       .find_each(&:rebase_later)

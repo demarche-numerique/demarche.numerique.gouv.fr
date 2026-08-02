@@ -12,6 +12,7 @@ class Procedure < ApplicationRecord
   include ProcedureCloneConcern
   include PiecesJointesListConcern
   include ColumnsConcern
+  include ProcedureAggregatedTypesDeChampConcern
   include RoutingRuleStatusesConcern
 
   include Discard::Model
