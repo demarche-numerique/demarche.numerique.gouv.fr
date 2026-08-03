@@ -130,7 +130,17 @@ describe ProcedureAggregatedTypesDeChampConcern do
     end
   end
 
-  describe 'memoization' do
+  describe 'caching' do
+    before { allow(Rails).to receive(:cache).and_return(ActiveSupport::Cache::MemoryStore.new) }
+
+    it 'caches the merge and reuses it without recomputing' do
+      expect(sids(procedure.aggregated_public_type_de_champs)).to eq([110, 120, 130, 140])
+
+      fresh = Procedure.find(procedure.id)
+      expect(fresh).not_to receive(:compute_merged_structures)
+      expect(sids(fresh.aggregated_public_type_de_champs)).to eq([110, 120, 130, 140])
+    end
+
     it 'turns over when a new revision is published' do
       expect(procedure.aggregated_public_type_de_champs.first.libelle).to eq('intro')
 
@@ -138,6 +148,21 @@ describe ProcedureAggregatedTypesDeChampConcern do
       procedure.publish_revision!(administrateur)
 
       expect(procedure.aggregated_public_type_de_champs.first.libelle).to eq('intro v2')
+    end
+
+    it 'does not cache a procedure en brouillon' do
+      brouillon = create(:procedure, types_de_champ_public: [{ type: :text, libelle: 'draft', stable_id: 410 }])
+
+      expect(Rails.cache).not_to receive(:fetch)
+      expect(sids(brouillon.aggregated_public_type_de_champs)).to eq([410])
+    end
+
+    it 'rebuilds the tree over instances distinct from the revision ones' do
+      aggregated = procedure.aggregated_public_type_de_champs.first
+      revision_tdc = procedure.published_revision.type_de_champ(110)
+
+      expect(aggregated.id).to eq(revision_tdc.id)
+      expect(aggregated).not_to equal(revision_tdc)
     end
   end
 end
