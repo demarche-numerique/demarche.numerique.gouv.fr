@@ -178,6 +178,22 @@ class ChampData < ApplicationRecord
     type_de_champ.enclosing_repetition
   end
 
+  # Sections and repetitions above this champ, as projected champs, nearest
+  # first. Ancestors inside the champ's repetition share its row_id.
+  def ancestors
+    type_de_champ.ancestors.map { project_ancestor(it) }
+  end
+
+  # The innermost section this champ belongs to, nil outside any section.
+  def section
+    project_ancestor(type_de_champ.ancestors.find(&:header_section?))
+  end
+
+  # The repetition this champ belongs to, nil outside any repetition.
+  def repetition
+    project_ancestor(type_de_champ.enclosing_repetition)
+  end
+
   def row?
     row_id.present? && is_type?(TypeDeChamp.type_champs.fetch(:repetition))
   end
@@ -378,6 +394,13 @@ class ChampData < ApplicationRecord
   end
 
   private
+
+  # An ancestor inside the champ's repetition is projected on its row.
+  def project_ancestor(ancestor_type_de_champ)
+    return if ancestor_type_de_champ.nil?
+
+    dossier.project_champ(ancestor_type_de_champ, row_id: ancestor_type_de_champ.in_repetition? ? row_id : nil)
+  end
 
   def nullify_blank_json_columns
     [:value_json, :data].each do |column|
