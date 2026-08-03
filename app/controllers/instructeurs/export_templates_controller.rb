@@ -56,8 +56,8 @@ module Instructeurs
 
     def set_types_de_champ
       if export_template.tabular?
-        @types_de_champ_public = @procedure.all_revisions_types_de_champ(parent: nil, with_header_section: true).public_only
-        @types_de_champ_private = @procedure.all_revisions_types_de_champ(parent: nil, with_header_section: true).private_only
+        @types_de_champ_public = @procedure.aggregated_root_types_de_champ_public.reject(&:explication?)
+        @types_de_champ_private = @procedure.aggregated_root_types_de_champ_private.reject(&:explication?)
       end
     end
 

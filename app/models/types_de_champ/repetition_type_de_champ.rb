@@ -32,8 +32,8 @@ class TypesDeChamp::RepetitionTypeDeChamp < TypesDeChamp::TypeDeChampBase
   def columns(procedure_id:, displayable: true, prefix: nil)
     prefix = prefix.present? ? "(#{prefix} #{libelle})" : libelle
 
-    Procedure.find(procedure_id)
-      .all_revisions_types_de_champ(parent: @type_de_champ)
+    @type_de_champ.flat_children
+      .filter(&:fillable?)
       .flat_map { it.columns(procedure_id:, displayable: false, prefix:) }
   end
 

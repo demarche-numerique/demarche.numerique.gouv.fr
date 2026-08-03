@@ -1917,45 +1917,33 @@ describe Procedure do
     end
   end
 
-  describe '#all_revisions_types_de_champ' do
+  describe '#aggregated_root_types_de_champ_public' do
     let(:types_de_champ_public) do
       [
-        { type: :text },
-        { type: :header_section },
+        { type: :text, libelle: 'text' },
+        { type: :header_section, libelle: 'section' },
       ]
     end
 
     context 'when procedure brouillon' do
       let(:procedure) { create(:procedure, types_de_champ_public:) }
 
-      it 'returns one type de champ' do
-        expect(procedure.all_revisions_types_de_champ.size).to eq 1
+      it 'returns the draft roots, header sections included' do
+        expect(procedure.aggregated_root_types_de_champ_public.map(&:libelle)).to eq(['text', 'section'])
       end
 
-      it 'returns also section type de champ' do
-        expect(procedure.all_revisions_types_de_champ(with_header_section: true).size).to eq 2
-      end
-
-      it "returns types de champ on draft revision" do
+      it 'sees types de champ added to the draft' do
         procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'onemorechamp')
-        expect(procedure.reload.all_revisions_types_de_champ.size).to eq 2
+        expect(procedure.reload.aggregated_root_types_de_champ_public.map(&:libelle)).to eq(['onemorechamp', 'text', 'section'])
       end
     end
 
     context 'when procedure is published' do
       let(:procedure) { create(:procedure, :published, types_de_champ_public:) }
 
-      it 'returns one type de champ' do
-        expect(procedure.all_revisions_types_de_champ.size).to eq 1
-      end
-
-      it 'returns also section type de champ' do
-        expect(procedure.all_revisions_types_de_champ(with_header_section: true).size).to eq 2
-      end
-
-      it "doesn't return types de champ on draft revision" do
+      it "doesn't see types de champ added to the draft" do
         procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'onemorechamp')
-        expect(procedure.reload.all_revisions_types_de_champ.size).to eq 1
+        expect(procedure.reload.aggregated_root_types_de_champ_public.map(&:libelle)).to eq(['text', 'section'])
       end
     end
   end

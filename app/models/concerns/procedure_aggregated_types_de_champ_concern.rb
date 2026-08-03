@@ -21,6 +21,16 @@ module ProcedureAggregatedTypesDeChampConcern
     @aggregated_private_type_de_champs ||= build_aggregated_coordinates(:private).map(&:type_de_champ)
   end
 
+  # flattened aggregated types de champ without repetition children, mirroring
+  # ProcedureRevision#root_types_de_champ_public/private
+  def aggregated_root_types_de_champ_public
+    aggregated_public_type_de_champs.flat_map { [it] + it.flat_children }.filter { !it.in_repetition? }
+  end
+
+  def aggregated_root_types_de_champ_private
+    aggregated_private_type_de_champs.flat_map { [it] + it.flat_children }.filter { !it.in_repetition? }
+  end
+
   def reset_aggregated_types_de_champ_cache
     @aggregated_revisions = nil
     @merged_structures = nil

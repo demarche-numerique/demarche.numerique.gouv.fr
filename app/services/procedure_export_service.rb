@@ -112,11 +112,10 @@ class ProcedureExportService
   end
 
   def champs_repetables_options(format:)
-    procedure
-      .all_revisions_types_de_champ
-      .repetition
+    (procedure.aggregated_root_types_de_champ_public + procedure.aggregated_root_types_de_champ_private)
+      .filter(&:repetition?)
       .filter_map do |type_de_champ_repetition|
-        types_de_champ = procedure.all_revisions_types_de_champ(parent: type_de_champ_repetition).to_a
+        types_de_champ = type_de_champ_repetition.flat_children.filter(&:fillable?)
         rows = dossiers.flat_map { _1.repetition_rows_for_export(type_de_champ_repetition) }
 
         if types_de_champ.present? && rows.present?
