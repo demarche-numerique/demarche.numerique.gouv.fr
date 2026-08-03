@@ -7,6 +7,7 @@ module TreeMakerConcern
     return [] if coordinates.blank?
 
     head, *tail = coordinates
+    head.type_de_champ.coordinate = head
 
     case head
     in header if head.header_section?

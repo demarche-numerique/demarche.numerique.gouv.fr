@@ -29,6 +29,13 @@ describe TypeDeChamp do
     end
   end
 
+  describe 'tree navigation' do
+    it 'raises on a type de champ that is not attached to a coordinate' do
+      expect { TypeDeChamp.new(stable_id: 42).children }
+        .to raise_error(RuntimeError, 'type de champ 42 is not attached to a coordinate')
+    end
+  end
+
   describe 'validation' do
     context 'type' do
       before_all { seed "cases/champs" }

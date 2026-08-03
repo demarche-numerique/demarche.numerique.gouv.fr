@@ -8,11 +8,11 @@ module ProcedureAggregatedTypesDeChampConcern
   extend ActiveSupport::Concern
 
   def aggregated_public_type_de_champs
-    @aggregated_public_type_de_champs ||= merged_public_coordinates.each(&:apply_tree_to_tdc).map(&:type_de_champ)
+    @aggregated_public_type_de_champs ||= merged_public_coordinates.map(&:type_de_champ)
   end
 
   def aggregated_private_type_de_champs
-    @aggregated_private_type_de_champs ||= merged_private_coordinates.each(&:apply_tree_to_tdc).map(&:type_de_champ)
+    @aggregated_private_type_de_champs ||= merged_private_coordinates.map(&:type_de_champ)
   end
 
   def reset_aggregated_types_de_champ_cache
@@ -48,6 +48,10 @@ module ProcedureAggregatedTypesDeChampConcern
 
       if placed_coordinate.nil?
         placed[coordinate.stable_id] = coordinate
+        # the revisions share type de champ instances (batch preload): re-point
+        # the type de champ to its surviving coordinate, whichever revision's
+        # tree_it wrote it last
+        coordinate.type_de_champ.coordinate = coordinate
         coordinate.children = merge_tree([], coordinate.children, placed)
 
         container + [coordinate]

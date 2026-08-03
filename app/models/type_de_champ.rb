@@ -280,15 +280,16 @@ class TypeDeChamp < ApplicationRecord
 
   alias_method :validate, :valid?
 
-  def children=(value)
-    @children = value
-    value&.each { it.parent = self }
-  end
+  # Tree navigation, delegated to the coordinate this type de champ was treed
+  # by (see TreeMakerConcern#tree_it); raises on a type de champ that is not
+  # attached to a coordinate.
+  attr_writer :coordinate
+  def coordinate = @coordinate || raise("type de champ #{stable_id} is not attached to a coordinate")
 
-  def children = Array.wrap(@children)
+  def children = coordinate.children.map(&:type_de_champ)
   def flat_children = children.flat_map { [it] + it.flat_children }
 
-  attr_accessor :parent
+  def parent = coordinate.tree_parent&.type_de_champ
   def ancestors = Array.wrap(parent) + Array.wrap(parent&.ancestors)
 
   def level = ancestors.count { |element| !element.repetition? } + 1
