@@ -50,4 +50,16 @@ describe ProcedureRevisionPreloader do
       expect(original.draft_revision.send(association).map(&:id)).to eq(preloaded.draft_revision.send(association).map(&:id))
     end
   end
+
+  describe 'batch loading several revisions' do
+    it 'gives each coordinate its own type de champ instance, so per-instance tree state cannot leak across revisions' do
+      revisions = [procedure.published_revision, procedure.draft_revision]
+      ProcedureRevisionPreloader.new(revisions).all
+
+      published_tdc, draft_tdc = revisions.map { it.revision_types_de_champ.first.type_de_champ }
+
+      expect(published_tdc.id).to eq(draft_tdc.id)
+      expect(published_tdc).not_to equal(draft_tdc)
+    end
+  end
 end

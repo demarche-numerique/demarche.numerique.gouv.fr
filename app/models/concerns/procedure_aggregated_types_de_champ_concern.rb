@@ -48,10 +48,6 @@ module ProcedureAggregatedTypesDeChampConcern
 
       if placed_coordinate.nil?
         placed[coordinate.stable_id] = coordinate
-        # the revisions share type de champ instances (batch preload): re-point
-        # the type de champ to its surviving coordinate, whichever revision's
-        # tree_it wrote it last
-        coordinate.type_de_champ.coordinate = coordinate
         coordinate.children = merge_tree([], coordinate.children, placed)
 
         container + [coordinate]

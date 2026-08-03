@@ -17,30 +17,26 @@ class ProcedureRevisionPreloader
   private
 
   def load_procedure_revision_types_de_champ(revisions)
-    revisions_by_id = revisions.index_by(&:id)
+    # One query per revision, on purpose: a single batched query would share the
+    # type de champ instances across revisions (ActiveRecord caches instantiated
+    # rows by id within a query), and per-instance tree state (tdc.coordinate)
+    # would leak between the revisions of the batch.
+    coordinates_by_revision = revisions.index_with do |revision|
+      ProcedureRevisionTypeDeChamp.where(revision_id: revision.id).order(:position, :id).to_a
+    end
 
-    coordinates_by_revision_id = ProcedureRevisionTypeDeChamp
-      .where(revision_id: revisions.map(&:id))
-      .preload(type_de_champ: { notice_explicative_attachment: :blob, piece_justificative_template_attachment: :blob })
-      .order(:position, :id)
-      .to_a
-      .group_by(&:revision_id)
+    ActiveRecord::Associations::Preloader.new(
+      records: coordinates_by_revision.values.flatten.map(&:type_de_champ),
+      associations: [{ notice_explicative_attachment: :blob, piece_justificative_template_attachment: :blob }]
+    ).call
 
-    coordinates_by_revision_id.each_pair do |revision_id, coordinates|
-      revision = revisions_by_id[revision_id]
-
+    coordinates_by_revision.each_pair do |revision, coordinates|
       coordinates.each do |coordinate|
         coordinate.association(:revision).target = revision
         coordinate.association(:procedure).target = revision.procedure
       end
-    end
 
-    assign_revision_type_de_champ(revisions_by_id, coordinates_by_revision_id)
-  end
-
-  def assign_revision_type_de_champ(revisions_by_id, coordinates_by_revision_id)
-    revisions_by_id.each_pair do |revision_id, revision|
-      revision.preload_revision_types_de_champ(coordinates_by_revision_id[revision_id] || [])
+      revision.preload_revision_types_de_champ(coordinates)
     end
   end
 end
