@@ -17,7 +17,8 @@ module Administrateurs
       siret = current_administrateur.user.last_pro_connect_information&.siret
       if siret
         @service.siret = siret
-        @prefilled = handle_siret_prefill
+        prefilled_result = @service.prefill_from_siret
+        @prefilled_state = handle_siret_prefill(prefilled_result)
       end
     end
 
@@ -64,13 +65,19 @@ module Administrateurs
     def prefill
       @procedure = procedure
       @service = Service.new(siret: params[:siret])
+      prefilled_state = nil
 
-      prefilled = handle_siret_prefill
+      validate_siret_for_prefill
+
+      if !@service.errors.include?(:siret)
+        prefilled_result = @service.prefill_from_siret
+        prefilled_state = handle_siret_prefill(prefilled_result)
+      end
 
       render turbo_stream: turbo_stream.replace(
         "service_form",
         partial: "administrateurs/services/form",
-        locals: { service: @service, prefilled:, procedure: @procedure }
+        locals: { service: @service, prefilled_state:, procedure: @procedure }
       )
     end
 
@@ -141,27 +148,24 @@ module Administrateurs
       current_administrateur.procedures.find(params[:procedure_id])
     end
 
-    def handle_siret_prefill
-      @service.validate
-
-      if !@service.errors.include?(:siret)
-        prefilled = case @service.prefill_from_siret
-        in [Dry::Monads::Result::Success, Dry::Monads::Result::Success]
-          :success
-        in [Dry::Monads::Result::Failure, Dry::Monads::Result::Success] | [Dry::Monads::Result::Success, Dry::Monads::Result::Failure]
-          :partial
-        else
-          :failure
-        end
-      end
-
+    def validate_siret_for_prefill
       # On prefill from SIRET, we only want to display errors for the SIRET input
       # so we have to remove other errors (ie. required attributes not yet filled)
+      @service.validate
       siret_errors = @service.errors.where(:siret)
       @service.errors.clear
       siret_errors.each { @service.errors.import(_1) }
+    end
 
-      prefilled
+    def handle_siret_prefill(prefill_result)
+      case prefill_result
+      in [Dry::Monads::Result::Success, Dry::Monads::Result::Success]
+        :success
+      in [Dry::Monads::Result::Failure, Dry::Monads::Result::Success] | [Dry::Monads::Result::Success, Dry::Monads::Result::Failure]
+        :partial
+      else
+        :failure
+      end
     end
   end
 end
