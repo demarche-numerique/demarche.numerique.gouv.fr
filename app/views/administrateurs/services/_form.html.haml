@@ -1,12 +1,11 @@
 = form_with model: [:admin, service], id: "service_form" do |f|
-
-  = render Dsfr::InputComponent.new(form: f, attribute: :siret, input_type: :text_field,
-    opts: { placeholder: "14 chiffres, sans espace",
-            onblur: token_list("Turbo.visit('#{prefill_admin_services_path(procedure_id: procedure.id)}?siret=' + this.value)" => service.new_record?) }) do |c|
+  = render Dsfr::InputComponent.new(form: f, attribute: :siret, input_type: :text_field, opts: { data: { controller: 'turbo-input format', format: 'deleteSpace', turbo_input_url_value: prefill_admin_services_path(procedure_id: procedure.id, id: service.id) } }) do |c|
     - if service.etablissement_infos.blank? && local_assigns[:prefilled_state].nil?
       - c.with_hint do
         = "Indiquez le numéro de SIRET de l’organisme dont ce service dépend. Rechercher le SIRET sur "
         = link_to("annuaire-entreprises.data.gouv.fr", annuaire_link, **external_link_attributes)
+        %br
+        = "Format attendu : 14 chiffres. Exemple : 500 001 234 56789"
         - if service.new_record?
           %br
           = "Nous préremplirons les informations de contact à partir de l’Annuaire Service Public correspondant."
