@@ -3,7 +3,7 @@
   = render Dsfr::InputComponent.new(form: f, attribute: :siret, input_type: :text_field,
     opts: { placeholder: "14 chiffres, sans espace",
             onblur: token_list("Turbo.visit('#{prefill_admin_services_path(procedure_id: procedure.id)}?siret=' + this.value)" => service.new_record?) }) do |c|
-    - if service.etablissement_infos.blank? && local_assigns[:prefilled].nil?
+    - if service.etablissement_infos.blank? && local_assigns[:prefilled_state].nil?
       - c.with_hint do
         = "Indiquez le numéro de SIRET de l’organisme dont ce service dépend. Rechercher le SIRET sur "
         = link_to("annuaire-entreprises.data.gouv.fr", annuaire_link, **external_link_attributes)
@@ -12,12 +12,12 @@
           = "Nous préremplirons les informations de contact à partir de l’Annuaire Service Public correspondant."
 
   .fr-mb-2w
-    - if local_assigns[:prefilled] == :success
+    - if local_assigns[:prefilled_state] == :success
       %p.fr-info-text Génial ! La plupart des informations du service ont été préremplies ci-dessous. Vérifiez-les et complétez-les le cas échéant.
-    - elsif local_assigns[:prefilled] == :partial
+    - elsif local_assigns[:prefilled_state] == :partial
       %p.fr-info-text
         Nous avons prérempli certaines informations correspondant à ce SIRET. Complétez les autres manuellement.
-    - elsif local_assigns[:prefilled] == :failure
+    - elsif local_assigns[:prefilled_state] == :failure
       %p.fr-error-text
         Une erreur a empêché le préremplissage des informations.
         Vérifiez que le numéro de SIRET est correct et complétez les informations manuellement le cas échéant.
