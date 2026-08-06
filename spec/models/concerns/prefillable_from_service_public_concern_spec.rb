@@ -8,12 +8,13 @@ RSpec.describe PrefillableFromServicePublicConcern, type: :model do
 
   describe '#prefill_from_siret' do
     let(:service) { Service.new(siret:) }
+
     subject { service.prefill_from_siret }
+
     context 'when API call is successful with collectivite' do
       it 'prefills service attributes' do
         VCR.use_cassette('annuaire_service_public_success_20004021000060') do
           expect(subject.all?(&:success?)).to be_truthy
-
           expect(service.nom).to eq("Communauté de communes - Lacs et Gorges du Verdon")
           expect(service).to be_collectivite_territoriale
           expect(service.email).to eq("redacted@email.fr")
@@ -23,15 +24,15 @@ RSpec.describe PrefillableFromServicePublicConcern, type: :model do
         end
       end
 
-      it 'does not overwrite existing attributes' do
+      it 'overwrites existing attributes for which data has been retrieved' do
         service.nom = "Existing Name"
         service.email = "existing@email.com"
 
         VCR.use_cassette('annuaire_service_public_success_20004021000060') do
           service.prefill_from_siret
 
-          expect(service.nom).to eq("Existing Name")
-          expect(service.email).to eq("existing@email.com")
+          expect(service.nom).to eq("Communauté de communes - Lacs et Gorges du Verdon")
+          expect(service.email).to eq("redacted@email.fr")
         end
       end
     end
