@@ -66,4 +66,12 @@ class Service < ApplicationRecord
   def enqueue_api_entreprise
     APIEntreprise::ServiceJob.perform_later(self.id)
   end
+
+  def valid_siret?
+    ActiveModel::Validations::SiretValidator
+      .new(attributes: [:siret])
+      .validate_each(self, :siret, siret)
+
+    errors[:siret].empty?
+  end
 end
