@@ -3,10 +3,14 @@
 module DossierChampsConcern
   extend ActiveSupport::Concern
 
+  def champ(stable_id:, row_id: nil, scope:)
+    type_de_champ(stable_id, scope)&.then { project_champ(it, row_id:) }
+  end
+
   def project_champ(type_de_champ, row_id: nil)
     check_valid_row_id_on_read?(type_de_champ, row_id)
     data = champ_data_by_public_id[type_de_champ.public_id(row_id)]
-    if data.nil? || !data.is_type?(type_de_champ.type_champ)
+    champ = if data.nil? || !data.is_type?(type_de_champ.type_champ)
       value = type_de_champ.champ_blank?(data) ? nil : data.value
       updated_at = data&.updated_at || depose_at || created_at
       rebased_at = data&.rebased_at
@@ -15,42 +19,35 @@ module DossierChampsConcern
       data.type_de_champ = type_de_champ
       data
     end
+
+    if !champ.type_de_champ.repetition? # stay with repetition.rows for the moment
+      champ.children = champ.type_de_champ.children.map { project_champ(it, row_id:) }
+    end
+
+    champ
   end
 
   def root_champs_public
-    @root_champs_public ||= revision.root_types_de_champ_public.map { project_champ(_1) }
+    @root_champs_public ||= public_champs.flat_map { [it] + it.flat_children }
   end
 
   def root_champs_private
-    @root_champs_private ||= revision.root_types_de_champ_private.map { project_champ(_1) }
+    @root_champs_private ||= private_champs.flat_map { [it] + it.flat_children }
   end
+
+  def public_champs = @champs_tree_public ||= revision.types_de_champ_public.map { project_champ(_1) }
+  def private_champs = @champs_tree_private ||= revision.types_de_champ_private.map { project_champ(_1) }
 
   def champs
     root_champs_public + root_champs_private
   end
 
   def filled_champs_public
-    @filled_champs_public ||= root_champs_public.flat_map do |champ|
-      if champ.repetition?
-        champ.rows.flatten.filter { _1.persisted? && _1.fillable? }
-      elsif champ.persisted? && champ.fillable?
-        champ
-      else
-        []
-      end
-    end
+    @filled_champs_public ||= flat_champs_public.filter { it.persisted? && it.fillable? }
   end
 
   def filled_champs_private
-    @filled_champs_private ||= root_champs_private.flat_map do |champ|
-      if champ.repetition?
-        champ.rows.flatten.filter { _1.persisted? && _1.fillable? }
-      elsif champ.persisted? && champ.fillable?
-        champ
-      else
-        []
-      end
-    end
+    @filled_champs_private ||= flat_champs_private.filter { it.persisted? && it.fillable? }
   end
 
   def filled_champs
@@ -58,47 +55,27 @@ module DossierChampsConcern
   end
 
   def flat_champs_public
-    @flat_champs_public ||= revision.root_types_de_champ_public.flat_map do |type_de_champ|
-      champ = project_champ(type_de_champ)
-      if type_de_champ.repetition?
-        [champ] + project_rows_for(type_de_champ).flatten
-      else
-        champ
-      end
-    end
+    @flat_champs_public ||= public_champs.flat_map { flatten_with_rows(it) }
   end
 
   def flat_champs_private
-    @flat_champs_private ||= revision.root_types_de_champ_private.flat_map do |type_de_champ|
-      champ = project_champ(type_de_champ)
-      if type_de_champ.repetition?
-        [champ] + project_rows_for(type_de_champ).flatten
-      else
-        champ
-      end
+    @flat_champs_private ||= private_champs.flat_map { flatten_with_rows(it) }
+  end
+
+  def flatten_with_rows(champ)
+    if champ.repetition?
+      [champ] + project_rows_for(champ.type_de_champ).flatten
+    else
+      [champ] + champ.children.flat_map { flatten_with_rows(it) }
     end
   end
 
   def project_rows_for(type_de_champ)
     return [] if !type_de_champ.repetition?
 
-    children = revision.children_of(type_de_champ)
-    row_ids = repetition_row_ids(type_de_champ)
-
-    row_ids.map do |row_id|
-      children.map { project_champ(_1, row_id:) }
+    repetition_row_ids(type_de_champ).map do |row_id|
+      type_de_champ.flat_children.map { project_champ(_1, row_id:) }
     end
-  end
-
-  def find_type_de_champ_by_stable_id(stable_id, scope = nil)
-    case scope
-    when :public
-      types_de_champ_public_all
-    when :private
-      types_de_champ_private_all
-    else
-      revision.types_de_champ
-    end.find { _1.stable_id == stable_id.to_i }
   end
 
   def types_de_champ_public_all
@@ -113,7 +90,7 @@ module DossierChampsConcern
     revision
       .types_de_champ
       .filter { _1.stable_id.in?(stable_ids) }
-      .filter { !_1.child?(revision) }
+      .filter { !_1.in_repetition? }
       .map { _1.repetition? ? project_champ(_1) : champ_for_update(_1, updated_by: nil) }
   end
 
@@ -134,13 +111,13 @@ module DossierChampsConcern
 
   def public_champ_for_update(public_id, updated_by:)
     stable_id, row_id = public_id.split('-')
-    type_de_champ = find_type_de_champ_by_stable_id(stable_id, :public)
+    type_de_champ = type_de_champ(stable_id, :public)
     champ_for_update(type_de_champ, row_id:, updated_by:)
   end
 
   def private_champ_for_update(public_id, updated_by:)
     stable_id, row_id = public_id.split('-')
-    type_de_champ = find_type_de_champ_by_stable_id(stable_id, :private)
+    type_de_champ = type_de_champ(stable_id, :private)
     champ_for_update(type_de_champ, row_id:, updated_by:)
   end
 
@@ -465,7 +442,7 @@ module DossierChampsConcern
   end
 
   def check_valid_row_id_on_read?(type_de_champ, row_id)
-    if type_de_champ.child?(revision)
+    if type_de_champ.in_repetition?
       if row_id.blank?
         raise "type_de_champ #{type_de_champ.stable_id} in revision #{revision_id} must have a row_id because it is part of a repetition"
       end
@@ -481,6 +458,8 @@ module DossierChampsConcern
     @filled_champs_private = nil
     @root_champs_public = nil
     @root_champs_private = nil
+    @champs_tree_public = nil
+    @champs_tree_private = nil
     @flat_champs_public = nil
     @flat_champs_private = nil
     @repetition_row_ids = nil

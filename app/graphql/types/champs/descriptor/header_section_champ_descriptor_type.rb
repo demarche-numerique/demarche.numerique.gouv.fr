@@ -7,7 +7,7 @@ module Types::Champs::Descriptor
     field :level, Int, null: false
 
     def level
-      object.type_de_champ.level_for_revision(object.revision)
+      object.revision.type_de_champ(object.type_de_champ.stable_id).level
     end
   end
 end

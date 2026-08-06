@@ -45,7 +45,7 @@ module Instructeurs
 
     def find_rib_type_de_champ!
       stable_id, row_id = params[:public_id].split("-")
-      type_de_champ = @dossier.find_type_de_champ_by_stable_id(stable_id)
+      type_de_champ = @dossier.type_de_champ(stable_id)
       raise ActiveRecord::RecordNotFound unless type_de_champ&.rib?
       [type_de_champ, row_id]
     end

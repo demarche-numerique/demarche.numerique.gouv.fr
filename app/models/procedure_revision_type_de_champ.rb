@@ -22,6 +22,19 @@ class ProcedureRevisionTypeDeChamp < ApplicationRecord
   def revision_types_de_champ = revision.revision_types_de_champ.filter { _1.persisted? ? _1.parent_id == id : _1.parent == self }.sort_by(&:position)
   def types_de_champ = revision_types_de_champ.map(&:type_de_champ)
 
+  # in-memory tree links, set by TreeMakerConcern#tree_it: a header section's
+  # children are the coordinates it covers, a repetition's children its own
+  # coordinates. tree_parent is the reverse link (unlike the parent
+  # association, which only knows about repetitions).
+  attr_accessor :tree_parent
+
+  def children=(value)
+    @children = value
+    value.each { it.tree_parent = self }
+  end
+
+  def children = @children ||= []
+
   # significant perf gain when accessed hundreds of thousands of times in API or export context
   def stable_id
     @stable_id ||= type_de_champ.stable_id

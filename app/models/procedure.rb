@@ -12,6 +12,7 @@ class Procedure < ApplicationRecord
   include ProcedureCloneConcern
   include PiecesJointesListConcern
   include ColumnsConcern
+  include ProcedureAggregatedTypesDeChampConcern
   include RoutingRuleStatusesConcern
 
   include Discard::Model
@@ -89,24 +90,14 @@ class Procedure < ApplicationRecord
     brouillon? ? draft_revision : published_revision
   end
 
-  def all_revisions_types_de_champ(parent: nil, with_header_section: false)
-    if brouillon?
-      if parent.nil?
-        (with_header_section ? TypeDeChamp.with_header_section : TypeDeChamp.fillable)
-          .joins(:revision_types_de_champ)
-          .where(revision_types_de_champ: { revision_id: draft_revision_id, parent_id: nil })
-          .order(:private, :position)
-      else
-        draft_revision.children_of(parent)
-      end
-    else
-      cache_key = ['all_revisions_types_de_champ', published_revision, parent, with_header_section, ActiveRecord::VERSION::STRING].compact
-      Rails.cache.fetch(cache_key, expires_in: 1.month) { published_revisions_types_de_champ(parent:, with_header_section:) }
-    end
+  def reload(...)
+    super.tap { reset_aggregated_types_de_champ_cache }
   end
 
   def types_de_champ_for_procedure_export
-    all_revisions_types_de_champ.not_repetition
+    (aggregated_root_types_de_champ_public + aggregated_root_types_de_champ_private)
+      .filter(&:fillable?)
+      .reject(&:repetition?)
   end
 
   # The template tag parser's vocabulary (mail templates, attestations,
@@ -619,7 +610,7 @@ class Procedure < ApplicationRecord
   end
 
   def routing_champs
-    active_revision.revision_types_de_champ_public.filter(&:used_by_routing_rules?).map(&:libelle)
+    active_revision.root_types_de_champ_public.filter { used_by_routing_rules?(it) }.map(&:libelle)
   end
 
   def champ_value_in_condition?
@@ -871,46 +862,6 @@ class Procedure < ApplicationRecord
       .filter { it.is_a?(Referentiels::APIReferentiel) }
       .flat_map(&:tiptap_mention_stable_ids)
       .uniq
-  end
-
-  def published_revisions_types_de_champ(parent: nil, with_header_section: false)
-    # all published revisions
-    revision_ids = revisions.ids - [draft_revision_id]
-    # fetch all parent types de champ
-    parent_ids = if parent.present?
-      ProcedureRevisionTypeDeChamp
-        .where(revision_id: revision_ids)
-        .joins(:type_de_champ)
-        .where(type_de_champ: { stable_id: parent.stable_id })
-        .ids
-    end
-
-    # fetch all type_de_champ.stable_id for all the revisions expect draft
-    # and for each stable_id take the bigger (more recent) type_de_champ.id
-    types_de_champ_scope = with_header_section ? TypeDeChamp.with_header_section : TypeDeChamp.fillable
-    recent_ids = types_de_champ_scope
-      .joins(:revision_types_de_champ)
-      .where(revision_types_de_champ: { revision_id: revision_ids, parent_id: parent_ids })
-      .group(:stable_id).pluck('MAX(types_de_champ.id)')
-
-    # fetch the more recent procedure_revision_types_de_champ
-    # which includes recents_ids
-    recents_prtdc = ProcedureRevisionTypeDeChamp
-      .unscope(:eager_load)
-      .where(type_de_champ_id: recent_ids)
-      .where.not(revision_id: draft_revision_id)
-      .group(:type_de_champ_id)
-      .pluck('MAX(id)')
-
-    TypeDeChamp
-      .joins(:revision_types_de_champ)
-      .where(revision_types_de_champ: { id: recents_prtdc }).then do |relation|
-        if feature_enabled?(:export_order_by_revision) # Fonds Verts, en attente d’exports personnalisables
-          relation.order(:private, 'revision_types_de_champ.revision_id': :desc, position: :asc)
-        else
-          relation.order(:private, :position, 'revision_types_de_champ.revision_id': :desc)
-        end
-      end
   end
 
   def validates_associated_draft_revision_with_context

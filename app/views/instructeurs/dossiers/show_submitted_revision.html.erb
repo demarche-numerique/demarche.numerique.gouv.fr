@@ -34,7 +34,7 @@
         data-clipboard2-copy-text-value="<%= t('clipboard.copy') %>"
         data-clipboard2-copied-text-value="<%= t('clipboard.copied') %>"
       >
-        <%= render ViewableChamp::SectionComponent.new(dossier: @dossier, types_de_champ: @dossier.revision.root_types_de_champ_public, demande_seen_at: @demande_seen_at, profile: 'instructeur') %>
+        <%= render ViewableChamp::SectionComponent.new(champs: @dossier.public_champs, demande_seen_at: @demande_seen_at, profile: 'instructeur') %>
       </div>
     </div>
   </div>

@@ -53,8 +53,7 @@ module Instructeurs
     end
 
     def champ
-      type_de_champ = dossier.find_type_de_champ_by_stable_id(params[:stable_id], :public)
-      champ = dossier.project_champ(type_de_champ, row_id: params[:row_id])
+      champ = dossier.champ(stable_id: params[:stable_id], row_id: params[:row_id], scope: :public)
       champ.validate(:champ_value) if champ.done?
 
       respond_to do |format|

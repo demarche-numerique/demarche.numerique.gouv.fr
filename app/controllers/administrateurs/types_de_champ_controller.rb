@@ -101,7 +101,7 @@ module Administrateurs
     def move_up
       @coordinate = draft.move_up_type_de_champ(params[:stable_id])
       reload_procedure_with_includes
-      @coordinate = draft.revision_types_de_champ.find { _1.id == @coordinate.id }
+      @coordinate = draft.coordinate_for(@coordinate.type_de_champ)
       @destroyed = @coordinate
       @created = champ_component_from(@coordinate)
       # update the one component below
@@ -111,7 +111,7 @@ module Administrateurs
     def move_down
       @coordinate = draft.move_down_type_de_champ(params[:stable_id])
       reload_procedure_with_includes
-      @coordinate = draft.revision_types_de_champ.find { _1.id == @coordinate.id }
+      @coordinate = draft.coordinate_for(@coordinate.type_de_champ)
       @destroyed = @coordinate
       @created = champ_component_from(@coordinate)
       # update the one component above

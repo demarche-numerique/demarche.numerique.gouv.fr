@@ -57,31 +57,31 @@ RSpec.describe DossierChampsConcern do
     end
   end
 
-  describe "#find_type_de_champ_by_stable_id" do
+  describe "#type_de_champ" do
     it "finds a public type de champ" do
-      expect(dossier.find_type_de_champ_by_stable_id(992, :public).libelle).to eq("Un champ yes no")
+      expect(dossier.type_de_champ(992, :public).libelle).to eq("Un champ yes no")
     end
 
     it "finds a private type de champ" do
-      expect(dossier.find_type_de_champ_by_stable_id(995, :private).libelle).to eq("Une annotation")
+      expect(dossier.type_de_champ(995, :private).libelle).to eq("Une annotation")
     end
 
     it "searches the whole revision when no scope is given" do
-      expect(dossier.find_type_de_champ_by_stable_id(992).libelle).to eq("Un champ yes no")
-      expect(dossier.find_type_de_champ_by_stable_id(995).libelle).to eq("Une annotation")
+      expect(dossier.type_de_champ(992).libelle).to eq("Un champ yes no")
+      expect(dossier.type_de_champ(995).libelle).to eq("Une annotation")
     end
 
     it "does not find a champ outside the requested scope" do
-      expect(dossier.find_type_de_champ_by_stable_id(995, :public)).to be_nil
-      expect(dossier.find_type_de_champ_by_stable_id(992, :private)).to be_nil
+      expect(dossier.type_de_champ(995, :public)).to be_nil
+      expect(dossier.type_de_champ(992, :private)).to be_nil
     end
 
     it "accepts a stable id given as a string, as public_id parsing produces" do
-      expect(dossier.find_type_de_champ_by_stable_id("992", :public).libelle).to eq("Un champ yes no")
+      expect(dossier.type_de_champ("992", :public).libelle).to eq("Un champ yes no")
     end
 
     it "returns nil for an unknown stable id" do
-      expect(dossier.find_type_de_champ_by_stable_id(1234567)).to be_nil
+      expect(dossier.type_de_champ(1234567)).to be_nil
     end
   end
 
@@ -94,9 +94,9 @@ RSpec.describe DossierChampsConcern do
   end
 
   describe "#project_champ" do
-    let(:type_de_champ_repetition) { dossier.find_type_de_champ_by_stable_id(993) }
-    let(:type_de_champ_public) { dossier.find_type_de_champ_by_stable_id(99) }
-    let(:type_de_champ_private) { dossier.find_type_de_champ_by_stable_id(995) }
+    let(:type_de_champ_repetition) { dossier.type_de_champ(993) }
+    let(:type_de_champ_public) { dossier.type_de_champ(99) }
+    let(:type_de_champ_private) { dossier.type_de_champ(995) }
 
     context "public champ" do
       let(:row_id) { nil }
@@ -105,7 +105,7 @@ RSpec.describe DossierChampsConcern do
       it { is_expected.to be_persisted }
 
       context "in repetition" do
-        let(:type_de_champ_public) { dossier.find_type_de_champ_by_stable_id(994) }
+        let(:type_de_champ_public) { dossier.type_de_champ(994) }
         let(:row_id) { dossier.project_champ(type_de_champ_repetition).row_ids.first }
 
         it "projects a new record carrying the row_id" do
@@ -123,7 +123,7 @@ RSpec.describe DossierChampsConcern do
       end
 
       context "without a row_id on a champ inside a repetition" do
-        let(:type_de_champ_public) { dossier.find_type_de_champ_by_stable_id(994) }
+        let(:type_de_champ_public) { dossier.type_de_champ(994) }
         let(:row_id) { nil }
 
         it "raises" do
@@ -141,7 +141,7 @@ RSpec.describe DossierChampsConcern do
         end
 
         context "in repetition" do
-          let(:type_de_champ_public) { dossier.find_type_de_champ_by_stable_id(994) }
+          let(:type_de_champ_public) { dossier.type_de_champ(994) }
           let(:row_id) { ULID.generate }
 
           it "builds a new champ carrying the row_id" do
@@ -177,7 +177,7 @@ RSpec.describe DossierChampsConcern do
       it { is_expected.to be_persisted }
 
       context "in repetition" do
-        let(:type_de_champ_public) { dossier.find_type_de_champ_by_stable_id(994) }
+        let(:type_de_champ_public) { dossier.type_de_champ(994) }
         let(:row_id) { dossier.project_champ(type_de_champ_repetition).row_ids.first }
 
         it "projects a new record carrying the row_id" do
@@ -195,7 +195,7 @@ RSpec.describe DossierChampsConcern do
         end
 
         context "in repetition" do
-          let(:type_de_champ_public) { dossier.find_type_de_champ_by_stable_id(994) }
+          let(:type_de_champ_public) { dossier.type_de_champ(994) }
           let(:row_id) { ULID.generate }
 
           it "builds a new champ carrying the row_id" do
@@ -279,13 +279,13 @@ RSpec.describe DossierChampsConcern do
   end
 
   describe '#repetition_row_ids' do
-    let(:type_de_champ_repetition) { dossier.find_type_de_champ_by_stable_id(993) }
+    let(:type_de_champ_repetition) { dossier.type_de_champ(993) }
     subject { dossier.repetition_row_ids(type_de_champ_repetition) }
 
     it { expect(subject.size).to eq(1) }
 
     it "returns [] for a type de champ that is not a repetition" do
-      expect(dossier.repetition_row_ids(dossier.find_type_de_champ_by_stable_id(99))).to eq([])
+      expect(dossier.repetition_row_ids(dossier.type_de_champ(99))).to eq([])
     end
 
     context 'given a type de champ repetition in another revision' do
@@ -299,7 +299,7 @@ RSpec.describe DossierChampsConcern do
   end
 
   describe '#project_rows_for' do
-    let(:type_de_champ_repetition) { dossier.find_type_de_champ_by_stable_id(993) }
+    let(:type_de_champ_repetition) { dossier.type_de_champ(993) }
     subject { dossier.project_rows_for(type_de_champ_repetition) }
 
     it "returns one row of one child champ" do
@@ -308,12 +308,12 @@ RSpec.describe DossierChampsConcern do
     end
 
     it "returns [] for a type de champ that is not a repetition" do
-      expect(dossier.project_rows_for(dossier.find_type_de_champ_by_stable_id(99))).to eq([])
+      expect(dossier.project_rows_for(dossier.type_de_champ(99))).to eq([])
     end
   end
 
   describe '#repetition_rows_for_export' do
-    let(:type_de_champ_repetition) { dossier.find_type_de_champ_by_stable_id(993) }
+    let(:type_de_champ_repetition) { dossier.type_de_champ(993) }
     subject { dossier.repetition_rows_for_export(type_de_champ_repetition) }
 
     it "wraps each row id in a Row numbered from 1" do
@@ -325,7 +325,7 @@ RSpec.describe DossierChampsConcern do
   end
 
   describe '#repetition_add_row' do
-    let(:type_de_champ_repetition) { dossier.find_type_de_champ_by_stable_id(993) }
+    let(:type_de_champ_repetition) { dossier.type_de_champ(993) }
     let(:row_ids) { dossier.repetition_row_ids(type_de_champ_repetition) }
     subject { dossier.repetition_add_row(type_de_champ_repetition, updated_by: 'test') }
 
@@ -335,13 +335,13 @@ RSpec.describe DossierChampsConcern do
     end
 
     it "raises when the type de champ is not a repetition" do
-      expect { dossier.repetition_add_row(dossier.find_type_de_champ_by_stable_id(99), updated_by: 'test') }
+      expect { dossier.repetition_add_row(dossier.type_de_champ(99), updated_by: 'test') }
         .to raise_error("Can't add row to non-repetition type de champ")
     end
   end
 
   describe '#repetition_remove_row' do
-    let(:type_de_champ_repetition) { dossier.find_type_de_champ_by_stable_id(993) }
+    let(:type_de_champ_repetition) { dossier.type_de_champ(993) }
     let(:row_id) { dossier.repetition_row_ids(type_de_champ_repetition).first }
     let(:row_ids) { dossier.repetition_row_ids(type_de_champ_repetition) }
     subject { dossier.repetition_remove_row(type_de_champ_repetition, row_id, updated_by: 'test') }
@@ -350,7 +350,7 @@ RSpec.describe DossierChampsConcern do
     it { row_id; subject; expect(row_id).not_to be_in(row_ids) }
 
     it "raises when the type de champ is not a repetition" do
-      expect { dossier.repetition_remove_row(dossier.find_type_de_champ_by_stable_id(99), row_id, updated_by: 'test') }
+      expect { dossier.repetition_remove_row(dossier.type_de_champ(99), row_id, updated_by: 'test') }
         .to raise_error("Can't remove row from non-repetition type de champ")
     end
   end
@@ -396,10 +396,10 @@ RSpec.describe DossierChampsConcern do
   end
 
   describe "write guards" do
-    let(:type_de_champ_public) { dossier.find_type_de_champ_by_stable_id(99) }
-    let(:type_de_champ_private) { dossier.find_type_de_champ_by_stable_id(995) }
-    let(:type_de_champ_repetition) { dossier.find_type_de_champ_by_stable_id(993) }
-    let(:type_de_champ_repetition_child) { dossier.find_type_de_champ_by_stable_id(994) }
+    let(:type_de_champ_public) { dossier.type_de_champ(99) }
+    let(:type_de_champ_private) { dossier.type_de_champ(995) }
+    let(:type_de_champ_repetition) { dossier.type_de_champ(993) }
+    let(:type_de_champ_repetition_child) { dossier.type_de_champ(994) }
 
     context "when the dossier is en_construction" do
       let(:dossier) { create(:dossier, :en_construction, procedure:) }
@@ -441,9 +441,9 @@ RSpec.describe DossierChampsConcern do
   end
 
   describe "#champ_for_update" do
-    let(:type_de_champ_repetition) { dossier.find_type_de_champ_by_stable_id(993) }
-    let(:type_de_champ_public) { dossier.find_type_de_champ_by_stable_id(99) }
-    let(:type_de_champ_private) { dossier.find_type_de_champ_by_stable_id(995) }
+    let(:type_de_champ_repetition) { dossier.type_de_champ(993) }
+    let(:type_de_champ_public) { dossier.type_de_champ(99) }
+    let(:type_de_champ_private) { dossier.type_de_champ(995) }
     let(:row_id) { nil }
 
     context "public champ" do
@@ -455,7 +455,7 @@ RSpec.describe DossierChampsConcern do
       }
 
       context "in repetition" do
-        let(:type_de_champ_public) { dossier.find_type_de_champ_by_stable_id(994) }
+        let(:type_de_champ_public) { dossier.type_de_champ(994) }
         let(:row_id) { ULID.generate }
 
         it {
@@ -473,7 +473,7 @@ RSpec.describe DossierChampsConcern do
         }
 
         context "in repetition" do
-          let(:type_de_champ_public) { dossier.find_type_de_champ_by_stable_id(994) }
+          let(:type_de_champ_public) { dossier.type_de_champ(994) }
           let(:row_id) { ULID.generate }
 
           it {
@@ -549,7 +549,7 @@ RSpec.describe DossierChampsConcern do
 
       context "champ carte" do
         let(:types_de_champ_public) { [{ type: :carte, libelle: "Un champ carte", stable_id: 996 }] }
-        let(:type_de_champ_public) { dossier.find_type_de_champ_by_stable_id(996) }
+        let(:type_de_champ_public) { dossier.type_de_champ(996) }
 
         it {
           expect(subject.persisted?).to be_truthy
@@ -594,7 +594,7 @@ RSpec.describe DossierChampsConcern do
   end
 
   describe "#public_champ_for_update" do
-    let(:type_de_champ_repetition) { dossier.find_type_de_champ_by_stable_id(993) }
+    let(:type_de_champ_repetition) { dossier.type_de_champ(993) }
     let(:row_id) { ULID.generate }
 
     let(:attributes) do
@@ -605,9 +605,9 @@ RSpec.describe DossierChampsConcern do
       }
     end
 
-    let(:champ_99) { dossier.project_champ(dossier.find_type_de_champ_by_stable_id(99)) }
-    let(:champ_991) { dossier.project_champ(dossier.find_type_de_champ_by_stable_id(991)) }
-    let(:champ_994) { dossier.project_champ(dossier.find_type_de_champ_by_stable_id(994), row_id:) }
+    let(:champ_99) { dossier.project_champ(dossier.type_de_champ(99)) }
+    let(:champ_991) { dossier.project_champ(dossier.type_de_champ(991)) }
+    let(:champ_994) { dossier.project_champ(dossier.type_de_champ(994), row_id:) }
 
     subject { assign_champs_attributes(attributes) }
 
@@ -685,7 +685,7 @@ RSpec.describe DossierChampsConcern do
       }
     end
 
-    let(:annotation_995) { dossier.project_champ(dossier.find_type_de_champ_by_stable_id(995)) }
+    let(:annotation_995) { dossier.project_champ(dossier.type_de_champ(995)) }
 
     subject { assign_champs_attributes(attributes, scope: :private) }
 
@@ -712,7 +712,7 @@ RSpec.describe DossierChampsConcern do
     let(:dossier) { create(:dossier, :en_construction, procedure:) }
 
     describe "#public_champ_for_update" do
-      let(:type_de_champ_repetition) { dossier.find_type_de_champ_by_stable_id(993) }
+      let(:type_de_champ_repetition) { dossier.type_de_champ(993) }
       let(:row_ids) { dossier.project_champ(type_de_champ_repetition).row_ids }
       let(:row_id) { row_ids.first }
 
@@ -740,13 +740,13 @@ RSpec.describe DossierChampsConcern do
 
       def main_champ(stable_id, row_id = nil)
         dossier.with_main_stream do
-          dossier.project_champ(dossier.find_type_de_champ_by_stable_id(stable_id), row_id:)
+          dossier.project_champ(dossier.type_de_champ(stable_id), row_id:)
         end
       end
 
       def draft_champ(stable_id, row_id = nil)
         dossier.with_update_stream(dossier.user) do
-          dossier.project_champ(dossier.find_type_de_champ_by_stable_id(stable_id), row_id:)
+          dossier.project_champ(dossier.type_de_champ(stable_id), row_id:)
         end
       end
 
@@ -884,7 +884,7 @@ RSpec.describe DossierChampsConcern do
           expect(dossier.history.size).to eq(2)
           expect(dossier.history.map(&:piece_justificative_file).map { [_1.record.type, _1.attached?] }).to match_array([['Champs::PieceJustificativeChamp', true], ['Champs::PieceJustificativeChamp', false]])
 
-          pj_champ = dossier.project_champ(dossier.find_type_de_champ_by_stable_id(98), row_id: nil)
+          pj_champ = dossier.project_champ(dossier.type_de_champ(98), row_id: nil)
           expect(pj_champ.piece_justificative_file.size).to eq(2)
           expect(pj_champ.piece_justificative_file.map(&:filename).map(&:to_s)).to eq(['toto.txt', 'Contrat.pdf'])
         }
@@ -893,7 +893,7 @@ RSpec.describe DossierChampsConcern do
 
     describe "#repetition_remove_row" do
       let(:dossier) { create(:dossier, :en_construction, :with_populated_champs, procedure:) }
-      let(:type_de_champ_repetition) { dossier.find_type_de_champ_by_stable_id(993) }
+      let(:type_de_champ_repetition) { dossier.type_de_champ(993) }
       let(:row_ids) { dossier.project_champ(type_de_champ_repetition).row_ids }
       let(:row_id) { row_ids.first }
 
@@ -940,7 +940,7 @@ RSpec.describe DossierChampsConcern do
     let(:dossier) { create(:dossier, procedure:) }
 
     describe "#public_champ_for_update" do
-      let(:type_de_champ_repetition) { dossier.find_type_de_champ_by_stable_id(993) }
+      let(:type_de_champ_repetition) { dossier.type_de_champ(993) }
       let(:row_ids) { dossier.project_champ(type_de_champ_repetition).row_ids }
       let(:row_id) { row_ids.first }
 
@@ -983,25 +983,25 @@ RSpec.describe DossierChampsConcern do
 
       def main_champ(stable_id, row_id = nil)
         dossier.with_main_stream do
-          dossier.project_champ(dossier.find_type_de_champ_by_stable_id(stable_id), row_id:)
+          dossier.project_champ(dossier.type_de_champ(stable_id), row_id:)
         end
       end
 
       def draft_champ(stable_id, row_id = nil)
         dossier.with_instructeur_buffer_stream do
-          dossier.project_champ(dossier.find_type_de_champ_by_stable_id(stable_id), row_id:)
+          dossier.project_champ(dossier.type_de_champ(stable_id), row_id:)
         end
       end
 
       def user_draft_champ(stable_id, row_id = nil)
         dossier.with_update_stream(dossier.user) do
-          dossier.project_champ(dossier.find_type_de_champ_by_stable_id(stable_id), row_id:)
+          dossier.project_champ(dossier.type_de_champ(stable_id), row_id:)
         end
       end
 
       def user_history_champ(stable_id, row_id = nil)
         dossier.with_user_history_stream do
-          dossier.project_champ(dossier.find_type_de_champ_by_stable_id(stable_id), row_id:)
+          dossier.project_champ(dossier.type_de_champ(stable_id), row_id:)
         end
       end
 
@@ -1291,7 +1291,7 @@ RSpec.describe DossierChampsConcern do
 
     context "when the user buffer stream changes a champ inside a repetition" do
       let(:row_id) do
-        type_de_champ = dossier.find_type_de_champ_by_stable_id(993)
+        type_de_champ = dossier.type_de_champ(993)
         dossier.project_champ(type_de_champ).row_ids.first
       end
 
@@ -1416,7 +1416,7 @@ RSpec.describe DossierChampsConcern do
 
     context "when the instructeur buffer stream changes a champ inside a repetition" do
       let(:row_id) do
-        type_de_champ = dossier.find_type_de_champ_by_stable_id(993)
+        type_de_champ = dossier.type_de_champ(993)
         dossier.project_champ(type_de_champ).row_ids.first
       end
 

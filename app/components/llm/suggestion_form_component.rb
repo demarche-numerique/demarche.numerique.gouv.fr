@@ -19,10 +19,6 @@ class LLM::SuggestionFormComponent < ApplicationComponent
     LLM::Rule.new(rule).component_class
   end
 
-  def prtdcs
-    procedure_revision.types_de_champ.index_by(&:stable_id)
-  end
-
   def restart_link
     helpers.new_simplify_admin_procedure_types_de_champ_path(procedure)
   end

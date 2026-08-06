@@ -6,6 +6,6 @@ class Champs::HeaderSectionChamp < ChampData
   end
 
   def level
-    type_de_champ.level_for_revision(dossier.revision)
+    type_de_champ.level
   end
 end

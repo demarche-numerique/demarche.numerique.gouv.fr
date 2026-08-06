@@ -165,7 +165,7 @@ describe 'dossiers/show.pdf', :external_deps, type: :view do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :aah, libelle: 'AAH' }]) }
     let(:dossier) do
       d = create(:dossier, :en_construction, procedure:)
-      d.root_champs_public.first.update(external_state: 'fetched', value: 'true', value_json: { api_part: { est_beneficiaire: true } })
+      d.public_champs.first.update(external_state: 'fetched', value: 'true', value_json: { api_part: { est_beneficiaire: true } })
       d
     end
 

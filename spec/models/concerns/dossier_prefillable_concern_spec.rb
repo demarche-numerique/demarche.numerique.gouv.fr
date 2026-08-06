@@ -42,7 +42,7 @@ RSpec.describe DossierPrefillableConcern do
           expect { fill }.not_to change { dossier.reload.prefilled }.from(nil)
         end
 
-        it "doesn't change champs_public" do
+        it "doesn't change public_champs" do
           expect { fill }.not_to change { dossier.root_champs_public.to_a }
         end
       end

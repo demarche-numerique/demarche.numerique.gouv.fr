@@ -28,7 +28,6 @@ features = [
   :dossiers_list_personnalisation,
   :engagement_juridique_type_de_champ,
   :export_avec_horodatage,
-  :export_order_by_revision,
   :groupe_instructeur_api_hack,
   :pro_connect_restricted,
   :pre_rempli_type_de_champ,

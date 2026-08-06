@@ -54,7 +54,7 @@ class Dossiers::ErrorsFullMessagesComponent < ApplicationComponent
   def is_in_fieldset?(model)
     return 0 if !model.child?
 
-    model.dossier.revision.children_of(model.parent).size > 1
+    model.parent.flat_children.size > 1
   end
 
   def render?

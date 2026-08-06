@@ -13,7 +13,7 @@ describe ExportTemplate::ChampsComponent, type: :component do
       { type: :repetition, mandatory: true, stable_id: 7, libelle: "Amis", children: [{ type: 'text', libelle: 'Prénom', stable_id: 8 }] },
     ]
   end
-  let(:component) { described_class.new("Champs publics", export_template, procedure.all_revisions_types_de_champ(parent: nil, with_header_section: true)) }
+  let(:component) { described_class.new("Champs publics", export_template, procedure.aggregated_root_types_de_champ_public.reject(&:explication?)) }
   before { render_inline(component).to_html }
 
   it 'renders champs within fieldset' do

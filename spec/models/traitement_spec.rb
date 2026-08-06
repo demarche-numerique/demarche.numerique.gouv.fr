@@ -12,7 +12,7 @@ RSpec.describe Traitement do
   let(:dossier) { create(:dossier, :en_construction, :with_populated_champs, procedure:) }
 
   def repetition_row_id
-    type_de_champ = dossier.find_type_de_champ_by_stable_id(993)
+    type_de_champ = dossier.type_de_champ(993)
     dossier.project_champ(type_de_champ).row_ids.first
   end
 

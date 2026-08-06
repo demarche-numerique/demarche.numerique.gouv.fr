@@ -3,6 +3,48 @@
 describe ChampData do
   include ActiveJob::TestHelper
 
+  describe 'tree navigation (ancestors, section, repetition)' do
+    let(:procedure) do
+      create(:procedure, types_de_champ_public: [
+        { type: :text, libelle: 'root', stable_id: 530 },
+        {
+          type: :repetition, libelle: 'rep', stable_id: 520, children: [
+            { type: :header_section, level: 1, libelle: 'S in rep', stable_id: 521 },
+            { type: :text, libelle: 'in rep section', stable_id: 522 },
+          ],
+        },
+        { type: :header_section, level: 1, libelle: 'S1', stable_id: 510 },
+        { type: :text, libelle: 'in section', stable_id: 511 },
+      ])
+    end
+    let(:dossier) { create(:dossier, procedure:) }
+
+    def champ(stable_id, row_id: nil) = dossier.champ(stable_id:, row_id:, scope: :public)
+    def row_id = dossier.project_champ(dossier.type_de_champ(520)).row_ids.first
+
+    it 'projects the innermost section of a champ' do
+      expect(champ(511).section.libelle).to eq('S1')
+      expect(champ(530).section).to be_nil
+    end
+
+    it 'projects the repetition of a champ inside it' do
+      expect(champ(522, row_id:).repetition.libelle).to eq('rep')
+      expect(champ(511).repetition).to be_nil
+    end
+
+    it 'projects an ancestor inside the repetition on the champ row' do
+      section = champ(522, row_id:).section
+
+      expect(section.libelle).to eq('S in rep')
+      expect(section.row_id).to eq(row_id)
+    end
+
+    it 'lists the ancestors nearest first' do
+      expect(champ(522, row_id:).ancestors.map(&:libelle)).to eq(['S in rep', 'rep'])
+      expect(champ(530).ancestors).to eq([])
+    end
+  end
+
   describe 'mandatory_blank?' do
     let(:type_de_champ) { build(:type_de_champ, mandatory: mandatory) }
     let(:champ) { Champs::TextChamp.new(value: value) }

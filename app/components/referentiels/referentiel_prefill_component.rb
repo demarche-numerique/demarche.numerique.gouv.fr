@@ -26,12 +26,7 @@ class Referentiels::ReferentielPrefillComponent < Referentiels::MappingFormBase
   end
 
   def source_tdcs
-    @source_tdcs ||= begin
-      public_coordinates = collect_public_coordinates
-      private_coordinates = collect_private_coordinates
-
-      (public_coordinates + private_coordinates).map(&:type_de_champ)
-    end
+    @source_tdcs ||= collect_public_tdcs + collect_private_tdcs
   end
 
   def prefill_stable_id_tag(jsonpath, mapping_opts)
@@ -98,7 +93,7 @@ class Referentiels::ReferentielPrefillComponent < Referentiels::MappingFormBase
   end
 
   def tdc_option_for(tdc)
-    [tdc.libelle_with_parent(draft_revision), tdc.stable_id]
+    [tdc.libelle_with_parent, tdc.stable_id]
   end
 
   def select_grouped_tdcs(grouped_tdcs)
@@ -109,49 +104,29 @@ class Referentiels::ReferentielPrefillComponent < Referentiels::MappingFormBase
     end
   end
 
-  def tdcs_after_current(prtdcs)
-    current_coordinate = current_coordinate(prtdcs)
-
-    if current_coordinate.child?
-      siblings_after_current(current_coordinate)
-    else
-      elements_after_current_root(current_coordinate, prtdcs)
-    end
+  # Champs prefillable : uniquement ceux situés en aval du référentiel courant.
+  # Dans une répétition, on reste dans la ligne courante (les frères en aval) ;
+  # sinon, tout ce qui suit dans l'ordre du formulaire (le flatten respecte les positions).
+  def tdcs_after_current(tdcs)
+    current = draft_revision.type_de_champ(type_de_champ.stable_id)
+    scope = current.in_repetition? ? current.enclosing_repetition.flat_children : tdcs
+    scope.drop(scope.index { it.stable_id == current.stable_id } + 1)
   end
 
-  private
-
-  def current_coordinate(prtdcs)
-    prtdcs.find { it.type_de_champ == type_de_champ }
-  end
-
-  def siblings_after_current(current_coordinate)
-    current_coordinate.siblings.filter { it.position > current_coordinate.position }
-  end
-
-  def elements_after_current_root(current_coordinate, all_coordinates)
-    all_coordinates.filter do |coordinate|
-      if coordinate.child?
-        coordinate.parent.position >= current_coordinate.position
-      else
-        coordinate.position > current_coordinate.position
-      end
-    end
-  end
-
-  def collect_public_coordinates
+  def collect_public_tdcs
     if type_de_champ.public?
-      tdcs_after_current(draft_revision.revision_types_de_champ.filter(&:public?))
+      tdcs_after_current(draft_revision.types_de_champ.filter(&:public?))
     else
       []
     end
   end
 
-  def collect_private_coordinates
+  def collect_private_tdcs
+    private_tdcs = draft_revision.types_de_champ.filter(&:private?)
     if type_de_champ.public?
-      draft_revision.revision_types_de_champ.filter(&:private?)
+      private_tdcs
     else
-      tdcs_after_current(draft_revision.revision_types_de_champ.filter(&:private?))
+      tdcs_after_current(private_tdcs)
     end
   end
 

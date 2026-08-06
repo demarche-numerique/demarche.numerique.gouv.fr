@@ -195,12 +195,12 @@ class ProcedureExportService::XlsxExport
     end
 
     def repetition_tdcs
-      @repetition_tdcs ||= @procedure.all_revisions_types_de_champ.repetition.to_a
+      @repetition_tdcs ||= (@procedure.aggregated_root_types_de_champ_public + @procedure.aggregated_root_types_de_champ_private).filter(&:repetition?)
     end
 
     def repetition_children_tdcs
       @repetition_children_tdcs ||= repetition_tdcs.to_h do |tdc|
-        [tdc.stable_id, @procedure.all_revisions_types_de_champ(parent: tdc).to_a]
+        [tdc.stable_id, tdc.flat_children.filter(&:fillable?)]
       end
     end
 

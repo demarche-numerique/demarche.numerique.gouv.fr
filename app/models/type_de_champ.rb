@@ -270,16 +270,32 @@ class TypeDeChamp < ApplicationRecord
     errors.empty?
   end
 
-  def libelle_with_parent(revision)
-    if child?(revision)
-      parent_type_de_champ = revision.parent_of(self)
-      "#{parent_type_de_champ.libelle} - #{libelle}"
+  def libelle_with_parent
+    if in_repetition?
+      "#{enclosing_repetition.libelle} - #{libelle}"
     else
       libelle
     end
   end
 
   alias_method :validate, :valid?
+
+  # Tree navigation, delegated to the coordinate this type de champ was treed
+  # by (see TreeMakerConcern#tree_it); raises on a type de champ that is not
+  # attached to a coordinate.
+  attr_writer :coordinate
+  def coordinate = @coordinate || raise("type de champ #{stable_id} is not attached to a coordinate")
+
+  def children = coordinate.children.map(&:type_de_champ)
+  def flat_children = children.flat_map { [it] + it.flat_children }
+
+  def parent = coordinate.tree_parent&.type_de_champ
+  def ancestors = Array.wrap(parent) + Array.wrap(parent&.ancestors)
+
+  def level = ancestors.count { |element| !element.repetition? } + 1
+
+  def enclosing_repetition = ancestors.find(&:repetition?)
+  def in_repetition? = enclosing_repetition.present?
 
   def set_dynamic_type
     @dynamic_type = type_champ.present? ? self.class.type_champ_to_class_name(type_champ).constantize.new(self) : nil
@@ -485,10 +501,6 @@ class TypeDeChamp < ApplicationRecord
 
   def api_particulier? = type_champ.in?(API_PART_FC_TDC)
 
-  def child?(revision)
-    revision.coordinate_for(self)&.child?
-  end
-
   def filename_for_attachement(attachment_sym)
     attachment = send(attachment_sym)
     if attachment.attached?
@@ -597,24 +609,6 @@ class TypeDeChamp < ApplicationRecord
       I18n.t('activerecord.errors.type_de_champ.attributes.header_section_level.gap_error', level: current_level - previous_level - 1)
     else
       nil
-    end
-  end
-
-  def current_section_level(revision)
-    tdcs = private? ? revision.root_types_de_champ_private.to_a : revision.root_types_de_champ_public.to_a
-
-    previous_section_level(tdcs.take(tdcs.find_index(self)))
-  end
-
-  def level_for_revision(revision)
-    parent_type_de_champ = revision.parent_of(self)
-
-    if parent_type_de_champ.present?
-      header_section_level_value.to_i + parent_type_de_champ.current_section_level(revision)
-    elsif header_section_level_value
-      header_section_level_value.to_i
-    else
-      0
     end
   end
 

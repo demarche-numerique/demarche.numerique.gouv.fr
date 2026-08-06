@@ -110,7 +110,7 @@ describe ProcedureCloneConcern, type: :model do
 
       public_repetition = type_de_champ_repetition
       cloned_public_repetition = subject.draft_revision.root_types_de_champ_public.find(&:repetition?)
-      procedure.draft_revision.children_of(public_repetition).zip(subject.draft_revision.children_of(cloned_public_repetition)).each do |ptc, stc|
+      public_repetition.children.zip(cloned_public_repetition.children).each do |ptc, stc|
         expect(stc).to have_same_attributes_as(ptc)
         expect(stc.revisions).to include(subject.draft_revision)
       end
@@ -122,7 +122,7 @@ describe ProcedureCloneConcern, type: :model do
 
       private_repetition = type_de_champ_private_repetition
       cloned_private_repetition = subject.draft_revision.root_types_de_champ_private.find(&:repetition?)
-      procedure.draft_revision.children_of(private_repetition).zip(subject.draft_revision.children_of(cloned_private_repetition)).each do |ptc, stc|
+      private_repetition.children.zip(cloned_private_repetition.children).each do |ptc, stc|
         expect(stc).to have_same_attributes_as(ptc)
         expect(stc.revisions).to include(subject.draft_revision)
       end

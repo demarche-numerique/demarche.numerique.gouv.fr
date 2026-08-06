@@ -3,16 +3,14 @@
 class TypesDeChamp::LibelleValidator < ActiveModel::EachValidator
   def validate_each(procedure, attribute, types_de_champ)
     types_de_champ.each do |tdc|
-      validate_libelle(procedure, attribute, tdc)
+      validate_libelle(procedure, attribute, tdc, parent: tdc.enclosing_repetition)
     end
   end
 
   private
 
-  def validate_libelle(procedure, attribute, tdc)
+  def validate_libelle(procedure, attribute, tdc, parent: nil)
     return if tdc.libelle.present?
-
-    parent = procedure.draft_revision.parent_of(tdc)
 
     message_key, options = if parent
       [:missing_libelle_in_repetition, { position: position_of(tdc), parent_position: position_of(parent) }]
