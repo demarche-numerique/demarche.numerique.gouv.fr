@@ -39,7 +39,7 @@ module PrefillableFromServicePublicConcern
 
       self.nom = data[:nom_complet] if data[:nom_complet].present?
 
-      adresse = data.dig(:siege, :geo_adresse)
+      adresse = data.dig(:siege, :geo_adresse) || data.dig(:siege, :adresse)
       self.adresse = adresse if adresse.present?
     else
       # NOOP
