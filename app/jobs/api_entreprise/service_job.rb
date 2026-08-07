@@ -8,8 +8,12 @@ class APIEntreprise::ServiceJob < APIEntreprise::Job
       service.etablissement_infos = service_params
 
       code_insee = service.etablissement_infos['code_insee_localite']
+      nom_pays = service.etablissement_infos["nom_pays"]
+
       if code_insee.present?
         service.departement = CodeInsee.new(code_insee).to_departement
+      elsif nom_pays.present? && nom_pays != "FRANCE"
+        "99"
       end
 
       if service_params[:adresse].present?
