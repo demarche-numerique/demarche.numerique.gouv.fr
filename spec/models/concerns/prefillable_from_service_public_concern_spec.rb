@@ -74,11 +74,11 @@ RSpec.describe PrefillableFromServicePublicConcern, type: :model do
 
     context 'when SIRET is La Poste' do
       let(:siret) { '35600082800018' }
-      it 'prefills for administration centrale' do
+      it 'prefills for autre' do
         VCR.use_cassette('annuaire_service_public_success_35600082800018') do
           expect(subject.one?(&:success?)).to be_truthy
           expect(service.nom).to eq("LA POSTE (REGION RHONE ALPES)")
-          expect(service).to be_service_deconcentre_de_l_etat
+          expect(service).to be_autre
           expect(service.adresse).to eq("4 Quai du Point du Jour 92100 Boulogne-Billancourt")
           expect(service.horaires).to be_nil
         end
