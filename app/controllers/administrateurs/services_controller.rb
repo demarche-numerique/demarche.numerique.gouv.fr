@@ -17,8 +17,8 @@ module Administrateurs
       siret = current_administrateur.user.last_pro_connect_information&.siret
       if siret
         @service.siret = siret
-        prefilled_result = @service.prefill_from_siret
-        @prefilled_state = handle_siret_prefill(prefilled_result)
+        prefill_result = @service.prefill_from_siret
+        @prefilled = prefill_result.any?(Dry::Monads::Result::Success)
       end
     end
 
@@ -67,17 +67,17 @@ module Administrateurs
       @service = params[:id].present? ? service : Service.new
       @service.siret = siret_params[:siret]
 
-      prefilled_state = nil
+      prefilled = nil
 
       if @service.valid_siret?
-        prefilled_result = @service.prefill_from_siret
-        prefilled_state = handle_siret_prefill(prefilled_result)
+        prefill_result = @service.prefill_from_siret
+        prefilled = prefill_result.any?(Dry::Monads::Result::Success)
       end
 
       render turbo_stream: turbo_stream.replace(
         "service_form",
         partial: "administrateurs/services/form",
-        locals: { service: @service, prefilled_state:, procedure: @procedure }
+        locals: { service: @service, prefilled:, procedure: @procedure }
       )
     end
 
@@ -150,17 +150,6 @@ module Administrateurs
 
     def siret_params
       params.require(:service).permit(:siret)
-    end
-
-    def handle_siret_prefill(prefill_result)
-      case prefill_result
-      in [Dry::Monads::Result::Success, Dry::Monads::Result::Success]
-        :success
-      in [Dry::Monads::Result::Failure, Dry::Monads::Result::Success] | [Dry::Monads::Result::Success, Dry::Monads::Result::Failure]
-        :partial
-      else
-        :failure
-      end
     end
   end
 end
