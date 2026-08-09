@@ -126,14 +126,14 @@ module ColumnsConcern
   def form_filterable_columns
     aggregated_revision.root_types_de_champ_public
       .filter(&:fillable?)
-      .flat_map { it.columns(procedure_id: id) }
+      .flat_map(&:columns)
       .filter(&:filterable)
   end
 
   def annotation_privees_filterable_columns
     aggregated_revision.root_types_de_champ_private
       .filter(&:fillable?)
-      .flat_map { it.columns(procedure_id: id) }
+      .flat_map(&:columns)
       .filter(&:filterable)
   end
 
@@ -141,7 +141,7 @@ module ColumnsConcern
     active_revision.root_types_de_champ_public
       .filter { _1.type_champ.in?(TypeDeChamp::PERSONNALISABLE_TYPE_CHAMPS) }
       .filter { _1.condition.nil? }
-      .filter_map { _1.personnalisation_column(procedure_id: id) }
+      .filter_map(&:personnalisation_column)
       .uniq(&:stable_id)
   end
 
@@ -286,7 +286,7 @@ module ColumnsConcern
   def types_de_champ_columns
     aggregated_revision.root_types_de_champ
       .filter(&:fillable?)
-      .flat_map { it.columns(procedure_id: id) }
+      .flat_map(&:columns)
   end
 
   def dossier_col(**args) = Columns::DossierColumn.new(**(args.merge(procedure_id: id)))

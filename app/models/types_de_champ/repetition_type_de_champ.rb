@@ -25,18 +25,18 @@ class TypesDeChamp::RepetitionTypeDeChamp < TypesDeChamp::TypeDeChampBase
     ActiveStorage::Filename.new(str.delete('[]*?')).sanitized
   end
 
-  def canonical_column(procedure_id:, displayable: true, prefix: nil)
+  def canonical_column(displayable: true, prefix: nil)
     nil
   end
 
-  def columns(procedure_id:, displayable: true, prefix: nil)
+  def columns(displayable: true, prefix: nil)
     prefix = prefix.present? ? "(#{prefix} #{libelle})" : libelle
 
-    # Columns cover dossiers on every revision, so ask the aggregated
-    # revision's own tree, whatever tree this wrapper came from.
-    Procedure.find(procedure_id).aggregated_revision.type_de_champ(stable_id)
-      .flat_children
-      .flat_map { it.columns(procedure_id:, displayable: false, prefix:) }
+    # Columns index champ data across every revision, so callers wanting the
+    # full coverage must look the repetition up in the aggregated revision —
+    # which the columns registry and the exports do. This walks whatever tree
+    # this wrapper came from.
+    flat_children.flat_map { it.columns(displayable: false, prefix:) }
   end
 
   def champ_value_blank?(champ) = champ.dossier.repetition_row_ids(@type_de_champ).blank?

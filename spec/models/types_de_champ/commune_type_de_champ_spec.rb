@@ -7,7 +7,7 @@ describe TypesDeChamp::CommuneTypeDeChamp do
   describe '#columns' do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :communes, libelle: 'Ma commune' }]) }
     let(:tdc) { procedure.active_revision.types_de_champ.first }
-    let(:jsonpath_columns) { tdc.columns(procedure_id: procedure.id).grep(Columns::JSONPathColumn) }
+    let(:jsonpath_columns) { tdc.columns.grep(Columns::JSONPathColumn) }
 
     it 'exposes the addressable columns as displayable and filterable' do
       addressable = jsonpath_columns.filter(&:displayable)

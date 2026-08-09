@@ -35,7 +35,7 @@ class TypesDeChamp::CarteTypeDeChamp < TypesDeChamp::TypeDeChampBase
 
   def champ_value_blank?(champ) = champ.geo_areas.blank?
 
-  def canonical_column(procedure_id:, displayable: true, prefix: nil)
+  def canonical_column(displayable: true, prefix: nil)
     Columns::GeoJSONColumn.new(
       procedure_id:,
       stable_id:,
@@ -48,7 +48,7 @@ class TypesDeChamp::CarteTypeDeChamp < TypesDeChamp::TypeDeChampBase
     )
   end
 
-  def columns(procedure_id:, displayable: true, prefix: nil)
+  def columns(displayable: true, prefix: nil)
     []
   end
 end

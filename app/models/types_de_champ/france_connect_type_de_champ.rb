@@ -60,7 +60,7 @@ class TypesDeChamp::FranceConnectTypeDeChamp < TypesDeChamp::TypeDeChampBase
     ''
   end
 
-  def columns(procedure_id:, displayable: true, prefix: nil)
+  def columns(displayable: true, prefix: nil)
     TypesDeChamp::FranceConnectTypeDeChamp.config_for(type_champ)[:columns].map do |label, jsonpath, type|
       Columns::FranceConnectChampColumn.new(
         procedure_id:,

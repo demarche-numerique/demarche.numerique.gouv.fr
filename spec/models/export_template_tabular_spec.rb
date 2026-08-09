@@ -128,7 +128,7 @@ describe ExportTemplate do
 
   describe 'columns_for_stable_id' do
     before do
-      export_template.exported_columns = procedure.published_revision.types_de_champ.first.columns(procedure_id: procedure.id).map do |column|
+      export_template.exported_columns = procedure.published_revision.types_de_champ.first.columns.map do |column|
         ExportedColumn.new(libelle: column.label, column:)
       end
     end

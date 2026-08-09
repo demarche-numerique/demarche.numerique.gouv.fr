@@ -64,7 +64,7 @@ class TypesDeChamp::LinkedDropDownListTypeDeChamp < TypesDeChamp::TypeDeChampBas
       (has_secondary_options_for_primary?(champ) && secondary_value(champ).blank?)
   end
 
-  def canonical_column(procedure_id:, displayable: true, prefix: nil)
+  def canonical_column(displayable: true, prefix: nil)
     Columns::LinkedDropDownColumn.new(
       procedure_id:,
       label: libelle_with_prefix(prefix),
@@ -77,7 +77,7 @@ class TypesDeChamp::LinkedDropDownListTypeDeChamp < TypesDeChamp::TypeDeChampBas
     )
   end
 
-  def columns(procedure_id:, displayable: true, prefix: nil)
+  def columns(displayable: true, prefix: nil)
     super.concat([
       Columns::LinkedDropDownColumn.new(
         procedure_id:,

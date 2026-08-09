@@ -532,8 +532,8 @@ class ProcedureRevision < ApplicationRecord
     if from_type_de_champ.condition != to_type_de_champ.condition
       changes << ProcedureRevisionChange::UpdateChamp.new(from_type_de_champ,
         :condition,
-        from_type_de_champ.condition&.to_s(from_coordinates.map { TypesDeChamp::TypeDeChampBase.build(it.type_de_champ) }),
-        to_type_de_champ.condition&.to_s(to_coordinates.map { TypesDeChamp::TypeDeChampBase.build(it.type_de_champ) }))
+        from_type_de_champ.condition&.to_s(from_coordinates.filter_map { it.revision.type_de_champ(it.stable_id) }),
+        to_type_de_champ.condition&.to_s(to_coordinates.filter_map { it.revision.type_de_champ(it.stable_id) }))
     end
 
     if to_type_de_champ.any_drop_down_list?

@@ -4,7 +4,7 @@ describe TypesDeChamp::AddressTypeDeChamp do
   describe '#columns' do
     let(:procedure) { create(:procedure, types_de_champ_public: [libelle: 'addr', type: 'address']) }
     let(:address_tdc) { procedure.active_revision.types_de_champ.first }
-    let(:columns) { address_tdc.columns(procedure_id: procedure.id) }
+    let(:columns) { address_tdc.columns }
 
     it '' do
       expected_columns = [

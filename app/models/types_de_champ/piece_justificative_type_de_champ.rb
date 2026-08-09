@@ -33,7 +33,7 @@ class TypesDeChamp::PieceJustificativeTypeDeChamp < TypesDeChamp::TypeDeChampBas
 
   def champ_value_blank?(champ) = champ.piece_justificative_file.blank?
 
-  def canonical_column(procedure_id:, displayable: true, prefix: nil)
+  def canonical_column(displayable: true, prefix: nil)
     if titre_identite?
       Columns::TitreIdentiteColumn.new(
         procedure_id:,
@@ -58,7 +58,7 @@ class TypesDeChamp::PieceJustificativeTypeDeChamp < TypesDeChamp::TypeDeChampBas
     end
   end
 
-  def columns(procedure_id:, displayable: true, prefix: nil)
+  def columns(displayable: true, prefix: nil)
     cs = []
 
     if !titre_identite?
@@ -109,7 +109,7 @@ class TypesDeChamp::PieceJustificativeTypeDeChamp < TypesDeChamp::TypeDeChampBas
           mandatory: mandatory?
         )
       end
-      cs.concat(addressable_columns(procedure_id:, displayable:, prefix:))
+      cs.concat(addressable_columns(displayable:, prefix:))
     elsif avis_impot?
       cs += [
         [:declarant_1, :text],
@@ -131,7 +131,7 @@ class TypesDeChamp::PieceJustificativeTypeDeChamp < TypesDeChamp::TypeDeChampBas
           mandatory: mandatory?
         )
       end
-      cs.concat(addressable_columns(procedure_id:, displayable:, prefix:))
+      cs.concat(addressable_columns(displayable:, prefix:))
     elsif titre_identite?
       cs += [
         Columns::TitreIdentiteColumn.new(

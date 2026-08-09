@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 describe TypesDeChamp::SiretTypeDeChamp do
-  let(:tdc_siret) { TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_siret, libelle: 'Numéro SIRET')) }
-  let(:procedure) { build(:procedure) }
+  let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :siret, libelle: 'Numéro SIRET' }]) }
+  let(:tdc_siret) { procedure.draft_revision.types_de_champ_public.first }
 
   describe "#columns" do
-    subject(:columns) { tdc_siret.columns(procedure_id: procedure.id) }
+    subject(:columns) { tdc_siret.columns }
 
     it "returns base column without duplicating SIRET when already in libelle" do
       expect(columns[0].label).to eq("Numéro SIRET")

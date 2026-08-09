@@ -382,6 +382,38 @@ describe ProcedureRevision do
           end
         end
 
+        context 'when a condition targeting a column is added' do
+          let(:procedure) do
+            create(:procedure, types_de_champ_public: [
+              { type: :communes, libelle: 'l1' },
+              { type: :text, libelle: 'l2' },
+            ])
+          end
+
+          let(:department_column) do
+            first_tdc.columns.find { it.try(:jsonpath) == '$.department_code' }
+          end
+
+          before do
+            second = new_draft.find_and_ensure_exclusive_use(second_tdc.stable_id)
+            second.update(condition: ds_eq(champ_column_value(department_column), constant('01')))
+          end
+
+          it 'renders the column label in the change' do
+            is_expected.to eq([
+              {
+                attribute: :condition,
+                from: nil,
+                label: "l2",
+                op: :update,
+                private: false,
+                stable_id: second_tdc.stable_id,
+                to: "(#{department_column.label} == 01)",
+              },
+            ])
+          end
+        end
+
         context 'when a condition is removed' do
           before do
             second_tdc.update(condition: ds_eq(champ_value(first_tdc.stable_id), constant(2)))

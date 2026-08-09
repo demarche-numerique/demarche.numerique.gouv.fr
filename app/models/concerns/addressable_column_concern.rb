@@ -3,7 +3,7 @@
 module AddressableColumnConcern
   extend ActiveSupport::Concern
 
-  def addressable_columns(procedure_id:, displayable: true, prefix: nil, deprecated_columns: false, only: nil)
+  def addressable_columns(displayable: true, prefix: nil, deprecated_columns: false, only: nil)
     column_specs = [
       [:postal_code, "Code postal (5 chiffres)", '$.postal_code', :text, [], displayable, true],
       [:city_name, "Commune", '$.city_name', :text, [], displayable, true],

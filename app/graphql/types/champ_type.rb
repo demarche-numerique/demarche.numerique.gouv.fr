@@ -21,9 +21,9 @@ module Types
       if object.repetition?
         []
       elsif object.carte?
-        [object.type_de_champ.canonical_column(procedure_id: object.procedure.id)]
+        [object.type_de_champ.canonical_column]
       else
-        object.type_de_champ.columns(procedure_id: object.procedure.id)
+        object.type_de_champ.columns
       end
     end
 

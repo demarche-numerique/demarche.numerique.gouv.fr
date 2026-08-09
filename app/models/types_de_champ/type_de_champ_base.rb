@@ -267,7 +267,7 @@ class TypesDeChamp::TypeDeChampBase
   def champ_value_blank?(champ) = champ.value.blank?
   def champ_blank_or_invalid?(champ) = champ_value_blank?(champ)
 
-  def canonical_column(procedure_id:, displayable: true, prefix: nil)
+  def canonical_column(displayable: true, prefix: nil)
     return nil unless fillable?
 
     Columns::ChampColumn.new(
@@ -282,26 +282,26 @@ class TypesDeChamp::TypeDeChampBase
     )
   end
 
-  def columns(procedure_id:, displayable: true, prefix: nil)
-    [canonical_column(procedure_id:, displayable:, prefix:)].compact
+  def columns(displayable: true, prefix: nil)
+    [canonical_column(displayable:, prefix:)].compact
   end
 
-  def personnalisation_column(procedure_id:)
-    columns(procedure_id:).find(&:displayable)
+  def personnalisation_column
+    columns.find(&:displayable)
   end
 
-  def info_columns(procedure:)
+  def info_columns
     # Extract labels from columns, removing the libelle prefix automatically
     # Example: "Commune - code postal" => "code postal"
     regex_prefix = /^#{Regexp.escape(libelle)}[^\p{L}]+/
 
-    columns(procedure_id: procedure.id).filter_map do |column|
+    columns.filter_map do |column|
       column.label.sub(regex_prefix, '')
     end
   end
 
   def column(column_id)
-    columns(procedure_id: nil).find { it.h_id[:column_id] == column_id }
+    columns.find { it.h_id[:column_id] == column_id }
   end
 
   private
@@ -310,6 +310,9 @@ class TypesDeChamp::TypeDeChampBase
     @revision || raise("#{self.class.name} for stable_id #{stable_id} was built outside any tree; " \
                        "navigate from a revision's own wrapper: revision.type_de_champ(stable_id)")
   end
+
+  # Columns are procedure-scoped; the wrapper's tree names the procedure.
+  def procedure_id = tree_revision.procedure_id
 
   def castable_on_change?(from_type, to_type)
     Columns::ChampColumn::CAST.key?([from_type.to_sym, to_type.to_sym])

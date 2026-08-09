@@ -103,7 +103,7 @@ class Conditions::ConditionsComponent < ApplicationComponent
   def to_champ_column_values(tdcs)
     tdcs
       .reject(&:repetition?)
-      .flat_map { it.columns(procedure_id: @procedure.id) }
+      .flat_map(&:columns)
       .filter(&:filterable)
       .filter { it.type.in?(SUPPORTED_TYPES) }
       .map { |column| [column.label, champ_column_value(column)] }

@@ -73,7 +73,7 @@ describe ColumnsConcern do
           after_stable_id: integer_tdc.stable_id
         )
       end
-      let(:draft_column) { draft_tdc.columns(procedure_id: procedure.id).first }
+      let(:draft_column) { draft_tdc.columns.first }
 
       it 'falls back to the draft revision columns' do
         expect(procedure.find_column(h_id: draft_column.h_id)).to eq(draft_column)

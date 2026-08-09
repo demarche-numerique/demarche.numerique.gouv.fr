@@ -9,15 +9,15 @@ class TypesDeChamp::SiretTypeDeChamp < TypesDeChamp::TypeDeChampBase
 
   def champ_blank_or_invalid?(champ) = Siret.new(siret: champ.value).invalid?
 
-  def columns(procedure_id:, displayable: true, prefix: nil)
+  def columns(displayable: true, prefix: nil)
     super
-      .concat(etablissement_columns(procedure_id:, displayable:, prefix:))
-      .concat(addressable_columns(procedure_id:, displayable:, prefix:, deprecated_columns: true))
+      .concat(etablissement_columns(displayable:, prefix:))
+      .concat(addressable_columns(displayable:, prefix:, deprecated_columns: true))
   end
 
-  def info_columns(procedure:)
+  def info_columns
     # Get base labels from columns (with libelle prefix removed automatically by parent)
-    column_labels = super(procedure:)
+    column_labels = super()
 
     # Add exportable columns that are not in the main columns
     column_labels.concat Etablissement::EXPORTABLE_ETABLISSEMENT_COLUMNS.keys.dup.map { I18n.t(_1, scope: [:activerecord, :attributes, :procedure_presentation, :fields, :etablissement]) }
@@ -29,7 +29,7 @@ class TypesDeChamp::SiretTypeDeChamp < TypesDeChamp::TypeDeChampBase
 
   private
 
-  def etablissement_columns(procedure_id:, displayable:, prefix:)
+  def etablissement_columns(displayable:, prefix:)
     i18n_scope = [:activerecord, :attributes, :procedure_presentation, :fields, :etablissement]
 
     Etablissement::DISPLAYABLE_COLUMNS.map do |(column, attributes)|

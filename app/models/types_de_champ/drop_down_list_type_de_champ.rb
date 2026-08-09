@@ -26,7 +26,7 @@ class TypesDeChamp::DropDownListTypeDeChamp < TypesDeChamp::TypeDeChampBase
     end
   end
 
-  def columns(procedure_id:, displayable: true, prefix: nil)
+  def columns(displayable: true, prefix: nil)
     if drop_down_advanced?
       referentiel_columns = if referentiel.present?
         referentiel.headers_with_path.map do |(header, path)|

@@ -80,7 +80,7 @@ describe Logic::ChampColumnValue do
 
   describe '#type' do
     let(:draft_tdcs) { procedure.draft_revision.types_de_champ }
-    let(:column) { draft_tdcs.first.columns(procedure_id: procedure.id).first }
+    let(:column) { draft_tdcs.first.columns.first }
 
     subject { Logic::ChampColumnValue.new(column.stable_id, column.column_id).type(draft_tdcs) }
 

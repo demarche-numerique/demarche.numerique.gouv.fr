@@ -46,7 +46,7 @@ class TypesDeChamp::AddressTypeDeChamp < TypesDeChamp::TextTypeDeChamp
     end
   end
 
-  def canonical_column(procedure_id:, displayable: true, prefix: nil)
+  def canonical_column(displayable: true, prefix: nil)
     Columns::AddressColumn.new(
       procedure_id:,
       stable_id:,
@@ -58,11 +58,11 @@ class TypesDeChamp::AddressTypeDeChamp < TypesDeChamp::TextTypeDeChamp
     )
   end
 
-  def columns(procedure_id:, displayable: true, prefix: nil)
-    super.concat(addressable_columns(procedure_id:, displayable:, prefix:, deprecated_columns: true))
+  def columns(displayable: true, prefix: nil)
+    super.concat(addressable_columns(displayable:, prefix:, deprecated_columns: true))
   end
 
-  def info_columns(procedure:)
+  def info_columns
     Dossiers::AddressComponent.data_labels
   end
 

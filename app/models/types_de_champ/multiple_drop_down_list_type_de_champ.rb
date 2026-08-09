@@ -17,7 +17,7 @@ class TypesDeChamp::MultipleDropDownListTypeDeChamp < TypesDeChamp::TypeDeChampB
     ChampPresentations::MultipleDropDownListPresentation.new(selected_options(champ))
   end
 
-  def columns(procedure_id:, displayable: true, prefix: nil)
+  def columns(displayable: true, prefix: nil)
     if drop_down_advanced?
       referentiel.present? ? referentiel.headers_with_path.map do |(header, path)|
         Columns::MultipleDropDownColumn.new(

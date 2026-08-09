@@ -41,25 +41,25 @@ module Administrateurs
 
       case tdc.type_champ
       when TypeDeChamp.type_champs.fetch(:departements)
-        dep_column = tdc.columns(procedure_id: procedure.id)
+        dep_column = tdc.columns
           .find { it.try(:jsonpath) == '$.department_code' }
         tdc_options = APIGeoService.departement_options
         rule_operator = :ds_eq
         create_groups_from_territorial_tdc(tdc_options, stable_id, rule_operator, dep_column)
       when TypeDeChamp.type_champs.fetch(:communes), TypeDeChamp.type_champs.fetch(:epci), TypeDeChamp.type_champs.fetch(:address)
-        dep_column = tdc.columns(procedure_id: procedure.id)
+        dep_column = tdc.columns
           .find { it.try(:jsonpath) == '$.department_code' }
         tdc_options = APIGeoService.departement_options
         rule_operator = :ds_in_departement
         create_groups_from_territorial_tdc(tdc_options, stable_id, rule_operator, dep_column)
       when TypeDeChamp.type_champs.fetch(:regions)
-        region_column = tdc.columns(procedure_id: procedure.id)
+        region_column = tdc.columns
           .find { it.try(:jsonpath) == '$.region_code' }
         rule_operator = :ds_eq
         tdc_options = APIGeoService.region_options
         create_groups_from_territorial_tdc(tdc_options, stable_id, rule_operator, region_column)
       when TypeDeChamp.type_champs.fetch(:pays)
-        pays_column = tdc.canonical_column(procedure_id: procedure.id)
+        pays_column = tdc.canonical_column
         rule_operator = :ds_eq
         tdc_options = APIGeoService.countries.map { ["#{_1[:code]} – #{_1[:name]}", _1[:code]] }
         create_groups_from_territorial_tdc(tdc_options, stable_id, rule_operator, pays_column)
@@ -707,7 +707,7 @@ module Administrateurs
       tdc_options = tdc.options_for_select
 
       source = if column_mode?
-        champ_column_value(tdc.canonical_column(procedure_id: procedure.id))
+        champ_column_value(tdc.canonical_column)
       else
         champ_value(stable_id)
       end

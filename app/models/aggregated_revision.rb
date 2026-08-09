@@ -29,9 +29,13 @@ class AggregatedRevision
     def revision_types_de_champ = children
   end
 
+  attr_reader :procedure
+
   def initialize(procedure)
     @procedure = procedure
   end
+
+  def procedure_id = @procedure.id
 
   # Entry points to navigate types de champ as a tree; same contract as
   # ProcedureRevision.
