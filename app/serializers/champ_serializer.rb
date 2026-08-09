@@ -5,7 +5,10 @@ class ChampSerializer < ActiveModel::Serializer
 
   attributes :value
 
-  has_one :type_de_champ
+  # Explicit serializer: champs hold tree-emitted wrappers
+  # (TypesDeChamp::TypeDeChampBase subclasses), so the serializer can't be
+  # inferred from the object's class.
+  has_one :type_de_champ, serializer: TypeDeChampSerializer
 
   has_many :geo_areas, if: :include_geo_areas?
   has_one :etablissement, if: :include_etablissement?
