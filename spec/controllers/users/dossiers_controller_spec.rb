@@ -3273,7 +3273,7 @@ describe Users::DossiersController, type: :controller do
       before do
         pays_column = procedure.personnalisable_columns.find { _1.label == 'Pays' }
         draft_only_tdc = procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'Futur champ')
-        draft_only_column = draft_only_tdc.canonical_column(procedure_id: procedure.id)
+        draft_only_column = procedure.draft_revision.type_de_champ(draft_only_tdc.stable_id).canonical_column(procedure_id: procedure.id)
         create(:dossiers_list_personnalisation, user:, procedure:, displayed_columns: [draft_only_column, pays_column])
         dossiers = create_list(:dossier, 6, :en_construction, user:, procedure:, populate_champs: true)
         dossiers.first.champs.find { _1.stable_id == pays_column.stable_id }.update(value: 'France')

@@ -199,8 +199,6 @@ class TypeDeChamp < ApplicationRecord
 
   belongs_to :referentiel, optional: true, inverse_of: :types_de_champ
 
-  delegate :estimated_fill_duration, :estimated_read_duration, :tags_for_template, :libelles_for_export, :libelle_for_export, :primary_options, :secondary_options, :columns, :column, :canonical_column, :personnalisation_column, :info_columns, to: :dynamic_type
-
   class WithIndifferentAccess
     def self.load(options)
       options&.with_indifferent_access
@@ -214,8 +212,6 @@ class TypeDeChamp < ApplicationRecord
   serialize :options, coder: WithIndifferentAccess
 
   serialize :condition, coder: LogicSerializer
-
-  attr_reader :dynamic_type
 
   scope :public_only, -> { where(private: false) }
   scope :private_only, -> { where(private: true) }
@@ -244,7 +240,6 @@ class TypeDeChamp < ApplicationRecord
     allow_blank: true,
   }
 
-  after_initialize :set_dynamic_type
   after_create :populate_stable_id
 
   before_validation :check_mandatory
@@ -275,23 +270,6 @@ class TypeDeChamp < ApplicationRecord
       libelle
     end
   end
-
-  def set_dynamic_type
-    @dynamic_type = type_champ.present? ? self.class.type_champ_to_class_name(type_champ).constantize.new(self) : nil
-  end
-
-  def type_champ=(value)
-    super(value)
-    set_dynamic_type
-  end
-
-  # Symmetric with TypesDeChamp::TypeDeChampBase#==: a type de champ compares
-  # equal to a tree-emitted wrapper holding the same row.
-  def ==(other)
-    other = other.record if other.is_a?(TypesDeChamp::TypeDeChampBase)
-    super
-  end
-  alias_method :eql?, :==
 
   def set_default_libelle
     libelle_was_default = libelle == default_libelle(type_champ_was)
@@ -823,8 +801,6 @@ class TypeDeChamp < ApplicationRecord
       AUTHORIZED_CONTENT_TYPES
     end
   end
-
-  delegate :champ_value, :champ_value_for_api, :champ_value_for_export, :champ_value_for_tag, :champ_blank?, :mandatory_blank?, to: :dynamic_type
 
   def html_id(row_id = nil)
     "champ-#{public_id(row_id)}"

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe TypesDeChamp::SiretTypeDeChamp do
-  let(:tdc_siret) { build(:type_de_champ_siret, libelle: 'Numéro SIRET') }
+  let(:tdc_siret) { TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_siret, libelle: 'Numéro SIRET')) }
   let(:procedure) { build(:procedure) }
 
   describe "#columns" do

@@ -124,11 +124,11 @@ class Procedure < ApplicationRecord
   end
 
   def types_de_champ_public_for_tags
-    types_de_champ_for_tags.public_only
+    types_de_champ_for_tags.public_only.map { TypesDeChamp::TypeDeChampBase.build(it) }
   end
 
   def types_de_champ_private_for_tags
-    types_de_champ_for_tags.private_only
+    types_de_champ_for_tags.private_only.map { TypesDeChamp::TypeDeChampBase.build(it) }
   end
 
   def revisions_with_pending_dossiers

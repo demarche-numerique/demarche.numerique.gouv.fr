@@ -255,7 +255,7 @@ describe Champs::RNFChamp, type: :model do
 
   describe 'for_export' do
     let(:champ) { described_class.new(external_id:, data: JSON.parse(body)) }
-    before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_rnf)) }
+    before { allow(champ).to receive(:type_de_champ).and_return(TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_rnf))) }
     it do
       expect(champ.type_de_champ.champ_value_for_export(champ, :value)).to eq '075-FDD-00003-01'
       expect(champ.type_de_champ.champ_value_for_export(champ, :nom)).to eq 'Fondation SFR'

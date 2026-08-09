@@ -152,7 +152,7 @@ describe Champs::EpciChamp, type: :model do
     let(:epci) { APIGeoService.epcis('01').first }
 
     it 'with departement and code' do
-      allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_epci))
+      allow(champ).to receive(:type_de_champ).and_return(TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_epci)))
       champ.code_departement = '01'
       champ.value = epci[:code]
       expect(champ.blank?).to be_falsey

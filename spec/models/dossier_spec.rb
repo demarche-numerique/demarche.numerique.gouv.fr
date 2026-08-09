@@ -2745,7 +2745,7 @@ describe Dossier, type: :model do
 
       context 'with another revision' do
         let(:tdc_from_another_revision) { create(:type_de_champ_communes, libelle: 'commune', condition: ds_eq(constant(true), constant(true))) }
-        let(:tdcs) { dossier.root_champs_public.map(&:type_de_champ) << tdc_from_another_revision }
+        let(:tdcs) { dossier.root_champs_public.map(&:type_de_champ) << TypesDeChamp::TypeDeChampBase.build(tdc_from_another_revision) }
         let(:yes_no_value) { 'true' }
 
         let(:expected) do

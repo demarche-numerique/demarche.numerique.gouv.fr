@@ -6,7 +6,7 @@ describe TypesDeChamp::PieceJustificativeTypeDeChamp do
 
     it 'adds RIB columns' do
       tdc = create(:type_de_champ_piece_justificative, procedure:, nature: 'rib')
-      cols = tdc.dynamic_type.columns(procedure_id: procedure.id, displayable: true)
+      cols = TypesDeChamp::TypeDeChampBase.build(tdc).columns(procedure_id: procedure.id, displayable: true)
       labels = cols.map(&:label)
       expect(labels.any? { _1.include?('Titulaire') }).to be true
       expect(labels.any? { _1.include?('IBAN') }).to be true
@@ -16,7 +16,7 @@ describe TypesDeChamp::PieceJustificativeTypeDeChamp do
 
     it 'adds justificatif de domicile columns with i18n labels' do
       tdc = create(:type_de_champ_piece_justificative, procedure:, nature: 'justificatif_domicile')
-      cols = tdc.dynamic_type.columns(procedure_id: procedure.id, displayable: true)
+      cols = TypesDeChamp::TypeDeChampBase.build(tdc).columns(procedure_id: procedure.id, displayable: true)
       labels = cols.map(&:label)
       expect(labels.any? { _1.include?('Bénéficiaire') }).to be true
       expect(labels.any? { _1.include?('Adresse') }).to be true
@@ -25,7 +25,7 @@ describe TypesDeChamp::PieceJustificativeTypeDeChamp do
 
     it 'adds avis impot columns with i18n labels' do
       tdc = create(:type_de_champ_piece_justificative, procedure:, nature: 'avis_impot')
-      cols = tdc.dynamic_type.columns(procedure_id: procedure.id, displayable: true)
+      cols = TypesDeChamp::TypeDeChampBase.build(tdc).columns(procedure_id: procedure.id, displayable: true)
       labels = cols.map(&:label)
       expect(labels.any? { _1.include?('Déclarant 1') }).to be true
       expect(labels.any? { _1.include?('Référence de l’avis') }).to be true

@@ -3,7 +3,7 @@
 describe TypesDeChamp::LinkedDropDownListTypeDeChamp do
   let(:type_de_champ) { build(:type_de_champ_linked_drop_down_list, drop_down_options: menu_options) }
 
-  subject { type_de_champ.dynamic_type }
+  subject { TypesDeChamp::TypeDeChampBase.build(type_de_champ) }
 
   describe 'validation' do
     context 'the menu must start with one primary option (validated on the procedure)' do

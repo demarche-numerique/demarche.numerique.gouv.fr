@@ -10,7 +10,7 @@ describe ChampData do
     let(:mandatory) { true }
 
     context 'with champ' do
-      before { allow(champ).to receive(:type_de_champ).and_return(type_de_champ) }
+      before { allow(champ).to receive(:type_de_champ).and_return(TypesDeChamp::TypeDeChampBase.build(type_de_champ)) }
 
       context 'when mandatory and blank' do
         it { expect(champ.mandatory_blank?).to be(true) }
@@ -182,7 +182,7 @@ describe ChampData do
 
   describe 'for_export' do
     let(:champ) { Champs::TextChamp.new(value:, dossier: build(:dossier)) }
-    before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_text)) }
+    before { allow(champ).to receive(:type_de_champ).and_return(TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_text))) }
 
     let(:value_for_export) { champ.type_de_champ.champ_value_for_export(champ) }
 
@@ -194,7 +194,7 @@ describe ChampData do
 
     context 'when type_de_champ is textarea' do
       let(:champ) { Champs::TextareaChamp.new(value:, dossier: build(:dossier)) }
-      before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_textarea)) }
+      before { allow(champ).to receive(:type_de_champ).and_return(TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_textarea))) }
 
       let(:value) { '<b>gras</b>' }
 
@@ -203,7 +203,7 @@ describe ChampData do
 
     context 'when type_de_champ is yes_no' do
       let(:champ) { Champs::YesNoChamp.new(value: value) }
-      before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_yes_no)) }
+      before { allow(champ).to receive(:type_de_champ).and_return(TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_yes_no))) }
 
       context 'if yes' do
         let(:value) { 'true' }
@@ -226,7 +226,7 @@ describe ChampData do
 
     context 'when type_de_champ is multiple_drop_down_list' do
       let(:champ) { Champs::MultipleDropDownListChamp.new(value:, dossier: build(:dossier)) }
-      before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_multiple_drop_down_list, drop_down_options: ["Crétinier", "Mousserie"])) }
+      before { allow(champ).to receive(:type_de_champ).and_return(TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_multiple_drop_down_list, drop_down_options: ["Crétinier", "Mousserie"]))) }
 
       let(:value) { '["Crétinier", "Mousserie"]' }
 
@@ -237,8 +237,8 @@ describe ChampData do
       let(:value) { :noop }
       let(:champ_iban) { Champs::IbanChamp.new(value: 'FR1234') }
       let(:champ_text) { Champs::TextChamp.new(value: 'hello') }
-      let(:type_de_champ_iban) { build(:type_de_champ_iban) }
-      let(:type_de_champ_text) { build(:type_de_champ_text) }
+      let(:type_de_champ_iban) { TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_iban)) }
+      let(:type_de_champ_text) { TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_text)) }
       before do
         allow(champ_iban).to receive(:type_de_champ).and_return(type_de_champ_iban)
         allow(champ_text).to receive(:type_de_champ).and_return(type_de_champ_text)
@@ -264,7 +264,7 @@ describe ChampData do
     context 'for checkbox champ' do
       let(:libelle) { champ.libelle }
       let(:champ) { Champs::CheckboxChamp.new(value:) }
-      before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_checkbox)) }
+      before { allow(champ).to receive(:type_de_champ).and_return(TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_checkbox))) }
       context 'when the box is checked' do
         let(:value) { 'true' }
 
@@ -280,7 +280,7 @@ describe ChampData do
 
     context 'for civilite champ' do
       let(:champ) { Champs::CiviliteChamp.new(value:) }
-      before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_civilite)) }
+      before { allow(champ).to receive(:type_de_champ).and_return(TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_civilite))) }
       let(:value) { "M." }
 
       it { is_expected.to eq([value]) }
@@ -302,7 +302,7 @@ describe ChampData do
 
     context 'for département champ' do
       let(:champ) { Champs::DepartementChamp.new(value:) }
-      before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_departements)) }
+      before { allow(champ).to receive(:type_de_champ).and_return(TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_departements))) }
       let(:value) { "69" }
 
       it { is_expected.to eq(['69 – Rhône']) }
@@ -310,7 +310,7 @@ describe ChampData do
 
     context 'for dossier link champ' do
       let(:champ) { Champs::DossierLinkChamp.new(value:) }
-      before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_dossier_link)) }
+      before { allow(champ).to receive(:type_de_champ).and_return(TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_dossier_link))) }
       let(:value) { "9103132886" }
 
       it { is_expected.to eq([value]) }
@@ -318,7 +318,7 @@ describe ChampData do
 
     context 'for drop down list champ' do
       let(:champ) { Champs::DropDownListChamp.new(value:) }
-      before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_drop_down_list)) }
+      before { allow(champ).to receive(:type_de_champ).and_return(TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_drop_down_list))) }
       let(:value) { "val1" }
 
       it { is_expected.to eq([value]) }
@@ -326,7 +326,7 @@ describe ChampData do
 
     context 'for email champ' do
       let(:champ) { Champs::EmailChamp.new(value:) }
-      before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_email)) }
+      before { allow(champ).to receive(:type_de_champ).and_return(TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_email))) }
       let(:value) { "machin@example.com" }
 
       it { is_expected.to eq([value]) }
@@ -346,14 +346,14 @@ describe ChampData do
 
     context 'for linked drop down list champ' do
       let(:champ) { Champs::LinkedDropDownListChamp.new(value: '["hello","world"]') }
-      before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_linked_drop_down_list, drop_down_options: ['--hello--', 'world'])) }
+      before { allow(champ).to receive(:type_de_champ).and_return(TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_linked_drop_down_list, drop_down_options: ['--hello--', 'world']))) }
 
       it { is_expected.to eq(["hello", "world"]) }
     end
 
     context 'for multiple drop down list champ' do
       let(:champ) { Champs::MultipleDropDownListChamp.new(value:) }
-      before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_multiple_drop_down_list, drop_down_options: ['goodbye', 'cruel', 'world'])) }
+      before { allow(champ).to receive(:type_de_champ).and_return(TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_multiple_drop_down_list, drop_down_options: ['goodbye', 'cruel', 'world']))) }
 
       context 'when there are multiple values selected' do
         let(:value) { JSON.generate(['goodbye', 'cruel', 'world']) }
@@ -370,7 +370,7 @@ describe ChampData do
 
     context 'for number champ' do
       let(:champ) { Champs::NumberChamp.new(value:) }
-      before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_number)) }
+      before { allow(champ).to receive(:type_de_champ).and_return(TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_number))) }
 
       let(:value) { "1234" }
 
@@ -379,7 +379,7 @@ describe ChampData do
 
     context 'for pays champ' do
       let(:champ) { Champs::PaysChamp.new(value:) }
-      before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_pays)) }
+      before { allow(champ).to receive(:type_de_champ).and_return(TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_pays))) }
 
       let(:value) { "FR" }
 
@@ -388,7 +388,7 @@ describe ChampData do
 
     context 'for phone champ' do
       let(:champ) { Champs::PhoneChamp.new(value:) }
-      before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_phone)) }
+      before { allow(champ).to receive(:type_de_champ).and_return(TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_phone))) }
       let(:value) { "06 06 06 06 06" }
 
       it { is_expected.to eq([value]) }
@@ -403,7 +403,7 @@ describe ChampData do
 
     context 'for region champ' do
       let(:champ) { Champs::RegionChamp.new(value:) }
-      before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_regions)) }
+      before { allow(champ).to receive(:type_de_champ).and_return(TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_regions))) }
       let(:value) { "11" }
 
       it { is_expected.to eq(['Île-de-France']) }
@@ -459,7 +459,7 @@ describe ChampData do
 
     context 'for text champ' do
       let(:champ) { Champs::TextChamp.new(value:) }
-      before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_text)) }
+      before { allow(champ).to receive(:type_de_champ).and_return(TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_text))) }
       let(:value) { "Blah" }
 
       it { is_expected.to eq([value]) }
@@ -467,7 +467,7 @@ describe ChampData do
 
     context 'for text area champ' do
       let(:champ) { Champs::TextareaChamp.new(value:) }
-      before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_textarea)) }
+      before { allow(champ).to receive(:type_de_champ).and_return(TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_textarea))) }
       let(:value) { "Bla\nBlah de bla." }
 
       it { is_expected.to eq([value]) }
@@ -475,7 +475,7 @@ describe ChampData do
 
     context 'for yes/no champ' do
       let(:champ) { Champs::YesNoChamp.new(value:) }
-      before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_yes_no)) }
+      before { allow(champ).to receive(:type_de_champ).and_return(TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_yes_no))) }
 
       let(:libelle) { champ.libelle }
 
@@ -570,7 +570,7 @@ describe ChampData do
   describe 'dom_id' do
     let(:champ) { Champs::TextChamp.new(row_id: '1234') }
     before do
-      allow(champ).to receive(:type_de_champ).and_return(create(:type_de_champ_text))
+      allow(champ).to receive(:type_de_champ).and_return(TypesDeChamp::TypeDeChampBase.build(create(:type_de_champ_text)))
     end
 
     it do
