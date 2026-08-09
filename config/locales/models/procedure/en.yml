@@ -90,6 +90,7 @@ en:
               invalid_condition: "have an invalid logic"
               empty_repetition: 'requires at least one field'
               empty_drop_down: 'requires at least one option'
+              missing_primary_option: 'must start with a primary menu entry of the form --text--'
               empty_csv: 'requires at least one csv file'
               inconsistent_header_section: "%{custom_message}"
               missing_libelle: "field label in position %{position} must be filled"
@@ -102,6 +103,7 @@ en:
               invalid_condition: "have an invalid logic"
               empty_repetition: 'requires at least one field'
               empty_drop_down: 'requires at least one option'
+              missing_primary_option: 'must start with a primary menu entry of the form --text--'
               empty_csv: 'requires at least one csv file'
               inconsistent_header_section: "%{custom_message}"
               missing_libelle: "field label in position %{position} must be filled"

@@ -3,8 +3,6 @@
 class TypesDeChamp::LinkedDropDownListTypeDeChamp < TypesDeChamp::TypeDeChampBase
   PRIMARY_PATTERN = /^--(.*)--$/
 
-  validate :check_presence_of_primary_options
-
   def libelles_for_export
     path = paths.first
     [[path[:libelle], path[:path]]]
@@ -147,12 +145,6 @@ class TypesDeChamp::LinkedDropDownListTypeDeChamp < TypesDeChamp::TypeDeChampBas
     chunked.map do |chunk|
       primary, *secondary = chunk
       [PRIMARY_PATTERN.match(primary)&.[](1), secondary.uniq]
-    end
-  end
-
-  def check_presence_of_primary_options
-    if !PRIMARY_PATTERN.match?(drop_down_options.first)
-      errors.add(libelle.presence || "La liste", "doit commencer par une entrée de menu primaire de la forme <code style='white-space: pre-wrap;'>--texte--</code>")
     end
   end
 end

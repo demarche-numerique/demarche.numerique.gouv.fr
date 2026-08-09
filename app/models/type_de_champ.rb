@@ -260,14 +260,13 @@ class TypeDeChamp < ApplicationRecord
   before_save :clear_conflicting_date_options, if: :birthdate?
   before_save :clear_prefill_with_france_connect_information_if_not_birthdate
 
-  def valid?(context = nil)
+  # Symmetric with TypesDeChamp::TypeDeChampBase#==: a type de champ compares
+  # equal to a tree-emitted wrapper holding the same row.
+  def ==(other)
+    other = other.record if other.is_a?(TypesDeChamp::TypeDeChampBase)
     super
-    if dynamic_type.present?
-      dynamic_type.valid?
-      errors.merge!(dynamic_type.errors)
-    end
-    errors.empty?
   end
+  alias_method :eql?, :==
 
   def libelle_with_parent(revision)
     if in_repetition?(revision)
@@ -276,8 +275,6 @@ class TypeDeChamp < ApplicationRecord
       libelle
     end
   end
-
-  alias_method :validate, :valid?
 
   def set_dynamic_type
     @dynamic_type = type_champ.present? ? self.class.type_champ_to_class_name(type_champ).constantize.new(self) : nil

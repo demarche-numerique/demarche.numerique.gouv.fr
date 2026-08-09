@@ -97,6 +97,7 @@ fr:
               invalid_condition: "a une logique conditionnelle invalide"
               empty_repetition: 'doit comporter au moins un champ répétable'
               empty_drop_down: 'doit comporter au moins un choix sélectionnable'
+              missing_primary_option: 'doit commencer par une entrée de menu primaire de la forme --texte--'
               empty_csv: 'doit comporter au moins un fichier csv'
               inconsistent_header_section: "%{custom_message}"
               missing_libelle:  "Le libellé du champ en position %{position} doit être rempli"
@@ -109,6 +110,7 @@ fr:
               invalid_condition: "a une logique conditionnelle invalide"
               empty_repetition: 'doit comporter au moins un champ répétable'
               empty_drop_down: 'doit comporter au moins un choix sélectionnable'
+              missing_primary_option: 'doit commencer par une entrée de menu primaire de la forme --texte--'
               empty_csv: 'doit comporter au moins un fichier csv'
               inconsistent_header_section: "%{custom_message}"
               missing_libelle:  "Le libellé du champ en position %{position} doit être rempli"
