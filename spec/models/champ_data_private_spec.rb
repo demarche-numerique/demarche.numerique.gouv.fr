@@ -2,7 +2,7 @@
 
 describe ChampData do
   describe '#private?' do
-    let(:type_de_champ) { build(:type_de_champ, :private) }
+    let(:type_de_champ) { TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ, :private)) }
     let(:champ) { type_de_champ.build_champ }
 
     it do

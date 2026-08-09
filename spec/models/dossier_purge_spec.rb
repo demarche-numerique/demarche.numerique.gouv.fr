@@ -27,7 +27,7 @@ describe Dossier, type: :model do
 
       before do
         51.times do |i|
-          type_de_champ = create(:type_de_champ_text, procedure:, libelle: "Test #{i}")
+          type_de_champ = TypesDeChamp::TypeDeChampBase.build(create(:type_de_champ_text, procedure:, libelle: "Test #{i}"))
           dossier.champ_data << type_de_champ.build_champ(value: "value #{i}")
         end
         dossier.save!
@@ -43,7 +43,7 @@ describe Dossier, type: :model do
     context 'when destroy raises after champs batching' do
       let(:procedure) { create(:procedure_with_dossiers, :published) }
       let(:dossier) { procedure.dossiers.first }
-      let(:type_de_champ) { create(:type_de_champ_text, procedure:, libelle: 'Test') }
+      let(:type_de_champ) { TypesDeChamp::TypeDeChampBase.build(create(:type_de_champ_text, procedure:, libelle: 'Test')) }
       let!(:champ) { dossier.champ_data.create!(type_de_champ:, value: 'kept') }
 
       before do
@@ -89,7 +89,7 @@ describe Dossier, type: :model do
 
       before do
         51.times do |i|
-          type_de_champ = create(:type_de_champ_text, procedure:, libelle: "Test #{i}")
+          type_de_champ = TypesDeChamp::TypeDeChampBase.build(create(:type_de_champ_text, procedure:, libelle: "Test #{i}"))
           dossier.champ_data << type_de_champ.build_champ(value: "value #{i}")
         end
         dossier.save!
@@ -108,7 +108,7 @@ describe Dossier, type: :model do
     context 'with a champ whose type was removed from the codebase' do
       let(:procedure) { create(:procedure_with_dossiers, :published) }
       let(:dossier) { procedure.dossiers.first }
-      let(:type_de_champ) { create(:type_de_champ_text, procedure:, libelle: 'Test') }
+      let(:type_de_champ) { TypesDeChamp::TypeDeChampBase.build(create(:type_de_champ_text, procedure:, libelle: 'Test')) }
       let!(:champ) { dossier.champ_data.create!(type_de_champ:, value: 'legacy') }
 
       before { ChampData.where(id: champ.id).update_all(type: 'Champs::CnafChamp') }
@@ -123,7 +123,7 @@ describe Dossier, type: :model do
     context 'when destroy raises after champs batching' do
       let(:procedure) { create(:procedure_with_dossiers, :published) }
       let(:dossier) { procedure.dossiers.first }
-      let(:type_de_champ) { create(:type_de_champ_text, procedure:, libelle: 'Test') }
+      let(:type_de_champ) { TypesDeChamp::TypeDeChampBase.build(create(:type_de_champ_text, procedure:, libelle: 'Test')) }
       let!(:champ) { dossier.champ_data.create!(type_de_champ:, value: 'kept') }
 
       before do

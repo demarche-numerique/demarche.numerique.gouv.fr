@@ -70,22 +70,23 @@ class ChampData < ApplicationRecord
 
   # The dossier's revision provides the wrapper, bound to its tree, so
   # navigation from a champ's type de champ is argument-free. The wrapper
-  # assigned at build time (params_for_champ, factories) is only a fallback
-  # for champs whose type de champ is not part of the revision (e.g.
-  # discarded champs kept around for exports).
+  # assigned at build time (params_for_champ) is only a fallback for champs
+  # whose type de champ is not part of the revision (e.g. transient
+  # projections of removed champs built for exports).
   def type_de_champ
-    @resolved_type_de_champ ||= dossier&.revision&.type_de_champ(stable_id) ||
-      @type_de_champ ||
+    @type_de_champ ||= dossier&.revision&.type_de_champ(stable_id) ||
+      @assigned_type_de_champ ||
       raise("Type De Champ #{stable_id} not found in Revision #{dossier&.revision_id}")
   end
 
   def type_de_champ=(type_de_champ)
-    @resolved_type_de_champ = nil
-    @type_de_champ = if type_de_champ.is_a?(TypesDeChamp::TypeDeChampBase)
-      type_de_champ
-    else
-      TypesDeChamp::TypeDeChampBase.build(type_de_champ)
+    if !type_de_champ.is_a?(TypesDeChamp::TypeDeChampBase)
+      raise ArgumentError, "expected a TypesDeChamp::TypeDeChampBase, got #{type_de_champ.class} — " \
+                           "build champs from the wrapper (type_de_champ.build_champ)"
     end
+
+    @type_de_champ = nil
+    @assigned_type_de_champ = type_de_champ
   end
 
   delegate :libelle,

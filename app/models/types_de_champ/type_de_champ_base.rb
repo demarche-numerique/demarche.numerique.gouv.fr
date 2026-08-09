@@ -20,8 +20,7 @@ class TypesDeChamp::TypeDeChampBase
     :read_attribute_for_serialization, :read_attribute_before_type_cast, to: :@type_de_champ
 
   delegate :update, :update!, :update_column, :update_attribute, :destroy,
-    :drop_down_other=, :drop_down_options=,
-    :params_for_champ, :build_champ, to: :@type_de_champ
+    :drop_down_other=, :drop_down_options=, to: :@type_de_champ
 
   # Configuration predicates over the options store.
   delegate :positive_number?, :range_number?, :birthdate?, :limit_repetitions?,
@@ -148,6 +147,24 @@ class TypesDeChamp::TypeDeChampBase
 
   def libelles_for_export
     paths.map { [_1[:libelle], _1[:path]] }
+  end
+
+  # Champs are built from the wrapper and hold it from the start
+  # (ChampData#type_de_champ= expects one); the dossier's revision takes over
+  # resolution once the champ belongs to a dossier whose revision has the
+  # stable_id.
+  def params_for_champ
+    {
+      type_de_champ: self,
+      private: private?,
+      type: champ_class.name,
+      stable_id:,
+      stream: Dossier::MAIN_STREAM,
+    }
+  end
+
+  def build_champ(params = {})
+    champ_class.new(params_for_champ.merge(params))
   end
 
   # Default estimated duration to fill the champ in a form, in seconds.
