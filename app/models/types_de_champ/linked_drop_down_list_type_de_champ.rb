@@ -22,22 +22,22 @@ class TypesDeChamp::LinkedDropDownListTypeDeChamp < TypesDeChamp::TypeDeChampBas
     unpack_options.to_h
   end
 
-  def champ_value(champ)
+  def filled_champ_value(champ)
     [primary_value(champ), secondary_value(champ)].compact_blank.join(' / ')
   end
 
-  def champ_value_for_tag(champ, path = :value)
+  def filled_champ_value_for_tag(champ, path = :value)
     case path
     when :primary
       primary_value(champ)
     when :secondary
       secondary_value(champ)
     when :value
-      champ_value(champ)
+      filled_champ_value(champ)
     end
   end
 
-  def champ_value_for_export(champ, path = :value)
+  def filled_champ_value_for_export(champ, path = :value)
     case path
     when :primary
       primary_value(champ)
@@ -48,7 +48,7 @@ class TypesDeChamp::LinkedDropDownListTypeDeChamp < TypesDeChamp::TypeDeChampBas
     end
   end
 
-  def champ_value_for_api(champ, version: 2)
+  def filled_champ_value_for_api(champ, version: 2)
     case version
     when 1
       { primary: primary_value(champ), secondary: secondary_value(champ) }
@@ -57,7 +57,7 @@ class TypesDeChamp::LinkedDropDownListTypeDeChamp < TypesDeChamp::TypeDeChampBas
     end
   end
 
-  def champ_blank?(champ)
+  def champ_value_blank?(champ)
     primary_value(champ).blank? && secondary_value(champ).blank?
   end
 

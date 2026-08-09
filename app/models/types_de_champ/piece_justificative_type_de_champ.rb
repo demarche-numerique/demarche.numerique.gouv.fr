@@ -9,7 +9,7 @@ class TypesDeChamp::PieceJustificativeTypeDeChamp < TypesDeChamp::TypeDeChampBas
 
   def tags_for_template = [].freeze
 
-  def champ_value_for_export(champ, path = :value)
+  def filled_champ_value_for_export(champ, path = :value)
     if titre_identite?
       champ.piece_justificative_file.attached? ? "présent" : "absent"
     else
@@ -17,7 +17,7 @@ class TypesDeChamp::PieceJustificativeTypeDeChamp < TypesDeChamp::TypeDeChampBas
     end
   end
 
-  def champ_value_for_api(champ, version: 2)
+  def filled_champ_value_for_api(champ, version: 2)
     return if version == 2
 
     # API v1 don't support multiple PJ
@@ -31,7 +31,7 @@ class TypesDeChamp::PieceJustificativeTypeDeChamp < TypesDeChamp::TypeDeChampBas
     end
   end
 
-  def champ_blank?(champ) = champ.piece_justificative_file.blank?
+  def champ_value_blank?(champ) = champ.piece_justificative_file.blank?
 
   def canonical_column(procedure_id:, displayable: true, prefix: nil)
     if titre_identite?

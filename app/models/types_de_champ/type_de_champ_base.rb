@@ -10,9 +10,34 @@ class TypesDeChamp::TypeDeChampBase
   FILL_DURATION_LONG   = 3.minutes
   READ_WORDS_PER_SECOND = 140.0 / 60 # 140 words per minute
 
-  def initialize(type_de_champ)
+  # The revision (or any provider exposing the same tree API, e.g.
+  # AggregatedRevision) the type de champ was navigated from; nil on wrappers
+  # built outside a tree.
+  attr_reader :revision
+
+  def initialize(type_de_champ, revision = nil)
     @type_de_champ = type_de_champ
+    @revision = revision
   end
+
+  # The underlying ActiveRecord row. Reach for it to persist changes or build
+  # queries; everything read-only should go through the wrapper.
+  def record = @type_de_champ
+
+  # Forms, dom_id and routing helpers unwrap to the record.
+  def to_model = @type_de_champ
+
+  # A wrapper compares equal to another wrapper (or to a bare record) holding
+  # the same row, whichever revision each was navigated from.
+  def ==(other)
+    case other
+    when TypesDeChamp::TypeDeChampBase then @type_de_champ == other.record
+    else @type_de_champ == other
+    end
+  end
+  alias eql? ==
+
+  delegate :hash, to: :@type_de_champ
 
   def tags_for_template
     type_de_champ = @type_de_champ
@@ -57,25 +82,59 @@ class TypesDeChamp::TypeDeChampBase
     filter_value
   end
 
+  # Public entry points: a blank champ (or one whose stored value belongs to
+  # an incompatible former type) falls back to the type's default; the
+  # filled_champ_value* / champ_value_blank? hooks below hold the per-type
+  # behavior and are what subclasses override.
   def champ_value(champ)
-    champ.value.present? ? champ_text_value(champ) : champ_default_value
+    champ_blank?(champ) ? champ_default_value : filled_champ_value(champ)
   end
 
   def champ_value_for_api(champ, version: 2)
+    champ_blank?(champ) ? champ_default_api_value(version) : filled_champ_value_for_api(champ, version:)
+  end
+
+  def champ_value_for_export(champ, path = :value)
+    champ_blank?(champ) ? champ_default_export_value(path) : filled_champ_value_for_export(champ, path)
+  end
+
+  def champ_value_for_tag(champ, path = :value)
+    champ_blank?(champ) ? '' : filled_champ_value_for_tag(champ, path)
+  end
+
+  def champ_blank?(champ)
+    return true if champ.nil?
+    return true if !champ.is_type?(type_champ) && !castable_on_change?(champ.last_write_type_champ, type_champ)
+
+    champ_value_blank?(champ)
+  end
+
+  def mandatory_blank?(champ)
+    return true if champ.nil?
+    return true if !champ.is_type?(type_champ) && !castable_on_change?(champ.last_write_type_champ, type_champ)
+
+    mandatory? && champ_blank_or_invalid?(champ)
+  end
+
+  def filled_champ_value(champ)
+    champ.value.present? ? champ_text_value(champ) : champ_default_value
+  end
+
+  def filled_champ_value_for_api(champ, version: 2)
     case version
     when 2
-      champ_value(champ)
+      filled_champ_value(champ)
     else
       champ.value.presence || champ_default_api_value(version)
     end
   end
 
-  def champ_value_for_export(champ, path = :value)
+  def filled_champ_value_for_export(champ, path = :value)
     path == :value ? champ_text_value(champ).presence : champ_default_export_value(path)
   end
 
-  def champ_value_for_tag(champ, path = :value)
-    path == :value ? champ_value(champ) : nil
+  def filled_champ_value_for_tag(champ, path = :value)
+    path == :value ? filled_champ_value(champ) : nil
   end
 
   def champ_default_value
@@ -95,8 +154,8 @@ class TypesDeChamp::TypeDeChampBase
     end
   end
 
-  def champ_blank?(champ) = champ.value.blank?
-  def champ_blank_or_invalid?(champ) = champ_blank?(champ)
+  def champ_value_blank?(champ) = champ.value.blank?
+  def champ_blank_or_invalid?(champ) = champ_value_blank?(champ)
 
   def canonical_column(procedure_id:, displayable: true, prefix: nil)
     return nil unless fillable?
@@ -136,6 +195,10 @@ class TypesDeChamp::TypeDeChampBase
   end
 
   private
+
+  def castable_on_change?(from_type, to_type)
+    Columns::ChampColumn::CAST.key?([from_type.to_sym, to_type.to_sym])
+  end
 
   def champ_text_value(champ)
     if champ.is_type?(TypeDeChamp.type_champs.fetch(:multiple_drop_down_list))

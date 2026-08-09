@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TypesDeChamp::DropDownListTypeDeChamp < TypesDeChamp::TypeDeChampBase
-  def champ_value(champ)
+  def filled_champ_value(champ)
     if drop_down_advanced? && champ.respond_to?(:referentiel) && champ.referentiel.present?
       path = champ.referentiel_headers&.first&.second
       champ.referentiel_item_value(path)
@@ -10,7 +10,7 @@ class TypesDeChamp::DropDownListTypeDeChamp < TypesDeChamp::TypeDeChampBase
     end
   end
 
-  def champ_value_for_export(champ, path = :value)
+  def filled_champ_value_for_export(champ, path = :value)
     if drop_down_advanced? && path != :value
       champ.referentiel_item_value(path)
     else
@@ -18,7 +18,7 @@ class TypesDeChamp::DropDownListTypeDeChamp < TypesDeChamp::TypeDeChampBase
     end
   end
 
-  def champ_value_for_tag(champ, path = :value)
+  def filled_champ_value_for_tag(champ, path = :value)
     if drop_down_advanced? && path != :value
       champ.referentiel_item_value(path)
     else

@@ -22,7 +22,7 @@ class TypesDeChamp::PhoneTypeDeChamp < TypesDeChamp::TextTypeDeChamp
   # See issue #6996.
   DEFAULT_COUNTRY_CODES = [:FR, :GP, :GF, :MQ, :RE, :YT, :NC, :PF].freeze
 
-  def champ_value(champ)
+  def filled_champ_value(champ)
     if Phonelib.valid_for_countries?(champ.value, DEFAULT_COUNTRY_CODES)
       Phonelib.parse_for_countries(champ.value, DEFAULT_COUNTRY_CODES).full_national
     else

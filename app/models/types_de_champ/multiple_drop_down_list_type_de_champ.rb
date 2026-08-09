@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TypesDeChamp::MultipleDropDownListTypeDeChamp < TypesDeChamp::TypeDeChampBase
-  def champ_value(champ)
+  def filled_champ_value(champ)
     if drop_down_advanced? && champ.respond_to?(:referentiels) && champ.referentiels.present?
       champ.referentiels_items_user_values.join(', ')
     else
@@ -9,11 +9,11 @@ class TypesDeChamp::MultipleDropDownListTypeDeChamp < TypesDeChamp::TypeDeChampB
     end
   end
 
-  def champ_value_for_export(champ, path = :value)
-    path == :value ? champ_value(champ).presence : super
+  def filled_champ_value_for_export(champ, path = :value)
+    path == :value ? filled_champ_value(champ).presence : super
   end
 
-  def champ_value_for_tag(champ, path = :value)
+  def filled_champ_value_for_tag(champ, path = :value)
     ChampPresentations::MultipleDropDownListPresentation.new(selected_options(champ))
   end
 
@@ -37,7 +37,7 @@ class TypesDeChamp::MultipleDropDownListTypeDeChamp < TypesDeChamp::TypeDeChampB
     end
   end
 
-  def champ_blank?(champ) = selected_options(champ).blank?
+  def champ_value_blank?(champ) = selected_options(champ).blank?
 
   def self.parse_selected_options(champ)
     return [] if champ.value.blank?

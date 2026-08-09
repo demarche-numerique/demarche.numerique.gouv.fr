@@ -19,21 +19,21 @@ class TypesDeChamp::CarteTypeDeChamp < TypesDeChamp::TypeDeChampBase
     FILL_DURATION_LONG
   end
 
-  def champ_value_for_tag(champ, path = :value)
+  def filled_champ_value_for_tag(champ, path = :value)
     return nil if path != :value
     return '' if champ.geo_areas.blank?
     ChampPresentations::CartePresentation.new(champ.geo_areas)
   end
 
-  def champ_value_for_api(champ, version: 2)
+  def filled_champ_value_for_api(champ, version: 2)
     nil
   end
 
-  def champ_value_for_export(champ, path = :value)
+  def filled_champ_value_for_export(champ, path = :value)
     champ.geo_areas.map(&:label).join("\n")
   end
 
-  def champ_blank?(champ) = champ.geo_areas.blank?
+  def champ_value_blank?(champ) = champ.geo_areas.blank?
 
   def canonical_column(procedure_id:, displayable: true, prefix: nil)
     Columns::GeoJSONColumn.new(

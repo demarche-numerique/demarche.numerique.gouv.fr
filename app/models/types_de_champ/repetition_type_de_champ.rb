@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TypesDeChamp::RepetitionTypeDeChamp < TypesDeChamp::TypeDeChampBase
-  def champ_value_for_tag(champ, path = :value)
+  def filled_champ_value_for_tag(champ, path = :value)
     return nil if path != :value
     ChampPresentations::RepetitionPresentation.new(libelle, champ.dossier.project_rows_for(@type_de_champ))
   end
@@ -37,5 +37,5 @@ class TypesDeChamp::RepetitionTypeDeChamp < TypesDeChamp::TypeDeChampBase
       .flat_map { it.columns(procedure_id:, displayable: false, prefix:) }
   end
 
-  def champ_blank?(champ) = champ.dossier.repetition_row_ids(@type_de_champ).blank?
+  def champ_value_blank?(champ) = champ.dossier.repetition_row_ids(@type_de_champ).blank?
 end

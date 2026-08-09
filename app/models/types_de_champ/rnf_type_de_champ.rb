@@ -3,7 +3,7 @@
 class TypesDeChamp::RNFTypeDeChamp < TypesDeChamp::TextTypeDeChamp
   include AddressableColumnConcern
 
-  def champ_value_for_export(champ, path = :value)
+  def filled_champ_value_for_export(champ, path = :value)
     case path
     when :value
       champ.rnf_id
@@ -18,7 +18,7 @@ class TypesDeChamp::RNFTypeDeChamp < TypesDeChamp::TextTypeDeChamp
     end
   end
 
-  def champ_value_for_tag(champ, path = :value)
+  def filled_champ_value_for_tag(champ, path = :value)
     case path
     when :value
       champ.rnf_id
@@ -33,7 +33,7 @@ class TypesDeChamp::RNFTypeDeChamp < TypesDeChamp::TextTypeDeChamp
     end
   end
 
-  def champ_blank?(champ) = champ.external_id.blank?
+  def champ_value_blank?(champ) = champ.external_id.blank?
 
   def columns(procedure_id:, displayable: true, prefix: nil)
     super

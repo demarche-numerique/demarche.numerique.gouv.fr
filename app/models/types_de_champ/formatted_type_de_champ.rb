@@ -8,7 +8,7 @@ class TypesDeChamp::FormattedTypeDeChamp < TypesDeChamp::TypeDeChampBase
     end
   end
 
-  def champ_value_for_export(champ, path = :value)
+  def filled_champ_value_for_export(champ, path = :value)
     Sanitizers::Xml.sanitize(champ_text_value(champ))
   end
 end

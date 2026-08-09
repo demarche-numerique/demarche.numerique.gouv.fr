@@ -819,59 +819,7 @@ class TypeDeChamp < ApplicationRecord
     end
   end
 
-  def champ_value(champ)
-    if champ_blank?(champ)
-      dynamic_type.champ_default_value
-    else
-      dynamic_type.champ_value(champ)
-    end
-  end
-
-  def champ_value_for_api(champ, version: 2)
-    if champ_blank?(champ)
-      dynamic_type.champ_default_api_value(version)
-    else
-      dynamic_type.champ_value_for_api(champ, version:)
-    end
-  end
-
-  def champ_value_for_export(champ, path = :value)
-    if champ_blank?(champ)
-      dynamic_type.champ_default_export_value(path)
-    else
-      dynamic_type.champ_value_for_export(champ, path)
-    end
-  end
-
-  def champ_value_for_tag(champ, path = :value)
-    if champ_blank?(champ)
-      ''
-    else
-      dynamic_type.champ_value_for_tag(champ, path)
-    end
-  end
-
-  def champ_blank?(champ)
-    # no champ
-    return true if champ.nil?
-    # type de champ on the revision changed
-    if champ.is_type?(type_champ) || castable_on_change?(champ.last_write_type_champ, type_champ)
-      dynamic_type.champ_blank?(champ)
-    else
-      true
-    end
-  end
-
-  def mandatory_blank?(champ)
-    # no champ
-    return true if champ.nil?
-    # type de champ on the revision changed
-    if champ.is_type?(type_champ) || castable_on_change?(champ.last_write_type_champ, type_champ)
-      mandatory? && dynamic_type.champ_blank_or_invalid?(champ)
-    else
-      true
-    end
-  end
+  delegate :champ_value, :champ_value_for_api, :champ_value_for_export, :champ_value_for_tag, :champ_blank?, :mandatory_blank?, to: :dynamic_type
 
   def html_id(row_id = nil)
     "champ-#{public_id(row_id)}"
@@ -931,10 +879,6 @@ class TypeDeChamp < ApplicationRecord
     families
       .flat_map { |f| FORMAT_FAMILIES[f.to_sym] || [] }
       .presence || AUTHORIZED_CONTENT_TYPES
-  end
-
-  def castable_on_change?(from_type, to_type)
-    Columns::ChampColumn::CAST.key?([from_type.to_sym, to_type.to_sym])
   end
 
   def populate_stable_id
