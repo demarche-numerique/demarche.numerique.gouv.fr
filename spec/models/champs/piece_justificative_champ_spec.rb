@@ -62,7 +62,7 @@ describe Champs::PieceJustificativeChamp do
     end
 
     context "when validation is disabled" do
-      before { champ.type_de_champ.update(skip_pj_validation: true) }
+      before { champ.type_de_champ.record.update(skip_pj_validation: true) }
 
       it "does not enforce file size on :champ_value" do
         champ.piece_justificative_file.purge
@@ -79,7 +79,7 @@ describe Champs::PieceJustificativeChamp do
     end
 
     context "when content-type validation is disabled" do
-      before { champ.type_de_champ.update(skip_content_type_pj_validation: true) }
+      before { champ.type_de_champ.record.update(skip_content_type_pj_validation: true) }
 
       it "does not enforce content_type on :champ_value" do
         champ.piece_justificative_file.attach(

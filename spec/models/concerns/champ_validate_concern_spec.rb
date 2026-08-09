@@ -104,7 +104,7 @@ RSpec.describe ChampValidateConcern do
     context 'do not validate with old champ type' do
       before {
         update_champ('test')
-        type_de_champ.update(type_champ: :text)
+        type_de_champ.record.update(type_champ: :text)
         dossier.reload
         dossier.validate(:champs_public_value)
       }
@@ -121,7 +121,7 @@ RSpec.describe ChampValidateConcern do
 
       before {
         update_champ('test')
-        type_de_champ.update(type_champ: :email)
+        type_de_champ.record.update(type_champ: :email)
         dossier.reload
         dossier.validate(:champs_public_value)
       }

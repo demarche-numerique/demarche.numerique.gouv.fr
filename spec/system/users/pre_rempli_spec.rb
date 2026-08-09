@@ -26,7 +26,7 @@ describe 'Pre-rempli champ:', js: true do
     end
 
     context 'when hidden (pre_rempli_hidden)' do
-      before { tdc.update!(pre_rempli_hidden: "1") }
+      before { tdc.record.update!(pre_rempli_hidden: "1") }
 
       it 'does not render the champ at all but preserves value after submission' do
         visit brouillon_dossier_path(dossier)

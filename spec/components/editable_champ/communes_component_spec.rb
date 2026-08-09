@@ -31,7 +31,7 @@ describe EditableChamp::CommunesComponent, type: :component do
     end
 
     context 'when the champ has no description' do
-      before { tdc.update(description: nil) }
+      before { tdc.record.update(description: nil) }
 
       it { is_expected.to be_nil }
 

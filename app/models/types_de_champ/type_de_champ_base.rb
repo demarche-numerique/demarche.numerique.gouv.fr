@@ -19,9 +19,6 @@ class TypesDeChamp::TypeDeChampBase
     :piece_justificative_template, :notice_explicative, :reload,
     :read_attribute_for_serialization, :read_attribute_before_type_cast, to: :@type_de_champ
 
-  delegate :update, :update!, :update_column, :update_attribute, :destroy,
-    :drop_down_other=, :drop_down_options=, to: :@type_de_champ
-
   # Configuration predicates over the options store.
   delegate :positive_number?, :range_number?, :birthdate?, :limit_repetitions?,
     :prefill_with_france_connect_information?, :date_in_past?, :range_date?,

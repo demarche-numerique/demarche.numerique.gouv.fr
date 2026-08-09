@@ -18,7 +18,7 @@ RSpec.describe TypesDeChamp::LibelleValidator do
     end
 
     context 'when libelle is empty' do
-      before { type_de_champ.update(libelle: '') }
+      before { type_de_champ.record.update(libelle: '') }
 
       it 'does add errors to the procedure' do
         expect { subject }.to change { procedure.errors.count }
@@ -26,7 +26,7 @@ RSpec.describe TypesDeChamp::LibelleValidator do
     end
 
     context 'when libelle is nil' do
-      before { type_de_champ.update(libelle: nil) }
+      before { type_de_champ.record.update(libelle: nil) }
 
       it 'does add errors to the procedure' do
         expect { subject }.to change { procedure.errors.count }
@@ -40,7 +40,7 @@ RSpec.describe TypesDeChamp::LibelleValidator do
     let(:child) { repetition.flat_children.first }
 
     context 'when the child libelle is empty' do
-      before { child.update(libelle: '') }
+      before { child.record.update(libelle: '') }
 
       it 'adds an error mentioning both the child position and the parent repetition position' do
         subject
@@ -66,7 +66,7 @@ RSpec.describe TypesDeChamp::LibelleValidator do
     end
 
     context 'when libelle is empty' do
-      before { type_de_champ.update(libelle: '') }
+      before { type_de_champ.record.update(libelle: '') }
 
       it 'does add errors to the procedure' do
         expect { subject }.to change { procedure.errors.count }
@@ -74,7 +74,7 @@ RSpec.describe TypesDeChamp::LibelleValidator do
     end
 
     context 'when libelle is nil' do
-      before { type_de_champ.update(libelle: nil) }
+      before { type_de_champ.record.update(libelle: nil) }
 
       it 'does add errors to the procedure' do
         expect { subject }.to change { procedure.errors.count }

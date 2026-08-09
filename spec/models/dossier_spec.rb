@@ -445,7 +445,7 @@ describe Dossier, type: :model do
       let(:tdc) { procedure.active_revision.root_types_de_champ_public.first }
 
       before do
-        tdc.update!(options: { 'birthdate' => '1', 'prefill_with_france_connect_information' => '1' })
+        tdc.record.update!(options: { 'birthdate' => '1', 'prefill_with_france_connect_information' => '1' })
       end
 
       subject { dossier.prefill_champs_from_france_connect(updated_by: user.email) }
@@ -471,7 +471,7 @@ describe Dossier, type: :model do
       end
 
       context 'when the option is not enabled on the tdc' do
-        before { tdc.update!(options: { 'birthdate' => '1', 'prefill_with_france_connect_information' => '0' }) }
+        before { tdc.record.update!(options: { 'birthdate' => '1', 'prefill_with_france_connect_information' => '0' }) }
 
         it 'does not prefill' do
           subject
@@ -2621,7 +2621,7 @@ describe Dossier, type: :model do
       it 'give me back my decimal number' do
         dossier
         expect {
-          integer_number_type_de_champ.update(type_champ: :decimal_number)
+          integer_number_type_de_champ.record.update(type_champ: :decimal_number)
         }.to change { dossier.reload.champ_values_for_export(procedure.reload.types_de_champ_for_procedure_export.to_a, format: :xlsx) }
           .from([["c1", 42]]).to([["c1", 42.0]])
       end
@@ -2684,7 +2684,7 @@ describe Dossier, type: :model do
             draft.add_type_de_champ(type_champ: :communes, libelle: "communes", parent_stable_id: tdc_repetition.stable_id)
 
             dossier_test = create(:dossier, procedure: proc_test)
-            type_champs = tdc_repetition.flat_children(proc_test.aggregated_revision).filter(&:fillable?)
+            type_champs = proc_test.aggregated_revision.type_de_champ(tdc_repetition.stable_id).flat_children.filter(&:fillable?)
             expect(type_champs.size).to eq(1)
             expect(dossier.champ_values_for_export(type_champs, format: :xlsx).size).to eq(3)
           end
@@ -2724,7 +2724,7 @@ describe Dossier, type: :model do
       subject { dossier.champ_values_for_export(tdcs, format: :xlsx) }
 
       before do
-        text_tdc.update(condition: ds_eq(champ_value(yes_no_tdc.stable_id), constant(true)))
+        text_tdc.record.update(condition: ds_eq(champ_value(yes_no_tdc.stable_id), constant(true)))
 
         yes_no, text = dossier.root_champs_public
         yes_no.update(value: yes_no_value)

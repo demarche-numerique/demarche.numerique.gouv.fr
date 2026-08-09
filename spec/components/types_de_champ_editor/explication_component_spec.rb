@@ -22,7 +22,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
 
       context 'enabled' do
         before do
-          tdc.update!(collapsible_explanation_enabled: "1")
+          tdc.record.update!(collapsible_explanation_enabled: "1")
           allow(component).to receive(:current_user).and_return(procedure.administrateurs.first)
           render_inline(component)
         end

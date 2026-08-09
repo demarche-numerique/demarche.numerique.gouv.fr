@@ -137,10 +137,10 @@ describe ColumnsConcern do
         let(:types_de_champ_public) { Array.new(4) { { type: :text } } }
         let(:types_de_champ_private) { Array.new(4) { { type: :text } } }
         before do
-          procedure.active_revision.root_types_de_champ_public[2].update_attribute(:type_champ, TypeDeChamp.type_champs.fetch(:header_section))
-          procedure.active_revision.root_types_de_champ_public[3].update_attribute(:type_champ, TypeDeChamp.type_champs.fetch(:explication))
-          procedure.active_revision.root_types_de_champ_private[2].update_attribute(:type_champ, TypeDeChamp.type_champs.fetch(:header_section))
-          procedure.active_revision.root_types_de_champ_private[3].update_attribute(:type_champ, TypeDeChamp.type_champs.fetch(:explication))
+          procedure.active_revision.root_types_de_champ_public[2].record.update_attribute(:type_champ, TypeDeChamp.type_champs.fetch(:header_section))
+          procedure.active_revision.root_types_de_champ_public[3].record.update_attribute(:type_champ, TypeDeChamp.type_champs.fetch(:explication))
+          procedure.active_revision.root_types_de_champ_private[2].record.update_attribute(:type_champ, TypeDeChamp.type_champs.fetch(:header_section))
+          procedure.active_revision.root_types_de_champ_private[3].record.update_attribute(:type_champ, TypeDeChamp.type_champs.fetch(:explication))
         end
 
         it {

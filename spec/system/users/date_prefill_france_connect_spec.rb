@@ -6,7 +6,7 @@ describe 'Prefill date champ from FranceConnect:', js: true do
   let(:tdc) { procedure.active_revision.root_types_de_champ_public.first }
 
   before do
-    tdc.update!(options: { 'birthdate' => '1', 'prefill_with_france_connect_information' => '1' })
+    tdc.record.update!(options: { 'birthdate' => '1', 'prefill_with_france_connect_information' => '1' })
     login_as user, scope: :user
   end
 

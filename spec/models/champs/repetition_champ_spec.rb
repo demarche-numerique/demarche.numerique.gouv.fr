@@ -58,7 +58,7 @@ describe Champs::RepetitionChamp do
     context "when limits are disabled" do
       before do
         tdc = dossier.revision.types_de_champ.find(&:repetition?)
-        tdc.update!(limit_repetitions: '0')
+        tdc.record.update!(limit_repetitions: '0')
       end
 
       it "returns false" do
@@ -69,8 +69,8 @@ describe Champs::RepetitionChamp do
     context "after a cycle of disabling/enabling toggle without new max value" do
       before do
         tdc = dossier.revision.types_de_champ.find(&:repetition?)
-        tdc.update!(limit_repetitions: '0')
-        tdc.update!(limit_repetitions: '1')
+        tdc.record.update!(limit_repetitions: '0')
+        tdc.record.update!(limit_repetitions: '1')
       end
 
       it "returns false when no max value is configured" do

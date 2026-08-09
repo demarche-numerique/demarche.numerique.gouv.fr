@@ -6,7 +6,7 @@ describe ProcedureRevision do
   let(:type_de_champ_private) { draft.root_types_de_champ_private.first }
   let(:type_de_champ_repetition) do
     repetition = draft.root_types_de_champ_public.find(&:repetition?)
-    repetition.update(stable_id: 3333)
+    repetition.record.update(stable_id: 3333)
     # the coordinates memoize stable_id: drop them along with the tree cache
     draft.reload
     repetition
@@ -416,7 +416,7 @@ describe ProcedureRevision do
 
         context 'when a condition is removed' do
           before do
-            second_tdc.update(condition: ds_eq(champ_value(first_tdc.stable_id), constant(2)))
+            second_tdc.record.update(condition: ds_eq(champ_value(first_tdc.stable_id), constant(2)))
             draft.reload
 
             second = new_draft.find_and_ensure_exclusive_use(second_tdc.stable_id)
@@ -440,7 +440,7 @@ describe ProcedureRevision do
 
         context 'when a condition is changed' do
           before do
-            second_tdc.update(condition: ds_eq(champ_value(first_tdc.stable_id), constant(2)))
+            second_tdc.record.update(condition: ds_eq(champ_value(first_tdc.stable_id), constant(2)))
             draft.reload
 
             second = new_draft.find_and_ensure_exclusive_use(second_tdc.stable_id)
@@ -1019,20 +1019,20 @@ describe ProcedureRevision do
     end
 
     context 'when a tdc condition uses a champ_value' do
-      before { value_tdc.update!(condition: ds_eq(champ_value(gate_tdc.stable_id), constant(true))) }
+      before { value_tdc.record.update!(condition: ds_eq(champ_value(gate_tdc.stable_id), constant(true))) }
 
       it { is_expected.to be(true) }
     end
 
     context 'when a tdc condition uses only a champ_column_value' do
-      before { value_tdc.update!(condition: ds_eq(champ_column_value(gate_column), constant(true))) }
+      before { value_tdc.record.update!(condition: ds_eq(champ_column_value(gate_column), constant(true))) }
 
       it { is_expected.to be(false) }
     end
 
     context 'when a champ_value is nested deep inside an And' do
       before do
-        value_tdc.update!(condition: ds_and([
+        value_tdc.record.update!(condition: ds_and([
           ds_eq(champ_column_value(gate_column), constant(true)),
           ds_eq(champ_value(gate_tdc.stable_id), constant(true)),
         ]))
@@ -1263,7 +1263,7 @@ describe ProcedureRevision do
 
         before do
           draft_revision.estimated_fill_duration
-          draft_revision.types_de_champ.first.update!(type_champ: TypeDeChamp.type_champs.fetch(:piece_justificative))
+          draft_revision.types_de_champ.first.record.update!(type_champ: TypeDeChamp.type_champs.fetch(:piece_justificative))
           draft_revision.reload
         end
 
@@ -1310,21 +1310,21 @@ describe ProcedureRevision do
     end
 
     context 'when a champ has a valid condition (type)' do
-      before { second_champ.update(condition: condition) }
+      before { second_champ.record.update(condition: condition) }
       let(:condition) { ds_eq(constant(true), constant(true)) }
 
       it { is_expected.to be_empty }
     end
 
     context 'when a champ has a valid condition: needed tdc is up in the forms' do
-      before { second_champ.update(condition: condition) }
+      before { second_champ.record.update(condition: condition) }
       let(:condition) { ds_eq(champ_value(first_champ.stable_id), constant(1)) }
 
       it { is_expected.to be_empty }
     end
 
     context 'when a champ has an invalid condition' do
-      before { second_champ.update(condition: condition) }
+      before { second_champ.record.update(condition: condition) }
       let(:condition) { ds_eq(constant(true), constant(1)) }
 
       it { expect(subject.first.attribute).to eq(:draft_types_de_champ_public) }
@@ -1334,8 +1334,8 @@ describe ProcedureRevision do
       let(:need_second_champ) { ds_eq(constant('oui'), champ_value(second_champ.stable_id)) }
 
       before do
-        second_champ.update(condition: condition)
-        first_champ.update(condition: need_second_champ)
+        second_champ.record.update(condition: condition)
+        first_champ.record.update(condition: need_second_champ)
       end
 
       it { expect(subject.first.attribute).to eq(:draft_types_de_champ_public) }
@@ -1355,7 +1355,7 @@ describe ProcedureRevision do
       let(:integer_champ) { children_of_repetition.first }
       let(:text_champ) { children_of_repetition.last }
 
-      before { text_champ.update(condition: condition) }
+      before { text_champ.record.update(condition: condition) }
 
       context 'when a child champ has a valid condition' do
         let(:condition) { ds_eq(champ_value(integer_champ.stable_id), constant(1)) }
@@ -1542,7 +1542,7 @@ describe ProcedureRevision do
       let(:revision) { procedure.draft_revision }
 
       before do
-        revision.root_types_de_champ_public.first.update_column(:options, nil)
+        revision.root_types_de_champ_public.first.record.update_column(:options, nil)
       end
 
       it 'does not raise' do

@@ -80,7 +80,7 @@ describe Champs::DatetimeChamp do
 
       before do
         travel_to(now)
-        datetime_champ.type_de_champ.update(options: { date_in_past: '1' })
+        datetime_champ.type_de_champ.record.update(options: { date_in_past: '1' })
         datetime_champ.update(value:)
       end
 
@@ -107,7 +107,7 @@ describe Champs::DatetimeChamp do
     let(:champ) { dossier.root_champs_public.first.tap { _1.update(value:) } }
     subject { champ.validate(:champ_value) }
 
-    before { champ.type_de_champ.update(options: { range_date: '1', start_date: '2017-11-30', end_date: '2017-12-31' }) }
+    before { champ.type_de_champ.record.update(options: { range_date: '1', start_date: '2017-11-30', end_date: '2017-12-31' }) }
     context 'the value is in the range' do
       let(:value) { "2017-12-15T00:01:00+01:00" }
 
@@ -124,7 +124,7 @@ describe Champs::DatetimeChamp do
     end
 
     context 'the value is bigger than max' do
-      before { champ.type_de_champ.update(options: { range_date: '1', start_date: '', end_date: '2017-12-31' }) }
+      before { champ.type_de_champ.record.update(options: { range_date: '1', start_date: '', end_date: '2017-12-31' }) }
       let(:value) { "2018-12-15T00:01:00+01:00" }
 
       it 'is not valid and contains errors' do
@@ -134,7 +134,7 @@ describe Champs::DatetimeChamp do
     end
 
     context 'the value is smaller than min' do
-      before { champ.type_de_champ.update(options: { range_date: '1', start_date: '2017-11-30', end_date: '' }) }
+      before { champ.type_de_champ.record.update(options: { range_date: '1', start_date: '2017-11-30', end_date: '' }) }
       let(:value) { "2016-12-15T00:01:00+01:00" }
 
       it 'is not valid and contains errors' do
@@ -144,14 +144,14 @@ describe Champs::DatetimeChamp do
     end
 
     context 'the range is not activated' do
-      before { champ.type_de_champ.update(options: { range_date: '0', start_date: '2017-11-30', end_date: '2017-12-31' }) }
+      before { champ.type_de_champ.record.update(options: { range_date: '0', start_date: '2017-11-30', end_date: '2017-12-31' }) }
       let(:value) { "2017-12-15T00:01:00+01:00" }
 
       it { is_expected.to be_truthy }
     end
 
     context 'the range is activated but min and max values are not defined' do
-      before { champ.type_de_champ.update(options: { range_date: '0', start_date: '', end_date: '' }) }
+      before { champ.type_de_champ.record.update(options: { range_date: '0', start_date: '', end_date: '' }) }
       let(:value) { "2017-12-15T00:01:00+01:00" }
 
       it { is_expected.to be_truthy }

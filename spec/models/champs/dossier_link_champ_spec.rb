@@ -56,7 +56,7 @@ describe Champs::DossierLinkChamp, type: :model do
     let(:type_de_champ) { procedure.draft_revision.types_de_champ.first }
 
     before do
-      type_de_champ.update!(options: type_de_champ.options.merge(
+      type_de_champ.record.update!(options: type_de_champ.options.merge(
         'procedures_limit' => '1',
         'dossier_link_procedure_ids' => [allowed_procedure.id]
       ))
@@ -108,7 +108,7 @@ describe Champs::DossierLinkChamp, type: :model do
 
     context 'when procedures_limit is not enabled' do
       before do
-        type_de_champ.update!(options: type_de_champ.options.merge('procedures_limit' => nil))
+        type_de_champ.record.update!(options: type_de_champ.options.merge('procedures_limit' => nil))
       end
 
       let(:value) { create(:dossier, :en_construction, procedure: other_procedure, user:).id }
@@ -117,7 +117,7 @@ describe Champs::DossierLinkChamp, type: :model do
 
     context 'when no allowed procedures configured' do
       before do
-        type_de_champ.update!(options: type_de_champ.options.merge('dossier_link_procedure_ids' => []))
+        type_de_champ.record.update!(options: type_de_champ.options.merge('dossier_link_procedure_ids' => []))
       end
 
       let(:value) { create(:dossier, :en_construction, procedure: other_procedure, user:).id }

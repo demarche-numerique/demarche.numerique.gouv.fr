@@ -93,7 +93,7 @@ describe Administrateurs::ConditionsController, type: :controller do
 
     describe '#destroy' do
       before do
-        second_tdc.update(condition: empty_operator(empty, empty))
+        second_tdc.record.update(condition: empty_operator(empty, empty))
         delete :destroy, params: default_params, format: :turbo_stream
       end
 
@@ -106,7 +106,7 @@ describe Administrateurs::ConditionsController, type: :controller do
 
     describe '#change_targeted_champ' do
       before do
-        second_tdc.update(condition: empty_operator(empty, empty))
+        second_tdc.record.update(condition: empty_operator(empty, empty))
         patch :change_targeted_champ, params: params, format: :turbo_stream
       end
 

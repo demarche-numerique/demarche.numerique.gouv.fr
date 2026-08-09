@@ -39,7 +39,7 @@ describe EmptyFileValidator do
     end
 
     it "rejects an empty file even when PJ size validation is disabled" do
-      champ.type_de_champ.update(skip_pj_validation: true)
+      champ.type_de_champ.record.update(skip_pj_validation: true)
       champ.piece_justificative_file = [empty_blob]
 
       expect(champ.valid?(:champ_value)).to be false

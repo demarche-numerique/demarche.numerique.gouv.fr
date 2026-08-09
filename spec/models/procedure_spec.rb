@@ -595,11 +595,11 @@ describe Procedure do
         it 'validates that no drop-down type de champ is empty' do
           drop_down = procedure.draft_revision.root_types_de_champ_public.find(&:any_drop_down_list?)
 
-          drop_down.update!(drop_down_options: [])
+          drop_down.record.update!(drop_down_options: [])
           procedure.reload.validate(:publication)
           expect(procedure.errors.messages_for(:draft_types_de_champ_public)).to include(invalid_drop_down_error_message)
 
-          drop_down.update!(drop_down_options: ["--title--", "some value"])
+          drop_down.record.update!(drop_down_options: ["--title--", "some value"])
           procedure.reload.validate(:publication)
           expect(procedure.errors.messages_for(:draft_types_de_champ_public)).not_to include(invalid_drop_down_error_message)
         end
@@ -612,13 +612,13 @@ describe Procedure do
 
           context 'with invalid dropdown' do
             let(:children) { [{ type: :multiple_drop_down_list, libelle: 'Choix imbriqué' }] }
-            before { nested_tdc.update!(drop_down_options: []) }
+            before { nested_tdc.record.update!(drop_down_options: []) }
 
             it 'validates that no drop-down nested in a repetition is empty' do
               procedure.reload.validate(:publication)
               expect(procedure.errors.messages_for(:draft_types_de_champ_public)).to include(a_string_including(invalid_drop_down_error_message))
 
-              nested_tdc.update!(drop_down_options: ["un", "deux"])
+              nested_tdc.record.update!(drop_down_options: ["un", "deux"])
               procedure.reload.validate(:publication)
               expect(procedure.errors.messages_for(:draft_types_de_champ_public)).not_to include(a_string_including(invalid_drop_down_error_message))
             end
@@ -628,7 +628,7 @@ describe Procedure do
             let(:children) { [{ type: :drop_down_list, libelle: 'Choix imbriqué privé' }] }
             let(:types_de_champ_public) { [] }
             let(:types_de_champ_private) { [{ type: :repetition, libelle: 'Bloc', children: }] }
-            before { nested_tdc.update!(drop_down_options: []) }
+            before { nested_tdc.record.update!(drop_down_options: []) }
 
             it 'validates that no private drop-down nested in a repetition is empty' do
               procedure.reload.validate(:publication)
@@ -638,7 +638,7 @@ describe Procedure do
 
           context 'with invalid date range' do
             let(:children) { [{ type: :date, libelle: 'Date' }] }
-            before { nested_tdc.update!(range_date: "1", start_date: "2025-12-31", end_date: "2025-01-01") }
+            before { nested_tdc.record.update!(range_date: "1", start_date: "2025-12-31", end_date: "2025-01-01") }
 
             it 'reports the error' do
               procedure.reload.validate(:publication)
@@ -648,7 +648,7 @@ describe Procedure do
 
           context 'with invalid number range' do
             let(:children) { [{ type: :integer_number, libelle: 'Nombre' }] }
-            before { nested_tdc.update!(range_number: "1", min_number: "100", max_number: "10") }
+            before { nested_tdc.record.update!(range_number: "1", min_number: "100", max_number: "10") }
 
             it 'reports the error' do
               procedure.reload.validate(:publication)
@@ -668,7 +668,7 @@ describe Procedure do
 
           context 'with blank libelle' do
             let(:children) { [{ type: :text, libelle: 'Texte' }] }
-            before { nested_tdc.update_column(:libelle, '') }
+            before { nested_tdc.record.update_column(:libelle, '') }
 
             it 'reports the error' do
               procedure.reload.validate(:publication)
@@ -758,7 +758,7 @@ describe Procedure do
 
         it 'validates that no drop-down type de champ is empty' do
           drop_down = procedure.draft_revision.root_types_de_champ_private.find(&:any_drop_down_list?)
-          drop_down.update!(drop_down_options: [])
+          drop_down.record.update!(drop_down_options: [])
           procedure.reload.validate(:publication)
 
           expect(procedure.errors.messages_for(:draft_types_de_champ_private)).to include(invalid_drop_down_error_message)
@@ -1173,7 +1173,7 @@ describe Procedure do
       let(:tdc) { procedure.draft_revision.root_types_de_champ_public.last }
 
       before do
-        procedure.draft_revision.root_types_de_champ_public.last.update(type_champ: :textarea, options: { "character_limit" => "" })
+        procedure.draft_revision.root_types_de_champ_public.last.record.update(type_champ: :textarea, options: { "character_limit" => "" })
       end
 
       it 'nullifies the referentiel' do
@@ -2145,7 +2145,7 @@ describe Procedure do
     end
 
     context 'when a draft_revision tdc condition uses a champ_value' do
-      before { value_tdc.update!(condition: ds_eq(champ_value(gate_tdc.stable_id), constant(true))) }
+      before { value_tdc.record.update!(condition: ds_eq(champ_value(gate_tdc.stable_id), constant(true))) }
 
       it { is_expected.to be(true) }
     end
@@ -2177,7 +2177,7 @@ describe Procedure do
 
     context 'when only column_values are used everywhere' do
       before do
-        value_tdc.update!(condition: ds_eq(champ_column_value(gate_column), constant(true)))
+        value_tdc.record.update!(condition: ds_eq(champ_column_value(gate_column), constant(true)))
         revision.update!(ineligibilite_rules: ds_eq(champ_column_value(gate_column), constant(true)))
         create(:groupe_instructeur, procedure:, routing_rule: ds_eq(champ_column_value(gate_column), constant(true)))
       end
@@ -2193,7 +2193,7 @@ describe Procedure do
 
     context 'when referentiel url_tiptap references the text field' do
       before do
-        ref_tdc.update!(referentiel: create(:api_referentiel, :exact_match, url_tiptap: {
+        ref_tdc.record.update!(referentiel: create(:api_referentiel, :exact_match, url_tiptap: {
           "type" => "doc",
           "content" => [
             {
@@ -2233,7 +2233,7 @@ describe Procedure do
 
     context 'when referentiel has only {query} tag' do
       before do
-        ref_tdc.update!(referentiel: create(:api_referentiel, :exact_match, url_tiptap: {
+        ref_tdc.record.update!(referentiel: create(:api_referentiel, :exact_match, url_tiptap: {
           "type" => "doc",
           "content" => [
             {

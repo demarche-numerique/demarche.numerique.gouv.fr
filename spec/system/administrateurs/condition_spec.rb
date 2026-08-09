@@ -60,7 +60,7 @@ describe 'As an administrateur I can edit types de champ condition', js: true do
 
     context 'with a preexisting condition' do
       before do
-        second_tdc.update(condition: greater_than_eq(target_value, constant(18)))
+        second_tdc.record.update(condition: greater_than_eq(target_value, constant(18)))
 
         page.refresh
       end

@@ -85,7 +85,7 @@ describe EditableChamp::DropDownListComponent, type: :component do
     end
 
     context 'when the champ has no description' do
-      before { tdc.update!(description: nil) }
+      before { tdc.record.update!(description: nil) }
 
       it do
         render
@@ -108,7 +108,7 @@ describe EditableChamp::DropDownListComponent, type: :component do
   end
 
   describe 'with select' do
-    before { tdc.update!(drop_down_options: ('a'..'f').to_a) }
+    before { tdc.record.update!(drop_down_options: ('a'..'f').to_a) }
     let(:select) { page.find('select') }
 
     it do
@@ -130,7 +130,7 @@ describe EditableChamp::DropDownListComponent, type: :component do
       end
 
       context 'when the champ has no description' do
-        before { tdc.update!(description: nil) }
+        before { tdc.record.update!(description: nil) }
 
         it { is_expected.to be_nil }
 
@@ -144,7 +144,7 @@ describe EditableChamp::DropDownListComponent, type: :component do
   end
 
   describe 'with a combobox' do
-    before { tdc.update!(drop_down_options: ('a'..'z').to_a) }
+    before { tdc.record.update!(drop_down_options: ('a'..'z').to_a) }
     let(:select) { page.find('select') }
     let(:react_component) { page.find('react-component') }
     let(:react_props) { JSON.parse(react_component['props']) }
@@ -168,7 +168,7 @@ describe EditableChamp::DropDownListComponent, type: :component do
       end
 
       context 'when the champ has no description' do
-        before { tdc.update!(description: nil) }
+        before { tdc.record.update!(description: nil) }
 
         it { is_expected.to be_nil }
 

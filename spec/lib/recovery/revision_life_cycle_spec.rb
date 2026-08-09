@@ -40,7 +40,7 @@ describe 'Recovery::Revision::LifeCycle' do
     context "when type de champ libelle updated" do
       before do
         dossier
-        yes_no_type_de_champ.update!(libelle: 'new libelle')
+        yes_no_type_de_champ.record.update!(libelle: 'new libelle')
       end
 
       it do

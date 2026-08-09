@@ -69,7 +69,7 @@ describe Champs::MultipleDropDownListChamp do
 
   describe "#focusable_input_id" do
     context "when drop_down_options is empty" do
-      before { champ.type_de_champ.update_column(:options, {}) }
+      before { champ.type_de_champ.record.update_column(:options, {}) }
 
       it "does not raise" do
         expect(champ.drop_down_options).to be_empty

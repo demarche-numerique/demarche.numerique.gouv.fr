@@ -17,7 +17,7 @@ module Maintenance
       let(:drop_down_list_tdc) { revision.root_types_de_champ_public.find(&:drop_down_list?) }
 
       context "with a condition based on commune and epci" do
-        before { text_tdc.update(condition: ds_and([ds_eq(champ_value(commune_tdc.stable_id), constant('11')), ds_not_eq(champ_value(epci_tdc.stable_id), constant('84'))])) }
+        before { text_tdc.record.update(condition: ds_and([ds_eq(champ_value(commune_tdc.stable_id), constant('11')), ds_not_eq(champ_value(epci_tdc.stable_id), constant('84'))])) }
 
         it "updates condition" do
           expect(text_tdc.condition).to eq ds_and([ds_eq(champ_value(commune_tdc.stable_id), constant('11')), ds_not_eq(champ_value(epci_tdc.stable_id), constant('84'))])
@@ -31,7 +31,7 @@ module Maintenance
       end
 
       context "with a condition based on a dropdown list" do
-        before { text_tdc.update(condition: ds_eq(champ_value(drop_down_list_tdc.stable_id), constant('Choix 2'))) }
+        before { text_tdc.record.update(condition: ds_eq(champ_value(drop_down_list_tdc.stable_id), constant('Choix 2'))) }
 
         it "does not update condition" do
           expect(text_tdc.condition).to eq ds_eq(champ_value(drop_down_list_tdc.stable_id), constant('Choix 2'))

@@ -8,7 +8,7 @@ module Maintenance
       subject(:process) do
         task = described_class.new
         task.procedure_id = procedure.id.to_s
-        task.process(type_de_champ)
+        task.process(type_de_champ.record)
       end
 
       context "with drop down list champs" do
@@ -28,7 +28,7 @@ module Maintenance
         let(:champ) { dossier.champ_data.first }
 
         before do
-          type_de_champ.update_column(:options, type_de_champ.options.merge(drop_down_options: ["  Foo   Bar  ", "Baz"]))
+          type_de_champ.record.update_column(:options, type_de_champ.options.merge(drop_down_options: ["  Foo   Bar  ", "Baz"]))
           champ.update_columns(value: "  Foo   Bar  ")
         end
 

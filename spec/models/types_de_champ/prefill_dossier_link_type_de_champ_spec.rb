@@ -65,7 +65,7 @@ RSpec.describe TypesDeChamp::PrefillDossierLinkTypeDeChamp do
       let(:other_procedure) { create(:procedure) }
 
       before do
-        type_de_champ.update!(options: type_de_champ.options.merge(
+        type_de_champ.record.update!(options: type_de_champ.options.merge(
           'procedures_limit' => '1',
           'dossier_link_procedure_ids' => [allowed_procedure.id]
         ))

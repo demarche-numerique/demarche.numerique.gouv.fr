@@ -351,7 +351,7 @@ describe TagsSubstitutionConcern, type: :model do
       let(:dropdown_list_tdc) { procedure.active_revision.types_de_champ.first }
 
       before do
-        dropdown_list_tdc.update(referentiel:, drop_down_mode: 'advanced')
+        dropdown_list_tdc.record.update(referentiel:, drop_down_mode: 'advanced')
         champ = dossier.root_champs_public.first
         item = referentiel.items.first
         champ.update(value: item.id)

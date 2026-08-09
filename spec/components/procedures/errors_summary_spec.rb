@@ -61,7 +61,7 @@ describe Procedure::ErrorsSummary, type: :component do
 
     before do
       drop_down_public = procedure.draft_revision.root_types_de_champ_public.find(&:any_drop_down_list?)
-      drop_down_public.update!(drop_down_options: [])
+      drop_down_public.record.update!(drop_down_options: [])
       subject
     end
 

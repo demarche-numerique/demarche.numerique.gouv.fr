@@ -453,7 +453,7 @@ describe ProcedureExportService do
 
       context 'with invalid characters' do
         before do
-          champ_repetition.type_de_champ.update(libelle: 'A / B \ C *[]?')
+          champ_repetition.type_de_champ.record.update(libelle: 'A / B \ C *[]?')
         end
 
         it 'should have valid sheet name' do
@@ -464,10 +464,10 @@ describe ProcedureExportService do
       context 'with long libelle composed of utf8 characteres' do
         before do
           procedure.active_revision.root_types_de_champ_public.each do |type_de_champ|
-            type_de_champ.update!(libelle: "#{type_de_champ.id} - ?/[] ééé ééé ééééééé ééééééé éééééééé. ééé éé éééééééé éé ééé. ééééé éééééééé ééé ééé.")
+            type_de_champ.record.update!(libelle: "#{type_de_champ.id} - ?/[] ééé ééé ééééééé ééééééé éééééééé. ééé éé éééééééé éé ééé. ééééé éééééééé ééé ééé.")
           end
           champ_repetition.type_de_champ.flat_children.each do |type_de_champ|
-            type_de_champ.update!(libelle: "#{type_de_champ.id} - Quam rem nam maiores numquam dolorem nesciunt. Cum et possimus et aut. Fugit voluptas qui qui.")
+            type_de_champ.record.update!(libelle: "#{type_de_champ.id} - Quam rem nam maiores numquam dolorem nesciunt. Cum et possimus et aut. Fugit voluptas qui qui.")
           end
         end
 

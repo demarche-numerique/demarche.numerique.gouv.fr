@@ -599,7 +599,7 @@ describe TypeDeChamp do
       let(:type_de_champ) { procedure.draft_revision.types_de_champ.first }
 
       before do
-        type_de_champ.update!(options: { 'referentiel_mapping' => { 'kikoo' => 'lol' } })
+        type_de_champ.record.update!(options: { 'referentiel_mapping' => { 'kikoo' => 'lol' } })
         procedure.publish_revision!(procedure.administrateurs.first)
       end
 

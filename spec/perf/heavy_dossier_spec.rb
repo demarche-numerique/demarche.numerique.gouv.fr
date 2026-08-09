@@ -20,7 +20,7 @@ describe Users::DossiersController, type: :controller do
       # one champ is visible if the previous champ is true
       (nb_champ - 1).times do |i|
         condition = ds_eq(champ_value(tdcs[i].stable_id), constant(true))
-        tdcs[i + 1].update!(condition:)
+        tdcs[i + 1].record.update!(condition:)
       end
 
       # all champs are visible

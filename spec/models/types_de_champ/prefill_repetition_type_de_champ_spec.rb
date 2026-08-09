@@ -36,7 +36,7 @@ RSpec.describe TypesDeChamp::PrefillRepetitionTypeDeChamp, type: :model do
 
     before do
       sub_tdc = repetition_tdc.flat_children.first
-      sub_tdc.update!(drop_down_options: [xss_payload, "safe"])
+      sub_tdc.record.update!(drop_down_options: [xss_payload, "safe"])
     end
 
     subject(:possible_values) { described_class.new(repetition_tdc, procedure_with_dropdown.active_revision).possible_values }

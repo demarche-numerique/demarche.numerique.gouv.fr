@@ -17,7 +17,7 @@ module ProcedureGroupeInstructeurAPIHackConcern
         groupe_instructeur.label
       end
 
-      tdc.update!(drop_down_options:)
+      tdc.record.update!(drop_down_options:)
 
       self.update_all_groupes_rule_statuses
     end

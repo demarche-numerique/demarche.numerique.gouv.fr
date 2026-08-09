@@ -102,7 +102,7 @@ RSpec.describe TypesDeChamp::DateValidator do
     end
 
     context "when a single date field has the option enabled" do
-      before { tdcs.first.update!(options: { 'birthdate' => '1', 'prefill_with_france_connect_information' => '1' }) }
+      before { tdcs.first.record.update!(options: { 'birthdate' => '1', 'prefill_with_france_connect_information' => '1' }) }
 
       it "does not add errors" do
         expect { subject }.not_to change { procedure.errors.count }
@@ -111,8 +111,8 @@ RSpec.describe TypesDeChamp::DateValidator do
 
     context "when two date fields have the option enabled" do
       before do
-        tdcs[0].update!(options: { 'birthdate' => '1', 'prefill_with_france_connect_information' => '1' })
-        tdcs[1].update!(options: { 'birthdate' => '1', 'prefill_with_france_connect_information' => '1' })
+        tdcs[0].record.update!(options: { 'birthdate' => '1', 'prefill_with_france_connect_information' => '1' })
+        tdcs[1].record.update!(options: { 'birthdate' => '1', 'prefill_with_france_connect_information' => '1' })
       end
 
       it "adds an error for each conflicting field" do
