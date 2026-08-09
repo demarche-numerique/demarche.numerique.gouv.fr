@@ -8,14 +8,14 @@ class RepetitionRow < Hashie::Dash
 
   # All the champs of the row, including champs nested in header sections.
   def flat_champs
-    type_de_champ.flat_children(dossier.revision).map { dossier.project_champ(it, row_id: id) }
+    type_de_champ.flat_children.map { dossier.project_champ(it, row_id: id) }
   end
 
   # Entry points to navigate the row's champs as a tree: first-level champs and
   # top-level header sections. Navigate deeper with
   # Champs::HeaderSectionChamp#children.
   def champs
-    type_de_champ.children(dossier.revision).map { dossier.project_champ(it, row_id: id) }
+    type_de_champ.children.map { dossier.project_champ(it, row_id: id) }
   end
 
   def dossier_id

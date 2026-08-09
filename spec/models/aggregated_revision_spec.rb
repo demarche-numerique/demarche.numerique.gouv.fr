@@ -43,7 +43,7 @@ describe AggregatedRevision do
     it 'keeps the removed champ at the end of its last-known section' do
       expect(procedure.published_revision.type_de_champ(131)).to be_nil
       expect(stable_ids(aggregate.children_of(aggregate.type_de_champ(130)))).to eq([131])
-      expect(aggregate.type_de_champ(131).section(aggregate).stable_id).to eq(130)
+      expect(aggregate.type_de_champ(131).section.stable_id).to eq(130)
     end
 
     it 'appends the removed champ after the section content of the newest revision' do
@@ -67,7 +67,7 @@ describe AggregatedRevision do
     it 'appends the removed section at the end, with its removed content' do
       expect(stable_ids(aggregate.types_de_champ_public)).to eq([110, 120, 130, 140])
       expect(stable_ids(aggregate.children_of(aggregate.type_de_champ(140)))).to eq([141])
-      expect(aggregate.type_de_champ(141).section(aggregate).stable_id).to eq(140)
+      expect(aggregate.type_de_champ(141).section.stable_id).to eq(140)
     end
   end
 
@@ -79,7 +79,7 @@ describe AggregatedRevision do
 
     it 'keeps the removed child at the end of the repetition' do
       expect(stable_ids(aggregate.children_of(aggregate.type_de_champ(120)))).to eq([121, 122])
-      expect(aggregate.type_de_champ(122).repetition(aggregate).stable_id).to eq(120)
+      expect(aggregate.type_de_champ(122).repetition.stable_id).to eq(120)
     end
   end
 
@@ -93,16 +93,15 @@ describe AggregatedRevision do
     it 'places the champ in its newest section only' do
       expect(stable_ids(aggregate.children_of(aggregate.type_de_champ(130)))).to eq([141, 131])
       expect(stable_ids(aggregate.children_of(aggregate.type_de_champ(140)))).to eq([])
-      expect(aggregate.type_de_champ(141).section(aggregate).stable_id).to eq(130)
+      expect(aggregate.type_de_champ(141).section.stable_id).to eq(130)
     end
 
     it 'navigates the same type de champ against any provider' do
       oldest_revision = procedure.revisions.min_by(&:created_at)
-      type_de_champ = aggregate.type_de_champ(141)
 
-      expect(type_de_champ.section(aggregate).stable_id).to eq(130)
-      expect(type_de_champ.section(procedure.published_revision).stable_id).to eq(130)
-      expect(type_de_champ.section(oldest_revision).stable_id).to eq(140)
+      expect(aggregate.type_de_champ(141).section.stable_id).to eq(130)
+      expect(procedure.published_revision.type_de_champ(141).section.stable_id).to eq(130)
+      expect(oldest_revision.type_de_champ(141).section.stable_id).to eq(140)
     end
   end
 

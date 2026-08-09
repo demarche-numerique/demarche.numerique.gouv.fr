@@ -20,12 +20,12 @@ class ProcedureRevision < ApplicationRecord
   def types_de_champ_public = tree.roots_public
   def types_de_champ_private = tree.roots_private
 
-  def flat_types_de_champ_public = types_de_champ_public.flat_map { [it, *it.flat_children(self)] }
-  def flat_types_de_champ_private = types_de_champ_private.flat_map { [it, *it.flat_children(self)] }
+  def flat_types_de_champ_public = types_de_champ_public.flat_map { [it, *it.flat_children] }
+  def flat_types_de_champ_private = types_de_champ_private.flat_map { [it, *it.flat_children] }
   def types_de_champ = flat_types_de_champ_public + flat_types_de_champ_private
 
-  def root_types_de_champ_public = flat_types_de_champ_public.reject { it.in_repetition?(self) }
-  def root_types_de_champ_private = flat_types_de_champ_private.reject { it.in_repetition?(self) }
+  def root_types_de_champ_public = flat_types_de_champ_public.reject(&:in_repetition?)
+  def root_types_de_champ_private = flat_types_de_champ_private.reject(&:in_repetition?)
 
   # Indexed lookup of a type de champ anywhere in the tree, repetition content
   # included. Returns nil when the stable_id is not part of this revision or
@@ -403,6 +403,7 @@ class ProcedureRevision < ApplicationRecord
 
   def tree
     @tree ||= TypeDeChampTree.new(
+      revision: self,
       public_coordinates: revision_types_de_champ_public,
       private_coordinates: revision_types_de_champ_private
     )
@@ -412,7 +413,7 @@ class ProcedureRevision < ApplicationRecord
     root_types_de_champ_public.sum do |tdc|
       next tdc.estimated_read_duration unless tdc.fillable?
 
-      duration = tdc.estimated_read_duration + tdc.estimated_fill_duration(self)
+      duration = tdc.estimated_read_duration + tdc.estimated_fill_duration
       duration /= 2 unless tdc.mandatory?
 
       duration
@@ -531,8 +532,8 @@ class ProcedureRevision < ApplicationRecord
     if from_type_de_champ.condition != to_type_de_champ.condition
       changes << ProcedureRevisionChange::UpdateChamp.new(from_type_de_champ,
         :condition,
-        from_type_de_champ.condition&.to_s(from_coordinates.map(&:type_de_champ)),
-        to_type_de_champ.condition&.to_s(to_coordinates.map(&:type_de_champ)))
+        from_type_de_champ.condition&.to_s(from_coordinates.map { TypesDeChamp::TypeDeChampBase.build(it.type_de_champ) }),
+        to_type_de_champ.condition&.to_s(to_coordinates.map { TypesDeChamp::TypeDeChampBase.build(it.type_de_champ) }))
     end
 
     if to_type_de_champ.any_drop_down_list?

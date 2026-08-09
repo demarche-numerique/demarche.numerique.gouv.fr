@@ -6,20 +6,20 @@ class Champs::HeaderSectionChamp < ChampData
   end
 
   def level
-    type_de_champ.level(dossier.revision)
+    type_de_champ.level
   end
 
   # Direct children of the section, as projected champs (sharing the section's
   # row_id when the section is inside a repetition).
   def children
-    type_de_champ.children(dossier.revision).map { dossier.project_champ(it, row_id:) }
+    type_de_champ.children.map { dossier.project_champ(it, row_id:) }
   end
 
   # Every champ below the section in document order, as projected champs.
   # Direct content shares the section's row_id; a nested repetition expands
   # into its rows, each row's champs projected with the row's own row_id.
   def flat_children
-    type_de_champ.children(dossier.revision).flat_map do
+    type_de_champ.children.flat_map do
       champ = dossier.project_champ(it, row_id:)
       if champ.repetition?
         [champ, *champ.rows.flat_map(&:flat_champs)]

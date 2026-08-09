@@ -22,7 +22,7 @@ RSpec.describe ViewableChamp::HeaderSectionsSummaryComponent, type: :component d
   let(:types_de_champ_public) { dossier.root_types_de_champ_public.filter(&:header_section?) }
   let(:types_de_champ_private) { dossier.root_types_de_champ_private.filter(&:header_section?) }
   let(:repetition_tdc) { dossier.root_types_de_champ_public.find(&:repetition?) }
-  let(:section_in_repetition) { repetition_tdc.flat_children(dossier.revision).find(&:header_section?) }
+  let(:section_in_repetition) { repetition_tdc.flat_children.find(&:header_section?) }
 
   context 'public' do
     it do

@@ -47,7 +47,7 @@ describe 'Prefilling a dossier (with a POST request):', js: true do
   let(:commune_value) { ['01540', '01457'] }
   let(:commune_libelle) { 'Vonnas (01540)' }
   let(:address_value) { "20 Avenue de Ségur 75007 Paris" }
-  let(:sub_type_de_champs_repetition) { type_de_champ_repetition.flat_children(procedure.active_revision) }
+  let(:sub_type_de_champs_repetition) { type_de_champ_repetition.flat_children }
   let(:text_repetition_libelle) { sub_type_de_champs_repetition.first.libelle }
   let(:integer_repetition_libelle) { sub_type_de_champs_repetition.second.libelle }
   let(:text_repetition_value) { "First repetition text" }

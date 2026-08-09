@@ -3,6 +3,7 @@
 describe TypeDeChampTree do
   subject(:tree) do
     TypeDeChampTree.new(
+      revision: draft,
       public_coordinates: draft.revision_types_de_champ_public,
       private_coordinates: draft.revision_types_de_champ_private
     )

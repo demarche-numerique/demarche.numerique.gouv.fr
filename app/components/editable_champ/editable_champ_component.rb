@@ -33,7 +33,7 @@ class EditableChamp::EditableChampComponent < ApplicationComponent
   def number_of_siblings_if_in_repetition
     return if !@champ.in_repetition?
 
-    @number_of_siblings_if_in_repetition ||= @champ.repetition.type_de_champ.flat_children(@champ.dossier.revision).count
+    @number_of_siblings_if_in_repetition ||= @champ.repetition.type_de_champ.flat_children.count
   end
 
   def row_number_if_in_repetition

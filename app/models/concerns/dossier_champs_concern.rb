@@ -72,6 +72,10 @@ module DossierChampsConcern
   def project_rows_for(type_de_champ)
     return [] if !type_de_champ.repetition?
 
+    # Callers may hold a wrapper from another tree (tags); rows navigate the
+    # repetition content, so bind to this dossier's revision.
+    type_de_champ = revision.type_de_champ(type_de_champ.stable_id) || type_de_champ
+
     repetition_row_ids(type_de_champ).map.with_index(1) do |row_id, index|
       RepetitionRow.new(id: row_id, index:, dossier: self, type_de_champ:)
     end
@@ -84,7 +88,7 @@ module DossierChampsConcern
   def champs_for_prefill(stable_ids)
     types_de_champ
       .filter { it.stable_id.in?(stable_ids) }
-      .filter { !it.in_repetition?(revision) }
+      .filter { !it.in_repetition? }
       .map { it.repetition? ? project_champ(it) : champ_for_update(it, updated_by: nil) }
   end
 
@@ -451,7 +455,7 @@ module DossierChampsConcern
   end
 
   def check_valid_row_id_on_read?(type_de_champ, row_id)
-    if type_de_champ.in_repetition?(revision)
+    if type_de_champ.in_repetition?
       if row_id.blank?
         raise "type_de_champ #{type_de_champ.stable_id} in revision #{revision_id} must have a row_id because it is part of a repetition"
       end

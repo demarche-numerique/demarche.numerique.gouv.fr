@@ -15,7 +15,7 @@ class TypesDeChamp::CarteTypeDeChamp < TypesDeChamp::TypeDeChampBase
     :rpg,
   ]
 
-  def estimated_fill_duration(revision)
+  def estimated_fill_duration
     FILL_DURATION_LONG
   end
 

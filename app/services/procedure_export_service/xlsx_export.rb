@@ -200,7 +200,7 @@ class ProcedureExportService::XlsxExport
 
     def repetition_children_tdcs
       @repetition_children_tdcs ||= repetition_tdcs.to_h do |tdc|
-        [tdc.stable_id, tdc.flat_children(@procedure.aggregated_revision).filter(&:fillable?)]
+        [tdc.stable_id, tdc.flat_children.filter(&:fillable?)]
       end
     end
 

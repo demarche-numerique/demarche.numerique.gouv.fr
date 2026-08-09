@@ -3,7 +3,7 @@
 class TypesDeChamp::SiretTypeDeChamp < TypesDeChamp::TypeDeChampBase
   include AddressableColumnConcern
 
-  def estimated_fill_duration(revision)
+  def estimated_fill_duration
     FILL_DURATION_MEDIUM
   end
 

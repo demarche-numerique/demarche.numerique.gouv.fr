@@ -511,7 +511,7 @@ describe DossierRebaseConcern do
 
       context 'when a child tdc is added in the middle' do
         before do
-          last_child = repetition.flat_children(procedure.draft_revision).last
+          last_child = repetition.flat_children.last
           added_tdc = procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'c3', parent_stable_id: repetition.stable_id, after_stable_id: last_child)
           procedure.draft_revision.move_type_de_champ(added_tdc.stable_id, 1)
           # procedure.publish_revision!(procedure.administrateurs.first)

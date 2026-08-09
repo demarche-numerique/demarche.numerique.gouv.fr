@@ -6,7 +6,7 @@ class EditableChamp::RepetitionRowComponent < ApplicationComponent
   def initialize(form:, dossier:, champ:, row:, expanded: false, seen_at: nil)
     @form, @dossier, @champ, @row, @expanded, @seen_at = form, dossier, champ, row, expanded, seen_at
     @type_de_champ = champ.type_de_champ
-    @types_de_champ = @type_de_champ.flat_children(dossier.revision)
+    @types_de_champ = @type_de_champ.flat_children
   end
 
   def row_id = @row.id

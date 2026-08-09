@@ -68,13 +68,24 @@ class ChampData < ApplicationRecord
   # look like it was edited. Revert blank-equivalent JSON columns before saving.
   before_save :nullify_blank_json_columns
 
+  # The dossier's revision provides the wrapper, bound to its tree, so
+  # navigation from a champ's type de champ is argument-free. The wrapper
+  # assigned at build time (params_for_champ, factories) is only a fallback
+  # for champs whose type de champ is not part of the revision (e.g.
+  # discarded champs kept around for exports).
   def type_de_champ
-    @type_de_champ ||= dossier.revision.type_de_champ(stable_id) ||
-      raise("Type De Champ #{stable_id} not found in Revision #{dossier.revision_id}")
+    @resolved_type_de_champ ||= dossier&.revision&.type_de_champ(stable_id) ||
+      @type_de_champ ||
+      raise("Type De Champ #{stable_id} not found in Revision #{dossier&.revision_id}")
   end
 
   def type_de_champ=(type_de_champ)
-    @type_de_champ = type_de_champ
+    @resolved_type_de_champ = nil
+    @type_de_champ = if type_de_champ.is_a?(TypesDeChamp::TypeDeChampBase)
+      type_de_champ
+    else
+      TypesDeChamp::TypeDeChampBase.build(type_de_champ)
+    end
   end
 
   delegate :libelle,
@@ -167,12 +178,12 @@ class ChampData < ApplicationRecord
   # Sections and repetitions above this champ in the tree, outermost first.
   # Ancestors inside the repetition share the champ's row_id.
   def ancestors
-    type_de_champ.ancestors(dossier.revision).map { project_ancestor(it) }
+    type_de_champ.ancestors.map { project_ancestor(it) }
   end
 
-  def parent = project_ancestor(type_de_champ.parent(dossier.revision))
-  def section = project_ancestor(type_de_champ.section(dossier.revision))
-  def repetition = project_ancestor(type_de_champ.repetition(dossier.revision))
+  def parent = project_ancestor(type_de_champ.parent)
+  def section = project_ancestor(type_de_champ.section)
+  def repetition = project_ancestor(type_de_champ.repetition)
 
   def in_repetition? = repetition.present?
   def in_section? = section.present?
@@ -390,7 +401,7 @@ class ChampData < ApplicationRecord
   def project_ancestor(ancestor_type_de_champ)
     return if ancestor_type_de_champ.nil?
 
-    row = ancestor_type_de_champ.in_repetition?(dossier.revision) ? row_id : nil
+    row = ancestor_type_de_champ.in_repetition? ? row_id : nil
     dossier.project_champ(ancestor_type_de_champ, row_id: row)
   end
 

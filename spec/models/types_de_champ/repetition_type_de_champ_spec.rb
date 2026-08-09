@@ -5,7 +5,7 @@ describe TypesDeChamp::RepetitionTypeDeChamp do
     let(:revision) { procedure.draft_revision }
     let(:repetition) { revision.root_types_de_champ_public.find(&:repetition?) }
 
-    subject(:children_libelles) { repetition.children(revision).map(&:libelle) }
+    subject(:children_libelles) { repetition.children.map(&:libelle) }
 
     context 'without sections' do
       let(:procedure) do

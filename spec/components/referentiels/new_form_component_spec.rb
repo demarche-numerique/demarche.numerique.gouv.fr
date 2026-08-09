@@ -9,7 +9,7 @@ RSpec.describe Referentiels::NewFormComponent, type: :component do
     let(:component) { described_class.new(referentiel:, type_de_champ:, procedure:) }
     let(:procedure) { create(:procedure, types_de_champ_public:) }
     let(:types_de_champ_public) { [{ type: :referentiel }] }
-    let(:type_de_champ) { procedure.draft_revision.root_types_de_champ_public.first }
+    let(:type_de_champ) { procedure.draft_revision.root_types_de_champ_public.first.record }
     before do
       render_inline(component)
     end
@@ -54,7 +54,7 @@ RSpec.describe Referentiels::NewFormComponent, type: :component do
 
       context 'with api was selected and procedure has yes_no and address champs' do
         let(:types_de_champ_public) { [{ type: :yes_no, libelle: 'Majeur' }, { type: :address, libelle: 'Adresse' }, { type: :checkbox, libelle: 'Checkbox' }, { type: :referentiel }] }
-        let(:type_de_champ) { procedure.draft_revision.root_types_de_champ_public.last }
+        let(:type_de_champ) { procedure.draft_revision.root_types_de_champ_public.last.record }
         let(:referentiel) { type_de_champ.build_referentiel(type: "Referentiels::APIReferentiel") }
 
         it 'renders yes_no and address champs as tiptap tags' do

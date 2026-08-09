@@ -14,7 +14,7 @@ class EditableChamp::RepetitionComponent < EditableChamp::EditableChampBaseCompo
   end
 
   def show_toggle_all_button?
-    @champ.type_de_champ.flat_children(@champ.dossier.revision).size > 1
+    @champ.type_de_champ.flat_children.size > 1
   end
 
   def aria_controls
@@ -29,7 +29,7 @@ class EditableChamp::RepetitionComponent < EditableChamp::EditableChampBaseCompo
     dossier = @champ.dossier
     return false if dossier.errors.empty?
 
-    children_types = @champ.type_de_champ.flat_children(dossier.revision)
+    children_types = @champ.type_de_champ.flat_children
     public_ids = children_types.map { |tdc| tdc.public_id(row_id) }.to_set
 
     public_ids.intersect?(errors_public_ids)

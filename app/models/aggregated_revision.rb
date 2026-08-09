@@ -3,10 +3,10 @@
 # Aggregated view of a procedure's types de champ across every revision a
 # dossier may still be using: the published history, or the draft alone on a
 # never-published procedure. It exposes the same tree API as ProcedureRevision,
-# so the same navigation works against either provider —
-# tdc.section(aggregated_revision) as well as tdc.section(revision) — which is
-# what filters, exports and the export template picker need: they operate on
-# dossiers spanning several revisions.
+# so the same navigation works against either provider — a type de champ
+# looked up here navigates the aggregate, one looked up on a revision
+# navigates that revision — which is what filters, exports and the export
+# template picker need: they operate on dossiers spanning several revisions.
 #
 # Merge policy (the spec holds the authoritative cases):
 # - the newest revision a type de champ appears in provides its version;
@@ -38,12 +38,12 @@ class AggregatedRevision
   def types_de_champ_public = tree.roots_public
   def types_de_champ_private = tree.roots_private
 
-  def flat_types_de_champ_public = types_de_champ_public.flat_map { [it, *it.flat_children(self)] }
-  def flat_types_de_champ_private = types_de_champ_private.flat_map { [it, *it.flat_children(self)] }
+  def flat_types_de_champ_public = types_de_champ_public.flat_map { [it, *it.flat_children] }
+  def flat_types_de_champ_private = types_de_champ_private.flat_map { [it, *it.flat_children] }
   def types_de_champ = flat_types_de_champ_public + flat_types_de_champ_private
 
-  def root_types_de_champ_public = flat_types_de_champ_public.reject { it.in_repetition?(self) }
-  def root_types_de_champ_private = flat_types_de_champ_private.reject { it.in_repetition?(self) }
+  def root_types_de_champ_public = flat_types_de_champ_public.reject(&:in_repetition?)
+  def root_types_de_champ_private = flat_types_de_champ_private.reject(&:in_repetition?)
   def root_types_de_champ = root_types_de_champ_public + root_types_de_champ_private
 
   def type_de_champ(stable_id, scope = nil)
@@ -67,6 +67,7 @@ class AggregatedRevision
       @latest_version = latest_ids.transform_values { types_de_champ_by_id.fetch(it) }
 
       TypeDeChampTree.new(
+        revision: self,
         public_coordinates: coordinates_for(members.fetch(:public, [])),
         private_coordinates: coordinates_for(members.fetch(:private, []))
       )

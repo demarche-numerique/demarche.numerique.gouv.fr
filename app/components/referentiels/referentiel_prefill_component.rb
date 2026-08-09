@@ -30,7 +30,7 @@ class Referentiels::ReferentielPrefillComponent < Referentiels::MappingFormBase
       public_coordinates = collect_public_coordinates
       private_coordinates = collect_private_coordinates
 
-      (public_coordinates + private_coordinates).map(&:type_de_champ)
+      (public_coordinates + private_coordinates).filter_map { draft_revision.type_de_champ(it.stable_id) }
     end
   end
 
@@ -98,7 +98,7 @@ class Referentiels::ReferentielPrefillComponent < Referentiels::MappingFormBase
   end
 
   def tdc_option_for(tdc)
-    [tdc.libelle_with_parent(draft_revision), tdc.stable_id]
+    [tdc.libelle_with_parent, tdc.stable_id]
   end
 
   def select_grouped_tdcs(grouped_tdcs)

@@ -27,7 +27,7 @@ class TypesDeChampEditor::HeaderSectionsSummaryComponent < ApplicationComponent
 
   def flatten_sections(types_de_champ, depth)
     types_de_champ.filter { it.header_section? || it.repetition? }.flat_map do |type_de_champ|
-      [[type_de_champ, depth], *flatten_sections(type_de_champ.children(revision), depth + 1)]
+      [[type_de_champ, depth], *flatten_sections(type_de_champ.children, depth + 1)]
     end
   end
 end

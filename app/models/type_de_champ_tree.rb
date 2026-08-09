@@ -6,6 +6,11 @@
 # state on the types de champ themselves (the same type de champ can belong to
 # several revisions, so its tree position is a property of the revision).
 #
+# The tree emits typed wrappers (TypesDeChamp::TypeDeChampBase subclasses)
+# bound to the revision the tree belongs to, so navigation from an emitted
+# type de champ needs no revision argument. One wrapper per stable_id per
+# tree: two lookups of the same type de champ return the same instance.
+#
 # Coordinates are consumed through a small duck type — #type_de_champ,
 # #header_section?, #repetition? and #revision_types_de_champ (its children) —
 # so a tree can later be built over synthetic coordinates, e.g. an aggregate
@@ -15,7 +20,9 @@ class TypeDeChampTree
   # header. Navigate deeper with #children_of.
   attr_reader :roots_public, :roots_private
 
-  def initialize(public_coordinates:, private_coordinates:)
+  def initialize(revision:, public_coordinates:, private_coordinates:)
+    @revision = revision
+    @wrappers = {}
     @ancestors = {}
     @children = {}
     @by_stable_id = {}
@@ -53,7 +60,7 @@ class TypeDeChampTree
     # presence validation; they have no behavior, so no tree exposes them.
     return walk(tail, ancestors) if head.type_de_champ.type_champ.blank?
 
-    type_de_champ = head.type_de_champ
+    type_de_champ = wrap(head.type_de_champ)
     @ancestors[key(type_de_champ)] = ancestors
     @by_stable_id[type_de_champ.stable_id] = type_de_champ if type_de_champ.stable_id
 
@@ -67,6 +74,10 @@ class TypeDeChampTree
     else
       [type_de_champ, *walk(tail, ancestors)]
     end
+  end
+
+  def wrap(type_de_champ)
+    @wrappers[key(type_de_champ)] ||= TypesDeChamp::TypeDeChampBase.build(type_de_champ, @revision)
   end
 
   def same_or_shallower_level?(header, coordinate)

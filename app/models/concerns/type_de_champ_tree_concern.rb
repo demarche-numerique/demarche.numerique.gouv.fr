@@ -17,7 +17,7 @@ module TypeDeChampTreeConcern
   # Every type de champ below, in document order, including nested section
   # headers, repetition row content and their own content.
   def flat_children(revision)
-    children(revision).flat_map { [it, *it.flat_children(revision)] }
+    children(revision).flat_map { [it, *it.flat_children] }
   end
 
   # The repetition this type de champ belongs to, nil outside a repetition.

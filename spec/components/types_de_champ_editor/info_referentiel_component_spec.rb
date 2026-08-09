@@ -4,7 +4,7 @@ describe TypesDeChampEditor::InfoReferentielComponent, type: :component do
   describe 'render' do
     let(:component) { described_class.new(procedure:, type_de_champ:) }
     let(:types_de_champ_public) { [{ type: :referentiel }] }
-    let(:type_de_champ) { procedure.draft_revision.root_types_de_champ_public.first }
+    let(:type_de_champ) { procedure.draft_revision.root_types_de_champ_public.first.record }
 
     before do
       referentiel

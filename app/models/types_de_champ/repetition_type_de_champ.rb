@@ -6,12 +6,12 @@ class TypesDeChamp::RepetitionTypeDeChamp < TypesDeChamp::TypeDeChampBase
     ChampPresentations::RepetitionPresentation.new(libelle, champ.dossier.project_rows_for(@type_de_champ))
   end
 
-  def estimated_fill_duration(revision)
+  def estimated_fill_duration
     estimated_rows_in_repetition = 2.5
 
-    children = @type_de_champ.flat_children(revision)
+    children = flat_children
 
-    estimated_row_duration = children.map { _1.estimated_fill_duration(revision) }.sum
+    estimated_row_duration = children.map(&:estimated_fill_duration).sum
     estimated_children_read_duration = children.map(&:estimated_read_duration).sum
 
     # Count only once children read time for all rows
@@ -32,8 +32,10 @@ class TypesDeChamp::RepetitionTypeDeChamp < TypesDeChamp::TypeDeChampBase
   def columns(procedure_id:, displayable: true, prefix: nil)
     prefix = prefix.present? ? "(#{prefix} #{libelle})" : libelle
 
-    @type_de_champ
-      .flat_children(Procedure.find(procedure_id).aggregated_revision)
+    # Columns cover dossiers on every revision, so ask the aggregated
+    # revision's own tree, whatever tree this wrapper came from.
+    Procedure.find(procedure_id).aggregated_revision.type_de_champ(stable_id)
+      .flat_children
       .flat_map { it.columns(procedure_id:, displayable: false, prefix:) }
   end
 

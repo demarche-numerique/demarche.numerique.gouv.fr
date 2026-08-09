@@ -62,7 +62,7 @@ class Champs::ReferentielChamp < ChampData
       dossier.root_champs_private
     end.filter do |champ|
       if champ.repetition?
-        champ.type_de_champ.flat_children(dossier.revision).any? { it.stable_id.in?(elligible_stable_ids) }
+        champ.type_de_champ.flat_children.any? { it.stable_id.in?(elligible_stable_ids) }
       else
         champ.stable_id.in?(elligible_stable_ids)
       end
@@ -87,7 +87,7 @@ class Champs::ReferentielChamp < ChampData
       .transform_values do |mapping|
         types_de_champ_by_stable_id[mapping[:prefill_stable_id].to_i]
       end.compact.group_by do |_, type_de_champ|
-        type_de_champ.repetition(dossier.revision)
+        type_de_champ.repetition
       end.flat_map do |repetition_type_de_champ, mappings|
         if repetition_type_de_champ.present?
           update_repetition_prefillable_champs(data, repetition_type_de_champ, mappings)
@@ -190,7 +190,7 @@ class Champs::ReferentielChamp < ChampData
     # When referentiel champ is inside a repetition, use current row_id to keep related data together.
     # When outside, create new rows for each array element from external data.
     # Note: Limited to updating current row only when inside repetition.
-    if type_de_champ.in_repetition?(dossier.revision)
+    if type_de_champ.in_repetition?
       self.row_id
     else
       dossier.repetition_add_row(repetition_type_de_champ, updated_by:)

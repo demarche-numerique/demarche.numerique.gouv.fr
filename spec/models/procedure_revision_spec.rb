@@ -60,13 +60,13 @@ describe ProcedureRevision do
     end
 
     context 'with a repetition child' do
-      let(:text_params) { { type_champ: :text, libelle: 'text', after_stable_id: type_de_champ_repetition.flat_children(procedure.draft_revision).last.stable_id } }
+      let(:text_params) { { type_champ: :text, libelle: 'text', after_stable_id: type_de_champ_repetition.flat_children.last.stable_id } }
       let(:tdc_params) { text_params.merge(parent_stable_id: type_de_champ_repetition.stable_id) }
 
       it do
         expect { subject }.to change { draft.reload.types_de_champ.count }.from(4).to(5)
-        expect(type_de_champ_repetition.flat_children(draft).last).to eq(subject)
-        expect(type_de_champ_repetition.flat_children(draft).map { draft.coordinate_for(it).position }).to eq([0, 1])
+        expect(type_de_champ_repetition.flat_children.last).to eq(subject)
+        expect(type_de_champ_repetition.flat_children.map { draft.coordinate_for(it).position }).to eq([0, 1])
 
         expect(last_coordinate.position).to eq(1)
 
@@ -140,7 +140,7 @@ describe ProcedureRevision do
           type_champ: TypeDeChamp.type_champs.fetch(:text),
           libelle: "second child",
           parent_stable_id: type_de_champ_repetition.stable_id,
-          after_stable_id: type_de_champ_repetition.flat_children(draft.reload).last.stable_id,
+          after_stable_id: draft.reload.type_de_champ(type_de_champ_repetition.stable_id).flat_children.last.stable_id,
         })
       end
 
@@ -149,24 +149,24 @@ describe ProcedureRevision do
           type_champ: TypeDeChamp.type_champs.fetch(:text),
           libelle: "last child",
           parent_stable_id: type_de_champ_repetition.stable_id,
-          after_stable_id: type_de_champ_repetition.flat_children(draft.reload).last.stable_id,
+          after_stable_id: draft.reload.type_de_champ(type_de_champ_repetition.stable_id).flat_children.last.stable_id,
         })
       end
 
       it 'move down' do
-        expect(type_de_champ_repetition.flat_children(draft).index(second_child)).to eq(2)
+        expect(type_de_champ_repetition.flat_children.index(second_child)).to eq(2)
 
         draft.move_type_de_champ(second_child.stable_id, 3)
 
-        expect(type_de_champ_repetition.flat_children(draft).index(second_child)).to eq(3)
+        expect(type_de_champ_repetition.flat_children.index(second_child)).to eq(3)
       end
 
       it 'move up' do
-        expect(type_de_champ_repetition.flat_children(draft).index(last_child)).to eq(3)
+        expect(type_de_champ_repetition.flat_children.index(last_child)).to eq(3)
 
         draft.move_type_de_champ(last_child.stable_id, 0)
 
-        expect(type_de_champ_repetition.flat_children(draft).index(last_child)).to eq(0)
+        expect(type_de_champ_repetition.flat_children.index(last_child)).to eq(0)
       end
     end
   end
@@ -237,7 +237,7 @@ describe ProcedureRevision do
 
     context 'for a type_de_champ_repetition' do
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :repetition, children: [{ type: :text }, { type: :integer_number }] }]) }
-      let!(:child) { child = type_de_champ_repetition.flat_children(draft).first }
+      let!(:child) { child = type_de_champ_repetition.flat_children.first }
 
       it 'can remove its children' do
         draft.remove_type_de_champ(child.stable_id)
@@ -261,8 +261,8 @@ describe ProcedureRevision do
           new_draft.remove_type_de_champ(child.stable_id)
 
           expect { child.reload }.not_to raise_error
-          expect(type_de_champ_repetition.flat_children(draft).size).to eq(2)
-          expect(type_de_champ_repetition.flat_children(new_draft).size).to eq(1)
+          expect(type_de_champ_repetition.flat_children.size).to eq(2)
+          expect(new_draft.type_de_champ(type_de_champ_repetition.stable_id).flat_children.size).to eq(1)
         end
 
         it 'can remove the parent only in the new revision' do
@@ -611,7 +611,7 @@ describe ProcedureRevision do
         let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :repetition, children: [{ type: :text, libelle: 'sub type de champ' }, { type: :integer_number }] }]) }
 
         before do
-          child = new_draft.root_types_de_champ_public.last.flat_children(new_draft).first
+          child = new_draft.root_types_de_champ_public.last.flat_children.first
           new_draft.find_and_ensure_exclusive_use(child.stable_id).update(type_champ: :drop_down_list, drop_down_options: ['one', 'two'])
         end
 
@@ -624,7 +624,7 @@ describe ProcedureRevision do
               private: false,
               from: "text",
               to: "drop_down_list",
-              stable_id: new_draft.root_types_de_champ_public.last.flat_children(new_draft).first.stable_id,
+              stable_id: new_draft.root_types_de_champ_public.last.flat_children.first.stable_id,
             },
             {
               op: :update,
@@ -633,7 +633,7 @@ describe ProcedureRevision do
               private: false,
               from: [],
               to: ["one", "two"],
-              stable_id: new_draft.root_types_de_champ_public.last.flat_children(new_draft).first.stable_id,
+              stable_id: new_draft.root_types_de_champ_public.last.flat_children.first.stable_id,
             },
           ])
         end
@@ -643,7 +643,7 @@ describe ProcedureRevision do
         let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :repetition, children: [{ type: :text, libelle: 'sub type de champ' }, { type: :integer_number }] }]) }
 
         before do
-          child = new_draft.root_types_de_champ_public.last.flat_children(new_draft).first
+          child = new_draft.root_types_de_champ_public.last.flat_children.first
           new_draft.find_and_ensure_exclusive_use(child.stable_id).update(type_champ: :carte, options: { cadastres: true, znieff: true })
         end
 
@@ -656,7 +656,7 @@ describe ProcedureRevision do
               private: false,
               from: "text",
               to: "carte",
-              stable_id: new_draft.root_types_de_champ_public.last.flat_children(new_draft).first.stable_id,
+              stable_id: new_draft.root_types_de_champ_public.last.flat_children.first.stable_id,
             },
             {
               op: :update,
@@ -665,7 +665,7 @@ describe ProcedureRevision do
               private: false,
               from: [],
               to: [:cadastres, :znieff],
-              stable_id: new_draft.root_types_de_champ_public.last.flat_children(new_draft).first.stable_id,
+              stable_id: new_draft.root_types_de_champ_public.last.flat_children.first.stable_id,
             },
           ])
         end
@@ -1026,7 +1026,7 @@ describe ProcedureRevision do
     context 'with a simple tdc' do
       let(:procedure) { create(:procedure, :with_type_de_champ) }
 
-      it { expect(draft.types_de_champ.first.flat_children(draft)).to be_empty }
+      it { expect(draft.types_de_champ.first.flat_children).to be_empty }
     end
 
     context 'with a repetition tdc' do
@@ -1035,7 +1035,7 @@ describe ProcedureRevision do
       let!(:first_child) { draft.types_de_champ.reject(&:repetition?).first }
       let!(:second_child) { draft.types_de_champ.reject(&:repetition?).second }
 
-      it { expect(parent.flat_children(draft)).to match([first_child, second_child]) }
+      it { expect(parent.flat_children).to match([first_child, second_child]) }
 
       context 'with multiple child' do
         let(:child_position_2) { create(:type_de_champ_text) }
@@ -1049,7 +1049,7 @@ describe ProcedureRevision do
         end
 
         it 'returns the children in order' do
-          expect(parent.flat_children(draft)).to eq([first_child, second_child, child_position_1, child_position_2])
+          expect(parent.flat_children).to eq([first_child, second_child, child_position_1, child_position_2])
         end
       end
 
@@ -1069,8 +1069,8 @@ describe ProcedureRevision do
         end
 
         it 'returns the children regarding the revision' do
-          expect(parent.flat_children(draft)).to match([first_child, second_child])
-          expect(parent.flat_children(new_draft)).to match([new_child, second_child])
+          expect(parent.flat_children).to match([first_child, second_child])
+          expect(new_draft.type_de_champ(parent.stable_id).flat_children).to match([new_child, second_child])
         end
       end
     end
@@ -1317,7 +1317,7 @@ describe ProcedureRevision do
 
       let(:children_of_repetition) do
         repetition = procedure.draft_revision.root_types_de_champ_public.find(&:repetition?)
-        repetition.flat_children(procedure.draft_revision)
+        repetition.flat_children
       end
 
       let(:integer_champ) { children_of_repetition.first }

@@ -43,7 +43,7 @@ class TypesDeChamp::FranceConnectTypeDeChamp < TypesDeChamp::TypeDeChampBase
     REGISTRY.fetch(type_champ.to_sym)
   end
 
-  def estimated_fill_duration(revision)
+  def estimated_fill_duration
     FILL_DURATION_MEDIUM
   end
 

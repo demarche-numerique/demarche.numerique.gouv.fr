@@ -466,7 +466,7 @@ describe ProcedureExportService do
           procedure.active_revision.root_types_de_champ_public.each do |type_de_champ|
             type_de_champ.update!(libelle: "#{type_de_champ.id} - ?/[] ééé ééé ééééééé ééééééé éééééééé. ééé éé éééééééé éé ééé. ééééé éééééééé ééé ééé.")
           end
-          champ_repetition.type_de_champ.flat_children(procedure.active_revision).each do |type_de_champ|
+          champ_repetition.type_de_champ.flat_children.each do |type_de_champ|
             type_de_champ.update!(libelle: "#{type_de_champ.id} - Quam rem nam maiores numquam dolorem nesciunt. Cum et possimus et aut. Fugit voluptas qui qui.")
           end
         end

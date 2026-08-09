@@ -307,7 +307,7 @@ end
 
 def dossier_factory_create_champ_or_repetition(type_de_champ, dossier)
   if type_de_champ.repetition?
-    types_de_champ = type_de_champ.flat_children(dossier.revision)
+    types_de_champ = type_de_champ.flat_children
     2.times do
       row_id = ULID.generate
       dossier.champ_data << type_de_champ.build_champ(row_id:)

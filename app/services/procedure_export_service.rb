@@ -117,7 +117,7 @@ class ProcedureExportService
       .root_types_de_champ
       .filter(&:repetition?)
       .filter_map do |type_de_champ_repetition|
-        types_de_champ = type_de_champ_repetition.flat_children(procedure.aggregated_revision).filter(&:fillable?)
+        types_de_champ = type_de_champ_repetition.flat_children.filter(&:fillable?)
         rows = dossiers.flat_map { it.project_rows_for(type_de_champ_repetition) }
 
         if types_de_champ.present? && rows.present?

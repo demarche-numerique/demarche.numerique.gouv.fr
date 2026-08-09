@@ -54,7 +54,7 @@ class Dossiers::ErrorsFullMessagesComponent < ApplicationComponent
   def is_in_fieldset?(model)
     return 0 if !model.in_repetition?
 
-    model.repetition.type_de_champ.flat_children(model.dossier.revision).size > 1
+    model.repetition.type_de_champ.flat_children.size > 1
   end
 
   def render?

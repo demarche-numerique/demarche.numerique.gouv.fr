@@ -159,7 +159,7 @@ RSpec.describe PrefillChamps do
     context "when the public type de champ is authorized (repetition)" do
       let(:types_de_champ_public) { [{ type: :repetition, children: [{ type: :text }] }] }
       let(:type_de_champ) { procedure.published_revision.root_types_de_champ_public.first }
-      let(:type_de_champ_child) { type_de_champ.flat_children(procedure.published_revision).first }
+      let(:type_de_champ_child) { type_de_champ.flat_children.first }
       let(:type_de_champ_child_value) { "value" }
       let(:type_de_champ_child_value2) { "value2" }
       let(:child_champs) { dossier.champ_data.where(stable_id: type_de_champ_child.stable_id) }
@@ -201,7 +201,7 @@ RSpec.describe PrefillChamps do
     context "when the private type de champ is authorized (repetition)" do
       let(:types_de_champ_private) { [{ type: :repetition, children: [{ type: :text }] }] }
       let(:type_de_champ) { procedure.published_revision.root_types_de_champ_private.first }
-      let(:type_de_champ_child) { type_de_champ.flat_children(procedure.published_revision).first }
+      let(:type_de_champ_child) { type_de_champ.flat_children.first }
       let(:type_de_champ_child_value) { "value" }
       let(:type_de_champ_child_value2) { "value2" }
       let(:child_champs) { dossier.champ_data.where(stable_id: type_de_champ_child.stable_id) }
@@ -235,7 +235,7 @@ RSpec.describe PrefillChamps do
     context "when the public type de champ is unauthorized because of wrong value format (repetition)" do
       let(:types_de_champ_public) { [{ type: :repetition, children: [{ type: :text }] }] }
       let(:type_de_champ) { procedure.published_revision.root_types_de_champ_public.first }
-      let(:type_de_champ_child) { type_de_champ.flat_children(procedure.published_revision).first }
+      let(:type_de_champ_child) { type_de_champ.flat_children.first }
 
       let(:params) { { "champ_#{type_de_champ.to_typed_id_for_query}" => "value" } }
 
@@ -247,7 +247,7 @@ RSpec.describe PrefillChamps do
     context "when the public type de champ is unauthorized because of wrong value typed_id (repetition)" do
       let(:types_de_champ_public) { [{ type: :repetition, children: [{ type: :text }] }] }
       let(:type_de_champ) { procedure.published_revision.root_types_de_champ_public.first }
-      let(:type_de_champ_child) { type_de_champ.flat_children(procedure.published_revision).first }
+      let(:type_de_champ_child) { type_de_champ.flat_children.first }
 
       let(:params) { { "champ_#{type_de_champ.to_typed_id_for_query}" => ["{\"wrong\":\"value\"}", "{\"wrong\":\"value2\"}"] } }
 

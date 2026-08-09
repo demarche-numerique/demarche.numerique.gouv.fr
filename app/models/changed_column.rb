@@ -19,7 +19,7 @@ class ChangedColumn
       revision.root_types_de_champ_public.flat_map do |type_de_champ|
         if type_de_champ.repetition?
           prefix = type_de_champ.libelle
-          types_de_champ = type_de_champ.flat_children(revision)
+          types_de_champ = type_de_champ.flat_children
           row_ids.flat_map do |row_id|
             types_de_champ.filter_map do |type_de_champ|
               public_id = type_de_champ.public_id(row_id)

@@ -152,7 +152,7 @@ class TypesDeChamp::TypeDeChampBase
 
   # Default estimated duration to fill the champ in a form, in seconds.
   # May be overridden by subclasses.
-  def estimated_fill_duration(revision)
+  def estimated_fill_duration
     if fillable?
       FILL_DURATION_SHORT
     else

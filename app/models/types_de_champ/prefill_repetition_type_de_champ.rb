@@ -40,7 +40,7 @@ class TypesDeChamp::PrefillRepetitionTypeDeChamp < TypesDeChamp::PrefillTypeDeCh
 
   def prefillable_subchamps
     @prefillable_subchamps ||=
-      TypesDeChamp::PrefillTypeDeChamp.wrap(flat_children(@revision).filter(&:prefillable?), @revision)
+      TypesDeChamp::PrefillTypeDeChamp.wrap(flat_children.filter(&:prefillable?), @revision)
   end
 
   class PrefillRepetitionRow

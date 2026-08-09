@@ -1173,7 +1173,7 @@ class Dossier < ApplicationRecord
         if type_de_champ.private? || type_de_champ.mandatory?
           type_de_champ.build_champ(dossier: self, row_id: ULID.generate)
         end
-      elsif !type_de_champ.in_repetition?(revision)
+      elsif !type_de_champ.in_repetition?
         type_de_champ.build_champ(dossier: self, row_id: nil)
       end
     end

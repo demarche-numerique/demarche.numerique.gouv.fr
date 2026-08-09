@@ -608,7 +608,7 @@ describe Procedure do
           let(:types_de_champ_public) { [{ type: :repetition, libelle: 'Bloc', children: }] }
           let(:types_de_champ_private) { [] }
           let(:repetition) { procedure.draft_revision.types_de_champ.find(&:repetition?) }
-          let(:nested_tdc) { repetition.flat_children(procedure.draft_revision).first }
+          let(:nested_tdc) { repetition.flat_children.first }
 
           context 'with invalid dropdown' do
             let(:children) { [{ type: :multiple_drop_down_list, libelle: 'Choix imbriqué' }] }
@@ -2318,7 +2318,7 @@ describe Procedure do
       ])
       legacy_tdc_id = procedure.published_revision.root_types_de_champ_public.find { _1.libelle == 'Champ legacy' }.id
       TypeDeChamp.where(id: legacy_tdc_id).update_all(type_champ: 'titre_identite')
-      expect(TypeDeChamp.find(legacy_tdc_id).dynamic_type).to be_nil
+      expect(TypeDeChamp.find(legacy_tdc_id).type_champ).to be_nil
       procedure.reload
 
       expect { procedure.personnalisable_columns }.not_to raise_error
@@ -2456,7 +2456,7 @@ describe Procedure do
       ])
       legacy_tdc_id = procedure.published_revision.root_types_de_champ_public.find { _1.libelle == 'Champ legacy' }.id
       TypeDeChamp.where(id: legacy_tdc_id).update_all(type_champ: 'titre_identite')
-      expect(TypeDeChamp.find(legacy_tdc_id).dynamic_type).to be_nil
+      expect(TypeDeChamp.find(legacy_tdc_id).type_champ).to be_nil
       procedure.reload
 
       expect { procedure.personnalisable_columns_by_section }.not_to raise_error
@@ -2486,7 +2486,7 @@ describe Procedure do
       valid_tdc = procedure.published_revision.root_types_de_champ_public.find { _1.libelle == 'Champ valide' }
       legacy_tdc_id = procedure.published_revision.root_types_de_champ_public.find { _1.libelle == 'Champ legacy' }.id
       TypeDeChamp.where(id: legacy_tdc_id).update_all(type_champ: 'titre_identite')
-      expect(TypeDeChamp.find(legacy_tdc_id).dynamic_type).to be_nil
+      expect(TypeDeChamp.find(legacy_tdc_id).type_champ).to be_nil
       procedure.reload
       Current.procedure_columns = nil
 

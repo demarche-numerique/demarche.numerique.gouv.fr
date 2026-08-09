@@ -29,7 +29,7 @@ class ExportTemplate::ChampsComponent < ApplicationComponent
     [
       { libelle: nil, columns: columns_for(champs) },
       *headers.map do |header|
-        content = header.flat_children(@revision).reject { it.header_section? || it.in_repetition?(@revision) }
+        content = header.flat_children.reject { it.header_section? || it.in_repetition? }
         { libelle: header.libelle, columns: columns_for(content) }
       end,
     ].filter { it[:columns].present? }

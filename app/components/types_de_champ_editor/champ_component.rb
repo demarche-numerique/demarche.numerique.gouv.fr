@@ -14,6 +14,12 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
 
   delegate :type_de_champ, :revision, :procedure, to: :coordinate
 
+  # Typed wrappers for the conditions editor (it reads columns and options);
+  # the coordinates themselves stay bare records.
+  def upper_tdcs
+    upper_coordinates.filter_map { revision.type_de_champ(it.stable_id) }
+  end
+
   def mandatory_configurable?
     type_de_champ.fillable? && !type_de_champ.must_be_mandatory? && !type_de_champ.cannot_be_mandatory?
   end
