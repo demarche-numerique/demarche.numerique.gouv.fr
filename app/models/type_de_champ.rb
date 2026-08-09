@@ -285,6 +285,14 @@ class TypeDeChamp < ApplicationRecord
     set_dynamic_type
   end
 
+  # Symmetric with TypesDeChamp::TypeDeChampBase#==: a type de champ compares
+  # equal to a tree-emitted wrapper holding the same row.
+  def ==(other)
+    other = other.record if other.is_a?(TypesDeChamp::TypeDeChampBase)
+    super
+  end
+  alias_method :eql?, :==
+
   def set_default_libelle
     libelle_was_default = libelle == default_libelle(type_champ_was)
     self.libelle = default_libelle(type_champ) if libelle.blank? || libelle_was_default

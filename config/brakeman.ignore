@@ -171,6 +171,48 @@
         89
       ],
       "note": "The table and column are escaped, which should make this safe"
+    },
+    {
+      "warning_type": "Remote Code Execution",
+      "warning_code": 24,
+      "fingerprint": "9ce3b6b6fb9ecb8c373b56912c8da46dc5d891e177d6616ef78dcf2d406f1c76",
+      "check_name": "UnsafeReflection",
+      "message": "Unsafe reflection method `constantize` called on model attribute",
+      "file": "app/models/types_de_champ/type_de_champ_base.rb",
+      "line": 65,
+      "link": "https://brakemanscanner.org/docs/warning_types/remote_code_execution/",
+      "code": "TypeDeChamp.type_champ_to_class_name(type_de_champ.type_champ).constantize",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "TypesDeChamp::TypeDeChampBase",
+        "method": "TypesDeChamp::TypeDeChampBase.build"
+      },
+      "user_input": "TypeDeChamp.type_champ_to_class_name(type_de_champ.type_champ)",
+      "confidence": "Medium",
+      "cwe_id": [
+        470
+      ],
+      "note": "type_champ is constrained by the ActiveRecord enum: writes of unknown values raise, and unknown legacy DB values read back as nil (the enum mapping lookup), so type_champ_to_class_name can only interpolate one of the enum keys into TypesDeChamp::…TypeDeChamp. No user-controlled constant name can reach constantize."
+    },
+    {
+      "warning_type": "Unmaintained Dependency",
+      "warning_code": 122,
+      "fingerprint": "21ab0fe00fdd5899ffc405cff75aadb91b805ee996a614f7e27b08a287e9062d",
+      "check_name": "EOLRails",
+      "message": "Support for Rails 8.0.5 ends on 2026-10-07",
+      "file": "Gemfile.lock",
+      "line": 647,
+      "link": "https://brakemanscanner.org/docs/warning_types/unmaintained_dependency/",
+      "code": null,
+      "render_path": null,
+      "location": null,
+      "user_input": null,
+      "confidence": "Weak",
+      "cwe_id": [
+        1104
+      ],
+      "note": "Rails 8.0 approaches end of support (2026-10-07); the framework upgrade is tracked as its own work, unrelated to this branch. Refresh this entry (new fingerprint) or drop it when Rails is upgraded."
     }
   ],
   "brakeman_version": "8.0.4"
