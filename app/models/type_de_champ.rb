@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class TypeDeChamp < ApplicationRecord
-  include TypeDeChampTreeConcern
-
   FILE_MAX_SIZE = 200.megabytes
   IDENTITY_FILE_MAX_SIZE = 20.megabytes
   FEATURE_FLAGS = {
@@ -263,14 +261,6 @@ class TypeDeChamp < ApplicationRecord
   end
   alias_method :eql?, :==
 
-  def libelle_with_parent(revision)
-    if in_repetition?(revision)
-      "#{repetition(revision).libelle} - #{libelle}"
-    else
-      libelle
-    end
-  end
-
   def set_default_libelle
     libelle_was_default = libelle == default_libelle(type_champ_was)
     self.libelle = default_libelle(type_champ) if libelle.blank? || libelle_was_default
@@ -451,14 +441,6 @@ class TypeDeChamp < ApplicationRecord
   def france_connect? = type_champ.in?([*API_PART_FC_TDC])
 
   def api_particulier? = type_champ.in?(API_PART_FC_TDC)
-
-  def in_repetition?(revision)
-    repetition(revision).present?
-  end
-
-  def in_section?(revision)
-    section(revision).present?
-  end
 
   def filename_for_attachement(attachment_sym)
     attachment = send(attachment_sym)

@@ -5,8 +5,8 @@ describe TypesDeChamp::HeaderSectionTypeDeChamp do
     let(:revision) { procedure.draft_revision }
 
     def children_libelles(libelle)
-      tdc = revision.revision_types_de_champ.map(&:type_de_champ).find { it.libelle == libelle }
-      tdc.children(revision).map(&:libelle)
+      tdc = revision.types_de_champ.find { it.libelle == libelle }
+      tdc.children.map(&:libelle)
     end
 
     context 'with nested sections' do
@@ -108,8 +108,8 @@ describe TypesDeChamp::HeaderSectionTypeDeChamp do
     let(:revision) { procedure.draft_revision }
 
     def flat_children_libelles(libelle)
-      tdc = revision.revision_types_de_champ.map(&:type_de_champ).find { it.libelle == libelle }
-      tdc.flat_children(revision).map(&:libelle)
+      tdc = revision.types_de_champ.find { it.libelle == libelle }
+      tdc.flat_children.map(&:libelle)
     end
 
     let(:procedure) do
