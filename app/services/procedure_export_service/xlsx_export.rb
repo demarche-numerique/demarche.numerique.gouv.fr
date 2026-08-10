@@ -195,7 +195,7 @@ class ProcedureExportService::XlsxExport
     end
 
     def repetition_tdcs
-      @repetition_tdcs ||= @procedure.aggregated_revision.root_types_de_champ.filter(&:repetition?)
+      @repetition_tdcs ||= @procedure.aggregated_revision.repetition_types_de_champ
     end
 
     def repetition_children_tdcs

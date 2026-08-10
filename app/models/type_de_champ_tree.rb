@@ -34,6 +34,9 @@ class TypeDeChampTree
     def root_types_de_champ_private = flat_types_de_champ_private.reject(&:in_repetition?)
     def root_types_de_champ = root_types_de_champ_public + root_types_de_champ_private
 
+    # Repetitions can't nest, so every repetition in the tree is a root.
+    def repetition_types_de_champ = root_types_de_champ.filter(&:repetition?)
+
     # Indexed lookup of a type de champ anywhere in the tree, repetition
     # content included. Returns nil when the stable_id is not part of the tree
     # or doesn't match the requested scope (:public or :private).

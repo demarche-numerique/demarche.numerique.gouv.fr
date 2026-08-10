@@ -114,8 +114,7 @@ class ProcedureExportService
   def champs_repetables_options(format:)
     procedure
       .aggregated_revision
-      .root_types_de_champ
-      .filter(&:repetition?)
+      .repetition_types_de_champ
       .filter_map do |type_de_champ_repetition|
         types_de_champ = type_de_champ_repetition.flat_children.filter(&:fillable?)
         rows = dossiers.flat_map { it.project_rows_for(type_de_champ_repetition) }
