@@ -6,7 +6,7 @@ class API::V2::GraphqlController < API::V2::BaseController
   around_action :profile_with_vernier, only: :execute, if: :vernier_profile_requested?
 
   def execute
-    result = API::V2::Schema.execute(query:, variables:, context:, operation_name:)
+    result = execute_query
     @query_info = result.context.query_info
 
     render json: result
@@ -27,6 +27,25 @@ class API::V2::GraphqlController < API::V2::BaseController
   end
 
   private
+
+  # Execute with a cached parsed document when possible: stored queries are
+  # static and integrators replay the same custom queries constantly, so
+  # re-parsing the document on every request is pure overhead. The original
+  # query string is reattached for logging (query_info). When the cache
+  # returns nil (blank or unparseable query), fall back to the standard path,
+  # which renders the usual GraphQL error response.
+  def execute_query
+    query_string = query
+    document = API::V2::ParsedQueryCache.fetch(query_string)
+
+    if document
+      gql_query = GraphQL::Query.new(API::V2::Schema, document:, context:, variables:, operation_name:)
+      gql_query.query_string = query_string
+      gql_query.result
+    else
+      API::V2::Schema.execute(query: query_string, variables:, context:, operation_name:)
+    end
+  end
 
   def vernier_profile_requested?
     params[:profile].present?
