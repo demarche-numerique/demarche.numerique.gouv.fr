@@ -16,6 +16,39 @@
 # so a tree can later be built over synthetic coordinates, e.g. an aggregate
 # of several revisions.
 class TypeDeChampTree
+  # The navigation surface a tree provider exposes, shared by ProcedureRevision
+  # and AggregatedRevision so both answer the exact same contract. Includers
+  # implement a (private) #tree returning their TypeDeChampTree.
+  module Navigation
+    # Entry points to navigate types de champ as a tree: first-level types de
+    # champ and top-level header sections (their content collapses into the
+    # header; navigate deeper with TypeDeChamp#children).
+    def types_de_champ_public = tree.roots_public
+    def types_de_champ_private = tree.roots_private
+
+    def flat_types_de_champ_public = types_de_champ_public.flat_map { [it, *it.flat_children] }
+    def flat_types_de_champ_private = types_de_champ_private.flat_map { [it, *it.flat_children] }
+    def types_de_champ = flat_types_de_champ_public + flat_types_de_champ_private
+
+    def root_types_de_champ_public = flat_types_de_champ_public.reject(&:in_repetition?)
+    def root_types_de_champ_private = flat_types_de_champ_private.reject(&:in_repetition?)
+    def root_types_de_champ = root_types_de_champ_public + root_types_de_champ_private
+
+    # Indexed lookup of a type de champ anywhere in the tree, repetition
+    # content included. Returns nil when the stable_id is not part of the tree
+    # or doesn't match the requested scope (:public or :private).
+    def type_de_champ(stable_id, scope = nil)
+      type_de_champ = tree.type_de_champ(stable_id)
+      return if type_de_champ.nil?
+      return if scope == :public && type_de_champ.private?
+      return if scope == :private && type_de_champ.public?
+
+      type_de_champ
+    end
+
+    delegate :ancestors_of, :children_of, to: :tree
+  end
+
   # Top-level types de champ in order, a section's content collapsed into its
   # header. Navigate deeper with #children_of.
   attr_reader :roots_public, :roots_private
