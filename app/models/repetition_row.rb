@@ -18,6 +18,11 @@ class RepetitionRow < Hashie::Dash
     type_de_champ.children.map { dossier.project_champ(it, row_id: id) }
   end
 
+  # DOM id anchoring the row in dossier views.
+  def html_id
+    type_de_champ.html_id(id)
+  end
+
   def dossier_id
     dossier.id.to_s
   end

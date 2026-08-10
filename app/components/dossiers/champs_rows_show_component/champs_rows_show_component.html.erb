@@ -3,7 +3,7 @@
     <div id="<%= champ.html_id %>">
       <% champ.rows.each do |row| %>
         <div
-          id="<%= champ.type_de_champ.html_id(row.id) %>"
+          id="<%= row.html_id %>"
           class="
             fr-background-alt--grey fr-p-2w fr-my-3w fr-ml-2w
             champ-repetition

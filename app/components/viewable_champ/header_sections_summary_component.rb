@@ -37,7 +37,7 @@ class ViewableChamp::HeaderSectionsSummaryComponent < ApplicationComponent
   def row_entries(champ, depth)
     champ.rows.flat_map do |row|
       [
-        Entry.new(libelle: "#{champ.libelle} #{row.index}", anchor_id: champ.type_de_champ.html_id(row.id), level: depth),
+        Entry.new(libelle: "#{champ.libelle} #{row.index}", anchor_id: row.html_id, level: depth),
         *flatten_sections(row.champs, depth + 1),
       ]
     end
