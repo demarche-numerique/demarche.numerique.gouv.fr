@@ -15,7 +15,7 @@ RSpec.describe ChampValidateConcern do
     context 'valid' do
       before {
         update_champ('test@test.com')
-        dossier.validate(:champs_public_value)
+        dossier.validate(:public_champs_value)
       }
       it {
         expect(dossier.champ_data).not_to be_empty
@@ -26,7 +26,7 @@ RSpec.describe ChampValidateConcern do
     context 'invalid' do
       before {
         update_champ('test')
-        dossier.validate(:champs_public_value)
+        dossier.validate(:public_champs_value)
       }
       it {
         expect(dossier.champ_data).not_to be_empty
@@ -41,7 +41,7 @@ RSpec.describe ChampValidateConcern do
         update_champ('test')
         dossier.revision.revision_types_de_champ.delete_all
         dossier.reload
-        dossier.validate(:champs_public_value)
+        dossier.validate(:public_champs_value)
       }
       it {
         expect(dossier.revision.revision_types_de_champ).to be_empty
@@ -56,7 +56,7 @@ RSpec.describe ChampValidateConcern do
       before {
         dossier.revision.revision_types_de_champ.delete_all
         dossier.reload
-        dossier.validate(:champs_public_value)
+        dossier.validate(:public_champs_value)
       }
       it {
         expect(dossier.revision.revision_types_de_champ).to be_empty
@@ -71,7 +71,7 @@ RSpec.describe ChampValidateConcern do
       before {
         dossier.revision.revision_types_de_champ.delete_all
         dossier.reload
-        dossier.validate(:champs_public_value)
+        dossier.validate(:public_champs_value)
       }
       it {
         expect(dossier.revision.revision_types_de_champ).to be_empty
@@ -90,7 +90,7 @@ RSpec.describe ChampValidateConcern do
         dossier.revision.revision_types_de_champ.delete_all
 
         dossier.reload
-        dossier.validate(:champs_public_value)
+        dossier.validate(:public_champs_value)
       end
 
       it {
@@ -106,7 +106,7 @@ RSpec.describe ChampValidateConcern do
         update_champ('test')
         type_de_champ.record.update(type_champ: :text)
         dossier.reload
-        dossier.validate(:champs_public_value)
+        dossier.validate(:public_champs_value)
       }
       it {
         expect(dossier.champ_data.first.last_write_type_champ).to eq('email')
@@ -123,7 +123,7 @@ RSpec.describe ChampValidateConcern do
         update_champ('test')
         type_de_champ.record.update(type_champ: :email)
         dossier.reload
-        dossier.validate(:champs_public_value)
+        dossier.validate(:public_champs_value)
       }
       it {
         expect(dossier.champ_data.first.last_write_type_champ).to eq('text')
@@ -143,7 +143,7 @@ RSpec.describe ChampValidateConcern do
     context 'valid' do
       before {
         update_champ('test@test.com')
-        dossier.validate(:champs_public_value)
+        dossier.validate(:public_champs_value)
       }
       it {
         expect(dossier.champ_data).not_to be_empty
@@ -154,7 +154,7 @@ RSpec.describe ChampValidateConcern do
     context 'invalid' do
       before {
         update_champ('test')
-        dossier.validate(:champs_public_value)
+        dossier.validate(:public_champs_value)
       }
       it {
         expect(dossier.champ_data).not_to be_empty
@@ -167,7 +167,7 @@ RSpec.describe ChampValidateConcern do
         update_champ('test')
         dossier.repetition_remove_row(type_de_champ, row_id, updated_by: 'test')
         dossier.reload
-        dossier.validate(:champs_public_value)
+        dossier.validate(:public_champs_value)
       }
       it {
         expect(dossier.champ_data).not_to be_empty

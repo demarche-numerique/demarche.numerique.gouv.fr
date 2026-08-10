@@ -12,7 +12,7 @@ module DossierCorrectableConcern
 
     scope :with_pending_corrections, -> { joins(:corrections).where(corrections: { resolved_at: nil }) }
 
-    validate :validate_pending_correction, on: :champs_public_completeness
+    validate :validate_pending_correction, on: :public_champs_completeness
   end
 
   def flag_as_pending_correction!(commentaire, reason = nil)

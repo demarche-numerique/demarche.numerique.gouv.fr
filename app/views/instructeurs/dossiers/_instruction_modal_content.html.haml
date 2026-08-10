@@ -4,7 +4,7 @@
   - else
     = modal_title_data[:default_title]
 
-- has_annotation_errors = !batch && operation.blank? && !dossier.champs_private_valid?
+- has_annotation_errors = !batch && operation.blank? && !dossier.private_champs_valid?
 
 - if !batch && operation.blank?
   = render partial: 'instructeurs/dossiers/annotations_error_alert', locals: { dossier:, hidden: !has_annotation_errors }

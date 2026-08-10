@@ -20,8 +20,8 @@ RSpec.describe Dossiers::ErrorsFullMessagesComponent, type: :component do
       let(:champ) { dossier.champ_data.first }
 
       subject do
-        dossier.validate(:champs_public_value)
-        dossier.champs_public_valid?
+        dossier.validate(:public_champs_value)
+        dossier.public_champs_valid?
         render_inline(component).to_html
       end
 

@@ -6,7 +6,7 @@ describe InstructionButtonHelper, type: :helper do
     let(:dossier) { create(:dossier, :en_instruction, procedure:) }
 
     it 'returns libelles of invalid private champs' do
-      dossier.champs_private_valid?
+      dossier.private_champs_valid?
       expect(helper.invalid_annotations_libelles(dossier)).to eq(['Appréciation globale'])
     end
   end

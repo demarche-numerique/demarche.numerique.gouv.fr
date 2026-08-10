@@ -568,7 +568,7 @@ class Dossier < ApplicationRecord
 
   def can_terminer?
     return false if any_etablissement_as_degraded_mode?
-    return false unless champs_private_valid?
+    return false unless private_champs_valid?
 
     true
   end

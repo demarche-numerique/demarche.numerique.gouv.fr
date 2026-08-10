@@ -64,7 +64,7 @@ describe Champs::EmailChamp do
       }
 
       it 'is not projected, so the dossier does not validate the invalid value' do
-        expect(dossier.validate(:champs_public_value)).to be_truthy
+        expect(dossier.validate(:public_champs_value)).to be_truthy
       end
     end
   end

@@ -571,7 +571,7 @@ module Instructeurs
         t('instructeurs.dossiers.aasm_error_originating_state', state: dossier_display_state(target_state, lower: true))
       elsif exception.failures.include?(:can_terminer?) && dossier.any_etablissement_as_degraded_mode?
         t('instructeurs.dossiers.aasm_error_etablissement_as_degraded_mode', state: dossier_display_state(target_state, lower: true))
-      elsif exception.failures.include?(:can_terminer?) && !dossier.champs_private_valid?
+      elsif exception.failures.include?(:can_terminer?) && !dossier.private_champs_valid?
         t('instructeurs.dossiers.aasm_error_annotations', url: annotations_privees_instructeur_dossier_path(dossier.procedure, dossier, statut: params[:statut]))
       else
         t('instructeurs.dossiers.aasm_error_other', originating_state: dossier_display_state(exception.originating_state, lower: true), target_state: dossier_display_state(target_state, lower: true))

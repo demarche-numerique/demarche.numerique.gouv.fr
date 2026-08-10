@@ -19,7 +19,7 @@ module Maintenance
           next if penultimate_traitement.nil? || last_traitement.nil?
 
           if last_traitement_by_us?(last_traitement) && last_transition_to_en_construction?(last_traitement, penultimate_traitement)
-            dossier_correction.dossier.passer_en_instruction(instructeur: current_instructeur) if dossier_correction.dossier.validate(:champs_public_value)
+            dossier_correction.dossier.passer_en_instruction(instructeur: current_instructeur) if dossier_correction.dossier.validate(:public_champs_value)
           end
         end
     end

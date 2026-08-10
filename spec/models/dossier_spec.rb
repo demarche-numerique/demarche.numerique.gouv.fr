@@ -2080,14 +2080,14 @@ describe Dossier, type: :model do
     end
   end
 
-  describe "#champs_public_valid?" do
+  describe "#public_champs_valid?" do
     include Logic
 
     let(:procedure) { create(:procedure, types_de_champ_public: types_de_champ) }
     let(:dossier) { create(:dossier, procedure: procedure) }
     let(:types_de_champ) { [type_de_champ].compact }
     let(:type_de_champ) { nil }
-    let(:errors) { dossier.champs_public_valid?; dossier.errors }
+    let(:errors) { dossier.public_champs_valid?; dossier.errors }
 
     it 'no mandatory champs' do
       expect(errors).to be_empty
@@ -2199,7 +2199,7 @@ describe Dossier, type: :model do
     before do
       champ = dossier.root_public_champs.first
       champ.value = value
-      dossier.save(context: :champs_public_value)
+      dossier.save(context: :public_champs_value)
     end
 
     context 'with letters forbidden' do
@@ -2327,7 +2327,7 @@ describe Dossier, type: :model do
       before do
         champ = dossier.root_public_champs.first
         champ.value = expression_reguliere_exemple_text
-        dossier.save(context: :champs_public_value)
+        dossier.save(context: :public_champs_value)
       end
 
       it 'should have errors' do

@@ -29,9 +29,9 @@ module Administrateurs
       @dossier = procedure_without_control.draft_revision.dossier_for_preview(current_user).with_champs
       @tab = apercu_tab
       if @tab == 'dossier'
-        @dossier.validate(:champs_public_value)
+        @dossier.validate(:public_champs_value)
       else
-        @dossier.validate(:champs_private_value)
+        @dossier.validate(:private_champs_value)
       end
     end
 

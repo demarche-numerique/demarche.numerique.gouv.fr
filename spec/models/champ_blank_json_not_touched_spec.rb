@@ -34,7 +34,7 @@ RSpec.describe 'A blank champ must not be touched when another champ is correcte
     edited.save!
 
     submitted = Dossier.find(dossier.id)
-    submitted.champs_public_valid?
+    submitted.public_champs_valid?
     submitted.merge_user_buffer_stream!
     submitted.save!
   end

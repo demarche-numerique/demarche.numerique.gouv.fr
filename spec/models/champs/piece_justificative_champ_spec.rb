@@ -37,7 +37,7 @@ describe Champs::PieceJustificativeChamp do
       it "rejects a bitmap image" do
         champ.piece_justificative_file = [{ io: StringIO.new(bmp_bytes), filename: 'image.bmp', content_type: 'image/bmp' }]
 
-        expect(dossier.champs_public_valid?).to be false
+        expect(dossier.public_champs_valid?).to be false
       end
 
       it "accepts a markdown file declared as the legacy text/x-markdown content type" do
@@ -56,8 +56,8 @@ describe Champs::PieceJustificativeChamp do
           },
         ]
 
-        expect(dossier.champs_public_valid?).to be false
-        expect(dossier.champs_private_valid?).to be true
+        expect(dossier.public_champs_valid?).to be false
+        expect(dossier.private_champs_valid?).to be true
       end
     end
 

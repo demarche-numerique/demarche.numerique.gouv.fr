@@ -18,7 +18,7 @@ describe EditableChamp::RNFComponent, type: :component do
       champ.update_columns(external_id: '075-FDD-00003-0', external_state: 'external_error')
       champ.send(:save_external_error, StandardError.new('NotFound'), 404)
       champ.reload
-      dossier.validate(:champs_public_value)
+      dossier.validate(:public_champs_value)
     end
 
     it 'renders a single error message (no duplicate status text)' do
