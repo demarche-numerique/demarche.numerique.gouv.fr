@@ -3,11 +3,10 @@
 class ExportTemplate::ChampsComponent < ApplicationComponent
   attr_reader :export_template, :title
 
-  def initialize(title, export_template, types_de_champ, revision:)
+  def initialize(title, export_template, types_de_champ)
     @title = title
     @export_template = export_template
     @types_de_champ = types_de_champ
-    @revision = revision
   end
 
   def historical_libelle(column)
