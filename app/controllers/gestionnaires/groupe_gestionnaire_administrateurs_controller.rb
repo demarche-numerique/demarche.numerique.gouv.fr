@@ -38,24 +38,24 @@ module Gestionnaires
       end
 
       if administrateurs_already_in_groupe_gestionnaire.present?
-        flash[:alert] = I18n.t('activerecord.errors.administrateurs_already_in_groupe_gestionnaire',
+        flash[:alert] = t('activerecord.errors.administrateurs_already_in_groupe_gestionnaire',
           count: administrateurs_already_in_groupe_gestionnaire.size,
           emails: administrateurs_already_in_groupe_gestionnaire)
       end
 
       if invalid_emails.present?
-        flash[:alert] = I18n.t('activerecord.wrong_address',
+        flash[:alert] = t('activerecord.wrong_address',
           count: invalid_emails.size,
           emails: invalid_emails.join(', '))
       end
       if administrateurs_duplicate.present?
-        flash[:alert] = I18n.t('activerecord.errors.duplicate_email',
+        flash[:alert] = t('activerecord.errors.duplicate_email',
           count: invalid_emails.size,
           emails: administrateurs_duplicate.map(&:email).join(', '))
       end
 
       if administrateurs_to_add.present?
-        flash[:notice] = I18n.t('groupe_gestionnaires.flash.notice.groupe_gestionnaire_administrateur.create')
+        flash[:notice] = t('groupe_gestionnaires.flash.notice.groupe_gestionnaire_administrateur.create')
 
         GroupeGestionnaireMailer
           .notify_added_administrateurs(@groupe_gestionnaire, administrateurs_to_add, current_gestionnaire.email)
@@ -72,19 +72,19 @@ module Gestionnaires
       case result
       in Dry::Monads::Result::Success
         logger.info("L’administrateur #{@administrateur.id} est supprimé par le gestionnaire #{current_gestionnaire.id} depuis le groupe gestionnaire #{@groupe_gestionnaire.id}")
-        flash[:notice] = I18n.t('groupe_gestionnaires.flash.notice.groupe_gestionnaire_administrateur.destroy', email: @administrateur.email)
+        flash[:notice] = t('groupe_gestionnaires.flash.notice.groupe_gestionnaire_administrateur.destroy', email: @administrateur.email)
         GroupeGestionnaireMailer
           .notify_removed_administrateur(@groupe_gestionnaire, @administrateur.email, current_gestionnaire.email)
           .deliver_later
       in Dry::Monads::Result::Failure(reason)
-        flash[:alert] = I18n.t('groupe_gestionnaires.flash.alert.groupe_gestionnaire_administrateur.cannot_be_deleted', email: @administrateur.email)
+        flash[:alert] = t('groupe_gestionnaires.flash.alert.groupe_gestionnaire_administrateur.cannot_be_deleted', email: @administrateur.email)
       end
     end
 
     def remove
       @administrateur = @groupe_gestionnaire.administrateurs.find(params[:id])
       @administrateur.update(groupe_gestionnaire_id: nil)
-      flash[:notice] = I18n.t('groupe_gestionnaires.flash.notice.groupe_gestionnaire_administrateur.remove', email: @administrateur.email)
+      flash[:notice] = t('groupe_gestionnaires.flash.notice.groupe_gestionnaire_administrateur.remove', email: @administrateur.email)
       GroupeGestionnaireMailer
         .notify_removed_administrateur(@groupe_gestionnaire, @administrateur.email, current_gestionnaire.email)
         .deliver_later

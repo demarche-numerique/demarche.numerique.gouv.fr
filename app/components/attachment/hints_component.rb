@@ -37,7 +37,7 @@ class Attachment::HintsComponent < ApplicationComponent
         []
       else
         families.filter_map do |key|
-          label = I18n.t("activerecord.attributes.type_de_champ.format_families.#{key}", default: key.to_s.humanize).downcase
+          label = t("activerecord.attributes.type_de_champ.format_families.#{key}", default: key.to_s.humanize).downcase
           top = FORMAT_FAMILY_TOP_FORMATS[key]
           all = FORMAT_FAMILY_EXAMPLES[key]
           next if top.nil?

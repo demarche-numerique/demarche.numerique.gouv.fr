@@ -68,9 +68,9 @@ module Dsfr
 
       def default_hint
         if I18n.exists?("activerecord.attributes.#{object.class.name.underscore}.hints.#{@attribute}")
-          I18n.t("activerecord.attributes.#{object.class.name.underscore}.hints.#{@attribute}", application_name: APPLICATION_NAME)
+          t("activerecord.attributes.#{object.class.name.underscore}.hints.#{@attribute}", application_name: APPLICATION_NAME)
         elsif I18n.exists?("activerecord.attributes.#{object.class.name.underscore}.hints.#{@attribute}_html")
-          I18n.t("activerecord.attributes.#{object.class.name.underscore}.hints.#{@attribute}_html", application_name: APPLICATION_NAME).html_safe
+          t("activerecord.attributes.#{object.class.name.underscore}.hints.#{@attribute}_html", application_name: APPLICATION_NAME)
         end
       end
 

@@ -1,16 +1,16 @@
 #contact_information.fr-text--xs
   - service_or_contact_information = dossier&.service_or_contact_information || procedure.service
   - if service_or_contact_information.present?
-    %h3.fr-footer__top-cat= I18n.t('users.procedure_footer.managed_by.header')
+    %h3.fr-footer__top-cat= t('users.procedure_footer.managed_by.header')
     %div{ lang: :fr }
       = service_or_contact_information.pretty_nom
       = render SimpleFormatComponent.new(service_or_contact_information.adresse, class_names_map: {paragraph: 'fr-text--xs'})
   %h3.fr-footer__top-cat
     - if dossier.present? && dossier.depose_at.present?
-      = I18n.t('help_dropdown.help_filled_dossier')
+      = t('help_dropdown.help_filled_dossier')
     - elsif dossier.present?
-      = I18n.t('help_dropdown.help_brouillon_title')
+      = t('help_dropdown.help_brouillon_title')
     - else
-      = I18n.t('help_dropdown.procedure_title')
+      = t('help_dropdown.procedure_title')
   - if service_or_contact_information.present?
     = render Procedure::ServiceListContactComponent.new(service_or_contact_information: service_or_contact_information, dossier: dossier, footer: true)

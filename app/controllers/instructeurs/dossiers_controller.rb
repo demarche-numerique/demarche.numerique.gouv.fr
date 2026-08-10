@@ -182,7 +182,7 @@ module Instructeurs
 
     def archive
       if !dossier.termine?
-        flash.alert = I18n.t('activerecord.errors.models.dossier.cannot_archive')
+        flash.alert = t('activerecord.errors.models.dossier.cannot_archive')
       else
         dossier.archiver!(current_instructeur)
       end

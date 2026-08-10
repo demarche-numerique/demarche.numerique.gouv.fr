@@ -16,6 +16,6 @@ module AttestationDepotHelper
     # i18n-tasks-use t('users.dossiers.attestation_depot.states.accepte')
     # i18n-tasks-use t('users.dossiers.attestation_depot.states.refuse')
     # i18n-tasks-use t('users.dossiers.attestation_depot.states.sans_suite')
-    I18n.t("users.dossiers.attestation_depot.states.#{dossier.state}")
+    t("users.dossiers.attestation_depot.states.#{dossier.state}")
   end
 end

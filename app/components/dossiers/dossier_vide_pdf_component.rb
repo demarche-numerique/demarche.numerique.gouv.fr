@@ -128,7 +128,7 @@ class Dossiers::DossierVidePdfComponent < ApplicationComponent
     end
   end
 
-  def operator_label(term) = I18n.t(term.class.name, scope: 'logic.operators').sub(/\A./, &:downcase)
+  def operator_label(term) = t(term.class.name, scope: 'logic.operators').sub(/\A./, &:downcase)
 
   # Human label of the compared value (e.g. a region code → its name), taken from
   # the referenced champ's options; falls back to the raw value.

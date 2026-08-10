@@ -9,6 +9,7 @@ require:
   - ./lib/cops/add_concurrent_index.rb
   - ./lib/cops/application_name.rb
   - ./lib/cops/adresse_electronique.rb
+  - ./lib/cops/global_i18n_translate.rb
   - ./lib/cops/unscoped.rb
   - ./lib/cops/rspec/consecutive_it_blocks.rb
 
@@ -51,6 +52,18 @@ DS/AdresseElectronique:
 
 DS/Unscoped:
   Enabled: true
+
+DS/GlobalI18nTranslate:
+  Enabled: true
+  Include:
+    - 'app/components/**/*'
+    - 'app/controllers/**/*'
+    - 'app/helpers/**/*'
+    - 'app/mailers/**/*'
+    - 'app/views/**/*'
+  Exclude:
+    # hints_for_champ and friends run before render, where the component `t` raises
+    - 'app/components/editable_champ/champ_label_content_component.rb'
 
 Bundler/DuplicatedGem:
   Enabled: true

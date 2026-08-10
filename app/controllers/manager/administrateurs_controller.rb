@@ -31,7 +31,7 @@ module Manager
         logger.info("L’administrateur #{administrateur.id} est supprimé par #{current_super_admin.id}")
         flash[:notice] = "L’administrateur #{administrateur.id} est supprimé"
       in Dry::Monads::Result::Failure(reason)
-        flash[:alert] = I18n.t(reason, scope: "manager.administrateurs.delete")
+        flash[:alert] = t(reason, scope: "manager.administrateurs.delete")
       end
 
       redirect_to manager_administrateurs_path

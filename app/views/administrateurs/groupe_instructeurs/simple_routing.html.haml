@@ -44,7 +44,7 @@
         .card.fr-pb-0{ data: { 'action': "click->enable-submit-if-checked#click" } }
           .notice
             Sélectionner le champ à partir duquel créer des groupes d’instructeurs
-          - buttons_content = @procedure.active_revision.simple_routable_types_de_champ.map { |tdc| { label: tdc.libelle, value: tdc.stable_id, hint: "[#{I18n.t(tdc.type_champ, scope: 'activerecord.attributes.type_de_champ.type_champs')}]", tooltip: (tdc.drop_down_options.join(", ") if tdc.drop_down_list?)} }
+          - buttons_content = @procedure.active_revision.simple_routable_types_de_champ.map { |tdc| { label: tdc.libelle, value: tdc.stable_id, hint: "[#{t(tdc.type_champ, scope: 'activerecord.attributes.type_de_champ.type_champs')}]", tooltip: (tdc.drop_down_options.join(", ") if tdc.drop_down_list?)} }
           = render Dsfr::RadioButtonListComponent.new(form: f,
             target: :stable_id,
             buttons: buttons_content)

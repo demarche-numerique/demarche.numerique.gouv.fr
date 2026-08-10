@@ -20,8 +20,8 @@ class Dossiers::EpciComponent < ApplicationComponent
   def data
     [
       ['EPCI', name],
-      [I18n.t('shared.dossiers.geo.department'), champ.departement_code_and_name],
-      [I18n.t('shared.dossiers.geo.region_code'), champ.code_region],
+      [t('shared.dossiers.geo.department'), champ.departement_code_and_name],
+      [t('shared.dossiers.geo.region_code'), champ.code_region],
     ]
   end
 

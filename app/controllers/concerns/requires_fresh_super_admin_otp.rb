@@ -11,7 +11,7 @@ module RequiresFreshSuperAdminOtp
     code = params[:otp_attempt].to_s.strip
     return if code.present? && current_super_admin.validate_and_consume_otp!(code)
 
-    flash[:error] = I18n.t("manager.fresh_otp.invalid_code")
+    flash[:error] = t("manager.fresh_otp.invalid_code")
     redirect_back_or_to(manager_root_path)
   end
 end

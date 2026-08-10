@@ -17,7 +17,7 @@
 
     %fieldset.fr-mb-0.fr-fieldset{ aria: { labelledby: 'new-account-legend' } }
       %legend.fr-fieldset__legend#new-account-legend
-        %h2.fr-h6= I18n.t('views.users.sessions.new.subtitle')
+        %h2.fr-h6= t('views.users.sessions.new.subtitle')
 
       - banner = banner_for(:login_page)
       - if banner&.active?

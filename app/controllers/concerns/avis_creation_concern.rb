@@ -31,7 +31,7 @@ module AvisCreationConcern
   def handle_empty_emails
     if avis_emails.empty?
       email_label = User.human_attribute_name(:email)
-      flash.now[:alert] = format(I18n.t('errors.format'), attribute: email_label, message: I18n.t('errors.messages.blank'))
+      flash.now[:alert] = format(t('errors.format'), attribute: email_label, message: t('errors.messages.blank'))
       true
     end
   end

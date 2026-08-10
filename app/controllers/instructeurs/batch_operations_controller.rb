@@ -29,11 +29,11 @@ module Instructeurs
       email_label = User.human_attribute_name(:email)
 
       if emails.empty?
-        avis.errors.add(:base, format(I18n.t('errors.format'), attribute: email_label, message: I18n.t('errors.messages.blank')))
+        avis.errors.add(:base, format(t('errors.format'), attribute: email_label, message: t('errors.messages.blank')))
       end
 
       invalid_emails.each do |email|
-        avis.errors.add(:base, format(I18n.t('errors.format'), attribute: email_label, message: "est invalide : #{email}"))
+        avis.errors.add(:base, format(t('errors.format'), attribute: email_label, message: "est invalide : #{email}"))
       end
 
       batch = avis.errors.empty? ? BatchOperation.safe_create!(batch_operation_avis_params) : nil

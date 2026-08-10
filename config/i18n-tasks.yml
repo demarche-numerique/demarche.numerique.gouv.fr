@@ -31,9 +31,10 @@ data:
 
   # External locale data (e.g. gems).
   # This data is not considered unused and is never written to.
+  # Resolved via Gem::Specification (not `bundle info`, which fails outside a Bundler context):
   external:
-    - '<%= %x[bundle info --path administrate].chomp %>/config/locales/*%{locale}.yml'
-    - '<%= %x[bundle info --path devise-i18n].chomp %>/rails/locales/*%{locale}.yml'
+    - '<%= Gem::Specification.find_by_name("administrate").gem_dir %>/config/locales/*%{locale}.yml'
+    - '<%= Gem::Specification.find_by_name("devise-i18n").gem_dir %>/rails/locales/*%{locale}.yml'
 
   ## Specify the router (see Readme for details). Valid values: conservative_router, pattern_router, or a custom class.
   # router: conservative_router

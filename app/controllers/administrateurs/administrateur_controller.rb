@@ -67,9 +67,9 @@ module Administrateurs
       procedures = missing_siret_services
       if procedures.any?
         errors = []
-        errors << I18n.t('shared.procedures.no_siret')
+        errors << t('shared.procedures.no_siret')
         procedures.each do |p|
-          errors << I18n.t('shared.procedures.add_siret_to_service_without_siret_html', link: edit_admin_service_path(p.service, procedure_id: p.id), nom: p.service.nom)
+          errors << t('shared.procedures.add_siret_to_service_without_siret_html', link: edit_admin_service_path(p.service, procedure_id: p.id), nom: p.service.nom)
         end
         flash.now.alert = errors
       end
@@ -88,9 +88,9 @@ module Administrateurs
       procedures = missing_service
       if procedures.any?
         errors = []
-        errors << I18n.t('shared.procedures.no_service')
+        errors << t('shared.procedures.no_service')
         procedures.each do |p|
-          errors << I18n.t('shared.procedures.add_service_html', link: admin_services_path(procedure_id: p.id), id: p.id)
+          errors << t('shared.procedures.add_service_html', link: admin_services_path(procedure_id: p.id), id: p.id)
         end
         flash.now.alert = errors
       end

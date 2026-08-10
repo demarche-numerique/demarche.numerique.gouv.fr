@@ -144,7 +144,7 @@ class FranceConnectController < ApplicationController
     if @user.confirmation_sent_at && 2.days.ago < @user.confirmation_sent_at
       @user.update(email_verified_at: Time.zone.now, confirmation_token: nil)
       @user.after_confirmation
-      redirect_to destination_path(@user), notice: I18n.t('france_connect.flash.email_confirmed')
+      redirect_to destination_path(@user), notice: t('france_connect.flash.email_confirmed')
       return
     end
 
@@ -152,9 +152,9 @@ class FranceConnectController < ApplicationController
 
     if fci
       fci.send_custom_confirmation_instructions
-      redirect_to root_path, notice: I18n.t('france_connect.flash.confirmation_mail_resent')
+      redirect_to root_path, notice: t('france_connect.flash.confirmation_mail_resent')
     else
-      redirect_to root_path, alert: I18n.t('france_connect.flash.confirmation_mail_resent_error')
+      redirect_to root_path, alert: t('france_connect.flash.confirmation_mail_resent_error')
     end
   end
 
@@ -197,12 +197,12 @@ class FranceConnectController < ApplicationController
     @user = User.find_by(confirmation_token: params[:token])
 
     if @user.nil?
-      return redirect_to root_path, alert: I18n.t('france_connect.flash.user_not_found')
+      return redirect_to root_path, alert: t('france_connect.flash.user_not_found')
     end
 
     if user_signed_in? && current_user != @user
       sign_out :user
-      redirect_to new_user_session_path, alert: I18n.t('france_connect.flash.redirect_new_user_session')
+      redirect_to new_user_session_path, alert: t('france_connect.flash.redirect_new_user_session')
     end
   end
 
@@ -212,7 +212,7 @@ class FranceConnectController < ApplicationController
     @fci = FranceConnectInformation.find_by(email_merge_token: params[:email_merge_token])
 
     if @fci.nil? || !@fci.valid_for_email_merge?
-      flash.alert = I18n.t('france_connect.flash.merger_token_expired', application_name: Current.application_name)
+      flash.alert = t('france_connect.flash.merger_token_expired', application_name: Current.application_name)
 
       redirect_to root_path
     else
@@ -224,7 +224,7 @@ class FranceConnectController < ApplicationController
     @fci = FranceConnectInformation.find_by(merge_token: params[:merge_token])
 
     if @fci.nil? || !@fci.valid_for_merge?
-      flash.alert = I18n.t('france_connect.flash.merger_token_expired', application_name: Current.application_name)
+      flash.alert = t('france_connect.flash.merger_token_expired', application_name: Current.application_name)
 
       redirect_to root_path
     end

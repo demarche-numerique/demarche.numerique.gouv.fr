@@ -9,7 +9,7 @@
         - politiques = politiques_conservation_de_donnees(procedure)
         - if politiques.present?
           .fr-col-12.fr-col-sm-4.fr-col-md-4
-            %h3.fr-footer__top-cat= I18n.t('users.procedure_footer.legals.header')
+            %h3.fr-footer__top-cat= t('users.procedure_footer.legals.header')
             %ul.fr-footer__top-list
               - politiques.each do |politique|
                 %li
@@ -18,33 +18,33 @@
               - if procedure.deliberation.attached?
                 %li
                   = link_to url_for(procedure.deliberation), rel: 'noopener', class: 'fr-footer__link' do
-                    = I18n.t("users.procedure_footer.legals.terms")
+                    = t("users.procedure_footer.legals.terms")
               - elsif procedure.cadre_juridique&.starts_with?("http")
                 %li
-                  = link_to I18n.t("users.procedure_footer.legals.terms"), procedure.cadre_juridique, class: 'fr-footer__link', **external_link_attributes
+                  = link_to t("users.procedure_footer.legals.terms"), procedure.cadre_juridique, class: 'fr-footer__link', **external_link_attributes
 
               - if procedure.lien_dpo.present?
                 %li
                   = link_to url_or_email_to_lien_dpo(procedure), rel: 'noopener', class: 'fr-footer__link' do
-                    = I18n.t("users.procedure_footer.legals.dpo")
+                    = t("users.procedure_footer.legals.dpo")
               %li
-                = link_to I18n.t('users.procedure_footer.contact.stats.link'), statistiques_path(procedure.path), class: 'fr-footer__link', rel: 'noopener'
+                = link_to t('users.procedure_footer.contact.stats.link'), statistiques_path(procedure.path), class: 'fr-footer__link', rel: 'noopener'
 
 
         .fr-col-12.fr-col-sm-4.fr-col-md-4
           - unless procedure.close?
-            %h3.fr-footer__top-cat= I18n.t('users.procedure_footer.dematerialisation.header')
+            %h3.fr-footer__top-cat= t('users.procedure_footer.dematerialisation.header')
             .fr-download
-              = link_to I18n.t('users.procedure_footer.dematerialisation.title_1'), commencer_dossier_vide_for_revision_path(procedure.active_revision), download: 'true', class: 'fr-download__link'
-          %h3.fr-footer__top-cat= I18n.t('users.procedure_footer.support.header')
+              = link_to t('users.procedure_footer.dematerialisation.title_1'), commencer_dossier_vide_for_revision_path(procedure.active_revision), download: 'true', class: 'fr-download__link'
+          %h3.fr-footer__top-cat= t('users.procedure_footer.support.header')
           %ul.fr-footer__top-list
             - if procedure.zones.none? { |z| z.acronym == 'MI' }
               %li
-                = link_to I18n.t('users.procedure_footer.support_links.france_service.title'), t("users.procedure_footer.support_links.france_service.url"),
+                = link_to t('users.procedure_footer.support_links.france_service.title'), t("users.procedure_footer.support_links.france_service.url"),
                   title: new_tab_suffix(t("users.procedure_footer.support_links.france_service.title")), class: "fr-footer__link", **external_link_attributes
 
             %li
-              = link_to I18n.t('users.procedure_footer.support_links.carte_inclusion.title'), t("users.procedure_footer.support_links.carte_inclusion.url"),
+              = link_to t('users.procedure_footer.support_links.carte_inclusion.title'), t("users.procedure_footer.support_links.carte_inclusion.url"),
                 title: new_tab_suffix(t("users.procedure_footer.support_links.carte_inclusion.title")), class: "fr-footer__link", **external_link_attributes
 
   .fr-footer__bottom.fr-mt-0

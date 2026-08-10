@@ -117,11 +117,11 @@ module ApplicationHelper
 
     case date
     when today
-      I18n.t('dates.today')
+      t('dates.today')
     when today - 1
-      I18n.t('dates.yesterday')
+      t('dates.yesterday')
     when (today - 6)..(today - 2)
-      I18n.t('dates.days_ago', count: (today - date).to_i)
+      t('dates.days_ago', count: (today - date).to_i)
     else
       I18n.l(date, format: :long)
     end
@@ -136,7 +136,8 @@ module ApplicationHelper
   end
 
   def new_tab_suffix(title)
-    [title, I18n.t('utils.new_tab')].compact.join(' — ')
+    # I18n.t: also called from Redcarpet::BareRenderer, outside any view context
+    [title, I18n.t('utils.new_tab')].compact.join(' — ') # rubocop:disable DS/GlobalI18nTranslate
   end
 
   def download_details(attachment)

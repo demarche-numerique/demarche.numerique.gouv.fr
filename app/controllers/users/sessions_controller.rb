@@ -138,7 +138,7 @@ class Users::SessionsController < Devise::SessionsController
 
   # Pro connect callback
   def logout
-    redirect_to root_path, notice: I18n.t('devise.sessions.signed_out')
+    redirect_to root_path, notice: t('devise.sessions.signed_out')
   end
 
   # calling current_user in a before_action will trigger the warden authentication (devise behavior)

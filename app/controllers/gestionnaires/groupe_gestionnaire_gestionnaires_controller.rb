@@ -29,18 +29,18 @@ module Gestionnaires
       gestionnaires_to_add.each { @groupe_gestionnaire.add_gestionnaire(_1) }
 
       if invalid_emails.present?
-        flash[:alert] = I18n.t('activerecord.wrong_address',
+        flash[:alert] = t('activerecord.wrong_address',
           count: invalid_emails.size,
           emails: invalid_emails.join(', '))
       end
       if gestionnaires_duplicate.present?
-        flash[:alert] = I18n.t('activerecord.errors.duplicate_email',
+        flash[:alert] = t('activerecord.errors.duplicate_email',
           count: invalid_emails.size,
           emails: gestionnaires_duplicate.map(&:email).join(', '))
       end
 
       if gestionnaires_to_add.present?
-        flash[:notice] = I18n.t('groupe_gestionnaires.flash.notice.groupe_gestionnaire_gestionnaire.create')
+        flash[:notice] = t('groupe_gestionnaires.flash.notice.groupe_gestionnaire_gestionnaire.create')
 
         GroupeGestionnaireMailer
           .notify_added_gestionnaires(@groupe_gestionnaire, gestionnaires_to_add, current_gestionnaire.email)
@@ -52,17 +52,17 @@ module Gestionnaires
 
     def destroy
       if @groupe_gestionnaire.is_root? && @groupe_gestionnaire.gestionnaires.one?
-        flash[:alert] = I18n.t('groupe_gestionnaires.flash.alert.groupe_gestionnaire_gestionnaire.destroy_at_least_one')
+        flash[:alert] = t('groupe_gestionnaires.flash.alert.groupe_gestionnaire_gestionnaire.destroy_at_least_one')
       else
         @gestionnaire = @groupe_gestionnaire.gestionnaires.find(params[:id])
 
         if !@gestionnaire.groupe_gestionnaires.destroy(@groupe_gestionnaire)
-          flash[:alert] = I18n.t('groupe_gestionnaires.flash.alert.groupe_gestionnaire_gestionnaire.not_in_groupe_gestionnaire', email: @gestionnaire.email)
+          flash[:alert] = t('groupe_gestionnaires.flash.alert.groupe_gestionnaire_gestionnaire.not_in_groupe_gestionnaire', email: @gestionnaire.email)
         else
           if @gestionnaire.groupe_gestionnaires.empty?
             @gestionnaire.destroy
           end
-          flash[:notice] = I18n.t('groupe_gestionnaires.flash.notice.groupe_gestionnaire_gestionnaire.destroy', email: @gestionnaire.email)
+          flash[:notice] = t('groupe_gestionnaires.flash.notice.groupe_gestionnaire_gestionnaire.destroy', email: @gestionnaire.email)
           GroupeGestionnaireMailer
             .notify_removed_gestionnaire(@groupe_gestionnaire, @gestionnaire.email, current_gestionnaire.email)
             .deliver_later

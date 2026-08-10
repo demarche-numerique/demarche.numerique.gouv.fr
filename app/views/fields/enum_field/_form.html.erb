@@ -5,7 +5,7 @@
         field.attribute,
         options_for_select(
           f.object.class.public_send(field.attribute.to_s.pluralize).map do |k, _v|
-            [I18n.t("activerecord.attributes.#{f.object.class.name.underscore}.#{field.attribute.to_s.pluralize}.#{k}", default: k.humanize), k]
+            [t("activerecord.attributes.#{f.object.class.name.underscore}.#{field.attribute.to_s.pluralize}.#{k}", default: k.humanize), k]
           end,
           f.object.public_send(field.attribute.to_s)
         ),

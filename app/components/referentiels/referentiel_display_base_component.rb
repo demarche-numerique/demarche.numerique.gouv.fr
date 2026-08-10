@@ -34,9 +34,9 @@ class Referentiels::ReferentielDisplayBaseComponent < ApplicationComponent
     in [:datetime, value]
       I18n.l(DateTime.parse(DateDetectionUtils.convert_to_iso8601_datetime(value)), format: :long_with_time) rescue nil
     in [:boolean, TrueClass => value]
-      I18n.t('utils.yes')
+      t('utils.yes')
     in [:boolean, FalseClass => value]
-      I18n.t('utils.no')
+      t('utils.no')
     in [:array, Array => value] if ReferentielMappingUtils.array_of_supported_simple_types?(value)
       Array(value).compact.join(", ")
     in [:string | :decimal_number | :integer_number, String | Float | Integer => value]

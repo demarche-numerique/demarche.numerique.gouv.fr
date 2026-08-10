@@ -51,7 +51,8 @@ class Instructeurs::CellComponent < ApplicationComponent
 
     if dossier.for_tiers
       prenom, nom = dossier&.individual&.prenom, dossier&.individual&.nom
-      safe_join([email, I18n.t('views.instructeurs.dossiers.acts_on_behalf'), prenom, nom], ' ')
+      # I18n.t: this method runs before render, where the component `t` is unavailable
+      safe_join([email, I18n.t('views.instructeurs.dossiers.acts_on_behalf'), prenom, nom], ' ') # rubocop:disable DS/GlobalI18nTranslate
     else
       html_escape(email)
     end
@@ -59,7 +60,7 @@ class Instructeurs::CellComponent < ApplicationComponent
 
   def sum_up_avis(avis)
     result = avis.map(&:question_answer)&.compact&.tally
-      &.map { |k, v| I18n.t("helpers.label.question_answer_with_count.#{k}", count: v) }
+      &.map { |k, v| I18n.t("helpers.label.question_answer_with_count.#{k}", count: v) } # rubocop:disable DS/GlobalI18nTranslate
 
     result ? safe_join(result, ' / ') : nil
   end

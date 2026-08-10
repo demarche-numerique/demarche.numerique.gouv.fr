@@ -152,7 +152,7 @@ class ApplicationController < ActionController::Base
   def display_csrf_retry_message
     return unless params[:csrf_retry] == '1'
 
-    flash.now[:alert] = I18n.t('errors.csrf_retry.message')
+    flash.now[:alert] = t('errors.csrf_retry.message')
   end
 
   def authenticate_logged_user!

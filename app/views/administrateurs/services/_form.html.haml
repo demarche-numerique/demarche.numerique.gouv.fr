@@ -31,7 +31,7 @@
       Type d’organisme
       = render EditableChamp::AsteriskMandatoryComponent.new
 
-    = f.select :type_organisme, Service.type_organismes.keys.map { |key| [ I18n.t("type_organisme.#{key}"), key] }, { include_blank: true }, { class: "fr-select" , required: true }
+    = f.select :type_organisme, Service.type_organismes.keys.map { |key| [ t("type_organisme.#{key}"), key] }, { include_blank: true }, { class: "fr-select" , required: true }
 
   = render Dsfr::CalloutComponent.new(title: "Informations de contact") do |c|
     - c.with_body do
