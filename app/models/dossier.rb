@@ -595,7 +595,7 @@ class Dossier < ApplicationRecord
   def can_passer_en_construction?
     return true if !revision.ineligibilite_enabled || !revision.ineligibilite_rules
 
-    !revision.ineligibilite_rules.compute(filled_champs_public)
+    !revision.ineligibilite_rules.compute(filled_public_champs)
   end
 
   def can_passer_en_instruction?
@@ -643,7 +643,7 @@ class Dossier < ApplicationRecord
 
   def any_etablissement_as_degraded_mode?
     return true if etablissement&.as_degraded_mode?
-    return true if filled_champs_public.any? { _1.etablissement&.as_degraded_mode? }
+    return true if filled_public_champs.any? { _1.etablissement&.as_degraded_mode? }
 
     false
   end

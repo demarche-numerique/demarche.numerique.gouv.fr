@@ -33,7 +33,7 @@ describe ChampData do
       context 'when repetition blank' do
         let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :repetition, mandatory: false, children: [{ type: :text }] }]) }
         let(:dossier) { create(:dossier, procedure:) }
-        let(:champ) { dossier.root_champs_public.find(&:repetition?) }
+        let(:champ) { dossier.root_public_champs.find(&:repetition?) }
 
         it { expect(champ.blank?).to be(true) }
       end
@@ -58,7 +58,7 @@ describe ChampData do
     context 'when repetition not blank' do
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :repetition, children: [{ type: :text }] }]) }
       let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-      let(:champ) { dossier.root_champs_public.find(&:repetition?) }
+      let(:champ) { dossier.root_public_champs.find(&:repetition?) }
 
       it { expect(champ.blank?).to be(false) }
     end
@@ -87,8 +87,8 @@ describe ChampData do
     let(:dossier) { create(:dossier) }
 
     it 'partition public and private' do
-      expect(dossier.root_champs_public.count).to eq(1)
-      expect(dossier.root_champs_private.count).to eq(1)
+      expect(dossier.root_public_champs.count).to eq(1)
+      expect(dossier.root_private_champs.count).to eq(1)
     end
 
     it do
@@ -100,11 +100,11 @@ describe ChampData do
       it { expect(dossier.procedure.revisions.count).to eq(2) }
 
       it 'does not duplicate public champs' do
-        expect(dossier.root_champs_public.count).to eq(1)
+        expect(dossier.root_public_champs.count).to eq(1)
       end
 
       it 'does not duplicate private champs' do
-        expect(dossier.root_champs_private.count).to eq(1)
+        expect(dossier.root_private_champs.count).to eq(1)
       end
     end
   end
@@ -114,12 +114,12 @@ describe ChampData do
       create(:procedure, types_de_champ_public: [{}, { type: :header_section }, { type: :repetition, mandatory: true, children: [{ type: :header_section }] }], types_de_champ_private: [{}, { type: :header_section }])
     end
     let(:dossier) { create(:dossier, procedure: procedure) }
-    let(:public_champ) { dossier.root_champs_public.first }
-    let(:private_champ) { dossier.root_champs_private.first }
+    let(:public_champ) { dossier.root_public_champs.first }
+    let(:private_champ) { dossier.root_private_champs.first }
     let(:standalone_champ) { build(:champ, type_de_champ: build(:type_de_champ), dossier: build(:dossier)) }
-    let(:public_sections) { dossier.root_champs_public.filter(&:header_section?) }
-    let(:private_sections) { dossier.root_champs_private.filter(&:header_section?) }
-    let(:sections_in_repetition) { dossier.root_champs_public.find(&:repetition?).rows.flat_map(&:champs).filter(&:header_section?) }
+    let(:public_sections) { dossier.root_public_champs.filter(&:header_section?) }
+    let(:private_sections) { dossier.root_private_champs.filter(&:header_section?) }
+    let(:sections_in_repetition) { dossier.root_public_champs.find(&:repetition?).rows.flat_map(&:champs).filter(&:header_section?) }
 
     it 'returns the sibling sections of a champ' do
       expect(public_sections).not_to be_empty
@@ -631,7 +631,7 @@ describe ChampData do
       ])
     end
     let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-    let(:champ) { dossier.filled_champs_public.find { it.libelle == 'rt1' } }
+    let(:champ) { dossier.filled_public_champs.find { it.libelle == 'rt1' } }
 
     it "returns the projected champs above, outermost first" do
       expect(champ.ancestors.map(&:libelle)).to eq(['s1', 's1.1', 'rep', 'rs1'])
@@ -651,7 +651,7 @@ describe ChampData do
       expect(champ.repetition.libelle).to eq('rep')
       expect(champ.repetition.row_id).to be_nil
 
-      root_champ = dossier.root_champs_public.find { it.libelle == 't0' }
+      root_champ = dossier.root_public_champs.find { it.libelle == 't0' }
       expect(root_champ.ancestors).to eq([])
       expect(root_champ.parent).to be_nil
       expect(root_champ.section).to be_nil
@@ -662,7 +662,7 @@ describe ChampData do
       expect(champ.in_repetition?).to be(true)
       expect(champ.in_section?).to be(true)
 
-      root_champ = dossier.root_champs_public.find { it.libelle == 't0' }
+      root_champ = dossier.root_public_champs.find { it.libelle == 't0' }
       expect(root_champ.in_repetition?).to be(false)
       expect(root_champ.in_section?).to be(false)
     end

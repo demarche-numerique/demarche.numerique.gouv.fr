@@ -4,7 +4,7 @@ describe Champs::PhoneChamp do
   let(:types_de_champ_public) { [{ type: :phone }] }
   let(:procedure) { create(:procedure, types_de_champ_public:) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.root_champs_public.first }
+  let(:champ) { dossier.root_public_champs.first }
 
   describe '#validate' do
     it do

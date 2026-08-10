@@ -50,7 +50,7 @@
     <h2 class="fr-sr-only">Formulaire</h2>
 
     <fieldset class="fr-fieldset">
-      <%= render EditableChamp::SectionComponent.new(dossier:, champs: dossier.champs_public) %>
+      <%= render EditableChamp::SectionComponent.new(dossier:, champs: dossier.public_champs) %>
     </fieldset>
 
     <%= render Dossiers::PendingCorrectionCheckboxComponent.new(dossier:) %>

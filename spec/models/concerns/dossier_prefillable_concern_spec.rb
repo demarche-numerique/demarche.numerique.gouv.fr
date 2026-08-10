@@ -42,8 +42,8 @@ RSpec.describe DossierPrefillableConcern do
           expect { fill }.not_to change { dossier.reload.prefilled }.from(nil)
         end
 
-        it "doesn't change champs_public" do
-          expect { fill }.not_to change { dossier.root_champs_public.to_a }
+        it "doesn't change public_champs" do
+          expect { fill }.not_to change { dossier.root_public_champs.to_a }
         end
       end
 
@@ -71,12 +71,12 @@ RSpec.describe DossierPrefillableConcern do
           it "updates the champs with the new values and mark them as prefilled" do
             fill
 
-            expect(dossier.root_champs_public.first.value).to eq(value_1)
-            expect(dossier.root_champs_public.first.prefilled).to eq(true)
-            expect(dossier.root_champs_public.last.value).to eq(value_2)
-            expect(dossier.root_champs_public.last.prefilled).to eq(true)
-            expect(dossier.root_champs_private.first.value).to eq(value_3)
-            expect(dossier.root_champs_private.first.prefilled).to eq(true)
+            expect(dossier.root_public_champs.first.value).to eq(value_1)
+            expect(dossier.root_public_champs.first.prefilled).to eq(true)
+            expect(dossier.root_public_champs.last.value).to eq(value_2)
+            expect(dossier.root_public_champs.last.prefilled).to eq(true)
+            expect(dossier.root_private_champs.first.value).to eq(value_3)
+            expect(dossier.root_private_champs.first.prefilled).to eq(true)
           end
         end
 
@@ -91,11 +91,11 @@ RSpec.describe DossierPrefillableConcern do
           it_behaves_like 'a dossier marked as prefilled'
 
           it "still updates the champ" do
-            expect { fill }.to change { dossier.root_champs_public.first.value }.from(nil).to(value)
+            expect { fill }.to change { dossier.root_public_champs.first.value }.from(nil).to(value)
           end
 
           it "still marks it as prefilled" do
-            expect { fill }.to change { dossier.root_champs_public.first.prefilled }.from(nil).to(true)
+            expect { fill }.to change { dossier.root_public_champs.first.prefilled }.from(nil).to(true)
           end
         end
       end
@@ -115,7 +115,7 @@ RSpec.describe DossierPrefillableConcern do
 
           it "updates the champs with the new values and mark them as prefilled" do
             fill
-            expect(dossier.root_champs_public.first.value).to eq(value_1)
+            expect(dossier.root_public_champs.first.value).to eq(value_1)
             expect(dossier.individual).to be_nil # Fix #9486
           end
 
@@ -135,8 +135,8 @@ RSpec.describe DossierPrefillableConcern do
 
       it "assigns the value correctly via prefill" do
         fill
-        expect(dossier.root_champs_public.first.value).to eq(value_1)
-        expect(dossier.root_champs_public.first.prefilled).to eq(true)
+        expect(dossier.root_public_champs.first.value).to eq(value_1)
+        expect(dossier.root_public_champs.first.prefilled).to eq(true)
       end
     end
 

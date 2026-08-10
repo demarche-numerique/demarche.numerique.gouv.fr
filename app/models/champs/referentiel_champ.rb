@@ -57,9 +57,9 @@ class Champs::ReferentielChamp < ChampData
   def prefillable_champs
     elligible_stable_ids = prefillable_stable_ids
     if public?
-      dossier.root_champs_public
+      dossier.root_public_champs
     else
-      dossier.root_champs_private
+      dossier.root_private_champs
     end.filter do |champ|
       if champ.repetition?
         champ.type_de_champ.flat_children.any? { it.stable_id.in?(elligible_stable_ids) }

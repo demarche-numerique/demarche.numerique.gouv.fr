@@ -18,7 +18,7 @@ module DossierSearchableConcern
 
     search_terms = [
       user&.email,
-      *root_champs_public.flat_map(&:search_terms),
+      *root_public_champs.flat_map(&:search_terms),
       *etablissement&.search_terms,
       individual&.nom,
       individual&.prenom,
@@ -26,7 +26,7 @@ module DossierSearchableConcern
       mandataire_last_name,
     ].compact_blank.join(' ')
 
-    private_search_terms = root_champs_private.flat_map(&:search_terms).compact_blank.join(' ')
+    private_search_terms = root_private_champs.flat_map(&:search_terms).compact_blank.join(' ')
 
     # Mirrors the `search_terms || ' ' || private_search_terms` expression the
     # annotations index is built on: `to_tsquery` ANDs its terms, so a query

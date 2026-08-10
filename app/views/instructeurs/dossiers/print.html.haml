@@ -16,12 +16,12 @@
 %h2 Formulaire
 
 - if @dossier.root_types_de_champ_public.any? || @dossier.procedure.routing_enabled?
-  = render ViewableChamp::SectionComponent.new(dossier: @dossier, champs: @dossier.champs_public, demande_seen_at: nil, profile: 'instructeur')
+  = render ViewableChamp::SectionComponent.new(dossier: @dossier, champs: @dossier.public_champs, demande_seen_at: nil, profile: 'instructeur')
 
 %h2 Annotations privées
 
 - if @dossier.root_types_de_champ_private.any?
-  = render ViewableChamp::SectionComponent.new(dossier: @dossier, champs: @dossier.champs_private, demande_seen_at: nil, profile: 'instructeur')
+  = render ViewableChamp::SectionComponent.new(dossier: @dossier, champs: @dossier.private_champs, demande_seen_at: nil, profile: 'instructeur')
 - else
   Aucune annotation privée
 

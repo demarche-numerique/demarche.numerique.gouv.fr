@@ -3,7 +3,7 @@
 RSpec.describe Attachment::PieceJustificativeService do
   let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :piece_justificative }]) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.root_champs_public.first }
+  let(:champ) { dossier.root_public_champs.first }
 
   let(:blob_1) { ActiveStorage::Blob.create_and_upload!(io: StringIO.new("file1"), filename: "file1.pdf", content_type: "application/pdf") }
   let(:blob_2) { ActiveStorage::Blob.create_and_upload!(io: StringIO.new("file2"), filename: "file2.pdf", content_type: "application/pdf") }
@@ -20,8 +20,8 @@ RSpec.describe Attachment::PieceJustificativeService do
 
     context 'with concurrent uploads (simulated stale state)' do
       it 'preserves all attachments' do
-        champ_a = Dossier.find(dossier.id).root_champs_public.first
-        champ_b = Dossier.find(dossier.id).root_champs_public.first
+        champ_a = Dossier.find(dossier.id).root_public_champs.first
+        champ_b = Dossier.find(dossier.id).root_public_champs.first
 
         # Force-load the blobs association on both instances before either attaches.
         # This simulates two concurrent requests that both read blobs = [] at the same time.

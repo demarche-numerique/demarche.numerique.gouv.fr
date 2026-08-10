@@ -247,7 +247,7 @@ describe 'Invitations' do
 
       it "can search something inside the dossier and it displays the dossier" do
         within('.user-search-bar__form') do
-          page.find_by_id('search').set(dossier_2.root_champs_public.first.value)
+          page.find_by_id('search').set(dossier_2.root_public_champs.first.value)
           find('.fr-search-bar .fr-btn').click
         end
         expect(current_path).to eq(dossiers_path)

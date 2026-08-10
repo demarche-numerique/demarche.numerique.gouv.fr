@@ -4,7 +4,7 @@ describe Champs::RNAChamp do
   let(:types_de_champ_public) { [{ type: :rna }] }
   let(:procedure) { create(:procedure, types_de_champ_public:) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.root_champs_public.first.tap { _1.update(value:) } }
+  let(:champ) { dossier.root_public_champs.first.tap { _1.update(value:) } }
   let(:value) { "W182736273" }
 
   def with_external_id(external_id)

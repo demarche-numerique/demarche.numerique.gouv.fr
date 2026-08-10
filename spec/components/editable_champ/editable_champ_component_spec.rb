@@ -5,7 +5,7 @@ describe EditableChamp::EditableChampComponent, type: :component do
   let(:types_de_champ_public) { [] }
   let(:types_de_champ_private) { [] }
   let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-  let(:champ) { (dossier.root_champs_public + dossier.root_champs_private).first }
+  let(:champ) { (dossier.root_public_champs + dossier.root_private_champs).first }
 
   let(:component) { described_class.new(form: nil, champ:) }
 
@@ -76,7 +76,7 @@ describe EditableChamp::EditableChampComponent, type: :component do
         [{ type: :repetition, children: [{ type: :text }, { type: :text }] }]
       end
 
-      let(:champ) { dossier.root_champs_public.find(&:repetition?).rows.first.champs.first }
+      let(:champ) { dossier.root_public_champs.find(&:repetition?).rows.first.champs.first }
 
       it "returns nil (because the number of the row is on the fieldset legend)" do
         expect(subject).to be_nil
@@ -89,7 +89,7 @@ describe EditableChamp::EditableChampComponent, type: :component do
       end
 
       context "on the first row" do
-        let(:champ) { dossier.root_champs_public.find(&:repetition?).rows.first.champs.first }
+        let(:champ) { dossier.root_public_champs.find(&:repetition?).rows.first.champs.first }
 
         it do
           expect(component.row_number_if_in_repetition).to eq(1)
@@ -97,7 +97,7 @@ describe EditableChamp::EditableChampComponent, type: :component do
       end
 
       context "when the champ is in the second row" do
-        let(:champ) { dossier.root_champs_public.find(&:repetition?).rows.last.champs.first }
+        let(:champ) { dossier.root_public_champs.find(&:repetition?).rows.last.champs.first }
 
         it do
           expect(component.row_number_if_in_repetition).to eq(2)

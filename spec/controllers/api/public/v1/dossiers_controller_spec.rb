@@ -102,7 +102,7 @@ RSpec.describe API::Public::V1::DossiersController, type: :controller do
               expect { create_request }.not_to raise_error
               dossier = Dossier.last
 
-              expect(dossier.root_champs_public.first.rows.flat_map(&:champs).map(&:value)).to match_array(['Texte court', 'Texte court'])
+              expect(dossier.root_public_champs.first.rows.flat_map(&:champs).map(&:value)).to match_array(['Texte court', 'Texte court'])
             end
           end
         end

@@ -1359,15 +1359,15 @@ describe Instructeurs::DossiersController, type: :controller do
     let(:another_instructeur) { create(:instructeur) }
     let(:now) { Time.zone.parse('01/01/2100') }
 
-    let(:champ_repetition) { dossier.root_champs_private.fourth }
+    let(:champ_repetition) { dossier.root_private_champs.fourth }
     let(:champ_text) { champ_repetition.rows.first.champs.first }
-    let(:champ_multiple_drop_down_list) { dossier.root_champs_private.first }
-    let(:champ_linked_drop_down_list) { dossier.root_champs_private.second }
-    let(:champ_datetime) { dossier.root_champs_private.third }
-    let(:champ_drop_down_list) { dossier.root_champs_private.fifth }
+    let(:champ_multiple_drop_down_list) { dossier.root_private_champs.first }
+    let(:champ_linked_drop_down_list) { dossier.root_private_champs.second }
+    let(:champ_datetime) { dossier.root_private_champs.third }
+    let(:champ_drop_down_list) { dossier.root_private_champs.fifth }
 
-    context 'when no invalid champs_public' do
-      context "with new values for champs_private" do
+    context 'when no invalid public_champs' do
+      context "with new values for private_champs" do
         before do
           expect(controller.current_instructeur).to receive(:mark_tab_as_seen).with(dossier, :annotations_privees)
           another_instructeur.follow(dossier)
@@ -1510,7 +1510,7 @@ describe Instructeurs::DossiersController, type: :controller do
         end
       end
 
-      context "without new values for champs_private" do
+      context "without new values for private_champs" do
         let(:params) do
           {
             procedure_id: procedure.id,
@@ -1537,7 +1537,7 @@ describe Instructeurs::DossiersController, type: :controller do
     after do
     end
 
-    context "without new values for champs_private" do
+    context "without new values for private_champs" do
       let(:params) do
         {
           procedure_id: procedure.id,
@@ -1559,14 +1559,14 @@ describe Instructeurs::DossiersController, type: :controller do
       }
     end
 
-    context "with invalid champs_public (DecimalNumberChamp)" do
+    context "with invalid public_champs (DecimalNumberChamp)" do
       let(:types_de_champ_public) do
         [
           { type: :decimal_number },
         ]
       end
 
-      let(:champ_decimal_number) { dossier.root_champs_public.first }
+      let(:champ_decimal_number) { dossier.root_public_champs.first }
 
       let(:params) do
         {
@@ -1582,7 +1582,7 @@ describe Instructeurs::DossiersController, type: :controller do
         }
       end
 
-      it 'update champs_private' do
+      it 'update private_champs' do
         too_long_float = '3.1415'
         champ_decimal_number.update_column(:value, too_long_float)
         patch :update_annotations, params: params, format: :turbo_stream
@@ -1627,7 +1627,7 @@ describe Instructeurs::DossiersController, type: :controller do
       let(:types_de_champ_private) { [{ type: :pre_rempli }] }
       let(:types_de_champ_public) { [] }
       let(:dossier) { create(:dossier, :en_construction, :with_populated_annotations, procedure:) }
-      let(:pre_rempli_annotation) { dossier.root_champs_private.first }
+      let(:pre_rempli_annotation) { dossier.root_private_champs.first }
 
       before { pre_rempli_annotation.update_column(:value, 'original') }
 
@@ -1681,7 +1681,7 @@ describe Instructeurs::DossiersController, type: :controller do
       it 'recomputes visibility of conditional annotations after polling' do
         subject
 
-        explication_annotation = assigns(:dossier).flat_champs_private
+        explication_annotation = assigns(:dossier).flat_private_champs
           .find { _1.type_de_champ.stable_id == explication_stable_id }
         expect(assigns(:to_show)).to include("##{explication_annotation.input_group_id}")
       end

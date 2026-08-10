@@ -168,11 +168,11 @@ describe TagsSubstitutionConcern, type: :model do
 
         context 'and their value in the dossier are not nil' do
           before do
-            dossier.root_champs_public
+            dossier.root_public_champs
               .find { |champ| champ.libelle == 'libelleA' }
               .update(value: 'libelle1')
 
-            dossier.root_champs_public
+            dossier.root_public_champs
               .find { |champ| champ.libelle == "libelle\xc2\xA0B".encode('utf-8') }
               .update(value: 'libelle2')
           end
@@ -194,7 +194,7 @@ describe TagsSubstitutionConcern, type: :model do
 
         context 'and their value in the dossier are not nil' do
           before do
-            dossier.root_champs_public
+            dossier.root_public_champs
               .find { |champ| champ.libelle == "Intitulé de l'’«\"évènement\"»’" }
               .update(value: 'ceci est mon évènement')
           end
@@ -216,7 +216,7 @@ describe TagsSubstitutionConcern, type: :model do
 
         context 'and their value in the dossier are not nil' do
           before do
-            dossier.root_champs_public
+            dossier.root_public_champs
               .find { |champ| champ.libelle == "bon pote -- c’est top" }
               .update(value: 'ceci est mon évènement')
           end
@@ -232,7 +232,7 @@ describe TagsSubstitutionConcern, type: :model do
       let(:dossier) { create(:dossier, procedure:) }
 
       before do
-        repetition = dossier.root_champs_public.find(&:repetition?)
+        repetition = dossier.root_public_champs.find(&:repetition?)
         repetition.add_row(updated_by: 'test')
         paul_champs, pierre_champs = repetition.rows.map(&:champs)
 
@@ -250,7 +250,7 @@ describe TagsSubstitutionConcern, type: :model do
       let(:template) { '--Carte--' }
       let(:types_de_champ_public) { [{ type: :carte, libelle: 'Carte' }] }
       let(:dossier) { create(:dossier, procedure:) }
-      let(:champ) { dossier.root_champs_public.find { _1.type_de_champ.type_champ == 'carte' } }
+      let(:champ) { dossier.root_public_champs.find { _1.type_de_champ.type_champ == 'carte' } }
 
       before { dossier.reload }
 
@@ -352,7 +352,7 @@ describe TagsSubstitutionConcern, type: :model do
 
       before do
         dropdown_list_tdc.record.update(referentiel:, drop_down_mode: 'advanced')
-        champ = dossier.root_champs_public.first
+        champ = dossier.root_public_champs.first
         item = referentiel.items.first
         champ.update(value: item.id)
       end
@@ -390,7 +390,7 @@ describe TagsSubstitutionConcern, type: :model do
         let(:template) { '--libelleA--' }
 
         context 'and its value in the dossier is not nil' do
-          before { dossier.root_champs_private.first.update(value: 'libelle1') }
+          before { dossier.root_private_champs.first.update(value: 'libelle1') }
 
           it { is_expected.to eq('libelle1') }
         end
@@ -413,7 +413,7 @@ describe TagsSubstitutionConcern, type: :model do
       context 'champs publics are valid tags' do
         let(:types_de_champ_public) { [{ libelle: 'libelleA' }] }
 
-        before { dossier.root_champs_public.first.update(value: 'libelle1') }
+        before { dossier.root_public_champs.first.update(value: 'libelle1') }
 
         it { is_expected.to eq('libelle1') }
       end
@@ -432,11 +432,11 @@ describe TagsSubstitutionConcern, type: :model do
 
         context 'and its value in the dossier are not nil' do
           before do
-            dossier.root_champs_public
+            dossier.root_public_champs
               .find { |champ| champ.type_champ == TypeDeChamp.type_champs.fetch(:date) }
               .update(value: '2017-04-15')
 
-            dossier.root_champs_public
+            dossier.root_public_champs
               .find { |champ| champ.type_champ == TypeDeChamp.type_champs.fetch(:datetime) }
               .update(value: '2017-09-13 09:00')
           end
@@ -509,7 +509,7 @@ describe TagsSubstitutionConcern, type: :model do
       let(:template) { '--mon tag--' }
       let(:types_de_champ_public) { [{ libelle: "mon\u00A0tag" }] }
 
-      before { dossier.root_champs_public.first.update(value: 'valeur') }
+      before { dossier.root_public_champs.first.update(value: 'valeur') }
 
       it 'treats all kinds of space as equivalent', :aggregate_failures do
         # tag with NBSP in template, champ with NBSP in libelle
@@ -537,7 +537,7 @@ describe TagsSubstitutionConcern, type: :model do
 
       before do
         draft_type_de_champ.update(libelle: 'mon nouveau libellé')
-        dossier.root_champs_public.first.update(value: 'valeur')
+        dossier.root_public_champs.first.update(value: 'valeur')
         procedure.publish_revision!(procedure.administrateurs.first)
       end
 
@@ -552,7 +552,7 @@ describe TagsSubstitutionConcern, type: :model do
 
       before do
         procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'champ à venir')
-        dossier.root_champs_public.find { it.libelle == 'champ à venir' }.update(value: 'valeur')
+        dossier.root_public_champs.find { it.libelle == 'champ à venir' }.update(value: 'valeur')
       end
 
       it 'parses and substitutes the tag on a dossier following the draft revision (preview)' do
@@ -572,7 +572,7 @@ describe TagsSubstitutionConcern, type: :model do
       context 'in a champ' do
         let(:types_de_champ_public) { [{ libelle: 'libelleA' }] }
 
-        before { dossier.root_champs_public.first.update(value: 'hey <a href="https://oops.com">anchor</a>') }
+        before { dossier.root_public_champs.first.update(value: 'hey <a href="https://oops.com">anchor</a>') }
 
         it { is_expected.to eq('hey &lt;a href=&quot;https://oops.com&quot;&gt;anchor&lt;/a&gt; --nom--') }
       end

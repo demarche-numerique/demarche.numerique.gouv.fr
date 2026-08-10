@@ -204,7 +204,7 @@ describe 'The routing with rules', js: true do
     click_on litteraire_user.dossiers.first.procedure.libelle, match: :first
     click_on 'Modifier le dossier'
 
-    fill_in litteraire_user.dossiers.first.root_champs_public.first.libelle, with: 'some value'
+    fill_in litteraire_user.dossiers.first.root_public_champs.first.libelle, with: 'some value'
     wait_for_autosave
 
     click_on 'Déposer les modifications'

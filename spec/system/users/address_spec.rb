@@ -39,7 +39,7 @@ describe 'address champ', js: true do
     find('label', text: 'Je ne trouve pas mon adresse dans les suggestions').click
     select "Suisse", from: "Pays"
 
-    wait_until { user_dossier.reload.root_champs_public.first.value_json["country_code"] == "CH" }
+    wait_until { user_dossier.reload.root_public_champs.first.value_json["country_code"] == "CH" }
 
     select "France", from: "Pays"
     expect(page).to have_select("Pays", selected: 'France')
@@ -51,7 +51,7 @@ describe 'address champ', js: true do
     find('label', text: 'Je ne trouve pas mon adresse dans les suggestions').click
     select "Suisse", from: "Pays"
 
-    wait_until { user_dossier.reload.root_champs_public.first.value_json["country_code"] == "CH" }
+    wait_until { user_dossier.reload.root_public_champs.first.value_json["country_code"] == "CH" }
 
     find('label', text: 'Je ne trouve pas mon adresse dans les suggestions').click
     expect(page).to have_selector('.fr-input-group.address-ban input:enabled')

@@ -16,7 +16,7 @@ describe Instructeurs::DossiersController, type: :controller do
     end
     let(:dossier) { create(:dossier, :en_construction, user:, procedure:) }
 
-    let(:last_yes_no_champ) { dossier.root_champs_public[99] }
+    let(:last_yes_no_champ) { dossier.root_public_champs[99] }
 
     before do
       tdcs = procedure.active_revision.types_de_champ.to_a
@@ -28,11 +28,11 @@ describe Instructeurs::DossiersController, type: :controller do
       end
 
       # all champs are visible
-      dossier.root_champs_public.take((nb_champ - 1)).each { |champ| champ.update_columns(value: 'true') }
+      dossier.root_public_champs.take((nb_champ - 1)).each { |champ| champ.update_columns(value: 'true') }
       last_yes_no_champ.update_columns(value: 'false')
 
       # attachements to the piece justificative champs
-      dossier.root_champs_public.filter(&:piece_justificative?).each do |champ|
+      dossier.root_public_champs.filter(&:piece_justificative?).each do |champ|
         champ.piece_justificative_file.attach(
           io: Rails.root.join('spec/fixtures/files/logo_test_procedure.png').open,
           filename: 'logo_test_procedure.png',

@@ -6,7 +6,7 @@ module Maintenance
   RSpec.describe T20260728PurgeEmptyAttachmentsTask do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative }]) }
     let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-    let(:champ) { dossier.root_champs_public.first }
+    let(:champ) { dossier.root_public_champs.first }
 
     def attach_without_validation(blob)
       champ.piece_justificative_file = [blob]

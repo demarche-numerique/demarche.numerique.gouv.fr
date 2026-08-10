@@ -4,7 +4,7 @@ describe Champs::CommuneChamp do
   let(:types_de_champ_public) { [{ type: :communes }] }
   let(:procedure) { create(:procedure, types_de_champ_public:) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.root_champs_public.first }
+  let(:champ) { dossier.root_public_champs.first }
 
   let(:code_insee) { '63102' }
   let(:code_postal) { '63290' }

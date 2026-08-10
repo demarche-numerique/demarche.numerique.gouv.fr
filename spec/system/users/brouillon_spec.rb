@@ -677,7 +677,7 @@ describe 'The user', js: true do
   end
 
   def champ_for(libelle)
-    champs = user_dossier.reload.root_champs_public
+    champs = user_dossier.reload.root_public_champs
     champ = champs.find { |c| c.libelle == libelle }
     champ.reload
   end

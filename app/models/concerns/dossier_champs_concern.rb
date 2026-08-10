@@ -14,43 +14,43 @@ module DossierChampsConcern
     end
   end
 
-  def root_champs_public
-    @root_champs_public ||= root_types_de_champ_public.map { project_champ(it) }
+  def root_public_champs
+    @root_public_champs ||= root_types_de_champ_public.map { project_champ(it) }
   end
 
-  def root_champs_private
-    @root_champs_private ||= root_types_de_champ_private.map { project_champ(it) }
+  def root_private_champs
+    @root_private_champs ||= root_types_de_champ_private.map { project_champ(it) }
   end
 
   def champs
-    flat_champs_public + flat_champs_private
+    flat_public_champs + flat_private_champs
   end
 
   # Entry points to navigate champs as a tree: first-level champs and top-level
   # header sections. Navigate deeper with Champs::HeaderSectionChamp#children
   # and Champs::RepetitionChamp#rows.
-  def champs_public
-    @champs_public ||= revision.types_de_champ_public.map { project_champ(it) }
+  def public_champs
+    @public_champs ||= revision.types_de_champ_public.map { project_champ(it) }
   end
 
-  def champs_private
-    @champs_private ||= revision.types_de_champ_private.map { project_champ(it) }
+  def private_champs
+    @private_champs ||= revision.types_de_champ_private.map { project_champ(it) }
   end
 
-  def filled_champs_public
-    @filled_champs_public ||= flat_champs_public.filter { it.persisted? && it.fillable? }
+  def filled_public_champs
+    @filled_public_champs ||= flat_public_champs.filter { it.persisted? && it.fillable? }
   end
 
-  def filled_champs_private
-    @filled_champs_private ||= flat_champs_private.filter { it.persisted? && it.fillable? }
+  def filled_private_champs
+    @filled_private_champs ||= flat_private_champs.filter { it.persisted? && it.fillable? }
   end
 
   def filled_champs
-    filled_champs_public + filled_champs_private
+    filled_public_champs + filled_private_champs
   end
 
-  def flat_champs_public
-    @flat_champs_public ||= root_champs_public.flat_map do |champ|
+  def flat_public_champs
+    @flat_public_champs ||= root_public_champs.flat_map do |champ|
       if champ.repetition?
         [champ] + champ.rows.flat_map(&:flat_champs)
       else
@@ -59,8 +59,8 @@ module DossierChampsConcern
     end
   end
 
-  def flat_champs_private
-    @flat_champs_private ||= root_champs_private.flat_map do |champ|
+  def flat_private_champs
+    @flat_private_champs ||= root_private_champs.flat_map do |champ|
       if champ.repetition?
         [champ] + champ.rows.flat_map(&:flat_champs)
       else
@@ -468,14 +468,14 @@ module DossierChampsConcern
     @champ_data_by_public_id = nil
     @champs_by_public_id = nil
     @discarded_champ_data_by_public_id = nil
-    @filled_champs_public = nil
-    @filled_champs_private = nil
-    @root_champs_public = nil
-    @root_champs_private = nil
-    @champs_public = nil
-    @champs_private = nil
-    @flat_champs_public = nil
-    @flat_champs_private = nil
+    @filled_public_champs = nil
+    @filled_private_champs = nil
+    @root_public_champs = nil
+    @root_private_champs = nil
+    @public_champs = nil
+    @private_champs = nil
+    @flat_public_champs = nil
+    @flat_private_champs = nil
     @repetition_row_ids = nil
     @revision_stable_ids = nil
     @champ_data_on_stream = nil

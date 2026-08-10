@@ -11,7 +11,7 @@ describe Champs::RNFChamp, type: :model do
   describe '#status_announceable?' do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :rnf }]) }
     let(:dossier) { create(:dossier, procedure:) }
-    let(:champ) { dossier.root_champs_public.find(&:rnf?) }
+    let(:champ) { dossier.root_public_champs.find(&:rnf?) }
 
     it { expect(champ.status_announceable?).to be(true) }
   end
@@ -19,7 +19,7 @@ describe Champs::RNFChamp, type: :model do
   describe '#valid?' do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :rnf }]) }
     let(:dossier) { create(:dossier, procedure:) }
-    let(:champ) { dossier.root_champs_public.find(&:rnf?) }
+    let(:champ) { dossier.root_public_champs.find(&:rnf?) }
 
     def with_state(external_id:, data:, fetch_external_data_exceptions: [])
       champ.tap do
@@ -94,7 +94,7 @@ describe Champs::RNFChamp, type: :model do
   describe 'format validation' do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :rnf }]) }
     let(:dossier) { create(:dossier, procedure:) }
-    let(:champ) { dossier.root_champs_public.find(&:rnf?) }
+    let(:champ) { dossier.root_public_champs.find(&:rnf?) }
 
     before { champ.update_columns(external_id:) }
 

@@ -7,7 +7,7 @@ describe Champs::PieceJustificativeChamp do
 
   let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative }]) }
   let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-  let(:champ) { dossier.root_champs_public.first }
+  let(:champ) { dossier.root_public_champs.first }
 
   # 1×1 24-bit bitmap
   let(:bmp_bytes) do
@@ -97,7 +97,7 @@ describe Champs::PieceJustificativeChamp do
     context 'titre_identite nature' do
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative, nature: 'titre_identite' }]) }
       let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-      let(:champ) { dossier.root_champs_public.first }
+      let(:champ) { dossier.root_public_champs.first }
 
       it 'accepts jpeg under 20MB' do
         champ.piece_justificative_file.purge
@@ -130,7 +130,7 @@ describe Champs::PieceJustificativeChamp do
       context "#{ocr_nature} nature" do
         let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative, nature: ocr_nature }]) }
         let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-        let(:champ) { dossier.root_champs_public.first }
+        let(:champ) { dossier.root_public_champs.first }
 
         it 'accepts pdf' do
           champ.piece_justificative_file.purge
@@ -150,7 +150,7 @@ describe Champs::PieceJustificativeChamp do
     context 'pj_limit_formats with document_texte' do
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative, pj_limit_formats: '1', pj_format_families: ['document_texte'] }]) }
       let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-      let(:champ) { dossier.root_champs_public.first }
+      let(:champ) { dossier.root_public_champs.first }
 
       it 'accepts pdf' do
         champ.piece_justificative_file.purge
@@ -175,7 +175,7 @@ describe Champs::PieceJustificativeChamp do
     context 'pj_limit_formats enabled with empty families' do
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative, pj_limit_formats: '1', pj_format_families: [] }]) }
       let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-      let(:champ) { dossier.root_champs_public.first }
+      let(:champ) { dossier.root_public_champs.first }
 
       it 'accepts pdf' do
         champ.piece_justificative_file.purge

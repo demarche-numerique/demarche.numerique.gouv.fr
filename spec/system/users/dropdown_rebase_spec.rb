@@ -45,7 +45,7 @@ describe 'Multiple dropdown after rebase removes an option', js: true do
     expect(page).not_to have_content('« Zonage(s) » doit être dans les options proposées')
 
     # After submit, champ value contains only valid options: "Bravo" was dropped, "Alpha" was added
-    champ = dossier.reload.root_champs_public.find { _1.stable_id == stable_id }
+    champ = dossier.reload.root_public_champs.find { _1.stable_id == stable_id }
     expect(champ.selected_options).to match_array(["Alpha", "Charlie"])
   end
 end

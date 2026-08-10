@@ -3,7 +3,7 @@
 RSpec.describe TypesDeChamp::PrefillRepetitionTypeDeChamp, type: :model do
   let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :repetition, children: [{}, { type: :integer_number }, { type: :regions }] }]) }
   let(:dossier) { create(:dossier, procedure: procedure) }
-  let(:champ) { dossier.root_champs_public.first }
+  let(:champ) { dossier.root_public_champs.first }
   let(:type_de_champ) { champ.type_de_champ }
   let(:prefillable_subchamps) { TypesDeChamp::PrefillRepetitionTypeDeChamp.new(type_de_champ, procedure.active_revision).send(:prefillable_subchamps) }
   let(:text_repetition) { prefillable_subchamps.first }

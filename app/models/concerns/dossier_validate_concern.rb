@@ -30,19 +30,19 @@ module DossierValidateConcern
   private
 
   def validate_champs_public_value
-    validate_projected_champs(flat_champs_public, :champ_value)
+    validate_projected_champs(flat_public_champs, :champ_value)
   end
 
   def validate_champs_private_value
-    validate_projected_champs(flat_champs_private, :champ_value)
+    validate_projected_champs(flat_private_champs, :champ_value)
   end
 
   def validate_champs_public_completeness
-    validate_projected_champs(flat_champs_public, [:champ_value, :champ_completeness])
+    validate_projected_champs(flat_public_champs, [:champ_value, :champ_completeness])
   end
 
   def validate_champs_private_completeness
-    validate_projected_champs(flat_champs_private, [:champ_value, :champ_completeness])
+    validate_projected_champs(flat_private_champs, [:champ_value, :champ_completeness])
   end
 
   # Both contexts must be validated in a single call: champ.validate clears

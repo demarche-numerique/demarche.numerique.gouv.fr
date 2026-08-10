@@ -11,7 +11,7 @@ describe Champs::RepetitionChamp do
       ])
   }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.root_champs_public.find(&:repetition?) }
+  let(:champ) { dossier.root_public_champs.find(&:repetition?) }
 
   describe "#row_libelle" do
     context "with a single child (monochamp)" do
@@ -94,7 +94,7 @@ describe Champs::RepetitionChamp do
         ])
     end
     let(:dossier) { create(:dossier, procedure:) }
-    let(:champ) { dossier.root_champs_public.find(&:repetition?) }
+    let(:champ) { dossier.root_public_champs.find(&:repetition?) }
 
     context "when count is below min" do
       let(:min_rep) { 2 }
@@ -119,7 +119,7 @@ describe Champs::RepetitionChamp do
       end
 
       it "adds a repetition_too_few error even without any rows" do
-        fresh_champ = dossier.reload.root_champs_public.find(&:repetition?)
+        fresh_champ = dossier.reload.root_public_champs.find(&:repetition?)
         fresh_champ.valid?(:champ_value)
         expect(fresh_champ.errors.where(:value, :repetition_too_few)).to be_present
       end

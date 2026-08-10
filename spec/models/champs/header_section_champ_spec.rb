@@ -13,7 +13,7 @@ describe Champs::HeaderSectionChamp do
           { type: :text, libelle: 't1.1' },
         ])
       end
-      let(:champ) { dossier.root_champs_public.find { it.libelle == 's1' } }
+      let(:champ) { dossier.root_public_champs.find { it.libelle == 's1' } }
 
       it 'returns the projected champs of its direct children' do
         expect(champ.children.map(&:libelle)).to eq(['t1', 's1.1'])
@@ -32,7 +32,7 @@ describe Champs::HeaderSectionChamp do
           },
         ])
       end
-      let(:repetition) { dossier.root_champs_public.find { it.libelle == 'rep' } }
+      let(:repetition) { dossier.root_public_champs.find { it.libelle == 'rep' } }
       let(:champ) { repetition.rows.first.champs.find { it.libelle == 'rs1' } }
 
       it 'returns the projected champs of the same row' do
@@ -52,10 +52,10 @@ describe Champs::HeaderSectionChamp do
         { type: :repetition, libelle: 'rep', children: [{ type: :text, libelle: 'rt1' }] },
       ])
     end
-    let(:champ) { dossier.root_champs_public.find { it.libelle == 's1' } }
+    let(:champ) { dossier.root_public_champs.find { it.libelle == 's1' } }
 
     it 'expands nested repetitions into their rows, each with its own row_id' do
-      repetition = dossier.root_champs_public.find { it.libelle == 'rep' }
+      repetition = dossier.root_public_champs.find { it.libelle == 'rep' }
 
       expect(champ.flat_children.map(&:libelle)).to eq(['t1', 's1.1', 'rep', 'rt1', 'rt1'])
       expect(champ.flat_children.filter { it.libelle == 'rt1' }.map(&:row_id)).to eq(repetition.row_ids)

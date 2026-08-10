@@ -6,7 +6,7 @@ describe Champs::DropDownListChamp do
   let(:dossier) { create(:dossier, procedure:) }
   let(:referentiel) { nil }
   let(:drop_down_mode) { nil }
-  let(:champ) { dossier.root_champs_public.first.tap { _1.update(value:, other:) } }
+  let(:champ) { dossier.root_public_champs.first.tap { _1.update(value:, other:) } }
   let(:value) { nil }
   let(:other) { nil }
 

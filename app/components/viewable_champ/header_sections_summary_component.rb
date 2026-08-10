@@ -19,7 +19,7 @@ class ViewableChamp::HeaderSectionsSummaryComponent < ApplicationComponent
   private
 
   def root_champs
-    @is_private ? @dossier.champs_private : @dossier.champs_public
+    @is_private ? @dossier.private_champs : @dossier.public_champs
   end
 
   def flatten_sections(champs, depth)

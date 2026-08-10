@@ -624,7 +624,7 @@ describe Users::DossiersController, type: :controller do
     let(:procedure) { create(:procedure, :published, types_de_champ_public:) }
     let(:types_de_champ_public) { [{ type: :text, mandatory: false }] }
     let!(:dossier) { create(:dossier, user:, procedure:) }
-    let(:first_champ) { dossier.root_champs_public.first }
+    let(:first_champ) { dossier.root_public_champs.first }
     let(:value) { 'beautiful value' }
     let(:now) { Time.zone.parse('01/01/2100') }
     let(:payload) { { id: dossier.id } }
@@ -790,7 +790,7 @@ describe Users::DossiersController, type: :controller do
     let(:dossier) { create(:dossier, :en_construction, :with_individual, *dossier_traits, procedure:, user: owner).tap { _1.with_update_stream(_1.user) } }
     let(:now) { Time.zone.parse('01/01/2100') }
     let(:params) { { id: dossier.id } }
-    let(:champs) { dossier.root_champs_public }
+    let(:champs) { dossier.root_public_champs }
     let(:make_changes) do
       champ = champs.first
       if champ.present?
@@ -981,8 +981,8 @@ describe Users::DossiersController, type: :controller do
     let(:procedure) { create(:procedure, :published, types_de_champ_public:) }
     let(:types_de_champ_public) { [{}, { type: :piece_justificative, mandatory: false }] }
     let(:dossier) { create(:dossier, user:, procedure:, brouillon_close_to_expiration_notice_sent_at: 10.days.ago) }
-    let(:first_champ) { dossier.root_champs_public.first }
-    let(:piece_justificative_champ) { dossier.root_champs_public.last }
+    let(:first_champ) { dossier.root_public_champs.first }
+    let(:piece_justificative_champ) { dossier.root_public_champs.last }
     let(:value) { 'beautiful value' }
     let(:file) { fixture_file_upload('spec/fixtures/files/piece_justificative_0.pdf', 'application/pdf') }
     let(:now) { Time.zone.parse('01/01/2100') }
@@ -1293,8 +1293,8 @@ describe Users::DossiersController, type: :controller do
       render_views
 
       let(:types_de_champ_public) { [{ type: :text }, { type: :integer_number }] }
-      let(:text_champ) { dossier.root_champs_public.first }
-      let(:number_champ) { dossier.root_champs_public.last }
+      let(:text_champ) { dossier.root_public_champs.first }
+      let(:number_champ) { dossier.root_public_champs.last }
       let(:validate) { "true" }
       let(:submit_payload) do
         {
@@ -1499,10 +1499,10 @@ describe Users::DossiersController, type: :controller do
     let(:types_de_champ_public) { [{}, { type: :piece_justificative }] }
     let(:procedure) { create(:procedure, :published, types_de_champ_public:) }
     let!(:dossier) { create(:dossier, :en_construction, user:, procedure:) }
-    let(:first_champ) { dossier.root_champs_public.first }
-    let(:first_champ_user_buffer) { dossier.with_update_stream(dossier.user) { dossier.root_champs_public.first } }
-    let(:piece_justificative_champ) { dossier.root_champs_public.last }
-    let(:piece_justificative_champ_user_buffer) { dossier.with_update_stream(dossier.user) { dossier.root_champs_public.last } }
+    let(:first_champ) { dossier.root_public_champs.first }
+    let(:first_champ_user_buffer) { dossier.with_update_stream(dossier.user) { dossier.root_public_champs.first } }
+    let(:piece_justificative_champ) { dossier.root_public_champs.last }
+    let(:piece_justificative_champ_user_buffer) { dossier.with_update_stream(dossier.user) { dossier.root_public_champs.last } }
     let(:value) { 'beautiful value' }
     let(:file) { fixture_file_upload('spec/fixtures/files/piece_justificative_0.pdf', 'application/pdf') }
     let(:now) { Time.zone.parse('01/01/2100') }
@@ -1538,7 +1538,7 @@ describe Users::DossiersController, type: :controller do
 
     context 'when champ is pre_rempli (read-only guard)' do
       let(:types_de_champ_public) { [{ type: :pre_rempli }] }
-      let(:pre_rempli_champ) { dossier.root_champs_public.first }
+      let(:pre_rempli_champ) { dossier.root_public_champs.first }
 
       before { pre_rempli_champ.update_column(:value, 'original') }
 
@@ -1782,17 +1782,17 @@ describe Users::DossiersController, type: :controller do
         subject
 
         dossier.reload
-        annotation = dossier.root_champs_private.find { it.stable_id == 100 }
+        annotation = dossier.root_private_champs.find { it.stable_id == 100 }
         expect(annotation.value).to be_nil
 
         dossier.with_update_stream(dossier.user) do
-          referentiel = dossier.root_champs_public.find { it.stable_id == referentiel_stable_id }
+          referentiel = dossier.root_public_champs.find { it.stable_id == referentiel_stable_id }
           expect(referentiel.data.deep_symbolize_keys).to eq(data: [suggestion_data])
         end
 
         dossier.merge_user_buffer_stream!
         dossier.reload
-        annotation = dossier.root_champs_private.find { it.stable_id == 100 }
+        annotation = dossier.root_private_champs.find { it.stable_id == 100 }
         expect(annotation.value).to eq(suggestion_data[:finess])
         expect(annotation.stream).to eq(Dossier::MAIN_STREAM)
       end
@@ -2623,7 +2623,7 @@ describe Users::DossiersController, type: :controller do
     context 'live announcement of a RIB status (polling anti-spam)' do
       render_views
       let(:types_de_champ_public) { [{ type: :piece_justificative, nature: 'rib', stable_id: }] }
-      let(:champ) { dossier.root_champs_public.first }
+      let(:champ) { dossier.root_public_champs.first }
       let(:region_id) { "#{champ.focusable_input_id}-aria-live" }
 
       def announced_region(body)
@@ -2743,7 +2743,7 @@ describe Users::DossiersController, type: :controller do
         it 'recomputes visibility of conditional champs after polling' do
           subject
 
-          explication_champ = assigns(:dossier).flat_champs_public
+          explication_champ = assigns(:dossier).flat_public_champs
             .find { _1.type_de_champ.stable_id == explication_stable_id }
           expect(assigns(:to_show)).to include("##{explication_champ.input_group_id}")
         end
@@ -2895,7 +2895,7 @@ describe Users::DossiersController, type: :controller do
 
     let(:procedure) { create(:procedure, :published, types_de_champ_public: [{}]) }
     let(:dossier) { create(:dossier, user:, procedure:) }
-    let(:champ) { dossier.root_champs_public.first }
+    let(:champ) { dossier.root_public_champs.first }
 
     subject { patch :revert_prefill, params: { id: dossier.id, stable_id: champ.stable_id }, format: :turbo_stream }
 
@@ -2932,7 +2932,7 @@ describe Users::DossiersController, type: :controller do
       it 'reverts on the buffer stream champ and responds with turbo_stream' do
         subject
         dossier.reload
-        buffer_champ = dossier.with_update_stream(user) { dossier.root_champs_public.first }
+        buffer_champ = dossier.with_update_stream(user) { dossier.root_public_champs.first }
         expect(buffer_champ.value).to eq('original')
         expect(buffer_champ.prefilled_original_value).to eq({ 'value' => 'original' })
         expect(response).to have_http_status(:success)

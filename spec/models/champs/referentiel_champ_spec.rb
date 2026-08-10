@@ -9,7 +9,7 @@ describe Champs::ReferentielChamp, type: :model do
   let(:procedure) { create(:procedure, types_de_champ_public:) }
   let(:dossier) { create(:dossier, procedure:) }
   let(:referentiel_champ) { dossier.champ_data.find(&:referentiel?) }
-  let(:champ) { dossier.root_champs_public.find(&:referentiel?) }
+  let(:champ) { dossier.root_public_champs.find(&:referentiel?) }
 
   describe '#valid?' do
     context 'when the champ is pending' do

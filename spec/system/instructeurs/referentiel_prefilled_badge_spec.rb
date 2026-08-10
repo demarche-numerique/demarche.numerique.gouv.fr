@@ -5,7 +5,7 @@ describe 'Referentiel prefilled badge', js: true do
   let(:instructeur) { create(:instructeur) }
   let(:procedure) { create(:procedure, :published, :for_individual, :with_service, types_de_champ_public: [{ type: :text, libelle: 'Nom entreprise' }]) }
   let(:dossier) { create(:dossier, :en_construction, user:, procedure:) }
-  let(:champ) { dossier.root_champs_public.first }
+  let(:champ) { dossier.root_public_champs.first }
 
   before do
     procedure.defaut_groupe_instructeur.add(instructeur)

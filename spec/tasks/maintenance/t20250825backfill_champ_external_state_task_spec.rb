@@ -8,7 +8,7 @@ module Maintenance
         subject(:process) { described_class.process(champ) }
         let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :referentiel }]) }
         let(:dossier) { create(:dossier, procedure:) }
-        let(:champ) { dossier.root_champs_public.first }
+        let(:champ) { dossier.root_public_champs.first }
 
         context "when external_data_fetched? is true" do
           before { allow(champ).to receive(:external_data_fetched?).and_return(true) }

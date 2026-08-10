@@ -33,7 +33,7 @@
 
     %form.form
       = form_for @dossier, url: '', html: { class: 'form' } do |f|
-        = render EditableChamp::SectionComponent.new(dossier: @dossier, champs: @dossier.champs_public)
+        = render EditableChamp::SectionComponent.new(dossier: @dossier, champs: @dossier.public_champs)
 
         .editable-champ.editable-champ-text
           %label Mot de passe
@@ -310,7 +310,7 @@
     %h1.fr-mt-4w Attachment::FileFieldComponent (single file)
     %span.fr-hint-text Note: direct upload, suppression ne marchent pas comme attendu ici.
 
-    - champ = @dossier.root_champs_public.find { _1.type_champ == TypeDeChamp.type_champs.fetch(:piece_justificative) }
+    - champ = @dossier.root_public_champs.find { _1.type_champ == TypeDeChamp.type_champs.fetch(:piece_justificative) }
     - tdc = champ.type_de_champ
     - avis = Avis.new
 

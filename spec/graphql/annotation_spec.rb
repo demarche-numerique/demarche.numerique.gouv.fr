@@ -20,7 +20,7 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
   end
   let(:dossiers) { [] }
   let(:instructeur) { create(:instructeur, followed_dossiers: dossiers) }
-  let(:champs_private) { dossier.root_champs_private }
+  let(:private_champs) { dossier.root_private_champs }
 
   let(:query) { '' }
   let(:context) { { administrateur_id: admin.id, procedure_ids: admin.procedure_ids, write_access: true } }
@@ -39,7 +39,7 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
     let(:dossier) { create(:dossier, :en_construction, :with_populated_annotations, procedure: procedure) }
     let(:dossiers) { [dossier] }
 
-    let(:annotation) { champs_private.find(&:repetition?) }
+    let(:annotation) { private_champs.find(&:repetition?) }
     let(:query) { DOSSIER_MODIFIER_ANNOTATION_AJOUTER_LIGNE_MUTATION }
     let(:variables) do
       {
@@ -52,7 +52,7 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
     end
 
     context 'with invalid champ' do
-      let(:annotation) { champs_private.last }
+      let(:annotation) { private_champs.last }
 
       it 'return error' do
         expect(data).to eq(dossierModifierAnnotationAjouterLigne: {
@@ -79,7 +79,7 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
     let(:dossier) { create(:dossier, :en_construction, :with_populated_annotations, procedure: procedure) }
     let(:dossiers) { [dossier] }
 
-    let(:annotation) { champs_private.find(&:text?) }
+    let(:annotation) { private_champs.find(&:text?) }
     let(:query) { DOSSIER_MODIFIER_ANNOTATION_TEXT_MUTATION }
     let(:variables) do
       {
@@ -103,7 +103,7 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
     end
 
     context 'with invalid champ' do
-      let(:annotation) { champs_private.find(&:repetition?) }
+      let(:annotation) { private_champs.find(&:repetition?) }
 
       it 'return error' do
         expect(data).to eq(dossierModifierAnnotationText: {
@@ -114,8 +114,8 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
     end
 
     context 'with rows' do
-      let(:annotation) { champs_private.find(&:repetition?).rows.first.champs.first }
-      let(:other_annotation) { champs_private.find(&:repetition?).rows.second.champs.first }
+      let(:annotation) { private_champs.find(&:repetition?).rows.first.champs.first }
+      let(:other_annotation) { private_champs.find(&:repetition?).rows.second.champs.first }
 
       it 'update champ' do
         expect(data).to eq(dossierModifierAnnotationText: {
@@ -134,7 +134,7 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
     let(:dossier) { create(:dossier, :en_construction, :with_populated_annotations, procedure: procedure) }
     let(:dossiers) { [dossier] }
 
-    let(:annotation) { champs_private.find(&:decimal_number?) }
+    let(:annotation) { private_champs.find(&:decimal_number?) }
     let(:query) { DOSSIER_MODIFIER_ANNOTATION_DECIMAL_MUTATION }
     let(:variables) do
       {
@@ -158,7 +158,7 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
     end
 
     context 'with invalid champ' do
-      let(:annotation) { champs_private.first }
+      let(:annotation) { private_champs.first }
 
       it 'return error' do
         expect(data).to eq(dossierModifierAnnotationDecimalNumber: {
@@ -169,8 +169,8 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
     end
 
     context 'with rows' do
-      let(:annotation) { champs_private.find(&:repetition?).rows.first.champs.find(&:decimal_number?) }
-      let(:other_annotation) { champs_private.find(&:repetition?).rows.second.champs.find(&:decimal_number?) }
+      let(:annotation) { private_champs.find(&:repetition?).rows.first.champs.find(&:decimal_number?) }
+      let(:other_annotation) { private_champs.find(&:repetition?).rows.second.champs.find(&:decimal_number?) }
 
       it 'update champ' do
         expect(data).to eq(dossierModifierAnnotationDecimalNumber: {
@@ -189,7 +189,7 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
     let(:dossier) { create(:dossier, :en_construction, :with_populated_annotations, procedure: procedure) }
     let(:dossiers) { [dossier] }
 
-    let(:annotation) { champs_private.find(&:decimal_number?) }
+    let(:annotation) { private_champs.find(&:decimal_number?) }
     let(:query) { DOSSIER_MODIFIER_ANNOTATIONS_MUTATION }
     let(:variables) do
       {
@@ -235,7 +235,7 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
     end
 
     context 'with invalid annotation' do
-      let(:annotation) { champs_private.find(&:email?) }
+      let(:annotation) { private_champs.find(&:email?) }
       let(:value) { { email: "test" } }
 
       it 'returns error' do
@@ -247,8 +247,8 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
     end
 
     context 'with rows' do
-      let(:annotation) { champs_private.find(&:repetition?).rows.first.champs.find(&:decimal_number?) }
-      let(:other_annotation) { champs_private.find(&:repetition?).rows.second.champs.find(&:decimal_number?) }
+      let(:annotation) { private_champs.find(&:repetition?).rows.first.champs.find(&:decimal_number?) }
+      let(:other_annotation) { private_champs.find(&:repetition?).rows.second.champs.find(&:decimal_number?) }
 
       it 'update annotation' do
         expect(data).to eq(dossierModifierAnnotations: {
@@ -261,7 +261,7 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
     end
 
     context 'with repetition annotation' do
-      let(:annotation) { champs_private.find(&:repetition?) }
+      let(:annotation) { private_champs.find(&:repetition?) }
       let(:value) { { repetition: 2 } }
 
       it 'add rows' do
@@ -275,7 +275,7 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
 
     context 'with dossier_link annotation and invalid dossier id' do
       let(:types_de_champ_private) { [{ type: :dossier_link }] }
-      let(:dossier_link_annotation) { champs_private.find(&:dossier_link?) }
+      let(:dossier_link_annotation) { private_champs.find(&:dossier_link?) }
       let(:annotations) { [{ id: dossier_link_annotation.to_typed_id, value: { dossierLink: '999999' } }] }
 
       it 'returns error' do
@@ -289,7 +289,7 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
     context 'with dossier_link annotation and valid dossier id' do
       let(:types_de_champ_private) { [{ type: :dossier_link }] }
       let(:linked_dossier) { create(:dossier, :en_construction, procedure: procedure) }
-      let(:dossier_link_annotation) { champs_private.find(&:dossier_link?) }
+      let(:dossier_link_annotation) { private_champs.find(&:dossier_link?) }
       let(:annotations) { [{ id: dossier_link_annotation.to_typed_id, value: { dossierLink: linked_dossier.id.to_s } }] }
 
       it 'update annotation' do
@@ -316,15 +316,15 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
         ]
       end
 
-      let(:text_annotation) { champs_private.find(&:text?) }
-      let(:integer_number_annotation) { champs_private.find(&:integer_number?) }
-      let(:decimal_number_annotation) { champs_private.find(&:decimal_number?) }
-      let(:checkbox_annotation) { champs_private.find(&:checkbox?) }
-      let(:yes_no_annotation) { champs_private.find(&:yes_no?) }
-      let(:date_annotation) { champs_private.find(&:date?) }
-      let(:datetime_annotation) { champs_private.find(&:datetime?) }
-      let(:drop_down_list_annotation) { champs_private.find(&:drop_down_list?) }
-      let(:multiple_drop_down_list_annotation) { champs_private.find(&:multiple_drop_down_list?) }
+      let(:text_annotation) { private_champs.find(&:text?) }
+      let(:integer_number_annotation) { private_champs.find(&:integer_number?) }
+      let(:decimal_number_annotation) { private_champs.find(&:decimal_number?) }
+      let(:checkbox_annotation) { private_champs.find(&:checkbox?) }
+      let(:yes_no_annotation) { private_champs.find(&:yes_no?) }
+      let(:date_annotation) { private_champs.find(&:date?) }
+      let(:datetime_annotation) { private_champs.find(&:datetime?) }
+      let(:drop_down_list_annotation) { private_champs.find(&:drop_down_list?) }
+      let(:multiple_drop_down_list_annotation) { private_champs.find(&:multiple_drop_down_list?) }
 
       let(:annotations) { [text_annotation, integer_number_annotation, decimal_number_annotation, checkbox_annotation, yes_no_annotation, date_annotation, datetime_annotation, drop_down_list_annotation, multiple_drop_down_list_annotation] }
       let(:types) { [:text, :integerNumber, :decimalNumber, :checkbox, :yesNo, :date, :datetime, :dropDownList, :multipleDropDownList] }
@@ -362,13 +362,13 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
         ]
       end
 
-      let(:phone_annotation) { champs_private.find(&:phone?) }
-      let(:iban_annotation) { champs_private.find(&:iban?) }
-      let(:formatted_annotation) { champs_private.find(&:formatted?) }
-      let(:civilite_annotation) { champs_private.find(&:civilite?) }
-      let(:pays_annotation) { champs_private.find(&:pays?) }
-      let(:regions_annotation) { champs_private.find(&:regions?) }
-      let(:departements_annotation) { champs_private.find(&:departements?) }
+      let(:phone_annotation) { private_champs.find(&:phone?) }
+      let(:iban_annotation) { private_champs.find(&:iban?) }
+      let(:formatted_annotation) { private_champs.find(&:formatted?) }
+      let(:civilite_annotation) { private_champs.find(&:civilite?) }
+      let(:pays_annotation) { private_champs.find(&:pays?) }
+      let(:regions_annotation) { private_champs.find(&:regions?) }
+      let(:departements_annotation) { private_champs.find(&:departements?) }
 
       let(:annotations) do
         [
@@ -411,7 +411,7 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
 
     context 'with piece justificative annotation' do
       let(:types_de_champ_private) { [{ type: :piece_justificative }] }
-      let(:piece_justificative_annotation) { champs_private.find(&:piece_justificative?) }
+      let(:piece_justificative_annotation) { private_champs.find(&:piece_justificative?) }
 
       let(:blobs) do
         Array.new(2) do

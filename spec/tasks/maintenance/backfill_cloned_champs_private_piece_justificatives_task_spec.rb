@@ -11,8 +11,8 @@ module Maintenance
       let(:parent_dossier) { create(:dossier, procedure:) }
       let(:cloned_dossier) { create(:dossier, procedure:) }
 
-      let(:parent_champ_pj) { parent_dossier.root_champs_private.find(&:piece_justificative?) }
-      let(:cloned_champ_pj) { cloned_dossier.root_champs_private.find(&:piece_justificative?) }
+      let(:parent_champ_pj) { parent_dossier.root_private_champs.find(&:piece_justificative?) }
+      let(:cloned_champ_pj) { cloned_dossier.root_private_champs.find(&:piece_justificative?) }
 
       before do
         cloned_dossier.update(parent_dossier:) # used on factorie, does not seed private_champs..

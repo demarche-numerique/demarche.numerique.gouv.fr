@@ -22,8 +22,8 @@ describe DossierSearchService do
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :text }], types_de_champ_private: [{ type: :text }]) }
       let(:dossier) do
         create(:dossier, procedure:, state: :en_construction, user:, etablissement:).tap do |dossier|
-          dossier.root_champs_public.first.update!(value: 'Hélène mange des pommes')
-          dossier.root_champs_private.first.update!(value: 'annotations')
+          dossier.root_public_champs.first.update!(value: 'Hélène mange des pommes')
+          dossier.root_private_champs.first.update!(value: 'annotations')
         end
       end
 
@@ -108,8 +108,8 @@ describe DossierSearchService do
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :text }], types_de_champ_private: [{ type: :text }]) }
       let(:dossier) do
         create(:dossier, procedure:, state: :en_construction, user:).tap do |dossier|
-          dossier.root_champs_public.first.update!(value: 'Hélène mange des pommes')
-          dossier.root_champs_private.first.update!(value: 'annotations')
+          dossier.root_public_champs.first.update!(value: 'Hélène mange des pommes')
+          dossier.root_private_champs.first.update!(value: 'annotations')
         end
       end
 
@@ -149,7 +149,7 @@ describe DossierSearchService do
       let(:procedure) { create(:procedure, types_de_champ_private: [{ type: :text }]) }
       let(:dossier) do
         create(:dossier, procedure:, state: :brouillon, user:).tap do |dossier|
-          dossier.root_champs_private.first.update!(value: 'annotations')
+          dossier.root_private_champs.first.update!(value: 'annotations')
         end
       end
 
@@ -177,7 +177,7 @@ describe DossierSearchService do
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :text }]) }
       let!(:dossier) do
         create(:dossier, procedure:, state: :en_construction, user:).tap do |dossier|
-          dossier.root_champs_public.first.update!(value: 'pommes')
+          dossier.root_public_champs.first.update!(value: 'pommes')
         end
       end
 

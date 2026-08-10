@@ -3,7 +3,7 @@
 describe EditableChamp::ExplicationComponent, type: :component do
   let(:procedure) { create(:procedure, :published, types_de_champ_public:) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.root_champs_public.first }
+  let(:champ) { dossier.root_public_champs.first }
 
   let(:component) {
     described_class.new(form: instance_double(ActionView::Helpers::FormBuilder, object_name: "dossier[champs_public_attributes]"), champ:)

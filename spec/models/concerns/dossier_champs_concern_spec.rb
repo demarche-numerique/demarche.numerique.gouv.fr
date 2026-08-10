@@ -93,7 +93,7 @@ RSpec.describe DossierChampsConcern do
     end
   end
 
-  describe "#champs_public and #champs_private" do
+  describe "#public_champs and #private_champs" do
     let(:types_de_champ_public) do
       [
         { type: :text, libelle: "t1" },
@@ -112,12 +112,12 @@ RSpec.describe DossierChampsConcern do
     end
 
     it "returns first-level champs and top-level header sections" do
-      expect(dossier.champs_public.map(&:libelle)).to eq(["t1", "rep", "s1"])
-      expect(dossier.champs_private.map(&:libelle)).to eq(["ps1"])
+      expect(dossier.public_champs.map(&:libelle)).to eq(["t1", "rep", "s1"])
+      expect(dossier.private_champs.map(&:libelle)).to eq(["ps1"])
     end
 
     it "composes with children and rows to navigate the tree" do
-      _, repetition, section = dossier.champs_public
+      _, repetition, section = dossier.public_champs
       expect(repetition.rows.flat_map(&:champs).map(&:libelle)).to eq(["rt1"])
       expect(section.children.map(&:libelle)).to eq(["t2", "s1.1"])
       expect(section.children.last.children.map(&:libelle)).to eq(["t3"])
@@ -245,8 +245,8 @@ RSpec.describe DossierChampsConcern do
     end
   end
 
-  describe '#root_champs_public' do
-    subject { dossier.root_champs_public }
+  describe '#root_public_champs' do
+    subject { dossier.root_public_champs }
 
     it "returns the root champs only, without repetition children" do
       expect(subject.map(&:libelle)).to eq(["Un champ text", "Un autre champ text", "Un champ yes no", "Un champ répétable"])
@@ -254,8 +254,8 @@ RSpec.describe DossierChampsConcern do
     end
   end
 
-  describe '#root_champs_private' do
-    subject { dossier.root_champs_private }
+  describe '#root_private_champs' do
+    subject { dossier.root_private_champs }
 
     it { expect(subject.map(&:libelle)).to eq(["Une annotation"]) }
   end
@@ -268,21 +268,21 @@ RSpec.describe DossierChampsConcern do
     end
   end
 
-  describe '#flat_champs_public' do
-    subject { dossier.flat_champs_public }
+  describe '#flat_public_champs' do
+    subject { dossier.flat_public_champs }
 
     it "inlines the repetition children after their repetition" do
       expect(subject.map(&:libelle)).to eq(["Un champ text", "Un autre champ text", "Un champ yes no", "Un champ répétable", "Nom"])
     end
   end
 
-  describe '#flat_champs_private' do
-    subject { dossier.flat_champs_private }
+  describe '#flat_private_champs' do
+    subject { dossier.flat_private_champs }
 
     it { expect(subject.map(&:libelle)).to eq(["Une annotation"]) }
   end
 
-  describe '#filled_champs_public' do
+  describe '#filled_public_champs' do
     let(:types_de_champ_public) do
       [
         { type: :header_section, stable_id: 9001 },
@@ -294,7 +294,7 @@ RSpec.describe DossierChampsConcern do
       ]
     end
     let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-    subject { dossier.filled_champs_public }
+    subject { dossier.filled_public_champs }
 
     it do
       expect(subject.size).to eq(5)
@@ -302,7 +302,7 @@ RSpec.describe DossierChampsConcern do
     end
   end
 
-  describe '#filled_champs_private' do
+  describe '#filled_private_champs' do
     let(:types_de_champ_private) do
       [
         { type: :header_section, stable_id: 9011 },
@@ -310,7 +310,7 @@ RSpec.describe DossierChampsConcern do
         { type: :explication, stable_id: 9013 },
       ]
     end
-    subject { dossier.filled_champs_private }
+    subject { dossier.filled_private_champs }
 
     it { expect(subject.size).to eq(1) }
   end
@@ -1193,8 +1193,8 @@ RSpec.describe DossierChampsConcern do
     # The champs are instantiated inside the method under test, so there is no
     # instance to stub up front; collect them as they ask to be fetched.
     let(:fetched_instances) { [] }
-    let(:old_qf) { dossier.root_champs_public.find { it.stable_id == qf_stable_id } }
-    let(:new_qf) { dossier.root_champs_public.find { it.stable_id != qf_stable_id } }
+    let(:old_qf) { dossier.root_public_champs.find { it.stable_id == qf_stable_id } }
+    let(:new_qf) { dossier.root_public_champs.find { it.stable_id != qf_stable_id } }
 
     def stub_fetch_later(collector)
       allow_any_instance_of(Champs::QuotientFamilialChamp)
@@ -1471,15 +1471,15 @@ RSpec.describe DossierChampsConcern do
 
   describe "#reload" do
     it "drops the memoized champs so a concurrent write is picked up" do
-      expect(dossier.root_champs_public.size).to eq(4)
+      expect(dossier.root_public_champs.size).to eq(4)
 
       dossier.champ_data.where(stable_id: 99).destroy_all
       # still memoized
-      expect(dossier.root_champs_public.find { _1.stable_id == 99 }).to be_persisted
+      expect(dossier.root_public_champs.find { _1.stable_id == 99 }).to be_persisted
 
       dossier.reload
 
-      expect(dossier.root_champs_public.find { _1.stable_id == 99 }).to be_new_record
+      expect(dossier.root_public_champs.find { _1.stable_id == 99 }).to be_new_record
     end
   end
 

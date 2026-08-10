@@ -49,7 +49,7 @@ describe 'Dossier::Recovery::LifeCycle' do
       d
     end
 
-    def repetition(d) = d.root_champs_public.find(&:repetition?)
+    def repetition(d) = d.root_public_champs.find(&:repetition?)
     def pj_champ(d) = d.champ_data.find_by(type: "Champs::PieceJustificativeChamp")
     def carte(d) = d.champ_data.find_by(type: "Champs::CarteChamp")
     def siret(d) = d.champ_data.find_by(type: "Champs::SiretChamp")
