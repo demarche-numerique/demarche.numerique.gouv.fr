@@ -24,6 +24,25 @@
       "note": "Disaster-recovery tooling run by hand from a console. The dump is produced by Recovery::RevisionExporter and read from a developer-supplied path, never from user input."
     },
     {
+      "warning_type": "Unmaintained Dependency",
+      "warning_code": 122,
+      "fingerprint": "21ab0fe00fdd5899ffc405cff75aadb91b805ee996a614f7e27b08a287e9062d",
+      "check_name": "EOLRails",
+      "message": "Support for Rails 8.0.5 ends on 2026-10-07",
+      "file": "Gemfile.lock",
+      "line": 647,
+      "link": "https://brakemanscanner.org/docs/warning_types/unmaintained_dependency/",
+      "code": null,
+      "render_path": null,
+      "location": null,
+      "user_input": null,
+      "confidence": "Weak",
+      "cwe_id": [
+        1104
+      ],
+      "note": "Rails 8.0 is still maintained until 2026-10-07; this is an early heads-up, not a vulnerability. The Rails upgrade is planned before EOL, and this entry becomes obsolete (so the build fails) as soon as the version changes."
+    },
+    {
       "warning_type": "SQL Injection",
       "warning_code": 0,
       "fingerprint": "737aa4f7931ece068cce98d7cc66057a1ec81b9be43e469c3569ff1be91bbf09",
