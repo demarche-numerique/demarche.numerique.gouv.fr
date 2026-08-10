@@ -45,13 +45,12 @@ class AggregatedRevision
     @tree ||= begin
       members, latest_ids = merged
       types_de_champ_by_id = TypeDeChamp.where(id: latest_ids.values).index_by(&:id)
-      @members = members
-      @latest_version = latest_ids.transform_values { types_de_champ_by_id.fetch(it) }
+      latest_version = latest_ids.transform_values { types_de_champ_by_id.fetch(it) }
 
       TypeDeChampTree.new(
         revision: self,
-        public_coordinates: coordinates_for(members.fetch(:public, [])),
-        private_coordinates: coordinates_for(members.fetch(:private, []))
+        public_coordinates: coordinates_for(members.fetch(:public, []), members:, latest_version:),
+        private_coordinates: coordinates_for(members.fetch(:private, []), members:, latest_version:)
       )
     end
   end
@@ -109,13 +108,13 @@ class AggregatedRevision
 
   # Synthetic coordinates in document order: a section's content inlined after
   # its header, a repetition's content on its own coordinate.
-  def coordinates_for(stable_ids)
+  def coordinates_for(stable_ids, members:, latest_version:)
     stable_ids.flat_map do |stable_id|
-      type_de_champ = @latest_version.fetch(stable_id)
+      type_de_champ = latest_version.fetch(stable_id)
       if type_de_champ.repetition?
-        [Coordinate.new(type_de_champ:, children: coordinates_for(@members.fetch(stable_id, [])))]
+        [Coordinate.new(type_de_champ:, children: coordinates_for(members.fetch(stable_id, []), members:, latest_version:))]
       elsif type_de_champ.header_section?
-        [Coordinate.new(type_de_champ:, children: []), *coordinates_for(@members.fetch(stable_id, []))]
+        [Coordinate.new(type_de_champ:, children: []), *coordinates_for(members.fetch(stable_id, []), members:, latest_version:)]
       else
         [Coordinate.new(type_de_champ:, children: [])]
       end
