@@ -69,6 +69,23 @@ RSpec.describe Expert, type: :model do
       end
     end
 
+    context 'when both experts access a procedure and the old expert has an avis to give' do
+      let(:procedure) { create(:procedure) }
+      let(:old_experts_procedure) { create(:experts_procedure, expert: old_expert, procedure:) }
+      let(:new_experts_procedure) { create(:experts_procedure, expert: new_expert, procedure:) }
+      let!(:avis) { create(:avis, dossier: create(:dossier, procedure:), experts_procedure: old_experts_procedure) }
+
+      before do
+        new_experts_procedure
+        subject
+      end
+
+      it 'transfers the avis to the new expert and removes the old experts_procedure' do
+        expect(avis.reload.experts_procedure).to eq(new_experts_procedure)
+        expect(ExpertsProcedure.exists?(old_experts_procedure.id)).to eq(false)
+      end
+    end
+
     context 'when an old expert has a commentaire' do
       let(:dossier) { create(:dossier) }
       let(:commentaire) { CommentaireService.create(old_expert, dossier, body: "Mon commentaire") }

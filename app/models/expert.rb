@@ -69,7 +69,11 @@ class Expert < ApplicationRecord
 
     ExpertsProcedure
       .where(expert_id: old_expert.id, procedure: procedure_with_new)
-      .destroy_all
+      .find_each do |old_experts_procedure|
+        new_experts_procedure = ExpertsProcedure.find_by(expert_id: id, procedure_id: old_experts_procedure.procedure_id)
+        old_experts_procedure.avis.update_all(experts_procedure_id: new_experts_procedure.id)
+        old_experts_procedure.destroy
+      end
 
     old_expert.commentaires.update_all(expert_id: id)
 
