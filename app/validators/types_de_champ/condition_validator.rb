@@ -11,8 +11,8 @@ class TypesDeChamp::ConditionValidator < ActiveModel::EachValidator
       next unless tdc.condition?
 
       upper_tdcs = []
-      if collection == :draft_types_de_champ_private # in case of private tdc validation, we must include public tdcs
-        upper_tdcs += procedure.draft_types_de_champ_public
+      if collection == :draft_private_types_de_champ # in case of private tdc validation, we must include public tdcs
+        upper_tdcs += procedure.draft_public_types_de_champ
       end
       upper_tdcs += tdcs.take(tdc_index) # we take all upper_tdcs of current tdcs
 

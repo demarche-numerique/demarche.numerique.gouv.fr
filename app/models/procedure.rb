@@ -35,10 +35,10 @@ class Procedure < ApplicationRecord
   has_many :deleted_dossiers, dependent: :destroy
   has_many :llm_rule_suggestions, through: :revisions
 
-  def draft_types_de_champ_public = draft_revision&.flat_public_types_de_champ || []
-  def draft_types_de_champ_private = draft_revision&.flat_private_types_de_champ || []
-  def published_types_de_champ_public = published_revision&.flat_public_types_de_champ || []
-  def published_types_de_champ_private = published_revision&.flat_private_types_de_champ || []
+  def draft_public_types_de_champ = draft_revision&.flat_public_types_de_champ || []
+  def draft_private_types_de_champ = draft_revision&.flat_private_types_de_champ || []
+  def published_public_types_de_champ = published_revision&.flat_public_types_de_champ || []
+  def published_private_types_de_champ = published_revision&.flat_private_types_de_champ || []
 
   has_one :published_dossier_submitted_message, dependent: :destroy, through: :published_revision, source: :dossier_submitted_message
   has_one :draft_dossier_submitted_message, dependent: :destroy, through: :draft_revision, source: :dossier_submitted_message
@@ -245,7 +245,7 @@ class Procedure < ApplicationRecord
   validates :web_hook_url, url: { no_local: true, allow_blank: true }
   validates :web_hook_url, no_private_ip_url: true, allow_blank: true
 
-  validates :draft_types_de_champ_public,
+  validates :draft_public_types_de_champ,
     'types_de_champ/condition': true,
     'types_de_champ/header_section_consistency': true,
     'types_de_champ/no_empty_block': true,
@@ -258,9 +258,9 @@ class Procedure < ApplicationRecord
     'types_de_champ/date': true,
     'types_de_champ/repetition': true,
     'types_de_champ/api_particulier': true,
-    on: [:types_de_champ_public_editor, :publication]
+    on: [:public_types_de_champ_editor, :publication]
 
-  validates :draft_types_de_champ_private,
+  validates :draft_private_types_de_champ,
     'types_de_champ/condition': true,
     'types_de_champ/header_section_consistency': true,
     'types_de_champ/no_empty_block': true,
@@ -272,7 +272,7 @@ class Procedure < ApplicationRecord
     'types_de_champ/number': true,
     'types_de_champ/date': true,
     'types_de_champ/repetition': true,
-    on: [:types_de_champ_private_editor, :publication]
+    on: [:private_types_de_champ_editor, :publication]
 
   validate :check_juridique, on: [:create, :publication]
 

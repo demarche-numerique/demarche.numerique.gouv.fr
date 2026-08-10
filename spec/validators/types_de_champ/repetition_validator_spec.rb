@@ -3,11 +3,11 @@
 RSpec.describe TypesDeChamp::RepetitionValidator do
   shared_examples "repetition limits validation" do |scope:|
     let(:attribute) do
-      scope == :types_de_champ_public ? :draft_types_de_champ_public : :draft_types_de_champ_private
+      scope == :types_de_champ_public ? :draft_public_types_de_champ : :draft_private_types_de_champ
     end
 
     let(:validation_context) do
-      scope == :types_de_champ_public ? :types_de_champ_public_editor : :types_de_champ_private_editor
+      scope == :types_de_champ_public ? :public_types_de_champ_editor : :private_types_de_champ_editor
     end
 
     let(:procedure) do

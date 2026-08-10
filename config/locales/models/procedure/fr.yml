@@ -92,7 +92,7 @@ fr:
           attributes:
             api_particulier_token:
               invalid: 'n’a pas le bon format'
-            draft_types_de_champ_public:
+            draft_public_types_de_champ:
               format: 'Le champ %{message}'
               invalid_condition: "a une logique conditionnelle invalide"
               empty_repetition: 'doit comporter au moins un champ répétable'
@@ -105,7 +105,7 @@ fr:
               expression_reguliere_invalid: "est invalide, veuillez la corriger"
               referentiel_not_ready: "n’est pas configuré"
               missing_api_particulier_token: "n’est pas fonctionnel en l’absence d’un jeton API Particulier"
-            draft_types_de_champ_private:
+            draft_private_types_de_champ:
               format: 'L’annotation privée %{message}'
               invalid_condition: "a une logique conditionnelle invalide"
               empty_repetition: 'doit comporter au moins un champ répétable'

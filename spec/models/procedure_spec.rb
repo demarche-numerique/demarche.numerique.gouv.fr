@@ -565,7 +565,7 @@ describe Procedure do
 
         it 'doesn’t validate the types de champs' do
           procedure.validate
-          expect(procedure.errors[:draft_types_de_champ_public]).not_to be_present
+          expect(procedure.errors[:draft_public_types_de_champ]).not_to be_present
         end
       end
 
@@ -582,14 +582,14 @@ describe Procedure do
 
         it 'validates that no repetition type de champ is empty' do
           procedure.validate(:publication)
-          expect(procedure.errors.messages_for(:draft_types_de_champ_public)).to include(invalid_repetition_error_message)
+          expect(procedure.errors.messages_for(:draft_public_types_de_champ)).to include(invalid_repetition_error_message)
 
           new_draft = procedure.draft_revision
           repetition = new_draft.root_public_types_de_champ.find(&:repetition?)
           new_draft.add_type_de_champ(type_champ: :text, libelle: 'Nom', parent_stable_id: repetition.stable_id)
 
           procedure.validate(:publication)
-          expect(procedure.errors.messages_for(:draft_types_de_champ_public)).not_to include(invalid_repetition_error_message)
+          expect(procedure.errors.messages_for(:draft_public_types_de_champ)).not_to include(invalid_repetition_error_message)
         end
 
         it 'validates that no drop-down type de champ is empty' do
@@ -597,11 +597,11 @@ describe Procedure do
 
           drop_down.record.update!(drop_down_options: [])
           procedure.reload.validate(:publication)
-          expect(procedure.errors.messages_for(:draft_types_de_champ_public)).to include(invalid_drop_down_error_message)
+          expect(procedure.errors.messages_for(:draft_public_types_de_champ)).to include(invalid_drop_down_error_message)
 
           drop_down.record.update!(drop_down_options: ["--title--", "some value"])
           procedure.reload.validate(:publication)
-          expect(procedure.errors.messages_for(:draft_types_de_champ_public)).not_to include(invalid_drop_down_error_message)
+          expect(procedure.errors.messages_for(:draft_public_types_de_champ)).not_to include(invalid_drop_down_error_message)
         end
 
         context 'validates fields nested in a repetition' do
@@ -616,11 +616,11 @@ describe Procedure do
 
             it 'validates that no drop-down nested in a repetition is empty' do
               procedure.reload.validate(:publication)
-              expect(procedure.errors.messages_for(:draft_types_de_champ_public)).to include(a_string_including(invalid_drop_down_error_message))
+              expect(procedure.errors.messages_for(:draft_public_types_de_champ)).to include(a_string_including(invalid_drop_down_error_message))
 
               nested_tdc.record.update!(drop_down_options: ["un", "deux"])
               procedure.reload.validate(:publication)
-              expect(procedure.errors.messages_for(:draft_types_de_champ_public)).not_to include(a_string_including(invalid_drop_down_error_message))
+              expect(procedure.errors.messages_for(:draft_public_types_de_champ)).not_to include(a_string_including(invalid_drop_down_error_message))
             end
           end
 
@@ -632,7 +632,7 @@ describe Procedure do
 
             it 'validates that no private drop-down nested in a repetition is empty' do
               procedure.reload.validate(:publication)
-              expect(procedure.errors.messages_for(:draft_types_de_champ_private)).to include(a_string_including(invalid_drop_down_error_message))
+              expect(procedure.errors.messages_for(:draft_private_types_de_champ)).to include(a_string_including(invalid_drop_down_error_message))
             end
           end
 
@@ -642,7 +642,7 @@ describe Procedure do
 
             it 'reports the error' do
               procedure.reload.validate(:publication)
-              expect(procedure.errors.messages_for(:draft_types_de_champ_public)).to include(a_string_including("La date de début doit être antérieure"))
+              expect(procedure.errors.messages_for(:draft_public_types_de_champ)).to include(a_string_including("La date de début doit être antérieure"))
             end
           end
 
@@ -652,7 +652,7 @@ describe Procedure do
 
             it 'reports the error' do
               procedure.reload.validate(:publication)
-              expect(procedure.errors.messages_for(:draft_types_de_champ_public)).to include(a_string_including("La valeur minimale doit être inférieure"))
+              expect(procedure.errors.messages_for(:draft_public_types_de_champ)).to include(a_string_including("La valeur minimale doit être inférieure"))
             end
           end
 
@@ -662,7 +662,7 @@ describe Procedure do
 
             it 'reports the error' do
               procedure.reload.validate(:publication)
-              expect(procedure.errors.messages_for(:draft_types_de_champ_public)).to include(a_string_including("est pas configuré"))
+              expect(procedure.errors.messages_for(:draft_public_types_de_champ)).to include(a_string_including("est pas configuré"))
             end
           end
 
@@ -672,7 +672,7 @@ describe Procedure do
 
             it 'reports the error' do
               procedure.reload.validate(:publication)
-              expect(procedure.errors.messages_for(:draft_types_de_champ_public)).to include(a_string_including("Le libellé du champ en position"))
+              expect(procedure.errors.messages_for(:draft_public_types_de_champ)).to include(a_string_including("Le libellé du champ en position"))
             end
           end
         end
@@ -698,7 +698,7 @@ describe Procedure do
             it 'publication is invalid' do
               expect(procedure.invalid?(:publication)).to be_truthy
 
-              expect(procedure.errors.messages_for(:draft_types_de_champ_public).first).to include("au moins un type de caractère")
+              expect(procedure.errors.messages_for(:draft_public_types_de_champ).first).to include("au moins un type de caractère")
             end
           end
         end
@@ -723,7 +723,7 @@ describe Procedure do
 
             it 'publication is invalid' do
               expect(procedure.invalid?(:publication)).to be_truthy
-              expect(procedure.errors.messages_for(:draft_types_de_champ_public).first).to include("inférieur au nombre maximum de caractères")
+              expect(procedure.errors.messages_for(:draft_public_types_de_champ).first).to include("inférieur au nombre maximum de caractères")
             end
           end
 
@@ -750,7 +750,7 @@ describe Procedure do
 
         it 'validates that no repetition type de champ is empty' do
           procedure.validate(:publication)
-          expect(procedure.errors.messages_for(:draft_types_de_champ_private)).to include(invalid_repetition_error_message)
+          expect(procedure.errors.messages_for(:draft_private_types_de_champ)).to include(invalid_repetition_error_message)
 
           repetition = procedure.draft_revision.root_private_types_de_champ.find(&:repetition?)
           expect(procedure.errors.to_enum.to_a.map { _1.options[:type_de_champ] }).to include(repetition)
@@ -761,7 +761,7 @@ describe Procedure do
           drop_down.record.update!(drop_down_options: [])
           procedure.reload.validate(:publication)
 
-          expect(procedure.errors.messages_for(:draft_types_de_champ_private)).to include(invalid_drop_down_error_message)
+          expect(procedure.errors.messages_for(:draft_private_types_de_champ)).to include(invalid_drop_down_error_message)
           expect(procedure.errors.to_enum.to_a.map { _1.options[:type_de_champ] }).to include(drop_down)
         end
       end
@@ -772,12 +772,12 @@ describe Procedure do
         let(:types_de_champ_private) { [{ type: :text, condition: ds_eq(champ_value(1), constant(2)), stable_id: 2 }] }
         it 'validate without context' do
           procedure.validate
-          expect(procedure.errors.full_messages_for(:draft_types_de_champ_private)).to be_empty
+          expect(procedure.errors.full_messages_for(:draft_private_types_de_champ)).to be_empty
         end
 
         it 'validate allows condition' do
-          procedure.validate(:types_de_champ_private_editor)
-          expect(procedure.errors.full_messages_for(:draft_types_de_champ_private)).to be_empty
+          procedure.validate(:private_types_de_champ_editor)
+          expect(procedure.errors.full_messages_for(:draft_private_types_de_champ)).to be_empty
         end
       end
 
@@ -799,12 +799,12 @@ describe Procedure do
 
         it 'validate without context' do
           procedure.validate
-          expect(procedure.errors.full_messages_for(:draft_types_de_champ_private)).to be_empty
+          expect(procedure.errors.full_messages_for(:draft_private_types_de_champ)).to be_empty
         end
 
         it 'validate allows condition' do
-          procedure.validate(:types_de_champ_private_editor)
-          expect(procedure.errors.full_messages_for(:draft_types_de_champ_private)).to be_empty
+          procedure.validate(:private_types_de_champ_editor)
+          expect(procedure.errors.full_messages_for(:draft_private_types_de_champ)).to be_empty
         end
       end
 
@@ -816,12 +816,12 @@ describe Procedure do
 
         it 'validate without context' do
           procedure.validate
-          expect(procedure.errors.full_messages_for(:draft_types_de_champ_public)).to be_empty
+          expect(procedure.errors.full_messages_for(:draft_public_types_de_champ)).to be_empty
         end
 
         it 'validate prevent condition' do
-          procedure.validate(:types_de_champ_public_editor)
-          expect(procedure.errors.full_messages_for(:draft_types_de_champ_public)).to include(error_on_condition)
+          procedure.validate(:public_types_de_champ_editor)
+          expect(procedure.errors.full_messages_for(:draft_public_types_de_champ)).to include(error_on_condition)
         end
       end
     end

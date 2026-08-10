@@ -6,7 +6,7 @@ RSpec.describe TypesDeChamp::LibelleValidator do
   let(:procedure) { create(:procedure, types_de_champ_public: types) }
   let(:type_de_champ) { procedure.active_revision.root_public_types_de_champ.first }
 
-  subject { procedure.validate(:types_de_champ_public_editor) }
+  subject { procedure.validate(:public_types_de_champ_editor) }
 
   context 'with a text type de champ' do
     let(:types) { [type: :text] }
@@ -45,10 +45,10 @@ RSpec.describe TypesDeChamp::LibelleValidator do
       it 'adds an error mentioning both the child position and the parent repetition position' do
         subject
 
-        expect(procedure.errors.messages_for(:draft_types_de_champ_public))
+        expect(procedure.errors.messages_for(:draft_public_types_de_champ))
           .to include(
             I18n.t(
-              'activerecord.errors.models.procedure.attributes.draft_types_de_champ_public.missing_libelle_in_repetition',
+              'activerecord.errors.models.procedure.attributes.draft_public_types_de_champ.missing_libelle_in_repetition',
               position: child.revision_types_de_champ.last.position + 1,
               parent_position: repetition.revision_types_de_champ.last.position + 1
             )

@@ -10,7 +10,7 @@ describe TypesDeChamp::LinkedDropDownListTypeDeChamp do
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :linked_drop_down_list, libelle: 'liaison', options: menu_options }]) }
 
       def tdc_in_error
-        procedure.errors.find { it.attribute == :draft_types_de_champ_public }.options[:type_de_champ]
+        procedure.errors.find { it.attribute == :draft_public_types_de_champ }.options[:type_de_champ]
       end
 
       context 'valid menu' do
@@ -26,13 +26,13 @@ describe TypesDeChamp::LinkedDropDownListTypeDeChamp do
           ]
         end
 
-        it { expect(procedure.validate(:types_de_champ_public_editor)).to be true }
+        it { expect(procedure.validate(:public_types_de_champ_editor)).to be true }
       end
 
       context 'degenerate but valid menu' do
         let(:menu_options) { ["--Primary 1--"] }
 
-        it { expect(procedure.validate(:types_de_champ_public_editor)).to be true }
+        it { expect(procedure.validate(:public_types_de_champ_editor)).to be true }
       end
 
       context 'starting with secondary options' do
@@ -48,9 +48,9 @@ describe TypesDeChamp::LinkedDropDownListTypeDeChamp do
         end
 
         it 'adds the error on the procedure, pointing at the type de champ' do
-          expect(procedure.validate(:types_de_champ_public_editor)).to be false
+          expect(procedure.validate(:public_types_de_champ_editor)).to be false
           expect(tdc_in_error.libelle).to eq('liaison')
-          expect(procedure.errors.full_messages_for(:draft_types_de_champ_public))
+          expect(procedure.errors.full_messages_for(:draft_public_types_de_champ))
             .to eq(['Le champ doit commencer par une entrée de menu primaire de la forme --texte--'])
         end
       end

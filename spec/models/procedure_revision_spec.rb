@@ -1327,7 +1327,7 @@ describe ProcedureRevision do
       before { second_champ.record.update(condition: condition) }
       let(:condition) { ds_eq(constant(true), constant(1)) }
 
-      it { expect(subject.first.attribute).to eq(:draft_types_de_champ_public) }
+      it { expect(subject.first.attribute).to eq(:draft_public_types_de_champ) }
     end
 
     context 'when a champ has an invalid condition: needed tdc is down in the forms' do
@@ -1338,7 +1338,7 @@ describe ProcedureRevision do
         first_champ.record.update(condition: need_second_champ)
       end
 
-      it { expect(subject.first.attribute).to eq(:draft_types_de_champ_public) }
+      it { expect(subject.first.attribute).to eq(:draft_public_types_de_champ) }
     end
 
     context 'with a repetition' do
@@ -1366,7 +1366,7 @@ describe ProcedureRevision do
       context 'when a champ belongs to a repetition' do
         let(:condition) { ds_eq(champ_value(-1), constant(1)) }
 
-        it { expect(subject.first.attribute).to eq(:draft_types_de_champ_public) }
+        it { expect(subject.first.attribute).to eq(:draft_public_types_de_champ) }
       end
     end
   end

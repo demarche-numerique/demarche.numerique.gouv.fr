@@ -10,9 +10,9 @@ class Procedure::ErrorsSummary < ApplicationComponent
 
   def title
     case @validation_context
-    when :types_de_champ_private_editor
+    when :private_types_de_champ_editor
       "Les annotations privées contiennent des erreurs"
-    when :types_de_champ_public_editor
+    when :public_types_de_champ_editor
       "Les champs du formulaire contiennent des erreurs"
     when :publication
       if @procedure.publiee?
@@ -36,10 +36,10 @@ class Procedure::ErrorsSummary < ApplicationComponent
     case error.attribute
     when :ineligibilite_rules
       edit_admin_procedure_ineligibilite_rules_path(@procedure)
-    when :draft_types_de_champ_public
+    when :draft_public_types_de_champ
       tdc = error.options[:type_de_champ]
       champs_admin_procedure_path(@procedure, anchor: dom_id(tdc.stable_self, :editor_error))
-    when :draft_types_de_champ_private
+    when :draft_private_types_de_champ
       tdc = error.options[:type_de_champ]
       annotations_admin_procedure_path(@procedure, anchor: dom_id(tdc.stable_self, :editor_error))
     when :attestation_acceptation_template, :attestation_refus_template
@@ -56,7 +56,7 @@ class Procedure::ErrorsSummary < ApplicationComponent
 
   def to_error_descriptor(error)
     libelle = case error.attribute
-    when :draft_types_de_champ_public, :draft_types_de_champ_private
+    when :draft_public_types_de_champ, :draft_private_types_de_champ
       error.options[:type_de_champ].libelle.truncate(200)
     else
       error.base.class.human_attribute_name(error.attribute)

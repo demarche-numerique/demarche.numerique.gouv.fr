@@ -18,7 +18,7 @@
           = form.check_box :special_characters_accepted, id: dom_id(type_de_champ, :special_characters_accepted)
           = form.label :special_characters_accepted, class: 'fr-label fr-text--sm fr-mb-3v', for: dom_id(type_de_champ, :special_characters_accepted) do
             = t('.labels.special_characters')
-      - if (errors = procedure.errors.where(:draft_types_de_champ_public, :invalid_character_rules, type_de_champ:)).any?
+      - if (errors = procedure.errors.where(:draft_public_types_de_champ, :invalid_character_rules, type_de_champ:)).any?
         .fr-messages-group
           %p.fr-message.fr-message--error= errors.map(&:full_message).to_sentence
 
@@ -35,6 +35,6 @@
           = form.label :max_character_length, for: dom_id(type_de_champ, :max_character_length) do
             = t('.labels.max_character_length')
           = form.number_field :max_character_length, class: "fr-input", id: dom_id(type_de_champ, :max_character_length)
-      - if (errors = procedure.errors.where(:draft_types_de_champ_public, :invalid_character_length, type_de_champ:)).any?
+      - if (errors = procedure.errors.where(:draft_public_types_de_champ, :invalid_character_length, type_de_champ:)).any?
         .fr-messages-group
           %p.fr-message.fr-message--error= errors.map(&:full_message).to_sentence

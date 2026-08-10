@@ -3,11 +3,11 @@
 RSpec.describe TypesDeChamp::DateValidator do
   shared_examples "date range validation" do |scope:, type:|
     let(:attribute) do
-      scope == :types_de_champ_public ? :draft_types_de_champ_public : :draft_types_de_champ_private
+      scope == :types_de_champ_public ? :draft_public_types_de_champ : :draft_private_types_de_champ
     end
 
     let(:validation_context) do
-      scope == :types_de_champ_public ? :types_de_champ_public_editor : :types_de_champ_private_editor
+      scope == :types_de_champ_public ? :public_types_de_champ_editor : :private_types_de_champ_editor
     end
 
     let(:procedure) do
@@ -93,7 +93,7 @@ RSpec.describe TypesDeChamp::DateValidator do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :date }, { type: :date }, { type: :text }]) }
     let(:tdcs) { procedure.active_revision.root_public_types_de_champ }
 
-    subject { procedure.validate(:types_de_champ_public_editor) }
+    subject { procedure.validate(:public_types_de_champ_editor) }
 
     context "when no date field has the option enabled" do
       it "does not add errors" do
@@ -117,7 +117,7 @@ RSpec.describe TypesDeChamp::DateValidator do
 
       it "adds an error for each conflicting field" do
         subject
-        conflicting_errors = procedure.errors.where(:draft_types_de_champ_public, :prefill_with_france_connect_information_taken)
+        conflicting_errors = procedure.errors.where(:draft_public_types_de_champ, :prefill_with_france_connect_information_taken)
         expect(conflicting_errors.size).to eq(2)
         expect(conflicting_errors.map { it.options[:type_de_champ] }).to match_array([tdcs[0], tdcs[1]])
       end

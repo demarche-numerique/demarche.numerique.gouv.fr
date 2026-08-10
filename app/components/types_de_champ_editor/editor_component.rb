@@ -22,9 +22,9 @@ class TypesDeChampEditor::EditorComponent < ApplicationComponent
 
   def validation_context
     if annotations?
-      :types_de_champ_private_editor
+      :private_types_de_champ_editor
     else
-      :types_de_champ_public_editor
+      :public_types_de_champ_editor
     end
   end
 end

@@ -85,7 +85,7 @@ en:
           attributes:
             api_particulier_token:
               invalid: 'invalid format'
-            draft_types_de_champ_public:
+            draft_public_types_de_champ:
               format: 'Public field %{message}'
               invalid_condition: "have an invalid logic"
               empty_repetition: 'requires at least one field'
@@ -98,7 +98,7 @@ en:
               expression_reguliere_invalid: "is invalid"
               referentiel_not_ready: "is not configured"
               missing_api_particulier_token: "does not work without a API Particulier token"
-            draft_types_de_champ_private:
+            draft_private_types_de_champ:
               format: 'Private field %{message}'
               invalid_condition: "have an invalid logic"
               empty_repetition: 'requires at least one field'
