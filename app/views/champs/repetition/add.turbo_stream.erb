@@ -1,10 +1,8 @@
 <% if @row.present? %>
-  <%= fields_for @champ.input_name, @champ do |form| %>
-    <%= turbo_stream.append dom_id(@champ, :rows), render(EditableChamp::RepetitionRowComponent.new(form:, dossier: @champ.dossier, champ: @champ, row: @row, expanded: true)) %>
+  <%= turbo_stream.append dom_id(@champ, :rows), render(EditableChamp::RepetitionRowComponent.new(champ: @champ, row: @row, expanded: true)) %>
 
-    <% if @first_champ_id %>
-      <%= turbo_stream.focus(@first_champ_id, delay: 50) %>
-    <% end %>
+  <% if @first_champ_id %>
+    <%= turbo_stream.focus(@first_champ_id, delay: 50) %>
   <% end %>
 
   <%= turbo_stream.replace dom_id(@champ, :repetition_actions) do %>

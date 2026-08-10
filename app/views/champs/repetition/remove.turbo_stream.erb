@@ -4,9 +4,7 @@
 
 <%= turbo_stream.update dom_id(@champ, :rows) do %>
   <% @champ.rows.each do |row| %>
-    <%= fields_for @champ.input_name, @champ do |form| %>
-      <%= render EditableChamp::RepetitionRowComponent.new(form:, dossier: @champ.dossier, champ: @champ, row:, seen_at: nil, expanded: row.index == 1) %>
-    <% end %>
+    <%= render EditableChamp::RepetitionRowComponent.new(champ: @champ, row:, expanded: row.index == 1) %>
   <% end %>
 <% end %>
 

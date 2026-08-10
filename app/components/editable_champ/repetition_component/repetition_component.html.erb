@@ -47,7 +47,7 @@
     data-repetition-toggle-all-target="rowsContainer"
   >
     <% @champ.rows.each do |row| %>
-      <%= render EditableChamp::RepetitionRowComponent.new(form: @form, dossier: @champ.dossier, champ: @champ, row:, seen_at: @seen_at, expanded: expand_row?(row.id, @champ.row_ids.count)) %>
+      <%= render EditableChamp::RepetitionRowComponent.new(champ: @champ, row:, expanded: expand_row?(row.id, @champ.row_ids.count)) %>
     <% end %>
   </div>
 
