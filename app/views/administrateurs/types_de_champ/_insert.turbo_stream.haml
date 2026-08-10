@@ -2,7 +2,7 @@
   - if @coordinate.parent.present?
     - c = TypesDeChampEditor::SelectChampTemplatePositionComponent.new(block: @coordinate.parent, coordinates: @coordinate.parent.revision_types_de_champ)
   - else
-    - c = TypesDeChampEditor::SelectChampTemplatePositionComponent.new(block: @coordinate.revision, coordinates: @coordinate.private? ? @coordinate.revision.revision_types_de_champ_private : @coordinate.revision.revision_types_de_champ_public)
+    - c = TypesDeChampEditor::SelectChampTemplatePositionComponent.new(block: @coordinate.revision, coordinates: @coordinate.private? ? @coordinate.revision.private_revision_types_de_champ : @coordinate.revision.public_revision_types_de_champ)
 
   = turbo_stream.replace(c.block_id) do
     = render c

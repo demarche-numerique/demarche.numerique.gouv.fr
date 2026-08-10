@@ -388,7 +388,7 @@ RSpec.describe DossierChampsConcern do
   end
 
   describe "#champ_values_for_export" do
-    subject { dossier.champ_values_for_export(dossier.root_types_de_champ_public, format: :xlsx) }
+    subject { dossier.champ_values_for_export(dossier.root_public_types_de_champ, format: :xlsx) }
 
     # An empty yes_no exports as "" where the other types export nil.
     it "returns one [libelle, value] pair per root champ" do

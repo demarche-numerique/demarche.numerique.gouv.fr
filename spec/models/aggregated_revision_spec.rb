@@ -19,10 +19,10 @@ describe AggregatedRevision do
 
   describe 'with a single published revision' do
     it 'mirrors the published revision' do
-      expect(stable_ids(aggregate.types_de_champ_public)).to eq([110, 120, 130, 140])
+      expect(stable_ids(aggregate.public_types_de_champ)).to eq([110, 120, 130, 140])
       expect(stable_ids(aggregate.children_of(aggregate.type_de_champ(130)))).to eq([131])
       expect(stable_ids(aggregate.children_of(aggregate.type_de_champ(120)))).to eq([121, 122])
-      expect(stable_ids(aggregate.flat_types_de_champ_public)).to eq([110, 120, 121, 122, 130, 131, 140, 141])
+      expect(stable_ids(aggregate.flat_public_types_de_champ)).to eq([110, 120, 121, 122, 130, 131, 140, 141])
     end
   end
 
@@ -30,7 +30,7 @@ describe AggregatedRevision do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :text, libelle: 'draft only', stable_id: 210 }]) }
 
     it 'aggregates the draft alone' do
-      expect(stable_ids(aggregate.types_de_champ_public)).to eq([210])
+      expect(stable_ids(aggregate.public_types_de_champ)).to eq([210])
     end
   end
 
@@ -65,7 +65,7 @@ describe AggregatedRevision do
     end
 
     it 'appends the removed section at the end, with its removed content' do
-      expect(stable_ids(aggregate.types_de_champ_public)).to eq([110, 120, 130, 140])
+      expect(stable_ids(aggregate.public_types_de_champ)).to eq([110, 120, 130, 140])
       expect(stable_ids(aggregate.children_of(aggregate.type_de_champ(140)))).to eq([141])
       expect(aggregate.type_de_champ(141).section.stable_id).to eq(140)
     end
@@ -120,10 +120,10 @@ describe AggregatedRevision do
     before { allow(Rails).to receive(:cache).and_return(ActiveSupport::Cache::MemoryStore.new) }
 
     it 'reuses the cached merge without walking the revisions again' do
-      expect(stable_ids(AggregatedRevision.new(procedure).types_de_champ_public)).to eq([110, 120, 130, 140])
+      expect(stable_ids(AggregatedRevision.new(procedure).public_types_de_champ)).to eq([110, 120, 130, 140])
 
       expect(procedure).not_to receive(:revisions)
-      expect(stable_ids(AggregatedRevision.new(procedure).types_de_champ_public)).to eq([110, 120, 130, 140])
+      expect(stable_ids(AggregatedRevision.new(procedure).public_types_de_champ)).to eq([110, 120, 130, 140])
     end
 
     it 'turns over when a new revision is published' do
@@ -139,7 +139,7 @@ describe AggregatedRevision do
       brouillon = create(:procedure, types_de_champ_public: [{ type: :text, libelle: 'draft', stable_id: 410 }])
 
       expect(Rails.cache).not_to receive(:fetch)
-      expect(stable_ids(AggregatedRevision.new(brouillon).types_de_champ_public)).to eq([410])
+      expect(stable_ids(AggregatedRevision.new(brouillon).public_types_de_champ)).to eq([410])
     end
   end
 
@@ -151,8 +151,8 @@ describe AggregatedRevision do
     end
 
     it 'aggregates each scope separately' do
-      expect(stable_ids(aggregate.types_de_champ_public)).to eq([310])
-      expect(stable_ids(aggregate.types_de_champ_private)).to eq([320])
+      expect(stable_ids(aggregate.public_types_de_champ)).to eq([310])
+      expect(stable_ids(aggregate.private_types_de_champ)).to eq([320])
       expect(aggregate.type_de_champ(320, :private).libelle).to eq('annotation')
       expect(aggregate.type_de_champ(320, :public)).to be_nil
     end

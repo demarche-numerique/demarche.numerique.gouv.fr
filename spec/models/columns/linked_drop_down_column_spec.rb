@@ -3,7 +3,7 @@
 describe Columns::LinkedDropDownColumn do
   describe '#filtered_ids' do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :linked_drop_down_list, libelle: 'linked' }]) }
-    let(:type_de_champ) { procedure.active_revision.root_types_de_champ_public.first }
+    let(:type_de_champ) { procedure.active_revision.root_public_types_de_champ.first }
     let(:kept_dossier) { create(:dossier, procedure: procedure) }
     let(:discarded_dossier) { create(:dossier, procedure: procedure) }
 
@@ -126,7 +126,7 @@ describe Columns::LinkedDropDownColumn do
 
   describe 'unpack_values' do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :linked_drop_down_list, libelle: 'linked' }]) }
-    let(:type_de_champ) { procedure.active_revision.root_types_de_champ_public.first }
+    let(:type_de_champ) { procedure.active_revision.root_public_types_de_champ.first }
     let(:column) { procedure.find_column(label: 'linked') }
     subject { column.send(:unpack_values, nil) }
 

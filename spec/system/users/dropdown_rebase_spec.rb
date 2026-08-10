@@ -12,7 +12,7 @@ describe 'Multiple dropdown after rebase removes an option', js: true do
     ])
   end
   let(:dossier) { create(:dossier, :en_construction, :with_individual, user:, procedure:) }
-  let(:stable_id) { procedure.active_revision.root_types_de_champ_public.first.stable_id }
+  let(:stable_id) { procedure.active_revision.root_public_types_de_champ.first.stable_id }
 
   before do
     # User had selected "Bravo" and "Charlie" before submitting

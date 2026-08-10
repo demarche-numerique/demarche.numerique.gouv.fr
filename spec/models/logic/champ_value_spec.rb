@@ -203,13 +203,13 @@ describe Logic::ChampValue do
       let(:procedure) do
         create(:procedure, :published, :for_individual, types_de_champ_public: [{ type: :drop_down_list, libelle: 'dropdown', options: options }])
       end
-      let(:drop_down_r1) { procedure.published_revision.root_types_de_champ_public.first }
+      let(:drop_down_r1) { procedure.published_revision.root_public_types_de_champ.first }
       let(:stable_id) { drop_down_r1.stable_id }
 
       it { expect(champ_value(stable_id).options([drop_down_r1])).to match_array([["revision_1", "revision_1"]]) }
 
       context 'with a new revision' do
-        let(:drop_down_r2) { procedure.draft_revision.root_types_de_champ_public.first }
+        let(:drop_down_r2) { procedure.draft_revision.root_public_types_de_champ.first }
 
         before do
           tdc = procedure.draft_revision.find_and_ensure_exclusive_use(stable_id)

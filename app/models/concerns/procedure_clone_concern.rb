@@ -123,7 +123,7 @@ module ProcedureCloneConcern
     procedure.labels = [] if !options[:clone_labels]
 
     if !same_admin?(admin) || options[:cloned_from_library]
-      procedure.draft_revision.root_types_de_champ_public.each { |tdc| tdc.options&.delete(:old_pj) }
+      procedure.draft_revision.root_public_types_de_champ.each { |tdc| tdc.options&.delete(:old_pj) }
     end
 
     new_defaut_groupe = procedure.groupe_instructeurs

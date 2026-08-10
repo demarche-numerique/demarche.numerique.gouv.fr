@@ -56,8 +56,8 @@ describe ProcedureExportService do
 
         # before do
         #   # change one tdc place to check if the header is ordered
-        #   tdc_first = procedure.active_revision.revision_types_de_champ_public.first
-        #   tdc_last = procedure.active_revision.revision_types_de_champ_public.last
+        #   tdc_first = procedure.active_revision.public_revision_types_de_champ.first
+        #   tdc_last = procedure.active_revision.public_revision_types_de_champ.last
 
         #   tdc_first.update(position: tdc_last.position + 1)
         #   procedure.reload
@@ -409,8 +409,8 @@ describe ProcedureExportService do
     describe 'Repetitions sheet' do
       before do
         # change one tdc place to check if the header is ordered
-        tdc_first = procedure.active_revision.revision_types_de_champ_public.first
-        tdc_last = procedure.active_revision.revision_types_de_champ_public.last
+        tdc_first = procedure.active_revision.public_revision_types_de_champ.first
+        tdc_last = procedure.active_revision.public_revision_types_de_champ.last
 
         tdc_first.update(position: tdc_last.position + 1)
         procedure.reload
@@ -463,7 +463,7 @@ describe ProcedureExportService do
 
       context 'with long libelle composed of utf8 characteres' do
         before do
-          procedure.active_revision.root_types_de_champ_public.each do |type_de_champ|
+          procedure.active_revision.root_public_types_de_champ.each do |type_de_champ|
             type_de_champ.record.update!(libelle: "#{type_de_champ.id} - ?/[] ééé ééé ééééééé ééééééé éééééééé. ééé éé éééééééé éé ééé. ééééé éééééééé ééé ééé.")
           end
           champ_repetition.type_de_champ.flat_children.each do |type_de_champ|
@@ -479,8 +479,8 @@ describe ProcedureExportService do
       context 'with non unique labels' do
         let(:types_de_champ_public) { [{ type: :repetition, libelle: 'Une repetition', children: [{}] }, { type: :repetition, libelle: 'Une repetition', children: [{}] }] }
         let(:dossier) { create(:dossier, :en_instruction, :with_populated_champs, :with_individual, procedure:) }
-        let(:type_de_champ_repetition) { dossier.root_types_de_champ_public.first }
-        let(:another_type_de_champ_repetition) { dossier.root_types_de_champ_public.second }
+        let(:type_de_champ_repetition) { dossier.root_public_types_de_champ.first }
+        let(:another_type_de_champ_repetition) { dossier.root_public_types_de_champ.second }
 
         it 'should have sheets' do
           expect(subject.sheets.map(&:name)).to eq(['Dossiers', 'Etablissements', 'Avis', type_de_champ_repetition.libelle_for_export, another_type_de_champ_repetition.libelle_for_export])

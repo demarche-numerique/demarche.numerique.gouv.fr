@@ -91,7 +91,7 @@ RSpec.describe TypesDeChamp::DateValidator do
 
   describe "prefill_with_france_connect_information uniqueness" do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :date }, { type: :date }, { type: :text }]) }
-    let(:tdcs) { procedure.active_revision.root_types_de_champ_public }
+    let(:tdcs) { procedure.active_revision.root_public_types_de_champ }
 
     subject { procedure.validate(:types_de_champ_public_editor) }
 

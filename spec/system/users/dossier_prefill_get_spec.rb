@@ -20,7 +20,7 @@ describe 'Prefilling a dossier (with a GET request):', js: true do
   let(:procedure) { create(:procedure, :for_individual, :published, opendata: true, types_de_champ_public:) }
   let(:dossier) { procedure.dossiers.last }
   let(:linked_dossier) { create(:dossier, :en_construction, procedure:) }
-  let(:types_de_champ) { procedure.active_revision.root_types_de_champ_public }
+  let(:types_de_champ) { procedure.active_revision.root_public_types_de_champ }
 
   let(:type_de_champ_text) { types_de_champ[0] }
   let(:type_de_champ_phone) { types_de_champ[1] }

@@ -4,8 +4,8 @@ describe TypeDeChampTree do
   subject(:tree) do
     TypeDeChampTree.new(
       revision: draft,
-      public_coordinates: draft.revision_types_de_champ_public,
-      private_coordinates: draft.revision_types_de_champ_private
+      public_coordinates: draft.public_revision_types_de_champ,
+      private_coordinates: draft.private_revision_types_de_champ
     )
   end
 

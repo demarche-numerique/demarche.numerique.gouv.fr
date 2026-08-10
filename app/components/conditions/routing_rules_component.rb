@@ -8,7 +8,7 @@ class Conditions::RoutingRulesComponent < Conditions::ConditionsComponent
     @condition = groupe_instructeur.routing_rule || empty_operator(empty, empty)
     @procedure = groupe_instructeur.procedure
     @procedure_id = @procedure.id
-    @source_tdcs = @procedure.active_revision.root_types_de_champ_public
+    @source_tdcs = @procedure.active_revision.root_public_types_de_champ
     @champ_value_in_condition = @procedure.champ_value_in_condition?
   end
 

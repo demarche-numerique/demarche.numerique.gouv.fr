@@ -57,8 +57,8 @@ module Instructeurs
     def set_types_de_champ
       if export_template.tabular?
         aggregated_revision = @procedure.aggregated_revision
-        @types_de_champ_public = aggregated_revision.types_de_champ_public
-        @types_de_champ_private = aggregated_revision.types_de_champ_private
+        @public_types_de_champ = aggregated_revision.public_types_de_champ
+        @private_types_de_champ = aggregated_revision.private_types_de_champ
       end
     end
 

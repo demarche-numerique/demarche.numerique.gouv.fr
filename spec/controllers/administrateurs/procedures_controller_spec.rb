@@ -866,8 +866,8 @@ describe Administrateurs::ProceduresController, type: :controller do
           expect(Procedure.last.administrateurs).to include(administrateur_2)
           expect(Procedure.last.defaut_groupe_instructeur.instructeurs).to match_array([admin.instructeur, instructeur_2])
           expect(Procedure.last.instructeurs_self_management_enabled).to be_truthy
-          expect(Procedure.last.draft_revision.root_types_de_champ_public.count).to eq 1
-          expect(Procedure.last.draft_revision.root_types_de_champ_private.count).to eq 1
+          expect(Procedure.last.draft_revision.root_public_types_de_champ.count).to eq 1
+          expect(Procedure.last.draft_revision.root_private_types_de_champ.count).to eq 1
           expect(Procedure.last.attestation_acceptation_template).not_to be_nil
           expect(Procedure.last.attestation_refus_template).not_to be_nil
           expect(Procedure.last.zones).not_to be_blank
@@ -935,8 +935,8 @@ describe Administrateurs::ProceduresController, type: :controller do
           expect(Procedure.last.routing_enabled).to be_falsey
           expect(Procedure.last.defaut_groupe_instructeur.contact_information).to be_nil
           expect(Procedure.last.instructeurs_self_management_enabled).to be_falsey
-          expect(Procedure.last.draft_revision.root_types_de_champ_public.count).to eq 0
-          expect(Procedure.last.draft_revision.root_types_de_champ_private.count).to eq 0
+          expect(Procedure.last.draft_revision.root_public_types_de_champ.count).to eq 0
+          expect(Procedure.last.draft_revision.root_private_types_de_champ.count).to eq 0
           expect(Procedure.last.attestation_acceptation_template).to be_nil
           expect(Procedure.last.attestation_refus_template).to be_nil
           expect(Procedure.last.zones).to be_blank
@@ -1507,7 +1507,7 @@ describe Administrateurs::ProceduresController, type: :controller do
           expect(procedure.replaced_by_procedure_id).to be_nil
           expect(procedure.closing_notification_brouillon).to be_falsy
           expect(procedure.closing_notification_en_cours).to be_falsy
-          expect(procedure.published_revision.root_types_de_champ_public.first.libelle).to eq('libelle 1')
+          expect(procedure.published_revision.root_public_types_de_champ.first.libelle).to eq('libelle 1')
         end
       end
 

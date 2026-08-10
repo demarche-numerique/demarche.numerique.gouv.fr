@@ -22,7 +22,7 @@ class TypesDeChampEditor::HeaderSectionsSummaryComponent < ApplicationComponent
   def revision = @procedure.draft_revision
 
   def root_types_de_champ
-    @is_private ? revision.types_de_champ_private : revision.types_de_champ_public
+    @is_private ? revision.private_types_de_champ : revision.public_types_de_champ
   end
 
   def flatten_sections(types_de_champ, depth)

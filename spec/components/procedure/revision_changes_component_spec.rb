@@ -4,7 +4,7 @@ describe Procedure::RevisionChangesComponent, type: :component do
   describe 'dossier_link changes' do
     let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :dossier_link, libelle: 'Dossier lié' }]) }
     let(:new_revision) { procedure.create_new_revision }
-    let(:tdc) { procedure.active_revision.root_types_de_champ_public.first }
+    let(:tdc) { procedure.active_revision.root_public_types_de_champ.first }
 
     subject do
       render_inline(described_class.new(new_revision: new_revision.reload, previous_revision: procedure.active_revision))
@@ -81,7 +81,7 @@ describe Procedure::RevisionChangesComponent, type: :component do
   describe "repetition limits changes" do
     let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :repetition, libelle: "Bloc" }]) }
     let(:new_revision) { procedure.create_new_revision }
-    let(:tdc) { procedure.active_revision.root_types_de_champ_public.first }
+    let(:tdc) { procedure.active_revision.root_public_types_de_champ.first }
 
     subject do
       render_inline(described_class.new(new_revision: new_revision.reload, previous_revision: procedure.active_revision))

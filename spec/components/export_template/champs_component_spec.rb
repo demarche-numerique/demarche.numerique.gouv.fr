@@ -5,7 +5,7 @@ describe ExportTemplate::ChampsComponent, type: :component do
   let(:export_template) { build(:export_template, kind: 'csv', groupe_instructeur:) }
   let(:procedure) { create(:procedure_with_dossiers, :published, types_de_champ_public:, for_individual:) }
   let(:for_individual) { true }
-  let(:component) { described_class.new("Champs publics", export_template, procedure.aggregated_revision.types_de_champ_public) }
+  let(:component) { described_class.new("Champs publics", export_template, procedure.aggregated_revision.public_types_de_champ) }
 
   describe 'with a flat form' do
     let(:types_de_champ_public) do

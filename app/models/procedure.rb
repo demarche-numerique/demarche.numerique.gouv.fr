@@ -35,10 +35,10 @@ class Procedure < ApplicationRecord
   has_many :deleted_dossiers, dependent: :destroy
   has_many :llm_rule_suggestions, through: :revisions
 
-  def draft_types_de_champ_public = draft_revision&.flat_types_de_champ_public || []
-  def draft_types_de_champ_private = draft_revision&.flat_types_de_champ_private || []
-  def published_types_de_champ_public = published_revision&.flat_types_de_champ_public || []
-  def published_types_de_champ_private = published_revision&.flat_types_de_champ_private || []
+  def draft_types_de_champ_public = draft_revision&.flat_public_types_de_champ || []
+  def draft_types_de_champ_private = draft_revision&.flat_private_types_de_champ || []
+  def published_types_de_champ_public = published_revision&.flat_public_types_de_champ || []
+  def published_types_de_champ_private = published_revision&.flat_private_types_de_champ || []
 
   has_one :published_dossier_submitted_message, dependent: :destroy, through: :published_revision, source: :dossier_submitted_message
   has_one :draft_dossier_submitted_message, dependent: :destroy, through: :draft_revision, source: :dossier_submitted_message
@@ -123,11 +123,11 @@ class Procedure < ApplicationRecord
       .distinct(:id)
   end
 
-  def types_de_champ_public_for_tags
+  def public_types_de_champ_for_tags
     types_de_champ_for_tags.public_only.map { TypesDeChamp::TypeDeChampBase.build(it) }
   end
 
-  def types_de_champ_private_for_tags
+  def private_types_de_champ_for_tags
     types_de_champ_for_tags.private_only.map { TypesDeChamp::TypeDeChampBase.build(it) }
   end
 
@@ -614,7 +614,7 @@ class Procedure < ApplicationRecord
   end
 
   def routing_champs
-    active_revision.revision_types_de_champ_public.filter(&:used_by_routing_rules?).map(&:libelle)
+    active_revision.public_revision_types_de_champ.filter(&:used_by_routing_rules?).map(&:libelle)
   end
 
   def champ_value_in_condition?

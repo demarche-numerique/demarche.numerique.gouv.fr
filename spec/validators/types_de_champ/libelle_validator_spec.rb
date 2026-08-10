@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe TypesDeChamp::LibelleValidator do
   let(:procedure) { create(:procedure, types_de_champ_public: types) }
-  let(:type_de_champ) { procedure.active_revision.root_types_de_champ_public.first }
+  let(:type_de_champ) { procedure.active_revision.root_public_types_de_champ.first }
 
   subject { procedure.validate(:types_de_champ_public_editor) }
 
@@ -36,7 +36,7 @@ RSpec.describe TypesDeChamp::LibelleValidator do
 
   context 'with a champ inside a repetition' do
     let(:types) { [{ type: :repetition, children: [{ type: :text }] }] }
-    let(:repetition) { procedure.active_revision.root_types_de_champ_public.find(&:repetition?) }
+    let(:repetition) { procedure.active_revision.root_public_types_de_champ.find(&:repetition?) }
     let(:child) { repetition.flat_children.first }
 
     context 'when the child libelle is empty' do

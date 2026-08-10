@@ -23,7 +23,7 @@ module Maintenance
             ]
           )
         end
-        let(:type_de_champ) { procedure.active_revision.root_types_de_champ_public.first }
+        let(:type_de_champ) { procedure.active_revision.root_public_types_de_champ.first }
         let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
         let(:champ) { dossier.champ_data.first }
 
@@ -55,7 +55,7 @@ module Maintenance
             ]
           )
         end
-        let(:type_de_champ) { procedure.active_revision.root_types_de_champ_public.first }
+        let(:type_de_champ) { procedure.active_revision.root_public_types_de_champ.first }
         let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
         let!(:champ) { dossier.champ_data.first }
 

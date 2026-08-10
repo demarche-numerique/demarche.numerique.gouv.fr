@@ -14,7 +14,7 @@ describe TypeDeChamp do
       let(:dossier) { dossiers.tous_champs }
 
       it do
-        dossier.root_types_de_champ_public.each do |type_de_champ|
+        dossier.root_public_types_de_champ.each do |type_de_champ|
           champ = dossier.project_champ(type_de_champ)
           expect(type_de_champ.class.name).to match(/^TypesDeChamp::/)
           expect(champ.class.name).to match(/^Champs::/)
@@ -311,8 +311,8 @@ describe TypeDeChamp do
     let(:procedure) { create(:procedure, :with_type_de_champ, :with_type_de_champ_private) }
 
     it 'partition public and private' do
-      expect(procedure.active_revision.root_types_de_champ_public.count).to eq(1)
-      expect(procedure.active_revision.root_types_de_champ_private.count).to eq(1)
+      expect(procedure.active_revision.root_public_types_de_champ.count).to eq(1)
+      expect(procedure.active_revision.root_private_types_de_champ.count).to eq(1)
     end
   end
 

@@ -47,16 +47,16 @@
           </div>
         <%- end -%>
 
-        <%- if @procedure.active_revision.types_de_champ_public.present? -%>
+        <%- if @procedure.active_revision.public_types_de_champ.present? -%>
           <div class="fr-fieldset__element">
             <div class="fr-checkbox-group">
               <%= fco.check_box 'champs', checked: true %>
 
               <%= fco.label 'champs', class: "fr-label" do %>
-                <%= t('administrateurs.procedures.clone.types_de_champ_public') %>
+                <%= t('administrateurs.procedures.clone.public_types_de_champ') %>
 
                 <div class="fr-hint-text">
-                  <%= t('administrateurs.procedures.clone.types_de_champ_count', count: @procedure.active_revision.flat_types_de_champ_public.count) %>
+                  <%= t('administrateurs.procedures.clone.types_de_champ_count', count: @procedure.active_revision.flat_public_types_de_champ.count) %>
                 </div>
               <% end %>
             </div>
@@ -189,16 +189,16 @@
           </div>
         <%- end -%>
 
-        <%- if @procedure.active_revision.root_types_de_champ_private.present? -%>
+        <%- if @procedure.active_revision.root_private_types_de_champ.present? -%>
           <div class="fr-fieldset__element">
             <div class="fr-checkbox-group">
               <%= fco.check_box 'annotations', checked: true %>
 
               <%= fco.label 'annotations', class: "fr-label" do %>
-                <%= t('administrateurs.procedures.clone.types_de_champ_private') %>
+                <%= t('administrateurs.procedures.clone.private_types_de_champ') %>
 
                 <div class="fr-hint-text">
-                  <%= t('administrateurs.procedures.clone.types_de_champ_count', count: @procedure.active_revision.root_types_de_champ_private.count) %>
+                  <%= t('administrateurs.procedures.clone.types_de_champ_count', count: @procedure.active_revision.root_private_types_de_champ.count) %>
                 </div>
               <% end %>
             </div>

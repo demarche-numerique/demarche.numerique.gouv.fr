@@ -86,8 +86,8 @@ class AggregatedRevision
           end
         end
       end
-      place.call(:public, revision.types_de_champ_public)
-      place.call(:private, revision.types_de_champ_private)
+      place.call(:public, revision.public_types_de_champ)
+      place.call(:private, revision.private_types_de_champ)
     end
 
     members.default_proc = nil

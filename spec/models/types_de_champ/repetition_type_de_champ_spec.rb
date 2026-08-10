@@ -3,7 +3,7 @@
 describe TypesDeChamp::RepetitionTypeDeChamp do
   describe '#children' do
     let(:revision) { procedure.draft_revision }
-    let(:repetition) { revision.root_types_de_champ_public.find(&:repetition?) }
+    let(:repetition) { revision.root_public_types_de_champ.find(&:repetition?) }
 
     subject(:children_libelles) { repetition.children.map(&:libelle) }
 

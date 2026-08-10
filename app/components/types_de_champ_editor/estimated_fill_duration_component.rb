@@ -17,7 +17,7 @@ class TypesDeChampEditor::EstimatedFillDurationComponent < ApplicationComponent
   end
 
   def show?
-    !annotations? && @revision.types_de_champ_public.present?
+    !annotations? && @revision.public_types_de_champ.present?
   end
 
   def estimated_fill_duration_minutes

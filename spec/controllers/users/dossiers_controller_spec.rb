@@ -1027,7 +1027,7 @@ describe Users::DossiersController, type: :controller do
       end
 
       context 'with a valid value sent as string' do
-        before { procedure.active_revision.root_types_de_champ_public.first.record.update!(drop_down_mode: 'advanced', referentiel:) }
+        before { procedure.active_revision.root_public_types_de_champ.first.record.update!(drop_down_mode: 'advanced', referentiel:) }
 
         it 'updates the value' do
           subject
@@ -1059,7 +1059,7 @@ describe Users::DossiersController, type: :controller do
       end
 
       context 'with a valid value sent as string' do
-        before { procedure.active_revision.root_types_de_champ_public.first.record.update!(drop_down_mode: 'advanced', referentiel:) }
+        before { procedure.active_revision.root_public_types_de_champ.first.record.update!(drop_down_mode: 'advanced', referentiel:) }
 
         it 'updates the value' do
           subject

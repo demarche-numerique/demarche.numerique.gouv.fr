@@ -19,9 +19,9 @@ RSpec.describe ViewableChamp::HeaderSectionsSummaryComponent, type: :component d
   let(:procedure) { create(:procedure, types_de_champ_public: types_de_champ, types_de_champ_private: types_de_champ) }
   let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
   let(:component) { described_class.new(dossier:, is_private:) }
-  let(:types_de_champ_public) { dossier.root_types_de_champ_public.filter(&:header_section?) }
-  let(:types_de_champ_private) { dossier.root_types_de_champ_private.filter(&:header_section?) }
-  let(:repetition_tdc) { dossier.root_types_de_champ_public.find(&:repetition?) }
+  let(:types_de_champ_public) { dossier.root_public_types_de_champ.filter(&:header_section?) }
+  let(:types_de_champ_private) { dossier.root_private_types_de_champ.filter(&:header_section?) }
+  let(:repetition_tdc) { dossier.root_public_types_de_champ.find(&:repetition?) }
   let(:section_in_repetition) { repetition_tdc.flat_children.find(&:header_section?) }
 
   context 'public' do

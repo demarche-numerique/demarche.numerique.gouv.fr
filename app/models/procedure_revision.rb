@@ -11,8 +11,8 @@ class ProcedureRevision < ApplicationRecord
   has_many :dossiers, inverse_of: :revision, foreign_key: :revision_id
   has_many :revision_types_de_champ, -> { order(:position, :id) }, class_name: 'ProcedureRevisionTypeDeChamp', foreign_key: :revision_id, dependent: :destroy, inverse_of: :revision
 
-  def revision_types_de_champ_public = revision_types_de_champ.filter { _1.root? && _1.public? }.sort_by(&:position)
-  def revision_types_de_champ_private = revision_types_de_champ.filter { _1.root? && _1.private? }.sort_by(&:position)
+  def public_revision_types_de_champ = revision_types_de_champ.filter { _1.root? && _1.public? }.sort_by(&:position)
+  def private_revision_types_de_champ = revision_types_de_champ.filter { _1.root? && _1.private? }.sort_by(&:position)
 
   include TypeDeChampTree::Navigation
 
@@ -258,7 +258,7 @@ class ProcedureRevision < ApplicationRecord
   def dependent_conditions(tdc)
     stable_id = tdc.stable_id
 
-    (tdc.public? ? flat_types_de_champ_public : flat_types_de_champ_private).filter do |other_tdc|
+    (tdc.public? ? flat_public_types_de_champ : flat_private_types_de_champ).filter do |other_tdc|
       next if !other_tdc.condition?
 
       other_tdc.condition.sources.include?(stable_id)
@@ -279,11 +279,11 @@ class ProcedureRevision < ApplicationRecord
   end
 
   def carte?
-    flat_types_de_champ_public.any?(&:carte?)
+    flat_public_types_de_champ.any?(&:carte?)
   end
 
   def has_france_connect_type_de_champ?
-    root_types_de_champ_public.any?(&:france_connect?)
+    root_public_types_de_champ.any?(&:france_connect?)
   end
 
   def coordinate_and_tdc(stable_id)
@@ -297,11 +297,11 @@ class ProcedureRevision < ApplicationRecord
   end
 
   def simple_routable_types_de_champ
-    root_types_de_champ_public.filter(&:simple_routable?)
+    root_public_types_de_champ.filter(&:simple_routable?)
   end
 
   def conditionable_types_de_champ
-    flat_types_de_champ_public.filter(&:conditionable?)
+    flat_public_types_de_champ.filter(&:conditionable?)
   end
 
   def champ_value_in_condition?
@@ -379,13 +379,13 @@ class ProcedureRevision < ApplicationRecord
   def tree
     @tree ||= TypeDeChampTree.new(
       revision: self,
-      public_coordinates: revision_types_de_champ_public,
-      private_coordinates: revision_types_de_champ_private
+      public_coordinates: public_revision_types_de_champ,
+      private_coordinates: private_revision_types_de_champ
     )
   end
 
   def compute_estimated_fill_duration
-    root_types_de_champ_public.sum do |tdc|
+    root_public_types_de_champ.sum do |tdc|
       next tdc.estimated_read_duration unless tdc.fillable?
 
       duration = tdc.estimated_read_duration + tdc.estimated_fill_duration
@@ -399,9 +399,9 @@ class ProcedureRevision < ApplicationRecord
     if parent_coordinate
       parent_coordinate.revision_types_de_champ
     elsif type_de_champ.private?
-      revision_types_de_champ_private
+      private_revision_types_de_champ
     else
-      revision_types_de_champ_public
+      public_revision_types_de_champ
     end
   end
 

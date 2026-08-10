@@ -4,9 +4,9 @@ describe DossierRebaseConcern do
   describe '#can_rebase?' do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ mandatory: true }, { type: :yes_no, mandatory: false }], types_de_champ_private: [{}]) }
     let(:attestation_template) { procedure.draft_revision.attestation_acceptation_template.find_or_revise! }
-    let(:type_de_champ) { procedure.active_revision.root_types_de_champ_public.find { |tdc| !tdc.mandatory? } }
-    let(:private_type_de_champ) { procedure.active_revision.root_types_de_champ_private.first }
-    let(:mandatory_type_de_champ) { procedure.active_revision.root_types_de_champ_public.find(&:mandatory?) }
+    let(:type_de_champ) { procedure.active_revision.root_public_types_de_champ.find { |tdc| !tdc.mandatory? } }
+    let(:private_type_de_champ) { procedure.active_revision.root_private_types_de_champ.first }
+    let(:mandatory_type_de_champ) { procedure.active_revision.root_public_types_de_champ.find(&:mandatory?) }
 
     context 'on unpublished procedure' do
       context 'en_construction' do
@@ -416,7 +416,7 @@ describe DossierRebaseConcern do
       end
       let!(:dossier) { create(:dossier, procedure: procedure) }
 
-      def champ_libelles = dossier.root_types_de_champ_public.map(&:libelle)
+      def champ_libelles = dossier.root_public_types_de_champ.map(&:libelle)
 
       context 'when a tdc is added in the middle' do
         before do
@@ -478,7 +478,7 @@ describe DossierRebaseConcern do
           tdc_to_update.update(type_champ: :integer_number)
         end
 
-        it { expect { subject }.to change { dossier.root_types_de_champ_public.map(&:type_champ) }.from(['text', 'text']).to(['integer_number', 'text']) }
+        it { expect { subject }.to change { dossier.root_public_types_de_champ.map(&:type_champ) }.from(['text', 'text']).to(['integer_number', 'text']) }
         it { expect { subject }.to change { first_champ.class }.from(Champs::TextChamp).to(Champs::IntegerNumberChamp) }
         it { expect { subject }.not_to change { first_champ.to_s } }
         it { expect { subject }.to change { first_champ.external_id }.from('123').to(nil) }
@@ -506,8 +506,8 @@ describe DossierRebaseConcern do
       let!(:dossier) { create(:dossier, procedure: procedure) }
       let(:repetition) { procedure.draft_revision.types_de_champ.find(&:repetition?) }
 
-      def child_libelles = dossier.revision.revision_types_de_champ_public.first.revision_types_de_champ.map(&:libelle)
-      def child_types_champ = dossier.revision.revision_types_de_champ_public.first.revision_types_de_champ.map(&:type_champ)
+      def child_libelles = dossier.revision.public_revision_types_de_champ.first.revision_types_de_champ.map(&:libelle)
+      def child_types_champ = dossier.revision.public_revision_types_de_champ.first.revision_types_de_champ.map(&:type_champ)
 
       context 'when a child tdc is added in the middle' do
         before do

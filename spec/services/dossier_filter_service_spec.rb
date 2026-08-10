@@ -65,7 +65,7 @@ describe DossierFilterService do
   describe '#sorted_ids' do
     let(:procedure) { create(:procedure, :published, types_de_champ_public:, types_de_champ_private: [{}]) }
     let(:types_de_champ_public) { [{}] }
-    let(:first_type_de_champ) { assign_to.procedure.active_revision.root_types_de_champ_public.first }
+    let(:first_type_de_champ) { assign_to.procedure.active_revision.root_public_types_de_champ.first }
     let(:dossiers) { procedure.dossiers }
     let(:instructeur) { create(:instructeur) }
     let(:assign_to) { create(:assign_to, procedure:, instructeur:) }
@@ -192,7 +192,7 @@ describe DossierFilterService do
 
     context 'for type_de_champ_private table' do
       context 'with no revisions' do
-        let(:column) { procedure.find_column(label: procedure.active_revision.root_types_de_champ_private.first.libelle) }
+        let(:column) { procedure.find_column(label: procedure.active_revision.root_private_types_de_champ.first.libelle) }
 
         let(:biere_dossier) { create(:dossier, procedure:) }
         let(:vin_dossier) { create(:dossier, procedure:) }
@@ -485,7 +485,7 @@ describe DossierFilterService do
 
       let(:kept_dossier) { create(:dossier, procedure:) }
       let(:discarded_dossier) { create(:dossier, procedure:) }
-      let(:type_de_champ) { procedure.active_revision.root_types_de_champ_public.first }
+      let(:type_de_champ) { procedure.active_revision.root_public_types_de_champ.first }
 
       context 'with single value' do
         before do
@@ -558,7 +558,7 @@ describe DossierFilterService do
             { type: :yes_no },
           ]
         end
-        let(:types_de_champ) { procedure.active_revision.root_types_de_champ_public }
+        let(:types_de_champ) { procedure.active_revision.root_public_types_de_champ }
         let(:type_de_champ_resto) { types_de_champ[0] }
         let(:type_de_champ_a_emporter) { types_de_champ[1] }
 
@@ -659,7 +659,7 @@ describe DossierFilterService do
 
       let(:kept_dossier) { create(:dossier, procedure:) }
       let(:discarded_dossier) { create(:dossier, procedure:) }
-      let(:type_de_champ_private) { procedure.active_revision.root_types_de_champ_private.first }
+      let(:type_de_champ_private) { procedure.active_revision.root_private_types_de_champ.first }
 
       before do
         kept_dossier.champ_data.find_by(stable_id: type_de_champ_private.stable_id).update(value: 'keep me')

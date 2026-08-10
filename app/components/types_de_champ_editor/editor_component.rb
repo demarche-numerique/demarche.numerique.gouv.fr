@@ -14,9 +14,9 @@ class TypesDeChampEditor::EditorComponent < ApplicationComponent
 
   def coordinates
     if annotations?
-      @revision.revision_types_de_champ_private
+      @revision.private_revision_types_de_champ
     else
-      @revision.revision_types_de_champ_public
+      @revision.public_revision_types_de_champ
     end
   end
 

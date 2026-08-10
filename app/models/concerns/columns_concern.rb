@@ -124,21 +124,21 @@ module ColumnsConcern
   end
 
   def form_filterable_columns
-    aggregated_revision.root_types_de_champ_public
+    aggregated_revision.root_public_types_de_champ
       .filter(&:fillable?)
       .flat_map(&:columns)
       .filter(&:filterable)
   end
 
   def annotation_privees_filterable_columns
-    aggregated_revision.root_types_de_champ_private
+    aggregated_revision.root_private_types_de_champ
       .filter(&:fillable?)
       .flat_map(&:columns)
       .filter(&:filterable)
   end
 
   def personnalisable_columns
-    active_revision.root_types_de_champ_public
+    active_revision.root_public_types_de_champ
       .filter { _1.type_champ.in?(TypeDeChamp::PERSONNALISABLE_TYPE_CHAMPS) }
       .filter { _1.condition.nil? }
       .filter_map(&:personnalisation_column)
@@ -146,7 +146,7 @@ module ColumnsConcern
   end
 
   def personnalisable_columns_by_section
-    tdcs_public = active_revision.root_types_de_champ_public
+    tdcs_public = active_revision.root_public_types_de_champ
     auto_numbering = tdcs_public.none? { _1.header_section? && _1.libelle.match?(/^\d/) }
 
     personnalisable_by_stable_id = personnalisable_columns.index_by(&:stable_id)

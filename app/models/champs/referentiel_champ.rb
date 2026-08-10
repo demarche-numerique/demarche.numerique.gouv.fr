@@ -103,7 +103,7 @@ class Champs::ReferentielChamp < ChampData
     if main_stream?
       dossier.types_de_champ
     else
-      dossier.flat_types_de_champ_public
+      dossier.flat_public_types_de_champ
     end
   end
 

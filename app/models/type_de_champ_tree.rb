@@ -23,16 +23,16 @@ class TypeDeChampTree
     # Entry points to navigate types de champ as a tree: first-level types de
     # champ and top-level header sections (their content collapses into the
     # header; navigate deeper with TypeDeChamp#children).
-    def types_de_champ_public = tree.roots_public
-    def types_de_champ_private = tree.roots_private
+    def public_types_de_champ = tree.roots_public
+    def private_types_de_champ = tree.roots_private
 
-    def flat_types_de_champ_public = types_de_champ_public.flat_map { [it, *it.flat_children] }
-    def flat_types_de_champ_private = types_de_champ_private.flat_map { [it, *it.flat_children] }
-    def types_de_champ = flat_types_de_champ_public + flat_types_de_champ_private
+    def flat_public_types_de_champ = public_types_de_champ.flat_map { [it, *it.flat_children] }
+    def flat_private_types_de_champ = private_types_de_champ.flat_map { [it, *it.flat_children] }
+    def types_de_champ = flat_public_types_de_champ + flat_private_types_de_champ
 
-    def root_types_de_champ_public = flat_types_de_champ_public.reject(&:in_repetition?)
-    def root_types_de_champ_private = flat_types_de_champ_private.reject(&:in_repetition?)
-    def root_types_de_champ = root_types_de_champ_public + root_types_de_champ_private
+    def root_public_types_de_champ = flat_public_types_de_champ.reject(&:in_repetition?)
+    def root_private_types_de_champ = flat_private_types_de_champ.reject(&:in_repetition?)
+    def root_types_de_champ = root_public_types_de_champ + root_private_types_de_champ
 
     # Repetitions can't nest, so every repetition in the tree is a root.
     def repetition_types_de_champ = root_types_de_champ.filter(&:repetition?)

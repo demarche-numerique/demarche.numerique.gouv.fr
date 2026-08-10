@@ -121,7 +121,7 @@
     <% end %>
   <% end %>
 
-  <% if dossier.root_types_de_champ_public.any? || dossier.procedure.routing_enabled? %>
+  <% if dossier.root_public_types_de_champ.any? || dossier.procedure.routing_enabled? %>
     <%= render ViewableChamp::SectionComponent.new(dossier:, champs: dossier.public_champs, demande_seen_at:, profile:) %>
   <% end %>
 </div>

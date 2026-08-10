@@ -16,7 +16,7 @@ class ChangedColumn
     def columns(revision, champs, reference_champs)
       row_ids = champs.values.map(&:row_id).compact.uniq.sort
 
-      revision.root_types_de_champ_public.flat_map do |type_de_champ|
+      revision.root_public_types_de_champ.flat_map do |type_de_champ|
         if type_de_champ.repetition?
           prefix = type_de_champ.libelle
           types_de_champ = type_de_champ.flat_children

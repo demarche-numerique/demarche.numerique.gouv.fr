@@ -18,8 +18,8 @@ RSpec.describe TypesDeChampEditor::HeaderSectionsSummaryComponent, type: :compon
   end
   let(:procedure) { create(:procedure, types_de_champ_public: types_de_champ, types_de_champ_private: types_de_champ) }
   let(:component) { described_class.new(procedure:, is_private:) }
-  let(:types_de_champ_public) { procedure.draft_revision.revision_types_de_champ_public.filter(&:header_section?) }
-  let(:types_de_champ_private) { procedure.draft_revision.revision_types_de_champ_private.filter(&:header_section?) }
+  let(:types_de_champ_public) { procedure.draft_revision.public_revision_types_de_champ.filter(&:header_section?) }
+  let(:types_de_champ_private) { procedure.draft_revision.private_revision_types_de_champ.filter(&:header_section?) }
 
   context 'public' do
     it do

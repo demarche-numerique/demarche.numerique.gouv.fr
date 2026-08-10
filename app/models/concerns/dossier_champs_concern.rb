@@ -15,11 +15,11 @@ module DossierChampsConcern
   end
 
   def root_public_champs
-    @root_public_champs ||= root_types_de_champ_public.map { project_champ(it) }
+    @root_public_champs ||= root_public_types_de_champ.map { project_champ(it) }
   end
 
   def root_private_champs
-    @root_private_champs ||= root_types_de_champ_private.map { project_champ(it) }
+    @root_private_champs ||= root_private_types_de_champ.map { project_champ(it) }
   end
 
   def champs
@@ -30,11 +30,11 @@ module DossierChampsConcern
   # header sections. Navigate deeper with Champs::HeaderSectionChamp#children
   # and Champs::RepetitionChamp#rows.
   def public_champs
-    @public_champs ||= revision.types_de_champ_public.map { project_champ(it) }
+    @public_champs ||= revision.public_types_de_champ.map { project_champ(it) }
   end
 
   def private_champs
-    @private_champs ||= revision.types_de_champ_private.map { project_champ(it) }
+    @private_champs ||= revision.private_types_de_champ.map { project_champ(it) }
   end
 
   def filled_public_champs
@@ -198,7 +198,7 @@ module DossierChampsConcern
   end
 
   def set_default_value_for_france_connect_champs(user_email)
-    root_types_de_champ_public.filter(&:france_connect?).each do |type_de_champ|
+    root_public_types_de_champ.filter(&:france_connect?).each do |type_de_champ|
       existing_champ_data_on_main_stream = champ_data_on_main_stream.any? { _1.stable_id == type_de_champ.stable_id }
 
       next if existing_champ_data_on_main_stream && en_construction?
@@ -290,7 +290,7 @@ module DossierChampsConcern
     reset_champs_cache
 
     with_main_stream do
-      prefill_and_enqueue_fetch_external_data_jobs(buffer_champ_data.filter(&:referentiel?), flat_types_de_champ_private)
+      prefill_and_enqueue_fetch_external_data_jobs(buffer_champ_data.filter(&:referentiel?), flat_private_types_de_champ)
     end
 
     history_stream

@@ -2,7 +2,7 @@
 
 describe TypesDeChamp::SiretTypeDeChamp do
   let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :siret, libelle: 'Numéro SIRET' }]) }
-  let(:tdc_siret) { procedure.draft_revision.types_de_champ_public.first }
+  let(:tdc_siret) { procedure.draft_revision.public_types_de_champ.first }
 
   describe "#columns" do
     subject(:columns) { tdc_siret.columns }

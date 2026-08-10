@@ -442,7 +442,7 @@ describe Dossier, type: :model do
       let_it_be(:procedure) { create(:procedure, :for_individual, types_de_champ_public: [{ type: :date }]) }
       let(:user) { create(:user, france_connect_informations: [build(:france_connect_information)]) }
       let(:dossier) { create(:dossier, procedure:, user:) }
-      let(:tdc) { procedure.active_revision.root_types_de_champ_public.first }
+      let(:tdc) { procedure.active_revision.root_public_types_de_champ.first }
 
       before do
         tdc.record.update!(options: { 'birthdate' => '1', 'prefill_with_france_connect_information' => '1' })
@@ -2616,7 +2616,7 @@ describe Dossier, type: :model do
     context 'with integer_number' do
       let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :integer_number, libelle: 'c1' }]) }
       let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-      let(:integer_number_type_de_champ) { procedure.active_revision.root_types_de_champ_public.find(&:integer_number?) }
+      let(:integer_number_type_de_champ) { procedure.active_revision.root_public_types_de_champ.find(&:integer_number?) }
 
       it 'give me back my decimal number' do
         dossier
@@ -2639,12 +2639,12 @@ describe Dossier, type: :model do
         ]
       end
 
-      let(:text_type_de_champ) { procedure.active_revision.root_types_de_champ_public.find { |type_de_champ| type_de_champ.type_champ == TypeDeChamp.type_champs.fetch(:text) } }
-      let(:yes_no_type_de_champ) { procedure.active_revision.root_types_de_champ_public.find { |type_de_champ| type_de_champ.type_champ == TypeDeChamp.type_champs.fetch(:yes_no) } }
-      let(:datetime_type_de_champ) { procedure.active_revision.root_types_de_champ_public.find { |type_de_champ| type_de_champ.type_champ == TypeDeChamp.type_champs.fetch(:datetime) } }
-      let(:explication_type_de_champ) { procedure.active_revision.root_types_de_champ_public.find { |type_de_champ| type_de_champ.type_champ == TypeDeChamp.type_champs.fetch(:explication) } }
-      let(:commune_type_de_champ) { procedure.active_revision.root_types_de_champ_public.find { |type_de_champ| type_de_champ.type_champ == TypeDeChamp.type_champs.fetch(:communes) } }
-      let(:repetition_type_de_champ) { procedure.active_revision.root_types_de_champ_public.find { |type_de_champ| type_de_champ.type_champ == TypeDeChamp.type_champs.fetch(:repetition) } }
+      let(:text_type_de_champ) { procedure.active_revision.root_public_types_de_champ.find { |type_de_champ| type_de_champ.type_champ == TypeDeChamp.type_champs.fetch(:text) } }
+      let(:yes_no_type_de_champ) { procedure.active_revision.root_public_types_de_champ.find { |type_de_champ| type_de_champ.type_champ == TypeDeChamp.type_champs.fetch(:yes_no) } }
+      let(:datetime_type_de_champ) { procedure.active_revision.root_public_types_de_champ.find { |type_de_champ| type_de_champ.type_champ == TypeDeChamp.type_champs.fetch(:datetime) } }
+      let(:explication_type_de_champ) { procedure.active_revision.root_public_types_de_champ.find { |type_de_champ| type_de_champ.type_champ == TypeDeChamp.type_champs.fetch(:explication) } }
+      let(:commune_type_de_champ) { procedure.active_revision.root_public_types_de_champ.find { |type_de_champ| type_de_champ.type_champ == TypeDeChamp.type_champs.fetch(:communes) } }
+      let(:repetition_type_de_champ) { procedure.active_revision.root_public_types_de_champ.find { |type_de_champ| type_de_champ.type_champ == TypeDeChamp.type_champs.fetch(:repetition) } }
       let(:repetition_champ) { dossier.root_public_champs.find(&:repetition?) }
       let(:repetition_second_revision_champ) { dossier_second_revision.root_public_champs.find(&:repetition?) }
       let(:dossier) { create(:dossier, procedure: procedure) }
@@ -2667,8 +2667,8 @@ describe Dossier, type: :model do
         end
 
         it "should have champs from all revisions" do
-          expect(dossier.root_types_de_champ_public.map(&:libelle)).to eq([text_type_de_champ.libelle, datetime_type_de_champ.libelle, "Yes/no", explication_type_de_champ.libelle, commune_type_de_champ.libelle, repetition_type_de_champ.libelle])
-          expect(dossier_second_revision.root_types_de_champ_public.map(&:libelle)).to eq([datetime_type_de_champ.libelle, "Updated yes/no", explication_type_de_champ.libelle, 'Commune de naissance', "Repetition", "New text field"])
+          expect(dossier.root_public_types_de_champ.map(&:libelle)).to eq([text_type_de_champ.libelle, datetime_type_de_champ.libelle, "Yes/no", explication_type_de_champ.libelle, commune_type_de_champ.libelle, repetition_type_de_champ.libelle])
+          expect(dossier_second_revision.root_public_types_de_champ.map(&:libelle)).to eq([datetime_type_de_champ.libelle, "Updated yes/no", explication_type_de_champ.libelle, 'Commune de naissance', "Repetition", "New text field"])
           # the champ removed from the latest revision is appended after the current layout
           expect(dossier_champ_values_for_export.map { |(libelle)| libelle }).to eq([datetime_type_de_champ.libelle, "Updated yes/no", "Commune de naissance", "Commune de naissance (Code INSEE)", "Commune de naissance (Département)", "New text field", text_type_de_champ.libelle])
           expect(dossier_champ_values_for_export).to eq(dossier_second_revision_champ_values_for_export)
@@ -2717,8 +2717,8 @@ describe Dossier, type: :model do
       let(:types_de_champ) { [{ type: :yes_no }, { type: :text }] }
       let(:procedure) { create(:procedure, types_de_champ_public: types_de_champ) }
       let(:dossier) { create(:dossier, procedure:) }
-      let(:yes_no_tdc) { procedure.active_revision.root_types_de_champ_public.first }
-      let(:text_tdc) { procedure.active_revision.root_types_de_champ_public.second }
+      let(:yes_no_tdc) { procedure.active_revision.root_public_types_de_champ.first }
+      let(:text_tdc) { procedure.active_revision.root_public_types_de_champ.second }
       let(:tdcs) { dossier.root_public_champs.map(&:type_de_champ) }
 
       subject { dossier.champ_values_for_export(tdcs, format: :xlsx) }

@@ -16,7 +16,7 @@ RSpec.describe Referentiels::StepperComponent, type: :component do
   subject(:rendered_component) { render_inline(described_class.new(step_component:)) }
 
   context 'when referentiel is private' do
-    let(:type_de_champ) { procedure.draft_revision.root_types_de_champ_private.first }
+    let(:type_de_champ) { procedure.draft_revision.root_private_types_de_champ.first }
     let(:types_de_champ_private) { [{ type: :referentiel, referentiel: }] }
 
     it 'back links goes to annotations' do
@@ -26,7 +26,7 @@ RSpec.describe Referentiels::StepperComponent, type: :component do
   end
 
   context 'when referentiel is public' do
-    let(:type_de_champ) { procedure.draft_revision.root_types_de_champ_public.first }
+    let(:type_de_champ) { procedure.draft_revision.root_public_types_de_champ.first }
     let(:types_de_champ_public) { [{ type: :referentiel, referentiel: }] }
 
     it 'back links goes to champs' do

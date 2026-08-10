@@ -28,6 +28,6 @@
       %ul.fr-btns-group.fr-btns-group--inline-md.fr-ml-0
         %li
           = link_to "Revenir à l’écran de gestion", admin_procedure_path(@procedure), title: t('continue_annotations', scope: [:layouts, :breadcrumb]), class: 'fr-link fr-icon-arrow-left-line fr-link--icon-left fr-mb-2w fr-mr-2w'
-        - if @procedure.draft_revision.revision_types_de_champ_private.count > 0
+        - if @procedure.draft_revision.private_revision_types_de_champ.count > 0
           %li
             = link_to t('preview_annotations', scope: [:layouts, :breadcrumb]), apercu_admin_procedure_path(@procedure, params: {tab: 'annotations-privees'}), target: "_blank", rel: "noopener", class: 'fr-link fr-mb-2w'

@@ -172,12 +172,12 @@ class Dossier < ApplicationRecord
   has_one :attestation_refus_template, through: :procedure
 
   delegate :types_de_champ,
-    :types_de_champ_public,
-    :types_de_champ_private,
-    :root_types_de_champ_public,
-    :root_types_de_champ_private,
-    :flat_types_de_champ_public,
-    :flat_types_de_champ_private,
+    :public_types_de_champ,
+    :private_types_de_champ,
+    :root_public_types_de_champ,
+    :root_private_types_de_champ,
+    :flat_public_types_de_champ,
+    :flat_private_types_de_champ,
     :has_france_connect_type_de_champ?,
     to: :revision
 
@@ -1100,7 +1100,7 @@ class Dossier < ApplicationRecord
   end
 
   def has_annotations?
-    types_de_champ_private.present?
+    private_types_de_champ.present?
   end
 
   def hide_info_with_accuse_lecture?
@@ -1163,8 +1163,8 @@ class Dossier < ApplicationRecord
   end
 
   def build_default_champs
-    build_default_champs_for(flat_types_de_champ_public) if !champ_data.any?(&:public?)
-    build_default_champs_for(flat_types_de_champ_private) if !champ_data.any?(&:private?)
+    build_default_champs_for(flat_public_types_de_champ) if !champ_data.any?(&:public?)
+    build_default_champs_for(flat_private_types_de_champ) if !champ_data.any?(&:private?)
   end
 
   def build_default_champs_for(types_de_champ)
