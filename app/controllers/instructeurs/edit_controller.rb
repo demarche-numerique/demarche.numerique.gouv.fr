@@ -21,14 +21,14 @@ module Instructeurs
 
       respond_to do |format|
         format.turbo_stream do
-          @to_show, @to_hide, @to_update = champs_to_turbo_update(champs_attributes_params(:public), dossier.flat_champs_public)
+          @to_show, @to_hide, @to_update = champs_to_turbo_update(champs_attributes_params(:public), dossier.flat_public_champs)
           render layout: false
         end
       end
     end
 
     def validate
-      dossier.champs_public_valid?
+      dossier.public_champs_valid?
 
       @demande_seen_at = current_instructeur.follows.find_by(dossier:)&.demande_seen_at
       @can_confirm = dossier.errors.blank? && dossier.can_passer_en_construction?
@@ -41,7 +41,7 @@ module Instructeurs
     end
 
     def submit
-      dossier.champs_public_valid?
+      dossier.public_champs_valid?
 
       if dossier.errors.blank? && dossier.can_passer_en_construction?
         dossier.instructeur_submit_en_construction!(instructeur: current_instructeur, motivation: submit_params[:motivation])
@@ -59,7 +59,7 @@ module Instructeurs
 
       respond_to do |format|
         format.turbo_stream do
-          @to_show, @to_hide, @to_update = champ_to_turbo_update(champ, dossier.flat_champs_public)
+          @to_show, @to_hide, @to_update = champ_to_turbo_update(champ, dossier.flat_public_champs)
           render :update, layout: false
         end
       end

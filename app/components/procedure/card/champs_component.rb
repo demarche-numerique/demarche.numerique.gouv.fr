@@ -9,6 +9,6 @@ class Procedure::Card::ChampsComponent < ApplicationComponent
   private
 
   def error_messages
-    @procedure.errors.messages_for(:draft_types_de_champ_public).to_sentence
+    @procedure.errors.messages_for(:draft_public_types_de_champ).to_sentence
   end
 end

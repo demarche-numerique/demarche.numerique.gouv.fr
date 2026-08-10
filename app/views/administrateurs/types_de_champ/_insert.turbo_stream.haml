@@ -2,7 +2,7 @@
   - if @coordinate.parent.present?
     - c = TypesDeChampEditor::SelectChampTemplatePositionComponent.new(block: @coordinate.parent, coordinates: @coordinate.parent.revision_types_de_champ)
   - else
-    - c = TypesDeChampEditor::SelectChampTemplatePositionComponent.new(block: @coordinate.revision, coordinates: @coordinate.private? ? @coordinate.revision.revision_types_de_champ_private : @coordinate.revision.revision_types_de_champ_public)
+    - c = TypesDeChampEditor::SelectChampTemplatePositionComponent.new(block: @coordinate.revision, coordinates: @coordinate.private? ? @coordinate.revision.private_revision_types_de_champ : @coordinate.revision.public_revision_types_de_champ)
 
   = turbo_stream.replace(c.block_id) do
     = render c
@@ -11,7 +11,7 @@
                     [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)],
                     ['Configuration des champs']] })
 
-= turbo_stream.replace 'errors-summary', render(Procedure::ErrorsSummary.new(procedure: @procedure, validation_context: @coordinate&.private? ? :types_de_champ_private_editor : :types_de_champ_public_editor))
+= turbo_stream.replace 'errors-summary', render(Procedure::ErrorsSummary.new(procedure: @procedure, validation_context: @coordinate&.private? ? :private_types_de_champ_editor : :public_types_de_champ_editor))
 
 = turbo_stream.replace 'summary', render(TypesDeChampEditor::HeaderSectionsSummaryComponent.new(procedure: @procedure, is_private: @coordinate&.private?))
 

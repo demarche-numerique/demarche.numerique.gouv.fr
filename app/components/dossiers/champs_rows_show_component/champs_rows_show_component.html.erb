@@ -1,12 +1,19 @@
 <% each_champ do |champ| %>
   <% if champ.repetition? %>
-    <% types_de_champ = champ.dossier.revision.children_of(champ.type_de_champ) %>
-    <% champ.row_ids.each.with_index(1) do |row_id, row_number| %>
-      <div class="fr-background-alt--grey fr-p-2w fr-my-3w fr-ml-2w champ-repetition">
-        <%= tag.send(repetition_heading_tag, t(".repetition_heading", libelle: champ.libelle, row_number: row_number), class: "fr-h6 fr-text--bold") %>
-        <%= render ViewableChamp::SectionComponent.new(dossier: champ.dossier, types_de_champ:, row_id:, demande_seen_at: seen_at, profile:) %>
-      </div>
-    <% end %>
+    <div id="<%= champ.html_id %>">
+      <% champ.rows.each do |row| %>
+        <div
+          id="<%= row.html_id %>"
+          class="
+            fr-background-alt--grey fr-p-2w fr-my-3w fr-ml-2w
+            champ-repetition
+          "
+        >
+          <%= tag.send(repetition_heading_tag, t(".repetition_heading", libelle: champ.libelle, row_number: row.index), class: "fr-h6 fr-text--bold") %>
+          <%= render ViewableChamp::SectionComponent.new(dossier: champ.dossier, champs: row.champs, demande_seen_at: seen_at, profile:) %>
+        </div>
+      <% end %>
+    </div>
   <% else %>
     <%= render row_show_component(champ) do |c| %>
       <% if champ.blank? %>

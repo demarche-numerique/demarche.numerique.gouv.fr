@@ -40,7 +40,7 @@ class TypesDeChamp::PrefillRepetitionTypeDeChamp < TypesDeChamp::PrefillTypeDeCh
 
   def prefillable_subchamps
     @prefillable_subchamps ||=
-      TypesDeChamp::PrefillTypeDeChamp.wrap(@revision.children_of(self).filter(&:prefillable?), @revision)
+      TypesDeChamp::PrefillTypeDeChamp.wrap(flat_children.filter(&:prefillable?), @revision)
   end
 
   class PrefillRepetitionRow
@@ -62,7 +62,7 @@ class TypesDeChamp::PrefillRepetitionTypeDeChamp < TypesDeChamp::PrefillTypeDeCh
         next if !key.is_a?(String) || !key.starts_with?("champ_")
 
         stable_id = ChampData.stable_id_from_typed_id(key)
-        type_de_champ = revision.types_de_champ.find { _1.stable_id == stable_id }
+        type_de_champ = revision.types_de_champ.find { it.stable_id == stable_id }
         next unless type_de_champ
 
         subchamp = champ.dossier.champ_for_update(type_de_champ, row_id:, updated_by: nil)

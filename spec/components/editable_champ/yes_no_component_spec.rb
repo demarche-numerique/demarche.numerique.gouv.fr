@@ -19,7 +19,7 @@ describe EditableChamp::YesNoComponent, type: :component do
 
   describe 'not filled option visibility' do
     context 'when the champ is not mandatory' do
-      before { tdc.update!(mandatory: false) }
+      before { tdc.record.update!(mandatory: false) }
 
       it 'shows the not filled option' do
         render
@@ -29,7 +29,7 @@ describe EditableChamp::YesNoComponent, type: :component do
     end
 
     context 'when the champ is mandatory' do
-      before { tdc.update!(mandatory: true) }
+      before { tdc.record.update!(mandatory: true) }
 
       it 'does not show the not filled option' do
         render

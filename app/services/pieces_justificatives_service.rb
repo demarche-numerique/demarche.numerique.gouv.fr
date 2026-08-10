@@ -64,7 +64,7 @@ class PiecesJustificativesService
   end
 
   def self.serialize_types_de_champ_as_type_pj(revision)
-    tdcs = revision.root_types_de_champ_public.filter { |type_champ| type_champ.old_pj.present? }
+    tdcs = revision.root_public_types_de_champ.filter { |type_champ| type_champ.old_pj.present? }
     tdcs.map.with_index do |type_champ, order_place|
       description = type_champ.description
       if /^(?<original_description>.*?)(?:[\r\n]+)Récupérer le formulaire vierge pour mon dossier : (?<lien_demarche>http.*)$/m =~ description
@@ -136,7 +136,7 @@ class PiecesJustificativesService
   end
 
   def pjs_for_champs(dossiers)
-    champs = liste_documents_allows?(:with_champs_private) ? dossiers.flat_map(&:filled_champs) : dossiers.flat_map(&:filled_champs_public)
+    champs = liste_documents_allows?(:with_champs_private) ? dossiers.flat_map(&:filled_champs) : dossiers.flat_map(&:filled_public_champs)
     champs = champs.filter { it.piece_justificative? && it.is_type?(it.type_de_champ.type_champ) && !it.titre_identite? }
 
     champs_id_row_index = compute_champ_id_row_index(champs)
@@ -342,7 +342,7 @@ class PiecesJustificativesService
   # # # pj_champ_5 (stable_id: 2)
   # it returns { pj_0.id => 0, pj_1.id => 1, pj_2.id => 0, pj_3.id => 0, pj_4.id => 1, pj_5.id => 1 }
   def compute_champ_id_row_index(champs)
-    champs.filter(&:child?).group_by(&:dossier_id).values.each_with_object({}) do |children_for_dossier, hash|
+    champs.filter(&:in_repetition?).group_by(&:dossier_id).values.each_with_object({}) do |children_for_dossier, hash|
       children_for_dossier.group_by(&:stable_id).values.each do |champs_for_stable_id|
         champs_for_stable_id.sort_by(&:row_id).each.with_index { |c, index| hash[c.id] = index }
       end

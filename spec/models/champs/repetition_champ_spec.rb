@@ -11,7 +11,7 @@ describe Champs::RepetitionChamp do
       ])
   }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.root_champs_public.find(&:repetition?) }
+  let(:champ) { dossier.root_public_champs.find(&:repetition?) }
 
   describe "#row_libelle" do
     context "with a single child (monochamp)" do
@@ -58,7 +58,7 @@ describe Champs::RepetitionChamp do
     context "when limits are disabled" do
       before do
         tdc = dossier.revision.types_de_champ.find(&:repetition?)
-        tdc.update!(limit_repetitions: '0')
+        tdc.record.update!(limit_repetitions: '0')
       end
 
       it "returns false" do
@@ -69,8 +69,8 @@ describe Champs::RepetitionChamp do
     context "after a cycle of disabling/enabling toggle without new max value" do
       before do
         tdc = dossier.revision.types_de_champ.find(&:repetition?)
-        tdc.update!(limit_repetitions: '0')
-        tdc.update!(limit_repetitions: '1')
+        tdc.record.update!(limit_repetitions: '0')
+        tdc.record.update!(limit_repetitions: '1')
       end
 
       it "returns false when no max value is configured" do
@@ -94,14 +94,14 @@ describe Champs::RepetitionChamp do
         ])
     end
     let(:dossier) { create(:dossier, procedure:) }
-    let(:champ) { dossier.root_champs_public.find(&:repetition?) }
+    let(:champ) { dossier.root_public_champs.find(&:repetition?) }
 
     context "when count is below min" do
       let(:min_rep) { 2 }
       let(:max_rep) { nil }
 
       before do
-        champ_for_update(champ.rows.first.first).update(value: "rb")
+        champ_for_update(champ.rows.first.champs.first).update(value: "rb")
       end
 
       it "adds a repetition_too_few error" do
@@ -119,7 +119,7 @@ describe Champs::RepetitionChamp do
       end
 
       it "adds a repetition_too_few error even without any rows" do
-        fresh_champ = dossier.reload.root_champs_public.find(&:repetition?)
+        fresh_champ = dossier.reload.root_public_champs.find(&:repetition?)
         fresh_champ.valid?(:champ_value)
         expect(fresh_champ.errors.where(:value, :repetition_too_few)).to be_present
       end
@@ -130,7 +130,7 @@ describe Champs::RepetitionChamp do
       let(:max_rep) { 1 }
 
       before do
-        champ_for_update(champ.rows.first.first).update(value: "rb")
+        champ_for_update(champ.rows.first.champs.first).update(value: "rb")
         champ.add_row(updated_by: "test")
         champ.add_row(updated_by: "test")
       end
@@ -146,7 +146,7 @@ describe Champs::RepetitionChamp do
       let(:max_rep) { 3 }
 
       before do
-        champ_for_update(champ.rows.first.first).update(value: "rb")
+        champ_for_update(champ.rows.first.champs.first).update(value: "rb")
       end
 
       it "does not add any errors" do
@@ -158,7 +158,7 @@ describe Champs::RepetitionChamp do
 
   describe "#for_tag" do
     before do
-      champ_for_update(champ.rows.first.first).update(value: "rb")
+      champ_for_update(champ.rows.first.champs.first).update(value: "rb")
     end
 
     it "can render as string" do

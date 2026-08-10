@@ -4,7 +4,7 @@ describe 'Referentiel prefill revert', js: true do
   let(:user) { create(:user) }
   let(:procedure) { create(:procedure, :published, :for_individual, :with_service, types_de_champ_public: [{ type: :text, libelle: 'Nom entreprise' }]) }
   let(:dossier) { create(:dossier, :brouillon, user:, procedure:) }
-  let(:champ) { dossier.root_champs_public.first }
+  let(:champ) { dossier.root_public_champs.first }
 
   before { login_as user, scope: :user }
 

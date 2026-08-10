@@ -12,7 +12,7 @@ describe Users::DossiersController, type: :controller do
     let(:types_de_champ_public) { (0...nb_champ).map { |i| { type: :yes_no, libelle: "c_#{i}" } } }
     let(:dossier) { create(:dossier, user:, procedure:) }
 
-    let(:last_champ) { dossier.root_champs_public.last }
+    let(:last_champ) { dossier.root_public_champs.last }
 
     before do
       tdcs = procedure.active_revision.types_de_champ.to_a
@@ -20,11 +20,11 @@ describe Users::DossiersController, type: :controller do
       # one champ is visible if the previous champ is true
       (nb_champ - 1).times do |i|
         condition = ds_eq(champ_value(tdcs[i].stable_id), constant(true))
-        tdcs[i + 1].update!(condition:)
+        tdcs[i + 1].record.update!(condition:)
       end
 
       # all champs are visible
-      dossier.root_champs_public.take((nb_champ - 1)).each { |champ| champ.update_columns(value: 'true') }
+      dossier.root_public_champs.take((nb_champ - 1)).each { |champ| champ.update_columns(value: 'true') }
       last_champ.update_columns(value: 'false')
     end
 
@@ -33,7 +33,7 @@ describe Users::DossiersController, type: :controller do
         preloaded_dossier = DossierPreloader.load_one(dossier)
         expect(preloaded_dossier.valid?).to eq(true)
 
-        expect(preloaded_dossier.root_champs_public.last.visible?).to eq(true)
+        expect(preloaded_dossier.root_public_champs.last.visible?).to eq(true)
         expect(last_champ.reload.true?).to eq(false)
       end
     end

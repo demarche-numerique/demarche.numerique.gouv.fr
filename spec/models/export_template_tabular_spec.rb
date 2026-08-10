@@ -35,7 +35,7 @@ describe ExportTemplate do
 
     context 'when there is a previous revision with a renamed tdc' do
       context 'with already column in export template' do
-        let(:previous_tdc) { procedure.published_revision.root_types_de_champ_public.find { _1.stable_id == 1 } }
+        let(:previous_tdc) { procedure.published_revision.root_public_types_de_champ.find { _1.stable_id == 1 } }
         let(:changed_tdc) { { libelle: "Ca roule ?" } }
 
         context 'with already column in export template' do
@@ -59,7 +59,7 @@ describe ExportTemplate do
         end
       end
       context 'without columns in export template' do
-        let(:previous_tdc) { procedure.published_revision.root_types_de_champ_public.find { _1.stable_id == 1 } }
+        let(:previous_tdc) { procedure.published_revision.root_public_types_de_champ.find { _1.stable_id == 1 } }
         let(:changed_tdc) { { libelle: "Ca roule ?" } }
 
         before do
@@ -128,7 +128,7 @@ describe ExportTemplate do
 
   describe 'columns_for_stable_id' do
     before do
-      export_template.exported_columns = procedure.published_revision.types_de_champ.first.columns(procedure_id: procedure.id).map do |column|
+      export_template.exported_columns = procedure.published_revision.types_de_champ.first.columns.map do |column|
         ExportedColumn.new(libelle: column.label, column:)
       end
     end

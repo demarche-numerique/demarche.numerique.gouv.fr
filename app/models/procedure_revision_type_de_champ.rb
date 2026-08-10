@@ -55,9 +55,9 @@ class ProcedureRevisionTypeDeChamp < ApplicationRecord
     if child?
       parent.revision_types_de_champ
     elsif private?
-      revision.revision_types_de_champ_private
+      revision.private_revision_types_de_champ
     else
-      revision.revision_types_de_champ_public
+      revision.public_revision_types_de_champ
     end
   end
 
@@ -69,7 +69,7 @@ class ProcedureRevisionTypeDeChamp < ApplicationRecord
     end
 
     if type_de_champ.private?
-      upper += revision.revision_types_de_champ_public
+      upper += revision.public_revision_types_de_champ
     end
 
     upper

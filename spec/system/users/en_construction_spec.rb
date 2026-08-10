@@ -6,10 +6,10 @@ describe "Dossier en_construction", js: true do
   let(:dossier) { create(:dossier, :en_construction, :with_individual, :with_populated_champs, user:, procedure:) }
   let(:mandatory) { false }
   let(:types_de_champ_public) { [{ type: :piece_justificative, stable_id: 99, mandatory: }] }
-  let(:champ) { dossier.root_champs_public.find { _1.stable_id == 99 } }
+  let(:champ) { dossier.root_public_champs.find { _1.stable_id == 99 } }
 
   def user_buffer_champ
-    dossier.reload.with_update_stream(user).root_champs_public.find { _1.stable_id == 99 }
+    dossier.reload.with_update_stream(user).root_public_champs.find { _1.stable_id == 99 }
   end
 
   scenario 'delete a non mandatory piece justificative' do

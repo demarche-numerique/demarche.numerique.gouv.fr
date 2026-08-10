@@ -14,9 +14,9 @@ describe TypeDeChamp do
       let(:dossier) { dossiers.tous_champs }
 
       it do
-        dossier.revision.root_types_de_champ_public.each do |type_de_champ|
+        dossier.root_public_types_de_champ.each do |type_de_champ|
           champ = dossier.project_champ(type_de_champ)
-          expect(type_de_champ.dynamic_type.class.name).to match(/^TypesDeChamp::/)
+          expect(type_de_champ.class.name).to match(/^TypesDeChamp::/)
           expect(champ.class.name).to match(/^Champs::/)
         end
       end
@@ -147,26 +147,6 @@ describe TypeDeChamp do
         end
       end
     end
-
-    context 'delegate validation to dynamic type' do
-      subject { build(:type_de_champ_text) }
-      let(:dynamic_type) do
-        Class.new(TypesDeChamp::TypeDeChampBase) do
-          validate :never_valid
-
-          def never_valid
-            errors.add(:troll, 'always invalid')
-          end
-        end.new(subject)
-      end
-
-      before { subject.instance_variable_set(:@dynamic_type, dynamic_type) }
-
-      it do
-        is_expected.to be_invalid
-        expect(subject.errors.full_messages.to_sentence).to eq("Le champ « Troll » always invalid")
-      end
-    end
   end
 
   describe 'piece_justificative nature and options' do
@@ -222,24 +202,6 @@ describe TypeDeChamp do
         tdc2 = create(:type_de_champ_piece_justificative, pj_auto_purge: '0')
         expect(tdc2.pj_auto_purge?).to be false
       end
-    end
-  end
-
-  describe "linked_drop_down_list" do
-    let(:type_de_champ) { create(:type_de_champ_linked_drop_down_list) }
-
-    it 'should validate without label' do
-      type_de_champ.drop_down_options = ['toto']
-      expect(type_de_champ.validate).to be_falsey
-      messages = type_de_champ.errors.full_messages
-      expect(messages.size).to eq(1)
-      expect(messages.first).to eq("Le champ « #{type_de_champ.libelle} » doit commencer par une entrée de menu primaire de la forme <code style='white-space: pre-wrap;'>--texte--</code>")
-
-      type_de_champ.libelle = ''
-      expect(type_de_champ.validate).to be_falsey
-      messages = type_de_champ.errors.full_messages
-      expect(messages.size).to eq(1)
-      expect(messages.last).to eq("Le champ « La liste » doit commencer par une entrée de menu primaire de la forme <code style='white-space: pre-wrap;'>--texte--</code>")
     end
   end
 
@@ -349,8 +311,8 @@ describe TypeDeChamp do
     let(:procedure) { create(:procedure, :with_type_de_champ, :with_type_de_champ_private) }
 
     it 'partition public and private' do
-      expect(procedure.active_revision.root_types_de_champ_public.count).to eq(1)
-      expect(procedure.active_revision.root_types_de_champ_private.count).to eq(1)
+      expect(procedure.active_revision.root_public_types_de_champ.count).to eq(1)
+      expect(procedure.active_revision.root_private_types_de_champ.count).to eq(1)
     end
   end
 
@@ -637,7 +599,7 @@ describe TypeDeChamp do
       let(:type_de_champ) { procedure.draft_revision.types_de_champ.first }
 
       before do
-        type_de_champ.update!(options: { 'referentiel_mapping' => { 'kikoo' => 'lol' } })
+        type_de_champ.record.update!(options: { 'referentiel_mapping' => { 'kikoo' => 'lol' } })
         procedure.publish_revision!(procedure.administrateurs.first)
       end
 

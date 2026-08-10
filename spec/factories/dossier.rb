@@ -23,13 +23,13 @@ FactoryBot.define do
 
     after(:create) do |dossier, evaluator|
       if evaluator.populate_champs
-        dossier.revision.root_types_de_champ_public.each do |type_de_champ|
+        dossier.root_public_types_de_champ.each do |type_de_champ|
           dossier_factory_create_champ_or_repetition(type_de_champ, dossier)
         end
       end
 
       if evaluator.populate_annotations
-        dossier.revision.root_types_de_champ_private.each do |type_de_champ|
+        dossier.root_private_types_de_champ.each do |type_de_champ|
           dossier_factory_create_champ_or_repetition(type_de_champ, dossier)
         end
       end
@@ -307,7 +307,7 @@ end
 
 def dossier_factory_create_champ_or_repetition(type_de_champ, dossier)
   if type_de_champ.repetition?
-    types_de_champ = dossier.revision.children_of(type_de_champ)
+    types_de_champ = type_de_champ.flat_children
     2.times do
       row_id = ULID.generate
       dossier.champ_data << type_de_champ.build_champ(row_id:)

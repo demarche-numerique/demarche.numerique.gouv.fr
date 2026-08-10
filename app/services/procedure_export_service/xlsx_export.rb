@@ -176,7 +176,7 @@ class ProcedureExportService::XlsxExport
 
     def collect_repetitions(dossier, export_template)
       repetition_tdcs.each do |tdc|
-        rows = dossier.repetition_rows_for_export(tdc)
+        rows = dossier.project_rows_for(tdc)
         next if rows.empty?
 
         children_tdcs = repetition_children_tdcs[tdc.stable_id]
@@ -195,12 +195,12 @@ class ProcedureExportService::XlsxExport
     end
 
     def repetition_tdcs
-      @repetition_tdcs ||= @procedure.all_revisions_types_de_champ.repetition.to_a
+      @repetition_tdcs ||= @procedure.aggregated_revision.repetition_types_de_champ
     end
 
     def repetition_children_tdcs
       @repetition_children_tdcs ||= repetition_tdcs.to_h do |tdc|
-        [tdc.stable_id, @procedure.all_revisions_types_de_champ(parent: tdc).to_a]
+        [tdc.stable_id, tdc.flat_children.filter(&:fillable?)]
       end
     end
 

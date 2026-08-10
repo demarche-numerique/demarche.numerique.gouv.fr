@@ -30,7 +30,7 @@ RSpec.describe LLM::SuggestionOrderingService do
       double('LLMRuleSuggestion').tap do |llm_rule_suggestion|
         allow(llm_rule_suggestion).to receive(:llm_rule_suggestion_items).and_return(double(to_a: suggestions))
         revision = double('ProcedureRevision')
-        allow(revision).to receive(:revision_types_de_champ_public).and_return(double(to_a: originals))
+        allow(revision).to receive(:public_revision_types_de_champ).and_return(double(to_a: originals))
         allow(llm_rule_suggestion).to receive(:procedure_revision).and_return(revision)
       end
     end

@@ -1197,7 +1197,7 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
 
       context 'in column mode' do
         let(:column_mode) { true }
-        let(:column) { champ_column_value(drop_down_tdc.columns(procedure_id: procedure3.id).first) }
+        let(:column) { champ_column_value(drop_down_tdc.columns.first) }
 
         it do
           expect(procedure3.reload.defaut_groupe_instructeur.routing_rule).to eq(ds_eq(column, constant(Champs::DropDownListChamp::OTHER)))
@@ -1229,7 +1229,7 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
         let(:column_mode) { true }
         let(:column) do
           dep_column = departements_tdc
-            .columns(procedure_id: procedure.id)
+            .columns
             .find { it.label =~ /Département/ }
 
           champ_column_value(dep_column)
@@ -1284,7 +1284,7 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
         let(:column_mode) { true }
         let(:column) do
           pays_col = pays_tdc
-            .columns(procedure_id: procedure3.id)
+            .columns
             .find { it.is_a? Columns::ChampColumn }
 
           champ_column_value(pays_col)
@@ -1319,7 +1319,7 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
         let(:column_mode) { true }
         let(:column) do
           dep_column = communes_tdc
-            .columns(procedure_id: procedure3.id)
+            .columns
             .find { it.label =~ /Département/ }
 
           champ_column_value(dep_column)

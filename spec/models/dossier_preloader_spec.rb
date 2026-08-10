@@ -10,9 +10,9 @@ describe DossierPreloader do
   end
   let(:procedure) { create(:procedure, types_de_champ_public: types_de_champ) }
   let(:dossier) { create(:dossier, procedure: procedure) }
-  let(:repetition) { subject.root_champs_public.second }
-  let(:repetition_optional) { subject.root_champs_public.third }
-  let(:first_child) { repetition.rows.first.first }
+  let(:repetition) { subject.root_public_champs.second }
+  let(:repetition_optional) { subject.root_public_champs.third }
+  let(:first_child) { repetition.rows.first.champs.first }
 
   describe 'all' do
     subject { DossierPreloader.load_one(dossier, pj_template: true) }
@@ -25,22 +25,22 @@ describe DossierPreloader do
       callback = lambda { |*_args| count += 1 }
       ActiveSupport::Notifications.subscribed(callback, "sql.active_record") do
         expect(subject.id).to eq(dossier.id)
-        expect(subject.root_champs_public.size).to eq(types_de_champ.size)
+        expect(subject.root_public_champs.size).to eq(types_de_champ.size)
         expect(subject.changed?).to be false
 
         expect(first_child.type).to eq('Champs::TextChamp')
         expect(repetition).not_to eq(first_child)
         expect(subject.champ_data.first.dossier).to eq(subject)
         expect(subject.champ_data.find(&:public?).dossier).to eq(subject)
-        expect(subject.root_champs_public.first.dossier).to eq(subject)
+        expect(subject.root_public_champs.first.dossier).to eq(subject)
 
-        expect(subject.root_champs_public.first.type_de_champ.piece_justificative_template.attached?).to eq(false)
+        expect(subject.root_public_champs.first.type_de_champ.piece_justificative_template.attached?).to eq(false)
 
         expect(subject.champ_data.first.conditional?).to eq(false)
         expect(subject.champ_data.find(&:public?).conditional?).to eq(false)
-        expect(subject.root_champs_public.first.conditional?).to eq(false)
+        expect(subject.root_public_champs.first.conditional?).to eq(false)
 
-        expect(repetition.rows.first.first.public_id).to eq(first_child.public_id)
+        expect(repetition.rows.first.champs.first.public_id).to eq(first_child.public_id)
         expect(repetition_optional.row_ids).to be_empty
       end
 

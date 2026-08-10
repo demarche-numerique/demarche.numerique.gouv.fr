@@ -11,15 +11,27 @@ class ProcedureRevision < ApplicationRecord
   has_many :dossiers, inverse_of: :revision, foreign_key: :revision_id
   has_many :revision_types_de_champ, -> { order(:position, :id) }, class_name: 'ProcedureRevisionTypeDeChamp', foreign_key: :revision_id, dependent: :destroy, inverse_of: :revision
 
-  def revision_types_de_champ_public = revision_types_de_champ.filter { _1.root? && _1.public? }.sort_by(&:position)
-  def revision_types_de_champ_private = revision_types_de_champ.filter { _1.root? && _1.private? }.sort_by(&:position)
-  def types_de_champ = revision_types_de_champ.map(&:type_de_champ)
-  def root_types_de_champ_public = revision_types_de_champ_public.map(&:type_de_champ)
-  def root_types_de_champ_private = revision_types_de_champ_private.map(&:type_de_champ)
+  def public_revision_types_de_champ = revision_types_de_champ.filter { _1.root? && _1.public? }.sort_by(&:position)
+  def private_revision_types_de_champ = revision_types_de_champ.filter { _1.root? && _1.private? }.sort_by(&:position)
 
-  # All types de champ in document order, repetition children inlined after their repetition.
-  def flat_types_de_champ_public = revision_types_de_champ_public.flat_map { [it, *it.revision_types_de_champ] }.map(&:type_de_champ)
-  def flat_types_de_champ_private = revision_types_de_champ_private.flat_map { [it, *it.revision_types_de_champ] }.map(&:type_de_champ)
+  include TypeDeChampTree::Navigation
+
+  # Navigation answers come from a tree built once per revision instance; any
+  # mutation of the revision's coordinates or types de champ must call
+  # reset_tree_cache.
+  def reset_tree_cache
+    @tree = nil
+  end
+
+  def reload(...)
+    reset_tree_cache
+    super
+  end
+
+  def preload_revision_types_de_champ(coordinates)
+    association(:revision_types_de_champ).target = coordinates
+    reset_tree_cache
+  end
 
   has_one :draft_procedure, -> { with_discarded }, class_name: 'Procedure', foreign_key: :draft_revision_id, dependent: :nullify, inverse_of: :draft_revision
   has_one :published_procedure, -> { with_discarded }, class_name: 'Procedure', foreign_key: :published_revision_id, dependent: :nullify, inverse_of: :published_revision
@@ -70,6 +82,7 @@ class ProcedureRevision < ApplicationRecord
       end
 
       revision_types_de_champ.reset
+      reset_tree_cache
     end
 
     type_de_champ
@@ -79,12 +92,13 @@ class ProcedureRevision < ApplicationRecord
 
   def find_and_ensure_exclusive_use(stable_id)
     coordinate, tdc = coordinate_and_tdc(stable_id)
+    tdc = replace_type_de_champ_by_clone(coordinate) if !tdc.only_present_on_draft?
 
-    if tdc.only_present_on_draft?
-      tdc
-    else
-      replace_type_de_champ_by_clone(coordinate)
-    end
+    # the caller is about to mutate the type de champ (possibly its position in
+    # the tree, e.g. a header section level); reload lazily so the tree reflects it
+    revision_types_de_champ.reset
+    reset_tree_cache
+    tdc
   end
 
   def move_type_de_champ(stable_id, position)
@@ -101,6 +115,7 @@ class ProcedureRevision < ApplicationRecord
     end
 
     revision_types_de_champ.reset
+    reset_tree_cache
     coordinate.reload
     coordinate
   end
@@ -120,6 +135,7 @@ class ProcedureRevision < ApplicationRecord
     end
 
     revision_types_de_champ.reset
+    reset_tree_cache
     coordinate.reload
     coordinate
   end
@@ -130,7 +146,7 @@ class ProcedureRevision < ApplicationRecord
     # in case of replay
     return nil if coordinate.nil?
 
-    children = children_of(tdc).to_a
+    children = coordinate.types_de_champ.to_a
 
     transaction do
       coordinate.destroy
@@ -142,7 +158,41 @@ class ProcedureRevision < ApplicationRecord
     end
 
     revision_types_de_champ.reset
+    reset_tree_cache
     coordinate
+  end
+
+  def remove_all_public_coordinates!
+    revision_types_de_champ.public_only.each(&:destroy)
+    revision_types_de_champ.reset
+    reset_tree_cache
+  end
+
+  def remove_all_private_coordinates!
+    revision_types_de_champ.private_only.each(&:destroy)
+    revision_types_de_champ.reset
+    reset_tree_cache
+  end
+
+  def remove_orphan_coordinates!
+    revision_types_de_champ.filter(&:orphan?).each { remove_type_de_champ(it.stable_id) }
+  end
+
+  # After a deep clone, child coordinates' parent_id still points at the source
+  # revision's parent coordinates; re-aim them (matched by stable_id) at the
+  # cloned parents.
+  def rewire_cloned_children_parents!
+    children = revision_types_de_champ
+      .includes(parent: :type_de_champ)
+      .where.not(parent_id: nil)
+    coordinates_by_stable_id = revision_types_de_champ
+      .includes(:type_de_champ)
+      .index_by(&:stable_id)
+
+    children.each do |child|
+      child.update!(parent: coordinates_by_stable_id.fetch(child.parent.stable_id))
+    end
+    reload
   end
 
   def move_up_type_de_champ(stable_id)
@@ -205,21 +255,10 @@ class ProcedureRevision < ApplicationRecord
     end
   end
 
-  def children_of(tdc)
-    coordinate_for(tdc).types_de_champ
-  end
-
-  def parent_of(tdc)
-    coordinate = coordinate_for(tdc)
-    if coordinate&.child?
-      revision_types_de_champ.find { _1.id == coordinate.parent_id }&.type_de_champ
-    end
-  end
-
   def dependent_conditions(tdc)
     stable_id = tdc.stable_id
 
-    (tdc.public? ? root_types_de_champ_public : root_types_de_champ_private).filter do |other_tdc|
+    (tdc.public? ? flat_public_types_de_champ : flat_private_types_de_champ).filter do |other_tdc|
       next if !other_tdc.condition?
 
       other_tdc.condition.sources.include?(stable_id)
@@ -240,11 +279,11 @@ class ProcedureRevision < ApplicationRecord
   end
 
   def carte?
-    root_types_de_champ_public.any?(&:carte?)
+    flat_public_types_de_champ.any?(&:carte?)
   end
 
   def has_france_connect_type_de_champ?
-    root_types_de_champ_public.any?(&:france_connect?)
+    root_public_types_de_champ.any?(&:france_connect?)
   end
 
   def coordinate_and_tdc(stable_id)
@@ -258,11 +297,11 @@ class ProcedureRevision < ApplicationRecord
   end
 
   def simple_routable_types_de_champ
-    root_types_de_champ_public.filter(&:simple_routable?)
+    root_public_types_de_champ.filter(&:simple_routable?)
   end
 
   def conditionable_types_de_champ
-    types_de_champ_for(scope: :public).filter(&:conditionable?)
+    flat_public_types_de_champ.filter(&:conditionable?)
   end
 
   def champ_value_in_condition?
@@ -337,11 +376,19 @@ class ProcedureRevision < ApplicationRecord
 
   private
 
+  def tree
+    @tree ||= TypeDeChampTree.new(
+      revision: self,
+      public_coordinates: public_revision_types_de_champ,
+      private_coordinates: private_revision_types_de_champ
+    )
+  end
+
   def compute_estimated_fill_duration
-    root_types_de_champ_public.sum do |tdc|
+    root_public_types_de_champ.sum do |tdc|
       next tdc.estimated_read_duration unless tdc.fillable?
 
-      duration = tdc.estimated_read_duration + tdc.estimated_fill_duration(self)
+      duration = tdc.estimated_read_duration + tdc.estimated_fill_duration
       duration /= 2 unless tdc.mandatory?
 
       duration
@@ -352,9 +399,9 @@ class ProcedureRevision < ApplicationRecord
     if parent_coordinate
       parent_coordinate.revision_types_de_champ
     elsif type_de_champ.private?
-      revision_types_de_champ_private
+      private_revision_types_de_champ
     else
-      revision_types_de_champ_public
+      public_revision_types_de_champ
     end
   end
 
@@ -460,8 +507,8 @@ class ProcedureRevision < ApplicationRecord
     if from_type_de_champ.condition != to_type_de_champ.condition
       changes << ProcedureRevisionChange::UpdateChamp.new(from_type_de_champ,
         :condition,
-        from_type_de_champ.condition&.to_s(from_coordinates.map(&:type_de_champ)),
-        to_type_de_champ.condition&.to_s(to_coordinates.map(&:type_de_champ)))
+        from_type_de_champ.condition&.to_s(from_coordinates.filter_map { it.revision.type_de_champ(it.stable_id) }),
+        to_type_de_champ.condition&.to_s(to_coordinates.filter_map { it.revision.type_de_champ(it.stable_id) }))
     end
 
     if to_type_de_champ.any_drop_down_list?

@@ -48,7 +48,7 @@ describe TypesDeChamp::FranceConnectTypeDeChamp do
     describe '#columns' do
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :quotient_familial, libelle: 'qf' }]) }
       let(:tdc_quotient_familial) { procedure.active_revision.types_de_champ.first }
-      let(:columns) { tdc_quotient_familial.columns(procedure_id: procedure.id) }
+      let(:columns) { tdc_quotient_familial.columns }
 
       it 'adds QF columns' do
         expected_columns = [
@@ -81,7 +81,7 @@ describe TypesDeChamp::FranceConnectTypeDeChamp do
       end
 
       def column_value(label)
-        tdc_etudiant_boursier.columns(procedure_id: procedure.id).find { it.label == label }.value(champ)
+        tdc_etudiant_boursier.columns.find { it.label == label }.value(champ)
       end
 
       it 'extracts values nested under statut_boursier' do

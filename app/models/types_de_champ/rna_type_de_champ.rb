@@ -3,17 +3,17 @@
 class TypesDeChamp::RNATypeDeChamp < TypesDeChamp::TypeDeChampBase
   include AddressableColumnConcern
 
-  def estimated_fill_duration(revision)
+  def estimated_fill_duration
     FILL_DURATION_MEDIUM
   end
 
-  def champ_value_for_export(champ, path = :value)
+  def filled_champ_value_for_export(champ, path = :value)
     champ.identifier
   end
 
-  def info_columns(procedure:)
+  def info_columns
     # Get base labels from columns (with libelle prefix removed automatically by parent)
-    column_labels = super(procedure:)
+    column_labels = super()
 
     # Add exportable columns that are not in the main columns
     column_labels.concat Etablissement::EXPORTABLE_ASSOCIATION_COLUMNS.keys.dup.map { I18n.t(_1, scope: [:activerecord, :attributes, :procedure_presentation, :fields, :etablissement]) }
@@ -21,11 +21,11 @@ class TypesDeChamp::RNATypeDeChamp < TypesDeChamp::TypeDeChampBase
     column_labels
   end
 
-  def columns(procedure_id:, displayable: true, prefix: nil)
+  def columns(displayable: true, prefix: nil)
     i18n_scope = [:activerecord, :attributes, :procedure_presentation, :fields, :etablissement]
 
     super
-      .concat(addressable_columns(procedure_id:, displayable:, prefix:, deprecated_columns: true))
+      .concat(addressable_columns(displayable:, prefix:, deprecated_columns: true))
       .concat(
         Etablissement::EXPORTABLE_ASSOCIATION_COLUMNS.map do |(column, attributes)|
           Columns::JSONPathColumn.new(

@@ -4,9 +4,9 @@ require 'rails_helper'
 
 RSpec.describe TypesDeChamp::LibelleValidator do
   let(:procedure) { create(:procedure, types_de_champ_public: types) }
-  let(:type_de_champ) { procedure.active_revision.root_types_de_champ_public.first }
+  let(:type_de_champ) { procedure.active_revision.root_public_types_de_champ.first }
 
-  subject { procedure.validate(:types_de_champ_public_editor) }
+  subject { procedure.validate(:public_types_de_champ_editor) }
 
   context 'with a text type de champ' do
     let(:types) { [type: :text] }
@@ -18,7 +18,7 @@ RSpec.describe TypesDeChamp::LibelleValidator do
     end
 
     context 'when libelle is empty' do
-      before { type_de_champ.update(libelle: '') }
+      before { type_de_champ.record.update(libelle: '') }
 
       it 'does add errors to the procedure' do
         expect { subject }.to change { procedure.errors.count }
@@ -26,7 +26,7 @@ RSpec.describe TypesDeChamp::LibelleValidator do
     end
 
     context 'when libelle is nil' do
-      before { type_de_champ.update(libelle: nil) }
+      before { type_de_champ.record.update(libelle: nil) }
 
       it 'does add errors to the procedure' do
         expect { subject }.to change { procedure.errors.count }
@@ -36,19 +36,19 @@ RSpec.describe TypesDeChamp::LibelleValidator do
 
   context 'with a champ inside a repetition' do
     let(:types) { [{ type: :repetition, children: [{ type: :text }] }] }
-    let(:repetition) { procedure.active_revision.root_types_de_champ_public.find(&:repetition?) }
-    let(:child) { procedure.draft_revision.children_of(repetition).first }
+    let(:repetition) { procedure.active_revision.root_public_types_de_champ.find(&:repetition?) }
+    let(:child) { repetition.flat_children.first }
 
     context 'when the child libelle is empty' do
-      before { child.update(libelle: '') }
+      before { child.record.update(libelle: '') }
 
       it 'adds an error mentioning both the child position and the parent repetition position' do
         subject
 
-        expect(procedure.errors.messages_for(:draft_types_de_champ_public))
+        expect(procedure.errors.messages_for(:draft_public_types_de_champ))
           .to include(
             I18n.t(
-              'activerecord.errors.models.procedure.attributes.draft_types_de_champ_public.missing_libelle_in_repetition',
+              'activerecord.errors.models.procedure.attributes.draft_public_types_de_champ.missing_libelle_in_repetition',
               position: child.revision_types_de_champ.last.position + 1,
               parent_position: repetition.revision_types_de_champ.last.position + 1
             )
@@ -66,7 +66,7 @@ RSpec.describe TypesDeChamp::LibelleValidator do
     end
 
     context 'when libelle is empty' do
-      before { type_de_champ.update(libelle: '') }
+      before { type_de_champ.record.update(libelle: '') }
 
       it 'does add errors to the procedure' do
         expect { subject }.to change { procedure.errors.count }
@@ -74,7 +74,7 @@ RSpec.describe TypesDeChamp::LibelleValidator do
     end
 
     context 'when libelle is nil' do
-      before { type_de_champ.update(libelle: nil) }
+      before { type_de_champ.record.update(libelle: nil) }
 
       it 'does add errors to the procedure' do
         expect { subject }.to change { procedure.errors.count }

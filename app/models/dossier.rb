@@ -171,7 +171,15 @@ class Dossier < ApplicationRecord
   has_one :attestation_acceptation_template, through: :procedure
   has_one :attestation_refus_template, through: :procedure
 
-  delegate :root_types_de_champ_public, :root_types_de_champ_private, :has_france_connect_type_de_champ?, to: :revision
+  delegate :types_de_champ,
+    :public_types_de_champ,
+    :private_types_de_champ,
+    :root_public_types_de_champ,
+    :root_private_types_de_champ,
+    :flat_public_types_de_champ,
+    :flat_private_types_de_champ,
+    :has_france_connect_type_de_champ?,
+    to: :revision
 
   belongs_to :transfer, class_name: 'DossierTransfer', foreign_key: 'dossier_transfer_id', optional: true, inverse_of: :dossiers
   has_many :transfer_logs, class_name: 'DossierTransferLog', dependent: :destroy
@@ -560,7 +568,7 @@ class Dossier < ApplicationRecord
 
   def can_terminer?
     return false if any_etablissement_as_degraded_mode?
-    return false unless champs_private_valid?
+    return false unless private_champs_valid?
 
     true
   end
@@ -587,7 +595,7 @@ class Dossier < ApplicationRecord
   def can_passer_en_construction?
     return true if !revision.ineligibilite_enabled || !revision.ineligibilite_rules
 
-    !revision.ineligibilite_rules.compute(filled_champs_public)
+    !revision.ineligibilite_rules.compute(filled_public_champs)
   end
 
   def can_passer_en_instruction?
@@ -635,7 +643,7 @@ class Dossier < ApplicationRecord
 
   def any_etablissement_as_degraded_mode?
     return true if etablissement&.as_degraded_mode?
-    return true if filled_champs_public.any? { _1.etablissement&.as_degraded_mode? }
+    return true if filled_public_champs.any? { _1.etablissement&.as_degraded_mode? }
 
     false
   end
@@ -1092,7 +1100,7 @@ class Dossier < ApplicationRecord
   end
 
   def has_annotations?
-    revision.root_types_de_champ_private.present?
+    private_types_de_champ.present?
   end
 
   def hide_info_with_accuse_lecture?
@@ -1155,8 +1163,8 @@ class Dossier < ApplicationRecord
   end
 
   def build_default_champs
-    build_default_champs_for(revision.root_types_de_champ_public) if !champ_data.any?(&:public?)
-    build_default_champs_for(revision.root_types_de_champ_private) if !champ_data.any?(&:private?)
+    build_default_champs_for(flat_public_types_de_champ) if !champ_data.any?(&:public?)
+    build_default_champs_for(flat_private_types_de_champ) if !champ_data.any?(&:private?)
   end
 
   def build_default_champs_for(types_de_champ)
@@ -1165,7 +1173,7 @@ class Dossier < ApplicationRecord
         if type_de_champ.private? || type_de_champ.mandatory?
           type_de_champ.build_champ(dossier: self, row_id: ULID.generate)
         end
-      else
+      elsif !type_de_champ.in_repetition?
         type_de_champ.build_champ(dossier: self, row_id: nil)
       end
     end

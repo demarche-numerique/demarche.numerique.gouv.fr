@@ -68,14 +68,25 @@ class ChampData < ApplicationRecord
   # look like it was edited. Revert blank-equivalent JSON columns before saving.
   before_save :nullify_blank_json_columns
 
+  # The dossier's revision provides the wrapper, bound to its tree, so
+  # navigation from a champ's type de champ is argument-free. The wrapper
+  # assigned at build time (params_for_champ) is only a fallback for champs
+  # whose type de champ is not part of the revision (e.g. transient
+  # projections of removed champs built for exports).
   def type_de_champ
-    @type_de_champ ||= dossier.revision
-      .types_de_champ
-      .find(-> { raise "Type De Champ #{stable_id} not found in Revision #{dossier.revision_id}" }) { _1.stable_id == stable_id }
+    @type_de_champ ||= dossier&.revision&.type_de_champ(stable_id) ||
+      @assigned_type_de_champ ||
+      raise("Type De Champ #{stable_id} not found in Revision #{dossier&.revision_id}")
   end
 
   def type_de_champ=(type_de_champ)
-    @type_de_champ = type_de_champ
+    if !type_de_champ.is_a?(TypesDeChamp::TypeDeChampBase)
+      raise ArgumentError, "expected a TypesDeChamp::TypeDeChampBase, got #{type_de_champ.class} — " \
+                           "build champs from the wrapper (type_de_champ.build_champ)"
+    end
+
+    @type_de_champ = nil
+    @assigned_type_de_champ = type_de_champ
   end
 
   delegate :libelle,
@@ -99,7 +110,6 @@ class ChampData < ApplicationRecord
     :collapsible_explanation_enabled?,
     :collapsible_explanation_text,
     :header_section_level_value,
-    :current_section_level,
     :non_fillable?,
     :fillable?,
     :mandatory?,
@@ -166,15 +176,18 @@ class ChampData < ApplicationRecord
     data&.dig("prefilled_from_france_connect_information") == true
   end
 
-  def child?
-    row_id.present? && !is_type?(TypeDeChamp.type_champs.fetch(:repetition))
+  # Sections and repetitions above this champ in the tree, outermost first.
+  # Ancestors inside the repetition share the champ's row_id.
+  def ancestors
+    type_de_champ.ancestors.map { project_ancestor(it) }
   end
 
-  def parent
-    return nil if row_id.blank?
+  def parent = project_ancestor(type_de_champ.parent)
+  def section = project_ancestor(type_de_champ.section)
+  def repetition = project_ancestor(type_de_champ.repetition)
 
-    dossier.revision.parent_of(type_de_champ)
-  end
+  def in_repetition? = repetition.present?
+  def in_section? = section.present?
 
   def row?
     row_id.present? && is_type?(TypeDeChamp.type_champs.fetch(:repetition))
@@ -384,6 +397,14 @@ class ChampData < ApplicationRecord
   end
 
   private
+
+  # Ancestors inside the champ's repetition are projected on its row.
+  def project_ancestor(ancestor_type_de_champ)
+    return if ancestor_type_de_champ.nil?
+
+    row = ancestor_type_de_champ.in_repetition? ? row_id : nil
+    dossier.project_champ(ancestor_type_de_champ, row_id: row)
+  end
 
   def nullify_blank_json_columns
     [:value_json, :data].each do |column|

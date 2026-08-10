@@ -5,7 +5,7 @@ describe Champs::DecimalNumberChamp do
   let(:types_de_champ_private) { [] }
   let(:procedure) { create(:procedure, types_de_champ_public:, types_de_champ_private:) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.root_champs_public.first.tap { _1.update(value:) } }
+  let(:champ) { dossier.root_public_champs.first.tap { _1.update(value:) } }
   let(:value) { nil }
 
   describe 'validation' do
@@ -62,7 +62,7 @@ describe Champs::DecimalNumberChamp do
       end
 
       context 'negative values are not accepted' do
-        before { champ.type_de_champ.update(options: { positive_number: '1' }) }
+        before { champ.type_de_champ.record.update(options: { positive_number: '1' }) }
         let(:value) { -0.5 }
 
         it 'is not valid and contains errors' do
@@ -73,7 +73,7 @@ describe Champs::DecimalNumberChamp do
     end
 
     context 'when there is a range' do
-      before { champ.type_de_champ.update(options: { range_number: '1', min_number: '2.5', max_number: '18' }) }
+      before { champ.type_de_champ.record.update(options: { range_number: '1', min_number: '2.5', max_number: '18' }) }
       context 'the value is in the range' do
         let(:value) { 4.5 }
 
@@ -90,7 +90,7 @@ describe Champs::DecimalNumberChamp do
       end
 
       context 'the value is bigger than max' do
-        before { champ.type_de_champ.update(options: { range_number: '1', min_number: '', max_number: '18.5' }) }
+        before { champ.type_de_champ.record.update(options: { range_number: '1', min_number: '', max_number: '18.5' }) }
         let(:value) { 19.5 }
 
         it 'is not valid and contains errors' do
@@ -100,7 +100,7 @@ describe Champs::DecimalNumberChamp do
       end
 
       context 'the value is smaller than min' do
-        before { champ.type_de_champ.update(options: { range_number: '1', min_number: '2.3', max_number: '' }) }
+        before { champ.type_de_champ.record.update(options: { range_number: '1', min_number: '2.3', max_number: '' }) }
         let(:value) { 1.5 }
 
         it 'is not valid and contains errors' do
@@ -110,14 +110,14 @@ describe Champs::DecimalNumberChamp do
       end
 
       context 'the range is not activated' do
-        before { champ.type_de_champ.update(options: { range_number: '0', min_number: '2', max_number: '18' }) }
+        before { champ.type_de_champ.record.update(options: { range_number: '0', min_number: '2', max_number: '18' }) }
         let(:value) { 19 }
 
         it { is_expected.to be_truthy }
       end
 
       context 'the range is activated but min and max values are not defined' do
-        before { champ.type_de_champ.update(options: { range_number: '0', min_number: '', max_number: '' }) }
+        before { champ.type_de_champ.record.update(options: { range_number: '0', min_number: '', max_number: '' }) }
         let(:value) { 19 }
 
         it { is_expected.to be_truthy }
@@ -127,7 +127,7 @@ describe Champs::DecimalNumberChamp do
     context 'when the champ is private and the value is invalid' do
       let(:types_de_champ_public) { [] }
       let(:types_de_champ_private) { [{ type: :decimal_number }] }
-      let(:champ) { dossier.root_champs_private.first.tap { _1.update(value:) } }
+      let(:champ) { dossier.root_private_champs.first.tap { _1.update(value:) } }
       let(:value) { '2.6666' }
 
       it { is_expected.to be_falsey }

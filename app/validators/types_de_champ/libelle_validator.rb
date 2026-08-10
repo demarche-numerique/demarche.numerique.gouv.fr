@@ -12,7 +12,7 @@ class TypesDeChamp::LibelleValidator < ActiveModel::EachValidator
   def validate_libelle(procedure, attribute, tdc)
     return if tdc.libelle.present?
 
-    parent = procedure.draft_revision.parent_of(tdc)
+    parent = tdc.repetition
 
     message_key, options = if parent
       [:missing_libelle_in_repetition, { position: position_of(tdc), parent_position: position_of(parent) }]

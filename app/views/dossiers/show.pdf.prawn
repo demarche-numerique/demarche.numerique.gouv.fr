@@ -313,7 +313,7 @@ def add_champs(pdf, champs)
     elsif champ.repetition?
       pdf.indent(current_indent) do
         champ.rows.each do |row|
-          row.each do |inner_champ|
+          row.flat_champs.each do |inner_champ|
             add_single_champ(pdf, inner_champ)
           end
         end
@@ -463,11 +463,11 @@ prawn_document(page_size: "A4") do |pdf|
   end
 
   add_title(pdf, 'Formulaire')
-  add_champs(pdf, @dossier.root_champs_public)
+  add_champs(pdf, @dossier.root_public_champs)
 
   if @acls[:include_infos_administration] && @dossier.has_annotations?
     add_title(pdf, "Annotations privées")
-    add_champs(pdf, @dossier.root_champs_private)
+    add_champs(pdf, @dossier.root_private_champs)
   end
 
   if @acls[:include_infos_administration] && @dossier.avis.present?

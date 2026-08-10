@@ -79,7 +79,7 @@ class Logic::ChampColumnValue < Logic::Term
 
   def targeted_column(tdcs)
     targeted_tdc(tdcs)
-      &.columns(procedure_id: nil) # dirty hack as we do not need procedure_id
+      &.columns
       &.find { it.column_id == @column_id }
   end
 

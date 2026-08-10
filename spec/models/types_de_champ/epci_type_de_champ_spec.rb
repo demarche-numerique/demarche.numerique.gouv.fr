@@ -4,7 +4,7 @@ describe TypesDeChamp::EpciTypeDeChamp do
   describe '#columns' do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :epci, libelle: 'Mon EPCI' }]) }
     let(:tdc) { procedure.active_revision.types_de_champ.first }
-    let(:jsonpath_columns) { tdc.columns(procedure_id: procedure.id).grep(Columns::JSONPathColumn) }
+    let(:jsonpath_columns) { tdc.columns.grep(Columns::JSONPathColumn) }
 
     it 'exposes only department_code and region_code addressable columns' do
       expect(jsonpath_columns.map(&:jsonpath)).to contain_exactly('$.department_code', '$.region_code')

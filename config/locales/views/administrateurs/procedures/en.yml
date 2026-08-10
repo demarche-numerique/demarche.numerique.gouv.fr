@@ -102,8 +102,8 @@ en:
         info: All procedure parameters will remain modifiable after cloning.
         rename_title: Rename your procedure
         configurate_title: Choose the procedure parameters you want to keep when cloning
-        types_de_champ_public: Form fields
-        types_de_champ_private: Private annotations
+        public_types_de_champ: Form fields
+        private_types_de_champ: Private annotations
         types_de_champ_count:
           zero: No field
           one: "%{count} field"

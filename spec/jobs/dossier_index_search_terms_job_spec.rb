@@ -10,8 +10,8 @@ RSpec.describe DossierIndexSearchTermsJob, type: :job do
   subject(:perform_job) { described_class.perform_now(dossier.reload) }
 
   before do
-    dossier.root_champs_public.first.update_column(:value, "un nouveau champ")
-    dossier.root_champs_private.first.update_column(:value, "private champ")
+    dossier.root_public_champs.first.update_column(:value, "un nouveau champ")
+    dossier.root_private_champs.first.update_column(:value, "private champ")
   end
 
   it "update search terms columns" do

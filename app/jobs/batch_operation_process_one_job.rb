@@ -46,7 +46,7 @@ class BatchOperationProcessOneJob < ApplicationJob
       I18n.t('instructeurs.dossiers.aasm_error_originating_state', state: dossier_display_state(target_state))
     elsif exception.failures.include?(:can_terminer?) && dossier.any_etablissement_as_degraded_mode?
       I18n.t('instructeurs.dossiers.aasm_error_etablissement_as_degraded_mode', state: dossier_display_state(target_state))
-    elsif exception.failures.include?(:can_terminer?) && !dossier.champs_private_valid?
+    elsif exception.failures.include?(:can_terminer?) && !dossier.private_champs_valid?
       I18n.t('instructeurs.dossiers.aasm_error_annotations_no_url')
     else
       I18n.t('instructeurs.dossiers.aasm_error_other', originating_state: dossier_display_state(exception.originating_state), target_state: dossier_display_state(target_state))

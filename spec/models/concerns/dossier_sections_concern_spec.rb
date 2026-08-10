@@ -10,8 +10,8 @@ describe DossierSectionsConcern do
     let(:procedure) { create(:procedure, :for_individual, types_de_champ_public:, types_de_champ_private:) }
     let(:dossier) { create(:dossier, procedure: procedure) }
 
-    let(:public_type_de_champ) { dossier.root_types_de_champ_public[1] }
-    let(:private_type_de_champ) { dossier.root_types_de_champ_private[1] }
+    let(:public_type_de_champ) { dossier.root_public_types_de_champ[1] }
+    let(:private_type_de_champ) { dossier.root_private_types_de_champ[1] }
 
     context "with no section having number" do
       it do
@@ -39,7 +39,7 @@ describe DossierSectionsConcern do
     context "header_section in a repetition are not auto-numbered" do
       let(:types_de_champ_public) { [{ type: :header_section, libelle: public_libelle }, { type: :repetition, mandatory: true, children: [{ type: :header_section, libelle: "Enfant" }, { type: :text }] }] }
 
-      let(:public_type_de_champ) { dossier.revision.children_of(dossier.root_types_de_champ_public[1]).first }
+      let(:public_type_de_champ) { dossier.root_public_types_de_champ[1].flat_children.first }
 
       context "with parent section having headers with number" do
         let(:public_libelle) { "1. Infos" }
@@ -68,7 +68,7 @@ describe DossierSectionsConcern do
     let(:procedure) { create(:procedure, :for_individual, types_de_champ_public: types_de_champ) }
     let(:dossier) { create(:dossier, procedure: procedure) }
 
-    let(:headers) { dossier.revision.root_types_de_champ_public.filter(&:header_section?) }
+    let(:headers) { dossier.root_public_types_de_champ.filter(&:header_section?) }
 
     let(:number_value) { nil }
 

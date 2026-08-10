@@ -10,8 +10,8 @@ describe PiecesJustificativesService do
     let(:pj_service) { PiecesJustificativesService.new(user_profile:, export_template:) }
     let(:user_profile) { build(:administrateur) }
 
-    def pj_champ(d) = d.root_champs_public.find(&:piece_justificative?)
-    def repetition(d) = d.root_champs_public.find(&:repetition?)
+    def pj_champ(d) = d.root_public_champs.find(&:piece_justificative?)
+    def repetition(d) = d.root_public_champs.find(&:repetition?)
     def attachments(champ) = champ.piece_justificative_file.attachments
 
     before { attach_file_to_champ(pj_champ(witness)) }
@@ -65,8 +65,8 @@ describe PiecesJustificativesService do
     end
 
     context 'with a repetition' do
-      let(:first_champ) { champ_for_update(repetition(dossier).rows.first.first) }
-      let(:second_champ) { champ_for_update(repetition(dossier).rows.second.first) }
+      let(:first_champ) { champ_for_update(repetition(dossier).rows.first.champs.first) }
+      let(:second_champ) { champ_for_update(repetition(dossier).rows.second.champs.first) }
 
       before do
         repetition(dossier).add_row(updated_by: 'test')
@@ -115,7 +115,7 @@ describe PiecesJustificativesService do
       let(:user_profile) { build(:administrateur) }
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative }]) }
       let(:witness) { create(:dossier, procedure: procedure) }
-      def pj_champ(d) = d.root_champs_public.find(&:piece_justificative?)
+      def pj_champ(d) = d.root_public_champs.find(&:piece_justificative?)
 
       context 'with a single attachment' do
         before do
@@ -158,7 +158,7 @@ describe PiecesJustificativesService do
         let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative, nature: 'titre_identite' }]) }
         let(:dossier) { create(:dossier, procedure: procedure) }
 
-        let(:champ_identite) { dossier.root_champs_public.find(&:titre_identite?) }
+        let(:champ_identite) { dossier.root_public_champs.find(&:titre_identite?) }
 
         before { attach_file_to_champ(champ_identite) }
 
@@ -275,7 +275,7 @@ describe PiecesJustificativesService do
       let(:witness) { create(:dossier, procedure: procedure) }
 
       let!(:private_pj) { create(:type_de_champ_piece_justificative, procedure: procedure, private: true) }
-      def private_pj_champ(d) = d.root_champs_private.find(&:piece_justificative?)
+      def private_pj_champ(d) = d.root_private_champs.find(&:piece_justificative?)
 
       before do
         attach_file_to_champ(private_pj_champ(dossier))
@@ -526,7 +526,7 @@ describe PiecesJustificativesService do
     let(:dossier_1) { create(:dossier, :with_populated_champs, procedure:) }
     let(:champs) { dossier_1.filled_champs }
 
-    def repetition(d, index:) = d.root_champs_public.filter(&:repetition?)[index]
+    def repetition(d, index:) = d.root_public_champs.filter(&:repetition?)[index]
 
     subject { PiecesJustificativesService.new(user_profile:, export_template: nil).send(:compute_champ_id_row_index, champs) }
 
@@ -555,17 +555,17 @@ describe PiecesJustificativesService do
     end
 
     it do
-      champs = dossier_1.root_champs_public
+      champs = dossier_1.root_public_champs
       repet_0 = champs[0]
-      pj_0 = repet_0.rows.first.first
-      pj_1 = repet_0.rows.second.first
+      pj_0 = repet_0.rows.first.champs.first
+      pj_1 = repet_0.rows.second.champs.first
 
       repet_1 = champs[1]
-      pj_2 = repet_1.rows.first.first
-      pj_3 = repet_1.rows.first.second
+      pj_2 = repet_1.rows.first.champs.first
+      pj_3 = repet_1.rows.first.champs.second
 
-      pj_4 = repet_1.rows.second.first
-      pj_5 = repet_1.rows.second.second
+      pj_4 = repet_1.rows.second.champs.first
+      pj_5 = repet_1.rows.second.champs.second
 
       is_expected.to eq({ pj_0.id => 0, pj_1.id => 1, pj_2.id => 0, pj_3.id => 0, pj_4.id => 1, pj_5.id => 1 })
     end

@@ -74,7 +74,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :text }], types_de_champ_private: [{ type: :text }]) }
 
       context 'when coordinate public' do
-        let(:coordinate) { procedure.draft_revision.revision_types_de_champ_public.first }
+        let(:coordinate) { procedure.draft_revision.public_revision_types_de_champ.first }
 
         it 'does not include Engagement Juridique' do
           expect(page).not_to have_css('option', text: "Engagement Juridique")
@@ -82,7 +82,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       end
 
       context 'when coordinate private' do
-        let(:coordinate) { procedure.draft_revision.revision_types_de_champ_private.first }
+        let(:coordinate) { procedure.draft_revision.private_revision_types_de_champ.first }
 
         it 'includes Engagement Juridique' do
           expect(page).to have_css('option', text: "Engagement Juridique")
@@ -92,7 +92,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
 
     describe 'tdc explication' do
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :explication }]) }
-      let(:coordinate) { procedure.draft_revision.revision_types_de_champ_public.first }
+      let(:coordinate) { procedure.draft_revision.public_revision_types_de_champ.first }
       it 'includes an uploader for notice_explicative' do
         expect(page).to have_css('label', text: 'Notice explicative')
         expect(page).to have_css('input[type=file]')
@@ -104,7 +104,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
 
       context "when coordinate public" do
         let(:types_de_champ_public) { [{ type: :quotient_familial, libelle: 'Quotient familial' }] }
-        let(:coordinate) { procedure.draft_revision.revision_types_de_champ_public.first }
+        let(:coordinate) { procedure.draft_revision.public_revision_types_de_champ.first }
 
         it 'does not have mandatory configuration' do
           expect(page).to have_css('option[selected]', text: "Quotient familial")
@@ -114,7 +114,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
 
       context "when coordinate private" do
         let(:types_de_champ_public) { [] }
-        let(:coordinate) { procedure.draft_revision.revision_types_de_champ_private.first }
+        let(:coordinate) { procedure.draft_revision.private_revision_types_de_champ.first }
 
         it 'does not include quotient familial tdc' do
           expect(page).not_to have_css('option', text: "Quotient familial")
@@ -123,7 +123,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
 
       context "when coordinate is repetition" do
         let(:types_de_champ_public) { [{ type: :repetition, children: [{ type: :text }] }] }
-        let(:coordinate) { procedure.draft_revision.revision_types_de_champ_public.first.children_revision_types_de_champ.first }
+        let(:coordinate) { procedure.draft_revision.public_revision_types_de_champ.first.children_revision_types_de_champ.first }
 
         it "does not include quotient familial for child tdc" do
           expect(page).not_to have_css('option', text: "Quotient familial")
@@ -133,7 +133,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
 
     describe 'select champ position' do
       let(:tdc) { procedure.draft_revision.types_de_champ.first }
-      let(:coordinate) { procedure.draft_revision.revision_types_de_champ_public.first }
+      let(:coordinate) { procedure.draft_revision.public_revision_types_de_champ.first }
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :text, libelle: 'a' }]) }
       it 'does not have select to move champs' do
         expect(page).to have_css("select##{ActionView::RecordIdentifier.dom_id(coordinate, :move_and_morph)}")
@@ -166,7 +166,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
 
   describe 'piece_justificative field' do
     let(:procedure) { create(:procedure, piece_justificative_multiple: true, types_de_champ_public: [{ type: :piece_justificative }]) }
-    let(:coordinate) { procedure.draft_revision.revision_types_de_champ_public.first }
+    let(:coordinate) { procedure.draft_revision.public_revision_types_de_champ.first }
     let(:component) { described_class.new(coordinate:, upper_coordinates: []) }
 
     before do
@@ -188,7 +188,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       let(:tdc) { procedure.draft_revision.types_de_champ.first }
 
       before do
-        tdc.update!(pj_limit_formats: true, pj_format_families: ['document_texte'])
+        tdc.record.update!(pj_limit_formats: true, pj_format_families: ['document_texte'])
         render_inline(component)
       end
 
@@ -201,7 +201,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       let(:tdc) { procedure.draft_revision.types_de_champ.first }
 
       before do
-        tdc.update!(nature: 'titre_identite')
+        tdc.record.update!(nature: 'titre_identite')
         render_inline(component)
       end
 
@@ -220,7 +220,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       let(:tdc) { procedure.draft_revision.types_de_champ.first }
 
       before do
-        tdc.update!(nature: 'rib')
+        tdc.record.update!(nature: 'rib')
         render_inline(component)
       end
 
@@ -237,7 +237,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
 
   describe 'hide old titre_identite in creation list' do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :text }]) }
-    let(:coordinate) { procedure.draft_revision.revision_types_de_champ_public.first }
+    let(:coordinate) { procedure.draft_revision.public_revision_types_de_champ.first }
     let(:component) { described_class.new(coordinate:, upper_coordinates: []) }
 
     it 'does not list Titre identité' do

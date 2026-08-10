@@ -35,7 +35,7 @@ module DossierCloneConcern
     end
 
     transaction do
-      cloned_dossier.validate(:champs_public_value)
+      cloned_dossier.validate(:public_champs_value)
       cloned_dossier.save!
       cloned_dossier.rebase!
     end

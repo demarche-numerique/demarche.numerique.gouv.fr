@@ -28,7 +28,7 @@ RSpec.describe DossierStateConcern do
       procedure.publish_revision!(procedure.administrateurs.first)
       perform_enqueued_jobs
       dossier.reload
-      champ_repetition = dossier.root_champs_public.find { _1.stable_id == 94 }
+      champ_repetition = dossier.root_public_champs.find { _1.stable_id == 94 }
       row_id = champ_repetition.row_ids.first
       dossier.champ_data.filter(&:row?).find { _1.row_id == row_id }.touch(:discarded_at)
     end
@@ -42,7 +42,7 @@ RSpec.describe DossierStateConcern do
       expect(dossier.champ_data.filter { _1.row? && _1.stable_id.in?([95, 96]) }.size).to eq(4)
       expect(dossier.champ_data.filter { _1.stable_id.in?([90, 92, 93, 97, 961, 951]) }.size).to eq(8)
 
-      champ_text = dossier.root_champs_public.find { _1.stable_id == 90 }
+      champ_text = dossier.root_public_champs.find { _1.stable_id == 90 }
       champ_text.update(value: '')
 
       dossier.passer_en_construction!
@@ -374,7 +374,7 @@ RSpec.describe DossierStateConcern do
       let(:dossier) { create(:dossier, :brouillon, :with_individual, procedure:) }
 
       before do
-        champ = dossier.root_champs_public.find { _1.stable_id == 100 }
+        champ = dossier.root_public_champs.find { _1.stable_id == 100 }
         champ.update(value: "valeur cachée")
       end
 
@@ -382,7 +382,7 @@ RSpec.describe DossierStateConcern do
         dossier.passer_en_construction!
         dossier.reload
 
-        champ = dossier.root_champs_public.find { _1.stable_id == 100 }
+        champ = dossier.root_public_champs.find { _1.stable_id == 100 }
         expect(champ.value).to eq("valeur cachée")
       end
     end
@@ -392,7 +392,7 @@ RSpec.describe DossierStateConcern do
       let(:dossier) { create(:dossier, :brouillon, :with_individual, procedure:) }
 
       before do
-        champ = dossier.root_champs_public.find { _1.stable_id == 101 }
+        champ = dossier.root_public_champs.find { _1.stable_id == 101 }
         champ.update(value: "valeur conditionnelle")
       end
 
@@ -400,7 +400,7 @@ RSpec.describe DossierStateConcern do
         dossier.passer_en_construction!
         dossier.reload
 
-        champ = dossier.root_champs_public.find { _1.stable_id == 101 }
+        champ = dossier.root_public_champs.find { _1.stable_id == 101 }
         expect(champ.value).to be_nil
       end
     end

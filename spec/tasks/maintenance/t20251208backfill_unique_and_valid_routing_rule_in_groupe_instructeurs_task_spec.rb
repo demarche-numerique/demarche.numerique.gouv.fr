@@ -8,7 +8,7 @@ module Maintenance
 
     let(:procedure) { create(:procedure, routing_enabled: true, administrateur: admin) }
     let(:admin) { administrateurs.default }
-    let(:stable_id) { procedure.published_revision.root_types_de_champ_public.last.stable_id }
+    let(:stable_id) { procedure.published_revision.root_public_types_de_champ.last.stable_id }
 
     before do
       procedure.draft_revision.add_type_de_champ(

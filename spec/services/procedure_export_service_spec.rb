@@ -56,8 +56,8 @@ describe ProcedureExportService do
 
         # before do
         #   # change one tdc place to check if the header is ordered
-        #   tdc_first = procedure.active_revision.revision_types_de_champ_public.first
-        #   tdc_last = procedure.active_revision.revision_types_de_champ_public.last
+        #   tdc_first = procedure.active_revision.public_revision_types_de_champ.first
+        #   tdc_last = procedure.active_revision.public_revision_types_de_champ.last
 
         #   tdc_first.update(position: tdc_last.position + 1)
         #   procedure.reload
@@ -193,7 +193,7 @@ describe ProcedureExportService do
         let!(:dossier) { create(:dossier, :en_instruction, :with_populated_champs, :with_individual, procedure:) }
         let!(:dossier_2) { create(:dossier, :en_instruction, :with_populated_champs, :with_individual, procedure:) }
         before do
-          dossier_2.root_champs_public
+          dossier_2.root_public_champs
             .find { _1.is_a? Champs::PieceJustificativeChamp }
             .piece_justificative_file
             .attach(io: StringIO.new("toto"), filename: "toto.txt", content_type: "text/plain")
@@ -409,8 +409,8 @@ describe ProcedureExportService do
     describe 'Repetitions sheet' do
       before do
         # change one tdc place to check if the header is ordered
-        tdc_first = procedure.active_revision.revision_types_de_champ_public.first
-        tdc_last = procedure.active_revision.revision_types_de_champ_public.last
+        tdc_first = procedure.active_revision.public_revision_types_de_champ.first
+        tdc_last = procedure.active_revision.public_revision_types_de_champ.last
 
         tdc_first.update(position: tdc_last.position + 1)
         procedure.reload
@@ -424,7 +424,7 @@ describe ProcedureExportService do
           create(:dossier, :en_instruction, :with_populated_champs, :with_individual, procedure: procedure),
         ]
       end
-      let(:champ_repetition) { dossiers.first.root_champs_public.find { |champ| champ.type_champ == 'repetition' } }
+      let(:champ_repetition) { dossiers.first.root_public_champs.find { |champ| champ.type_champ == 'repetition' } }
 
       it 'should have sheets' do
         expect(subject.sheets.map(&:name)).to eq(['Dossiers', 'Etablissements', 'Avis', champ_repetition.type_de_champ.libelle_for_export])
@@ -453,7 +453,7 @@ describe ProcedureExportService do
 
       context 'with invalid characters' do
         before do
-          champ_repetition.type_de_champ.update(libelle: 'A / B \ C *[]?')
+          champ_repetition.type_de_champ.record.update(libelle: 'A / B \ C *[]?')
         end
 
         it 'should have valid sheet name' do
@@ -463,11 +463,11 @@ describe ProcedureExportService do
 
       context 'with long libelle composed of utf8 characteres' do
         before do
-          procedure.active_revision.root_types_de_champ_public.each do |type_de_champ|
-            type_de_champ.update!(libelle: "#{type_de_champ.id} - ?/[] ééé ééé ééééééé ééééééé éééééééé. ééé éé éééééééé éé ééé. ééééé éééééééé ééé ééé.")
+          procedure.active_revision.root_public_types_de_champ.each do |type_de_champ|
+            type_de_champ.record.update!(libelle: "#{type_de_champ.id} - ?/[] ééé ééé ééééééé ééééééé éééééééé. ééé éé éééééééé éé ééé. ééééé éééééééé ééé ééé.")
           end
-          procedure.active_revision.children_of(champ_repetition.type_de_champ).each do |type_de_champ|
-            type_de_champ.update!(libelle: "#{type_de_champ.id} - Quam rem nam maiores numquam dolorem nesciunt. Cum et possimus et aut. Fugit voluptas qui qui.")
+          champ_repetition.type_de_champ.flat_children.each do |type_de_champ|
+            type_de_champ.record.update!(libelle: "#{type_de_champ.id} - Quam rem nam maiores numquam dolorem nesciunt. Cum et possimus et aut. Fugit voluptas qui qui.")
           end
         end
 
@@ -479,8 +479,8 @@ describe ProcedureExportService do
       context 'with non unique labels' do
         let(:types_de_champ_public) { [{ type: :repetition, libelle: 'Une repetition', children: [{}] }, { type: :repetition, libelle: 'Une repetition', children: [{}] }] }
         let(:dossier) { create(:dossier, :en_instruction, :with_populated_champs, :with_individual, procedure:) }
-        let(:type_de_champ_repetition) { dossier.revision.root_types_de_champ_public.first }
-        let(:another_type_de_champ_repetition) { dossier.revision.root_types_de_champ_public.second }
+        let(:type_de_champ_repetition) { dossier.root_public_types_de_champ.first }
+        let(:another_type_de_champ_repetition) { dossier.root_public_types_de_champ.second }
 
         it 'should have sheets' do
           expect(subject.sheets.map(&:name)).to eq(['Dossiers', 'Etablissements', 'Avis', type_de_champ_repetition.libelle_for_export, another_type_de_champ_repetition.libelle_for_export])
@@ -489,7 +489,7 @@ describe ProcedureExportService do
 
       context 'with empty repetition' do
         before do
-          dossiers.flat_map { |dossier| dossier.root_champs_public.filter(&:repetition?) }.each do |champ|
+          dossiers.flat_map { |dossier| dossier.root_public_champs.filter(&:repetition?) }.each do |champ|
             ChampData.where(row_id: champ.row_ids).destroy_all
           end
         end
@@ -512,8 +512,8 @@ describe ProcedureExportService do
         # de découverte diffère donc de l'ordre canonique (position). Les feuilles
         # doivent suivre l'ordre canonique, comme l'export caxlsx historique.
         before do
-          canonical = procedure.all_revisions_types_de_champ.repetition.to_a
-          rep = -> (dossier, stable_id) { dossier.root_champs_public.find { _1.repetition? && _1.stable_id == stable_id } }
+          canonical = procedure.aggregated_revision.root_types_de_champ.filter(&:repetition?)
+          rep = -> (dossier, stable_id) { dossier.root_public_champs.find { _1.repetition? && _1.stable_id == stable_id } }
 
           dossiers.first.update!(depose_at: 2.days.ago)
           ChampData.where(row_id: rep.call(dossiers.first, canonical.first.stable_id).row_ids).destroy_all
@@ -525,7 +525,7 @@ describe ProcedureExportService do
         end
 
         it 'orders the repetition sheets by canonical position, not discovery order' do
-          canonical_names = procedure.all_revisions_types_de_champ.repetition
+          canonical_names = procedure.aggregated_revision.root_types_de_champ.filter(&:repetition?)
             .map { ProcedureExportService.sanitize_sheet_name(_1.libelle_for_export) }
 
           expect(subject.sheets.map(&:name).last(canonical_names.size)).to eq(canonical_names)
@@ -627,7 +627,7 @@ describe ProcedureExportService do
     end
 
     let(:dossier) { create(:dossier, :en_instruction, :with_populated_champs, :with_individual, procedure: procedure) }
-    let(:champ_carte) { dossier.root_champs_public.find(&:carte?) }
+    let(:champ_carte) { dossier.root_public_champs.find(&:carte?) }
     let(:properties) { subject['features'].first['properties'] }
 
     before do

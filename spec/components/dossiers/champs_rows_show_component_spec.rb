@@ -7,7 +7,7 @@ RSpec.describe Dossiers::ChampsRowsShowComponent, type: :component do
     ])
   end
   let(:dossier) { create(:dossier, procedure:, populate_champs: true) }
-  let(:champs) { dossier.root_champs_public }
+  let(:champs) { dossier.root_public_champs }
 
   before { render_inline(component).to_html }
 
@@ -44,7 +44,7 @@ RSpec.describe Dossiers::ChampsRowsShowComponent, type: :component do
       end.reload
     end
     let(:champs) do
-      dossier.root_champs_public.tap { it.first.update_columns(champ_attributes) }
+      dossier.root_public_champs.tap { it.first.update_columns(champ_attributes) }
     end
     let(:component) { described_class.new(champs:, profile: "instructeur", seen_at: nil) }
 
@@ -79,7 +79,7 @@ RSpec.describe Dossiers::ChampsRowsShowComponent, type: :component do
     let(:dossier) { dossiers.en_construction }
     let(:prefill_attrs) { {} }
     let(:champs) do
-      dossier.root_champs_public.tap do |cs|
+      dossier.root_public_champs.tap do |cs|
         cs.first.update!(value: "ACME", **prefill_attrs)
       end
     end

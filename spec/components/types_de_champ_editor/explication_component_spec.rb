@@ -4,7 +4,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
   describe 'render by type' do
     context 'explication' do
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :explication }]) }
-      let(:tdc) { procedure.active_revision.root_types_de_champ_public.first }
+      let(:tdc) { procedure.active_revision.root_public_types_de_champ.first }
       let(:coordinate) { procedure.draft_revision.coordinate_for(tdc) }
       let(:component) { described_class.new(coordinate: coordinate, upper_coordinates: []) }
 
@@ -22,7 +22,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
 
       context 'enabled' do
         before do
-          tdc.update!(collapsible_explanation_enabled: "1")
+          tdc.record.update!(collapsible_explanation_enabled: "1")
           allow(component).to receive(:current_user).and_return(procedure.administrateurs.first)
           render_inline(component)
         end

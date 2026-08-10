@@ -2,38 +2,25 @@
 
 class ViewableChamp::SectionComponent < ApplicationComponent
   include ApplicationHelper
-  include TreeableConcern
 
-  def initialize(dossier:, nodes: nil, types_de_champ: nil, row_id: nil, demande_seen_at:, profile:)
-    @dossier, @demande_seen_at, @profile, @row_id = dossier, demande_seen_at, profile, row_id
-    nodes ||= to_tree(types_de_champ:)
-    @nodes = to_sections(nodes:)
+  def initialize(dossier:, champs:, header_section: nil, demande_seen_at:, profile:)
+    @dossier, @header_section = dossier, header_section
+    @demande_seen_at, @profile = demande_seen_at, profile
+    @section_champs, @champs = champs.partition(&:header_section?)
   end
 
   private
+
+  attr_reader :header_section, :champs
 
   def section_id
     @section_id ||= header_section ? dom_id(header_section, :content) : SecureRandom.uuid
   end
 
-  def header_section
-    node = @nodes.first
-    @dossier.project_champ(node, row_id: @row_id) if node.is_a?(TypeDeChamp) && node.header_section?
-  end
-
-  def champs
-    tail.filter_map { _1.is_a?(TypeDeChamp) ? @dossier.project_champ(_1, row_id: @row_id) : nil }
-  end
-
   def sections
-    tail.filter { _1.is_a?(ViewableChamp::SectionComponent) }
-  end
-
-  def tail
-    return @nodes if header_section.nil?
-    _, *rest_of_champ = @nodes
-
-    rest_of_champ
+    @sections ||= @section_champs.map do |champ|
+      ViewableChamp::SectionComponent.new(dossier: @dossier, champs: champ.children, header_section: champ, demande_seen_at: @demande_seen_at, profile: @profile)
+    end
   end
 
   def reset_tag_for_depth
@@ -52,11 +39,5 @@ class ViewableChamp::SectionComponent < ApplicationComponent
     relative_level = header_section ? header_section.level : 1
     # there are 2 levels of heading before the repetition heading
     [relative_level + 2, 6].min
-  end
-
-  private
-
-  def to_sections(nodes:)
-    nodes.map { _1.is_a?(Array) ? ViewableChamp::SectionComponent.new(dossier: @dossier, nodes: _1, demande_seen_at: @demande_seen_at, profile: @profile, row_id: @row_id) : _1 }
   end
 end

@@ -65,7 +65,7 @@ describe DossierFilterService do
   describe '#sorted_ids' do
     let(:procedure) { create(:procedure, :published, types_de_champ_public:, types_de_champ_private: [{}]) }
     let(:types_de_champ_public) { [{}] }
-    let(:first_type_de_champ) { assign_to.procedure.active_revision.root_types_de_champ_public.first }
+    let(:first_type_de_champ) { assign_to.procedure.active_revision.root_public_types_de_champ.first }
     let(:dossiers) { procedure.dossiers }
     let(:instructeur) { create(:instructeur) }
     let(:assign_to) { create(:assign_to, procedure:, instructeur:) }
@@ -145,8 +145,8 @@ describe DossierFilterService do
         let(:tartine_dossier) { create(:dossier, procedure:) }
 
         before do
-          beurre_dossier.root_champs_public.first.update(value: 'beurre')
-          tartine_dossier.root_champs_public.first.update(value: 'tartine')
+          beurre_dossier.root_public_champs.first.update(value: 'beurre')
+          tartine_dossier.root_public_champs.first.update(value: 'tartine')
         end
 
         context 'asc' do
@@ -174,8 +174,8 @@ describe DossierFilterService do
           nothing_dossier
           procedure.draft_revision.add_type_de_champ(tdc)
           procedure.publish_revision!(procedure.administrateurs.first)
-          beurre_dossier.root_champs_public.last.update(value: 'beurre')
-          tartine_dossier.root_champs_public.last.update(value: 'tartine')
+          beurre_dossier.root_public_champs.last.update(value: 'beurre')
+          tartine_dossier.root_public_champs.last.update(value: 'tartine')
         end
 
         context 'asc' do
@@ -192,14 +192,14 @@ describe DossierFilterService do
 
     context 'for type_de_champ_private table' do
       context 'with no revisions' do
-        let(:column) { procedure.find_column(label: procedure.active_revision.root_types_de_champ_private.first.libelle) }
+        let(:column) { procedure.find_column(label: procedure.active_revision.root_private_types_de_champ.first.libelle) }
 
         let(:biere_dossier) { create(:dossier, procedure:) }
         let(:vin_dossier) { create(:dossier, procedure:) }
 
         before do
-          biere_dossier.root_champs_private.first.update(value: 'biere')
-          vin_dossier.root_champs_private.first.update(value: 'vin')
+          biere_dossier.root_private_champs.first.update(value: 'biere')
+          vin_dossier.root_private_champs.first.update(value: 'vin')
         end
 
         context 'asc' do
@@ -485,7 +485,7 @@ describe DossierFilterService do
 
       let(:kept_dossier) { create(:dossier, procedure:) }
       let(:discarded_dossier) { create(:dossier, procedure:) }
-      let(:type_de_champ) { procedure.active_revision.root_types_de_champ_public.first }
+      let(:type_de_champ) { procedure.active_revision.root_public_types_de_champ.first }
 
       context 'with single value' do
         before do
@@ -558,7 +558,7 @@ describe DossierFilterService do
             { type: :yes_no },
           ]
         end
-        let(:types_de_champ) { procedure.active_revision.root_types_de_champ_public }
+        let(:types_de_champ) { procedure.active_revision.root_public_types_de_champ }
         let(:type_de_champ_resto) { types_de_champ[0] }
         let(:type_de_champ_a_emporter) { types_de_champ[1] }
 
@@ -659,7 +659,7 @@ describe DossierFilterService do
 
       let(:kept_dossier) { create(:dossier, procedure:) }
       let(:discarded_dossier) { create(:dossier, procedure:) }
-      let(:type_de_champ_private) { procedure.active_revision.root_types_de_champ_private.first }
+      let(:type_de_champ_private) { procedure.active_revision.root_private_types_de_champ.first }
 
       before do
         kept_dossier.champ_data.find_by(stable_id: type_de_champ_private.stable_id).update(value: 'keep me')
@@ -680,8 +680,8 @@ describe DossierFilterService do
         let(:filter) { ["rna – Code postal (5 chiffres)", value] }
 
         before do
-          kept_dossier.root_champs_public.find { _1.stable_id == 1 }.update(value_json: { "postal_code" => value })
-          create(:dossier, procedure:).root_champs_public.find { _1.stable_id == 1 }.update(value_json: { "postal_code" => "unknown" })
+          kept_dossier.root_public_champs.find { _1.stable_id == 1 }.update(value_json: { "postal_code" => value })
+          create(:dossier, procedure:).root_public_champs.find { _1.stable_id == 1 }.update(value_json: { "postal_code" => "unknown" })
         end
 
         it { is_expected.to contain_exactly(kept_dossier.id) }
@@ -697,8 +697,8 @@ describe DossierFilterService do
         let(:filter) { ["rna – Département", value] }
 
         before do
-          kept_dossier.root_champs_public.find { _1.stable_id == 1 }.update(value_json: { "department_code" => value })
-          create(:dossier, procedure:).root_champs_public.find { _1.stable_id == 1 }.update(value_json: { "department_code" => "unknown" })
+          kept_dossier.root_public_champs.find { _1.stable_id == 1 }.update(value_json: { "department_code" => value })
+          create(:dossier, procedure:).root_public_champs.find { _1.stable_id == 1 }.update(value_json: { "department_code" => "unknown" })
         end
 
         it { is_expected.to contain_exactly(kept_dossier.id) }
@@ -714,8 +714,8 @@ describe DossierFilterService do
         let(:filter) { ["rna – Région", value] }
 
         before do
-          kept_dossier.root_champs_public.find { _1.stable_id == 1 }.update(value_json: { "region_code" => value })
-          create(:dossier, procedure:).root_champs_public.find { _1.stable_id == 1 }.update(value_json: { "region_code" => "unknown" })
+          kept_dossier.root_public_champs.find { _1.stable_id == 1 }.update(value_json: { "region_code" => value })
+          create(:dossier, procedure:).root_public_champs.find { _1.stable_id == 1 }.update(value_json: { "region_code" => "unknown" })
         end
 
         it { is_expected.to contain_exactly(kept_dossier.id) }

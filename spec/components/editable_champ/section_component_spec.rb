@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
 describe EditableChamp::SectionComponent, type: :component do
-  include TreeableConcern
   let(:procedure) { create(:procedure, types_de_champ_public:) }
   let(:types_de_champ_public) { [] }
   let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-  let(:types_de_champ) { dossier.revision.root_types_de_champ_public }
-  let(:component) { described_class.new(types_de_champ:, dossier:) }
+  let(:component) { described_class.new(champs: dossier.public_champs, dossier:) }
   before { render_inline(component).to_html }
 
   context 'list of champs without an header_section' do
@@ -112,7 +110,7 @@ describe EditableChamp::SectionComponent, type: :component do
     end
 
     it 'contains as many text champ as repetition.rows' do
-      expect(page).to have_selector("fieldset fieldset input[type=text]", count: dossier.root_champs_public.find(&:repetition?).rows.size)
+      expect(page).to have_selector("fieldset fieldset input[type=text]", count: dossier.root_public_champs.find(&:repetition?).rows.size)
     end
   end
 
@@ -121,7 +119,7 @@ describe EditableChamp::SectionComponent, type: :component do
       let(:types_de_champ_public) { [{ type: :siret }] }
 
       it 'renders a persistent sr-only polite live region' do
-        champ = dossier.root_champs_public.first
+        champ = dossier.root_public_champs.first
         expect(page).to have_css("##{champ.focusable_input_id}-aria-live.fr-sr-only[aria-live='polite']", visible: :all)
       end
     end

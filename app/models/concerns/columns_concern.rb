@@ -124,25 +124,29 @@ module ColumnsConcern
   end
 
   def form_filterable_columns
-    all_revisions_types_de_champ.public_only.flat_map { _1.columns(procedure_id: id) }.filter(&:filterable)
+    aggregated_revision.root_public_types_de_champ
+      .filter(&:fillable?)
+      .flat_map(&:columns)
+      .filter(&:filterable)
   end
 
   def annotation_privees_filterable_columns
-    all_revisions_types_de_champ.private_only.flat_map { _1.columns(procedure_id: id) }.filter(&:filterable)
+    aggregated_revision.root_private_types_de_champ
+      .filter(&:fillable?)
+      .flat_map(&:columns)
+      .filter(&:filterable)
   end
 
   def personnalisable_columns
-    current_revision = published_revision || active_revision
-    current_revision.root_types_de_champ_public
+    active_revision.root_public_types_de_champ
       .filter { _1.type_champ.in?(TypeDeChamp::PERSONNALISABLE_TYPE_CHAMPS) }
       .filter { _1.condition.nil? }
-      .filter_map { _1.personnalisation_column(procedure_id: id) }
+      .filter_map(&:personnalisation_column)
       .uniq(&:stable_id)
   end
 
   def personnalisable_columns_by_section
-    current_revision = published_revision || active_revision
-    tdcs_public = current_revision.root_types_de_champ_public
+    tdcs_public = active_revision.root_public_types_de_champ
     auto_numbering = tdcs_public.none? { _1.header_section? && _1.libelle.match?(/^\d/) }
 
     personnalisable_by_stable_id = personnalisable_columns.index_by(&:stable_id)
@@ -155,7 +159,7 @@ module ColumnsConcern
       if type_de_champ.header_section?
         label = type_de_champ.libelle
         if auto_numbering
-          level = type_de_champ.level_for_revision(current_revision)
+          level = type_de_champ.level
           counters = counters.first(level)
           counters[level - 1] = (counters[level - 1] || 0) + 1
           counters.map! { it || 1 }
@@ -280,7 +284,9 @@ module ColumnsConcern
   end
 
   def types_de_champ_columns
-    all_revisions_types_de_champ.filter(&:dynamic_type).flat_map { _1.columns(procedure_id: id) }
+    aggregated_revision.root_types_de_champ
+      .filter(&:fillable?)
+      .flat_map(&:columns)
   end
 
   def dossier_col(**args) = Columns::DossierColumn.new(**(args.merge(procedure_id: id)))

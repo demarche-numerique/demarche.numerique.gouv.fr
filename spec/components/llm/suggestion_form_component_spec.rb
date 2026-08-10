@@ -39,7 +39,7 @@ RSpec.describe LLM::SuggestionFormComponent, type: :component do
 
       context 'when there are suggestions' do
         before do
-          revision_coordinate = procedure.draft_revision.revision_types_de_champ_public.first
+          revision_coordinate = procedure.draft_revision.public_revision_types_de_champ.first
 
           create(:llm_rule_suggestion_item,
             llm_rule_suggestion:,

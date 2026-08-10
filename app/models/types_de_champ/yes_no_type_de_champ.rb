@@ -11,15 +11,15 @@ class TypesDeChamp::YesNoTypeDeChamp < TypesDeChamp::TypeDeChampBase
     end
   end
 
-  def champ_value(champ)
+  def filled_champ_value(champ)
     champ_value_true?(champ) ? 'Oui' : 'Non'
   end
 
-  def champ_value_for_export(champ, path = :value)
+  def filled_champ_value_for_export(champ, path = :value)
     champ_value_true?(champ) ? 'Oui' : 'Non'
   end
 
-  def champ_value_for_api(champ, version: 2)
+  def filled_champ_value_for_api(champ, version: 2)
     case version
     when 2
       champ_value_true?(champ).to_s

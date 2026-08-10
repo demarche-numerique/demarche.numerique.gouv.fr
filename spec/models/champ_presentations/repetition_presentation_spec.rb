@@ -15,12 +15,12 @@ describe ChampPresentations::RepetitionPresentation do
   }
 
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ_repetition) { dossier.root_champs_public.first }
+  let(:champ_repetition) { dossier.root_public_champs.first }
 
   before do
     champ_repetition.add_row(updated_by: 'test')
     champ_repetition.add_row(updated_by: 'test')
-    row1, row2, row3 = champ_repetition.rows
+    row1, row2, row3 = champ_repetition.rows.map(&:champs)
 
     nom, stars = row1
     champ_for_update(nom).update(value: "ruby")

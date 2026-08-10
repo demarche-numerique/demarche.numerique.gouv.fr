@@ -7,7 +7,7 @@
 .fr-container
   .fr-grid-row
     .fr-col-12.fr-col-offset-md-2.fr-col-md-8
-      - dubious = TypeDeChamp.where(id: @procedure.draft_revision.root_types_de_champ_public).dubious
+      - dubious = TypeDeChamp.where(id: @procedure.draft_revision.root_public_types_de_champ.map(&:id)).dubious
       - if dubious.present?
         = render Dsfr::AlertComponent.new(state: :warning, title: t('.dubious_fields'), extra_class_names: 'fr-mb-2w') do |c|
           - c.with_body do

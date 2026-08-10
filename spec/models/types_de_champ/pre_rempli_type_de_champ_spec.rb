@@ -17,7 +17,7 @@ describe TypesDeChamp::PreRempliTypeDeChamp do
 
   describe '#options_for_select' do
     context 'with drop_down_options' do
-      before { type_de_champ.update!(drop_down_options_from_text: "En cours\r\nIdée\r\nFait") }
+      before { type_de_champ.record.update!(drop_down_options_from_text: "En cours\r\nIdée\r\nFait") }
 
       it 'returns options as pairs' do
         expect(type_de_champ.options_for_select).to eq([["En cours", "En cours"], ["Idée", "Idée"], ["Fait", "Fait"]])
@@ -37,7 +37,7 @@ describe TypesDeChamp::PreRempliTypeDeChamp do
     end
 
     context 'when pre_rempli_hidden is "1"' do
-      before { type_de_champ.update!(pre_rempli_hidden: "1") }
+      before { type_de_champ.record.update!(pre_rempli_hidden: "1") }
 
       it { expect(type_de_champ.pre_rempli_hidden?).to be true }
     end

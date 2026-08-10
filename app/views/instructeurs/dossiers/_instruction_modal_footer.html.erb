@@ -1,4 +1,4 @@
-<% if batch || dossier.champs_private_valid? %>
+<% if batch || dossier.private_champs_valid? %>
   <div id="instruction-modal-footer"></div>
 <% else %>
   <%= tag.div id: "instruction-modal-footer", class: "fr-modal__footer" do %>

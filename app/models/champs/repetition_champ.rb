@@ -4,7 +4,7 @@ class Champs::RepetitionChamp < ChampData
   delegate :libelle_for_export, to: :type_de_champ
 
   def row_libelle
-    children_types = dossier.revision.children_of(type_de_champ)
+    children_types = type_de_champ.flat_children
     if children_types.size == 1
       children_types.first.libelle
     else
@@ -29,7 +29,7 @@ class Champs::RepetitionChamp < ChampData
   end
 
   def focusable_input_id(attribute = :value)
-    rows.last&.first&.focusable_input_id(attribute)
+    rows.last&.flat_champs&.first&.focusable_input_id(attribute)
   end
 
   def discarded?
@@ -58,7 +58,7 @@ class Champs::RepetitionChamp < ChampData
     return if !type_de_champ.limit_repetitions?
     # Only skip validation when no rows have been filled AND no minimum is required.
     # When a minimum is configured, always validate so that submitting with 0 rows is caught.
-    return if type_de_champ.min_repetitions.blank? && rows.none? { |row| row.any? { _1.value.present? } }
+    return if type_de_champ.min_repetitions.blank? && rows.none? { |row| row.flat_champs.any? { it.value.present? } }
 
     count = row_ids.count
     min = type_de_champ.min_repetitions.to_i
@@ -70,27 +70,6 @@ class Champs::RepetitionChamp < ChampData
 
     if type_de_champ.max_repetitions.present? && count > max
       errors.add(:value, :repetition_too_many, max: max, libelle: type_de_champ.libelle)
-    end
-  end
-
-  class Row < Hashie::Dash
-    property :index
-    property :row_id
-    property :dossier
-
-    def dossier_id
-      dossier.id.to_s
-    end
-
-    def read_attribute_for_serialization(attribute)
-      self[attribute]
-    end
-
-    def spreadsheet_columns(types_de_champ, export_template: nil, format:)
-      [
-        ['Dossier ID', :dossier_id],
-        ['Ligne', :index],
-      ] + dossier.champ_values_for_export(types_de_champ, row_id:, export_template:, format:)
     end
   end
 end

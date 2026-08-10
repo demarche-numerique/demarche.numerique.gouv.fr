@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe TypesDeChamp::APIParticulierValidator do
-  subject { procedure.validate(:types_de_champ_public_editor) }
+  subject { procedure.validate(:public_types_de_champ_editor) }
 
   context 'when procedure has a API Particulier champ and a API Particulier token' do
     let(:procedure) { create(:procedure, :with_api_particulier_token, types_de_champ_public:) }
@@ -19,7 +19,7 @@ RSpec.describe TypesDeChamp::APIParticulierValidator do
 
     it 'adds errors to the procedure' do
       subject
-      expect(procedure.errors.details[:draft_types_de_champ_public])
+      expect(procedure.errors.details[:draft_public_types_de_champ])
         .to include(hash_including(error: :missing_api_particulier_token))
     end
   end

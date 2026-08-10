@@ -219,7 +219,7 @@ describe BlobProcessorJob, :external_deps, type: :job do
     let(:nature) { "rib" }
     let(:dossier) { create(:dossier, procedure:) }
     let(:analysis) { { "some" => "data" } }
-    let(:champ_pj) { dossier.root_champs_public.first }
+    let(:champ_pj) { dossier.root_public_champs.first }
 
     let(:blob) do
       pj = champ_pj.piece_justificative_file

@@ -73,7 +73,7 @@ describe ColumnsConcern do
           after_stable_id: integer_tdc.stable_id
         )
       end
-      let(:draft_column) { draft_tdc.columns(procedure_id: procedure.id).first }
+      let(:draft_column) { draft_tdc.columns.first }
 
       it 'falls back to the draft revision columns' do
         expect(procedure.find_column(h_id: draft_column.h_id)).to eq(draft_column)
@@ -86,10 +86,10 @@ describe ColumnsConcern do
 
     context 'when the procedure can have a SIRET number' do
       let(:procedure) { create(:procedure, types_de_champ_public:, types_de_champ_private:) }
-      let(:tdc_1) { procedure.active_revision.root_types_de_champ_public[0] }
-      let(:tdc_2) { procedure.active_revision.root_types_de_champ_public[1] }
-      let(:tdc_private_1) { procedure.active_revision.root_types_de_champ_private[0] }
-      let(:tdc_private_2) { procedure.active_revision.root_types_de_champ_private[1] }
+      let(:tdc_1) { procedure.active_revision.root_public_types_de_champ[0] }
+      let(:tdc_2) { procedure.active_revision.root_public_types_de_champ[1] }
+      let(:tdc_private_1) { procedure.active_revision.root_private_types_de_champ[0] }
+      let(:tdc_private_2) { procedure.active_revision.root_private_types_de_champ[1] }
       let(:expected) {
         [
           { label: 'Dossier ID', table: 'self', column: 'id', displayable: true, type: :number, filterable: true },
@@ -137,10 +137,10 @@ describe ColumnsConcern do
         let(:types_de_champ_public) { Array.new(4) { { type: :text } } }
         let(:types_de_champ_private) { Array.new(4) { { type: :text } } }
         before do
-          procedure.active_revision.root_types_de_champ_public[2].update_attribute(:type_champ, TypeDeChamp.type_champs.fetch(:header_section))
-          procedure.active_revision.root_types_de_champ_public[3].update_attribute(:type_champ, TypeDeChamp.type_champs.fetch(:explication))
-          procedure.active_revision.root_types_de_champ_private[2].update_attribute(:type_champ, TypeDeChamp.type_champs.fetch(:header_section))
-          procedure.active_revision.root_types_de_champ_private[3].update_attribute(:type_champ, TypeDeChamp.type_champs.fetch(:explication))
+          procedure.active_revision.root_public_types_de_champ[2].record.update_attribute(:type_champ, TypeDeChamp.type_champs.fetch(:header_section))
+          procedure.active_revision.root_public_types_de_champ[3].record.update_attribute(:type_champ, TypeDeChamp.type_champs.fetch(:explication))
+          procedure.active_revision.root_private_types_de_champ[2].record.update_attribute(:type_champ, TypeDeChamp.type_champs.fetch(:header_section))
+          procedure.active_revision.root_private_types_de_champ[3].record.update_attribute(:type_champ, TypeDeChamp.type_champs.fetch(:explication))
         end
 
         it {

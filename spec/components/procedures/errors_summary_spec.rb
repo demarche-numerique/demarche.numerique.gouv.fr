@@ -21,8 +21,8 @@ describe Procedure::ErrorsSummary, type: :component do
       end
     end
 
-    context 'when :types_de_champ_public_editor' do
-      let(:validation_context) { :types_de_champ_public_editor }
+    context 'when :public_types_de_champ_editor' do
+      let(:validation_context) { :public_types_de_champ_editor }
 
       it 'shows errors and links for public only tdc' do
         expect(page).to have_text("Erreur : Les champs du formulaire contiennent des erreurs")
@@ -32,8 +32,8 @@ describe Procedure::ErrorsSummary, type: :component do
       end
     end
 
-    context 'when :types_de_champ_private_editor' do
-      let(:validation_context) { :types_de_champ_private_editor }
+    context 'when :private_types_de_champ_editor' do
+      let(:validation_context) { :private_types_de_champ_editor }
 
       it 'shows errors and links for private only tdc' do
         expect(page).to have_text("Erreur : Les annotations privées contiennent des erreurs")
@@ -57,11 +57,11 @@ describe Procedure::ErrorsSummary, type: :component do
       ])
     end
 
-    let(:validation_context) { :types_de_champ_public_editor }
+    let(:validation_context) { :public_types_de_champ_editor }
 
     before do
-      drop_down_public = procedure.draft_revision.root_types_de_champ_public.find(&:any_drop_down_list?)
-      drop_down_public.update!(drop_down_options: [])
+      drop_down_public = procedure.draft_revision.root_public_types_de_champ.find(&:any_drop_down_list?)
+      drop_down_public.record.update!(drop_down_options: [])
       subject
     end
 

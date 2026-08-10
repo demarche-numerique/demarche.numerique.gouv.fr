@@ -29,9 +29,9 @@ module Administrateurs
       @dossier = procedure_without_control.draft_revision.dossier_for_preview(current_user).with_champs
       @tab = apercu_tab
       if @tab == 'dossier'
-        @dossier.validate(:champs_public_value)
+        @dossier.validate(:public_champs_value)
       else
-        @dossier.validate(:champs_private_value)
+        @dossier.validate(:private_champs_value)
       end
     end
 
@@ -489,7 +489,7 @@ module Administrateurs
       else
         raise ArgumentError.new "either a stable_id or a stub_type_champ, but we should know which one to build"
       end
-      @column_labels = @type_de_champ.info_columns(procedure: @procedure)
+      @column_labels = TypesDeChamp::TypeDeChampBase.build(@type_de_champ, @procedure.draft_revision).info_columns
     end
 
     def commune_info

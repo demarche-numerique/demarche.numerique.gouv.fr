@@ -120,9 +120,9 @@ RSpec.describe PrefillDescription, type: :model do
         },
       ])
     end
-    let(:type_de_champ_text) { procedure.active_revision.root_types_de_champ_public.find(&:text?) }
-    let(:type_de_champ_epci) { procedure.active_revision.root_types_de_champ_public.find(&:epci?) }
-    let(:type_de_champ_repetition) { procedure.active_revision.root_types_de_champ_public.find(&:repetition?) }
+    let(:type_de_champ_text) { procedure.active_revision.root_public_types_de_champ.find(&:text?) }
+    let(:type_de_champ_epci) { procedure.active_revision.root_public_types_de_champ.find(&:epci?) }
+    let(:type_de_champ_repetition) { procedure.active_revision.root_public_types_de_champ.find(&:repetition?) }
 
     let(:prefillable_subchamps) { TypesDeChamp::PrefillRepetitionTypeDeChamp.new(type_de_champ_repetition, procedure.active_revision).send(:prefillable_subchamps) }
     let(:region_repetition) { prefillable_subchamps.third }
@@ -161,9 +161,9 @@ RSpec.describe PrefillDescription, type: :model do
         },
       ])
     end
-    let(:type_de_champ_text) { procedure.active_revision.root_types_de_champ_public.find(&:text?) }
-    let(:type_de_champ_epci) { procedure.active_revision.root_types_de_champ_public.find(&:epci?) }
-    let(:type_de_champ_repetition) { procedure.active_revision.root_types_de_champ_public.find(&:repetition?) }
+    let(:type_de_champ_text) { procedure.active_revision.root_public_types_de_champ.find(&:text?) }
+    let(:type_de_champ_epci) { procedure.active_revision.root_public_types_de_champ.find(&:epci?) }
+    let(:type_de_champ_repetition) { procedure.active_revision.root_public_types_de_champ.find(&:repetition?) }
 
     let(:prefill_type_de_champ_epci) { TypesDeChamp::PrefillTypeDeChamp.build(type_de_champ_epci, procedure.active_revision) }
     let(:prefillable_subchamps) { TypesDeChamp::PrefillRepetitionTypeDeChamp.new(type_de_champ_repetition, procedure.active_revision).send(:prefillable_subchamps) }

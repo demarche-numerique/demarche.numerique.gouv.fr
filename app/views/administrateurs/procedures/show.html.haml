@@ -8,7 +8,7 @@
 .fr-container.procedure-admin-container
   %ul.fr-btns-group.fr-btns-group--inline-sm.fr-btns-group--icon-left
     - if @procedure.validate(:publication)
-      - if @procedure.draft_revision.revision_types_de_champ_public.count > 0
+      - if @procedure.draft_revision.public_revision_types_de_champ.count > 0
         = link_to t('preview', scope: [:layouts, :breadcrumb]), apercu_admin_procedure_path(@procedure), target: "_blank", class: 'fr-btn fr-btn--tertiary fr-btn--icon-left fr-icon-eye-line', id: "preview-procedure"
       - if !@procedure.brouillon?
         = link_to 'Cloner', admin_procedure_clone_settings_path(@procedure), class: 'fr-btn fr-btn--tertiary fr-btn--icon-left fr-icon-file-copy-line', id: "clone-procedure"

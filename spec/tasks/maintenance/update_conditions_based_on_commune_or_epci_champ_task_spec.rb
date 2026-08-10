@@ -11,13 +11,13 @@ module Maintenance
       let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :communes }, { type: :epci }, { type: :drop_down_list, libelle: 'Votre choix', options: ['Choix 1', 'Choix 2', 'Choix 3'] }, { type: :text }]) }
       let(:revision) { procedure.active_revision }
 
-      let(:text_tdc) { revision.root_types_de_champ_public.find(&:text?) }
-      let(:commune_tdc) { revision.root_types_de_champ_public.find(&:communes?) }
-      let(:epci_tdc) { revision.root_types_de_champ_public.find(&:epci?) }
-      let(:drop_down_list_tdc) { revision.root_types_de_champ_public.find(&:drop_down_list?) }
+      let(:text_tdc) { revision.root_public_types_de_champ.find(&:text?) }
+      let(:commune_tdc) { revision.root_public_types_de_champ.find(&:communes?) }
+      let(:epci_tdc) { revision.root_public_types_de_champ.find(&:epci?) }
+      let(:drop_down_list_tdc) { revision.root_public_types_de_champ.find(&:drop_down_list?) }
 
       context "with a condition based on commune and epci" do
-        before { text_tdc.update(condition: ds_and([ds_eq(champ_value(commune_tdc.stable_id), constant('11')), ds_not_eq(champ_value(epci_tdc.stable_id), constant('84'))])) }
+        before { text_tdc.record.update(condition: ds_and([ds_eq(champ_value(commune_tdc.stable_id), constant('11')), ds_not_eq(champ_value(epci_tdc.stable_id), constant('84'))])) }
 
         it "updates condition" do
           expect(text_tdc.condition).to eq ds_and([ds_eq(champ_value(commune_tdc.stable_id), constant('11')), ds_not_eq(champ_value(epci_tdc.stable_id), constant('84'))])
@@ -31,7 +31,7 @@ module Maintenance
       end
 
       context "with a condition based on a dropdown list" do
-        before { text_tdc.update(condition: ds_eq(champ_value(drop_down_list_tdc.stable_id), constant('Choix 2'))) }
+        before { text_tdc.record.update(condition: ds_eq(champ_value(drop_down_list_tdc.stable_id), constant('Choix 2'))) }
 
         it "does not update condition" do
           expect(text_tdc.condition).to eq ds_eq(champ_value(drop_down_list_tdc.stable_id), constant('Choix 2'))

@@ -49,8 +49,8 @@
 
       = render partial: 'checkbox_group', locals: { title: 'Informations usager', all_columns: procedure.usager_columns_for_export, export_template: }
       = render partial: 'checkbox_group', locals: { title: 'Informations dossier', all_columns: procedure.dossier_columns_for_export, export_template: }
-      = render ExportTemplate::ChampsComponent.new("Formulaire usager", export_template, @types_de_champ_public)
-      = render ExportTemplate::ChampsComponent.new("Annotations privées", export_template, @types_de_champ_private) if @types_de_champ_private.any?
+      = render ExportTemplate::ChampsComponent.new("Formulaire usager", export_template, @public_types_de_champ)
+      = render ExportTemplate::ChampsComponent.new("Annotations privées", export_template, @private_types_de_champ) if @private_types_de_champ.any?
 
       .fixed-footer
         .fr-container

@@ -51,7 +51,7 @@ class PrefillDescription < SimpleDelegator
   private
 
   def active_fillable_public_types_de_champ
-    active_revision.root_types_de_champ_public.filter(&:fillable?)
+    active_revision.root_public_types_de_champ.filter(&:fillable?)
   end
 
   def prefilled_champs_as_params

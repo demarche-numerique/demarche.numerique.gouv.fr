@@ -385,7 +385,7 @@ module Instructeurs
 
       respond_to do |format|
         format.turbo_stream do
-          @to_show, @to_hide, @to_update = champs_to_turbo_update(champs_attributes_params(:private), dossier.flat_champs_private)
+          @to_show, @to_hide, @to_update = champs_to_turbo_update(champs_attributes_params(:private), dossier.flat_private_champs)
         end
       end
     end
@@ -403,7 +403,7 @@ module Instructeurs
 
       respond_to do |format|
         format.turbo_stream do
-          @to_show, @to_hide, @to_update = champ_to_turbo_update(annotation, dossier.flat_champs_private)
+          @to_show, @to_hide, @to_update = champ_to_turbo_update(annotation, dossier.flat_private_champs)
 
           render :update_annotations, layout: false
         end
@@ -571,7 +571,7 @@ module Instructeurs
         t('instructeurs.dossiers.aasm_error_originating_state', state: dossier_display_state(target_state, lower: true))
       elsif exception.failures.include?(:can_terminer?) && dossier.any_etablissement_as_degraded_mode?
         t('instructeurs.dossiers.aasm_error_etablissement_as_degraded_mode', state: dossier_display_state(target_state, lower: true))
-      elsif exception.failures.include?(:can_terminer?) && !dossier.champs_private_valid?
+      elsif exception.failures.include?(:can_terminer?) && !dossier.private_champs_valid?
         t('instructeurs.dossiers.aasm_error_annotations', url: annotations_privees_instructeur_dossier_path(dossier.procedure, dossier, statut: params[:statut]))
       else
         t('instructeurs.dossiers.aasm_error_other', originating_state: dossier_display_state(exception.originating_state, lower: true), target_state: dossier_display_state(target_state, lower: true))

@@ -33,14 +33,14 @@ RSpec.describe Types::DemarcheType, type: :graphql do
     let(:procedure_clone) { procedure.clone(admin:) }
     let(:query) { DEMARCHE_WITH_CHAMP_DESCRIPTORS_QUERY }
     let(:variables) { { number: procedure_clone.id } }
-    let(:champ_descriptor_id) { procedure.draft_revision.root_types_de_champ_public.first.to_typed_id }
+    let(:champ_descriptor_id) { procedure.draft_revision.root_public_types_de_champ.first.to_typed_id }
 
     it {
       expect(data[:demarche][:champDescriptors]).to eq(data[:demarche][:draftRevision][:champDescriptors])
       expect(data[:demarche][:champDescriptors][0][:id]).to eq(champ_descriptor_id)
       expect(data[:demarche][:draftRevision][:champDescriptors][0][:id]).to eq(champ_descriptor_id)
-      expect(procedure.draft_revision.root_types_de_champ_public.first.id).not_to eq(procedure_clone.draft_revision.root_types_de_champ_public.first.id)
-      expect(procedure.draft_revision.root_types_de_champ_public.first.stable_id).to eq(procedure_clone.draft_revision.root_types_de_champ_public.first.stable_id)
+      expect(procedure.draft_revision.root_public_types_de_champ.first.id).not_to eq(procedure_clone.draft_revision.root_public_types_de_champ.first.id)
+      expect(procedure.draft_revision.root_public_types_de_champ.first.stable_id).to eq(procedure_clone.draft_revision.root_public_types_de_champ.first.stable_id)
     }
   end
 

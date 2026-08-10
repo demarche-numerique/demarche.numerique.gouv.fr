@@ -197,8 +197,6 @@ class TypeDeChamp < ApplicationRecord
 
   belongs_to :referentiel, optional: true, inverse_of: :types_de_champ
 
-  delegate :estimated_fill_duration, :estimated_read_duration, :tags_for_template, :libelles_for_export, :libelle_for_export, :primary_options, :secondary_options, :columns, :column, :canonical_column, :personnalisation_column, :info_columns, to: :dynamic_type
-
   class WithIndifferentAccess
     def self.load(options)
       options&.with_indifferent_access
@@ -213,15 +211,10 @@ class TypeDeChamp < ApplicationRecord
 
   serialize :condition, coder: LogicSerializer
 
-  attr_reader :dynamic_type
-
   scope :public_only, -> { where(private: false) }
   scope :private_only, -> { where(private: true) }
-  scope :repetition, -> { where(type_champ: type_champs.fetch(:repetition)) }
-  scope :not_repetition, -> { where.not(type_champ: type_champs.fetch(:repetition)) }
   scope :not_condition, -> { where(condition: nil) }
   scope :fillable, -> { where.not(type_champ: [type_champs.fetch(:header_section), type_champs.fetch(:explication)]) }
-  scope :with_header_section, -> { where.not(type_champ: TypeDeChamp.type_champs[:explication]) }
   scope :mandatory, -> { where(mandatory: true) }
 
   scope :dubious, -> {
@@ -245,7 +238,6 @@ class TypeDeChamp < ApplicationRecord
     allow_blank: true,
   }
 
-  after_initialize :set_dynamic_type
   after_create :populate_stable_id
 
   before_validation :check_mandatory
@@ -261,34 +253,13 @@ class TypeDeChamp < ApplicationRecord
   before_save :clear_conflicting_date_options, if: :birthdate?
   before_save :clear_prefill_with_france_connect_information_if_not_birthdate
 
-  def valid?(context = nil)
+  # Symmetric with TypesDeChamp::TypeDeChampBase#==: a type de champ compares
+  # equal to a tree-emitted wrapper holding the same row.
+  def ==(other)
+    other = other.record if other.is_a?(TypesDeChamp::TypeDeChampBase)
     super
-    if dynamic_type.present?
-      dynamic_type.valid?
-      errors.merge!(dynamic_type.errors)
-    end
-    errors.empty?
   end
-
-  def libelle_with_parent(revision)
-    if child?(revision)
-      parent_type_de_champ = revision.parent_of(self)
-      "#{parent_type_de_champ.libelle} - #{libelle}"
-    else
-      libelle
-    end
-  end
-
-  alias_method :validate, :valid?
-
-  def set_dynamic_type
-    @dynamic_type = type_champ.present? ? self.class.type_champ_to_class_name(type_champ).constantize.new(self) : nil
-  end
-
-  def type_champ=(value)
-    super(value)
-    set_dynamic_type
-  end
+  alias_method :eql?, :==
 
   def set_default_libelle
     libelle_was_default = libelle == default_libelle(type_champ_was)
@@ -331,22 +302,8 @@ class TypeDeChamp < ApplicationRecord
     referentiel_mapping_displayable.filter { |_jsonpath, mapping| mapping[:display_usager] == "1" }
   end
 
-  def params_for_champ
-    {
-      type_de_champ: self,
-      private: private?,
-      type: champ_class.name,
-      stable_id:,
-      stream: Dossier::MAIN_STREAM,
-    }
-  end
-
   def champ_class
     self.class.type_champ_to_champ_class_name(type_champ).constantize
-  end
-
-  def build_champ(params = {})
-    champ_class.new(params_for_champ.merge(params))
   end
 
   def check_mandatory
@@ -485,10 +442,6 @@ class TypeDeChamp < ApplicationRecord
 
   def api_particulier? = type_champ.in?(API_PART_FC_TDC)
 
-  def child?(revision)
-    revision.coordinate_for(self)&.child?
-  end
-
   def filename_for_attachement(attachment_sym)
     attachment = send(attachment_sym)
     if attachment.attached?
@@ -597,24 +550,6 @@ class TypeDeChamp < ApplicationRecord
       I18n.t('activerecord.errors.type_de_champ.attributes.header_section_level.gap_error', level: current_level - previous_level - 1)
     else
       nil
-    end
-  end
-
-  def current_section_level(revision)
-    tdcs = private? ? revision.root_types_de_champ_private.to_a : revision.root_types_de_champ_public.to_a
-
-    previous_section_level(tdcs.take(tdcs.find_index(self)))
-  end
-
-  def level_for_revision(revision)
-    parent_type_de_champ = revision.parent_of(self)
-
-    if parent_type_de_champ.present?
-      header_section_level_value.to_i + parent_type_de_champ.current_section_level(revision)
-    elsif header_section_level_value
-      header_section_level_value.to_i
-    else
-      0
     end
   end
 
@@ -835,60 +770,6 @@ class TypeDeChamp < ApplicationRecord
     end
   end
 
-  def champ_value(champ)
-    if champ_blank?(champ)
-      dynamic_type.champ_default_value
-    else
-      dynamic_type.champ_value(champ)
-    end
-  end
-
-  def champ_value_for_api(champ, version: 2)
-    if champ_blank?(champ)
-      dynamic_type.champ_default_api_value(version)
-    else
-      dynamic_type.champ_value_for_api(champ, version:)
-    end
-  end
-
-  def champ_value_for_export(champ, path = :value)
-    if champ_blank?(champ)
-      dynamic_type.champ_default_export_value(path)
-    else
-      dynamic_type.champ_value_for_export(champ, path)
-    end
-  end
-
-  def champ_value_for_tag(champ, path = :value)
-    if champ_blank?(champ)
-      ''
-    else
-      dynamic_type.champ_value_for_tag(champ, path)
-    end
-  end
-
-  def champ_blank?(champ)
-    # no champ
-    return true if champ.nil?
-    # type de champ on the revision changed
-    if champ.is_type?(type_champ) || castable_on_change?(champ.last_write_type_champ, type_champ)
-      dynamic_type.champ_blank?(champ)
-    else
-      true
-    end
-  end
-
-  def mandatory_blank?(champ)
-    # no champ
-    return true if champ.nil?
-    # type de champ on the revision changed
-    if champ.is_type?(type_champ) || castable_on_change?(champ.last_write_type_champ, type_champ)
-      mandatory? && dynamic_type.champ_blank_or_invalid?(champ)
-    else
-      true
-    end
-  end
-
   def html_id(row_id = nil)
     "champ-#{public_id(row_id)}"
   end
@@ -947,10 +828,6 @@ class TypeDeChamp < ApplicationRecord
     families
       .flat_map { |f| FORMAT_FAMILIES[f.to_sym] || [] }
       .presence || AUTHORIZED_CONTENT_TYPES
-  end
-
-  def castable_on_change?(from_type, to_type)
-    Columns::ChampColumn::CAST.key?([from_type.to_sym, to_type.to_sym])
   end
 
   def populate_stable_id

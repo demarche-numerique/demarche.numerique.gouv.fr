@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
 class TypesDeChamp::RepetitionTypeDeChamp < TypesDeChamp::TypeDeChampBase
-  def champ_value_for_tag(champ, path = :value)
+  def filled_champ_value_for_tag(champ, path = :value)
     return nil if path != :value
     ChampPresentations::RepetitionPresentation.new(libelle, champ.dossier.project_rows_for(@type_de_champ))
   end
 
-  def estimated_fill_duration(revision)
+  def estimated_fill_duration
     estimated_rows_in_repetition = 2.5
 
-    children = revision.children_of(@type_de_champ)
+    children = flat_children
 
-    estimated_row_duration = children.map { _1.estimated_fill_duration(revision) }.sum
+    estimated_row_duration = children.map(&:estimated_fill_duration).sum
     estimated_children_read_duration = children.map(&:estimated_read_duration).sum
 
     # Count only once children read time for all rows
@@ -25,17 +25,19 @@ class TypesDeChamp::RepetitionTypeDeChamp < TypesDeChamp::TypeDeChampBase
     ActiveStorage::Filename.new(str.delete('[]*?')).sanitized
   end
 
-  def canonical_column(procedure_id:, displayable: true, prefix: nil)
+  def canonical_column(displayable: true, prefix: nil)
     nil
   end
 
-  def columns(procedure_id:, displayable: true, prefix: nil)
+  def columns(displayable: true, prefix: nil)
     prefix = prefix.present? ? "(#{prefix} #{libelle})" : libelle
 
-    Procedure.find(procedure_id)
-      .all_revisions_types_de_champ(parent: @type_de_champ)
-      .flat_map { it.columns(procedure_id:, displayable: false, prefix:) }
+    # Columns index champ data across every revision, so callers wanting the
+    # full coverage must look the repetition up in the aggregated revision —
+    # which the columns registry and the exports do. This walks whatever tree
+    # this wrapper came from.
+    flat_children.flat_map { it.columns(displayable: false, prefix:) }
   end
 
-  def champ_blank?(champ) = champ.dossier.repetition_row_ids(@type_de_champ).blank?
+  def champ_value_blank?(champ) = champ.dossier.repetition_row_ids(@type_de_champ).blank?
 end

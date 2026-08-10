@@ -18,7 +18,7 @@ RSpec.describe TypesDeChampEditor::HeaderSectionComponent, type: :component do
   describe 'header_section_options_for_select' do
     context 'without upper tdc' do
       let(:types_de_champ_public) { [{ type: :header_section, level: 1 }] }
-      let(:tdc) { procedure.draft_revision.root_types_de_champ_public.first }
+      let(:tdc) { procedure.draft_revision.root_public_types_de_champ.first }
       let(:upper_tdcs) { [] }
 
       it 'allows up to level 1 header section' do
@@ -33,8 +33,8 @@ RSpec.describe TypesDeChampEditor::HeaderSectionComponent, type: :component do
           { type: :header_section, level: 2 },
         ]
       end
-      let(:tdc) { procedure.draft_revision.root_types_de_champ_public.last }
-      let(:upper_tdcs) { [procedure.draft_revision.root_types_de_champ_public.first] }
+      let(:tdc) { procedure.draft_revision.root_public_types_de_champ.last }
+      let(:upper_tdcs) { [procedure.draft_revision.root_public_types_de_champ.first] }
 
       it 'allows up to level 2 header section' do
         expect(subject).to have_selector("option", count: 2)
@@ -49,8 +49,8 @@ RSpec.describe TypesDeChampEditor::HeaderSectionComponent, type: :component do
           { type: :header_section, level: 3 },
         ]
       end
-      let(:tdc) { procedure.draft_revision.root_types_de_champ_public.third }
-      let(:upper_tdcs) { [procedure.draft_revision.root_types_de_champ_public.first, procedure.draft_revision.root_types_de_champ_public.second] }
+      let(:tdc) { procedure.draft_revision.root_public_types_de_champ.third }
+      let(:upper_tdcs) { [procedure.draft_revision.root_public_types_de_champ.first, procedure.draft_revision.root_public_types_de_champ.second] }
 
       it 'allows up to level 3 header section' do
         expect(subject).to have_selector("option", count: 3)
@@ -59,7 +59,7 @@ RSpec.describe TypesDeChampEditor::HeaderSectionComponent, type: :component do
 
     context 'with error' do
       let(:types_de_champ_public) { [{ type: :header_section, level: 2 }] }
-      let(:tdc) { procedure.draft_revision.root_types_de_champ_public.first }
+      let(:tdc) { procedure.draft_revision.root_public_types_de_champ.first }
       let(:upper_tdcs) { [] }
 
       it 'includes disabled levels' do
@@ -71,7 +71,7 @@ RSpec.describe TypesDeChampEditor::HeaderSectionComponent, type: :component do
 
   describe 'errors' do
     let(:types_de_champ_public) { [{ type: :header_section, level: 2 }] }
-    let(:tdc) { procedure.draft_revision.root_types_de_champ_public.first }
+    let(:tdc) { procedure.draft_revision.root_public_types_de_champ.first }
     let(:upper_tdcs) { [] }
 
     it 'returns errors' do

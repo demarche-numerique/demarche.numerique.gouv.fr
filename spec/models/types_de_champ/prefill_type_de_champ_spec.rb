@@ -98,7 +98,7 @@ RSpec.describe TypesDeChamp::PrefillTypeDeChamp, type: :model do
 
       describe 'too many possible values or not' do
         let!(:procedure) { create(:procedure, types_de_champ_public: [{ type: :drop_down_list }]) }
-        let(:type_de_champ) { procedure.draft_types_de_champ_public.first }
+        let(:type_de_champ) { procedure.draft_public_types_de_champ.first }
         let(:link_to_all_possible_values) {
           link_to(
             I18n.t("views.prefill_descriptions.edit.possible_values.link.text"),
@@ -109,7 +109,7 @@ RSpec.describe TypesDeChamp::PrefillTypeDeChamp, type: :model do
         }
 
         context 'when there is too many possible values' do
-          before { type_de_champ.drop_down_options = (1..described_class::POSSIBLE_VALUES_THRESHOLD + 1).map(&:to_s) }
+          before { type_de_champ.record.drop_down_options = (1..described_class::POSSIBLE_VALUES_THRESHOLD + 1).map(&:to_s) }
 
           it do
             expect(possible_values).to include(link_to_all_possible_values)
@@ -118,7 +118,7 @@ RSpec.describe TypesDeChamp::PrefillTypeDeChamp, type: :model do
         end
 
         context 'when there is not too many possible values' do
-          before { type_de_champ.drop_down_options = (1..described_class::POSSIBLE_VALUES_THRESHOLD - 1).map(&:to_s) }
+          before { type_de_champ.record.drop_down_options = (1..described_class::POSSIBLE_VALUES_THRESHOLD - 1).map(&:to_s) }
 
           it do
             expect(possible_values).not_to include(link_to_all_possible_values)

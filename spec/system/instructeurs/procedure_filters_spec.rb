@@ -4,7 +4,7 @@ describe "procedure filters" do
   let(:instructeur) { create(:instructeur) }
   let(:procedure) { create(:procedure, :published, :with_labels, types_de_champ_public:, instructeurs: [instructeur]) }
   let(:types_de_champ_public) { [{ type: :text }] }
-  let!(:type_de_champ) { procedure.active_revision.root_types_de_champ_public.first }
+  let!(:type_de_champ) { procedure.active_revision.root_public_types_de_champ.first }
   let!(:new_unfollow_dossier) { create(:dossier, procedure: procedure, state: Dossier.states.fetch(:en_instruction)) }
   let!(:champ) { ChampData.find_by(stable_id: type_de_champ.stable_id, dossier_id: new_unfollow_dossier.id) }
   let!(:new_unfollow_dossier_2) { create(:dossier, procedure: procedure, state: Dossier.states.fetch(:en_instruction)) }

@@ -39,11 +39,11 @@ describe ProcedureRevisionPreloader do
       # check order
       original = Procedure.find(procedure.id)
       expect_relation_is_preloaded_sorted(original, procedure, :revision_types_de_champ)
-      expect_relation_is_preloaded_sorted(original, procedure, :revision_types_de_champ_public)
-      expect_relation_is_preloaded_sorted(original, procedure, :revision_types_de_champ_private)
+      expect_relation_is_preloaded_sorted(original, procedure, :public_revision_types_de_champ)
+      expect_relation_is_preloaded_sorted(original, procedure, :private_revision_types_de_champ)
       expect_relation_is_preloaded_sorted(original, procedure, :types_de_champ)
-      expect_relation_is_preloaded_sorted(original, procedure, :root_types_de_champ_public)
-      expect_relation_is_preloaded_sorted(original, procedure, :root_types_de_champ_private)
+      expect_relation_is_preloaded_sorted(original, procedure, :root_public_types_de_champ)
+      expect_relation_is_preloaded_sorted(original, procedure, :root_private_types_de_champ)
     end
 
     def expect_relation_is_preloaded_sorted(original, preloaded, association)

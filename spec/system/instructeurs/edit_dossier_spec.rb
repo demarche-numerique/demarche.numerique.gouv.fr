@@ -142,7 +142,7 @@ describe 'Editing a dossier as an instructeur:', js: true do
       expect(page).to have_button('Enregistrer les modifications', disabled: false)
 
       # adding a new attachment is buffered too
-      input_selector = "##{dossier.root_champs_public.find { _1.stable_id == 88 }.focusable_input_id}"
+      input_selector = "##{dossier.root_public_champs.find { _1.stable_id == 88 }.focusable_input_id}"
       expect(page).to have_selector(input_selector)
       find(input_selector).attach_file(Rails.root.join('spec/fixtures/files/file.pdf'))
 

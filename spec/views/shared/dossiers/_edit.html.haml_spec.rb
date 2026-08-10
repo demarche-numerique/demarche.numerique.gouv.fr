@@ -12,11 +12,11 @@ describe 'shared/dossiers/edit', type: :view do
   let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
 
   context 'when there are some champs' do
-    let(:type_de_champ_header_section) { procedure.draft_types_de_champ_public.find(&:header_section?) }
-    let(:type_de_champ_explication) { procedure.draft_types_de_champ_public.find(&:explication?) }
-    let(:type_de_champ_dossier_link) { procedure.draft_types_de_champ_public.find(&:dossier_link?) }
-    let(:type_de_champ_checkbox) { procedure.draft_types_de_champ_public.find(&:checkbox?) }
-    let(:type_de_champ_textarea) { procedure.draft_types_de_champ_public.find(&:textarea?) }
+    let(:type_de_champ_header_section) { procedure.draft_public_types_de_champ.find(&:header_section?) }
+    let(:type_de_champ_explication) { procedure.draft_public_types_de_champ.find(&:explication?) }
+    let(:type_de_champ_dossier_link) { procedure.draft_public_types_de_champ.find(&:dossier_link?) }
+    let(:type_de_champ_checkbox) { procedure.draft_public_types_de_champ.find(&:checkbox?) }
+    let(:type_de_champ_textarea) { procedure.draft_public_types_de_champ.find(&:textarea?) }
 
     let(:champ_checkbox) { dossier.project_champ(type_de_champ_checkbox) }
     let(:champ_dossier_link) { dossier.project_champ(type_de_champ_dossier_link) }
@@ -46,7 +46,7 @@ describe 'shared/dossiers/edit', type: :view do
     let(:types_de_champ_public) { [{ type: :textarea }] }
     let(:procedure) { create(:procedure, types_de_champ_public:) }
     let(:dossier) { create(:dossier, procedure:) }
-    let(:champ) { dossier.root_champs_public.first }
+    let(:champ) { dossier.root_public_champs.first }
 
     before do
       champ.update(value: 'This <strong>should be escaped</strong>')
@@ -60,7 +60,7 @@ describe 'shared/dossiers/edit', type: :view do
 
   context 'with a single-value list' do
     let(:types_de_champ_public) { [{ type: :drop_down_list, options:, mandatory: }] }
-    let(:champ) { dossier.root_champs_public.first }
+    let(:champ) { dossier.root_public_champs.first }
     let(:type_de_champ) { champ.type_de_champ }
     let(:enabled_options) { type_de_champ.drop_down_options }
     let(:mandatory) { true }

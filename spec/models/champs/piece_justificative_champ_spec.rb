@@ -7,7 +7,7 @@ describe Champs::PieceJustificativeChamp do
 
   let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative }]) }
   let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-  let(:champ) { dossier.root_champs_public.first }
+  let(:champ) { dossier.root_public_champs.first }
 
   # 1×1 24-bit bitmap
   let(:bmp_bytes) do
@@ -37,7 +37,7 @@ describe Champs::PieceJustificativeChamp do
       it "rejects a bitmap image" do
         champ.piece_justificative_file = [{ io: StringIO.new(bmp_bytes), filename: 'image.bmp', content_type: 'image/bmp' }]
 
-        expect(dossier.champs_public_valid?).to be false
+        expect(dossier.public_champs_valid?).to be false
       end
 
       it "accepts a markdown file declared as the legacy text/x-markdown content type" do
@@ -56,13 +56,13 @@ describe Champs::PieceJustificativeChamp do
           },
         ]
 
-        expect(dossier.champs_public_valid?).to be false
-        expect(dossier.champs_private_valid?).to be true
+        expect(dossier.public_champs_valid?).to be false
+        expect(dossier.private_champs_valid?).to be true
       end
     end
 
     context "when validation is disabled" do
-      before { champ.type_de_champ.update(skip_pj_validation: true) }
+      before { champ.type_de_champ.record.update(skip_pj_validation: true) }
 
       it "does not enforce file size on :champ_value" do
         champ.piece_justificative_file.purge
@@ -79,7 +79,7 @@ describe Champs::PieceJustificativeChamp do
     end
 
     context "when content-type validation is disabled" do
-      before { champ.type_de_champ.update(skip_content_type_pj_validation: true) }
+      before { champ.type_de_champ.record.update(skip_content_type_pj_validation: true) }
 
       it "does not enforce content_type on :champ_value" do
         champ.piece_justificative_file.attach(
@@ -97,7 +97,7 @@ describe Champs::PieceJustificativeChamp do
     context 'titre_identite nature' do
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative, nature: 'titre_identite' }]) }
       let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-      let(:champ) { dossier.root_champs_public.first }
+      let(:champ) { dossier.root_public_champs.first }
 
       it 'accepts jpeg under 20MB' do
         champ.piece_justificative_file.purge
@@ -130,7 +130,7 @@ describe Champs::PieceJustificativeChamp do
       context "#{ocr_nature} nature" do
         let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative, nature: ocr_nature }]) }
         let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-        let(:champ) { dossier.root_champs_public.first }
+        let(:champ) { dossier.root_public_champs.first }
 
         it 'accepts pdf' do
           champ.piece_justificative_file.purge
@@ -150,7 +150,7 @@ describe Champs::PieceJustificativeChamp do
     context 'pj_limit_formats with document_texte' do
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative, pj_limit_formats: '1', pj_format_families: ['document_texte'] }]) }
       let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-      let(:champ) { dossier.root_champs_public.first }
+      let(:champ) { dossier.root_public_champs.first }
 
       it 'accepts pdf' do
         champ.piece_justificative_file.purge
@@ -175,7 +175,7 @@ describe Champs::PieceJustificativeChamp do
     context 'pj_limit_formats enabled with empty families' do
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative, pj_limit_formats: '1', pj_format_families: [] }]) }
       let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-      let(:champ) { dossier.root_champs_public.first }
+      let(:champ) { dossier.root_public_champs.first }
 
       it 'accepts pdf' do
         champ.piece_justificative_file.purge

@@ -31,10 +31,10 @@ describe 'dossiers/show.pdf', :external_deps, type: :view do
 
     let(:dossier) do
       d = create(:dossier, :en_construction, procedure: procedure)
-      d.root_champs_public.find { _1.libelle == 'Nom' }&.update(value: 'Dupont')
-      d.root_champs_public.find { _1.libelle == 'Prénom' }&.update(value: 'Jean')
-      d.root_champs_public.find { _1.libelle == 'Email' }&.update(value: 'jean.dupont@example.fr')
-      d.root_champs_public.find { _1.libelle == 'Numéro' }&.update(value: 'AB123456')
+      d.root_public_champs.find { _1.libelle == 'Nom' }&.update(value: 'Dupont')
+      d.root_public_champs.find { _1.libelle == 'Prénom' }&.update(value: 'Jean')
+      d.root_public_champs.find { _1.libelle == 'Email' }&.update(value: 'jean.dupont@example.fr')
+      d.root_public_champs.find { _1.libelle == 'Numéro' }&.update(value: 'AB123456')
       d
     end
 
@@ -131,7 +131,7 @@ describe 'dossiers/show.pdf', :external_deps, type: :view do
     end
     let(:dossier) do
       d = create(:dossier, :en_construction, procedure: procedure)
-      d.root_champs_public.find { _1.stable_id == stable_id_number }&.update(value: 1)
+      d.root_public_champs.find { _1.stable_id == stable_id_number }&.update(value: 1)
       d.reload
       d
     end
@@ -165,7 +165,7 @@ describe 'dossiers/show.pdf', :external_deps, type: :view do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :aah, libelle: 'AAH' }]) }
     let(:dossier) do
       d = create(:dossier, :en_construction, procedure:)
-      d.root_champs_public.first.update(external_state: 'fetched', value: 'true', value_json: { api_part: { est_beneficiaire: true } })
+      d.root_public_champs.first.update(external_state: 'fetched', value: 'true', value_json: { api_part: { est_beneficiaire: true } })
       d
     end
 

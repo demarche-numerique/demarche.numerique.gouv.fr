@@ -27,7 +27,7 @@ describe Champs::CarteController, type: :controller do
 
     context 'when the champ is not a carte' do
       let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :text }]) }
-      let(:champ) { dossier.root_champs_public.first }
+      let(:champ) { dossier.root_public_champs.first }
 
       it 'returns not found' do
         get :index, params: { dossier_id: champ.dossier_id, stable_id: champ.stable_id }, format: :turbo_stream

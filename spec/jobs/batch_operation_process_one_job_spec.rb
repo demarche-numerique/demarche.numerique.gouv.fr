@@ -352,7 +352,7 @@ describe BatchOperationProcessOneJob, type: :job do
       end
 
       before do
-        allow_any_instance_of(Dossier).to receive(:champs_private_valid?).and_return(false)
+        allow_any_instance_of(Dossier).to receive(:private_champs_valid?).and_return(false)
         allow_any_instance_of(Dossier).to receive(:any_etablissement_as_degraded_mode?).and_return(false)
       end
 

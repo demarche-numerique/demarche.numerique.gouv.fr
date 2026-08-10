@@ -115,15 +115,15 @@ module ProcedureCloneConcern
 
     transaction do
       procedure.save!
-      move_new_children_to_new_parent_coordinate(procedure.draft_revision)
+      procedure.draft_revision.rewire_cloned_children_parents!
     end
 
-    procedure.draft_revision.revision_types_de_champ.public_only.each(&:destroy) if !options[:clone_champs]
-    procedure.draft_revision.revision_types_de_champ.private_only.each(&:destroy) if !options[:clone_annotations]
+    procedure.draft_revision.remove_all_public_coordinates! if !options[:clone_champs]
+    procedure.draft_revision.remove_all_private_coordinates! if !options[:clone_annotations]
     procedure.labels = [] if !options[:clone_labels]
 
     if !same_admin?(admin) || options[:cloned_from_library]
-      procedure.draft_revision.root_types_de_champ_public.each { |tdc| tdc.options&.delete(:old_pj) }
+      procedure.draft_revision.root_public_types_de_champ.each { |tdc| tdc.options&.delete(:old_pj) }
     end
 
     new_defaut_groupe = procedure.groupe_instructeurs

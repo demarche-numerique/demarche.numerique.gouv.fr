@@ -18,7 +18,7 @@ module Maintenance
       routing_rule = gi.routing_rule
 
       if routing_rule.present?
-        tdcs = TypeDeChamp.where(id: gi.procedure.active_revision.root_types_de_champ_public)
+        tdcs = TypeDeChamp.where(id: gi.procedure.active_revision.root_public_types_de_champ.map(&:id))
 
         if tdcs.where(stable_id: routing_rule.sources, type_champ: ["communes", "epci"]).present?
           if routing_rule.is_a?(And)

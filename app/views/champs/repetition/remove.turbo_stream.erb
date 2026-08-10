@@ -3,10 +3,8 @@
 <% end %>
 
 <%= turbo_stream.update dom_id(@champ, :rows) do %>
-  <% @champ.row_ids.each.with_index(1) do |row_id, row_number| %>
-    <%= fields_for @champ.input_name, @champ do |form| %>
-      <%= render EditableChamp::RepetitionRowComponent.new(form: form, dossier: @champ.dossier, champ: @champ, row_id: row_id, row_number: row_number, seen_at: nil, expanded: row_number == 1) %>
-    <% end %>
+  <% @champ.rows.each do |row| %>
+    <%= render EditableChamp::RepetitionRowComponent.new(champ: @champ, row:, expanded: row.index == 1) %>
   <% end %>
 <% end %>
 

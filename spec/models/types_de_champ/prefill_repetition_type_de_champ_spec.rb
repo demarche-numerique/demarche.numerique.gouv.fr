@@ -3,14 +3,14 @@
 RSpec.describe TypesDeChamp::PrefillRepetitionTypeDeChamp, type: :model do
   let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :repetition, children: [{}, { type: :integer_number }, { type: :regions }] }]) }
   let(:dossier) { create(:dossier, procedure: procedure) }
-  let(:champ) { dossier.root_champs_public.first }
+  let(:champ) { dossier.root_public_champs.first }
   let(:type_de_champ) { champ.type_de_champ }
   let(:prefillable_subchamps) { TypesDeChamp::PrefillRepetitionTypeDeChamp.new(type_de_champ, procedure.active_revision).send(:prefillable_subchamps) }
   let(:text_repetition) { prefillable_subchamps.first }
   let(:integer_repetition) { prefillable_subchamps.second }
   let(:region_repetition) { prefillable_subchamps.third }
-  let(:text_repetition_champs) { champ.rows.flat_map(&:first) }
-  let(:integer_repetition_champs) { champ.rows.flat_map(&:second) }
+  let(:text_repetition_champs) { champ.rows.map { it.champs.first } }
+  let(:integer_repetition_champs) { champ.rows.map { it.champs.second } }
 
   describe 'ancestors' do
     subject { described_class.build(type_de_champ, procedure.active_revision) }
@@ -32,11 +32,11 @@ RSpec.describe TypesDeChamp::PrefillRepetitionTypeDeChamp, type: :model do
   describe '#possible_values does not contain unescaped HTML (XSS prevention)' do
     let(:xss_payload) { '<script>alert("XSS")</script>' }
     let(:procedure_with_dropdown) { create(:procedure, types_de_champ_public: [{ type: :repetition, children: [{ type: :drop_down_list }] }]) }
-    let(:repetition_tdc) { procedure_with_dropdown.draft_types_de_champ_public.find(&:repetition?) }
+    let(:repetition_tdc) { procedure_with_dropdown.draft_public_types_de_champ.find(&:repetition?) }
 
     before do
-      sub_tdc = procedure_with_dropdown.active_revision.children_of(repetition_tdc).first
-      sub_tdc.update!(drop_down_options: [xss_payload, "safe"])
+      sub_tdc = repetition_tdc.flat_children.first
+      sub_tdc.record.update!(drop_down_options: [xss_payload, "safe"])
     end
 
     subject(:possible_values) { described_class.new(repetition_tdc, procedure_with_dropdown.active_revision).possible_values }

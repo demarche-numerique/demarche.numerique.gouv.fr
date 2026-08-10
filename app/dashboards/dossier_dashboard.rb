@@ -24,7 +24,7 @@ class DossierDashboard < Administrate::BaseDashboard
     en_construction_at: Field::DateTime,
     en_instruction_at: Field::DateTime,
     processed_at: Field::DateTime,
-    root_champs_public: ChampCollectionField,
+    root_public_champs: ChampCollectionField,
     groupe_instructeur: Field::BelongsTo,
   }.freeze
 
@@ -48,7 +48,7 @@ class DossierDashboard < Administrate::BaseDashboard
     :state,
     :procedure,
     :groupe_instructeur,
-    :root_champs_public,
+    :root_public_champs,
     :created_at,
     :updated_at,
     :hidden_by_user_at,

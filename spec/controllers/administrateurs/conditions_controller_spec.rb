@@ -93,7 +93,7 @@ describe Administrateurs::ConditionsController, type: :controller do
 
     describe '#destroy' do
       before do
-        second_tdc.update(condition: empty_operator(empty, empty))
+        second_tdc.record.update(condition: empty_operator(empty, empty))
         delete :destroy, params: default_params, format: :turbo_stream
       end
 
@@ -106,7 +106,7 @@ describe Administrateurs::ConditionsController, type: :controller do
 
     describe '#change_targeted_champ' do
       before do
-        second_tdc.update(condition: empty_operator(empty, empty))
+        second_tdc.record.update(condition: empty_operator(empty, empty))
         patch :change_targeted_champ, params: params, format: :turbo_stream
       end
 
@@ -138,7 +138,7 @@ describe Administrateurs::ConditionsController, type: :controller do
       let!(:dropdown_tdc) { draft.add_type_de_champ(type_champ: 'integer_number') }
       let!(:text_tdc) { draft.add_type_de_champ(type_champ: 'text', after_stable_id: dropdown_tdc.stable_id) }
 
-      let(:int_column) { dropdown_tdc.columns(procedure_id: procedure.id).first }
+      let(:int_column) { draft.type_de_champ(dropdown_tdc.stable_id).columns.first }
 
       before do
         sign_in(procedure.administrateurs.first.user)

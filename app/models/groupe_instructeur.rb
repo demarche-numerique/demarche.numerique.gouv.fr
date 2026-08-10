@@ -150,7 +150,7 @@ class GroupeInstructeur < ApplicationRecord
   private
 
   def routing_rule_matches_tdc?(rule)
-    tdcs = procedure.active_revision.root_types_de_champ_public
+    tdcs = procedure.active_revision.root_public_types_de_champ
     rule.errors(tdcs).blank?
   end
 

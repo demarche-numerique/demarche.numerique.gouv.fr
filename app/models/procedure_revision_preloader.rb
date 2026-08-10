@@ -40,7 +40,7 @@ class ProcedureRevisionPreloader
 
   def assign_revision_type_de_champ(revisions_by_id, coordinates_by_revision_id)
     revisions_by_id.each_pair do |revision_id, revision|
-      revision.association(:revision_types_de_champ).target = coordinates_by_revision_id[revision_id] || []
+      revision.preload_revision_types_de_champ(coordinates_by_revision_id[revision_id] || [])
     end
   end
 end

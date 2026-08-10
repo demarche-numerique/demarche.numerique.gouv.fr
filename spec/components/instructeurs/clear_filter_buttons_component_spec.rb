@@ -14,7 +14,7 @@ describe Instructeurs::ClearFilterButtonsComponent, type: :component do
 
   describe "visible text" do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :text }]) }
-    let(:first_type_de_champ) { procedure.active_revision.root_types_de_champ_public.first }
+    let(:first_type_de_champ) { procedure.active_revision.root_public_types_de_champ.first }
     let(:filter) { to_filter([first_type_de_champ.libelle, { operator: 'match', value: ['true'] }]) }
 
     context 'when type_de_champ text' do

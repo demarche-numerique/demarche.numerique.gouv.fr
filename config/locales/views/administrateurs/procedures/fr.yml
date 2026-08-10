@@ -102,8 +102,8 @@ fr:
         info: L’ensemble des paramètres de la démarche resteront modifiables après clonage.
         rename_title: Renommez votre démarche
         configurate_title: Choisissez les paramètres de la démarche que vous souhaitez conserver lors du clonage
-        types_de_champ_public: Champs du formulaire
-        types_de_champ_private: Annotations privées
+        public_types_de_champ: Champs du formulaire
+        private_types_de_champ: Annotations privées
         types_de_champ_count:
           zero: Aucun champ
           one: "%{count} champ"

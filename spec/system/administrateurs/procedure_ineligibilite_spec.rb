@@ -42,6 +42,6 @@ describe 'Administrateurs can edit procedures', js: true do
     # rules are setup
     wait_until { procedure.reload.draft_revision.ineligibilite_enabled == true }
     expect(procedure.draft_revision.ineligibilite_message).to eq("vous n’etes pas eligible")
-    expect(procedure.draft_revision.ineligibilite_rules).to eq(ds_eq(champ_column_value(first_tdc.columns(procedure_id: procedure.id).first), constant(true)))
+    expect(procedure.draft_revision.ineligibilite_rules).to eq(ds_eq(champ_column_value(first_tdc.columns.first), constant(true)))
   end
 end

@@ -9,7 +9,7 @@ describe TypesDeChamp::MultipleDropDownListTypeDeChamp do
     let(:multiple_dropdown_list_tdc) { procedure.active_revision.types_de_champ.first }
 
     it 'returns one column per referentiel header in advanced mode' do
-      columns = multiple_dropdown_list_tdc.columns(procedure_id: procedure.id)
+      columns = multiple_dropdown_list_tdc.columns
 
       expect(columns.size).to eq(3)
       expect(columns).to all(be_an_instance_of(Columns::MultipleDropDownColumn))

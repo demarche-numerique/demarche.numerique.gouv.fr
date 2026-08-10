@@ -8,7 +8,7 @@ module Maintenance
       subject(:process) { described_class.process(dossier) }
       let(:procedure) { create(:procedure, types_de_champ_public: [{}]) }
       let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-      let(:type_de_champ) { dossier.revision.root_types_de_champ_public.first }
+      let(:type_de_champ) { dossier.root_public_types_de_champ.first }
 
       before {
         dossier.champ_data.create(**type_de_champ.params_for_champ.merge(row_id: 'N'))

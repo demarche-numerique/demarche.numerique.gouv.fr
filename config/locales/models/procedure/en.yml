@@ -85,11 +85,12 @@ en:
           attributes:
             api_particulier_token:
               invalid: 'invalid format'
-            draft_types_de_champ_public:
+            draft_public_types_de_champ:
               format: 'Public field %{message}'
               invalid_condition: "have an invalid logic"
               empty_repetition: 'requires at least one field'
               empty_drop_down: 'requires at least one option'
+              missing_primary_option: 'must start with a primary menu entry of the form --text--'
               empty_csv: 'requires at least one csv file'
               inconsistent_header_section: "%{custom_message}"
               missing_libelle: "field label in position %{position} must be filled"
@@ -97,11 +98,12 @@ en:
               expression_reguliere_invalid: "is invalid"
               referentiel_not_ready: "is not configured"
               missing_api_particulier_token: "does not work without a API Particulier token"
-            draft_types_de_champ_private:
+            draft_private_types_de_champ:
               format: 'Private field %{message}'
               invalid_condition: "have an invalid logic"
               empty_repetition: 'requires at least one field'
               empty_drop_down: 'requires at least one option'
+              missing_primary_option: 'must start with a primary menu entry of the form --text--'
               empty_csv: 'requires at least one csv file'
               inconsistent_header_section: "%{custom_message}"
               missing_libelle: "field label in position %{position} must be filled"

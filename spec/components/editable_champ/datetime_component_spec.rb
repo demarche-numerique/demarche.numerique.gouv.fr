@@ -15,7 +15,7 @@ describe EditableChamp::DatetimeComponent, type: :component do
     context 'when the value is nil' do
       it 'returns nil and does not make the missing value error disappears' do
         # trigger the missing value error
-        dossier.champs_public_valid?
+        dossier.public_champs_valid?
 
         expect(champ.errors.map { [it.type, it.attribute] }.include?([:missing, :value])).to be_truthy
 

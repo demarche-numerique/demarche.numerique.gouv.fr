@@ -236,12 +236,12 @@ module Users
       session.delete(:prefill_token)
       session.delete(:prefill_params)
       @dossier = dossier_with_champs
-      @dossier.validate(:champs_public_value)
+      @dossier.validate(:public_champs_value)
     end
 
     def submit_brouillon
       @dossier = dossier_with_champs(pj_template: false)
-      dossier.champs_public_valid?
+      dossier.public_champs_valid?
 
       if @dossier.errors.blank? && @dossier.can_passer_en_construction?
         begin
@@ -287,7 +287,7 @@ module Users
         dossier.resolve_pending_correction
       end
 
-      dossier.champs_public_valid?
+      dossier.public_champs_valid?
 
       if dossier.errors.blank? && dossier.can_passer_en_construction?
         dossier.submitted_with_france_connect = current_user.loged_in_with_france_connect.present?
@@ -302,7 +302,7 @@ module Users
 
     def check_completude
       @dossier = dossier_with_champs
-      dossier.champs_public_valid?
+      dossier.public_champs_valid?
 
       if @dossier.errors.blank? && @dossier.can_passer_en_construction?
         flash.notice = t('.success')
@@ -339,7 +339,7 @@ module Users
 
       respond_to do |format|
         format.turbo_stream do
-          @to_show, @to_hide, @to_update = champs_to_turbo_update(champs_attributes_params(:public), dossier.flat_champs_public)
+          @to_show, @to_hide, @to_update = champs_to_turbo_update(champs_attributes_params(:public), dossier.flat_public_champs)
           render :update, layout: false
         end
       end
@@ -359,7 +359,7 @@ module Users
       champ.validate(:champ_value) if champ.done?
       respond_to do |format|
         format.turbo_stream do
-          @to_show, @to_hide, @to_update = champ_to_turbo_update(champ, dossier.flat_champs_public)
+          @to_show, @to_hide, @to_update = champ_to_turbo_update(champ, dossier.flat_public_champs)
 
           render :update, layout: false
         end

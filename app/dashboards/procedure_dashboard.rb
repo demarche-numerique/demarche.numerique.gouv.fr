@@ -10,8 +10,8 @@ class ProcedureDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    published_types_de_champ_public: TypesDeChampCollectionField,
-    published_types_de_champ_private: TypesDeChampCollectionField,
+    published_public_types_de_champ: TypesDeChampCollectionField,
+    published_private_types_de_champ: TypesDeChampCollectionField,
     path: ProcedureLinkField,
     procedure_paths: Field::HasMany,
     aasm_state: ProcedureStateField,
@@ -108,8 +108,8 @@ class ProcedureDashboard < Administrate::BaseDashboard
     :hidden_at_as_template,
     :closed_at,
     :unpublished_at,
-    :published_types_de_champ_public,
-    :published_types_de_champ_private,
+    :published_public_types_de_champ,
+    :published_private_types_de_champ,
     :for_individual,
     :pro_connect_restriction,
     :pro_connect_for_moral_procedure,

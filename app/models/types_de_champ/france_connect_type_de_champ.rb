@@ -43,11 +43,11 @@ class TypesDeChamp::FranceConnectTypeDeChamp < TypesDeChamp::TypeDeChampBase
     REGISTRY.fetch(type_champ.to_sym)
   end
 
-  def estimated_fill_duration(revision)
+  def estimated_fill_duration
     FILL_DURATION_MEDIUM
   end
 
-  def champ_blank?(champ)
+  def champ_value_blank?(champ)
     return true if champ.fetched? && champ.fc_data_approved?.nil?
     return false if champ.fc_data_correct?
 
@@ -56,11 +56,11 @@ class TypesDeChamp::FranceConnectTypeDeChamp < TypesDeChamp::TypeDeChampBase
     end
   end
 
-  def champ_value_for_export(champ, path = :value)
+  def filled_champ_value_for_export(champ, path = :value)
     ''
   end
 
-  def columns(procedure_id:, displayable: true, prefix: nil)
+  def columns(displayable: true, prefix: nil)
     TypesDeChamp::FranceConnectTypeDeChamp.config_for(type_champ)[:columns].map do |label, jsonpath, type|
       Columns::FranceConnectChampColumn.new(
         procedure_id:,

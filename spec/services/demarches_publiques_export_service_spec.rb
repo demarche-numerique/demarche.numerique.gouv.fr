@@ -35,8 +35,8 @@ describe DemarchesPubliquesExportService do
         revision: {
           champDescriptors: [
             {
-              description: procedure.active_revision.root_types_de_champ_public.first.description,
-              label: procedure.active_revision.root_types_de_champ_public.first.libelle,
+              description: procedure.active_revision.root_public_types_de_champ.first.description,
+              label: procedure.active_revision.root_public_types_de_champ.first.libelle,
               required: true,
               __typename: "TextChampDescriptor",
             },

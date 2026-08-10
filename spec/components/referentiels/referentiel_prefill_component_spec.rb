@@ -25,7 +25,7 @@ RSpec.describe Referentiels::ReferentielPrefillComponent, type: :component do
         }
       end
 
-      before { type_de_champ.update(referentiel_mapping:) }
+      before { type_de_champ.record.update(referentiel_mapping:) }
 
       it 'renders the table headers' do
         expect(subject).to have_selector('th', text: 'Propriété')
@@ -37,7 +37,7 @@ RSpec.describe Referentiels::ReferentielPrefillComponent, type: :component do
   end
 
   describe 'selectable source_tdcs' do
-    before { type_de_champ.update(referentiel_mapping:) }
+    before { type_de_champ.record.update(referentiel_mapping:) }
     let(:prefill_stable_id) { nil }
 
     let(:referentiel_mapping) do
@@ -55,7 +55,7 @@ RSpec.describe Referentiels::ReferentielPrefillComponent, type: :component do
         let(:referentiel_mapping_type) { Referentiels::MappingFormComponent::TYPES[:string] }
         let(:types_de_champ_public) do
           [
-            { stable_id: base_stable_id + 101, type: :text, libelle: 'before, not selectable' },
+            { stable_id: base_stable_id + 100, type: :text, libelle: 'before, not selectable' },
             { type: :referentiel, referentiel: }, # exclu (champ courant)
             { stable_id: base_stable_id + 101, type: :text, libelle: 'text' },
             { stable_id: base_stable_id + 102, type: :textarea, libelle: 'textarea' },

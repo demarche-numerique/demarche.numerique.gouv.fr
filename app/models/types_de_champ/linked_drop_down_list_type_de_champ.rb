@@ -3,8 +3,6 @@
 class TypesDeChamp::LinkedDropDownListTypeDeChamp < TypesDeChamp::TypeDeChampBase
   PRIMARY_PATTERN = /^--(.*)--$/
 
-  validate :check_presence_of_primary_options
-
   def libelles_for_export
     path = paths.first
     [[path[:libelle], path[:path]]]
@@ -22,22 +20,22 @@ class TypesDeChamp::LinkedDropDownListTypeDeChamp < TypesDeChamp::TypeDeChampBas
     unpack_options.to_h
   end
 
-  def champ_value(champ)
+  def filled_champ_value(champ)
     [primary_value(champ), secondary_value(champ)].compact_blank.join(' / ')
   end
 
-  def champ_value_for_tag(champ, path = :value)
+  def filled_champ_value_for_tag(champ, path = :value)
     case path
     when :primary
       primary_value(champ)
     when :secondary
       secondary_value(champ)
     when :value
-      champ_value(champ)
+      filled_champ_value(champ)
     end
   end
 
-  def champ_value_for_export(champ, path = :value)
+  def filled_champ_value_for_export(champ, path = :value)
     case path
     when :primary
       primary_value(champ)
@@ -48,7 +46,7 @@ class TypesDeChamp::LinkedDropDownListTypeDeChamp < TypesDeChamp::TypeDeChampBas
     end
   end
 
-  def champ_value_for_api(champ, version: 2)
+  def filled_champ_value_for_api(champ, version: 2)
     case version
     when 1
       { primary: primary_value(champ), secondary: secondary_value(champ) }
@@ -57,7 +55,7 @@ class TypesDeChamp::LinkedDropDownListTypeDeChamp < TypesDeChamp::TypeDeChampBas
     end
   end
 
-  def champ_blank?(champ)
+  def champ_value_blank?(champ)
     primary_value(champ).blank? && secondary_value(champ).blank?
   end
 
@@ -66,7 +64,7 @@ class TypesDeChamp::LinkedDropDownListTypeDeChamp < TypesDeChamp::TypeDeChampBas
       (has_secondary_options_for_primary?(champ) && secondary_value(champ).blank?)
   end
 
-  def canonical_column(procedure_id:, displayable: true, prefix: nil)
+  def canonical_column(displayable: true, prefix: nil)
     Columns::LinkedDropDownColumn.new(
       procedure_id:,
       label: libelle_with_prefix(prefix),
@@ -79,7 +77,7 @@ class TypesDeChamp::LinkedDropDownListTypeDeChamp < TypesDeChamp::TypeDeChampBas
     )
   end
 
-  def columns(procedure_id:, displayable: true, prefix: nil)
+  def columns(displayable: true, prefix: nil)
     super.concat([
       Columns::LinkedDropDownColumn.new(
         procedure_id:,
@@ -147,12 +145,6 @@ class TypesDeChamp::LinkedDropDownListTypeDeChamp < TypesDeChamp::TypeDeChampBas
     chunked.map do |chunk|
       primary, *secondary = chunk
       [PRIMARY_PATTERN.match(primary)&.[](1), secondary.uniq]
-    end
-  end
-
-  def check_presence_of_primary_options
-    if !PRIMARY_PATTERN.match?(drop_down_options.first)
-      errors.add(libelle.presence || "La liste", "doit commencer par une entrée de menu primaire de la forme <code style='white-space: pre-wrap;'>--texte--</code>")
     end
   end
 end

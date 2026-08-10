@@ -4,7 +4,7 @@ describe Champs::MultipleDropDownListChamp do
   let(:types_de_champ_public) { [{ type: :multiple_drop_down_list, options: ["val1", "val2", "val3", "[brackets] val4"] }] }
   let(:procedure) { create(:procedure, types_de_champ_public:) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.root_champs_public.first.tap { _1.update(value:) } }
+  let(:champ) { dossier.root_public_champs.first.tap { _1.update(value:) } }
   let(:value) { nil }
 
   describe 'validations' do
@@ -69,7 +69,7 @@ describe Champs::MultipleDropDownListChamp do
 
   describe "#focusable_input_id" do
     context "when drop_down_options is empty" do
-      before { champ.type_de_champ.update_column(:options, {}) }
+      before { champ.type_de_champ.record.update_column(:options, {}) }
 
       it "does not raise" do
         expect(champ.drop_down_options).to be_empty

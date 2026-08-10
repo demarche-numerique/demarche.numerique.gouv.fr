@@ -11,7 +11,7 @@ describe Champs::RNFChamp, type: :model do
   describe '#status_announceable?' do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :rnf }]) }
     let(:dossier) { create(:dossier, procedure:) }
-    let(:champ) { dossier.root_champs_public.find(&:rnf?) }
+    let(:champ) { dossier.root_public_champs.find(&:rnf?) }
 
     it { expect(champ.status_announceable?).to be(true) }
   end
@@ -19,7 +19,7 @@ describe Champs::RNFChamp, type: :model do
   describe '#valid?' do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :rnf }]) }
     let(:dossier) { create(:dossier, procedure:) }
-    let(:champ) { dossier.root_champs_public.find(&:rnf?) }
+    let(:champ) { dossier.root_public_champs.find(&:rnf?) }
 
     def with_state(external_id:, data:, fetch_external_data_exceptions: [])
       champ.tap do
@@ -94,7 +94,7 @@ describe Champs::RNFChamp, type: :model do
   describe 'format validation' do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :rnf }]) }
     let(:dossier) { create(:dossier, procedure:) }
-    let(:champ) { dossier.root_champs_public.find(&:rnf?) }
+    let(:champ) { dossier.root_public_champs.find(&:rnf?) }
 
     before { champ.update_columns(external_id:) }
 
@@ -255,7 +255,7 @@ describe Champs::RNFChamp, type: :model do
 
   describe 'for_export' do
     let(:champ) { described_class.new(external_id:, data: JSON.parse(body)) }
-    before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_rnf)) }
+    before { allow(champ).to receive(:type_de_champ).and_return(TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_rnf))) }
     it do
       expect(champ.type_de_champ.champ_value_for_export(champ, :value)).to eq '075-FDD-00003-01'
       expect(champ.type_de_champ.champ_value_for_export(champ, :nom)).to eq 'Fondation SFR'

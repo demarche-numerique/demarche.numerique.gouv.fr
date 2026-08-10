@@ -9,8 +9,8 @@ describe ProcedureExportService do
   let(:export_template) { create(:export_template, :enabled_pjs, groupe_instructeur: procedure.defaut_groupe_instructeur) }
   let(:service) { ProcedureExportService.new(procedure, procedure.dossiers, instructeur, export_template) }
 
-  def pj_champ(d) = d.root_champs_public.find(&:piece_justificative?)
-  def repetition(d) = d.root_champs_public.find(&:repetition?)
+  def pj_champ(d) = d.root_public_champs.find(&:piece_justificative?)
+  def repetition(d) = d.root_public_champs.find(&:repetition?)
   def attachments(champ) = champ.piece_justificative_file.attachments
 
   before do
@@ -18,11 +18,11 @@ describe ProcedureExportService do
       attach_file_to_champ(pj_champ(dossier))
 
       repetition(dossier).add_row(updated_by: 'test')
-      attach_file_to_champ(repetition(dossier).rows.first.first)
-      attach_file_to_champ(repetition(dossier).rows.first.first)
+      attach_file_to_champ(repetition(dossier).rows.first.champs.first)
+      attach_file_to_champ(repetition(dossier).rows.first.champs.first)
 
       repetition(dossier).add_row(updated_by: 'test')
-      attach_file_to_champ(repetition(dossier).rows.second.first)
+      attach_file_to_champ(repetition(dossier).rows.second.champs.first)
     end
 
     allow_any_instance_of(ActiveStorage::Attachment).to receive(:url).and_return("https://opengraph.githubassets.com/d0e7862b24d8026a3c03516d865b28151eb3859029c6c6c2e86605891fbdcd7a/socketry/async-io")

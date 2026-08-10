@@ -4,7 +4,7 @@ describe Champs::EpciChamp, type: :model do
   let(:types_de_champ_public) { [{ type: :epci }] }
   let(:procedure) { create(:procedure, types_de_champ_public:) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.root_champs_public.first.tap { _1.code_departement = code_departement } }
+  let(:champ) { dossier.root_public_champs.first.tap { _1.code_departement = code_departement } }
   let(:code_departement) { nil }
 
   describe 'validations' do
@@ -152,7 +152,7 @@ describe Champs::EpciChamp, type: :model do
     let(:epci) { APIGeoService.epcis('01').first }
 
     it 'with departement and code' do
-      allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_epci))
+      allow(champ).to receive(:type_de_champ).and_return(TypesDeChamp::TypeDeChampBase.build(build(:type_de_champ_epci)))
       champ.code_departement = '01'
       champ.value = epci[:code]
       expect(champ.blank?).to be_falsey

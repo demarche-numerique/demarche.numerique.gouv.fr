@@ -3,7 +3,7 @@
 RSpec.describe TypesDeChamp::PrefillDossierLinkTypeDeChamp do
   let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :dossier_link }]) }
   let(:dossier) { create(:dossier, :brouillon, procedure:) }
-  let(:type_de_champ) { procedure.active_revision.root_types_de_champ_public.first }
+  let(:type_de_champ) { procedure.active_revision.root_public_types_de_champ.first }
   let(:champ) { dossier.champ_data.first }
 
   describe 'ancestors' do
@@ -65,7 +65,7 @@ RSpec.describe TypesDeChamp::PrefillDossierLinkTypeDeChamp do
       let(:other_procedure) { create(:procedure) }
 
       before do
-        type_de_champ.update!(options: type_de_champ.options.merge(
+        type_de_champ.record.update!(options: type_de_champ.options.merge(
           'procedures_limit' => '1',
           'dossier_link_procedure_ids' => [allowed_procedure.id]
         ))

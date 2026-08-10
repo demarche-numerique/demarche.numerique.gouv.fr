@@ -111,25 +111,25 @@ RSpec.describe DossierCloneConcern do
 
       context 'public are duplicated' do
         it do
-          expect(new_dossier.root_champs_public.count).to eq(dossier.root_champs_public.count)
-          expect(new_dossier.root_champs_public.map(&:id)).not_to eq(dossier.root_champs_public.map(&:id))
+          expect(new_dossier.root_public_champs.count).to eq(dossier.root_public_champs.count)
+          expect(new_dossier.root_public_champs.map(&:id)).not_to eq(dossier.root_public_champs.map(&:id))
         end
 
         it 'keeps champs.values' do
-          original_first_champ = dossier.root_champs_public.first
+          original_first_champ = dossier.root_public_champs.first
           original_first_champ.update!(value: 'kthxbye')
 
-          expect(new_dossier.root_champs_public.first.value).to eq(original_first_champ.value)
+          expect(new_dossier.root_public_champs.first.value).to eq(original_first_champ.value)
         end
 
         context 'for Champs::Repetition with rows, original_champ.repetition and rows are duped' do
           let(:types_de_champ_public) { [{ type: :repetition, children: [{}, {}] }] }
-          let(:champ_repetition) { dossier.root_champs_public.find(&:repetition?) }
-          let(:cloned_champ_repetition) { new_dossier.root_champs_public.find(&:repetition?) }
+          let(:champ_repetition) { dossier.root_public_champs.find(&:repetition?) }
+          let(:cloned_champ_repetition) { new_dossier.root_public_champs.find(&:repetition?) }
 
           it do
-            expect(cloned_champ_repetition.rows.flatten.count).to eq(4)
-            expect(cloned_champ_repetition.rows.flatten.map(&:id)).not_to eq(champ_repetition.rows.flatten.map(&:id))
+            expect(cloned_champ_repetition.rows.flat_map(&:champs).count).to eq(4)
+            expect(cloned_champ_repetition.rows.flat_map(&:champs).map(&:id)).not_to eq(champ_repetition.rows.flat_map(&:champs).map(&:id))
             expect(cloned_champ_repetition.row_ids).to eq(champ_repetition.row_ids)
           end
         end
@@ -184,13 +184,13 @@ RSpec.describe DossierCloneConcern do
         let(:types_de_champ_private) { [{}] }
 
         it 'reset champs private values' do
-          expect(new_dossier.root_champs_private.count).to eq(dossier.root_champs_private.count)
-          expect(new_dossier.root_champs_private.map(&:id)).not_to eq(dossier.root_champs_private.map(&:id))
-          original_first_champs_private = dossier.root_champs_private.first
+          expect(new_dossier.root_private_champs.count).to eq(dossier.root_private_champs.count)
+          expect(new_dossier.root_private_champs.map(&:id)).not_to eq(dossier.root_private_champs.map(&:id))
+          original_first_champs_private = dossier.root_private_champs.first
           original_first_champs_private.update!(value: 'kthxbye')
 
-          expect(new_dossier.root_champs_private.first.value).not_to eq(original_first_champs_private.value)
-          expect(new_dossier.root_champs_private.first.value).to eq(nil)
+          expect(new_dossier.root_private_champs.first.value).not_to eq(original_first_champs_private.value)
+          expect(new_dossier.root_private_champs.first.value).to eq(nil)
         end
       end
     end

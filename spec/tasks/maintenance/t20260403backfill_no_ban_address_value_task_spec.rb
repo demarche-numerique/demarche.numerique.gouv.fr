@@ -7,7 +7,7 @@ module Maintenance
     describe "#process" do
       let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :address, libelle: 'address' }]) }
       let(:dossier) { create(:dossier, procedure:) }
-      let(:address_champ) { dossier.root_champs_public.first }
+      let(:address_champ) { dossier.root_public_champs.first }
 
       subject(:process) { described_class.process(address_champ) }
 

@@ -60,7 +60,7 @@ describe ExportTemplate do
     end
 
     context 'for pj' do
-      let(:champ_pj) { dossier.root_champs_public.first }
+      let(:champ_pj) { dossier.root_public_champs.first }
       let(:export_template) { create(:export_template, groupe_instructeur:, pjs: [ExportItem.default(stable_id: 3, prefix: "justif", enabled: true)]) }
 
       let(:attachment) { ActiveStorage::Attachment.new(name: 'pj', record: champ_pj, blob: ActiveStorage::Blob.new(filename: "superpj.png")) }

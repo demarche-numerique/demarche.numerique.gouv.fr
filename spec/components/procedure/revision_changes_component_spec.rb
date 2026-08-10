@@ -4,7 +4,7 @@ describe Procedure::RevisionChangesComponent, type: :component do
   describe 'dossier_link changes' do
     let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :dossier_link, libelle: 'Dossier lié' }]) }
     let(:new_revision) { procedure.create_new_revision }
-    let(:tdc) { procedure.active_revision.root_types_de_champ_public.first }
+    let(:tdc) { procedure.active_revision.root_public_types_de_champ.first }
 
     subject do
       render_inline(described_class.new(new_revision: new_revision.reload, previous_revision: procedure.active_revision))
@@ -26,7 +26,7 @@ describe Procedure::RevisionChangesComponent, type: :component do
 
     context 'when procedures_limit is disabled' do
       before do
-        tdc.update!(procedures_limit: "1")
+        tdc.record.update!(procedures_limit: "1")
         procedure.active_revision.reload
 
         updated_tdc = new_revision.find_and_ensure_exclusive_use(tdc.stable_id)
@@ -62,7 +62,7 @@ describe Procedure::RevisionChangesComponent, type: :component do
       let!(:proc_c) { create(:procedure, libelle: "Démarche C") }
 
       before do
-        tdc.update!(dossier_link_procedure_ids: [proc_a.id, proc_b.id, proc_c.id])
+        tdc.record.update!(dossier_link_procedure_ids: [proc_a.id, proc_b.id, proc_c.id])
         procedure.active_revision.reload
 
         updated_tdc = new_revision.find_and_ensure_exclusive_use(tdc.stable_id)
@@ -81,7 +81,7 @@ describe Procedure::RevisionChangesComponent, type: :component do
   describe "repetition limits changes" do
     let(:procedure) { create(:procedure, :published, types_de_champ_public: [{ type: :repetition, libelle: "Bloc" }]) }
     let(:new_revision) { procedure.create_new_revision }
-    let(:tdc) { procedure.active_revision.root_types_de_champ_public.first }
+    let(:tdc) { procedure.active_revision.root_public_types_de_champ.first }
 
     subject do
       render_inline(described_class.new(new_revision: new_revision.reload, previous_revision: procedure.active_revision))
@@ -90,7 +90,7 @@ describe Procedure::RevisionChangesComponent, type: :component do
 
     context "when min_repetitions changes to a positive value" do
       before do
-        tdc.update!(limit_repetitions: "1", min_repetitions: "2")
+        tdc.record.update!(limit_repetitions: "1", min_repetitions: "2")
         procedure.active_revision.reload
         updated_tdc = new_revision.find_and_ensure_exclusive_use(tdc.stable_id)
         updated_tdc.update!(min_repetitions: "3")
@@ -103,7 +103,7 @@ describe Procedure::RevisionChangesComponent, type: :component do
 
     context "when min_repetitions changes to 0 (valid for non-mandatory block)" do
       before do
-        tdc.update!(limit_repetitions: "1", min_repetitions: "2")
+        tdc.record.update!(limit_repetitions: "1", min_repetitions: "2")
         procedure.active_revision.reload
         updated_tdc = new_revision.find_and_ensure_exclusive_use(tdc.stable_id)
         updated_tdc.update!(min_repetitions: "0")
@@ -117,7 +117,7 @@ describe Procedure::RevisionChangesComponent, type: :component do
 
     context "when min_repetitions is removed (set to nil)" do
       before do
-        tdc.update!(limit_repetitions: "1", min_repetitions: "2")
+        tdc.record.update!(limit_repetitions: "1", min_repetitions: "2")
         procedure.active_revision.reload
         updated_tdc = new_revision.find_and_ensure_exclusive_use(tdc.stable_id)
         updated_tdc.update!(min_repetitions: nil)

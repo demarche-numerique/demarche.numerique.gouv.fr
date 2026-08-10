@@ -18,15 +18,20 @@ class ExportTemplate::ChampsComponent < ApplicationComponent
     end
   end
 
+  # Columns grouped under their top-level section: types de champ before the
+  # first section come first, without a libelle; a section's group holds every
+  # champ below it, sub-sections included. Repetition content stays behind its
+  # repetition's grouped columns.
   def sections
-    @types_de_champ
-      .reject { _1.header_section? && _1.header_section_level_value > 1 }
-      .slice_before(&:header_section?)
-      .filter_map do |(head, *rest)|
-        libelle = head.libelle if head.header_section?
-        columns = [head.header_section? ? nil : head, *rest].compact.map { tdc_to_columns(_1) }
-        { libelle:, columns: } if columns.present?
-      end
+    champs, headers = @types_de_champ.partition { !it.header_section? }
+
+    [
+      { libelle: nil, columns: columns_for(champs) },
+      *headers.map do |header|
+        content = header.flat_children.reject { it.header_section? || it.in_repetition? }
+        { libelle: header.libelle, columns: columns_for(content) }
+      end,
+    ].filter { it[:columns].present? }
   end
 
   def component_prefix
@@ -35,9 +40,13 @@ class ExportTemplate::ChampsComponent < ApplicationComponent
 
   private
 
+  def columns_for(types_de_champ)
+    types_de_champ.map { tdc_to_columns(it) }.reject(&:empty?)
+  end
+
   def tdc_to_columns(type_de_champ)
     prefix = type_de_champ.repetition? ? "Bloc répétable" : nil
-    type_de_champ.columns(procedure_id: export_template.procedure.id, prefix:).map do |column|
+    type_de_champ.columns(prefix:).map do |column|
       ExportedColumn.new(column:,
                          libelle: historical_libelle(column))
     end

@@ -34,7 +34,7 @@ RSpec.describe Attachment::HintsComponent, type: :component do
     let(:types_de_champ_public) { [{ type: :piece_justificative }] }
 
     before do
-      champ.type_de_champ.update!(options: champ.type_de_champ.options.merge(
+      champ.type_de_champ.record.update!(options: champ.type_de_champ.options.merge(
         pj_limit_formats: true,
         pj_format_families: FORMAT_FAMILIES.keys.map(&:to_s)
       ))
@@ -49,7 +49,7 @@ RSpec.describe Attachment::HintsComponent, type: :component do
     let(:types_de_champ_public) { [{ type: :piece_justificative }] }
 
     before do
-      champ.type_de_champ.update!(options: champ.type_de_champ.options.merge(
+      champ.type_de_champ.record.update!(options: champ.type_de_champ.options.merge(
         pj_limit_formats: true,
         pj_format_families: ['document_texte']
       ))

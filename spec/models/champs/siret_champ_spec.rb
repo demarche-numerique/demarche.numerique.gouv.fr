@@ -3,7 +3,7 @@
 describe Champs::SiretChamp do
   let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :siret }]) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.root_champs_public.first.tap { _1.update(external_id:, etablissement:) } }
+  let(:champ) { dossier.root_public_champs.first.tap { _1.update(external_id:, etablissement:) } }
   let(:external_id) { "" }
   let(:etablissement) { nil }
 

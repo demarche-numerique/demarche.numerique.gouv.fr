@@ -6,7 +6,7 @@ describe Champs::DropDownListChamp do
   let(:dossier) { create(:dossier, procedure:) }
   let(:referentiel) { nil }
   let(:drop_down_mode) { nil }
-  let(:champ) { dossier.root_champs_public.first.tap { _1.update(value:, other:) } }
+  let(:champ) { dossier.root_public_champs.first.tap { _1.update(value:, other:) } }
   let(:value) { nil }
   let(:other) { nil }
 
@@ -63,19 +63,19 @@ describe Champs::DropDownListChamp do
   describe '#drop_down_other?' do
     context 'when drop_down_other is nil' do
       it do
-        champ.type_de_champ.drop_down_other = nil
+        champ.type_de_champ.record.drop_down_other = nil
         expect(champ.drop_down_other?).to be false
 
-        champ.type_de_champ.drop_down_other = "0"
+        champ.type_de_champ.record.drop_down_other = "0"
         expect(champ.drop_down_other?).to be false
 
-        champ.type_de_champ.drop_down_other = false
+        champ.type_de_champ.record.drop_down_other = false
         expect(champ.drop_down_other?).to be false
 
-        champ.type_de_champ.drop_down_other = "1"
+        champ.type_de_champ.record.drop_down_other = "1"
         expect(champ.drop_down_other?).to be true
 
-        champ.type_de_champ.drop_down_other = true
+        champ.type_de_champ.record.drop_down_other = true
         expect(champ.drop_down_other?).to be true
       end
     end
@@ -112,7 +112,7 @@ describe Champs::DropDownListChamp do
       it "clear old value without error" do
         expect(champ.value).to eq("fromage")
 
-        champ.type_de_champ.update!(options: { "drop_down_mode": "advanced" }, referentiel:)
+        champ.type_de_champ.record.update!(options: { "drop_down_mode": "advanced" }, referentiel:)
         champ.reload
 
         champ.save!

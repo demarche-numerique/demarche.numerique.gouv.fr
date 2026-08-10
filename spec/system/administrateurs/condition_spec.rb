@@ -43,7 +43,7 @@ describe 'As an administrateur I can edit types de champ condition', js: true do
         end
       end
 
-      expected_condition = greater_than_eq(champ_column_value(first_tdc.columns(procedure_id:).first), constant(18))
+      expected_condition = greater_than_eq(champ_column_value(first_tdc.columns.first), constant(18))
       wait_until { second_tdc.reload.condition == expected_condition }
     end
 
@@ -60,7 +60,7 @@ describe 'As an administrateur I can edit types de champ condition', js: true do
 
     context 'with a preexisting condition' do
       before do
-        second_tdc.update(condition: greater_than_eq(target_value, constant(18)))
+        second_tdc.record.update(condition: greater_than_eq(target_value, constant(18)))
 
         page.refresh
       end
@@ -145,7 +145,7 @@ describe 'As an administrateur I can edit types de champ condition', js: true do
   end
 
   context 'in column_value mode' do
-    let(:target_value) { champ_column_value(first_tdc.columns(procedure_id:).first) }
+    let(:target_value) { champ_column_value(first_tdc.columns.first) }
 
     include_examples 'condition editor'
   end

@@ -4,7 +4,7 @@ describe Champs::EmailChamp do
   describe 'validation' do
     let(:procedure) { create(:procedure, types_de_champ_public: [{}, { type: :email }, {}]) }
     let(:dossier) { create(:dossier, procedure:) }
-    let(:champ) { dossier.root_champs_public.second }
+    let(:champ) { dossier.root_public_champs.second }
     let(:value) { nil }
     before { champ.value = value }
     subject { champ.validate(:champ_value) }
@@ -64,7 +64,7 @@ describe Champs::EmailChamp do
       }
 
       it 'is not projected, so the dossier does not validate the invalid value' do
-        expect(dossier.validate(:champs_public_value)).to be_truthy
+        expect(dossier.validate(:public_champs_value)).to be_truthy
       end
     end
   end

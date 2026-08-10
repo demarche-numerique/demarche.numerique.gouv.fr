@@ -1,6 +1,6 @@
 = render partial: 'shared/dossiers/update_champs', locals: { to_show: @to_show, to_hide: @to_hide, to_update: @to_update }
 
-- if !@dossier.champs_private_valid?
+- if !@dossier.private_champs_valid?
   = turbo_stream.show("alert-error-annotation")
   = turbo_stream.hide("instruction-action-tiles")
 - else

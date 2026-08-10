@@ -3,14 +3,14 @@
 class TypesDeChamp::EpciTypeDeChamp < TypesDeChamp::TextTypeDeChamp
   include AddressableColumnConcern
 
-  def columns(procedure_id:, displayable: true, prefix: nil)
-    super.concat(addressable_columns(procedure_id:, displayable:, prefix:, only: [:department_code, :region_code]))
+  def columns(displayable: true, prefix: nil)
+    super.concat(addressable_columns(displayable:, prefix:, only: [:department_code, :region_code]))
   end
 
-  def champ_value_for_export(champ, path = :value)
+  def filled_champ_value_for_export(champ, path = :value)
     case path
     when :value
-      champ_value(champ)
+      filled_champ_value(champ)
     when :code
       champ.code
     when :departement
@@ -18,10 +18,10 @@ class TypesDeChamp::EpciTypeDeChamp < TypesDeChamp::TextTypeDeChamp
     end
   end
 
-  def champ_value_for_tag(champ, path = :value)
+  def filled_champ_value_for_tag(champ, path = :value)
     case path
     when :value
-      champ_value(champ)
+      filled_champ_value(champ)
     when :code
       champ.code
     when :departement
@@ -29,7 +29,7 @@ class TypesDeChamp::EpciTypeDeChamp < TypesDeChamp::TextTypeDeChamp
     end
   end
 
-  def info_columns(procedure:)
+  def info_columns
     Dossiers::EpciComponent.data_labels
   end
 

@@ -13,36 +13,36 @@ module DossierValidateConcern
   end
 
   included do
-    validate :validate_champs_public_value, on: :champs_public_value
-    validate :validate_champs_private_value, on: :champs_private_value
-    validate :validate_champs_public_completeness, on: :champs_public_completeness
-    validate :validate_champs_private_completeness, on: :champs_private_completeness
+    validate :validate_public_champs_value, on: :public_champs_value
+    validate :validate_private_champs_value, on: :private_champs_value
+    validate :validate_public_champs_completeness, on: :public_champs_completeness
+    validate :validate_private_champs_completeness, on: :private_champs_completeness
   end
 
-  def champs_public_valid?
-    validate(:champs_public_completeness)
+  def public_champs_valid?
+    validate(:public_champs_completeness)
   end
 
-  def champs_private_valid?
-    validate(:champs_private_completeness)
+  def private_champs_valid?
+    validate(:private_champs_completeness)
   end
 
   private
 
-  def validate_champs_public_value
-    validate_projected_champs(flat_champs_public, :champ_value)
+  def validate_public_champs_value
+    validate_projected_champs(flat_public_champs, :champ_value)
   end
 
-  def validate_champs_private_value
-    validate_projected_champs(flat_champs_private, :champ_value)
+  def validate_private_champs_value
+    validate_projected_champs(flat_private_champs, :champ_value)
   end
 
-  def validate_champs_public_completeness
-    validate_projected_champs(flat_champs_public, [:champ_value, :champ_completeness])
+  def validate_public_champs_completeness
+    validate_projected_champs(flat_public_champs, [:champ_value, :champ_completeness])
   end
 
-  def validate_champs_private_completeness
-    validate_projected_champs(flat_champs_private, [:champ_value, :champ_completeness])
+  def validate_private_champs_completeness
+    validate_projected_champs(flat_private_champs, [:champ_value, :champ_completeness])
   end
 
   # Both contexts must be validated in a single call: champ.validate clears

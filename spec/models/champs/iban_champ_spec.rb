@@ -4,7 +4,7 @@ describe Champs::IbanChamp do
   let(:types_de_champ_public) { [{ type: :iban }] }
   let(:procedure) { create(:procedure, types_de_champ_public:) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.root_champs_public.first }
+  let(:champ) { dossier.root_public_champs.first }
 
   describe '#valid?' do
     def with_value(value)

@@ -5,7 +5,7 @@ describe Champs::EngagementJuridiqueChamp do
     let(:types_de_champ_public) { [{ type: :engagement_juridique }] }
     let(:procedure) { create(:procedure, types_de_champ_public:) }
     let(:dossier) { create(:dossier, procedure:) }
-    let(:champ) { dossier.root_champs_public.first.tap { _1.update(value:) } }
+    let(:champ) { dossier.root_public_champs.first.tap { _1.update(value:) } }
     let(:value) { nil }
 
     subject { champ.validate(:champ_value) }

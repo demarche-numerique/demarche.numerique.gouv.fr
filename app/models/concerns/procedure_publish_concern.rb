@@ -46,7 +46,7 @@ module ProcedurePublishConcern
     if published_revision.present? && draft_changed?
       reset!
       transaction do
-        draft_revision.types_de_champ.filter(&:only_present_on_draft?).each(&:destroy)
+        draft_revision.types_de_champ.filter(&:only_present_on_draft?).each { it.record.destroy }
         draft_revision.update(dossier_submitted_message: nil)
         draft_revision.destroy
         update!(draft_revision: create_new_revision(published_revision))
@@ -95,7 +95,7 @@ module ProcedurePublishConcern
         .tap { |revision| revision.administrateur_id = nil }
         .tap(&:save!)
 
-      move_new_children_to_new_parent_coordinate(new_revision)
+      new_revision.rewire_cloned_children_parents!
 
       new_revision
     end
@@ -113,37 +113,21 @@ module ProcedurePublishConcern
     published_revision.update_columns(published_at: Time.current, administrateur_id: administrateur.id)
   end
 
-  def move_new_children_to_new_parent_coordinate(new_draft)
-    children = new_draft.revision_types_de_champ
-      .includes(parent: :type_de_champ)
-      .where.not(parent_id: nil)
-    coordinates_by_stable_id = new_draft.revision_types_de_champ
-      .includes(:type_de_champ)
-      .index_by(&:stable_id)
-
-    children.each do |child|
-      child.update!(parent: coordinates_by_stable_id.fetch(child.parent.stable_id))
-    end
-    new_draft.reload
-  end
-
   def cleanup_types_de_champ_options!
     draft_revision.types_de_champ.each do |type_de_champ|
-      type_de_champ.update!(options: type_de_champ.clean_options)
+      type_de_champ.record.update!(options: type_de_champ.clean_options)
     end
   end
 
   def cleanup_types_de_champ_children!
-    draft_revision.revision_types_de_champ
-      .filter(&:orphan?)
-      .each { draft_revision.remove_type_de_champ(_1.stable_id) }
+    draft_revision.remove_orphan_coordinates!
   end
 
   def nullify_unused_referentiels
     draft_revision.types_de_champ
       .reject { _1.drop_down_list? || _1.multiple_drop_down_list? || _1.referentiel? }
       .each do |type_de_champ|
-        type_de_champ.update!(referentiel_id: nil)
+        type_de_champ.record.update!(referentiel_id: nil)
       end
   end
 end

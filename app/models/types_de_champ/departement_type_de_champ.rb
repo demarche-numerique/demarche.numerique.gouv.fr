@@ -3,20 +3,20 @@
 class TypesDeChamp::DepartementTypeDeChamp < TypesDeChamp::TextTypeDeChamp
   include AddressableColumnConcern
 
-  def columns(procedure_id:, displayable: true, prefix: nil)
-    addressable_columns(procedure_id:, displayable:, prefix:, only: [:department_code, :region_code])
-      .concat(legacy_columns(procedure_id:, prefix:))
+  def columns(displayable: true, prefix: nil)
+    addressable_columns(displayable:, prefix:, only: [:department_code, :region_code])
+      .concat(legacy_columns(prefix:))
   end
 
   def filter_to_human(filter_value)
     APIGeoService.departement_name(filter_value).presence || filter_value
   end
 
-  def champ_value(champ)
+  def filled_champ_value(champ)
     "#{champ.code} – #{champ.name}"
   end
 
-  def champ_value_for_export(champ, path = :value)
+  def filled_champ_value_for_export(champ, path = :value)
     case path
     when :code
       champ.code
@@ -25,25 +25,25 @@ class TypesDeChamp::DepartementTypeDeChamp < TypesDeChamp::TextTypeDeChamp
     end
   end
 
-  def champ_value_for_tag(champ, path = :value)
+  def filled_champ_value_for_tag(champ, path = :value)
     case path
     when :code
       champ.code
     when :value
-      champ_value(champ)
+      filled_champ_value(champ)
     end
   end
 
-  def champ_value_for_api(champ, version: 2)
+  def filled_champ_value_for_api(champ, version: 2)
     case version
     when 2
-      champ_value(champ).tr('–', '-')
+      filled_champ_value(champ).tr('–', '-')
     else
-      champ_value(champ)
+      filled_champ_value(champ)
     end
   end
 
-  def info_columns(procedure:)
+  def info_columns
     Dossiers::DepartementComponent.data_labels
   end
 
@@ -51,7 +51,7 @@ class TypesDeChamp::DepartementTypeDeChamp < TypesDeChamp::TextTypeDeChamp
 
   # ChampColumn par défaut conservé pour rester résolvable par les ProcedurePresentation /
   # exports / colonnes graphql persistées avant la bascule sur AddressableColumnConcern.
-  def legacy_columns(procedure_id:, prefix:)
+  def legacy_columns(prefix:)
     [
       Columns::ChampColumn.new(
         procedure_id:,

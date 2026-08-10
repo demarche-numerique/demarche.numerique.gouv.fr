@@ -6,7 +6,6 @@ describe 'shared/dossiers/champs', type: :view do
   let(:profile) { "instructeur" }
   let(:procedure) { create(:procedure, types_de_champ_public:) }
   let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-  let(:types_de_champ) { dossier.revision.root_types_de_champ_public }
 
   before do
     view.extend DossierHelper
@@ -17,16 +16,16 @@ describe 'shared/dossiers/champs', type: :view do
     end
   end
 
-  subject { render ViewableChamp::SectionComponent.new(types_de_champ:, dossier:, demande_seen_at:, profile:) }
+  subject { render ViewableChamp::SectionComponent.new(champs: dossier.public_champs, dossier:, demande_seen_at:, profile:) }
 
   context "there are some champs" do
     let(:types_de_champ_public) { [{ type: :checkbox }, { type: :header_section }, { type: :explication }, { type: :dossier_link }, { type: :textarea }, { type: :integer_number }] }
-    let(:champ1) { dossier.root_champs_public[0] }
-    let(:champ2) { dossier.root_champs_public[1] }
-    let(:champ3) { dossier.root_champs_public[2] }
-    let(:champ4) { dossier.root_champs_public[3] }
-    let(:champ5) { dossier.root_champs_public[4] }
-    let(:champ6) { dossier.root_champs_public[5] }
+    let(:champ1) { dossier.root_public_champs[0] }
+    let(:champ2) { dossier.root_public_champs[1] }
+    let(:champ3) { dossier.root_public_champs[2] }
+    let(:champ4) { dossier.root_public_champs[3] }
+    let(:champ5) { dossier.root_public_champs[4] }
+    let(:champ6) { dossier.root_public_champs[5] }
 
     before do
       champ1.update(value: 'true')
@@ -57,8 +56,8 @@ describe 'shared/dossiers/champs', type: :view do
 
   context "with auto-link" do
     let(:types_de_champ_public) { [{ type: :text }, { type: :textarea }] }
-    let(:champ1) { dossier.root_champs_public.first }
-    let(:champ2) { dossier.root_champs_public.second }
+    let(:champ1) { dossier.root_public_champs.first }
+    let(:champ2) { dossier.root_public_champs.second }
 
     before do
       champ1.update(value: 'https://github.com/tchak')

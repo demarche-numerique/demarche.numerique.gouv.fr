@@ -4,7 +4,7 @@ RSpec.describe Dossiers::ReferentielComponent, type: :component do
   let(:referentiel) { create(:api_referentiel, :exact_match) }
   let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :referentiel, referentiel: }]) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.root_champs_public.first }
+  let(:champ) { dossier.root_public_champs.first }
 
   let(:pending) { false }
   let(:not_found) { false }

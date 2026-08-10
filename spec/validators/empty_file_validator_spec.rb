@@ -12,7 +12,7 @@ describe EmptyFileValidator do
   describe "on a has_many_attached association" do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative }]) }
     let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-    let(:champ) { dossier.root_champs_public.first }
+    let(:champ) { dossier.root_public_champs.first }
 
     it "rejects an empty file" do
       champ.piece_justificative_file = [empty_blob]
@@ -39,7 +39,7 @@ describe EmptyFileValidator do
     end
 
     it "rejects an empty file even when PJ size validation is disabled" do
-      champ.type_de_champ.update(skip_pj_validation: true)
+      champ.type_de_champ.record.update(skip_pj_validation: true)
       champ.piece_justificative_file = [empty_blob]
 
       expect(champ.valid?(:champ_value)).to be false
@@ -65,7 +65,7 @@ describe EmptyFileValidator do
   describe "with an empty attachment already in database" do
     let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative }]) }
     let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-    let(:champ) { dossier.root_champs_public.first }
+    let(:champ) { dossier.root_public_champs.first }
 
     before do
       champ.piece_justificative_file = [empty_blob]

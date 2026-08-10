@@ -53,8 +53,8 @@ describe EditableChamp::DropDownListComponent, type: :component do
         # the first fieldset is for the repetition
         let(:fieldset) { page.find('fieldset fieldset') }
 
-        let(:repetition_champ) { dossier.root_champs_public.first }
-        let(:drop_down_list_champ) { repetition_champ.rows.first.first }
+        let(:repetition_champ) { dossier.root_public_champs.first }
+        let(:drop_down_list_champ) { repetition_champ.rows.first.champs.first }
 
         it do
           render
@@ -85,7 +85,7 @@ describe EditableChamp::DropDownListComponent, type: :component do
     end
 
     context 'when the champ has no description' do
-      before { tdc.update!(description: nil) }
+      before { tdc.record.update!(description: nil) }
 
       it do
         render
@@ -108,7 +108,7 @@ describe EditableChamp::DropDownListComponent, type: :component do
   end
 
   describe 'with select' do
-    before { tdc.update!(drop_down_options: ('a'..'f').to_a) }
+    before { tdc.record.update!(drop_down_options: ('a'..'f').to_a) }
     let(:select) { page.find('select') }
 
     it do
@@ -130,7 +130,7 @@ describe EditableChamp::DropDownListComponent, type: :component do
       end
 
       context 'when the champ has no description' do
-        before { tdc.update!(description: nil) }
+        before { tdc.record.update!(description: nil) }
 
         it { is_expected.to be_nil }
 
@@ -144,7 +144,7 @@ describe EditableChamp::DropDownListComponent, type: :component do
   end
 
   describe 'with a combobox' do
-    before { tdc.update!(drop_down_options: ('a'..'z').to_a) }
+    before { tdc.record.update!(drop_down_options: ('a'..'z').to_a) }
     let(:select) { page.find('select') }
     let(:react_component) { page.find('react-component') }
     let(:react_props) { JSON.parse(react_component['props']) }
@@ -168,7 +168,7 @@ describe EditableChamp::DropDownListComponent, type: :component do
       end
 
       context 'when the champ has no description' do
-        before { tdc.update!(description: nil) }
+        before { tdc.record.update!(description: nil) }
 
         it { is_expected.to be_nil }
 

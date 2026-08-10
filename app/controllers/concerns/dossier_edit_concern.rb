@@ -56,7 +56,7 @@ module DossierEditConcern
   end
 
   def validate_champ(champ, saved, scope)
-    validation_context = :"champs_#{scope}_value"
+    validation_context = :"#{scope}_champs_value"
     should_validate = if scope == :public
       saved && params[:validate].present? && !champ.pending?
     else

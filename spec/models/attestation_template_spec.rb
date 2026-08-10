@@ -73,11 +73,11 @@ describe AttestationTemplate, type: :model do
     end
 
     before do
-      dossier.root_champs_public
+      dossier.root_public_champs
         .find { |champ| champ.libelle == 'libelleA' }
         .update(value: 'libelle1')
 
-      dossier.root_champs_public
+      dossier.root_public_champs
         .find { |champ| champ.libelle == 'libelleB' }
         .update(value: 'libelle2')
     end
@@ -118,7 +118,7 @@ describe AttestationTemplate, type: :model do
 
       context 'when a tag value contains a < character' do
         before do
-          dossier.root_champs_public
+          dossier.root_public_champs
             .find { |champ| champ.libelle == 'libelleB' }
             .update(value: 'age < 18')
         end
