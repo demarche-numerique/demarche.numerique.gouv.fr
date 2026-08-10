@@ -1,12 +1,6 @@
 ---
 fr:
   no_changes: Aucune modification
-  breaking_change:
-    one: "Les modifications apportées ne s’appliqueront pas au dossier déjà déposé."
-    other: "Les modifications apportées ne s’appliqueront pas aux %{count} dossiers déjà déposés."
-  delete_champ_html:
-    one: "Un dossier en cours de traitement porte ce champ. Les données associées à ce champ seront supprimées."
-    other: "%{count} dossiers en cours de traitement portent ce champ. Les <strong>données</strong> associées avec ce champ seront <strong>supprimées</strong>."
   add_option: "ajoutés : %{items}"
   remove_option: "supprimés : %{items}"
   invalid_routing_rules_alert: "Certains groupes d’instructeurs ont une règle de routage invalide. Veuillez mettre à jour la configuration des groupes d’instructeurs après avoir publié les modifications."

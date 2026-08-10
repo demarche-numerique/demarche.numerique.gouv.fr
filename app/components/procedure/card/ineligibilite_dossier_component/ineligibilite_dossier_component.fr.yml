@@ -3,6 +3,5 @@ fr:
   title: Inéligibilité des dossiers
   state:
     pending: Désactivé
-    ready: À configurer
     completed: Activé
   subtitle: Gérez vos conditions d’inéligibilité en fonction des champs du formulaire

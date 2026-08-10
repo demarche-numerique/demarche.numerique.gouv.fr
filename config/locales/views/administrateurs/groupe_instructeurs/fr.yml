@@ -1,9 +1,6 @@
 fr:
   administrateurs:
     experts_procedures:
-      wrong_address:
-          one: "%{value} n’est pas une adresse électronique valide"
-          other: "%{value} ne sont pas des adresses électroniques valides"
       create:
         experts_assignment:
           one: "L’expert %{value} a été affecté à la démarche n° %{procedure}"
@@ -11,7 +8,6 @@ fr:
     groupe_instructeurs:
       index:
         procedures: Démarches
-        instructors_group: Groupe d’instructeurs
       add_instructeurs:
         wrong_address:
           one: "%{emails} n’est pas une adresse électronique valide"
@@ -19,15 +15,6 @@ fr:
         assignment:
           one: "L’instructeur %{emails} a été ajouté au groupe « %{groupe} »."
           other: "Les instructeurs %{emails} ont été ajoutés au groupe « %{groupe} »."
-      import:
-        groupe:
-          one: "%{count} groupe"
-          other: "%{count} groupes"
-        found:
-          one: "trouvé"
-          other: "trouvés"
-      ajout:
-        procedures: Démarches
       options:
         procedures: Démarches
       simple_routing:

@@ -386,7 +386,6 @@ fr:
         email: 'Adresse électronique'
         account_deleted: '(l’usager a supprimé son compte)'
       actions:
-        save: Enregistrer
         edit: Modifier
         see: Voir
         save_modifications: Enregistrer les modifications
@@ -904,9 +903,6 @@ fr:
       mismatch_regexp: L’exemple doit correspondre à l’expression régulière fournie
       syntax_error_regexp: La syntaxe de l’expression régulière n’est pas valide
       # procedure_not_draft: "Cette démarche n’est maintenant plus en brouillon."
-      cadastres_empty:
-        one: "Aucune parcelle cadastrale sur la zone sélectionnée"
-        other: "Aucune parcelle cadastrale sur les zones sélectionnées"
       not_an_integer: "doit être un nombre entier (sans chiffres après la virgule)"
       not_positive: "doit être un nombre positif"
       not_in_range: "doit être un nombre compris entre %{min} et %{max}"
@@ -1105,10 +1101,6 @@ fr:
   administrateurs:
     procedures_menu: "Mes démarches"
     preview_menu: "Démarche « %{libelle} »"
-    activate:
-      new:
-        title: Choix du mot de passe
-        continue: Continuer
     index:
       restored: La démarche %{procedure_id} a été restaurée
     dropdown_actions:
@@ -1124,24 +1116,10 @@ fr:
       updated_at: modifiée le
       closed_at: archivée le
       auto_archive_on: sera clôturée le
-      show:
-        ready: "Validé"
-        needs_configuration: "À configurer"
-        configure_api_particulier_token: "Configurer le jeton API particulier"
     jetons:
       index:
         api_entreprise_description_html: "%{app_name} utilise <a target=\"_blank\" rel=\"noopener\" title=\"En savoir plus sur API Entreprise — Nouvel onglet\" href=\"https://entreprise.api.gouv.fr/\">API Entreprise</a> qui permet de récupérer les informations administratives des entreprises et des associations.<br />Si vous avez besoin d’informations complémentaires, vous pouvez demander votre propre habilitation API Entreprise en cliquant sur le lien suivant <a target=\"_blank\" rel=\"noopener\" title=\"Demander une habilitation API Entreprise — Nouvel onglet\" href=\"https://www.data.gouv.fr/dataservices/api-entreprise\">https://www.data.gouv.fr/dataservices/api-entreprise</a>."
         api_particulier_description_html: "%{app_name} utilise <a target=\"_blank\" rel=\"noopener\" title=\"En savoir plus sur API Particulier — Nouvel onglet\" href=\"https://particulier.api.gouv.fr/\">API Particulier</a> qui permet d’accéder aux données familiales (CAF ou MSA), au statut étudiant boursier, au statut allocation d’éducation de l’enfant handicapé (AEEH), au statut allocation adulte handicapé (AAH), et au statut d’allocation de rentrée scolaire (ARS).<br />Pour en bénéficier, demandez une habilitation API Particulier en cliquant sur le lien suivant <a target=\"_blank\" rel=\"noopener\" title=\"Demander une habilitation API Particulier — Nouvel onglet\" href=\"https://datapass.api.gouv.fr/formulaires/api-particulier-demarche-numerique/demande/nouveau\">https://datapass.api.gouv.fr/formulaires/api-particulier-demarche-numerique/demande/nouveau</a>."
-      api_particulier:
-        already_configured: "Déjà rempli"
-        needs_configuration: "À remplir"
-  gestionnaires:
-    activate:
-      new:
-        title: Choix du mot de passe
-        continue: Continuer
-  zones:
-    ministeres: Ministères
   france_connect:
     choose_email:
       intro_html: "Votre compte FranceConnect utilise <span class='fr-badge fr-badge--info fr-badge--no-icon fr-badge--lowercase'>%{email}</span> comme email de contact."
@@ -1151,8 +1129,6 @@ fr:
       alternative_email: Veuillez nous fournir l’adresse électronique à utiliser pour vous contacter
       keep_fc_email_html: "<span>Oui, utiliser <b>%{email}</b> comme adresse électronique de contact</span>"
       use_another_email: Non, utiliser une autre adresse électronique
-      email_suggest:
-        wanna_say: 'Voulez-vous dire ?'
     confirm_email_merge_password:
       title: Confirmer l’association à votre compte
       intro_html: "Un compte existe déjà à l’adresse <b>%{email}</b>. Pour autoriser son association à FranceConnect, veuillez saisir le mot de passe de ce compte."
@@ -1182,7 +1158,6 @@ fr:
       alert:
         groupe_gestionnaire_administrateur:
           cannot_be_deleted: "L’administrateur « %{email} » ne peut pas être supprimé du groupe gestionnaire."
-          not_in_groupe_gestionnaire: "L’administrateur « %{email} » n’est pas dans le groupe gestionnaire."
         groupe_gestionnaire_gestionnaire:
           destroy_at_least_one: "Suppression impossible : il doit y avoir au moins un gestionnaire dans le groupe racine"
           not_in_groupe_gestionnaire: "Le gestionnaire « %{email} » n’est pas dans le groupe gestionnaire."

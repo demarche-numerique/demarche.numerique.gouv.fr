@@ -1,7 +1,6 @@
 fr:
   instructeurs:
     instruction_button_component:
-      instruct: Rendre une décision
       labels:
         instruction: Rendre une décision
       modal:

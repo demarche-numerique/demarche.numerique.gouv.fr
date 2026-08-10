@@ -4,11 +4,6 @@ fr:
       invalid_code: "Code OTP invalide ou manquant. L’opération a été annulée."
     gestionnaires:
       manage_root_groupe_gestionnaire: Gestion du groupe racine
-    groupe_gestionnaires:
-      add_gestionnaire:
-        wrong_address:
-          one: "%{emails} n’est pas une adresse électronique valide"
-          other: "%{emails} ne sont pas des adresses électroniques valides"
     super_admins:
       self_otp_reset_forbidden: "Vous ne pouvez pas réinitialiser votre propre authentification double-facteur depuis cet écran."
       reset_otp_edit:
