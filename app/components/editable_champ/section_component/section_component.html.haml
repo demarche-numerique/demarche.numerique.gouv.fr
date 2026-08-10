@@ -3,7 +3,7 @@
     %fieldset.fr-fieldset.fr-my-0{ class: "reset-#{tag_for_depth}" }
       %legend.fr-fieldset__legend
         = render EditableChamp::HeaderSectionComponent.new(champ: header_section)
-      - splitted_tail.each do |section, champ|
+      - entries.each do |section, champ|
         - if section.present?
           = render section
         - else
@@ -12,10 +12,7 @@
           - if champ.status_announceable?
             .fr-sr-only{ id: "#{champ.focusable_input_id}-aria-live", role: 'status', 'aria-live': 'polite', 'aria-atomic': 'true' }
 - else
-  - if header_section
-    .fr-fieldset__legend.fr-my-0{ class: "reset-#{tag_for_depth}" }
-      = render EditableChamp::HeaderSectionComponent.new(champ: header_section)
-  - splitted_tail.each do |section, champ|
+  - entries.each do |section, champ|
     - if section.present?
       = render section
     - else
