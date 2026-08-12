@@ -1195,7 +1195,7 @@ en:
   shared:
     procedures:
       no_siret: "Some procedures have service without siret. Please update."
-      add_siret_to_service_without_siret_html: Add siret for service <a href="%{link}">%{nom}</a>
+      add_siret_to_service_without_siret_html: Add siret of service to procedure <a href="%{link}">%{nom}</a>
       no_service: "Some procedures have no service."
       add_service_html: <a href="%{link}">Add service</a> to procedure %{id}
 

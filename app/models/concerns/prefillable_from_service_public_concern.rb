@@ -10,8 +10,8 @@ module PrefillableFromServicePublicConcern
     result_sp = future_sp.value!
     result_api_ent = future_api_ent.value!
 
-    prefill_from_service_public(result_sp)
     prefill_from_api_entreprise(result_api_ent)
+    prefill_from_service_public(result_sp)
 
     [result_sp, result_api_ent]
   end
@@ -21,11 +21,11 @@ module PrefillableFromServicePublicConcern
   def prefill_from_service_public(result)
     case result
     in Dry::Monads::Success(data)
-      self.nom = data[:nom] if nom.blank?
-      self.email = data[:adresse_courriel] if email.blank?
-      self.telephone = data[:telephone]&.first&.dig("valeur") if telephone.blank?
-      self.horaires = denormalize_plage_ouverture(data[:plage_ouverture]) if horaires.blank?
-      self.adresse = APIGeoService.inline_service_public_address(data[:adresse]&.first) if adresse.blank?
+      self.nom = data[:nom] if data[:nom].present?
+      self.email = data[:adresse_courriel] if data[:adresse_courriel].present?
+      self.telephone = data[:telephone]&.first&.dig("valeur") if data[:telephone].present?
+      self.horaires = denormalize_plage_ouverture(data[:plage_ouverture]) if data[:plage_ouverture].present?
+      self.adresse = APIGeoService.inline_service_public_address(data[:adresse]&.first) if data[:adresse].present?
     else
       # NOOP
     end
@@ -34,9 +34,13 @@ module PrefillableFromServicePublicConcern
   def prefill_from_api_entreprise(result)
     case result
     in Dry::Monads::Success(data)
-      self.type_organisme = detect_type_organisme(data) if type_organisme.blank?
-      self.nom = data[:nom_complet] if nom.blank?
-      self.adresse = data.dig(:siege, :geo_adresse) if adresse.blank?
+      type_organisme = detect_type_organisme(data)
+      self.type_organisme = type_organisme if type_organisme.present?
+
+      self.nom = data[:nom_complet] if data[:nom_complet].present?
+
+      adresse = data.dig(:siege, :geo_adresse) || data.dig(:siege, :adresse)
+      self.adresse = adresse if adresse.present?
     else
       # NOOP
     end
@@ -74,8 +78,10 @@ module PrefillableFromServicePublicConcern
       :etablissement_enseignement
     elsif data[:nom_complet].match?(/MINISTERE|MINISTERIEL/)
       :administration_centrale
-    else # we can't differentiate between operateur d'état, administration centrale and service déconcentré de l'état, set the most frequent
+    elsif data[:nom_complet].match?(/DEPARTEMENTAL|REGIONAL/)
       :service_deconcentre_de_l_etat
+    else
+      :autre
     end
 
     Service.type_organismes[type]

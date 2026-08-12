@@ -18,7 +18,8 @@ class APIRechercheEntreprisesService
 
     body = result.success.body
 
-    return Success(nil) if body[:results].empty?
+    # the api can return a Success without results (in particular for organisations whose information cannot be disclosed)
+    return Failure() if body[:results].empty?
 
     # the api returns the matching structure in the first element if it exists
     structure = body[:results][0]
