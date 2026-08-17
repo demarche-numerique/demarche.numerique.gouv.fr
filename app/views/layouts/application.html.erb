@@ -31,15 +31,6 @@
 
     <%= csrf_meta_tags %>
 
-    <% if administrateur_signed_in? || instructeur_signed_in? %>
-      <script
-        id="lasuite-gaufre-script"
-        async
-        defer
-        src="https://integration.lasuite.numerique.gouv.fr/api/v1/gaufre.js"
-      ></script>
-    <% end %>
-
     <title>
       <% if content_for?(:title) && @procedure&.libelle.present? %>
         <%= "#{sanitize(yield(:title)).gsub("&nbsp;", " ")} · ##{@procedure.id} · #{truncate(sanitize(@procedure.libelle).gsub("&nbsp;", " "), length: 30)} · #{Current.application_name}" %>
@@ -126,5 +117,7 @@
     </template>
 
     <%= render BottomRightActionsComponent.new %>
+
+    <%= render LasuiteGaufreComponent.new %>
   </body>
 </html>

@@ -3,7 +3,6 @@
   "dependencies": {
     "@formatjs/intl-listformat": "^8.3.9",
     "@frsource/autoresize-textarea": "^2.0.203",
-    "@gouvfr-lasuite/integration": "^1.0.2",
     "@gouvfr/dsfr": "^1.14.3",
     "@graphiql/plugin-explorer": "^5.1.1",
     "@graphiql/toolkit": "^0.11.3",
