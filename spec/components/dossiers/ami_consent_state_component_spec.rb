@@ -14,6 +14,12 @@ RSpec.describe Dossiers::AmiConsentStateComponent, type: :component do
       expect(page).to have_css('.fr-sr-only')
       expect(page).not_to have_button
     end
+
+    it 'holds the place with a skeleton, hidden from assistive technologies' do
+      render_component
+
+      expect(page).to have_css('.ami-consent__skeleton[aria-hidden="true"]')
+    end
   end
 
   context 'when AMI cannot be asked at all' do
