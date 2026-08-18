@@ -1,0 +1,26 @@
+.ami-follow {
+  border: 1px solid var(--border-default-grey);
+
+  &__intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    text-align: center;
+    background-color: var(--background-alt-blue-france);
+  }
+
+  &__illustration {
+    width: 6rem;
+    height: auto;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}
