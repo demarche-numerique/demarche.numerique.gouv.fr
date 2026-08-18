@@ -28,10 +28,13 @@ module Users
 
     private
 
+    # On répond toujours par le turbo-frame, même vide : une réponse sans frame
+    # afficherait « Content missing » à la place de l'encart.
     def ensure_consent_available
       return if Ami::Client.new.configured? && Ami::RecipientFcHash.call(current_user).present?
 
-      head :no_content
+      @status = :unavailable
+      render :show
     end
   end
 end

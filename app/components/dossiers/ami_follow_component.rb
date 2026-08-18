@@ -15,6 +15,7 @@ class Dossiers::AmiFollowComponent < ApplicationComponent
   def render?
     @dossier.present? &&
       @dossier.procedure.feature_enabled?(:ami_notifications) &&
+      Ami::Client.new.configured? &&
       Ami::RecipientFcHash.call(@dossier.user).present?
   end
 

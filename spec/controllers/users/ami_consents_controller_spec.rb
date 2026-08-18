@@ -28,16 +28,26 @@ RSpec.describe Users::AmiConsentsController, type: :controller do
         expect(response.body).to include('Vous suivez vos démarches')
       end
 
+      # Une réponse sans turbo-frame afficherait « Content missing » à la place
+      # de l'encart : on répond toujours par le frame, vide le cas échéant.
       context 'when the user has no France Connect identity' do
         before { allow(Ami::RecipientFcHash).to receive(:call).and_return(nil) }
 
-        it { expect(show).to have_http_status(:no_content) }
+        it 'answers an empty frame' do
+          expect(show).to have_http_status(:ok)
+          expect(response.body).to include('turbo-frame')
+          expect(response.body).not_to include('Je souhaite suivre mes démarches')
+        end
       end
 
       context 'when AMI is not configured' do
         before { allow_any_instance_of(Ami::Client).to receive(:configured?).and_return(false) }
 
-        it { expect(show).to have_http_status(:no_content) }
+        it 'answers an empty frame' do
+          expect(show).to have_http_status(:ok)
+          expect(response.body).to include('turbo-frame')
+          expect(response.body).not_to include('Je souhaite suivre mes démarches')
+        end
       end
     end
   end

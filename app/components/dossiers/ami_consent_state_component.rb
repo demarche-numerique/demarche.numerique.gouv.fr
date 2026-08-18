@@ -3,14 +3,17 @@
 # Partie de l'encart AMI qui dépend du consentement de l'usager : elle est
 # chargée puis rafraîchie dans un turbo-frame, l'état venant d'AMI.
 class Dossiers::AmiConsentStateComponent < ApplicationComponent
-  # :loading tant qu'AMI n'a pas répondu, :unknown quand il n'a pas su répondre
-  STATUSES = [:loading, :granted, :not_granted, :unknown].freeze
+  # :loading tant qu'AMI n'a pas répondu, :unknown quand il n'a pas su répondre,
+  # :unavailable quand on ne peut pas lui demander
+  STATUSES = [:loading, :granted, :not_granted, :unknown, :unavailable].freeze
 
   def initialize(status:, error: false, focus: false)
     @status = status
     @error = error
     @focus = focus
   end
+
+  def render? = @status != :unavailable
 
   def loading? = @status == :loading
 

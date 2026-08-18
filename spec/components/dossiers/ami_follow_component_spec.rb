@@ -7,6 +7,7 @@ RSpec.describe Dossiers::AmiFollowComponent, type: :component do
 
   before do
     allow_any_instance_of(Procedure).to receive(:feature_enabled?).with(:ami_notifications).and_return(true)
+    allow_any_instance_of(Ami::Client).to receive(:configured?).and_return(true)
     allow(Ami::RecipientFcHash).to receive(:call).and_return("abc123")
   end
 
@@ -54,6 +55,16 @@ RSpec.describe Dossiers::AmiFollowComponent, type: :component do
 
   context 'when the user has no France Connect identity' do
     before { allow(Ami::RecipientFcHash).to receive(:call).and_return(nil) }
+
+    it 'renders nothing' do
+      render_component
+
+      expect(page).not_to have_css('.ami-follow')
+    end
+  end
+
+  context 'when AMI is not configured' do
+    before { allow_any_instance_of(Ami::Client).to receive(:configured?).and_return(false) }
 
     it 'renders nothing' do
       render_component

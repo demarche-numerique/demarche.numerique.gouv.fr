@@ -16,6 +16,17 @@ RSpec.describe Dossiers::AmiConsentStateComponent, type: :component do
     end
   end
 
+  context 'when AMI cannot be asked at all' do
+    let(:status) { :unavailable }
+
+    it 'renders nothing, leaving the frame empty' do
+      render_component
+
+      expect(page).not_to have_button
+      expect(page).not_to have_css('p')
+    end
+  end
+
   context 'when the user has not consented' do
     let(:status) { :not_granted }
 
