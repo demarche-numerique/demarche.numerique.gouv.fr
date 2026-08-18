@@ -93,6 +93,9 @@ scope module: 'users', defaults: { nav_bar_profile: :user } do
   get 'personnalisation', to: 'dossiers#personnalisation', as: :personnalisation
   patch 'personnalisation', to: 'dossiers#update_personnalisation'
 
+  get 'suivi-ami' => 'ami_consents#show', as: :ami_consent
+  post 'suivi-ami' => 'ami_consents#create', as: :create_ami_consent
+
   get 'profil' => 'profil#show'
   patch 'update_email' => 'profil#update_email'
   post 'transfer_all_dossiers' => 'profil#transfer_all_dossiers'

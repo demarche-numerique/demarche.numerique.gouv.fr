@@ -1,0 +1,6 @@
+---
+en:
+  loading: Loading your follow-up preferences…
+  grant: I want to follow my procedures on %{app_name}
+  granted: You follow your procedures on %{app_name}
+  error: This service is temporarily unavailable. You can try again later, or turn on follow-up from the app.

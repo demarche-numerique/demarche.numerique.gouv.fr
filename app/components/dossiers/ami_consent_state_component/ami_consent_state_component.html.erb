@@ -1,0 +1,28 @@
+<% if loading? %>
+  <p class="fr-sr-only" aria-busy="true"><%= t('.loading') %></p>
+<% else %>
+  <% if error? %>
+    <div class="fr-alert fr-alert--warning fr-alert--sm fr-mb-2w" role="alert">
+      <p><%= t('.error') %></p>
+    </div>
+  <% end %>
+  <% if granted? %>
+    <%= tag.p(class: "ami-consent__granted fr-mb-0", **granted_attributes) do %>
+      <span class="fr-icon-check-line fr-icon--sm" aria-hidden="true"></span>
+
+      <%= t('.granted', app_name:) %>
+    <% end %>
+  <% else %>
+    <%= form_with url: create_ami_consent_path, method: :post, data: { turbo: true } do %>
+      <button
+        type="submit"
+        class="
+          fr-btn fr-btn--tertiary-no-outline fr-btn--icon-left
+          fr-icon-notification-3-line
+        "
+      >
+        <%= t('.grant', app_name:) %>
+      </button>
+    <% end %>
+  <% end %>
+<% end %>
