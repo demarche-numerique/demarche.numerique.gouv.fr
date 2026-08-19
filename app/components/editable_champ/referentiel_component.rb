@@ -20,6 +20,9 @@ class EditableChamp::ReferentielComponent < EditableChamp::EditableChampBaseComp
       loader: data_sources_data_source_referentiel_path(referentiel_id: referentiel.id, dossier_id: @champ.dossier_id),
       minimum_input_length: DataSources::ReferentielController::MIN_QUERY_LENGTH,
       use_post: true,
-      is_disabled: false)
+      is_disabled: false,
+      ariaLabelledbyPrefix: aria_labelledby_prefix,
+      labelId: input_label_id(@champ),
+      inputId: @champ.focusable_input_id)
   end
 end

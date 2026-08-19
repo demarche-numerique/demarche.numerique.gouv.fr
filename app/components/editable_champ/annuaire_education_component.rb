@@ -17,6 +17,7 @@ class EditableChamp::AnnuaireEducationComponent < EditableChamp::EditableChampBa
       debounce: 500,
       minimum_input_length: 5,
       ariaLabelledbyPrefix: aria_labelledby_prefix,
-      labelId: input_label_id(@champ))
+      labelId: input_label_id(@champ),
+      inputId: @champ.focusable_input_id)
   end
 end
