@@ -719,8 +719,8 @@ module Users
       params.require(:user).permit(:siret)
     end
 
-    # Le SIRET mémorisé sur l'usager prime : on ne préremplit que s'il est vide.
-    # Assignation en mémoire uniquement (comme #update_siret), la vue lisant `current_user`.
+    # The siret memorized on the user wins: we only prefill when it is blank.
+    # In-memory assignment only (like #update_siret), as the view reads `current_user`.
     def prefill_siret_from_pro_connect
       return false if current_user.siret.present?
 
