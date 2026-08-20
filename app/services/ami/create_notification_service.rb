@@ -14,16 +14,19 @@ module Ami
       sans_suite: "closed",
     }.freeze
 
-    attr_reader :dossier, :state, :trigger
+    attr_reader :dossier, :state, :trigger, :grant_consent
 
-    def initialize(dossier:, trigger:, state:)
+    def initialize(dossier:, trigger:, state:, grant_consent: false)
       @dossier = dossier
       @state = (state || dossier.state).to_sym
       @trigger = trigger.to_sym
+      @grant_consent = grant_consent
     end
 
-    def self.call(dossier:, trigger: :dossier_state_change, state: nil)
-      new(dossier:, trigger:, state:).call
+    # grant_consent: cet envoi vaut consentement chez AMI, où le premier
+    # événement reçu fait foi tant que l'écriture du consentement n'existe pas.
+    def self.call(dossier:, trigger: :dossier_state_change, state: nil, grant_consent: false)
+      new(dossier:, trigger:, state:, grant_consent:).call
     end
 
     def call
@@ -37,7 +40,7 @@ module Ami
       payload = create_notification_payload(event_date: Time.zone.now.iso8601)
       return if payload[:recipient_fc_hash].blank?
 
-      Ami::SendNotificationJob.perform_later(payload, context)
+      Ami::SendNotificationJob.perform_later(payload, context, grant_consent:)
     end
 
     # Contrat de PUT /api/v2/event : event_date remplace send_date et
