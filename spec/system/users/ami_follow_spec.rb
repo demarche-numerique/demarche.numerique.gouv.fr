@@ -10,6 +10,7 @@ describe 'The user, once their dossier is submitted', js: true do
     allow(Ami::RecipientFcHash).to receive(:call).and_return("abc123")
     allow_any_instance_of(Ami::Client).to receive(:configured?).and_return(true)
     allow(Ami::ConsentStatus).to receive(:call).and_return(:not_granted)
+    allow(Ami::GrantConsent).to receive(:call)
 
     login_as user, scope: :user
     visit merci_dossier_path(dossier)
@@ -17,33 +18,23 @@ describe 'The user, once their dossier is submitted', js: true do
 
   after { Flipper.disable(:ami_notifications, procedure) }
 
-  context 'when AMI accepts the consent' do
-    before { allow(Ami::GrantConsent).to receive(:call).and_return(Dry::Monads::Success(nil)) }
+  scenario 'consents to follow their procedures in the app, without leaving the page' do
+    expect(page).to have_button("Je souhaite suivre mes démarches sur #{Ami::APP_NAME}")
 
-    scenario 'consents to follow their procedures in the app, without leaving the page' do
-      expect(page).to have_button("Je souhaite suivre mes démarches sur #{Ami::APP_NAME}")
+    click_on "Je souhaite suivre mes démarches sur #{Ami::APP_NAME}"
 
-      click_on "Je souhaite suivre mes démarches sur #{Ami::APP_NAME}"
-
-      expect(page).to have_text("Vous suivez vos démarches sur #{Ami::APP_NAME}")
-      expect(page).not_to have_button("Je souhaite suivre mes démarches sur #{Ami::APP_NAME}")
-      expect(page).to have_current_path(merci_dossier_path(dossier))
-      expect(page).to have_text('Déposer un autre dossier')
-    end
+    expect(page).to have_text("Vous suivez vos démarches sur #{Ami::APP_NAME}")
+    expect(page).not_to have_button("Je souhaite suivre mes démarches sur #{Ami::APP_NAME}")
+    expect(page).to have_current_path(merci_dossier_path(dossier))
+    expect(page).to have_text('Déposer un autre dossier')
   end
 
-  context 'when AMI is unreachable' do
-    before do
-      allow(Ami::GrantConsent).to receive(:call)
-        .and_return(Dry::Monads::Failure(API::Client::Error[:timeout, 0, true, "Operation timed out"]))
-    end
+  # Le consentement passe par l'envoi de l'événement du dossier affiché.
+  scenario 'sends the event of the dossier being viewed' do
+    click_on "Je souhaite suivre mes démarches sur #{Ami::APP_NAME}"
 
-    scenario 'is warned and can try again' do
-      click_on "Je souhaite suivre mes démarches sur #{Ami::APP_NAME}"
-
-      expect(page).to have_text('momentanément indisponible')
-      expect(page).to have_button("Je souhaite suivre mes démarches sur #{Ami::APP_NAME}")
-    end
+    expect(page).to have_text("Vous suivez vos démarches sur #{Ami::APP_NAME}")
+    expect(Ami::GrantConsent).to have_received(:call).with(dossier:)
   end
 
   scenario 'reads what the app is about in a modal' do

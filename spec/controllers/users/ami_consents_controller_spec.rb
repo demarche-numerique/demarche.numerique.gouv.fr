@@ -8,6 +8,7 @@ RSpec.describe Users::AmiConsentsController, type: :controller do
 
   before do
     allow_any_instance_of(Ami::Client).to receive(:configured?).and_return(true)
+    allow_any_instance_of(Procedure).to receive(:feature_enabled?).with(:ami_notifications).and_return(true)
     allow(Ami::RecipientFcHash).to receive(:call).and_return("abc123")
   end
 
@@ -51,6 +52,17 @@ RSpec.describe Users::AmiConsentsController, type: :controller do
         end
       end
 
+      # Sans le drapeau, l'événement serait écarté juste après : ne pas
+      # promettre un suivi qui n'aura pas lieu.
+      context 'when the procedure does not notify AMI' do
+        before { allow_any_instance_of(Procedure).to receive(:feature_enabled?).with(:ami_notifications).and_return(false) }
+
+        it 'answers an empty frame' do
+          expect(show).to have_http_status(:ok)
+          expect(response.body).not_to include('Je souhaite suivre mes démarches')
+        end
+      end
+
       context 'with a dossier belonging to someone else' do
         let(:dossier) { create(:dossier, :en_construction) }
 
@@ -72,29 +84,22 @@ RSpec.describe Users::AmiConsentsController, type: :controller do
   describe 'POST #create' do
     subject(:create_consent) { post :create, params: { id: dossier.id } }
 
-    before { sign_in(user) }
-
-    context 'when AMI accepts the consent' do
-      before { allow(Ami::GrantConsent).to receive(:call).with(user).and_return(Dry::Monads::Success(nil)) }
-
-      it 'confirms the follow-up and moves the focus to it' do
-        expect(create_consent).to have_http_status(:ok)
-        expect(response.body).to include('Vous suivez vos démarches')
-        expect(response.body).to include('autofocus')
-      end
+    before do
+      sign_in(user)
+      allow(Ami::GrantConsent).to receive(:call)
     end
 
-    context 'when AMI is unreachable' do
-      before do
-        allow(Ami::GrantConsent).to receive(:call).with(user)
-          .and_return(Dry::Monads::Failure(API::Client::Error[:timeout, 0, true, "Operation timed out"]))
-      end
+    it 'grants the consent from the dossier being viewed' do
+      create_consent
 
-      it 'warns the user without failing, and keeps the consent available' do
-        expect(create_consent).to have_http_status(:ok)
-        expect(response.body).to include('momentanément indisponible')
-        expect(response.body).to include('Je souhaite suivre mes démarches')
-      end
+      expect(Ami::GrantConsent).to have_received(:call).with(dossier:)
+    end
+
+    # Bascule optimiste : on ne fait pas patienter l'usager le temps qu'AMI réponde.
+    it 'confirms the follow-up right away and moves the focus to it' do
+      expect(create_consent).to have_http_status(:ok)
+      expect(response.body).to include('Vous suivez vos démarches')
+      expect(response.body).to include('autofocus')
     end
   end
 end

@@ -1,32 +1,32 @@
 # frozen_string_literal: true
 
 module Ami
-  # Transmet à AMI le consentement de l'usager au suivi de ses démarches.
+  # L'usager accepte de suivre ses démarches dans l'application mobile.
   #
-  # Il n'existe volontairement pas de service de révocation : celle-ci doit se
-  # faire depuis les préférences de l'application mobile, et nous ne devons
-  # jamais envoyer d'événement de refus.
+  # Tant qu'AMI n'expose pas d'écriture du consentement, c'est le premier
+  # événement reçu qui fait foi : on envoie donc l'événement du dossier depuis
+  # lequel l'usager accepte, en court-circuitant la vérification qui, sinon,
+  # interdirait à jamais ce premier envoi.
+  #
+  # Il n'existe volontairement pas de service de révocation : elle se fait
+  # depuis les préférences de l'application mobile.
   class GrantConsent
-    include Dry::Monads[:result]
+    def self.call(dossier:) = new(dossier).call
 
-    def self.call(user) = new(user).call
-
-    def initialize(user)
-      @user = user
+    def initialize(dossier)
+      @dossier = dossier
     end
 
     def call
-      return Failure(:no_france_connect_identity) if fc_hash.blank?
-      return Failure(:not_configured) if !client.configured?
-
-      client.grant_consent(fc_hash)
+      if Ami.grant_consent_endpoint_available?
+        Client.new.grant_consent(RecipientFcHash.call(dossier.user))
+      else
+        CreateNotificationService.call(dossier:, grant_consent: true)
+      end
     end
 
     private
 
-    attr_reader :user
-
-    def fc_hash = @fc_hash ||= RecipientFcHash.call(user)
-    def client = @client ||= Client.new
+    attr_reader :dossier
   end
 end

@@ -6,8 +6,6 @@ module Users
   # dossier : faute d'écriture côté AMI, c'est l'envoi de l'événement de ce
   # dossier qui vaut consentement.
   class AmiConsentsController < UserController
-    include Dry::Monads[:result]
-
     before_action :set_dossier
     before_action :ensure_consent_available
 
@@ -15,15 +13,13 @@ module Users
       @status = Ami::ConsentStatus.call(fc_hash)
     end
 
+    # Bascule optimiste : on confirme le suivi sans attendre qu'AMI ait accepté
+    # l'événement, d'où le retour ignoré.
     def create
-      case Ami::GrantConsent.call(current_user)
-      in Success(_)
-        @status = :granted
-        @focus = true
-      in Failure(_)
-        @status = :not_granted
-        @error = true
-      end
+      Ami::GrantConsent.call(dossier: @dossier)
+
+      @status = :granted
+      @focus = true
 
       render :show
     end
@@ -38,7 +34,9 @@ module Users
     # On répond toujours par le turbo-frame, même vide : une réponse sans frame
     # afficherait « Content missing » à la place de l'encart.
     def ensure_consent_available
-      return if Ami::Client.new.configured? && fc_hash.present?
+      return if Ami::Client.new.configured? &&
+        @dossier.procedure.feature_enabled?(:ami_notifications) &&
+        fc_hash.present?
 
       @status = :unavailable
       render :show

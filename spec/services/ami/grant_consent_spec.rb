@@ -3,39 +3,36 @@
 require 'rails_helper'
 
 RSpec.describe Ami::GrantConsent do
-  let(:user) { build(:user) }
-  let(:client) { instance_double(Ami::Client, configured?: true) }
+  let(:dossier) { dossiers.en_construction }
 
-  before do
-    allow(Ami::Client).to receive(:new).and_return(client)
-    allow(Ami::RecipientFcHash).to receive(:call).with(user).and_return("abc123")
+  # Tant qu'AMI n'expose pas d'écriture, c'est le premier événement qui fait foi.
+  context 'while AMI has no consent write' do
+    before { allow(Ami).to receive(:grant_consent_endpoint_available?).and_return(false) }
+
+    it 'sends the dossier event, carrying the consent along' do
+      allow(Ami::CreateNotificationService).to receive(:call)
+
+      described_class.call(dossier:)
+
+      expect(Ami::CreateNotificationService).to have_received(:call).with(dossier:, grant_consent: true)
+    end
   end
 
-  it 'fails without calling AMI when the user has no France Connect identity' do
-    allow(Ami::RecipientFcHash).to receive(:call).with(user).and_return(nil)
+  context 'once AMI exposes a consent write' do
+    let(:client) { instance_double(Ami::Client, grant_consent: Dry::Monads::Success(nil)) }
 
-    expect(described_class.call(user)).to be_failure
-  end
+    before do
+      allow(Ami).to receive(:grant_consent_endpoint_available?).and_return(true)
+      allow(Ami::Client).to receive(:new).and_return(client)
+      allow(Ami::RecipientFcHash).to receive(:call).and_return("abc123")
+      allow(Ami::CreateNotificationService).to receive(:call)
+    end
 
-  it 'fails when the client is not configured' do
-    allow(client).to receive(:configured?).and_return(false)
+    it 'writes the consent instead of sending an event' do
+      described_class.call(dossier:)
 
-    expect(described_class.call(user)).to be_failure
-  end
-
-  it 'succeeds when AMI accepts the consent' do
-    allow(client).to receive(:grant_consent).with("abc123").and_return(Dry::Monads::Success(nil))
-
-    expect(described_class.call(user)).to be_success
-  end
-
-  it 'fails and relays the error when AMI rejects the call' do
-    error = API::Client::Error[:http, 500, true, "Boom"]
-    allow(client).to receive(:grant_consent).with("abc123").and_return(Dry::Monads::Failure(error))
-
-    result = described_class.call(user)
-
-    expect(result).to be_failure
-    expect(result.failure).to eq(error)
+      expect(client).to have_received(:grant_consent).with("abc123")
+      expect(Ami::CreateNotificationService).not_to have_received(:call)
+    end
   end
 end
