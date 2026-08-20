@@ -10,7 +10,7 @@ module Users
     before_action :ensure_consent_available
 
     def show
-      @status = Ami::ConsentStatus.call(current_user)
+      @status = Ami::ConsentStatus.call(fc_hash)
     end
 
     def create
@@ -31,10 +31,12 @@ module Users
     # On répond toujours par le turbo-frame, même vide : une réponse sans frame
     # afficherait « Content missing » à la place de l'encart.
     def ensure_consent_available
-      return if Ami::Client.new.configured? && Ami::RecipientFcHash.call(current_user).present?
+      return if Ami::Client.new.configured? && fc_hash.present?
 
       @status = :unavailable
       render :show
     end
+
+    def fc_hash = @fc_hash ||= Ami::RecipientFcHash.call(current_user)
   end
 end

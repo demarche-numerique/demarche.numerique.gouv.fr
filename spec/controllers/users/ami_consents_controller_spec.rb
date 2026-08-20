@@ -21,7 +21,7 @@ RSpec.describe Users::AmiConsentsController, type: :controller do
       before { sign_in(user) }
 
       it 'renders the consent state in its turbo frame' do
-        allow(Ami::ConsentStatus).to receive(:call).with(user).and_return(:granted)
+        allow(Ami::ConsentStatus).to receive(:call).with("abc123").and_return(:granted)
 
         expect(show).to have_http_status(:ok)
         expect(response.body).to include('turbo-frame')

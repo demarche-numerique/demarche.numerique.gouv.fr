@@ -3,14 +3,22 @@
 class Ami::SendNotificationJob < ApplicationJob
   include Dry::Monads[:result]
 
-  discard_on ActiveRecord::RecordNotFound
+  class ConsentCheckError < StandardError; end
 
-  use_sidekiq_retry
+  use_sidekiq_retry(report_after_attempts: 8)
 
   queue_as :default
 
-  def perform(payload, context = {})
+  # grant_consent: cet envoi vaut consentement chez AMI, où le premier
+  # événement reçu fait foi tant que l'écriture du consentement n'existe pas.
+  # On ne vérifie donc pas le consentement, faute de quoi ce premier envoi
+  # n'aurait jamais lieu.
+  def perform(payload, context = {}, grant_consent: false)
     Sentry.set_tags(context)
+
+    fc_hash = payload[:recipient_fc_hash]
+    return if fc_hash.blank?
+    return if !grant_consent && !consent_granted?(fc_hash, context)
 
     Rails.logger.debug { "AMI notification sending for dossier #{context[:dossier]}" }
 
@@ -22,6 +30,23 @@ class Ami::SendNotificationJob < ApplicationJob
     in Failure(error)
       Rails.logger.error("AMI notification failed for dossier #{context[:dossier]}: #{error}")
       raise "AMI notification failed for dossier #{context[:dossier]}: #{error}"
+    end
+  end
+
+  private
+
+  # Ne rien envoyer sans consentement est délibéré : le contenu de la
+  # notification ne doit pas parvenir à AMI tant que l'usager n'a pas accepté.
+  def consent_granted?(fc_hash, context)
+    case Ami::ConsentStatus.call(fc_hash)
+    when :granted
+      true
+    when :not_granted, :unavailable
+      Rails.logger.debug { "AMI notification skipped for dossier #{context[:dossier]}: no consent" }
+      false
+    else
+      # AMI n'a pas su répondre : on ne devine pas, on laisse Sidekiq retenter.
+      raise ConsentCheckError, "AMI consent check failed for dossier #{context[:dossier]}"
     end
   end
 end

@@ -2,21 +2,23 @@
 
 module Ami
   # L'usager a-t-il consenti au suivi de ses démarches dans l'application mobile ?
+  # Prend le hash France Connect, seul identifiant connu d'AMI, que ses deux
+  # appelants (le job d'envoi et le contrôleur) ont déjà sous la main.
   #
-  # Pas de cache pour l'instant : interroger AMI à chaque affichage garantit
-  # qu'une révocation faite depuis l'application est prise en compte aussitôt.
+  # Pas de cache : interroger AMI à chaque fois garantit qu'une révocation faite
+  # depuis l'application est prise en compte aussitôt.
   class ConsentStatus
     include Dry::Monads[:result]
 
-    def self.call(user) = new(user).call
+    def self.call(fc_hash) = new(fc_hash).call
 
-    def initialize(user)
-      @user = user
+    def initialize(fc_hash)
+      @fc_hash = fc_hash
     end
 
     def call
-      return :unknown if fc_hash.blank?
-      return :unknown if !client.configured?
+      return :unavailable if fc_hash.blank?
+      return :unavailable if !client.configured?
 
       case client.consent(fc_hash)
       in Success(_)
@@ -24,16 +26,17 @@ module Ami
       in Failure(API::Client::Error => error) if error.code == 404
         :not_granted
       in Failure(API::Client::Error => error)
-        Sentry.capture_message("Ami::ConsentStatus failed: #{error.type} code: #{error.code}")
+        # Pas de remontée Sentry ici : l'appelant décide quoi en faire, et le
+        # job lève, ce qui suffit à signaler une panne d'AMI.
+        Rails.logger.warn("Ami::ConsentStatus failed: #{error.type} code: #{error.code}")
         :unknown
       end
     end
 
     private
 
-    attr_reader :user
+    attr_reader :fc_hash
 
-    def fc_hash = @fc_hash ||= RecipientFcHash.call(user)
     def client = @client ||= Client.new
   end
 end
