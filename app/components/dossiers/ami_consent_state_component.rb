@@ -7,10 +7,9 @@ class Dossiers::AmiConsentStateComponent < ApplicationComponent
   # :unavailable quand on ne peut pas lui demander
   STATUSES = [:loading, :granted, :not_granted, :unknown, :unavailable].freeze
 
-  def initialize(status:, dossier: nil, error: false, focus: false)
+  def initialize(status:, dossier: nil, focus: false)
     @status = status
     @dossier = dossier
-    @error = error
     @focus = focus
   end
 
@@ -22,8 +21,6 @@ class Dossiers::AmiConsentStateComponent < ApplicationComponent
   def loading? = @status == :loading
 
   def granted? = @status == :granted
-
-  def error? = @error.present?
 
   def app_name = Ami::APP_NAME
 

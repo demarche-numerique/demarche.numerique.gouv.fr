@@ -83,16 +83,4 @@ RSpec.describe Dossiers::AmiConsentStateComponent, type: :component do
       end
     end
   end
-
-  context 'when the call to AMI failed' do
-    let(:status) { :not_granted }
-    let(:options) { { error: true } }
-
-    it 'warns the user and keeps the consent available' do
-      render_component
-
-      expect(page).to have_css('[role="alert"]')
-      expect(page).to have_button(text: /Je souhaite suivre mes démarches/)
-    end
-  end
 end
