@@ -15,7 +15,7 @@ class Dossiers::AmiFollowComponentPreview < ViewComponent::Preview
   def previewed_component
     Dossiers::AmiFollowComponent.new(dossier: nil).tap do |component|
       component.define_singleton_method(:render?) { true }
-      component.define_singleton_method(:ami_consent_path) { nil }
+      component.define_singleton_method(:consent_path) { nil }
     end
   end
 end

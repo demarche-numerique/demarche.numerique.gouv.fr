@@ -23,7 +23,7 @@ RSpec.describe Dossiers::AmiFollowComponent, type: :component do
   it 'loads the consent state aside from the page' do
     render_component
 
-    expect(page).to have_css("turbo-frame#ami-consent[src='/suivi-ami'][loading='lazy']")
+    expect(page).to have_css("turbo-frame#ami-consent[src='/dossiers/#{dossier.id}/ami-consent'][loading='lazy']")
   end
 
   it 'opens the app information in a modal' do

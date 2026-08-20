@@ -4,6 +4,7 @@ RSpec.describe Users::AmiConsentsController, type: :controller do
   render_views
 
   let(:user) { users.usager }
+  let(:dossier) { dossiers.en_construction }
 
   before do
     allow_any_instance_of(Ami::Client).to receive(:configured?).and_return(true)
@@ -11,7 +12,7 @@ RSpec.describe Users::AmiConsentsController, type: :controller do
   end
 
   describe 'GET #show' do
-    subject(:show) { get :show }
+    subject(:show) { get :show, params: { id: dossier.id } }
 
     context 'when the user is not signed in' do
       it { expect(show).to redirect_to(new_user_session_path) }
@@ -49,11 +50,27 @@ RSpec.describe Users::AmiConsentsController, type: :controller do
           expect(response.body).not_to include('Je souhaite suivre mes démarches')
         end
       end
+
+      context 'with a dossier belonging to someone else' do
+        let(:dossier) { create(:dossier, :en_construction) }
+
+        it { expect { show }.to raise_error(ActiveRecord::RecordNotFound) }
+      end
+
+      # Le consentement engage l'identité France Connect de celui qui clique :
+      # un invité ne peut pas le donner depuis le dossier d'un autre.
+      context 'with a dossier the user is only invited to' do
+        let(:dossier) { create(:dossier, :en_construction) }
+
+        before { create(:invite, dossier:, user:) }
+
+        it { expect { show }.to raise_error(ActiveRecord::RecordNotFound) }
+      end
     end
   end
 
   describe 'POST #create' do
-    subject(:create) { post :create }
+    subject(:create_consent) { post :create, params: { id: dossier.id } }
 
     before { sign_in(user) }
 
@@ -61,7 +78,7 @@ RSpec.describe Users::AmiConsentsController, type: :controller do
       before { allow(Ami::GrantConsent).to receive(:call).with(user).and_return(Dry::Monads::Success(nil)) }
 
       it 'confirms the follow-up and moves the focus to it' do
-        expect(create).to have_http_status(:ok)
+        expect(create_consent).to have_http_status(:ok)
         expect(response.body).to include('Vous suivez vos démarches')
         expect(response.body).to include('autofocus')
       end
@@ -74,7 +91,7 @@ RSpec.describe Users::AmiConsentsController, type: :controller do
       end
 
       it 'warns the user without failing, and keeps the consent available' do
-        expect(create).to have_http_status(:ok)
+        expect(create_consent).to have_http_status(:ok)
         expect(response.body).to include('momentanément indisponible')
         expect(response.body).to include('Je souhaite suivre mes démarches')
       end

@@ -23,6 +23,10 @@ class Dossiers::AmiFollowComponent < ApplicationComponent
 
   def app_url = Ami::APP_URL
 
+  def consent_path = ami_consent_dossier_path(@dossier)
+
+  def dossier = @dossier
+
   def modal_id = MODAL_ID
 
   def title_id = "#{MODAL_ID}-title"

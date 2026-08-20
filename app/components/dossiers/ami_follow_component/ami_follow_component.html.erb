@@ -9,8 +9,8 @@
     </div>
 
     <div class="fr-col-12 fr-col-md-6 fr-p-3w ami-follow__actions">
-      <%= helpers.turbo_frame_tag "ami-consent", src: ami_consent_path, loading: :lazy, "aria-live": "polite" do %>
-        <%= render Dossiers::AmiConsentStateComponent.new(status: :loading) %>
+      <%= helpers.turbo_frame_tag "ami-consent", src: consent_path, loading: :lazy, "aria-live": "polite" do %>
+        <%= render Dossiers::AmiConsentStateComponent.new(status: :loading, dossier:) %>
       <% end %>
 
       <p class="fr-my-2w">

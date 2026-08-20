@@ -7,11 +7,15 @@ class Dossiers::AmiConsentStateComponent < ApplicationComponent
   # :unavailable quand on ne peut pas lui demander
   STATUSES = [:loading, :granted, :not_granted, :unknown, :unavailable].freeze
 
-  def initialize(status:, error: false, focus: false)
+  def initialize(status:, dossier: nil, error: false, focus: false)
     @status = status
+    @dossier = dossier
     @error = error
     @focus = focus
   end
+
+  # Le consentement se donne en envoyant l'événement du dossier affiché.
+  def form_path = create_ami_consent_dossier_path(@dossier)
 
   def render? = @status != :unavailable
 

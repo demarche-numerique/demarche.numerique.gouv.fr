@@ -14,7 +14,7 @@
       <%= t('.granted', app_name:) %>
     <% end %>
   <% else %>
-    <%= form_with url: create_ami_consent_path, method: :post, data: { turbo: true } do %>
+    <%= form_with url: form_path, method: :post, data: { turbo: true } do %>
       <button
         type="submit"
         class="

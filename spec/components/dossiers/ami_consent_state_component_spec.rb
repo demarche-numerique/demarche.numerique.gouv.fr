@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.describe Dossiers::AmiConsentStateComponent, type: :component do
-  subject(:render_component) { render_inline(described_class.new(status:, **options)) }
+  subject(:render_component) { render_inline(described_class.new(status:, dossier:, **options)) }
 
+  let(:dossier) { dossiers.en_construction }
   let(:options) { {} }
 
   context 'while AMI has not answered yet' do
@@ -41,7 +42,7 @@ RSpec.describe Dossiers::AmiConsentStateComponent, type: :component do
 
       expect(page).to have_button(text: /Je souhaite suivre mes démarches/)
       expect(page).to have_css('.fr-icon-notification-3-line')
-      expect(page).to have_css("form[action='/suivi-ami'][data-turbo='true']")
+      expect(page).to have_css("form[action='/dossiers/#{dossier.id}/ami-consent'][data-turbo='true']")
     end
   end
 

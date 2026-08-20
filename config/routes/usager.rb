@@ -67,6 +67,8 @@ scope module: 'users', defaults: { nav_bar_profile: :user } do
       get 'champs/:stable_id', to: 'dossiers#champ', as: :champ
       patch 'champs/:stable_id/revert_prefill', to: 'dossiers#revert_prefill', as: :revert_prefill_champ
       get 'merci'
+      get 'ami-consent', to: 'ami_consents#show', as: :ami_consent
+      post 'ami-consent', to: 'ami_consents#create', as: :create_ami_consent
       get 'demande'
       get 'messagerie'
       get 'rendez-vous'
@@ -92,9 +94,6 @@ scope module: 'users', defaults: { nav_bar_profile: :user } do
   get 'transferts' => 'dossiers#transfer_requests'
   get 'personnalisation', to: 'dossiers#personnalisation', as: :personnalisation
   patch 'personnalisation', to: 'dossiers#update_personnalisation'
-
-  get 'suivi-ami' => 'ami_consents#show', as: :ami_consent
-  post 'suivi-ami' => 'ami_consents#create', as: :create_ami_consent
 
   get 'profil' => 'profil#show'
   patch 'update_email' => 'profil#update_email'
