@@ -114,4 +114,43 @@ RSpec.describe IdentityPrefillSource do
       it { expect(source.mandataire_locked?).to be(false) }
     end
   end
+
+  describe "#pro_connect_siret" do
+    subject { source.pro_connect_siret }
+
+    context "when the session is ProConnected" do
+      let(:user) { create(:user, :with_pci) }
+      let(:pro_connect) { true }
+
+      it { is_expected.to eq('12345678901234') }
+
+      context "and ProConnect did not provide an identity" do
+        let(:user) { create(:user, pro_connect_informations: [build(:pro_connect_information, given_name: nil, usual_name: nil)]) }
+
+        it "is still available: the siret does not depend on the identity being complete" do
+          expect(source.name).to be_nil
+          expect(subject).to eq('12345678901234')
+        end
+      end
+
+      context "and ProConnect did not provide a siret" do
+        let(:user) { create(:user, pro_connect_informations: [build(:pro_connect_information, siret: nil)]) }
+
+        it { is_expected.to be_nil }
+      end
+
+      context "but the user has no ProConnect information" do
+        let(:user) { create(:user) }
+
+        it { is_expected.to be_nil }
+      end
+    end
+
+    context "when the session is not ProConnected" do
+      let(:user) { create(:user, :with_pci) }
+      let(:pro_connect) { false }
+
+      it { is_expected.to be_nil }
+    end
+  end
 end

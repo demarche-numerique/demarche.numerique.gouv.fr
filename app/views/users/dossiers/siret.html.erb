@@ -21,6 +21,14 @@
         </p>
       </div>
 
+      <% if @siret_prefilled_by_pro_connect %>
+        <div class="fr-fieldset__element">
+          <div class="fr-highlight fr-text--sm">
+            <%= t('views.users.dossiers.identite.siret_prefilled_by_pro_connect') %>
+          </div>
+        </div>
+      <% end %>
+
       <div class="fr-fieldset__element fr-fieldset__element--short-text">
         <%= render Dsfr::InputComponent.new(form: f, attribute: :siret) do |c| %>
           <% c.with_hint { t('views.users.dossiers.identite.siret_hint') } %>
