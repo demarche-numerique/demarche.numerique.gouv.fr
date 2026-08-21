@@ -31,6 +31,17 @@ describe TypesDeChamp::PreRempliTypeDeChamp do
     end
   end
 
+  describe '#columns' do
+    before { type_de_champ.update!(drop_down_options_from_text: "En cours\r\nIdée\r\nFait") }
+
+    it 'exposes an enum column, so the champ can be used as a condition source' do
+      column = type_de_champ.columns(procedure_id: procedure.id).sole
+
+      expect(column.type).to eq(:enum)
+      expect(column.options_for_select).to eq([["En cours", "En cours"], ["Idée", "Idée"], ["Fait", "Fait"]])
+    end
+  end
+
   describe '#pre_rempli_hidden?' do
     it 'returns false by default' do
       expect(type_de_champ.pre_rempli_hidden?).to be false
