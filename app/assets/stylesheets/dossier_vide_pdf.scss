@@ -31,146 +31,153 @@
   }
 }
 
-body {
+// This sheet is served standalone by the `dossier_vide_pdf` layout, but
+// `application.scss` also pulls the whole directory in with `require_tree .`.
+// Everything below must therefore stay scoped to the PDF's own <body>, or it
+// leaks into every page of the app — a bare `body { color: #161616 }` used to
+// win over the DSFR one (same specificity, loaded later) and painted the text
+// in the exact colour of the dark-theme background. Same convention as
+// `attestation.scss`, which scopes itself under `#attestation`.
+body#dossier-vide-pdf {
   font-family: 'Marianne', sans-serif;
   font-size: 10pt;
   color: #161616;
-}
 
-h1 {
-  font-size: 18pt;
-}
-h2 {
-  font-size: 14pt;
-  margin-top: 8mm;
-}
-h3 {
-  font-size: 12pt;
-}
-h4 {
-  font-size: 11pt;
-}
-h5 {
-  font-size: 10pt;
-}
+  h1 {
+    font-size: 18pt;
+  }
+  h2 {
+    font-size: 14pt;
+    margin-top: 8mm;
+  }
+  h3 {
+    font-size: 12pt;
+  }
+  h4 {
+    font-size: 11pt;
+  }
+  h5 {
+    font-size: 10pt;
+  }
 
-.logo {
-  display: block;
-  width: 100mm;
-  height: auto;
-  margin: 0 auto 8mm;
-}
+  .logo {
+    display: block;
+    width: 100mm;
+    height: auto;
+    margin: 0 auto 8mm;
+  }
 
-dl.header,
-dl.identity {
-  margin: 0 0 6mm;
-}
+  dl.header,
+  dl.identity {
+    margin: 0 0 6mm;
+  }
 
-.field-pair {
-  display: flex;
-  gap: 4mm;
-  margin-bottom: 2mm;
+  .field-pair {
+    display: flex;
+    gap: 4mm;
+    margin-bottom: 2mm;
 
-  dt {
-    width: 45mm;
+    dt {
+      width: 45mm;
+      font-weight: bold;
+    }
+    dd {
+      flex: 1;
+    }
+  }
+
+  .label {
     font-weight: bold;
+    margin-bottom: 1.5mm;
   }
-  dd {
-    flex: 1;
+  // Keep a label (and any description/instruction that follows it) attached to the
+  // field below it, so a page break never leaves the label stranded from its box.
+  .label,
+  .description,
+  .explanation,
+  .condition {
+    break-after: avoid;
   }
-}
+  // Champ descriptions stay italic to read as helper text; the procedure
+  // presentation (.presentation) keeps the admin's own formatting instead.
+  .description,
+  .explanation,
+  .condition,
+  .mailing {
+    font-style: italic;
+  }
+  // Admin rich text is rendered as markdown (SimpleFormat), so each authored line
+  // becomes a <p>: drop the browser default paragraph margins and keep tight,
+  // even spacing between them.
+  .presentation p,
+  .description p,
+  .explication p {
+    margin: 0;
+  }
+  .presentation p + p,
+  .description p + p,
+  .explication p + p {
+    margin-top: 1.5mm;
+  }
+  .explanation,
+  .condition {
+    margin-top: 1mm;
+    margin-bottom: 1.5mm;
+  }
 
-.label {
-  font-weight: bold;
-  margin-bottom: 1.5mm;
-}
-// Keep a label (and any description/instruction that follows it) attached to the
-// field below it, so a page break never leaves the label stranded from its box.
-.label,
-.description,
-.explanation,
-.condition {
-  break-after: avoid;
-}
-// Champ descriptions stay italic to read as helper text; the procedure
-// presentation (.presentation) keeps the admin's own formatting instead.
-.description,
-.explanation,
-.condition,
-.mailing {
-  font-style: italic;
-}
-// Admin rich text is rendered as markdown (SimpleFormat), so each authored line
-// becomes a <p>: drop the browser default paragraph margins and keep tight,
-// even spacing between them.
-.presentation p,
-.description p,
-.explication p {
-  margin: 0;
-}
-.presentation p + p,
-.description p + p,
-.explication p + p {
-  margin-top: 1.5mm;
-}
-.explanation,
-.condition {
-  margin-top: 1mm;
-  margin-bottom: 1.5mm;
-}
+  .champ {
+    margin-bottom: 7mm;
+  }
+  // Light shading grouping a conditional field (label + instruction + box).
+  .champ--conditional {
+    padding: 3mm;
+    background-color: #f6f6f6;
+  }
 
-.champ {
-  margin-bottom: 7mm;
-}
-// Light shading grouping a conditional field (label + instruction + box).
-.champ--conditional {
-  padding: 3mm;
-  background-color: #f6f6f6;
-}
+  .annexes {
+    page-break-before: always;
+  }
+  .annex {
+    margin-bottom: 6mm;
+  }
+  .annex h3 {
+    break-after: avoid;
+  }
 
-.annexes {
-  page-break-before: always;
-}
-.annex {
-  margin-bottom: 6mm;
-}
-.annex h3 {
-  break-after: avoid;
-}
+  .box {
+    border: 1px solid #161616;
+  }
+  .box--line {
+    height: 6mm;
+  }
+  .box--block {
+    height: 22mm;
+  }
 
-.box {
-  border: 1px solid #161616;
-}
-.box--line {
-  height: 6mm;
-}
-.box--block {
-  height: 22mm;
-}
+  ul.options {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  ul.options li {
+    margin-bottom: 1mm;
+  }
+  ul.options li.secondary {
+    padding-left: 6mm;
+  }
 
-ul.options {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-ul.options li {
-  margin-bottom: 1mm;
-}
-ul.options li.secondary {
-  padding-left: 6mm;
-}
-
-.option {
-  display: inline-flex;
-  align-items: center;
-  gap: 2mm;
-  // Centre the checkbox on the line instead of letting it hang above the
-  // baseline, which otherwise inflates the gap above and between checkboxes.
-  vertical-align: middle;
-}
-.checkbox {
-  display: inline-block;
-  width: 3mm;
-  height: 3mm;
-  border: 1px solid #161616;
+  .option {
+    display: inline-flex;
+    align-items: center;
+    gap: 2mm;
+    // Centre the checkbox on the line instead of letting it hang above the
+    // baseline, which otherwise inflates the gap above and between checkboxes.
+    vertical-align: middle;
+  }
+  .checkbox {
+    display: inline-block;
+    width: 3mm;
+    height: 3mm;
+    border: 1px solid #161616;
+  }
 }
