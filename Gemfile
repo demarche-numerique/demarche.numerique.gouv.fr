@@ -10,6 +10,7 @@ gem 'activestorage-openstack'
 gem 'active_storage_validations'
 gem 'addressable'
 gem 'administrate'
+gem 'after_commit_everywhere' # soft dependency of aasm, loaded via require: makes :after_commit callbacks run after the DB commit (grep won't find it)
 gem 'ancestry'
 gem 'anchored'
 gem 'aws-sdk-s3'

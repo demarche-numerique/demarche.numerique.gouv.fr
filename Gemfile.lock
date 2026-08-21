@@ -123,6 +123,9 @@ GEM
       activerecord (>= 6.0, < 9.0)
       kaminari (~> 1.2.2)
     aes_key_wrap (1.1.0)
+    after_commit_everywhere (1.6.0)
+      activerecord (>= 4.2)
+      activesupport
     ancestry (5.1.0)
       activerecord (>= 5.2.6)
       logger
@@ -961,6 +964,7 @@ DEPENDENCIES
   activestorage-openstack
   addressable
   administrate
+  after_commit_everywhere
   ancestry
   anchored
   aws-sdk-s3
