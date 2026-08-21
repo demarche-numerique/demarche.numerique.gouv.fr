@@ -113,6 +113,19 @@ ActiveSupport.on_load(:active_storage_blob) do
     def purge_later
       DelayedPurgeJob.perform_later(self)
     end
+
+    # Rails' own implementation of the `after_update_commit` callback, called by
+    # `BlobUpdateServiceMetadataJob`.
+    def update_service_metadata_now
+      service.update_metadata key, **service_metadata if service_metadata.any?
+    end
+
+    # The callback fires after the transaction has been committed, so raising
+    # here fails a request whose work is already done. Defer to a retryable job
+    # instead: see BlobUpdateServiceMetadataJob.
+    private def update_service_metadata
+      BlobUpdateServiceMetadataJob.perform_later(self) if service_metadata.any?
+    end
   end
 
   def self.generate_unique_secure_token(length: MINIMUM_TOKEN_LENGTH)
