@@ -1,0 +1,98 @@
+<% content_for(:title, t('.cta')) -%>
+<% content_for(:hide_header_signin, true) -%>
+
+<div id="proconnect">
+  <div class="fr-container">
+    <div class="fr-grid-row fr-grid-row--gutters fr-mt-0">
+      <div class="fr-col-lg fr-p-6w fr-background-alt--blue-france">
+        <div id="session-new" class="auth-form sign-in-form">
+          <%= form_for User.new, url: user_session_path do |f| -%>
+            <h1 class="fr-h2">
+              <%= t('views.users.sessions.new.sign_in', application_name: Current.application_name) %>
+            </h1>
+
+            <div class="fr-mb-0 fr-fieldset">
+              <div class="fr-fieldset__legend">
+                <h2 class="fr-h6">
+                  <%= t('views.shared.france_connect_login.commencer_pc_title') %>
+                </h2>
+              </div>
+
+              <div class="fr-fieldset__element">
+                <p><%= t('.explanation') %></p>
+
+                <%= render ProConnectLoginComponent.new(title: nil) %>
+              </div>
+            </div>
+
+            <% if !params[:force_pro_connect] -%>
+              <p class="fr-hr-or">
+                <%= t('views.shared.france_connect_login.separator') %>
+              </p>
+              <fieldset class="fr-mb-0 fr-fieldset" <%= tag.attributes(aria: { labelledby: 'new-account-legend' }) %>>
+                <legend class="fr-fieldset__legend" id="new-account-legend">
+                  <h2 class="fr-h6">
+                    <%= t('views.users.sessions.new.subtitle') %>
+                  </h2>
+                </legend>
+
+                <div class="fr-fieldset__element">
+                  <p class="fr-text--sm"><%= t('utils.asterisk_html') %></p>
+                </div>
+
+                <div class="fr-fieldset__element">
+                  <%= render Dsfr::InputComponent.new(form: f, attribute: :email, input_type: :email_field, opts: { autocomplete: 'email' }) do |c| -%>
+                    <% c.with_label { t('.pro_email') } -%>
+                  <% end -%>
+                </div>
+
+                <div class="fr-fieldset__element">
+                  <%= render Dsfr::InputComponent.new(form: f, attribute: :password, input_type: :password_field, opts: { autocomplete: 'current-password' }) %>
+
+                  <p>
+                    <%= link_to t('views.users.sessions.new.reset_password'), new_user_password_path, class: "fr-link" %>
+                  </p>
+                </div>
+
+                <div class="fr-fieldset__element">
+                  <div class="auth-options">
+                    <div class="flex-no-shrink">
+                      <%= f.check_box :remember_me %>
+                      <%= f.label :remember_me, t('views.users.sessions.new.remember_me'), class: 'remember-me' %>
+                    </div>
+                  </div>
+
+                  <div class="fr-btns-group">
+                    <%= f.submit t('views.users.sessions.new.connection'), class: "fr-btn" %>
+                  </div>
+                </div>
+              </fieldset>
+            <% end -%>
+          <% end -%>
+
+          <hr>
+
+          <h2 class="fr-h6"><%= t('.you_are_a_citizen') %></h2>
+
+          <div class="fr-btns-group">
+            <%= link_to t('.citizen_page'), new_user_session_path, class: "fr-btn fr-btn--secondary" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="fr-col-lg fr-p-6w">
+        <%= render Dsfr::CalloutComponent.new(title: t('.full_deploy_title'), icon: 'fr-icon-information-line') do |c| -%>
+          <% c.with_body do -%>
+            <%= t('.full_deploy_body') %>
+          <% end -%>
+        <% end -%>
+
+        <h2 class="fr-h6">
+          <%= t('.whats_ds', application_name: Current.application_name) %>
+        </h2>
+
+        <%= image_tag "landing/hero/dematerialiser.svg", class: "fr-responsive-img", alt: "" %>
+      </div>
+    </div>
+  </div>
+</div>
