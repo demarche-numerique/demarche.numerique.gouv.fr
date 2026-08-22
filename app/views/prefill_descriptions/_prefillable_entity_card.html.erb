@@ -1,0 +1,72 @@
+<%- form_field = type_de_champ ? :selected_type_de_champ_ids : :identity_items_selected -%>
+
+<div class="fr-col-md-6 fr-col-12">
+  <div class="card">
+    <div class="card-title flex justify-between align-center">
+      <%= title %>
+
+      <%= form_for prefill_description, url: prefill_description_path(prefill_description.path), data: { turbo: true } do |f| -%>
+        <%- if already_included -%>
+          <%= f.hidden_field form_field, value: all_entities - [new_entity] %>
+          <%= f.submit t("views.prefill_descriptions.edit.entity_remove"), class: 'fr-btn fr-btn--secondary fr-btn--md' %>
+        <%- elsif prefillable -%>
+          <%= f.hidden_field form_field, value: all_entities + [new_entity] %>
+          <%= f.submit t("views.prefill_descriptions.edit.entity_add"), id: "#{new_entity}_add_button", class: 'fr-btn fr-btn--md' %>
+        <%- else -%>
+          <button class="fr-btn fr-btn--secondary" disabled>
+            <%= t("views.prefill_descriptions.edit.entity_unavailable") %>
+          </button>
+        <%- end -%>
+      <%- end -%>
+    </div>
+
+    <p>
+      <%= description %>
+    </p>
+
+    <table class="table vertical">
+      <tbody>
+        <%- if type_de_champ -%>
+          <tr>
+            <th>
+              <%= t("views.prefill_descriptions.edit.champ_id") %>
+            </th>
+
+            <td>
+              <%= type_de_champ.to_typed_id_for_query %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <%= t("views.prefill_descriptions.edit.champ_type") %>
+            </th>
+
+            <td>
+              <%= t("activerecord.attributes.type_de_champ.type_champs.#{type_de_champ.type_champ}") %>
+            </td>
+          </tr>
+        <%- end -%>
+
+        <tr class="<%= prefillable ? "" : "fr-text-mention--grey" %>">
+          <th>
+            <%= t("views.prefill_descriptions.edit.possible_values.title") %>
+          </th>
+
+          <td>
+            <%= possible_values %>
+          </td>
+        </tr>
+
+        <tr class="<%= prefillable ? "" : "fr-text-mention--grey" %>">
+          <th>
+            <%= t("views.prefill_descriptions.edit.examples.title") %>
+          </th>
+
+          <td>
+            <%= example_value %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
