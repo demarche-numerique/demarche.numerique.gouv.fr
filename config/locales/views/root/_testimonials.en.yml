@@ -1,0 +1,16 @@
+en:
+  root:
+    testimonials:
+      title: "What users think of the service"
+      testimonial_1_content: "Exchanges with users are made easier, which reduces processing times and improves efficiency."
+      testimonial_1_author_name: "Elodie Le Rhun"
+      testimonial_1_author_role: "Head of Office, DRIEA Ile-de-France"
+      testimonial_2_content: "A service that guarantees time savings and much less file handling."
+      testimonial_2_author_name: "Nadja Briki"
+      testimonial_2_author_role: "Deputy of the Prefect of Pas-de-Calais"
+      testimonial_3_content: "Perfect, it works very well! Thanks again for your responsiveness."
+      testimonial_3_author_name: "Max A."
+      testimonial_3_author_role: "at our support service"
+      testimonial_4_content_line: "Eh les cocos, il y a la télé-procédure"
+      testimonial_4_author_name: "Hisham M."
+      testimonial_4_author_role: "on the DRIEA website"

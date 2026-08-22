@@ -1,0 +1,16 @@
+fr:
+  root:
+    testimonials:
+      title: "Ce que les utilisateurs pensent du service"
+      testimonial_1_content: "Les échanges avec les usagers sont facilités, ce qui permet de réduire les délais d’instructions et de gagner en efficacité."
+      testimonial_1_author_name: "Elodie Le Rhun"
+      testimonial_1_author_role: "Cheffe de bureau, DRIEA Ile-de-France"
+      testimonial_2_content: "Un service qui garantit une économie de temps et beaucoup moins de manipulations des dossiers."
+      testimonial_2_author_name: "Nadja Briki"
+      testimonial_2_author_role: "Déléguée de la Préfète du Pas-de-Calais"
+      testimonial_3_content: "Parfait, cela fonctionne très bien ! Merci encore pour votre réactivité."
+      testimonial_3_author_name: "Max A."
+      testimonial_3_author_role: "à notre service support"
+      testimonial_4_content_line: "Eh les cocos, il y a la télé-procédure"
+      testimonial_4_author_name: "Hisham M."
+      testimonial_4_author_role: "sur le site de la DRIEA"
