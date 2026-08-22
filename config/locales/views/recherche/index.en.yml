@@ -1,0 +1,13 @@
+en:
+  recherche:
+    index:
+      title_template: "Search: %{search_terms}"
+      search_results: "Search results:"
+      dossier_number: "File no."
+      procedure: "Procedure"
+      applicant: "Applicant"
+      status: "Status"
+      actions: "Actions"
+      view_dossier: "View the file"
+      give_opinion: "Give my opinion"
+      no_results: "No files matching your search were found"

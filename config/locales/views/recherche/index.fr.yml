@@ -1,0 +1,13 @@
+fr:
+  recherche:
+    index:
+      title_template: "Recherche : %{search_terms}"
+      search_results: "Résultat de la recherche :"
+      dossier_number: "N° dossier"
+      procedure: "Démarche"
+      applicant: "Demandeur"
+      status: "Statut"
+      actions: "Actions"
+      view_dossier: "Voir le dossier"
+      give_opinion: "Donner mon avis"
+      no_results: "Aucun dossier correspondant à votre recherche n’a été trouvé"

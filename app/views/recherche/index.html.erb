@@ -1,0 +1,183 @@
+<% content_for(:title, t(".title_template", search_terms: @search_terms)) %>
+
+<div class="fr-container">
+  <% if @dossier_not_in_instructor_group.present? %>
+    <div class="fr-alert fr-alert--info fr-alert--sm fr-mt-3w">
+      <%= tag.p t('views.instructeurs.search.dossier_not_in_instructor_group', dossier_id: @dossier_not_in_instructor_group.id, procedure_libelle: @dossier_not_in_instructor_group.procedure.libelle) %>
+    </div>
+  <% elsif @deleted_dossier.present? %>
+    <div class="fr-alert fr-alert--info fr-alert--sm fr-mt-3w">
+      <%= tag.p t('views.instructeurs.search.deleted_dossier', dossier_id: @deleted_dossier.dossier_id, procedure_libelle: @deleted_dossier.procedure.libelle, deleted_at: l(@deleted_dossier.deleted_at)) %>
+      <%= link_to t('views.instructeurs.search.deleted_dossier_link'), deleted_dossiers_instructeur_procedure_path(@deleted_dossier.procedure) %>
+    </div>
+  <% elsif @hidden_dossier.present? %>
+    <div class="fr-alert fr-alert--info fr-alert--sm fr-mt-3w">
+      <%= tag.p t('views.instructeurs.search.hidden_dossier', dossier_id: @hidden_dossier.id, procedure_libelle: @hidden_dossier.procedure.libelle) %>
+      <%= link_to t('views.instructeurs.search.hidden_dossier_link'), instructeur_procedure_path(@hidden_dossier.procedure, statut: 'supprimes') %>
+    </div>
+  <% elsif @projected_dossiers.present? %>
+    <div class="fr-table fr-table--no-scroll fr-table--bordered">
+      <div class="fr-table__wrapper">
+        <div class="fr-table__container">
+          <div class="fr-table__content">
+            <table class="dossiers-table">
+              <caption>
+                <%= t(".search_results") %>
+                <%= t('pluralize.dossier_trouve', count: @dossiers_count) %>
+              </caption>
+
+              <thead>
+                <tr>
+                  <th><%= t(".dossier_number") %></th>
+                  <th><%= t(".procedure") %></th>
+                  <th><%= t(".applicant") %></th>
+                  <th><%= t(".status") %></th>
+                  <th class="follow-col"></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @projected_dossiers.each do |dossier| %>
+                  <% procedure_id = dossier.procedure.id %>
+                  <% instructeur_dossier = @instructeur_dossiers_ids.include?(dossier.id) %>
+                  <% expert_dossier = @dossier_avis_ids_h[dossier.id].present? %>
+                  <% hidden_by_administration = dossier.hidden_by_administration_at.present? %>
+                  <% instructeur_and_expert_dossier = instructeur_dossier && expert_dossier %>
+                  <% path = instructeur_dossier ? instructeur_dossier_path(procedure_id, dossier.id) : expert_avis_path(procedure_id, @dossier_avis_ids_h[dossier.id]) %>
+
+                  <tr class="<%= 'file-hidden-by-user' if dossier.hidden_by_administration_at.present? %>">
+                    <% if instructeur_and_expert_dossier %>
+                      <td class="fr-cell--numeric">
+                        <div class="relative">
+                          <%= dossier.id %>
+                        </div>
+
+                        <% if @notifications[dossier.id].present? %>
+                          <% @notifications[dossier.id].each do |notif| %>
+                            <div class="fr-mt-1v">
+                              <%= tag_notification(notif) %>
+                            </div>
+                          <% end %>
+                        <% end %>
+                      </td>
+                      <td class="fr-cell--multiline">
+                        <%= dossier.procedure.libelle %>
+                      </td>
+                      <td><%= dossier.user&.email %></td>
+                      <td class="flex column">
+                        <%= status_badge(dossier.state) %>
+                      </td>
+                    <% else %>
+                      <td class="fr-cell--numeric">
+                        <a class="fr-link relative" href="<%= path %>">
+                          <%= dossier.id %>
+                        </a>
+
+                        <% if @notifications[dossier.id].present? %>
+                          <% @notifications[dossier.id].each do |notif| %>
+                            <div class="fr-mt-1v">
+                              <%= tag_notification(notif) %>
+                            </div>
+                          <% end %>
+                        <% end %>
+                      </td>
+                      <td>
+                        <a href="<%= path %>">
+                          <%= dossier.procedure.libelle %>
+                        </a>
+                      </td>
+                      <td>
+                        <a href="<%= path %>"><%= dossier.user&.email %></a>
+                      </td>
+                      <td>
+                        <a class="flex column" href="<%= path %>">
+                          <%= status_badge(dossier.state) %>
+                        </a>
+                      </td>
+                    <% end %>
+
+                    <% if instructeur_dossier && expert_dossier %>
+                      <td class="follow-col">
+                        <%= render Dropdown::MenuComponent.new(wrapper: :div, button_options: {class: ['fr-btn--sm']}) do |menu| %>
+                          <% menu.with_button_inner_html do %>
+                            <%= t(".actions") %>
+                          <% end %>
+
+                          <% menu.with_item do %>
+                            <%= link_to instructeur_dossier_path(procedure_id, dossier.id), role: 'menuitem' do %>
+                              <%= dsfr_icon('fr-icon-file-text-fill', :sm) %>
+
+                              <div class="dropdown-description">
+                                <%= t(".view_dossier") %>
+                              </div>
+                            <% end %>
+                          <% end %>
+
+                          <% menu.with_item do %>
+                            <%= link_to expert_avis_path(procedure_id, @dossier_avis_ids_h[dossier.id]), role: 'menuitem' do %>
+                              <%= dsfr_icon('fr-icon-chat-3-fill', :sm) %>
+
+                              <div class="dropdown-description">
+                                <%= t(".give_opinion") %>
+                              </div>
+                            <% end %>
+                          <% end %>
+                        <% end %>
+                      </td>
+                    <% elsif instructeur_dossier %>
+                      <% if hidden_by_administration %>
+                        <td class="follow-col">
+                          <%= link_to restore_instructeur_dossier_path(procedure_id, dossier.id), method: :patch, class: "button primary" do %>
+                            <%= t('views.instructeurs.dossiers.restore') %>
+                          <% end %>
+                        </td>
+                      <% else %>
+                        <td class="follow-col">
+                          <ul
+                            class="
+                              fr-btns-group fr-btns-group--sm
+                              fr-btns-group--inline-lg
+                              fr-btns-group--icon-left
+                            "
+                          >
+                            <%= render partial: "instructeurs/procedures/dossier_actions",
+                                                                  locals: { procedure_id: procedure_id,
+                                                                            dossier_id: dossier.id,
+                                                                            state: dossier.state,
+                                                                            archived: dossier.archived,
+                                                                            dossier_is_followed: @followed_dossiers_id.include?(dossier.id),
+                                                                            close_to_expiration: nil,
+                                                                            hidden_by_administration: nil,
+                                                                            hidden_by_expired: nil,
+                                                                            sva_svr: dossier.sva_svr_decision_on.present?,
+                                                                            has_blocking_pending_correction: dossier.pending_correction? && Flipper.enabled?(:blocking_pending_correction, ProcedureFlipperActor.new(procedure_id)),
+                                                                            turbo: false,
+                                                                            with_menu: false } %>
+                          </ul>
+                        </td>
+                      <% end %>
+                    <% else %>
+                      <td></td>
+                    <% end %>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="fr-table__footer">
+        <div class="fr-table__footer--start"></div>
+
+        <div class="fr-table__footer--middle">
+          <%= paginate @paginated_ids, views_prefix: 'shared' %>
+        </div>
+
+        <div class="fr-table__footer--end"></div>
+      </div>
+    </div>
+  <% else %>
+    <h2 class="fr-h4 fr-my-4w"><%= t(".no_results") %></h2>
+  <% end %>
+</div>
