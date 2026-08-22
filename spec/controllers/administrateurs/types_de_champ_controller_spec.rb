@@ -502,30 +502,66 @@ describe Administrateurs::TypesDeChampController, type: :controller do
     end
   end
 
-  describe '#notice_explicative' do
-    let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :explication }]) }
+  describe 'attachments submitted with the form' do
     let(:coordinate) { procedure.draft_revision.types_de_champ.first }
     let(:content) { 'notice' }
     let(:blob) { ActiveStorage::Blob.create_and_upload!(io: StringIO.new(content), filename: 'notice.txt', content_type: 'text/plain') }
 
-    context 'when sending a valid blob' do
-      it 'attaches the blob and responds with 200' do
-        expect { put :notice_explicative, format: :turbo_stream, params: { stable_id: coordinate.stable_id, procedure_id: procedure.id, blob_signed_id: blob.signed_id } }
-          .to change { coordinate.reload.notice_explicative.attached? }
+    subject do
+      patch :update, format: :turbo_stream, params: {
+        procedure_id: procedure.id,
+        stable_id: coordinate.stable_id,
+        type_de_champ: { attribute => value },
+      }
+    end
+
+    shared_examples 'an attachment attribute' do
+      let(:value) { blob.signed_id }
+
+      it 'attaches the blob' do
+        expect { subject }.to change { coordinate.reload.public_send(attribute).attached? }
           .from(false).to(true)
         expect(response).to have_http_status(:success)
+        expect(flash.alert).to be_nil
+      end
+
+      context 'when the blob is empty' do
+        let(:content) { '' }
+
+        it 'rejects it and reports the error' do
+          expect { subject }.not_to change { coordinate.reload.public_send(attribute).attached? }
+          expect(response).to have_http_status(:success)
+          expect(flash.alert.join).to include('vide')
+        end
+      end
+
+      context 'when the file input is submitted empty' do
+        let(:value) { '' }
+
+        before { coordinate.public_send(attribute).attach(blob) }
+
+        it 'leaves the existing attachment alone' do
+          expect { subject }.not_to change { coordinate.reload.public_send(attribute).attachment.id }
+        end
       end
     end
 
-    context 'when sending an empty blob' do
-      let(:content) { '' }
+    context 'piece_justificative_template' do
+      let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative }]) }
+      let(:attribute) { :piece_justificative_template }
 
-      it 'rejects it and responds with 422' do
-        expect { put :notice_explicative, format: :turbo_stream, params: { stable_id: coordinate.stable_id, procedure_id: procedure.id, blob_signed_id: blob.signed_id } }
-          .not_to change { coordinate.reload.notice_explicative.attached? }
-        expect(response).to have_http_status(422)
-        expect(response.parsed_body['errors'].join).to include('vide')
-      end
+      # the factory ships a template, but the editor only offers the input when
+      # there is none
+      before { coordinate.piece_justificative_template.purge }
+
+      it_behaves_like 'an attachment attribute'
+    end
+
+    context 'notice_explicative' do
+      let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :explication }]) }
+      let(:attribute) { :notice_explicative }
+
+      it_behaves_like 'an attachment attribute'
     end
   end
 

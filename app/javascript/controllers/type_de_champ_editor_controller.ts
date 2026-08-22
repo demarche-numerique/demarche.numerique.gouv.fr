@@ -57,12 +57,14 @@ export class TypeDeChampEditorController extends ApplicationController {
   private onChange(event: Event) {
     matchInputElement(event.target, {
       file: (target) => {
-        if (target.files?.length && target.name != 'referentiel_file') {
-          const autoupload = new AutoUpload(target, target.files[0]);
-          autoupload.start();
+        const file = target.files?.[0];
+        if (!file) {
+          return;
         }
-        if (target.files?.length && target.name == 'referentiel_file') {
+        if (target.name == 'referentiel_file') {
           this.requestSubmitForm(target.form);
+        } else {
+          this.uploadAndSubmit(target, file);
         }
       },
       changeable: (target) => this.save(target.form),
@@ -80,6 +82,29 @@ export class TypeDeChampEditorController extends ApplicationController {
         }
       }
     });
+  }
+
+  // Attachments are saved with their form: the file is uploaded straight to
+  // the storage service, then the resulting blob signed id is submitted under
+  // the file input's own name.
+  private async uploadAndSubmit(input: HTMLInputElement, file: File) {
+    const form = input.form;
+    const name = input.name;
+    const blobSignedId = await new AutoUpload(input, file)
+      .start()
+      .catch(() => null);
+
+    if (!form || !blobSignedId) {
+      return;
+    }
+
+    // The upload cleared the file input, but it still submits an empty value.
+    // The hidden input is appended after it, so it is the one that wins.
+    const hiddenInput = createHiddenInput(form, name, blobSignedId);
+    this.requestSubmitForm(form);
+    this.#latestPromise = this.#latestPromise.finally(() =>
+      hiddenInput.remove()
+    );
   }
 
   private save(form?: HTMLFormElement | null): void {
@@ -161,4 +186,5 @@ function createHiddenInput(
   input.name = name;
   input.value = String(value);
   form.appendChild(input);
+  return input;
 }

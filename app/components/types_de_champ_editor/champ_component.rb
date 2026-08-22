@@ -98,7 +98,6 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
   def notice_explicative_options
     {
       attached_file: type_de_champ.notice_explicative,
-      auto_attach_url: helpers.auto_attach_url(type_de_champ, procedure_id: procedure.id),
       view_as: :download,
     }
   end

@@ -150,8 +150,6 @@ scope module: 'administrateurs', path: 'admin', as: 'admin', defaults: { nav_bar
         patch :move_and_morph
         patch :move_up
         patch :move_down
-        put :piece_justificative_template
-        put :notice_explicative
         delete :nullify_referentiel
       end
 

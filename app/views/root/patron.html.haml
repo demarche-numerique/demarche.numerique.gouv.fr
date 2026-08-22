@@ -331,13 +331,13 @@
 
 
       %h3.fr-mt-4w New attachment on TypeDeChamp
-      = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: tdc.piece_justificative_template, auto_attach_url: "/some-auto-attach-path"), drop_zone: :none)
+      = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: tdc.piece_justificative_template), drop_zone: :none)
 
       %h3.fr-mt-4w Existing attachment on TypeDeChamp, view as link
-      = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: tdc.piece_justificative_template, auto_attach_url: "/some-auto-attach-path"), drop_zone: :none)
+      = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: tdc.piece_justificative_template), drop_zone: :none)
 
       %h3.fr-mt-4w Existing attachment on TypeDeChamp view as download
-      = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: tdc.piece_justificative_template, auto_attach_url: "/some-auto-attach-path", view_as: :download), drop_zone: :none)
+      = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: tdc.piece_justificative_template, view_as: :download), drop_zone: :none)
 
       %h3.fr-mt-4w New attachment on generic object
       = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: avis.introduction_file), drop_zone: :none)
