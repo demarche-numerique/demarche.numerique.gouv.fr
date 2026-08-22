@@ -1,0 +1,145 @@
+<footer class="fr-footer" id="footer" role="contentinfo">
+  <div class="fr-footer__top">
+    <div class="fr-container">
+      <h2 class="fr-sr-only">
+        <%= t("links.footer.top_labels.hidden_title") %>
+      </h2>
+
+      <div class="fr-grid-row fr-grid-row--start fr-grid-row--gutters">
+        <div class="fr-col-12 fr-col-sm-3 fr-col-md-3">
+          <h3 class="fr-footer__top-cat">
+            <%= t("links.footer.top_labels.communication") %>
+          </h3>
+
+          <ul class="fr-footer__top-list">
+            <li>
+              <%= link_to t("links.footer.releases.label"), t("links.footer.releases.url"), title: t("links.footer.releases.title"), class: "fr-footer__top-link", hreflang: "fr" %>
+            </li>
+
+            <li>
+              <%= link_to t("links.footer.contact.label"), contact_path, class: "fr-footer__top-link" %>
+            </li>
+          </ul>
+        </div>
+
+        <div class="fr-col-12 fr-col-sm-3 fr-col-md-3">
+          <h3 class="fr-footer__top-cat">
+            <%= t("links.footer.top_labels.legals") %>
+          </h3>
+
+          <ul class="fr-footer__top-list">
+            <li>
+              <%= link_to t("links.footer.mentions_legales.label"), MENTIONS_LEGALES_URL, class: "fr-footer__top-link", rel: "noopener noreferrer" %>
+            </li>
+
+            <li>
+              <%= link_to t("links.footer.suivi.label"), suivi_path, class: "fr-footer__top-link", hreflang: "fr" %>
+            </li>
+
+            <li>
+              <%= link_to t("links.footer.stats.label"), stats_path, class: "fr-footer__top-link", hreflang: "fr" %>
+            </li>
+
+            <li>
+              <%= link_to t("links.footer.carte.label"), carte_path, title: t("links.footer.carte.title"), class: "fr-footer__top-link" %>
+            </li>
+
+            <li>
+              <a
+                class="fr-footer__top-link"
+                href="<%= t("links.footer.cgu.url") %>"
+                rel="noopener noreferrer"
+                hreflang="fr"
+              >
+                <abbr title="<%= t("links.footer.cgu.title") %>">
+                  <%= t("links.footer.cgu.label") %>
+                </abbr>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="fr-col-12 fr-col-sm-3 fr-col-md-3">
+          <h3 class="fr-footer__top-cat">
+            <%= t("links.footer.top_labels.resources") %>
+          </h3>
+
+          <ul class="fr-footer__top-list">
+            <li>
+              <%= link_to t("links.footer.doc.label"), t("links.footer.doc.url"), title: t("links.footer.doc.title"), class: "fr-footer__top-link", rel: "noopener noreferrer", hreflang: "fr" %>
+            </li>
+
+            <li>
+              <%= link_to t("links.footer.api_doc.label"), t("links.footer.api_doc.url"), title: t("links.footer.api_doc.title"), class: "fr-footer__top-link", rel: "noopener noreferrer", hreflang: "fr" %>
+            </li>
+
+            <li>
+              <a
+                class="fr-footer__top-link"
+                href="<%= t("links.common.faq.url") %>"
+                rel="noopener noreferrer"
+              >
+                <abbr title="<%= t("links.common.faq.title") %>">
+                  <%= t("links.common.faq.label") %>
+                </abbr>
+              </a>
+            </li>
+
+            <li>
+              <%= link_to t("links.footer.code.label"), t("links.footer.code.url"), class: "fr-footer__top-link", rel: "noopener noreferrer", hreflang: "fr" %>
+            </li>
+          </ul>
+        </div>
+
+        <div class="fr-col-12 fr-col-sm-3 fr-col-md-3">
+          <h3 class="fr-footer__top-cat">
+            <%= t("links.footer.top_labels.diagnostic") %>
+          </h3>
+
+          <ul class="fr-footer__top-list">
+            <li>
+              <%= link_to t("links.footer.status_page.label"), t("links.footer.status_page.url"), title: t("links.footer.status_page.title"), class: "fr-footer__top-link", rel: "noopener noreferrer", hreflang: "fr" %>
+            </li>
+
+            <li>
+              <%= link_to t("links.footer.security.label"), t("links.footer.security.url"), title: t("links.footer.security.title"), class: "fr-footer__top-link", rel: "noopener noreferrer", hreflang: "fr" %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fr-container">
+    <div class="fr-footer__body">
+      <div class="fr-footer__brand fr-enlarge-link" lang="fr">
+        <p class="fr-logo">
+          gouvernement
+        </p>
+
+        <%= link_to t("links.footer.dinum.url"), title: t("links.footer.dinum.title"), hreflang: "fr", class: "fr-footer__brand-link" do %>
+          <%= image_tag("footer/logo-dinum.svg", class: "fr-footer__logo logo-beta-gouv-fr", alt: t("links.footer.dinum.alt")) %>
+        <% end %>
+      </div>
+
+      <div class="fr-footer__content">
+        <p class="fr-footer__content-desc">
+          <%= t("links.footer.description_1", application_name: Current.application_name) %>
+          <%= link_to(t("links.footer.link_1_label"), t("links.footer.link_1_url"), title: new_tab_suffix(t("links.footer.link_1_label")), hreflang: "fr", **external_link_attributes) + "." %>
+        </p>
+
+        <p class="fr-footer__content-desc">
+          <%= link_to(t("links.footer.link_2_label"), t("links.footer.code.url"), title: new_tab_suffix(t("links.footer.link_2_label")), hreflang: "fr", **external_link_attributes) %>
+          <%= t("links.footer.description_2") %>
+        </p>
+
+        <%= render partial: "shared/footer_content_list" %>
+      </div>
+    </div>
+
+    <div class="fr-footer__bottom">
+      <%= render partial: "general_footer_row" %>
+      <%= render partial: "shared/footer_copy" %>
+    </div>
+  </div>
+</footer>
