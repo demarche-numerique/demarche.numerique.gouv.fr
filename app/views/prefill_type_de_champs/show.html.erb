@@ -1,0 +1,65 @@
+<%- content_for(:title, @procedure.libelle) %>
+
+<%- content_for :footer do %>
+  <%= render partial: "root/footer" %>
+<%- end %>
+
+<div class="container fr-py-5w">
+  <div class="card">
+    <div class="card-title flex justify-between align-center">
+      <%= @type_de_champ.libelle %>
+    </div>
+
+    <%= @type_de_champ.description %>
+  </div>
+
+  <table class="table vertical">
+    <tbody>
+      <tr>
+        <th>
+          <%= t("views.prefill_descriptions.edit.champ_id") %>
+        </th>
+
+        <td>
+          <%= @type_de_champ.to_typed_id_for_query %>
+        </td>
+      </tr>
+
+      <tr>
+        <th>
+          <%= t("views.prefill_descriptions.edit.champ_type") %>
+        </th>
+
+        <td>
+          <%= t("activerecord.attributes.type_de_champ.type_champs.#{@type_de_champ.type_champ}") %>
+        </td>
+      </tr>
+
+      <tr>
+        <th>
+          <%= t("views.prefill_descriptions.edit.possible_values.title") %>
+        </th>
+
+        <td>
+          <div class="fr-grid-row fr-grid-row--gutters fr-py-5w">
+            <%- @type_de_champ.all_possible_values.each do |possible_value| %>
+              <div class="fr-col-md-4 fr-col-sm-6 fr-col-12">
+                <%= possible_value %>
+              </div>
+            <%- end %>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <th>
+          <%= t("views.prefill_descriptions.edit.examples.title") %>
+        </th>
+
+        <td>
+          <%= @type_de_champ.example_value %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
