@@ -1,0 +1,23 @@
+<% if FranceConnectService.enabled? -%>
+  <div class="france-connect-login">
+    <%= tag.public_send(local_assigns.fetch(:heading_level, :h2), class: "fr-h6 fr-mb-0") do -%>
+      <%= t('views.shared.france_connect_login.commencer_title') %>
+    <% end -%>
+
+    <div class="fr-connect-group fr-my-2w">
+      <%= link_to(url, class: "fr-btn fr-connect") do -%>
+        <span class="fr-connect__login">
+          <%= t('views.shared.france_connect_login.login_button') %>
+        </span>
+
+        <span class="fr-connect__brand">FranceConnect</span>
+      <% end -%>
+
+      <p>
+        <%= link_to t('views.shared.france_connect_login.help_link'), "https://franceconnect.gouv.fr/", title: new_tab_suffix(t('views.shared.france_connect_login.help_link')), **external_link_attributes %>
+      </p>
+    </div>
+  </div>
+<% else -%>
+  <!-- FranceConnect is not configured -->
+<% end -%>
