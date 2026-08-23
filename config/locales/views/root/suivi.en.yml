@@ -1,0 +1,12 @@
+# frozen_string_literal: true
+
+en:
+  root:
+    suivi:
+      title: "Tracking"
+      cookies_config_title: "Cookies and tracking configuration"
+      cookie_description: "This website places a small text file (a « cookie ») on your computer when you visit it. This allows us to measure the number of visits and understand which pages are the most consulted."
+      no_consent_banner_title: "This website does not display a cookie consent banner, why?"
+      no_consent_banner_text_html: "That's right, you didn't have to click on a block covering half the page to say you agree with the use of cookies.<br><br>Nothing exceptional, no special treatment. We simply comply with the law, which states that certain audience measurement tools, properly configured to respect privacy, are exempt from prior authorisation.<br><br>To achieve this we use <a href=\"https://matomo.org/\" target=\"_blank\" rel=\"noopener\">Matomo</a>, an <a href=\"https://matomo.org/free-software/\" target=\"_blank\" rel=\"noopener\">open-source</a> tool, configured to comply with the <a href=\"https://www.cnil.fr/fr/solutions-pour-la-mesure-daudience\">CNIL's « Cookies » recommendation</a>. This means that your IP address, for example, is anonymised before being recorded. It is therefore impossible to associate your visits to this site with your identity."
+      disable_tracking_title: "How to disable statistical tracking in my browser?"
+      disable_tracking_text: "If you wish to disable this statistical tracking, simply enable the « Do Not Track » feature in your browser. Our tracking tool will take it into account and stop including your visits in the statistics."

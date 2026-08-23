@@ -1,0 +1,27 @@
+<%- content_for(:title, t(".title")) -%>
+
+<%- content_for :footer do -%>
+  <%= render partial: "root/footer" %>
+<%- end -%>
+
+<div class="fr-container">
+  <h1 class="fr-my-4w"><%= t(".cookies_config_title") %></h1>
+
+  <p>
+    <%= t(".cookie_description") %>
+  </p>
+
+  <iframe src="<%= MATOMO_IFRAME_URL %>"></iframe>
+
+  <h2 class="fr-my-4w"><%= t(".no_consent_banner_title") %></h2>
+
+  <p>
+    <%= t(".no_consent_banner_text_html") %>
+  </p>
+
+  <h2 class="fr-my-4w"><%= t(".disable_tracking_title") %></h2>
+
+  <p>
+    <%= t(".disable_tracking_text") %>
+  </p>
+</div>
