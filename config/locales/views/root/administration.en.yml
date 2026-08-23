@@ -1,0 +1,31 @@
+# frozen_string_literal: true
+
+en:
+  root:
+    administration:
+      hero_title: "Digitize and simplify your administrative procedures"
+      role_title: "Is it right for your administration?"
+      role_description: "Discover our tool and ask us your questions during our online demo or read our documentation"
+      demo_video_link: "Watch our demo video"
+      documentation_link: "Documentation"
+      ready_title: "Your administration is ready to digitize"
+      ready_description: "Create a first test form in just a few minutes"
+      create_admin_account: "Create your administrator account"
+      feature_dialogue: "Dialogue"
+      feature_dialogue_desc: "simplified between users and services"
+      feature_collaboration: "Collaboration"
+      feature_collaboration_desc: "for smoother file processing"
+      feature_integration: "Integration"
+      feature_integration_desc: "with all state platform services"
+      numbers_title: "%{app_name} by numbers"
+      numbers_partner_administrations: "partner administrations"
+      numbers_submitted_dossiers: "submitted dossiers"
+      numbers_reduction: "reduction in processing times"
+      card_ready_title: "Ready to digitize?"
+      card_ready_desc: "Reduce your processing times by 50%"
+      card_know_more_title: "Want to learn more?"
+      card_know_more_desc: "Join our next webinar"
+      webinar_link: "Sign up for our next webinar"
+      help_title: "A question, a problem?"
+      help_description: "Check out our FAQ"
+      faq_link: "See the FAQ"

@@ -1,0 +1,197 @@
+<% content_for :footer do %>
+  <%= render partial: "root/footer" %>
+<% end %>
+
+<div class="landing">
+  <div class="fr-py-6w">
+    <div class="container">
+      <div class="hero-wrapper">
+        <div class="hero-text">
+          <h1 class="fr-mb-0">
+            <%= t(".hero_title") %>
+          </h1>
+        </div>
+
+        <div class="hero-illustration">
+          <img src="<%= image_url("landing/hero/dematerialiser.svg") %>" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fr-py-6w fr-background-alt--blue-france">
+    <div class="container">
+      <div class="role-panel-wrapper role-administrations-panel">
+        <div class="role-panel-70">
+          <h2><%= t(".role_title") %></h2>
+
+          <p class="fr-h5"><%= t(".role_description") %></p>
+
+          <%= link_to t(".demo_video_link"), DEMO_VIDEO_URL, class: "fr-btn fr-btn--lg fr-mr-1w fr-mb-2w", **external_link_attributes %>
+          <%= link_to t(".documentation_link"), DOC_URL, class: "fr-btn fr-btn--secondary fr-btn--lg", **external_link_attributes %>
+        </div>
+
+        <div class="role-panel-30 role-more-info-image fr-mt-2w">
+          <img
+            class="role-image"
+            src="<%= image_url("landing/roles/usagers.svg") %>"
+            alt=""
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fr-py-6w">
+    <div class="container">
+      <div class="role-panel-wrapper role-administrations-panel">
+        <div class="role-panel-30 role-administrations-image">
+          <img
+            class="role-image"
+            src="<%= image_url("landing/roles/administrations.svg") %>"
+            alt=""
+          >
+        </div>
+
+        <div class="role-panel-70">
+          <h2><%= t(".ready_title") %></h2>
+
+          <p class="fr-h5"><%= t(".ready_description") %></p>
+
+          <%= link_to t(".create_admin_account"), DEMANDE_INSCRIPTION_ADMIN_PAGE_URL, class: "fr-btn fr-btn--lg" %>
+
+          <br>
+          <br>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fr-py-6w fr-background-flat--blue-france fr-text-inverted--blue-france">
+    <div class="container">
+      <ul class="features">
+        <li class="feature">
+          <img
+            class="feature-image"
+            src="<%= image_url("landing/features/messagerie.svg") %>"
+            alt=""
+          >
+
+          <p class="feature-text">
+            <em class="feature-text-em"><%= t(".feature_dialogue") %></em>
+            <br>
+            <%= t(".feature_dialogue_desc") %>
+          </p>
+        </li>
+
+        <li class="feature">
+          <img
+            class="feature-image"
+            src="<%= image_url("landing/features/collaborer.svg") %>"
+            alt=""
+          >
+
+          <p class="feature-text">
+            <em class="feature-text-em"><%= t(".feature_collaboration") %></em>
+            <br>
+            <%= t(".feature_collaboration_desc") %>
+          </p>
+        </li>
+
+        <li class="feature">
+          <img
+            class="feature-image"
+            src="<%= image_url("landing/features/gerer.svg") %>"
+            alt=""
+          >
+
+          <p class="feature-text">
+            <em class="feature-text-em"><%= t(".feature_integration") %></em>
+            <br>
+            <%= t(".feature_integration_desc") %>
+          </p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <%= render partial: "root/testimonials" if LANDING_TESTIMONIALS_ENABLED %>
+
+  <% cache([I18n.locale, "numbers-panel"], expires_in: 3.hours) do %>
+    <div class="fr-py-6w fr-background-alt--blue-france">
+      <div class="container">
+        <h2 class="center fr-mb-4w">
+          <%= t(".numbers_title", app_name: Current.application_name) %>
+        </h2>
+
+        <dl class="numbers">
+          <div class="number">
+            <dt class="number-label">
+              <%= t(".numbers_partner_administrations") %>
+            </dt>
+
+            <dd class="number-value">
+              <%= number_with_delimiter(Administrateur.with_publiees_ou_closes.uniq.count, :locale => :fr) %>
+            </dd>
+          </div>
+
+          <div class="number">
+            <dt class="number-label">
+              <%= t(".numbers_submitted_dossiers") %>
+            </dt>
+
+            <dd class="number-value">
+              <%= number_with_delimiter(Dossier.state_not_brouillon.count, :locale => :fr) %>
+            </dd>
+          </div>
+
+          <div class="number">
+            <dt class="number-label"><%= t(".numbers_reduction") %></dt>
+
+            <dd class="number-value">
+              <%= "#{number_with_delimiter(50, :locale => :fr)} %" %>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  <% end %>
+
+  <%= render partial: "root/users" if LANDING_USERS_ENABLED %>
+
+  <div class="container">
+    <div class="fr-grid-row fr-grid-row--gutters fr-py-5w">
+      <div class="fr-col-md-6 fr-col-12">
+        <%= render Dsfr::CardVerticalComponent.new(title: t(".card_ready_title"), desc: t(".card_ready_desc")) do |c| %>
+          <% c.with_footer_button do %>
+            <%= link_to(t(".create_admin_account"), DEMANDE_INSCRIPTION_ADMIN_PAGE_URL, class: "fr-btn", **external_link_attributes) %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="fr-col-md-6 fr-col-12">
+        <%= render Dsfr::CardVerticalComponent.new(title: t(".card_know_more_title"), desc: t(".card_know_more_desc")) do |c| %>
+          <% c.with_footer_button do %>
+            <%= link_to(t(".webinar_link"), INSCRIPTION_WEBINAIRE_URL, class: "fr-btn", **external_link_attributes) %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="fr-py-6w fr-background-alt--blue-france">
+    <div class="container">
+      <div class="cta-panel-wrapper">
+        <div>
+          <h2><%= t(".help_title") %></h2>
+          <p class="fr-h5"><%= t(".help_description") %></p>
+        </div>
+
+        <div>
+          <%= link_to t(".faq_link"), t("links.common.faq.url"), class: "fr-btn fr-btn--lg", **external_link_attributes %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+# frozen_string_literal: true
+
+fr:
+  root:
+    administration:
+      hero_title: "Dématérialisez et simplifiez vos démarches administratives"
+      role_title: "Est-ce fait pour mon administration ?"
+      role_description: "Découvrez notre outil et posez nous vos questions lors de notre démonstration en ligne ou lisez notre documentation"
+      demo_video_link: "Consulter notre vidéo de démonstration"
+      documentation_link: "Documentation"
+      ready_title: "Votre administration est prête pour dématérialiser"
+      ready_description: "Créez un premier formulaire de test en quelques minutes"
+      create_admin_account: "Créer votre compte administrateur"
+      feature_dialogue: "Dialogue"
+      feature_dialogue_desc: "simplifié entre usagers et services"
+      feature_collaboration: "Collaboration"
+      feature_collaboration_desc: "pour un traitement des dossiers plus fluide"
+      feature_integration: "Intégration"
+      feature_integration_desc: "à l’ensemble des services de l’État plateforme"
+      numbers_title: "%{app_name} en chiffres"
+      numbers_partner_administrations: "administrations partenaires"
+      numbers_submitted_dossiers: "dossiers déposés"
+      numbers_reduction: "de réduction des délais de traitement"
+      card_ready_title: "Vous êtes prêt pour dématérialiser ?"
+      card_ready_desc: "Réduisez vos temps d’instruction de 50 %"
+      card_know_more_title: "Vous voulez en savoir plus ?"
+      card_know_more_desc: "Participez à notre prochain Webinaire"
+      webinar_link: "Inscription à notre prochain webinaire"
+      help_title: "Une question, un problème ?"
+      help_description: "Consultez notre FAQ"
+      faq_link: "Voir la FAQ"
