@@ -1,0 +1,5 @@
+<ul class="list-style-type-none fr-pl-0">
+  <% object.errors.full_messages_for(attribute).each do |error_message| %>
+    <li><%= error_message %></li>
+  <% end %>
+</ul>
