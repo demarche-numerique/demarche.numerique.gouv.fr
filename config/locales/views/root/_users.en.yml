@@ -1,0 +1,14 @@
+en:
+  root:
+    users:
+      already_users: "Already used by %{app_name}"
+      mtes: "Ministry of Ecological and Solidarity Transition"
+      region_idf: "Île-de-France Region"
+      chambres_metiers: "Chambers of Crafts and Trades"
+      cci: "CCI France"
+      driea_idf: "Regional and Interdepartmental Directorate for Equipment and Planning"
+      cndp: "National Commission for Public Debate"
+      ars_idf: "Île-de-France Regional Health Agency"
+      france_agrimer: "FranceAgrimer"
+      prefecture_rhone: "Prefecture of the Rhône-Alpes region"
+      mel: "European Metropolis of Lille"

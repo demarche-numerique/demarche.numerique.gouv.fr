@@ -1,0 +1,71 @@
+<div class="fr-py-6w">
+  <div class="container">
+    <h2 class="center fr-mb-4w">
+      <%= t(".already_users", app_name: Current.application_name) %>
+    </h2>
+
+    <ul class="users">
+      <li class="user">
+        <%= link_to "https://www.ecologique-solidaire.gouv.fr/", target: :blank, rel: "noopener noreferrer" do %>
+          <%= image_tag("landing/users/mtes.jpg", alt: t(".mtes"), class: "user-image") %>
+        <% end %>
+      </li>
+
+      <li class="user">
+        <%= link_to "https://www.iledefrance.fr/", target: :blank, rel: "noopener noreferrer" do %>
+          <%= image_tag("landing/users/region-idf.jpg", alt: t(".region_idf"), class: "user-image") %>
+        <% end %>
+      </li>
+
+      <li class="user">
+        <%= link_to "http://www.artisanat.fr/", target: :blank, rel: "noopener noreferrer" do %>
+          <%= image_tag("landing/users/chambres-de-metiers.jpg", alt: t(".chambres_metiers"), class: "user-image") %>
+        <% end %>
+      </li>
+
+      <li class="user">
+        <%= link_to "http://www.cci.fr/", target: :blank, rel: "noopener noreferrer" do %>
+          <%= image_tag("landing/users/cci.jpg", alt: t(".cci"), class: "user-image") %>
+        <% end %>
+      </li>
+
+      <li class="user">
+        <%= link_to "http://www.driea.ile-de-france.developpement-durable.gouv.fr/", target: :blank, rel: "noopener noreferrer" do %>
+          <%= image_tag("landing/users/driea-idf.jpg", alt: t(".driea_idf"), class: "user-image") %>
+        <% end %>
+      </li>
+    </ul>
+
+    <ul class="users">
+      <li class="user">
+        <%= link_to "https://www.debatpublic.fr/", target: :blank, rel: "noopener noreferrer" do %>
+          <%= image_tag("landing/users/cndp.jpg", alt: t(".cndp"), class: "user-image") %>
+        <% end %>
+      </li>
+
+      <li class="user">
+        <%= link_to "https://www.iledefrance.ars.sante.fr/", target: :blank, rel: "noopener noreferrer" do %>
+          <%= image_tag("landing/users/ars-idf.jpg", alt: t(".ars_idf"), class: "user-image") %>
+        <% end %>
+      </li>
+
+      <li class="user">
+        <%= link_to "http://www.franceagrimer.fr/", target: :blank, rel: "noopener noreferrer" do %>
+          <%= image_tag("landing/users/france-agrimer.jpg", alt: t(".france_agrimer"), class: "user-image") %>
+        <% end %>
+      </li>
+
+      <li class="user">
+        <%= link_to "http://www.rhone.gouv.fr/", target: :blank, rel: "noopener noreferrer" do %>
+          <%= image_tag("landing/users/prefecture-rhone.jpg", alt: t(".prefecture_rhone"), class: "user-image") %>
+        <% end %>
+      </li>
+
+      <li class="user">
+        <%= link_to "http://www.lillemetropole.fr/", target: :blank, rel: "noopener noreferrer" do %>
+          <%= image_tag("landing/users/mel.jpg", alt: t(".mel"), class: "user-image") %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>

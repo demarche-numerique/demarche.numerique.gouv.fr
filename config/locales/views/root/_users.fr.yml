@@ -1,0 +1,14 @@
+fr:
+  root:
+    users:
+      already_users: "Ils utilisent déjà %{app_name}"
+      mtes: "Ministère de la Transition Écologique et Solidaire"
+      region_idf: "Région Île-de-France"
+      chambres_metiers: "Chambres des Métiers et de l’Artisanat"
+      cci: "CCI de France"
+      driea_idf: "Direction Régionale et Interdépartementale de l’Équipement et de l’Aménagement"
+      cndp: "Commission Nationale du Débat Public"
+      ars_idf: "Agence Régionale de Santé d’Île-de-France"
+      france_agrimer: "FranceAgrimer"
+      prefecture_rhone: "Préfecture de la région Rhône-Alpes"
+      mel: "Métropole Européenne de Lille"
