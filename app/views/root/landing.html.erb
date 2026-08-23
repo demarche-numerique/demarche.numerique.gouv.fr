@@ -1,0 +1,124 @@
+<% content_for :footer do %>
+  <%= render partial: "root/footer" %>
+<% end -%>
+
+<% content_for :title, t(".promise") -%>
+
+<div class="landing">
+  <div class="fr-py-6w">
+    <div class="container">
+      <div class="hero-wrapper">
+        <div class="hero-text">
+          <h1 class="fr-mb-0">
+            <%= t(".promise") %>
+          </h1>
+        </div>
+
+        <div class="hero-illustration">
+          <img
+            src="<%= image_url("landing/hero/dematerialiser.svg") %>"
+            alt=""
+            width="499"
+            height="280"
+            loading="lazy"
+            aria-hidden="true"
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fr-background-alt--blue-france fr-py-6w">
+    <div class="container">
+      <div class="role-panel-wrapper">
+        <div class="role-panel-30 role-usagers-image">
+          <img
+            src="<%= image_url("landing/roles/usagers.svg") %>"
+            alt=""
+            width="176"
+            height="180"
+            loading="lazy"
+            class="role-image"
+          >
+        </div>
+
+        <div class="role-panel-70">
+          <h2><%= t(".have_a_procedure") %></h2>
+
+          <p class="fr-h5"><%= t(".fill_procedure") %></p>
+
+          <%= link_to t(".how_to_find_procedure"), t("links.common.faq.comment_trouver_ma_demarche_url"), class: "fr-btn fr-btn--lg fr-mr-1w fr-mb-2w", title: new_tab_suffix(t(".how_to_find_procedure")) %>
+          <%= link_to t("views.users.sessions.new.connection"), new_user_session_path(with_proconnect: true), class: "fr-btn fr-btn--secondary fr-btn--lg" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fr-py-6w">
+    <div class="container">
+      <h2 class="center fr-mb-4w">
+        <%= t(".our_numbers", name: Current.application_name) %>
+      </h2>
+
+      <% cache [I18n.locale, "numbers-panel"], expires_in: 3.hours do -%>
+        <dl class="numbers">
+          <div class="number">
+            <dt class="number-label"><%= t(".numbers.administrations") %></dt>
+
+            <dd class="number-value">
+              <%= number_with_delimiter(@stat&.administrations_partenaires) %>
+            </dd>
+          </div>
+
+          <div class="number">
+            <dt class="number-label"><%= t(".numbers.files") %></dt>
+
+            <dd class="number-value">
+              <%= number_with_delimiter(@stat&.dossiers_not_brouillon) %>
+            </dd>
+          </div>
+
+          <div class="number">
+            <dt class="number-label number-label-third">
+              <%= t(".numbers.processing_time") %>
+            </dt>
+
+            <dd class="number-value">
+              <%= "#{number_with_delimiter(50)} %" %>
+            </dd>
+          </div>
+        </dl>
+      <% end -%>
+    </div>
+  </div>
+
+  <div class="fr-background-alt--blue-france fr-py-6w">
+    <div class="container">
+      <div class="cta-panel-wrapper">
+        <div>
+          <h2><%= t(".question") %></h2>
+          <p class="fr-h5"><%= t(".answer_in_faq") %></p>
+        </div>
+
+        <div>
+          <%= link_to t(".online_help"), t("links.common.faq.url"), class: "fr-btn fr-btn--lg", title: t(".online_help") %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fr-py-6w">
+    <div class="container">
+      <div class="cta-panel-wrapper">
+        <div>
+          <h2><%= t(".administration_dematerialize") %></h2>
+          <p class="fr-h5"><%= t(".administration_fill_online") %></p>
+        </div>
+
+        <div>
+          <%= link_to t(".administration_discover"), administration_path, class: "fr-btn fr-btn--lg" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
