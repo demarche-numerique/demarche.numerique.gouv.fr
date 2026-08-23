@@ -1,0 +1,477 @@
+<div class="patron">
+  <div class="container">
+    <h1><%= t(".icons") %></h1>
+
+    <span class="icon follow"></span>
+    <span class="icon unfollow"></span>
+    <span class="icon unarchive"></span>
+    <span class="icon edit"></span>
+    <span class="icon bubble"></span>
+    <span class="icon attached"></span>
+    <span class="icon lock"></span>
+    <span class="icon add"></span>
+    <span class="icon justificatif"></span>
+    <span class="icon printer"></span>
+    <span class="icon account"></span>
+    <span class="icon super-admin"></span>
+    <span class="icon mail"></span>
+    <span class="icon reply"></span>
+    <span class="icon search"></span>
+    <span class="icon sign-out"></span>
+    <span class="icon info"></span>
+    <span class="icon help"></span>
+    <span class="icon phone"></span>
+    <span class="icon clock"></span>
+    <span class="icon preview"></span>
+    <span class="icon retry"></span>
+    <span class="icon download"></span>
+    <span class="icon frown"></span>
+    <span class="icon meh"></span>
+    <span class="icon smile"></span>
+
+    <h1><%= t(".forms") %></h1>
+
+    <form class="form">
+      <%= form_for @dossier, url: '', html: { class: 'form' } do |f| -%>
+        <%= render EditableChamp::SectionComponent.new(dossier: @dossier, types_de_champ: @dossier.revision.root_types_de_champ_public) %>
+
+        <div class="editable-champ editable-champ-text">
+          <label><%= t(".password") %></label>
+          <input type="password" value="12345678">
+        </div>
+
+        <h3 class="fr-h5"><%= t(".vertical_radio_buttons") %></h3>
+
+        <div class="radios vertical">
+          <%= f.label :archived, value: true do -%>
+            <%= f.radio_button :archived, true %>
+            <%= t(".option_a") %>
+
+            <p class="notice"><%= t(".option_a_desc") %></p>
+          <%- end -%>
+
+          <%= f.label :archived, value: false do -%>
+            <%= f.radio_button :archived, false %>
+            <%= t(".option_b") %>
+
+            <p class="notice"><%= t(".option_b_desc") %></p>
+          <%- end -%>
+        </div>
+
+        <h3 class="fr-h5"><%= t(".toggle_switch") %></h3>
+
+        <label class="toggle-switch">
+          <%= f.check_box :archived, class: 'toggle-switch-checkbox' %>
+          <span class="toggle-switch-control round"></span>
+          <span class="toggle-switch-label on"><%= t(".enabled") %></span>
+          <span class="toggle-switch-label off"><%= t(".disabled") %></span>
+        </label>
+
+        <div class="send-wrapper">
+          <%= f.submit t(".save_draft"), formnovalidate: true, class: 'button send' %>
+          <%= f.submit t(".submit"), class: 'button send primary' %>
+        </div>
+
+        <hr>
+      <%- end -%>
+    </form>
+
+    <h1><%= t(".buttons") %></h1>
+
+    <div class="patron-section">
+      <%= link_to ".button", "", class: "button" %>
+
+      <%= link_to ".button.primary", "", class: "button primary" %>
+
+      <%= link_to ".button.secondary", "", class: "button secondary" %>
+
+      <%= link_to ".button.danger", "", class: "button danger" %>
+
+      <%= link_to "", class: "button" do -%>
+        <span class="icon follow"></span>
+        <%= t(".button_with_icon_and_text") %>
+      <%- end -%>
+
+      <%= link_to "", class: "button icon-only" do -%>
+        <span class="icon follow"></span>
+      <%- end -%>
+    </div>
+
+    <div class="patron-section">
+      <button class="button" disabled>.button.disabled</button>
+
+      <button class="button primary" disabled>.button.primary.disabled</button>
+
+      <button class="button secondary" disabled>
+        .button.secondary.disabled
+      </button>
+
+      <button class="button danger" disabled>.button.danger.disabled</button>
+    </div>
+
+    <div class="patron-section">
+      <%= link_to ".button.accepted", "", class: "button accepted" %>
+
+      <%= link_to ".button.refused", "", class: "button refused" %>
+
+      <%= link_to ".button.without-continuation", "", class: "button without-continuation" %>
+    </div>
+
+    <div class="patron-section">
+      <%= link_to ".button.small", "", class: "button small" %>
+
+      <%= link_to ".button.small.primary", "", class: "button small primary" %>
+    </div>
+
+    <div class="patron-section">
+      <%= link_to ".button.large", "", class: "button large" %>
+
+      <%= link_to ".button.large.primary", "", class: "button large primary" %>
+    </div>
+
+    <div class="patron-section">
+      <%= link_to ".button.primary.expand", "", class: "button primary expand" %>
+    </div>
+
+    <h1><%= t(".dropdown") %></h1>
+
+    <div class="dropdown">
+      <div class="button primary dropdown-button">
+        .button.primary.dropdown-button
+      </div>
+
+      <div class="dropdown-content fade-in-down">
+        <ul class="dropdown-items">
+          <li>.dropdown-content ul.dropdown-items li</li>
+          <li>.dropdown-content ul.dropdown-items li</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <div class="button dropdown-button">.button.dropdown-button</div>
+
+      <div class="dropdown-content fade-in-down">
+        <ul class="dropdown-items">
+          <li>
+            <a href="">
+              <span class="icon mail"></span>
+
+              <div class="dropdown-description">
+                <h4><%= t(".action") %></h4>
+                <p><%= t(".explanation") %></p>
+              </div>
+            </a>
+          </li>
+
+          <li>
+            <a href="">
+              <span class="icon edit"></span>
+
+              <div class="dropdown-description">
+                <h4><%= t(".other_action") %></h4>
+                <p><%= t(".explanation") %></p>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <div class="button dropdown-button">.button.dropdown-button (left)</div>
+
+      <div class="dropdown-content fade-in-down left-aligned">
+        <ul class="dropdown-items">
+          <li>.dropdown-content.left-aligned ul.dropdown-items li</li>
+          <li>.dropdown-content.left-aligned ul.dropdown-items li</li>
+        </ul>
+      </div>
+    </div>
+
+    <h1><%= t(".labels") %></h1>
+
+    <span class="label">.label</span>
+    <span class="label brouillon">.label.brouillon</span>
+    <span class="label instruction">.label.instruction</span>
+    <span class="label construction">.label.construction</span>
+    <span class="label accepted">.label.accepted</span>
+    <span class="label refused">.label.refused</span>
+    <span class="label without-continuation">.label.without-continuation</span>
+
+    <h1><%= t(".cards") %></h1>
+
+    <div class="card">
+      <div class="card-title">
+        <%= t(".card_title") %>
+      </div>
+
+      <p><%= t(".card_content") %></p>
+    </div>
+
+    <div class="card feedback">
+      <div class="card-title">
+        <%= t(".feedback_card_title") %>
+      </div>
+
+      <p><%= t(".feedback_card_content") %></p>
+    </div>
+
+    <h1><%= t(".table") %></h1>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th><%= t(".header_1") %></th>
+          <th><%= t(".header_2") %></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><%= t(".table_data_1") %></td>
+          <td><%= t(".table_data_2") %></td>
+        </tr>
+
+        <tr>
+          <td><%= t(".table_data_3") %></td>
+          <td><%= t(".table_data_4") %></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2><%= t(".vertical_table") %></h2>
+
+    <table class="table vertical">
+      <tbody>
+        <tr>
+          <th><%= t(".header_1") %></th>
+          <td><%= t(".table_data_1") %></td>
+        </tr>
+
+        <tr>
+          <th><%= t(".header_2") %></th>
+          <td><%= t(".table_data_2") %></td>
+        </tr>
+
+        <tr>
+          <th class="header-section" colspan="2">
+            <%= t(".header_section") %>
+          </th>
+        </tr>
+
+        <tr>
+          <th><%= t(".header_3") %></th>
+          <td><%= t(".table_data_3") %></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h1><%= t(".header") %></h1>
+  </div>
+
+  <div class="sub-header">
+    <div class="container">
+      <%= t(".title") %>
+
+      <nav class="fr-tabs" role="navigation">
+        <ul class="fr-tabs__list">
+          <%= tab_item(t(".active_tab"), "", active: true) %>
+          <%= tab_item(t(".inactive_tab"), "") %>
+          <%= tab_item(t(".tab_with_badge"), "", badge: 2) %>
+          <%= tab_item(t(".tab_with_notification"), "", notification: true) %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1><%= t(".breadcrumbs") %></h1>
+
+    <ul class="breadcrumbs">
+      <li>
+        <%= link_to t(".demarche_123"), "" %>
+      </li>
+
+      <li>
+        <%= t(".dossier_38") %>
+      </li>
+    </ul>
+
+    <h1><%= t(".two_column_layout") %></h1>
+  </div>
+
+  <div class="two-columns">
+    <div class="columns-container">
+      <div class="column">
+        <%= t(".column_1_content") %>
+      </div>
+
+      <div class="column">
+        <%= t(".column_2_content") %>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <section class="ask-avis">
+      <h1><%= t(".invite_person") %></h1>
+
+      <p class="avis-notice"><%= t(".avis_notice") %></p>
+
+      <%= form_for Avis.new, url: '/', html: { class: 'form' } do |f| -%>
+        <%= f.text_area :introduction, rows: 3, value: t(".avis_intro_default"), required: true %>
+
+        <div class="send-wrapper">
+          <%= f.submit t(".ask_avis"), class: 'button send' %>
+        </div>
+      <%- end -%>
+    </section>
+
+    <section class="list-avis">
+      <h1 class="title">
+        <%= t(".avis_list_title") %>
+        <span class="fr-badge">1</span>
+      </h1>
+
+      <ul>
+        <li class="one-avis">
+          <h2 class="claimant">
+            <%= t(".you") %>
+            <span class="date"><%= t(".avis_sent_date") %></span>
+          </h2>
+
+          <p><%= t(".avis_intro_default") %></p>
+
+          <div class="answer flex align-start">
+            <div class="icon bubble avis-icon"></div>
+
+            <div class="width-100">
+              <h2 class="instructeur">
+                <%= Current.contact_email %>
+                <span class="date"><%= t(".avis_answer_date") %></span>
+              </h2>
+
+              <p><%= t(".avis_favorable") %></p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="container">
+    <h2 class="empty-text"><%= t(".empty_text") %></h2>
+    <p class="empty-text-details"><%= t(".empty_text_details") %></p>
+  </div>
+
+  <div class="container">
+    <h1><%= t(".dsfr_callout") %></h1>
+
+    <p>
+      <%= link_to t(".dsfr_callout_doc"), "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/mise-en-avant", external_link_attributes %>
+    </p>
+
+    <%= render Dsfr::CalloutComponent.new(title: t(".callout_minimal_title")) do |c| -%>
+      <%- c.with_body do -%>
+        <p><%= t(".callout_minimal_body") %></p>
+      <%- end -%>
+    <%- end -%>
+
+    <%= render Dsfr::CalloutComponent.new(title: t(".callout_warning_title"), theme: :warning) do |c| -%>
+      <%- c.with_body do -%>
+        <%= t(".callout_warning_body") %>
+      <%- end -%>
+
+      <%- c.with_bottom do -%>
+        <button class="fr-btn"><%= t(".call_to_action") %></button>
+      <%- end -%>
+    <%- end -%>
+
+    <%= render Dsfr::CalloutComponent.new(title: t(".callout_success_title"), theme: :success, icon: "fr-icon-message-2-fill") do |c| -%>
+      <%- c.with_body do -%>
+        <p>
+          <%= t(".callout_success_body") %>
+          <%= link_to(t(".callout_success_icons"), "https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/icones", external_link_attributes) %>
+          <%= t(".callout_success_can_use") %>
+        </p>
+      <%- end -%>
+    <%- end -%>
+
+    <h1><%= t(".dsfr_card") %></h1>
+
+    <p>
+      <%= link_to t(".dsfr_card_doc"), "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/carte", external_link_attributes %>
+    </p>
+
+    <div class="fr-grid-row fr-grid-row--gutters fr-py-5w">
+      <div class="fr-col-md-6 fr-col-12">
+        <%= render Dsfr::CardVerticalComponent.new(title: t(".optional_title"), desc: t(".optional_description")) %>
+      </div>
+
+      <div class="fr-col-md-6 fr-col-12">
+        <%= render Dsfr::CardVerticalComponent.new(title: t(".with_footer_buttons")) do |c| -%>
+          <%- c.with_footer_button do -%>
+            <%= link_to t(".button_1"), "", { class: "fr-btn" }.merge(external_link_attributes) %>
+          <%- end -%>
+
+          <%- c.with_footer_button do -%>
+            <%= button_tag t(".button_2"), class: "fr-btn fr-btn--secondary" %>
+          <%- end -%>
+        <%- end -%>
+      </div>
+    </div>
+
+    <h1><%= t(".dsfr_notice") %></h1>
+
+    <p>
+      <%= link_to t(".dsfr_notice_doc"), "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/bandeau-d-information-importante", external_link_attributes %>
+    </p>
+
+    <div class="fr-my-6v">
+      <%= render Dsfr::NoticeComponent.new(closable: true) do |c| -%>
+        <%- c.with_title do -%>
+          <%= t(".notice_title") %>
+          <%= link_to t(".notice_link"), "" %>
+          <%= t(".notice_margins") %>
+        <%- end -%>
+      <%- end -%>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1 class="fr-mt-4w"><%= t(".file_field_title") %></h1>
+    <span class="fr-hint-text"><%= t(".file_field_note") %></span>
+
+    <%- champ = @dossier.root_champs_public.find { _1.type_champ == TypeDeChamp.type_champs.fetch(:piece_justificative) } -%>
+    <%- tdc = champ.type_de_champ -%>
+    <%- avis = Avis.new -%>
+
+    <%- if attachment = ActiveStorage::Attachment.last -%>
+      <%- attachment.update(created_at: 1.second.ago) -%>
+      <h3><%= t(".new_attachment") %></h3>
+      <%= render Attachment::FileFieldComponent.new(context: Attachment::Context.new(champ:), drop_zone: :none) %>
+      <h3 class="fr-mt-4w"><%= t(".existing_attachment") %></h3>
+      <%= render Attachment::FileFieldComponent.new(context: Attachment::Context.new(champ:), drop_zone: :none) %>
+      <h3 class="fr-mt-4w"><%= t(".existing_attachment_no_destroy") %></h3>
+      <%= render Attachment::FileFieldComponent.new(context: Attachment::Context.new(champ:, user_can_destroy: false), drop_zone: :none) %>
+      <h3 class="fr-mt-4w"><%= t(".existing_attachment_error") %></h3>
+      <%- attachment.blob.metadata[:virus_scan_result] = ActiveStorage::VirusScanner::INFECTED -%>
+      <%= render Attachment::FileFieldComponent.new(context: Attachment::Context.new(champ:), drop_zone: :none) %>
+      <h3 class="fr-mt-4w"><%= t(".new_attachment_on_tdc") %></h3>
+      <%= render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: tdc.piece_justificative_template, auto_attach_url: "/some-auto-attach-path"), drop_zone: :none) %>
+      <h3 class="fr-mt-4w"><%= t(".existing_attachment_on_tdc_as_link") %></h3>
+      <%= render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: tdc.piece_justificative_template, auto_attach_url: "/some-auto-attach-path"), drop_zone: :none) %>
+      <h3 class="fr-mt-4w">
+        <%= t(".existing_attachment_on_tdc_as_download") %>
+      </h3>
+      <%= render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: tdc.piece_justificative_template, auto_attach_url: "/some-auto-attach-path", view_as: :download), drop_zone: :none) %>
+      <h3 class="fr-mt-4w"><%= t(".new_attachment_on_generic") %></h3>
+      <%= render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: avis.introduction_file), drop_zone: :none) %>
+      <h3 class="fr-mt-4w">
+        <%= t(".existing_attachment_on_generic_as_download") %>
+      </h3>
+      <%= render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: avis.introduction_file, view_as: :download), drop_zone: :none) %>
+    <%- end -%>
+  </div>
+</div>
