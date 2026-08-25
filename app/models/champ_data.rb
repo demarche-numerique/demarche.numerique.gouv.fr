@@ -106,7 +106,6 @@ class ChampData < ApplicationRecord
     :collapsible_explanation_text,
     :header_section_level_value,
     :current_section_level,
-    :non_fillable?,
     :fillable?,
     :mandatory?,
     :prefillable?,

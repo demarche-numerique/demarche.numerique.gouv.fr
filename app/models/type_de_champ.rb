@@ -166,8 +166,6 @@ class TypeDeChamp < ApplicationRecord
 
   def fillable? = true
 
-  def non_fillable? = !fillable?
-
   def must_be_mandatory? = false
 
   def cannot_be_mandatory? = false
@@ -519,7 +517,7 @@ class TypeDeChamp < ApplicationRecord
   def check_mandatory
     return if mandatory_changed?
 
-    self.mandatory = false if non_fillable? || cannot_be_mandatory?
+    self.mandatory = false if !fillable? || cannot_be_mandatory?
     self.mandatory = true if must_be_mandatory?
   end
 
