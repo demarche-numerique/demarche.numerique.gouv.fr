@@ -227,10 +227,6 @@ class TypeDeChamp < ApplicationRecord
     GraphQL::Schema::UniqueWithinType.encode('Champ', stable_id)
   end
 
-  def editable_options=(options)
-    self.options.merge!(options)
-  end
-
   def read_attribute_for_serialization(name)
     if name == 'id'
       stable_id
