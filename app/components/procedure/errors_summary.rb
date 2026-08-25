@@ -40,10 +40,10 @@ class Procedure::ErrorsSummary < ApplicationComponent
       edit_admin_procedure_ineligibilite_rules_path(@procedure)
     when :public_draft_type_de_champs
       tdc = error.options[:type_de_champ]
-      champs_admin_procedure_path(@procedure, anchor: dom_id(tdc.stable_self, :editor_error))
+      champs_admin_procedure_path(@procedure, anchor: dom_id(tdc, :editor_error))
     when :private_draft_type_de_champs
       tdc = error.options[:type_de_champ]
-      annotations_admin_procedure_path(@procedure, anchor: dom_id(tdc.stable_self, :editor_error))
+      annotations_admin_procedure_path(@procedure, anchor: dom_id(tdc, :editor_error))
     when :attestation_acceptation_template, :attestation_refus_template
       if error.detail[:value].version == 1
         edit_admin_procedure_attestation_template_path(@procedure)

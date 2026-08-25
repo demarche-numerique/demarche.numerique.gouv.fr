@@ -240,12 +240,8 @@ class TypeDeChamp < ApplicationRecord
     end
   end
 
-  def stable_self
-    KeyableModel.new(
-      to_key: [stable_id],
-      model_name: KeyableModel.new(param_key: model_name.param_key)
-    )
-  end
+  # dom ids follow the stable_id so they survive the revision clones
+  def to_key = ([stable_id] if stable_id)
 
   # We should refresh all champs after update except for champs using react or
   # custom refresh logic (RNA, SIRET, etc.)
