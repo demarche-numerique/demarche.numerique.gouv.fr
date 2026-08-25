@@ -192,7 +192,6 @@ class TypeDeChamp < ApplicationRecord
 
   def cannot_be_mandatory? = false
 
-  def choice_type? = false
 
   def public?
     !private?

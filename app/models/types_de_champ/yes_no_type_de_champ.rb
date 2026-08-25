@@ -6,7 +6,6 @@ class TypesDeChamp::YesNoTypeDeChamp < TypeDeChamp
   def self.conditionable? = true
 
   def prefillable? = true
-  def choice_type? = true
   def condition_value_type = :boolean
 
   def typed_champ_value(champ)
