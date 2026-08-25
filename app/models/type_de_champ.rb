@@ -178,6 +178,8 @@ class TypeDeChamp < ApplicationRecord
 
   def api_particulier? = false
 
+  def any_drop_down_list? = false
+
   def child?(revision)
     revision.coordinate_for(self)&.child?
   end
@@ -496,8 +498,6 @@ class TypeDeChamp < ApplicationRecord
 
   CHAMP_TYPE_TO_TYPE_CHAMP = type_champs.values.index_by { type_champ_to_champ_class_name(_1) }
   CLASS_NAME_TO_TYPE_CHAMP = type_champs.values.index_by { type_champ_to_class_name(_1) }
-
-  def any_drop_down_list? = false
 
   private
 
