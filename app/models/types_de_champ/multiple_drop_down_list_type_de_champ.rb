@@ -8,7 +8,6 @@ class TypesDeChamp::MultipleDropDownListTypeDeChamp < TypesDeChamp::DropDownBase
 
   def prefillable? = true
   def options_for_select = options_for_select_with_other
-  def any_drop_down_list? = true
   def conditionable? = !drop_down_advanced?
   def condition_value_type = :enums
   def condition_options = options_for_select_with_other
