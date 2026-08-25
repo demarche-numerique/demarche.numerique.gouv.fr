@@ -96,4 +96,44 @@ describe TypesDeChamp::PieceJustificativeTypeDeChamp do
       expect(champ.type_de_champ.typed_champ_value_for_api(champ, version: 1)).to be_nil
     end
   end
+
+  describe '#allowed_content_types' do
+    it 'returns jpeg/png for titre_identite' do
+      tdc = create(:type_de_champ_piece_justificative, nature: 'titre_identite')
+      expect(tdc.allowed_content_types).to match_array(['image/jpeg', 'image/png'])
+    end
+
+    ['rib', 'justificatif_domicile', 'avis_impot'].each do |ocr_nature|
+      it "restricts to doc and image types for #{ocr_nature}" do
+        tdc = create(:type_de_champ_piece_justificative, nature: ocr_nature)
+        expect(tdc.allowed_content_types).to include('application/pdf')
+        expect(tdc.allowed_content_types).to include('image/jpeg')
+        expect(tdc.allowed_content_types).not_to include('application/zip')
+      end
+    end
+
+    it 'restricts to selected families when pj_limit_formats enabled' do
+      tdc = create(:type_de_champ_piece_justificative, pj_limit_formats: '1', pj_format_families: ['document_texte'])
+      expect(tdc.allowed_content_types).to include('application/pdf')
+      expect(tdc.allowed_content_types).not_to include('application/zip')
+    end
+
+    it 'does not restrict when pj_limit_formats enabled but families empty' do
+      tdc = create(:type_de_champ_piece_justificative, pj_limit_formats: '1', pj_format_families: [])
+      expect(tdc.allowed_content_types).to include('application/pdf')
+      expect(tdc.allowed_content_types).to include('application/zip')
+    end
+  end
+
+  describe '#max_file_size_bytes' do
+    it 'is 20MB for titre_identite' do
+      tdc = create(:type_de_champ_piece_justificative, nature: 'titre_identite')
+      expect(tdc.max_file_size_bytes).to eq(20.megabytes)
+    end
+
+    it 'is 200MB by default' do
+      tdc = create(:type_de_champ_piece_justificative)
+      expect(tdc.max_file_size_bytes).to eq(200.megabytes)
+    end
+  end
 end

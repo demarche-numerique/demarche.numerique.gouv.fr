@@ -4,6 +4,7 @@ class TypesDeChamp::PieceJustificativeTypeDeChamp < TypeDeChamp
   def self.option_keys = [:old_pj, :skip_pj_validation, :skip_content_type_pj_validation, :pj_limit_formats, :pj_format_families, :pj_auto_purge]
   def self.column_type = :attachments
 
+  FILE_MAX_SIZE = 200.megabytes
   IDENTITY_FILE_MAX_SIZE = 20.megabytes
 
   enum :nature, %w[non_specifie titre_identite rib justificatif_domicile avis_impot].index_by(&:itself)
