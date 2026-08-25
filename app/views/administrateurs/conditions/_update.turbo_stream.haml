@@ -11,9 +11,9 @@
 - rendered = render @condition_component
 
 - if rendered.present?
-  = turbo_stream.replace dom_id(@tdc.stable_self, :condition) do
+  = turbo_stream.replace dom_id(@tdc, :condition) do
     - rendered
 - else
-  = turbo_stream.remove dom_id(@tdc.stable_self, :condition)
+  = turbo_stream.remove dom_id(@tdc, :condition)
 
 = render AutosaveNoticeTurboStreamComponent.new

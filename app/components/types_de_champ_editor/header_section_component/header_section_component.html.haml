@@ -1,4 +1,4 @@
-%div{ id: dom_id(@tdc.stable_self, :header_section) }
+%div{ id: dom_id(@tdc, :header_section) }
 - if errors?
   .errors-summary= errors
 = @form.label :header_section_level, "Niveau du titre", for: dom_id(@tdc, :header_section_level)
