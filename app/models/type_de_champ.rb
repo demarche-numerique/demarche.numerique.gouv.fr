@@ -109,7 +109,7 @@ class TypeDeChamp < ApplicationRecord
 
   after_create :populate_stable_id
 
-  before_validation :check_mandatory
+  before_validation :enforce_mandatory_constraints
   before_validation :set_default_libelle, if: -> { type_champ_changed? }
 
   normalizes :libelle, with: -> (value) { value.strip }
@@ -488,7 +488,7 @@ class TypeDeChamp < ApplicationRecord
     self.libelle = new_default if libelle.blank? || libelle == old_default
   end
 
-  def check_mandatory
+  def enforce_mandatory_constraints
     return if mandatory_changed?
 
     self.mandatory = false if !fillable? || cannot_be_mandatory?
