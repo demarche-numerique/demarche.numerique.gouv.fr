@@ -126,19 +126,6 @@ class TypeDeChamp < ApplicationRecord
     end
   end
 
-  def set_default_libelle
-    libelle_was_default = libelle == default_libelle(type_champ_was)
-    self.libelle = default_libelle(type_champ) if libelle.blank? || libelle_was_default
-  end
-
-  def default_libelle(type_champ)
-    return if type_champ.blank?
-
-    I18n.t(type_champ,
-      scope: [:activerecord, :attributes, :type_de_champ, :default_libelle],
-      default: I18n.t(type_champ, scope: [:activerecord, :attributes, :type_de_champ, :type_champs]), app_name: APPLICATION_NAME)
-  end
-
   def libelle_optionnal? = false
   def libelle_configurable? = true
   def description_configurable? = true
@@ -168,13 +155,6 @@ class TypeDeChamp < ApplicationRecord
   # validations and callbacks apply instead of the source type's.
   def becomes_type(new_type_champ)
     becomes(self.class.find_sti_class(new_type_champ))
-  end
-
-  def check_mandatory
-    return if mandatory_changed?
-
-    self.mandatory = false if non_fillable? || cannot_be_mandatory?
-    self.mandatory = true if must_be_mandatory?
   end
 
   def only_present_on_draft?
@@ -269,6 +249,7 @@ class TypeDeChamp < ApplicationRecord
       .sort_by { |category, _| CATEGORIES.find_index(category) }
       .map { |_, group| group.map { "« #{I18n.t(_1.sti_name, scope: [:activerecord, :attributes, :type_de_champ, :type_champs])} »" } }
   end
+  private_class_method :humanized_types_by_category
 
   def public_id(row_id)
     self.class.public_id(stable_id, row_id)
@@ -498,6 +479,26 @@ class TypeDeChamp < ApplicationRecord
   def any_drop_down_list? = false
 
   private
+
+  def set_default_libelle
+    libelle_was_default = libelle == default_libelle(type_champ_was)
+    self.libelle = default_libelle(type_champ) if libelle.blank? || libelle_was_default
+  end
+
+  def default_libelle(type_champ)
+    return if type_champ.blank?
+
+    I18n.t(type_champ,
+      scope: [:activerecord, :attributes, :type_de_champ, :default_libelle],
+      default: I18n.t(type_champ, scope: [:activerecord, :attributes, :type_de_champ, :type_champs]), app_name: APPLICATION_NAME)
+  end
+
+  def check_mandatory
+    return if mandatory_changed?
+
+    self.mandatory = false if non_fillable? || cannot_be_mandatory?
+    self.mandatory = true if must_be_mandatory?
+  end
 
   # A value written by a multiple drop-down list, read after a type change.
   def champ_text_value(champ)
