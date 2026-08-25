@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 describe TypesDeChamp::PieceJustificativeTypeDeChamp do
+  describe '#libelle_as_filename' do
+    subject { build(:type_de_champ_piece_justificative, libelle:).libelle_as_filename }
+
+    let(:libelle) { "  #/🐉 1 très  intéressant Bilan " }
+
+    it { is_expected.to eq("1-tres-interessant-bilan") }
+  end
+
   describe '#columns' do
     let(:procedure) { create(:procedure) }
 

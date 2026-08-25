@@ -30,6 +30,12 @@ class TypesDeChamp::PieceJustificativeTypeDeChamp < TypeDeChamp
 
   def tags_for_template = [].freeze
 
+  def libelle_as_filename
+    libelle.gsub(/[[:space:]]+/, ' ')
+      .truncate(30, omission: '', separator: ' ')
+      .parameterize
+  end
+
   def typed_champ_value_for_export(champ, path = :value)
     if titre_identite?
       champ.piece_justificative_file.attached? ? "présent" : "absent"
