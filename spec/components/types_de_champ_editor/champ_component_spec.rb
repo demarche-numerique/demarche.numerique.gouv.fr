@@ -21,13 +21,13 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       let(:coordinate) { procedure.draft_revision.coordinate_for(tdc) }
 
       context 'type behind a disabled feature flag' do
-        it { expect(page).not_to have_css('option[value="cojo"]') }
+        it { expect(page).not_to have_css('option[value="TypesDeChamp::COJO"]') }
       end
 
       context 'type behind an enabled feature flag' do
         let(:procedure) { create(:procedure, public_type_de_champs:).tap { Flipper.enable(:cojo_type_de_champ, _1) } }
 
-        it { expect(page).to have_css('option[value="cojo"]') }
+        it { expect(page).to have_css('option[value="TypesDeChamp::COJO"]') }
       end
 
       context 'drop down tdc not used for routing' do

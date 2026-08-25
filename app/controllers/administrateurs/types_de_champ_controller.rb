@@ -42,7 +42,7 @@ module Administrateurs
         update_params = type_de_champ_update_params
 
         if changing_of_type?(type_de_champ)
-          type_de_champ = type_de_champ.becomes_type(update_params['type_champ'])
+          type_de_champ = type_de_champ.becomes_type(update_params['type'])
         end
 
         # the editor form can submit options of another type (type change, or a
@@ -204,7 +204,7 @@ module Administrateurs
     private
 
     def changing_of_type?(type_de_champ)
-      type_de_champ_update_params['type_champ'].present? && (type_de_champ_update_params['type_champ'] != type_de_champ.type_champ)
+      type_de_champ_update_params['type'].present? && (type_de_champ_update_params['type'] != type_de_champ.type)
     end
 
     def champ_components_starting_at(coordinate, offset = 0)
@@ -226,11 +226,11 @@ module Administrateurs
     def type_de_champ_create_params
       params
         .required(:type_de_champ)
-        .permit(:type_champ, :parent_stable_id, :private, :libelle, :after_stable_id)
+        .permit(:type, :parent_stable_id, :private, :libelle, :after_stable_id)
     end
 
     def type_de_champ_update_params
-      params.required(:type_de_champ).permit(:type_champ,
+      params.required(:type_de_champ).permit(:type,
         :libelle,
         :description,
         :mandatory,

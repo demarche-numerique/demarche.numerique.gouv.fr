@@ -70,20 +70,21 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
       .to_h do |cat, klasses|
         [
           t(cat, scope: cat_scope),
-          klasses.map { [t(_1.type_champ, scope: tdc_scope), _1.type_champ, { disabled: !accepted_type_champs.include?(_1.type_champ) }] },
+          klasses.map { [t(_1.type_champ, scope: tdc_scope), _1.name, { disabled: !accepted_types.include?(_1) }] },
         ]
       end
   end
 
+  # the champ cast table still speaks type_champ
   ACCEPTED_TYPES = Columns::ChampColumn::CAST.keys
     .group_by { |(from)| from.to_s }
     .transform_values { |pairs| pairs.map { |(_, to)| to.to_s } }
 
-  def accepted_type_champs
-    @accepted_type_champs ||= if published_type_champ.present?
-      ([published_type_champ] + ACCEPTED_TYPES.fetch(published_type_champ, [])).uniq
+  def accepted_types
+    @accepted_types ||= if published_type_champ.present?
+      ([published_type_champ] + ACCEPTED_TYPES.fetch(published_type_champ, [])).uniq.map { TypeDeChamp.class_for(_1) }
     else
-      TypeDeChamp.type_champs.keys
+      TypeDeChamp.type_champ_classes
     end
   end
 
@@ -92,7 +93,7 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
   end
 
   def disabled_type_de_champ_select?
-    coordinate.used_by_routing_rules? || coordinate.used_by_ineligibilite_rules? || accepted_type_champs.size == 1
+    coordinate.used_by_routing_rules? || coordinate.used_by_ineligibilite_rules? || accepted_types.size == 1
   end
 
   def notice_explicative_options

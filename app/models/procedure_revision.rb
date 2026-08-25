@@ -322,7 +322,8 @@ class ProcedureRevision < ApplicationRecord
         stable_id, type_champ, options = payload.values_at(:stable_id, :type_champ, :options)
 
         tdc = find_and_ensure_exclusive_use(stable_id)
-        tdc = tdc.becomes_type(type_champ) if type_champ != tdc.type_champ
+        # the LLM suggestions payload still speaks type_champ
+        tdc = tdc.becomes_type(TypeDeChamp.class_for(type_champ).name) if type_champ != tdc.type_champ
         update_params = { type_champ: }
         update_params[:options] = tdc.options.merge(options) if options.present?
         tdc.update(update_params)
@@ -431,7 +432,7 @@ class ProcedureRevision < ApplicationRecord
         from_type_de_champ.type_champ,
         to_type_de_champ.type_champ)
       # the options are compared as the new type reads them
-      from_type_de_champ = from_type_de_champ.becomes_type(to_type_de_champ.type_champ)
+      from_type_de_champ = from_type_de_champ.becomes_type(to_type_de_champ.type)
     end
     if from_type_de_champ.libelle != to_type_de_champ.libelle
       changes << ProcedureRevisionChange::UpdateChamp.new(from_type_de_champ,

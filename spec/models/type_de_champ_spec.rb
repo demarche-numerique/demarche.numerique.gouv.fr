@@ -114,10 +114,10 @@ describe TypeDeChamp do
     end
 
     describe 'changing the type_champ from a drop_down_list' do
-      let(:tdc) { create(:type_de_champ_drop_down_list).becomes_type(target_type_champ) }
+      let(:tdc) { create(:type_de_champ_drop_down_list).becomes_type(TypeDeChamp.class_for(target_type_champ).name) }
 
       before do
-        tdc.update(type_champ: target_type_champ)
+        tdc.save
       end
 
       context 'when the target type_champ is not drop_down_list' do
@@ -166,14 +166,14 @@ describe TypeDeChamp do
       tdc = TypeDeChamp.find(tdc.id)
 
       expect(tdc).to be_invalid
-      expect(tdc.becomes_type('text').update(type_champ: 'text')).to be true
+      expect(tdc.becomes_type(TypesDeChamp::Text.name).save).to be true
     end
 
     it 'runs the target type callbacks, persisting the formatted default options' do
       tdc = create(:type_de_champ_text)
 
-      morphed = tdc.becomes_type('formatted')
-      morphed.update!(type_champ: 'formatted')
+      morphed = tdc.becomes_type(TypesDeChamp::Formatted.name)
+      morphed.save!
 
       expect(morphed).to be_an_instance_of(TypesDeChamp::Formatted)
       expect(morphed.reload.formatted_mode).to eq('simple')

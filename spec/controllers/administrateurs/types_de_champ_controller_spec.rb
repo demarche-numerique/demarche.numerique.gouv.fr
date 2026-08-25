@@ -43,7 +43,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       {
         procedure_id: procedure.id,
         type_de_champ: {
-          type_champ: type_champ,
+          type: type,
           libelle: 'l1.5',
           after_stable_id: first_coordinate.stable_id,
         },
@@ -53,7 +53,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
     subject { post :create, params: params, format: :turbo_stream }
 
     context "create type_de_champ text" do
-      let(:type_champ) { TypeDeChamp.type_champs.fetch(:text) }
+      let(:type) { TypesDeChamp::Text.name }
 
       # l1, l2, l3 => l1, l1.5, l2, l3
       # created: (l1.5, [l1]), morphed: (l2, [l1, l1.5]), (l3, [l1, l1.5, l2])
@@ -67,8 +67,8 @@ describe Administrateurs::TypesDeChampController, type: :controller do
     end
 
     context "validate" do
-      let(:type_champ) { TypeDeChamp.type_champs.fetch(:text) }
-      let(:params) { default_params.deep_merge(type_de_champ: { type_champ: nil }) }
+      let(:type) { TypesDeChamp::Text.name }
+      let(:params) { default_params.deep_merge(type_de_champ: { type: nil }) }
 
       it do
         is_expected.to have_http_status(:ok)
@@ -145,7 +145,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
           procedure_id: procedure.id,
           stable_id: first_coordinate.stable_id,
           # the editor form submits the options of the previous type along the new type
-          type_de_champ: { type_champ: 'formatted', character_limit: '' },
+          type_de_champ: { type: TypesDeChamp::Formatted.name, character_limit: '' },
         }
       end
 
@@ -168,7 +168,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
           procedure_id: procedure.id,
           stable_id: third_coordinate.stable_id,
           # the editor form submits the options of the previous type along the new type
-          type_de_champ: { type_champ: 'yes_no', drop_down_options_from_text: "a\nb" },
+          type_de_champ: { type: TypesDeChamp::YesNo.name, drop_down_options_from_text: "a\nb" },
         }
       end
 
@@ -181,7 +181,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
     context 'rejected if type changed and routing involved' do
       let(:params) do
-        default_params.deep_merge(type_de_champ: { type_champ: 'text', stable_id: third_coordinate.stable_id })
+        default_params.deep_merge(type_de_champ: { type: TypesDeChamp::Text.name, stable_id: third_coordinate.stable_id })
       end
 
       before do
@@ -196,7 +196,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
     context 'rejected if type changed and referentiel url involved' do
       let(:params) do
-        default_params.deep_merge(type_de_champ: { type_champ: 'text', stable_id: third_coordinate.stable_id })
+        default_params.deep_merge(type_de_champ: { type: TypesDeChamp::Text.name, stable_id: third_coordinate.stable_id })
       end
 
       before do

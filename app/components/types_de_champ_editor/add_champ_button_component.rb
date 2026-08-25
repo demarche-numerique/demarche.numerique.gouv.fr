@@ -33,7 +33,7 @@ class TypesDeChampEditor::AddChampButtonComponent < ApplicationComponent
       params: {
         type_de_champ: {
           libelle: champ_libelle,
-          type_champ: TypeDeChamp.type_champs.fetch(:text),
+          type: TypesDeChamp::Text.name,
           private: annotations? ? true : nil,
           parent_stable_id: @parent&.stable_id,
           after_stable_id: @after_stable_id,

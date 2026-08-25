@@ -622,7 +622,7 @@ describe ProcedureRevision do
 
         before do
           child = new_draft.children_of(new_draft.public_root_type_de_champs.last).first
-          new_draft.find_and_ensure_exclusive_use(child.stable_id).becomes_type('drop_down_list').update(type_champ: :drop_down_list, drop_down_options: ['one', 'two'])
+          new_draft.find_and_ensure_exclusive_use(child.stable_id).becomes_type(TypesDeChamp::DropDownList.name).update(drop_down_options: ['one', 'two'])
         end
 
         it do

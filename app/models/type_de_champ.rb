@@ -150,11 +150,14 @@ class TypeDeChamp < ApplicationRecord
     champ_class.new(params_for_champ.merge(params))
   end
 
-  # Changing type_champ cannot change the class of an already-instantiated
+  # Changing the type cannot change the class of an already-instantiated
   # record: save the change through an instance of the target subclass, so its
   # validations and callbacks apply instead of the source type's.
-  def becomes_type(new_type_champ)
-    becomes(self.class.class_for(new_type_champ)).tap { it.type_champ = new_type_champ }
+  # sti_class_for resolves the class name and rejects anything that is not a
+  # TypeDeChamp subclass.
+  def becomes_type(type_name)
+    klass = self.class.sti_class_for(type_name)
+    becomes(klass).tap { it.type_champ = klass.type_champ }
   end
 
   def only_present_on_draft?
