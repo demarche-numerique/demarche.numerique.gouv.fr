@@ -183,8 +183,6 @@ class TypeDeChamp < ApplicationRecord
     revision.coordinate_for(self)&.child?
   end
 
-  def formatted_advanced? = false
-
   def options_for_select = nil
 
   def previous_section_level(upper_tdcs)
