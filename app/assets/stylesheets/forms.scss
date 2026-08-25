@@ -541,11 +541,6 @@ textarea::placeholder,
 :not(.fr-translate) .fr-menu__list {
   padding: $default-spacer;
   overflow-y: auto;
-
-  .fr-menu__item {
-    list-style-type: none;
-    margin-bottom: $default-spacer;
-  }
 }
 
 .fr-fieldset__element {

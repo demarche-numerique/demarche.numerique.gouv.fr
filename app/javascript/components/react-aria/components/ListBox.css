@@ -67,8 +67,17 @@
     }
   }
 
-  &[data-pressed] {
+  /* Trois degrés, du plus discret au plus affirmé : la souris passe, la souris
+     appuie, et l'option qu'un Entrée validerait. Le Select déplace le focus
+     sous la souris, l'aplat bleu y suit donc le survol ; le combo garde le
+     focus sur ce que la frappe désigne, et le gris dit alors seulement quelle
+     rangée est cliquable — deux rangées bleues mentiraient sur la touche. */
+  &[data-hovered] {
     background: var(--highlight-hover);
+  }
+
+  &[data-pressed] {
+    background: var(--highlight-pressed);
   }
 
   &[data-focused] {
