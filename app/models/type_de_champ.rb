@@ -227,25 +227,6 @@ class TypeDeChamp < ApplicationRecord
   def condition_value_type = :unmanaged
   def condition_options = []
 
-  def self.humanized_conditionable_types_by_category
-    humanized_types_by_category(type_champ_classes.filter(&:conditionable?))
-  end
-
-  def self.humanized_simple_routable_types_by_category
-    humanized_types_by_category(type_champ_classes.filter { _1.conditionable? && _1.simple_routable? })
-  end
-
-  def self.humanized_custom_routable_types_by_category
-    humanized_types_by_category(type_champ_classes.filter { _1.conditionable? && !_1.simple_routable? })
-  end
-
-  def self.humanized_types_by_category(klasses)
-    klasses.group_by(&:category)
-      .sort_by { |category, _| CATEGORIES.find_index(category) }
-      .map { |_, group| group.map { "« #{I18n.t(_1.sti_name, scope: [:activerecord, :attributes, :type_de_champ, :type_champs])} »" } }
-  end
-  private_class_method :humanized_types_by_category
-
   def public_id(row_id)
     self.class.public_id(stable_id, row_id)
   end
@@ -430,6 +411,12 @@ class TypeDeChamp < ApplicationRecord
     def find_sti_class(type_name) = type_champ_to_class_name(type_name.to_s).constantize
 
     def type_champ_classes = type_champs.values.map { find_sti_class(_1) }
+
+    def conditionable_types = type_champ_classes.filter(&:conditionable?)
+
+    def simple_routable_types = conditionable_types.filter(&:simple_routable?)
+
+    def custom_routable_types = conditionable_types.reject(&:simple_routable?)
 
     def sti_name = CLASS_NAME_TO_TYPE_CHAMP[name]
 

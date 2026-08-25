@@ -23,18 +23,12 @@
         %p
         Vous trouverez ci-dessous une liste de champs de votre formulaire à partir desquels configurer le routage de façon <strong>automatique</strong>. Les groupes d’instructeurs seront créés à partir des valeurs possibles du champ.
         Seuls les champs suivants sont ouverts à ce mode de configuration :
-        %ul
-          - TypeDeChamp.humanized_simple_routable_types_by_category.each do |category|
-            %li
-              = category.join(', ')
+        = render TypesDeChamp::ByCategoryListComponent.new(types: TypeDeChamp.simple_routable_types)
 
         %p
           Si besoin, vous pourrez ensuite affiner votre configuration de façon <strong>manuelle</strong>, également à partir des champs suivants :
 
-        %ul
-          - TypeDeChamp.humanized_custom_routable_types_by_category.each do |category|
-            %li
-              = category.join(', ')
+        = render TypesDeChamp::ByCategoryListComponent.new(types: TypeDeChamp.custom_routable_types)
 
       = form_for :create_simple_routing,
         method: :post,
