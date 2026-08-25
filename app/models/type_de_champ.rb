@@ -477,16 +477,15 @@ class TypeDeChamp < ApplicationRecord
   private
 
   def set_default_libelle
-    libelle_was_default = libelle == default_libelle(type_champ_was)
-    self.libelle = default_libelle(type_champ) if libelle.blank? || libelle_was_default
-  end
+    old_default, new_default = [type_champ_was, type_champ].map do |type_champ|
+      next if type_champ.blank?
 
-  def default_libelle(type_champ)
-    return if type_champ.blank?
+      I18n.t(type_champ,
+        scope: [:activerecord, :attributes, :type_de_champ, :default_libelle],
+        default: I18n.t(type_champ, scope: [:activerecord, :attributes, :type_de_champ, :type_champs]), app_name: APPLICATION_NAME)
+    end
 
-    I18n.t(type_champ,
-      scope: [:activerecord, :attributes, :type_de_champ, :default_libelle],
-      default: I18n.t(type_champ, scope: [:activerecord, :attributes, :type_de_champ, :type_champs]), app_name: APPLICATION_NAME)
+    self.libelle = new_default if libelle.blank? || libelle == old_default
   end
 
   def check_mandatory
