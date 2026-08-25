@@ -1,7 +1,8 @@
 /* Map react-aria theme variables to DSFR design tokens */
 .react-aria-Select,
 .fr-ds-select_multiple,
-.select-popover {
+.select-popover,
+.fr-ds-combobox__menu {
   --text-color: var(--text-label-grey);
   --text-color-heading: var(--text-title-grey);
   --heading-background: var(--background-alt-grey);

@@ -30,12 +30,19 @@ export function DropdownListBox<T extends object>(props: ListBoxProps<T>) {
   return <AriaListBox {...props} className="dropdown-listbox" />;
 }
 
-export function DropdownItem(props: ListBoxItemProps) {
+export function DropdownItem({
+  className,
+  ...props
+}: ListBoxItemProps & { className?: string }) {
   const textValue =
     props.textValue ||
     (typeof props.children == 'string' ? props.children : undefined);
   return (
-    <ListBoxItem {...props} textValue={textValue} className="dropdown-item">
+    <ListBoxItem
+      {...props}
+      textValue={textValue}
+      className={className ? `dropdown-item ${className}` : 'dropdown-item'}
+    >
       {composeRenderProps(props.children, (children, { isSelected }) => (
         <>
           {isSelected && (

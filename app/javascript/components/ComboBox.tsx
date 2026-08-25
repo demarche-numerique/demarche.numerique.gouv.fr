@@ -2,7 +2,6 @@ import type { ListBoxItemProps } from 'react-aria-components';
 import {
   ComboBox as AriaComboBox,
   ListBox,
-  ListBoxItem,
   ListBoxSection,
   Header,
   Popover,
@@ -35,6 +34,7 @@ import {
   MultiComboBoxProps,
   RemoteComboBoxProps
 } from './react-aria/props';
+import { DropdownItem } from './react-aria/components/ListBox';
 import { TagGroup } from './react-aria/components/TagGroup';
 
 function flattenSections(sections: Section[]): Item[] {
@@ -146,7 +146,7 @@ export function ComboBox({
       <Popover className="fr-ds-combobox__menu fr-menu" isOpen={isOpen}>
         <Virtualizer layout={ListLayout}>
           <ListBox
-            className="fr-menu__list"
+            className="fr-menu__list dropdown-listbox"
             renderEmptyState={() =>
               errorMessage ? (
                 <p className="fr-message fr-message--error fr-p-1w">
@@ -159,7 +159,7 @@ export function ComboBox({
               <Collection items={sections}>
                 {(section) => (
                   <ListBoxSection id={section.label}>
-                    <Header className="fr-ds-combobox__section-header">
+                    <Header className="dropdown-section-header">
                       {section.label}
                     </Header>
                     <Collection items={section.items}>{children}</Collection>
@@ -180,7 +180,7 @@ export function ComboBoxItem(props: ListBoxItemProps<Item>) {
   const { isDisabled, className, ...rest } = props;
 
   return (
-    <ListBoxItem
+    <DropdownItem
       {...rest}
       isDisabled={isDisabled}
       className={[
