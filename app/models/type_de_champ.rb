@@ -8,8 +8,6 @@ class TypeDeChamp < ApplicationRecord
 
   include EstimatedDurationConcern
 
-  FILE_MAX_SIZE = 200.megabytes
-
   STRUCTURE = :structure
   ETAT_CIVIL = :etat_civil
   LOCALISATION = :localisation
@@ -261,7 +259,6 @@ class TypeDeChamp < ApplicationRecord
     options.slice(*self.class.option_keys.map(&:to_s))
   end
 
-  def max_file_size_bytes = FILE_MAX_SIZE
   def allowed_content_types = AUTHORIZED_CONTENT_TYPES
 
   def champ_value(champ)
