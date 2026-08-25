@@ -593,7 +593,7 @@ describe TypeDeChamp do
     let(:type_champ) { :text }
     let(:last_write_type_champ) { :text }
     let(:champ_value) { 'hello' }
-    let(:champ_type) { TypeDeChamp.type_champ_to_champ_class_name(last_write_type_champ.to_s) }
+    let(:champ_type) { TypeDeChamp.class_for(last_write_type_champ).champ_class.name }
     let(:type_de_champ) { procedure.active_revision.type_de_champs.first }
     let(:champ) { dossier.champ_data.first }
 

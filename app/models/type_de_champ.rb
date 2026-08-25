@@ -143,7 +143,7 @@ class TypeDeChamp < ApplicationRecord
   end
 
   def champ_class
-    self.class.type_champ_to_champ_class_name(type_champ).constantize
+    self.class.champ_class
   end
 
   def build_champ(params = {})
@@ -405,8 +405,10 @@ class TypeDeChamp < ApplicationRecord
       end
     end
 
-    def type_champ_to_champ_class_name(type_champ)
-      "Champs::#{type_champ.classify}Champ"
+    # The champ hierarchy mirrors this one name for name:
+    # TypesDeChamp::Text -> Champs::TextChamp
+    def champ_class
+      "Champs::#{name.demodulize}Champ".constantize
     end
 
     def type_champ_to_class_name(type_champ)
@@ -417,15 +419,16 @@ class TypeDeChamp < ApplicationRecord
 
     def type_champ = CLASS_NAME_TO_TYPE_CHAMP[name]
 
-    # The whole app builds through TypeDeChamp.new(type_champ: 'text') — editor
-    # params, factories, seeds. When type_champ was the STI discriminator Rails
-    # dispatched to the subclass natively; with a standard type column it no
-    # longer does, so the dispatch is hand-rolled here.
+    # Compatibility shim: a few callers still build through
+    # TypeDeChamp.new(type_champ: 'text') (specs, root and initiation
+    # controllers). Native STI dispatches on type; this hands the legacy
+    # vocabulary to the right subclass until those callers migrate.
     def new(attributes = nil, &)
       type_champ = attributes && (attributes[:type_champ] || attributes['type_champ'])
 
       if self == TypeDeChamp && type_champ.present?
-        class_for(type_champ).new(attributes, &)
+        # the legacy type_champ wins over a type coming from a factory default
+        class_for(type_champ).new(attributes.except(:type, 'type'), &)
       else
         super
       end
@@ -453,8 +456,10 @@ class TypeDeChamp < ApplicationRecord
     end
   end
 
-  CHAMP_TYPE_TO_TYPE_CHAMP = type_champs.values.index_by { type_champ_to_champ_class_name(_1) }
   CLASS_NAME_TO_TYPE_CHAMP = type_champs.values.index_by { type_champ_to_class_name(_1) }
+  CHAMP_TYPE_TO_TYPE_CHAMP = CLASS_NAME_TO_TYPE_CHAMP.to_h do |name, type_champ|
+    ["#{name.sub('TypesDeChamp::', 'Champs::')}Champ", type_champ]
+  end
 
   private
 

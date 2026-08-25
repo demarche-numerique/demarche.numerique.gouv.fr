@@ -42,22 +42,22 @@ ActiveRecord::Base.transaction do
     test_data_tiptap: { "{query}" => "PG46YY6YWCX8" }
   )
 
-  extra_params_by_type = {
-    "drop_down_list" => { libelle: "simple_drop_down_list", drop_down_options: ["val1", "val2", "val3"] },
-    "multiple_drop_down_list" => { drop_down_options: ["val1", "val2", "val3"] },
-    "linked_drop_down_list" => { drop_down_options: ["--primary--", "secondary"] },
-    "referentiel" => { referentiel:, mandatory: true },
+  extra_params_by_class = {
+    TypesDeChamp::DropDownList => { libelle: "simple_drop_down_list", drop_down_options: ["val1", "val2", "val3"] },
+    TypesDeChamp::MultipleDropDownList => { drop_down_options: ["val1", "val2", "val3"] },
+    TypesDeChamp::LinkedDropDownList => { drop_down_options: ["--primary--", "secondary"] },
+    TypesDeChamp::Referentiel => { referentiel:, mandatory: true },
   }
 
   # Build all coordinates in memory and save the revision once: one champ of
   # every type per list, faster than one add_type_de_champ call per champ.
   revision = procedure.draft_revision
 
-  build_type_de_champ = lambda do |params, private_champ, position|
-    type_de_champ = TypeDeChamp.new(private: private_champ, libelle: params[:type_champ], **params)
+  build_type_de_champ = lambda do |klass, params, private_champ, position|
+    type_de_champ = klass.new(private: private_champ, libelle: klass.type_champ, **params)
     revision.revision_type_de_champs.build(type_de_champ:, position:)
 
-    if type_de_champ.type_champ == TypeDeChamp.type_champs.fetch(:piece_justificative) && type_de_champ.nature.blank?
+    if type_de_champ.is_a?(TypesDeChamp::PieceJustificative) && type_de_champ.nature.blank?
       type_de_champ.piece_justificative_template.attach(
         io: StringIO.new("toto"),
         filename: "toto.txt",
@@ -68,26 +68,27 @@ ActiveRecord::Base.transaction do
   end
 
   [false, true].each do |private_champ|
-    TypeDeChamp.type_champs.each_value.with_index do |type_champ, position|
-      build_type_de_champ.call({ type_champ:, **extra_params_by_type.fetch(type_champ, {}) }, private_champ, position)
+    TypeDeChamp.type_champ_classes.each.with_index do |klass, position|
+      build_type_de_champ.call(klass, extra_params_by_class.fetch(klass, {}), private_champ, position)
     end
   end
 
-  # titre_identite is a piece_justificative nature, not a type_champ
+  # titre_identite is a piece_justificative nature, not a type
   build_type_de_champ.call(
-    { type_champ: "piece_justificative", nature: "titre_identite", libelle: "titre_identité" },
+    TypesDeChamp::PieceJustificative,
+    { nature: "titre_identite", libelle: "titre_identité" },
     false,
-    TypeDeChamp.type_champs.size
+    TypeDeChamp.type_champ_classes.size
   )
 
   revision.save!
 
   repetition_coordinate = revision.revision_type_de_champs.find { it.type_de_champ.repetition? && !it.type_de_champ.private? }
   [
-    { type_champ: "text", libelle: "sub type de champ" },
-    { type_champ: "integer_number", libelle: "sub type de champ2" },
-  ].each_with_index do |params, position|
-    revision.revision_type_de_champs.create!(type_de_champ: TypeDeChamp.create!(params), parent: repetition_coordinate, position:)
+    [TypesDeChamp::Text, { libelle: "sub type de champ" }],
+    [TypesDeChamp::IntegerNumber, { libelle: "sub type de champ2" }],
+  ].each_with_index do |(klass, params), position|
+    revision.revision_type_de_champs.create!(type_de_champ: klass.create!(params), parent: repetition_coordinate, position:)
   end
 
   procedures.label tous_champs: procedure

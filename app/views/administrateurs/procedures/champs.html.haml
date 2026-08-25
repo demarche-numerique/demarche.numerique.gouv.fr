@@ -36,7 +36,7 @@
               = t('administrateurs.procedures.champs.callout_no_ask_twice')
 
             = button_tag("Liste des informations remontées", type: :button, class: "fr-btn fr-icon-info-line fr-btn--icon-left fr-btn--tertiary-no-outline fr-btn--sm",
-                    data: { "fr-opened" => "false", "turbo-frame" => "api-champ-columns", action: "lazy-modal#load" }, src: api_champ_columns_admin_procedure_path(id: @procedure.id, stub_type_champ: 'siret'),
+                    data: { "fr-opened" => "false", "turbo-frame" => "api-champ-columns", action: "lazy-modal#load" }, src: api_champ_columns_admin_procedure_path(id: @procedure.id, stub_type: TypesDeChamp::Siret.name),
                     "aria-controls" => "api-champ-columns-modal",
                     "aria-haspopup" => "dialog")
 

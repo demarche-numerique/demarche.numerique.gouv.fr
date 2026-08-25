@@ -4,12 +4,12 @@ FactoryBot.define do
   sequence(:stable_id) { |n| 100_000 + n }
 
   factory :type_de_champ do
-    # STI: attributes must go through new so the constructor picks the subclass from type_champ.
+    # STI: attributes must go through new so the subclass is picked from the type attribute.
     initialize_with { TypeDeChamp.new(attributes) }
 
     sequence(:libelle) { |n| "Libelle du champ #{n}" }
     sequence(:description) { |n| "description du champ #{n}" }
-    type_champ { TypeDeChamp.type_champs.fetch(:text) }
+    type { TypesDeChamp::Text.name }
     add_attribute(:private) { false }
     mandatory { !private }
 
@@ -42,48 +42,48 @@ FactoryBot.define do
     end
 
     factory :type_de_champ_text do
-      type_champ { TypeDeChamp.type_champs.fetch(:text) }
+      type { TypesDeChamp::Text.name }
     end
     factory :type_de_champ_textarea do
-      type_champ { TypeDeChamp.type_champs.fetch(:textarea) }
+      type { TypesDeChamp::Textarea.name }
     end
     factory :type_de_champ_number do
-      type_champ { TypeDeChamp.type_champs.fetch(:number) }
+      type { TypesDeChamp::Number.name }
     end
     factory :type_de_champ_decimal_number do
-      type_champ { TypeDeChamp.type_champs.fetch(:decimal_number) }
+      type { TypesDeChamp::DecimalNumber.name }
     end
     factory :type_de_champ_integer_number do
-      type_champ { TypeDeChamp.type_champs.fetch(:integer_number) }
+      type { TypesDeChamp::IntegerNumber.name }
     end
     factory :type_de_champ_checkbox do
-      type_champ { TypeDeChamp.type_champs.fetch(:checkbox) }
+      type { TypesDeChamp::Checkbox.name }
     end
     factory :type_de_champ_civilite do
-      type_champ { TypeDeChamp.type_champs.fetch(:civilite) }
+      type { TypesDeChamp::Civilite.name }
     end
     factory :type_de_champ_email do
-      type_champ { TypeDeChamp.type_champs.fetch(:email) }
+      type { TypesDeChamp::Email.name }
     end
     factory :type_de_champ_phone do
-      type_champ { TypeDeChamp.type_champs.fetch(:phone) }
+      type { TypesDeChamp::Phone.name }
     end
     factory :type_de_champ_address do
-      type_champ { TypeDeChamp.type_champs.fetch(:address) }
+      type { TypesDeChamp::Address.name }
     end
     factory :type_de_champ_yes_no do
       libelle { 'Yes/no' }
-      type_champ { TypeDeChamp.type_champs.fetch(:yes_no) }
+      type { TypesDeChamp::YesNo.name }
     end
     factory :type_de_champ_date do
-      type_champ { TypeDeChamp.type_champs.fetch(:date) }
+      type { TypesDeChamp::Date.name }
     end
     factory :type_de_champ_datetime do
-      type_champ { TypeDeChamp.type_champs.fetch(:datetime) }
+      type { TypesDeChamp::Datetime.name }
     end
     factory :type_de_champ_drop_down_list do
       libelle { 'Choix unique' }
-      type_champ { TypeDeChamp.type_champs.fetch(:drop_down_list) }
+      type { TypesDeChamp::DropDownList.name }
       drop_down_options { ["val1", "val2", "val3"] }
       trait :long do
         drop_down_options { ["alpha", "bravo", "charly", "delta", "echo", "fox-trot", "golf"] }
@@ -93,18 +93,18 @@ FactoryBot.define do
       end
     end
     factory :type_de_champ_multiple_drop_down_list do
-      type_champ { TypeDeChamp.type_champs.fetch(:multiple_drop_down_list) }
+      type { TypesDeChamp::MultipleDropDownList.name }
       drop_down_options { ["val1", "val2", "val3"] }
       trait :long do
         drop_down_options { ["alpha", "bravo", "charly", "delta", "echo", "fox-trot", "golf"] }
       end
     end
     factory :type_de_champ_linked_drop_down_list do
-      type_champ { TypeDeChamp.type_champs.fetch(:linked_drop_down_list) }
+      type { TypesDeChamp::LinkedDropDownList.name }
       drop_down_options { ["--primary--", "secondary"] }
     end
     factory :type_de_champ_formatted do
-      type_champ { TypeDeChamp.type_champs.fetch(:formatted) }
+      type { TypesDeChamp::Formatted.name }
       trait :simple do
         options do
           { formatted: "simple" }
@@ -126,43 +126,43 @@ FactoryBot.define do
       end
     end
     factory :type_de_champ_pays do
-      type_champ { TypeDeChamp.type_champs.fetch(:pays) }
+      type { TypesDeChamp::Pays.name }
     end
     factory :type_de_champ_regions do
-      type_champ { TypeDeChamp.type_champs.fetch(:regions) }
+      type { TypesDeChamp::Region.name }
     end
     factory :type_de_champ_departements do
-      type_champ { TypeDeChamp.type_champs.fetch(:departements) }
+      type { TypesDeChamp::Departement.name }
     end
     factory :type_de_champ_communes do
-      type_champ { TypeDeChamp.type_champs.fetch(:communes) }
+      type { TypesDeChamp::Commune.name }
     end
     factory :type_de_champ_header_section do
-      type_champ { TypeDeChamp.type_champs.fetch(:header_section) }
+      type { TypesDeChamp::HeaderSection.name }
     end
 
     factory :type_de_champ_header_section_level_1 do
-      type_champ { TypeDeChamp.type_champs.fetch(:header_section) }
+      type { TypesDeChamp::HeaderSection.name }
       header_section_level { 1 }
     end
     factory :type_de_champ_header_section_level_2 do
-      type_champ { TypeDeChamp.type_champs.fetch(:header_section) }
+      type { TypesDeChamp::HeaderSection.name }
       header_section_level { 2 }
     end
     factory :type_de_champ_header_section_level_3 do
-      type_champ { TypeDeChamp.type_champs.fetch(:header_section) }
+      type { TypesDeChamp::HeaderSection.name }
       header_section_level { 3 }
     end
 
     factory :type_de_champ_explication do
-      type_champ { TypeDeChamp.type_champs.fetch(:explication) }
+      type { TypesDeChamp::Explication.name }
     end
     factory :type_de_champ_dossier_link do
       libelle { 'Référence autre dossier' }
-      type_champ { TypeDeChamp.type_champs.fetch(:dossier_link) }
+      type { TypesDeChamp::DossierLink.name }
     end
     factory :type_de_champ_piece_justificative do
-      type_champ { TypeDeChamp.type_champs.fetch(:piece_justificative) }
+      type { TypesDeChamp::PieceJustificative.name }
 
       after(:build) do |type_de_champ, _evaluator|
         type_de_champ.piece_justificative_template.attach(
@@ -175,55 +175,55 @@ FactoryBot.define do
       end
     end
     factory :type_de_champ_siret do
-      type_champ { TypeDeChamp.type_champs.fetch(:siret) }
+      type { TypesDeChamp::Siret.name }
     end
     factory :type_de_champ_rna do
-      type_champ { TypeDeChamp.type_champs.fetch(:rna) }
+      type { TypesDeChamp::RNA.name }
     end
     factory :type_de_champ_iban do
-      type_champ { TypeDeChamp.type_champs.fetch(:iban) }
+      type { TypesDeChamp::Iban.name }
     end
     factory :type_de_champ_annuaire_education do
-      type_champ { TypeDeChamp.type_champs.fetch(:annuaire_education) }
+      type { TypesDeChamp::AnnuaireEducation.name }
     end
     factory :type_de_champ_carte do
-      type_champ { TypeDeChamp.type_champs.fetch(:carte) }
+      type { TypesDeChamp::Carte.name }
     end
     factory :type_de_champ_epci do
-      type_champ { TypeDeChamp.type_champs.fetch(:epci) }
+      type { TypesDeChamp::Epci.name }
     end
     factory :type_de_champ_engagement_juridique do
-      type_champ { TypeDeChamp.type_champs.fetch(:engagement_juridique) }
+      type { TypesDeChamp::EngagementJuridique.name }
     end
     factory :type_de_champ_referentiel do
-      type_champ { TypeDeChamp.type_champs.fetch(:referentiel) }
+      type { TypesDeChamp::Referentiel.name }
     end
     factory :type_de_champ_pre_rempli do
-      type_champ { TypeDeChamp.type_champs.fetch(:pre_rempli) }
+      type { TypesDeChamp::PreRempli.name }
     end
     factory :type_de_champ_cojo do
-      type_champ { TypeDeChamp.type_champs.fetch(:cojo) }
+      type { TypesDeChamp::COJO.name }
     end
     factory :type_de_champ_rnf do
-      type_champ { TypeDeChamp.type_champs.fetch(:rnf) }
+      type { TypesDeChamp::RNF.name }
     end
     factory :type_de_champ_quotient_familial do
-      type_champ { TypeDeChamp.type_champs.fetch(:quotient_familial) }
+      type { TypesDeChamp::QuotientFamilial.name }
     end
     factory :type_de_champ_etudiant_boursier do
-      type_champ { TypeDeChamp.type_champs.fetch(:etudiant_boursier) }
+      type { TypesDeChamp::EtudiantBoursier.name }
     end
     factory :type_de_champ_aah do
-      type_champ { TypeDeChamp.type_champs.fetch(:aah) }
+      type { TypesDeChamp::AAH.name }
     end
     factory :type_de_champ_aeeh do
-      type_champ { TypeDeChamp.type_champs.fetch(:aeeh) }
+      type { TypesDeChamp::AEEH.name }
     end
     factory :type_de_champ_ars do
-      type_champ { TypeDeChamp.type_champs.fetch(:ars) }
+      type { TypesDeChamp::ARS.name }
     end
     factory :type_de_champ_repetition do
-      type_champ { TypeDeChamp.type_champs.fetch(:repetition) }
+      type { TypesDeChamp::Repetition.name }
 
       transient do
         type_de_champs { [] }
@@ -254,7 +254,7 @@ FactoryBot.define do
           parent = revision.revision_type_de_champs.find { |rtdc| rtdc.type_de_champ == type_de_champ_repetition }
 
           build(:type_de_champ, procedure: evaluator.procedure, libelle: 'sub type de champ', parent: parent, position: 0)
-          build(:type_de_champ, type_champ: TypeDeChamp.type_champs.fetch(:integer_number), procedure: evaluator.procedure, libelle: 'sub type de champ2', parent: parent, position: 1)
+          build(:type_de_champ, type: TypesDeChamp::IntegerNumber.name, procedure: evaluator.procedure, libelle: 'sub type de champ2', parent: parent, position: 1)
         end
       end
 
@@ -263,7 +263,7 @@ FactoryBot.define do
           revision = evaluator.procedure.active_revision
           parent = revision.revision_type_de_champs.find { |rtdc| rtdc.type_de_champ == type_de_champ_repetition }
 
-          build(:type_de_champ, type_champ: TypeDeChamp.type_champs.fetch(:regions), procedure: evaluator.procedure, libelle: 'region sub_champ', parent: parent, position: 10)
+          build(:type_de_champ, type: TypesDeChamp::Region.name, procedure: evaluator.procedure, libelle: 'region sub_champ', parent: parent, position: 10)
         end
       end
     end
