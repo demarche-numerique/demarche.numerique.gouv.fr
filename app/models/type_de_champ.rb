@@ -8,7 +8,6 @@ class TypeDeChamp < ApplicationRecord
   include EstimatedDurationConcern
 
   FILE_MAX_SIZE = 200.megabytes
-  MINIMUM_TEXTAREA_CHARACTER_LIMIT_LENGTH = 400
 
   STRUCTURE = :structure
   ETAT_CIVIL = :etat_civil
