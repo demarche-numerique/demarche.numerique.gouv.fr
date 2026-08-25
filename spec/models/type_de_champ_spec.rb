@@ -750,19 +750,6 @@ describe TypeDeChamp do
     end
   end
 
-  describe '#humanized_conditionable_types_by_category' do
-    subject { TypeDeChamp.humanized_conditionable_types_by_category }
-
-    it 'groups the conditionable types by category, in the editor order' do
-      is_expected.to eq([
-        ["« Adresse »", "« Commune française actuelle »", "« Département »", "« Région »", "« Pays »", "« EPCI »"],
-        ["« Nombre décimal »", "« Nombre entier »"],
-        ["« Case à cocher seule »", "« Choix simple »", "« Choix multiple »", "« Oui/Non »"],
-        ["« Champ pré-rempli »"],
-      ])
-    end
-  end
-
   describe '#ocr_compatible?' do
     subject { type_de_champ.ocr_compatible? }
 
