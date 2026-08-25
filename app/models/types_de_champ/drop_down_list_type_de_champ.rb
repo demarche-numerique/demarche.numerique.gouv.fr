@@ -11,7 +11,6 @@ class TypesDeChamp::DropDownListTypeDeChamp < TypesDeChamp::DropDownBaseTypeDeCh
 
   def prefillable? = true
   def options_for_select = options_for_select_with_other
-  def choice_type? = true
   def any_drop_down_list? = true
   def conditionable? = !drop_down_advanced?
   def simple_routable? = !drop_down_advanced?
