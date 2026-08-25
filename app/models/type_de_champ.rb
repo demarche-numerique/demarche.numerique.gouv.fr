@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class TypeDeChamp < ApplicationRecord
-  # STI on the historical type_champ column: values are enum strings ('text'),
-  # not class names, so find_sti_class/sti_name below translate both ways.
-  self.inheritance_column = :type_champ
+  # Standard STI: the type column holds the class name and Rails resolves it
+  # natively. The historical type_champ enum stays as the domain vocabulary
+  # (editor params, GraphQL, i18n, scopes); class_for/type_champ below translate
+  # at the borders, and the two columns are kept in sync on write.
 
   include EstimatedDurationConcern
 
@@ -101,6 +102,11 @@ class TypeDeChamp < ApplicationRecord
 
   validates :type_champ, presence: true, allow_blank: false, allow_nil: false
 
+  # type is the STI discriminator, type_champ the domain vocabulary: every write
+  # must keep them aligned, Rails only manages type.
+  after_initialize { self.type_champ ||= self.class.type_champ if new_record? }
+  before_save -> { self.type = self.class.class_for(type_champ).name }, if: -> { will_save_change_to_type_champ? }
+
   after_create :populate_stable_id
 
   before_validation :enforce_mandatory_constraints
@@ -148,7 +154,7 @@ class TypeDeChamp < ApplicationRecord
   # record: save the change through an instance of the target subclass, so its
   # validations and callbacks apply instead of the source type's.
   def becomes_type(new_type_champ)
-    becomes(self.class.find_sti_class(new_type_champ))
+    becomes(self.class.class_for(new_type_champ)).tap { it.type_champ = new_type_champ }
   end
 
   def only_present_on_draft?
@@ -404,17 +410,31 @@ class TypeDeChamp < ApplicationRecord
       "TypesDeChamp::#{type_champ.classify}"
     end
 
-    def find_sti_class(type_name) = type_champ_to_class_name(type_name.to_s).constantize
+    def class_for(type_champ) = type_champ_to_class_name(type_champ.to_s).constantize
 
-    def type_champ_classes = type_champs.values.map { find_sti_class(_1) }
+    def type_champ = CLASS_NAME_TO_TYPE_CHAMP[name]
+
+    # The whole app builds through TypeDeChamp.new(type_champ: 'text') — editor
+    # params, factories, seeds. When type_champ was the STI discriminator Rails
+    # dispatched to the subclass natively; with a standard type column it no
+    # longer does, so the dispatch is hand-rolled here.
+    def new(attributes = nil, &)
+      type_champ = attributes && (attributes[:type_champ] || attributes['type_champ'])
+
+      if self == TypeDeChamp && type_champ.present?
+        class_for(type_champ).new(attributes, &)
+      else
+        super
+      end
+    end
+
+    def type_champ_classes = type_champs.values.map { class_for(_1) }
 
     def conditionable_types = type_champ_classes.filter(&:conditionable?)
 
     def simple_routable_types = conditionable_types.filter(&:simple_routable?)
 
     def custom_routable_types = conditionable_types.reject(&:simple_routable?)
-
-    def sti_name = CLASS_NAME_TO_TYPE_CHAMP[name]
 
     # Forms, params, dom ids and i18n keys expect 'type_de_champ' for every subclass.
     def model_name

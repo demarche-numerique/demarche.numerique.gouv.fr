@@ -23,7 +23,7 @@
           Pour configurer l’inéligibilité des dossiers, votre formulaire doit comporter au moins un champ supportant les conditions d’inéligibilité. Il vous faut donc ajouter au moins un des champs suivant à votre formulaire :
           %ul
             - TypeDeChamp.type_champ_classes.filter(&:conditionable?).each do
-              %li= "« #{t(_1.sti_name, scope: [:activerecord, :attributes, :type_de_champ, :type_champs])} »"
+              %li= "« #{t(_1.type_champ, scope: [:activerecord, :attributes, :type_de_champ, :type_champs])} »"
         %p.fr-mt-2w
           = link_to 'Ajouter un champ supportant les conditions d’inéligibilité', champs_admin_procedure_path(@procedure), class: 'fr-link fr-icon-arrow-right-line fr-link--icon-right'
           = render Procedure::FixedFooterComponent.new(procedure: @procedure)

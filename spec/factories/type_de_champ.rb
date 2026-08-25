@@ -4,7 +4,7 @@ FactoryBot.define do
   sequence(:stable_id) { |n| 100_000 + n }
 
   factory :type_de_champ do
-    # STI: attributes must go through new so the subclass is picked from type_champ.
+    # STI: attributes must go through new so the constructor picks the subclass from type_champ.
     initialize_with { TypeDeChamp.new(attributes) }
 
     sequence(:libelle) { |n| "Libelle du champ #{n}" }

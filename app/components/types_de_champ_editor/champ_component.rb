@@ -60,7 +60,7 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
     cat_scope = "activerecord.attributes.type_de_champ.categorie"
     tdc_scope = "activerecord.attributes.type_de_champ.type_champs"
     TypeDeChamp.type_champs.keys
-      .map { TypeDeChamp.find_sti_class(_1) }
+      .map { TypeDeChamp.class_for(_1) }
       .filter(&method(:filter_type_champ))
       .filter(&method(:filter_featured_type_champ))
       .filter(&method(:filter_block_type_champ))
@@ -70,7 +70,7 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
       .to_h do |cat, klasses|
         [
           t(cat, scope: cat_scope),
-          klasses.map { [t(_1.sti_name, scope: tdc_scope), _1.sti_name, { disabled: !accepted_type_champs.include?(_1.sti_name) }] },
+          klasses.map { [t(_1.type_champ, scope: tdc_scope), _1.type_champ, { disabled: !accepted_type_champs.include?(_1.type_champ) }] },
         ]
       end
   end
