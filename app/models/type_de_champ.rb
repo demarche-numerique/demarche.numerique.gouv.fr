@@ -5,13 +5,10 @@ class TypeDeChamp < ApplicationRecord
   # not class names, so find_sti_class/sti_name below translate both ways.
   self.inheritance_column = :type_champ
 
+  include EstimatedDurationConcern
+
   FILE_MAX_SIZE = 200.megabytes
   MINIMUM_TEXTAREA_CHARACTER_LIMIT_LENGTH = 400
-
-  FILL_DURATION_SHORT  = 10.seconds
-  FILL_DURATION_MEDIUM = 1.minute
-  FILL_DURATION_LONG   = 3.minutes
-  READ_WORDS_PER_SECOND = 140.0 / 60 # 140 words per minute
 
   STRUCTURE = :structure
   ETAT_CIVIL = :etat_civil
@@ -374,27 +371,6 @@ class TypeDeChamp < ApplicationRecord
 
   def libelles_for_export
     paths.map { [_1[:libelle], _1[:path]] }
-  end
-
-  # Default estimated duration to fill the champ in a form, in seconds.
-  # May be overridden by subclasses.
-  def estimated_fill_duration(revision)
-    if fillable?
-      FILL_DURATION_SHORT
-    else
-      0.seconds
-    end
-  end
-
-  def estimated_read_duration
-    return 0.seconds if description.blank?
-
-    sanitizer = Rails::Html::Sanitizer.full_sanitizer.new
-    content = sanitizer.sanitize(description)
-
-    words = content.split(/\s+/).size
-
-    (words / READ_WORDS_PER_SECOND).round.seconds
   end
 
   def canonical_column(procedure_id:, displayable: true, prefix: nil)
