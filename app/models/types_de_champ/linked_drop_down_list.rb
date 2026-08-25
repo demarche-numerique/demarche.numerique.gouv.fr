@@ -10,7 +10,7 @@ class TypesDeChamp::LinkedDropDownList < TypesDeChamp::DropDownBase
   def has_label? = false
   def customizable? = true
 
-  before_validation :set_default_drop_down_options, if: :type_champ_changed?
+  before_validation :set_default_drop_down_options, if: :type_changed?
 
   PRIMARY_PATTERN = /^--(.*)--$/
 

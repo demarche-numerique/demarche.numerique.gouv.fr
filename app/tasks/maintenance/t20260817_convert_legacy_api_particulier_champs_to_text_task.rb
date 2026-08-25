@@ -13,13 +13,12 @@ module Maintenance
     # recopiés en clair dans `value`. Les données récupérées auprès de l'API
     # restent dans `data`.
     #
-    # TypeDeChamp est en STI sur `type_champ` : une valeur hors enum n'a pas de
-    # classe et ne peut pas être instanciée, on travaille donc sur les ids.
-
-    LEGACY_TYPE_CHAMPS = ['cnaf', 'dgfip', 'mesri', 'pole_emploi'].freeze
+    # Ces types n'ayant plus de classe, le backfill de la colonne STI `type`
+    # les a laissés à NULL : c'est leur signature. On travaille sur les ids car
+    # ces lignes ne peuvent pas être instanciées.
 
     def collection
-      TypeDeChamp.where(type_champ: LEGACY_TYPE_CHAMPS).pluck(:id, :stable_id)
+      TypeDeChamp.where(type: nil).pluck(:id, :stable_id)
     end
 
     def process((id, stable_id))
@@ -35,7 +34,7 @@ module Maintenance
           )
         end
 
-      TypeDeChamp.where(id:).update_all(type_champ: TypeDeChamp.type_champs.fetch(:text))
+      TypeDeChamp.where(id:).update_all(type: TypesDeChamp::Text.name)
     end
 
     private

@@ -35,7 +35,7 @@ module PiecesJointesListConcern
 
     coordinates = coordinates.public_only if public_only
 
-    coordinates = coordinates.where(types_de_champ: { type_champ: 'piece_justificative' })
+    coordinates = coordinates.where(types_de_champ: { type: TypesDeChamp::PieceJustificative.name })
 
     # Exclude titre_identite (now piece_justificative with nature=titre_identite)
     coordinates = coordinates.to_a

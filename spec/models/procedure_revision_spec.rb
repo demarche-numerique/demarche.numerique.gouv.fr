@@ -547,7 +547,7 @@ describe ProcedureRevision do
 
         before do
           updated_tdc = new_draft.find_and_ensure_exclusive_use(first_tdc.stable_id)
-          updated_tdc.update(type_champ: :textarea, options: { "character_limit" => "" })
+          updated_tdc.becomes_type(TypesDeChamp::Textarea.name).update(options: { "character_limit" => "" })
         end
 
         it do
@@ -654,7 +654,7 @@ describe ProcedureRevision do
 
         before do
           child = new_draft.children_of(new_draft.public_root_type_de_champs.last).first
-          new_draft.find_and_ensure_exclusive_use(child.stable_id).update(type_champ: :carte, options: { cadastres: true, znieff: true })
+          new_draft.find_and_ensure_exclusive_use(child.stable_id).becomes_type(TypesDeChamp::Carte.name).update(options: { cadastres: true, znieff: true })
         end
 
         it do
@@ -1182,7 +1182,7 @@ describe ProcedureRevision do
 
         before do
           draft_revision.estimated_fill_duration
-          draft_revision.type_de_champs.first.update!(type_champ: TypeDeChamp.type_champs.fetch(:piece_justificative))
+          draft_revision.type_de_champs.first.becomes_type(TypesDeChamp::PieceJustificative.name).save!
           draft_revision.reload
         end
 

@@ -20,7 +20,7 @@ class TypesDeChamp::DropDownList < TypesDeChamp::DropDownBase
   def value_is_in_options?(checked_value) = options_for_select.any? { _1.last == checked_value }
   def customizable? = true
 
-  before_validation :set_default_drop_down_options, if: :type_champ_changed?
+  before_validation :set_default_drop_down_options, if: :type_changed?
 
   def typed_champ_value(champ)
     if drop_down_advanced? && champ.respond_to?(:referentiel) && champ.referentiel.present?

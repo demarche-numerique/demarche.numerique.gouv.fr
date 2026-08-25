@@ -20,7 +20,7 @@ module Maintenance
       if routing_rule.present?
         tdcs = TypeDeChamp.where(id: gi.procedure.active_revision.public_root_type_de_champs)
 
-        if tdcs.where(stable_id: routing_rule.sources, type_champ: ["communes", "epci"]).present?
+        if tdcs.where(stable_id: routing_rule.sources, type: [TypesDeChamp::Commune, TypesDeChamp::Epci].map(&:name)).present?
           if routing_rule.is_a?(And)
             new_operands = new_operands_from(tdcs, routing_rule)
             gi.update!(routing_rule: ds_and(new_operands))
@@ -44,7 +44,7 @@ module Maintenance
 
     def new_operands_from(tdcs, condition)
       condition.operands.map do |sub_condition|
-        if tdcs.where(stable_id: sub_condition.sources, type_champ: ["communes", "epci"]).present?
+        if tdcs.where(stable_id: sub_condition.sources, type: [TypesDeChamp::Commune, TypesDeChamp::Epci].map(&:name)).present?
           if sub_condition.is_a?(NotEq)
             ds_not_in_departement(sub_condition.left, sub_condition.right)
           elsif sub_condition.is_a?(Eq)

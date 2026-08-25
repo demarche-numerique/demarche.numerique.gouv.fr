@@ -324,9 +324,8 @@ class ProcedureRevision < ApplicationRecord
         tdc = find_and_ensure_exclusive_use(stable_id)
         # the LLM suggestions payload still speaks type_champ
         tdc = tdc.becomes_type(TypeDeChamp.class_for(type_champ).name) if type_champ != tdc.type_champ
-        update_params = { type_champ: }
-        update_params[:options] = tdc.options.merge(options) if options.present?
-        tdc.update(update_params)
+        tdc.options = tdc.options.merge(options) if options.present?
+        tdc.save
       else # LabelImprover: mise à jour contenu
         stable_id, libelle, description = payload.values_at(:stable_id, :libelle, :description)
 

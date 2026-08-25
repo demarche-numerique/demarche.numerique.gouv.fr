@@ -5,17 +5,17 @@ module Maintenance
     attribute :procedure_id, :string
     validates :procedure_id, presence: true
 
-    DROP_DOWN_TYPE_CHAMPS = [
-      TypeDeChamp.type_champs.fetch(:drop_down_list),
-      TypeDeChamp.type_champs.fetch(:multiple_drop_down_list),
-    ].freeze
+    DROP_DOWN_TYPES = [
+      TypesDeChamp::DropDownList,
+      TypesDeChamp::MultipleDropDownList,
+    ].map(&:name).freeze
 
     def collection
       procedure = Procedure.find(procedure_id.strip)
 
       TypeDeChamp
         .joins(:revisions)
-        .where(type_champ: DROP_DOWN_TYPE_CHAMPS, procedure_revisions: { procedure_id: procedure.id })
+        .where(type: DROP_DOWN_TYPES, procedure_revisions: { procedure_id: procedure.id })
         .distinct
     end
 

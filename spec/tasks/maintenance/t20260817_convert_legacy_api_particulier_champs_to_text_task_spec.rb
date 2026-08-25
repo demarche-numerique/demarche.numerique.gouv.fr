@@ -18,12 +18,12 @@ module Maintenance
         external_state: 'fetched',
         data: cnaf_data
       )
-      type_de_champ.update_columns(type_champ: 'cnaf')
+      # a legacy type has no class: the sti type backfill left it NULL
+      type_de_champ.update_columns(type: nil)
     end
 
-    # the enum casts unknown values to nil, read the column as stored
-    def raw_type_champ
-      TypeDeChamp.connection.select_value("SELECT type_champ FROM types_de_champ WHERE id = #{type_de_champ.id}")
+    def raw_type
+      TypeDeChamp.connection.select_value("SELECT type FROM types_de_champ WHERE id = #{type_de_champ.id}")
     end
 
     describe "#collection" do
@@ -36,7 +36,7 @@ module Maintenance
       subject(:process) { described_class.process([type_de_champ.id, type_de_champ.stable_id]) }
 
       it "converts the type de champ to text" do
-        expect { process }.to change { raw_type_champ }.from('cnaf').to('text')
+        expect { process }.to change { raw_type }.from(nil).to('TypesDeChamp::Text')
       end
 
       it "converts the champ to text, keeping the identifiers as value and the fetched data" do

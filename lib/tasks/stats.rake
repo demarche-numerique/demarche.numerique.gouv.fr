@@ -240,12 +240,12 @@ namespace :stats do
     # Utilisons une approche en 2 étapes pour éviter les problèmes d’attributs manquants
     type_champ_data = ActiveRecord::Base.connection.execute(<<~SQL.squish).to_a
       SELECT
-        type_champ,
+        type,
         COUNT(*) as nb_procedures,
         SUM(estimated_dossiers_count) as nb_dossiers
       FROM (
         SELECT DISTINCT
-          types_de_champ.type_champ,
+          types_de_champ.type,
           procedures.id,
           procedures.estimated_dossiers_count
         FROM types_de_champ
@@ -259,7 +259,7 @@ namespace :stats do
           AND procedures.aasm_state IN ('publiee', 'close', 'depubliee')
           AND procedures.published_revision_id = procedure_revisions.id
       ) as unique_procedures
-      GROUP BY type_champ
+      GROUP BY type
       ORDER BY nb_procedures DESC, nb_dossiers DESC
     SQL
 
@@ -271,7 +271,7 @@ namespace :stats do
       percentage_procedures = total_procedures > 0 ? ((nb_procedures.to_f / total_procedures) * 100).round(2) : 0
       percentage_dossiers = total_dossiers_all_procedures > 0 ? ((nb_dossiers.to_f / total_dossiers_all_procedures) * 100).round(2) : 0
 
-      type_champ = I18n.t(row['type_champ'], scope: "activerecord.attributes.type_de_champ.type_champs")
+      type_champ = I18n.t(TypeDeChamp::CLASS_NAME_TO_TYPE_CHAMP[row['type']], scope: "activerecord.attributes.type_de_champ.type_champs")
 
       type_champ_results << {
         type_champ:,

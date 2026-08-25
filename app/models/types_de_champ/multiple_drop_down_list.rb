@@ -16,7 +16,7 @@ class TypesDeChamp::MultipleDropDownList < TypesDeChamp::DropDownBase
   def condition_options = options_for_select_with_other
   def customizable? = true
 
-  before_validation :set_default_drop_down_options, if: :type_champ_changed?
+  before_validation :set_default_drop_down_options, if: :type_changed?
 
   def typed_champ_value(champ)
     if drop_down_advanced? && champ.respond_to?(:referentiels) && champ.referentiels.present?

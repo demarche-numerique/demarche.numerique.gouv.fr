@@ -6,8 +6,8 @@ describe TypeDeChamp do
       before_all { seed "cases/champs" }
 
       it do
-        is_expected.not_to allow_value(nil).for(:type_champ)
-        is_expected.not_to allow_value('').for(:type_champ)
+        is_expected.not_to allow_value(nil).for(:type)
+        is_expected.not_to allow_value('').for(:type)
       end
 
       let(:procedure) { procedures.tous_champs }
@@ -57,9 +57,10 @@ describe TypeDeChamp do
         subject { template_double }
 
         before do
-          allow(tdc).to receive(:piece_justificative_template).and_return(template_double)
+          morphed = tdc.becomes_type(TypeDeChamp.class_for(target_type_champ).name)
+          allow(morphed).to receive(:piece_justificative_template).and_return(template_double)
 
-          tdc.update(type_champ: target_type_champ)
+          morphed.save
         end
 
         context 'when the target type_champ is not pj' do
@@ -95,19 +96,19 @@ describe TypeDeChamp do
       let(:tdc) { create(:type_de_champ_drop_down_list, referentiel: csv_referentiel) }
 
       context 'from drop_down_list to referentiel' do
-        before { tdc.update(type_champ: TypeDeChamp.type_champs.fetch(:referentiel)) }
+        before { tdc.becomes_type(TypesDeChamp::Referentiel.name).save }
 
         it { expect(tdc.referentiel_id).to be_nil }
       end
 
       context 'from drop_down_list to text' do
-        before { tdc.update(type_champ: TypeDeChamp.type_champs.fetch(:text)) }
+        before { tdc.becomes_type(TypesDeChamp::Text.name).save }
 
         it { expect(tdc.referentiel_id).to be_nil }
       end
 
       context 'from drop_down_list to multiple_drop_down_list (both use csv referentiel)' do
-        before { tdc.update(type_champ: TypeDeChamp.type_champs.fetch(:multiple_drop_down_list)) }
+        before { tdc.becomes_type(TypesDeChamp::MultipleDropDownList.name).save }
 
         it { expect(tdc.referentiel_id).to be_nil }
       end
@@ -333,7 +334,7 @@ describe TypeDeChamp do
 
   describe 'libelle normalization' do
     it 'strips surrounding whitespace on assignment' do
-      expect(build(:type_de_champ, :header_section, libelle: " 2.3 Test").libelle).to eq("2.3 Test")
+      expect(build(:type_de_champ_header_section, libelle: " 2.3 Test").libelle).to eq("2.3 Test")
       expect(build(:type_de_champ, libelle: " fix me ").libelle).to eq("fix me")
     end
   end
@@ -345,7 +346,7 @@ describe TypeDeChamp do
     it { expect(type_de_champ.libelle).to eq("Titre de section") }
 
     context "when the type champ is changed" do
-      before { type_de_champ.update(type_champ: :dossier_link) }
+      before { type_de_champ.becomes_type(TypesDeChamp::DossierLink.name).save }
 
       it { expect(type_de_champ.libelle).to eq("Numéro de dossier déposé sur demarche.numerique.gouv.fr") }
 

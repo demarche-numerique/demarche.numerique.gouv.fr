@@ -2,9 +2,9 @@
 
 class TypeDeChamp < ApplicationRecord
   # Standard STI: the type column holds the class name and Rails resolves it
-  # natively. The historical type_champ enum stays as the domain vocabulary
-  # (editor params, GraphQL, i18n, scopes); class_for/type_champ below translate
-  # at the borders, and the two columns are kept in sync on write.
+  # natively. The historical type_champ vocabulary is derived from the class;
+  # its column is no longer read here and is kept aligned by a database
+  # trigger for code that still speaks it.
 
   include EstimatedDurationConcern
 
@@ -28,50 +28,61 @@ class TypeDeChamp < ApplicationRecord
   def self.simple_routable? = false
   def self.conditionable? = false
 
-  enum :type_champ, {
-    engagement_juridique: 'engagement_juridique',
-    header_section: 'header_section',
-    repetition: 'repetition',
-    dossier_link: 'dossier_link',
-    explication: 'explication',
-    civilite: 'civilite',
-    email: 'email',
-    phone: 'phone',
-    address: 'address',
-    communes: 'communes',
-    departements: 'departements',
-    regions: 'regions',
-    pays: 'pays',
-    iban: 'iban',
-    siret: 'siret',
-    text: 'text',
-    textarea: 'textarea',
-    number: 'number',
-    decimal_number: 'decimal_number',
-    integer_number: 'integer_number',
-    formatted: 'formatted',
-    date: 'date',
-    datetime: 'datetime',
-    piece_justificative: 'piece_justificative',
-    checkbox: 'checkbox',
-    drop_down_list: 'drop_down_list',
-    multiple_drop_down_list: 'multiple_drop_down_list',
-    linked_drop_down_list: 'linked_drop_down_list',
-    yes_no: 'yes_no',
-    annuaire_education: 'annuaire_education',
-    rna: 'rna',
-    rnf: 'rnf',
-    carte: 'carte',
-    epci: 'epci',
-    cojo: 'cojo',
-    referentiel: 'referentiel',
-    pre_rempli: 'pre_rempli',
-    quotient_familial: 'quotient_familial',
-    etudiant_boursier: 'etudiant_boursier',
-    aah: 'aah',
-    aeeh: 'aeeh',
-    ars: 'ars',
-  }
+  # The domain vocabulary, formerly the STI discriminator; still spoken by the
+  # API (v1 serializers, GraphQL), the LLM contract and the i18n keys. The
+  # order drives the editor and seeds.
+  TYPE_CHAMPS = %w[
+    engagement_juridique
+    header_section
+    repetition
+    dossier_link
+    explication
+    civilite
+    email
+    phone
+    address
+    communes
+    departements
+    regions
+    pays
+    iban
+    siret
+    text
+    textarea
+    number
+    decimal_number
+    integer_number
+    formatted
+    date
+    datetime
+    piece_justificative
+    checkbox
+    drop_down_list
+    multiple_drop_down_list
+    linked_drop_down_list
+    yes_no
+    annuaire_education
+    rna
+    rnf
+    carte
+    epci
+    cojo
+    referentiel
+    pre_rempli
+    quotient_familial
+    etudiant_boursier
+    aah
+    aeeh
+    ars
+  ].index_by(&:itself).with_indifferent_access.freeze
+
+  def self.type_champs = TYPE_CHAMPS
+
+  # enum-compatible predicates (text?, piece_justificative?, …) until the call
+  # sites move to is_a?
+  TYPE_CHAMPS.each_key do |key|
+    define_method(:"#{key}?") { type_champ == key }
+  end
 
   has_many :revision_type_de_champs, -> { revision_ordered }, class_name: 'ProcedureRevisionTypeDeChamp', dependent: :destroy, inverse_of: :type_de_champ
 
@@ -85,36 +96,31 @@ class TypeDeChamp < ApplicationRecord
 
   scope :public_only, -> { where(private: false) }
   scope :private_only, -> { where(private: true) }
-  scope :repetition, -> { where(type_champ: type_champs.fetch(:repetition)) }
-  scope :not_repetition, -> { where.not(type_champ: type_champs.fetch(:repetition)) }
+  scope :repetition, -> { where(type: TypesDeChamp::Repetition.name) }
+  scope :not_repetition, -> { where.not(type: TypesDeChamp::Repetition.name) }
   scope :not_condition, -> { where(condition: nil) }
-  scope :fillable, -> { where.not(type_champ: [type_champs.fetch(:header_section), type_champs.fetch(:explication)]) }
-  scope :with_header_section, -> { where.not(type_champ: TypeDeChamp.type_champs[:explication]) }
+  scope :fillable, -> { where.not(type: [TypesDeChamp::HeaderSection, TypesDeChamp::Explication].map(&:name)) }
+  scope :with_header_section, -> { where.not(type: TypesDeChamp::Explication.name) }
   scope :mandatory, -> { where(mandatory: true) }
 
   scope :dubious, -> {
     where("unaccent(types_de_champ.libelle) ~* unaccent(?)", DubiousProcedure.forbidden_regexp)
-      .where(type_champ: [TypeDeChamp.type_champs.fetch(:text), TypeDeChamp.type_champs.fetch(:textarea)])
+      .where(type: [TypesDeChamp::Text, TypesDeChamp::Textarea].map(&:name))
   }
 
   has_one_attached :piece_justificative_template
   has_one_attached :notice_explicative
 
-  validates :type_champ, presence: true, allow_blank: false, allow_nil: false
-
-  # type is the STI discriminator, type_champ the domain vocabulary: every write
-  # must keep them aligned, Rails only manages type.
-  after_initialize { self.type_champ ||= self.class.type_champ if new_record? }
-  before_save -> { self.type = self.class.class_for(type_champ).name }, if: -> { will_save_change_to_type_champ? }
+  validates :type, presence: true, allow_blank: false, allow_nil: false
 
   after_create :populate_stable_id
 
   before_validation :enforce_mandatory_constraints
-  before_validation :set_default_libelle, if: -> { type_champ_changed? }
+  before_validation :set_default_libelle, if: -> { type_changed? }
 
   normalizes :libelle, with: -> (value) { value.strip }
 
-  before_save :remove_attachment, if: -> { type_champ_changed? }
+  before_save :remove_attachment, if: -> { type_changed? }
   before_save :clean_referentiel
 
   def libelle_with_parent(revision)
@@ -150,14 +156,16 @@ class TypeDeChamp < ApplicationRecord
     champ_class.new(params_for_champ.merge(params))
   end
 
+  # the model no longer reads the column: the vocabulary is derived from the class
+  def type_champ = self.class.type_champ
+
   # Changing the type cannot change the class of an already-instantiated
   # record: save the change through an instance of the target subclass, so its
   # validations and callbacks apply instead of the source type's.
   # sti_class_for resolves the class name and rejects anything that is not a
-  # TypeDeChamp subclass.
+  # TypeDeChamp subclass; becomes! also rewrites the type column.
   def becomes_type(type_name)
-    klass = self.class.sti_class_for(type_name)
-    becomes(klass).tap { it.type_champ = klass.type_champ }
+    becomes!(self.class.sti_class_for(type_name))
   end
 
   def only_present_on_draft?
@@ -428,7 +436,7 @@ class TypeDeChamp < ApplicationRecord
 
       if self == TypeDeChamp && type_champ.present?
         # the legacy type_champ wins over a type coming from a factory default
-        class_for(type_champ).new(attributes.except(:type, 'type'), &)
+        class_for(type_champ).new(attributes.except(:type_champ, 'type_champ', :type, 'type'), &)
       else
         super
       end
@@ -464,7 +472,7 @@ class TypeDeChamp < ApplicationRecord
   private
 
   def set_default_libelle
-    old_default, new_default = [type_champ_was, type_champ].map do |type_champ|
+    old_default, new_default = [CLASS_NAME_TO_TYPE_CHAMP[type_was], type_champ].map do |type_champ|
       next if type_champ.blank?
 
       I18n.t(type_champ,
@@ -524,7 +532,7 @@ class TypeDeChamp < ApplicationRecord
   end
 
   def clean_referentiel
-    return if !persisted? || !type_champ_changed? || !referentiel_id?
+    return if !persisted? || !type_changed? || !referentiel_id?
     self.referentiel_id = nil
   end
 end

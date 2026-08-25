@@ -491,7 +491,7 @@ RSpec.describe DossierChampsConcern do
 
         before do
           tdc = dossier.procedure.draft_revision.find_and_ensure_exclusive_use(99)
-          tdc.update!(type_champ: TypeDeChamp.type_champs.fetch(:checkbox))
+          tdc.becomes_type(TypesDeChamp::Checkbox.name).save!
           dossier.procedure.publish_revision!(procedure.administrateurs.first)
           perform_enqueued_jobs
           dossier.reload

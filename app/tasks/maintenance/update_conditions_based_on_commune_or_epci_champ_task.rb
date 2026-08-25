@@ -18,7 +18,7 @@ module Maintenance
       tdcs = TypeDeChamp.where(id: revision.public_root_type_de_champs)
 
       tdcs.where.not(condition: nil).pluck(:condition, :id).each do |condition, id|
-        if tdcs.where(stable_id: condition.sources, type_champ: ["communes", "epci"]).present?
+        if tdcs.where(stable_id: condition.sources, type: [TypesDeChamp::Commune, TypesDeChamp::Epci].map(&:name)).present?
           tdc_to_update_ids << id
         end
       end
@@ -50,7 +50,7 @@ module Maintenance
 
     def new_operands_from(tdcs, condition)
       condition.operands.map do |sub_condition|
-        if tdcs.where(stable_id: sub_condition.sources, type_champ: ["communes", "epci"]).present?
+        if tdcs.where(stable_id: sub_condition.sources, type: [TypesDeChamp::Commune, TypesDeChamp::Epci].map(&:name)).present?
           if sub_condition.is_a?(NotEq)
             ds_not_in_departement(sub_condition.left, sub_condition.right)
           elsif sub_condition.is_a?(Eq)

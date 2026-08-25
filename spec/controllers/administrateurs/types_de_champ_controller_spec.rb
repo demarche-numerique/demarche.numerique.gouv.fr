@@ -73,7 +73,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       it do
         is_expected.to have_http_status(:ok)
         expect(assigns(:coordinate)).to be_nil
-        expect(flash.alert).to eq(["Le champ « Type champ » doit être rempli"])
+        expect(flash.alert).to eq(["Le champ « Type » doit être rempli"])
       end
     end
   end
@@ -175,7 +175,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       it 'ignores the options unknown to the new type (RAILS-MF9)' do
         is_expected.to have_http_status(:ok)
         expect(flash.alert).to be_nil
-        expect(TypeDeChamp.where(id: third_coordinate.type_de_champ.id).pick(:type_champ)).to eq('yes_no')
+        expect(TypeDeChamp.where(id: third_coordinate.type_de_champ.id).pick(:type)).to eq('TypesDeChamp::YesNo')
       end
     end
 

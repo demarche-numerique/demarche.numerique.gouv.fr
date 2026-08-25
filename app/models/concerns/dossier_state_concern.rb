@@ -463,7 +463,7 @@ module DossierStateConcern
   def clear_auto_purged_piece_justificatives!
     revision_ids = revision.draft? ? [procedure.draft_revision_id] : (procedure.revisions.ids - [procedure.draft_revision_id])
     champ_to_clear_stable_ids = TypeDeChamp.joins(:revision_type_de_champs)
-      .where(procedure_revision_types_de_champ: { revision_id: revision_ids }, type_champ: 'piece_justificative')
+      .where(procedure_revision_types_de_champ: { revision_id: revision_ids }, type: TypesDeChamp::PieceJustificative.name)
       .order(updated_at: :desc)
       .uniq(&:stable_id)
       .filter(&:pj_auto_purge?)

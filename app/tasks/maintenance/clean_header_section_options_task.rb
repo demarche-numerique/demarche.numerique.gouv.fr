@@ -11,7 +11,7 @@ module Maintenance
 
     def collection
       TypeDeChamp
-        .where(type_champ: 'header_section')
+        .where(type: TypesDeChamp::HeaderSection.name)
         .where.not(options: {})
         .where.not("(SELECT COUNT(*) FROM jsonb_each_text(options)) = 1 AND options ? 'header_section_level'")
     end
