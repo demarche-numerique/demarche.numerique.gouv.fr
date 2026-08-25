@@ -192,7 +192,6 @@ class TypeDeChamp < ApplicationRecord
 
   def cannot_be_mandatory? = false
 
-
   def public?
     !private?
   end
@@ -274,12 +273,6 @@ class TypeDeChamp < ApplicationRecord
 
   def public_id(row_id)
     self.class.public_id(stable_id, row_id)
-  end
-
-  def libelle_as_filename
-    libelle.gsub(/[[:space:]]+/, ' ')
-      .truncate(30, omission: '', separator: ' ')
-      .parameterize
   end
 
   def self.option_keys = []

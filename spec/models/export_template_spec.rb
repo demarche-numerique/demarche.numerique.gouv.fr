@@ -28,7 +28,7 @@ describe ExportTemplate do
     end
 
     context 'when pj does not exist' do
-      subject { export_template.pj(TypeDeChamp.new(libelle: 'hi', stable_id: 10)) }
+      subject { export_template.pj(TypesDeChamp::PieceJustificativeTypeDeChamp.new(libelle: 'hi', stable_id: 10)) }
 
       it { is_expected.to eq(ExportItem.default(stable_id: 10, prefix: "hi", enabled: false)) }
     end
