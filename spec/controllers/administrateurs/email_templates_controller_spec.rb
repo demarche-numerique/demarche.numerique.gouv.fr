@@ -19,6 +19,35 @@ describe Administrateurs::EmailTemplatesController, type: :controller do
       expect(subject.status).to eq 200
       expect(subject.body).to include("Modèles d’email")
       expect(subject.body).to include(Emails::Depose::DISPLAYED_NAME)
+      expect(subject.body).not_to include('Démarche déclarative')
+    end
+
+    context 'quand la démarche est déclarative' do
+      before { procedure.update!(declarative_with_state: :accepte) }
+
+      it 'annonce le paramétrage déclaratif et renvoie vers la présentation', :slow do
+        expect(subject.body).to include('Démarche déclarative')
+        expect(subject.body).to include("passage automatique au statut «\u{a0}accepté\u{a0}»")
+        expect(subject.body).to include(edit_admin_procedure_path(procedure, section: 'options-avancees', anchor: 'declarative_with_state-legend'))
+      end
+
+      context 'et qu’elle utilise l’accusé de lecture' do
+        before { procedure.update!(accuse_lecture: true) }
+
+        it 'signale que l’accusé de réception annonce quand même l’acceptation', :slow do
+          expect(subject.body).to include('la décision finale reste masquée')
+          expect(subject.body).to include('annonce toutefois cette acceptation')
+        end
+      end
+    end
+
+    context 'quand la démarche utilise l’accusé de lecture sans être déclarative' do
+      before { procedure.update!(accuse_lecture: true) }
+
+      it 'ne promet le masquage de la décision que sur les emails non modifiables', :slow do
+        expect(subject.body).to include('la décision finale reste masquée')
+        expect(subject.body).not_to include('annonce toutefois cette acceptation')
+      end
     end
   end
 

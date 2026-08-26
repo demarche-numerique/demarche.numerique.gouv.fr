@@ -1,0 +1,12 @@
+fr:
+  administrateurs:
+    email_templates:
+      index:
+        accuse_lecture_notice:
+          body: L’accusé de lecture est activé sur cette démarche. Dans ce contexte, les emails « d’acceptation », « de refus » et de « classement sans suite » ne sont pas modifiables afin de s’assurer que la décision finale reste masquée pour l’usager.
+          declarative_accepte: Cette démarche étant déclarative avec un passage automatique au statut « accepté », l’accusé de réception envoyé au dépôt annonce toutefois cette acceptation à l’usager.
+        declarative_notice:
+          title: Démarche déclarative
+          presentation: présentation
+          en_instruction_html: Cette démarche est déclarative avec un <strong>passage automatique en instruction</strong>. Vous pouvez modifier ce paramétrage dans les options avancées de la %{link} de la démarche.
+          accepte_html: Cette démarche est déclarative avec un <strong>passage automatique au statut « accepté »</strong>. Vous pouvez modifier ce paramétrage dans les options avancées de la %{link} de la démarche.
