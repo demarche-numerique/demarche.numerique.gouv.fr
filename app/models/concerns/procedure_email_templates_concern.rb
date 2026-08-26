@@ -20,6 +20,10 @@ module ProcedureEmailTemplatesConcern
     validates_associated :email_repasse_en_instruction, on: :publication
   end
 
+  def send_combined_declarative_email?
+    declarative? && combined_declarative_email?
+  end
+
   def email_depose_or_default
     email_depose || Emails::Depose.default_for_procedure(self)
   end
