@@ -107,6 +107,17 @@ module ProcedureEmailTemplatesConcern
     end
   end
 
+  # Which set of card descriptions the admin screen must serve.
+  def email_templates_context
+    if !send_combined_declarative_email?
+      :default
+    elsif declarative_accepte?
+      :accepte
+    else
+      :en_instruction
+    end
+  end
+
   def email_template_attestation_inconsistency_state(email_type)
     emails, attestation = attestation_inconsistency_scope(email_type)
     expected_tag = attestation&.activated? || false

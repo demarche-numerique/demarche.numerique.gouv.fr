@@ -27,7 +27,7 @@
 
     <% @email_templates.each do |email_template| %>
       <div class="fr-col-12">
-        <%= render Procedure::EmailTemplateCardComponent.new(email_template: email_template) %>
+        <%= render Procedure::EmailTemplateCardComponent.new(email_template: email_template, context: @procedure.email_templates_context) %>
       </div>
     <% end %>
   </div>

@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class Procedure::EmailTemplateCardComponent < ApplicationComponent
-  def initialize(email_template:)
+  def initialize(email_template:, context: :default)
     @email_template = email_template
+    @context = context
   end
 
   private
@@ -24,8 +25,13 @@ class Procedure::EmailTemplateCardComponent < ApplicationComponent
     sanitize(TiptapService.new.to_texts_and_tags(subject_doc, strip: false))
   end
 
+  # The three depose types share a SLUG but not a description.
+  def description_key
+    @email_template.class.name.demodulize.underscore
+  end
+
   def description
-    t(".descriptions.#{slug}.default")
+    t(".descriptions.#{description_key}.#{@context}", default: t(".descriptions.#{description_key}.default"))
   end
 
   def error
