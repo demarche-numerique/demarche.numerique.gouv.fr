@@ -6,7 +6,10 @@ class TypesDeChamp::MultipleDropDownListTypeDeChamp < TypesDeChamp::DropDownBase
   def self.column_type = :enums
   def self.conditionable? = true
 
+  store_accessor :options, :drop_down_mode
+
   def prefillable? = true
+  def drop_down_advanced? = drop_down_mode == 'advanced'
   def options_for_select = options_for_select_with_other
   def conditionable? = !drop_down_advanced?
   def condition_value_type = :enums

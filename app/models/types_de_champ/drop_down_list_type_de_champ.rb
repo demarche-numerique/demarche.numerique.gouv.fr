@@ -7,9 +7,10 @@ class TypesDeChamp::DropDownListTypeDeChamp < TypesDeChamp::DropDownBaseTypeDeCh
   def self.simple_routable? = true
   def self.conditionable? = true
 
-  store_accessor :options, :drop_down_other
+  store_accessor :options, :drop_down_other, :drop_down_mode
 
   def prefillable? = true
+  def drop_down_advanced? = drop_down_mode == 'advanced'
   def options_for_select = options_for_select_with_other
   def conditionable? = !drop_down_advanced?
   def simple_routable? = !drop_down_advanced?
