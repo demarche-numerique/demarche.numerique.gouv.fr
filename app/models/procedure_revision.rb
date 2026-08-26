@@ -282,7 +282,7 @@ class ProcedureRevision < ApplicationRecord
     created = changes.fetch(:add, []).each_with_object({}) do |item, accu|
       after_stable_id, libelle, header_section_level, generated_stable_id = item.payload.with_indifferent_access.values_at(:after_stable_id, :libelle, :header_section_level, :generated_stable_id)
 
-      new_tdc = add_type_de_champ(after_stable_id:, type_champ: 'header_section', libelle:, header_section_level:)
+      new_tdc = add_type_de_champ(after_stable_id:, type: TypesDeChamp::HeaderSection.name, libelle:, header_section_level:)
       accu[generated_stable_id] = new_tdc if new_tdc.persisted? && generated_stable_id
     end
 

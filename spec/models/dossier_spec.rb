@@ -2621,7 +2621,7 @@ describe Dossier, type: :model do
       it 'give me back my decimal number' do
         dossier
         expect {
-          integer_number_type_de_champ.update(type_champ: :decimal_number)
+          integer_number_type_de_champ.update(type: TypesDeChamp::DecimalNumber.name)
         }.to change { dossier.reload.champ_values_for_export(procedure.all_revisions_type_de_champs.not_repetition.to_a, format: :xlsx) }
           .from([["c1", 42]]).to([["c1", 42.0]])
       end
@@ -2657,7 +2657,7 @@ describe Dossier, type: :model do
           procedure.publish!(procedure.administrateurs.first)
           dossier
           procedure.draft_revision.remove_type_de_champ(text_type_de_champ.stable_id)
-          coordinate = procedure.draft_revision.add_type_de_champ(type_champ: TypeDeChamp.type_champs.fetch(:text), libelle: 'New text field', after_stable_id: repetition_type_de_champ.stable_id)
+          coordinate = procedure.draft_revision.add_type_de_champ(type: TypesDeChamp::Text.name, libelle: 'New text field', after_stable_id: repetition_type_de_champ.stable_id)
           procedure.draft_revision.find_and_ensure_exclusive_use(yes_no_type_de_champ.stable_id).update(libelle: 'Updated yes/no')
           procedure.draft_revision.find_and_ensure_exclusive_use(commune_type_de_champ.stable_id).update(libelle: 'Commune de naissance')
           procedure.draft_revision.find_and_ensure_exclusive_use(repetition_type_de_champ.stable_id).update(libelle: 'Repetition')
@@ -2679,8 +2679,8 @@ describe Dossier, type: :model do
 
             draft = proc_test.draft_revision
 
-            tdc_repetition = draft.add_type_de_champ(type_champ: :repetition, libelle: "repetition")
-            draft.add_type_de_champ(type_champ: :communes, libelle: "communes", parent_stable_id: tdc_repetition.stable_id)
+            tdc_repetition = draft.add_type_de_champ(type: TypesDeChamp::Repetition.name, libelle: "repetition")
+            draft.add_type_de_champ(type: TypesDeChamp::Commune.name, libelle: "communes", parent_stable_id: tdc_repetition.stable_id)
 
             dossier_test = create(:dossier, procedure: proc_test)
             type_champs = proc_test.all_revisions_type_de_champs(parent: tdc_repetition).to_a

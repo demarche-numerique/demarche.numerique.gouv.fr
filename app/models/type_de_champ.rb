@@ -28,53 +28,60 @@ class TypeDeChamp < ApplicationRecord
   def self.simple_routable? = false
   def self.conditionable? = false
 
-  # The domain vocabulary, formerly the STI discriminator; still spoken by the
-  # API (v1 serializers, GraphQL), the LLM contract and the i18n keys. The
-  # order drives the editor and seeds.
-  TYPE_CHAMPS = %w[
-    engagement_juridique
-    header_section
-    repetition
-    dossier_link
-    explication
-    civilite
-    email
-    phone
-    address
-    communes
-    departements
-    regions
-    pays
-    iban
-    siret
-    text
-    textarea
-    number
-    decimal_number
-    integer_number
-    formatted
-    date
-    datetime
-    piece_justificative
-    checkbox
-    drop_down_list
-    multiple_drop_down_list
-    linked_drop_down_list
-    yes_no
-    annuaire_education
-    rna
-    rnf
-    carte
-    epci
-    cojo
-    referentiel
-    pre_rempli
-    quotient_familial
-    etudiant_boursier
-    aah
-    aeeh
-    ars
-  ].index_by(&:itself).with_indifferent_access.freeze
+  # The single dictionary between the classes and the domain vocabulary,
+  # formerly the STI discriminator. The vocabulary is only spoken at the
+  # frontiers: API v1 serializers, GraphQL, the LLM contract and the i18n
+  # keys. The order drives the editor and the seeds.
+  CLASS_NAME_TO_TYPE_CHAMP = {
+    'TypesDeChamp::EngagementJuridique' => 'engagement_juridique',
+    'TypesDeChamp::HeaderSection' => 'header_section',
+    'TypesDeChamp::Repetition' => 'repetition',
+    'TypesDeChamp::DossierLink' => 'dossier_link',
+    'TypesDeChamp::Explication' => 'explication',
+    'TypesDeChamp::Civilite' => 'civilite',
+    'TypesDeChamp::Email' => 'email',
+    'TypesDeChamp::Phone' => 'phone',
+    'TypesDeChamp::Address' => 'address',
+    'TypesDeChamp::Commune' => 'communes',
+    'TypesDeChamp::Departement' => 'departements',
+    'TypesDeChamp::Region' => 'regions',
+    'TypesDeChamp::Pays' => 'pays',
+    'TypesDeChamp::Iban' => 'iban',
+    'TypesDeChamp::Siret' => 'siret',
+    'TypesDeChamp::Text' => 'text',
+    'TypesDeChamp::Textarea' => 'textarea',
+    'TypesDeChamp::Number' => 'number',
+    'TypesDeChamp::DecimalNumber' => 'decimal_number',
+    'TypesDeChamp::IntegerNumber' => 'integer_number',
+    'TypesDeChamp::Formatted' => 'formatted',
+    'TypesDeChamp::Date' => 'date',
+    'TypesDeChamp::Datetime' => 'datetime',
+    'TypesDeChamp::PieceJustificative' => 'piece_justificative',
+    'TypesDeChamp::Checkbox' => 'checkbox',
+    'TypesDeChamp::DropDownList' => 'drop_down_list',
+    'TypesDeChamp::MultipleDropDownList' => 'multiple_drop_down_list',
+    'TypesDeChamp::LinkedDropDownList' => 'linked_drop_down_list',
+    'TypesDeChamp::YesNo' => 'yes_no',
+    'TypesDeChamp::AnnuaireEducation' => 'annuaire_education',
+    'TypesDeChamp::RNA' => 'rna',
+    'TypesDeChamp::RNF' => 'rnf',
+    'TypesDeChamp::Carte' => 'carte',
+    'TypesDeChamp::Epci' => 'epci',
+    'TypesDeChamp::COJO' => 'cojo',
+    'TypesDeChamp::Referentiel' => 'referentiel',
+    'TypesDeChamp::PreRempli' => 'pre_rempli',
+    'TypesDeChamp::QuotientFamilial' => 'quotient_familial',
+    'TypesDeChamp::EtudiantBoursier' => 'etudiant_boursier',
+    'TypesDeChamp::AAH' => 'aah',
+    'TypesDeChamp::AEEH' => 'aeeh',
+    'TypesDeChamp::ARS' => 'ars',
+  }.freeze
+
+  TYPE_CHAMP_TO_CLASS_NAME = CLASS_NAME_TO_TYPE_CHAMP.invert.freeze
+  TYPE_CHAMPS = CLASS_NAME_TO_TYPE_CHAMP.values.index_by(&:itself).with_indifferent_access.freeze
+  CHAMP_TYPE_TO_TYPE_CHAMP = CLASS_NAME_TO_TYPE_CHAMP.to_h do |name, type_champ|
+    ["#{name.sub('TypesDeChamp::', 'Champs::')}Champ", type_champ]
+  end.freeze
 
   def self.type_champs = TYPE_CHAMPS
 
@@ -419,28 +426,9 @@ class TypeDeChamp < ApplicationRecord
       "Champs::#{name.demodulize}Champ".constantize
     end
 
-    def type_champ_to_class_name(type_champ)
-      "TypesDeChamp::#{type_champ.classify}"
-    end
-
-    def class_for(type_champ) = type_champ_to_class_name(type_champ.to_s).constantize
+    def class_for(type_champ) = TYPE_CHAMP_TO_CLASS_NAME.fetch(type_champ.to_s).constantize
 
     def type_champ = CLASS_NAME_TO_TYPE_CHAMP[name]
-
-    # Compatibility shim: a few callers still build through
-    # TypeDeChamp.new(type_champ: 'text') (specs, root and initiation
-    # controllers). Native STI dispatches on type; this hands the legacy
-    # vocabulary to the right subclass until those callers migrate.
-    def new(attributes = nil, &)
-      type_champ = attributes && (attributes[:type_champ] || attributes['type_champ'])
-
-      if self == TypeDeChamp && type_champ.present?
-        # the legacy type_champ wins over a type coming from a factory default
-        class_for(type_champ).new(attributes.except(:type_champ, 'type_champ', :type, 'type'), &)
-      else
-        super
-      end
-    end
 
     def type_champ_classes = type_champs.values.map { class_for(_1) }
 
@@ -462,11 +450,6 @@ class TypeDeChamp < ApplicationRecord
         define_method(:"#{key}?") { ActiveModel::Type::Boolean.new.cast(public_send(key)) || false }
       end
     end
-  end
-
-  CLASS_NAME_TO_TYPE_CHAMP = type_champs.values.index_by { type_champ_to_class_name(_1) }
-  CHAMP_TYPE_TO_TYPE_CHAMP = CLASS_NAME_TO_TYPE_CHAMP.to_h do |name, type_champ|
-    ["#{name.sub('TypesDeChamp::', 'Champs::')}Champ", type_champ]
   end
 
   private

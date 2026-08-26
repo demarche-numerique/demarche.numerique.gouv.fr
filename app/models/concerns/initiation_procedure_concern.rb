@@ -19,7 +19,7 @@ module InitiationProcedureConcern
 
       p.save!
 
-      p.draft_revision.add_type_de_champ({ type_champ: :text, libelle: 'nouveau champ' })
+      p.draft_revision.add_type_de_champ({ type: TypesDeChamp::Text.name, libelle: 'nouveau champ' })
       p.defaut_groupe_instructeur.instructeurs << administrateur.instructeur
 
       service = Service.create(

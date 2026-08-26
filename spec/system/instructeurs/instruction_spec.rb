@@ -358,7 +358,7 @@ describe 'Instructing a dossier:', js: true do
       dossier.passer_en_construction!
       dossier.reload
       procedure.draft_revision.remove_type_de_champ(9999)
-      procedure.draft_revision.add_type_de_champ(type_champ: :yes_no, libelle: 'Yes No')
+      procedure.draft_revision.add_type_de_champ(type: TypesDeChamp::YesNo.name, libelle: 'Yes No')
       procedure.draft_revision.find_and_ensure_exclusive_use(99).update(libelle: 'Updated Header')
       procedure.publish_revision!(procedure.administrateurs.first)
       dossier.rebase!

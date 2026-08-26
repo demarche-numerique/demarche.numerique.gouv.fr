@@ -31,7 +31,7 @@ describe DossierRebaseConcern do
       context 'with added type de champ' do
         before do
           procedure.draft_revision.add_type_de_champ({
-            type_champ: TypeDeChamp.type_champs.fetch(:text),
+            type: TypesDeChamp::Text.name,
             libelle: "Un champ text",
           })
           procedure.publish_revision!(procedure.administrateurs.first)
@@ -57,7 +57,7 @@ describe DossierRebaseConcern do
       context 'with added type de champ' do
         before do
           procedure.draft_revision.add_type_de_champ({
-            type_champ: TypeDeChamp.type_champs.fetch(:text),
+            type: TypesDeChamp::Text.name,
             libelle: "Un champ text",
           })
           procedure.publish_revision!(procedure.administrateurs.first)
@@ -83,7 +83,7 @@ describe DossierRebaseConcern do
       context 'with added type de champ' do
         before do
           procedure.draft_revision.add_type_de_champ({
-            type_champ: TypeDeChamp.type_champs.fetch(:text),
+            type: TypesDeChamp::Text.name,
             libelle: "Un champ text",
           })
           procedure.publish_revision!(procedure.administrateurs.first)
@@ -142,34 +142,34 @@ describe DossierRebaseConcern do
         stub_request(:post, WEASYPRINT_URL).to_return(body: '%PDF-1.4 fake')
         procedure.publish!(procedure.administrateurs.first)
         procedure.draft_revision.add_type_de_champ({
-          type_champ: TypeDeChamp.type_champs.fetch(:text),
+          type: TypesDeChamp::Text.name,
           libelle: "Un champ text",
         })
         procedure.draft_revision.add_type_de_champ({
-          type_champ: TypeDeChamp.type_champs.fetch(:piece_justificative),
+          type: TypesDeChamp::PieceJustificative.name,
           libelle: "Un champ pj",
         })
         procedure.draft_revision.find_and_ensure_exclusive_use(text_type_de_champ.stable_id).update(mandatory: false, libelle: "nouveau libelle")
         procedure.draft_revision.find_and_ensure_exclusive_use(datetime_type_de_champ.stable_id).becomes_type(TypesDeChamp::Date.name).save
         procedure.draft_revision.find_and_ensure_exclusive_use(repetition_text_type_de_champ.stable_id).update(libelle: "nouveau libelle dans une repetition")
         procedure.draft_revision.add_type_de_champ({
-          type_champ: TypeDeChamp.type_champs.fetch(:checkbox),
+          type: TypesDeChamp::Checkbox.name,
           libelle: "oui ou non",
           parent_stable_id: repetition_type_de_champ.stable_id,
         })
         procedure.draft_revision.remove_type_de_champ(yes_no_type_de_champ.stable_id)
         new_repetition_type_de_champ = procedure.draft_revision.add_type_de_champ({
-          type_champ: TypeDeChamp.type_champs.fetch(:repetition),
+          type: TypesDeChamp::Repetition.name,
           libelle: "une autre repetition",
           mandatory: true,
         })
         procedure.draft_revision.add_type_de_champ({
-          type_champ: TypeDeChamp.type_champs.fetch(:text),
+          type: TypesDeChamp::Text.name,
           libelle: "un champ text dans une autre repetition",
           parent_stable_id: new_repetition_type_de_champ.stable_id,
         })
         procedure.draft_revision.add_type_de_champ({
-          type_champ: TypeDeChamp.type_champs.fetch(:date),
+          type: TypesDeChamp::Date.name,
           libelle: "un champ date dans une autre repetition",
           parent_stable_id: new_repetition_type_de_champ.stable_id,
         })
@@ -253,7 +253,7 @@ describe DossierRebaseConcern do
     context 'with a procedure with a dropdown tdc' do
       let!(:procedure) do
         create(:procedure).tap do |p|
-          p.draft_revision.add_type_de_champ(type_champ: :drop_down_list, libelle: 'l1', drop_down_options: ["option", "v1"])
+          p.draft_revision.add_type_de_champ(type: TypesDeChamp::DropDownList.name, libelle: 'l1', drop_down_options: ["option", "v1"])
           p.publish!(p.administrateurs.first)
         end
       end
@@ -299,7 +299,7 @@ describe DossierRebaseConcern do
     context 'with a procedure with a multiple dropdown tdc' do
       let!(:procedure) do
         create(:procedure).tap do |p|
-          p.draft_revision.add_type_de_champ(type_champ: :multiple_drop_down_list, libelle: 'l1', drop_down_options: ["option", "v1"])
+          p.draft_revision.add_type_de_champ(type: TypesDeChamp::MultipleDropDownList.name, libelle: 'l1', drop_down_options: ["option", "v1"])
           p.publish!(p.administrateurs.first)
         end
       end
@@ -345,7 +345,7 @@ describe DossierRebaseConcern do
     context 'with a procedure with a linked dropdown tdc' do
       let!(:procedure) do
         create(:procedure).tap do |p|
-          p.draft_revision.add_type_de_champ(type_champ: :linked_drop_down_list, libelle: 'l1', drop_down_options: ["--titre1--", "option", "v1", "--titre2--", "option2", "v2"])
+          p.draft_revision.add_type_de_champ(type: TypesDeChamp::LinkedDropDownList.name, libelle: 'l1', drop_down_options: ["--titre1--", "option", "v1", "--titre2--", "option2", "v2"])
           p.publish!(p.administrateurs.first)
         end
       end
@@ -391,7 +391,7 @@ describe DossierRebaseConcern do
     context 'with a procedure with a carte tdc' do
       let!(:procedure) do
         create(:procedure).tap do |p|
-          champ = p.draft_revision.add_type_de_champ(type_champ: :carte, libelle: 'l1', cadastres: true)
+          champ = p.draft_revision.add_type_de_champ(type: TypesDeChamp::Carte.name, libelle: 'l1', cadastres: true)
           p.publish!(p.administrateurs.first)
         end
       end
@@ -420,7 +420,7 @@ describe DossierRebaseConcern do
 
       context 'when a tdc is added in the middle' do
         before do
-          added_tdc = procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'l3')
+          added_tdc = procedure.draft_revision.add_type_de_champ(type: TypesDeChamp::Text.name, libelle: 'l3')
           procedure.draft_revision.move_type_de_champ(added_tdc.stable_id, 1)
         end
 
@@ -512,7 +512,7 @@ describe DossierRebaseConcern do
       context 'when a child tdc is added in the middle' do
         before do
           last_child = procedure.draft_revision.children_of(repetition).last
-          added_tdc = procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'c3', parent_stable_id: repetition.stable_id, after_stable_id: last_child)
+          added_tdc = procedure.draft_revision.add_type_de_champ(type: TypesDeChamp::Text.name, libelle: 'c3', parent_stable_id: repetition.stable_id, after_stable_id: last_child)
           procedure.draft_revision.move_type_de_champ(added_tdc.stable_id, 1)
           # procedure.publish_revision!(procedure.administrateurs.first)
         end

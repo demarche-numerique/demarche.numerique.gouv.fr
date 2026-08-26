@@ -551,7 +551,7 @@ describe TagsSubstitutionConcern, type: :model do
       let(:dossier) { create(:dossier, procedure:, revision: procedure.draft_revision) }
 
       before do
-        procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'champ à venir')
+        procedure.draft_revision.add_type_de_champ(type: TypesDeChamp::Text.name, libelle: 'champ à venir')
         dossier.root_champs_public.find { it.libelle == 'champ à venir' }.update(value: 'valeur')
       end
 

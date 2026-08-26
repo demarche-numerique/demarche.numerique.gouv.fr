@@ -135,8 +135,8 @@ describe Administrateurs::ConditionsController, type: :controller do
       let(:procedure) { create(:procedure, :published, public_type_de_champs: []) }
       let(:draft) { procedure.draft_revision }
 
-      let!(:dropdown_tdc) { draft.add_type_de_champ(type_champ: 'integer_number') }
-      let!(:text_tdc) { draft.add_type_de_champ(type_champ: 'text', after_stable_id: dropdown_tdc.stable_id) }
+      let!(:dropdown_tdc) { draft.add_type_de_champ(type: TypesDeChamp::IntegerNumber.name) }
+      let!(:text_tdc) { draft.add_type_de_champ(type: TypesDeChamp::Text.name, after_stable_id: dropdown_tdc.stable_id) }
 
       let(:int_column) { dropdown_tdc.columns(procedure_id: procedure.id).first }
 

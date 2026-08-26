@@ -789,7 +789,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
     end
 
     def change_schema!
-      draft.add_type_de_champ(type_champ: 'text', libelle: "Nouveau champ #{SecureRandom.hex(4)}")
+      draft.add_type_de_champ(type: TypesDeChamp::Text.name, libelle: "Nouveau champ #{SecureRandom.hex(4)}")
     end
 
     describe '#simplify tunnel continuation' do
@@ -940,7 +940,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
     end
 
     def change_schema!
-      draft.add_type_de_champ(type_champ: 'text', libelle: "Nouveau champ #{SecureRandom.hex(4)}")
+      draft.add_type_de_champ(type: TypesDeChamp::Text.name, libelle: "Nouveau champ #{SecureRandom.hex(4)}")
     end
 
     describe '#simplify tunnel continuation' do

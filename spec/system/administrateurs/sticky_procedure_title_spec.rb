@@ -52,7 +52,7 @@ describe 'Admin sticky procedure title', js: true do
     end
 
     before do
-      procedure.draft_revision.add_type_de_champ(type_champ: TypeDeChamp.type_champs.fetch(:text), libelle: 'Nouveau champ')
+      procedure.draft_revision.add_type_de_champ(type: TypesDeChamp::Text.name, libelle: 'Nouveau champ')
       procedure.reload
       visit champs_admin_procedure_path(procedure)
     end

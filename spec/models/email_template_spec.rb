@@ -30,7 +30,7 @@ describe Emails::Depose, type: :model do
       let(:email_body) { 'foo --age-- bar' }
 
       before do
-        procedure.draft_revision.add_type_de_champ(type_champ: :integer_number, libelle: 'age')
+        procedure.draft_revision.add_type_de_champ(type: TypesDeChamp::IntegerNumber.name, libelle: 'age')
         procedure.publish_revision!(procedure.administrateurs.first)
       end
 
@@ -47,7 +47,7 @@ describe Emails::Depose, type: :model do
       let(:email_body) { 'foo --age-- bar' }
 
       before do
-        procedure.draft_revision.add_type_de_champ(type_champ: :integer_number, libelle: 'age')
+        procedure.draft_revision.add_type_de_champ(type: TypesDeChamp::IntegerNumber.name, libelle: 'age')
       end
 
       it { expect(subject.errors.full_messages).to eq(["Le champ « Corps de l’email » contient la balise \"age\" qui n’est pas encore publiée. Publier la nouvelle version de la démarche et recommencer"]) }
@@ -79,7 +79,7 @@ describe Emails::Depose, type: :model do
 
       before do
         create(:dossier, :en_construction, procedure: procedure)
-        procedure.draft_revision.add_type_de_champ(type_champ: :integer_number, libelle: 'age')
+        procedure.draft_revision.add_type_de_champ(type: TypesDeChamp::IntegerNumber.name, libelle: 'age')
         procedure.publish_revision!(procedure.administrateurs.first)
       end
 

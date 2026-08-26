@@ -340,7 +340,7 @@ describe TypeDeChamp do
   end
 
   describe '#set_default_libelle' do
-    let(:type_de_champ) { create(:type_de_champ, type_champ: :header_section, libelle: libelle) }
+    let(:type_de_champ) { create(:type_de_champ, type: TypesDeChamp::HeaderSection.name, libelle: libelle) }
     let(:libelle) { nil }
 
     it { expect(type_de_champ.libelle).to eq("Titre de section") }

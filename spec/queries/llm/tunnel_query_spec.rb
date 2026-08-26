@@ -326,7 +326,7 @@ describe LLM::TunnelQuery do
 
     it 'uses reloaded schema hash after modifications' do
       # Simulate schema modification by adding a field
-      revision.add_type_de_champ(type_champ: :text, libelle: 'New field')
+      revision.add_type_de_champ(type: TypesDeChamp::Text.name, libelle: 'New field')
 
       next_suggestion = query.find_or_create_next_step!(current_rule: 'improve_label')
 

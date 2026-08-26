@@ -40,16 +40,16 @@ class RootController < ApplicationController
         procedure.draft_revision = procedure.revisions.build
         procedure.save!
         after_stable_id = nil
-        TypeDeChamp.type_champs.values.sort.each do |type_champ|
+        TypeDeChamp.type_champ_classes.sort_by(&:type_champ).each do |klass|
           type_de_champ = procedure.draft_revision
-            .add_type_de_champ(type_champ:, libelle: type_champ.humanize, description:, mandatory: true, private: false, after_stable_id:)
+            .add_type_de_champ(type: klass.name, libelle: klass.type_champ.humanize, description:, mandatory: true, private: false, after_stable_id:)
           after_stable_id = type_de_champ.stable_id
 
           if type_de_champ.repetition?
             repetition_after_stable_id = nil
-            ['text', 'integer_number', 'checkbox'].each do |type_champ|
+            [TypesDeChamp::Text, TypesDeChamp::IntegerNumber, TypesDeChamp::Checkbox].each do |child_klass|
               repetition_type_de_champ = procedure.draft_revision
-                .add_type_de_champ(type_champ:, libelle: type_champ.humanize, description:, mandatory: true, private: false, parent_stable_id: type_de_champ.stable_id, after_stable_id: repetition_after_stable_id)
+                .add_type_de_champ(type: child_klass.name, libelle: child_klass.type_champ.humanize, description:, mandatory: true, private: false, parent_stable_id: type_de_champ.stable_id, after_stable_id: repetition_after_stable_id)
               repetition_after_stable_id = repetition_type_de_champ.stable_id
             end
           elsif type_de_champ.linked_drop_down_list?

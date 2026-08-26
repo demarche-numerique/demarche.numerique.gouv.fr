@@ -12,38 +12,38 @@ class TypesDeChamp::Prefill < SimpleDelegator
   end
 
   def self.build(type_de_champ, revision)
-    case type_de_champ.type_champ
-    when TypeDeChamp.type_champs.fetch(:drop_down_list)
+    case type_de_champ
+    when TypesDeChamp::DropDownList
       TypesDeChamp::PrefillDropDownList.new(type_de_champ, revision)
-    when TypeDeChamp.type_champs.fetch(:multiple_drop_down_list)
+    when TypesDeChamp::MultipleDropDownList
       TypesDeChamp::PrefillMultipleDropDownList.new(type_de_champ, revision)
-    when TypeDeChamp.type_champs.fetch(:pays), TypeDeChamp.type_champs.fetch(:regions), TypeDeChamp.type_champs.fetch(:departements)
+    when TypesDeChamp::Pays, TypesDeChamp::Region, TypesDeChamp::Departement
       TypesDeChamp::PrefillGeo.new(type_de_champ, revision)
-    when TypeDeChamp.type_champs.fetch(:repetition)
+    when TypesDeChamp::Repetition
       TypesDeChamp::PrefillRepetition.new(type_de_champ, revision)
-    when TypeDeChamp.type_champs.fetch(:communes)
+    when TypesDeChamp::Commune
       TypesDeChamp::PrefillCommune.new(type_de_champ, revision)
-    when TypeDeChamp.type_champs.fetch(:address)
+    when TypesDeChamp::Address
       TypesDeChamp::PrefillAddress.new(type_de_champ, revision)
-    when TypeDeChamp.type_champs.fetch(:epci)
+    when TypesDeChamp::Epci
       TypesDeChamp::PrefillEpci.new(type_de_champ, revision)
-    when TypeDeChamp.type_champs.fetch(:formatted)
+    when TypesDeChamp::Formatted
       TypesDeChamp::PrefillFormatted.new(type_de_champ, revision)
-    when TypeDeChamp.type_champs.fetch(:siret)
+    when TypesDeChamp::Siret
       TypesDeChamp::PrefillSiret.new(type_de_champ, revision)
-    when TypeDeChamp.type_champs.fetch(:referentiel)
+    when TypesDeChamp::Referentiel
       TypesDeChamp::PrefillReferentiel.new(type_de_champ, revision)
-    when TypeDeChamp.type_champs.fetch(:pre_rempli)
+    when TypesDeChamp::PreRempli
       TypesDeChamp::PrefillPreRempli.new(type_de_champ, revision)
-    when TypeDeChamp.type_champs.fetch(:date), TypeDeChamp.type_champs.fetch(:datetime)
+    when TypesDeChamp::Date, TypesDeChamp::Datetime
       TypesDeChamp::PrefillDate.new(type_de_champ, revision)
-    when TypeDeChamp.type_champs.fetch(:integer_number), TypeDeChamp.type_champs.fetch(:decimal_number)
+    when TypesDeChamp::IntegerNumber, TypesDeChamp::DecimalNumber
       TypesDeChamp::PrefillNumber.new(type_de_champ, revision)
-    when TypeDeChamp.type_champs.fetch(:civilite)
+    when TypesDeChamp::Civilite
       TypesDeChamp::PrefillCivilite.new(type_de_champ, revision)
-    when TypeDeChamp.type_champs.fetch(:yes_no), TypeDeChamp.type_champs.fetch(:checkbox)
+    when TypesDeChamp::YesNo, TypesDeChamp::Checkbox
       TypesDeChamp::PrefillBoolean.new(type_de_champ, revision)
-    when TypeDeChamp.type_champs.fetch(:dossier_link)
+    when TypesDeChamp::DossierLink
       TypesDeChamp::PrefillDossierLink.new(type_de_champ, revision)
     else
       new(type_de_champ, revision)

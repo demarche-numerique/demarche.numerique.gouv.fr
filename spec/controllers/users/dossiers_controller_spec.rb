@@ -3278,7 +3278,7 @@ describe Users::DossiersController, type: :controller do
     context 'when a persisted column can no longer be resolved' do
       before do
         pays_column = procedure.customizable_columns.find { _1.label == 'Pays' }
-        draft_only_tdc = procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'Futur champ')
+        draft_only_tdc = procedure.draft_revision.add_type_de_champ(type: TypesDeChamp::Text.name, libelle: 'Futur champ')
         draft_only_column = draft_only_tdc.canonical_column(procedure_id: procedure.id)
         create(:dossiers_list_personnalisation, user:, procedure:, displayed_columns: [draft_only_column, pays_column])
         dossiers = create_list(:dossier, 6, :en_construction, user:, procedure:, populate_champs: true)

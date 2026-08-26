@@ -124,7 +124,7 @@ describe 'shared/_procedure_description', type: :view do
 
       travel(1.minute)
 
-      procedure.draft_revision.add_type_de_champ(type_champ: :piece_justificative, libelle: 'new pj')
+      procedure.draft_revision.add_type_de_champ(type: TypesDeChamp::PieceJustificative.name, libelle: 'new pj')
       procedure.publish_revision!(procedure.administrateurs.first)
 
       render partial: 'shared/procedure_description', locals: { procedure: }
@@ -138,7 +138,7 @@ describe 'shared/_procedure_description', type: :view do
         render partial: 'shared/procedure_description', locals: { procedure: }
         expect(rendered).not_to have_text('new pj')
 
-        procedure.draft_revision.add_type_de_champ(type_champ: :piece_justificative, libelle: 'new pj')
+        procedure.draft_revision.add_type_de_champ(type: TypesDeChamp::PieceJustificative.name, libelle: 'new pj')
 
         render partial: 'shared/procedure_description', locals: { procedure: }
         expect(rendered).to have_text('new pj')

@@ -40,7 +40,7 @@ RSpec.describe DossiersListPersonnalisation, type: :model do
     it 'ignores a column that can no longer be resolved and keeps the others' do
       procedure = create(:procedure, :published, public_type_de_champs: [{ type: :text, libelle: 'Pays' }])
       pays_column = procedure.customizable_columns.find { _1.label == 'Pays' }
-      draft_only_tdc = procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'Ville')
+      draft_only_tdc = procedure.draft_revision.add_type_de_champ(type: TypesDeChamp::Text.name, libelle: 'Ville')
       draft_only_column = draft_only_tdc.canonical_column(procedure_id: procedure.id)
       personnalisation = create(:dossiers_list_personnalisation, procedure:, displayed_columns: [draft_only_column, pays_column])
 

@@ -32,7 +32,7 @@ describe ProcedureRevision do
     subject { draft.add_type_de_champ(tdc_params) }
 
     context 'with a text tdc' do
-      let(:text_params) { { type_champ: :text, libelle: 'text', after_stable_id: procedure.draft_revision.public_root_type_de_champs.last.stable_id } }
+      let(:text_params) { { type: TypesDeChamp::Text.name, libelle: 'text', after_stable_id: procedure.draft_revision.public_root_type_de_champs.last.stable_id } }
 
       it 'public' do
         expect { subject }.to change { draft.public_root_type_de_champs.size }.from(2).to(3)
@@ -45,7 +45,7 @@ describe ProcedureRevision do
     end
 
     context 'with a private tdc' do
-      let(:text_params) { { type_champ: :text, libelle: 'text', after_stable_id: procedure.draft_revision.private_root_type_de_champs.last.id } }
+      let(:text_params) { { type: TypesDeChamp::Text.name, libelle: 'text', after_stable_id: procedure.draft_revision.private_root_type_de_champs.last.id } }
       let(:tdc_params) { text_params.merge(private: true) }
 
       it 'private' do
@@ -58,7 +58,7 @@ describe ProcedureRevision do
     end
 
     context 'with a repetition child' do
-      let(:text_params) { { type_champ: :text, libelle: 'text', after_stable_id: procedure.draft_revision.children_of(type_de_champ_repetition).last.stable_id } }
+      let(:text_params) { { type: TypesDeChamp::Text.name, libelle: 'text', after_stable_id: procedure.draft_revision.children_of(type_de_champ_repetition).last.stable_id } }
       let(:tdc_params) { text_params.merge(parent_stable_id: type_de_champ_repetition.stable_id) }
 
       it do
@@ -74,7 +74,7 @@ describe ProcedureRevision do
     end
 
     context 'when a parent is incorrect' do
-      let(:text_params) { { type_champ: :text, libelle: 'text', after_stable_id: procedure.draft_revision.private_root_type_de_champs.last.id } }
+      let(:text_params) { { type: TypesDeChamp::Text.name, libelle: 'text', after_stable_id: procedure.draft_revision.private_root_type_de_champs.last.id } }
       let(:tdc_params) { text_params.merge(parent_id: 123456789) }
 
       it { expect(subject.errors.full_messages).not_to be_empty }
@@ -82,7 +82,7 @@ describe ProcedureRevision do
 
     context 'after_stable_id' do
       context 'with a valid after_stable_id' do
-        let(:text_params) { { type_champ: :text, libelle: 'text', after_stable_id: procedure.draft_revision.private_root_type_de_champs.last.id } }
+        let(:text_params) { { type: TypesDeChamp::Text.name, libelle: 'text', after_stable_id: procedure.draft_revision.private_root_type_de_champs.last.id } }
         let(:tdc_params) { text_params.merge(after_stable_id: draft.public_revision_type_de_champs.first.stable_id, libelle: 'in the middle') }
 
         it do
@@ -94,7 +94,7 @@ describe ProcedureRevision do
       end
 
       context 'with blank valid after_stable_id' do
-        let(:text_params) { { type_champ: :text, libelle: 'text', after_stable_id: procedure.draft_revision.private_root_type_de_champs.last.id } }
+        let(:text_params) { { type: TypesDeChamp::Text.name, libelle: 'text', after_stable_id: procedure.draft_revision.private_root_type_de_champs.last.id } }
         let(:tdc_params) { text_params.merge(after_stable_id: '', libelle: 'in the middle') }
 
         it do
@@ -147,7 +147,7 @@ describe ProcedureRevision do
 
       let!(:second_child) do
         draft.add_type_de_champ({
-          type_champ: TypeDeChamp.type_champs.fetch(:text),
+          type: TypesDeChamp::Text.name,
           libelle: "second child",
           parent_stable_id: type_de_champ_repetition.stable_id,
           after_stable_id: draft.reload.children_of(type_de_champ_repetition).last.stable_id,
@@ -156,7 +156,7 @@ describe ProcedureRevision do
 
       let!(:last_child) do
         draft.add_type_de_champ({
-          type_champ: TypeDeChamp.type_champs.fetch(:text),
+          type: TypesDeChamp::Text.name,
           libelle: "last child",
           parent_stable_id: type_de_champ_repetition.stable_id,
           after_stable_id: draft.reload.children_of(type_de_champ_repetition).last.stable_id,
@@ -219,7 +219,7 @@ describe ProcedureRevision do
         let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :repetition, children: [{ type: :text }, { type: :integer_number }] }]) }
         let!(:second_child) do
           draft.add_type_de_champ({
-            type_champ: TypeDeChamp.type_champs.fetch(:text),
+            type: TypesDeChamp::Text.name,
             libelle: "second child",
             parent_stable_id: type_de_champ_repetition.stable_id,
           })
@@ -227,7 +227,7 @@ describe ProcedureRevision do
 
         let!(:last_child) do
           draft.add_type_de_champ({
-            type_champ: TypeDeChamp.type_champs.fetch(:text),
+            type: TypesDeChamp::Text.name,
             libelle: "last child",
             parent_stable_id: type_de_champ_repetition.stable_id,
           })
@@ -445,7 +445,7 @@ describe ProcedureRevision do
         let(:procedure) { create(:procedure) }
         let(:new_tdc) do
           new_draft.add_type_de_champ(
-            type_champ: TypeDeChamp.type_champs.fetch(:text),
+            type: TypesDeChamp::Text.name,
             mandatory: false,
             libelle: "Un champ text"
           )
@@ -1293,7 +1293,7 @@ describe ProcedureRevision do
   describe 'header_sections_are_valid' do
     let(:procedure) do
       create(:procedure).tap do |p|
-        p.draft_revision.add_type_de_champ(type_champ: :header_section, libelle: 'hs', header_section_level: '2')
+        p.draft_revision.add_type_de_champ(type: TypesDeChamp::HeaderSection.name, libelle: 'hs', header_section_level: '2')
       end
     end
     let(:draft_revision) { procedure.draft_revision }
@@ -1311,7 +1311,7 @@ describe ProcedureRevision do
   describe "expressions_regulieres_are_valid" do
     let(:procedure) do
       create(:procedure).tap do |p|
-        p.draft_revision.add_type_de_champ(type_champ: :formatted, libelle: 'exemple', formatted_mode: 'advanced', expression_reguliere:, expression_reguliere_exemple_text:)
+        p.draft_revision.add_type_de_champ(type: TypesDeChamp::Formatted.name, libelle: 'exemple', formatted_mode: 'advanced', expression_reguliere:, expression_reguliere_exemple_text:)
       end
     end
     let(:draft_revision) { procedure.draft_revision }
@@ -1386,7 +1386,7 @@ describe ProcedureRevision do
     let(:procedure) do
       create(:procedure, public_type_de_champs: [{ type: :integer_number, libelle: 'l1' }]).tap do |p|
         tdc = p.draft_revision.public_revision_type_de_champs.last
-        p.draft_revision.add_type_de_champ(type_champ: :integer_number,
+        p.draft_revision.add_type_de_champ(type: TypesDeChamp::IntegerNumber.name,
                                            libelle: 'l2',
                                            condition: ds_eq(champ_value(tdc.stable_id), constant(true)),
                                            after_stable_id: tdc.stable_id)
@@ -1469,7 +1469,7 @@ describe ProcedureRevision do
 
       it "can add header section" do
         llm_rule_suggestion = create(:llm_rule_suggestion, procedure_revision: revision, rule: LLMRuleSuggestion.rules.fetch('improve_structure'), schema_hash:)
-        create(:llm_rule_suggestion_item, llm_rule_suggestion:, verify_status: 'accepted', stable_id: 2, op_kind: 'add', payload: { 'libelle' => 'Ajouté', type_champ: 'header_section' })
+        create(:llm_rule_suggestion_item, llm_rule_suggestion:, verify_status: 'accepted', stable_id: 2, op_kind: 'add', payload: { 'libelle' => 'Ajouté', type: TypesDeChamp::HeaderSection.name })
 
         expect { revision.apply_llm_rule_suggestion_items(llm_rule_suggestion.changes_to_apply) }.not_to raise_error
         libelles = revision.reload.public_root_type_de_champs.map(&:libelle)

@@ -20,7 +20,7 @@
   procedure.draft_revision = procedure.revisions.build
   procedure.save!
 
-  type_de_champ = procedure.draft_revision.add_type_de_champ(type_champ: "text", libelle: "Nom du projet", mandatory: true)
+  type_de_champ = procedure.draft_revision.add_type_de_champ(type: TypesDeChamp::Text.name, libelle: "Nom du projet", mandatory: true)
   raise type_de_champ.errors.full_messages.to_sentence if type_de_champ.errors.any?
 
   procedure.publish_or_reopen!(administrateurs.default, "demarche-demo-#{decision}")

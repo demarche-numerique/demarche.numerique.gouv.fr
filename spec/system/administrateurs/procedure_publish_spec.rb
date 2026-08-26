@@ -132,7 +132,7 @@ describe 'Publishing a procedure', js: true do
   end
 
   context 'when a procedure is closed with revision changes' do
-    let!(:tdc) { { type_champ: :text, libelle: 'nouveau champ' } }
+    let!(:tdc) { { type: TypesDeChamp::Text.name, libelle: 'nouveau champ' } }
     let!(:procedure) do
       create(:procedure_with_dossiers,
         :closed,
@@ -198,7 +198,7 @@ describe 'Publishing a procedure', js: true do
       email_depose.body += "\n--invalid balise--"
       email_depose.save!(validate: false)
 
-      procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: "Nouveau champ")
+      procedure.draft_revision.add_type_de_champ(type: TypesDeChamp::Text.name, libelle: "Nouveau champ")
     end
 
     scenario 'an error message prevents the publication' do

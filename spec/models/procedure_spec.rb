@@ -586,7 +586,7 @@ describe Procedure do
 
           new_draft = procedure.draft_revision
           repetition = new_draft.public_root_type_de_champs.find(&:repetition?)
-          new_draft.add_type_de_champ(type_champ: :text, libelle: 'Nom', parent_stable_id: repetition.stable_id)
+          new_draft.add_type_de_champ(type: TypesDeChamp::Text.name, libelle: 'Nom', parent_stable_id: repetition.stable_id)
 
           procedure.validate(:publication)
           expect(procedure.errors.messages_for(:public_draft_type_de_champs)).not_to include(invalid_repetition_error_message)
@@ -1116,7 +1116,7 @@ describe Procedure do
   describe "#publish_revision!" do
     let(:administrateur) { create(:administrateur) }
     let(:procedure) { create(:procedure, :published, administrateurs: [administrateur]) }
-    let(:tdc_attributes) { { type_champ: :number, libelle: 'libelle 1' } }
+    let(:tdc_attributes) { { type: TypesDeChamp::Number.name, libelle: 'libelle 1' } }
     let(:publication_date) { Time.zone.local(2021, 1, 1, 12, 00, 00) }
 
     before do
@@ -1173,7 +1173,7 @@ describe Procedure do
       let(:tdc) { procedure.draft_revision.public_root_type_de_champs.last }
 
       before do
-        procedure.draft_revision.public_root_type_de_champs.last.update(type_champ: :textarea, options: { "character_limit" => "" })
+        procedure.draft_revision.public_root_type_de_champs.last.update(type: TypesDeChamp::Textarea.name, options: { "character_limit" => "" })
       end
 
       it 'nullifies the referentiel' do
@@ -1184,7 +1184,7 @@ describe Procedure do
 
   describe "#reset_draft_revision!" do
     let(:procedure) { procedures.brouillon }
-    let(:tdc_attributes) { { type_champ: :number, libelle: 'libelle 1' } }
+    let(:tdc_attributes) { { type: TypesDeChamp::Number.name, libelle: 'libelle 1' } }
     let(:publication_date) { Time.zone.local(2021, 1, 1, 12, 00, 00) }
 
     context "brouillon procedure" do
@@ -1951,7 +1951,7 @@ describe Procedure do
       end
 
       it "returns types de champ on draft revision" do
-        procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'onemorechamp')
+        procedure.draft_revision.add_type_de_champ(type: TypesDeChamp::Text.name, libelle: 'onemorechamp')
         expect(procedure.reload.all_revisions_type_de_champs.size).to eq 2
       end
     end
@@ -1968,7 +1968,7 @@ describe Procedure do
       end
 
       it "doesn't return types de champ on draft revision" do
-        procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'onemorechamp')
+        procedure.draft_revision.add_type_de_champ(type: TypesDeChamp::Text.name, libelle: 'onemorechamp')
         expect(procedure.reload.all_revisions_type_de_champs.size).to eq 1
       end
     end
@@ -2062,7 +2062,7 @@ describe Procedure do
 
     before do
       procedure.draft_revision.add_type_de_champ(
-        type_champ: :drop_down_list,
+        type: TypesDeChamp::DropDownList.name,
         libelle: 'Ville',
         drop_down_options: ['Paris', 'Lyon', 'Marseille']
       )

@@ -21,8 +21,8 @@ procedure.draft_revision = procedure.revisions.build
 procedure.save!
 
 [
-  { type_champ: "text", libelle: "Nom du projet", mandatory: true },
-  { type_champ: "textarea", libelle: "Description du projet" },
+  { type: TypesDeChamp::Text.name, libelle: "Nom du projet", mandatory: true },
+  { type: TypesDeChamp::Textarea.name, libelle: "Description du projet" },
 ].reduce(nil) do |previous, params|
   type_de_champ = procedure.draft_revision.add_type_de_champ(**params, after_stable_id: previous&.stable_id)
   raise type_de_champ.errors.full_messages.to_sentence if type_de_champ.errors.any?

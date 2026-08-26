@@ -16,12 +16,12 @@ procedure.draft_revision = procedure.revisions.build
 procedure.save!
 
 [
-  { type_champ: "text", libelle: "Nom du projet", mandatory: true },
-  { type_champ: "textarea", libelle: "Description du projet", mandatory: true },
-  { type_champ: "date", libelle: "Date de début" },
-  { type_champ: "drop_down_list", libelle: "Type de projet", drop_down_options: ["Association", "Entreprise", "Collectivité"] },
-  { type_champ: "checkbox", libelle: "Le projet bénéficie d'un financement public" },
-  { type_champ: "piece_justificative", libelle: "Justificatif" },
+  { type: TypesDeChamp::Text.name, libelle: "Nom du projet", mandatory: true },
+  { type: TypesDeChamp::Textarea.name, libelle: "Description du projet", mandatory: true },
+  { type: TypesDeChamp::Date.name, libelle: "Date de début" },
+  { type: TypesDeChamp::DropDownList.name, libelle: "Type de projet", drop_down_options: ["Association", "Entreprise", "Collectivité"] },
+  { type: TypesDeChamp::Checkbox.name, libelle: "Le projet bénéficie d'un financement public" },
+  { type: TypesDeChamp::PieceJustificative.name, libelle: "Justificatif" },
 ].reduce(nil) do |previous, params|
   type_de_champ = procedure.draft_revision.add_type_de_champ(**params, after_stable_id: previous&.stable_id)
   raise type_de_champ.errors.full_messages.to_sentence if type_de_champ.errors.any?
@@ -51,7 +51,7 @@ procedures.label individual: procedure
   procedure.draft_revision = procedure.revisions.build
   procedure.save!
 
-  type_de_champ = procedure.draft_revision.add_type_de_champ(type_champ: "text", libelle: "Nom du projet", mandatory: true)
+  type_de_champ = procedure.draft_revision.add_type_de_champ(type: TypesDeChamp::Text.name, libelle: "Nom du projet", mandatory: true)
   raise type_de_champ.errors.full_messages.to_sentence if type_de_champ.errors.any?
 
   procedure.publish_or_reopen!(administrateurs.default, "demarche-demo-#{label}")
