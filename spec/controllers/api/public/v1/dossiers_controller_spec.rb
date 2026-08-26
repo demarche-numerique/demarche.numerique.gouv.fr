@@ -94,7 +94,7 @@ RSpec.describe API::Public::V1::DossiersController, type: :controller do
                 ],
               ]
             end
-            let(:prefilled_champs) { TypesDeChamp::PrefillTypeDeChamp.wrap(procedure.published_revision.type_de_champs, procedure.active_revision) }
+            let(:prefilled_champs) { TypesDeChamp::Prefill.wrap(procedure.published_revision.type_de_champs, procedure.active_revision) }
             let(:prefilled_champs_as_params) { prefilled_champs.map { |type_de_champ| ["champ_#{type_de_champ.to_typed_id_for_query}", type_de_champ.example_value] }.to_h }
             let(:params) { prefilled_champs_as_params.merge(id: procedure.id) }
 

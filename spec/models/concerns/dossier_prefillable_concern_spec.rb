@@ -140,7 +140,7 @@ RSpec.describe DossierPrefillableConcern do
       end
     end
 
-    context 'when a prefill value was rejected by the PrefillTypeDeChamp screening' do
+    context 'when a prefill value was rejected by the Prefill screening' do
       # Regression: rejected prefill values used to be assigned to the champ while
       # screening with champ.valid?(:prefill), and could leak to the database
       # through the dossier champ_data autosave when a valid champ triggered a save.

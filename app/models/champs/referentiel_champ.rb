@@ -211,7 +211,7 @@ class Champs::ReferentielChamp < ChampData
   def update_prefillable_champ(type_de_champ:, raw_value:, row_id: nil)
     prefill_champ = dossier.champ_for_update(type_de_champ, row_id:, updated_by:)
     normalized = normalize_api_value(raw_value, type_de_champ)
-    attributes = TypesDeChamp::PrefillTypeDeChamp
+    attributes = TypesDeChamp::Prefill
       .build(type_de_champ, dossier.revision)
       .to_assignable_attributes(prefill_champ, normalized)
     return prefill_champ if attributes.nil?

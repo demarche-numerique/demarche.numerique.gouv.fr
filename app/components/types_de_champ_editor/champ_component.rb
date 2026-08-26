@@ -116,7 +116,7 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
   end
 
   def filter_type_champ(klass)
-    klass != TypesDeChamp::NumberTypeDeChamp || has_legacy_number?
+    klass != TypesDeChamp::Number || has_legacy_number?
   end
 
   def has_legacy_number?

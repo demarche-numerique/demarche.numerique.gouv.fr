@@ -105,7 +105,7 @@ describe ProcedureExportService do
         it { expect(dossiers_sheet.data.last.last).to eq "toto.txt, toto.txt" }
       end
 
-      context 'with TypeDeChamp::PieceJustificativeTypeDeChamp (titre_identite)' do
+      context 'with TypeDeChamp::PieceJustificative (titre_identite)' do
         let(:public_type_de_champs) { [{ type: :piece_justificative, libelle: "Titre d'identité", nature: :titre_identite }] }
         let(:exported_columns) { [ExportedColumn.new(libelle: "Titre d'identité – filled", column: procedure.find_column(label: "Titre d'identité – filled"))] }
         before { create(:dossier, :with_populated_champs, procedure:) }
@@ -119,35 +119,35 @@ describe ProcedureExportService do
         it { expect(dossiers_sheet.data.last.last).to eq "val1, val2" }
       end
 
-      context 'with TypeDeChamp:YesNoTypeDeChamp' do
+      context 'with TypeDeChamp:YesNo' do
         let(:public_type_de_champs) { [{ type: :yes_no, libelle: "yes_no", mandatory: true }] }
         let(:exported_columns) { [ExportedColumn.new(libelle: 'yes_no', column: procedure.find_column(label: 'yes_no'))] }
         before { create(:dossier, :with_populated_champs, procedure:) }
         it { expect(dossiers_sheet.data.last.last).to eq true }
       end
 
-      context 'with TypeDeChamp:CheckboxTypeDeChamp' do
+      context 'with TypeDeChamp:Checkbox' do
         let(:public_type_de_champs) { [{ type: :checkbox, libelle: "checkbox", mandatory: true }] }
         let(:exported_columns) { [ExportedColumn.new(libelle: 'checkbox', column: procedure.find_column(label: 'checkbox'))] }
         before { create(:dossier, :with_populated_champs, procedure:) }
         it { expect(dossiers_sheet.data.last.last).to eq true }
       end
 
-      context 'with TypeDeChamp:DecimalNumberTypeDeChamp' do
+      context 'with TypeDeChamp:DecimalNumber' do
         let(:public_type_de_champs) { [{ type: :decimal_number, libelle: "decimal", mandatory: true }] }
         let(:exported_columns) { [ExportedColumn.new(libelle: 'decimal', column: procedure.find_column(label: 'decimal'))] }
         before { create(:dossier, :with_populated_champs, procedure:) }
         it { expect(dossiers_sheet.data.last.last).to eq 42.1 }
       end
 
-      context 'with TypeDeChamp:IntegerNumberTypeDeChamp' do
+      context 'with TypeDeChamp:IntegerNumber' do
         let(:public_type_de_champs) { [{ type: :integer_number, libelle: "integer", mandatory: true }] }
         let(:exported_columns) { [ExportedColumn.new(libelle: 'integer', column: procedure.find_column(label: 'integer'))] }
         before { create(:dossier, :with_populated_champs, procedure:) }
         it { expect(dossiers_sheet.data.last.last).to eq 42.0 }
       end
 
-      context 'with TypesDeChamp::LinkedDropDownListTypeDeChamp' do
+      context 'with TypesDeChamp::LinkedDropDownList' do
         let(:public_type_de_champs) { [{ type: :linked_drop_down_list, libelle: "linked_drop_down_list", mandatory: true }] }
         let(:exported_columns) { [ExportedColumn.new(libelle: 'linked_drop_down_list', column: procedure.find_column(label: 'linked_drop_down_list'))] }
         before { create(:dossier, :with_populated_champs, procedure:) }

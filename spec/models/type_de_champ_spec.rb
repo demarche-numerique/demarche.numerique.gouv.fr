@@ -152,7 +152,7 @@ describe TypeDeChamp do
       subject { create(:type_de_champ_linked_drop_down_list).tap { _1.drop_down_options = ["pas de primaire"] } }
 
       it do
-        is_expected.to be_an_instance_of(TypesDeChamp::LinkedDropDownListTypeDeChamp)
+        is_expected.to be_an_instance_of(TypesDeChamp::LinkedDropDownList)
         is_expected.to be_invalid
         expect(subject.errors.full_messages.to_sentence).to include("doit commencer par une entrée de menu primaire")
       end
@@ -175,7 +175,7 @@ describe TypeDeChamp do
       morphed = tdc.becomes_type('formatted')
       morphed.update!(type_champ: 'formatted')
 
-      expect(morphed).to be_an_instance_of(TypesDeChamp::FormattedTypeDeChamp)
+      expect(morphed).to be_an_instance_of(TypesDeChamp::Formatted)
       expect(morphed.reload.formatted_mode).to eq('simple')
     end
   end

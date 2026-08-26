@@ -3,7 +3,7 @@
 class NumberLimitValidator < ActiveModel::Validator
   # Pure function of (value, type_de_champ) so prefill screening can share the
   # range logic. type_de_champ is anything responding to the number option
-  # readers (a Champ delegates them, and so does a PrefillTypeDeChamp).
+  # readers (a Champ delegates them, and so does a Prefill).
   # Returns an array of [error_key, details] pairs.
   def self.violations(value, type_de_champ)
     return [] if value.blank?

@@ -13,7 +13,7 @@ class TypesDeChampEditor::ChampPieceJustificativeComponent < TypesDeChampEditor:
   def nature_dom_id = dom_id(type_de_champ, :nature)
 
   def natures_for_select
-    TypesDeChamp::PieceJustificativeTypeDeChamp.natures.keys
+    TypesDeChamp::PieceJustificative.natures.keys
       .map { |k| [t("activerecord.attributes.type_de_champ.natures.#{k}"), k] }
   end
 

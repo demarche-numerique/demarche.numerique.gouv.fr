@@ -22,7 +22,7 @@ class APIParticulier::API
   private
 
   def resource
-    TypesDeChamp::FranceConnectTypeDeChamp.config_for(@type_champ)[:resource]
+    TypesDeChamp::FranceConnect.config_for(@type_champ)[:resource]
   end
 
   def build_params(fci)
@@ -92,7 +92,7 @@ class APIParticulier::API
   def schema
     JSONSchemer.schema(
       Rails.root.join(
-        TypesDeChamp::FranceConnectTypeDeChamp.config_for(@type_champ)[:schema]
+        TypesDeChamp::FranceConnect.config_for(@type_champ)[:schema]
       )
     )
   end

@@ -75,7 +75,7 @@
               </p>
             <% when TypeDeChamp.type_champs.fetch(:referentiel) %>
               <%= render Dossiers::ReferentielComponent.new(champ:, profile: @profile) %>
-            <% when *TypesDeChamp::FranceConnectTypeDeChamp::REGISTRY.keys.map(&:to_s) %>
+            <% when *TypesDeChamp::FranceConnect::REGISTRY.keys.map(&:to_s) %>
               <%= render Dossiers::FranceConnectChampComponent.new(champ:, profile: @profile) %>
             <% else %>
               <div class="copy-zone" data-to-copy="<%= champ.to_s.strip %>">

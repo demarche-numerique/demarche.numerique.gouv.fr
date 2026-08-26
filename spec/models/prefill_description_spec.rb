@@ -25,7 +25,7 @@ RSpec.describe PrefillDescription, type: :model do
 
     it do
       expect(type_de_champs.count).to eq(1)
-      expect(type_de_champs.first).to eql(TypesDeChamp::PrefillTypeDeChamp.build(type_de_champ, procedure.active_revision))
+      expect(type_de_champs.first).to eql(TypesDeChamp::Prefill.build(type_de_champ, procedure.active_revision))
     end
 
     shared_examples "filters out non fillable types de champ" do |type_de_champ_name|
@@ -124,7 +124,7 @@ RSpec.describe PrefillDescription, type: :model do
     let(:type_de_champ_epci) { procedure.active_revision.public_root_type_de_champs.find(&:epci?) }
     let(:type_de_champ_repetition) { procedure.active_revision.public_root_type_de_champs.find(&:repetition?) }
 
-    let(:prefillable_subchamps) { TypesDeChamp::PrefillRepetitionTypeDeChamp.new(type_de_champ_repetition, procedure.active_revision).send(:prefillable_subchamps) }
+    let(:prefillable_subchamps) { TypesDeChamp::PrefillRepetition.new(type_de_champ_repetition, procedure.active_revision).send(:prefillable_subchamps) }
     let(:region_repetition) { prefillable_subchamps.third }
     let(:prefill_description) { described_class.new(procedure) }
 
@@ -137,9 +137,9 @@ RSpec.describe PrefillDescription, type: :model do
         CGI.unescape(
           commencer_url(
             path: procedure.path,
-            "champ_#{type_de_champ_text.to_typed_id_for_query}" => TypesDeChamp::PrefillTypeDeChamp.build(type_de_champ_text, procedure.active_revision).example_value,
-            "champ_#{type_de_champ_epci.to_typed_id_for_query}" => TypesDeChamp::PrefillTypeDeChamp.build(type_de_champ_epci, procedure.active_revision).example_value,
-            "champ_#{type_de_champ_repetition.to_typed_id_for_query}" => TypesDeChamp::PrefillTypeDeChamp.build(type_de_champ_repetition, procedure.active_revision).example_value,
+            "champ_#{type_de_champ_text.to_typed_id_for_query}" => TypesDeChamp::Prefill.build(type_de_champ_text, procedure.active_revision).example_value,
+            "champ_#{type_de_champ_epci.to_typed_id_for_query}" => TypesDeChamp::Prefill.build(type_de_champ_epci, procedure.active_revision).example_value,
+            "champ_#{type_de_champ_repetition.to_typed_id_for_query}" => TypesDeChamp::Prefill.build(type_de_champ_repetition, procedure.active_revision).example_value,
             "identite_prenom" => I18n.t("views.prefill_descriptions.edit.examples.prenom")
           )
         )
@@ -165,8 +165,8 @@ RSpec.describe PrefillDescription, type: :model do
     let(:type_de_champ_epci) { procedure.active_revision.public_root_type_de_champs.find(&:epci?) }
     let(:type_de_champ_repetition) { procedure.active_revision.public_root_type_de_champs.find(&:repetition?) }
 
-    let(:prefill_type_de_champ_epci) { TypesDeChamp::PrefillTypeDeChamp.build(type_de_champ_epci, procedure.active_revision) }
-    let(:prefillable_subchamps) { TypesDeChamp::PrefillRepetitionTypeDeChamp.new(type_de_champ_repetition, procedure.active_revision).send(:prefillable_subchamps) }
+    let(:prefill_type_de_champ_epci) { TypesDeChamp::Prefill.build(type_de_champ_epci, procedure.active_revision) }
+    let(:prefillable_subchamps) { TypesDeChamp::PrefillRepetition.new(type_de_champ_repetition, procedure.active_revision).send(:prefillable_subchamps) }
 
     let(:text_repetition) { prefillable_subchamps.first }
     let(:integer_repetition) { prefillable_subchamps.second }

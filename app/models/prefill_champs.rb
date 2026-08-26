@@ -50,7 +50,7 @@ class PrefillChamps
     end
 
     def champ_attributes
-      @champ_attributes ||= TypesDeChamp::PrefillTypeDeChamp
+      @champ_attributes ||= TypesDeChamp::Prefill
         .build(champ.type_de_champ, dossier.revision)
         .to_assignable_attributes(champ, value)
     end

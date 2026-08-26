@@ -30,6 +30,6 @@ class FranceConnectChamp::ExternalChampComponent < ApplicationComponent
   private
 
   def rows_builder
-    TypesDeChamp::FranceConnectTypeDeChamp.config_for(@type_champ)[:rows_builder]
+    TypesDeChamp::FranceConnect.config_for(@type_champ)[:rows_builder]
   end
 end

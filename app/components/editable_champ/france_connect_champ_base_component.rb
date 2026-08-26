@@ -69,7 +69,7 @@ class EditableChamp::FranceConnectChampBaseComponent < EditableChamp::EditableCh
   end
 
   def api_part_preview_data_file_path
-    TypesDeChamp::FranceConnectTypeDeChamp.config_for(@champ.type_champ)[:preview_data_file_path]
+    TypesDeChamp::FranceConnect.config_for(@champ.type_champ)[:preview_data_file_path]
   end
 
   def justificatif_label

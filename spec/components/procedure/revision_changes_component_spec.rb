@@ -89,7 +89,7 @@ describe Procedure::RevisionChangesComponent, type: :component do
     end
 
     # `cadastres` excluded: it is mutually exclusive with `rpg`
-    let(:known_layers) { TypesDeChamp::CarteTypeDeChamp.option_keys }
+    let(:known_layers) { TypesDeChamp::Carte.option_keys }
     let(:enabled_layers) { known_layers - [:cadastres] }
 
     before do

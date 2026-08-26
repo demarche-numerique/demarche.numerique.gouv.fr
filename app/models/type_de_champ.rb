@@ -401,7 +401,7 @@ class TypeDeChamp < ApplicationRecord
     end
 
     def type_champ_to_class_name(type_champ)
-      "TypesDeChamp::#{type_champ.classify}TypeDeChamp"
+      "TypesDeChamp::#{type_champ.classify}"
     end
 
     def find_sti_class(type_name) = type_champ_to_class_name(type_name.to_s).constantize
@@ -457,7 +457,7 @@ class TypeDeChamp < ApplicationRecord
   # A value written by a multiple drop-down list, read after a type change.
   def champ_text_value(champ)
     if champ.is_type?(TypeDeChamp.type_champs.fetch(:multiple_drop_down_list))
-      TypesDeChamp::MultipleDropDownListTypeDeChamp.parse_selected_options(champ).join(', ')
+      TypesDeChamp::MultipleDropDownList.parse_selected_options(champ).join(', ')
     else
       champ.value
     end

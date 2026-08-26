@@ -4,7 +4,7 @@
 # columns ($.code_postal, $.code_departement) over to the canonical
 # AddressableColumnConcern jsonpaths ($.postal_code, $.department_code).
 # Once all instances are migrated, the legacy_columns method in
-# TypesDeChamp::CommuneTypeDeChamp can be removed.
+# TypesDeChamp::Commune can be removed.
 module Maintenance
   class T20260504MigrateLegacyCommuneColumnsInProcedurePresentationTask < MaintenanceTasks::Task
     include RunnableOnDeployConcern
