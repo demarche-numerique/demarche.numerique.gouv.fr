@@ -491,7 +491,7 @@ RSpec.describe DossierChampsConcern do
 
         before do
           tdc = dossier.procedure.draft_revision.find_and_ensure_exclusive_use(99)
-          tdc.becomes_type(TypesDeChamp::Checkbox.name).save!
+          tdc.becomes!(TypesDeChamp::Checkbox).save!
           dossier.procedure.publish_revision!(procedure.administrateurs.first)
           perform_enqueued_jobs
           dossier.reload
@@ -657,7 +657,7 @@ RSpec.describe DossierChampsConcern do
         let(:attributes) { { "99" => assign } }
 
         before do
-          tdc = dossier.procedure.draft_revision.find_and_ensure_exclusive_use(99).becomes_type(TypeDeChamp.class_for(to).name)
+          tdc = dossier.procedure.draft_revision.find_and_ensure_exclusive_use(99).becomes!(TypeDeChamp.class_for(to))
           tdc.update!(to_params)
           dossier.procedure.publish_revision!(procedure.administrateurs.first)
           perform_enqueued_jobs
@@ -1174,7 +1174,7 @@ RSpec.describe DossierChampsConcern do
 
     def add_second_quotient_familial_tdc
       procedure.draft_revision.add_type_de_champ({
-        type_champ: TypeDeChamp.type_champs.fetch(:quotient_familial),
+        type: TypesDeChamp::QuotientFamilial.name,
         libelle: "QF 2",
       })
       procedure.publish_revision!(procedure.administrateurs.first)

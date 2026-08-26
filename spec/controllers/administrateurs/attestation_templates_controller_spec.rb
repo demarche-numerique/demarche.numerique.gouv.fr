@@ -209,12 +209,12 @@ describe Administrateurs::AttestationTemplatesController, type: :controller do
         procedure.publish!(procedure.administrateurs.first)
         procedure.reload
         procedure.draft_revision.remove_type_de_champ(removed_and_published_type_de_champ.stable_id)
-        procedure.draft_revision.add_type_de_champ(libelle: 'new type de champ', type_champ: 'text', after_stable_id: procedure.draft_revision.public_root_type_de_champs.last.stable_id)
+        procedure.draft_revision.add_type_de_champ(libelle: 'new type de champ', type: TypesDeChamp::Text.name, after_stable_id: procedure.draft_revision.public_root_type_de_champs.last.stable_id)
         procedure.publish_revision!(admin)
         procedure.reload
         procedure.draft_revision.remove_type_de_champ(removed_type_de_champ.stable_id)
         procedure.draft_revision.reload
-        procedure.draft_revision.add_type_de_champ(libelle: 'draft type de champ', type_champ: 'text', after_stable_id: procedure.draft_revision.public_root_type_de_champs.last.stable_id)
+        procedure.draft_revision.add_type_de_champ(libelle: 'draft type de champ', type: TypesDeChamp::Text.name, after_stable_id: procedure.draft_revision.public_root_type_de_champs.last.stable_id)
 
         dossier
 

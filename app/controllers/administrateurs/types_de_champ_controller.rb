@@ -42,7 +42,8 @@ module Administrateurs
         update_params = type_de_champ_update_params
 
         if changing_of_type?(type_de_champ)
-          type_de_champ = type_de_champ.becomes_type(update_params['type'])
+          # sti_class_for rejects anything that is not a TypeDeChamp subclass
+          type_de_champ = type_de_champ.becomes!(TypeDeChamp.sti_class_for(update_params['type']))
         end
 
         # the editor form can submit options of another type (type change, or a

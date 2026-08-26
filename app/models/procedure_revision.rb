@@ -323,7 +323,7 @@ class ProcedureRevision < ApplicationRecord
 
         tdc = find_and_ensure_exclusive_use(stable_id)
         # the LLM suggestions payload still speaks type_champ
-        tdc = tdc.becomes_type(TypeDeChamp.class_for(type_champ).name) if type_champ != tdc.type_champ
+        tdc = tdc.becomes!(TypeDeChamp.class_for(type_champ)) if type_champ != tdc.type_champ
         tdc.options = tdc.options.merge(options) if options.present?
         tdc.save
       else # LabelImprover: mise à jour contenu
@@ -431,7 +431,7 @@ class ProcedureRevision < ApplicationRecord
         from_type_de_champ.type_champ,
         to_type_de_champ.type_champ)
       # the options are compared as the new type reads them
-      from_type_de_champ = from_type_de_champ.becomes_type(to_type_de_champ.type)
+      from_type_de_champ = from_type_de_champ.becomes!(to_type_de_champ.class)
     end
     if from_type_de_champ.libelle != to_type_de_champ.libelle
       changes << ProcedureRevisionChange::UpdateChamp.new(from_type_de_champ,

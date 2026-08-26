@@ -12,7 +12,7 @@ module Maintenance
 
     before do
       procedure.draft_revision.add_type_de_champ(
-        type_champ: :drop_down_list,
+        type: TypesDeChamp::DropDownList.name,
         libelle: 'Ville',
         drop_down_options: ['Paris', 'Lyon', 'Marseille']
       )

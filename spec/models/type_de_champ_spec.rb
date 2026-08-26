@@ -57,7 +57,7 @@ describe TypeDeChamp do
         subject { template_double }
 
         before do
-          morphed = tdc.becomes_type(TypeDeChamp.class_for(target_type_champ).name)
+          morphed = tdc.becomes!(TypeDeChamp.class_for(target_type_champ))
           allow(morphed).to receive(:piece_justificative_template).and_return(template_double)
 
           morphed.save
@@ -96,26 +96,26 @@ describe TypeDeChamp do
       let(:tdc) { create(:type_de_champ_drop_down_list, referentiel: csv_referentiel) }
 
       context 'from drop_down_list to referentiel' do
-        before { tdc.becomes_type(TypesDeChamp::Referentiel.name).save }
+        before { tdc.becomes!(TypesDeChamp::Referentiel).save }
 
         it { expect(tdc.referentiel_id).to be_nil }
       end
 
       context 'from drop_down_list to text' do
-        before { tdc.becomes_type(TypesDeChamp::Text.name).save }
+        before { tdc.becomes!(TypesDeChamp::Text).save }
 
         it { expect(tdc.referentiel_id).to be_nil }
       end
 
       context 'from drop_down_list to multiple_drop_down_list (both use csv referentiel)' do
-        before { tdc.becomes_type(TypesDeChamp::MultipleDropDownList.name).save }
+        before { tdc.becomes!(TypesDeChamp::MultipleDropDownList).save }
 
         it { expect(tdc.referentiel_id).to be_nil }
       end
     end
 
     describe 'changing the type_champ from a drop_down_list' do
-      let(:tdc) { create(:type_de_champ_drop_down_list).becomes_type(TypeDeChamp.class_for(target_type_champ).name) }
+      let(:tdc) { create(:type_de_champ_drop_down_list).becomes!(TypeDeChamp.class_for(target_type_champ)) }
 
       before do
         tdc.save
@@ -160,20 +160,20 @@ describe TypeDeChamp do
     end
   end
 
-  describe '#becomes_type' do
+  describe 'changing the type through becomes!' do
     it 'runs the target type validations instead of the source ones' do
       tdc = create(:type_de_champ_linked_drop_down_list)
       tdc.update_column(:options, { 'drop_down_options' => ['pas de primaire'] })
       tdc = TypeDeChamp.find(tdc.id)
 
       expect(tdc).to be_invalid
-      expect(tdc.becomes_type(TypesDeChamp::Text.name).save).to be true
+      expect(tdc.becomes!(TypesDeChamp::Text).save).to be true
     end
 
     it 'runs the target type callbacks, persisting the formatted default options' do
       tdc = create(:type_de_champ_text)
 
-      morphed = tdc.becomes_type(TypesDeChamp::Formatted.name)
+      morphed = tdc.becomes!(TypesDeChamp::Formatted)
       morphed.save!
 
       expect(morphed).to be_an_instance_of(TypesDeChamp::Formatted)
@@ -346,7 +346,7 @@ describe TypeDeChamp do
     it { expect(type_de_champ.libelle).to eq("Titre de section") }
 
     context "when the type champ is changed" do
-      before { type_de_champ.becomes_type(TypesDeChamp::DossierLink.name).save }
+      before { type_de_champ.becomes!(TypesDeChamp::DossierLink).save }
 
       it { expect(type_de_champ.libelle).to eq("Numéro de dossier déposé sur demarche.numerique.gouv.fr") }
 

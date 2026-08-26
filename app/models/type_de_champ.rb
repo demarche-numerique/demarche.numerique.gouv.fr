@@ -166,15 +166,6 @@ class TypeDeChamp < ApplicationRecord
   # the model no longer reads the column: the vocabulary is derived from the class
   def type_champ = self.class.type_champ
 
-  # Changing the type cannot change the class of an already-instantiated
-  # record: save the change through an instance of the target subclass, so its
-  # validations and callbacks apply instead of the source type's.
-  # sti_class_for resolves the class name and rejects anything that is not a
-  # TypeDeChamp subclass; becomes! also rewrites the type column.
-  def becomes_type(type_name)
-    becomes!(self.class.sti_class_for(type_name))
-  end
-
   def only_present_on_draft?
     revisions.one? && revisions.first.draft?
   end

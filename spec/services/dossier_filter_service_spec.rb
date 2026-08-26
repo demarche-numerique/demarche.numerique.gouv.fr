@@ -163,7 +163,7 @@ describe DossierFilterService do
       end
 
       context 'with a revision adding a new type_de_champ' do
-        let!(:tdc) { { type_champ: :text, libelle: 'nouveau champ' } }
+        let!(:tdc) { { type: TypesDeChamp::Text.name, libelle: 'nouveau champ' } }
         let(:column) { procedure.find_column(label: 'nouveau champ') }
 
         let!(:nothing_dossier) { create(:dossier, procedure:) }

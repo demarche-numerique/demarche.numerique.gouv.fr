@@ -623,7 +623,7 @@ describe ChampData do
     let(:champ) { dossier.champ_data.where(type: "Champs::TextChamp").first }
 
     it "returns the parent" do
-      expect(champ.parent).to eq(TypeDeChamp.find_by(type_champ: "repetition"))
+      expect(champ.parent).to eq(TypeDeChamp.find_by(type: TypesDeChamp::Repetition.name))
     end
   end
 

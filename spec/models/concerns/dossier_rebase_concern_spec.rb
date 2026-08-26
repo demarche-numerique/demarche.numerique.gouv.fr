@@ -150,7 +150,7 @@ describe DossierRebaseConcern do
           libelle: "Un champ pj",
         })
         procedure.draft_revision.find_and_ensure_exclusive_use(text_type_de_champ.stable_id).update(mandatory: false, libelle: "nouveau libelle")
-        procedure.draft_revision.find_and_ensure_exclusive_use(datetime_type_de_champ.stable_id).becomes_type(TypesDeChamp::Date.name).save
+        procedure.draft_revision.find_and_ensure_exclusive_use(datetime_type_de_champ.stable_id).becomes!(TypesDeChamp::Date).save
         procedure.draft_revision.find_and_ensure_exclusive_use(repetition_text_type_de_champ.stable_id).update(libelle: "nouveau libelle dans une repetition")
         procedure.draft_revision.add_type_de_champ({
           type: TypesDeChamp::Checkbox.name,
@@ -216,7 +216,7 @@ describe DossierRebaseConcern do
         expect(rebased_new_repetition_champ.rows[0].size).to eq(2)
 
         dossier.passer_en_construction!
-        procedure.draft_revision.find_and_ensure_exclusive_use(private_text_type_de_champ.stable_id).becomes_type(TypesDeChamp::Textarea.name).save
+        procedure.draft_revision.find_and_ensure_exclusive_use(private_text_type_de_champ.stable_id).becomes!(TypesDeChamp::Textarea).save
         procedure.publish_revision!(procedure.administrateurs.first)
         perform_enqueued_jobs
         procedure.reload
@@ -475,7 +475,7 @@ describe DossierRebaseConcern do
 
           stable_id = procedure.draft_revision.type_de_champs.find { _1.libelle == 'l1' }
           tdc_to_update = procedure.draft_revision.find_and_ensure_exclusive_use(stable_id)
-          tdc_to_update.becomes_type(TypesDeChamp::IntegerNumber.name).save
+          tdc_to_update.becomes!(TypesDeChamp::IntegerNumber).save
         end
 
         it { expect { subject }.to change { dossier.revision.public_root_type_de_champs.map(&:type_champ) }.from(['text', 'text']).to(['integer_number', 'text']) }
@@ -545,7 +545,7 @@ describe DossierRebaseConcern do
         before do
           stable_id = procedure.draft_revision.type_de_champs.find { _1.libelle == 'c1' }
           tdc_to_update = procedure.draft_revision.find_and_ensure_exclusive_use(stable_id)
-          tdc_to_update.becomes_type(TypesDeChamp::IntegerNumber.name).save
+          tdc_to_update.becomes!(TypesDeChamp::IntegerNumber).save
         end
 
         it { expect { subject }.to change { child_types_champ }.from(['text', 'text']).to(['integer_number', 'text']) }
@@ -555,7 +555,7 @@ describe DossierRebaseConcern do
         before do
           stable_id = procedure.draft_revision.type_de_champs.find { _1.libelle == 'p1' }
           parent = procedure.draft_revision.find_and_ensure_exclusive_use(stable_id)
-          parent.becomes_type(TypesDeChamp::IntegerNumber.name).save
+          parent.becomes!(TypesDeChamp::IntegerNumber).save
         end
 
         it { expect { subject }.to change { dossier.root_champs_public.find(&:repetition?)&.libelle }.from('p1').to(nil) }

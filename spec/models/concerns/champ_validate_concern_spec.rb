@@ -104,13 +104,13 @@ RSpec.describe ChampValidateConcern do
     context 'do not validate with old champ type' do
       before {
         update_champ('test')
-        type_de_champ.update(type_champ: :text)
+        type_de_champ.becomes!(TypesDeChamp::Text).save
         dossier.reload
         dossier.validate(:champs_public_value)
       }
       it {
         expect(dossier.champ_data.first.last_write_type_champ).to eq('email')
-        expect(type_de_champ.type_champ).to eq('text')
+        expect(TypeDeChamp.find(type_de_champ.id)).to be_an_instance_of(TypesDeChamp::Text)
         expect(dossier.champ_data).not_to be_empty
         expect(dossier.errors).to be_empty
       }
@@ -121,13 +121,13 @@ RSpec.describe ChampValidateConcern do
 
       before {
         update_champ('test')
-        type_de_champ.update(type_champ: :email)
+        type_de_champ.becomes!(TypesDeChamp::Email).save
         dossier.reload
         dossier.validate(:champs_public_value)
       }
       it {
         expect(dossier.champ_data.first.last_write_type_champ).to eq('text')
-        expect(type_de_champ.type_champ).to eq('email')
+        expect(TypeDeChamp.find(type_de_champ.id)).to be_an_instance_of(TypesDeChamp::Email)
         expect(dossier.champ_data).not_to be_empty
         expect(dossier.errors).not_to be_empty
       }

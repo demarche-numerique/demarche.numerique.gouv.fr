@@ -66,7 +66,7 @@ describe ColumnsConcern do
       let(:integer_tdc) { procedure.draft_revision.type_de_champs.first }
       let(:draft_tdc) do
         procedure.draft_revision.add_type_de_champ(
-          type_champ: 'drop_down_list',
+          type: TypesDeChamp::DropDownList.name,
           libelle: 'liste csv',
           drop_down_mode: 'advanced',
           referentiel_id: referentiel.id,
