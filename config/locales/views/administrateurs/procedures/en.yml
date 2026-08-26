@@ -13,6 +13,10 @@ en:
         col_procedures_count: Procedures count
         col_registered_at: Registered on
         expand_admin: View procedures
+      informations:
+        email_templates_reset_warning:
+          title: 'Warning '
+          desc: The acknowledgment of receipt you may have customized will be deleted and adapted to this new setting. The other email templates are kept.
       api_champ_columns:
         title: 'Informations complementary to the champ %{type_de_champ}'
         hint_html: |

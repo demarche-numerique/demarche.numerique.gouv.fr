@@ -13,6 +13,10 @@ fr:
         col_procedures_count: Nb démarches
         col_registered_at: Inscrit le
         expand_admin: Voir les démarches
+      informations:
+        email_templates_reset_warning:
+          title: 'Attention '
+          desc: Le modèle d’accusé de réception éventuellement personnalisé sera supprimé et adapté à ce nouveau paramétrage. Les autres modèles d’emails sont conservés.
       api_champ_columns:
         title: 'Informations complémentaires au champ %{type_de_champ}'
         hint_html: |

@@ -161,7 +161,8 @@
             %span.fr-ml-1w.fr-text-mention--grey
               #{procedure_auto_archive_time(@procedure)}.
 
-      %fieldset.fr-fieldset{ "aria-labelledby": "declarative_with_state-legend" }
+      -# _was, not the attribute: after a failed save the object already carries the submitted value.
+      %fieldset.fr-fieldset{ "aria-labelledby": "declarative_with_state-legend", data: { controller: "declarative-setting", "declarative-setting-initial-value": @procedure.declarative_with_state_was.to_s } }
         %legend#declarative_with_state-legend.fr-fieldset__legend.fr-fieldset__legend--regular
           Démarche déclarative
           %span.fr-hint-text.fr-mt-0
@@ -170,24 +171,33 @@
             Si vous envisagez activer la règle du ”Silence Vaut Accord” ou “Silence Vaut Rejet“, laissez en démarche non déclarative.
         .fr-fieldset__element
           .fr-radio-group
-            = f.radio_button :declarative_with_state, ''
+            = f.radio_button :declarative_with_state, '', data: { "declarative-setting-target": "radio" }
             = f.label :declarative_with_state, value: '', class: "fr-label" do
               La démarche n’est pas déclarative (l’usager peut modifier son dossier jusqu'à sa mise en instruction)
 
 
         .fr-fieldset__element
           .fr-radio-group
-            = f.radio_button :declarative_with_state, Procedure.declarative_with_states.fetch(:en_instruction)
+            = f.radio_button :declarative_with_state, Procedure.declarative_with_states.fetch(:en_instruction), data: { "declarative-setting-target": "radio" }
             = f.label :declarative_with_state, value: Procedure.declarative_with_states.fetch(:en_instruction), class: 'fr-label' do
               Passage automatique en instruction (l’usager ne peut plus modifier son dossier)
 
 
         .fr-fieldset__element
           .fr-radio-group
-            = f.radio_button :declarative_with_state, Procedure.declarative_with_states.fetch(:accepte)
+            = f.radio_button :declarative_with_state, Procedure.declarative_with_states.fetch(:accepte), data: { "declarative-setting-target": "radio" }
             = f.label :declarative_with_state, value: Procedure.declarative_with_states.fetch(:accepte), class: 'fr-label' do
               Passage automatique au statut « accepté » (l’usager ne peut plus modifier son dossier)
 
+
+        - if @procedure.email_depose_templates.any?
+          .fr-fieldset__element
+            .fr-notice.fr-notice--warning.hidden{ role: "status", data: { "declarative-setting-target": "warning" } }
+              .fr-container
+                .fr-notice__body
+                  %p
+                    %span.fr-notice__title.fr-text--sm= t('.email_templates_reset_warning.title')
+                    %span.fr-notice__desc.fr-text--sm= t('.email_templates_reset_warning.desc')
 
         - if !@procedure.piece_justificative_multiple?
           .fr-fieldset__element
