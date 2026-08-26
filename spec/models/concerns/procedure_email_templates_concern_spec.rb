@@ -157,7 +157,7 @@ describe ProcedureEmailTemplatesConcern do
     end
   end
 
-  describe '#email_template_attestation_inconsistency_state with email_accepte' do
+  describe '#attestation_tag_inconsistency with email_accepte' do
     let(:procedure_without_attestation) { procedures.brouillon.tap { it.update!(email_accepte: email_accepte, attestation_acceptation_template: nil) } }
     let(:procedure_with_active_attestation) do
       procedures.brouillon.tap { it.update!(email_accepte: email_accepte, attestation_acceptation_template: build(:attestation_template, activated: true)) }
@@ -166,7 +166,7 @@ describe ProcedureEmailTemplatesConcern do
       procedures.brouillon.tap { it.update!(email_accepte: email_accepte, attestation_acceptation_template: build(:attestation_template, activated: false)) }
     end
 
-    subject { procedure.email_template_attestation_inconsistency_state(:acceptation) }
+    subject { procedure.attestation_tag_inconsistency(:acceptation) }
 
     context 'with a custom mail template' do
       context 'that contains a lien attestation tag' do
@@ -176,7 +176,7 @@ describe ProcedureEmailTemplatesConcern do
           let(:procedure) { procedure_without_attestation }
 
           it do
-            expect(subject).to eq(:extraneous_tag)
+            expect(subject).to include(kind: :extraneous_tag)
           end
         end
 
@@ -189,7 +189,7 @@ describe ProcedureEmailTemplatesConcern do
           let(:procedure) { procedure_with_inactive_attestation }
 
           it do
-            expect(subject).to eq(:extraneous_tag)
+            expect(subject).to include(kind: :extraneous_tag)
           end
         end
       end
@@ -206,7 +206,7 @@ describe ProcedureEmailTemplatesConcern do
           let(:procedure) { procedure_with_active_attestation }
 
           it do
-            expect(subject).to eq(:missing_tag)
+            expect(subject).to include(kind: :missing_tag)
           end
         end
 
@@ -218,7 +218,7 @@ describe ProcedureEmailTemplatesConcern do
     end
   end
 
-  describe '#email_template_attestation_inconsistency_state with email_refuse' do
+  describe '#attestation_tag_inconsistency with email_refuse' do
     let(:procedure_without_attestation) { procedures.brouillon.tap { it.update!(email_refuse: email_refuse, attestation_refus_template: nil) } }
     let(:procedure_with_active_attestation) do
       procedures.brouillon.tap { it.update!(email_refuse: email_refuse, attestation_refus_template: build(:attestation_template, activated: true, kind: 'refus')) }
@@ -227,7 +227,7 @@ describe ProcedureEmailTemplatesConcern do
       procedures.brouillon.tap { it.update!(email_refuse: email_refuse, attestation_refus_template: build(:attestation_template, activated: false, kind: 'refus')) }
     end
 
-    subject { procedure.email_template_attestation_inconsistency_state(:refus) }
+    subject { procedure.attestation_tag_inconsistency(:refus) }
 
     context 'with a custom mail template' do
       context 'that contains a lien attestation tag' do
@@ -237,7 +237,7 @@ describe ProcedureEmailTemplatesConcern do
           let(:procedure) { procedure_without_attestation }
 
           it do
-            expect(subject).to eq(:extraneous_tag)
+            expect(subject).to include(kind: :extraneous_tag)
           end
         end
 
@@ -250,7 +250,7 @@ describe ProcedureEmailTemplatesConcern do
           let(:procedure) { procedure_with_inactive_attestation }
 
           it do
-            expect(subject).to eq(:extraneous_tag)
+            expect(subject).to include(kind: :extraneous_tag)
           end
         end
       end
@@ -267,7 +267,7 @@ describe ProcedureEmailTemplatesConcern do
           let(:procedure) { procedure_with_active_attestation }
 
           it do
-            expect(subject).to eq(:missing_tag)
+            expect(subject).to include(kind: :missing_tag)
           end
         end
 
@@ -279,19 +279,19 @@ describe ProcedureEmailTemplatesConcern do
     end
   end
 
-  describe '#email_template_attestation_inconsistency_state with the combined declarative email' do
+  describe '#attestation_tag_inconsistency with the combined declarative email' do
     let(:declarative_with_state) { :accepte }
     let(:attestation) { build(:attestation_template, activated: true) }
     let(:procedure) do
       procedures.brouillon.tap { it.update!(declarative_with_state:, attestation_acceptation_template: attestation) }
     end
 
-    subject { procedure.email_template_attestation_inconsistency_state(:acceptation) }
+    subject { procedure.attestation_tag_inconsistency(:acceptation) }
 
     context 'when the combined template doesn’t contain a lien attestation tag' do
       before { create(:email_depose_et_accepte, procedure:, body: 'aucun tag ici') }
 
-      it { is_expected.to eq(:missing_tag) }
+      it { is_expected.to include(kind: :missing_tag) }
     end
 
     context 'when only the accepte template contains a lien attestation tag' do
@@ -300,7 +300,7 @@ describe ProcedureEmailTemplatesConcern do
         create(:email_accepte, procedure:, body: '--lien attestation--')
       end
 
-      it { is_expected.to eq(:missing_tag) }
+      it { is_expected.to eq(email_slug: Emails::DeposeEtAccepte::SLUG, kind: :missing_tag) }
     end
 
     context 'when the procedure doesn’t have an attestation' do
@@ -308,7 +308,7 @@ describe ProcedureEmailTemplatesConcern do
 
       before { create(:email_depose_et_accepte, procedure:, body: '--lien attestation--') }
 
-      it { is_expected.to eq(:extraneous_tag) }
+      it { is_expected.to include(kind: :extraneous_tag) }
     end
 
     context 'when the declarative procedure only passes en instruction' do

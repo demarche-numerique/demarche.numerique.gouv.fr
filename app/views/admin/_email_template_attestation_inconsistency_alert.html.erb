@@ -1,8 +1,8 @@
-<%- return if state.nil? -%>
+<%- return if inconsistency.nil? -%>
 
 <div class="center">
   <div class="alert <%= flash_class('alert') %>">
-    <% case state -%>
+    <% case inconsistency[:kind] -%>
     <% when :missing_tag -%>
       <%= t(".missing_tag_intro") %>
       <%= t("views.administrateurs.mail_#{mail_type}") %>
@@ -33,7 +33,7 @@
         <%= link_to(t(".enable_attestation"), edit_admin_procedure_attestation_template_v2_path(procedure, attestation_kind: :refus)) %>
       <% end -%>
       <%= t(".or_word") %>
-      <%= link_to(t(".remove_tag"), edit_admin_procedure_email_template_path(procedure, email_slug)) %>
+      <%= link_to(t(".remove_tag"), edit_admin_procedure_email_template_path(procedure, inconsistency[:email_slug])) %>
       <code style="white-space: pre-wrap;"><%= t(".attestation_tag") %></code>
       <%= t(".from_word") %>
       <%= t("views.administrateurs.mail_#{mail_type}") %>

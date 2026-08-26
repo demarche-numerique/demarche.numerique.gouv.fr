@@ -131,6 +131,32 @@ describe Administrateurs::EmailTemplatesController, type: :controller do
     end
   end
 
+  describe 'GET edit (alerte d’incohérence attestation)' do
+    let(:attestation) { nil }
+    let(:procedure) { create(:procedure, administrateur: admin, declarative_with_state: :accepte, attestation_acceptation_template: attestation) }
+
+    context 'quand l’attestation est active mais le modèle combiné ne la mentionne pas' do
+      let(:attestation) { build(:attestation_template, activated: true, kind: :acceptation) }
+
+      before { create(:email_depose_et_accepte, procedure:, body: 'sans balise') }
+
+      it 'alerte sur la page du modèle combiné' do
+        get :edit, params: { procedure_id: procedure.id, id: 'depose' }
+        expect(response.body).to include('Cette démarche comporte une attestation')
+      end
+    end
+
+    context 'quand seul le modèle combiné mentionne une attestation inexistante' do
+      before { create(:email_depose_et_accepte, procedure:, body: '--lien attestation--') }
+
+      it 'désigne le modèle combiné depuis la page de l’accusé d’acceptation' do
+        get :edit, params: { procedure_id: procedure.id, id: 'accepte' }
+        expect(response.body).to include('Cette démarche ne comporte pas d’attestation')
+        expect(response.body).to include(edit_admin_procedure_email_template_path(procedure, 'depose'))
+      end
+    end
+  end
+
   describe 'POST #preview (turbo_stream)' do
     let(:json_body) { { "type" => "doc", "content" => [{ "type" => "paragraph", "content" => [{ "type" => "text", "text" => "Salut" }] }] }.to_json }
 

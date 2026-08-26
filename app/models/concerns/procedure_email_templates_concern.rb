@@ -118,14 +118,16 @@ module ProcedureEmailTemplatesConcern
     end
   end
 
-  def email_template_attestation_inconsistency_state(email_type)
+  # The kind of inconsistency to report, and the email template to send the
+  # admin to, or nil when every template agrees with the attestation setting.
+  def attestation_tag_inconsistency(email_type)
     emails, attestation = attestation_inconsistency_scope(email_type)
     expected_tag = attestation&.activated? || false
 
     inconsistent = emails.find { it.body.to_s.include?(ATTESTATION_TAG) != expected_tag }
     return if inconsistent.nil?
 
-    expected_tag ? :missing_tag : :extraneous_tag
+    { email_slug: inconsistent.class.const_get(:SLUG), kind: expected_tag ? :missing_tag : :extraneous_tag }
   end
 
   private

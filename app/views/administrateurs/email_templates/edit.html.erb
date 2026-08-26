@@ -2,16 +2,15 @@
 <% content_for(:root_class, 'scroll-margins-for-sticky-footer') %>
 <% render_procedure_sticky_title(@procedure) %>
 
-<% if params[:id] == 'accepte' %>
+<% if @email_template.is_a?(Emails::Accepte) || @email_template.is_a?(Emails::DeposeEtAccepte) %>
   <%= render partial: 'admin/email_template_attestation_inconsistency_alert',
-        locals: { procedure: @procedure, state: @procedure.email_template_attestation_inconsistency_state(:acceptation),
-                  mail_type: 'acceptation', email_slug: Emails::Accepte::SLUG,
+        locals: { procedure: @procedure, inconsistency: @procedure.attestation_tag_inconsistency(:acceptation),
+                  mail_type: 'acceptation',
                   attestation_template_v1: (@procedure.attestation_acceptation_template&.version == 1) } %>
-<% elsif params[:id] == 'refuse' %>
+<% elsif @email_template.is_a?(Emails::Refuse) %>
   <%= render partial: 'admin/email_template_attestation_inconsistency_alert',
-        locals: { procedure: @procedure, state: @procedure.email_template_attestation_inconsistency_state(:refus),
-                  mail_type: 'refus', email_slug: Emails::Refuse::SLUG,
-                  attestation_template_v1: false } %>
+        locals: { procedure: @procedure, inconsistency: @procedure.attestation_tag_inconsistency(:refus),
+                  mail_type: 'refus', attestation_template_v1: false } %>
 <% end %>
 
 <%= render partial: 'shared/breadcrumbs_section',
