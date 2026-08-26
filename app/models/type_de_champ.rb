@@ -419,6 +419,10 @@ class TypeDeChamp < ApplicationRecord
 
     def class_for(type_champ) = TYPE_CHAMP_TO_CLASS_NAME.fetch(type_champ.to_s).constantize
 
+    # The editor boundary: resolves a submitted class name against the
+    # dictionary, never constantizing the input.
+    def class_for_name(type_name) = type_champ_classes.index_by(&:name).fetch(type_name)
+
     def type_champ = CLASS_NAME_TO_TYPE_CHAMP[name]
 
     def type_champ_classes = type_champs.values.map { class_for(_1) }

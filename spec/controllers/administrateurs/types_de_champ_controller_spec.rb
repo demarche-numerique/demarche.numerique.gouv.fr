@@ -179,6 +179,16 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       end
     end
 
+    context 'forging a type that is not a type de champ' do
+      let(:params) do
+        default_params.deep_merge(type_de_champ: { type: 'Procedure', stable_id: third_coordinate.stable_id })
+      end
+
+      it 'refuses to resolve the class' do
+        expect { subject }.to raise_error(KeyError)
+      end
+    end
+
     context 'rejected if type changed and routing involved' do
       let(:params) do
         default_params.deep_merge(type_de_champ: { type: TypesDeChamp::Text.name, stable_id: third_coordinate.stable_id })
