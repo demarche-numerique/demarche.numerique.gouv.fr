@@ -278,4 +278,45 @@ describe ProcedureEmailTemplatesConcern do
       end
     end
   end
+
+  describe '#email_template_attestation_inconsistency_state with the combined declarative email' do
+    let(:declarative_with_state) { :accepte }
+    let(:attestation) { build(:attestation_template, activated: true) }
+    let(:procedure) do
+      procedures.brouillon.tap { it.update!(declarative_with_state:, attestation_acceptation_template: attestation) }
+    end
+
+    subject { procedure.email_template_attestation_inconsistency_state(:acceptation) }
+
+    context 'when the combined template doesn’t contain a lien attestation tag' do
+      before { create(:email_depose_et_accepte, procedure:, body: 'aucun tag ici') }
+
+      it { is_expected.to eq(:missing_tag) }
+    end
+
+    context 'when only the accepte template contains a lien attestation tag' do
+      before do
+        create(:email_depose_et_accepte, procedure:, body: 'aucun tag ici')
+        create(:email_accepte, procedure:, body: '--lien attestation--')
+      end
+
+      it { is_expected.to eq(:missing_tag) }
+    end
+
+    context 'when the procedure doesn’t have an attestation' do
+      let(:attestation) { nil }
+
+      before { create(:email_depose_et_accepte, procedure:, body: '--lien attestation--') }
+
+      it { is_expected.to eq(:extraneous_tag) }
+    end
+
+    context 'when the declarative procedure only passes en instruction' do
+      let(:declarative_with_state) { :en_instruction }
+
+      before { create(:email_depose_et_passe_en_instruction, procedure:, body: 'aucun tag ici') }
+
+      it { is_expected.to be_nil }
+    end
+  end
 end

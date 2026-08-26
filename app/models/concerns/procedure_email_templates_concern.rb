@@ -3,6 +3,8 @@
 module ProcedureEmailTemplatesConcern
   extend ActiveSupport::Concern
 
+  ATTESTATION_TAG = '--lien attestation--'
+
   included do
     has_many :custom_email_templates, class_name: "EmailTemplate", dependent: :destroy
     # validate: false — la validation passe uniquement par le
@@ -99,22 +101,29 @@ module ProcedureEmailTemplatesConcern
   end
 
   def email_template_attestation_inconsistency_state(email_type)
+    emails, attestation = attestation_inconsistency_scope(email_type)
+    expected_tag = attestation&.activated? || false
+
+    inconsistent = emails.find { it.body.to_s.include?(ATTESTATION_TAG) != expected_tag }
+    return if inconsistent.nil?
+
+    expected_tag ? :missing_tag : :extraneous_tag
+  end
+
+  private
+
+  # In décla-accepté the combined email is the one announcing the acceptation,
+  # Emails::Accepte only serving after a réexamen: both carry the attestation tag.
+  def custom_email_depose_et_accepte
+    email_depose if depose_email_class == Emails::DeposeEtAccepte
+  end
+
+  def attestation_inconsistency_scope(email_type)
     case email_type
     when :acceptation
-      email = email_accepte
-      attestation = attestation_acceptation_template
+      [[email_accepte, custom_email_depose_et_accepte].compact, attestation_acceptation_template]
     when :refus
-      email = email_refuse
-      attestation = attestation_refus_template
-    end
-
-    return if email.nil?
-
-    tag_present = email.body.to_s.include?('--lien attestation--')
-    if attestation&.activated? && !tag_present
-      :missing_tag
-    elsif !attestation&.activated? && tag_present
-      :extraneous_tag
+      [[email_refuse].compact, attestation_refus_template]
     end
   end
 end
