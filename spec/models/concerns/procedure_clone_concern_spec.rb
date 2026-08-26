@@ -337,14 +337,18 @@ describe ProcedureCloneConcern, type: :model do
       end
 
       it 'should send the combined declarative email, like a fresh procedure' do
-        procedure.update!(declarative_with_state: :accepte, combined_declarative_email: false)
+        procedure.update!(declarative_with_state: :accepte)
+        procedure.update!(combined_declarative_email: false)
 
         expect(subject.combined_declarative_email).to be true
       end
     end
 
     context 'when the procedure is declarative and kept on the legacy emails' do
-      before { procedure.update!(declarative_with_state: :accepte, combined_declarative_email: false) }
+      before do
+        procedure.update!(declarative_with_state: :accepte)
+        procedure.update!(combined_declarative_email: false)
+      end
 
       it 'keeps the setting, so the cloned templates stay the ones sent' do
         expect(subject.combined_declarative_email).to be false

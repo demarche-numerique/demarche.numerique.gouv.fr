@@ -22,6 +22,8 @@ module ProcedureEmailTemplatesConcern
     validates_associated :email_refuse, on: :publication
     validates_associated :email_classe_sans_suite, on: :publication
     validates_associated :email_repasse_en_instruction, on: :publication
+
+    before_update :reset_email_templates_on_declarative_change
   end
 
   def send_combined_declarative_email?
@@ -131,6 +133,16 @@ module ProcedureEmailTemplatesConcern
   end
 
   private
+
+  # Only the depose template is tied to the setting, through its STI type: the
+  # customized row would never be read again. The five others keep their type and
+  # their triggers, so they survive the change.
+  def reset_email_templates_on_declarative_change
+    return if !declarative_with_state_changed?
+
+    email_depose_templates.destroy_all
+    self.combined_declarative_email = true
+  end
 
   # In décla-accepté the combined email is the one announcing the acceptation,
   # Emails::Accepte only serving after a réexamen: both carry the attestation tag.

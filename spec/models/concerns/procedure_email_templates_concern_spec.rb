@@ -35,6 +35,39 @@ describe ProcedureEmailTemplatesConcern do
     end
   end
 
+  describe 'changing the declarative setting' do
+    let(:procedure) { procedures.brouillon }
+
+    before do
+      procedure.update!(declarative_with_state: :en_instruction)
+      procedure.update!(combined_declarative_email: false)
+      create(:email_depose, procedure:)
+      create(:email_refuse, procedure:)
+      procedure.reload
+    end
+
+    it 'drops the depose template, keeps the others and moves to the combined email' do
+      procedure.update!(declarative_with_state: :accepte)
+
+      expect(procedure.reload.email_depose_templates).to be_empty
+      expect(procedure.email_refuse).to be_present
+      expect(procedure.combined_declarative_email).to be true
+    end
+
+    it 'drops it when the procedure stops being declarative' do
+      procedure.update!(declarative_with_state: nil)
+
+      expect(procedure.reload.email_depose_templates).to be_empty
+      expect(procedure.email_refuse).to be_present
+    end
+
+    it 'keeps it when the declarative setting does not change' do
+      procedure.update!(libelle: 'Un nouveau libellé')
+
+      expect(procedure.reload.email_depose_templates).not_to be_empty
+    end
+  end
+
   describe '#email_depose_or_default' do
     let(:procedure) { procedures.brouillon }
 
@@ -283,7 +316,7 @@ describe ProcedureEmailTemplatesConcern do
     let(:declarative_with_state) { :accepte }
     let(:attestation) { build(:attestation_template, activated: true) }
     let(:procedure) do
-      procedures.brouillon.tap { it.update!(declarative_with_state:, attestation_acceptation_template: attestation) }
+      procedures.brouillon.tap { it.update!(declarative_with_state:, attestation_acceptation_template: attestation) }.reload
     end
 
     subject { procedure.attestation_tag_inconsistency(:acceptation) }
