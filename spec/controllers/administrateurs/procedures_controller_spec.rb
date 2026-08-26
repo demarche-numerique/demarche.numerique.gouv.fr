@@ -722,6 +722,21 @@ describe Administrateurs::ProceduresController, type: :controller do
       end
     end
 
+    context 'when the procedure is declarative and kept on the legacy emails' do
+      before do
+        procedure.update!(declarative_with_state: :accepte)
+        procedure.update!(combined_declarative_email: false)
+        create(:email_depose, procedure:)
+      end
+
+      it 'offers the email templates, warning that the depose one stays behind' do
+        subject
+
+        expect(response.body).not_to match(/<input[^>]*name=.procedure\[clone_options\]\[email_templates\].[^>]*disabled/)
+        expect(response.body).to include "ne sera pas cloné"
+      end
+    end
+
     context 'when admin is not the owner of the procedure' do
       before do
         sign_out(admin.user)

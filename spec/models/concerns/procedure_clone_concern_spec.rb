@@ -308,6 +308,16 @@ describe ProcedureCloneConcern, type: :model do
       expect(subject.email_passe_en_instruction.procedure_id).not_to be nil
     end
 
+    context 'when the procedure is declarative' do
+      before { procedure.update!(declarative_with_state: :accepte) }
+
+      it 'duplicates the customized email templates of the combined email' do
+        procedure.custom_email_templates.create!(type: 'Emails::DeposeEtAccepte', subject: 'sujet', body: 'corps')
+
+        expect(subject.custom_email_templates.map(&:type)).to contain_exactly('Emails::PasseEnInstruction', 'Emails::DeposeEtAccepte')
+      end
+    end
+
     it 'should not duplicate default email_template' do
       expect(subject.email_depose_or_default.attributes).to eq Emails::Depose.default_for_procedure(subject).attributes
     end
@@ -350,9 +360,13 @@ describe ProcedureCloneConcern, type: :model do
         procedure.update!(combined_declarative_email: false)
       end
 
-      it 'keeps the setting, so the cloned templates stay the ones sent' do
-        expect(subject.combined_declarative_email).to be false
-        expect(subject.email_depose_or_default).to be_an_instance_of(Emails::Depose)
+      it 'moves the clone to the combined email, only the depose template being left behind' do
+        procedure.custom_email_templates.create!(type: 'Emails::Depose', subject: 'sujet', body: 'corps')
+        procedure.custom_email_templates.create!(type: 'Emails::Refuse', subject: 'sujet', body: 'corps')
+
+        expect(subject.email_depose_templates).to be_empty
+        expect(subject.email_refuse).to be_present
+        expect(subject.combined_declarative_email).to be true
       end
     end
 

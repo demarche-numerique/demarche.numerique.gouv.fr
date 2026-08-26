@@ -143,6 +143,9 @@ en:
         api_entreprise_token_hint: Configured token
         email_templates: Email configuration
         email_templates_hint: Content of the automatic emails
+        email_templates_declarative_notice:
+          title: 'Important '
+          desc_html: The customized acknowledgment of receipt will not be cloned, as it will be adapted to the new email templates configuration for a <strong>declarative procedure</strong>. The other customized templates are cloned as usual.
         sva_svr: Silence is Worth Agreement or Rejection
         sva_svr_hint:
           sva: SVA enabled

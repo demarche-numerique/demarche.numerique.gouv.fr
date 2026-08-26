@@ -143,6 +143,9 @@ fr:
         api_entreprise_token_hint: Jeton configuré
         email_templates: Modèles d’email
         email_templates_hint: Contenu des emails automatiques
+        email_templates_declarative_notice:
+          title: 'Important '
+          desc_html: Le modèle d’accusé de réception personnalisé ne sera pas cloné, car il sera adapté à la nouvelle version de configuration des modèles d’emails pour une <strong>démarche déclarative</strong>. Les autres modèles personnalisés sont clonés normalement.
         sva_svr: Silence Vaut Accord ou Rejet
         sva_svr_hint:
           sva: SVA activé
