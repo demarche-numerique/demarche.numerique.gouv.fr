@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
 class TypesDeChamp::DropDownBaseTypeDeChamp < TypeDeChamp
-  store_accessor :options, :drop_down_options, :drop_down_mode
+  store_accessor :options, :drop_down_options
 
   def any_drop_down_list? = true
-  def drop_down_simple? = drop_down_mode != 'advanced'
-  def drop_down_advanced? = drop_down_mode == 'advanced'
+  # the editor offers the simple/advanced switch to the drop_down_list and the
+  # multiple_drop_down_list only: the other lists are always simple
+  def drop_down_mode = nil
+  def drop_down_simple? = !drop_down_advanced?
+  def drop_down_advanced? = false
   def drop_down_other? = false
 
   def revision_diff_options
