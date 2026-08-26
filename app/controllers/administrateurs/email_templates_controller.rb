@@ -37,6 +37,21 @@ module Administrateurs
       end
     end
 
+    def switch_to_combined
+      if @procedure.legacy_declarative_emails?
+        # update! runs the procedure-wide validations and can raise: without the
+        # transaction the depose template would be gone and the flag left behind.
+        Procedure.transaction do
+          @procedure.email_depose_templates.destroy_all
+          @procedure.update!(combined_declarative_email: true)
+        end
+
+        flash.notice = t('.switched')
+      end
+
+      redirect_to admin_procedure_email_templates_path(@procedure)
+    end
+
     def preview
       email_template = find_email_template_by_slug(params[:id])
       submitted = preview_params(email_template)

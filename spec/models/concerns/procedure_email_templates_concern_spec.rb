@@ -35,6 +35,29 @@ describe ProcedureEmailTemplatesConcern do
     end
   end
 
+  describe '#legacy_declarative_emails?' do
+    let(:procedure) { procedures.brouillon }
+
+    it 'is false while the procedure sends the combined email' do
+      procedure.update!(declarative_with_state: :en_instruction)
+
+      expect(procedure.legacy_declarative_emails?).to be false
+    end
+
+    it 'is true once kept on the legacy emails' do
+      procedure.update!(declarative_with_state: :en_instruction)
+      procedure.update!(combined_declarative_email: false)
+
+      expect(procedure.legacy_declarative_emails?).to be true
+    end
+
+    it 'is false for a non declarative procedure' do
+      procedure.combined_declarative_email = false
+
+      expect(procedure.legacy_declarative_emails?).to be false
+    end
+  end
+
   describe 'changing the declarative setting' do
     let(:procedure) { procedures.brouillon }
 

@@ -1,0 +1,11 @@
+fr:
+  body_html: Vous n’utilisez pas la <strong>nouvelle version</strong> de configuration des modèles d’email pour une <strong>démarche déclarative</strong>
+  learn_more: En savoir plus
+  modal:
+    title: Nouvelle version (démarche déclarative)
+    what_changes_html: "La nouvelle configuration des modèles d’email <strong>pour une démarche déclarative</strong> permet de <strong>ne plus envoyer deux emails consécutifs</strong> à l’usager (exemple : accusé de réception + passage automatique en instruction). Les modèles d’email sont maintenant adaptés à ce paramétrage de la démarche."
+    what_you_lose:
+      en_instruction_html: En utilisant cette nouvelle version, seul le modèle d’accusé de réception précédemment personnalisé sera supprimé et remplacé par le nouveau modèle standard, vos autres modèles personnalisés étant conservés. Vous pourrez bien sûr <strong>personnaliser sa configuration</strong>, vérifiez notamment le contenu du nouvel accusé de réception avec passage automatique en instruction.
+      accepte_html: En utilisant cette nouvelle version, seul le modèle d’accusé de réception précédemment personnalisé sera supprimé et remplacé par le nouveau modèle standard, vos autres modèles personnalisés étant conservés. Vous pourrez bien sûr <strong>personnaliser sa configuration</strong>, vérifiez notamment le contenu du nouvel accusé de réception avec passage automatique au statut « accepté ».
+    documentation: Plus d’informations sur la configuration des modèles d’email
+    switch: Passer à la nouvelle version

@@ -30,6 +30,13 @@ module ProcedureEmailTemplatesConcern
     declarative? && combined_declarative_email?
   end
 
+  # Declarative, but left on the two-email flow by the migration: it had
+  # customized templates when the combined email shipped. A closed population:
+  # no code path sets the flag back to false.
+  def legacy_declarative_emails?
+    declarative? && !combined_declarative_email?
+  end
+
   def depose_email_class
     if !send_combined_declarative_email?
       Emails::Depose

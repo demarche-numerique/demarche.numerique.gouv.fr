@@ -108,7 +108,11 @@ scope module: 'administrateurs', path: 'admin', as: 'admin', defaults: { nav_bar
     post 'notify_after_closing' => 'procedures#notify_after_closing', as: :notify_after_closing
     get 'confirmation' => 'procedures#confirmation', as: :confirmation
     post 'transfer' => 'procedures#transfer', as: :transfer
-    resources :email_templates, only: [:edit, :update, :show]
+    # Drawn inside the block, where it comes before the member routes: PATCH
+    # email_templates/:id would otherwise swallow it.
+    resources :email_templates, only: [:edit, :update, :show] do
+      patch 'switch_to_combined', on: :collection
+    end
 
     resources :groupe_instructeurs, only: [:index, :show, :create, :update, :destroy] do
       patch 'update_state' => 'groupe_instructeurs#update_state'
