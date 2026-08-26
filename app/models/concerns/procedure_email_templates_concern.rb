@@ -89,15 +89,22 @@ module ProcedureEmailTemplatesConcern
     end
   end
 
+  # The cards follow the order in which an usager can receive the emails: the
+  # combined email carries the passage en instruction, which moves last, and in
+  # décla-accepté a réexamen is the only way back to a decision.
   def email_templates
-    [
-      email_depose_or_default,
-      email_passe_en_instruction_or_default,
-      email_accepte_or_default,
-      email_refuse_or_default,
-      email_classe_sans_suite_or_default,
-      email_repasse_en_instruction_or_default,
-    ]
+    depose = email_depose_or_default
+    decisions = [email_accepte_or_default, email_refuse_or_default, email_classe_sans_suite_or_default]
+    passe = email_passe_en_instruction_or_default
+    repasse = email_repasse_en_instruction_or_default
+
+    if !send_combined_declarative_email?
+      [depose, passe, *decisions, repasse]
+    elsif declarative_accepte?
+      [depose, repasse, *decisions, passe]
+    else
+      [depose, *decisions, repasse, passe]
+    end
   end
 
   def email_template_attestation_inconsistency_state(email_type)

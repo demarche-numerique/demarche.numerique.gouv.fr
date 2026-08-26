@@ -319,4 +319,28 @@ describe ProcedureEmailTemplatesConcern do
       it { is_expected.to be_nil }
     end
   end
+
+  describe '#email_templates' do
+    def slugs(procedure) = procedure.email_templates.map { it.class.const_get(:SLUG) }
+
+    it 'keeps the chronological order for a non declarative procedure' do
+      expect(slugs(build(:procedure)))
+        .to eq(%w[depose passe_en_instruction accepte refuse classe_sans_suite repasse_en_instruction])
+    end
+
+    it 'keeps the chronological order for a declarative procedure kept on the legacy emails' do
+      expect(slugs(build(:procedure, declarative_with_state: :accepte, combined_declarative_email: false)))
+        .to eq(%w[depose passe_en_instruction accepte refuse classe_sans_suite repasse_en_instruction])
+    end
+
+    it 'moves passe_en_instruction last for a declarative en_instruction procedure' do
+      expect(slugs(build(:procedure, declarative_with_state: :en_instruction)))
+        .to eq(%w[depose accepte refuse classe_sans_suite repasse_en_instruction passe_en_instruction])
+    end
+
+    it 'moves repasse_en_instruction second for a declarative accepte procedure' do
+      expect(slugs(build(:procedure, declarative_with_state: :accepte)))
+        .to eq(%w[depose repasse_en_instruction accepte refuse classe_sans_suite passe_en_instruction])
+    end
+  end
 end
