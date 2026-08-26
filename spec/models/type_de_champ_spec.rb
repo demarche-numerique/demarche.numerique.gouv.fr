@@ -371,6 +371,18 @@ describe TypeDeChamp do
     end
   end
 
+  describe '.option_keys' do
+    # clean_options keeps these keys and drops the others at publication: a type
+    # must never be able to read an option it would lose there.
+    it 'lists every option a type can read' do
+      unlisted = TypeDeChamp.type_champ_classes.uniq.to_h do |klass|
+        [klass.name, Array(klass.stored_attributes[:options]).map(&:to_s) - klass.option_keys.map(&:to_s)]
+      end
+
+      expect(unlisted.reject { |_, keys| keys.empty? }).to eq({})
+    end
+  end
+
   describe '#clean_options' do
     subject { procedure.published_revision.type_de_champs.first.options }
 
