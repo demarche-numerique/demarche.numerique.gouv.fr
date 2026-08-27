@@ -166,10 +166,15 @@ jobs:
 
       - name: Install build dependancies
         # - libvips-dev for image variant processing
+        # - libvips-tools for the vips binaries the bwrap sandbox needs
         # - fonts for watermark text rendering
         # - rust for YJIT support
         # - poppler-utils for pdf previews
-        run: sudo apt-get update && sudo apt-get install -y libvips-dev gsfonts rustc poppler-utils
+        # - bubblewrap to isolate the decoders
+        run: sudo apt-get update && sudo apt-get install -y libvips-dev libvips-tools gsfonts rustc poppler-utils bubblewrap
+
+      - name: Allow unprivileged user namespaces for the bwrap sandbox
+        run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
 
       - name: Run tests
         run: |
