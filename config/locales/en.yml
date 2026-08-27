@@ -496,6 +496,7 @@ en:
           complete_siret: Fill the SIRET number of your company, administration or association to start the procedure.
           siret_help_html: To find your SIRET number, use %{annuaire_link} or ask your accounting department.
           siret_hint: 'Expected format: 14 digits. Example: 500 0012 345 6789'
+          siret_prefilled_by_pro_connect: This SIRET number was provided by ProConnect. You can change it if you are filing for another establishment.
           annuaire_link_title: Search for a SIRET number in the Companies Directory
           siret_loading: Information retrieval…
           continue: Continue

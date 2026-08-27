@@ -1,0 +1,50 @@
+<% content_for(:title, "Nouveau dossier (#{@dossier.procedure.libelle})") %>
+
+<% if !dossier_submission_is_closed?(@dossier) %>
+  <%= form_for current_user, url: siret_dossier_path(@dossier), html: { class: 'form', method: 'post' } do |f| %>
+    <div class="fr-highlight fr-text--sm">
+      <%= t('asterisk_html', scope: [:utils]) %>
+    </div>
+
+    <fieldset class="fr-mb-0 fr-fieldset" aria-labelledby="edit-identity-siret">
+      <%= f.hidden_field :dossier_id, value: @dossier.id %>
+
+      <legend class="fr-fieldset__legend" id="edit-identity-siret">
+        <h2 class="fr-h4">
+          <%= t('views.users.dossiers.identite.identity_siret') %>
+        </h2>
+      </legend>
+
+      <div class="fr-fieldset__element">
+        <p class="fr-text--sm">
+          <%= t('views.users.dossiers.identite.complete_siret') %>
+        </p>
+      </div>
+
+      <% if @siret_prefilled_by_pro_connect %>
+        <div class="fr-fieldset__element">
+          <div class="fr-highlight fr-text--sm">
+            <%= t('views.users.dossiers.identite.siret_prefilled_by_pro_connect') %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="fr-fieldset__element fr-fieldset__element--short-text">
+        <%= render Dsfr::InputComponent.new(form: f, attribute: :siret) do |c| %>
+          <% c.with_hint { t('views.users.dossiers.identite.siret_hint') } %>
+        <% end %>
+      </div>
+
+      <div class="fr-fieldset__element">
+        <p class="fr-text--sm">
+          <%= t('views.users.dossiers.identite.siret_help_html', annuaire_link: link_to('annuaire-entreprises.data.gouv.fr', annuaire_link, title: new_tab_suffix(t('views.users.dossiers.identite.annuaire_link_title')), **external_link_attributes)) %>
+        </p>
+      </div>
+    </fieldset>
+
+    <div class="fr-btns-group fr-btns-group--inline">
+      <%= link_to t('views.users.dossiers.identite.back'), commencer_path(path: @dossier.procedure.path), class: "fr-btn fr-btn--secondary" %>
+      <%= f.submit t('views.users.dossiers.identite.continue'), class: "fr-btn", data: { disable_with: t('views.users.dossiers.identite.siret_loading') } %>
+    </div>
+  <% end %>
+<% end %>

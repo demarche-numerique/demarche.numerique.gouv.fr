@@ -197,6 +197,7 @@ module Users
     def siret
       @dossier = dossier
       @no_description = true
+      @siret_prefilled_by_pro_connect = prefill_siret_from_pro_connect
     end
 
     def update_siret
@@ -716,6 +717,18 @@ module Users
 
     def siret_params
       params.require(:user).permit(:siret)
+    end
+
+    # The siret memorized on the user wins: we only prefill when it is blank.
+    # In-memory assignment only (like #update_siret), as the view reads `current_user`.
+    def prefill_siret_from_pro_connect
+      return false if current_user.siret.present?
+
+      siret = IdentityPrefillSource.new(dossier: @dossier, pro_connect: logged_in_with_pro_connect?).pro_connect_siret
+      return false if siret.blank?
+
+      current_user.siret = siret
+      true
     end
 
     def commentaire_params

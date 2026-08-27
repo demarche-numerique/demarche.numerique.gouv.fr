@@ -544,6 +544,49 @@ describe Users::DossiersController, type: :controller do
     subject { get :siret, params: { id: dossier.id } }
 
     it { is_expected.to render_template(:siret) }
+
+    context 'when the session is connected via ProConnect' do
+      before do
+        create(:pro_connect_information, user:, siret: '12345678901234')
+        allow_any_instance_of(ProConnectSessionConcern).to receive(:logged_in_with_pro_connect?).and_return(true)
+      end
+
+      context 'and the user has no siret yet' do
+        before { user.update!(siret: nil) }
+
+        it 'prefills the form with the ProConnect siret' do
+          subject
+
+          expect(assigns(:siret_prefilled_by_pro_connect)).to be(true)
+          expect(controller.current_user.siret).to eq('12345678901234')
+        end
+      end
+
+      context 'and the user already has a memorized siret' do
+        before { user.update!(siret: '41816609600051') }
+
+        it 'keeps the memorized siret' do
+          subject
+
+          expect(assigns(:siret_prefilled_by_pro_connect)).to be(false)
+          expect(controller.current_user.siret).to eq('41816609600051')
+        end
+      end
+    end
+
+    context 'when the session is not connected via ProConnect' do
+      before do
+        create(:pro_connect_information, user:, siret: '12345678901234')
+        user.update!(siret: nil)
+      end
+
+      it 'does not prefill the form' do
+        subject
+
+        expect(assigns(:siret_prefilled_by_pro_connect)).to be(false)
+        expect(controller.current_user.siret).to be_nil
+      end
+    end
   end
 
   describe '#update_siret' do
