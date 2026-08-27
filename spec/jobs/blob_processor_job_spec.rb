@@ -209,6 +209,24 @@ describe BlobProcessorJob, :external_deps, type: :job do
         expect(blob.watermarked_at).to be_present
       end
     end
+
+    # Refused as too large, the image is never watermarked, and the blob — processed all
+    # the same — stays pending: hidden from its owner, with nothing left to re-run it.
+    # Not a retry, which could not help, but a word to Sentry.
+    context 'when the image is too large to decode' do
+      before do
+        allow(blob).to receive(:watermark_pending?).and_return(true)
+        allow(Vips::Image).to receive(:new_from_file).and_raise(Vips::Error, "20000x20000, 3 bands of uchar: too large to decode")
+      end
+
+      it 'reports it to Sentry rather than retrying' do
+        expect(Sentry).to receive(:capture_exception).with(an_instance_of(Vips::Error))
+
+        expect { described_class.perform_now(blob) }.not_to raise_error
+        expect(blob.metadata["processed"]).to be true
+        expect(watermark_service).not_to have_received(:apply)
+      end
+    end
   end
 
   describe 'add ocr data' do
