@@ -88,6 +88,29 @@ The web application and the asynchronous jobs require some binary dependencies.
     > rather than decode user-supplied files with them.
 
     > [!TIP]
+    > To run the image decoders — libvips, pdftoppm, ffmpeg — in a throwaway namespace
+    > rather than in the worker holding the database connection and the storage
+    > credentials, install `bubblewrap` and `libvips-tools` as well, and set
+    > `BWRAP_ISOLATION=enabled`. Note that `libvips-tools` is only a *recommends* of
+    > `libvips-dev`, so `--no-install-recommends` leaves it out, and the isolated path
+    > needs its `vips`, `vipsheader` and `vipsthumbnail` binaries.
+    >
+    > Asked for and impossible, the application refuses to boot: it will not decode
+    > unprotected while being told to isolate.
+    >
+    > On Ubuntu 24.04 the package alone is not enough: AppArmor restricts the
+    > unprivileged user namespaces bubblewrap builds its sandbox out of. Grant them to
+    > `bwrap` alone, with an AppArmor profile carrying a `userns,` rule — Canonical ships
+    > those through the apparmor package. Do **not** reach for
+    > `kernel.apparmor_restrict_unprivileged_userns=0`: that restriction exists because
+    > unprivileged user namespaces were part of the exploit chain in 44% of the Linux
+    > kernel exploits submitted to Google's kCTF bug bounty ([Learnings from kCTF VRP's
+    > 42 Linux kernel CVEs](https://security.googleblog.com/2023/06/learnings-from-kctf-vrps-42-linux.html),
+    > cited by Canonical when it introduced the restriction). Turning it off machine-wide
+    > to sandbox one decoder trades a narrow protection for a broad exposure. It is fine
+    > on a CI runner that lives ten minutes, and only there.
+
+    > [!TIP]
     > At this stage you may also want to install the [compilation packages required for building Ruby and Ruby extensions](https://github.com/rbenv/ruby-build/wiki#ubuntudebianmint).
 - **Bun**. [Bun](https://bun.sh/) is the JavaScript execution environment that compiles and packages the assets. It is required to pre-build the assets before starting the application.
 	
