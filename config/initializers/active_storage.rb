@@ -247,3 +247,52 @@ module OpenStackBulkDeletePatch
 end
 
 Fog::OpenStack::Storage::Real.prepend(OpenStackBulkDeletePatch)
+
+# `activestorage-openstack` serves a byte range by downloading the WHOLE object and
+# slicing it in Ruby (`chunk_buffer.join[range]`), because fog-openstack's `get_object`
+# takes neither options nor headers. Add a request that does, so the service asks the
+# storage for the bytes it wants — the way Rails' own S3 service does.
+#
+# PREPENDED like the bulk-delete patch above: fog requires its request files lazily,
+# after this initializer has run.
+require 'active_storage/service/open_stack_service'
+
+module OpenStackRangeRequestPatch
+  # A response block, like `get_object`: without one, `Fog::OpenStack::Core#request`
+  # calls `.match` on a Content-Type the response may not carry.
+  def get_object_range(container, object, first, last, &block)
+    request({
+      # NOT 416: Excon only feeds the response block for an expected status, so accepting
+      # it would hand back the storage's error page as the file's first bytes.
+      expects: [200, 206],
+      method: 'GET',
+      path: "#{Fog::OpenStack.escape(container)}/#{Fog::OpenStack.escape(object)}",
+      headers: { 'Range' => "bytes=#{first}-#{last}" },
+      response_block: block,
+    }, false)
+  end
+end
+
+Fog::OpenStack::Storage::Real.prepend(OpenStackRangeRequestPatch)
+
+module OpenStackRangeDownloadChunkPatch
+  def download_chunk(key, range)
+    instrument :download_chunk, key: key, range: range do
+      first = range.begin
+      last = range.exclude_end? ? range.end - 1 : range.end
+
+      # Binary, like the Disk and S3 services: a slice can land inside a multibyte character.
+      buffer = +''.b
+      response = client.get_object_range(container, key, first, last) { |chunk, *| buffer << chunk.b }
+
+      # A 206 body already starts at `first`; a 200 means the range was not applied.
+      offset = response.status == 206 ? 0 : first
+
+      buffer.byteslice(offset, last - first + 1) || ''
+    rescue Fog::OpenStack::Storage::NotFound
+      raise ActiveStorage::FileNotFoundError
+    end
+  end
+end
+
+ActiveStorage::Service::OpenStackService.prepend(OpenStackRangeDownloadChunkPatch)
