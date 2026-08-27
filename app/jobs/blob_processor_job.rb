@@ -29,6 +29,9 @@ class BlobProcessorJob < ApplicationJob
   retry_on "Vips::Error", attempts: 3 # not as const because vips is loaded at runtime
   retry_on WatermarkService::Error, attempts: 3
 
+  # retry if something wrong with namespace but it should not happens
+  retry_on SandboxedCommand::WrapperFailed, attempts: 3
+
   rescue_from ActiveStorage::PreviewError do |exception|
     retry_or_discard(exception)
   end
@@ -54,7 +57,7 @@ class BlobProcessorJob < ApplicationJob
         scan_virus(tempfile) if !blob.virus_scanner.done?
 
         if attachment && blob.virus_scanner.safe? && processable && needs_mutations?
-          apply_mutations(tempfile)
+          apply_mutations(tempfile.path)
         end
       end
     end
@@ -83,34 +86,36 @@ class BlobProcessorJob < ApplicationJob
   end
 
   instrument_method
-  def apply_mutations(tempfile)
-    autorotate_needed = jpeg? && autorotate_needed?(tempfile)
-    uninterlace_needed = png_embeddable_in_pdf? && interlaced?(tempfile)
+  def apply_mutations(path)
+    header = header(path) if jpeg? || png_embeddable_in_pdf?
+    autorotate_needed = jpeg? && autorotate_needed?(header)
+    uninterlace_needed = png_embeddable_in_pdf? && interlaced?(header)
+
     watermark_needed = blob.watermark_pending?
     mutations_needed = autorotate_needed || uninterlace_needed || watermark_needed
 
     return if !mutations_needed
 
-    load_opts = { access: :sequential }
-    load_opts[:autorotate] = true if autorotate_needed
+    decode(path, autorotate: autorotate_needed) do |image|
+      image = WatermarkService.new.apply(image, format: blob.content_type) if watermark_needed
 
-    image = Vips::Image.new_from_file(tempfile.to_path, **load_opts)
-    image = WatermarkService.new.apply(image, format: blob.content_type) if watermark_needed
+      write_opts = uninterlace_needed ? { interlace: false } : {}
 
-    write_opts = uninterlace_needed ? { interlace: false } : {}
-
-    Tempfile.create(["processed", File.extname(tempfile.path)]) do |output|
-      image.write_to_file(output.path, **write_opts)
-      blob.upload(output)
+      Tempfile.create(["processed", File.extname(path)]) do |output|
+        image.write_to_file(output.path, **write_opts)
+        blob.upload(output)
+      end
     end
 
     blob.watermarked_at = Time.current if watermark_needed
     blob.save!
   rescue Vips::Error => error
-    # Same policy as autorotate_needed?/interlaced? below: a source vips cannot decode
-    # is not a transient failure, so skip the mutations and let the rest of the job run
-    # (the blob still gets marked processed) instead of burning three retries.
+    # A source vips cannot decode is not a transient failure, so skip the mutations and
+    # let the rest of the job run (the blob still gets marked processed) instead of
+    # burning three retries.
     raise if !unreadable_vips_source?(error)
+
+    Sentry.capture_exception(error) if blob.watermark_pending?
   end
 
   def needs_mutations?
@@ -130,18 +135,25 @@ class BlobProcessorJob < ApplicationJob
       attachment.record_type.in?(%w[AttestationTemplate GroupeInstructeur])
   end
 
-  def autorotate_needed?(tempfile)
-    image = Vips::Image.new_from_file(tempfile.to_path)
-    image.get_fields.include?("orientation") && image.get("orientation") != 1
-  rescue Vips::Error # unreadable metadata should not abort processing: skip the mutation instead
-    false
+  def header(path)
+    return SandboxedVips.header(path) if SandboxedCommand::ENABLED
+
+    Vips::Image.new_from_file(path).then { |image| image.get_fields.index_with { image.get(it) } }
+  rescue Vips::Error
+    {}
   end
 
-  def interlaced?(tempfile)
-    image = Vips::Image.new_from_file(tempfile.to_path)
-    image.get_fields.include?("interlaced") && image.get("interlaced") != 0
-  rescue Vips::Error # unreadable metadata should not abort processing: skip the mutation instead
-    false
+  def autorotate_needed?(header) = header.include?("orientation") && header["orientation"] != 1
+
+  def interlaced?(header) = header.include?("interlaced") && header["interlaced"] != 0
+
+  def decode(path, autorotate:, &)
+    load_opts = { access: :sequential }
+    load_opts[:autorotate] = true if autorotate
+
+    return SandboxedVips.disarm(path, **load_opts, &) if SandboxedCommand::ENABLED
+
+    yield Vips::Image.new_from_file(path, **load_opts)
   end
 
   instrument_method
