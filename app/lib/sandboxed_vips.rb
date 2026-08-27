@@ -106,6 +106,23 @@ module SandboxedVips
       end
     end
 
+    # The whole mutation in one command: rotation is a loader option, de-interlacing a
+    # saver one, so the upload is read and written without anything coming back here. No
+    # PNG in between, half the work of disarm, and the file keeps its format and its
+    # colour profile. No decode ceiling either — like the variants, nothing full size
+    # reaches this process, and what the decoder itself may spend the sandbox bounds.
+    def rewrite(path, target, autorotate: false, **save_opts)
+      source = "#{path}[access=sequential#{',autorotate=true' if autorotate}]"
+      options = save_opts.map { |name, value| "#{name}=#{value}" }.join(",")
+
+      ActiveSupport::Notifications.instrument("decode.sandbox", decoder: "vips") do |payload|
+        _, error, status = run([VIPS, "--vips-leak", "copy", source, options.empty? ? target : "#{target}[#{options}]"], readable: [path], writable: [target])
+        payload[:peak_memory] = peak_memory(error)
+
+        raise Vips::Error, "vips copy: #{failure_message(error, status)}" if !status.success?
+      end
+    end
+
     def error_message(stderr)
       stderr.lines.grep_v(NOISE).join.strip
     end
