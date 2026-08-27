@@ -1,2 +1,2 @@
-<%= turbo_stream.replace 'identite-form', render(Dossiers::IndividualFormComponent.new(dossier: @dossier)) %>
+<%= turbo_stream.replace 'identite-form', render(Dossiers::IndividualFormComponent.new(dossier: @dossier, pro_connect: logged_in_with_pro_connect?)) %>
 <%= turbo_stream.hide 'identite-buttons-group' %>

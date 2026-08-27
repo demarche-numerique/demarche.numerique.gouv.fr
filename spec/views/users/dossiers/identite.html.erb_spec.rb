@@ -6,6 +6,7 @@ describe 'users/dossiers/identite', type: :view do
   before do
     sign_in dossier.user
     assign(:dossier, dossier)
+    allow(view).to receive(:logged_in_with_pro_connect?).and_return(false)
   end
 
   subject! { render }

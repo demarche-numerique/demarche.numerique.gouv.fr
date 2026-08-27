@@ -223,6 +223,31 @@ describe Users::DossiersController, type: :controller do
         expect(dossier.identity_updated_at).to eq(now)
       end
     end
+
+    context 'when the session is connected via ProConnect' do
+      # Attach the ProConnect identity to the seeded usager rather than signing in
+      # another user: `dossiers.brouillon` belongs to them, and ensure_ownership!
+      # would otherwise redirect before the action runs.
+      before do
+        create(:pro_connect_information, user:)
+        allow(controller).to receive(:logged_in_with_pro_connect?).and_return(true)
+      end
+
+      context 'switching to for_tiers then back to for self' do
+        it 'persists the persona choice and prefills the mandataire from ProConnect in the rendered form' do
+          pc_info = user.last_pro_connect_information
+
+          patch :identite, params: { id: dossier.id, dossier: { for_tiers: 'true' } }, format: :turbo_stream
+          expect(dossier.reload.for_tiers).to be true
+          # The mandataire is assigned in memory and re-rendered (persisted only on update_identite).
+          expect(assigns(:dossier).mandataire_first_name).to eq(pc_info.given_name)
+          expect(assigns(:dossier).mandataire_last_name).to eq(pc_info.usual_name)
+
+          patch :identite, params: { id: dossier.id, dossier: { for_tiers: 'false' } }, format: :turbo_stream
+          expect(dossier.reload.for_tiers).to be false
+        end
+      end
+    end
   end
 
   describe 'update_identite' do
@@ -408,6 +433,65 @@ describe Users::DossiersController, type: :controller do
           # But identity is still locked to FranceConnect values
           expect(dossier.individual.nom).to eq(fc_info.family_name)
           expect(dossier.individual.prenom).to eq(fc_info.given_name)
+        end
+      end
+    end
+
+    context 'when the session is connected via ProConnect' do
+      let(:user) { create(:user, :with_pci) }
+
+      before { allow(controller).to receive(:logged_in_with_pro_connect?).and_return(true) }
+
+      context 'when dossier is for self' do
+        let(:dossier) { create(:dossier, :with_individual, user:, procedure:) }
+
+        it 'ignores attempts to modify locked nom/prenom but honours the submitted gender' do
+          pc_info = user.last_pro_connect_information
+
+          post :update_identite, params: {
+            id: dossier.id,
+            dossier: {
+              individual_attributes: {
+                nom: 'Hacker',
+                prenom: 'Evil',
+                gender: Individual::GENDER_FEMALE,
+              },
+            },
+          }
+
+          dossier.reload
+          # nom/prenom locked to ProConnect values, ignoring submitted params
+          expect(dossier.individual.nom).to eq(pc_info.usual_name)
+          expect(dossier.individual.prenom).to eq(pc_info.given_name)
+          # gender is not provided by ProConnect: the submitted value is kept
+          expect(dossier.individual.gender).to eq(Individual::GENDER_FEMALE)
+        end
+      end
+
+      context 'when dossier is for tiers' do
+        let(:dossier) { create(:dossier, :for_tiers_without_notification, user:, procedure:) }
+
+        it 'locks the mandataire to ProConnect values and keeps the beneficiary editable' do
+          pc_info = user.last_pro_connect_information
+
+          post :update_identite, params: {
+            id: dossier.id,
+            dossier: {
+              for_tiers: 'true',
+              mandataire_first_name: 'Hacker',
+              mandataire_last_name: 'Evil',
+              individual_attributes: {
+                nom: 'Beneficiaire',
+                prenom: 'Le',
+              },
+            },
+          }
+
+          dossier.reload
+          expect(dossier.mandataire_first_name).to eq(pc_info.given_name)
+          expect(dossier.mandataire_last_name).to eq(pc_info.usual_name)
+          expect(dossier.individual.nom).to eq('Beneficiaire')
+          expect(dossier.individual.prenom).to eq('Le')
         end
       end
     end

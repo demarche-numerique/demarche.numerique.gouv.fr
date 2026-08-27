@@ -20,7 +20,7 @@
 
         <% if mandataire_identity_locked? %>
           <div class="fr-highlight fr-text--sm">
-            <%= t('.identity_locked_by_france_connect') %>
+            <%= identity_locked_message %>
           </div>
         <% end %>
 
@@ -54,9 +54,9 @@
           </h2>
         </legend>
 
-        <% if identity_locked? %>
+        <% if individual_identity_locked? %>
           <div class="fr-highlight fr-text--sm">
-            <%= t('.identity_locked_by_france_connect') %>
+            <%= identity_locked_message %>
           </div>
         <% end %>
 
@@ -66,8 +66,8 @@
               form: individual,
               target: :gender,
               buttons: [
-                { label: Individual.human_attribute_name('gender.female'), value: Individual::GENDER_FEMALE, required: true, disabled: identity_locked?, translate: "no" },
-                { label: Individual.human_attribute_name('gender.male'), value: Individual::GENDER_MALE, required: true, disabled: identity_locked?, translate: "no" }
+                { label: Individual.human_attribute_name('gender.female'), value: Individual::GENDER_FEMALE, required: true, disabled: individual_field_locked?(:gender), translate: "no" },
+                { label: Individual.human_attribute_name('gender.male'), value: Individual::GENDER_MALE, required: true, disabled: individual_field_locked?(:gender), translate: "no" }
               ],
               error: individual.object.errors.full_messages_for(:gender).first,
               inline: true
@@ -82,7 +82,7 @@
           <% if for_tiers? %>
             <%= render Dsfr::InputComponent.new(form: individual, attribute: :prenom) %>
           <% else %>
-            <%= render Dsfr::InputComponent.new(form: individual, attribute: :prenom, opts: { autocomplete: 'given-name', disabled: identity_locked? }) %>
+            <%= render Dsfr::InputComponent.new(form: individual, attribute: :prenom, opts: { autocomplete: 'given-name', disabled: individual_field_locked?(:prenom) }) %>
           <% end %>
         </div>
 
@@ -90,7 +90,7 @@
           <% if for_tiers? %>
             <%= render Dsfr::InputComponent.new(form: individual, attribute: :nom) %>
           <% else %>
-            <%= render Dsfr::InputComponent.new(form: individual, attribute: :nom, opts: { autocomplete: 'family-name', disabled: identity_locked? }) %>
+            <%= render Dsfr::InputComponent.new(form: individual, attribute: :nom, opts: { autocomplete: 'family-name', disabled: individual_field_locked?(:nom) }) %>
           <% end %>
         </div>
 

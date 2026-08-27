@@ -11,3 +11,4 @@ en:
     beneficiaire_title: 'Identity of the beneficiary'
     notify_beneficiary: 'Notify the beneficiary by email about their application processing'
   identity_locked_by_france_connect: Your identity information was provided by FranceConnect and cannot be modified.
+  identity_locked_by_pro_connect: Your first and last name were provided by ProConnect and cannot be modified.
