@@ -24,6 +24,27 @@ Slow queues may impact:
 
 If you see too many "Waiting" jobs in some queues, you may want to restart the Sidekiq server, or drop the job(s) that are clogging the queues.
 
+## Image processing
+
+This section applies to instances running with `BWRAP_ISOLATION` enabled. Without it,
+image decoding happens in the worker's own process and shows in its memory as any other
+work does.
+
+With it, thumbnails, previews and watermarks are decoded in a subprocess, inside a
+throwaway sandbox, so libvips, `pdftoppm` and `ffmpeg` no longer show in the Sidekiq
+worker's own memory. They stay in its cgroup: `systemd-cgtop` and any per-unit metric still account
+for them, and it is the per-process view that is no longer the right one. `top` shows
+them under the name of the decoder that runs (`vips`, `vipsthumbnail`, `pdftoppm`,
+`ffmpeg`), with `bwrap` as their parent.
+
+With `PROMETHEUS_EXPORTER_ENABLED`, every decode publishes what it cost, labelled by
+decoder: `decoder_duration_seconds` and `decoder_peak_memory_bytes`. Those are what tells
+whether a memory limit on the unit would be safe, and at what value.
+
+Each decoder runs under a 4 GB address space and 60 s of CPU, and a file whose header
+announces more than 512 MB once decoded is refused before anything is allocated. A decode
+the kernel kills reports its signal in Sentry.
+
 ## Postgres
 
 Use your standard system tools to monitor Postgres CPU and memory usage. You may walso want to monitor the queries response time, to know if some queries are slowing down the database, and why.
