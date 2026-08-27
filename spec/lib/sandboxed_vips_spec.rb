@@ -179,6 +179,51 @@ describe SandboxedVips, :external_deps, if: SANDBOX_USABLE do
     end
   end
 
+  # Rotation and de-interlacing are a loader and a saver option: no pixels have to come
+  # back for them, so the upload is read and written in one pass, and keeps its format.
+  describe ".rewrite" do
+    it "rotates and writes the file the caller asked for" do
+      Tempfile.create(["out", ".jpg"]) do |out|
+        described_class.rewrite(rotated, out.path, autorotate: true)
+        header = described_class.header(out.path)
+
+        expect(header).to include("width" => 200, "height" => 200, "vips-loader" => "jpegload", "orientation" => 1)
+      end
+    end
+
+    it "carries a saver option through" do
+      interlaced = Tempfile.new(["interlaced", ".png"])
+      Vips::Image.new_from_file(Rails.root.join("spec/fixtures/files/logo_test_procedure.png").to_s).write_to_file(interlaced.path, interlace: true)
+
+      Tempfile.create(["out", ".png"]) do |out|
+        described_class.rewrite(interlaced.path, out.path, interlace: false)
+
+        expect(described_class.header(out.path)).not_to include("interlaced")
+      end
+    ensure
+      interlaced&.close!
+    end
+
+    it "reports what the pass cost" do
+      events = []
+
+      Tempfile.create(["out", ".jpg"]) do |out|
+        ActiveSupport::Notifications.subscribed(-> (event) { events << event }, "decode.sandbox") do
+          described_class.rewrite(rotated, out.path)
+        end
+      end
+
+      expect(events.sole.payload).to include(decoder: "vips", peak_memory: be_positive)
+    end
+
+    it "raises what libvips said of a file it cannot read" do
+      Tempfile.create(["out", ".jpg"]) do |out|
+        expect { described_class.rewrite(Rails.root.join("spec/fixtures/files/not-an-image.jpg").to_s, out.path) }
+          .to raise_error(Vips::Error, /is not a known file format/)
+      end
+    end
+  end
+
   # bwrap fails before the decoder ever runs — a namespace refused, a bind it cannot
   # make — and exits 1 saying so, exactly as a decoder handed a corrupt file does. Read
   # as one, a machine that lost its sandbox reports as a run of bad uploads.
