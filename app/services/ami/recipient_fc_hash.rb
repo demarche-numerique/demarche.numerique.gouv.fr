@@ -6,10 +6,9 @@ module Ami
   class RecipientFcHash
     REQUIRED_ATTRIBUTES = [:given_name, :family_name, :birthdate, :gender, :birthplace, :birthcountry].freeze
 
-    # v1 concatène les données pivot FranceConnect sans séparateur ; v2 les
-    # sépare par ';', une donnée absente donnant une chaîne vide.
-    V1_SEPARATOR = ''
-    V2_SEPARATOR = ';'
+    # Les données pivot FranceConnect sont séparées par ';', une donnée absente
+    # donnant une chaîne vide.
+    SEPARATOR = ';'
 
     class << self
       def call(user)
@@ -18,14 +17,10 @@ module Ami
 
         attributes = REQUIRED_ATTRIBUTES.map { value_for(france_connect_information, _1) }
 
-        Digest::SHA256.hexdigest(attributes.join(separator))
+        Digest::SHA256.hexdigest(attributes.join(SEPARATOR))
       end
 
       private
-
-      def separator
-        Flipper.enabled?(:ami_recipient_fc_hash_v2) ? V2_SEPARATOR : V1_SEPARATOR
-      end
 
       def latest_france_connect_information_for(user)
         user&.france_connect_informations&.order(updated_at: :desc)&.first
