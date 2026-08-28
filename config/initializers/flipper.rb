@@ -35,7 +35,6 @@ features = [
   :switch_domain,
   :llm_nightly_improve_procedure,
   :ami_notifications,
-  :ami_recipient_fc_hash_v2,
   :dossier_vide_weasyprint,
   :s3_storage,
   # Enable only once T20260728BackfillSearchTermsTsvectorTask has completed.
