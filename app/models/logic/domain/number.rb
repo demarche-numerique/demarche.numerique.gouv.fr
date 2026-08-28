@@ -49,6 +49,21 @@ class Logic::Domain::Number < Data.define(:integer, :intervals)
 
   def empty? = intervals.empty?
 
+  # Splits the domain at every constant the atoms mention: each constant on
+  # its own and the open intervals between consecutive constants, so that an
+  # atom is either true or false on a whole region.
+  def regions(atoms)
+    cuts = atoms.map(&:last).filter { it.is_a?(Numeric) }.uniq.sort
+    bounds = [nil, *cuts, nil]
+
+    points = cuts.map { Interval.point(it) }
+    gaps = bounds.each_cons(2).map { |low, high| Interval.new(min: low, min_inclusive: false, max: high, max_inclusive: false) }
+
+    (points + gaps).map { intersect([it]) }.reject(&:empty?)
+  end
+
+  def max_regions(atoms) = 2 * atoms.map(&:last).uniq.size + 1
+
   def restrict(operator_class, value)
     return self if !value.is_a?(Numeric)
 

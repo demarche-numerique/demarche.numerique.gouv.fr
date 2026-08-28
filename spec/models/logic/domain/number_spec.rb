@@ -69,4 +69,39 @@ describe Logic::Domain::Number do
     [[[Logic::GreaterThan, 2], [Logic::NotEq, 3], [Logic::LessThan, 4]], true],
     [[[Logic::GreaterThan, 2], [Logic::NotEq, 3], [Logic::LessThan, 5]], false],
   ]
+
+  describe '#regions' do
+    let(:domain) { described_class.new(integer: false) }
+
+    include_examples 'domain regions', [[Logic::GreaterThan, 3], [Logic::LessThan, 2], [Logic::Eq, 3], [Logic::NotEq, 5]]
+
+    it 'cuts at every constant' do
+      regions = domain.regions([[Logic::GreaterThan, 3], [Logic::LessThan, 2]])
+
+      expect(regions.size).to eq(5)
+      expect(regions.map { it.restrict(Logic::GreaterThan, 3).empty? }).to eq([true, true, true, true, false])
+      expect(regions.map { it.restrict(Logic::LessThan, 2).empty? }).to eq([true, true, false, true, true])
+    end
+
+    it 'drops the regions integers leave empty' do
+      regions = described_class.new(integer: true).regions([[Logic::GreaterThan, 2], [Logic::LessThan, 3]])
+
+      expect(regions.size).to eq(4) # 2, 3, < 2, > 3
+    end
+
+    it 'cuts integers at a decimal without a region for it' do
+      regions = described_class.new(integer: true).regions([[Logic::GreaterThan, 2.5]])
+
+      expect(regions.size).to eq(2) # <= 2, >= 3
+      expect(regions.map { it.restrict(Logic::GreaterThan, 2.5).empty? }).to eq([true, false])
+    end
+
+    it 'ignores constants that are not numbers' do
+      expect(domain.regions([[Logic::Eq, 'abc']])).to eq([domain])
+    end
+
+    it 'is the whole domain without atoms' do
+      expect(domain.regions([])).to eq([domain])
+    end
+  end
 end

@@ -38,4 +38,29 @@ describe Logic::Domain::Geo do
     expect(domain.restrict(Logic::Eq, '75').restrict(Logic::NotEq, '75')).to be_empty
     expect(domain.restrict(Logic::Eq, '75').restrict(Logic::InRegionOperator, '84')).to be_empty
   end
+
+  describe '#regions' do
+    include_examples 'domain regions', [[Logic::InDepartementOperator, '01'], [Logic::NotInDepartementOperator, '75'], [Logic::InRegionOperator, '84'], [Logic::NotInRegionOperator, '11'], [Logic::Eq, '69']]
+
+    it 'isolates departements, then the rest of the regions, then the rest' do
+      regions = domain.regions([[Logic::InDepartementOperator, '01'], [Logic::InRegionOperator, '84']])
+
+      expect(regions.size).to eq(3)
+      expect(regions.first.codes).to eq(Set['01'])
+      expect(regions.second.codes).to include('69')
+      expect(regions.second.codes).not_to include('01')
+      expect(regions.third.codes).to include('75')
+      expect(regions.third.codes).not_to include('01', '69')
+    end
+
+    it 'isolates Etranger as a region' do
+      regions = domain.regions([[Logic::InRegionOperator, '99']])
+
+      expect(regions.map(&:codes)).to eq([Set['99'], domain.codes - ['99']])
+    end
+
+    it 'is the whole domain without atoms' do
+      expect(domain.regions([])).to eq([domain])
+    end
+  end
 end
