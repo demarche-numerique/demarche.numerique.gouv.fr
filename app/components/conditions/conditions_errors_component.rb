@@ -1,27 +1,27 @@
 # frozen_string_literal: true
 
 class Conditions::ConditionsErrorsComponent < ApplicationComponent
-  def initialize(conditions:, source_tdcs:)
-    @conditions, @source_tdcs = conditions, source_tdcs
+  def initialize(condition:, source_tdcs:)
+    @condition, @source_tdcs = condition, source_tdcs
   end
 
   private
 
-  def errors
-    errors = @conditions
-      .flat_map { |condition| condition.errors(@source_tdcs) }
-      .uniq
+  def errors = to_html_list(messages)
 
-    # if a tdc is not available (has been removed for example)
-    # it causes a lot of errors (incompatible type for example)
-    # only the root cause is displayed
-    messages = if errors.include?({ type: :not_available })
-      [t('not_available', scope: '.errors')]
-    else
-      errors.map { |error| humanize(error) }
+  def messages
+    @messages ||= begin
+      errors = @condition ? Logic.errors(@condition, @source_tdcs).uniq : []
+
+      # if a tdc is not available (has been removed for example)
+      # it causes a lot of errors (incompatible type for example)
+      # only the root cause is displayed
+      if errors.include?({ type: :not_available })
+        [t('not_available', scope: '.errors')]
+      else
+        errors.filter_map { |error| humanize(error) }
+      end
     end
-
-    to_html_list(messages)
   end
 
   def to_html_list(messages)
@@ -66,14 +66,31 @@ class Conditions::ConditionsErrorsComponent < ApplicationComponent
       targeted_champ = @source_tdcs.find { |tdc| tdc.stable_id == stable_id }
       t('empty_options', scope: '.errors',
         libelle: targeted_champ.libelle)
+    in { type: :contradiction, stable_id: stable_id, comparisons: comparisons }
+      targeted_champ = @source_tdcs.find { |tdc| tdc.stable_id == stable_id }
+      t('contradiction', scope: '.errors',
+        count: comparisons.size,
+        libelle: targeted_champ.libelle,
+        comparisons: comparisons.map { humanize_comparison(it) }.to_sentence)
+    in { type: :unreachable, stable_id: stable_id }
+      targeted_champ = @source_tdcs.find { |tdc| tdc.stable_id == stable_id }
+      t('unreachable', scope: '.errors', libelle: targeted_champ.libelle)
     else
       nil
     end
   end
 
-  def render?
-    @conditions
-      .filter { |condition| condition.errors(@source_tdcs).present? }
-      .present?
+  def humanize_comparison(comparison)
+    "#{t(comparison.class.name, scope: 'logic.operators').downcase} « #{humanize_value(comparison)} »"
   end
+
+  # The label the admin picked (a region name, a departement, a choice) rather
+  # than the value stored behind it
+  def humanize_value(comparison)
+    label, _value = comparison.left.options(@source_tdcs, comparison.class.name)&.find { |_label, value| value == comparison.right.value }
+
+    label || comparison.right.to_s.downcase
+  end
+
+  def render? = messages.present?
 end

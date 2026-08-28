@@ -16,7 +16,7 @@ class TypeDeChamps::ConditionValidator < ActiveModel::EachValidator
       end
       upper_tdcs += tdcs.take(tdc_index) # we take all upper_tdcs of current tdcs
 
-      errors = tdc.condition.errors(upper_tdcs)
+      errors = Logic.errors(tdc.condition, upper_tdcs)
       next if errors.blank?
 
       procedure.errors.add(
