@@ -122,7 +122,7 @@ class Logic::Satisfiability
   # [[source, atoms]] for every variable whose domain the conjunction empties
   def unsatisfiable_variables(atoms)
     atoms
-      .filter { constraining?(it) }
+      .filter(&:constraining?)
       .group_by(&:left)
       .filter_map do |source, source_atoms|
         domain = source.domain(@type_de_champs)
@@ -131,12 +131,5 @@ class Logic::Satisfiability
         narrowed = source_atoms.reduce(domain) { |d, atom| d.restrict(atom.class, atom.right.value) }
         [source, source_atoms] if narrowed.empty?
       end
-  end
-
-  def constraining?(atom)
-    atom.is_a?(Logic::BinaryOperator) &&
-      !atom.is_a?(Logic::EmptyOperator) &&
-      atom.left.respond_to?(:domain) &&
-      atom.right.is_a?(Logic::Constant)
   end
 end

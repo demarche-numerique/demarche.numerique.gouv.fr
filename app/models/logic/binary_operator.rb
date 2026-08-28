@@ -37,6 +37,10 @@ class Logic::BinaryOperator < Logic::Term
 
   def type(type_de_champs = []) = :boolean
 
+  def constraining?
+    !is_a?(Logic::EmptyOperator) && @left.respond_to?(:domain) && @right.is_a?(Logic::Constant)
+  end
+
   def compute(champs = [])
     l = @left.compute(champs)
     r = @right.compute(champs)
