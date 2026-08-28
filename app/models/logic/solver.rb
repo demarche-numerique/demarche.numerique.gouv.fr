@@ -165,7 +165,7 @@ class Logic::Solver
   # with no possible value
   def conflicting_sources(comparisons)
     comparisons
-      .filter { checkable?(it) }
+      .filter(&:checkable?)
       .group_by(&:left)
       .filter_map do |source, source_comparisons|
         values = source.possible_values(@type_de_champs)
@@ -183,14 +183,8 @@ class Logic::Solver
 
   def restrict(values, comparisons) = comparisons.reduce(values) { |v, comparison| v.restrict(comparison.class, comparison.right.value) }
 
-  # A comparison Logic::PossibleValues can interpret: `champ operator
-  # constant`. Anything else is left out, which can only make a condition look
-  # more possible than it is — the check then misses contradictions rather
-  # than inventing them, and never blocks a publication by mistake.
-  def checkable?(comparison)
-    comparison.is_a?(Logic::BinaryOperator) &&
-      !comparison.is_a?(Logic::EmptyOperator) &&
-      comparison.left.respond_to?(:possible_values) &&
-      comparison.right.is_a?(Logic::Constant)
-  end
+  # Anything Logic::PossibleValues cannot interpret is left out (see
+  # Logic::Term#checkable?), which can only make a condition look more
+  # possible than it is: the check then misses contradictions rather than
+  # inventing them, and never blocks a publication by mistake.
 end
