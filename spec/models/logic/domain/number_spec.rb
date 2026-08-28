@@ -104,4 +104,45 @@ describe Logic::Domain::Number do
       expect(domain.regions([])).to eq([domain])
     end
   end
+
+  describe '#union' do
+    def number(integer, *atoms) = atoms.reduce(described_class.new(integer:)) { |d, (op, v)| d.restrict(op, v) }
+
+    it 'merges touching intervals' do
+      expect(number(true, [Logic::LessThan, 18]).union(number(true, [Logic::Eq, 18])).to_s).to eq('18 ou moins')
+      expect(number(true, [Logic::Eq, 18]).union(number(true, [Logic::GreaterThan, 18], [Logic::LessThan, 65])).to_s).to eq('de 18 à 64')
+      expect(number(false, [Logic::LessThan, 18]).union(number(false, [Logic::GreaterThanEq, 18])).to_s).to eq('toute valeur')
+      expect(number(false, [Logic::LessThan, 18]).union(number(false, [Logic::GreaterThan, 18])).to_s).to eq('moins de 18 ou plus de 18')
+    end
+
+    it 'keeps separate intervals apart' do
+      expect(number(true, [Logic::LessThan, 10]).union(number(true, [Logic::GreaterThan, 20])).to_s).to eq('9 ou moins ou 21 ou plus')
+    end
+
+    it 'does not merge with other kinds' do
+      expect(number(true).union(Logic::Domain::Blank)).to be_nil
+    end
+  end
+
+  describe '#to_s' do
+    it 'describes integers with closed bounds' do
+      domain = described_class.new(integer: true)
+
+      expect(domain.to_s).to eq('toute valeur')
+      expect(domain.restrict(Logic::LessThan, 18).to_s).to eq('17 ou moins')
+      expect(domain.restrict(Logic::LessThanEq, 18).to_s).to eq('18 ou moins')
+      expect(domain.restrict(Logic::GreaterThan, 64).to_s).to eq('65 ou plus')
+      expect(domain.restrict(Logic::Eq, 18).to_s).to eq('18')
+      expect(domain.restrict(Logic::NotEq, 18).to_s).to eq('17 ou moins ou 19 ou plus')
+    end
+
+    it 'describes decimals with open bounds' do
+      domain = described_class.new(integer: false)
+
+      expect(domain.restrict(Logic::LessThan, 18).to_s).to eq('moins de 18')
+      expect(domain.restrict(Logic::GreaterThan, 2.5).to_s).to eq('plus de 2.5')
+      expect(domain.restrict(Logic::GreaterThan, 2).restrict(Logic::LessThan, 3).to_s).to eq('entre 2 et 3')
+      expect(domain.restrict(Logic::GreaterThanEq, 2).restrict(Logic::LessThanEq, 3).to_s).to eq('de 2 à 3')
+    end
+  end
 end

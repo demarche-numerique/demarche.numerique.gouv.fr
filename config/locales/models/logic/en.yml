@@ -1,4 +1,23 @@
 en:
   logic:
+    domain:
+      any: any value
+      blank: not filled
+      enums:
+        any: any selection
+        with: "with %{options}"
+        without: "without %{options}"
+      geo:
+        all: all departements
+        count: "%{count} departements"
+      or: " or "
+      number:
+        at_least: "%{value} or more"
+        at_most: "%{value} or less"
+        between: "%{min} to %{max}"
+        between_exclusive: "between %{min} and %{max}"
+        less_than: "less than %{value}"
+        more_than: "more than %{value}"
+      other: Other
     empty: empty member
     empty_operator: empty operator

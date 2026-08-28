@@ -9,6 +9,30 @@ class Logic::Domain::Enums < Data.define(:options, :must_include, :must_exclude)
 
   def empty? = must_include.intersect?(must_exclude) || (options.any? && options.subset?(must_exclude))
 
+  # Two requirements sets can only be told as one when they differ on a single
+  # option, which then stops being required either way.
+  def union(other)
+    return nil if !other.is_a?(self.class)
+
+    swapped = (must_include & other.must_exclude) | (must_exclude & other.must_include)
+    same = (must_include - swapped) == (other.must_include - swapped) && (must_exclude - swapped) == (other.must_exclude - swapped)
+
+    return nil if swapped.size != 1 || !same
+
+    with(must_include: must_include - swapped, must_exclude: must_exclude - swapped)
+  end
+
+  def to_s(type_de_champ)
+    labels = type_de_champ.condition_options.to_h { |label, value| [value, label] }
+    with = must_include.map { labels.fetch(it, it.to_s) }
+    without = must_exclude.map { labels.fetch(it, it.to_s) }
+
+    [
+      with.presence && I18n.t('logic.domain.enums.with', options: with.join(', ')),
+      without.presence && I18n.t('logic.domain.enums.without', options: without.join(', ')),
+    ].compact.join(', ').presence || I18n.t('logic.domain.enums.any')
+  end
+
   # Every combination of the options the atoms mention being selected or not.
   def regions(atoms)
     mentioned = atoms.map(&:last).uniq

@@ -55,4 +55,29 @@ describe Logic::Domain::Enums do
       expect(regions).to all(satisfy { it.must_include.include?('a') })
     end
   end
+
+  describe '#union' do
+    let(:with_a_with_b) { domain.restrict(Logic::IncludeOperator, 'a').restrict(Logic::IncludeOperator, 'b') }
+    let(:with_a_without_b) { domain.restrict(Logic::IncludeOperator, 'a').restrict(Logic::ExcludeOperator, 'b') }
+    let(:without_a_with_b) { domain.restrict(Logic::ExcludeOperator, 'a').restrict(Logic::IncludeOperator, 'b') }
+
+    it 'frees the single option the two differ on' do
+      expect(with_a_with_b.union(with_a_without_b)).to eq(domain.restrict(Logic::IncludeOperator, 'a'))
+    end
+
+    it 'cannot merge when more than one option differs' do
+      expect(with_a_with_b.union(domain)).to be_nil
+      expect(with_a_without_b.union(without_a_with_b)).to be_nil
+    end
+  end
+
+  describe '#to_s' do
+    let(:tdc) { build(:type_de_champ_multiple_drop_down_list, drop_down_options: ['a', 'b']) }
+
+    it do
+      expect(domain.to_s(tdc)).to eq('toute sélection')
+      expect(domain.restrict(Logic::IncludeOperator, 'a').restrict(Logic::ExcludeOperator, 'b').to_s(tdc)).to eq('avec a, sans b')
+      expect(domain.restrict(Logic::ExcludeOperator, 'b').to_s(tdc)).to eq('sans b')
+    end
+  end
 end

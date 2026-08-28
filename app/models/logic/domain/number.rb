@@ -49,6 +49,18 @@ class Logic::Domain::Number < Data.define(:integer, :intervals)
 
   def empty? = intervals.empty?
 
+  def union(other)
+    return nil if !other.is_a?(self.class)
+
+    self.class.new(integer: integer, intervals: coalesce(intervals + other.intervals))
+  end
+
+  def to_s(_type_de_champ = nil)
+    return I18n.t('logic.domain.any') if intervals == [Interval.unbounded]
+
+    intervals.map { describe(it) }.join(I18n.t('logic.domain.or'))
+  end
+
   # Splits the domain at every constant the atoms mention: each constant on
   # its own and the open intervals between consecutive constants, so that an
   # atom is either true or false on a whole region.
@@ -87,4 +99,51 @@ class Logic::Domain::Number < Data.define(:integer, :intervals)
   end
 
   def normalize(interval) = integer ? interval.integer : interval
+
+  # Sorted intervals, overlapping or touching ones merged.
+  def coalesce(intervals)
+    intervals.map { normalize(it) }.reject(&:empty?).sort_by { [it.min ? 1 : 0, it.min || 0, it.min_inclusive ? 0 : 1] }.each_with_object([]) do |interval, merged|
+      last = merged.last
+
+      if last && touching?(last, interval)
+        upper = [last, interval].find { it.max.nil? } || [last, interval].max_by { [it.max, it.max_inclusive ? 1 : 0] }
+        merged[-1] = last.with(max: upper.max, max_inclusive: upper.max_inclusive)
+      else
+        merged << interval
+      end
+    end
+  end
+
+  # `a` starts before `b`: they touch when `a` reaches `b`'s start.
+  def touching?(a, b)
+    return true if a.max.nil? || b.min.nil?
+    return true if a.max > b.min
+    return true if a.max == b.min && (a.max_inclusive || b.min_inclusive)
+
+    integer && a.max + 1 == b.min
+  end
+
+  def describe(interval)
+    min, max = format(interval.min), format(interval.max)
+
+    case [interval.min.nil?, interval.max.nil?]
+    in [true, true] then I18n.t('logic.domain.any')
+    in [true, false] then I18n.t(interval.max_inclusive ? 'logic.domain.number.at_most' : 'logic.domain.number.less_than', value: max)
+    in [false, true] then I18n.t(interval.min_inclusive ? 'logic.domain.number.at_least' : 'logic.domain.number.more_than', value: min)
+    in [false, false]
+      if interval.min == interval.max
+        min
+      elsif interval.min_inclusive && interval.max_inclusive
+        I18n.t('logic.domain.number.between', min:, max:)
+      else
+        I18n.t('logic.domain.number.between_exclusive', min:, max:)
+      end
+    end
+  end
+
+  def format(value)
+    return nil if value.nil?
+
+    value == value.to_i ? value.to_i.to_s : value.to_s
+  end
 end

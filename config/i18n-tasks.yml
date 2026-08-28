@@ -108,6 +108,10 @@ ignore_unused:
   - 'tags_button_list_component.categories.*'
   # dynamic key composition (".blank" / ".blank_optional" + "_attachment") in champs_rows_show_component.rb
   - 'dossiers.champs_rows_show_component.{blank,blank_optional,blank_attachment,blank_optional_attachment}'
+  # I18n.t(interval.max_inclusive ? 'logic.domain.number.at_most' : 'logic.domain.number.less_than') in logic/domain/number.rb
+  - 'logic.domain.number.{at_most,less_than,at_least,more_than}'
+  # t(sources ? '.title' : '.title_without_source') in procedure/branch_trees_component.rb
+  - 'procedure.branch_trees_component.{title,title_without_source}'
   # t(updated? ? '.updated_at' : '.created_at') in gallery_item_component.html.erb
   - 'attachment.gallery_item_component.{created_at,updated_at}'
   # t(@procedure.publiee? ? '.notification_alert.publiee' : '.notification_alert.non_publiee')

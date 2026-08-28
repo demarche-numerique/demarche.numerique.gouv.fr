@@ -63,4 +63,26 @@ describe Logic::Domain::Geo do
       expect(domain.regions([])).to eq([domain])
     end
   end
+
+  describe '#union' do
+    it 'joins the departements and refuses other kinds' do
+      expect(domain.restrict(Logic::Eq, '01').union(domain.restrict(Logic::Eq, '75')).codes).to eq(Set['01', '75'])
+      expect(domain.union(Logic::Domain::Blank)).to be_nil
+    end
+  end
+
+  describe '#to_s' do
+    it 'names whole regions and lists the other departements' do
+      expect(domain.to_s).to eq('tous les départements')
+      expect(domain.restrict(Logic::InDepartementOperator, '01').to_s).to eq('01 – Ain')
+      expect(domain.restrict(Logic::InRegionOperator, '84').to_s).to eq('Auvergne-Rhône-Alpes')
+      expect(domain.restrict(Logic::InRegionOperator, '84').union(domain.restrict(Logic::Eq, '75')).to_s).to eq('Auvergne-Rhône-Alpes, 75 – Paris')
+    end
+
+    it 'counts when the list is too long' do
+      expect(domain.restrict(Logic::NotInDepartementOperator, '01').to_s).to eq("#{domain.codes.size - 1} départements")
+      expect(described_class.new(%w[01 02 03 04 05 06]).to_s).to eq('01 – Ain, 02 – Aisne, 03 – Allier, 04 – Alpes-de-Haute-Provence, 05 – Hautes-Alpes, 06 – Alpes-Maritimes')
+      expect(described_class.new(%w[01 02 03 04 05 06 07]).to_s).to eq('7 départements')
+    end
+  end
 end
