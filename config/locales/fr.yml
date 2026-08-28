@@ -67,6 +67,8 @@ fr:
     forbidden: interdits
     forbidden_f: interdites
   helpers:
+    estimated_fill_duration:
+      range: "%{min} à %{max}"
     admin_procedures_back_label:
       publiee: 'Démarches publiées'
       brouillon: 'Démarches en test'
