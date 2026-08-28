@@ -89,6 +89,13 @@ class Logic::PossibleValues::Number < Data.define(:integer, :intervals, :limits)
     with(intervals: coalesce(intervals + other.intervals))
   end
 
+  # Ascending: a bound before what lies past it
+  def sort_key
+    interval = intervals.first
+
+    [0, interval.min || -Float::INFINITY, interval.min_inclusive ? 0 : 1]
+  end
+
   def to_s(_type_de_champ = nil)
     return I18n.t('logic.possible_values.any') if intervals == [Interval.unbounded]
 
