@@ -73,3 +73,5 @@
         .fr-ml-auto
           #autosave-notice.hidden
           = render TypesDeChampEditor::EstimatedFillDurationComponent.new(revision: @procedure.draft_revision, is_annotation: false)
+          - if @procedure.draft_revision.conditional?
+            = link_to t('.parcours'), parcours_admin_procedure_path(@procedure), class: 'fr-link fr-text--sm fr-ml-2w'

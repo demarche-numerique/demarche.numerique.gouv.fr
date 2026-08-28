@@ -1,0 +1,17 @@
+- content_for(:title, t('.title'))
+- render_procedure_sticky_title(@procedure)
+
+= render partial: 'shared/breadcrumbs_section',
+  locals: { steps: [[admin_procedures_back_label(@procedure), admin_procedures_back_path(@procedure)],
+                    [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)],
+                    [t('.back'), champs_admin_procedure_path(@procedure)],
+                    [t('.title')]] }
+.fr-container
+  .fr-mb-3w
+    = link_to t('.back'), champs_admin_procedure_path(@procedure), class: "fr-link fr-icon-arrow-left-line fr-link--icon-left"
+  %h1.fr-h2= t('.title')
+  %p= t('.intro')
+
+  = render Procedure::BranchTreesComponent.new(revision: @procedure.draft_revision, branch_trees: @branch_trees)
+
+= render Procedure::FixedFooterComponent.new(procedure: @procedure)
