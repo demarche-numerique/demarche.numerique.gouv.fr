@@ -963,6 +963,17 @@ describe ProcedureRevision do
       end
     end
 
+    context 'when ineligibilite_rules can never be true' do
+      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :integer_number }]) }
+      let(:tdc_number) { draft_revision.type_de_champs_for(scope: :public).first }
+      let(:ineligibilite_rules) { ds_and([greater_than(champ_value(tdc_number.stable_id), constant(3)), less_than(champ_value(tdc_number.stable_id), constant(2))]) }
+
+      it 'is invalid' do
+        expect(draft_revision.validate(:publication)).to be_falsey
+        expect(draft_revision.validate(:ineligibilite_rules_editor)).to be_falsey
+      end
+    end
+
     context 'when ineligibilite_rules are invalid on repetition champ' do
       let(:ineligibilite_rules) { ds_eq(constant(true), constant(1)) }
       let(:procedure) { create(:procedure, public_type_de_champs:) }

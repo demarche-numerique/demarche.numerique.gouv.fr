@@ -755,7 +755,7 @@ class ProcedureRevision < ApplicationRecord
   def ineligibilite_rules_are_valid?
     return unless ineligibilite_rules
 
-    rules_errors = ineligibilite_rules.errors(type_de_champs_for(scope: :public).to_a)
+    rules_errors = Logic.errors(ineligibilite_rules, type_de_champs_for(scope: :public).to_a)
 
     if rules_errors.any? || ineligibilite_rules.type == :empty
       errors.add(:ineligibilite_rules, :invalid)

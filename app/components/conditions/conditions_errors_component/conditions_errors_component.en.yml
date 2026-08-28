@@ -11,3 +11,7 @@ en:
       not_eq: "The « is not » operator does not apply to multiple dropdown list."
     not_included: "« %{right} » is not included in « %{libelle} »."
     empty_options: "The field « %{libelle} » has no options to select from."
+    contradiction:
+      one: "The field « %{libelle} » can never be %{atoms}."
+      other: "The field « %{libelle} » cannot be both %{atoms}."
+    unreachable: "This condition can never be true: the field « %{libelle} » is not displayed in that case."
