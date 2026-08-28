@@ -48,6 +48,11 @@ class Logic::ChampColumnValue < Logic::Term
     targeted_column(type_de_champs).options_for_select
   end
 
+  def domain(type_de_champs)
+    column = targeted_column(type_de_champs)
+    Logic::Domain.for_column(column) if column
+  end
+
   def errors(type_de_champs)
     # the targeted tdc is below current tdc or has been removed
     if targeted_column(type_de_champs).nil?
