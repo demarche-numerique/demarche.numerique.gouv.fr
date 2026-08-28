@@ -69,6 +69,8 @@ fr:
     forbidden: interdits
     forbidden_f: interdites
   helpers:
+    estimated_fill_duration:
+      range: "%{min} à %{max}"
     admin_procedures_back_label:
       publiee: 'Démarches publiées'
       brouillon: 'Démarches en test'
@@ -1239,7 +1241,7 @@ fr:
         sva: "Silence Vaut Accord"
         svr: "Silence Vaut Rejet"
     procedure_description:
-      estimated_fill_duration: "Temps de remplissage estimé : %{estimated_minutes} min (variable selon les options choisies)"
+      estimated_fill_duration: "Temps de remplissage estimé : %{estimated_minutes} min"
       date_limite: "Date limite : %{date}."
       usual_traitement_time_title: Quels sont les délais d’instruction pour cette démarche ?
       pieces_jointes : Quelles sont les pièces justificatives à fournir ?
