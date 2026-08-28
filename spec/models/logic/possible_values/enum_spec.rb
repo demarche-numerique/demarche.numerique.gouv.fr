@@ -49,4 +49,29 @@ describe Logic::PossibleValues::Enum do
       expect(values.regions([])).to eq([values])
     end
   end
+
+  describe '#union' do
+    it 'joins the options and refuses other kinds' do
+      expect(values.restrict(Logic::Eq, 'a').union(values.restrict(Logic::Eq, 'c'))).to eq(described_class.new(['a', 'c']))
+      expect(values.union(Logic::PossibleValues::Blank)).to be_nil
+    end
+  end
+
+  describe '#to_s' do
+    let(:tdc) { build(:type_de_champ_drop_down_list, drop_down_options: ['a', 'b', 'c']) }
+
+    it 'lists the options in the champ order' do
+      expect(described_class.new(['c', 'a']).to_s(tdc)).to eq('a, c')
+      expect(described_class.new(['unknown']).to_s(tdc)).to eq('unknown')
+    end
+
+    it 'names the other option' do
+      expect(described_class.new([Champs::DropDownListChamp::OTHER]).to_s(tdc)).to eq('Autre')
+    end
+
+    it 'names booleans' do
+      expect(described_class.new([true]).to_s(build(:type_de_champ_yes_no))).to eq('Oui')
+      expect(described_class.new([false, true]).to_s(build(:type_de_champ_yes_no))).to eq('Non, Oui')
+    end
+  end
 end
