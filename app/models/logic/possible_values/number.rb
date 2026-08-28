@@ -76,6 +76,21 @@ class Logic::PossibleValues::Number < Data.define(:integer, :intervals, :limits)
   # The same champ as if it had no limits: what its comparisons alone leave.
   def unlimited = self.class.new(integer:)
 
+  # Splits the values at every constant the comparisons mention: each constant on
+  # its own and the open intervals between consecutive constants, so that an
+  # comparison is either true or false on a whole region.
+  def regions(comparisons)
+    cuts = cuts(comparisons)
+    bounds = [nil, *cuts, nil]
+
+    points = cuts.map { Interval.point(it) }
+    gaps = bounds.each_cons(2).map { |low, high| Interval.new(min: low, min_inclusive: false, max: high, max_inclusive: false) }
+
+    (points + gaps).map { intersect([it]) }.reject(&:empty?)
+  end
+
+  def max_regions(comparisons) = 2 * cuts(comparisons).size + 1
+
   def restrict(operator_class, value)
     return self if !value.is_a?(Numeric)
 
@@ -93,6 +108,10 @@ class Logic::PossibleValues::Number < Data.define(:integer, :intervals, :limits)
   end
 
   private
+
+  # The constants the comparisons mention, one cut per value whether it is
+  # written as an integer or a decimal: 3 and 3.0 are the same cut.
+  def cuts(comparisons) = comparisons.map(&:last).filter { it.is_a?(Numeric) }.uniq(&:to_r).sort
 
   # Every kept interval crossed with every new one: intersecting two unions of
   # intervals means intersecting them pairwise, and the constructor drops the
