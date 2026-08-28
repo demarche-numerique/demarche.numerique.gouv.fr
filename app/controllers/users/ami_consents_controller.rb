@@ -6,6 +6,8 @@ module Users
   # dossier : faute d'écriture côté AMI, c'est l'envoi de l'événement de ce
   # dossier qui vaut consentement.
   class AmiConsentsController < UserController
+    include Dry::Monads[:result]
+
     before_action :set_dossier
     before_action :ensure_consent_available
 
@@ -13,13 +15,16 @@ module Users
       @status = Ami::ConsentStatus.call(fc_hash)
     end
 
-    # Bascule optimiste : on confirme le suivi sans attendre qu'AMI ait accepté
-    # l'événement, d'où le retour ignoré.
+    # Mieux vaut avouer l'échec que confirmer un suivi qui n'existe pas : le
+    # bouton reste alors affiché, avec un message, pour permettre un nouvel essai.
     def create
-      Ami::GrantConsent.call(dossier: @dossier)
-
-      @status = :granted
-      @focus = true
+      case Ami::GrantConsent.call(dossier: @dossier)
+      in Success(_)
+        @status = :granted
+        @focus = true
+      in Failure(_)
+        @status = :error
+      end
 
       render :show
     end

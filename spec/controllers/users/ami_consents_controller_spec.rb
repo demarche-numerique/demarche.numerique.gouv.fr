@@ -86,7 +86,7 @@ RSpec.describe Users::AmiConsentsController, type: :controller do
 
     before do
       sign_in(user)
-      allow(Ami::GrantConsent).to receive(:call)
+      allow(Ami::GrantConsent).to receive(:call).and_return(Dry::Monads::Success(nil))
     end
 
     it 'grants the consent from the dossier being viewed' do
@@ -95,11 +95,25 @@ RSpec.describe Users::AmiConsentsController, type: :controller do
       expect(Ami::GrantConsent).to have_received(:call).with(dossier:)
     end
 
-    # Bascule optimiste : on ne fait pas patienter l'usager le temps qu'AMI réponde.
-    it 'confirms the follow-up right away and moves the focus to it' do
+    it 'confirms the follow-up and moves the focus to it' do
       expect(create_consent).to have_http_status(:ok)
       expect(response.body).to include('Vous suivez vos démarches')
       expect(response.body).to include('autofocus')
+    end
+
+    context 'when AMI refused the consent' do
+      before do
+        allow(Ami::GrantConsent).to receive(:call)
+          .and_return(Dry::Monads::Failure(API::Client::Error[:http, 500, true, "Boom"]))
+      end
+
+      # Mieux vaut avouer l'échec que confirmer un suivi qui n'existe pas.
+      it 'says the consent could not be saved and offers to try again' do
+        expect(create_consent).to have_http_status(:ok)
+        expect(response.body).not_to include('Vous suivez vos démarches')
+        expect(response.body).to include('fr-error-text')
+        expect(response.body).to include('Je souhaite suivre mes démarches')
+      end
     end
   end
 end

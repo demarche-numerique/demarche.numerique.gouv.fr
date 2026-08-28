@@ -46,6 +46,17 @@ RSpec.describe Dossiers::AmiConsentStateComponent, type: :component do
     end
   end
 
+  context 'when the consent could not be saved' do
+    let(:status) { :error }
+
+    it 'says so and lets the user try again' do
+      render_component
+
+      expect(page).to have_css('.fr-error-text')
+      expect(page).to have_button(text: /Je souhaite suivre mes démarches/)
+    end
+  end
+
   context 'when AMI could not answer' do
     let(:status) { :unknown }
 

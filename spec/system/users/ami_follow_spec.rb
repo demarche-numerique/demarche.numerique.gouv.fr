@@ -10,7 +10,7 @@ describe 'The user, once their dossier is submitted', js: true do
     allow(Ami::RecipientFcHash).to receive(:call).and_return("abc123")
     allow_any_instance_of(Ami::Client).to receive(:configured?).and_return(true)
     allow(Ami::ConsentStatus).to receive(:call).and_return(:not_granted)
-    allow(Ami::GrantConsent).to receive(:call)
+    allow(Ami::GrantConsent).to receive(:call).and_return(Dry::Monads::Success(nil))
 
     login_as user, scope: :user
     visit merci_dossier_path(dossier)
@@ -35,6 +35,17 @@ describe 'The user, once their dossier is submitted', js: true do
 
     expect(page).to have_text("Vous suivez vos démarches sur #{Ami::APP_NAME}")
     expect(Ami::GrantConsent).to have_received(:call).with(dossier:)
+  end
+
+  scenario 'is told when AMI could not save the consent, and can try again' do
+    allow(Ami::GrantConsent).to receive(:call)
+      .and_return(Dry::Monads::Failure(API::Client::Error[:http, 500, true, "Boom"]))
+
+    click_on "Je souhaite suivre mes démarches sur #{Ami::APP_NAME}"
+
+    expect(page).to have_text('Vous pouvez réessayer')
+    expect(page).to have_button("Je souhaite suivre mes démarches sur #{Ami::APP_NAME}")
+    expect(page).not_to have_text("Vous suivez vos démarches sur #{Ami::APP_NAME}")
   end
 
   scenario 'reads what the app is about in a modal' do
