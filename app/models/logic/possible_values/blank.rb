@@ -11,4 +11,8 @@ module Logic::PossibleValues::Blank
   def limits = nil
 
   def restrict(_operator_class, _value) = self
+
+  def union(_other) = nil
+
+  def to_s(_type_de_champ = nil) = I18n.t('logic.possible_values.blank')
 end
