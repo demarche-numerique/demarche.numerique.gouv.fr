@@ -12,5 +12,8 @@ module Logic::Domain::Blank
 
   def union(_other) = nil
 
+  # After every filled value
+  def sort_key = [1]
+
   def to_s(_type_de_champ = nil) = I18n.t('logic.domain.blank')
 end

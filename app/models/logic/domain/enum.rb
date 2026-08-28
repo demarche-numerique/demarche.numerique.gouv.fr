@@ -9,6 +9,9 @@ class Logic::Domain::Enum < Data.define(:values)
 
   def union(other) = other.is_a?(self.class) ? self.class.new(values | other.values) : nil
 
+  # In the order the champ lists its options
+  def sort_key = [0]
+
   # The labels of the options, in the order the champ lists them.
   def to_s(type_de_champ)
     labels = type_de_champ.condition_options.to_h { |label, value| [value, label] }

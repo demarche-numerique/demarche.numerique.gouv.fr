@@ -22,6 +22,9 @@ class Logic::Domain::Enums < Data.define(:options, :must_include, :must_exclude)
     with(must_include: must_include - swapped, must_exclude: must_exclude - swapped)
   end
 
+  # In the order the champ lists its options
+  def sort_key = [0]
+
   def to_s(type_de_champ)
     labels = type_de_champ.condition_options.to_h { |label, value| [value, label] }
     with = must_include.map { labels.fetch(it, it.to_s) }

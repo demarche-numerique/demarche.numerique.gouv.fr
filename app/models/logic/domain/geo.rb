@@ -14,6 +14,9 @@ class Logic::Domain::Geo < Data.define(:codes)
 
   def union(other) = other.is_a?(self.class) ? self.class.new(codes | other.codes) : nil
 
+  # As enumerated
+  def sort_key = [0]
+
   # Whole regions by name, the remaining departements one by one, or just how
   # many when there are too many to list.
   def to_s(_type_de_champ = nil)
