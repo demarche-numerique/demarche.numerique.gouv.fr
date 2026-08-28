@@ -1,0 +1,29 @@
+<% if node.leaf? %>
+  <% champs = displayed(node) %>
+  <% if champs.empty? %>
+    <p class="fr-badge fr-badge--warning fr-badge--sm fr-badge--no-icon">
+      <%= t('.nothing') %>
+    </p>
+  <% else %>
+    <ul class="fr-tags-group">
+      <% champs.each do |tdc| %>
+        <li>
+          <%= link_to tdc.libelle, champ_path(tdc), class: 'fr-tag fr-tag--sm' %>
+        </li>
+      <% end %>
+    </ul>
+    <p class="fr-text--xs fr-mb-0">
+      <%= t('.summary', count: champs.size, minutes: revision.estimated_minutes(champs)) %>
+    </p>
+  <% end %>
+<% else %>
+  <ul class="branch-tree fr-mb-0">
+    <% node.children.each do |child| %>
+      <li class="fr-mb-2w">
+        <p class="fr-mb-1v"><%= label(child) %></p>
+
+        <%= render self.class.new(revision:, node: child, coordinates:) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
