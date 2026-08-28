@@ -6,15 +6,15 @@ module Ami
 
     EVENT_PATH = "/api/v2/event"
 
-    CONSENT_READ_PATH = "/api/v1/consent"
+    # Lecture et écriture partagent le même chemin, le hash France Connect
+    # identifiant l'usager côté AMI.
+    CONSENT_PATH = "/api/v1/consent"
     CONSENT_READ_TIMEOUT = 3
-
-    # TODO: l'endpoint d'écriture du consentement n'est pas encore publié dans
-    # le schéma d'AMI (https://ami-back-staging.osc-fr1.scalingo.io/schema).
-    # Seules ces constantes et consent_payload seront à ajuster quand il le sera.
-    CONSENT_WRITE_PATH = "/api/v1/consent"
-    CONSENT_WRITE_METHOD = :post
     CONSENT_WRITE_TIMEOUT = 5
+
+    # Le contrat accepte aussi consent: false, qui révoque. On ne l'expose pas :
+    # la révocation se fait depuis l'application mobile.
+    CONSENT_GRANTED_PAYLOAD = { consent: true }.freeze
 
     # PUT et non POST : l'événement est identifié par le partenaire et l'objet
     # associé, donc un rejeu ne crée pas de doublon (200 s'il existait, 201 sinon).
@@ -25,11 +25,7 @@ module Ami
     # Succès si l'usager a consenti au suivi de ses démarches, échec en 404 sinon.
     def consent(fc_hash)
       handle_bodyless_result(
-        call_api(
-          url: build_url("#{CONSENT_READ_PATH}/#{fc_hash}"),
-          method: :get,
-          timeout: CONSENT_READ_TIMEOUT
-        )
+        call_api(url: consent_url(fc_hash), method: :get, timeout: CONSENT_READ_TIMEOUT)
       )
     end
 
@@ -38,9 +34,9 @@ module Ami
     def grant_consent(fc_hash)
       handle_bodyless_result(
         call_api(
-          url: build_url(CONSENT_WRITE_PATH),
-          json: consent_payload(fc_hash),
-          method: CONSENT_WRITE_METHOD,
+          url: consent_url(fc_hash),
+          json: CONSENT_GRANTED_PAYLOAD,
+          method: :post,
           timeout: CONSENT_WRITE_TIMEOUT
         )
       )
@@ -85,7 +81,7 @@ module Ami
     def api_password = ENV.fetch("AMI_API_PASSWORD", nil)
     def credentials = "#{api_user}:#{api_password}"
 
-    def consent_payload(fc_hash) = { recipient_fc_hash: fc_hash }
+    def consent_url(fc_hash) = build_url("#{CONSENT_PATH}/#{fc_hash}")
 
     def build_url(path)
       uri = URI(api_url)

@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 module Ami
-  # L'usager accepte de suivre ses démarches dans l'application mobile.
-  #
-  # Tant qu'AMI n'expose pas d'écriture du consentement, c'est le premier
-  # événement reçu qui fait foi : on envoie donc l'événement du dossier depuis
-  # lequel l'usager accepte, en court-circuitant la vérification qui, sinon,
-  # interdirait à jamais ce premier envoi.
+  # L'usager accepte de suivre ses démarches dans l'application mobile : on
+  # enregistre son consentement auprès d'AMI, puis on lui envoie l'événement du
+  # dossier depuis lequel il a accepté.
   #
   # Il n'existe volontairement pas de service de révocation : elle se fait
   # depuis les préférences de l'application mobile.
+  #
+  # Retourne le Result de l'écriture du consentement, dont l'appelant a besoin
+  # pour savoir quoi afficher.
   class GrantConsent
     def self.call(dossier:) = new(dossier).call
 
@@ -18,11 +18,16 @@ module Ami
     end
 
     def call
-      if Ami.grant_consent_endpoint_available?
-        Client.new.grant_consent(RecipientFcHash.call(dossier.user))
-      else
-        CreateNotificationService.call(dossier:, grant_consent: true)
-      end
+      result = Client.new.grant_consent(RecipientFcHash.call(dossier.user))
+      # Sans consentement enregistré, l'événement n'a pas à partir : son contenu
+      # ne doit pas parvenir à AMI.
+      return result if result.failure?
+
+      # grant_consent: le consentement vient d'être accordé, le job n'a pas à le
+      # revérifier — AMI pourrait ne pas l'avoir encore propagé.
+      CreateNotificationService.call(dossier:, grant_consent: true)
+
+      result
     end
 
     private

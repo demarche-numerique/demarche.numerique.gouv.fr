@@ -23,8 +23,8 @@ module Ami
       @grant_consent = grant_consent
     end
 
-    # grant_consent: cet envoi vaut consentement chez AMI, où le premier
-    # événement reçu fait foi tant que l'écriture du consentement n'existe pas.
+    # grant_consent: le consentement vient d'être accordé, le job n'a pas à le
+    # revérifier avant d'envoyer.
     def self.call(dossier:, trigger: :dossier_state_change, state: nil, grant_consent: false)
       new(dossier:, trigger:, state:, grant_consent:).call
     end

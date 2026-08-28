@@ -9,10 +9,9 @@ class Ami::SendNotificationJob < ApplicationJob
 
   queue_as :default
 
-  # grant_consent: cet envoi vaut consentement chez AMI, où le premier
-  # événement reçu fait foi tant que l'écriture du consentement n'existe pas.
-  # On ne vérifie donc pas le consentement, faute de quoi ce premier envoi
-  # n'aurait jamais lieu.
+  # grant_consent: l'usager vient d'accorder son consentement, inutile de le
+  # relire — AMI pourrait ne pas l'avoir encore propagé, et une lecture en 404
+  # ferait abandonner l'envoi silencieusement.
   def perform(payload, context = {}, grant_consent: false)
     Sentry.set_tags(context)
 

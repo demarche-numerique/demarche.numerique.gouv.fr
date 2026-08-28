@@ -119,19 +119,29 @@ RSpec.describe Ami::Client do
   describe '#grant_consent' do
     it 'sends the consent of a France Connect identity' do
       allow(api_client).to receive(:call).and_return(
-        Dry::Monads::Failure(API::Client::Error[:json, 201, false, "unexpected end of input"])
+        Dry::Monads::Success(API::Client::OK[{ message: "Consent given" }, double])
       )
 
       result = service.grant_consent("abc123")
 
       expect(api_client).to have_received(:call).with(
-        url: URI("https://ami.example.org#{described_class::CONSENT_WRITE_PATH}"),
-        json: { recipient_fc_hash: "abc123" },
-        method: described_class::CONSENT_WRITE_METHOD,
+        url: URI("https://ami.example.org#{described_class::CONSENT_PATH}/abc123"),
+        json: { consent: true },
+        method: :post,
         userpwd: "ami-user:ami-password",
         timeout: described_class::CONSENT_WRITE_TIMEOUT
       )
       expect(result).to be_success
+    end
+
+    # AMI a répondu sans corps par le passé ; le contrat en promet un désormais,
+    # mais requalifier reste inoffensif et couvre les deux formes.
+    it 'accepts an empty body' do
+      allow(api_client).to receive(:call).and_return(
+        Dry::Monads::Failure(API::Client::Error[:json, 201, false, "unexpected end of input"])
+      )
+
+      expect(service.grant_consent("abc123")).to be_success
     end
 
     it 'returns failure when AMI rejects the call' do
