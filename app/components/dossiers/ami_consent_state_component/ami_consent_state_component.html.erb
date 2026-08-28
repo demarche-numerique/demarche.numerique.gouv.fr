@@ -8,12 +8,13 @@
     <%= t('.granted', app_name:) %>
   <% end %>
 <% else %>
-  <%# Le turbo-frame parent porte déjà aria-live="polite" : un role="alert"
-      ici ferait annoncer le message deux fois. %>
+  <%#
+    Le turbo-frame parent porte déjà aria-live="polite" : un role="alert"
+    ici ferait annoncer le message deux fois.
+  %>
   <% if error? %>
     <p class="fr-error-text fr-mt-0"><%= t('.error') %></p>
   <% end %>
-
   <%= form_with url: form_path, method: :post, data: { turbo: true } do %>
     <button
       type="submit"
