@@ -44,6 +44,10 @@ fr:
           other: Souhaitez-vous envoyer un email aux %{count} utilisateurs avec un dossier déposé ?
         email_content_en_cours: Contenu de l’email
       preview_unavailable: Aperçu non disponible car la démarche est mal configurée
+      parcours:
+        title: Parcours possibles du formulaire
+        back: Champs du formulaire
+        intro: Selon les réponses de l’usager, les conditions affichent ou masquent des champs. Chaque bloc ci-dessous détaille, pour un groupe de champs liés, ce qui s’affiche selon les réponses.
       modifications:
         dossiers_en_construction_and_dossiers_en_instruction: Il y a %{en_construction_count} dossiers « en construction » et %{en_instruction_count} dossiers « en instruction » sur cette version de la démarche.
         dossier_en_construction_and_dossiers_en_instruction:
@@ -159,6 +163,7 @@ fr:
           cancel: Annuler
           disable_with: Clonage en cours
       champs:
+        parcours: Voir les parcours possibles
         callout_personne_physique_html: 'Les informations suivantes concernant le demandeur sont déjà renseignées dans la première étape <i>Identité</i> du formulaire :'
         callout_personne_physique_gender_html: <li><b>Civilité</b> (Madame / Monsieur)</li>
         callout_personne_physique_names_html: <li><b>Prénom</b></li><li><b>Nom</b></li>

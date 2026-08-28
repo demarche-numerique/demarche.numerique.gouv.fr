@@ -486,6 +486,20 @@ describe Administrateurs::ProceduresController, type: :controller do
     end
   end
 
+  describe 'GET #parcours' do
+    let(:procedure) { create(:procedure, administrateur: admin) }
+
+    subject { get :parcours, params: { id: procedure.id } }
+
+    it { is_expected.to have_http_status(:success) }
+
+    context 'when the procedure belongs to another administrateur' do
+      before { sign_in(administrateurs.blank.user) }
+
+      it { is_expected.to have_http_status(404) }
+    end
+  end
+
   describe 'GET #zones' do
     empty_seeds ZoneLabel, Zone
 

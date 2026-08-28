@@ -1,0 +1,27 @@
+<div class="branch-trees">
+  <% if branch_trees.empty? %>
+    <p><%= t('.none') %></p>
+  <% end %>
+
+  <% branch_trees.each_with_index do |tree, index| %>
+    <%= render Dsfr::AccordionComponent.new(id: "branch-tree-#{index}", expanded: branch_trees.one?) do |c| %>
+      <% c.with_title { title(tree) } %>
+
+      <% if tree.never_displayed.any? %>
+        <%= render Dsfr::AlertComponent.new(title: t('.never_displayed_title'), state: :warning, extra_class_names: 'fr-mb-2w') do |alert| %>
+          <% alert.with_body do %>
+            <p>
+              <%= t('.never_displayed', count: tree.never_displayed.size, champs: never_displayed_libelles(tree)) %>
+            </p>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% if tree.capped? %>
+        <p><%= t('.capped') %></p>
+      <% else %>
+        <%= render node_component(tree) %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

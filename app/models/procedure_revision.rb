@@ -243,11 +243,22 @@ class ProcedureRevision < ApplicationRecord
     end
   end
 
+  # The ways the conditions unfold the public form, one tree per cluster of
+  # champs linked by the champs they target.
+  def branch_trees
+    Logic::Branches.new(public_root_type_de_champs.to_a).clusters.map { Logic::BranchTree.new(it) }
+  end
+
+  def conditional? = public_root_type_de_champs.any?(&:condition?)
+
   def estimated_fill_duration_minutes
     range = estimated_fill_duration_range
 
     minutes(range.begin)..minutes(range.end)
   end
+
+  # Estimated duration to fill the given champs, in minutes
+  def estimated_minutes(type_de_champs) = minutes(type_de_champs.sum { estimated_champ_duration(it) })
 
   def coordinate_for(tdc)
     revision_type_de_champs.find { _1.stable_id == tdc.stable_id }
@@ -354,6 +365,17 @@ class ProcedureRevision < ApplicationRecord
 
   def minutes(seconds) = [1, (seconds / 60.0).round].max
 
+  # Estimated duration to fill one champ, in seconds: reading, then filling
+  # when the champ is fillable, halved when it is optional.
+  def estimated_champ_duration(tdc)
+    return tdc.estimated_read_duration unless tdc.fillable?
+
+    duration = tdc.estimated_read_duration + tdc.estimated_fill_duration(self)
+    duration /= 2 unless tdc.mandatory?
+
+    duration
+  end
+
   # Champs displayed whatever the filling count once; the others count for
   # the shortest and longest branch of their cluster (see Logic::Branches),
   # or for nothing and everything when the cluster is too big to enumerate.
@@ -376,15 +398,6 @@ class ProcedureRevision < ApplicationRecord
 
       (range.begin + shortest)..(range.end + longest)
     end
-  end
-
-  def estimated_champ_duration(tdc)
-    return tdc.estimated_read_duration unless tdc.fillable?
-
-    duration = tdc.estimated_read_duration + tdc.estimated_fill_duration(self)
-    duration /= 2 unless tdc.mandatory?
-
-    duration
   end
 
   def siblings_for(type_de_champ:, parent_coordinate: nil)
