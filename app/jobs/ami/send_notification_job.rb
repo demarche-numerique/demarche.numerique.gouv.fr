@@ -3,9 +3,7 @@
 class Ami::SendNotificationJob < ApplicationJob
   include Dry::Monads[:result]
 
-  discard_on ActiveRecord::RecordNotFound
-
-  use_sidekiq_retry
+  use_sidekiq_retry(report_after_attempts: 8)
 
   queue_as :default
 
