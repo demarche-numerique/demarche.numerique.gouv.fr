@@ -10,6 +10,17 @@ class Logic::PossibleValues::Enum < Data.define(:values)
 
   def limits = nil
 
+  def union(other) = other.is_a?(self.class) ? self.class.new(values | other.values) : nil
+
+  # The labels of the options, in the order the champ lists them.
+  def to_s(type_de_champ)
+    labels = type_de_champ.condition_options.to_h { |label, value| [value, label] }
+
+    ordered = (labels.keys & values.to_a) + (values.to_a - labels.keys)
+
+    ordered.map { labels.fetch(it) { label_for(it) } }.join(', ')
+  end
+
   # Every option the comparisons mention on its own, and all the others together.
   def regions(comparisons)
     mentioned = comparisons.map(&:last).uniq
@@ -27,6 +38,17 @@ class Logic::PossibleValues::Enum < Data.define(:values)
     when Logic::Eq.name then self.class.new(values & [value])
     when Logic::NotEq.name then self.class.new(values - [value])
     else self
+    end
+  end
+
+  private
+
+  def label_for(value)
+    case value
+    when true then I18n.t('utils.yes')
+    when false then I18n.t('utils.no')
+    when Champs::DropDownListChamp::OTHER then I18n.t('logic.possible_values.other')
+    else value.to_s
     end
   end
 end

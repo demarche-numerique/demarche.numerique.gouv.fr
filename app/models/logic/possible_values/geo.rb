@@ -8,10 +8,32 @@
 class Logic::PossibleValues::Geo < Data.define(:codes)
   DEPARTEMENT_OPERATORS = [Logic::Eq, Logic::NotEq, Logic::InDepartementOperator, Logic::NotInDepartementOperator].map(&:name)
   REGION_OPERATORS = [Logic::InRegionOperator, Logic::NotInRegionOperator].map(&:name)
+  MAX_LISTED = 6
 
   def initialize(codes: APIGeoService.departements.map { it[:code] }) = super(codes: codes.to_set)
 
   def empty? = codes.empty?
+
+  def union(other) = other.is_a?(self.class) ? self.class.new(codes | other.codes) : nil
+
+  # Whole regions by name, the remaining departements one by one, or just how
+  # many when there are too many to list.
+  def to_s(_type_de_champ = nil)
+    return I18n.t('logic.possible_values.geo.all') if codes == self.class.new.codes
+
+    remaining = codes.dup
+    regions = APIGeoService.regions.filter_map do |region|
+      departements = departements_in_region(region[:code])
+      next if departements.empty? || !departements.all? { remaining.include?(it) }
+
+      remaining -= departements
+      region[:name]
+    end
+
+    return I18n.t('logic.possible_values.geo.count', count: codes.size) if regions.size + remaining.size > MAX_LISTED
+
+    (regions + remaining.sort.map { "#{it} – #{APIGeoService.departement_name(it)}" }).join(', ')
+  end
 
   # Every departement the comparisons mention on its own, the rest of every region
   # they mention, and all the other departements together.
