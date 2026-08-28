@@ -119,7 +119,7 @@ RSpec.describe Ami::Client do
   describe '#grant_consent' do
     it 'sends the consent of a France Connect identity' do
       allow(api_client).to receive(:call).and_return(
-        Dry::Monads::Success(API::Client::OK[{ message: "Consent given" }, double])
+        Dry::Monads::Success(API::Client::OK[{ message: "Consent given" }, response])
       )
 
       result = service.grant_consent("abc123")
@@ -134,9 +134,9 @@ RSpec.describe Ami::Client do
       expect(result).to be_success
     end
 
-    # AMI a répondu sans corps par le passé ; le contrat en promet un désormais,
-    # mais requalifier reste inoffensif et couvre les deux formes.
-    it 'accepts an empty body' do
+    # Épingle la borne haute de la plage requalifiée par handle_bodyless_result :
+    # un 201 sans corps est un succès, pas un échec de parsing.
+    it 'accepts an empty body on a 201' do
       allow(api_client).to receive(:call).and_return(
         Dry::Monads::Failure(API::Client::Error[:json, 201, false, "unexpected end of input"])
       )

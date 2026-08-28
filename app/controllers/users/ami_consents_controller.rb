@@ -3,11 +3,8 @@
 module Users
   # Consentement de l'usager au suivi de ses démarches dans l'application
   # mobile AMI. Il vaut pour toutes ses démarches, mais se donne depuis un
-  # dossier : faute d'écriture côté AMI, c'est l'envoi de l'événement de ce
-  # dossier qui vaut consentement.
+  # dossier, dont l'événement est envoyé dans la foulée de l'acceptation.
   class AmiConsentsController < UserController
-    include Dry::Monads[:result]
-
     before_action :set_dossier
     before_action :ensure_consent_available
 
@@ -18,13 +15,8 @@ module Users
     # Mieux vaut avouer l'échec que confirmer un suivi qui n'existe pas : le
     # bouton reste alors affiché, avec un message, pour permettre un nouvel essai.
     def create
-      case Ami::GrantConsent.call(dossier: @dossier)
-      in Success(_)
-        @status = :granted
-        @focus = true
-      in Failure(_)
-        @status = :error
-      end
+      @status = Ami::GrantConsent.call(dossier: @dossier, fc_hash:)
+      @focus = @status == :granted
 
       render :show
     end

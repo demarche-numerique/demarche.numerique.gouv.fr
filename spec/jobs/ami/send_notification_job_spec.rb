@@ -45,7 +45,7 @@ RSpec.describe Ami::SendNotificationJob, type: :job do
   # The first notification is what grants the consent, so asking beforehand
   # would keep it from ever being sent.
   it 'sends without asking when the notification carries the consent' do
-    described_class.perform_now(payload, context, grant_consent: true)
+    described_class.perform_now(payload, context, skip_consent_check: true)
 
     expect(client).to have_received(:send_notification).with(payload)
     expect(Ami::ConsentStatus).not_to have_received(:call)

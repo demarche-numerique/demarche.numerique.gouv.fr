@@ -28,15 +28,15 @@ RSpec.describe Ami::CreateNotificationService do
     end
 
     it 'lets the notification carry the consent when asked to' do
-      described_class.call(dossier:, grant_consent: true)
+      described_class.call(dossier:, skip_consent_check: true)
 
-      expect(Ami::SendNotificationJob).to have_been_enqueued.with(anything, anything, grant_consent: true)
+      expect(Ami::SendNotificationJob).to have_been_enqueued.with(anything, anything, skip_consent_check: true)
     end
 
     it 'does not carry the consent by default' do
       described_class.call(dossier:)
 
-      expect(Ami::SendNotificationJob).to have_been_enqueued.with(anything, anything, grant_consent: false)
+      expect(Ami::SendNotificationJob).to have_been_enqueued.with(anything, anything, skip_consent_check: false)
     end
 
     it 'does not enqueue when feature flag is disabled' do

@@ -8,30 +8,39 @@ module Ami
   # Il n'existe volontairement pas de service de révocation : elle se fait
   # depuis les préférences de l'application mobile.
   #
-  # Retourne le Result de l'écriture du consentement, dont l'appelant a besoin
-  # pour savoir quoi afficher.
+  # Retourne un statut du même vocabulaire que ConsentStatus, prêt pour
+  # AmiConsentStateComponent : :granted ou :error.
   class GrantConsent
-    def self.call(dossier:) = new(dossier).call
+    include Dry::Monads[:result]
 
-    def initialize(dossier)
+    def self.call(dossier:, fc_hash: nil) = new(dossier, fc_hash).call
+
+    def initialize(dossier, fc_hash = nil)
       @dossier = dossier
+      @fc_hash = fc_hash
     end
 
     def call
-      result = Client.new.grant_consent(RecipientFcHash.call(dossier.user))
-      # Sans consentement enregistré, l'événement n'a pas à partir : son contenu
-      # ne doit pas parvenir à AMI.
-      return result if result.failure?
-
-      # grant_consent: le consentement vient d'être accordé, le job n'a pas à le
-      # revérifier — AMI pourrait ne pas l'avoir encore propagé.
-      CreateNotificationService.call(dossier:, grant_consent: true)
-
-      result
+      case Client.new.grant_consent(fc_hash)
+      in Success(_)
+        # skip_consent_check: le consentement vient d'être accordé, le job n'a
+        # pas à le relire — AMI pourrait ne pas l'avoir encore propagé.
+        CreateNotificationService.call(dossier:, skip_consent_check: true)
+        :granted
+      in Failure(API::Client::Error => error)
+        # Sans consentement enregistré, l'événement n'a pas à partir : son
+        # contenu ne doit pas parvenir à AMI.
+        Rails.logger.warn("Ami::GrantConsent failed: #{error.type} code: #{error.code}")
+        :error
+      end
     end
 
     private
 
     attr_reader :dossier
+
+    # L'appelant a déjà le hash sous la main la plupart du temps : le recalculer
+    # coûterait une requête de plus.
+    def fc_hash = @fc_hash ||= RecipientFcHash.call(dossier.user)
   end
 end

@@ -86,13 +86,13 @@ RSpec.describe Users::AmiConsentsController, type: :controller do
 
     before do
       sign_in(user)
-      allow(Ami::GrantConsent).to receive(:call).and_return(Dry::Monads::Success(nil))
+      allow(Ami::GrantConsent).to receive(:call).and_return(:granted)
     end
 
-    it 'grants the consent from the dossier being viewed' do
+    it 'grants the consent from the dossier being viewed, reusing the hash it already has' do
       create_consent
 
-      expect(Ami::GrantConsent).to have_received(:call).with(dossier:)
+      expect(Ami::GrantConsent).to have_received(:call).with(dossier:, fc_hash: "abc123")
     end
 
     it 'confirms the follow-up and moves the focus to it' do
@@ -103,8 +103,7 @@ RSpec.describe Users::AmiConsentsController, type: :controller do
 
     context 'when AMI refused the consent' do
       before do
-        allow(Ami::GrantConsent).to receive(:call)
-          .and_return(Dry::Monads::Failure(API::Client::Error[:http, 500, true, "Boom"]))
+        allow(Ami::GrantConsent).to receive(:call).and_return(:error)
       end
 
       # Mieux vaut avouer l'échec que confirmer un suivi qui n'existe pas.

@@ -98,8 +98,10 @@ module Ami
       end
     end
 
-    # Les endpoints de consentement répondent sans corps : API::Client échoue
-    # alors à parser le JSON et renvoie un échec, bien que l'appel ait réussi.
+    # Le contrat promet un corps aux deux endpoints de consentement, mais AMI a
+    # déjà répondu vide : API::Client échoue alors à parser le JSON et renvoie
+    # un échec, bien que l'appel ait réussi. Filet à retirer une fois le
+    # comportement réel confirmé avec l'équipe AMI.
     def handle_bodyless_result(result)
       case handle_result(result)
       in Failure(API::Client::Error => error) if error.type == :json && error.code.in?(200..299)

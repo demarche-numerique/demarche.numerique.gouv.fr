@@ -9,15 +9,15 @@ class Ami::SendNotificationJob < ApplicationJob
 
   queue_as :default
 
-  # grant_consent: l'usager vient d'accorder son consentement, inutile de le
-  # relire — AMI pourrait ne pas l'avoir encore propagé, et une lecture en 404
-  # ferait abandonner l'envoi silencieusement.
-  def perform(payload, context = {}, grant_consent: false)
+  # skip_consent_check: l'usager vient d'accorder son consentement, inutile de
+  # le relire — AMI pourrait ne pas l'avoir encore propagé, et une lecture en
+  # 404 ferait abandonner l'envoi silencieusement.
+  def perform(payload, context = {}, skip_consent_check: false)
     Sentry.set_tags(context)
 
     fc_hash = payload[:recipient_fc_hash]
     return if fc_hash.blank?
-    return if !grant_consent && !consent_granted?(fc_hash, context)
+    return if !skip_consent_check && !consent_granted?(fc_hash, context)
 
     Rails.logger.debug { "AMI notification sending for dossier #{context[:dossier]}" }
 
