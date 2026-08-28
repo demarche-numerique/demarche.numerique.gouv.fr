@@ -92,7 +92,7 @@ class APIGeoService
 
     def departements
       memoize(:departements) do
-        ([{ code: '99', name: 'Etranger' }] + get_from_api_geo(:departements)).sort_by { _1[:code] }.freeze
+        ([{ code: '99', name: 'Etranger', region_code: '99' }] + get_from_api_geo(:departements)).sort_by { _1[:code] }.freeze
       end
     end
 

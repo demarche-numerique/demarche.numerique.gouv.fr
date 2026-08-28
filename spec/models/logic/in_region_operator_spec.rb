@@ -37,5 +37,14 @@ describe Logic::InRegionOperator do
     context 'departement' do
       it { expect(ds_in_region(champ_value(champ_departement.stable_id), constant('84')).compute([champ_departement])).to be(true) }
     end
+
+    context 'departement Etranger' do
+      let(:champ_departement) { Champs::DepartementChamp.new(value: '99', stable_id: tdc_departement.stable_id, dossier:) }
+
+      it 'is in the region Etranger' do
+        expect(ds_in_region(champ_value(champ_departement.stable_id), constant('99')).compute([champ_departement])).to be(true)
+        expect(ds_in_region(champ_value(champ_departement.stable_id), constant('84')).compute([champ_departement])).to be(false)
+      end
+    end
   end
 end
