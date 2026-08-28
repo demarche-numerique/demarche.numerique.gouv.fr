@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module Ami
+  # Schéma de l'API, sur l'instance de recette :
+  # https://ami-back-staging.osc-fr1.scalingo.io/schema/rapidoc
   class Client
     include Dry::Monads[:result]
 
