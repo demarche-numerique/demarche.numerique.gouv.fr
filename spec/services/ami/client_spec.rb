@@ -78,6 +78,81 @@ RSpec.describe Ami::Client do
     end
   end
 
+  describe '#consent' do
+    it 'reads the consent of a France Connect identity' do
+      allow(api_client).to receive(:call).and_return(
+        Dry::Monads::Success(API::Client::OK[{}, response])
+      )
+
+      result = service.consent("abc123")
+
+      expect(api_client).to have_received(:call).with(
+        url: URI("https://ami.example.org/api/v1/consent/abc123"),
+        method: :get,
+        userpwd: "ami-user:ami-password",
+        timeout: described_class::CONSENT_READ_TIMEOUT
+      )
+      expect(result).to be_success
+    end
+
+    # AMI answers 200 without a body, which API::Client cannot parse as JSON
+    it 'returns success when AMI answers 200 with an empty body' do
+      allow(api_client).to receive(:call).and_return(
+        Dry::Monads::Failure(API::Client::Error[:json, 200, false, "unexpected end of input"])
+      )
+
+      expect(service.consent("abc123")).to be_success
+    end
+
+    it 'returns failure when AMI answers 404' do
+      allow(api_client).to receive(:call).and_return(
+        Dry::Monads::Failure(API::Client::Error[:http, 404, false, "Not found"])
+      )
+
+      result = service.consent("abc123")
+
+      expect(result).to be_failure
+      expect(result.failure.code).to eq(404)
+    end
+  end
+
+  describe '#grant_consent' do
+    it 'sends the consent of a France Connect identity' do
+      allow(api_client).to receive(:call).and_return(
+        Dry::Monads::Success(API::Client::OK[{ message: "Consent given" }, response])
+      )
+
+      result = service.grant_consent("abc123")
+
+      expect(api_client).to have_received(:call).with(
+        url: URI("https://ami.example.org#{described_class::CONSENT_PATH}/abc123"),
+        json: { consent: true },
+        method: :post,
+        userpwd: "ami-user:ami-password",
+        timeout: described_class::CONSENT_WRITE_TIMEOUT
+      )
+      expect(result).to be_success
+    end
+
+    # Épingle la borne haute de la plage requalifiée par handle_bodyless_result :
+    # un 201 sans corps est un succès, pas un échec de parsing.
+    it 'accepts an empty body on a 201' do
+      allow(api_client).to receive(:call).and_return(
+        Dry::Monads::Failure(API::Client::Error[:json, 201, false, "unexpected end of input"])
+      )
+
+      expect(service.grant_consent("abc123")).to be_success
+    end
+
+    it 'returns failure when AMI rejects the call' do
+      allow(api_client).to receive(:call).and_return(
+        Dry::Monads::Failure(API::Client::Error[:http, 500, true, "Boom"])
+      )
+
+      expect(service.grant_consent("abc123")).to be_failure
+    end
+  end
+
   it 'returns retryable failure when API times out' do
     timeout_error = API::Client::HTTPError.new(
       double(
