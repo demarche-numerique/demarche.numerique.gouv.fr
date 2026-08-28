@@ -21,6 +21,10 @@ module Ami
       return :unavailable if !client.configured?
 
       case client.consent(fc_hash)
+      # AMI répond 404 quand le consentement manque, mais son schéma déclare
+      # aussi consent_datetime nullable en 200 : on couvre les deux.
+      in Success(Hash => body) if body[:consent_datetime].blank?
+        :not_granted
       in Success(_)
         :granted
       in Failure(API::Client::Error => error) if error.code == 404

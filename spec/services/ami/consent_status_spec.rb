@@ -18,7 +18,23 @@ RSpec.describe Ami::ConsentStatus do
     expect(described_class.call("abc123")).to eq(:unavailable)
   end
 
-  it 'is granted when AMI answers a success' do
+  it 'is granted when AMI dates the consent' do
+    allow(client).to receive(:consent).with("abc123")
+      .and_return(Dry::Monads::Success(consent_datetime: "2026-08-28T10:00:00Z"))
+
+    expect(described_class.call("abc123")).to eq(:granted)
+  end
+
+  # Le schéma déclare consent_datetime nullable en 200 alors que la description
+  # promet un 404 : on couvre les deux lectures du contrat.
+  it 'is not granted when AMI answers a success without a date' do
+    allow(client).to receive(:consent).with("abc123")
+      .and_return(Dry::Monads::Success(consent_datetime: nil))
+
+    expect(described_class.call("abc123")).to eq(:not_granted)
+  end
+
+  it 'is granted when AMI answers a success without a body' do
     allow(client).to receive(:consent).with("abc123").and_return(Dry::Monads::Success(nil))
 
     expect(described_class.call("abc123")).to eq(:granted)
