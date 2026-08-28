@@ -1,0 +1,7 @@
+<% tdc, parent_tdc = pj %>
+
+<li>
+  <%= tdc.libelle %>
+  <%= "(#{parent_tdc.libelle})" if parent_tdc %>
+  <%= t('utils.no_mandatory') if !tdc.mandatory? %>
+</li>
