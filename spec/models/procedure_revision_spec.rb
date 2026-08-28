@@ -1096,7 +1096,7 @@ describe ProcedureRevision do
     end
   end
 
-  describe '#estimated_fill_duration' do
+  describe '#estimated_fill_duration_range without conditions' do
     let(:mandatory) { true }
     let(:description) { nil }
     let(:description_read_time) { ((description || "").split.size / TypeDeChamp::READ_WORDS_PER_SECOND).round }
@@ -1110,7 +1110,8 @@ describe ProcedureRevision do
     end
     let(:procedure) { create(:procedure, public_type_de_champs: public_type_de_champs) }
 
-    subject { procedure.active_revision.estimated_fill_duration }
+    # Without conditions there is one way through the form: a single estimate.
+    subject { procedure.active_revision.estimated_fill_duration_range.end }
 
     it 'sums the durations of public champs' do
       expect(subject).to eq \
@@ -1192,13 +1193,13 @@ describe ProcedureRevision do
         let(:draft_revision) { procedure.draft_revision }
 
         before do
-          draft_revision.estimated_fill_duration
+          draft_revision.estimated_fill_duration_range
           draft_revision.type_de_champs.first.update!(type_champ: TypeDeChamp.type_champs.fetch(:piece_justificative))
           draft_revision.reload
         end
 
         it 'returns an up-to-date estimate' do
-          expect(draft_revision.estimated_fill_duration).to eq \
+          expect(draft_revision.estimated_fill_duration_range.end).to eq \
               TypeDeChamp::FILL_DURATION_LONG \
             + TypeDeChamp::FILL_DURATION_MEDIUM \
             + TypeDeChamp::FILL_DURATION_LONG \
@@ -1210,11 +1211,105 @@ describe ProcedureRevision do
         let(:published_revision) { procedure.published_revision }
 
         it 'caches the estimate' do
-          expect(published_revision).to receive(:compute_estimated_fill_duration).once
-          published_revision.estimated_fill_duration
-          published_revision.estimated_fill_duration
+          expect(published_revision).to receive(:compute_estimated_fill_duration_range).once.and_return(0..0)
+          published_revision.estimated_fill_duration_range
+          published_revision.estimated_fill_duration_range
         end
       end
+
+      context 'when the draft revision is rendered again without a change' do
+        let(:draft_revision) { procedure.draft_revision }
+
+        it 'caches the estimate' do
+          expect(draft_revision).to receive(:compute_estimated_fill_duration_range).once.and_return(0..0)
+          draft_revision.estimated_fill_duration_range
+          draft_revision.estimated_fill_duration_range
+        end
+      end
+    end
+  end
+
+  describe '#estimated_fill_duration_range' do
+    include Logic
+
+    let(:procedure) { create(:procedure, public_type_de_champs:) }
+    let(:short) { TypeDeChamp::FILL_DURATION_SHORT }
+    let(:long) { TypeDeChamp::FILL_DURATION_LONG }
+
+    subject(:range) { procedure.active_revision.estimated_fill_duration_range }
+
+    context 'without conditions' do
+      let(:public_type_de_champs) { [{ type: :yes_no, mandatory: true, description: nil }, { type: :piece_justificative, mandatory: true, description: nil }] }
+
+      it { is_expected.to eq((short + long)..(short + long)) }
+    end
+
+    context 'with exclusive branches' do
+      let(:public_type_de_champs) do
+        [
+          { type: :yes_no, mandatory: true, description: nil, stable_id: 1 },
+          { type: :piece_justificative, mandatory: true, description: nil, condition: ds_eq(champ_value(1), constant(true)) },
+          { type: :text, mandatory: true, description: nil, condition: ds_eq(champ_value(1), constant(false)) },
+          { type: :text, mandatory: true, description: nil, condition: ds_eq(champ_value(1), constant(false)) },
+        ]
+      end
+
+      it 'ranges from the shortest branch to the longest in time, not in champs' do
+        expect(range).to eq((short + 2 * short)..(short + long))
+      end
+    end
+
+    context 'with an optional source' do
+      let(:public_type_de_champs) do
+        [
+          { type: :yes_no, mandatory: false, description: nil, stable_id: 1 },
+          { type: :piece_justificative, mandatory: true, description: nil, condition: ds_eq(champ_value(1), constant(true)) },
+        ]
+      end
+
+      it 'starts at the blank branch' do
+        expect(range).to eq((short / 2)..(short / 2 + long))
+      end
+    end
+
+    context 'with independent clusters' do
+      let(:public_type_de_champs) do
+        [
+          { type: :yes_no, mandatory: true, description: nil, stable_id: 1 },
+          { type: :yes_no, mandatory: true, description: nil, stable_id: 2 },
+          { type: :piece_justificative, mandatory: true, description: nil, condition: ds_eq(champ_value(1), constant(true)) },
+          { type: :piece_justificative, mandatory: true, description: nil, condition: ds_eq(champ_value(2), constant(true)) },
+        ]
+      end
+
+      it 'adds their ranges' do
+        expect(range).to eq((2 * short)..(2 * short + 2 * long))
+      end
+    end
+
+    context 'with a cluster too big to enumerate' do
+      let(:public_type_de_champs) do
+        [
+          { type: :yes_no, mandatory: true, description: nil, stable_id: 1 },
+          { type: :piece_justificative, mandatory: true, description: nil, condition: ds_eq(champ_value(1), constant(true)) },
+        ]
+      end
+
+      before { stub_const('Logic::Branches::MAX_BRANCHES', 1) }
+
+      it 'falls back to nothing and everything' do
+        expect(range).to eq(short..(short + long))
+      end
+    end
+  end
+
+  describe '#estimated_fill_duration_minutes' do
+    let(:revision) { build(:procedure_revision) }
+
+    it 'rounds to the minute, never below one' do
+      allow(revision).to receive(:estimated_fill_duration_range).and_return(10.seconds..200.seconds)
+
+      expect(revision.estimated_fill_duration_minutes).to eq(1..3)
     end
   end
 
