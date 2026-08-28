@@ -1,0 +1,11 @@
+---
+fr:
+  title: Suivez vos démarches depuis %{app_name}, l’application mobile officielle et gratuite de l’administration française
+  see_in_app: Voir dans l’application
+  more_info: Toutes les infos sur l’application
+  modal:
+    title: Toutes les infos sur %{app_name}
+    body_html: |
+      <p class="fr-text--bold">Vous pouvez à tout moment changer vos préférences de suivi des démarches dans l’application.</p>
+      <p>L’application mobile gratuite et officielle de l’administration française est un service opéré par la direction de l’information légale et administrative et la direction interministérielle du numérique (Services du Premier Ministre), qui permet de <strong>suivre toutes vos démarches</strong>, recevoir des <strong>alertes personnalisées</strong> et <strong>communiquer avec les administrations</strong> dans <strong>une seule application mobile</strong> !</p>
+      <p>Consultez la page « Données personnelles et sécurité » sur le site Service Public et dans l’application pour plus d’informations.</p>
