@@ -1,0 +1,3 @@
+<%= turbo_frame_tag "ami-consent", "aria-live": "polite" do %>
+  <%= render Dossiers::AmiConsentStateComponent.new(status: @status, dossier: @dossier, focus: @focus) %>
+<% end %>
