@@ -1,0 +1,29 @@
+<% if loading? %>
+  <p class="fr-sr-only" aria-busy="true"><%= t('.loading') %></p>
+  <span class="ami-consent__skeleton" aria-hidden="true"></span>
+<% elsif granted? %>
+  <%= tag.p(class: "ami-consent__granted fr-mb-0", **granted_attributes) do %>
+    <span class="fr-icon-check-line fr-icon--sm" aria-hidden="true"></span>
+
+    <%= t('.granted', app_name: Ami::APP_NAME) %>
+  <% end %>
+<% else %>
+  <%#
+    Le turbo-frame parent porte déjà aria-live="polite" : un role="alert"
+    ici ferait annoncer le message deux fois.
+  %>
+  <% if error? %>
+    <p class="fr-error-text fr-mt-0"><%= t('.error') %></p>
+  <% end %>
+  <%= form_with url: form_path, method: :post, data: { turbo: true } do %>
+    <button
+      type="submit"
+      class="
+        fr-btn fr-btn--tertiary-no-outline fr-btn--icon-left
+        fr-icon-notification-3-line
+      "
+    >
+      <%= t('.grant', app_name: Ami::APP_NAME) %>
+    </button>
+  <% end %>
+<% end %>
