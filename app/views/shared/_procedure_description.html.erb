@@ -1,0 +1,156 @@
+<div class="procedure-logos">
+  <%= image_tag procedure.logo_url, alt: '' %>
+
+  <% if procedure.euro_flag %>
+    <%= image_tag("flag_of_europe.svg", id: 'euro_flag', class: (!procedure.euro_flag ? "hidden" : "")) %>
+  <% end %>
+</div>
+
+<h1 class="fr-h2">
+  <%= procedure.libelle %>
+</h1>
+
+<% unless local_assigns[:no_description] %>
+  <% if procedure.persisted? && procedure.estimated_duration_visible? %>
+    <p class="fr-text--sm">
+      <span class="fr-icon-timer-line" aria-hidden="true"></span>
+      <%= t('shared.procedure_description.estimated_fill_duration', estimated_minutes: estimated_fill_duration_minutes(procedure)) %>
+    </p>
+  <% end %>
+  <% if procedure.auto_archive_on %>
+    <p class="fr-text--sm">
+      <span class="fr-icon-calendar-line"></span>
+      <%= t('shared.procedure_description.date_limite', date: procedure_auto_archive_datetime(procedure)) %>
+    </p>
+  <% end %>
+<% end %>
+
+<%= yield %>
+
+<% unless @no_description %>
+  <div class="fr-accordions-group fr-mb-3w">
+    <% cache_unless(procedure.brouillon?, [I18n.locale, procedure, "description"]) do %>
+      <section class="fr-accordion">
+        <h2 class="fr-accordion__title">
+          <button
+            class="fr-accordion__btn"
+            aria-controls="accordion-114"
+            aria-expanded="true"
+          >
+            <%= t('activerecord.attributes.procedure.description') %>
+          </button>
+        </h2>
+
+        <div id="accordion-114" class="fr-collapse">
+          <%= h render(SimpleFormatComponent.new(procedure.description, allow_a: true)) %>
+        </div>
+      </section>
+
+      <% if procedure.description_target_audience.present? %>
+        <section class="fr-accordion">
+          <h2 class="fr-accordion__title">
+            <button
+              class="fr-accordion__btn"
+              aria-controls="accordion-115"
+              aria-expanded="false"
+            >
+              <%= t('activerecord.attributes.procedure.description_target_audience') %>
+            </button>
+          </h2>
+
+          <div id="accordion-115" class="fr-collapse">
+            <%= h render(SimpleFormatComponent.new(procedure.description_target_audience, allow_a: true)) %>
+          </div>
+        </section>
+      <% end %>
+
+      <% if procedure.description_pj.present? %>
+        <section class="fr-accordion pieces_jointes">
+          <h2 class="fr-accordion__title">
+            <button
+              class="fr-accordion__btn"
+              aria-controls="accordion-116"
+              aria-expanded="false"
+            >
+              <%= t('shared.procedure_description.pieces_jointes') %>
+            </button>
+          </h2>
+
+          <div id="accordion-116" class="fr-collapse">
+            <%= h render(SimpleFormatComponent.new(procedure.description_pj, allow_a: true)) %>
+          </div>
+        </section>
+      <% else %>
+        <% pj_without_condition, pj_with_condition = procedure.public_wrapped_partionned_pjs %>
+        <% if pj_without_condition.present? || pj_with_condition.present? %>
+          <section class="fr-accordion pieces_jointes">
+            <h2 class="fr-accordion__title">
+              <button
+                class="fr-accordion__btn"
+                aria-controls="accordion-116"
+                aria-expanded="false"
+              >
+                <%= t('shared.procedure_description.pieces_jointes') %>
+              </button>
+            </h2>
+
+            <div id="accordion-116" class="fr-collapse">
+              <% if pj_without_condition.present? %>
+                <ul>
+                  <%= render partial: "shared/procedure_pieces_jointes_list", collection: pj_without_condition, as: :pj %>
+                </ul>
+              <% end %>
+
+              <% if pj_with_condition.present? %>
+                <h3 class="fr-text--sm fr-mb-0 fr-mt-2w">
+                  <%= t('shared.procedure_description.pieces_jointes_conditionnal_list_title') %>
+                </h3>
+                <ul>
+                  <%= render partial: "shared/procedure_pieces_jointes_list", collection: pj_with_condition, as: :pj %>
+                </ul>
+              <% end %>
+            </div>
+          </section>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% estimated_delay_component = Procedure::EstimatedDelayComponent.new(procedure: procedure, fallback_to_placeholder: current_administrateur&.in?(procedure.administrateurs)) %>
+
+    <% if estimated_delay_component.render? %>
+      <section class="fr-accordion">
+        <h2 class="fr-accordion__title">
+          <button
+            class="fr-accordion__btn"
+            aria-controls="accordion-117"
+            aria-expanded="false"
+          >
+            <%= t('shared.procedure_description.usual_traitement_time_title') %>
+          </button>
+        </h2>
+
+        <div id="accordion-117" class="fr-collapse">
+          <%= render estimated_delay_component %>
+        </div>
+      </section>
+    <% end %>
+  </div>
+  <div class="fr-my-3w">
+    <%= render Procedure::NoticeComponent.new(procedure:) %>
+  </div>
+  <% if procedure.sva_svr_enabled? %>
+    <%= render Dsfr::CalloutComponent.new(title: t('shared.procedure_description.sva_svr_title', rule: t(procedure.sva_svr_decision, scope: 'shared.procedures.sva_svr_rule_name')), icon: "fr-fi-information-line", extra_class_names: "fr-my-6w") do |c| %>
+      <% c.with_body do %>
+        <p>
+          <%= t("#{procedure.sva_svr_decision}_text_html", scope: 'shared.procedure_description') %><%# i18n-tasks-use: t('shared.procedure_description.sva_text_html') t('shared.procedure_description.svr_text_html') %>
+        </p>
+
+        <p class="fr-mt-1w">
+          <%= t('shared.procedure_description.sva_svr_prevision_date',
+            delay: t("x_#{procedure.sva_svr_configuration.unit}", count: procedure.sva_svr_configuration.period.to_i, scope: 'datetime.distance_in_words'),
+            date: l(SVASVRDecisionDateCalculatorService.decision_date_from_today(procedure), format: :long).gsub(' ', " ")) %>
+        </p>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

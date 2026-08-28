@@ -1191,6 +1191,7 @@ en:
         svr: "Silence Vaut Rejet"
     procedure_description:
       estimated_fill_duration: "Estimated fill time: %{estimated_minutes} mins. (may vary depending on the options)"
+      date_limite: "Deadline: %{date}."
       usual_traitement_time_title: What are the processing times for this procedure?
       pieces_jointes : What are the required attachments ?
       pieces_jointes_conditionnal_list_title : Attachments list according to your situation
