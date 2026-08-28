@@ -1,0 +1,10 @@
+---
+en:
+  title: "Depending on %{champs}"
+  title_without_source: "%{champs}, whose condition targets a field gone from the form"
+  none: This form has no condition.
+  never_displayed_title: Fields never displayed
+  never_displayed:
+    one: "No answer displays the field %{champs}."
+    other: "No answer displays the fields %{champs}."
+  capped: This group combines too many answers to be detailed.
