@@ -495,6 +495,13 @@ class API::V2::StoredQuery
     revision @include(if: $includeRevision) {
       ...RevisionFragment
     }
+    routingRules {
+      number
+      label
+      defaut
+      rule
+      ruleExpression
+    }
   }
 
   fragment DeletedDossierFragment on DeletedDossier {
