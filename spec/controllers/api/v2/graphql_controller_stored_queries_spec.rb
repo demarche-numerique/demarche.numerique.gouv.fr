@@ -1029,6 +1029,25 @@ describe API::V2::GraphqlController do
         }
       end
 
+      context 'with a conditioned champ' do
+        let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :yes_no, libelle: 'majeur' }, { libelle: 'justificatif' }], administrateurs: [admin]) }
+        let(:variables) { { demarche: { number: procedure.id }, includeRevision: true } }
+        let(:majeur) { procedure.active_revision.public_root_type_de_champs.first }
+        let(:justificatif) { procedure.active_revision.public_root_type_de_champs.second }
+        let(:descriptors) { gql_data[:demarcheDescriptor][:revision][:champDescriptors] }
+
+        before { justificatif.update!(condition: Logic::Eq.new(Logic::ChampValue.new(majeur.stable_id), Logic::Constant.new(true))) }
+
+        it 'exposes the condition as an expression' do
+          expect(gql_errors).to be_nil
+          expect(descriptors.first).to include(condition: nil, conditionExpression: nil)
+          expect(descriptors.second).to include(
+            condition: ['=', ['champ', majeur.to_typed_id], true],
+            conditionExpression: %{(= (champ "#{majeur.to_typed_id}") true)}
+          )
+        end
+      end
+
       context 'not found' do
         let(:variables) { { demarche: { number: 0 } } }
 

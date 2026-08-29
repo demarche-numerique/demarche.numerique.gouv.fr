@@ -14,4 +14,6 @@ class Logic::Term
   end
 
   def terms = [self]
+
+  def to_sexp = Logic.to_sexp(to_expr)
 end
