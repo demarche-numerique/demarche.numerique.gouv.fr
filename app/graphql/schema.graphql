@@ -4382,6 +4382,26 @@ type IbanChampDescriptor implements ChampDescriptor {
   type: TypeDeChamp! @deprecated(reason: "Utilisez le champ `__typename` à la place.")
 }
 
+"""
+Règle d’inéligibilité d’une révision : un dossier qui la vérifie ne peut pas être déposé.
+"""
+type Ineligibilite {
+  """
+  Message affiché à l’usager lorsque le dossier est inéligible.
+  """
+  message: String!
+
+  """
+  Règle d’inéligibilité.
+  """
+  rule: LogicExpression!
+
+  """
+  Règle d’inéligibilité, rendue sous forme de s-expression.
+  """
+  ruleExpression: String!
+}
+
 type IntegerColumn implements Column {
   id: ID!
 
@@ -5871,6 +5891,11 @@ type Revision {
   """
   datePublication: ISO8601DateTime
   id: ID!
+
+  """
+  Règle d’inéligibilité de la révision (`null` si elle n’est pas activée).
+  """
+  ineligibilite: Ineligibilite
 }
 
 type Row {
