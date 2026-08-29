@@ -1,0 +1,7 @@
+---
+en:
+  shared:
+    champs:
+      drop_down_list:
+        show:
+          dossier_reaffected_to_group: "File reassigned to group “%{label}”"
