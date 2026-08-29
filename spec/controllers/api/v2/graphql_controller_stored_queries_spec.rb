@@ -1079,6 +1079,48 @@ describe API::V2::GraphqlController do
         end
       end
 
+      context 'routing' do
+        let(:procedure) { create(:procedure, :published, :routee, public_type_de_champs: [{ type: :departements, libelle: 'departement' }], administrateurs: [admin]) }
+        let(:variables) { { demarche: { number: procedure.id } } }
+        let(:departement) { procedure.active_revision.public_root_type_de_champs.first }
+        let(:defaut) { procedure.defaut_groupe_instructeur }
+        let(:second) { procedure.groupe_instructeurs.find_by(label: 'deuxième groupe') }
+        let(:routing_rules) { gql_data[:demarcheDescriptor][:routingRules] }
+
+        context 'when routing is not enabled' do
+          let(:procedure) { create(:procedure, :published, administrateurs: [admin]) }
+
+          it 'is null' do
+            expect(gql_errors).to be_nil
+            expect(routing_rules).to be_nil
+          end
+        end
+
+        context 'when routing is enabled' do
+          before do
+            defaut.update!(routing_rule: Logic::NotEq.new(Logic::ChampValue.new(departement.stable_id), Logic::Constant.new('75')))
+            second.update!(routing_rule: Logic::Eq.new(Logic::ChampValue.new(departement.stable_id), Logic::Constant.new('75')))
+          end
+
+          it 'lists the groupes with their rules' do
+            expect(gql_errors).to be_nil
+            expect(routing_rules).to eq([
+              { number: defaut.id, label: defaut.label, defaut: true, rule: ['!=', ['champ', departement.to_typed_id], '75'], ruleExpression: %{(!= (champ "#{departement.to_typed_id}") "75")} },
+              { number: second.id, label: 'deuxième groupe', defaut: false, rule: ['=', ['champ', departement.to_typed_id], '75'], ruleExpression: %{(= (champ "#{departement.to_typed_id}") "75")} },
+            ])
+          end
+
+          context 'with a closed groupe and a groupe without rule' do
+            before do
+              second.update!(closed: true)
+              defaut.update!(routing_rule: nil)
+            end
+
+            it { expect(routing_rules).to eq([]) }
+          end
+        end
+      end
+
       context 'not found' do
         let(:variables) { { demarche: { number: 0 } } }
 

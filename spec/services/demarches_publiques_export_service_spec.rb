@@ -39,6 +39,7 @@ describe DemarchesPubliquesExportService do
         zones: ["Ministère 1"],
         tags: [],
         dossiersCount: 4,
+        routingRules: nil,
         revision: {
           id: procedure.active_revision.to_typed_id,
           datePublication: procedure.published_at.iso8601,
