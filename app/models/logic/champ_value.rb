@@ -59,6 +59,8 @@ class Logic::ChampValue < Logic::Term
     self.new(h['stable_id'])
   end
 
+  def to_expr = [Logic::EXPR_CHAMP, Logic.champ_expr_id(@stable_id)]
+
   def ==(other)
     self.class == other.class && @stable_id == other.stable_id
   end

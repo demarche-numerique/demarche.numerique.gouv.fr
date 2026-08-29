@@ -50,6 +50,8 @@ class Logic::Constant < Logic::Term
     self.new(h['value'])
   end
 
+  def to_expr = @value
+
   def ==(other)
     self.class == other.class && @value == other.value
   end

@@ -21,6 +21,8 @@ class Logic::Empty < Logic::Term
     self.new
   end
 
+  def to_expr = nil
+
   def ==(other)
     self.class == other.class
   end
