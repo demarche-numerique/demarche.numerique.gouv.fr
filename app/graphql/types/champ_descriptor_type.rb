@@ -16,6 +16,8 @@ module Types
     field :label, String, "Libellé du champ.", null: false, method: :libelle
     field :description, String, "Description du champ.", null: true
     field :required, Boolean, "Est-ce que le champ est obligatoire ?", null: false, method: :mandatory?
+    field :condition, Types::LogicExpression, "Condition d’affichage du champ (`null` si le champ est toujours affiché).", null: true
+    field :condition_expression, String, "Condition d’affichage du champ, rendue sous forme de s-expression.", null: true
 
     field :champ_descriptors, [Types::ChampDescriptorType], "Description des champs d’un bloc répétable.", null: true, deprecation_reason: 'Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.'
     field :type, TypeDeChampType, "Type de la valeur du champ.", null: false, method: :type_champ, deprecation_reason: 'Utilisez le champ `__typename` à la place.'
@@ -111,6 +113,14 @@ module Types
           Types::Champs::Descriptor::ARSChampDescriptorType
         end
       end
+    end
+
+    def condition
+      type_de_champ.condition&.to_expr
+    end
+
+    def condition_expression
+      type_de_champ.condition&.to_sexp
     end
 
     def champ_descriptors
