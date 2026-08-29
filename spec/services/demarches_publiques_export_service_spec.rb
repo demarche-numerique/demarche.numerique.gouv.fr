@@ -42,6 +42,7 @@ describe DemarchesPubliquesExportService do
         revision: {
           id: procedure.active_revision.to_typed_id,
           datePublication: procedure.published_at.iso8601,
+          ineligibilite: nil,
           champDescriptors: [
             {
               id: procedure.active_revision.public_root_type_de_champs.first.to_typed_id,

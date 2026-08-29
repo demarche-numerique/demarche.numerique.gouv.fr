@@ -1048,6 +1048,37 @@ describe API::V2::GraphqlController do
         end
       end
 
+      context 'with ineligibilite rules' do
+        let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :integer_number, libelle: 'age' }], administrateurs: [admin]) }
+        let(:variables) { { demarche: { number: procedure.id }, includeRevision: true } }
+        let(:age) { procedure.active_revision.public_root_type_de_champs.first }
+        let(:ineligibilite) { gql_data[:demarcheDescriptor][:revision][:ineligibilite] }
+
+        it 'is null by default' do
+          expect(gql_errors).to be_nil
+          expect(ineligibilite).to be_nil
+        end
+
+        context 'when enabled' do
+          before do
+            procedure.active_revision.update!(
+              ineligibilite_enabled: true,
+              ineligibilite_message: 'Trop jeune',
+              ineligibilite_rules: Logic::LessThan.new(Logic::ChampValue.new(age.stable_id), Logic::Constant.new(18))
+            )
+          end
+
+          it 'exposes the rule as an expression' do
+            expect(gql_errors).to be_nil
+            expect(ineligibilite).to eq(
+              message: 'Trop jeune',
+              rule: ['<', ['champ', age.to_typed_id], 18],
+              ruleExpression: %{(< (champ "#{age.to_typed_id}") 18)}
+            )
+          end
+        end
+      end
+
       context 'not found' do
         let(:variables) { { demarche: { number: 0 } } }
 

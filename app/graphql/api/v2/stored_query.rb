@@ -503,6 +503,11 @@ class API::V2::StoredQuery
   fragment RevisionFragment on Revision {
     id
     datePublication
+    ineligibilite {
+      message
+      rule
+      ruleExpression
+    }
     champDescriptors {
       ...ChampDescriptorFragment
       ... on RepetitionChampDescriptor {
