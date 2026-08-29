@@ -1,0 +1,15 @@
+<p class="copy-zone"><%= champ.to_s %></p>
+
+<% if champ.code? -%>
+  <p class="fr-text--sm copy-zone">
+    <%= t(".insee_code") %>
+    <span data-to-copy="true"><%= champ.code %></span>
+  </p>
+<% end -%>
+
+<% if champ.departement? -%>
+  <p class="fr-text--sm copy-zone">
+    <%= t(".departement") %>
+    <span data-to-copy="true"><%= champ.departement_code_and_name %></span>
+  </p>
+<% end -%>
