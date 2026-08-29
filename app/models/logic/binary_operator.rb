@@ -25,6 +25,8 @@ class Logic::BinaryOperator < Logic::Term
     self.new(Logic.from_h(h['left']), Logic.from_h(h['right']))
   end
 
+  def to_expr = [Logic::EXPR_OPERATORS.fetch(self.class), @left.to_expr, @right.to_expr]
+
   def errors(type_de_champs = [])
     errors = []
 
