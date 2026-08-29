@@ -548,6 +548,7 @@ class API::V2::StoredQuery
     label
     description
     required
+    condition
     ... on DropDownListChampDescriptor {
       options
       otherOption

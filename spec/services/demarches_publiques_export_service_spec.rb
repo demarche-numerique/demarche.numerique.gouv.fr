@@ -49,6 +49,7 @@ describe DemarchesPubliquesExportService do
               description: procedure.active_revision.public_root_type_de_champs.first.description,
               label: procedure.active_revision.public_root_type_de_champs.first.libelle,
               required: true,
+              condition: nil,
               __typename: "TextChampDescriptor",
             },
           ],
