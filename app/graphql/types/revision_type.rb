@@ -8,6 +8,13 @@ module Types
 
     field :champ_descriptors, [Types::ChampDescriptorType], null: false
     field :annotation_descriptors, [Types::ChampDescriptorType], null: false
+    field :ineligibilite, Types::IneligibiliteType, "Règle d’inéligibilité de la révision (`null` si elle n’est pas activée).", null: true
+
+    def ineligibilite
+      if object.ineligibilite_enabled? && object.ineligibilite_rules.present?
+        object
+      end
+    end
 
     def champ_descriptors
       laid_out_revision.public_root_type_de_champs
