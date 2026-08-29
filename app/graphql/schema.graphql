@@ -1799,6 +1799,12 @@ type DemarcheDescriptor {
   number: Int!
   opendata: Boolean!
   revision: Revision!
+
+  """
+  Règles de routage des dossiers vers les groupes instructeurs actifs (`null` si
+  le routage n’est pas activé ; vide si aucune règle n’est encore définie).
+  """
+  routingRules: [RoutingRule!]
   service: Service
 
   """
@@ -5896,6 +5902,36 @@ type Revision {
   Règle d’inéligibilité de la révision (`null` si elle n’est pas activée).
   """
   ineligibilite: Ineligibilite
+}
+
+"""
+Un groupe instructeur et la règle qui lui affecte des dossiers.
+"""
+type RoutingRule {
+  """
+  Groupe qui reçoit les dossiers qu’aucune règle ne route.
+  """
+  defaut: Boolean!
+
+  """
+  Libellé du groupe instructeur.
+  """
+  label: String!
+
+  """
+  Le numero du groupe instructeur.
+  """
+  number: Int!
+
+  """
+  Règle de routage.
+  """
+  rule: LogicExpression!
+
+  """
+  Règle de routage, rendue sous forme de s-expression.
+  """
+  ruleExpression: String!
 }
 
 type Row {
