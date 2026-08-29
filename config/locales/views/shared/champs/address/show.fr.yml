@@ -1,0 +1,9 @@
+fr:
+  shared:
+    champs:
+      address:
+        show:
+          code_insee: "Code INSEE :"
+          departement: "Département :"
+          address_known_from_ban: "L’adresse est connue de la"
+          pays: "Pays :"
