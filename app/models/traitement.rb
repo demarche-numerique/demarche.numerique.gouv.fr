@@ -29,7 +29,6 @@ class Traitement < ApplicationRecord
   end
 
   def termine? = state.in?(Dossier::TERMINE)
-  def has_changes? = revision_id.present? && event.in?([:depose_correction_usager, :depose_correction_instructeur])
 
   EVENT = [
     :depose,
@@ -80,12 +79,11 @@ class Traitement < ApplicationRecord
     end
   end
 
+  # Only corrections (usager or instructeur) record a checkpoint.
   def changed_columns
-    if has_changes?
-      ChangedColumn.columns(revision, changed_champs, reference_champs)
-    else
-      []
-    end
+    return [] if checkpoint.blank?
+
+    ChangedColumn.columns(revision, changed_champs, reference_champs)
   end
 
   def instructeur
@@ -99,8 +97,6 @@ class Traitement < ApplicationRecord
   # The champs replaced by this correction: they were moved to the checkpoint
   # history stream by the merge. Rows removed by the correction only exist here.
   def reference_champs
-    return {} if checkpoint.blank?
-
     changed_public_ids = changed_champs.keys
     dossier.champ_data
       .filter { _1.stream == checkpoint && (_1.public_id.in?(changed_public_ids) || removed_row_champ?(_1)) }
@@ -118,8 +114,6 @@ class Traitement < ApplicationRecord
   # The champs merged by this correction. A later correction on the same champ
   # moves them to a newer history stream but keeps their checkpoint.
   def changed_champs
-    return {} if checkpoint.blank?
-
     dossier.champ_data.filter { _1.checkpoint == checkpoint }.index_by(&:public_id)
   end
 
