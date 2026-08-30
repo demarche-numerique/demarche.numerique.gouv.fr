@@ -55,9 +55,17 @@ class ChangedColumn
 
       value = column.value(champ)
       previous_value = column.value(reference_champ)
-      return nil if value == previous_value
+      return nil if comparable(column, value) == comparable(column, previous_value)
 
       new(column, value, previous_value, row_id:)
+    end
+
+    # Attachments are cloned (new attachment rows) when a champ is copied to a
+    # buffer stream, so compare the files themselves rather than the records.
+    def comparable(column, value)
+      return value if column.type != :attachments
+
+      Array(value).map { it.blob.checksum }.sort
     end
   end
 end
