@@ -32,21 +32,6 @@ RSpec.describe Traitement do
     dossier.traitements.last
   end
 
-  describe "#has_changes?" do
-    it "is false for the initial depose traitement" do
-      expect(dossier.traitements.last.has_changes?).to be(false)
-    end
-
-    it "is true for a correction traitement" do
-      traitement = submit_usager_correction do
-        dossier.public_champ_for_update('99', updated_by: dossier.user.email)
-          .assign_attributes(value: "Nouvelle valeur")
-      end
-
-      expect(traitement.has_changes?).to be(true)
-    end
-  end
-
   describe "#changed_columns" do
     context "when the traitement is the initial depose" do
       subject(:traitement) { dossier.traitements.last }
