@@ -10,7 +10,9 @@ class ChangedColumn
     @previous_value = previous_value
   end
 
-  def value(_ = nil) = @value
+  # The GraphQL column types call `column.value(parent)` for both a Column
+  # (parent is the champ) and a ChangedColumn (value already computed).
+  def value(_parent = nil) = @value
 
   class << self
     # `champs` are the champs carrying the change (a buffer stream, or the
@@ -20,12 +22,14 @@ class ChangedColumn
     def columns(revision, champs, reference_champs)
       discarded_row_ids = champs.values.filter { it.row? && it.discarded? }.map(&:row_id).to_set
       champs = champs.reject { |_, champ| champ.row_id.in?(discarded_row_ids) }
-      row_ids = (champs.values + reference_champs.values).map(&:row_id).compact.uniq.sort
+      all_champs = champs.values + reference_champs.values
 
       revision.public_root_type_de_champs.flat_map do |type_de_champ|
         if type_de_champ.repetition?
           prefix = type_de_champ.libelle
           type_de_champs = revision.children_of(type_de_champ)
+          child_stable_ids = type_de_champs.map(&:stable_id).to_set
+          row_ids = all_champs.filter { child_stable_ids.include?(it.stable_id) }.map(&:row_id).uniq.sort
           row_ids.flat_map do |row_id|
             type_de_champs.filter_map do |type_de_champ|
               public_id = type_de_champ.public_id(row_id)
