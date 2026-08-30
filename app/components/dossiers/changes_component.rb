@@ -38,10 +38,8 @@ class Dossiers::ChangesComponent < ApplicationComponent
     when :enum
       column.label_for_value(value)
     when :date
-      value = Date.parse(value) if value.is_a?(String)
       I18n.l(value, format: :short)
     when :datetime
-      value = Time.zone.parse(value) if value.is_a?(String)
       I18n.l(value, format: :short_with_time)
     else
       value.to_s
