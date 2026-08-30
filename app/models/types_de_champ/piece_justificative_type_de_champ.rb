@@ -143,6 +143,22 @@ class TypesDeChamp::PieceJustificativeTypeDeChamp < TypeDeChamp
     end
   end
 
+  # The canonical titre d'identité column is an export column ("– filled"
+  # suffix); the files themselves stay hidden, so a change is still reported
+  # as présent/absent but under the plain libellé.
+  def change_column(procedure_id:, prefix: nil)
+    return super unless titre_identite?
+
+    Columns::TitreIdentiteColumn.new(
+      procedure_id:,
+      stable_id:,
+      tdc_type: type_champ,
+      label: libelle_with_prefix(prefix),
+      type: :text,
+      mandatory: mandatory?
+    )
+  end
+
   def columns(procedure_id:, displayable: true, prefix: nil)
     cs = []
 

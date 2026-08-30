@@ -23,13 +23,13 @@ class ChangedColumn
           row_ids.flat_map do |row_id|
             type_de_champs.filter_map do |type_de_champ|
               public_id = type_de_champ.public_id(row_id)
-              column = type_de_champ.canonical_column(procedure_id: revision.procedure_id, prefix:)
+              column = type_de_champ.change_column(procedure_id: revision.procedure_id, prefix:)
               diff_column(column, champs[public_id], reference_champs[public_id])
             end
           end
         else
           public_id = type_de_champ.public_id(nil)
-          column = type_de_champ.canonical_column(procedure_id: revision.procedure_id)
+          column = type_de_champ.change_column(procedure_id: revision.procedure_id)
           [diff_column(column, champs[public_id], reference_champs[public_id])].compact
         end
       end
