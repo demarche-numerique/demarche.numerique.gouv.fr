@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ChangedColumn
-  delegate :label, :type, :id, :stable_id, :label_for_value, to: :@column
+  delegate :label, :type, :id, :h_id, :stable_id, :label_for_value, to: :@column
   attr_reader :previous_value
 
   def initialize(column, value, previous_value)

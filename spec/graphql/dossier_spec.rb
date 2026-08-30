@@ -653,6 +653,13 @@ RSpec.describe Types::DossierType, type: :graphql do
           a_hash_including(label: "Texte", stringValue: "Nouvelle valeur")
         )
       end
+
+      it 'exposes a global id for the changed column' do
+        expect(errors).to be_nil
+
+        correction = traitements.find { _1[:event] == 'depose_correction_usager' }
+        expect(correction[:changedColumns].first[:id]).to eq(GraphQL::Schema::UniqueWithinType.encode('Column', 'type_de_champ/99'))
+      end
     end
 
     context 'when the usager corrects a champ inside a repetition' do
@@ -835,6 +842,7 @@ RSpec.describe Types::DossierType, type: :graphql do
       traitements {
         event
         changedColumns {
+          id
           label
           stringValue
         }
