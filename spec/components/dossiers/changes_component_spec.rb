@@ -46,6 +46,37 @@ RSpec.describe Dossiers::ChangesComponent, type: :component do
     end
   end
 
+  context 'with a false boolean value' do
+    let(:changed_column) { build_changed_column(label: 'Accord', type: :boolean, value: false, previous_value: true) }
+
+    it 'renders "Non" rather than a removal' do
+      expect(subject).to have_selector('strong', text: 'Non')
+      expect(subject).not_to have_content('La valeur a été supprimée')
+    end
+  end
+
+  context 'with a datetime value' do
+    let(:changed_column) { build_changed_column(label: 'Rendez-vous', type: :datetime, value: Time.zone.local(2026, 6, 16, 14, 30)) }
+
+    it 'renders a formatted date and time' do
+      expect(subject).to have_selector('strong', text: I18n.l(Time.zone.local(2026, 6, 16, 14, 30), format: :short_with_time))
+    end
+  end
+
+  context 'with number values' do
+    let(:changed_columns) do
+      [
+        build_changed_column(label: 'Entier', type: :integer, value: 42),
+        build_changed_column(label: 'Décimal', type: :decimal, value: 3.14),
+      ]
+    end
+
+    it 'renders the numbers' do
+      expect(subject).to have_selector('strong', text: '42')
+      expect(subject).to have_selector('strong', text: '3.14')
+    end
+  end
+
   context 'with a date value' do
     let(:changed_column) { build_changed_column(label: 'Date', type: :date, value: Date.new(2026, 6, 16)) }
 
@@ -88,6 +119,17 @@ RSpec.describe Dossiers::ChangesComponent, type: :component do
 
     it 'does not list unchanged values' do
       expect(subject).not_to have_selector('strong', text: 'Musique')
+    end
+
+    context 'when only the order changed' do
+      let(:changed_column) do
+        build_changed_column(label: 'Choix', type: :enums, value: ['Danse', 'Musique'], previous_value: ['Musique', 'Danse'])
+      end
+
+      it 'says the value has been changed' do
+        expect(subject).to have_content('La valeur a été modifiée')
+        expect(subject).not_to have_content('Ajouté :')
+      end
     end
   end
 
