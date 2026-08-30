@@ -96,21 +96,20 @@ class Traitement < ApplicationRecord
 
   private
 
+  # The champs replaced by this correction: they were moved to the checkpoint
+  # history stream by the merge. Rows removed by the correction only exist here.
   def reference_champs
-    if checkpoint.present?
-      changed_keys = changed_champs.keys
-      dossier.champ_data.filter { _1.stream == checkpoint && _1.public_id.in?(changed_keys) }
-    else
-      []
-    end.index_by(&:public_id)
+    return {} if checkpoint.blank?
+
+    dossier.champ_data.filter { _1.stream == checkpoint }.index_by(&:public_id)
   end
 
+  # The champs merged by this correction. A later correction on the same champ
+  # moves them to a newer history stream but keeps their checkpoint.
   def changed_champs
-    if checkpoint.present?
-      dossier.champ_data.filter { _1.checkpoint == checkpoint && !_1.row? }
-    else
-      []
-    end.index_by(&:public_id)
+    return {} if checkpoint.blank?
+
+    dossier.champ_data.filter { _1.checkpoint == checkpoint }.index_by(&:public_id)
   end
 
   def previous_state

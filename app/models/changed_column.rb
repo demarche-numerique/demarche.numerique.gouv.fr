@@ -13,8 +13,14 @@ class ChangedColumn
   def value(_ = nil) = @value
 
   class << self
+    # `champs` are the champs carrying the change (a buffer stream, or the
+    # champs merged at a checkpoint), `reference_champs` the champs they
+    # replace. A reference champ without counterpart, or whose row `champs`
+    # discards, is reported as removed.
     def columns(revision, champs, reference_champs)
-      row_ids = champs.values.map(&:row_id).compact.uniq.sort
+      discarded_row_ids = champs.values.filter { it.row? && it.discarded? }.map(&:row_id).to_set
+      champs = champs.reject { |_, champ| champ.row_id.in?(discarded_row_ids) }
+      row_ids = (champs.values + reference_champs.values).map(&:row_id).compact.uniq.sort
 
       revision.public_root_type_de_champs.flat_map do |type_de_champ|
         if type_de_champ.repetition?
@@ -38,7 +44,7 @@ class ChangedColumn
     private
 
     def diff_column(column, champ, reference_champ)
-      return nil if column.nil? || champ.nil?
+      return nil if column.nil? || (champ.nil? && reference_champ.nil?)
 
       value = column.value(champ)
       previous_value = column.value(reference_champ)
