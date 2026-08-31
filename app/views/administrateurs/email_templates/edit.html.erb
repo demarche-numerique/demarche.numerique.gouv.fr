@@ -23,7 +23,7 @@
 <% preview_url = preview_admin_procedure_email_template_path(@procedure, @email_template.class.const_get(:SLUG)) %>
 <% tags = @email_template.tags_categorized %>
 
-<%= form_for @email_template,
+<%= form_for @email_template, as: Emails::PARAM_KEY,
       url: admin_procedure_email_template_path(@procedure, @email_template.class.const_get(:SLUG)),
       method: :put do |f| %>
   <div id="mail-template-edit" class="fr-container fr-my-4w">

@@ -15,7 +15,7 @@ describe 'As an administrateur i can edit a mail template with the tiptap editor
 
     # The default template body (Trix HTML + `--tags--`, including a `<br>`) must be
     # converted and loaded into the editor, not silently dropped as invalid content.
-    within('#emails_passe_en_instruction_tiptap_body_editor') do
+    within('#email_template_tiptap_body_editor') do
       expect(page).to have_content('Bonjour')
       expect(page).to have_css('.fr-tag', text: 'numéro du dossier')
     end
@@ -27,16 +27,16 @@ describe 'As an administrateur i can edit a mail template with the tiptap editor
       find('button[data-tag-id="dossier_number"]').click
     end
 
-    within('#emails_passe_en_instruction_tiptap_body_editor') do
+    within('#email_template_tiptap_body_editor') do
       expect(page).to have_css('.fr-tag', text: 'numéro du dossier')
     end
 
     # The subject offers the same tags, hidden behind a show/hide toggle.
     click_on 'Balises disponibles'
-    within('#emails_passe_en_instruction_tiptap_subject_tags') do
+    within('#email_template_tiptap_subject_tags') do
       find('button[data-tag-id="dossier_number"]').click
     end
-    within('#emails_passe_en_instruction_tiptap_subject_editor') do
+    within('#email_template_tiptap_subject_editor') do
       expect(page).to have_css('.fr-tag', text: 'numéro du dossier')
     end
 

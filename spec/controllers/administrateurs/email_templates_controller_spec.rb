@@ -52,17 +52,17 @@ describe Administrateurs::EmailTemplatesController, type: :controller do
     it 'enregistre json_body et json_subject' do
       put :update, params: {
         procedure_id: procedure.id, id: 'passe_en_instruction',
-        emails_passe_en_instruction: { tiptap_body: json_body, tiptap_subject: json_subject },
+        email_template: { tiptap_body: json_body, tiptap_subject: json_subject },
       }
       mail = procedure.reload.email_passe_en_instruction
       expect(mail.json_body).to eq(JSON.parse(json_body))
       expect(mail.json_subject).to eq(JSON.parse(json_subject))
     end
 
-    it 'accepte le param_key d’un formulaire rendu avant le renommage' do
+    it 'accepte le param_key par type d’un formulaire rendu avant l’unification' do
       put :update, params: {
         procedure_id: procedure.id, id: 'passe_en_instruction',
-        mails_received_mail: { tiptap_body: json_body, tiptap_subject: json_subject },
+        emails_passe_en_instruction: { tiptap_body: json_body, tiptap_subject: json_subject },
       }
       expect(procedure.reload.email_passe_en_instruction.json_body).to eq(JSON.parse(json_body))
     end
@@ -86,7 +86,7 @@ describe Administrateurs::EmailTemplatesController, type: :controller do
       it 'ré-affiche l’éditeur avec l’aperçu sans planter et n’enregistre pas' do
         put :update, params: {
           procedure_id: procedure.id, id: 'passe_en_instruction',
-          emails_passe_en_instruction: { tiptap_subject: invalid_subject },
+          email_template: { tiptap_subject: invalid_subject },
         }
         expect(response).to have_http_status(:ok)
         expect(procedure.reload.email_passe_en_instruction).to be_nil
@@ -115,7 +115,7 @@ describe Administrateurs::EmailTemplatesController, type: :controller do
     it 'renvoie un turbo_stream mettant à jour l’aperçu du corps' do
       post :preview, params: {
         procedure_id: procedure.id, id: 'passe_en_instruction',
-        emails_passe_en_instruction: { tiptap_body: json_body },
+        email_template: { tiptap_body: json_body },
       }, format: :turbo_stream
       expect(response.media_type).to eq('text/vnd.turbo-stream.html')
       expect(response.body).to include('mail-body-preview')
