@@ -310,7 +310,7 @@ RSpec.describe DossierStateConcern do
     end
   end
 
-  describe 'declarative combined email' do
+  describe 'declarative combined notifications' do
     let(:procedure) { create(:procedure, :published, :for_individual, declarative_with_state:) }
     let(:dossier) { create(:dossier, :brouillon, :with_individual, procedure:) }
     let(:deliveries) { ActionMailer::Base.deliveries }
@@ -335,29 +335,37 @@ RSpec.describe DossierStateConcern do
     context 'when the procedure is not declarative' do
       let(:declarative_with_state) { nil }
 
-      it 'sends the proof of receipt alone' do
-        expect { deposer_dossier }.to change { deliveries.size }.by(1)
+      it 'sends the proof of receipt alone, and posts it once in the messagerie' do
+        expect { deposer_dossier }
+          .to change { deliveries.size }.by(1)
+          .and change { dossier.commentaires.count }.by(1)
 
         expect(deliveries.last.subject).to eq(depose_subject)
+        expect(dossier.commentaires.last.body).to include('a bien été déposé')
       end
     end
 
     context 'when the procedure is declarative en instruction' do
       let(:declarative_with_state) { Dossier.states.fetch(:en_instruction) }
 
-      it 'sends the combined email alone' do
-        expect { deposer_dossier }.to change { deliveries.size }.by(1)
+      it 'sends the combined email alone, and posts it once in the messagerie' do
+        expect { deposer_dossier }
+          .to change { deliveries.size }.by(1)
+          .and change { dossier.commentaires.count }.by(1)
 
         expect(dossier.reload).to be_en_instruction
         expect(deliveries.last.subject).to include('a bien été déposé et va être examiné')
         expect(body_of(deliveries.last)).to include('pris en charge')
+        expect(dossier.commentaires.last.body).to include('a bien été déposé et va être examiné', 'pris en charge')
       end
 
       context 'and it stays on the legacy emails' do
         before { procedure.update!(combined_declarative_email: false) }
 
-        it 'sends both historical emails' do
-          expect { deposer_dossier }.to change { deliveries.size }.by(2)
+        it 'sends both historical emails, and posts them both in the messagerie' do
+          expect { deposer_dossier }
+            .to change { deliveries.size }.by(2)
+            .and change { dossier.commentaires.count }.by(2)
 
           expect(deliveries.last(2).map(&:subject))
             .to contain_exactly(depose_subject, passe_en_instruction_subject)
@@ -368,14 +376,17 @@ RSpec.describe DossierStateConcern do
         let(:procedure) { create(:procedure, :published, :for_individual, declarative_with_state:, auto_archive_on: 1.day.from_now) }
         let!(:dossier) { create(:dossier, :en_construction, :with_individual, procedure:, declarative_triggered_at: 1.day.ago) }
 
-        it 'sends the passage en instruction email, not a second proof of receipt' do
+        it 'sends and posts the passage en instruction template, not a second proof of receipt' do
           travel_to(2.days.from_now)
 
           expect { perform_enqueued_jobs(only: PriorizedMailDeliveryJob) { AutoArchiveProcedureDossiersJob.perform_now(procedure) } }
             .to change { deliveries.size }.by(1)
+            .and change { dossier.commentaires.count }.by(1)
 
           expect(dossier.reload).to be_en_instruction
           expect(deliveries.last.subject).to eq(passe_en_instruction_subject)
+          expect(dossier.commentaires.last.body).to include('a bien été reçu', 'pris en charge')
+          expect(dossier.commentaires.last.body).not_to include('déposé')
         end
       end
     end
@@ -383,19 +394,24 @@ RSpec.describe DossierStateConcern do
     context 'when the procedure is declarative accepte' do
       let(:declarative_with_state) { Dossier.states.fetch(:accepte) }
 
-      it 'sends the combined email alone, with the decision date substituted' do
-        expect { deposer_dossier }.to change { deliveries.size }.by(1)
+      it 'sends the combined email alone, with the decision date substituted in the email and in the messagerie' do
+        expect { deposer_dossier }
+          .to change { deliveries.size }.by(1)
+          .and change { dossier.commentaires.count }.by(1)
 
         expect(dossier.reload).to be_accepte
         expect(deliveries.last.subject).to include('a bien été déposé et a été accepté')
         expect(body_of(deliveries.last)).to include("a été accepté le #{decision_date}")
+        expect(dossier.commentaires.last.body).to include('a bien été déposé', "a été accepté le #{decision_date}")
       end
 
       context 'and it stays on the legacy emails' do
         before { procedure.update!(combined_declarative_email: false) }
 
-        it 'sends both historical emails' do
-          expect { deposer_dossier }.to change { deliveries.size }.by(2)
+        it 'sends both historical emails, and posts them both in the messagerie' do
+          expect { deposer_dossier }
+            .to change { deliveries.size }.by(2)
+            .and change { dossier.commentaires.count }.by(2)
 
           expect(deliveries.last(2).map(&:subject))
             .to contain_exactly(depose_subject, accepte_subject)
@@ -406,14 +422,17 @@ RSpec.describe DossierStateConcern do
         let(:procedure) { create(:procedure, :published, :for_individual, declarative_with_state:, auto_archive_on: 1.day.from_now) }
         let!(:dossier) { create(:dossier, :en_construction, :with_individual, procedure:) }
 
-        it 'sends the passage en instruction email, the decision not being taken' do
+        it 'sends and posts the passage en instruction template, the decision not being taken' do
           travel_to(2.days.from_now)
 
           expect { perform_enqueued_jobs(only: PriorizedMailDeliveryJob) { AutoArchiveProcedureDossiersJob.perform_now(procedure) } }
             .to change { deliveries.size }.by(1)
+            .and change { dossier.commentaires.count }.by(1)
 
           expect(dossier.reload).to be_en_instruction
           expect(deliveries.last.subject).to eq(passe_en_instruction_subject)
+          expect(dossier.commentaires.last.body).to include('a bien été reçu', 'pris en charge')
+          expect(dossier.commentaires.last.body).not_to include('accepté')
         end
       end
 
@@ -426,10 +445,12 @@ RSpec.describe DossierStateConcern do
               Cron::StalledDeclarativeProceduresJob.perform_now
             end
           }.to change { deliveries_to(dossier).size }.by(1)
+            .and change { dossier.commentaires.count }.by(1)
 
           expect(dossier.reload).to be_accepte
           expect(deliveries_to(dossier).last.subject).to include('a bien été déposé et a été accepté')
           expect(body_of(deliveries_to(dossier).last)).to include("a été accepté le #{decision_date}")
+          expect(dossier.commentaires.last.body).to include('a bien été déposé', "a été accepté le #{decision_date}")
         end
       end
 
@@ -447,12 +468,14 @@ RSpec.describe DossierStateConcern do
       let(:procedure) { create(:procedure, :published, :for_individual, :sva, :accuse_lecture) }
       let(:dossier) { create(:dossier, :en_instruction, :with_individual, procedure:, sva_svr_decision_on: Date.current) }
 
-      it 'still sends the accusé de lecture' do
+      it 'still sends the accusé de lecture, and keeps the decision out of the messagerie' do
         expect { perform_enqueued_jobs(only: PriorizedMailDeliveryJob) { dossier.accepter_automatiquement! } }
           .to change { deliveries.size }.by(1)
+          .and change { dossier.commentaires.count }.by(1)
 
         expect(deliveries.last.subject)
           .to eq(I18n.t('notification_mailer.send_accuse_lecture_notification.subject', dossier_id: dossier.id, libelle: procedure.libelle.truncate_words(50)))
+        expect(dossier.commentaires.last.body).to include('décision sur votre dossier a été rendue')
       end
     end
   end

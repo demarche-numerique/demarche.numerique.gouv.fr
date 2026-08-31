@@ -40,7 +40,9 @@ module DossierStateConcern
 
     RoutingEngine.compute(self)
 
-    EmailTemplatePresenterService.create_commentaire_for_state(self, Dossier.states.fetch(:en_construction))
+    if !procedure.send_combined_declarative_email? # otherwise posted by the automatic transition
+      EmailTemplatePresenterService.create_commentaire_for_state(self, Dossier.states.fetch(:en_construction))
+    end
     procedure.compute_dossiers_count
 
     process_declarative!
@@ -115,7 +117,9 @@ module DossierStateConcern
     DossierNotification.destroy_notifications_by_dossier_and_type(self, :dossier_expirant)
   end
 
-  def after_passer_automatiquement_en_instruction
+  def after_passer_automatiquement_en_instruction(h = {})
+    declarative_trigger = h.fetch(:declarative_trigger, false)
+
     self.conservation_extension = 0.days
     self.en_instruction_at = traitements.passer_en_instruction.processed_at
     self.expired_at = expiration_date
@@ -126,7 +130,12 @@ module DossierStateConcern
 
     save!
 
-    EmailTemplatePresenterService.create_commentaire_for_state(self, Dossier.states.fetch(:en_instruction))
+    state = if combined_declarative_accuse_reception?(declarative_trigger)
+      Dossier.states.fetch(:en_construction)
+    else
+      Dossier.states.fetch(:en_instruction)
+    end
+    EmailTemplatePresenterService.create_commentaire_for_state(self, state)
 
     if procedure.sva_svr_enabled?
       log_automatic_dossier_operation(:passer_en_instruction, self)
@@ -224,7 +233,13 @@ module DossierStateConcern
 
     save!
 
-    EmailTemplatePresenterService.create_commentaire_for_state(self, Dossier.states.fetch(:accepte))
+    # en_construction désigne le modèle de dépôt : le combiné porte déjà la décision
+    state = if combined_declarative_acceptation?
+      Dossier.states.fetch(:en_construction)
+    else
+      Dossier.states.fetch(:accepte)
+    end
+    EmailTemplatePresenterService.create_commentaire_for_state(self, state)
 
     log_automatic_dossier_operation(:accepter, self)
   end
