@@ -25,7 +25,7 @@ module Administrateurs
 
       if @commentaire.errors.empty?
         commentaire_url = gestionnaire_groupe_gestionnaire_commentaire_url(@groupe_gestionnaire, @commentaire)
-        @groupe_gestionnaire.gestionnaires.each do |gestionnaire|
+        @groupe_gestionnaire.gestionnaires.includes(:groupe_gestionnaires, :commentaire_groupe_gestionnaires).find_each do |gestionnaire|
           GroupeGestionnaireMailer.notify_new_commentaire_groupe_gestionnaire(@groupe_gestionnaire, @commentaire, @commentaire.sender_email, gestionnaire.email, commentaire_url).deliver_later
         end
         current_administrateur.mark_commentaire_as_seen
