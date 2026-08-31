@@ -80,6 +80,17 @@ RSpec.describe NotificationMailer, type: :mailer do
       end
     end
 
+    context "when the attestation generation fails" do
+      before do
+        allow(TypstService).to receive(:generate_pdf).and_raise(TypstService::Error, 'PDF generation failed')
+      end
+
+      it 'still sends the notification, without the attachment' do
+        expect(mail.subject).to eq("Votre dossier n° #{dossier.id} a bien été déposé (#{procedure.libelle})")
+        expect(mail.attachments).to be_empty
+      end
+    end
+
     context "with a custom template" do
       let(:email_template) { create(:email_depose, subject: 'Email subject', body: 'Your dossier was received. Thanks.', procedure:) }
 

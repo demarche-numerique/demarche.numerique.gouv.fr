@@ -119,6 +119,10 @@ module Users
         filename: t('users.dossiers.show.attestation_depot.filename', dossier_id: @dossier.id),
         type: 'application/pdf',
         disposition: 'attachment'
+    rescue TypstService::Error => e
+      Sentry.capture_exception(e, extra: { dossier_id: @dossier.id })
+      flash.alert = 'L’attestation de dépôt est momentanément indisponible. Veuillez réessayer dans quelques instants.'
+      redirect_to dossier_path(@dossier)
     end
 
     def set_accuse_lecture_agreement_at

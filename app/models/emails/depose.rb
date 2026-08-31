@@ -13,6 +13,11 @@ module Emails
         filename: I18n.t('users.dossiers.show.attestation_depot.filename', dossier_id: dossier.id),
         content: dossier.generate_or_reuse_attestation_depot,
       }
+    rescue TypstService::Error => e
+      # The attestation is a nicety: never let its generation failure block
+      # the depose notification email itself.
+      Sentry.capture_exception(e, extra: { dossier_id: dossier.id })
+      nil
     end
   end
 end

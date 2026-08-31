@@ -194,6 +194,29 @@
         89
       ],
       "note": "The table and column are escaped, which should make this safe"
+    },
+    {
+      "warning_type": "Command Injection",
+      "warning_code": 14,
+      "fingerprint": "49a10bce57ffc8ef0c1b323660a4d33f9b1b90ec2c41836a539f13ba528545df",
+      "check_name": "Execute",
+      "message": "Possible command injection",
+      "file": "app/services/typst_service.rb",
+      "line": 33,
+      "link": "https://brakemanscanner.org/docs/warning_types/command_injection/",
+      "code": "Open3.capture3(\"typst\", \"compile\", \"--pdf-standard\", \"ua-1\", \"--root\", Rails.root.to_s, \"--font-path\", FONTS_DIR.to_s, \"--ignore-system-fonts\", \"--input\", \"data=#{Tempfile.new.path.delete_prefix(Rails.root.to_s)}\", TEMPLATES_DIR.join(\"#{template}.typ\").to_s, \"-\", :binmode => true)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "TypstService",
+        "method": "self.generate_pdf"
+      },
+      "user_input": "Tempfile.new.path.delete_prefix(Rails.root.to_s)",
+      "confidence": "Medium",
+      "cwe_id": [
+        77
+      ],
+      "note": "The command is executed without a shell (argv array via Open3); the interpolated values are single argv elements and cannot inject commands. The tempfile path comes from Tempfile.create, and the template name is a hardcoded caller constant - neither is user input."
     }
   ],
   "brakeman_version": "8.0.4"

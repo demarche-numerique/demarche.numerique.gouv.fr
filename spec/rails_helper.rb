@@ -107,6 +107,23 @@ RSpec.configure do |config|
     allow_any_instance_of(BlobProcessorJob).to receive(:perform)
   end
 
+  # TypstService shells out to the typst binary, which is only installed in
+  # the :external_deps CI job. Stub it by default so flows that attach the
+  # attestation de depot (dossier submission email) work everywhere - but
+  # keep the payload boundary honest: an unknown template or an
+  # unserializable payload fails in every spec, not only in the
+  # :external_deps job running the real compiler.
+  config.before(:each) do |example|
+    next if example.metadata[:external_deps]
+
+    allow(TypstService).to receive(:generate_pdf) do |template, data|
+      raise ArgumentError, "unknown typst template: #{template}" if !TypstService::TEMPLATES_DIR.join("#{template}.typ").exist?
+
+      JSON.generate(data)
+      '%PDF-1.4 stubbed-by-rails-helper'
+    end
+  end
+
   # By default, forgery protection is disabled in the test environment.
   # (See `config.action_controller.allow_forgery_protection` in `config/test.rb`)
   #

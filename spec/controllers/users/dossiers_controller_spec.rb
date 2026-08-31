@@ -2277,7 +2277,7 @@ describe Users::DossiersController, type: :controller do
       let(:dossier) { dossiers.en_construction }
 
       before do
-        allow(WeasyprintService).to receive(:generate_pdf).and_return("%PDF-1.4 fake")
+        allow(TypstService).to receive(:generate_pdf).and_return("%PDF-1.4 fake")
       end
 
       it 'sends a PDF document' do
@@ -2285,16 +2285,30 @@ describe Users::DossiersController, type: :controller do
         expect(response.headers['Content-Type']).to include('application/pdf')
       end
 
-      it 'calls WeasyPrint with the correct context' do
+      it 'calls Typst with the correct payload' do
         subject
-        expect(WeasyprintService).to have_received(:generate_pdf)
-          .with(a_string_matching(/#{dossier.procedure.libelle}/), { procedure_id: dossier.procedure.id, dossier_id: dossier.id })
+        expect(TypstService).to have_received(:generate_pdf)
+          .with('attestation_depot', hash_including(procedure: dossier.procedure.libelle))
       end
 
-      it 'includes dossier identity in the HTML' do
+      it 'includes the dossier identity in the payload' do
         subject
-        expect(WeasyprintService).to have_received(:generate_pdf)
-          .with(a_string_matching(/#{dossier.individual.prenom}/), anything)
+        expect(TypstService).to have_received(:generate_pdf)
+          .with('attestation_depot', hash_including(description: a_string_matching(/#{dossier.individual.prenom}/)))
+      end
+    end
+
+    context 'when the PDF generation fails' do
+      let(:dossier) { dossiers.en_construction }
+
+      before do
+        allow(TypstService).to receive(:generate_pdf).and_raise(TypstService::Error, 'PDF generation failed')
+      end
+
+      it 'redirects to the dossier with an alert instead of a 500' do
+        subject
+        expect(response).to redirect_to(dossier_path(dossier))
+        expect(flash.alert).to include('momentanément indisponible')
       end
     end
 

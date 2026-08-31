@@ -171,6 +171,34 @@ jobs:
         # - poppler-utils for pdf previews
         run: sudo apt-get update && sudo apt-get install -y libvips-dev gsfonts rustc poppler-utils
 
+      - name: Install typst and veraPDF
+        # PDF generation (typst) and PDF/UA validation (veraPDF) for the
+        # attestation Typst specs
+        run: |
+          curl -fsSL "https://github.com/typst/typst/releases/download/v0.15.0/typst-x86_64-unknown-linux-musl.tar.xz" \
+            | sudo tar -xJ --strip-components=1 -C /usr/local/bin typst-x86_64-unknown-linux-musl/typst
+          curl -fsSL "https://software.verapdf.org/rel/verapdf-installer.zip" -o /tmp/verapdf-installer.zip
+          unzip -q /tmp/verapdf-installer.zip -d /tmp/verapdf-installer
+          cat > /tmp/verapdf-auto-install.xml <<EOF
+          <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+          <AutomatedInstallation langpack="eng">
+            <com.izforge.izpack.panels.htmlhello.HTMLHelloPanel id="welcome"/>
+            <com.izforge.izpack.panels.target.TargetPanel id="install_dir">
+              <installpath>$HOME/verapdf</installpath>
+            </com.izforge.izpack.panels.target.TargetPanel>
+            <com.izforge.izpack.panels.packs.PacksPanel id="sdk_pack_select">
+              <pack index="0" name="veraPDF Mac and *nix Scripts" selected="true"/>
+              <pack index="1" name="veraPDF Validation model" selected="false"/>
+              <pack index="2" name="veraPDF Documentation" selected="false"/>
+              <pack index="3" name="veraPDF Sample Plugins" selected="false"/>
+            </com.izforge.izpack.panels.packs.PacksPanel>
+            <com.izforge.izpack.panels.install.InstallPanel id="install"/>
+            <com.izforge.izpack.panels.finish.FinishPanel id="finish"/>
+          </AutomatedInstallation>
+          EOF
+          /tmp/verapdf-installer/verapdf-greenfield-*/verapdf-install /tmp/verapdf-auto-install.xml
+          echo "$HOME/verapdf" >> "$GITHUB_PATH"
+
       - name: Run tests
         run: |
           bin/rspec --tag slow --tag external_deps --tag ~llm_eval --format progress --format RspecJunitFormatter

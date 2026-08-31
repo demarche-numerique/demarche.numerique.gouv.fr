@@ -5,6 +5,7 @@ class Dossier < ApplicationRecord
   # attributes would carry a full-text blob on every dossier instance.
   self.ignored_columns += [:search_terms, :private_search_terms, :search_terms_tsvector, :all_search_terms_tsvector]
 
+  include DossierAttestationDepotConcern
   include DossierCloneConcern
   include DossierCorrectableConcern
   include DossierFranceConnectPrefillConcern
@@ -885,15 +886,7 @@ class Dossier < ApplicationRecord
       return attestation_depot_pdf.blob.download
     end
 
-    html = ApplicationController.render(
-      template: 'users/dossiers/attestation_depot',
-      layout: 'attestation',
-      assigns: { dossier: self }
-    )
-
-    options = { procedure_id: procedure.id, dossier_id: id }
-
-    pdf = WeasyprintService.generate_pdf(html, options)
+    pdf = TypstService.generate_pdf('attestation_depot', attestation_depot_typst_data)
 
     attestation_depot_pdf.attach(
       io: StringIO.new(pdf),
