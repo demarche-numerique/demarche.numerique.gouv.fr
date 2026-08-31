@@ -1,0 +1,185 @@
+# HTML print profile - the contract between our document templates and the
+# PDF renderer (WeasyPrint today; a future HTML -> Typst compiler).
+#
+# Scope: the *rendered* HTML sent to the PDF service, i.e. after ERB,
+# TiptapService#to_html and the sanitizer have run. Three document families:
+#   - attestation v2       (admin-authored TipTap content)
+#   - attestation de depot (static template)
+#   - dossier vide         (generated empty form)
+#
+# spec/lint/pdf_profile_spec.rb renders a representative corpus of each family
+# and fails when the output uses an element, attribute, class or inline style
+# not listed here. Extending a template therefore starts by extending this
+# profile. This is deliberate: the profile is exactly what an HTML -> Typst
+# compiler will have to implement, and anything outside it must be a compile
+# error rather than silently-dropped styling.
+#
+# Findings recorded by the harvest (spec/fixtures/pdf_profile/):
+#   - The sanitizer applied to admin bodies (attestation_template_v2s/show +
+#     config/application.rb) keeps <mark> but strips <a> and <footer>,
+#     keeping their text content. TipTap links and footers therefore never
+#     reach the renderer today; re-allowing them is a separate decision.
+#   - Block-level mention presentations are spliced out of their enclosing
+#     paragraph as raw "</p><ul>...</ul><p>" (TiptapService
+#     #handle_presentation_node); HTML5 parsing normalizes this into sibling
+#     elements, and a compiler must parse (not regex) the input to see it.
+
+version: 1
+
+# element => allowed attributes
+elements:
+  # Document shell - metadata for the PDF compiler (title, lang), not content.
+  html: [lang]
+  head: []
+  meta: [name, content]
+  title: []
+  link: [rel, href, media]
+  body: [id]
+
+  # Structure
+  div: [class, style, aria-hidden]
+  section: [class]
+  header: [class]
+  footer: [class]
+  h1: [class, style]
+  h2: [class, style]
+  h3: [class, style]
+  h4: [class, style]
+  h5: [class, style]
+  h6: [class, style]
+  p: [class, style]
+  dl: [class]
+  dt: [class]
+  dd: [class]
+  ul: [class]
+  ol: [class]
+  li: [class]
+
+  # Inline
+  a: [href, target, rel, title] # target/rel come from SimpleFormatComponent auto-links; meaningless in PDF
+  span: [class, aria-hidden]
+  strong: []
+  em: []
+  u: []
+  mark: []
+  br: []
+
+  # Media
+  img: [src, alt, class, width]
+
+# Every class carries meaning for the print stylesheet / future Typst theme.
+classes:
+  # attestation shell (layouts/attestation + attestation_template_v2s/show)
+  - a4-container
+  - official-layout
+  - content
+  - first-header
+  - left
+  - right
+  - bloc-marque
+  - marianne
+  - marianne-with-devise
+  - intitule
+  - devise
+  - logo-co-emetteur
+  - logo-free-layout
+  - direction
+  - direction-block
+  - direction-label
+  - direction-site
+  - logo-site
+  - main
+  - signature
+  # TipTap output (TiptapService#to_html + ChampPresentations)
+  - body-start
+  - page-break
+  - tdc-repetition
+  - invisible
+  # attestation de depot
+  - attestation-depot
+  - attestation-depot-header
+  - attestation-depot-title
+  - attestation-depot-procedure
+  - attestation-depot-description
+  - attestation-depot-section
+  # dossier vide (DossierVidePdfComponent)
+  - logo
+  - header
+  - identity
+  - field-pair
+  - champ
+  - champ--conditional
+  - label
+  - description
+  - explication
+  - explanation
+  - condition
+  - mailing
+  - presentation
+  - annexes
+  - annex
+  - annex-options
+  - box
+  - box--line
+  - box--block
+  - options
+  - option
+  - secondary
+  - checkbox
+
+# style="..." - the only inline styling in the corpus is TipTap's textAlign.
+inline_styles:
+  text-align: [left, center, right, justify]
+
+# ---------------------------------------------------------------------------
+# CSS stylesheet profile - DRAFT, not yet enforced by the lint spec.
+# Derived from attestation.scss and dossier_vide_pdf.scss.
+#   direct: properties a Typst compiler maps one-to-one
+#   idioms: patterns recognized as a whole, not general CSS support
+#   reject: forbidden (mostly WeasyPrint-era layout workarounds)
+css:
+  selectors:
+    - element
+    - .class
+    - element.class
+    - 'ancestor descendant (one level)'
+  properties:
+    direct:
+      - font-family
+      - font-size
+      - font-weight
+      - font-style
+      - line-height
+      - color
+      - background-color
+      - text-align
+      - text-decoration
+      - white-space
+      - margin (+ margin-*)
+      - padding (+ padding-*)
+      - width
+      - height
+      - max-width
+      - max-height
+      - border
+      - break-before
+      - break-after
+      - page-break-before
+      - column-count
+      - column-gap
+      - gap
+      - visibility
+      - list-style
+    idioms:
+      - '@font-face (Marianne)'
+      - '@page + margin boxes (A4, margins, page counter, running footer)'
+      - 'display: grid + grid-template-columns on dl (key/value table)'
+      - 'display: inline-block (logo rows)'
+      - 'display: block / none'
+    reject:
+      - 'display: flex / inline-flex (and justify-content, align-items, flex-direction, flex)'
+      - 'position: absolute / relative / running()'
+      - float
+      - z-index
+      - vertical-align
+      - box-shadow
