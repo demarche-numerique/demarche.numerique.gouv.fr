@@ -131,6 +131,15 @@ classes:
 inline_styles:
   text-align: [left, center, right, justify]
 
+# Subset of `elements` allowed in admin-authored (TipTap) bodies - the runtime
+# sanitizer in attestation_template_v2s/show enforces exactly this list (via
+# PdfProfile). TipTap can also emit <a> and <footer>, which the sanitizer
+# deliberately strips (see Findings above); style declarations are filtered
+# down to the `inline_styles` whitelist by PdfProfile::AdminContentScrubber.
+admin_content:
+  elements: [header, div, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, br, strong, em, u, mark]
+  attributes: [class, style]
+
 # ---------------------------------------------------------------------------
 # CSS stylesheet profile - DRAFT, not yet enforced by the lint spec.
 # Derived from attestation.scss and dossier_vide_pdf.scss.

@@ -33,7 +33,7 @@
     <%- end -%>
 
     <div class="main">
-      <%= sanitize(@body, attributes: %w[class style], tags: Rails.configuration.action_view.sanitized_allowed_tags + %w[header]) %>
+      <%= sanitize(@body, scrubber: PdfProfile.admin_content_scrubber) %>
 
       <%- if @signature&.attached? -%>
         <div class="signature">

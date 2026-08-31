@@ -166,6 +166,43 @@ describe 'PDF HTML print profile' do
     check_profile!('attestation_v2_free_layout', render_attestation_v2(free_layout))
   end
 
+  it 'attestation v2 sanitizes hostile admin HTML down to the profile' do
+    hostile = <<~HTML
+      <script>alert("xss")</script>
+      <blockquote>citation</blockquote>
+      <img src="tracker.png" alt="pixel">
+      <a href="https://exemple.gouv.fr" target="_blank">lien</a>
+      <footer>pied</footer>
+      <p style="color: red; text-align: center">aligné</p>
+      <mark>surligné</mark>
+    HTML
+    attestation_template = FactoryBot.build(:attestation_template, :v2)
+
+    html = ApplicationController.render(
+      template: '/administrateurs/attestation_template_v2s/show',
+      formats: [:html],
+      layout: 'attestation',
+      assigns: { attestation_template:, body: hostile, signature: nil }
+    )
+
+    check_profile!('attestation_v2_hostile', html)
+
+    main = Nokogiri::HTML5(html).at_css('.main')
+    expect(main.css('script, blockquote, img, a, footer')).to be_empty
+    expect(main.text).not_to include('alert')
+    expect(main.text).to include('citation', 'lien', 'pied')
+    expect(main.at_css('mark').text).to eq('surligné')
+
+    aligned = main.css('p[style]').find { it.text == 'aligné' }
+    expect(aligned['style']).to include('text-align')
+    expect(aligned['style']).not_to include('color')
+  end
+
+  it 'admin_content stays a subset of the profile elements' do
+    expect(PdfProfile.admin_content_tags - profile['elements'].keys).to be_empty
+    expect(PdfProfile.admin_content_attributes - %w[class style]).to be_empty
+  end
+
   it 'attestation de dépôt' do
     stub_const('DIRECTION_LABEL', 'Direction interministérielle du numérique')
 
