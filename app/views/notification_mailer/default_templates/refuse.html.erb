@@ -8,6 +8,10 @@
 <p><%= t('notification_mailer.default_templates.refuse.reason_title') %></p>
 <blockquote><%= t('notification_mailer.default_templates.refuse.reason_content', motivation: '--motivation--') %></blockquote>
 <p>
+<% if with_attestation %>
+<%= t('notification_mailer.default_templates.download_attestation', link: '--lien attestation--') %>
+<% else %>
 <%= t('notification_mailer.default_templates.refuse.more_info', link: '--lien dossier--') %>
+<% end %>
 </p>
 <%= render partial: "notification_mailer/default_templates/signature" %>

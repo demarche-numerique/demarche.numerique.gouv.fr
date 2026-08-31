@@ -6,6 +6,10 @@
 <strong><%= t('notification_mailer.default_templates.accepte.accepted', date: '--date de décision--') %></strong>
 </p>
 <p>
+<% if with_attestation %>
+<%= t('notification_mailer.default_templates.download_attestation', link: '--lien attestation--') %>
+<% else %>
 <%= t('notification_mailer.default_templates.accepte.consultation_info', link: '--lien dossier--') %>
+<% end %>
 </p>
 <%= render partial: "notification_mailer/default_templates/signature" %>
