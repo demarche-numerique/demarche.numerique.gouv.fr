@@ -51,8 +51,10 @@ module DossierStateConcern
   end
 
   def after_commit_passer_en_construction
-    NotificationMailer.send_depose_notification(self).deliver_later
-    NotificationMailer.send_notification_for_tiers(self).deliver_later if self.for_tiers?
+    if !procedure.send_combined_declarative_email? # otherwise sent by the automatic transition
+      NotificationMailer.send_depose_notification(self).deliver_later
+      NotificationMailer.send_notification_for_tiers(self).deliver_later if self.for_tiers?
+    end
     enqueue_ami_notification
     groupe_instructeur.instructeurs.with_instant_email_new_dossier(self.procedure).each do |instructeur|
       DossierMailer.notify_new_dossier_depose_to_instructeur(self, instructeur.email).deliver_later
@@ -133,8 +135,14 @@ module DossierStateConcern
     end
   end
 
-  def after_commit_passer_automatiquement_en_instruction
-    NotificationMailer.send_en_instruction_notification(self).deliver_later
+  def after_commit_passer_automatiquement_en_instruction(h = {})
+    declarative_trigger = h.fetch(:declarative_trigger, false)
+
+    if combined_declarative_accuse_reception?(declarative_trigger)
+      NotificationMailer.send_depose_notification(self).deliver_later # combined accusé de réception
+    else
+      NotificationMailer.send_en_instruction_notification(self).deliver_later # depot already acknowledged, or auto archive
+    end
     NotificationMailer.send_notification_for_tiers(self).deliver_later if self.for_tiers?
     enqueue_ami_notification
     DossierNotification.destroy_notifications_by_dossier_and_type(self, :dossier_depose)
@@ -224,7 +232,10 @@ module DossierStateConcern
   def after_commit_accepter_automatiquement
     enqueue_attestation_generation
 
-    if procedure.accuse_lecture?
+    if combined_declarative_acceptation?
+      # the combined accusé de réception announces the acceptation, accusé de lecture included
+      NotificationMailer.send_depose_notification(self).deliver_later
+    elsif procedure.accuse_lecture?
       NotificationMailer.send_accuse_lecture_notification(self).deliver_later
     else
       NotificationMailer.send_accepte_notification(self).deliver_later
@@ -408,6 +419,20 @@ module DossierStateConcern
   end
 
   private
+
+  # Seul le dépôt déclaratif porte l’accusé de réception : l’auto archivage et
+  # la sva empruntent la même transition et gardent le passage en instruction.
+  # D’où le drapeau, que seuls le dépôt et son cron de rattrapage passent.
+  def combined_declarative_accuse_reception?(declarative_trigger)
+    declarative_trigger && procedure.send_combined_declarative_email? && procedure.declarative_en_instruction?
+  end
+
+  # L’acceptation automatique se passe de drapeau : son guard réserve déjà la
+  # transition au premier déclenchement déclaratif, et rien ne remet ensuite
+  # declarative_triggered_at à nil.
+  def combined_declarative_acceptation?
+    procedure.send_combined_declarative_email? && procedure.declarative_accepte?
+  end
 
   def remove_not_in_revision_champs!
     champ_data.where.not(stable_id: revision_stable_ids).where(stream: Dossier::MAIN_STREAM).destroy_all

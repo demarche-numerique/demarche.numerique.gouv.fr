@@ -974,7 +974,7 @@ class Dossier < ApplicationRecord
     if procedure.declarative_accepte? && may_accepter_automatiquement?
       accepter_automatiquement!
     elsif procedure.declarative_en_instruction? && may_passer_automatiquement_en_instruction?
-      passer_automatiquement_en_instruction!
+      passer_automatiquement_en_instruction!(declarative_trigger: true)
     end
   end
 

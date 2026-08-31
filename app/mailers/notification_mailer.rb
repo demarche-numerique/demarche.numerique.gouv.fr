@@ -85,12 +85,19 @@ class NotificationMailer < ApplicationMailer
   private
 
   def set_jdma
-    return unless JDMA_STATES.include?(params[:state])
+    return if @dossier.skip_user_notification_email?
+    return if !JDMA_STATES.include?(params[:state])
 
+    # On utilise le widget de l'administrateur s'il en a collé un.
     @jdma_link = MonAvisEmbed.new(@dossier.procedure.monavis_embed).link_href("email")
-    # Le lien Services Publics + porte sur le traitement du dossier : pas de repli
-    # sur l'accusé de réception, où le dossier n'est pas encore traité.
-    @jdma_link ||= ENV['SERVICES_PUBLICS_PLUS_URL'].presence if Dossier::TERMINE.include?(params[:state])
+    return if @jdma_link.present?
+
+    # Sinon, Services Publics + porte sur le traitement du dossier. C'est l'état
+    # visé par le modèle qui tranche, et non celui passé au mailer : l'email
+    # déclaratif combiné annonce l'acceptation depuis « en construction ».
+    if @email_template.class::DOSSIER_STATE.in?(Dossier::TERMINE)
+      @jdma_link = ENV['SERVICES_PUBLICS_PLUS_URL'].presence
+    end
   end
 
   def set_dossier
@@ -101,14 +108,14 @@ class NotificationMailer < ApplicationMailer
       mail.perform_deliveries = false
     else
       I18n.with_locale(@dossier.user_locale) do
-        email_template = @dossier.email_template_for(params[:state])
+        @email_template = @dossier.email_template_for(params[:state])
         email_template_presenter = EmailTemplatePresenterService.new(@dossier, params[:state])
 
         @email = @dossier.user_email_for(:notification)
         @rendered_template = email_template_presenter.safe_body
         @subject = email_template_presenter.safe_subject
-        @actions = email_template.actions_for_dossier(@dossier)
-        @attachment = email_template.attachment_for_dossier(@dossier)
+        @actions = @email_template.actions_for_dossier(@dossier)
+        @attachment = @email_template.attachment_for_dossier(@dossier)
       end
     end
   end

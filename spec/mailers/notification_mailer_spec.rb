@@ -181,6 +181,25 @@ RSpec.describe NotificationMailer, type: :mailer do
       end
     end
 
+    context 'on the combined declarative email, sent once the dossier is processed' do
+      let(:monavis_embed) { nil }
+      let(:procedure) { create(:simple_procedure, :with_service, monavis_embed:, declarative_with_state: :accepte) }
+      let(:dossier) { create(:dossier, :accepte, :with_individual, user: user, procedure:) }
+
+      subject(:mail) { described_class.send_depose_notification(dossier) }
+
+      before do
+        stub_request(:post, WEASYPRINT_URL).to_return(body: '%PDF-1.4 fake')
+        allow(ENV).to receive(:[]).and_call_original
+        allow(ENV).to receive(:[]).with('SERVICES_PUBLICS_PLUS_URL').and_return('https://www.plus.transformation.gouv.fr/experience')
+      end
+
+      it 'falls back to the instance-wide feedback link' do
+        expect(body).to include('Comment s’est passée cette démarche ?')
+        expect(body).to include('https://www.plus.transformation.gouv.fr/experience')
+      end
+    end
+
     context 'with both the procedure embed and the instance-wide url' do
       let(:dossier) { create(:dossier, :accepte, :with_individual, user: user, procedure:) }
 
