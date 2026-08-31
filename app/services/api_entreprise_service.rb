@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class APIEntrepriseService
+  DEGRADED_CODES = [401, 403, 409].freeze
+
   class << self
     include Dry::Monads[:result]
 
@@ -55,6 +57,9 @@ class APIEntrepriseService
       in Failure(type: :rate_limited => type, code:, **)
         degraded(dossier_or_champ, siret, user_id, type:, code:)
       in Failure(type:, code:, retryable: true, **) if !APIEntreprise::HealthChecker.provider_up?(:insee_sirene)
+        degraded(dossier_or_champ, siret, user_id, type:, code:)
+      in Failure(type:, code:, **) if DEGRADED_CODES.include?(code)
+        Sentry.capture_message("API Entreprise: #{type}", level: :error, extra: { siret:, code: }) if code.in?([401, 403])
         degraded(dossier_or_champ, siret, user_id, type:, code:)
       in result
         result

@@ -560,7 +560,11 @@ describe Users::DossiersController, type: :controller do
         let(:api_etablissement_status) { 200 }
         let(:token_expired) { true }
 
-        it_behaves_like 'the request fails with an error', I18n.t('errors.messages.siret.network_error')
+        it 'creates an etablissement in degraded mode instead of blocking the user' do
+          dossier.reload
+          expect(dossier.etablissement.siret).to eq(siret)
+          expect(dossier.etablissement).to be_as_degraded_mode
+        end
       end
 
       context 'when all API informations available' do

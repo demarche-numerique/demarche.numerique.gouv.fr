@@ -175,6 +175,45 @@ describe APIEntrepriseService do
       end
     end
 
+    [401, 403, 409].each do |status|
+      context "when API returns #{status}" do
+        before do
+          stub_request(:get, /https:\/\/entreprise.api.gouv.fr\/v4\/insee\/sirene\/etablissements\/#{siret}/)
+            .to_return(body: '', status:)
+        end
+
+        it 'falls back to degraded mode' do
+          expect(subject).to be_failure
+          expect(subject.failure[:degraded]).to be true
+          expect(subject.failure[:etablissement]).to be_as_degraded_mode
+        end
+      end
+    end
+
+    context 'when API returns 401 (our own credentials are broken)' do
+      before do
+        stub_request(:get, /https:\/\/entreprise.api.gouv.fr\/v4\/insee\/sirene\/etablissements\/#{siret}/)
+          .to_return(body: '', status: 401)
+      end
+
+      it 'reports to Sentry' do
+        expect(Sentry).to receive(:capture_message).with(/API Entreprise/, hash_including(level: :error))
+        subject
+      end
+    end
+
+    context 'when API returns 409 (no Sentry, nothing we can fix)' do
+      before do
+        stub_request(:get, /https:\/\/entreprise.api.gouv.fr\/v4\/insee\/sirene\/etablissements\/#{siret}/)
+          .to_return(body: '', status: 409)
+      end
+
+      it 'does not report to Sentry' do
+        expect(Sentry).not_to receive(:capture_message)
+        subject
+      end
+    end
+
     context 'when API returns 451' do
       before do
         stub_request(:get, /https:\/\/entreprise.api.gouv.fr\/v4\/insee\/sirene\/etablissements\/#{siret}/)
