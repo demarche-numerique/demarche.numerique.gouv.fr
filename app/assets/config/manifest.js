@@ -5,5 +5,4 @@
 //= link administrate/application.js
 //= link manager.css
 //= link attestation.css
-//= link dossier_vide_pdf.css
 //= link_tree ../../../node_modules/@gouvfr/dsfr/dist/artwork

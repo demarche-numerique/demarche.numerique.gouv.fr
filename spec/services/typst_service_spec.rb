@@ -43,6 +43,62 @@ describe TypstService do
       expect(data[:marianne][:path]).to be_nil
     end
 
+    # Known limitation of the file resolver: a remote logo (the web layouts
+    # accept a URL through image_url) renders as the alt-text placeholder.
+    it 'leaves a URL-configured logo unresolved' do
+      stub_const('LOGO_SRC', 'https://cdn.exemple.fr/logo.png')
+
+      expect(data[:logo][:path]).to be_nil
+    end
+
+    context 'instance without a Marianne block (empty LOGO_MARIANNE_SRC)' do
+      before { stub_const('LOGO_MARIANNE_SRC', '') }
+
+      it 'omits the block entirely instead of rendering an empty frame' do
+        expect(data[:marianne]).to be_nil
+      end
+    end
+
+    context 'instance with a Marianne block' do
+      before { stub_const('LOGO_MARIANNE_SRC', 'Marianne-Light@2x.png') }
+
+      it 'resolves it with its alt text' do
+        expect(data[:marianne]).to eq(path: '/app/assets/images/Marianne-Light@2x.png', alt: 'Logo Marianne, République Française')
+      end
+    end
+
+    context 'without DIRECTION_LABEL (empty default)' do
+      before { stub_const('DIRECTION_LABEL', '') }
+
+      it 'omits the direction line and keeps the site name' do
+        expect(data[:direction_label]).to be_nil
+        expect(data[:direction_site]).to eq(APPLICATION_NAME)
+      end
+    end
+
+    context 'with DIRECTION_LABEL' do
+      before { stub_const('DIRECTION_LABEL', 'Direction Interministérielle du Numérique') }
+
+      it { expect(data[:direction_label]).to eq('Direction Interministérielle du Numérique') }
+    end
+
+    it 'lays out the title, the sections and the identity rows', :external_deps do
+      require_tool!('typst')
+
+      document = described_class.query('attestation_depot', data, '(headings: headings(), tables: tables(), paragraphs: paragraphs())')
+
+      expect(document['headings']).to eq([
+        { 'level' => 1, 'text' => 'Attestation de dépôt' },
+        { 'level' => 2, 'text' => 'Identité du demandeur' },
+        { 'level' => 2, 'text' => 'Dossier' },
+        { 'level' => 2, 'text' => 'Service administratif' },
+      ])
+      expect(document['tables'].first).to include('Prénom', 'Jeanne', 'Nom', 'DUPONT')
+      expect(document['tables'].second).to start_with('Numéro de dossier', dossier.id.to_s)
+      # (only explicit par() calls are queryable: the signature lines are, the description block is not)
+      expect(document['paragraphs'].last(2)).to eq(data[:signature])
+    end
+
     it 'renders a PDF that passes veraPDF PDF/UA-1 validation', :external_deps do
       require_tool!('typst')
 
@@ -114,6 +170,39 @@ describe TypstService do
 
       expect { described_class.generate_pdf('attestation_depot', {}) }
         .to raise_error(described_class::Error, /PDF generation failed/)
+    end
+
+    it 'wraps a non-executable binary or an unwritable tmp/ in the service error class' do
+      allow(Open3).to receive(:capture3).and_raise(Errno::EACCES.new('typst'))
+
+      expect { described_class.generate_pdf('attestation_depot', {}) }
+        .to raise_error(described_class::Error, /PDF generation failed: Permission denied/)
+    end
+  end
+
+  describe '.query' do
+    let(:success) { instance_double(Process::Status, success?: true) }
+
+    it 'evaluates the expression in the rendered template, with the introspection helpers in scope' do
+      argv = nil
+      allow(Open3).to receive(:capture3) do |*args, **|
+        argv = args
+        ['{"headings":[{"level":1,"text":"Titre"}]}', '', success]
+      end
+
+      result = described_class.query('attestation_depot', { title: 'Titre' }, 'headings()')
+
+      expect(result).to eq('headings' => [{ 'level' => 1, 'text' => 'Titre' }])
+      expect(argv[0..1]).to eq(['typst', 'eval'])
+      expect(argv[argv.index('--in') + 1]).to eq(TypstService::TEMPLATES_DIR.join('attestation_depot.typ').to_s)
+      expect(argv.last).to include('import "/lib/typst/introspection.typ": *', 'headings()')
+    end
+
+    it 'raises the service error on an invalid expression' do
+      allow(Open3).to receive(:capture3).and_return(['', 'error: unknown variable', instance_double(Process::Status, success?: false)])
+
+      expect { described_class.query('attestation_depot', {}, 'nope()') }
+        .to raise_error(described_class::Error, /document query failed: error: unknown variable/)
     end
   end
 end

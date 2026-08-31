@@ -183,43 +183,32 @@ module Users
       filename = "#{@procedure.libelle}.pdf"
 
       if @procedure.feature_enabled?(:dossier_vide_weasyprint)
-        send_data(dossier_vide_weasyprint_pdf(revision), filename:, type: 'application/pdf')
+        send_data(dossier_vide_typst_pdf(revision), filename:, type: 'application/pdf')
       else
         send_data(render_dossier_vide_prawn, filename:)
       end
     rescue StandardError => e
-      # Any failure of the new WeasyPrint path falls back to the proven Prawn rendering.
+      # Any failure of the new Typst path falls back to the proven Prawn rendering.
       Sentry.capture_exception(e, extra: { procedure_id: @procedure.id })
       send_data(render_dossier_vide_prawn, filename:)
     end
 
     # A published PDF is cached in Active Storage, behind a cache key built from
     # everything it depends on. The draft ("test") PDF is never cached.
-    def dossier_vide_weasyprint_pdf(revision)
-      return render_dossier_vide_weasyprint(revision) if revision.draft?
+    def dossier_vide_typst_pdf(revision)
+      return render_dossier_vide_typst(revision) if revision.draft?
 
       procedure = revision.procedure
       cache_key = procedure.dossier_vide_pdf_cache_key_for(revision)
 
       return procedure.dossier_vide_pdf.download if procedure.dossier_vide_pdf_fresh?(cache_key)
 
-      render_dossier_vide_weasyprint(revision)
+      render_dossier_vide_typst(revision)
         .tap { procedure.store_dossier_vide_pdf(it, cache_key:) }
     end
 
-    def render_dossier_vide_weasyprint(revision)
-      html = render_to_string(
-        Dossiers::DossierVidePdfComponent.new(revision:),
-        layout: 'dossier_vide_pdf',
-        formats: [:html]
-      )
-
-      options = {
-        procedure_id: revision.procedure.id,
-        path: request.path,
-      }
-
-      WeasyprintService.generate_pdf(html, options)
+    def render_dossier_vide_typst(revision)
+      TypstService.generate_pdf('dossier_vide', DossierVidePayload.new(revision).to_h)
     end
 
     def render_dossier_vide_prawn

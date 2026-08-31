@@ -32,6 +32,13 @@ describe ProcedureDossierVidePdfConcern do
       expect(procedure.dossier_vide_pdf_cache_key_for(revision)).not_to eq(before_key)
     end
 
+    it 'changes when a Typst template changes' do
+      before_key = procedure.dossier_vide_pdf_cache_key_for(revision)
+      stub_const('ProcedureDossierVidePdfConcern::TEMPLATES_DIGEST', 'edited-theme')
+
+      expect(procedure.dossier_vide_pdf_cache_key_for(revision)).not_to eq(before_key)
+    end
+
     it 'is stable when nothing changed' do
       expect(procedure.dossier_vide_pdf_cache_key_for(revision))
         .to eq(procedure.dossier_vide_pdf_cache_key_for(revision))

@@ -92,7 +92,7 @@ module DossierAttestationDepotConcern
     return if service.blank?
 
     rows = [
-      [Service.model_name.human, [service.nom, service.organisme].join(', ')],
+      [Service.model_name.human, service.pretty_nom],
       [Service.human_attribute_name(:adresse), service.adresse],
     ]
     rows << [Service.human_attribute_name(:email), service.email] if service.email.present?

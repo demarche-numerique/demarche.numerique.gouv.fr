@@ -121,7 +121,7 @@ module Users
         disposition: 'attachment'
     rescue TypstService::Error => e
       Sentry.capture_exception(e, extra: { dossier_id: @dossier.id })
-      flash.alert = 'L’attestation de dépôt est momentanément indisponible. Veuillez réessayer dans quelques instants.'
+      flash.alert = t('users.dossiers.attestation.not_available')
       redirect_to dossier_path(@dossier)
     end
 

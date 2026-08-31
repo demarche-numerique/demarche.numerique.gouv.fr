@@ -2308,7 +2308,7 @@ describe Users::DossiersController, type: :controller do
       it 'redirects to the dossier with an alert instead of a 500' do
         subject
         expect(response).to redirect_to(dossier_path(dossier))
-        expect(flash.alert).to include('momentanément indisponible')
+        expect(flash.alert).to eq(I18n.t('users.dossiers.attestation.not_available'))
       end
     end
 
