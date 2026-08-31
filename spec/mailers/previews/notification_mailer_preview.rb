@@ -4,8 +4,8 @@ class NotificationMailerPreview < ActionMailer::Preview
   # Le bloc « Je donne mon avis » est identique quel que soit l'état : un seul aperçu suffit.
   JDMA_EMBED = '<a href="https://jedonnemonavis.numerique.gouv.fr/Demarches/123?nd_source=button&key=abc"><img src="https://jedonnemonavis.numerique.gouv.fr/static/bouton-bleu-clair.svg" alt="Je donne mon avis" /></a>'
 
-  def send_en_construction_notification
-    NotificationMailer.send_en_construction_notification(dossier_with_image)
+  def send_depose_notification
+    NotificationMailer.send_depose_notification(dossier_with_image)
   end
 
   def send_en_instruction_notification

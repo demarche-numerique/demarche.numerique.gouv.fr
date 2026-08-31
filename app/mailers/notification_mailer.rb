@@ -54,7 +54,7 @@ class NotificationMailer < ApplicationMailer
     mail(subject: @subject, to: @email, template_name: 'send_accuse_lecture_notification')
   end
 
-  def self.send_en_construction_notification(dossier)
+  def self.send_depose_notification(dossier)
     with(dossier: dossier, state: Dossier.states.fetch(:en_construction)).send_notification
   end
 

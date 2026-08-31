@@ -55,12 +55,12 @@ RSpec.describe NotificationMailer, type: :mailer do
     end
   end
 
-  describe 'send_en_construction_notification' do
+  describe 'send_depose_notification' do
     before { stub_request(:post, WEASYPRINT_URL).to_return(body: '%PDF-1.4 fake') }
 
     let(:dossier) { create(:dossier, :en_construction, :with_individual, user: user, procedure:) }
 
-    subject(:mail) { described_class.send_en_construction_notification(dossier) }
+    subject(:mail) { described_class.send_depose_notification(dossier) }
 
     let(:body) { (mail.html_part || mail).body }
 
@@ -126,7 +126,7 @@ RSpec.describe NotificationMailer, type: :mailer do
 
       let(:dossier) { create(:dossier, :en_construction, :with_individual, user: user, procedure:) }
 
-      subject(:mail) { described_class.send_en_construction_notification(dossier) }
+      subject(:mail) { described_class.send_depose_notification(dossier) }
 
       it 'includes the JDMA feedback link with source=email and the Services Publics + logo' do
         expect(body).to include('nd_source=email')
@@ -168,7 +168,7 @@ RSpec.describe NotificationMailer, type: :mailer do
       let(:monavis_embed) { nil }
       let(:dossier) { create(:dossier, :en_construction, :with_individual, user: user, procedure:) }
 
-      subject(:mail) { described_class.send_en_construction_notification(dossier) }
+      subject(:mail) { described_class.send_depose_notification(dossier) }
 
       before do
         stub_request(:post, WEASYPRINT_URL).to_return(body: '%PDF-1.4 fake')

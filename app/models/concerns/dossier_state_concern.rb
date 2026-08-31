@@ -51,7 +51,7 @@ module DossierStateConcern
   end
 
   def after_commit_passer_en_construction
-    NotificationMailer.send_en_construction_notification(self).deliver_later
+    NotificationMailer.send_depose_notification(self).deliver_later
     NotificationMailer.send_notification_for_tiers(self).deliver_later if self.for_tiers?
     enqueue_ami_notification
     groupe_instructeur.instructeurs.with_instant_email_new_dossier(self.procedure).each do |instructeur|
