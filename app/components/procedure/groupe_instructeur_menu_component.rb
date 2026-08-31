@@ -9,13 +9,13 @@ class Procedure::GroupeInstructeurMenuComponent < ApplicationComponent
 
   def links
     links = [
-      { name: 'Paramètres du groupe', url: '#parametres-groupe' },
-      { name: 'Dossiers affectés', url: '#dossiers-affectes' },
-      { name: 'Règle(s) de routage', url: '#regles-routage' },
-      { name: 'Affectation des instructeurs', url: '#affectation-instructeurs' },
-      { name: 'Informations de contact', url: '#informations-contact' },
+      { name: t(".group_params"), url: '#parametres-groupe' },
+      { name: t(".assigned_dossiers"), url: '#dossiers-affectes' },
+      { name: t(".routing_rules"), url: '#regles-routage' },
+      { name: t("views.shared.groupe_instructeurs.instructeur_assignation"), url: '#affectation-instructeurs' },
+      { name: t(".contact_information"), url: '#informations-contact' },
     ]
-    links.push({ name: 'Tampon de l’attestation', url: '#tampon-attestation' }) if @procedure.attestation_acceptation_template&.activated?
+    links.push({ name: t(".attestation_stamp"), url: '#tampon-attestation' }) if @procedure.attestation_acceptation_template&.activated?
     links
   end
 end
