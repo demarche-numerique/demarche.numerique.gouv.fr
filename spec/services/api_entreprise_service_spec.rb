@@ -187,6 +187,40 @@ describe APIEntrepriseService do
     end
   end
 
+  describe '#update_etablissement_from_degraded_mode' do
+    let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :siret }]) }
+    let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
+    let(:champ) { dossier.champ_data.first }
+    let(:etablissement) { create(:etablissement, adresse: nil, siret: '01234567891011') }
+
+    before do
+      allow_any_instance_of(APIEntreprise::EtablissementAdapter).to receive(:to_params)
+        .and_return(Dry::Monads::Success(adresse: '7 rue du puits, coye la foret'))
+    end
+
+    context 'when the etablissement belongs to a degraded champ' do
+      before do
+        champ.update_columns(etablissement_id: etablissement.id, external_state: 'degraded')
+      end
+
+      it 'completes the data and leaves the degraded state' do
+        described_class.update_etablissement_from_degraded_mode(etablissement, procedure.id)
+
+        expect(etablissement.reload.adresse).to eq('7 rue du puits, coye la foret')
+        expect(champ.reload).to be_fetched
+      end
+    end
+
+    context 'when the etablissement belongs to a dossier (no champ)' do
+      let!(:dossier_with_etablissement) { create(:dossier, :en_construction, etablissement:) }
+
+      it 'completes the data without raising' do
+        expect { described_class.update_etablissement_from_degraded_mode(etablissement, procedure.id) }
+          .to change { etablissement.reload.adresse }.from(nil).to('7 rue du puits, coye la foret')
+      end
+    end
+  end
+
   describe '#report_error' do
     it 'sends a message to Sentry with context' do
       failure = { type: :server_error, code: 503, retryable: true, raw_response: nil }

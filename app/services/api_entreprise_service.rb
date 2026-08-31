@@ -61,6 +61,8 @@ class APIEntrepriseService
       in Success(etablissement_params) if etablissement_params.present?
         etablissement.update!(etablissement_params)
         etablissement.update_champ_value_json!
+        champ = etablissement.champ_data
+        champ.external_data_fetched! if champ&.may_external_data_fetched?
         etablissement
       else
         nil
