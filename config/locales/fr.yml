@@ -1205,6 +1205,12 @@ fr:
       depose:
         deposited: a bien été déposé
         can_modify: Si besoin est, vous pouvez encore y apporter des modifications.
+      depose_et_accepte:
+        deposited_html: "<strong>a bien été déposé</strong>"
+        accepted_html: "Il <strong>a été accepté le %{date}</strong>"
+      depose_et_passe_en_instruction:
+        deposited_and_processed_html: "<strong>a bien été déposé</strong> et <strong>pris en charge</strong>"
+        examination: Il va maintenant être examiné par le service.
       passe_en_instruction:
         received: a bien été reçu et
         processed: pris en charge

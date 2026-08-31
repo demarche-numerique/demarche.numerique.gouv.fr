@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 module Emails
+  DEPOSE_TYPES = [
+    "Emails::Depose",
+    "Emails::DeposeEtPasseEnInstruction",
+    "Emails::DeposeEtAccepte",
+  ].freeze
+
   # Slugs used in the admin URLs before the rename, read by the redirects of
   # config/routes/administrateur.rb.
   LEGACY_SLUGS = {

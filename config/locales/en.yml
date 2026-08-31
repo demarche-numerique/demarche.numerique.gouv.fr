@@ -1139,6 +1139,12 @@ en:
       depose:
         deposited: has been successfully submitted
         can_modify: If needed, you can still make changes to it.
+      depose_et_accepte:
+        deposited_html: "<strong>has been successfully submitted</strong>"
+        accepted_html: "It <strong>has been accepted on %{date}</strong>"
+      depose_et_passe_en_instruction:
+        deposited_and_processed_html: "<strong>has been successfully submitted</strong> and <strong>taken into consideration</strong>"
+        examination: It will now be examined by the service.
       passe_en_instruction:
         received: has been received and
         processed: taken into consideration

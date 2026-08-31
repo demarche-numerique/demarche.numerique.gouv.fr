@@ -391,7 +391,7 @@ describe EmailTemplate do
       expect(mail.errors.full_messages_for(:json_body).first).not_to match(/translation missing/i)
     end
 
-    [Emails::Depose, Emails::PasseEnInstruction, Emails::Accepte, Emails::Refuse, Emails::ClasseSansSuite, Emails::RepasseEnInstruction].each do |klass|
+    [Emails::Depose, Emails::DeposeEtPasseEnInstruction, Emails::DeposeEtAccepte, Emails::PasseEnInstruction, Emails::Accepte, Emails::Refuse, Emails::ClasseSansSuite, Emails::RepasseEnInstruction].each do |klass|
       it "produit des messages d’erreur traduits pour #{klass.name}" do
         template = klass.default_for_procedure(procedure)
         template.json_subject = { "type" => "doc", "content" => [{ "type" => "paragraph", "content" => [{ "type" => "mention", "attrs" => { "id" => "tdc999999", "label" => "champ fantôme" } }] }] }
@@ -449,6 +449,36 @@ describe EmailTemplate do
       email_accepte = Emails::Accepte.default_for_procedure(procedure)
       email_accepte.json_body = decision_mention
       expect(email_accepte).to be_valid
+    end
+  end
+
+  describe 'declarative variants' do
+    # La constante est la seule source de l’association : une variante ajoutée à
+    # la hiérarchie sans y être listée aurait des lignes invisibles.
+    it 'lists every depose type' do
+      Rails.application.eager_load!
+
+      expect(Emails::DEPOSE_TYPES).to match_array([Emails::Depose, *Emails::Depose.descendants].map(&:name))
+    end
+
+    it 'renders the combined en_instruction default' do
+      procedure = build(:procedure, declarative_with_state: :en_instruction)
+      template = Emails::DeposeEtPasseEnInstruction.default_for_procedure(procedure)
+      expect(template.subject).to include('a bien été déposé et va être examiné')
+      expect(template.body).to include('pris en charge')
+    end
+
+    it 'renders the acceptance attestation variant when the attestation is activated' do
+      procedure = build(:procedure, declarative_with_state: :accepte, attestation_acceptation_template: build(:attestation_template, activated: true))
+      template = Emails::DeposeEtAccepte.default_for_procedure(procedure)
+      expect(template.body).to include('--lien attestation--')
+    end
+
+    it 'renders the plain acceptance variant otherwise' do
+      procedure = build(:procedure, declarative_with_state: :accepte)
+      template = Emails::DeposeEtAccepte.default_for_procedure(procedure)
+      expect(template.body).to include('--date de décision--')
+      expect(template.body).not_to include('--lien attestation--')
     end
   end
 end

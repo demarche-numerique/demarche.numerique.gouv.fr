@@ -1,0 +1,14 @@
+<p>
+<%= t('notification_mailer.default_templates.greeting') %>
+</p>
+<p>
+<%= t('notification_mailer.default_templates.your_file_number', id: '--numéro du dossier--') %>
+<%= t('notification_mailer.default_templates.depose_et_accepte.deposited_html') %>.
+<%= t('notification_mailer.default_templates.depose_et_accepte.accepted_html', date: '--date de décision--') %>.
+</p>
+<% if with_attestation %>
+<p>
+<%= t('notification_mailer.default_templates.download_attestation', link: '--lien attestation--') %>
+</p>
+<% end %>
+<%= render partial: "notification_mailer/default_templates/signature" %>
