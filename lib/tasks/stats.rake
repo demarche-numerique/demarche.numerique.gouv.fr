@@ -205,7 +205,7 @@ namespace :stats do
 
     # 23. Emails personnalisés
     email_stats = [
-      ["Email construction personnalisé", :email_depose],
+      ["Email construction personnalisé", :email_depose_templates],
       ["Email instruction personnalisé", :email_passe_en_instruction],
       ["Email acceptation personnalisé", :email_accepte],
       ["Email refus personnalisé", :email_refuse],

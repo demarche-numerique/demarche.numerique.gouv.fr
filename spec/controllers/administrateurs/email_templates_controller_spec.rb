@@ -67,6 +67,28 @@ describe Administrateurs::EmailTemplatesController, type: :controller do
       expect(procedure.reload.email_passe_en_instruction.json_body).to eq(JSON.parse(json_body))
     end
 
+    it 'enregistre la personnalisation sur le type du réglage déclaratif' do
+      procedure.update!(declarative_with_state: :accepte)
+
+      put :update, params: {
+        procedure_id: procedure.id, id: 'depose',
+        email_template: { tiptap_body: json_body, tiptap_subject: json_subject },
+      }
+      expect(procedure.reload.email_depose).to be_an_instance_of(Emails::DeposeEtAccepte)
+      expect(procedure.email_depose.json_body).to eq(JSON.parse(json_body))
+    end
+
+    it 'accepte le param_key d’un formulaire rendu avant la bascule déclarative' do
+      procedure.update!(declarative_with_state: :accepte)
+
+      put :update, params: {
+        procedure_id: procedure.id, id: 'depose',
+        emails_depose: { tiptap_body: json_body, tiptap_subject: json_subject },
+      }
+      expect(procedure.reload.email_depose).to be_an_instance_of(Emails::DeposeEtAccepte)
+      expect(procedure.email_depose.json_body).to eq(JSON.parse(json_body))
+    end
+
     context 'quand le contenu référence un tag invalide' do
       let(:invalid_subject) do
         {

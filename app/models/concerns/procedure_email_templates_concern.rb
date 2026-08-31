@@ -5,7 +5,9 @@ module ProcedureEmailTemplatesConcern
 
   included do
     has_many :custom_email_templates, class_name: "EmailTemplate", dependent: :destroy
-    has_one :email_depose, class_name: "Emails::Depose", dependent: :destroy
+    # validate: false — la validation passe uniquement par le
+    # validates_associated ci-dessous, sur le modèle du réglage courant.
+    has_many :email_depose_templates, -> { where(type: Emails::DEPOSE_TYPES) }, class_name: "EmailTemplate", inverse_of: :procedure, dependent: :destroy, validate: false
     has_one :email_passe_en_instruction, class_name: "Emails::PasseEnInstruction", dependent: :destroy
     has_one :email_accepte, class_name: "Emails::Accepte", dependent: :destroy
     has_one :email_refuse, class_name: "Emails::Refuse", dependent: :destroy
@@ -24,8 +26,26 @@ module ProcedureEmailTemplatesConcern
     declarative? && combined_declarative_email?
   end
 
+  def depose_email_class
+    if !send_combined_declarative_email?
+      Emails::Depose
+    elsif declarative_accepte?
+      Emails::DeposeEtAccepte
+    else
+      Emails::DeposeEtPasseEnInstruction
+    end
+  end
+
+  def email_depose
+    email_depose_templates.find { it.type == depose_email_class.name }
+  end
+
+  def email_depose=(email_template)
+    email_depose_templates.replace([email_template].compact)
+  end
+
   def email_depose_or_default
-    email_depose || Emails::Depose.default_for_procedure(self)
+    email_depose || depose_email_class.default_for_procedure(self)
   end
 
   def email_passe_en_instruction_or_default

@@ -35,6 +35,43 @@ describe ProcedureEmailTemplatesConcern do
     end
   end
 
+  describe '#email_depose_or_default' do
+    let(:procedure) { procedures.brouillon }
+
+    it 'defaults to the type of the declarative setting' do
+      expect(procedure.email_depose_or_default).to be_an_instance_of(Emails::Depose)
+
+      procedure.update!(declarative_with_state: :en_instruction)
+      expect(procedure.email_depose_or_default).to be_an_instance_of(Emails::DeposeEtPasseEnInstruction)
+
+      procedure.update!(declarative_with_state: :accepte)
+      expect(procedure.email_depose_or_default).to be_an_instance_of(Emails::DeposeEtAccepte)
+    end
+
+    it 'ignores a customized template whose type no longer matches the setting' do
+      procedure.update!(declarative_with_state: :accepte)
+      create(:email_depose, procedure:)
+
+      expect(procedure.reload.email_depose_or_default).to be_an_instance_of(Emails::DeposeEtAccepte)
+      expect(procedure.email_depose_or_default).not_to be_persisted
+    end
+
+    it 'returns the customized template of the setting, even shadowed by a previous one' do
+      procedure.update!(declarative_with_state: :accepte)
+      create(:email_depose, procedure:)
+      template = create(:email_depose_et_accepte, procedure:)
+
+      expect(procedure.reload.email_depose_or_default).to eq(template)
+    end
+
+    it 'does not let a template left over by a previous setting block the publication' do
+      procedure.update!(declarative_with_state: :accepte)
+      create(:email_depose, procedure:).update_column(:body, '--balise inconnue--')
+
+      expect(procedure.reload).to be_valid(:publication)
+    end
+  end
+
   describe 'depose' do
     let(:procedure) { procedures.brouillon }
 
