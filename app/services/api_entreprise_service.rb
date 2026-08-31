@@ -66,10 +66,30 @@ class APIEntrepriseService
       in Success(etablissement_params) if etablissement_params.present?
         etablissement.update!(etablissement_params)
         etablissement.update_champ_value_json!
+        champ = etablissement.champ_data
+        champ.external_data_fetched! if champ&.may_external_data_fetched?
+        champ&.dossier&.index_search_terms_later
         etablissement
+      in Success(_)
+        # The adapter maps a not_found to an empty Success.
+        give_up_degraded_mode(etablissement, 'not_found', 404)
+      in Failure(type:, code:, **) if code.in?(ExternalDataException::DEFINITIVE_CODES)
+        give_up_degraded_mode(etablissement, type, code)
+      in Failure(retryable: true, **) => result
+        result
       else
         nil
       end
+    end
+
+    def give_up_degraded_mode(etablissement, type, code)
+      champ = etablissement.champ_data
+      # A dossier-level etablissement has no champ to carry the error, and
+      # dropping it would take the dossier's identity with it.
+      return nil if champ.nil?
+
+      champ.handle_definitive_external_data_failure!(StandardError.new("API Entreprise: #{type}"), code)
+      nil
     end
 
     def perform_later_fetch_jobs(etablissement, procedure_id, user_id, wait: nil)

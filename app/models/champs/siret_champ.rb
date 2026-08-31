@@ -51,6 +51,16 @@ class Champs::SiretChamp < ChampData
     handle_result(degraded_failure(etablissement:, type: 'retries exhausted', code: 504))
   end
 
+  # The stub will never be completed: drop it, otherwise
+  # Dossier#any_etablissement_as_degraded_mode? blocks the dossier forever.
+  def handle_definitive_external_data_failure!(error, code)
+    old_etablissement = etablissement
+    update_columns(etablissement_id: nil)
+    old_etablissement&.destroy
+
+    super
+  end
+
   def search_terms
     etablissement.present? ? etablissement.search_terms : [value]
   end

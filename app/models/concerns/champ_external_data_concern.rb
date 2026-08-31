@@ -62,7 +62,7 @@ module ChampExternalDataConcern
       end
 
       event :external_data_error do
-        transitions from: [:waiting_for_job, :fetching], to: :external_error
+        transitions from: [:waiting_for_job, :fetching, :degraded], to: :external_error
       end
 
       event :retry do
@@ -85,6 +85,11 @@ module ChampExternalDataConcern
 
   def handle_exhausted_external_data_retries!
     external_data_error!
+  end
+
+  # A backfill got an answer that will not change: leave degraded for good.
+  def handle_definitive_external_data_failure!(error, code)
+    handle_result(Failure(retryable: false, error:, code:))
   end
 
   private
