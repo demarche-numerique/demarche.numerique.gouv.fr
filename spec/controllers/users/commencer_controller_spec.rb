@@ -495,50 +495,101 @@ describe Users::CommencerController, type: :controller do
       end
     end
 
-    context 'with the :dossier_vide_weasyprint flag enabled' do
+    context 'with the :dossier_vide_typst flag enabled' do
       render_views
       let(:procedure) { create(:procedure, :published, :with_service, :with_path, libelle: 'Ma démarche') }
 
       before do
-        Flipper.enable(:dossier_vide_weasyprint, procedure)
-        allow(WeasyprintService).to receive(:generate_pdf).and_return('%PDF-fake')
+        Flipper.enable(:dossier_vide_typst, procedure)
+        allow(TypstService).to receive(:generate_pdf).and_return('%PDF-fake')
+        allow(WeasyprintService).to receive(:generate_pdf)
         get :dossier_vide_pdf, params: { path: procedure.path }
       end
 
-      it 'generates the PDF via WeasyPrint' do
-        expect(WeasyprintService).to have_received(:generate_pdf)
-          .with(anything, hash_including(procedure_id: procedure.id))
+      it 'generates the PDF via Typst' do
+        expect(TypstService).to have_received(:generate_pdf)
+          .with('dossier_vide', anything)
+        expect(WeasyprintService).not_to have_received(:generate_pdf)
         expect(response).to have_http_status(:success)
         expect(response.body).to eq('%PDF-fake')
       end
 
       it 'titles the document with the procedure libelle (PDF/UA metadata)' do
-        expect(WeasyprintService).to have_received(:generate_pdf)
-          .with(a_string_matching(%r{<title>Ma démarche</title>}), anything)
+        expect(TypstService).to have_received(:generate_pdf)
+          .with(anything, hash_including(title: 'Ma démarche'))
       end
     end
 
-    context 'with the flag enabled but WeasyPrint failing' do
-      let(:procedure) { create(:procedure, :published, :with_service, :with_path) }
+    context 'with the :dossier_vide_weasyprint flag enabled alone' do
+      render_views
+      let(:procedure) { create(:procedure, :published, :with_service, :with_path, libelle: 'Ma démarche') }
 
       before do
         Flipper.enable(:dossier_vide_weasyprint, procedure)
-        allow(WeasyprintService).to receive(:generate_pdf).and_raise(WeasyprintService::Error)
+        allow(TypstService).to receive(:generate_pdf)
+        allow(WeasyprintService).to receive(:generate_pdf).and_return('%PDF-fake')
         get :dossier_vide_pdf, params: { path: procedure.path }
       end
 
-      it 'falls back to the Prawn rendering without failing' do
+      it 'generates the PDF via WeasyPrint, titled with the procedure libelle' do
+        expect(WeasyprintService).to have_received(:generate_pdf)
+          .with(a_string_matching(%r{<title>Ma démarche</title>}), hash_including(procedure_id: procedure.id))
+        expect(TypstService).not_to have_received(:generate_pdf)
         expect(response).to have_http_status(:success)
+        expect(response.body).to eq('%PDF-fake')
       end
     end
 
-    context 'with the flag enabled but the PDF rendering raising unexpectedly' do
+    context 'with the :dossier_vide_typst flag enabled but Typst failing' do
+      render_views
       let(:procedure) { create(:procedure, :published, :with_service, :with_path) }
 
       before do
-        Flipper.enable(:dossier_vide_weasyprint, procedure)
+        Flipper.enable(:dossier_vide_typst, procedure)
         allow(Sentry).to receive(:capture_exception)
-        allow(WeasyprintService).to receive(:generate_pdf).and_raise(StandardError, 'boom')
+        allow(TypstService).to receive(:generate_pdf).and_raise(TypstService::Error, 'compiler down')
+        allow(WeasyprintService).to receive(:generate_pdf).and_return('%PDF-weasyprint')
+      end
+
+      it 'falls back to the WeasyPrint rendering when its flag is enabled, and reports the failure' do
+        Flipper.enable(:dossier_vide_weasyprint, procedure)
+
+        get :dossier_vide_pdf, params: { path: procedure.path }
+
+        expect(response.body).to eq('%PDF-weasyprint')
+        expect(Sentry).to have_received(:capture_exception)
+          .with(an_instance_of(TypstService::Error), extra: { procedure_id: procedure.id })
+      end
+
+      it 'falls back to the Prawn rendering otherwise' do
+        get :dossier_vide_pdf, params: { path: procedure.path }
+
+        expect(response).to have_http_status(:success)
+        expect(response.body).to start_with('%PDF-')
+        expect(WeasyprintService).not_to have_received(:generate_pdf)
+        expect(Sentry).to have_received(:capture_exception).with(an_instance_of(TypstService::Error), anything)
+      end
+
+      it 'falls back to the Prawn rendering when WeasyPrint fails in turn' do
+        Flipper.enable(:dossier_vide_weasyprint, procedure)
+        allow(WeasyprintService).to receive(:generate_pdf).and_raise(WeasyprintService::Error, 'service down')
+
+        get :dossier_vide_pdf, params: { path: procedure.path }
+
+        expect(response).to have_http_status(:success)
+        expect(response.body).to start_with('%PDF-')
+        expect(Sentry).to have_received(:capture_exception).with(an_instance_of(TypstService::Error), anything)
+        expect(Sentry).to have_received(:capture_exception).with(an_instance_of(WeasyprintService::Error), anything)
+      end
+    end
+
+    context 'with the :dossier_vide_typst flag enabled but the PDF rendering raising unexpectedly' do
+      let(:procedure) { create(:procedure, :published, :with_service, :with_path) }
+
+      before do
+        Flipper.enable(:dossier_vide_typst, procedure)
+        allow(Sentry).to receive(:capture_exception)
+        allow(TypstService).to receive(:generate_pdf).and_raise(StandardError, 'boom')
         get :dossier_vide_pdf, params: { path: procedure.path }
       end
 
@@ -571,15 +622,15 @@ describe Users::CommencerController, type: :controller do
   end
 
   # Kept out of '#dossier_vide_pdf' on purpose: that group downloads the PDF in a
-  # `before` hook, which would count as an extra WeasyPrint call here.
+  # `before` hook, which would count as an extra Typst call here.
   describe '#dossier_vide_pdf caching' do
     render_views
 
     let(:procedure) { create(:procedure, :published, :with_service, :with_path) }
 
     before do
-      Flipper.enable(:dossier_vide_weasyprint, procedure)
-      allow(WeasyprintService).to receive(:generate_pdf).and_return('%PDF-fake')
+      Flipper.enable(:dossier_vide_typst, procedure)
+      allow(TypstService).to receive(:generate_pdf).and_return('%PDF-fake')
     end
 
     def download = get(:dossier_vide_pdf, params: { path: procedure.path })
@@ -587,19 +638,19 @@ describe Users::CommencerController, type: :controller do
     it 'generates and stores the PDF on the first download' do
       download
 
-      expect(WeasyprintService).to have_received(:generate_pdf).once
+      expect(TypstService).to have_received(:generate_pdf).once
       expect(procedure.reload.dossier_vide_pdf).to be_attached
       expect(response.body).to eq('%PDF-fake')
     end
 
     it 'serves the stored PDF on the next download, without rendering it again' do
       download
-      allow(Dossiers::DossierVidePdfComponent).to receive(:new).and_call_original
+      allow(Typst::DossierVidePayload).to receive(:new).and_call_original
 
       download
 
-      expect(WeasyprintService).to have_received(:generate_pdf).once
-      expect(Dossiers::DossierVidePdfComponent).not_to have_received(:new)
+      expect(TypstService).to have_received(:generate_pdf).once
+      expect(Typst::DossierVidePayload).not_to have_received(:new)
       expect(response.body).to eq('%PDF-fake')
     end
 
@@ -608,7 +659,7 @@ describe Users::CommencerController, type: :controller do
       procedure.reload.dossier_vide_pdf.blob.update_column(:created_at, 8.days.ago)
       download
 
-      expect(WeasyprintService).to have_received(:generate_pdf).twice
+      expect(TypstService).to have_received(:generate_pdf).twice
     end
 
     it 'regenerates when the presentation changes' do
@@ -616,7 +667,7 @@ describe Users::CommencerController, type: :controller do
       procedure.update!(description: 'Une nouvelle présentation')
       download
 
-      expect(WeasyprintService).to have_received(:generate_pdf).twice
+      expect(TypstService).to have_received(:generate_pdf).twice
     end
 
     it 'regenerates when the service changes' do
@@ -624,7 +675,7 @@ describe Users::CommencerController, type: :controller do
       procedure.service.update!(adresse: '2 rue de la Paix, 75002 Paris')
       download
 
-      expect(WeasyprintService).to have_received(:generate_pdf).twice
+      expect(TypstService).to have_received(:generate_pdf).twice
     end
 
     it 'regenerates when a new revision is published' do
@@ -633,15 +684,38 @@ describe Users::CommencerController, type: :controller do
       procedure.publish_revision!(procedure.administrateurs.first)
       download
 
-      expect(WeasyprintService).to have_received(:generate_pdf).twice
+      expect(TypstService).to have_received(:generate_pdf).twice
     end
 
-    it 'does not cache anything when WeasyPrint fails' do
-      allow(WeasyprintService).to receive(:generate_pdf).and_raise(WeasyprintService::Error)
+    it 'does not cache anything when Typst fails' do
+      allow(TypstService).to receive(:generate_pdf).and_raise(TypstService::Error)
 
       download
 
       expect(response).to have_http_status(:success)
+      expect(procedure.reload.dossier_vide_pdf).not_to be_attached
+    end
+
+    it 'keys the cache by renderer: a PDF cached by one is never served for the other' do
+      allow(WeasyprintService).to receive(:generate_pdf).and_return('%PDF-weasyprint')
+      download
+
+      Flipper.disable(:dossier_vide_typst, procedure)
+      Flipper.enable(:dossier_vide_weasyprint, procedure)
+      download
+
+      expect(WeasyprintService).to have_received(:generate_pdf).once
+      expect(response.body).to eq('%PDF-weasyprint')
+    end
+
+    it 'still serves the rendered PDF when caching it fails' do
+      allow(Sentry).to receive(:capture_exception)
+      allow_any_instance_of(Procedure).to receive(:store_dossier_vide_pdf).and_raise(StandardError, 'storage down')
+
+      download
+
+      expect(response.body).to eq('%PDF-fake')
+      expect(Sentry).to have_received(:capture_exception).with(an_instance_of(StandardError), anything)
       expect(procedure.reload.dossier_vide_pdf).not_to be_attached
     end
   end
@@ -652,14 +726,14 @@ describe Users::CommencerController, type: :controller do
     let(:procedure) { create(:procedure, :with_service, :with_path) }
 
     before do
-      Flipper.enable(:dossier_vide_weasyprint, procedure)
-      allow(WeasyprintService).to receive(:generate_pdf).and_return('%PDF-fake')
+      Flipper.enable(:dossier_vide_typst, procedure)
+      allow(TypstService).to receive(:generate_pdf).and_return('%PDF-fake')
       get :dossier_vide_pdf_test, params: { path: procedure.path }
       get :dossier_vide_pdf_test, params: { path: procedure.path }
     end
 
     it 'never caches the draft PDF: it is content being edited' do
-      expect(WeasyprintService).to have_received(:generate_pdf).twice
+      expect(TypstService).to have_received(:generate_pdf).twice
       expect(procedure.reload.dossier_vide_pdf).not_to be_attached
     end
   end
