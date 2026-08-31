@@ -52,6 +52,13 @@ RSpec.describe ChampExternalDataConcern do
 
       it { expect(champ).not_to be_external_data_not_found }
     end
+
+    context 'in external_error without any recorded exception' do
+      let(:external_state) { 'external_error' }
+      let(:exceptions) { [] }
+
+      it { expect(champ).not_to be_external_data_not_found }
+    end
   end
 
   describe 'the state machine' do
@@ -197,6 +204,64 @@ RSpec.describe ChampExternalDataConcern do
           expect(champ).to have_received(:after_reset_external_data)
         end
       end
+
+      context 'from degraded' do
+        before do
+          champ.update_column(:external_state, 'degraded')
+
+          allow(champ).to receive(:after_reset_external_data)
+          champ.reset_external_data!
+        end
+
+        it do
+          expect(champ).to be_idle
+          expect(champ).to have_received(:after_reset_external_data)
+        end
+      end
+    end
+
+    describe 'external_data_degraded' do
+      context 'from fetching' do
+        before do
+          allow(champ).to receive(:ready_for_external_call?).and_return(true)
+          champ.fetch_later!
+          champ.update_column(:external_state, 'fetching')
+          champ.external_data_degraded!
+        end
+
+        it { expect(champ.reload).to be_degraded }
+      end
+
+      # retry! has already moved the champ back to waiting_for_job.
+      context 'from waiting_for_job' do
+        before do
+          allow(champ).to receive(:ready_for_external_call?).and_return(true)
+          champ.fetch_later!
+          champ.external_data_degraded!
+        end
+
+        it { expect(champ.reload).to be_degraded }
+      end
+    end
+
+    describe 'external_data_fetched from degraded' do
+      before do
+        champ.update_column(:external_state, 'degraded')
+        champ.external_data_fetched!
+      end
+
+      it { expect(champ.reload).to be_fetched }
+    end
+  end
+
+  describe '#done?' do
+    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :rnf }]) }
+    let(:dossier) { create(:dossier, procedure:) }
+    let(:champ) { dossier.champ_data.first }
+
+    it 'is true in degraded' do
+      champ.external_state = 'degraded'
+      expect(champ).to be_done
     end
   end
 end
