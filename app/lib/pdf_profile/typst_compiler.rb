@@ -18,6 +18,22 @@ module PdfProfile
 
     def self.compile(html, assets: {}) = new(assets:).compile(html)
 
+    ASSET_DIGEST = /-[0-9a-f]{32,64}(?=\.\w+\z)/
+
+    # Resolves the <img> sources of a profile document to files on disk:
+    # { src => { name:, path: } }, where name is the digest-less basename to
+    # copy next to the .typ file and path the source under app/assets/images.
+    def self.image_assets(html)
+      Nokogiri::HTML5(html).css('img').to_h do |img|
+        src = img['src'].to_s
+        name = File.basename(URI.parse(src).path).sub(ASSET_DIGEST, '')
+        path = Rails.root.glob("app/assets/images/**/#{name}").first ||
+          raise(Error, "cannot resolve image asset #{src}")
+
+        [src, { name:, path: }]
+      end
+    end
+
     def initialize(assets: {})
       @assets = assets
     end
@@ -90,21 +106,25 @@ module PdfProfile
       "#first-header(\n[\n#{blocks(left)}\n],\n[\n#{blocks(right)}\n],\n)"
     end
 
-    IMAGE_HEIGHTS = {
-      'marianne-with-devise' => '20mm', # attestation.scss .marianne-with-devise
-      nil => '15mm', # .logo-site img
+    IMAGE_SIZES = {
+      'marianne-with-devise' => { height: '20mm' }, # attestation.scss .marianne-with-devise
+      nil => { height: '15mm', width: '30mm' }, # .logo-site img (max-height/max-width)
     }.freeze
 
     def image(node, classes)
       alt = node['alt'].to_s
       raise Error, "<img> without alt text (#{node['src']})" if alt.blank?
 
-      height = IMAGE_HEIGHTS.fetch(classes.first) do
-        raise Error, "<img class=\"#{classes.join(' ')}\"> has no height mapping"
+      sizes = IMAGE_SIZES.fetch(classes.first) do
+        raise Error, "<img class=\"#{classes.join(' ')}\"> has no size mapping"
       end
 
       path = @assets[node['src']]
-      arguments = [("path: #{string(path)}" if path), "alt: #{string(alt)}", "height: #{height}"].compact
+      arguments = [
+        ("path: #{string(path)}" if path),
+        "alt: #{string(alt)}",
+        *sizes.map { |dimension, value| "#{dimension}: #{value}" },
+      ].compact
 
       "#profile-image(#{arguments.join(', ')})"
     end

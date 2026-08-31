@@ -3,9 +3,9 @@
 
 #first-header(
 [
-#bloc-marque[#profile-image(alt: "Logo Marianne, République Française", height: 20mm)]
+#bloc-marque[#profile-image(path: "assets/Marianne-Light@2x.png", alt: "Logo Marianne, République Française", height: 20mm)]
 
-#logo-site[#profile-image(alt: "demarche.numerique.gouv.fr", height: 15mm)]
+#logo-site[#profile-image(path: "assets/logo-demarche-numerique@2x.png", alt: "demarche.numerique.gouv.fr", height: 15mm, width: 30mm)]
 ],
 [
 #direction-block[

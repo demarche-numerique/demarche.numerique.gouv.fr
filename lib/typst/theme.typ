@@ -28,7 +28,7 @@
 // alt text is rendered in a placeholder frame, so the document still compiles
 // and the information stays available.
 #let profile-image(path: none, alt: "", height: auto, width: auto) = if path != none {
-  image(path, alt: alt, height: height, width: width)
+  image(path, alt: alt, height: height, width: width, fit: "contain")
 } else {
   rect(stroke: 0.5pt + luma(120), inset: 2mm, height: height, text(size: 7pt, fill: luma(120))[#alt])
 }
