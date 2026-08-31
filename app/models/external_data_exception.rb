@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ExternalDataException
+  DEFINITIVE_CODES = [404, 422, 451].freeze
+
   attr_accessor :error, :code
 
   def initialize(error:, code:)
@@ -10,5 +12,9 @@ class ExternalDataException
 
   def not_found?
     code == 404
+  end
+
+  def definitive?
+    code.in?(DEFINITIVE_CODES)
   end
 end
