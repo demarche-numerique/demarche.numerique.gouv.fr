@@ -6,7 +6,9 @@ RSpec.describe ExternalDataChampValidator do
   let(:champ) { Champs::SiretChamp.new }
   let(:validator) { described_class.new(attributes: {}) }
 
-  before { champ.errors.clear }
+  # Every context below is about a champ whose fetch has been attempted;
+  # the early return in #validate only skips idle and fetched champs.
+  before { allow(champ).to receive_messages(idle?: false, fetched?: false) }
 
   shared_examples 'no error added' do
     it { expect { validator.validate(champ) }.not_to change { champ.errors.size } }
@@ -21,34 +23,34 @@ RSpec.describe ExternalDataChampValidator do
   end
 
   context 'fetched' do
-    before { allow(champ).to receive_messages(pending?: false, external_error?: false, external_data_required_for_conditions?: false) }
+    before { allow(champ).to receive_messages(fetched?: true) }
     include_examples 'no error added'
   end
 
   context 'pending and not required for conditions' do
     before do
-      allow(champ).to receive_messages(pending?: true, external_error?: false, external_data_required_for_conditions?: false)
+      allow(champ).to receive_messages(pending?: true, external_error?: false, permissive_external_data_validation?: true)
     end
     include_examples 'no error added'
   end
 
   context 'pending and required for conditions' do
     before do
-      allow(champ).to receive_messages(pending?: true, external_error?: false, external_data_required_for_conditions?: true)
+      allow(champ).to receive_messages(pending?: true, external_error?: false, permissive_external_data_validation?: false)
     end
     include_examples 'adds a strict error'
   end
 
   context 'degraded and not required for conditions' do
     before do
-      allow(champ).to receive_messages(pending?: false, degraded?: true, external_error?: false, external_data_required_for_conditions?: false)
+      allow(champ).to receive_messages(pending?: false, degraded?: true, external_error?: false, permissive_external_data_validation?: true)
     end
     include_examples 'no error added'
   end
 
   context 'degraded and required for conditions' do
     before do
-      allow(champ).to receive_messages(pending?: false, degraded?: true, external_error?: false, external_data_required_for_conditions?: true)
+      allow(champ).to receive_messages(pending?: false, degraded?: true, external_error?: false, permissive_external_data_validation?: false)
     end
     include_examples 'adds a strict error'
   end
@@ -57,18 +59,36 @@ RSpec.describe ExternalDataChampValidator do
     before do
       allow(champ).to receive_messages(
         pending?: false, external_error?: true,
-        external_data_required_for_conditions?: false,
+        permissive_external_data_validation?: true,
         fetch_external_data_exceptions: [ExternalDataException.new(error: 'NF', code: 404)]
       )
     end
     include_examples 'adds a permissive error'
   end
 
+  [422, 451].each do |code|
+    context "external_error #{code} (definitive answer) and not required for conditions" do
+      before do
+        allow(champ).to receive_messages(
+          pending?: false, external_error?: true,
+          permissive_external_data_validation?: true,
+          fetch_external_data_exceptions: [ExternalDataException.new(error: 'definitive', code:)]
+        )
+      end
+      include_examples 'adds a permissive error'
+
+      it 'uses the code-specific message' do
+        validator.validate(champ)
+        expect(champ.errors.map(&:type)).to include(:"code_#{code}")
+      end
+    end
+  end
+
   context 'external_error with a technical code and not required for conditions' do
     before do
       allow(champ).to receive_messages(
         pending?: false, external_error?: true,
-        external_data_required_for_conditions?: false,
+        permissive_external_data_validation?: true,
         fetch_external_data_exceptions: [ExternalDataException.new(error: 'boom', code: 503)]
       )
     end
@@ -79,7 +99,7 @@ RSpec.describe ExternalDataChampValidator do
     before do
       allow(champ).to receive_messages(
         pending?: false, external_error?: true,
-        external_data_required_for_conditions?: true,
+        permissive_external_data_validation?: false,
         fetch_external_data_exceptions: [ExternalDataException.new(error: 'boom', code: 503)]
       )
     end
@@ -90,7 +110,7 @@ RSpec.describe ExternalDataChampValidator do
     before do
       allow(champ).to receive_messages(
         pending?: false, external_error?: true,
-        external_data_required_for_conditions?: false,
+        permissive_external_data_validation?: true,
         fetch_external_data_exceptions: [
           ExternalDataException.new(error: 'boom', code: 503),
           ExternalDataException.new(error: 'NF', code: 404),
@@ -109,7 +129,7 @@ RSpec.describe ExternalDataChampValidator do
     before do
       allow(champ).to receive_messages(
         pending?: false, external_error?: true,
-        external_data_required_for_conditions?: true,
+        permissive_external_data_validation?: false,
         fetch_external_data_exceptions: [
           ExternalDataException.new(error: 'boom', code: 503),
           ExternalDataException.new(error: 'NF', code: 404),
@@ -128,7 +148,7 @@ RSpec.describe ExternalDataChampValidator do
     before do
       allow(champ).to receive_messages(
         pending?: false, external_error?: true,
-        external_data_required_for_conditions?: false,
+        permissive_external_data_validation?: true,
         fetch_external_data_exceptions: [ExternalDataException.new(error: 'old', code: 500)]
       )
     end

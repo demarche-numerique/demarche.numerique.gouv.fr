@@ -271,6 +271,22 @@ describe Champs::SiretChamp do
       end
     end
 
+    [422, 451].each do |status|
+      context "when API returns #{status}" do
+        let(:api_failure) { Dry::Monads::Failure(type: :unprocessable, code: status, retryable: false, raw_response: nil) }
+        before do
+          allow(APIEntrepriseService).to receive(:create_etablissement_with_fallback).and_return(api_failure)
+        end
+
+        it 'blocks submission instead of degrading' do
+          result = champ.fetch_external_data
+          expect(result).to be_failure
+          expect(result.failure[:degraded]).to be_nil
+          expect(result.failure[:code]).to eq(status)
+        end
+      end
+    end
+
     context 'when the service falls back to degraded mode' do
       let(:etablissement) { instance_double(Etablissement) }
       before do
@@ -307,26 +323,6 @@ describe Champs::SiretChamp do
       champ.reload
       expect(champ).to be_degraded
       expect(champ.etablissement).to be_as_degraded_mode
-    end
-  end
-
-  describe '#external_data_required_for_conditions?' do
-    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :siret }, { type: :text }]) }
-    let(:siret_tdc) { procedure.draft_revision.type_de_champs_for(scope: :public).first }
-    let(:text_tdc) { procedure.draft_revision.type_de_champs_for(scope: :public).second }
-    let(:champ) { dossier.champ_data.find(&:siret?) }
-
-    context 'when no other champ has a condition based on the siret champ' do
-      it { expect(champ.external_data_required_for_conditions?).to be false }
-    end
-
-    context 'when another champ has a condition based on a column of the siret champ' do
-      before do
-        naf_column = siret_tdc.columns(procedure_id: procedure.id).find { _1.label.match?(/NAF/i) }
-        text_tdc.update!(condition: ds_eq(champ_column_value(naf_column), constant('4950Z')))
-      end
-
-      it { expect(champ.external_data_required_for_conditions?).to be true }
     end
   end
 

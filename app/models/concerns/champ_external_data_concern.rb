@@ -58,6 +58,7 @@ module ChampExternalDataConcern
       end
 
       event :external_data_degraded do
+        # waiting_for_job: reached from the retry_on exhaustion block
         transitions from: [:fetching, :waiting_for_job], to: :degraded
       end
 
@@ -77,9 +78,14 @@ module ChampExternalDataConcern
 
   def pending? = waiting_for_job? || fetching?
   def done? = fetched? || degraded? || external_error?
-  def external_data_not_found? = external_error? && fetch_external_data_exceptions&.last&.not_found?
+  # Only the most recent exception is conclusive, and legacy rows can sit in
+  # external_error with none recorded at all.
+  def last_external_data_exception = external_error? ? fetch_external_data_exceptions&.last : nil
+  def external_data_not_found? = last_external_data_exception&.not_found?
 
   def has_async_external_data? = false
+
+  def permissive_external_data_validation? = false
 
   def external_data_needed_for_validation? = has_async_external_data?
 
@@ -124,8 +130,9 @@ module ChampExternalDataConcern
     end
   end
 
+  # Clears the exception list unless the caller passes its own.
   def update_external_data!(hash)
-    update!(hash.merge(fetch_external_data_exceptions: []))
+    update!({ fetch_external_data_exceptions: [] }.merge(hash))
   end
 
   def save_external_error(error, code)

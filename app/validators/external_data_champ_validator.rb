@@ -3,6 +3,9 @@
 class ExternalDataChampValidator < ActiveModel::Validator
   # Required checks are delegated to Champ#validate_completed (:champ_completeness context).
   def validate(record)
+    # Skip before permissive_external_data_validation? scans the revision.
+    return if record.idle? || record.fetched?
+
     if record.permissive_external_data_validation?
       permissive_validate(record)
     else
@@ -17,14 +20,15 @@ class ExternalDataChampValidator < ActiveModel::Validator
       record.errors.add(:external_id, :api_response_pending)
     elsif record.external_error?
       # User filled the field, but background job failed.
-      record.errors.add(:external_id, error_key_for(record, record.fetch_external_data_exceptions&.last))
+      record.errors.add(:external_id, error_key_for(record, record.last_external_data_exception))
     end
   end
 
   def permissive_validate(record)
-    return unless record.external_data_not_found?
+    exception = record.last_external_data_exception
+    return unless exception&.definitive?
 
-    record.errors.add(:value, error_key_for(record, record.fetch_external_data_exceptions.last))
+    record.errors.add(:value, error_key_for(record, exception))
   end
 
   def error_key_for(record, exception)

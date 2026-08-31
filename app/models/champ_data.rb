@@ -74,10 +74,6 @@ class ChampData < ApplicationRecord
   # look like it was edited. Revert blank-equivalent JSON columns before saving.
   before_save :nullify_blank_json_columns
 
-  def permissive_external_data_validation?
-    false
-  end
-
   def type_de_champ
     @type_de_champ ||= dossier.revision
       .type_de_champs
