@@ -277,6 +277,25 @@ RSpec.describe Dsfr::InputStatusMessageComponent, type: :component do
         end
       end
 
+      context "when the champ is in degraded state (API Entreprise was down at fetch time)" do
+        before do
+          champ.update!(value: '44011762001530', external_id: '44011762001530', etablissement: Etablissement.new(siret: '44011762001530'))
+          champ.update_columns(external_state: 'degraded')
+        end
+
+        it "renders an info message explaining verification is postponed" do
+          expect(subject).to have_css(".fr-message--info", text: "La vérification automatique est temporairement indisponible")
+        end
+
+        context "when the champ feeds a condition (submission is blocked until backfill)" do
+          before { allow(champ).to receive(:dependent_conditions?).and_return(true) }
+
+          it "does not render the 'you can continue' message" do
+            expect(subject).not_to have_css(".fr-message--info")
+          end
+        end
+      end
+
       context "when etablissement is non-diffusible (diffusable_commercialement: false)" do
         before do
           etablissement = create(:etablissement, :non_diffusable, entreprise_raison_sociale: "SECRET EI", entreprise_forme_juridique: "Entrepreneur individuel")

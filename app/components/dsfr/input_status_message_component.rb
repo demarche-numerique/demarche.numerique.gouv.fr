@@ -78,12 +78,13 @@ module Dsfr
       case @champ.type_de_champ.type_champ
       when TypeDeChamp.type_champs[:siret]
         # TODO: use fetched? after T20251029backfillChampSiretExternalStateTask
-        if @champ.etablissement && @champ.etablissement.entreprise_capital_social.present?
+        if @champ.degraded?
+          # Submission is blocked when the champ feeds a condition: no reassuring message then.
+          { state: :info, text: t('.siret.technical_error') } if !@champ.dependent_conditions?
+        elsif @champ.etablissement && @champ.etablissement.entreprise_capital_social.present?
           { state: :info, text: t('.siret.fetched_with_capital', raison_sociale_or_name: displayable_raison_sociale_or_name(@champ.etablissement), forme_juridique: @champ.etablissement.entreprise_forme_juridique, capital_sociale: pretty_currency(@champ.etablissement.entreprise_capital_social)) }
         elsif @champ.etablissement && @champ.etablissement.entreprise_capital_social.blank?
           { state: :info, text: t('.siret.fetched', raison_sociale_or_name: displayable_raison_sociale_or_name(@champ.etablissement), forme_juridique: @champ.etablissement.entreprise_forme_juridique) }
-        elsif @champ.external_error?
-          { state: :warning, text: t('.siret.error', value: pretty_siret(@champ.external_id)) }
         elsif @champ.pending?
           { state: :info, text: t('.siret.pending', value: pretty_siret(@champ.external_id)) }
         end
