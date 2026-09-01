@@ -141,6 +141,45 @@ RSpec.describe Ami::CreateNotificationService do
       end
     end
 
+    context 'when the procedure requires a read receipt' do
+      let(:procedure) { create(:procedure, :published, :for_individual, accuse_lecture: true) }
+      let(:dossier) { create(:dossier, :accepte, :with_individual, procedure:, user:) }
+
+      # La plateforme cache la décision jusqu'à ce que l'usager l'affiche : la
+      # notification ne doit pas la divulguer à sa place.
+      it 'does not reveal the decision' do
+        payload = described_class.new(dossier:, trigger: :dossier_state_change, state: nil).create_notification_payload(event_date:)
+
+        expect(payload).to include(
+          content_title: "Voir la décision sur votre dossier",
+          content_body: "Consultez dès maintenant la décision liée à votre démarche « #{procedure.libelle} » n° #{dossier.id} depuis votre compte #{ApplicationHelper::APP_HOST}."
+        )
+      end
+
+      it 'names the decision once the user has agreed to read it' do
+        dossier.update!(accuse_lecture_agreement_at: Time.zone.now)
+        payload = described_class.new(dossier:, trigger: :dossier_state_change, state: nil).create_notification_payload(event_date:)
+
+        expect(payload).to include(content_title: "Dossier accepté")
+      end
+
+      it 'still names a state that is not a decision' do
+        payload = described_class.new(dossier:, trigger: :dossier_state_change, state: :en_instruction).create_notification_payload(event_date:)
+
+        expect(payload).to include(content_title: "Dossier en cours de traitement")
+      end
+    end
+
+    context 'when the procedure does not require a read receipt' do
+      let(:dossier) { create(:dossier, :accepte, :with_individual, procedure:, user:) }
+
+      it 'names the decision' do
+        payload = described_class.new(dossier:, trigger: :dossier_state_change, state: nil).create_notification_payload(event_date:)
+
+        expect(payload).to include(content_title: "Dossier accepté")
+      end
+    end
+
     context 'when triggered by a messagerie message' do
       it 'builds a messagerie-oriented payload' do
         payload = described_class.new(dossier:, trigger: :messagerie_message, state: nil).create_notification_payload(event_date:)

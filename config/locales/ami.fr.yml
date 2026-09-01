@@ -22,6 +22,9 @@ fr:
       sans_suite:
         title: Dossier classé sans suite
         body: Retrouvez votre démarche « %{libelle_demarche} » n° %{dossier_id}.
+      decision_rendue:
+        title: Voir la décision sur votre dossier
+        body: Consultez dès maintenant la décision liée à votre démarche « %{libelle_demarche} » n° %{dossier_id} depuis votre compte %{app_host}.
       messagerie_message:
         title: Nouveau message
         body: Lire le message concernant votre démarche « %{libelle_demarche} » n° %{dossier_id}.
