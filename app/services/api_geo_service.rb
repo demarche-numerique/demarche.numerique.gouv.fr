@@ -92,12 +92,19 @@ class APIGeoService
 
     def departements
       memoize(:departements) do
-        ([{ code: '99', name: 'Etranger' }] + get_from_api_geo(:departements)).sort_by { _1[:code] }.freeze
+        ([{ code: '99', name: 'Etranger', region_code: '99' }] + get_from_api_geo(:departements)).sort_by { _1[:code] }.freeze
       end
     end
 
     def departement_options
       departements.map { ["#{_1[:code]} – #{_1[:name]}", _1[:code]] }
+    end
+
+    # Departement codes by region code
+    def departements_by_region
+      memoize(:departements_by_region) do
+        departements.group_by { it[:region_code] }.transform_values { |departements| departements.map { it[:code] } }.freeze
+      end
     end
 
     def departement_name(code)

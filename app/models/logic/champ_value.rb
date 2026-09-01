@@ -40,6 +40,11 @@ class Logic::ChampValue < Logic::Term
     type_de_champ(type_de_champs)&.condition_value_type || CHAMP_VALUE_TYPE.fetch(:unmanaged)
   end
 
+  def domain(type_de_champs)
+    tdc = type_de_champ(type_de_champs)
+    Logic::Domain.for(tdc) if tdc
+  end
+
   def errors(type_de_champs)
     if !type_de_champs.map(&:stable_id).include?(stable_id)
       [{ type: :not_available }]
