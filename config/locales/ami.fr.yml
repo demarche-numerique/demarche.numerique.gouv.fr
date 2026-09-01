@@ -25,6 +25,9 @@ fr:
       decision_rendue:
         title: Voir la décision sur votre dossier
         body: Consultez dès maintenant la décision liée à votre démarche « %{libelle_demarche} » n° %{dossier_id} depuis votre compte %{app_host}.
+      pending_correction:
+        title: Corriger votre dossier
+        body: Complétez votre démarche « %{libelle_demarche} » depuis l’application ou votre compte %{app_host}.
       messagerie_message:
         title: Nouveau message
         body: Lire le message concernant votre démarche « %{libelle_demarche} » n° %{dossier_id}.
