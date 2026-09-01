@@ -34,7 +34,6 @@ features = [
   :switch_domain,
   :llm_nightly_improve_procedure,
   :ami_notifications,
-  :ami_recipient_fc_hash_v2,
   :dossier_vide_weasyprint,
   :usager_dossiers_alert_filters,
   :s3_storage,
