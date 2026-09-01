@@ -112,6 +112,8 @@ ignore_unused:
   - 'attachment.gallery_item_component.{created_at,updated_at}'
   # t(@procedure.publiee? ? '.notification_alert.publiee' : '.notification_alert.non_publiee')
   - 'procedure.instructeurs_management_component.notification_alert.*'
+  # t(part, scope: [:ami, :notifications, notification_key]) in ami/create_notification_service.rb
+  - 'ami.notifications.*'
   # t(@champ.fc_data_not_found? ? '.piece_justificative_champ.data_not_found' : '...data_not_recovered')
   - 'editable_champ.france_connect_champ_base_component.piece_justificative_champ.*'
   - 'errors.format'

@@ -79,21 +79,26 @@ module Ami
       return ":ami_notifications feature flag disabled" unless dossier.procedure.feature_enabled?(:ami_notifications)
     end
 
-    def content_title
-      return APPLICATION_NAME
-    end
+    # Les libellés sont figés dans l'application, et non repris des modèles
+    # d'email : AMI impose ses propres conventions de formulation, et un sujet
+    # d'email personnalisé par l'administrateur ne les respecterait pas.
+    def content_title = wording(:title)
 
-    def content_body
+    def content_body = wording(:body)
+
+    def wording(part)
       I18n.with_locale(dossier.user_locale) do
-        if messagerie_message?
-          I18n.t("dossier_mailer.notify_new_answer.subject", dossier_id: dossier.id, libelle_demarche: dossier.procedure.libelle)
-        elsif state == :brouillon
-          I18n.t("dossier_mailer.notify_new_draft.subject", libelle_demarche: dossier.procedure.libelle)
-        else
-          dossier.email_template_for(email_template_state).subject_for_dossier(dossier)
-        end
+        I18n.t(
+          part,
+          scope: [:ami, :notifications, notification_key],
+          libelle_demarche: dossier.procedure.libelle,
+          dossier_id: dossier.id,
+          app_host: ApplicationHelper::APP_HOST
+        )
       end
     end
+
+    def notification_key = messagerie_message? ? :messagerie_message : state
 
     def context
       {
@@ -114,14 +119,6 @@ module Ami
 
     def messagerie_message?
       trigger == :messagerie_message
-    end
-
-    def email_template_state
-      if state == :repasser_en_instruction
-        DossierOperationLog.operations.fetch(:repasser_en_instruction)
-      else
-        Dossier.states.fetch(state)
-      end
     end
   end
 end

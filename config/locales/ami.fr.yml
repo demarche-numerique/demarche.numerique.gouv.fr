@@ -1,0 +1,27 @@
+fr:
+  ami:
+    notifications:
+      brouillon:
+        title: Reprendre votre brouillon
+        body: Complétez votre démarche « %{libelle_demarche} » depuis l’application ou votre compte %{app_host}.
+      en_construction:
+        title: Dossier déposé
+        body: Retrouvez votre démarche « %{libelle_demarche} » n° %{dossier_id}.
+      en_instruction:
+        title: Dossier en cours de traitement
+        body: Retrouvez votre démarche « %{libelle_demarche} » n° %{dossier_id}.
+      repasser_en_instruction:
+        title: Dossier en cours de réexamen
+        body: Votre dossier n° %{dossier_id} est en train d’être réexaminé (%{libelle_demarche}).
+      accepte:
+        title: Dossier accepté
+        body: Retrouvez votre démarche « %{libelle_demarche} » n° %{dossier_id}.
+      refuse:
+        title: Dossier refusé
+        body: Retrouvez votre démarche « %{libelle_demarche} » n° %{dossier_id}.
+      sans_suite:
+        title: Dossier classé sans suite
+        body: Retrouvez votre démarche « %{libelle_demarche} » n° %{dossier_id}.
+      messagerie_message:
+        title: Nouveau message
+        body: Lire le message concernant votre démarche « %{libelle_demarche} » n° %{dossier_id}.
