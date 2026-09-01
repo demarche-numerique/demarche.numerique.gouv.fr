@@ -191,5 +191,23 @@ RSpec.describe Ami::CreateNotificationService do
         )
       end
     end
+
+    context 'when triggered by a correction request' do
+      it 'asks the user to act rather than to read' do
+        payload = described_class.new(dossier:, trigger: :pending_correction, state: nil).create_notification_payload(event_date:)
+
+        expect(payload).to include(
+          content_title: "Corriger votre dossier",
+          content_body: "Complétez votre démarche « #{procedure.libelle} » depuis l’application ou votre compte #{ApplicationHelper::APP_HOST}."
+        )
+      end
+
+      # La demande de correction se lit dans la messagerie, comme un message.
+      it 'links to the messagerie' do
+        payload = described_class.new(dossier:, trigger: :pending_correction, state: nil).create_notification_payload(event_date:)
+
+        expect(payload[:content_link]).to end_with("/dossiers/#{dossier.id}/messagerie")
+      end
+    end
   end
 end
