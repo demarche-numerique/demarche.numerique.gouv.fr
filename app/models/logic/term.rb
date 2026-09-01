@@ -14,4 +14,7 @@ class Logic::Term
   end
 
   def terms = [self]
+
+  # An atom `champ <operator> constant`, the kind a domain can be narrowed by.
+  def constraining? = false
 end

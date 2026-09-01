@@ -44,6 +44,12 @@ en:
           other: You want to send an email to %{count} users with a submitted file
         email_content_en_cours: You want to send an email to users with a file « in construction » or « instructing »
       preview_unavailable: Preview is unavailable due to procedure misconfiguration
+      champs:
+        parcours: See the possible paths
+      parcours:
+        title: Possible paths through the form
+        back: Form fields
+        intro: Depending on the user’s answers, conditions display or hide fields. Each block below details, for a group of linked fields, what is displayed for which answers.
       modifications:
         dossiers_en_construction_and_dossiers_en_instruction: "%{en_construction_count} files « in construction » and %{en_instruction_count} files « instructing » on this procedure version."
         dossier_en_construction_and_dossiers_en_instruction:

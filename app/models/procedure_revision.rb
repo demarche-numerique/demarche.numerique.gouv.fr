@@ -219,14 +219,35 @@ class ProcedureRevision < ApplicationRecord
     end
   end
 
-  # Estimated duration to fill the form, in seconds.
+  # Estimated duration to fill the form, in seconds, from the shortest way
+  # through the conditions to the longest.
   #
-  # If the revision is locked (i.e. published), the result is cached (because type de champs can no longer be mutated).
-  def estimated_fill_duration
-    Rails.cache.fetch("#{cache_key_with_version}/estimated_fill_duration", expires_in: 12.hours, force: !locked?) do
-      compute_estimated_fill_duration
+  # Cached on the champs themselves (their number and latest change), so that a
+  # draft is recomputed once per edit rather than on every render.
+  def estimated_fill_duration_range
+    latest_change = type_de_champs.map(&:updated_at).max&.utc&.to_fs(:usec)
+
+    Rails.cache.fetch([self, type_de_champs.size, latest_change, 'estimated_fill_duration_range'], expires_in: 12.hours) do
+      compute_estimated_fill_duration_range
     end
   end
+
+  # The ways the conditions unfold the public form, one tree per cluster of
+  # champs linked by the champs they target.
+  def branch_trees
+    Logic::Branches.new(public_root_type_de_champs.to_a).clusters.map { Logic::BranchTree.new(it) }
+  end
+
+  def conditional? = public_root_type_de_champs.any?(&:condition?)
+
+  def estimated_fill_duration_minutes
+    range = estimated_fill_duration_range
+
+    minutes(range.begin)..minutes(range.end)
+  end
+
+  # Estimated duration to fill the given champs, in minutes
+  def estimated_minutes(type_de_champs) = minutes(type_de_champs.sum { estimated_champ_duration(it) })
 
   def coordinate_for(tdc)
     revision_type_de_champs.find { _1.stable_id == tdc.stable_id }
@@ -331,14 +352,40 @@ class ProcedureRevision < ApplicationRecord
 
   private
 
-  def compute_estimated_fill_duration
-    public_root_type_de_champs.sum do |tdc|
-      next tdc.estimated_read_duration unless tdc.fillable?
+  def minutes(seconds) = [1, (seconds / 60.0).round].max
 
-      duration = tdc.estimated_read_duration + tdc.estimated_fill_duration(self)
-      duration /= 2 unless tdc.mandatory?
+  # Estimated duration to fill one champ, in seconds: reading, then filling
+  # when the champ is fillable, halved when it is optional.
+  def estimated_champ_duration(tdc)
+    return tdc.estimated_read_duration unless tdc.fillable?
 
-      duration
+    duration = tdc.estimated_read_duration + tdc.estimated_fill_duration(self)
+    duration /= 2 unless tdc.mandatory?
+
+    duration
+  end
+
+  # Champs displayed whatever the filling count once; the others count for
+  # the shortest and longest branch of their cluster (see Logic::Branches),
+  # or for nothing and everything when the cluster is too big to enumerate.
+  def compute_estimated_fill_duration_range
+    type_de_champs = public_root_type_de_champs.to_a
+    durations = type_de_champs.to_h { [it.stable_id, estimated_champ_duration(it)] }
+    clusters = Logic::Branches.new(type_de_champs).clusters
+    conditional = clusters.flat_map(&:members).map(&:stable_id).to_set
+
+    always = durations.sum { |stable_id, duration| conditional.include?(stable_id) ? 0 : duration }
+
+    clusters.reduce(always..always) do |range, cluster|
+      member_durations = cluster.members.map { [it.stable_id, durations[it.stable_id]] }
+
+      shortest, longest = if cluster.capped?
+        [0, member_durations.sum(&:last)]
+      else
+        cluster.branches.map { |branch| member_durations.sum { |stable_id, duration| branch.visible.include?(stable_id) ? duration : 0 } }.minmax
+      end
+
+      (range.begin + shortest)..(range.end + longest)
     end
   end
 
@@ -364,7 +411,7 @@ class ProcedureRevision < ApplicationRecord
   def ineligibilite_rules_are_valid?
     return unless ineligibilite_rules
 
-    rules_errors = ineligibilite_rules.errors(type_de_champs_for(scope: :public).to_a)
+    rules_errors = Logic.errors(ineligibilite_rules, type_de_champs_for(scope: :public).to_a)
 
     if rules_errors.any? || ineligibilite_rules.type == :empty
       errors.add(:ineligibilite_rules, :invalid)

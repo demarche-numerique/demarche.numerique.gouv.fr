@@ -1,5 +1,24 @@
 fr:
   logic:
+    domain:
+      any: toute valeur
+      blank: non renseigné
+      enums:
+        any: toute sélection
+        with: "avec %{options}"
+        without: "sans %{options}"
+      geo:
+        all: tous les départements
+        count: "%{count} départements"
+      or: " ou "
+      number:
+        at_least: "%{value} ou plus"
+        at_most: "%{value} ou moins"
+        between: "de %{min} à %{max}"
+        between_exclusive: "entre %{min} et %{max}"
+        less_than: "moins de %{value}"
+        more_than: "plus de %{value}"
+      other: Autre
     empty: un membre vide
     empty_operator: un opérateur vide
     is: Est

@@ -33,7 +33,7 @@ describe APIGeoService do
     it 'return sorted results' do
       expect(APIGeoService.departements.size).to eq(110)
       expect(APIGeoService.departements.first).to eq(code: '01', name: 'Ain', region_code: "84")
-      expect(APIGeoService.departements.last).to eq(code: '99', name: 'Etranger')
+      expect(APIGeoService.departements.last).to eq(code: '99', name: 'Etranger', region_code: '99')
     end
   end
 

@@ -9,6 +9,14 @@ module Logic
     from_h(JSON.parse(s))
   end
 
+  # The errors of a whole condition: the structural ones of its terms (unknown
+  # champ, incompatible types…), or, when it is well formed, the reason it can
+  # never be true (see Logic::Satisfiability). Checked on the root only: a
+  # branch of a disjunction may well be dead while the condition is not.
+  def self.errors(condition, type_de_champs)
+    condition.errors(type_de_champs).presence || Satisfiability.new(type_de_champs).errors(condition)
+  end
+
   def self.class_from_name(name)
     [
       ChampValue,

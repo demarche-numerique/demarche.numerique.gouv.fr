@@ -12,7 +12,7 @@
         - elsif @groupe_instructeur.non_unique_rule?
           %p.fr-mb-1w.fr-badge.fr-badge--warning.fr-badge--sm règle déjà attribuée à #{@groupe_instructeur.groups_with_same_rule}
 
-      = render Conditions::ConditionsErrorsComponent.new(conditions: condition_per_row, source_tdcs: @source_tdcs)
+      = render Conditions::ConditionsErrorsComponent.new(condition: @condition, source_tdcs: @source_tdcs)
 
       %table.condition-table
         %thead
