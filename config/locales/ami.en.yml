@@ -25,6 +25,9 @@ en:
       decision_rendue:
         title: See the decision on your file
         body: Read the decision on your procedure « %{libelle_demarche} » no. %{dossier_id} now, from your %{app_host} account.
+      pending_correction:
+        title: Correct your file
+        body: Complete your procedure « %{libelle_demarche} » from the app or your %{app_host} account.
       messagerie_message:
         title: New message
         body: Read the message about your procedure « %{libelle_demarche} » no. %{dossier_id}.

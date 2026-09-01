@@ -5,6 +5,7 @@ module Ami
     SOURCE = ApplicationHelper::APP_HOST
 
     DECISION_STATES = [:accepte, :refuse, :sans_suite].freeze
+    MESSAGE_TRIGGERS = [:messagerie_message, :pending_correction].freeze
 
     ITEM_GENERIC_STATUS_BY_STATE = {
       brouillon: "new",
@@ -65,7 +66,7 @@ module Ami
     private
 
     def item_external_url
-      if messagerie_message?
+      if message_trigger?
         Rails.application.routes.url_helpers.messagerie_dossier_url(dossier)
       else
         Rails.application.routes.url_helpers.dossier_url(dossier)
@@ -101,7 +102,7 @@ module Ami
     end
 
     def notification_key
-      return :messagerie_message if messagerie_message?
+      return trigger if message_trigger?
       return :decision_rendue if hidden_decision?
 
       state
@@ -130,8 +131,9 @@ module Ami
       ITEM_GENERIC_STATUS_BY_STATE.fetch(state.to_sym, ITEM_GENERIC_STATUS_BY_STATE.fetch(state, "wip"))
     end
 
-    def messagerie_message?
-      trigger == :messagerie_message
-    end
+    # Ces déclencheurs ne sont pas des changements d'état : ils nomment eux-mêmes
+    # le libellé, et renvoient l'usager au fil de discussion du dossier, où se
+    # trouvent aussi bien le message que la demande de correction.
+    def message_trigger? = trigger.in?(MESSAGE_TRIGGERS)
   end
 end
