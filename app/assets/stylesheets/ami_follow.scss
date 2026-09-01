@@ -1,0 +1,60 @@
+.ami-follow {
+  border: 1px solid var(--border-default-grey);
+
+  &__intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    text-align: center;
+    background-color: var(--background-alt-blue-france);
+  }
+
+  &__illustration {
+    width: 6rem;
+    height: auto;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+// Réserve la place de la ligne de consentement pendant son chargement, pour
+// que l'encart ne se remplisse pas par à-coups.
+.ami-consent__skeleton {
+  display: block;
+  width: 16rem;
+  max-width: 100%;
+  height: 1.5rem;
+  border-radius: 0.25rem;
+  background-color: var(--background-contrast-grey);
+  background-image: linear-gradient(
+    90deg,
+    transparent,
+    var(--background-default-grey),
+    transparent
+  );
+  background-repeat: no-repeat;
+  background-size: 50% 100%;
+  animation: ami-consent-skeleton 1.4s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@keyframes ami-consent-skeleton {
+  0% {
+    background-position: -100% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}

@@ -1,0 +1,72 @@
+<section class="ami-follow fr-mb-5w" aria-labelledby="ami-follow-title">
+  <div class="fr-grid-row">
+    <div class="fr-col-12 fr-col-md-6 fr-p-3w ami-follow__intro">
+      <%= image_tag 'ami/illustration.svg', alt: '', class: 'ami-follow__illustration' %>
+
+      <p id="ami-follow-title" class="fr-text--bold fr-mb-0">
+        <%= t('.title', app_name: Ami::APP_NAME) %>
+      </p>
+    </div>
+
+    <div class="fr-col-12 fr-col-md-6 fr-p-3w ami-follow__actions">
+      <%= helpers.turbo_frame_tag "ami-consent", src: consent_path, loading: :lazy, "aria-live": "polite" do %>
+        <%= render Dossiers::AmiConsentStateComponent.new(status: :loading, dossier:) %>
+      <% end %>
+
+      <p class="fr-my-2w">
+        <%= link_to Ami::APP_URL, class: 'fr-btn fr-btn--icon-left fr-icon-smartphone-line', title: helpers.new_tab_suffix(t('.see_in_app')), **helpers.external_link_attributes do %>
+          <%= t('.see_in_app') %>
+        <% end %>
+      </p>
+
+      <button
+        class="fr-btn fr-btn--tertiary-no-outline fr-btn--sm"
+        type="button"
+        aria-controls="<%= MODAL_ID %>"
+        aria-haspopup="dialog"
+        data-fr-opened="false"
+      >
+        <%= t('.more_info') %>
+      </button>
+    </div>
+  </div>
+
+  <dialog
+    id="<%= MODAL_ID %>"
+    class="fr-modal"
+    role="dialog"
+    aria-labelledby="<%= MODAL_TITLE_ID %>"
+  >
+    <div class="fr-container fr-container--fluid fr-container-md">
+      <div class="fr-grid-row fr-grid-row--center">
+        <div class="fr-col-12 fr-col-md-10 fr-col-lg-8">
+          <div class="fr-modal__body">
+            <div class="fr-modal__header">
+              <button
+                class="fr-btn--close fr-btn"
+                type="button"
+                aria-controls="<%= MODAL_ID %>"
+                title="<%= t('utils.modal_close_alt') %>"
+              >
+                <%= t('utils.modal_close') %>
+              </button>
+            </div>
+
+            <div class="fr-modal__content">
+              <h1 id="<%= MODAL_TITLE_ID %>" class="fr-modal__title">
+                <span
+                  class="fr-icon-information-line fr-icon--lg"
+                  aria-hidden="true"
+                ></span>
+
+                <%= t('.modal.title', app_name: Ami::APP_NAME) %>
+              </h1>
+
+              <%= t('.modal.body_html', app_name: Ami::APP_NAME) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+</section>
