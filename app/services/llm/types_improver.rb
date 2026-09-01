@@ -15,7 +15,14 @@ module LLM
               description: 'Changement de type',
               properties: {
                 stable_id: { type: 'integer', description: 'Identifiant du champ à modifier.' },
-                type_champ: { type: 'string', description: 'Nouveau type du champ.' },
+                type_champ: { type: 'string', description: 'Nouveau type du champ. Répéter le type actuel si seule la nature change.' },
+                nature: {
+                  type: 'string',
+                  description: <<~DESC.squish,
+                    Nature de la pièce, uniquement pour type_champ "piece_justificative".
+                    Une des valeurs : non_specifie, titre_identite, rib, justificatif_domicile, avis_impot.
+                  DESC
+                },
                 options: {
                   type: 'object',
                   description: <<~DESC.squish,
@@ -125,6 +132,37 @@ module LLM
           "justification": "Interface standard de case à cocher pour les attestations et consentements, obligeant l'usager à confirmer explicitement son engagement."
         }
 
+        **Exemple 6 : Lecture automatique d'un justificatif (ACCEPTÉ)**
+
+        Champ actuel :
+        { stable_id: 60, libelle: "Justificatif de domicile de moins de 3 mois", type: "piece_justificative", nature: "non_specifie" }
+
+        Analyse :
+        - Le libellé désigne UN document précis et connu : un justificatif de domicile
+        - Nature actuelle : "non_specifie" (le fichier est stocké tel quel, aucune donnée exploitable)
+        - Nature recommandée : "justificatif_domicile"
+        - GAIN : si le document porte un cachet 2D-Doc, le bénéficiaire, l'adresse et la date d'émission sont extraits et transmis à l'instructeur
+        - CONTREPARTIE ACCEPTABLE : le champ est limité à 1 fichier et aux formats document texte / scan, ce qui correspond à ce document
+        - DÉCISION : Proposer le changement de nature (le type reste piece_justificative)
+
+        Tool call :
+        {
+          "update": { "stable_id": 60, "type_champ": "piece_justificative", "nature": "justificatif_domicile" },
+          "justification": "Lecture automatique du cachet 2D-Doc : le nom du bénéficiaire, l'adresse et la date d'émission sont transmis à l'instructeur."
+        }
+
+        **Exemple 7 : Pièce jointe générique (REJETÉ)**
+
+        Champ actuel :
+        { stable_id: 70, libelle: "Pièces complémentaires à votre demande", type: "piece_justificative", nature: "non_specifie" }
+
+        Analyse :
+        - Le libellé ne désigne AUCUN document précis : l'usager peut déposer n'importe quoi
+        - Tentation : activer une nature pour bénéficier de la lecture automatique
+        - PROBLÈME : activer une nature limite le champ à 1 SEUL fichier et aux formats document texte / scan
+        - L'usager ne pourrait plus déposer plusieurs pièces → régression fonctionnelle
+        - DÉCISION : NE PAS changer la nature
+
         ## MÉTHODOLOGIE OBLIGATOIRE EN 2 PHASES :
 
         PHASE 1 - AUDIT (mental, pas de tool call) :
@@ -137,6 +175,10 @@ module LLM
         - Le champ attend-il des DONNÉES STANDARDISÉES connues ?
           - email, phone, siret, iban, date, etc.
           - SI OUI : marquer pour transformation PRIORITÉ 1
+
+        - Le champ est-il une piece_justificative attendant UN document à LECTURE AUTOMATIQUE ?
+          - justificatif de domicile, RIB, avis d'imposition
+          - SI OUI et nature == "non_specifie" : marquer pour changement de nature PRIORITÉ 1
 
         - Le champ bénéficierait-il d'AUTO-COMPLÉTION via référentiel ?
           - address, communes, départements, regions, rna, rnf, annuaire_education
@@ -198,6 +240,27 @@ module LLM
 
         - annuaire_education : Identifiant établissement + données complètes
           OK "Établissement scolaire" (text) → annuaire_education
+
+        - nature d'une piece_justificative : lecture automatique du document déposé
+          Le type reste "piece_justificative", seule la "nature" change. Répète toujours "type_champ": "piece_justificative".
+          Ne proposer QUE si la nature actuelle est "non_specifie" ET que le libellé désigne UN document précis.
+
+          - justificatif_domicile : décode le cachet 2D-Doc → bénéficiaire, adresse, date d'émission
+            OK "Justificatif de domicile" (nature non_specifie) → justificatif_domicile
+            OK "Facture d'électricité, de gaz ou d'eau de moins de 3 mois" → justificatif_domicile
+            OK "Quittance de loyer" → justificatif_domicile
+
+          - rib : extrait titulaire, IBAN, BIC, nom de la banque
+            OK "RIB" (nature non_specifie) → rib
+            OK "Relevé d'identité bancaire" → rib
+
+          - avis_impot : décode le cachet 2D-Doc → déclarants, revenu fiscal de référence, nombre de parts, référence d'avis
+            OK "Avis d'imposition" (nature non_specifie) → avis_impot
+            OK "Dernier avis d'impôt sur le revenu" → avis_impot
+
+          KO "Pièces complémentaires" / "Autres documents" → NE PAS changer (aucun document précis)
+          KO Champ où l'usager dépose plusieurs documents → NE PAS changer (la nature limite à 1 fichier)
+          KO nature déjà renseignée (rib, justificatif_domicile, avis_impot, titre_identite) → NE PAS changer
 
         PRIORITÉ 2 : AUTO-COMPLÉTION VIA RÉFÉRENTIELS
 
@@ -298,6 +361,9 @@ module LLM
         - NE PAS utiliser "pays" pour pays de naissance ou nationalité (manque pays historiques)
         - NE PAS transformer "address" en "communes" si l'adresse complète est nécessaire
         - NE PAS sur-spécialiser : un champ text libre doit rester text
+        - NE PAS renseigner une "nature" sur une pièce justificative générique (limite à 1 fichier et aux formats document texte / scan)
+        - NE PAS proposer "titre_identite" comme nature : ce choix relève de l'administration, pas d'une optimisation
+        - NE PAS renseigner "nature" sur un type autre que "piece_justificative"
 
         >> Il vaut mieux ne faire AUCUNE proposition que de proposer une transformation inappropriée.
 
@@ -309,6 +375,7 @@ module LLM
         ## Concentre-toi sur les gains concrets :
         - Validation automatique (email, iban, siret)
         - Enrichissement de données (siret → données entreprise, address → commune/département/région)
+        - Lecture automatique des documents déposés (justificatif de domicile, RIB, avis d'imposition → données transmises à l'instructeur)
         - Simplification pour l'usager (UX adaptée pour chaque champ, meilleure accessibilité)
 
         Utilise l'outil #{TOOL_DEFINITION.dig(:function, :name)} pour chaque proposition (un appel par changement).
@@ -328,16 +395,19 @@ module LLM
 
       stable_id = data['stable_id']
       type_champ = data['type_champ']
+      nature = data['nature']
 
       return if stable_id.nil? || type_champ.blank?
       return unless valid_type_champ?(type_champ)
+      return if nature.present? && !valid_nature?(type_champ, nature)
 
       original_tdc = tdc_index[stable_id]
-      return if original_tdc && original_tdc.type_champ == type_champ
+      return if original_tdc && unchanged?(original_tdc, type_champ, nature)
 
       options = sanitize_options(type_champ, data['options'])
 
       payload = { 'stable_id' => stable_id, 'type_champ' => type_champ }
+      payload['nature'] = nature if nature.present?
       payload['options'] = options if options.present?
 
       {
@@ -351,6 +421,19 @@ module LLM
 
     def valid_type_champ?(type_champ)
       TypeDeChamp.type_champs.key?(type_champ.to_s)
+    end
+
+    def valid_nature?(type_champ, nature)
+      type_champ.to_s == TypeDeChamp.type_champs.fetch(:piece_justificative) &&
+        TypeDeChamp.natures.key?(nature.to_s)
+    end
+
+    def unchanged?(original_tdc, type_champ, nature)
+      return false if original_tdc.type_champ != type_champ
+      return true if nature.blank?
+
+      current_nature = original_tdc.nature || TypeDeChamp.natures.fetch(:non_specifie)
+      current_nature == nature
     end
 
     def sanitize_options(type_champ, options)

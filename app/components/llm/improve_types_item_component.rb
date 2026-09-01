@@ -13,12 +13,26 @@ class LLM::ImproveTypesItemComponent < LLM::SuggestionItemComponent
     t(type_champ, scope: [:activerecord, :attributes, :type_de_champ, :type_champs])
   end
 
-  def new_type_champ_label
-    type_champ_label(payload['type_champ'])
+  def nature_label(nature)
+    I18n.t(nature, scope: [:activerecord, :attributes, :type_de_champ, :natures])
   end
 
-  def original_type_champ_label
-    type_champ_label(original_tdc.type_champ)
+  # Le type reste piece_justificative quand seule la lecture automatique du document change :
+  # afficher la nature plutôt qu'une transition de type identique
+  def nature_change?
+    payload['nature'].present? && payload['type_champ'] == original_tdc.type_champ
+  end
+
+  def new_badge_label
+    nature_change? ? nature_label(payload['nature']) : type_champ_label(payload['type_champ'])
+  end
+
+  def original_badge_label
+    if nature_change?
+      nature_label(original_tdc.nature || TypeDeChamp.natures.fetch(:non_specifie))
+    else
+      type_champ_label(original_tdc.type_champ)
+    end
   end
 
   def options_summary

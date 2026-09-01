@@ -1444,6 +1444,31 @@ describe ProcedureRevision do
         expect { revision.schema_to_llm }.not_to raise_error
       end
     end
+
+    context 'when a type_de_champ is a piece_justificative' do
+      let(:procedure) do
+        create(:procedure, types_de_champ_public: [
+          { type: :piece_justificative, libelle: "Justificatif de domicile", stable_id: 10 },
+          { type: :text, libelle: "Nom", stable_id: 11 },
+        ])
+      end
+      let(:revision) { procedure.draft_revision }
+
+      it 'exposes nature, defaulting to non_specifie' do
+        pj, text = revision.schema_to_llm
+
+        expect(pj[:nature]).to eq('non_specifie')
+        expect(text).not_to have_key(:nature)
+      end
+
+      it 'exposes the nature already set' do
+        revision.types_de_champ_public.first.update!(nature: 'justificatif_domicile')
+
+        pj, _text = revision.reload.schema_to_llm
+
+        expect(pj[:nature]).to eq('justificatif_domicile')
+      end
+    end
   end
 
   describe "#apply_llm_rule_suggestion_items" do
@@ -1526,6 +1551,27 @@ describe ProcedureRevision do
           expect(tdc.options['special_characters_accepted']).to eq(false)
           expect(tdc.options['min_character_length']).to eq(5)
           expect(tdc.options['max_character_length']).to eq(5)
+        end
+      end
+
+      context 'with nature update' do
+        let(:types_de_champ_public) { [{ type: :piece_justificative, libelle: "Justificatif de domicile", stable_id: 10 }] }
+
+        it "can update nature on an unchanged piece_justificative" do
+          llm_rule_suggestion = create(:llm_rule_suggestion, procedure_revision: revision, rule: 'improve_types', schema_hash:)
+          create(:llm_rule_suggestion_item,
+            llm_rule_suggestion:,
+            verify_status: 'accepted',
+            stable_id: 10,
+            op_kind: 'update',
+            payload: { 'stable_id' => 10, 'type_champ' => 'piece_justificative', 'nature' => 'justificatif_domicile' })
+
+          revision.apply_llm_rule_suggestion_items(llm_rule_suggestion.changes_to_apply)
+          revision.reload
+
+          tdc = revision.types_de_champ_public.find { |t| t.stable_id == 10 }
+          expect(tdc.type_champ).to eq('piece_justificative')
+          expect(tdc.nature).to eq('justificatif_domicile')
         end
       end
     end

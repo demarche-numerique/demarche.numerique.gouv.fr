@@ -87,5 +87,24 @@ RSpec.describe LLM::ImproveTypesItemComponent, type: :component do
         expect(subject).to have_text("entre 0 et 100")
       end
     end
+
+    context 'with nature change on a piece_justificative' do
+      let(:procedure) { create(:procedure, types_de_champ_public: [{ type: :piece_justificative, libelle: "Justificatif de domicile", stable_id: 10 }]) }
+
+      before do
+        create(:llm_rule_suggestion_item,
+          llm_rule_suggestion:,
+          op_kind: 'update',
+          stable_id: 10,
+          payload: { 'stable_id' => 10, 'type_champ' => 'piece_justificative', 'nature' => 'justificatif_domicile' },
+          justification: 'Lecture automatique du cachet 2D-Doc')
+      end
+
+      it 'renders the nature transition instead of the unchanged type' do
+        expect(subject).to have_css('.fr-badge', text: "Non spécifié")
+        expect(subject).to have_css('.fr-badge.fr-badge--green-emeraude', text: "Justificatif de domicile")
+        expect(subject).not_to have_css('.fr-badge', text: "Pièce justificative")
+      end
+    end
   end
 end
