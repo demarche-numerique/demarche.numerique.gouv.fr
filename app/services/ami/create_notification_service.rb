@@ -4,6 +4,8 @@ module Ami
   class CreateNotificationService
     SOURCE = ApplicationHelper::APP_HOST
 
+    DECISION_STATES = [:accepte, :refuse, :sans_suite].freeze
+
     ITEM_GENERIC_STATUS_BY_STATE = {
       brouillon: "new",
       en_construction: "wip",
@@ -98,7 +100,18 @@ module Ami
       end
     end
 
-    def notification_key = messagerie_message? ? :messagerie_message : state
+    def notification_key
+      return :messagerie_message if messagerie_message?
+      return :decision_rendue if hidden_decision?
+
+      state
+    end
+
+    # Avec l'accusé de lecture, la plateforme ne dévoile la décision qu'une fois
+    # que l'usager l'a affichée : la notification ne doit pas la divulguer avant.
+    def hidden_decision?
+      state.in?(DECISION_STATES) && dossier.hide_info_with_accuse_lecture?
+    end
 
     def context
       {
