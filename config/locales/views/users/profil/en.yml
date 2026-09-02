@@ -1,5 +1,19 @@
 en:
   users:
+    profil_passwords:
+      edit:
+        title: Change my password
+        forgot_title: You do not know your current password?
+        forgot_current_password: Reset my password
+        forgot_hint: You will be signed out, then you will receive an email link to choose a new password.
+        france_connect_title: Your FranceConnect login is not affected
+        france_connect_body: This change only applies to your account password. Logging in through FranceConnect will keep working exactly as before.
+        submit: Change the password
+        submit_loading: Changing…
+      forgot:
+        signed_out: You have been signed out. Fill in your email address to receive a reset link.
+      update:
+        success: Your password has been changed. Any other session opened on your account has been signed out.
     profil:
       show:
         profile: Profile
@@ -7,6 +21,9 @@ en:
         your_email: Your current email is
         new_email_address: New email address
         change_address: Change my address
+        password_title: Password
+        password_explication: You can change your account password at any time. Any other open session will then be signed out.
+        change_password: Change my password
         transfer_title: Transfer all your files
         transfer_explication_html: "<p>This feature allows you to change the owner of all your files. This is usually useful when changing jobs or if you want to merge several accounts.</p>"
         transfer_next_owner_label: "Email of the next owner of your files"

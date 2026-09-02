@@ -54,4 +54,14 @@ describe 'setting a password outside the reset form', type: :request do
 
     it_behaves_like 'a password set on a live session'
   end
+
+  describe 'changing the password from the profile page' do
+    def set_the_password
+      patch profil_password_path, params: {
+        user: { current_password: password, password: new_password, password_confirmation: new_password },
+      }
+    end
+
+    it_behaves_like 'a password set on a live session'
+  end
 end
