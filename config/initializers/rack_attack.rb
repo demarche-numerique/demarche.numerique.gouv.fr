@@ -27,6 +27,14 @@ class Rack::Attack
     end
   end
 
+  # Devise `lockable` n'incremente `failed_attempts` que lors d'une
+  # authentification : `update_with_password` echappe au verrouillage.
+  throttle('profil/mot-de-passe/ip', limit: 5, period: 60.seconds) do |req|
+    if req.path == '/profil/mot-de-passe' && req.patch? && rack_attack_enabled?
+      req.remote_ip
+    end
+  end
+
   # API prefill
   throttle('/api/public/v1/dossiers/ip', limit: 15, period: 15.seconds) do |req|
     if req.path == '/api/public/v1/dossiers' && req.post? && rack_attack_enabled?
