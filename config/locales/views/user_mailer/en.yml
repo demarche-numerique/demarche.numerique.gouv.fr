@@ -22,5 +22,7 @@ en:
       subject: "Your account will be deleted in %{remaining_weeks} weeks"
     notify_after_closing:
       subject: "Closing of a procedure on %{application_name}"
+    password_changed:
+      subject: Your account password has been changed
     account_reactivated:
       subject: Your account has been reactivated

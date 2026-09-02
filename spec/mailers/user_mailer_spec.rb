@@ -206,4 +206,19 @@ RSpec.describe UserMailer, type: :mailer do
       expect(subject.body).to have_link('Se connecter', href: new_user_session_url)
     end
   end
+
+  describe '.password_changed' do
+    subject { described_class.password_changed(user) }
+
+    it 'sends a security notification to the user' do
+      expect(subject.to).to eq([user.email])
+      expect(subject.subject).to eq('Le mot de passe de votre compte a été modifié')
+      expect(subject.body).to include(user.email)
+      expect(subject.body).to have_link('Demander un nouveau mot de passe')
+    end
+
+    it 'is a critical email' do
+      expect(described_class.critical_email?('password_changed')).to be true
+    end
+  end
 end

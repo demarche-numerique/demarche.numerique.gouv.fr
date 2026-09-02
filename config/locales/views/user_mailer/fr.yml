@@ -22,5 +22,7 @@ fr:
       subject: "Votre compte sera supprimé dans %{remaining_weeks} semaines"
     notify_after_closing:
       subject: "Clôture d’une démarche sur %{application_name}"
+    password_changed:
+      subject: Le mot de passe de votre compte a été modifié
     account_reactivated:
       subject: Votre compte a été réactivé

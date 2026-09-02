@@ -94,6 +94,9 @@ scope module: 'users', defaults: { nav_bar_profile: :user } do
   patch 'personnalisation', to: 'dossiers#update_personnalisation'
 
   get 'profil' => 'profil#show'
+  get 'profil/mot-de-passe' => 'profil_passwords#edit', as: :edit_profil_password
+  patch 'profil/mot-de-passe' => 'profil_passwords#update', as: :profil_password
+  post 'profil/mot-de-passe/oubli' => 'profil_passwords#forgot', as: :forgot_profil_password
   patch 'update_email' => 'profil#update_email'
   post 'transfer_all_dossiers' => 'profil#transfer_all_dossiers'
   post 'accept_merge' => 'profil#accept_merge'

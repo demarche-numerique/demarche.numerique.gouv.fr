@@ -3,17 +3,10 @@
 module Users
   class ProfilController < UserController
     include FranceConnectConcern
-
-    ALLOWED_NAV_BAR_PROFILES = [:user, :instructeur, :administrateur, :expert, :gestionnaire].freeze
+    include ProfilContextConcern
 
     before_action :ensure_update_email_is_authorized, only: :update_email
     before_action :find_transfers, only: [:show]
-
-    def nav_bar_profile
-      context = params[:context]&.to_sym
-      return context if ALLOWED_NAV_BAR_PROFILES.include?(context)
-      fallback_nav_bar_profile.presence || :user
-    end
 
     def show
       @france_connect_informations = FranceConnectInformation.where(user: current_user)
