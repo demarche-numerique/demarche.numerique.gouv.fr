@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class APIEntrepriseService
+  CREDENTIALS_CODES = [401, 403].freeze
+  CREDENTIALS_ALERT_TTL = 1.hour
+
   class << self
     include Dry::Monads[:result]
 
@@ -74,6 +77,10 @@ class APIEntrepriseService
         give_up_degraded_mode(etablissement, 'not_found', 404)
       in Failure(type:, code:, **) if code.in?(ExternalDataException::DEFINITIVE_CODES)
         give_up_degraded_mode(etablissement, type, code)
+      in Failure(type:, code:, **) => result if code.in?(CREDENTIALS_CODES)
+        Rails.logger.error("API Entreprise backfill blocked: etablissement=#{etablissement.id} type=#{type} code=#{code}")
+        report_credentials_error(result.failure, etablissement, procedure_id)
+        nil
       in Failure(retryable: true, **) => result
         result
       else
@@ -109,6 +116,13 @@ class APIEntrepriseService
     def degraded_failure(dossier_or_champ, siret, user_id, type:, code:)
       Failure(degraded: true, type:, code:,
         etablissement: create_etablissement_as_degraded_mode(dossier_or_champ, siret, user_id))
+    end
+
+    def report_credentials_error(failure, etablissement, procedure_id)
+      key = "api_entreprise:credentials_alert:#{procedure_id}:#{failure[:type]}"
+      return if !Rails.cache.write(key, true, expires_in: CREDENTIALS_ALERT_TTL, unless_exist: true)
+
+      report_error(failure, siret: etablissement.siret, etablissement_id: etablissement.id, procedure_id:)
     end
 
     def report_error(failure, extra = {})
