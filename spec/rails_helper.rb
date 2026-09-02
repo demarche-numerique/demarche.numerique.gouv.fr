@@ -116,7 +116,7 @@ RSpec.configure do |config|
   config.before(:each) do |example|
     next if example.metadata[:external_deps]
 
-    allow(TypstService).to receive(:generate_pdf) do |template, data|
+    allow(TypstService).to receive(:generate_pdf) do |template, data, **|
       raise ArgumentError, "unknown typst template: #{template}" if !TypstService::ROOT.join("#{template}.typ").exist?
 
       JSON.generate(data)
