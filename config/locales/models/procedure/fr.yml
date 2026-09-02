@@ -8,7 +8,7 @@ fr:
       procedure:
         hints:
           api_entreprise_token: 'Exemple : eyJhbGciOiJIUzI1NiJ9.eyJ1...'
-          api_particulier_token: "Il doit contenir au minimum 15 caractères."
+          api_particulier_token: 'Exemple : eyJhbGciOiJIUzI1NiJ9.eyJ1...'
           description: Décrivez en quelques lignes le contexte, la finalité, etc.
           description_target_audience: Décrivez en quelques lignes les destinataires finaux de la démarche, les conditions d’éligibilité s’il y en a, les pré-requis, etc.
           description_pj: Décrivez la liste des pièces jointes à fournir s’il y en a
@@ -92,7 +92,7 @@ fr:
         procedure:
           attributes:
             api_particulier_token:
-              invalid: 'n’a pas le bon format'
+              invalid: 'n’est pas un jeton valide'
             public_draft_type_de_champs:
               format: 'Le champ %{message}'
               invalid_condition: "a une logique conditionnelle invalide"
@@ -104,7 +104,7 @@ fr:
               missing_libelle_in_repetition: "Le libellé du champ en position %{position}, dans le bloc répétable en position %{parent_position}, doit être rempli"
               expression_reguliere_invalid: "est invalide, veuillez la corriger"
               referentiel_not_ready: "n’est pas configuré"
-              missing_api_particulier_token: "n’est pas fonctionnel en l’absence d’un jeton API Particulier"
+              missing_api_particulier_token: "n’est pas fonctionnel sans un jeton API Particulier valide"
             private_draft_type_de_champs:
               format: 'L’annotation privée %{message}'
               invalid_condition: "a une logique conditionnelle invalide"

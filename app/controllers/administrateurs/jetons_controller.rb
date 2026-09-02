@@ -11,10 +11,15 @@ module Administrateurs
     end
 
     def update_particulier
-      string_token = params[:procedure][:api_particulier_token]
-      @procedure.api_particulier_token = string_token
+      # Un jeton collé traîne des espaces ; un champ vidé arrive en chaîne vide,
+      # qui serait chiffrée puis stockée comme une valeur.
+      @procedure.api_particulier_token = params[:procedure][:api_particulier_token].to_s.strip.presence
+      alert = unusable_token_alert
 
-      if @procedure.save
+      if alert.present?
+        flash.now.alert = alert
+        render :edit_particulier
+      elsif @procedure.save
         flash.notice = 'Le jeton a bien été mis à jour'
         redirect_to admin_procedure_jetons_path(id: @procedure.id)
       else
@@ -51,6 +56,21 @@ module Administrateurs
       @procedure.update!(api_entreprise_token: nil)
       flash.notice = 'Le jeton API Entreprise a bien été supprimé'
       redirect_to admin_procedure_jetons_path(@procedure)
+    end
+
+    private
+
+    # Un jeton expiré, ou dont la charge utile n'est pas un objet, se décode :
+    # rien ne le refuserait, et les appels seraient coupés dès l'enregistrement.
+    def unusable_token_alert
+      token = @procedure.api_particulier_token
+      return if token.jwt_token.blank? || !token.unusable?
+
+      if token.expires_at.present?
+        "Mise à jour impossible : ce jeton a expiré"
+      else
+        "Mise à jour impossible : le jeton n’est pas valide"
+      end
     end
   end
 end

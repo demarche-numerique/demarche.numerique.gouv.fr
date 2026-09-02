@@ -113,6 +113,22 @@ describe Administrateurs::JetonsController, type: :controller do
       sign_in(admin.user)
     end
 
+    # La page qui liste les jetons de la démarche et leur état.
+    describe "GET #index" do
+      render_views
+
+      let(:procedure) do
+        create(:procedure, administrateur: admin).tap do
+          it.api_particulier_token = 'azertyuiopqsdfgh'
+          it.save(validate: false)
+        end
+      end
+
+      subject { get :index, params: { procedure_id: procedure.id } }
+
+      it { expect(subject.body).to have_content('Jeton invalide') }
+    end
+
     describe "GET #edit_particulier" do
       render_views
 
@@ -127,8 +143,8 @@ describe Administrateurs::JetonsController, type: :controller do
     describe "PATCH #update_particulier" do
       subject { patch :update_particulier, params: { procedure_id: procedure.id, procedure: { api_particulier_token: token } } }
 
-      context "when jeton has a valid shape" do
-        let(:token) { "d7e9c9f4c3ca00caadde31f50fd4521a" }
+      context "when jeton is a valid JWT" do
+        let(:token) { JWT.encode({ exp: 2.months.from_now.to_i }, nil, 'none') }
 
         it 'saves the jeton' do
           subject
@@ -137,28 +153,39 @@ describe Administrateurs::JetonsController, type: :controller do
         end
       end
 
-      context "when jeton is invalid" do
-        let(:token) { "jet0n 1nvalide" }
+      context "when jeton has expired" do
+        let(:token) { JWT.encode({ exp: 2.days.ago.to_i }, nil, 'none') }
+
+        it 'rejects the jeton' do
+          subject
+          expect(flash.alert).to eq("Mise à jour impossible : ce jeton a expiré")
+          expect(procedure.reload.api_particulier_token?).to be(false)
+        end
+      end
+
+      context "when jeton is not a JWT" do
+        # Le cas de RAILS-MGX : un administrateur avait saisi n'importe quoi.
+        let(:token) { "azertyuiopqsdfgh" }
 
         it 'rejects the jeton' do
           subject
           expect(flash.alert).to eq("Mise à jour impossible : le jeton n’est pas valide")
           expect(flash.notice).to be_nil
-          expect(procedure.reload.api_particulier_token).not_to eql(token)
+          expect(procedure.reload.api_particulier_token?).to be(false)
         end
       end
     end
 
     describe 'DELETE #destroy_particulier' do
       let(:procedure) { create(:procedure, administrateur: admin, api_particulier_token:) }
-      let(:api_particulier_token) { "d7e9c9f4c3ca00caadde31f50fd4521a" }
+      let(:api_particulier_token) { JWT.encode({ exp: 2.months.from_now.to_i }, nil, 'none') }
 
       subject { delete :destroy_particulier, params: { procedure_id: procedure.id } }
 
       it do
         subject
         expect(flash.notice).to eq("Le jeton API Particulier a bien été supprimé")
-        expect(procedure.reload.api_particulier_token).to eq(nil)
+        expect(procedure.reload.api_particulier_token?).to eq(false)
       end
     end
   end

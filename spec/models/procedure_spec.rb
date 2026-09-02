@@ -394,11 +394,23 @@ describe Procedure do
     end
 
     context 'api_particulier_token' do
-      let(:valid_token) { "3841b13fa8032ed3c31d160d3437a76a" }
-      let(:invalid_token) { 'jet0n 1nvalide' }
+      let(:valid_token) { JWT.encode({ exp: 2.months.from_now.to_i }, nil, 'none') }
+      # Le jeton de RAILS-MGX : un administrateur avait saisi n'importe quoi.
+      let(:garbage_token) { 'azertyuiopqsdfgh' }
       it do
         is_expected.to allow_value(valid_token).for(:api_particulier_token)
-        is_expected.not_to allow_value(invalid_token).for(:api_particulier_token)
+        is_expected.not_to allow_value(garbage_token).for(:api_particulier_token)
+      end
+
+      # De tels jetons sont déjà en base : les démarches concernées doivent
+      # rester modifiables, sans quoi routage, groupes instructeurs et tâches de
+      # maintenance échoueraient sur elles.
+      it 'still saves a procedure whose stored token is already unusable' do
+        unusable = create(:procedure)
+        unusable.api_particulier_token = garbage_token
+        unusable.save(validate: false)
+
+        expect(unusable.reload.update(routing_alert: true)).to be(true)
       end
     end
 

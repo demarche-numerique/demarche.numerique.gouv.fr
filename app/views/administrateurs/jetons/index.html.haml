@@ -60,7 +60,7 @@
   %p
     = t('.api_particulier_description_html', app_name: Current.application_name)
 
-  - if @procedure.api_particulier_token.present?
+  - if @procedure.api_particulier_token?
     .fr-table.fr-table--lg
       .fr-table__wrapper
         .fr-table__container
@@ -70,6 +70,8 @@
                 %tr
                   %th{ scope: "col" }
                     Jeton
+                  %th{ scope: "col" }
+                    Expiration
                   %th.change.fr-col-2{ scope: "col" }
                     Actions
 
@@ -78,6 +80,8 @@
                   %td
                     .fr-badge
                       API particulier
+                  %td
+                    = render 'token_expiration', token: @procedure.api_particulier_token
                   %td.change
 
                     = link_to 'Modifier',

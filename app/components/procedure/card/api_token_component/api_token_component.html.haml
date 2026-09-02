@@ -1,8 +1,8 @@
 .fr-col-6.fr-col-md-4.fr-col-lg-3
   = link_to admin_procedure_jetons_path(@procedure), class: 'fr-tile fr-enlarge-link', id: "api_token" do
     .fr-tile__body.flex.column.align-center.justify-between
-      - if @procedure.specific_api_entreprise_token? || @procedure.api_particulier_token.present?
-        - if @procedure.api_entreprise_token_needs_renewal?
+      - if any_token_configured?
+        - if any_token_needs_renewal?
           %p.fr-badge.fr-badge--error À renouveler
         - else
           %p.fr-badge.fr-badge--success Configuré

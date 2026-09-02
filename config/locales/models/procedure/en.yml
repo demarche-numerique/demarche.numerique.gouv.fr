@@ -8,6 +8,7 @@ en:
       procedure:
         hints:
           api_entreprise_token: 'For example: eyJhbGciOiJIUzI1NiJ9.eyJ1...'
+          api_particulier_token: 'For example: eyJhbGciOiJIUzI1NiJ9.eyJ1...'
           description: Describe in a few lines the context, the aim etc.
           description_target_audience: Describe in a few lines the final recipients of the process, the eligibility criteria if there are any, the prerequisites, etc.
           description_pj: Describe the required attachments list if there is any
@@ -85,7 +86,7 @@ en:
         procedure:
           attributes:
             api_particulier_token:
-              invalid: 'invalid format'
+              invalid: 'is not a valid token'
             public_draft_type_de_champs:
               format: 'Public field %{message}'
               invalid_condition: "have an invalid logic"
@@ -97,7 +98,7 @@ en:
               missing_libelle_in_repetition: "field label in position %{position}, within the repetition in position %{parent_position}, must be filled"
               expression_reguliere_invalid: "is invalid"
               referentiel_not_ready: "is not configured"
-              missing_api_particulier_token: "does not work without a API Particulier token"
+              missing_api_particulier_token: "does not work without a valid API Particulier token"
             private_draft_type_de_champs:
               format: 'Private field %{message}'
               invalid_condition: "have an invalid logic"

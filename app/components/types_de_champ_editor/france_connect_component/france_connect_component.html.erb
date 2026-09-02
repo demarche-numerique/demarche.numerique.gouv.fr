@@ -1,5 +1,5 @@
 <div class="fr-px-2w">
-  <% if @procedure.api_particulier_token.blank? %>
+  <% if !@procedure.api_particulier_token? %>
     <%= render Dsfr::AlertComponent.new(
       state: '',
       extra_class_names: 'fr-mb-3w fr-icon-lock-fill'
@@ -20,7 +20,7 @@
     <% end %>
   <% end %>
 
-  <div class="<%= class_names(inactive: @procedure.api_particulier_token.blank?) %>">
+  <div class="<%= class_names(inactive: !@procedure.api_particulier_token?) %>">
     <hr class="fr-hr">
 
     <div class="fr-mb-1w cell">
