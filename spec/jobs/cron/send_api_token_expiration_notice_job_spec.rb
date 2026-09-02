@@ -17,8 +17,13 @@ RSpec.describe Cron::SendAPITokenExpirationNoticeJob, type: :job do
       allow(APITokenMailer).to receive(:expiration).and_return(mailer_double)
     end
 
+    # Eternal tokens can no longer be created, but the existing ones must keep
+    # falling outside of every notice window.
     context 'when the token does not expire' do
-      before { perform_now }
+      before do
+        token.update_column(:expires_at, nil)
+        perform_now
+      end
 
       it { expect(mailer_double).not_to have_received(:deliver_later) }
     end

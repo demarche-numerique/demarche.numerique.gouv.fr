@@ -3,7 +3,27 @@
 class APIToken < ApplicationRecord
   include ActiveRecord::SecureToken
 
+  # A leaked token stays usable until it expires: cap how long that window can be.
+  MAX_LIFETIME = ENV.fetch('API_TOKEN_MAX_LIFETIME_IN_DAYS') { 365 }.to_i.days
+
+  # Expressed in days so that they compare exactly with MAX_LIFETIME, and so
+  # that a preset never lands past the cap on a leap year.
+  LIFETIMES = { oneWeek: 7.days, oneMonth: 30.days, sixMonths: 182.days, oneYear: 365.days }.freeze
+
   belongs_to :administrateur, inverse_of: :api_tokens
+
+  # Tokens created before we made it mandatory have no expiration date. They are
+  # still valid, so the validations only run on create.
+  validates :expires_at, presence: true, on: :create
+  # allow_nil keeps the blank case to the presence validation above, instead of
+  # reporting it twice.
+  validates :expires_at,
+            comparison: {
+              greater_than: -> (_) { Date.current },
+              less_than_or_equal_to: -> (_) { max_expires_at },
+            },
+            allow_nil: true,
+            on: :create
 
   scope :expiring_within, -> (duration) { where(expires_at: Date.today..duration.from_now) }
 
@@ -101,15 +121,24 @@ class APIToken < ApplicationRecord
     expires_at&.past?
   end
 
+  # Only describes the tokens created before an expiration date was mandatory.
   def eternal?
     expires_at.nil?
   end
 
   class << self
-    def generate(administrateur)
+    def selectable_lifetimes
+      LIFETIMES.filter { |_, lifetime| lifetime <= MAX_LIFETIME }
+    end
+
+    def max_expires_at
+      MAX_LIFETIME.from_now.to_date
+    end
+
+    def generate(administrateur, expires_at: max_expires_at)
       plain_token = generate_unique_secure_token
       encrypted_token = BCrypt::Password.create(plain_token)
-      api_token = create!(administrateur:, encrypted_token:, name: Date.today.strftime('Jeton d’API généré le %d/%m/%Y'))
+      api_token = create!(administrateur:, encrypted_token:, expires_at:, name: Date.today.strftime('Jeton d’API généré le %d/%m/%Y'))
       bearer = BearerToken.new(api_token.id, plain_token)
       [api_token, bearer.to_string]
     end

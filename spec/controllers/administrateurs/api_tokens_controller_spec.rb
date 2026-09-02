@@ -125,9 +125,12 @@ describe Administrateurs::APITokensController, type: :controller do
       end
     end
 
-    context 'with no network and infinite lifetime' do
+    # Eternal tokens can no longer be created, but the existing ones keep their
+    # own rule: they must always be restricted to at least one network.
+    context 'with no network on a legacy eternal token' do
       before do
         token.update!(authorized_networks: [IPAddr.new('118.218.200.200')])
+        token.update_column(:expires_at, nil)
         subject
         token.reload
       end

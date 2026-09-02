@@ -5,6 +5,153 @@ describe APIToken, type: :model do
   # administrateur, who is guaranteed to own nothing.
   let(:administrateur) { administrateurs.blank }
 
+  describe 'expires_at validations' do
+    # A new record validates in the :create context, which is where the
+    # expiration rules live.
+    subject(:api_token) { APIToken.new(administrateur:, expires_at:) }
+
+    context 'when expires_at is missing' do
+      let(:expires_at) { nil }
+
+      it 'is rejected as blank' do
+        expect(api_token).to be_invalid
+        expect(api_token.errors).to be_of_kind(:expires_at, :blank)
+      end
+    end
+
+    context 'when expires_at is in the past' do
+      let(:expires_at) { 1.day.ago.to_date }
+
+      it 'is rejected as too soon' do
+        expect(api_token).to be_invalid
+        expect(api_token.errors).to be_of_kind(:expires_at, :greater_than)
+      end
+    end
+
+    context 'when expires_at is today' do
+      let(:expires_at) { Date.current }
+
+      it 'is rejected as too soon' do
+        expect(api_token).to be_invalid
+        expect(api_token.errors).to be_of_kind(:expires_at, :greater_than)
+      end
+    end
+
+    context 'when expires_at is tomorrow' do
+      let(:expires_at) { Date.tomorrow }
+
+      it { is_expected.to be_valid }
+    end
+
+    context 'when expires_at is exactly the configured cap' do
+      let(:expires_at) { APIToken.max_expires_at }
+
+      it { is_expected.to be_valid }
+    end
+
+    context 'when expires_at is beyond the configured cap' do
+      let(:expires_at) { APIToken.max_expires_at + 1.day }
+
+      it 'is rejected as too late' do
+        expect(api_token).to be_invalid
+        expect(api_token.errors).to be_of_kind(:expires_at, :less_than_or_equal_to)
+      end
+    end
+
+    context 'when the cap is lowered by configuration' do
+      before { stub_const('APIToken::MAX_LIFETIME', 90.days) }
+
+      let(:expires_at) { 91.days.from_now.to_date }
+
+      it 'is rejected as too late' do
+        expect(api_token).to be_invalid
+        expect(api_token.errors).to be_of_kind(:expires_at, :less_than_or_equal_to)
+      end
+    end
+
+    describe '.generate' do
+      it 'refuses to create a token without an expiration date' do
+        expect {
+          expect { APIToken.generate(administrateur, expires_at: nil) }
+            .to raise_error(ActiveRecord::RecordInvalid) { |error|
+              expect(error.record.errors).to be_of_kind(:expires_at, :blank)
+            }
+        }.not_to change { administrateur.api_tokens.count }
+      end
+    end
+
+    # The existing stock of eternal tokens is out of scope for now: it must stay
+    # valid and editable, so the validation only runs on create.
+    context 'with a legacy eternal token' do
+      let(:expires_at) { 1.week.from_now.to_date }
+
+      it 'stays editable' do
+        persisted = APIToken.generate(administrateur, expires_at:).first
+        persisted.update_column(:expires_at, nil)
+
+        expect(persisted.reload).to be_eternal
+        expect { persisted.update!(name: 'renamed') }.not_to raise_error
+      end
+    end
+  end
+
+  describe '.selectable_lifetimes' do
+    it 'exposes every preset under the default cap' do
+      stub_const('APIToken::MAX_LIFETIME', 365.days)
+
+      expect(APIToken.selectable_lifetimes.keys).to eq([:oneWeek, :oneMonth, :sixMonths, :oneYear])
+    end
+
+    it 'drops the presets longer than the configured cap' do
+      stub_const('APIToken::MAX_LIFETIME', 90.days)
+
+      expect(APIToken.selectable_lifetimes.keys).to eq([:oneWeek, :oneMonth])
+    end
+  end
+
+  # Every token is now created with an expiration date, so check the existing
+  # expiration notices actually reach each of the lifetimes we offer.
+  describe 'expiration notices coverage' do
+    # Pin the cap so every preset stays creatable whatever the configuration.
+    before { stub_const('APIToken::MAX_LIFETIME', 365.days) }
+
+    let(:api_token) { APIToken.generate(administrateur, expires_at: duration.from_now.to_date).first }
+
+    def notified_windows(token)
+      [1.month, 1.week, 1.day].filter do |window|
+        travel_to(token.expires_at - window) do
+          APIToken.with_expiration_notice_to_send_for(window).exists?(id: token.id)
+        end
+      end
+    end
+
+    context 'with the shortest lifetime' do
+      let(:duration) { APIToken::LIFETIMES[:oneWeek] }
+
+      it 'only warns the day before' do
+        expect(notified_windows(api_token)).to eq([1.day])
+      end
+    end
+
+    context 'with the longest lifetime' do
+      let(:duration) { APIToken::LIFETIMES[:oneYear] }
+
+      it 'warns a month, a week and a day before' do
+        expect(notified_windows(api_token)).to eq([1.month, 1.week, 1.day])
+      end
+    end
+
+    it 'always warns at least the day before' do
+      APIToken.selectable_lifetimes.each_value do |lifetime|
+        token = APIToken.generate(administrateur, expires_at: lifetime.from_now.to_date).first
+
+        travel_to(token.expires_at - 1.day) do
+          expect(APIToken.with_expiration_notice_to_send_for(1.day)).to include(token)
+        end
+      end
+    end
+  end
+
   describe '#generate' do
     let(:api_token_and_packed_token) { APIToken.generate(administrateur) }
     let(:api_token) { api_token_and_packed_token.first }
@@ -264,6 +411,8 @@ describe APIToken, type: :model do
     subject { APIToken.expiring_within(7.days) }
 
     context 'when the token is not expiring' do
+      before { api_token.update_column(:expires_at, nil) }
+
       it { is_expected.to be_empty }
     end
 
