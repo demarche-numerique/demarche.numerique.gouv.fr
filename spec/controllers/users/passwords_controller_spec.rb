@@ -87,4 +87,26 @@ describe Users::PasswordsController, type: :controller do
       end
     end
   end
+
+  describe 'password change notification' do
+    include ActiveJob::TestHelper
+
+    let(:user) { create(:user) }
+
+    context 'when the reset succeeds' do
+      let(:token) { user.send(:set_reset_password_token) }
+
+      it 'notifies the user' do
+        expect { put :update, params: { user: { reset_password_token: token, password: SECURE_PASSWORD, password_confirmation: SECURE_PASSWORD } } }
+          .to have_enqueued_mail(UserMailer, :password_changed)
+      end
+    end
+
+    context 'when the token is invalid' do
+      it 'does not notify anyone' do
+        expect { put :update, params: { user: { reset_password_token: 'nope', password: SECURE_PASSWORD, password_confirmation: SECURE_PASSWORD } } }
+          .not_to have_enqueued_mail(UserMailer, :password_changed)
+      end
+    end
+  end
 end
