@@ -1,0 +1,44 @@
+- content_for(:title, t('.title'))
+
+= render partial: 'shared/breadcrumbs_section',
+  locals: { steps: [[t('users.profil.show.profile'), profil_path(context: params[:context])], [t('.title')]] }
+
+.fr-container.fr-my-5w
+  .fr-grid-row
+    .fr-col-lg-6
+      %h1= t('.title')
+
+      - if current_user.france_connect_informations.any?
+        = render Dsfr::AlertComponent.new(title: t('.france_connect_title'), state: :info, heading_level: 'h2', extra_class_names: 'fr-mb-4w') do |c|
+          - c.with_body do
+            %p= t('.france_connect_body')
+
+      = form_for current_user, as: :user, url: profil_password_path(context: params[:context]), method: :patch do |f|
+        %fieldset.fr-mb-0.fr-fieldset
+          .fr-fieldset__element
+            %p.fr-text--sm= t('utils.asterisk_html')
+
+          .fr-fieldset__element
+            = render Dsfr::InputComponent.new(form: f, attribute: :current_password, input_type: :password_field,
+              opts: { autocomplete: 'current-password' })
+
+          .fr-fieldset__element
+            = render Dsfr::InputComponent.new(form: f, attribute: :password, input_type: :password_field,
+              opts: { autocomplete: 'new-password',
+                data: { controller: 'turbo-input', turbo_input_url_value: show_password_complexity_path },
+                aria: { describedby: 'password_hint' } })
+
+            #password_complexity
+              = render PasswordComplexityComponent.new
+
+          .fr-fieldset__element
+            = render Dsfr::InputComponent.new(form: f, attribute: :password_confirmation, input_type: :password_field)
+
+        = f.submit t('.submit'), id: 'submit-password', disabled: :disabled, class: 'fr-btn fr-btn--lg fr-mt-2w', data: { disable_with: t('.submit_loading') }
+
+      -# Hors du formulaire : button_to genere son propre <form>, et les
+      -# formulaires imbriques sont interdits en HTML.
+      .fr-mt-4w
+        %h2.fr-h6= t('.forgot_title')
+        %p.fr-hint-text= t('.forgot_hint')
+        = button_to t('.forgot_current_password'), forgot_profil_password_path, class: 'fr-btn fr-btn--secondary'

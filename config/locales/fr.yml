@@ -738,6 +738,7 @@ fr:
       default_attributes: &default_attributes
         email: Adresse électronique
         password: 'Mot de passe'
+        current_password: 'Mot de passe actuel'
         requested_merge_into: 'La nouvelle adresse électronique'
         hints:
           email: 'Exemple : adresse@mail.com'
@@ -805,7 +806,11 @@ fr:
               blank: 'est vide. Saisissez une adresse électronique'
               invalid: 'est invalide. Saisissez une adresse électronique valide. Exemple : adresse@mail.com'
               taken: 'déjà utilisé. Saisir une autre adresse électronique.'
+            current_password:
+              blank: 'est vide. Saisir votre mot de passe actuel'
+              invalid: 'est incorrect. Saisir votre mot de passe actuel'
             password:
+              blank: 'est vide. Saisir un nouveau mot de passe'
               too_short: "est trop court. Saisir un mot de passe avec au moins 12 caractères"
               not_strong: "n’est pas assez complexe. Saisir un mot de passe plus complexe"
             password_confirmation:
