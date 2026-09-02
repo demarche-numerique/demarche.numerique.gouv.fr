@@ -10,22 +10,26 @@
 
 #let data = json(sys.inputs.data)
 
-#show: conf.with(title: data.title, lang: data.lang, margin-bottom: 24mm)
+#show: letterhead.with(
+  title: data.title,
+  lang: data.lang,
+  marianne: data.marianne,
+  logo: data.logo,
+  sender: data.sender,
+)
 
-// Heading scale of the paper form (dossier_vide_pdf.scss).
-#show heading.where(level: 1): set text(size: 18pt)
-#show heading.where(level: 2): set text(size: 14pt)
-#show heading.where(level: 2): set block(above: 8mm, below: 3mm)
-#show heading.where(level: 3): set text(size: 12pt)
-#show heading.where(level: 4): set text(size: 11pt)
+// Heading scale of the paper form, stepping down from the charte's Bold 14pt
+// direction title to the 11pt body.
+#show heading.where(level: 1): set text(size: 14pt)
+#show heading.where(level: 3): set text(size: 11pt)
+#show heading.where(level: 4): set text(size: 11pt, style: "italic")
 #show heading.where(level: 5): set text(size: 10pt)
-#show heading: set block(sticky: true)
 
 // Spelled-out URLs stay clickable, underlined and in the Etat blue. The
 // final character class keeps trailing punctuation (the closing paren of a
 // "label (url)" spelled-out link, an end-of-sentence period...) out of the
 // link target; "]" is literal as the first class member.
-#show regex("https?://\S+[^]\s.,;:!?»«')]"): it => link(it.text, text(fill: ds-blue, style: "normal", underline(it.text)))
+#show regex("https?://\S+[^]\s.,;:!?»«')]"): it => link(it.text, text(fill: bleu-france, style: "normal", underline(it.text)))
 
 #let render-champ(champ) = {
   if champ.type == "heading" {
@@ -70,8 +74,6 @@
     panic("unknown champ block type: " + champ.type)
   }
 }
-
-#align(center, profile-image(path: data.logo.path, alt: data.logo.alt, width: 100mm))
 
 #heading(level: 1, data.title)
 

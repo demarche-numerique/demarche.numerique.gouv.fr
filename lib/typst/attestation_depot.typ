@@ -10,26 +10,15 @@
 
 #let data = json(sys.inputs.data)
 
-#show: conf.with(title: data.title, lang: data.lang)
-
-#first-header(
-  [
-    #if data.marianne != none [
-      #bloc-marque[#profile-image(path: data.marianne.path, alt: data.marianne.alt, height: 20mm)]
-    ]
-    #logo-site[#profile-image(path: data.logo.path, alt: data.logo.alt, height: 15mm, width: 30mm)]
-  ],
-  [
-    #direction-block[
-      #if data.direction_label != none [#direction-label[#data.direction_label]]
-      #direction-site[#data.direction_site]
-    ]
-  ],
+#show: letterhead.with(
+  title: data.title,
+  lang: data.lang,
+  marianne: data.marianne,
+  logo: data.logo,
+  sender: data.sender,
 )
 
-#depot-title[#data.title]
-
-#depot-procedure[#data.procedure]
+#document-head(data.title, data.procedure, date: data.date)
 
 #depot-description[#data.description]
 
@@ -40,6 +29,4 @@
   })
 }
 
-#signature[
-  #for line in data.signature [#par[#line]]
-]
+#signature[#par[#data.signature]]

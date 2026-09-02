@@ -41,7 +41,7 @@ class DossierVidePayload
       # I18n-translated and keeps the user locale).
       lang: 'fr',
       title: procedure.libelle,
-      logo: { path: '/app/assets/images/header/logo-ds-wide.png', alt: 'Logo de l’administration' },
+      **TypstService.letterhead,
       organisation: procedure.organisation_name.presence || 'En attente de saisie',
       identity_fields:,
       presentation: rich_text(procedure.description),

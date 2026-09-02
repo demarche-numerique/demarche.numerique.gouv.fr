@@ -70,16 +70,15 @@ describe TypstService do
     context 'without DIRECTION_LABEL (empty default)' do
       before { stub_const('DIRECTION_LABEL', '') }
 
-      it 'omits the direction line and keeps the site name' do
-        expect(data[:direction_label]).to be_nil
-        expect(data[:direction_site]).to eq(APPLICATION_NAME)
+      it 'signs the footer with the site name alone' do
+        expect(data[:sender]).to eq([APPLICATION_NAME])
       end
     end
 
     context 'with DIRECTION_LABEL' do
       before { stub_const('DIRECTION_LABEL', 'Direction Interministérielle du Numérique') }
 
-      it { expect(data[:direction_label]).to eq('Direction Interministérielle du Numérique') }
+      it { expect(data[:sender]).to eq(['Direction Interministérielle du Numérique', APPLICATION_NAME]) }
     end
 
     it 'lays out the title, the sections and the identity rows', :external_deps do
@@ -95,8 +94,8 @@ describe TypstService do
       ])
       expect(document['tables'].first).to include('Prénom', 'Jeanne', 'Nom', 'DUPONT')
       expect(document['tables'].second).to start_with('Numéro de dossier', dossier.id.to_s)
-      # (only explicit par() calls are queryable: the signature lines are, the description block is not)
-      expect(document['paragraphs'].last(2)).to eq(data[:signature])
+      # (only explicit par() calls are queryable: the footer and signature lines are, the description block is not)
+      expect(document['paragraphs']).to include(data[:signature], *data[:sender])
     end
 
     it 'renders a PDF that passes veraPDF PDF/UA-1 validation', :external_deps do
@@ -129,15 +128,17 @@ describe TypstService do
   end
 
   describe 'fonts' do
-    # Typst does not synthesize italics: without a real italic face,
-    # style: "italic" helper text silently renders upright.
-    it 'ships an italic Marianne face', :external_deps do
+    # Typst does not synthesize styles: without a real face, style: "italic"
+    # helper text silently renders upright, weight: "light" as regular, and a
+    # strong inside an italic description as plain italic.
+    it 'ships the light, italic and bold italic Marianne faces', :external_deps do
       require_tool!('typst')
 
       variants = `typst fonts --font-path #{TypstService::FONTS_DIR} --ignore-system-fonts --variants`
 
-      expect(variants).to include('marianne/marianne-regular-italic.ttf')
+      expect(variants).to match(/marianne-light\.ttf\n.*Style: Normal, Weight: 300/)
       expect(variants).to match(/marianne-regular-italic\.ttf\n.*Style: Italic, Weight: 400/)
+      expect(variants).to match(/marianne-bold-italic\.ttf\n.*Style: Italic, Weight: 700/)
     end
   end
 

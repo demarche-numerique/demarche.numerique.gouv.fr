@@ -34,6 +34,32 @@ class TypstService
     JSON.parse(run('eval', '--in', template_path(template), code, data:, failure: 'document query'))
   end
 
+  # Letterhead of every document (theme.typ `letterhead`): the instance's
+  # bloc-marque and logotype, resolved to compilation-root paths, and the
+  # sender lines of the footer. Both images are ENV-configurable (LOGO_SRC,
+  # LOGO_MARIANNE_SRC); an empty LOGO_MARIANNE_SRC omits the bloc-marque and
+  # the logotype takes its place.
+  def self.letterhead
+    {
+      marianne: LOGO_MARIANNE_SRC.present? ? { path: asset_path(LOGO_MARIANNE_SRC), alt: 'Logo Marianne, République Française' } : nil,
+      logo: { path: asset_path(LOGO_SRC), alt: APPLICATION_NAME },
+      sender: [DIRECTION_LABEL.presence, APPLICATION_NAME].compact,
+    }
+  end
+
+  # Root-relative path of an image, resolved across the asset load paths like
+  # the web layouts do; nil when the file is missing or outside the
+  # compilation root (the Rails root), in which case the theme renders the
+  # alt text in a placeholder frame instead of failing the generation.
+  def self.asset_path(src)
+    file = Rails.application.config.assets.paths
+      .map { Pathname(it.to_s).join(src) }
+      .find(&:file?)
+    return if file.nil? || !file.to_s.start_with?("#{Rails.root}/")
+
+    "/#{file.relative_path_from(Rails.root)}"
+  end
+
   def self.template_path(template) = TEMPLATES_DIR.join("#{template}.typ").to_s
 
   def self.run(command, *args, data:, failure:, binmode: false)
