@@ -47,6 +47,35 @@ class TypstService
     }
   end
 
+  # Files a template embeds beyond its payload (a champ's static map...):
+  # Typst only reads files under the compilation root, so Active Storage
+  # attachments are downloaded into a temporary directory under tmp/ for the
+  # duration of the block, and the payload references them through the
+  # { path:, alt: } descriptors Assets#image returns (theme.typ illustration).
+  def self.with_assets
+    Dir.mktmpdir('typst-assets', Rails.root.join('tmp')) { |dir| yield Assets.new(dir) }
+  end
+
+  class Assets
+    def initialize(dir)
+      @dir = Pathname(dir)
+      @count = 0
+    end
+
+    # Image descriptor of an attachment (or blob), nil when nothing is
+    # attached. A download failure propagates: the caller knows whether the
+    # document can do without the image.
+    def image(attachment, alt:)
+      return if attachment.blank?
+
+      blob = attachment.respond_to?(:blob) ? attachment.blob : attachment
+      file = @dir.join("#{@count += 1}#{blob.filename.extension_with_delimiter}")
+      File.binwrite(file, blob.download)
+
+      { path: "/#{file.relative_path_from(Rails.root)}", alt: }
+    end
+  end
+
   # Root-relative path of an image, resolved across the asset load paths like
   # the web layouts do; nil when the file is missing or outside the
   # compilation root (the Rails root), in which case the theme renders the

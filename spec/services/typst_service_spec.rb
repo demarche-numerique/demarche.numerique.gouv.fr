@@ -181,6 +181,73 @@ describe TypstService do
     end
   end
 
+  describe '.with_assets' do
+    let(:blob) do
+      ActiveStorage::Blob.create_and_upload!(io: Rails.root.join('spec/fixtures/files/image-no-exif.jpg').open, filename: 'carte.jpg', content_type: 'image/jpeg')
+    end
+
+    it 'downloads a blob under the compilation root for the duration of the block' do
+      asset = nil
+
+      described_class.with_assets do |assets|
+        asset = assets.image(blob, alt: 'Carte de la zone')
+
+        expect(asset).to match(path: start_with('/tmp/typst-assets'), alt: 'Carte de la zone')
+        expect(asset[:path]).to end_with('.jpg')
+        expect(Rails.root.join(asset[:path].delete_prefix('/')).binread).to eq(blob.download)
+      end
+
+      expect(Rails.root.join(asset[:path].delete_prefix('/'))).not_to be_exist
+    end
+
+    it 'reads an attachment through its blob and returns nil for an empty one' do
+      procedure = Procedure.new
+      procedure.logo.attach(blob)
+
+      described_class.with_assets do |assets|
+        expect(assets.image(procedure.logo, alt: 'Logo')).to include(alt: 'Logo')
+        expect(assets.image(Procedure.new.logo, alt: 'Logo')).to be_nil
+        expect(assets.image(nil, alt: 'Logo')).to be_nil
+      end
+    end
+
+    it 'embeds the image with its alt text in a PDF/UA-1 document', :external_deps do
+      require_tool!('typst')
+
+      Dir.mktmpdir('typst-templates', Rails.root.join('tmp')) do |dir|
+        File.write(File.join(dir, 'illustration.typ'), <<~TYPST)
+          #import "/lib/typst/theme.typ": *
+          #let data = json(sys.inputs.data)
+          #show: letterhead.with(title: "Illustration", marianne: data.marianne, logo: data.logo, sender: data.sender)
+          #heading(level: 1)[Carte]
+          #illustration(data.map)
+        TYPST
+        stub_const('TypstService::TEMPLATES_DIR', Pathname(dir))
+
+        described_class.with_assets do |assets|
+          data = { **described_class.letterhead, map: assets.image(blob, alt: 'Carte de la zone') }
+
+          expect(described_class.query('illustration', data, 'images()')).to include('alt' => 'Carte de la zone')
+
+          pdf = described_class.generate_pdf('illustration', data)
+          expect(pdf[0, 5]).to eq('%PDF-')
+
+          require_tool!('verapdf')
+
+          Tempfile.create(['illustration', '.pdf']) do |file|
+            file.binmode
+            file.write(pdf)
+            file.flush
+
+            report, warnings, = Open3.capture3('verapdf', '--format', 'text', '--flavour', 'ua1', file.path)
+
+            expect(report).to start_with('PASS'), -> { "veraPDF PDF/UA-1 validation failed:\n#{report}\n#{warnings}" }
+          end
+        end
+      end
+    end
+  end
+
   describe '.query' do
     let(:success) { instance_double(Process::Status, success?: true) }
 
