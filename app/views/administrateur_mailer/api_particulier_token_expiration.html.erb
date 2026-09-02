@@ -1,0 +1,27 @@
+<%- content_for(:title, "Renouvelez votre jeton API Particulier") %>
+
+<p>Bonjour,</p>
+
+<p>
+  Vous êtes administrateur de la démarche
+  <%= link_to "« #{@procedure.libelle} »", admin_procedure_url(@procedure) %>.
+</p>
+
+<%= render "token_status", api_name: "API Particulier", expires_at: @expires_at %>
+
+<p>
+  <strong>Attention&nbsp;:</strong> tant que le jeton n’est pas valide, les
+  données des usagers ne sont pas récupérées automatiquement, et chaque usager
+  doit déposer lui-même la pièce justificative correspondante.
+</p>
+
+<p>
+  Pour renouveler votre jeton, rapprochez-vous de
+  <%= link_to 'Datapass', 'https://datapass.api.gouv.fr' %>, puis copiez-collez
+  le nouveau jeton sur <%= APPLICATION_NAME %> depuis la page de configuration
+  de votre démarche&nbsp;:
+  <br>
+  <%= link_to api_particulier_admin_procedure_jetons_url(@procedure), api_particulier_admin_procedure_jetons_url(@procedure) %>
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>

@@ -43,6 +43,15 @@ class AdministrateurMailer < ApplicationMailer
       reply_to: CONTACT_EMAIL)
   end
 
+  def api_particulier_token_expiration(administrateur, procedure)
+    @procedure = procedure
+    @expires_at = procedure.api_particulier_token.expires_at
+
+    mail(to: administrateur.user.email,
+      subject: token_renewal_subject("API Particulier", procedure, @expires_at),
+      reply_to: CONTACT_EMAIL)
+  end
+
   def self.critical_email?(action_name)
     action_name == "activate_before_expiration"
   end

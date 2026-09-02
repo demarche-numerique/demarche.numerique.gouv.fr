@@ -13,6 +13,12 @@ class AdministrateurMailerPreview < ActionMailer::Preview
     AdministrateurMailer.api_entreprise_token_expiration(administrateur, procedure)
   end
 
+  def api_particulier_token_expiration
+    administrateur = Administrateur.first
+    procedure = Procedure.kept.where.not(api_particulier_token: nil).first || Procedure.first
+    AdministrateurMailer.api_particulier_token_expiration(administrateur, procedure)
+  end
+
   def api_token_expiration
     user = User.last
     tokens = [APIToken.last, APIToken.last]

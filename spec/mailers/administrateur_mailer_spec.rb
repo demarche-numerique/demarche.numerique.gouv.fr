@@ -59,6 +59,45 @@ end
     end
   end
 
+  describe '.api_particulier_token_expiration' do
+    let(:administrateur) { create(:administrateur) }
+    let(:token) { JWT.encode({ exp: 2.weeks.from_now.to_i }, nil, 'none') }
+    let(:procedure) { create(:procedure, administrateurs: [administrateur], api_particulier_token: token) }
+
+    subject { described_class.api_particulier_token_expiration(administrateur, procedure) }
+
+    it do
+      expect(subject.to).to eq([administrateur.user.email])
+      expect(subject.subject).to include("[Action requise]")
+      expect(subject.subject).to include("nº#{procedure.id}")
+      expect(subject.body).to include(procedure.libelle)
+      expect(subject.body).to include("expirera le")
+    end
+
+    context 'when the token cannot be decoded' do
+      let(:procedure) do
+        create(:procedure, administrateurs: [administrateur]).tap do
+          it.api_particulier_token = 'azertyuiopqsdfgh'
+          it.save(validate: false)
+        end
+      end
+
+      it 'announces an invalid token rather than an expiry date' do
+        expect(subject.subject).to include("n’est pas valide")
+        expect(subject.body.to_s.gsub(/\s+/, " ")).to include("n’est pas un jeton valide")
+      end
+    end
+
+    context 'when the token has already expired' do
+      let(:token) { JWT.encode({ exp: 2.weeks.ago.to_i }, nil, 'none') }
+
+      it 'speaks of the expiry in the past' do
+        expect(subject.subject).to include("a expiré")
+        expect(subject.body.to_s.gsub(/\s+/, " ")).to include("a expiré le")
+      end
+    end
+  end
+
   describe '.notify_service_without_siret' do
     subject { described_class.notify_service_without_siret(admin_email) }
 
