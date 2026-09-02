@@ -71,6 +71,24 @@ describe Users::ProfilController, type: :controller do
 
       it { expect(response.body).not_to include(I18n.t('users.profil.show.transfer_title')) }
     end
+
+    it { expect(response.body).to include(I18n.t('users.profil.show.change_password')) }
+  end
+
+  describe 'GET #show when ProConnect is required for the administrateur' do
+    render_views
+
+    let(:user) { administrateurs.default.user }
+
+    before do
+      allow(ProConnectService).to receive(:enabled?).and_return(true)
+      user.administrateur.update!(pro_connect_required_at: Time.zone.now)
+      get :show
+    end
+
+    it 'hides the password card' do
+      expect(response.body).not_to include(I18n.t('users.profil.show.change_password'))
+    end
   end
 
   describe 'PATCH #update_email' do
