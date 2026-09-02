@@ -140,6 +140,17 @@ RSpec.describe ChampExternalDataConcern do
         end
       end
 
+      # L'administrateur est prévenu par mail et son badge est au rouge : il n'y a
+      # rien à corriger côté code.
+      context 'when code is :token_unusable' do
+        let(:code) { :token_unusable }
+
+        it do
+          expect(champ).to be_external_error
+          expect(Sentry).not_to have_received(:capture_exception)
+        end
+      end
+
       context 'when code is 500' do
         let(:code) { 500 }
 

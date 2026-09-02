@@ -6,6 +6,9 @@ describe APIParticulier::API do
   let(:fci) { create(:france_connect_information) }
   let(:subject) { api.call_with_fci(fci) }
 
+  # Le .env local peut pointer sur staging, que le stub WebMock ne reconnaît pas.
+  before { stub_const("API_PARTICULIER_URL", "https://particulier.api.gouv.fr") }
+
   context ' when type_champ is quotient_familial' do
     let(:type_champ) { 'quotient_familial' }
 
@@ -107,9 +110,43 @@ describe APIParticulier::API do
       let(:status) { 400 }
       let(:body) { { errors: "dossier allocataire non trouvé" }.to_json }
 
-      it 'returns a Failure with an invalid_schema code' do
+      it 'returns a Failure carrying the http code, without the response body' do
         expect(subject).to be_failure
-        expect(subject.failure[:error].message).to include("dossier allocataire non trouvé")
+        expect(subject.failure).to include(code: 400)
+        expect(subject.failure[:error].message).to eq("API Particulier: 400")
+      end
+    end
+
+    context "when responds with a business error code" do
+      let(:status) { 403 }
+      # La réponse de RAILS-MGX.
+      let(:body) do
+        { errors: [{ code: "00101", title: "Interdit", detail: "Votre token n'est pas valide ou n'est pas renseigné" }] }.to_json
+      end
+
+      it 'keeps the business code, not the whole response body' do
+        expect(subject.failure[:error].message).to eq("API Particulier: 403 00101")
+      end
+    end
+  end
+
+  describe 'unusable token' do
+    let(:type_champ) { 'quotient_familial' }
+
+    context "when the procedure token cannot be decoded" do
+      # Le cas de RAILS-MGX : l'administrateur avait saisi n'importe quoi. La
+      # validation l'interdit désormais, mais de tels jetons sont déjà en base.
+      let(:procedure) do
+        create(:procedure, :with_service).tap do
+          it.api_particulier_token = 'azertyuiopqsdfgh'
+          it.save(validate: false)
+        end
+      end
+
+      it 'fails without calling API Particulier' do
+        expect(subject).to be_failure
+        expect(subject.failure).to include(code: :token_unusable)
+        expect(WebMock).not_to have_requested(:get, /particulier.api.gouv.fr/)
       end
     end
   end

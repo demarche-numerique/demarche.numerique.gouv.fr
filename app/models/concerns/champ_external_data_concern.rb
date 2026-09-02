@@ -5,6 +5,11 @@ module ChampExternalDataConcern
 
   include Dry::Monads[:result]
 
+  # La donnée n'existe pas (404), ou le jeton est déjà connu comme hors service :
+  # l'administrateur est prévenu par mail, il n'y a rien à corriger côté code. Un
+  # 401 malgré un jeton lisible et non expiré continue, lui, de remonter.
+  SILENT_CODES = [404, :token_unusable].freeze
+
   # A champ is updated, a reset and fetch later event is triggered
   # from the controller
   # idle -> waiting_for_job
@@ -101,7 +106,7 @@ module ChampExternalDataConcern
         raise RetryableFetchError.new(error)
       in Failure(retryable: false, error:, code:)
         save_external_error(error, code)
-        Sentry.capture_exception(error) if code != 404
+        Sentry.capture_exception(error) if !code.in?(SILENT_CODES)
         external_data_error!
       end
     elsif result.present?

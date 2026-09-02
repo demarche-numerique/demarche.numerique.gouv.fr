@@ -69,6 +69,22 @@ describe ProcedureCloneConcern, type: :model do
 
     it { expect(subject.parent_procedure).to eq(procedure) }
 
+    # Le clone est un nouvel enregistrement : recopier un jeton hors service ferait
+    # échouer sa validation, et donc le clone entier.
+    it 'drops an unusable token instead of failing, even for the same admin' do
+      procedure.api_particulier_token = 'azertyuiopqsdfgh'
+      procedure.save(validate: false)
+
+      expect(subject).to be_persisted
+      expect(subject.api_particulier_token?).to be(false)
+    end
+
+    it 'drops an expired API Entreprise token' do
+      procedure.update!(api_entreprise_token: JWT.encode({ exp: 2.days.ago.to_i }, nil, 'none'))
+
+      expect(subject.specific_api_entreprise_token?).to be(false)
+    end
+
     it 'keeps the old pj information when cloning for the same admin' do
       tag_source_pj_with_old_pj
       pj_tdc = subject.draft_revision.public_root_type_de_champs.find(&:piece_justificative?)

@@ -3,14 +3,14 @@
 class TypeDeChamps::APIParticulierValidator < ActiveModel::EachValidator
   def validate_each(procedure, attribute, types_de_champ)
     types_de_champ.filter(&:api_particulier?).each do |api_part_tdc|
-      validate_api_particulier_token_presence(procedure, attribute, api_part_tdc)
+      validate_api_particulier_token_usable(procedure, attribute, api_part_tdc)
     end
   end
 
   private
 
-  def validate_api_particulier_token_presence(procedure, attribute, api_part_tdc)
-    if procedure.api_particulier_token.blank?
+  def validate_api_particulier_token_usable(procedure, attribute, api_part_tdc)
+    if procedure.api_particulier_token.unusable?
       procedure.errors.add(
         attribute,
         :missing_api_particulier_token,

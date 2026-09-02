@@ -253,6 +253,13 @@ module ProcedureCloneConcern
       procedure.opendata = true
     end
 
+    # Un jeton hors service ne se recopie pas : expiré, il n'apporterait rien au
+    # clone ; illisible, il le ferait échouer — le clone est un nouvel
+    # enregistrement, donc l'attribut y compte comme modifié et la validation
+    # s'applique.
+    procedure.api_particulier_token = nil if procedure.api_particulier_token.unusable?
+    procedure.api_entreprise_token = nil if procedure.specific_api_entreprise_token? && procedure.api_entreprise_token.unusable?
+
     procedure
   end
 

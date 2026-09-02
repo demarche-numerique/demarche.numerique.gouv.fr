@@ -12,6 +12,11 @@ class APIParticulier::API
   end
 
   def call_with_fci(fci)
+    # Un jeton absent, illisible ou expiré sera refusé par API Particulier : on
+    # s'épargne l'appel, et la construction des paramètres. L'administrateur est
+    # prévenu par Cron::SendAPIParticulierTokenExpirationNoticeJob.
+    return Failure(retryable: false, error: StandardError.new("API Particulier: token_unusable"), code: :token_unusable) if @token.unusable?
+
     url = [API_PARTICULIER_URL, resource].join("/")
 
     params = build_params(fci)
@@ -55,7 +60,7 @@ class APIParticulier::API
 
   def call(url, params)
     response = Typhoeus.get(url,
-      headers: { Authorization: "Bearer #{@token}" },
+      headers: { Authorization: "Bearer #{@token.jwt_token}" },
       params: params,
       params_encoding: :multi,
       timeout: TIMEOUT)
@@ -68,19 +73,28 @@ class APIParticulier::API
           "Invalid API schema response",
           extra: {
             url: url,
-            response: body,
+            response_keys: body.is_a?(Hash) ? body.keys : body.class.name,
             schema_errors: schema.validate(body).map { |e| e["error"] }.join("\n"),
           }
         )
 
-        return Failure(retryable: false, error: StandardError.new("Not retryable: invalid schema"), code: :invalid_schema)
+        return Failure(retryable: false, error: StandardError.new("API Particulier: invalid_schema"), code: :invalid_schema)
       end
 
       Success(body[:data])
     else
-      error_message = body&.dig(:errors) || response.body.presence || "HTTP #{response.code}"
-      Failure(retryable: false, error: StandardError.new("Not retryable: #{error_message}"), code: response.code)
+      # Le corps entier donnait autant de groupes Sentry distincts que de
+      # dossiers, et porte des données personnelles. Le code d'erreur métier
+      # suffit à identifier la cause.
+      Failure(retryable: false, error: StandardError.new(error_message(response, body)), code: response.code)
     end
+  end
+
+  def error_message(response, body)
+    errors = body[:errors] if body.is_a?(Hash)
+    business_code = errors.first[:code] if errors.is_a?(Array) && errors.first.is_a?(Hash)
+
+    ["API Particulier: #{response.code}", business_code].compact.join(' ')
   end
 
   def parse_response_body(body)
