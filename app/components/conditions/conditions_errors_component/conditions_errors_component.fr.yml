@@ -11,3 +11,7 @@ fr:
       not_eq: "Lʼopérateur « n’est pas » ne s’applique pas au choix multiple."
     not_included: "« %{right} » ne fait pas partie de « %{libelle} »."
     empty_options: "Le champ « %{libelle} » n’a aucune option parmi lesquelles choisir."
+    contradiction:
+      one: "Le champ « %{libelle} » ne peut jamais être %{atoms}."
+      other: "Le champ « %{libelle} » ne peut pas être à la fois %{atoms}."
+    unreachable: "Cette condition ne peut jamais être vraie : le champ « %{libelle} » n’est pas affiché dans ce cas."
