@@ -2097,7 +2097,9 @@ describe Users::DossiersController, type: :controller do
       context 'when the dossier has been submitted' do
         it do
           expect(assigns(:acls)).to eq(PiecesJustificativesService.new(user_profile: user, export_template: nil).acl_for_dossier_export(dossier.procedure))
-          expect(response).to render_template('dossiers/show')
+          expect(response.media_type).to eq('application/pdf')
+          expect(response.headers['Content-Disposition']).to include('inline', "dossier-#{dossier.id}.pdf")
+          expect(response.body).to start_with('%PDF')
         end
       end
     end

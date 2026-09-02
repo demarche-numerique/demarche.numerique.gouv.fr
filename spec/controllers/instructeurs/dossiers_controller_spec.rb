@@ -1230,14 +1230,15 @@ describe Instructeurs::DossiersController, type: :controller do
       it do
         expect(assigns(:acls)).to eq(PiecesJustificativesService.new(user_profile: instructeur, export_template: nil).acl_for_dossier_export(dossier.procedure))
         expect(assigns(:is_dossier_in_batch_operation)).to eq(false)
-        expect(response).to render_template 'dossiers/show'
+        expect(response.media_type).to eq('application/pdf')
+        expect(response.body).to start_with('%PDF')
       end
 
       context 'empty champs commune' do
         let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :communes }], instructeurs: procedure_instructeurs) }
         let(:dossier) { create(:dossier, :accepte, procedure:) }
 
-        it { expect(response).to render_template 'dossiers/show' }
+        it { expect(response.body).to start_with('%PDF') }
       end
     end
 

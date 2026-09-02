@@ -72,6 +72,7 @@ describe TypstService do
 
       expect(entries).to eq([
         'attestation_depot.typ',
+        'dossier.typ',
         'dossier_vide.typ',
         'fonts',
         'fonts/marianne-bold-italic.ttf',

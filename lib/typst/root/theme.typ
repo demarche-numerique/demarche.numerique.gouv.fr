@@ -29,6 +29,8 @@
 
 #let ink = black
 #let bleu-france = rgb("000091")
+#let rouge-marianne = rgb("E1000F")
+#let ink-muted = luma(90)
 
 // The charte's letterhead grid.
 #let page-margin = 17mm
@@ -111,7 +113,7 @@
 // { path, alt } descriptor), centred on the text column: the alt text enters
 // the PDF/UA tag tree, and a file that could not be resolved leaves the alt
 // text in a placeholder frame, like the logos.
-#let illustration(asset, width: 100%) = block(width: 100%, below: 3mm, align(center, asset-image(path: asset.path, alt: asset.alt, width: width)))
+#let illustration(asset, width: 100%, height: auto) = block(width: 100%, below: 3mm, align(center, asset-image(path: asset.path, alt: asset.alt, width: width, height: height)))
 
 // Head of a letter-like document, after the charte's press release: the
 // document type in Marianne Light 12pt capitals, then the subject in Bold
@@ -139,10 +141,10 @@
 
 // Key/value list (HTML <dl>): a borderless two-column table keeps the
 // pairing in the PDF tag tree.
-#let key-value(..pairs) = table(
-  columns: (45mm, 1fr),
+#let key-value(columns: (45mm, 1fr), ..pairs) = table(
+  columns: columns,
   stroke: none,
-  inset: (x: 0mm, y: 0.75mm),
+  inset: (x: 0mm, y: 1.25mm),
   column-gutter: 5mm,
   ..pairs.pos().map(((term, desc)) => (strong(term), desc)).flatten(),
 )
@@ -199,7 +201,7 @@
 ))
 
 // Champ label, kept attached to what follows it.
-#let vide-label(body) = block(sticky: true, below: 1.5mm, strong(body))
+#let champ-label(body) = block(sticky: true, below: 2mm, strong(body))
 
 #let condition-instruction(champ) = if champ.at("condition", default: none) != none {
   block(sticky: true, above: 1mm, below: 1.5mm, text(style: "italic")[#champ.condition])
@@ -237,4 +239,71 @@
   set text(size: 8.5pt)
   set par(spacing: 1mm, leading: 0.5em)
   for option in options { par[#option] }
+})
+
+// --------------------------------------------------------------------------
+// Dossier (the usager's and instructeur's copy of a submitted dossier)
+
+// Warning callout (a dossier of a procedure in test): a red rule and title.
+#let callout(title, body) = block(
+  width: 100%,
+  below: 6mm,
+  inset: (left: 4mm, y: 2mm),
+  stroke: (left: 2pt + rouge-marianne),
+  {
+    set par(spacing: 1mm)
+    par(strong(text(fill: rouge-marianne, title)))
+    par(body)
+  },
+)
+
+// Value the usager did not provide.
+#let blank-value(body) = par(emph(text(fill: ink-muted, body)))
+
+// Detail rows of a champ (address parts, etablissement data...), indented
+// under its value.
+#let detail-rows(..pairs) = block(above: 2.5mm, inset: (left: 6mm), {
+  set text(size: 10pt)
+  key-value(..pairs)
+})
+
+// One entry of the form: a champ with its label and value, or a section
+// heading kept attached to the entry that follows it.
+#let dossier-entry(sticky: false, body) = block(width: 100%, below: 6mm, sticky: sticky, body)
+
+// One occurrence of a repetition block, shaded like the web view.
+#let repetition-row(title, body) = block(
+  width: 100%,
+  below: 4mm,
+  inset: 4mm,
+  fill: rgb("f6f6f6"),
+  {
+    block(sticky: true, below: 3mm, strong(title))
+    body
+  },
+)
+
+// An avis: whom it was asked from, the question in muted type, the answer.
+#let avis-block(avis) = block(width: 100%, below: 6mm, {
+  set par(spacing: 1mm)
+  block(sticky: true, below: 1.5mm, strong(avis.title))
+  par(text(fill: ink-muted, avis.question))
+  par(avis.answer)
+  if avis.binary_question != none {
+    block(above: 2mm, {
+      par(text(fill: ink-muted, avis.binary_question))
+      par(avis.binary_answer)
+    })
+  }
+})
+
+// A message of the messagerie: sender and date, then the body.
+#let message-block(message) = block(width: 100%, below: 6mm, {
+  set par(spacing: 1mm)
+  block(sticky: true, below: 1.5mm, {
+    strong(message.sender)
+    h(2mm)
+    text(size: 9pt, fill: ink-muted, message.date)
+  })
+  par(message.body)
 })
