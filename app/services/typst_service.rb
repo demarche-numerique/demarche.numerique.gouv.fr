@@ -6,9 +6,9 @@ require 'open3'
 # (PDF/UA-1) PDF with the typst CLI. lib/typst/root holds everything the
 # documents may read (templates, logos, fonts) and nothing else. The
 # compilation root of a rendering is a temporary directory mirroring it
-# through links: typst refuses any path escaping its --root and resolves
-# `..` before following a link, so a template cannot reach the rest of the
-# repository.
+# through links, plus the files downloaded for that rendering (with_assets):
+# typst refuses any path escaping its --root and resolves `..` before
+# following a link, so a template cannot reach the rest of the repository.
 #
 # A template exports a `render(data)` function. The entry document is
 # generated here and fed on stdin: it imports the template and decodes the
@@ -26,24 +26,25 @@ class TypstService
   # Root-relative path of the query helpers, imported into every expression.
   INTROSPECTION_HELPERS = '/introspection.typ'
 
-  # Renders a Typst::Payload with its template.
+  # Renders a Typst::Payload with its template, in the compilation root of
+  # its assets when it embeds downloaded files.
   def self.render(payload)
-    generate_pdf(payload.template, payload.to_h)
+    generate_pdf(payload.template, payload.to_h, **{ assets: payload.assets }.compact)
   end
 
-  def self.generate_pdf(template, data)
-    run('compile', '--pdf-standard', 'ua-1', '-', '-', source: entry(template, data), binmode: true, failure: 'PDF generation')
+  def self.generate_pdf(template, data, assets: nil)
+    run('compile', '--pdf-standard', 'ua-1', '-', '-', assets:, source: entry(template, data), binmode: true, failure: 'PDF generation')
   end
 
   # Introspects the laid-out document instead of parsing the PDF: evaluates a
   # Typst expression in the context of the rendered template (typst eval --in)
   # and returns its JSON-decoded value. The helpers of
   # lib/typst/root/introspection.typ (headings(), links(), lists(), enums(),
-  # tables(), paragraphs(), plain()) are in scope. Used by specs to assert
-  # document content.
-  def self.query(template, data, expression)
+  # tables(), paragraphs(), images(), plain()) are in scope. Used by specs to
+  # assert document content.
+  def self.query(template, data, expression, assets: nil)
     code = "{\n  import \"#{INTROSPECTION_HELPERS}\": *\n  #{expression}\n}"
-    JSON.parse(run('eval', '--in', '-', code, source: entry(template, data), failure: 'document query'))
+    JSON.parse(run('eval', '--in', '-', code, assets:, source: entry(template, data), failure: 'document query'))
   end
 
   # Letterhead of every document (theme.typ `letterhead`): the instance's
@@ -59,11 +60,43 @@ class TypstService
     }
   end
 
+  # Files a template embeds beyond its payload (a champ's static map...):
+  # Active Storage attachments are downloaded into the compilation root shared
+  # by the renders of the block (pass the yielded assets to generate_pdf and
+  # query), and the payload references them through the { path:, alt: }
+  # descriptors Assets#image returns (theme.typ illustration).
+  def self.with_assets
+    compilation_root { |root| yield Assets.new(root) }
+  end
+
+  class Assets
+    attr_reader :root
+
+    def initialize(root)
+      @root = root
+      @dir = root.join('assets').tap(&:mkpath)
+      @count = 0
+    end
+
+    # Image descriptor of an attachment (or blob), nil when nothing is
+    # attached. A download failure propagates: the caller knows whether the
+    # document can do without the image.
+    def image(attachment, alt:)
+      return if attachment.blank?
+
+      blob = attachment.respond_to?(:blob) ? attachment.blob : attachment
+      file = @dir.join("#{@count += 1}#{blob.filename.extension_with_delimiter}")
+      file.binwrite(blob.download)
+
+      { path: "/#{file.relative_path_from(root)}", alt: }
+    end
+  end
+
   # Root-relative path of an image of lib/typst/root/images (the only images
-  # a document can embed; the default logos ship there, an instance with its
-  # own logos copies them alongside). nil when the file is missing or points
-  # outside that directory, in which case the theme renders the alt text in
-  # a placeholder frame instead of failing the generation.
+  # a document can embed besides its assets; the default logos ship there, an
+  # instance with its own logos copies them alongside). nil when the file is
+  # missing or points outside that directory, in which case the theme renders
+  # the alt text in a placeholder frame instead of failing the generation.
   def self.asset_path(src)
     file = IMAGES_DIR.join(src).expand_path
     return if !file.file? || !file.to_s.start_with?("#{IMAGES_DIR}/")
@@ -93,8 +126,14 @@ class TypstService
     end
   end
 
-  def self.run(command, *args, source:, failure:, binmode: false)
-    compilation_root do |root|
+  # The renders of a with_assets block share its compilation root, any other
+  # render gets a fresh one.
+  def self.in_root(assets, &)
+    assets ? yield(assets.root) : compilation_root(&)
+  end
+
+  def self.run(command, *args, assets:, source:, failure:, binmode: false)
+    in_root(assets) do |root|
       output, diagnostics, status = Open3.capture3(
         'typst', command,
         '--root', root.to_s,
@@ -115,5 +154,5 @@ class TypstService
     raise Error, "#{failure} failed: #{e.message}"
   end
 
-  private_class_method :entry, :compilation_root, :run
+  private_class_method :entry, :compilation_root, :in_root, :run
 end

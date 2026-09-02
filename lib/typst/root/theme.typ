@@ -38,10 +38,10 @@
 #let logotype-max-width = 53mm
 #let footer-height = 12mm
 
-// Image resolved by the caller. When no file is available the alt text is
-// rendered in a placeholder frame, so the document still compiles and the
-// information stays available.
-#let logo-image(path: none, alt: "", height: auto, width: auto) = if path != none {
+// Image resolved by the caller (a repo file or a TypstService asset). When no
+// file is available the alt text is rendered in a placeholder frame, so the
+// document still compiles and the information stays available.
+#let asset-image(path: none, alt: "", height: auto, width: auto) = if path != none {
   image(path, alt: alt, height: height, width: width, fit: "contain")
 } else {
   rect(stroke: 0.5pt + luma(120), inset: 2mm, height: height, text(size: 7pt, fill: luma(120))[#alt])
@@ -50,9 +50,9 @@
 // The operator logotype: as tall as the bloc-marque, unless that would make
 // it wider than its zone.
 #let logotype(logo) = context {
-  let tall = logo-image(path: logo.path, alt: logo.alt, height: bloc-marque-height)
+  let tall = asset-image(path: logo.path, alt: logo.alt, height: bloc-marque-height)
   if logo.path != none and measure(tall).width > logotype-max-width {
-    logo-image(path: logo.path, alt: logo.alt, width: logotype-max-width)
+    asset-image(path: logo.path, alt: logo.alt, width: logotype-max-width)
   } else {
     tall
   }
@@ -71,7 +71,7 @@
   grid(
     columns: (1fr, auto),
     align: (left + top, right + top),
-    if marianne != none { logo-image(path: marianne.path, alt: marianne.alt, height: bloc-marque-height) } else { logotype(logo) },
+    if marianne != none { asset-image(path: marianne.path, alt: marianne.alt, height: bloc-marque-height) } else { logotype(logo) },
     if marianne != none { logotype(logo) },
   ),
 )
@@ -106,6 +106,12 @@
   letterhead-header(marianne: marianne, logo: logo)
   doc
 }
+
+// Illustration downloaded for the rendering (TypstService assets, a
+// { path, alt } descriptor), centred on the text column: the alt text enters
+// the PDF/UA tag tree, and a file that could not be resolved leaves the alt
+// text in a placeholder frame, like the logos.
+#let illustration(asset, width: 100%) = block(width: 100%, below: 3mm, align(center, asset-image(path: asset.path, alt: asset.alt, width: width)))
 
 // Head of a letter-like document, after the charte's press release: the
 // document type in Marianne Light 12pt capitals, then the subject in Bold
