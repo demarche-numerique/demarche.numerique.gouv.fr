@@ -8,6 +8,9 @@ describe Administrateurs::APITokensController, type: :controller do
 
   before { travel_to(Time.zone.local(2020, 1, 1, 12, 0, 0)) }
 
+  # Pin the cap so the suite does not depend on the local configuration.
+  before { stub_const('APIToken::MAX_LIFETIME', 365.days) }
+
   describe 'create' do
     let(:default_params) do
       {
@@ -42,13 +45,59 @@ describe Administrateurs::APITokensController, type: :controller do
       it { expect(token.write_access?).to be false }
     end
 
-    context 'with infinite lifetime' do
-      let(:params) { default_params.merge(lifetime: 'infinite') }
+    APIToken.selectable_lifetimes.each do |lifetime, duration|
+      context "with the #{lifetime} lifetime" do
+        let(:params) { default_params.merge(lifetime:) }
 
-      it { expect(token.expires_at).to be_nil }
+        it { expect(token.expires_at).to eq(duration.from_now.to_date) }
+      end
     end
 
-    context 'with bad network and infinite lifetime' do
+    context 'with a custom lifetime' do
+      let(:params) { default_params.merge(lifetime: 'custom', customLifetime: 3.months.from_now.to_date.iso8601) }
+
+      it { expect(token.expires_at).to eq(3.months.from_now.to_date) }
+    end
+
+    shared_examples 'a rejected lifetime' do
+      it 'does not create a token and sends the admin back to the security step' do
+        expect(token).to be_nil
+        expect(response.location).to include(securite_admin_api_tokens_path)
+        expect(response.location).to include('invalidLifetime=true')
+      end
+    end
+
+    context 'with an infinite lifetime' do
+      let(:params) { default_params.merge(lifetime: 'infinite') }
+
+      it_behaves_like 'a rejected lifetime'
+    end
+
+    context 'with an unknown lifetime' do
+      let(:params) { default_params.merge(lifetime: 'whatever') }
+
+      it_behaves_like 'a rejected lifetime'
+    end
+
+    context 'with a custom lifetime in the past' do
+      let(:params) { default_params.merge(lifetime: 'custom', customLifetime: 1.day.ago.to_date.iso8601) }
+
+      it_behaves_like 'a rejected lifetime'
+    end
+
+    context 'with a custom lifetime beyond the cap' do
+      let(:params) { default_params.merge(lifetime: 'custom', customLifetime: (APIToken.max_expires_at + 1.day).iso8601) }
+
+      it_behaves_like 'a rejected lifetime'
+    end
+
+    context 'with an unparsable custom lifetime' do
+      let(:params) { default_params.merge(lifetime: 'custom', customLifetime: 'not a date') }
+
+      it_behaves_like 'a rejected lifetime'
+    end
+
+    context 'with bad network' do
       let(:networks) { 'bad' }
       let(:params) { default_params.merge(networkFiltering: 'customNetworks', networks:) }
 
@@ -69,11 +118,11 @@ describe Administrateurs::APITokensController, type: :controller do
 }
     end
 
-    context 'with network filtering and infinite lifetime' do
+    context 'with network filtering and a one year lifetime' do
       let(:networks) { '192.168.1.23/32 2001:41d0:304:400::52f/128' }
-      let(:params) { default_params.merge(networkFiltering: 'customNetworks', networks:, lifetime: 'infinite') }
+      let(:params) { default_params.merge(networkFiltering: 'customNetworks', networks:, lifetime: 'oneYear') }
 
-      it { expect(token.expires_at).to eq(nil) }
+      it { expect(token.expires_at).to eq(APIToken::LIFETIMES[:oneYear].from_now.to_date) }
     end
 
     context 'with procedure filtering' do

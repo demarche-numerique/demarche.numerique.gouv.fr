@@ -23,11 +23,17 @@ module Administrateurs
         return redirect_to securite_admin_api_tokens_path(all_params.merge(invalidNetwork: true))
       end
 
-      @api_token, @packed_token = APIToken.generate(current_administrateur)
+      expires_at = requested_expires_at
+
+      if expires_at.nil?
+        return redirect_to securite_admin_api_tokens_path(all_params.merge(invalidLifetime: true))
+      end
+
+      @api_token, @packed_token = APIToken.generate(current_administrateur, expires_at:)
 
       @api_token.update!(name:, write_access:,
                          allowed_procedure_ids:, authorized_networks:,
-                         expires_at:, requires_ip_filtering: true)
+                         requires_ip_filtering: true)
 
       @curl_command = curl_command(@packed_token, @api_token.procedure_ids.first)
     end
@@ -168,20 +174,24 @@ module Administrateurs
       end
     end
 
-    def expires_at
-      case params[:lifetime]
-      in 'oneWeek'
-        1.week.from_now.to_date
-      in 'custom'
-        [
-          Date.parse(params[:customLifetime]),
-          1.year.from_now,
-        ].min
-      in 'infinite'
-        nil
-      else
-        1.week.from_now.to_date
-      end
+    # Returns nil when the requested lifetime is missing, unknown or out of
+    # bounds, so that create can send the admin back to the security step.
+    def requested_expires_at
+      expires_at =
+        if params[:lifetime] == 'custom'
+          begin
+            Date.parse(params[:customLifetime].to_s)
+          rescue Date::Error
+            nil
+          end
+        else
+          APIToken.selectable_lifetimes[params[:lifetime]&.to_sym]&.from_now&.to_date
+        end
+
+      return if expires_at.nil?
+      return unless expires_at.between?(Date.tomorrow, APIToken.max_expires_at)
+
+      expires_at
     end
   end
 end
