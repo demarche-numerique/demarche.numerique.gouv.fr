@@ -835,8 +835,24 @@ describe Procedure do
         it 'validates only when attribute is changed' do
           procedure.auto_archive_on = 1.day.ago
           expect(procedure).not_to be_valid
+          expect(procedure.errors).to be_of_kind(:auto_archive_on, :greater_than)
 
           procedure.save!(validate: false)
+          expect(procedure).to be_valid
+        end
+      end
+
+      context 'when auto_archive_on is today' do
+        it 'is invalid' do
+          procedure.auto_archive_on = Date.current
+          expect(procedure).not_to be_valid
+          expect(procedure.errors).to be_of_kind(:auto_archive_on, :greater_than)
+        end
+      end
+
+      context 'when auto_archive_on is removed' do
+        it 'is valid' do
+          procedure.auto_archive_on = nil
           expect(procedure).to be_valid
         end
       end
