@@ -27,6 +27,12 @@ class Rack::Attack
     end
   end
 
+  throttle('profil/mot-de-passe/ip', limit: 5, period: 60.seconds) do |req|
+    if req.path == '/profil/mot-de-passe' && req.patch? && rack_attack_enabled?
+      req.remote_ip
+    end
+  end
+
   # API prefill : la création est imbriquée sous la démarche, d'où le motif plutôt
   # qu'une égalité. Le nom du throttle reste la clé de cache historique.
   throttle('/api/public/v1/dossiers/ip', limit: 15, period: 15.seconds) do |req|
