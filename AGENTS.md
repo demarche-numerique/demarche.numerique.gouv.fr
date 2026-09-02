@@ -264,6 +264,7 @@ Controllers are organized by user role:
 - FranceConnect & ProConnect for government identity integration
 - GraphQL::Dataloader for batched GraphQL queries (custom sources in `app/graphql/sources/`)
 - Discard gem for soft deletes
+- **PDF documents** (attestation de dépôt, dossier vide) are native Typst templates in `lib/typst/`, rendered by `TypstService`. `lib/typst/theme.typ` holds the layout and its header lists the charte graphique de l'État references (letterhead grid, bloc-marque, typography, colours) to follow for any new template or layout change
 - Strong Migrations for database migration linting
 - Skylight for performance monitoring
 - Sentry for error tracking

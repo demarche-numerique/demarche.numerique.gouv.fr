@@ -7,6 +7,23 @@
 // Marianne ragged left (Regular 11pt body, Bold 12pt subject, 8pt footer).
 // Layout decisions live here; templates only assemble data into them.
 //
+// References (Marque de l'Etat, Service d'information du Gouvernement):
+// - the charte graphique de l'Etat, the complete PDF (SIG, June 2021):
+//   chapter "Papeterie et print" of the "Operateurs et entites servicielles"
+//   part specifies the A4 letterhead grid used here (page 115), the
+//   ministries' part (page 52) the letterhead with a direction zone and the
+//   press release head; mirrored at
+//   https://www.culture.gouv.fr/Media/medias-creation-rapide/charte_graphique_de_letat.pdf
+// - the same content online (info.gouv.fr blocks non-browser clients):
+//   https://www.info.gouv.fr/marque-de-letat/le-systeme-graphique
+//   https://www.info.gouv.fr/marque-de-letat/le-bloc-marque
+//   https://www.info.gouv.fr/marque-de-letat/la-typographie (Marianne and
+//   Spectral downloads; Marianne is reserved to the State)
+//   https://www.info.gouv.fr/marque-de-letat/les-couleurs
+//   https://www.info.gouv.fr/marque-de-letat/operateurs-et-entites-servicielles
+// - the DSFR print fundamentals, same typography and colours:
+//   https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-de-l-identite-de-l-etat/
+//
 // Compile with: typst compile --pdf-standard ua-1 --font-path lib/prawn/fonts
 
 #let ink = black
