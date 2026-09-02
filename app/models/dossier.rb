@@ -320,17 +320,6 @@ class Dossier < ApplicationRecord
   scope :without_followers,           -> { where.missing(:follows) }
   scope :with_followers,              -> { left_outer_joins(:follows).where.not(follows: { id: nil }) }
   scope :brouillons_recently_updated, -> { updated_since(2.days.ago).state_brouillon.order_by_updated_at }
-  scope :for_api, -> {
-    includes(commentaires: { piece_jointe_attachments: :blob },
-      justificatif_motivation_attachment: :blob,
-      attestation: [],
-      avis: { piece_justificative_file_attachment: :blob },
-      traitement: [],
-      etablissement: [],
-      individual: [],
-      user: [])
-  }
-
   scope :with_notifiable_procedure, -> (opts = { notify_on_closed: false }) do
     states = opts[:notify_on_closed] ? [:publiee, :close, :depubliee] : [:publiee, :depubliee]
     joins(:procedure)
@@ -830,10 +819,6 @@ class Dossier < ApplicationRecord
 
   def hidden_for_administration_and_user?
     hidden_for_administration? && hidden_by_user?
-  end
-
-  def expose_legacy_carto_api?
-    procedure.expose_legacy_carto_api?
   end
 
   def geo_position

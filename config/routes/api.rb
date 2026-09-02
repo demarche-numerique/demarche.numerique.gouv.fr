@@ -4,12 +4,6 @@ get 'graphql/schema' => redirect('/graphql/schema/index.html')
 get 'graphql', to: "graphql#playground"
 
 namespace :api do
-  namespace :v1 do
-    resources :procedures, only: [:show] do
-      resources :dossiers, only: [:index, :show]
-    end
-  end
-
   namespace :v2 do
     post :graphql, to: "graphql#execute"
     get 'dossiers/pdf/:id', format: :pdf, to: "dossiers#pdf", as: :dossier_pdf

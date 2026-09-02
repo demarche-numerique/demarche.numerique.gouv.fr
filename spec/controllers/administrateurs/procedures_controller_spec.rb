@@ -582,10 +582,6 @@ describe Administrateurs::ProceduresController, type: :controller do
           expect { subject }.to change { Procedure.count }.by(0)
           expect(flash[:alert]).to be_present
         end
-
-        describe 'no new module api carto in database' do
-          it { expect { subject }.to change { ModuleAPICarto.count }.by(0) }
-        end
       end
     end
   end
