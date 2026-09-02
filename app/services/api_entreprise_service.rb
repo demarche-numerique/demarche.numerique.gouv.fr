@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class APIEntrepriseService
-  DEGRADED_CODES = [401, 403, 409].freeze
+  CREDENTIALS_CODES = [401, 403].freeze
 
   class << self
     include Dry::Monads[:result]
@@ -58,8 +58,11 @@ class APIEntrepriseService
         degraded(dossier_or_champ, siret, user_id, type:, code:)
       in Failure(type:, code:, retryable: true, **) if !APIEntreprise::HealthChecker.provider_up?(:insee_sirene)
         degraded(dossier_or_champ, siret, user_id, type:, code:)
-      in Failure(type:, code:, **) if DEGRADED_CODES.include?(code)
-        Sentry.capture_message("API Entreprise: #{type}", level: :error, extra: { siret:, code: }) if code.in?([401, 403])
+      in Failure(type:, code:, **) => result if code.in?(CREDENTIALS_CODES)
+        report_error(result.failure, siret:)
+        degraded(dossier_or_champ, siret, user_id, type:, code:)
+      in Failure(type:, code: 409 => code, **)
+        # Conflict: nothing we can fix, and no retry would help.
         degraded(dossier_or_champ, siret, user_id, type:, code:)
       in result
         result
@@ -74,6 +77,11 @@ class APIEntrepriseService
         champ = etablissement.champ_data
         champ.external_data_fetched! if champ&.may_external_data_fetched?
         etablissement
+      in Failure(type:, code:, **) => result if code.in?(CREDENTIALS_CODES)
+        # Our own credentials: no retry converges, the champ would stay degraded forever.
+        Rails.logger.error("API Entreprise backfill blocked: etablissement=#{etablissement.id} type=#{type} code=#{code}")
+        report_error(result.failure, siret: etablissement.siret, etablissement_id: etablissement.id)
+        nil
       else
         nil
       end
