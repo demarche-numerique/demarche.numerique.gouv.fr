@@ -43,6 +43,20 @@ end
       expect(subject.body).to include(procedure.libelle)
       expect(subject.body).to include("empêcher la création")
     end
+
+    context 'when the token cannot be decoded' do
+      let(:procedure) do
+        create(:procedure, administrateurs: [administrateur]).tap do
+          it.api_entreprise_token = 'azertyuiopqsdfgh'
+          it.save(validate: false)
+        end
+      end
+
+      it 'announces an invalid token rather than an expiry date' do
+        expect(subject.subject).to include("n’est pas valide")
+        expect(subject.body.to_s.gsub(/\s+/, " ")).to include("n’est pas un jeton valide")
+      end
+    end
   end
 
   describe '.notify_service_without_siret' do

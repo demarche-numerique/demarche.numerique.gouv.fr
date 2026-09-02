@@ -3,34 +3,37 @@
 class Cron::SendAPIEntrepriseTokenExpirationNoticeJob < Cron::CronJob
   self.schedule_expression = "every day at 08:00"
 
-  WINDOWS = [1.day, 1.week, 1.month]
-
   def perform
-    procedures_with_expiring_token.each do |procedure|
-      expires_at = procedure.api_entreprise_token.expires_at
-      current_window = matching_window(expires_at)
-      next if current_window.nil?
-
-      last_sent_at = procedure.api_entreprise_token_expiration_notice_sent_at
-      next if last_sent_at.present? && matching_window(expires_at, reference_time: last_sent_at) == current_window
-
-      procedure.administrateurs.includes(:user).find_each do |admin|
-        AdministrateurMailer.api_entreprise_token_expiration(admin, procedure).deliver_later
-      end
-
-      procedure.update!(api_entreprise_token_expiration_notice_sent_at: Time.current)
+    procedures_with_specific_token.find_each do |procedure|
+      # Une démarche au jeton biscornu ne doit pas priver les suivantes de leur
+      # notification.
+      notify(procedure)
+    rescue StandardError => e
+      Sentry.capture_exception(e, extra: { procedure_id: procedure.id })
     end
   end
 
   private
 
-  def procedures_with_expiring_token
-    Procedure.kept
-      .where.not(api_entreprise_token: [nil, ''])
-      .filter { it.api_entreprise_token.expired_or_expires_soon? }
+  def notify(procedure)
+    token = procedure.api_entreprise_token
+    # Une démarche qui ne reçoit plus de dossiers est signalée une fois : sans
+    # cela, un jeton illisible — désormais couvert par needs_renewal? — vaudrait
+    # un rappel mensuel perpétuel sur un brouillon abandonné ou une démarche close.
+    return if !token.notification_due?(procedure.api_entreprise_token_expiration_notice_sent_at, remind: procedure.publiee?)
+
+    procedure.administrateurs.includes(:user).find_each do |admin|
+      AdministrateurMailer.api_entreprise_token_expiration(admin, procedure).deliver_later
+    end
+
+    # update_column : une démarche dont le jeton est illisible ne passe plus la
+    # validation, et c'est justement celle qu'on vient de notifier.
+    procedure.update_column(:api_entreprise_token_expiration_notice_sent_at, Time.current)
   end
 
-  def matching_window(expires_at, reference_time: Time.current)
-    WINDOWS.find { |window| expires_at <= reference_time + window }
+  # Tous les états, comme avant : un administrateur qui prépare une démarche doit
+  # être prévenu que son jeton expire avant de la publier.
+  def procedures_with_specific_token
+    Procedure.kept.where.not(api_entreprise_token: [nil, ''])
   end
 end

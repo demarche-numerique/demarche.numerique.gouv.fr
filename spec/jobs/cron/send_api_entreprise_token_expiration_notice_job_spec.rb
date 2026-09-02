@@ -44,6 +44,21 @@ RSpec.describe Cron::SendAPIEntrepriseTokenExpirationNoticeJob, type: :job do
       end
     end
 
+    context 'when the token cannot be decoded' do
+      # Un tel jeton coupait déjà les appels (api_entreprise/api.rb:113) mais
+      # n'alertait personne : le filtre ne portait que sur l'expiration annoncée.
+      let!(:procedure) do
+        create(:procedure, administrateurs: [administrateur]).tap do
+          it.api_entreprise_token = 'azertyuiopqsdfgh'
+          it.save(validate: false)
+        end
+      end
+
+      before { perform_now }
+
+      it { expect(mailer_double).to have_received(:deliver_later).once }
+    end
+
     context 'when already notified for the same window' do
       let(:expires_at) { 3.days.from_now }
 
@@ -53,6 +68,26 @@ RSpec.describe Cron::SendAPIEntrepriseTokenExpirationNoticeJob, type: :job do
       end
 
       it { expect(mailer_double).not_to have_received(:deliver_later) }
+    end
+
+    # Un jeton illisible relève désormais de needs_renewal? : sur une démarche qui
+    # ne reçoit plus de dossiers, on le signale une fois, sans relance perpétuelle.
+    context 'when the procedure is closed and its token cannot be decoded' do
+      let!(:procedure) do
+        create(:procedure, :closed, administrateurs: [administrateur]).tap do
+          it.api_entreprise_token = 'azertyuiopqsdfgh'
+          it.save(validate: false)
+        end
+      end
+
+      it 'notifies once and never reminds' do
+        perform_now
+        expect(mailer_double).to have_received(:deliver_later).once
+
+        travel_to(2.months.from_now)
+        perform_now
+        expect(mailer_double).to have_received(:deliver_later).once
+      end
     end
 
     context 'when notified for previous window but now in a smaller window' do

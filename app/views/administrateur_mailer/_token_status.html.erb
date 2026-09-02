@@ -1,0 +1,23 @@
+<% if expires_at.blank? %>
+  <p>
+    <strong>
+      Le jeton <%= api_name %> associé à cette démarche n’est pas un jeton
+      valide. Les appels à <%= api_name %> échouent.
+    </strong>
+  </p>
+<% elsif expires_at.past? %>
+  <p>
+    <strong>
+      Le jeton <%= api_name %> associé à cette démarche a expiré le
+      <%= I18n.l(expires_at, format: :long_with_time) %>. Les appels à
+      <%= api_name %> échouent.
+    </strong>
+  </p>
+<% else %>
+  <p>
+    <strong>
+      Le jeton <%= api_name %> associé à cette démarche expirera le
+      <%= I18n.l(expires_at, format: :long_with_time) %>.
+    </strong>
+  </p>
+<% end %>
