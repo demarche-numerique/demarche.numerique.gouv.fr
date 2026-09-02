@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class APIEntrepriseService
+  CREDENTIALS_CODES = [401, 403].freeze
+
   class << self
     include Dry::Monads[:result]
 
@@ -68,6 +70,7 @@ class APIEntrepriseService
         etablissement.update_champ_value_json!
         champ = etablissement.champ_data
         champ.external_data_fetched! if champ&.may_external_data_fetched?
+        # Etablissement#after_commit only reindexes a dossier-level etablissement.
         champ&.dossier&.index_search_terms_later
         etablissement
       in Success(_)
@@ -75,13 +78,20 @@ class APIEntrepriseService
         give_up_degraded_mode(etablissement, 'not_found', 404)
       in Failure(type:, code:, **) if code.in?(ExternalDataException::DEFINITIVE_CODES)
         give_up_degraded_mode(etablissement, type, code)
+      in Failure(type:, code:, **) => result if code.in?(CREDENTIALS_CODES)
+        # Our own credentials: no retry converges, the champ would stay degraded forever.
+        Rails.logger.error("API Entreprise backfill blocked: etablissement=#{etablissement.id} type=#{type} code=#{code}")
+        report_error(result.failure, siret: etablissement.siret, etablissement_id: etablissement.id)
+        nil
       in Failure(retryable: true, **) => result
+        # Hand it back: EtablissementJob retries under the rate limiter, the cron does not.
         result
       else
         nil
       end
     end
 
+    # Drops the stub, which would otherwise block the dossier forever.
     def give_up_degraded_mode(etablissement, type, code)
       champ = etablissement.champ_data
       # A dossier-level etablissement has no champ to carry the error, and

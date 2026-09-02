@@ -289,6 +289,27 @@ describe APIEntrepriseService do
     context 'when the backfill cannot converge' do
       before { champ.update_columns(etablissement_id: etablissement.id, external_state: 'degraded') }
 
+      [401, 403].each do |code|
+        context "on a credentials failure (#{code})" do
+          before do
+            allow_any_instance_of(APIEntreprise::EtablissementAdapter).to receive(:to_params)
+              .and_return(Dry::Monads::Failure(type: :token_expired, code:, retryable: false, raw_response: nil))
+          end
+
+          it 'alerts and leaves the champ degraded' do
+            expect(Rails.logger).to receive(:error).with(/API Entreprise backfill blocked/)
+            expect(Sentry).to receive(:capture_message).with(
+              'API Entreprise error: token_expired',
+              level: :error,
+              extra: hash_including(code:, siret: etablissement.siret)
+            )
+
+            expect(described_class.update_etablissement_from_degraded_mode(etablissement, procedure.id)).to be_nil
+            expect(champ.reload).to be_degraded
+          end
+        end
+      end
+
       context 'on any other failure' do
         before do
           allow_any_instance_of(APIEntreprise::EtablissementAdapter).to receive(:to_params)
