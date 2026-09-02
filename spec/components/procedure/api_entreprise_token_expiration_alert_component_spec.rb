@@ -23,6 +23,20 @@ RSpec.describe Procedure::APIEntrepriseTokenExpirationAlertComponent, type: :com
     end
   end
 
+  context "when the token cannot be decoded" do
+    let(:api_entreprise_token) { 'azertyuiopqsdfgh' }
+    let(:procedure) do
+      create(:procedure).tap do
+        it.api_entreprise_token = api_entreprise_token
+        it.save(validate: false)
+      end
+    end
+
+    it "renders the alert" do
+      expect(subject).to have_text('est expiré ou va expirer prochainement')
+    end
+  end
+
   context "when token expires in a long time" do
     let(:api_entreprise_token) { JWT.encode({ exp: 2.months.from_now.to_i }, nil, "none") }
 
@@ -31,11 +45,14 @@ RSpec.describe Procedure::APIEntrepriseTokenExpirationAlertComponent, type: :com
     end
   end
 
-  context "when there is no token" do
+  # Le jeton global de l'instance n'est pas à la main de l'administrateur : il n'a
+  # rien à renouveler, rien ne doit l'alerter à son sujet.
+  context "when only the instance-wide token is set" do
     let(:api_entreprise_token) { nil }
 
     before do
-      allow_any_instance_of(APIEntrepriseToken).to receive(:expired_or_expires_soon?).and_return(false)
+      allow(ENV).to receive(:[]).and_call_original
+      allow(ENV).to receive(:[]).with('API_ENTREPRISE_KEY').and_return(JWT.encode({ exp: 2.days.from_now.to_i }, nil, "none"))
     end
 
     it "does not render" do

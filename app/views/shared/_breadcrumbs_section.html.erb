@@ -23,7 +23,7 @@
             <%= link_to commencer_url(@procedure.path), commencer_url(@procedure.path), class: "fr-link" %>
             <%= link_to "", admin_procedure_path_path(@procedure), class: "fr-btn fr-icon-pencil-line fr-btn--sm fr-btn--tertiary-no-outline", "aria-label": t('edit_path', scope: [:layouts, :breadcrumb]), title: t('edit_path', scope: [:layouts, :breadcrumb]) %>
             <div class="flex fr-mt-1w">
-              <% if @procedure.api_entreprise_token.expired_or_expires_soon? %>
+              <% if @procedure.api_entreprise_token_needs_renewal? %>
                 <span class="fr-badge fr-badge--error fr-mr-1w">
                   <%= t('to_modify', scope: [:layouts, :breadcrumb]) %>
                 </span>

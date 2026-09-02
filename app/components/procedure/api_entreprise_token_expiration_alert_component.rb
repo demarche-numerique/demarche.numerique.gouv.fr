@@ -6,7 +6,7 @@ class Procedure::APIEntrepriseTokenExpirationAlertComponent < ApplicationCompone
   end
 
   def render?
-    @procedure.api_entreprise_token.expired_or_expires_soon?
+    @procedure.api_entreprise_token_needs_renewal?
   end
 
   private

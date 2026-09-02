@@ -57,7 +57,7 @@
             = t('closed', scope: [:layouts, :breadcrumb])
 
         - elsif procedure.publiee?
-          - if procedure.api_entreprise_token.expired_or_expires_soon?
+          - if procedure.api_entreprise_token_needs_renewal?
             %span.fr-badge.fr-badge--sm.fr-badge--error
               = t('to_modify', scope: [:layouts, :breadcrumb])
           %span.fr-badge.fr-badge--sm.fr-badge--success

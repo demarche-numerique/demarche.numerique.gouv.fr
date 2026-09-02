@@ -1,0 +1,10 @@
+<% if token.expires_at.present? %>
+  <div class="fr-badge <%= token.needs_renewal? ? 'fr-badge--error' : 'fr-badge--success' %>">
+    <%= token.expired? ? "Expiré le" : "Expire le" %>
+    <%= l(token.expires_at.to_date, format: :long) %>
+  </div>
+<% elsif token.needs_renewal? %>
+  <div class="fr-badge fr-badge--error">Jeton invalide</div>
+<% else %>
+  <div class="fr-badge fr-badge--success">Sans expiration</div>
+<% end %>

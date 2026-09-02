@@ -1,11 +1,17 @@
-- if procedure.api_entreprise_token.valid? && procedure.api_entreprise_token.expires_at.present?
-  - if procedure.api_entreprise_token.expired?
+- if procedure.api_entreprise_token_needs_renewal?
+  - if procedure.api_entreprise_token.expires_at.nil?
+    = render Dsfr::AlertComponent.new(state: :error, size: :sm, extra_class_names: 'fr-mb-2w') do |c|
+      - c.with_body do
+        %p
+          Votre jeton API Entreprise n’est pas valide.
+          Merci de le renouveler.
+  - elsif procedure.api_entreprise_token.expired?
     = render Dsfr::AlertComponent.new(state: :error, size: :sm, extra_class_names: 'fr-mb-2w') do |c|
       - c.with_body do
         %p
           Votre jeton API Entreprise est expiré.
           Merci de le renouveler.
-  - elsif procedure.api_entreprise_token.expired_or_expires_soon?
+  - else
     = render Dsfr::AlertComponent.new(state: :warning, size: :sm, extra_class_names: 'fr-mb-2w') do |c|
       - c.with_body do
         %p

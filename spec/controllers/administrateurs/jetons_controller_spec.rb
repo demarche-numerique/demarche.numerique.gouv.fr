@@ -14,6 +14,33 @@ describe Administrateurs::JetonsController, type: :controller do
       subject { get :edit_entreprise, params: { procedure_id: procedure.id } }
 
       it { is_expected.to have_http_status(:success) }
+
+      # Le jeton global de l'instance n'est pas à la main de l'administrateur : lui
+      # annoncer qu'il doit le renouveler n'a pas de sens.
+      context 'when only the instance-wide token is set, and expired' do
+        render_views
+
+        before do
+          allow(ENV).to receive(:[]).and_call_original
+          allow(ENV).to receive(:[]).with('API_ENTREPRISE_KEY').and_return(JWT.encode({ exp: 2.days.ago.to_i }, nil, 'none'))
+        end
+
+        it { expect(subject.body).not_to include('Merci de le renouveler') }
+      end
+
+      # La page où atterrit l'administrateur depuis le mail « n’est pas valide ».
+      context 'when the procedure token cannot be decoded' do
+        render_views
+
+        let(:procedure) do
+          create(:procedure, administrateur: admin).tap do
+            it.api_entreprise_token = 'azertyuiopqsdfgh'
+            it.save(validate: false)
+          end
+        end
+
+        it { expect(subject.body).to include('n’est pas valide') }
+      end
     end
 
     describe 'PATCH #update_entreprise' do

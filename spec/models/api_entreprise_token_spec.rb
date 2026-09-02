@@ -113,8 +113,8 @@ describe APIEntrepriseToken, type: :model do
     end
   end
 
-  describe "#api_entreprise_token_expired_or_expires_soon?" do
-    subject { api_entreprise_token.expired_or_expires_soon? }
+  describe "#needs_renewal?" do
+    subject { api_entreprise_token.needs_renewal? }
 
     context "when there is no token" do
       let(:token) { nil }
@@ -136,6 +136,12 @@ describe APIEntrepriseToken, type: :model do
 
     context "when the token is expired" do
       let(:token) { JWT.encode({ exp: 1.day.ago.to_i }, nil, "none") }
+
+      it { is_expected.to be_truthy }
+    end
+
+    context "when the token cannot be decoded" do
+      let(:token) { "azertyuiopqsdfgh" }
 
       it { is_expected.to be_truthy }
     end

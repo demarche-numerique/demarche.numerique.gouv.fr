@@ -16,4 +16,10 @@ module APIEntrepriseTokenConcern
   def specific_api_entreprise_token?
     self[:api_entreprise_token].present?
   end
+
+  # Le jeton global de l'instance n'est pas à la main de l'administrateur : il n'a
+  # rien à renouveler, et rien ne doit l'alerter à son sujet.
+  def api_entreprise_token_needs_renewal?
+    specific_api_entreprise_token? && api_entreprise_token.needs_renewal?
+  end
 end
