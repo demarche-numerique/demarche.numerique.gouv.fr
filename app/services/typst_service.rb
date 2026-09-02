@@ -46,6 +46,19 @@ class TypstService
     JSON.parse(run('eval', '--in', '-', code, source: entry(template, data), failure: 'document query'))
   end
 
+  # Letterhead of every document (theme.typ `letterhead`): the instance's
+  # bloc-marque and logotype, resolved to compilation-root paths, and the
+  # sender lines of the footer. Both images are ENV-configurable (LOGO_SRC,
+  # LOGO_MARIANNE_SRC); an empty LOGO_MARIANNE_SRC omits the bloc-marque and
+  # the logotype takes its place.
+  def self.letterhead
+    {
+      marianne: LOGO_MARIANNE_SRC.present? ? { path: asset_path(LOGO_MARIANNE_SRC), alt: 'Logo Marianne, République Française' } : nil,
+      logo: { path: asset_path(LOGO_SRC), alt: APPLICATION_NAME },
+      sender: [DIRECTION_LABEL.presence, APPLICATION_NAME].compact,
+    }
+  end
+
   # Root-relative path of an image of lib/typst/root/images (the only images
   # a document can embed; the default logos ship there, an instance with its
   # own logos copies them alongside). nil when the file is missing or points

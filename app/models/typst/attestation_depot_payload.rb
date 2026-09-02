@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 # Payload of the attestation de depot (lib/typst/root/attestation_depot.typ):
-# the header logos, the requester, dossier and service sections, the
-# signature lines.
+# the letterhead, the requester, dossier and service sections, the date and
+# the signature.
 class Typst::AttestationDepotPayload < Typst::Payload
   attr_reader :dossier
 
@@ -29,15 +29,10 @@ class Typst::AttestationDepotPayload < Typst::Payload
         procedure: dossier.procedure.libelle,
         date: I18n.l(dossier.depose_at, format: '%e %B %Y')
       ),
-      marianne: LOGO_MARIANNE_SRC.present? ? { path: TypstService.asset_path(LOGO_MARIANNE_SRC), alt: 'Logo Marianne, République Française' } : nil,
-      logo: { path: TypstService.asset_path(LOGO_SRC), alt: APPLICATION_NAME },
-      direction_label: DIRECTION_LABEL.presence,
-      direction_site: APPLICATION_NAME,
+      date: I18n.t(:generated_at, scope:, date: I18n.l(Time.zone.today, format: :long)),
+      **TypstService.letterhead,
       sections: [identity_section, dossier_section, service_section].compact,
-      signature: [
-        I18n.t(:generated_at, scope:, date: I18n.l(Time.zone.today, format: :long)),
-        I18n.t(:signature, scope:, app_name: APPLICATION_NAME),
-      ],
+      signature: I18n.t(:signature, scope:, app_name: APPLICATION_NAME),
     }
   end
 

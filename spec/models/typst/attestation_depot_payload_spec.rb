@@ -78,15 +78,14 @@ describe Typst::AttestationDepotPayload do
   context 'without DIRECTION_LABEL (empty default)' do
     before { stub_const('DIRECTION_LABEL', '') }
 
-    it 'omits the direction line and keeps the site name' do
-        expect(data[:direction_label]).to be_nil
-        expect(data[:direction_site]).to eq(APPLICATION_NAME)
-      end
+    it 'signs the footer with the site name alone' do
+      expect(data[:sender]).to eq([APPLICATION_NAME])
+    end
   end
 
   context 'with DIRECTION_LABEL' do
     before { stub_const('DIRECTION_LABEL', 'Direction Interministérielle du Numérique') }
 
-    it { expect(data[:direction_label]).to eq('Direction Interministérielle du Numérique') }
+    it { expect(data[:sender]).to eq(['Direction Interministérielle du Numérique', APPLICATION_NAME]) }
   end
 end

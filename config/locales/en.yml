@@ -1050,7 +1050,7 @@ en:
           refuse: "declined"
           sans_suite: "closed, no further action"
         administrative_service: "Administrative department"
-        generated_at: "Made on %{date},"
+        generated_at: "Made on %{date}"
         signature: "%{app_name}"
   instructeurs:
     dossiers:

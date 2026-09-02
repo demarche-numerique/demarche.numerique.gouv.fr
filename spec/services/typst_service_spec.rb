@@ -20,8 +20,8 @@ describe TypstService do
       ])
       expect(document['tables'].first).to include('Prénom', 'Jeanne', 'Nom', 'DUPONT')
       expect(document['tables'].second).to start_with('Numéro de dossier', dossier.id.to_s)
-      # (only explicit par() calls are queryable: the signature lines are, the description block is not)
-      expect(document['paragraphs'].last(2)).to eq(data[:signature])
+      # (only explicit par() calls are queryable: the footer and signature lines are, the description block is not)
+      expect(document['paragraphs']).to include(data[:signature], *data[:sender])
     end
 
     it 'carries payload strings through the entry document untouched', :external_deps do
@@ -73,7 +73,9 @@ describe TypstService do
       expect(entries).to eq([
         'attestation_depot.typ',
         'fonts',
+        'fonts/marianne-bold-italic.ttf',
         'fonts/marianne-bold.ttf',
+        'fonts/marianne-light.ttf',
         'fonts/marianne-regular-italic.ttf',
         'fonts/marianne-regular.ttf',
         'images',
@@ -97,15 +99,17 @@ describe TypstService do
       end
     end
 
-    # Typst does not synthesize italics: without a real italic face,
-    # style: "italic" helper text silently renders upright.
-    it 'ships an italic Marianne face', :external_deps do
+    # Typst does not synthesize styles: without a real face, style: "italic"
+    # helper text silently renders upright, weight: "light" as regular, and a
+    # strong inside an italic description as plain italic.
+    it 'ships the light, italic and bold italic Marianne faces', :external_deps do
       require_tool!('typst')
 
       variants = `typst fonts --font-path #{TypstService::FONTS_DIR} --ignore-system-fonts --variants`
 
-      expect(variants).to include('fonts/marianne-regular-italic.ttf')
+      expect(variants).to match(/marianne-light\.ttf\n.*Style: Normal, Weight: 300/)
       expect(variants).to match(/marianne-regular-italic\.ttf\n.*Style: Italic, Weight: 400/)
+      expect(variants).to match(/marianne-bold-italic\.ttf\n.*Style: Italic, Weight: 700/)
     end
   end
 
