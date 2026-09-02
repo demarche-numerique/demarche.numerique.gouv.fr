@@ -24,5 +24,4 @@ en:
         read_only: read only
         all_procedures: all
         all_networks: all internet
-        no_expiration: none
         back_to_profile: Back to profile

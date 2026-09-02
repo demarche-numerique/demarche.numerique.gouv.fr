@@ -99,11 +99,7 @@
     <li>
       <strong><%= t('.expiration') %></strong>
 
-      <%- if @api_token.expires_at.present? -%>
-        <span><%= l(@api_token.expires_at, format: :long) %></span>
-      <%- else -%>
-        <span><%= t('.no_expiration') %></span>
-      <%- end -%>
+      <span><%= l(@api_token.expires_at, format: :long) %></span>
     </li>
   </ul>
 

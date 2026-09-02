@@ -48,30 +48,19 @@ export class ApiTokenSecuriteController extends ApplicationController {
   }
 
   lifetimeDefined() {
-    if (
-      this.element.querySelectorAll(
-        "[name='lifetime'][value='oneWeek']:checked"
-      ).length > 0
-    ) {
+    const checked = this.element.querySelector<HTMLInputElement>(
+      "[name='lifetime']:checked"
+    );
+
+    if (!checked) {
+      return false;
+    }
+
+    // A preset lifetime is enough on its own; a custom one needs a date.
+    if (checked.value != 'custom') {
       return true;
     }
 
-    if (
-      this.element.querySelectorAll(
-        "[name='lifetime'][value='infinite']:checked"
-      ).length > 0
-    ) {
-      return true;
-    }
-
-    if (
-      this.element.querySelectorAll("[name='lifetime'][value='custom']:checked")
-        .length > 0 &&
-      this.customLifetimeInputTarget.value.trim() != ''
-    ) {
-      return true;
-    }
-
-    return false;
+    return this.customLifetimeInputTarget.value.trim() != '';
   }
 }

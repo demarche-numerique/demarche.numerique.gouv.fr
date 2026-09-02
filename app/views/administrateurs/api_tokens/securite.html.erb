@@ -50,7 +50,7 @@
     <% end %>
 
     <div
-      class="fr-input-group fr-mb-4w <%= class_names('hidden': params[:networkFiltering] == 'none' || params[:networkFiltering].blank?, 'fr-input-group--error': params[:invalidNetwork].present?) %>"
+      class="fr-input-group fr-mb-4w <%= class_names('hidden': params[:networkFiltering] != 'customNetworks', 'fr-input-group--error': params[:invalidNetwork].present?) %>"
       data-api-token-securite-target="networkFiltering"
     >
       <%= f.label :name, class: 'fr-label' do %>
@@ -75,23 +75,21 @@
 
     <%= render Dsfr::RadioButtonListComponent.new(form: f,
       target: :lifetime,
-      buttons: [ { label: t('.one_week'),
-        value: :oneWeek,
-        checked: params[:lifetime] == 'oneWeek',
-        'data-action': 'click->api-token-securite#hideCustomLifetime' },
-        { label: t('.custom_lifetime_label'),
+      error: params[:invalidLifetime].present? ? t('.invalid_lifetime') : nil,
+      buttons: APIToken.selectable_lifetimes.keys.map { |lifetime|
+        { label: t(".lifetime.#{lifetime.to_s.underscore}"),
+          value: lifetime,
+          checked: params[:lifetime].to_s == lifetime.to_s,
+          'data-action': 'click->api-token-securite#hideCustomLifetime' }
+      } + [{ label: t('.custom_lifetime_label', count: APIToken::MAX_LIFETIME.in_days.to_i),
         value: :custom,
         checked: params[:lifetime] == 'custom',
-        'data-action': 'click->api-token-securite#showCustomLifetime'},
-        { label: t('.infinite'),
-        value: :infinite,
-        checked: params[:lifetime] == 'infinite',
-        'data-action': 'click->api-token-securite#hideCustomLifetime' }]) do %>
+        'data-action': 'click->api-token-securite#showCustomLifetime' }]) do %>
       <%= t('.lifetime_label') %>
     <% end %>
 
     <div
-      class="fr-input-group fr-mb-4w hidden"
+      class="fr-input-group fr-mb-4w <%= class_names('hidden': params[:lifetime] != 'custom') %>"
       data-api-token-securite-target="customLifetime"
     >
       <%= f.label :name, class: 'fr-label' do %>
@@ -103,10 +101,11 @@
         type="date"
         class="fr-input width-33 fr-mb-4w"
         name="customLifetime"
+        value="<%= params[:customLifetime] %>"
         data-action="input->api-token-securite#setContinueButtonState"
         data-api-token-securite-target="customLifetimeInput"
         min="<%= Date.tomorrow.iso8601 %>"
-        max="<%= 1.year.from_now.to_date.iso8601 %>"
+        max="<%= APIToken.max_expires_at.iso8601 %>"
       >
     </div>
 
