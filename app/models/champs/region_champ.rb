@@ -4,8 +4,17 @@ class Champs::RegionChamp < Champs::TextChamp
   store_accessor :value_json, :region_code
   before_save :store_region_code
 
-  validate :value_in_region_names, if: -> { !value.nil? && should_validate_in_current_context? }
-  validate :external_id_in_region_codes, if: -> { !external_id.nil? && should_validate_in_current_context? }
+  NAMES = APIGeoService.regions.pluck(:name).freeze
+  CODES = APIGeoService.regions.pluck(:code).freeze
+
+  validates :value,
+            inclusion: { in: NAMES, message: :not_in_region_names },
+            allow_nil: true,
+            if: :should_validate_in_current_context?
+  validates :external_id,
+            inclusion: { in: CODES, message: :not_in_region_codes },
+            allow_nil: true,
+            if: :should_validate_in_current_context?
 
   def selected
     code
@@ -28,18 +37,6 @@ class Champs::RegionChamp < Champs::TextChamp
   def condition_value = code
 
   private
-
-  def value_in_region_names
-    return if value.in?(APIGeoService.regions.pluck(:name))
-
-    errors.add(:value, :not_in_region_names)
-  end
-
-  def external_id_in_region_codes
-    return if external_id.in?(APIGeoService.regions.pluck(:code))
-
-    errors.add(:external_id, :not_in_region_codes)
-  end
 
   def store_region_code
     self.region_code = code
