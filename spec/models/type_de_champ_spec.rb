@@ -1,6 +1,15 @@
 # frozen_string_literal: true
 
 describe TypeDeChamp do
+  describe '#tags_for_template' do
+    it 'flags the types rendered as a list in templates' do
+      expect(build(:type_de_champ_text).tags_for_template.map { _1[:block] }).to eq([false])
+      expect(build(:type_de_champ_repetition).tags_for_template.map { _1[:block] }).to eq([true])
+      expect(build(:type_de_champ_multiple_drop_down_list).tags_for_template.map { _1[:block] }).to eq([true])
+      expect(build(:type_de_champ_carte).tags_for_template.map { _1[:block] }).to eq([true])
+    end
+  end
+
   describe 'validation' do
     context 'type' do
       before_all { seed "cases/champs" }

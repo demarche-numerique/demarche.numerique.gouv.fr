@@ -16,6 +16,48 @@ describe AttestationTemplate, type: :model do
     end
   end
 
+  describe 'validates block tags placement (v2)' do
+    let(:procedure) do
+      create(:procedure, public_type_de_champs: [
+        { type: :repetition, libelle: 'Langages', children: [{ type: :text, libelle: 'nom' }] },
+        { type: :text, libelle: 'Nom' },
+      ])
+    end
+    let(:repetition_tag) { "tdc#{procedure.draft_revision.public_root_type_de_champs.find(&:repetition?).stable_id}" }
+    let(:text_tag) { "tdc#{procedure.draft_revision.public_root_type_de_champs.find { !_1.repetition? }.stable_id}" }
+    let(:attestation_template) { build(:attestation_template, :v2, procedure:, json_body:) }
+
+    def mention(id, label) = { 'type' => 'mention', 'attrs' => { 'id' => id, 'label' => label } }
+    def doc(*content) = { 'type' => 'doc', 'content' => content }
+
+    context 'with a repetition tag in a paragraph' do
+      let(:json_body) { doc({ 'type' => 'paragraph', 'content' => [mention(repetition_tag, 'Langages')] }) }
+
+      it { expect(attestation_template).to be_valid }
+    end
+
+    context 'with a text tag in a heading' do
+      let(:json_body) { doc({ 'type' => 'heading', 'attrs' => { 'level' => 2 }, 'content' => [mention(text_tag, 'Nom')] }) }
+
+      it { expect(attestation_template).to be_valid }
+    end
+
+    context 'with a repetition tag in a heading' do
+      let(:json_body) { doc({ 'type' => 'heading', 'attrs' => { 'level' => 2 }, 'content' => [mention(repetition_tag, 'Langages')] }) }
+
+      it 'is invalid' do
+        expect(attestation_template).not_to be_valid
+        expect(attestation_template.errors.full_messages).to include(/contient la balise "Langages" dans un titre/)
+      end
+    end
+
+    context 'with a repetition tag in the title' do
+      let(:json_body) { doc({ 'type' => 'title', 'content' => [mention(repetition_tag, 'Langages')] }) }
+
+      it { expect(attestation_template).not_to be_valid }
+    end
+  end
+
   describe 'dup' do
     let(:attestation_template) { create(:attestation_template, attributes) }
     subject { attestation_template.dup }

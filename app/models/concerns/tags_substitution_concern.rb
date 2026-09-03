@@ -305,6 +305,10 @@ module TagsSubstitutionConcern
     end
   end
 
+  def block_level_tag_ids
+    procedure_type_de_champs_tags.filter { _1[:block] }.map { _1[:id] }
+  end
+
   def used_tags_for(text)
     used_tags_and_libelle_for(text).map { _1.first.nil? ? _1.second : _1.first }
   end

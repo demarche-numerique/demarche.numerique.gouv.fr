@@ -40,9 +40,26 @@ class TagsValidator < ActiveModel::EachValidator
 
     # unknown champ
     add_errors(record, attribute, :champ_missing, invalid_tags)
+
+    # champ rendered as a list, placed where a list cannot be rendered
+    add_errors(record, attribute, :block_tag_in_heading, block_tags_in_headings(record, value))
   end
 
   private
+
+  # Tiptap node types whose HTML element cannot contain a list; the editor
+  # enforces the same rule (see app/javascript/shared/tiptap/block_tags.ts).
+  INLINE_ONLY_NODE_TYPES = ['title', 'heading'].freeze
+
+  def block_tags_in_headings(record, value)
+    return [] unless value.respond_to?(:deconstruct_keys)
+
+    mentions = TiptapService.mentions_within(value.deep_symbolize_keys, INLINE_ONLY_NODE_TYPES)
+    return [] if mentions.empty?
+
+    block_tag_ids = record.block_level_tag_ids
+    mentions.filter_map { |(id, label)| label if id.in?(block_tag_ids) }.uniq
+  end
 
   def add_errors(record, attribute, message, tags)
     if tags.present?

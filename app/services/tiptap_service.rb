@@ -88,6 +88,21 @@ class TiptapService
 
   private_class_method :resolve_blocks, :resolve_block, :resolve_inline, :block?, :empty_text?
 
+  # [id, label] pairs of the mentions nested, at any depth, inside a node whose
+  # type is one of `types`.
+  def self.mentions_within(node, types, inside: false, mentions: [])
+    case node
+    in type: 'mention', attrs: { id:, label: }
+      mentions << [id, label] if inside
+    in { type:, content: } if content.is_a?(Array)
+      content.each { mentions_within(_1, types, inside: inside || type.in?(types), mentions:) }
+    else
+      # leaf node
+    end
+
+    mentions
+  end
+
   def to_html(node, substitutions = {})
     return '' if node.nil?
 

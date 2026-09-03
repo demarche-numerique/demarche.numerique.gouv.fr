@@ -55,6 +55,7 @@ class TypesDeChamp::MultipleDropDownListTypeDeChamp < TypesDeChamp::DropDownBase
   end
 
   def typed_champ_blank?(champ) = selected_options(champ).blank?
+  def block_level_tag? = true
 
   def self.parse_selected_options(champ)
     return [] if champ.value.blank?
