@@ -305,7 +305,7 @@ class ChampData < ApplicationRecord
 
   def clone
     champ_attributes = [:private, :row_id, :type, :stable_id, :stream]
-    value_attributes = !private? ? [:value, :value_json, :data, :external_id, :prefilled, :prefilled_original_value] : []
+    value_attributes = !private? ? [:value, :value_json, :data, :external_id, :external_state, :prefilled, :prefilled_original_value] : []
     relationships = !private? ? [:etablissement, :geo_areas] : []
 
     deep_clone(only: champ_attributes + value_attributes, include: relationships, validate: true) do |original, kopy|
