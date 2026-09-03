@@ -66,5 +66,87 @@ RSpec.describe ChampFetchExternalDataJob, type: :job do
         expect(champ.fetch_external_data_exceptions.size).to eq(3)
       end
     end
+
+    context 'when retries are exhausted on a siret champ' do
+      let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :siret }]) }
+      let(:dossier) { create(:dossier, procedure:) }
+      let(:external_id) { '41816609600051' }
+
+      before do
+        champ.update_columns(external_id:, external_state: 'waiting_for_job')
+        allow_any_instance_of(Champs::SiretChamp).to receive(:fetch_external_data).and_return(failure)
+      end
+
+      it 'converges to the degraded state instead of external_error' do
+        described_class.perform_later(champ, external_id)
+
+        3.times do
+          perform_enqueued_jobs(only: ChampFetchExternalDataJob)
+        rescue StandardError
+        end
+
+        champ.reload
+
+        expect(champ).to be_degraded
+        expect(champ.etablissement).to be_as_degraded_mode
+        expect(champ.fetch_external_data_exceptions.last.code).to eq(504)
+      end
+
+      context 'and the user replaced the SIRET during the last attempt' do
+        before do
+          attempt = 0
+          allow_any_instance_of(Champs::SiretChamp).to receive(:fetch_external_data) do |c|
+            attempt += 1
+            c.update_columns(external_id: '41816609600069') if attempt == 3
+            failure
+          end
+        end
+
+        it 'does not build a stub for the identifier the user left behind' do
+          described_class.perform_later(champ, external_id)
+
+          3.times do
+            perform_enqueued_jobs(only: ChampFetchExternalDataJob)
+          rescue StandardError
+          end
+
+          champ.reload
+
+          expect(champ).not_to be_degraded
+          expect(champ.etablissement).to be_nil
+        end
+      end
+
+      context 'and the exhaustion handler itself raises' do
+        let(:boom) { StandardError.new('champ was reset meanwhile') }
+
+        before do
+          allow_any_instance_of(Champs::SiretChamp)
+            .to receive(:handle_exhausted_external_data_retries!).and_raise(boom)
+        end
+
+        it 'reports it to Sentry instead of letting the exception escape' do
+          expect(Sentry).to receive(:capture_exception).with(boom)
+          expect(Sentry).to receive(:capture_exception).with(error)
+
+          described_class.perform_later(champ, external_id)
+
+          expect { 3.times { perform_enqueued_jobs(only: ChampFetchExternalDataJob) } }.not_to raise_error
+        end
+
+        it 'settles the champ instead of leaving it pending forever' do
+          allow(Sentry).to receive(:capture_exception)
+
+          described_class.perform_later(champ, external_id)
+
+          3.times do
+            perform_enqueued_jobs(only: ChampFetchExternalDataJob)
+          rescue StandardError
+          end
+
+          expect(champ.reload).to be_external_error
+        end
+      end
+    end
   end
 end

@@ -205,6 +205,29 @@ describe Champs::SiretChamp do
     end
   end
 
+  describe '#handle_exhausted_external_data_retries!' do
+    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :siret }]) }
+    let(:dossier) { create(:dossier, procedure:) }
+    let(:champ) { dossier.champ_data.first }
+
+    before do
+      champ.update_columns(
+        external_id: '41816609600051',
+        external_state: 'waiting_for_job',
+        fetch_external_data_exceptions: [ExternalDataException.new(error: 'boom', code: 503)]
+      )
+    end
+
+    it 'converges to the degraded state instead of external_error' do
+      expect { champ.handle_exhausted_external_data_retries! }
+        .to have_enqueued_job(APIEntreprise::EtablissementJob)
+
+      champ.reload
+      expect(champ).to be_degraded
+      expect(champ.etablissement).to be_as_degraded_mode
+    end
+  end
+
   describe '#reset_external_data!' do
     let(:external_id) { "12345678901245" }
     let(:etablissement) { create(:etablissement, siret: external_id) }
