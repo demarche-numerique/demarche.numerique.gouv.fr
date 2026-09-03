@@ -431,6 +431,16 @@ RSpec.describe TiptapService do
 
         expect(described_class.new.to_html(json, substitutions)).to eq("<p class=\"body-start\">Avant </p>#{list}")
       end
+
+      it 'keeps an inline presentation inside the paragraph, with the mention marks and the hard break' do
+        motivation = { type: 'mention', attrs: { id: 'motivation', label: 'Motivation' }, marks: [{ type: 'italic' }] }
+        json = doc({ type: 'paragraph', content: [text('Motivation : '), motivation, text('.')] })
+        substitutions = { 'motivation' => ChampPresentations::MultilineTextPresentation.new("<b>ok</b>\nsuite") }
+
+        expect(described_class.new(hard_break: '<br><br>').to_html(json, substitutions)).to eq(
+          '<p class="body-start">Motivation : <em>&lt;b&gt;ok&lt;/b&gt;</em><br><br><em>suite</em>.</p>'
+        )
+      end
     end
   end
 
@@ -508,6 +518,23 @@ RSpec.describe TiptapService do
       expect(described_class.resolve(json, substitutions)).to eq(
         doc({ type: 'title', content: [text('ruby, rust')] }, { type: 'heading', attrs: { level: 2 }, content: [text('Titre '), text('ruby, rust')] })
       )
+    end
+
+    it 'keeps an inline presentation in the paragraph and marks its text nodes' do
+      motivation = { type: 'mention', attrs: { id: 'motivation', label: 'Motivation' }, marks: [{ type: 'bold' }] }
+      json = doc({ type: 'paragraph', content: [text('Avant '), motivation, text(' après')] })
+      resolved = described_class.resolve(json, { 'motivation' => ChampPresentations::MultilineTextPresentation.new("a\nb") })
+
+      expect(resolved).to eq(
+        doc({ type: 'paragraph', content: [text('Avant '), text('a', marks: [{ type: 'bold' }]), { type: 'hardBreak' }, text('b', marks: [{ type: 'bold' }]), text(' après')] })
+      )
+    end
+
+    it 'degrades an inline presentation to its text inside a heading' do
+      json = doc({ type: 'heading', attrs: { level: 2 }, content: [{ type: 'mention', attrs: { id: 'motivation', label: 'Motivation' } }] })
+      resolved = described_class.resolve(json, { 'motivation' => ChampPresentations::MultilineTextPresentation.new("a\nb") })
+
+      expect(resolved).to eq(doc({ type: 'heading', attrs: { level: 2 }, content: [text("a\nb")] }))
     end
 
     it 'leaves empty blocks and unknown nodes untouched' do

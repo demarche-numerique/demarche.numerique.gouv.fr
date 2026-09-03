@@ -30,11 +30,12 @@ class TiptapService
   # - a text substitution becomes a text node carrying the mention marks
   #   (the string keeps its `html_safe?` flag, so an HTML renderer escapes
   #   exactly what the substitution layer did not);
-  # - a champ presentation (repetition, multiple drop down, carte) becomes its
-  #   tiptap node, a list: the enclosing paragraph is split around it, every
-  #   inline run keeping the paragraph attributes and empty runs being
-  #   dropped; inside a title or a heading, which cannot hold a block, it
-  #   degrades to its text;
+  # - a presentation becomes its tiptap nodes: inline ones (multiline text)
+  #   stay in the paragraph, their text nodes carrying the mention marks;
+  #   block ones (the lists of a repetition, a multiple drop down or a carte)
+  #   split the enclosing paragraph, every inline run keeping the paragraph
+  #   attributes and empty runs being dropped; inside a title or a heading,
+  #   which cannot hold a block, a presentation degrades to its text;
   # - a missing substitution becomes the "--id--" placeholder.
   def self.resolve(node, substitutions = {})
     return nil if node.nil?
@@ -50,12 +51,12 @@ class TiptapService
     case node
     in type: 'paragraph', content:
       content
-        .map { resolve_inline(it, substitutions) }
+        .flat_map { resolve_inline(it, substitutions) }
         .reject { empty_text?(it) }
         .slice_when { |a, b| block?(a) || block?(b) }
         .map { block?(it.first) ? it.first : node.merge(content: it) }
     in type: 'title' | 'heading', content:
-      [node.merge(content: content.map { resolve_inline(it, substitutions, text_only: true) })]
+      [node.merge(content: content.flat_map { resolve_inline(it, substitutions, text_only: true) })]
     in { content: } if content.is_a?(Array)
       [node.merge(content: resolve_blocks(content, substitutions))]
     else
@@ -67,13 +68,15 @@ class TiptapService
     case node
     in type: 'mention', attrs: { id: }, **rest
       value = substitutions.fetch(id) { "--#{id}--" }
-      if value.respond_to?(:to_tiptap_node) && !text_only
-        value.to_tiptap_node
+      nodes = if value.respond_to?(:to_tiptap_nodes) && !text_only
+        value.to_tiptap_nodes
       else
-        { type: 'text', text: value.to_s, marks: rest[:marks] }.compact
+        [{ type: 'text', text: value.to_s }]
       end
+      marks = rest[:marks]
+      marks.present? ? nodes.map { it[:type] == 'text' ? it.merge(marks:) : it } : nodes
     else
-      node
+      [node]
     end
   end
 

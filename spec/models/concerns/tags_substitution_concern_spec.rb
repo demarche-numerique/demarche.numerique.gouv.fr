@@ -64,6 +64,18 @@ describe TagsSubstitutionConcern, type: :model do
       end
     end
 
+    context 'when the dossier has a motivation' do
+      let(:dossier) { create(:dossier, :accepte, procedure:, motivation: "Première ligne\nDeuxième ligne") }
+      let(:tags) { Set.new([["dossier_motivation", "motivation"]]) }
+
+      it 'substitutes a multiline text presentation instead of the legacy HTML' do
+        presentation = subject.fetch('dossier_motivation')
+
+        expect(presentation).to be_a(ChampPresentations::MultilineTextPresentation)
+        expect(presentation.to_s).to eq("Première ligne\nDeuxième ligne")
+      end
+    end
+
     context 'when the dossier and the procedure has an individual' do
       let(:for_individual) { true }
       let(:individual) { Individual.create(nom: 'Adama', prenom: 'William', gender: 'M') }
