@@ -16,4 +16,8 @@ class Procedure::Card::APITokenComponent < ApplicationComponent
       @procedure.api_particulier_token? || nil,
     ].compact.size
   end
+
+  def any_token_needs_renewal?
+    [@procedure.api_entreprise_token, @procedure.api_particulier_token].any?(&:needs_renewal?)
+  end
 end

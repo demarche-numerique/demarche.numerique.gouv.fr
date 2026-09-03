@@ -38,6 +38,10 @@ module JwtTokenConcern
     expires_at && expires_at <= SOON_TO_EXPIRE_DELAY.from_now
   end
 
+  def needs_renewal?
+    invalid? || expired_or_expires_soon?
+  end
+
   private
 
   def decoded_token

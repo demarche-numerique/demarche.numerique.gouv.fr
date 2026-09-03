@@ -35,6 +35,24 @@ RSpec.describe Procedure::Card::APITokenComponent, type: :component do
     end
   end
 
+  context "API particulier token expires soon" do
+    let(:api_entreprise_token) { nil }
+    let(:api_particulier_token) { JWT.encode({ exp: 2.days.from_now.to_i }, nil, 'none') }
+
+    it { is_expected.to have_css('p.fr-badge.fr-badge--error', text: "À renouveler") }
+  end
+
+  context "API particulier token is a legacy key" do
+    let(:procedure) do
+      create(:procedure).tap do
+        it.api_particulier_token = 'd7e9c9f4c3ca00caadde31f50fd4521a'
+        it.save(validate: false)
+      end
+    end
+
+    it { is_expected.to have_css('p.fr-badge.fr-badge--error', text: "À renouveler") }
+  end
+
   context "API entreprise token and API particulier token are both configured" do
     let(:api_entreprise_token) { JWT.encode({ exp: 2.months.from_now.to_i }, nil, "none") }
     let(:api_particulier_token) { JWT.encode({ exp: 2.months.from_now.to_i }, nil, 'none') }
