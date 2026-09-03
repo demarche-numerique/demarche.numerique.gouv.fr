@@ -49,7 +49,8 @@ class EditableChamp::DropDownListComponent < EditableChamp::EditableChampBaseCom
       items:,
       always_show_key: @champ.drop_down_other? ? Champs::DropDownListChamp::OTHER : nil,
       ariaLabelledbyPrefix: aria_labelledby_prefix,
-      label_id: input_label_id(@champ)
+      labelId: input_label_id(@champ),
+      triggerId: @champ.focusable_input_id
     )
   end
 

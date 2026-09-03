@@ -66,6 +66,7 @@ function Select<M extends SelectionMode = 'single'>({
   alwaysShowKey,
   emptyHint,
   selectedLabels,
+  id: _id, // eslint-disable-line @typescript-eslint/no-unused-vars -- intentionally discarded to prevent AriaSelect from putting it on a hidden <select>
   ...props
 }: SelectProps<M>) {
   const { contains } = useFilter({ sensitivity: 'base', numeric: true });
@@ -83,8 +84,10 @@ function Select<M extends SelectionMode = 'single'>({
     throw new Error('Select must be provided with either items or sections');
   }
 
-  if (!props['aria-label'] && labelId && ariaLabelledbyPrefix) {
-    props['aria-labelledby'] = `${ariaLabelledbyPrefix} ${labelId}`;
+  if (!props['aria-label'] && labelId) {
+    props['aria-labelledby'] = [ariaLabelledbyPrefix, labelId]
+      .filter(Boolean)
+      .join(' ');
   }
 
   return (

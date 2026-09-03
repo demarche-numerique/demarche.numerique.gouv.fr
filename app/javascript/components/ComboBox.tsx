@@ -98,9 +98,8 @@ export function ComboBox({
   // if label is passed, we need to generate an id for the input, otherwise we use the labelId passed in the props
   const labelIdToUse = label ? generatedId : labelId;
 
-  const inputAriaLabelledby = ariaLabelledbyPrefix
-    ? `${ariaLabelledbyPrefix} ${labelIdToUse}`
-    : labelIdToUse;
+  const inputAriaLabelledby =
+    [ariaLabelledbyPrefix, labelIdToUse].filter(Boolean).join(' ') || undefined;
 
   return (
     <AriaComboBox

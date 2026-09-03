@@ -1,18 +1,11 @@
-import { fileURLToPath } from 'node:url';
-
+import path from 'node:path';
 import { playwright } from '@vitest/browser-playwright';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
-  // `vite.config.ts` declares this alias relative to vite-plugin-ruby's root,
-  // and vitest does not load that config. Without it the dependency scan throws
-  // on the first test that reaches `@utils`, vite then skips pre-bundling
-  // altogether, and unrelated React tests get a null `react` module.
   resolve: {
     alias: {
-      '@utils': fileURLToPath(
-        new URL('./app/javascript/shared/utils.ts', import.meta.url)
-      )
+      '@utils': path.resolve(__dirname, 'app/javascript/shared/utils.ts')
     }
   },
   test: {

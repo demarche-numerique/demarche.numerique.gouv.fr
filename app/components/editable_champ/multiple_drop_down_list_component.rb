@@ -20,7 +20,8 @@ class EditableChamp::MultipleDropDownListComponent < EditableChamp::EditableCham
       value: @champ.selected_options.intersection(items.map(&:last)),
       items:,
       ariaLabelledbyPrefix: aria_labelledby_prefix,
-      labelId: input_label_id(@champ)
+      labelId: input_label_id(@champ),
+      triggerId: @champ.focusable_input_id
     )
   end
 
