@@ -15,8 +15,18 @@ module DossierCloneConcern
     discarded_row_ids = champ_data_on_main_stream
       .filter { _1.row? && _1.discarded? }
       .to_set(&:row_id)
-    champs_to_clone = champ_data_on_main_stream
+    champs_on_main_stream = champ_data_on_main_stream
       .reject { discarded_row_ids.member?(_1.row_id) }
+
+    #  each type_de_champ lookup needs the dossier
+    champs_on_main_stream.each { _1.association(:dossier).target = self }
+
+    champs_to_clone = champs_on_main_stream
+      # because of revisions, champ.type can differ from champ.type_de_champ.type_champ
+      # some champ before_save callbacks then call type_de_champ methods that don't exist
+      # solution: exclude champs where there is a type mismatch
+      .filter { _1.is_type?(_1.type_de_champ.type_champ) }
+
     ActiveRecord::Associations::Preloader.new(records: champs_to_clone, associations: [:geo_areas, :etablissement]).call
     cloned_champs = champs_to_clone.map(&:clone)
 

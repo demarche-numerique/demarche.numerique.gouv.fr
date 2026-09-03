@@ -193,6 +193,23 @@ RSpec.describe DossierCloneConcern do
           expect(new_dossier.root_champs_private.first.value).to eq(nil)
         end
       end
+
+      context 'when the revision changed the type of a champ' do
+        let(:public_type_de_champs) { [{ type: :drop_down_list, libelle: 'Un champ drop down', stable_id: 99, options: ['a', 'b'] }] }
+
+        before do
+          tdc = dossier.procedure.draft_revision.find_and_ensure_exclusive_use(99).becomes_type(:dossier_link)
+          tdc.update!(type_champ: TypeDeChamp.type_champs.fetch(:dossier_link))
+          procedure.publish_revision!(procedure.administrateurs.first)
+          perform_enqueued_jobs
+          dossier.reload
+          expect(dossier.champ_data.find_by(stable_id: 99).last_write_type_champ).to eq('drop_down_list')
+        end
+
+        it 'does not clone the champ' do
+          expect(new_dossier.champ_data.find_by(stable_id: 99)).to be_nil
+        end
+      end
     end
   end
 end
