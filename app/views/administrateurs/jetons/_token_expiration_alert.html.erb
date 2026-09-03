@@ -1,0 +1,33 @@
+<% if token.invalid? %>
+  <%= render Dsfr::AlertComponent.new(state: :error, size: :sm, extra_class_names: 'fr-mb-2w') do |c| %>
+    <% c.with_body do %>
+      <p>
+        Votre jeton <%= api_name %> n’est pas valide.
+        <% if local_assigns[:expected_format].present? %>
+          Merci de le remplacer par un jeton valide
+          <%= "(format #{local_assigns[:expected_format]})." %>
+        <% else %>
+          Merci de le remplacer par un jeton valide.
+        <% end %>
+      </p>
+    <% end %>
+  <% end %>
+<% elsif token.expires_at.present? %>
+  <% if token.expired? %>
+    <%= render Dsfr::AlertComponent.new(state: :error, size: :sm, extra_class_names: 'fr-mb-2w') do |c| %>
+      <% c.with_body do %>
+        <p>Votre jeton <%= api_name %> est expiré. Merci de le renouveler.</p>
+      <% end %>
+    <% end %>
+  <% elsif token.expired_or_expires_soon? %>
+    <%= render Dsfr::AlertComponent.new(state: :warning, size: :sm, extra_class_names: 'fr-mb-2w') do |c| %>
+      <% c.with_body do %>
+        <p>
+          Votre jeton <%= api_name %> expirera le
+          <%= l(token.expires_at, format: :long_with_time) %>. Merci de le
+          renouveler avant cette date.
+        </p>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

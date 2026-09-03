@@ -8,6 +8,7 @@ en:
       procedure:
         hints:
           api_entreprise_token: 'For example: eyJhbGciOiJIUzI1NiJ9.eyJ1...'
+          api_particulier_token: 'Expected format: an API Particulier v3 token. For example: eyJhbGciOiJIUzI1NiJ9.eyJ1...'
           description: Describe in a few lines the context, the aim etc.
           description_target_audience: Describe in a few lines the final recipients of the process, the eligibility criteria if there are any, the prerequisites, etc.
           description_pj: Describe the required attachments list if there is any
@@ -85,7 +86,8 @@ en:
         procedure:
           attributes:
             api_particulier_token:
-              invalid: 'invalid format'
+              invalid: 'is not valid (expected format: v3)'
+              expired: 'expired on %{date}'
             public_draft_type_de_champs:
               format: 'Public field %{message}'
               invalid_condition: "have an invalid logic"

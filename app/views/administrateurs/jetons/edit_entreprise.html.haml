@@ -18,7 +18,7 @@
 = form_with model: @procedure, url: url_for({ controller: 'administrateurs/jetons', action: :update_entreprise }) do |f|
   .fr-container
 
-    = render partial: 'administrateurs/procedures/api_entreprise_token_expiration_alert', locals: { procedure: @procedure }
+    = render 'token_expiration_alert', token: @procedure.api_entreprise_token, api_name: 'API Entreprise'
 
     = render Dsfr::InputComponent.new(form: f, attribute: :api_entreprise_token, input_type: :password_field, required: false, opts: { value: @procedure.read_attribute(:api_entreprise_token)})
 

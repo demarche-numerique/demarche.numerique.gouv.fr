@@ -8,7 +8,7 @@ fr:
       procedure:
         hints:
           api_entreprise_token: 'Exemple : eyJhbGciOiJIUzI1NiJ9.eyJ1...'
-          api_particulier_token: "Il doit contenir au minimum 15 caractères."
+          api_particulier_token: 'Format attendu : un jeton API Particulier v3. Exemple : eyJhbGciOiJIUzI1NiJ9.eyJ1...'
           description: Décrivez en quelques lignes le contexte, la finalité, etc.
           description_target_audience: Décrivez en quelques lignes les destinataires finaux de la démarche, les conditions d’éligibilité s’il y en a, les pré-requis, etc.
           description_pj: Décrivez la liste des pièces jointes à fournir s’il y en a
@@ -92,7 +92,8 @@ fr:
         procedure:
           attributes:
             api_particulier_token:
-              invalid: 'n’a pas le bon format'
+              invalid: 'n’est pas valide (format attendu : v3)'
+              expired: 'a expiré le %{date}'
             public_draft_type_de_champs:
               format: 'Le champ %{message}'
               invalid_condition: "a une logique conditionnelle invalide"
