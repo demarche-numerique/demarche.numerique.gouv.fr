@@ -114,6 +114,16 @@ describe Administrateurs::JetonsController, type: :controller do
         is_expected.to have_http_status(:success)
         expect(subject.body).to have_content('Jeton API particulier')
       end
+
+      context "when the token has expired" do
+        let!(:procedure) { create(:procedure, :with_api_particulier_token, administrateur: admin) }
+
+        it do
+          travel_to(3.months.from_now) do
+            expect(subject.body).to have_content('Votre jeton API Particulier est expiré')
+          end
+        end
+      end
     end
 
     describe "PATCH #update_particulier" do

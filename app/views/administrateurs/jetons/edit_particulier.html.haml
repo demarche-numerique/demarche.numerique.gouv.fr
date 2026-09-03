@@ -18,6 +18,8 @@
 
 = form_with model: @procedure, url: url_for({ controller: 'administrateurs/jetons', action: :update_particulier }) do |f|
   .fr-container
+    = render 'token_expiration_alert', token: @procedure.api_particulier_token, api_name: 'API Particulier', expected_format: 'API Particulier v3'
+
     %fieldset.fr-fieldset
       .fr-fieldset__element
         = render Dsfr::InputComponent.new(form: f, attribute: :api_particulier_token, input_type: :password_field, opts: { value: @procedure.read_attribute(:api_particulier_token)})
