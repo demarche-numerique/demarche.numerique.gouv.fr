@@ -32,21 +32,6 @@ RSpec.describe Traitement do
     dossier.traitements.last
   end
 
-  describe "#has_changes?" do
-    it "is false for the initial depose traitement" do
-      expect(dossier.traitements.last.has_changes?).to be(false)
-    end
-
-    it "is true for a correction traitement" do
-      traitement = submit_usager_correction do
-        dossier.public_champ_for_update('99', updated_by: dossier.user.email)
-          .assign_attributes(value: "Nouvelle valeur")
-      end
-
-      expect(traitement.has_changes?).to be(true)
-    end
-  end
-
   describe "#changed_columns" do
     context "when the traitement is the initial depose" do
       subject(:traitement) { dossier.traitements.last }
@@ -95,6 +80,51 @@ RSpec.describe Traitement do
       end
     end
 
+    context "when the usager correction removes a repetition row" do
+      subject(:traitement) do
+        type_de_champ = dossier.find_type_de_champ_by_stable_id(993)
+        row_id = repetition_row_id
+        submit_usager_correction do
+          dossier.repetition_remove_row(type_de_champ, row_id, updated_by: dossier.user.email)
+        end
+      end
+
+      it "reports the removed row champs with their previous value" do
+        column = traitement.changed_columns.find { _1.stable_id == 994 }
+
+        expect(column).not_to be_nil
+        expect(column.value).to be_nil
+        expect(column.previous_value).to be_present
+      end
+    end
+
+    context "when the same champ is corrected twice" do
+      let!(:first_traitement) do
+        submit_usager_correction do
+          dossier.public_champ_for_update('99', updated_by: dossier.user.email)
+            .assign_attributes(value: "Première correction")
+        end
+      end
+
+      let!(:second_traitement) do
+        # the history stream is named after the merge time, at second resolution
+        travel 1.minute
+        submit_usager_correction do
+          dossier.public_champ_for_update('99', updated_by: dossier.user.email)
+            .assign_attributes(value: "Seconde correction")
+        end
+      end
+
+      it "keeps the changes of each traitement" do
+        first_column = first_traitement.reload.changed_columns.find { _1.stable_id == 99 }
+        second_column = second_traitement.changed_columns.find { _1.stable_id == 99 }
+
+        expect(first_column.value).to eq("Première correction")
+        expect(second_column.previous_value).to eq("Première correction")
+        expect(second_column.value).to eq("Seconde correction")
+      end
+    end
+
     context "when the traitement is an instructeur correction" do
       let(:instructeur) { create(:instructeur) }
 
@@ -127,6 +157,23 @@ RSpec.describe Traitement do
         columns = dossier.traitements.last.changed_columns
         expect(columns.map(&:stable_id)).to contain_exactly(99)
         expect(columns.first.value).to eq("Correction sans reload")
+      end
+
+      # Unlike the usager submit, the instructeur submit does not purge the
+      # discarded row champ: it stays on main with the checkpoint.
+      it "reports a row edited then removed as removed" do
+        type_de_champ = dossier.find_type_de_champ_by_stable_id(993)
+        row_id = repetition_row_id
+        traitement = submit_instructeur_correction(instructeur) do
+          dossier.public_champ_for_update("994-#{row_id}", updated_by: instructeur.email)
+            .assign_attributes(value: "Modifié puis supprimé")
+          dossier.repetition_remove_row(type_de_champ, row_id, updated_by: instructeur.email)
+        end
+
+        column = traitement.changed_columns.find { _1.stable_id == 994 }
+        expect(column).not_to be_nil
+        expect(column.value).to be_nil
+        expect(column.previous_value).not_to eq("Modifié puis supprimé")
       end
     end
   end

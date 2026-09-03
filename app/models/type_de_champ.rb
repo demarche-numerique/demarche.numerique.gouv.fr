@@ -389,6 +389,12 @@ class TypeDeChamp < ApplicationRecord
     )
   end
 
+  # The column used to describe a change of this champ to the usager and in
+  # the API (see ChangedColumn).
+  def change_column(procedure_id:, prefix: nil)
+    canonical_column(procedure_id:, prefix:)
+  end
+
   def columns(procedure_id:, displayable: true, prefix: nil)
     [canonical_column(procedure_id:, displayable:, prefix:)].compact
   end

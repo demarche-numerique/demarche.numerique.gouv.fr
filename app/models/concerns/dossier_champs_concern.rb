@@ -241,22 +241,26 @@ module DossierChampsConcern
   end
 
   def user_changed_columns
-    if user_buffer_changes?
-      ChangedColumn.columns(revision, champ_data_on_user_buffer_stream.index_by(&:public_id), champ_data_on_main_stream.index_by(&:public_id))
-    else
-      []
-    end
+    changed_columns_for(champ_data_on_user_buffer_stream)
   end
 
   def instructeur_changed_columns
-    if instructeur_buffer_changes?
-      ChangedColumn.columns(revision, champ_data_on_instructeur_buffer_stream.index_by(&:public_id), champ_data_on_main_stream.index_by(&:public_id))
-    else
-      []
-    end
+    changed_columns_for(champ_data_on_instructeur_buffer_stream)
   end
 
   private
+
+  # The reference champs are the main stream counterparts of the buffer champs,
+  # plus the champs of the rows the buffer removes (they only exist on main).
+  def changed_columns_for(buffer_champs)
+    return [] if buffer_champs.blank?
+
+    public_ids = buffer_champs.map(&:public_id).to_set
+    discarded_row_ids = buffer_champs.filter { _1.row? && _1.discarded? }.map(&:row_id).to_set
+    reference_champs = champ_data_on_main_stream.filter { _1.public_id.in?(public_ids) || _1.row_id.in?(discarded_row_ids) }
+
+    ChangedColumn.columns(revision, buffer_champs.index_by(&:public_id), reference_champs.index_by(&:public_id))
+  end
 
   def changed_champ_data_ids_for_merge(stream)
     stream_h = champ_data.where(stream:, stable_id: revision_stable_ids)

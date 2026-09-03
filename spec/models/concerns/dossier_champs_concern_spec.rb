@@ -1435,6 +1435,43 @@ RSpec.describe DossierChampsConcern do
         expect(column.value).to eq("Correction dans la répétition")
       end
     end
+
+    context "when the instructeur buffer stream removes a repetition row" do
+      let(:type_de_champ) { dossier.find_type_de_champ_by_stable_id(993) }
+      let(:row_id) { dossier.project_champ(type_de_champ).row_ids.first }
+
+      before do
+        dossier.with_instructeur_buffer_stream do
+          dossier.repetition_remove_row(type_de_champ, row_id, updated_by: 'instructeur@exemple.fr')
+        end
+        dossier.save!
+      end
+
+      it "reports the removed row champs with their previous value" do
+        column = dossier.instructeur_changed_columns.find { _1.stable_id == 994 }
+
+        expect(column).not_to be_nil
+        expect(column.value).to be_nil
+        expect(column.previous_value).to be_present
+      end
+
+      context "after editing a champ of the row" do
+        before do
+          dossier.with_instructeur_buffer_stream do
+            dossier.public_champ_for_update("994-#{row_id}", updated_by: 'instructeur@exemple.fr')
+              .assign_attributes(value: "Modifié puis supprimé")
+          end
+          dossier.save!
+        end
+
+        it "still reports the row champs as removed" do
+          column = dossier.instructeur_changed_columns.find { _1.stable_id == 994 }
+
+          expect(column.value).to be_nil
+          expect(column.previous_value).not_to eq("Modifié puis supprimé")
+        end
+      end
+    end
   end
 
   describe "#reload" do
