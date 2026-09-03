@@ -1,5 +1,8 @@
-.fr-label + .fr-ds-combobox {
+.fr-label + .fr-ds-combobox,
+.fr-label + react-fragment > .fr-ds-combobox {
   // same as .fr-label + .fr-input
+  // the combobox can be wrapped in a <react-fragment> (display: block),
+  // which breaks the `.fr-label + .fr-ds-combobox` adjacency
   margin-top: 0.5rem;
 }
 

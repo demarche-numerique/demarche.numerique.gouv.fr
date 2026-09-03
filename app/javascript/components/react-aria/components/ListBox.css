@@ -16,14 +16,19 @@
   }
 }
 
+/* A group heading, not a label: a band that caps the options it announces.
+   The list is virtualized (each row is absolutely positioned on its own), so
+   nothing can frame a whole group — the band is what ties the heading to what
+   follows, and the space above it is what separates one group from the next. */
 .dropdown-section-header {
-  padding: calc((2rem - 1lh) / 2) 0.75rem;
-  margin-inline: 0.25rem;
-  font-size: 0.75rem;
+  padding: 0.375rem 0.75rem;
+  margin: 0.75rem 0.25rem 0.25rem;
+  font-size: 0.875rem;
   font-weight: bold;
-  color: var(--text-color-placeholder);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  color: var(--text-color-heading);
+  background: var(--heading-background);
+  border-radius: 0.25rem;
+  text-wrap: pretty;
 }
 
 .dropdown-item {

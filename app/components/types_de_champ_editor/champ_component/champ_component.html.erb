@@ -180,13 +180,13 @@
                       <%= form.check_box :prefill_with_france_connect_information, { id: dom_id(type_de_champ, :prefill_with_france_connect_information), class: 'fr-toggle__input', disabled: prefill_with_france_connect_information_locked_by_sibling? } %>
                       <%= form.label :prefill_with_france_connect_information, t(".prefill_fc_birthdate_label"), for: dom_id(type_de_champ, :prefill_with_france_connect_information), class: "fr-toggle__label fr-label" %>
                     </div>
-                    <% if prefill_with_france_connect_information_locked_by_sibling? %>
-                      <p class="fr-hint-text">
+                    <p class="fr-hint-text">
+                      <% if prefill_with_france_connect_information_locked_by_sibling? %>
                         <%= t(".prefill_fc_locked_hint") %>
-                      </p>
-                    <% else %>
-                      <p class="fr-hint-text"><%= t(".prefill_fc_hint") %></p>
-                    <% end %>
+                      <% else %>
+                        <%= t(".prefill_fc_hint") %>
+                      <% end %>
+                    </p>
                   <% end %>
 
                   <% if !form.object.birthdate? %>
@@ -244,8 +244,8 @@
                       <div class="fr-container">
                         <div class="fr-notice__body">
                           <p>
-                            <span class="fr-notice__title fr-text--sm fr-mr-0">
-                              <%= t(".procedures_limit_notice") %>
+                            <span class="fr-notice__desc fr-text--sm fr-mr-0">
+                              <%= t(".procedures_limit_notice_html") %>
                             </span>
                           </p>
                         </div>

@@ -3,7 +3,8 @@ fr:
     attributes:
       champs/dossier_link_champ:
         hints:
-          value: "Format attendu : Un numéro de dossier déposé sur %{application_name}"
+          free: "Format attendu : Un numéro de dossier déposé sur %{application_name}"
+          select: "Sélectionnez le numéro d’un dossier que vous avez déposé sur %{application_name}"
 
     errors:
       models:

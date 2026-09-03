@@ -28,7 +28,7 @@ en:
   start_date_label: "start date"
   end_date_label: "end date"
   procedures_limit_label: "Limit to specific procedures"
-  procedures_limit_notice: "Only dossiers submitted by the user themselves will be proposed"
+  procedures_limit_notice_html: "Only dossiers <strong>submitted by the user themselves</strong> will be proposed, including their expired dossiers (their “drafts” and the ones they deleted will not be proposed)."
   limit_repetitions_legend: "Limit the number of items"
   limit_repetitions_label: "Limit the number of items the user can add"
   min_repetitions_label: "Minimum number of items"

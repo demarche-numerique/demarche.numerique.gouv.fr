@@ -1,0 +1,7 @@
+---
+en:
+  procedure_section: 'Procedure “%{libelle}”'
+  option: 'No. %{id} - submitted on %{date}'
+  option_expired: 'No. %{id} - submitted on %{date}, expired on %{expired_date}'
+  no_dossier_in_procedure: You have not submitted any file for this procedure.
+  select_placeholder: Select a file

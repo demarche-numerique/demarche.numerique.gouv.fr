@@ -54,6 +54,8 @@ class EditableChamp::ChampLabelContentComponent < ApplicationComponent
         number_hints
       elsif @champ.textarea?
         text_hints
+      elsif @champ.dossier_link?
+        dossier_link_hints
       else
         []
       end
@@ -66,6 +68,13 @@ class EditableChamp::ChampLabelContentComponent < ApplicationComponent
   end
 
   private
+
+  # The dossier_link hint depends on its actual input mode: a select prompt when the
+  # user picks among their dossiers, the free-text format otherwise.
+  def dossier_link_hints
+    key = @champ.selectable? ? :select : :free
+    [I18n.t("activerecord.attributes.champs/dossier_link_champ.hints.#{key}", application_name: APPLICATION_NAME)]
+  end
 
   def formatted_champ_hints
     if @champ.formatted_simple?

@@ -3,6 +3,8 @@
 .fr-ds-select_multiple,
 .select-popover {
   --text-color: var(--text-label-grey);
+  --text-color-heading: var(--text-title-grey);
+  --heading-background: var(--background-alt-grey);
   --text-color-placeholder: var(--text-mention-grey);
   --text-color-disabled: var(--text-disabled-grey);
   --border-color: var(--border-default-grey);

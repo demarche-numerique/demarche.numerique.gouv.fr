@@ -1,0 +1,7 @@
+---
+fr:
+  procedure_section: Démarche « %{libelle} »
+  option: N° %{id} - déposé le %{date}
+  option_expired: N° %{id} - déposé le %{date}, expiré le %{expired_date}
+  no_dossier_in_procedure: Vous n’avez déposé aucun dossier sur cette démarche.
+  select_placeholder: Sélectionnez un dossier

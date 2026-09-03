@@ -10,7 +10,7 @@
         = @error_full_messages.to_sentence
     - elsif status_announcement?
       %p.fr-message{ class: "fr-message--#{statut_message[:state]}" }
-        %span= sanitize(statut_message[:text])
+        %span= statut_message[:text].html_safe? ? statut_message[:text] : sanitize(statut_message[:text])
 
     - if prefilled?
       %p.fr-message.fr-message--info= sanitize(t('.prefilled'))

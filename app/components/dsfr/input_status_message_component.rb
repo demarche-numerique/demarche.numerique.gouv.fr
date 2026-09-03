@@ -128,6 +128,8 @@ module Dsfr
                                          procedure_libelle: dossier.procedure.libelle,
                                          hidden_at: l(dossier.hidden_by_user_at.to_date)),
             }
+          elsif dossier.depose_at.present?
+            { state: :info, text: helpers.dossier_link_summary(dossier, @champ.dossier.user) }
           else
             { state: :info, text: dossier.text_summary }
           end

@@ -29,7 +29,7 @@ fr:
   start_date_label: "date de début"
   end_date_label: "date de fin"
   procedures_limit_label: "Limiter à certaines démarches"
-  procedures_limit_notice: "Seuls les dossiers déposés par l’usager lui-même seront proposés"
+  procedures_limit_notice_html: "Seuls les dossiers <strong>déposés par l’usager lui-même</strong> seront proposés, y compris ses dossiers expirés (ses « brouillon » et ceux qu’il a supprimés ne le seront pas)."
   limit_repetitions_legend: "Limiter le nombre d’éléments"
   limit_repetitions_label: "Limiter le nombre d’éléments que l’usager peut ajouter"
   min_repetitions_label: "Nombre d’éléments minimum"

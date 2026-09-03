@@ -27,6 +27,7 @@ describe TypesDeChampEditor::DossierLinkChampComponent, type: :component do
         expect(props[:label]).to eq("Sélectionnez la ou les démarches concernées")
         expect(props[:selected_keys]).to eq([])
         expect(props[:'aria-label']).to eq("Liste des démarches")
+        expect(props[:value_separator]).to be(false)
         expect(props[:sections].map { it[:label] }).to contain_exactly('Démarches publiées', 'Démarches en test', 'Démarches closes/dépubliées')
       end
     end

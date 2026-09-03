@@ -20,7 +20,7 @@ import type {
 import { useState, useMemo, useRef, useCallback, type Key } from 'react';
 import { flushSync } from 'react-dom';
 import * as s from 'superstruct';
-import { Plural } from '@lingui/react/macro';
+import { Plural, useLingui } from '@lingui/react/macro';
 
 import './react-aria/components/Select.css';
 import { SearchField } from './react-aria/components/SearchField';
@@ -68,6 +68,7 @@ function Select<M extends SelectionMode = 'single'>({
   selectedLabels,
   ...props
 }: SelectProps<M>) {
+  const { t } = useLingui();
   const { contains } = useFilter({ sensitivity: 'base', numeric: true });
   const filter = useCallback<AutocompleteFilter>(
     (textValue, inputValue, node) => {
@@ -83,8 +84,11 @@ function Select<M extends SelectionMode = 'single'>({
     throw new Error('Select must be provided with either items or sections');
   }
 
-  if (!props['aria-label'] && labelId && ariaLabelledbyPrefix) {
-    props['aria-labelledby'] = `${ariaLabelledbyPrefix} ${labelId}`;
+  // the prefix is only set inside a repetition (the fieldset legend id)
+  if (!props['aria-label'] && labelId) {
+    props['aria-labelledby'] = ariaLabelledbyPrefix
+      ? `${ariaLabelledbyPrefix} ${labelId}`
+      : labelId;
   }
 
   return (
@@ -115,7 +119,12 @@ function Select<M extends SelectionMode = 'single'>({
         style={{ display: 'flex', flexDirection: 'column' }}
       >
         <Autocomplete<Item> filter={filter}>
-          <SearchField autoFocus style={{ margin: 4 }} />
+          <SearchField
+            autoFocus
+            aria-label={t`Rechercher dans la liste`}
+            placeholder={t`Rechercher`}
+            style={{ margin: 4 }}
+          />
           <Virtualizer layout={ListLayout}>
             <SelectListBox items={sections ? undefined : items}>
               {sections ? (
@@ -167,6 +176,7 @@ function MultipleSelectValue({
   selectedLabels?: { one: string; other: string };
 }) {
   const selectButtonRef = useRef<HTMLButtonElement>(null);
+  const { t } = useLingui();
   return (
     <SelectValue<Item>>
       {({ selectedItems, state, defaultChildren }) => (
@@ -196,7 +206,7 @@ function MultipleSelectValue({
                 }
               }}
               fallbackFocusRef={selectButtonRef}
-              aria-label="Sélection"
+              aria-label={t`Sélection`}
             />
           )}
         </>

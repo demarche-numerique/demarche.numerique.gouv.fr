@@ -14,18 +14,25 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. placeholder {0}: selectedItems.length
-#: app/javascript/components/Select.tsx:103
+#: app/javascript/components/Select.tsx:187
 msgid "{0, plural, =0 {{defaultChildren}} one {1 choix sélectionné} other {# "
 "choix sélectionnés}}"
 msgstr "{0, plural, =0 {{defaultChildren}} one {1 item selected} other {# items "
 "selected}}"
 
-#: app/javascript/components/Select.tsx:115
+#: app/javascript/components/Select.tsx:125
+msgid "Rechercher"
+msgstr "Search"
+
+#: app/javascript/components/Select.tsx:124
+msgid "Rechercher dans la liste"
+msgstr "Search the list"
+
+#: app/javascript/components/Select.tsx:209
 msgid "Sélection"
 msgstr "Selection"
 
 #. placeholder {0}: item.label
-#: app/javascript/components/ComboBox.tsx:341
-#: app/javascript/components/Select.tsx:124
+#: app/javascript/components/react-aria/components/TagGroup.tsx:36
 msgid "Supprimer {0}"
 msgstr "Delete {0}"

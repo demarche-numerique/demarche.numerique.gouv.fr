@@ -46,8 +46,15 @@ const sections: Section[] = [
       { label: "Ministère de l'Intérieur", value: 'interieur' },
       { label: 'Ministère de la Justice', value: 'justice' }
     ]
+  },
+  {
+    label: 'Ambassades',
+    items: [{ label: 'Aucun organisme disponible', value: 'ambassades-vide' }]
   }
 ];
+
+// une section peut n'avoir qu'un item explicatif, rendu non sélectionnable
+const disabledKeys = ['ambassades-vide'];
 
 function SelectWithSections() {
   const [value, setValue] = useState<string | null>(null);
@@ -58,6 +65,7 @@ function SelectWithSections() {
       aria-label="Organisme"
       selectionMode="single"
       value={value}
+      disabledKeys={disabledKeys}
       onChange={(key: Key | null) => setValue(key ? String(key) : null)}
     >
       <Button className="fr-select">
@@ -140,5 +148,21 @@ suite('Select avec sections', () => {
       page.getByRole('option', { name: 'Préfecture du Rhône' })
     );
     await expect.element(button).toHaveTextContent('Préfecture du Rhône');
+  });
+
+  test('affiche un item désactivé sans permettre de le sélectionner', async () => {
+    root.render(<SelectWithSections />);
+
+    const button = page.getByRole('button', { name: 'Organisme' });
+    await userEvent.click(button);
+
+    // l'item est lisible, annoncé désactivé, et donc hors de portée du clic
+    const disabledOption = page.getByRole('option', {
+      name: 'Aucun organisme disponible'
+    });
+    await expect.element(disabledOption).toBeVisible();
+    await expect
+      .element(disabledOption)
+      .toHaveAttribute('aria-disabled', 'true');
   });
 });

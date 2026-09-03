@@ -1,1 +1,18 @@
-<%= @form.text_field(:value, input_opts(id: @champ.focusable_input_id, aria: { **labelledby_id_attr, describedby: "#{@champ.describedby_id} #{@champ.error_id(:value)}" }, inputmode: :numeric, min: 1, pattern: "[0-9]{1,12}", autocomplete: 'off', required: @champ.required?, class: "width-33-desktop")) %>
+<% if limited? %>
+  <% if render_as_autocomplete? %>
+    <react-fragment>
+      <%= render ReactComponent.new("Select/SingleSelect", **select_react_props) %>
+    </react-fragment>
+  <% else %>
+    <%= @form.select :value,
+          grouped_options_for_select(grouped_select_options, @champ.value),
+          { include_blank: t(".select_placeholder") },
+          { required: @champ.required?,
+            id: @champ.focusable_input_id,
+            class: select_class_names,
+            aria: { **labelledby_id_attr, describedby: select_aria_describedby },
+            translate: "no" } %>
+  <% end %>
+<% else %>
+  <%= @form.text_field(:value, input_opts(id: @champ.focusable_input_id, aria: { **labelledby_id_attr, describedby: "#{@champ.describedby_id} #{@champ.error_id(:value)}" }, inputmode: :numeric, min: 1, pattern: "[0-9]{1,12}", autocomplete: 'off', required: @champ.required?, class: "width-33-desktop")) %>
+<% end %>

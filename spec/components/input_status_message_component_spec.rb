@@ -89,8 +89,20 @@ RSpec.describe Dsfr::InputStatusMessageComponent, type: :component do
       end
 
       context "when a dossier is found" do
-        it "renders the dossier information" do
+        it "renders the dossier information with the procedure emphasized" do
           expect(subject).to have_css(".fr-message--info", text: /Dossier/)
+          expect(subject).to have_css(".fr-message--info strong", text: linked_dossier.procedure.libelle)
+          # wrapped in a single span so the flex `.fr-message` keeps the spacing
+          expect(subject).to have_css(".fr-message--info > span", text: /Dossier/)
+        end
+
+        context "when the user owns the linked dossier" do
+          let(:linked_dossier) { create(:dossier, :en_construction, user: dossier.user) }
+
+          it "links to the dossier in a new tab" do
+            expect(subject).to have_link("N° #{linked_dossier.id}", href: "/dossiers/#{linked_dossier.id}")
+            expect(subject).to have_css("a[href='/dossiers/#{linked_dossier.id}'][target='_blank'][rel='noopener']")
+          end
         end
       end
 
@@ -104,6 +116,15 @@ RSpec.describe Dsfr::InputStatusMessageComponent, type: :component do
             ".fr-message--info",
             text: /Dossier déposé le .* sur la démarche .* mais supprimé le 15 mars 2026/
           )
+        end
+      end
+
+      context "when the linked dossier is still a brouillon (no depose_at)" do
+        let(:linked_dossier) { create(:dossier, :brouillon) }
+
+        it "falls back to the plain text summary without raising" do
+          expect { subject }.not_to raise_error
+          expect(subject).to have_css(".fr-message--info", text: /Dossier en brouillon/)
         end
       end
     end

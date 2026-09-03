@@ -6,3 +6,4 @@ fr:
         hidden: "Dossier déposé le %{depose_at} sur la démarche « %{procedure_libelle} » mais supprimé le %{hidden_at}"
         expired: "Dossier déposé le %{depose_at} sur la démarche « %{procedure_libelle} » mais expiré le %{expired_at}"
         deleted: "Le dossier renseigné lors du dépôt sur la démarche « %{procedure_libelle} » n’existe plus"
+        summary_html: "Dossier %{numero} - déposé le %{date} sur la démarche %{libelle} gérée par l’organisme %{organisme}"

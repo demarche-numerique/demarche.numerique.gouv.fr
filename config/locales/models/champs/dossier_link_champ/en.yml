@@ -3,7 +3,8 @@ en:
     attributes:
       champs/dossier_link_champ:
         hints:
-          value: "Expected format: A %{application_name} file number"
+          free: "Expected format: A %{application_name} file number"
+          select: "Select the number of a file you submitted on %{application_name}"
 
     errors:
       models:
