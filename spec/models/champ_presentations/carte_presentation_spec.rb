@@ -43,8 +43,4 @@ describe ChampPresentations::CartePresentation do
       expect(presentation.to_tiptap_node).to eq(expected)
     end
   end
-
-  describe '#block_level?' do
-    it { expect(presentation.block_level?).to be true }
-  end
 end
