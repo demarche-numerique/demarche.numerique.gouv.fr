@@ -58,9 +58,13 @@ fr:
         network_hint: 'adresses réseaux séparées par des espaces. Ex: 176.31.79.200 192.168.33.0/24 2001:41d0:304:400::52f/128'
         invalid_network: Vous devez entrer des adresses IPv4 ou IPv6 valides
         lifetime_label: 'Durée de vie du jeton :'
-        one_week: 1 semaine
-        custom_lifetime_label: durée personnalisée inférieure à 1 an
-        infinite: Infini
+        lifetime:
+          one_week: 1 semaine
+          one_month: 1 mois
+          six_months: 6 mois
+          one_year: 1 an
+        custom_lifetime_label: 'durée personnalisée, au maximum %{count} jours'
+        invalid_lifetime: Vous devez choisir une durée de vie comprise entre demain et la durée maximale autorisée
         enter_expiry: Entrez la date de fin de validité du jeton
         create_token: Créer le jeton
         back: Retour

@@ -58,9 +58,13 @@ en:
         network_hint: 'network addresses separated by spaces. e.g. 176.31.79.200 192.168.33.0/24 2001:41d0:304:400::52f/128'
         invalid_network: You must enter valid IPv4 or IPv6 addresses
         lifetime_label: 'Token lifetime:'
-        one_week: 1 week
-        custom_lifetime_label: custom duration less than 1 year
-        infinite: Infinite
+        lifetime:
+          one_week: 1 week
+          one_month: 1 month
+          six_months: 6 months
+          one_year: 1 year
+        custom_lifetime_label: 'custom duration, at most %{count} days'
+        invalid_lifetime: You must choose a lifetime between tomorrow and the maximum allowed duration
         enter_expiry: Enter the token expiry date
         create_token: Create the token
         back: Back

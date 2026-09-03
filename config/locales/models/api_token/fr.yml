@@ -1,0 +1,10 @@
+fr:
+  activerecord:
+    errors:
+      models:
+        api_token:
+          attributes:
+            expires_at:
+              blank: "doit être renseignée"
+              greater_than: "doit être postérieure à aujourd’hui"
+              less_than_or_equal_to: "ne peut pas dépasser la durée maximale autorisée"
