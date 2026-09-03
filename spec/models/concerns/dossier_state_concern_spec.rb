@@ -1,106 +1,337 @@
 # frozen_string_literal: true
 
+# One `describe` per transition entry point (AASM event or submit method),
+# asserting the model-level side effects of the `after_*` / `after_commit_*`
+# hooks: attributes and traitements, operation log, commentaire, usager mails,
+# AMI, instructeur badges, experts, attestation, champ housekeeping. Guards
+# (`can_*`) are covered in dossier_spec; the champ cleanup rules themselves in
+# dossier_champs_concern_spec.
 RSpec.describe DossierStateConcern do
+  include ActionView::Helpers::SanitizeHelper
   include Logic
 
-  let(:procedure) { create(:procedure, :published, :for_individual, public_type_de_champs:, declarative_with_state:, auto_archive_on:) }
-  let(:public_type_de_champs) do
-    [
-      { type: :text, stable_id: 90 },
-      { type: :text, stable_id: 91 },
-      { type: :piece_justificative, stable_id: 92, condition: ds_eq(constant(true), constant(false)) },
-      { type: :piece_justificative, nature: 'titre_identite', stable_id: 93, condition: ds_eq(constant(true), constant(false)) },
-      { type: :repetition, stable_id: 94, children: [{ type: :text, stable_id: 941 }, { type: :text, stable_id: 942 }] },
-      { type: :repetition, stable_id: 95, children: [{ type: :text, stable_id: 951 }] },
-      { type: :repetition, stable_id: 96, children: [{ type: :text, stable_id: 961 }], condition: ds_eq(constant(true), constant(false)) },
-      { type: :text, stable_id: 97, condition: ds_eq(constant(true), constant(false)) },
-      { type: :piece_justificative, nature: 'titre_identite', stable_id: 98 },
-    ]
+  before_all { seed "cases/sva" }
+
+  let(:instructeur) { instructeurs.default }
+  let(:procedure) { procedures.individual }
+  let(:last_operation) { dossier.dossier_operation_logs.last }
+  let(:justificatif_file) do
+    { io: StringIO.new('Hello World'), filename: 'hello.txt', metadata: { virus_scan_result: ActiveStorage::VirusScanner::SAFE } }
   end
-  let(:auto_archive_on) { nil }
-  let(:declarative_with_state) { nil }
-  let(:dossier_state) { :brouillon }
-  let(:dossier) do
-    create(:dossier, dossier_state, :with_individual, :with_populated_champs, procedure:).tap do |dossier|
-      procedure.draft_revision.remove_type_de_champ(91)
-      procedure.draft_revision.remove_type_de_champ(95)
-      procedure.draft_revision.remove_type_de_champ(942)
-      procedure.publish_revision!(procedure.administrateurs.first)
-      perform_enqueued_jobs
-      dossier.reload
-      champ_repetition = dossier.root_champs_public.find { _1.stable_id == 94 }
-      row_id = champ_repetition.row_ids.first
-      dossier.champ_data.filter(&:row?).find { _1.row_id == row_id }.touch(:discarded_at)
+
+  before do
+    freeze_time
+    allow(Ami::CreateNotificationService).to receive(:call)
+  end
+
+  def notifications(dossier, type) = DossierNotification.where(dossier:, notification_type: type)
+
+  # NotificationMailer.send_<state>_notification(dossier) all enqueue the
+  # parameterized #send_notification: that is what the job queue sees.
+  def have_enqueued_usager_notification(dossier, state)
+    have_enqueued_mail(NotificationMailer, :send_notification).with(params: { dossier:, state: }, args: [])
+  end
+
+  def for_tiers!(dossier) = dossier.update_columns(for_tiers: true, mandataire_first_name: 'John', mandataire_last_name: 'Doe')
+
+  def push_user_buffer_change(dossier)
+    stable_id = dossier.revision.public_root_type_de_champs.first.stable_id
+    dossier.with_update_stream(dossier.user) do
+      dossier.public_champ_for_update(stable_id.to_s, updated_by: dossier.user.email).assign_attributes(value: 'modifié')
+    end
+    dossier.save!
+    expect(dossier.champ_data.where(stream: Dossier::USER_BUFFER_STREAM)).to be_present
+  end
+
+  shared_examples 'notifies the usager' do |state, ami_state: nil, tiers_options: {}|
+    it "enqueues the #{state} mail" do
+      expect { subject }.to have_enqueued_usager_notification(dossier, state)
+    end
+
+    it 'does not notify a tiers' do
+      expect { subject }.not_to have_enqueued_mail(NotificationMailer, :send_notification_for_tiers)
+    end
+
+    it 'enqueues the AMI notification' do
+      subject
+      expect(Ami::CreateNotificationService).to have_received(:call).with(dossier:, trigger: :dossier_state_change, state: ami_state)
+    end
+
+    context 'when the dossier is filled for a tiers' do
+      before { for_tiers!(dossier) }
+
+      it 'also notifies the tiers' do
+        expect { subject }.to have_enqueued_mail(NotificationMailer, :send_notification_for_tiers).with(dossier, **tiers_options)
+      end
     end
   end
 
-  describe 'submit brouillon' do
-    it do
-      expect(dossier.champ_data.size).to eq(20)
-      expect(dossier.champ_data.filter { _1.row? && _1.stable_id == 94 }.size).to eq(2)
-      expect(dossier.champ_data.filter { _1.row? && _1.discarded? }.size).to eq(1)
-      expect(dossier.champ_data.filter { _1.row? && _1.stable_id.in?([95, 96]) }.size).to eq(4)
-      expect(dossier.champ_data.filter { _1.stable_id.in?([90, 92, 93, 97, 961, 951]) }.size).to eq(8)
+  shared_examples 'can skip the usager notification' do
+    context 'with disable_notification' do
+      let(:disable_notification) { true }
 
-      champ_text = dossier.root_champs_public.find { _1.stable_id == 90 }
-      champ_text.update(value: '')
+      before { for_tiers!(dossier) }
 
+      it 'enqueues no mail and no AMI notification' do
+        expect { subject }.not_to have_enqueued_mail(NotificationMailer)
+        expect(Ami::CreateNotificationService).not_to have_received(:call)
+      end
+    end
+  end
+
+  shared_examples 'a decision' do |event, state:|
+    let(:dossier) { dossiers.en_instruction }
+    let(:justificatif) { nil }
+    let(:disable_notification) { false }
+
+    subject(:decide) do
+      dossier.public_send(:"#{event}!", instructeur:, motivation: 'motivation', justificatif:, disable_notification:)
+      dossier.reload
+    end
+
+    it 'records the decision' do
+      decide
+
+      expect(dossier.state).to eq(state)
+      expect(dossier.processed_at).to eq(Time.current)
+      expect(dossier.expired_at).to eq(dossier.expiration_date)
+      expect(dossier.motivation).to eq('motivation')
+      expect(dossier.justificatif_motivation).not_to be_attached
+      expect(dossier.traitement.state).to eq(state)
+      expect(dossier.traitement.motivation).to eq('motivation')
+      expect(dossier.traitement.instructeur_email).to eq(instructeur.email)
+      expect(dossier.traitement.processed_at).to eq(Time.current)
+    end
+
+    it 'logs the operation with the dossier as subject' do
+      decide
+
+      expect(last_operation.operation).to eq(event.to_s)
+      expect(last_operation.automatic_operation?).to be(false)
+      expect(last_operation.data['author']['email']).to eq(instructeur.email)
+      expect(last_operation.data['subject']).to be_present
+    end
+
+    it 'creates the commentaire for the state' do
+      expect { decide }.to change { dossier.commentaires.count }.by(1)
+    end
+
+    context 'with a justificatif' do
+      let(:justificatif) { justificatif_file }
+
+      it 'attaches it' do
+        decide
+        expect(dossier.justificatif_motivation).to be_attached
+      end
+    end
+
+    include_examples 'notifies the usager', state
+    include_examples 'can skip the usager notification'
+
+    context 'when the procedure sends an accusé de lecture' do
+      before { procedure.update!(accuse_lecture: true) }
+
+      it 'enqueues the accusé de lecture mail instead' do
+        expect { decide }.to have_enqueued_mail(NotificationMailer, :send_accuse_lecture_notification).with(dossier)
+        expect { decide }.not_to have_enqueued_mail(NotificationMailer, :send_notification)
+      end
+    end
+
+    describe 'experts' do
+      let(:pending_avis) { avis.pending }
+
+      it 'does not send the decision to an expert without an answer or access' do
+        expect { decide }.not_to have_enqueued_mail(ExpertMailer, :send_dossier_decision)
+      end
+
+      it 'sends the decision to experts who answered and may access it' do
+        pending_avis.update!(answer: 'Avis favorable')
+        experts_procedures.default.update!(allow_decision_access: true)
+
+        expect { decide }.to have_enqueued_mail(ExpertMailer, :send_dossier_decision).with(pending_avis)
+      end
+    end
+
+    it 'removes the attente_avis badge' do
+      create(:dossier_notification, dossier:, instructeur:, notification_type: :attente_avis)
+
+      expect { decide }.to change { notifications(dossier, :attente_avis).count }.from(1).to(0)
+    end
+
+    it 'cleans the champs after instruction' do
+      expect(dossier).to receive(:clean_champs_after_instruction!)
+      decide
+    end
+  end
+
+  shared_examples 'generates the attestation' do |kind|
+    it 'enqueues the attestation generation when the procedure has a published template' do
+      create(:attestation_template, procedure:, kind:, state: :published)
+
+      expect { subject }.to have_enqueued_job(AttestationPdfGenerationJob).with(dossier)
+    end
+
+    it 'enqueues nothing without a template' do
+      expect { subject }.not_to have_enqueued_job(AttestationPdfGenerationJob)
+    end
+  end
+
+  describe '#passer_en_construction!' do
+    let(:dossier) { dossiers.brouillon }
+
+    subject(:passer_en_construction) do
       dossier.passer_en_construction!
       dossier.reload
-
-      expect(dossier.champ_data.size).to eq(7)
-      expect(dossier.champ_data.filter { _1.row? && _1.stable_id == 94 }.size).to eq(1)
-      expect(dossier.champ_data.filter { _1.row? && _1.discarded? }.size).to eq(0)
-      expect(dossier.champ_data.filter { _1.row? && _1.stable_id.in?([95, 96]) }.size).to eq(0)
-      expect(dossier.champ_data.filter { _1.stable_id.in?([90, 92, 93, 97, 961, 951]) && !(_1.blank? || !_1.visible?) }.size).to eq(0)
-      expect(dossier.submitted_revision_id).to eq(dossier.revision_id)
     end
 
-    context "when procedure is sva/svr or declarative" do
+    it 'deposits the dossier' do
+      passer_en_construction
+
+      expect(dossier.state).to eq('en_construction')
+      expect(dossier.depose_at).to eq(Time.current)
+      expect(dossier.en_construction_at).to eq(Time.current)
+      expect(dossier.expired_at).to be_nil
+      expect(dossier.conservation_extension).to eq(0.days)
+      expect(dossier.submitted_revision_id).to eq(dossier.revision_id)
+      expect(dossier.groupe_instructeur).to eq(procedure.defaut_groupe_instructeur)
+      expect(dossier.traitement.state).to eq('en_construction')
+      expect(dossier.traitement.processed_at).to eq(Time.current)
+    end
+
+    it 'creates the commentaire for the state' do
+      expect { passer_en_construction }.to change { dossier.commentaires.count }.by(1)
+    end
+
+    it 'updates the procedure dossiers count' do
+      expect(dossier.procedure).to receive(:compute_dossiers_count)
+      passer_en_construction
+    end
+
+    it 'cleans the champs and reindexes the search terms' do
+      expect(dossier).to receive(:clean_champs_after_submit!)
+      expect { passer_en_construction }.to have_enqueued_job(DossierIndexSearchTermsJob).with(dossier)
+    end
+
+    it 'keeps the first en_construction_at as depose_at through later transitions' do
+      passer_en_construction
+      travel 1.hour
+      dossier.passer_en_instruction!(instructeur:)
+      travel 1.hour
+      dossier.repasser_en_construction!(instructeur:)
+
+      expect(dossier.traitements.size).to eq(3)
+      expect(dossier.traitements.first.processed_at).to eq(2.hours.ago)
+      expect(dossier.depose_at).to eq(2.hours.ago)
+      expect(dossier.en_construction_at).to eq(Time.current)
+    end
+
+    include_examples 'notifies the usager', 'en_construction'
+
+    describe 'instructeur notifications' do
+      it 'creates a dossier_depose badge for the groupe instructeurs' do
+        expect { passer_en_construction }.to change { notifications(dossier, :dossier_depose).count }.from(0).to(1)
+        expect(notifications(dossier, :dossier_depose).sole.instructeur).to eq(instructeur)
+      end
+
+      it 'does not email instructeurs without the instant email preference' do
+        expect { passer_en_construction }.not_to have_enqueued_mail(DossierMailer, :notify_new_dossier_depose_to_instructeur)
+      end
+
+      it 'emails instructeurs who asked for an instant email' do
+        create(:instructeurs_procedure, instructeur:, procedure:, instant_email_new_dossier: true)
+
+        expect { passer_en_construction }.to have_enqueued_mail(DossierMailer, :notify_new_dossier_depose_to_instructeur).with(dossier, instructeur.email)
+      end
+
+      context 'when the procedure is declarative' do
+        before { procedure.update!(declarative_with_state: 'en_instruction') }
+
+        it 'passes the dossier en instruction and creates no dossier_depose badge' do
+          passer_en_construction
+
+          expect(dossier).to be_en_instruction
+          expect(notifications(dossier, :dossier_depose)).to be_empty
+        end
+      end
+
+      context 'when the procedure is sva' do
+        let(:dossier) { create(:dossier, :brouillon, :with_individual, procedure: procedures.sva) }
+
+        it 'passes the dossier en instruction and creates no dossier_depose badge' do
+          passer_en_construction
+
+          expect(dossier).to be_en_instruction
+          expect(dossier.sva_svr_decision_on).to be_present
+          expect(notifications(dossier, :dossier_depose)).to be_empty
+        end
+      end
+    end
+
+    context 'when the procedure routes its dossiers' do
+      let(:gi_libelle) { 'Paris' }
+      let!(:procedure) do
+        create(:procedure,
+               public_type_de_champs: [
+                 { type: :drop_down_list, libelle: 'Votre ville', options: [gi_libelle, 'Lyon', 'Marseille'] },
+                 { type: :text, libelle: 'Un champ texte' },
+               ])
+      end
+      let!(:drop_down_tdc) { procedure.draft_revision.type_de_champs.first }
+      let(:dossier) { create(:dossier, :brouillon, user: users.usager, procedure:, groupe_instructeur: nil) }
+      let(:gi) { create(:groupe_instructeur, routing_rule: ds_eq(champ_value(drop_down_tdc.stable_id), constant(gi_libelle))) }
+
       before do
-        procedure.defaut_groupe_instructeur.add_instructeurs(ids: create_list(:instructeur, 2).map(&:id))
+        procedure.groupe_instructeurs = [gi]
+        procedure.defaut_groupe_instructeur = gi
+        procedure.save!
+        procedure.toggle_routing
+        dossier.champ_data.first.value = gi_libelle
+        dossier.save!
       end
 
-      it 'does not create notification when procedure is sva/svr', :slow do
-        procedure.update!(sva_svr: { 'decision' => 'sva' }, declarative_with_state: nil)
-        dossier.procedure.reload
-        dossier.passer_en_construction!
-
-        expect(DossierNotification.count).to eq(0)
-      end
-
-      it 'does not create notification when procedure is declarative', :slow do
-        procedure.update!(declarative_with_state: "accepte", sva_svr: {})
-        dossier.procedure.reload
-        dossier.passer_en_construction!
-
-        expect(DossierNotification.count).to eq(0)
+      it 'assigns the groupe instructeur computed by the RoutingEngine' do
+        passer_en_construction
+        expect(dossier.groupe_instructeur).to eq(gi)
       end
     end
   end
 
-  describe 'submit en construction' do
-    let(:dossier_state) { :en_construction }
+  describe '#usager_submit_en_construction!' do
+    let(:dossier) { dossiers.en_construction }
 
-    it do
-      expect(dossier.champ_data.size).to eq(20)
-      expect(dossier.champ_data.filter { _1.row? && _1.stable_id == 94 }.size).to eq(2)
-      expect(dossier.champ_data.filter { _1.row? && _1.discarded? }.size).to eq(1)
-      expect(dossier.champ_data.filter { _1.row? && _1.stable_id.in?([95, 96]) }.size).to eq(4)
-      expect(dossier.champ_data.filter { _1.stable_id.in?([92, 93, 97, 961, 951]) }.size).to eq(7)
-
+    subject(:submit) do
       dossier.usager_submit_en_construction!
       dossier.reload
-
-      expect(dossier.champ_data.size).to eq(7)
-      expect(dossier.champ_data.filter { _1.row? && _1.stable_id == 94 }.size).to eq(1)
-      expect(dossier.champ_data.filter { _1.row? && _1.discarded? }.size).to eq(0)
-      expect(dossier.champ_data.filter { _1.row? && _1.stable_id.in?([95, 96]) }.size).to eq(0)
-      expect(dossier.champ_data.filter { _1.stable_id.in?([92, 93, 97, 961, 951]) && !(_1.blank? || !_1.visible?) }.size).to eq(0)
-      expect(dossier.submitted_revision_id).to eq(dossier.revision_id)
     end
 
-    context "when there are instructeurs wish to be notified" do
+    it 'records a correction traitement on the merged checkpoint' do
+      push_user_buffer_change(dossier)
+      submit
+
+      expect(dossier.traitement.event).to eq(:depose_correction_usager)
+      expect(dossier.traitement.processed_at).to eq(Time.current)
+      expect(dossier.traitement.checkpoint).to be_present
+      expect(dossier.submitted_revision_id).to eq(dossier.revision_id)
+      expect(dossier.champ_data.where(stream: Dossier::USER_BUFFER_STREAM)).to be_empty
+      expect(dossier.traitement.changed_columns.map(&:value)).to eq(['modifié'])
+    end
+
+    it 'resolves the pending correction' do
+      create(:dossier_correction, dossier:)
+
+      expect { submit }.to change { dossier.pending_correction? }.from(true).to(false)
+    end
+
+    it 'cleans the champs' do
+      expect(dossier).to receive(:clean_champs_after_submit!)
+      submit
+    end
+
+    it 'enqueues no usager mail' do
+      expect { submit }.not_to have_enqueued_mail(NotificationMailer)
+    end
+
+    describe 'dossier_modifie badge' do
       let(:instructeur_follower) { create(:instructeur, followed_dossiers: [dossier]) }
       let(:instructeur_not_follower) { create(:instructeur) }
       let!(:instructeur_not_follower_procedure) { create(:instructeurs_procedure, instructeur: instructeur_not_follower, procedure:, display_dossier_modifie_notifications: 'all') }
@@ -109,344 +340,412 @@ RSpec.describe DossierStateConcern do
         procedure.defaut_groupe_instructeur.add_instructeurs(ids: [instructeur_follower, instructeur_not_follower].map(&:id))
       end
 
-      it "create dossier_modifie notification only for instructeur wish to be notified" do
-        dossier.usager_submit_en_construction!
+      it 'is created only for instructeurs who wish to be notified' do
+        submit
 
-        expect(DossierNotification.count).to eq(2)
-
-        expect(DossierNotification.distinct.pluck(:dossier_id)).to eq([dossier.id])
-        expect(DossierNotification.pluck(:instructeur_id)).to match_array([instructeur_follower.id, instructeur_not_follower.id])
-        expect(DossierNotification.distinct.pluck(:notification_type)).to eq(["dossier_modifie"])
+        expect(notifications(dossier, :dossier_modifie).pluck(:instructeur_id)).to match_array([instructeur_follower.id, instructeur_not_follower.id])
       end
     end
   end
 
-  describe 'AMI notifications' do
-    before do
-      allow(Ami::CreateNotificationService).to receive(:call)
+  describe '#instructeur_submit_en_construction!' do
+    let(:dossier) { dossiers.en_construction }
+
+    subject(:submit) do
+      dossier.instructeur_submit_en_construction!(instructeur:, motivation: 'Correction de la saisie')
+      dossier.reload
     end
 
-    it 'enqueues AMI notification after passer_en_construction' do
-      dossier.after_commit_passer_en_construction
-      expect(Ami::CreateNotificationService).to have_received(:call).with(dossier:, trigger: :dossier_state_change, state: nil)
+    it 'records an instructeur correction traitement and explains it in a commentaire' do
+      expect { submit }.to change { dossier.commentaires.count }.by(1)
+
+      expect(dossier.traitement.event).to eq(:depose_correction_instructeur)
+      expect(dossier.traitement.instructeur_email).to eq(instructeur.email)
+      expect(dossier.traitement.motivation).to eq('Correction de la saisie')
+      expect(dossier.commentaires.last.instructeur).to eq(instructeur)
     end
 
-    it 'enqueues AMI notification after passer_en_instruction' do
-      dossier.after_commit_passer_en_instruction({})
-      expect(Ami::CreateNotificationService).to have_received(:call).with(dossier:, trigger: :dossier_state_change, state: nil)
-    end
-
-    it 'enqueues AMI notification after passer_automatiquement_en_instruction' do
-      dossier.after_commit_passer_automatiquement_en_instruction
-      expect(Ami::CreateNotificationService).to have_received(:call).with(dossier:, trigger: :dossier_state_change, state: nil)
-    end
-
-    it 'enqueues AMI notification after accepter' do
-      dossier.after_commit_accepter({})
-      expect(Ami::CreateNotificationService).to have_received(:call).with(dossier:, trigger: :dossier_state_change, state: nil)
-    end
-
-    it 'enqueues AMI notification after accepter_automatiquement' do
-      dossier.after_commit_accepter_automatiquement
-      expect(Ami::CreateNotificationService).to have_received(:call).with(dossier:, trigger: :dossier_state_change, state: nil)
-    end
-
-    it 'enqueues AMI notification after refuser' do
-      dossier.after_commit_refuser({})
-      expect(Ami::CreateNotificationService).to have_received(:call).with(dossier:, trigger: :dossier_state_change, state: nil)
-    end
-
-    it 'enqueues AMI notification after refuser_automatiquement' do
-      dossier.after_commit_refuser_automatiquement
-      expect(Ami::CreateNotificationService).to have_received(:call).with(dossier:, trigger: :dossier_state_change, state: nil)
-    end
-
-    it 'enqueues AMI notification after classer_sans_suite' do
-      dossier.after_commit_classer_sans_suite({})
-      expect(Ami::CreateNotificationService).to have_received(:call).with(dossier:, trigger: :dossier_state_change, state: nil)
-    end
-
-    it 'enqueues AMI notification after repasser_en_instruction' do
-      dossier.after_commit_repasser_en_instruction({})
-      expect(Ami::CreateNotificationService).to have_received(:call).with(dossier:, trigger: :dossier_state_change, state: :repasser_en_instruction)
-    end
-
-    it 'enqueues AMI notification after repasser_en_construction' do
-      dossier.after_commit_repasser_en_construction
-      expect(Ami::CreateNotificationService).to have_received(:call).with(dossier:, trigger: :dossier_state_change, state: nil)
+    it 'does not touch submitted_revision_id nor notify the usager' do
+      expect { submit }.not_to change { dossier.submitted_revision_id }
+      expect { submit }.not_to have_enqueued_mail(NotificationMailer)
     end
   end
 
-  describe 'accepter' do
-    let(:dossier_state) { :en_instruction }
+  describe '#passer_en_instruction!' do
+    let(:dossier) { dossiers.en_construction }
+    let(:disable_notification) { false }
 
-    it do
-      expect(dossier.champ_data.size).to eq(20)
-      expect(dossier.champ_data.filter { _1.row? && _1.stable_id == 94 }.size).to eq(2)
-      expect(dossier.champ_data.filter { _1.stable_id.in?([93, 98]) }.size).to eq(2)
-
-      dossier.accepter!(motivation: 'test')
+    subject(:passer_en_instruction) do
+      dossier.passer_en_instruction!(instructeur:, disable_notification:)
       dossier.reload
-
-      expect(dossier.champ_data.size).to eq(17)
-      expect(dossier.champ_data.filter { _1.row? && _1.stable_id == 94 }.size).to eq(1)
-      expect(dossier.champ_data.filter { _1.stable_id.in?([93, 98]) && _1.blank? }.size).to eq(2)
     end
 
-    context "when dossier has attente_avis notification" do
-      let(:instructeur) { create(:instructeur) }
-      let!(:notification) { create(:dossier_notification, dossier:, instructeur:, notification_type: :attente_avis) }
+    it 'starts the instruction' do
+      passer_en_instruction
 
-      it "destroy the notification" do
-        dossier.accepter!(motivation: 'test')
+      expect(dossier.state).to eq('en_instruction')
+      expect(dossier.en_instruction_at).to eq(Time.current)
+      expect(dossier.expired_at).to be_nil
+      expect(dossier.conservation_extension).to eq(0.days)
+      expect(dossier.followers_instructeurs).to include(instructeur)
+      expect(dossier.traitement.state).to eq('en_instruction')
+      expect(dossier.traitement.instructeur_email).to eq(instructeur.email)
+      expect(dossier.traitement.processed_at).to eq(Time.current)
+    end
 
-        expect(DossierNotification.count).to eq(0)
-      end
+    it 'keeps the first en_instruction_at through later transitions' do
+      passer_en_instruction
+      travel 1.hour
+      dossier.repasser_en_construction!(instructeur:)
+      travel 1.hour
+      dossier.passer_en_instruction!(instructeur:)
+
+      expect(dossier.traitements.size).to eq(4)
+      expect(dossier.traitements.en_construction.first.processed_at).to eq(dossier.depose_at)
+      expect(dossier.traitements.en_instruction.first.processed_at).to eq(2.hours.ago)
+      expect(dossier.en_instruction_at).to eq(Time.current)
+    end
+
+    it 'logs the operation' do
+      passer_en_instruction
+
+      expect(last_operation.operation).to eq('passer_en_instruction')
+      expect(last_operation.automatic_operation?).to be(false)
+      expect(last_operation.data['author']['email']).to eq(instructeur.email)
+      expect(last_operation.data['executed_at']).to eq(last_operation.executed_at.iso8601)
+    end
+
+    it 'resolves the pending correction and creates the commentaire for the state' do
+      correction = create(:dossier_correction, dossier:) # a correction comes with its own commentaire
+
+      expect { passer_en_instruction }.to change { dossier.commentaires.count }.by(1)
+
+      expect(dossier.pending_correction?).to be(false)
+      expect(correction.reload.resolved_at).to be_present
+
+      email_template = procedure.email_template_for(dossier.state)
+      expect(dossier.commentaires.last.body).to include(sanitize(email_template.subject_for_dossier(dossier)), sanitize(email_template.body_for_dossier(dossier)))
+    end
+
+    it 'drops the pending buffer streams' do
+      push_user_buffer_change(dossier)
+
+      expect { passer_en_instruction }.to change { dossier.champ_data.where(stream: Dossier::USER_BUFFER_STREAM).count }.to(0)
+    end
+
+    include_examples 'notifies the usager', 'en_instruction'
+    include_examples 'can skip the usager notification'
+
+    it 'removes the dossier_expirant and dossier_depose badges' do
+      create(:dossier_notification, dossier:, instructeur:, notification_type: :dossier_expirant)
+      create(:dossier_notification, dossier:, instructeur:, notification_type: :dossier_depose)
+
+      passer_en_instruction
+
+      expect(notifications(dossier, :dossier_expirant)).to be_empty
+      expect(notifications(dossier, :dossier_depose)).to be_empty
     end
   end
 
-  describe 'refuser' do
-    let(:dossier_state) { :en_instruction }
+  describe '#passer_automatiquement_en_instruction!' do
+    context 'via a declarative procedure' do
+      let(:dossier) { create(:dossier, :en_construction, :with_declarative_en_instruction, procedure:) }
 
-    it do
-      expect(dossier.champ_data.size).to eq(20)
-      expect(dossier.champ_data.filter { _1.row? && _1.stable_id == 94 }.size).to eq(2)
-      expect(dossier.champ_data.filter { _1.stable_id.in?([93, 98]) }.size).to eq(2)
-
-      dossier.refuser!(motivation: 'test')
-      dossier.reload
-
-      expect(dossier.champ_data.size).to eq(17)
-      expect(dossier.champ_data.filter { _1.row? && _1.stable_id == 94 }.size).to eq(1)
-      expect(dossier.champ_data.filter { _1.stable_id.in?([93, 98]) && _1.blank? }.size).to eq(2)
-    end
-
-    context "when dossier has attente_avis notification" do
-      let(:instructeur) { create(:instructeur) }
-      let!(:notification) { create(:dossier_notification, dossier:, instructeur:, notification_type: :attente_avis) }
-
-      it "destroy the notification" do
-        dossier.refuser!(motivation: 'test')
-
-        expect(DossierNotification.count).to eq(0)
-      end
-    end
-  end
-
-  describe 'classer_sans_suite' do
-    let(:dossier_state) { :en_instruction }
-
-    it '', :slow do
-      expect(dossier.champ_data.size).to eq(20)
-      expect(dossier.champ_data.filter { _1.row? && _1.stable_id == 94 }.size).to eq(2)
-      expect(dossier.champ_data.filter { _1.stable_id.in?([93, 98]) }.size).to eq(2)
-
-      dossier.classer_sans_suite!(motivation: 'test')
-      dossier.reload
-
-      expect(dossier.champ_data.size).to eq(17)
-      expect(dossier.champ_data.filter { _1.row? && _1.stable_id == 94 }.size).to eq(1)
-      expect(dossier.champ_data.filter { _1.stable_id.in?([93, 98]) && _1.blank? }.size).to eq(2)
-    end
-
-    context "when dossier has an attestation from a previous acceptation" do
-      let!(:attestation) { create(:attestation, dossier:) }
-
-      it "destroys the attestation" do
-        expect(dossier.attestation).to be_present
-
-        dossier.classer_sans_suite!(motivation: 'test')
+      subject(:process) do
+        dossier.process_declarative!
         dossier.reload
+      end
 
-        expect(dossier.attestation).to be_nil
+      it 'passes the dossier en instruction without a follower' do
+        process
+
+        expect(dossier).to be_en_instruction
+        expect(dossier.en_instruction_at).to eq(Time.current)
+        expect(dossier.declarative_triggered_at).to eq(Time.current)
+        expect(dossier.conservation_extension).to eq(0.days)
+        expect(dossier.expired_at).to be_nil
+        expect(dossier.followers_instructeurs).to be_empty
+        expect(dossier.traitement.instructeur_email).to be_nil
+      end
+
+      it 'logs an automatic operation' do
+        process
+
+        expect(last_operation.operation).to eq('passer_en_instruction')
+        expect(last_operation.automatic_operation?).to be(true)
+        expect(last_operation.data['author']).to be_nil
+      end
+
+      it 'creates the commentaire for the state' do
+        expect { process }.to change { dossier.commentaires.count }.by(1)
+      end
+
+      include_examples 'notifies the usager', 'en_instruction'
+
+      it 'removes the dossier_depose badge' do
+        create(:dossier_notification, dossier:, instructeur:, notification_type: :dossier_depose)
+
+        expect { process }.to change { notifications(dossier, :dossier_depose).count }.to(0)
+      end
+
+      it 'drops the pending buffer streams like a manual passage' do
+        pending 'after_passer_automatiquement_en_instruction does not reset the buffer streams'
+        push_user_buffer_change(dossier)
+
+        expect { dossier.passer_automatiquement_en_instruction! }.to change { dossier.champ_data.where(stream: Dossier::USER_BUFFER_STREAM).count }.to(0)
       end
     end
 
-    context "when dossier has attente_avis notification" do
-      let(:instructeur) { create(:instructeur) }
-      let!(:notification) { create(:dossier_notification, dossier:, instructeur:, notification_type: :attente_avis) }
+    context 'via a sva procedure' do
+      let(:procedure) { procedures.sva }
+      let(:dossier) { create(:dossier, :en_construction, :with_individual, procedure:, sva_svr_decision_on: 10.days.from_now) }
+      let(:sva_svr_decision_on) { SVASVRDecisionDateCalculatorService.new(dossier, procedure).decision_date }
 
-      it "destroy the notification" do
-        dossier.classer_sans_suite!(motivation: 'test')
-
-        expect(DossierNotification.count).to eq(0)
-      end
-    end
-  end
-
-  describe 'automatiquement' do
-    let(:dossier_state) { :en_construction }
-
-    describe 'accepter' do
-      let(:declarative_with_state) { Dossier.states.fetch(:accepte) }
-
-      it do
-        expect(dossier.champ_data.size).to eq(20)
-        expect(dossier.champ_data.filter { _1.row? && _1.stable_id == 94 }.size).to eq(2)
-        expect(dossier.champ_data.filter { _1.stable_id.in?([93, 98]) }.size).to eq(2)
-
-        dossier.accepter_automatiquement!
+      subject(:process) do
+        dossier.process_sva_svr!
         dossier.reload
-
-        expect(dossier.champ_data.size).to eq(17)
-        expect(dossier.champ_data.filter { _1.row? && _1.stable_id == 94 }.size).to eq(1)
-        expect(dossier.champ_data.filter { _1.stable_id.in?([93, 98]) && _1.blank? }.size).to eq(2)
       end
-    end
 
-    describe 'en_instruction' do
-      context "when dossier has a dossier_depose notification" do
-        let(:auto_archive_on) { 1.day.from_now }
-        let(:instructeur) { create(:instructeur) }
-        let!(:notification) { create(:dossier_notification, dossier:, instructeur:) }
+      it 'passes the dossier en instruction with the recomputed decision date' do
+        process
 
-        it "destroy the notification" do
-          travel_to(2.days.from_now)
-          dossier.passer_automatiquement_en_instruction!
+        expect(dossier).to be_en_instruction
+        expect(dossier.followers_instructeurs).to be_empty
+        expect(dossier.sva_svr_decision_on).to eq(sva_svr_decision_on)
+        expect(last_operation.operation).to eq('passer_en_instruction')
+        expect(last_operation.automatic_operation?).to be(true)
+        expect(last_operation.data['subject']).to be_present
+      end
 
-          expect(DossierNotification.count).to eq(0)
+      context 'when the dossier was submitted before sva was enabled' do
+        let(:dossier) { create(:dossier, :en_construction, :with_individual, procedure:, depose_at: 10.days.ago) }
+
+        it 'leaves the dossier en construction' do
+          process
+
+          expect(dossier.sva_svr_decision_on).to be_nil
+          expect(dossier).to be_en_construction
         end
       end
     end
   end
 
-  describe 'auto purge piece justificative after decision' do
-    let(:file) { fixture_file_upload('spec/fixtures/files/logo_test_procedure.png', 'image/png') }
+  describe '#repasser_en_construction!' do
+    let(:dossier) { dossiers.en_instruction }
 
-    before { allow(ClamavService).to receive(:safe_file?).and_return(true) }
+    subject(:repasser_en_construction) do
+      dossier.repasser_en_construction!(instructeur:)
+      dossier.reload
+    end
 
-    context 'when piece_justificative with titre_identite nature' do
-      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :piece_justificative, nature: 'titre_identite' }]) }
-      let(:dossier) { create(:dossier, :en_instruction, :followed, procedure:) }
-      let(:instructeur) { dossier.followers_instructeurs.first }
-      let(:champ) { dossier.champ_data.first }
+    it 'sends the dossier back en construction' do
+      repasser_en_construction
 
-      it 'destroys champ on accepter' do
-        champ.piece_justificative_file.attach(file)
-        dossier.accepter!(instructeur: instructeur, motivation: 'ok')
-        expect(champ.reload.piece_justificative_file.attached?).to be false
+      expect(dossier.state).to eq('en_construction')
+      expect(dossier.en_construction_at).to eq(Time.current)
+      expect(dossier.depose_at).to be < Time.current
+      expect(dossier.expired_at).to be_nil
+      expect(dossier.conservation_extension).to eq(0.days)
+      expect(dossier.traitement.state).to eq('en_construction')
+      expect(dossier.traitement.instructeur_email).to eq(instructeur.email)
+    end
+
+    it 'logs the operation' do
+      repasser_en_construction
+
+      expect(last_operation.operation).to eq('repasser_en_construction')
+      expect(last_operation.data['author']['email']).to eq(instructeur.email)
+    end
+
+    it 'notifies AMI but sends no mail' do
+      expect { repasser_en_construction }.not_to have_enqueued_mail(NotificationMailer)
+      expect(Ami::CreateNotificationService).to have_received(:call).with(dossier:, trigger: :dossier_state_change, state: nil)
+    end
+
+    it 'recreates the traitements missing from the timeline' do
+      dossier.traitements.destroy_all
+      dossier.update_columns(en_construction_at: 2.days.ago, en_instruction_at: 1.day.ago, depose_at: nil)
+
+      repasser_en_construction
+
+      expect(dossier.traitements.map { [it.state, it.processed_at] }).to eq([
+        ['en_construction', 2.days.ago],
+        ['en_instruction', 1.day.ago],
+        ['en_construction', Time.current],
+      ])
+      expect(dossier.depose_at).to eq(2.days.ago)
+    end
+  end
+
+  describe '#accepter!' do
+    include_examples 'a decision', :accepter, state: 'accepte'
+    include_examples 'generates the attestation', :acceptation
+  end
+
+  describe '#refuser!' do
+    include_examples 'a decision', :refuser, state: 'refuse'
+    include_examples 'generates the attestation', :refus
+  end
+
+  describe '#classer_sans_suite!' do
+    include_examples 'a decision', :classer_sans_suite, state: 'sans_suite'
+
+    it 'destroys the attestation of a previous acceptation' do
+      create(:attestation, dossier:)
+
+      expect { subject }.to change { dossier.attestation }.to(nil)
+    end
+  end
+
+  describe '#accepter_automatiquement!' do
+    let!(:attestation_template) { create(:attestation_template, procedure:, kind: :acceptation, state: :published) }
+
+    subject(:accepter) do
+      perform_enqueued_jobs(only: AttestationPdfGenerationJob) { dossier.accepter_automatiquement! }
+      dossier.reload
+    end
+
+    context 'via a declarative procedure' do
+      let(:dossier) { create(:dossier, :en_construction, :with_individual, :with_declarative_accepte, procedure:) }
+
+      it 'accepts the dossier' do
+        accepter
+
+        expect(dossier).to be_accepte
+        expect(dossier.motivation).to be_nil
+        expect(dossier.en_instruction_at).to eq(Time.current)
+        expect(dossier.processed_at).to eq(Time.current)
+        expect(dossier.expired_at).to eq(dossier.expiration_date)
+        expect(dossier.declarative_triggered_at).to eq(Time.current)
+        expect(dossier.sva_svr_decision_triggered_at).to be_nil
+        expect(last_operation.operation).to eq('accepter')
+        expect(last_operation.automatic_operation?).to be(true)
+        expect(dossier.attestation).to be_present
+      end
+
+      it 'creates the commentaire for the state' do
+        expect { accepter }.to change { dossier.commentaires.count }.by(1)
+      end
+
+      include_examples 'notifies the usager', 'accepte'
+
+      it 'cleans the champs after instruction' do
+        expect(dossier).to receive(:clean_champs_after_instruction!)
+        accepter
       end
     end
 
-    context 'when nature is titre_identite' do
-      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :piece_justificative, nature: 'titre_identite' }]) }
-      let(:dossier) { create(:dossier, :en_instruction, :followed, procedure:) }
-      let(:instructeur) { dossier.followers_instructeurs.first }
-      let(:champ) { dossier.champ_data.first }
+    context 'via a sva procedure' do
+      let(:procedure) { procedures.sva }
+      let(:dossier) { create(:dossier, :en_instruction, :with_individual, procedure:, sva_svr_decision_on: Date.current, en_instruction_at: DateTime.new(2021, 5, 1, 12)) }
 
-      it 'destroys champ on accepter' do
-        champ.piece_justificative_file.attach(file)
-        dossier.accepter!(instructeur: instructeur, motivation: 'ok')
-        expect(champ.reload.piece_justificative_file.attached?).to be false
-      end
-    end
+      it 'accepts the dossier' do
+        accepter
 
-    context 'when pj_auto_purge is enabled' do
-      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :piece_justificative, pj_auto_purge: '1' }]) }
-      let(:dossier) { create(:dossier, :en_instruction, :followed, procedure:) }
-      let(:instructeur) { dossier.followers_instructeurs.first }
-      let(:champ) { dossier.champ_data.first }
-
-      it 'destroys champ on accepter' do
-        champ.piece_justificative_file.attach(file)
-        dossier.accepter!(instructeur: instructeur, motivation: 'ok')
-        expect(champ.reload.piece_justificative_file.attached?).to be false
-      end
-    end
-
-    context 'when standard piece justificative' do
-      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :piece_justificative }]) }
-      let(:dossier) { create(:dossier, :en_instruction, :followed, procedure:) }
-      let(:instructeur) { dossier.followers_instructeurs.first }
-      let(:champ) { dossier.champ_data.first }
-
-      it 'keeps attachments on accepter' do
-        champ.piece_justificative_file.attach(file)
-        dossier.accepter!(instructeur: instructeur, motivation: 'ok')
-        expect(champ.reload.piece_justificative_file.attached?).to be true
+        expect(dossier).to be_accepte
+        expect(dossier.motivation).to be_nil
+        expect(dossier.en_instruction_at).to eq(DateTime.new(2021, 5, 1, 12))
+        expect(dossier.processed_at).to eq(Time.current)
+        expect(dossier.declarative_triggered_at).to be_nil
+        expect(dossier.sva_svr_decision_triggered_at).to eq(Time.current)
+        expect(last_operation.operation).to eq('accepter')
+        expect(last_operation.automatic_operation?).to be(true)
+        expect(dossier.attestation).to be_present
+        expect(dossier.commentaires.count).to eq(1)
       end
     end
   end
 
-  describe 'submit brouillon with pre_rempli champ' do
-    context 'when pre_rempli champ is hidden (pre_rempli_hidden: "1")' do
-      let(:procedure) { create(:procedure, :published, :for_individual, public_type_de_champs: [{ type: :pre_rempli, pre_rempli_hidden: "1", stable_id: 100 }]) }
-      let(:dossier) { create(:dossier, :brouillon, :with_individual, procedure:) }
+  describe '#refuser_automatiquement!' do
+    let(:procedure) { procedures.svr }
+    let(:dossier) { create(:dossier, :en_instruction, :with_individual, procedure:, sva_svr_decision_on: Date.current, en_instruction_at: DateTime.new(2021, 5, 1, 12)) }
 
-      before do
-        champ = dossier.root_champs_public.find { _1.stable_id == 100 }
-        champ.update(value: "valeur cachée")
-      end
-
-      it 'preserves the hidden pre_rempli value after submission' do
-        dossier.passer_en_construction!
-        dossier.reload
-
-        champ = dossier.root_champs_public.find { _1.stable_id == 100 }
-        expect(champ.value).to eq("valeur cachée")
-      end
+    subject(:refuser) do
+      dossier.refuser_automatiquement!
+      dossier.reload
     end
 
-    context 'when pre_rempli champ is visible but condition is false' do
-      let(:procedure) { create(:procedure, :published, :for_individual, public_type_de_champs: [{ type: :pre_rempli, stable_id: 101, condition: ds_eq(constant(true), constant(false)) }]) }
-      let(:dossier) { create(:dossier, :brouillon, :with_individual, procedure:) }
+    it 'refuses the dossier with the svr motivation' do
+      refuser
 
-      before do
-        champ = dossier.root_champs_public.find { _1.stable_id == 101 }
-        champ.update(value: "valeur conditionnelle")
-      end
-
-      it 'clears the value because the champ is not visible' do
-        dossier.passer_en_construction!
-        dossier.reload
-
-        champ = dossier.root_champs_public.find { _1.stable_id == 101 }
-        expect(champ.value).to be_nil
-      end
+      expect(dossier).to be_refuse
+      expect(dossier.en_instruction_at).to eq(DateTime.new(2021, 5, 1, 12))
+      expect(dossier.processed_at).to eq(Time.current)
+      expect(dossier.expired_at).to eq(dossier.expiration_date)
+      expect(dossier.declarative_triggered_at).to be_nil
+      expect(dossier.sva_svr_decision_triggered_at).to eq(Time.current)
+      expect(dossier.motivation).to include('dans le délai imparti')
+      expect(dossier.traitement.motivation).to eq(dossier.motivation)
+      expect(last_operation.operation).to eq('refuser')
+      expect(last_operation.automatic_operation?).to be(true)
+      expect(dossier.attestation).to be_nil
+      expect(dossier.commentaires.count).to eq(1)
     end
+
+    it 'translates the motivation in the usager locale' do
+      dossier.user.update!(locale: 'en')
+      refuser
+      expect(dossier.motivation).to include('within the time limit')
+    end
+
+    include_examples 'notifies the usager', 'refuse'
   end
 
-  describe '#clear_france_connect_champs_piece_justificatives (after user submits a dossier or modifications)' do
-    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :quotient_familial }]) }
-    let(:dossier) { create(:dossier, procedure:) }
-    let(:champ) { dossier.champ_data.first }
+  describe '#repasser_en_instruction!' do
+    let(:dossier) { dossiers.refuse }
+    let(:disable_notification) { false }
 
-    subject { dossier.send(:clear_france_connect_champs_piece_justificatives!) }
-
-    context "when data have been fetched and the user has confirmed its accuracy, but he has uploaded an attachment" do
-      before do
-        champ.update(value: 'true', external_state: 'fetched')
-        champ.piece_justificative_file.attach(fixture_file_upload('spec/fixtures/files/logo_test_procedure.png', 'image/png'))
-      end
-
-      it 'deletes the associated attachment' do
-        subject
-        expect(champ.reload.piece_justificative_file).not_to be_attached
-      end
+    before do
+      create(:attestation_template, :refus, procedure:, state: :published)
+      AttestationPdfGenerationJob.perform_now(dossier)
+      dossier.justificatif_motivation.attach(justificatif_file)
+      dossier.update!(archived: true, hidden_by_user_at: 1.day.ago, termine_close_to_expiration_notice_sent_at: Time.current, sva_svr_decision_on: 1.day.ago)
     end
 
-    context "when data have been fetched and the user user does not confirm its accuracy, so he has uploaded an attachment" do
-      before do
-        champ.update(value: 'false', external_state: 'fetched')
-        champ.piece_justificative_file.attach(fixture_file_upload('spec/fixtures/files/logo_test_procedure.png', 'image/png'))
-      end
-
-      it 'does not delete the associated attachment' do
-        subject
-        expect(champ.reload.piece_justificative_file).to be_attached
-      end
+    subject(:repasser_en_instruction) do
+      dossier.repasser_en_instruction!(instructeur:, disable_notification:)
+      dossier.reload
     end
 
-    context "when data have not been fetched, so the user has uploaded an attachment" do
-      before do
-        champ.update(external_state: 'idle')
-        champ.piece_justificative_file.attach(fixture_file_upload('spec/fixtures/files/logo_test_procedure.png', 'image/png'))
-      end
+    it 'reopens the instruction and clears the decision' do
+      expect(dossier.attestation).to be_present
 
-      it 'does not delete the associated attachment' do
-        subject
-        expect(champ.reload.piece_justificative_file).to be_attached
-      end
+      repasser_en_instruction
+
+      expect(dossier.state).to eq('en_instruction')
+      expect(dossier.en_instruction_at).to eq(Time.current)
+      expect(dossier.expired_at).to be_nil
+      expect(dossier.conservation_extension).to eq(0.days)
+      expect(dossier.archived).to be(false)
+      expect(dossier.hidden_by_user_at).to be_nil
+      expect(dossier.termine_close_to_expiration_notice_sent_at).to be_nil
+      expect(dossier.motivation).to be_nil
+      expect(dossier.justificatif_motivation).not_to be_attached
+      expect(dossier.attestation).to be_nil
+      expect(dossier.sva_svr_decision_on).to be_nil
+      expect(dossier.traitement.state).to eq('en_instruction')
+      expect(dossier.traitement.instructeur_email).to eq(instructeur.email)
+    end
+
+    it 'logs the operation and creates the commentaire' do
+      expect { repasser_en_instruction }.to change { dossier.commentaires.count }.by(1)
+
+      expect(last_operation.operation).to eq('repasser_en_instruction')
+      expect(last_operation.data['author']['email']).to eq(instructeur.email)
+    end
+
+    include_examples 'notifies the usager', 'repasser_en_instruction', ami_state: :repasser_en_instruction, tiers_options: { repasser_en_instruction: true }
+    include_examples 'can skip the usager notification'
+
+    it 'removes the dossier_expirant badge' do
+      create(:dossier_notification, dossier:, instructeur:, notification_type: :dossier_expirant)
+
+      expect { repasser_en_instruction }.to change { notifications(dossier, :dossier_expirant).count }.to(0)
+    end
+
+    it 'rebases the dossier later' do
+      expect(dossier).to receive(:rebase_later)
+      repasser_en_instruction
     end
   end
 
