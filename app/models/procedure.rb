@@ -286,7 +286,14 @@ class Procedure < ApplicationRecord
   validate :check_juridique, on: [:create, :publication]
 
   validates :replaced_by_procedure_id, presence: true, if: :closing_reason_internal_procedure?
-  validate :check_replaced_by_procedure_not_self, if: :closing_reason_internal_procedure?
+  # `presence` and `comparison` must stay in two separate `validates` calls:
+  # `comparison` reports a nil value as `:blank` too, and `allow_nil` applies to
+  # the whole call — sharing one would either duplicate the blank error or
+  # disable the presence check entirely.
+  validates :replaced_by_procedure_id,
+            comparison: { other_than: :id },
+            allow_nil: true,
+            if: :closing_reason_internal_procedure?
 
   validates :duree_conservation_dossiers_dans_ds, allow_nil: false,
                                                   numericality: {
@@ -728,12 +735,6 @@ class Procedure < ApplicationRecord
   def check_juridique
     if juridique_required? && (cadre_juridique.blank? && !deliberation.attached?)
       errors.add(:cadre_juridique, " : veuillez remplir le texte de loi ou la délibération")
-    end
-  end
-
-  def check_replaced_by_procedure_not_self
-    if replaced_by_procedure_id == id
-      errors.add(:replaced_by_procedure_id, "ne peut pas être la procédure elle-même")
     end
   end
 
