@@ -397,7 +397,7 @@ module Instructeurs
 
     def annotation
       @dossier = dossier_with_champs
-      type_de_champ = @dossier.find_type_de_champ_by_stable_id(params[:stable_id], :private)
+      type_de_champ = @dossier.find_type_de_champ_by_stable_id!(params[:stable_id], :private, row_id: params[:row_id])
       annotation = @dossier.project_champ(type_de_champ, row_id: params[:row_id])
       annotation.validate(:champ_value) if annotation.done?
 

@@ -17,6 +17,16 @@ describe Champs::RepetitionController, type: :controller do
       expect(response).to have_http_status(:not_found)
     end
 
+    # stable_id comes straight from the path here, so an unknown one is reachable both by
+    # a stale tab and by hand. An error page would wipe out the form the user is filling.
+    it 'removes the orphaned input instead of erroring when the stable_id is not in the revision' do
+      post :add, params: { dossier_id: dossier, stable_id: 1234567 }, format: :turbo_stream
+
+      expect(response).to have_http_status(:ok)
+      expect(response.body).to include('action="remove"')
+      expect(response.body).to include('#champ-1234567')
+    end
+
     context 'when instructeur is signed in and try to add a repetition to a dossier en instruction' do
       let(:instructeur) { create(:instructeur) }
       let(:gi) { create(:groupe_instructeur, instructeurs: [instructeur]) }

@@ -3,6 +3,21 @@
 module DossierChampsConcern
   extend ActiveSupport::Concern
 
+  # A stable_id that is not (or no longer) in the dossier's revision. Publishing a
+  # revision that removes a champ rebases every non-terminated dossier, so a browser
+  # still showing the previous form keeps posting a champ that has since disappeared.
+  # It is also raised for a stable_id taken straight from a URL that never matched
+  # anything. Callers that can render turbo_stream drop the orphaned input; see
+  # ApplicationController#champ_not_in_revision.
+  class ChampNotInRevisionError < StandardError
+    attr_reader :public_id
+
+    def initialize(stable_id, row_id = nil)
+      @public_id = TypeDeChamp.public_id(stable_id, row_id)
+      super("Champ #{@public_id} is not in the dossier revision")
+    end
+  end
+
   def project_champ(type_de_champ, row_id: nil)
     check_valid_row_id_on_read?(type_de_champ, row_id)
     data = champ_data_by_public_id[type_de_champ.public_id(row_id)]
@@ -101,6 +116,11 @@ module DossierChampsConcern
     end.find { _1.stable_id == stable_id.to_i }
   end
 
+  # Same lookup, for callers that cannot do anything useful without a type de champ.
+  def find_type_de_champ_by_stable_id!(stable_id, scope = nil, row_id: nil)
+    find_type_de_champ_by_stable_id(stable_id, scope) || raise(ChampNotInRevisionError.new(stable_id, row_id))
+  end
+
   def public_type_de_champs_all
     revision.type_de_champs.filter(&:public?)
   end
@@ -134,13 +154,13 @@ module DossierChampsConcern
 
   def public_champ_for_update(public_id, updated_by:)
     stable_id, row_id = public_id.split('-')
-    type_de_champ = find_type_de_champ_by_stable_id(stable_id, :public)
+    type_de_champ = find_type_de_champ_by_stable_id!(stable_id, :public, row_id:)
     champ_for_update(type_de_champ, row_id:, updated_by:)
   end
 
   def private_champ_for_update(public_id, updated_by:)
     stable_id, row_id = public_id.split('-')
-    type_de_champ = find_type_de_champ_by_stable_id(stable_id, :private)
+    type_de_champ = find_type_de_champ_by_stable_id!(stable_id, :private, row_id:)
     champ_for_update(type_de_champ, row_id:, updated_by:)
   end
 

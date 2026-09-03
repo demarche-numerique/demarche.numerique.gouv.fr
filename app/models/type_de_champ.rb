@@ -408,7 +408,7 @@ class TypeDeChamp < ApplicationRecord
   end
 
   def html_id(row_id = nil)
-    "champ-#{public_id(row_id)}"
+    self.class.html_id(public_id(row_id))
   end
 
   class << self
@@ -418,6 +418,12 @@ class TypeDeChamp < ApplicationRecord
       else
         "#{stable_id}-#{row_id}"
       end
+    end
+
+    # Usable without a type de champ instance, for a champ that is no longer in the
+    # revision and can only be identified by the public_id the browser posted.
+    def html_id(public_id)
+      "champ-#{public_id}"
     end
 
     def type_champ_to_champ_class_name(type_champ)

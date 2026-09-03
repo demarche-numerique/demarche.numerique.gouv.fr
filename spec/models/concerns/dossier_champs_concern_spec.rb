@@ -85,6 +85,36 @@ RSpec.describe DossierChampsConcern do
     end
   end
 
+  describe "#find_type_de_champ_by_stable_id!" do
+    it "finds a type de champ like the non-bang version" do
+      expect(dossier.find_type_de_champ_by_stable_id!(992, :public).libelle).to eq("Un champ yes no")
+    end
+
+    it "raises for an unknown stable id, carrying the public_id of the orphaned input" do
+      expect { dossier.find_type_de_champ_by_stable_id!(1234567) }
+        .to raise_error(DossierChampsConcern::ChampNotInRevisionError) { expect(it.public_id).to eq("1234567") }
+    end
+
+    it "includes the row_id in the public_id when the champ is inside a repetition" do
+      expect { dossier.find_type_de_champ_by_stable_id!(1234567, :public, row_id: "01J") }
+        .to raise_error(DossierChampsConcern::ChampNotInRevisionError) { expect(it.public_id).to eq("1234567-01J") }
+    end
+
+    it "raises when the champ exists but outside the requested scope" do
+      expect { dossier.find_type_de_champ_by_stable_id!(995, :public) }
+        .to raise_error(DossierChampsConcern::ChampNotInRevisionError)
+    end
+  end
+
+  # A tab still showing a form whose champ a newly published revision removed keeps
+  # autosaving it; the dossier has since been rebased onto the new revision.
+  describe "#public_champ_for_update on a champ removed from the revision" do
+    it "raises instead of dereferencing nil" do
+      expect { dossier.public_champ_for_update("1234567", updated_by: 'user@x.fr') }
+        .to raise_error(DossierChampsConcern::ChampNotInRevisionError)
+    end
+  end
+
   describe "#stable_id_in_revision?" do
     it "accepts an integer or a string, and rejects an unknown stable id" do
       expect(dossier.stable_id_in_revision?(99)).to be(true)

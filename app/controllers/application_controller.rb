@@ -26,6 +26,7 @@ class ApplicationController < ActionController::Base
   before_action :display_csrf_retry_message
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from DossierChampsConcern::ChampNotInRevisionError, with: :champ_not_in_revision
 
   around_action :switch_locale
 
@@ -215,6 +216,19 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized
     head :not_found
+  end
+
+  # The champ is not in the dossier revision — almost always a tab still showing a form
+  # that a newly published revision has replaced. An error page would throw away
+  # everything else the user has typed, so drop just the orphaned input and let the rest
+  # of the page live. The tab stays stale in every other respect; only a reload fixes
+  # that, and taking one away from the user unprompted is worse than the stale form.
+  def champ_not_in_revision(error)
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove_all("##{TypeDeChamp.html_id(error.public_id)}") }
+      format.json { render json: { errors: [error.message] }, status: :not_found }
+      format.any { head :not_found }
+    end
   end
 
   def set_active_storage_host
