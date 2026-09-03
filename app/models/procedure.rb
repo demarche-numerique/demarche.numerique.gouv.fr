@@ -344,7 +344,6 @@ class Procedure < ApplicationRecord
     empty_file: true,
     if: -> { new_record? || created_at > Date.new(2020, 11, 13) }
 
-  validates :api_particulier_token, format: { with: /\A[A-Za-z0-9\-_=.]{15,}\z/ }, allow_blank: true
   validate :validate_auto_archive_on_in_the_future, if: :will_save_change_to_auto_archive_on?
 
   before_save :update_juridique_required

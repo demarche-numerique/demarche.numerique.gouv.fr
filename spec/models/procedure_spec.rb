@@ -394,11 +394,20 @@ describe Procedure do
     end
 
     context 'api_particulier_token' do
-      let(:valid_token) { "3841b13fa8032ed3c31d160d3437a76a" }
-      let(:invalid_token) { 'jet0n 1nvalide' }
+      let(:jwt_token) { JWT.encode({ exp: 2.months.from_now.to_i }, nil, 'none') }
+      let(:legacy_token) { "3841b13fa8032ed3c31d160d3437a76a" }
+
       it do
-        is_expected.to allow_value(valid_token).for(:api_particulier_token)
-        is_expected.not_to allow_value(invalid_token).for(:api_particulier_token)
+        is_expected.to allow_value(jwt_token).for(:api_particulier_token)
+        is_expected.not_to allow_value(legacy_token).for(:api_particulier_token)
+      end
+
+      it 'still saves a procedure whose stored token is a legacy key' do
+        procedure = create(:procedure)
+        procedure.api_particulier_token = legacy_token
+        procedure.save(validate: false)
+
+        expect(procedure.reload.update(libelle: 'renamed')).to be(true)
       end
     end
 

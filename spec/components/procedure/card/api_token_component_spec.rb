@@ -37,7 +37,7 @@ RSpec.describe Procedure::Card::APITokenComponent, type: :component do
 
   context "API entreprise token and API particulier token are both configured" do
     let(:api_entreprise_token) { JWT.encode({ exp: 2.months.from_now.to_i }, nil, "none") }
-    let(:api_particulier_token) { 'api_particulier_token' }
+    let(:api_particulier_token) { JWT.encode({ exp: 2.months.from_now.to_i }, nil, 'none') }
     it do
       is_expected.to have_css('p.fr-badge.fr-badge--success', text: "Configuré")
       is_expected.to have_css('p.fr-tag', text: "2 / 2")

@@ -55,7 +55,7 @@ class APIParticulier::API
 
   def call(url, params)
     response = Typhoeus.get(url,
-      headers: { Authorization: "Bearer #{@token}" },
+      headers: { Authorization: "Bearer #{@token.jwt_token}" },
       params: params,
       params_encoding: :multi,
       timeout: TIMEOUT)
