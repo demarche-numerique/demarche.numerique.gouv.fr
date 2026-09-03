@@ -83,6 +83,10 @@ module ChampExternalDataConcern
 
   def external_data_needed_for_validation? = has_async_external_data?
 
+  def handle_exhausted_external_data_retries!
+    external_data_error!
+  end
+
   private
 
   def ready_for_external_call? = external_id.present?

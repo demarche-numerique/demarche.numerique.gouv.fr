@@ -45,6 +45,12 @@ class Champs::SiretChamp < ChampData
     end
   end
 
+  def handle_exhausted_external_data_retries!
+    etablissement = APIEntrepriseService.create_etablissement_as_degraded_mode(self, external_id, dossier.user&.id)
+
+    handle_result(degraded_failure(etablissement:, type: 'retries exhausted', code: 504))
+  end
+
   def search_terms
     etablissement.present? ? etablissement.search_terms : [value]
   end
