@@ -614,6 +614,28 @@ describe ChampData do
 
       it { expect(subject.piece_justificative_file).not_to be_attached }
     end
+
+    context 'when champ siret has already been fetched' do
+      let(:public_type_de_champs) { [{ type: :siret }] }
+      let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
+
+      before { champ.update_columns(external_state: 'fetched') }
+
+      it 'carries the external_state over' do
+        expect(subject).to be_fetched
+      end
+    end
+
+    context 'when champ siret is in error' do
+      let(:public_type_de_champs) { [{ type: :siret }] }
+      let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
+
+      before { champ.update_columns(external_state: 'external_error') }
+
+      it 'carries the external_state over' do
+        expect(subject).to be_external_error
+      end
+    end
   end
 
   describe "#parent" do
