@@ -111,6 +111,11 @@ module DossierHelper
     )
   end
 
+  # relies on the preloaded invites association to avoid an N+1 on the dossiers list
+  def shared_with_me?(dossier)
+    dossier.invites.any? { it.user_id == current_user.id }
+  end
+
   def partage_badge(html_class: nil)
     tag.span(
       Dossier.human_attribute_name("partage.for_user"),

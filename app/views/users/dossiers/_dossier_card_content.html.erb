@@ -38,7 +38,7 @@
 
         <%= expiration_badge(dossier) %>
 
-        <%= partage_badge unless current_user.owns?(dossier) %>
+        <%= partage_badge if shared_with_me?(dossier) %>
       </div>
     </div>
 
@@ -112,7 +112,7 @@
 
       <%= expiration_badge(dossier) %>
 
-      <%= partage_badge unless current_user.owns?(dossier) %>
+      <%= partage_badge if shared_with_me?(dossier) %>
     </div>
   </div>
 </div>

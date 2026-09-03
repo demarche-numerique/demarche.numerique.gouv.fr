@@ -60,6 +60,13 @@ describe 'Transfer dossier flow', js: true do
       expect(page).to have_content('1 dossier en attente de transfert')
     end
 
+    it 'does not show the "Partagé avec moi" badge on a transfer proposal' do
+      visit transferts_path
+
+      expect(page).to have_content('1 dossier en attente de transfert')
+      expect(page).not_to have_css('.fr-badge--blue-cumulus', text: 'Partagé avec moi')
+    end
+
     it 'accepts a transfer' do
       visit transferts_path
       find_link('Accepter').click
