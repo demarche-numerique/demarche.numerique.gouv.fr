@@ -113,7 +113,7 @@
     <%= f.hidden_field :access, value: params[:access] %>
     <%= f.hidden_field :target, value: params[:target] %>
 
-    <%- params[:"[targets]"]&.each do |target| -%>
+    <%- params[:targets]&.each do |target| -%>
       <%= f.hidden_field 'targets[]', value: target %>
     <%- end -%>
 
