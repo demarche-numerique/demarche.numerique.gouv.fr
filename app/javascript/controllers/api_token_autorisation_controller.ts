@@ -56,7 +56,7 @@ export class ApiTokenAutorisationController extends ApplicationController {
 
     const input = document.createElement('input');
     input.type = 'hidden';
-    input.name = '[targets][]';
+    input.name = 'targets[]';
     input.value = option.value;
     li.append(input);
 
