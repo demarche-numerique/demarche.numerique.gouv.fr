@@ -659,6 +659,21 @@ describe Administrateurs::ProceduresController, type: :controller do
         end
       end
 
+      context 'when the declarative setting changed but the save failed' do
+        render_views
+
+        let(:procedure) { create(:procedure, :with_type_de_champ, declarative_with_state: :en_instruction, administrateur: admin) }
+
+        before { create(:email_depose, procedure:) }
+
+        it 'still warns that the email templates will be dropped' do
+          put :update, params: { id: procedure.id, procedure: { declarative_with_state: 'accepte', libelle: '' } }
+
+          expect(response.body).to match(/data-declarative-setting-initial-value=.en_instruction./)
+          expect(procedure.reload.custom_email_templates).not_to be_empty
+        end
+      end
+
       context 'when procedure is brouillon' do
         let(:procedure) { create(:procedure_with_dossiers, :with_path, :with_type_de_champ, administrateur: admin) }
         let!(:dossiers_count) { procedure.dossiers.count }
@@ -704,6 +719,21 @@ describe Administrateurs::ProceduresController, type: :controller do
         expect(response.body).to include "Administrateurs"
         expect(response.body).to include "Instructeurs"
         expect(response.body).not_to include "Jeton API entreprise"
+      end
+    end
+
+    context 'when the procedure is declarative and kept on the legacy emails' do
+      before do
+        procedure.update!(declarative_with_state: :accepte)
+        procedure.update!(combined_declarative_email: false)
+        create(:email_depose, procedure:)
+      end
+
+      it 'offers the email templates, warning that the depose one stays behind' do
+        subject
+
+        expect(response.body).not_to match(/<input[^>]*name=.procedure\[clone_options\]\[email_templates\].[^>]*disabled/)
+        expect(response.body).to include "ne sera pas cloné"
       end
     end
 

@@ -1,29 +1,6 @@
 {
   "ignored_warnings": [
     {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
-      "fingerprint": "053193bbec4da9fb2edd6d2369bbff519b8c5ef8e9ccc0f1c1f6aed3076c772b",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "app/tasks/maintenance/t20260721_copy_legacy_mail_tables_into_email_templates_task.rb",
-      "line": 34,
-      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "ActiveRecord::Base.connection.execute(\"INSERT INTO email_templates (type, procedure_id, subject, body, json_subject, json_body, created_at, updated_at)\\nSELECT DISTINCT ON (procedure_id) '#{:BRAKEMAN_SAFE_LITERAL}', procedure_id, subject, body, json_subject, json_body, created_at, updated_at\\nFROM #{table}\\nWHERE procedure_id IN (SELECT id FROM procedures)\\nORDER BY procedure_id, updated_at DESC\\nON CONFLICT (procedure_id, type) DO UPDATE\\n  SET subject = excluded.subject,\\n      body = excluded.body,\\n      json_subject = excluded.json_subject,\\n      json_body = excluded.json_body,\\n      updated_at = excluded.updated_at\\n  WHERE excluded.updated_at > email_templates.updated_at\\n\".squish)",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "Maintenance::T20260721CopyLegacyMailTablesIntoEmailTemplatesTask",
-        "method": "process"
-      },
-      "user_input": "table",
-      "confidence": "Medium",
-      "cwe_id": [
-        89
-      ],
-      "note": "table names and STI types come from a frozen internal constant"
-    },
-    {
       "warning_type": "Remote Code Execution",
       "warning_code": 25,
       "fingerprint": "1d30d61a81ffea8e64121341837db4c47cc97e401d4a9d0e151e01faf0e356a3",

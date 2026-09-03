@@ -199,4 +199,48 @@ describe Administrateurs::EmailTemplatesController, type: :controller do
       expect(response.body).to include('Salut')
     end
   end
+
+  describe 'PATCH switch_to_combined' do
+    subject { patch :switch_to_combined, params: { procedure_id: procedure.id } }
+
+    context 'sur une démarche déclarative restée sur les anciens emails' do
+      before do
+        procedure.update!(declarative_with_state: :accepte)
+        procedure.update!(combined_declarative_email: false)
+        create(:email_depose, procedure:)
+        create(:email_refuse, procedure:)
+      end
+
+      it 'supprime l’accusé de réception personnalisé et bascule sur le mail combiné' do
+        expect(subject).to redirect_to(admin_procedure_email_templates_path(procedure))
+
+        procedure.reload
+        expect(procedure.email_depose_templates).to be_empty
+        expect(procedure.email_refuse).to be_present
+        expect(procedure.combined_declarative_email).to be true
+      end
+    end
+
+    context 'sur une démarche non déclarative' do
+      before { create(:email_depose, procedure:) }
+
+      it 'ne supprime aucune personnalisation' do
+        expect(subject).to redirect_to(admin_procedure_email_templates_path(procedure))
+
+        expect(procedure.reload.custom_email_templates).not_to be_empty
+      end
+    end
+
+    context 'sur une démarche d’un autre administrateur' do
+      let(:procedure) { create(:procedure, :new_administrateur, declarative_with_state: :accepte, combined_declarative_email: false) }
+
+      before { create(:email_depose, procedure:) }
+
+      it 'ne supprime aucune personnalisation' do
+        expect(subject).to have_http_status(:not_found)
+
+        expect(procedure.reload.custom_email_templates).not_to be_empty
+      end
+    end
+  end
 end
