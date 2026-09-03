@@ -140,10 +140,11 @@ describe APIEntrepriseService do
         allow(APIEntreprise::HealthChecker).to receive(:provider_up?).with(:insee_sirene).and_return(false)
       end
 
-      it 'returns Success with degraded etablissement' do
-        expect(subject).to be_success
-        expect(subject.value!.siret).to eq(siret)
-        expect(subject.value!).to be_as_degraded_mode
+      it 'returns an explicit degraded Failure carrying the stub' do
+        expect(subject).to be_failure
+        expect(subject.failure[:degraded]).to be true
+        expect(subject.failure[:etablissement].siret).to eq(siret)
+        expect(subject.failure[:etablissement]).to be_as_degraded_mode
       end
     end
 
@@ -168,9 +169,9 @@ describe APIEntrepriseService do
 
       it 'falls back to degraded mode without checking provider health' do
         expect(APIEntreprise::HealthChecker).not_to receive(:provider_up?)
-        expect(subject).to be_success
-        expect(subject.value!.siret).to eq(siret)
-        expect(subject.value!).to be_as_degraded_mode
+        expect(subject).to be_failure
+        expect(subject.failure[:degraded]).to be true
+        expect(subject.failure[:etablissement]).to be_as_degraded_mode
       end
     end
 

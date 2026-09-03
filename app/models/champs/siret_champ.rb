@@ -33,11 +33,11 @@ class Champs::SiretChamp < ChampData
   end
 
   def fetch_external_data
-    case APIEntrepriseService.create_etablissement_with_fallback(self, external_id.delete(" "), dossier.user&.id)
-    in Success(etablissement) if etablissement.as_degraded_mode?
-      Failure(retryable: true, error: StandardError.new("API Entreprise: degraded mode"), code: 503)
+    case APIEntrepriseService.create_etablissement_with_fallback(self, external_id, dossier.user&.id)
     in Success(etablissement)
       Success(etablissement:, value: external_id)
+    in Failure(degraded: true, etablissement:, type:, code:)
+      degraded_failure(etablissement:, type:, code:)
     in Failure(type: :not_found, **)
       Failure(retryable: false, error: StandardError.new('NotFound'), code: 404)
     in Failure(type:, code:, retryable:, **)
@@ -56,6 +56,11 @@ class Champs::SiretChamp < ChampData
   end
 
   private
+
+  def degraded_failure(etablissement:, type:, code:)
+    Failure(degraded: true, etablissement:, value: external_id,
+      error: StandardError.new("API Entreprise: #{type}"), code:)
+  end
 
   # We want to validate if SIRET really exists
   # It's valid when an etablissement have been created in turbo with SIRET controller
