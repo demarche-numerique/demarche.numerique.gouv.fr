@@ -1132,15 +1132,19 @@ en:
     default_templates:
       greeting: Hello,
       your_file_number: "Your file n° %{id}"
+      download_attestation: "You can download your certificate at the following address : %{link}"
       accepte:
         accepted: "has been accepted on %{date}"
         consultation_info: "At any time, you can view your file and any messages from the administration at this address : %{link}"
-      accepte_avec_attestation:
-        accepted: "has been accepted on %{date}"
-        download_attestation: "You can download your certificate at the following address : %{link}"
       depose:
         deposited: has been successfully submitted
         can_modify: If needed, you can still make changes to it.
+      depose_et_accepte:
+        deposited_html: "<strong>has been successfully submitted</strong>"
+        accepted_html: "It <strong>has been accepted on %{date}</strong>"
+      depose_et_passe_en_instruction:
+        deposited_and_processed_html: "<strong>has been successfully submitted</strong> and <strong>taken into consideration</strong>"
+        examination: It will now be examined by the service.
       passe_en_instruction:
         received: has been received and
         processed: taken into consideration
@@ -1154,11 +1158,6 @@ en:
         reason_title: "The reason for refusal is as follows :"
         reason_content: "%{motivation}"
         more_info: "To learn more about the reason for refusal, you can view your file and any messages from the administration at this address : %{link}"
-      refuse_avec_attestation:
-        refused: "has been refused on %{date}"
-        reason_title: "The reason for refusal is as follows :"
-        reason_content: "%{motivation}"
-        download_attestation: "You can download your certificate at the following address : %{link}"
       classe_sans_suite:
         closed_without_continuation: "has been closed without follow-up on %{date}"
         reason_title: "The reason is as follows :"

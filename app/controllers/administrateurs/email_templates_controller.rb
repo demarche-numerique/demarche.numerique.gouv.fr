@@ -98,7 +98,7 @@ module Administrateurs
     end
 
     def email_template_params(email_template)
-      params.require(submitted_param_key(email_template)).permit(:tiptap_body, :tiptap_subject)
+      params.expect(submitted_param_key(email_template) => [:tiptap_body, :tiptap_subject])
     end
 
     def preview_params(email_template)
@@ -106,10 +106,9 @@ module Administrateurs
     end
 
     def submitted_param_key(email_template)
-      key = email_template.model_name.param_key
-      return key if params.key?(key)
+      return Emails::PARAM_KEY if params.key?(Emails::PARAM_KEY)
 
-      Emails::LEGACY_PARAM_KEYS.fetch(email_template.class.const_get(:SLUG), key)
+      Emails::LEGACY_PARAM_KEYS.fetch(email_template.class.const_get(:SLUG), Emails::PARAM_KEY)
     end
   end
 end

@@ -18,5 +18,9 @@ FactoryBot.define do
       subject { "[demarche.numerique.gouv.fr] Accusé de réception pour votre dossier n° --numéro du dossier--" }
       body { "Votre administration vous confirme la bonne réception de votre dossier n° --numéro du dossier--" }
     end
+
+    factory :email_depose_et_passe_en_instruction, class: Emails::DeposeEtPasseEnInstruction
+
+    factory :email_depose_et_accepte, class: Emails::DeposeEtAccepte
   end
 end

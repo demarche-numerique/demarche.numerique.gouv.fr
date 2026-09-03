@@ -1111,6 +1111,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_02_100000) do
     t.boolean "closing_notification_brouillon", default: false, null: false
     t.boolean "closing_notification_en_cours", default: false, null: false
     t.string "closing_reason"
+    t.boolean "combined_declarative_email", default: true, null: false
     t.datetime "created_at", precision: nil, null: false
     t.string "declarative_with_state"
     t.bigint "defaut_groupe_instructeur_id"

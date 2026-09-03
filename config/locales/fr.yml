@@ -1198,15 +1198,19 @@ fr:
     default_templates:
       greeting: Bonjour,
       your_file_number: "Votre dossier n° %{id}"
+      download_attestation: "Vous pouvez télécharger votre attestation à l’adresse suivante : %{link}"
       accepte:
         accepted: "a été accepté le %{date}"
         consultation_info: "À tout moment, vous pouvez consulter votre dossier et les éventuels messages de l’administration à cette adresse : %{link}"
-      accepte_avec_attestation:
-        accepted: "a été accepté le %{date}"
-        download_attestation: "Vous pouvez télécharger votre attestation à l’adresse suivante : %{link}"
       depose:
         deposited: a bien été déposé
         can_modify: Si besoin est, vous pouvez encore y apporter des modifications.
+      depose_et_accepte:
+        deposited_html: "<strong>a bien été déposé</strong>"
+        accepted_html: "Il <strong>a été accepté le %{date}</strong>"
+      depose_et_passe_en_instruction:
+        deposited_and_processed_html: "<strong>a bien été déposé</strong> et <strong>pris en charge</strong>"
+        examination: Il va maintenant être examiné par le service.
       passe_en_instruction:
         received: a bien été reçu et
         processed: pris en charge
@@ -1220,11 +1224,6 @@ fr:
         reason_title: "Le motif de refus est le suivant :"
         reason_content: "%{motivation}"
         more_info: "Pour en savoir plus sur le motif du refus, vous pouvez consulter votre dossier et les éventuels messages de l’administration à cette adresse : %{link}"
-      refuse_avec_attestation:
-        refused: "a été refusé le %{date}"
-        reason_title: "Le motif de refus est le suivant :"
-        reason_content: "%{motivation}"
-        download_attestation: "Vous pouvez télécharger votre attestation à l’adresse suivante : %{link}"
       classe_sans_suite:
         closed_without_continuation: "a été classé sans suite le %{date}"
         reason_title: "Le motif est le suivant :"

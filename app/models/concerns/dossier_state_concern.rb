@@ -40,7 +40,9 @@ module DossierStateConcern
 
     RoutingEngine.compute(self)
 
-    EmailTemplatePresenterService.create_commentaire_for_state(self, Dossier.states.fetch(:en_construction))
+    if !procedure.send_combined_declarative_email? # otherwise posted by the automatic transition
+      EmailTemplatePresenterService.create_commentaire_for_state(self, Dossier.states.fetch(:en_construction))
+    end
     procedure.compute_dossiers_count
 
     process_declarative!
@@ -51,8 +53,10 @@ module DossierStateConcern
   end
 
   def after_commit_passer_en_construction
-    NotificationMailer.send_en_construction_notification(self).deliver_later
-    NotificationMailer.send_notification_for_tiers(self).deliver_later if self.for_tiers?
+    if !procedure.send_combined_declarative_email? # otherwise sent by the automatic transition
+      NotificationMailer.send_depose_notification(self).deliver_later
+      NotificationMailer.send_notification_for_tiers(self).deliver_later if self.for_tiers?
+    end
     enqueue_ami_notification
     groupe_instructeur.instructeurs.with_instant_email_new_dossier(self.procedure).each do |instructeur|
       DossierMailer.notify_new_dossier_depose_to_instructeur(self, instructeur.email).deliver_later
@@ -113,7 +117,9 @@ module DossierStateConcern
     DossierNotification.destroy_notifications_by_dossier_and_type(self, :dossier_expirant)
   end
 
-  def after_passer_automatiquement_en_instruction
+  def after_passer_automatiquement_en_instruction(h = {})
+    declarative_trigger = h.fetch(:declarative_trigger, false)
+
     self.conservation_extension = 0.days
     self.en_instruction_at = traitements.passer_en_instruction.processed_at
     self.expired_at = expiration_date
@@ -124,7 +130,12 @@ module DossierStateConcern
 
     save!
 
-    EmailTemplatePresenterService.create_commentaire_for_state(self, Dossier.states.fetch(:en_instruction))
+    state = if combined_declarative_accuse_reception?(declarative_trigger)
+      Dossier.states.fetch(:en_construction)
+    else
+      Dossier.states.fetch(:en_instruction)
+    end
+    EmailTemplatePresenterService.create_commentaire_for_state(self, state)
 
     if procedure.sva_svr_enabled?
       log_automatic_dossier_operation(:passer_en_instruction, self)
@@ -133,8 +144,14 @@ module DossierStateConcern
     end
   end
 
-  def after_commit_passer_automatiquement_en_instruction
-    NotificationMailer.send_en_instruction_notification(self).deliver_later
+  def after_commit_passer_automatiquement_en_instruction(h = {})
+    declarative_trigger = h.fetch(:declarative_trigger, false)
+
+    if combined_declarative_accuse_reception?(declarative_trigger)
+      NotificationMailer.send_depose_notification(self).deliver_later # combined accusé de réception
+    else
+      NotificationMailer.send_en_instruction_notification(self).deliver_later # depot already acknowledged, or auto archive
+    end
     NotificationMailer.send_notification_for_tiers(self).deliver_later if self.for_tiers?
     enqueue_ami_notification
     DossierNotification.destroy_notifications_by_dossier_and_type(self, :dossier_depose)
@@ -216,7 +233,13 @@ module DossierStateConcern
 
     save!
 
-    EmailTemplatePresenterService.create_commentaire_for_state(self, Dossier.states.fetch(:accepte))
+    # en_construction désigne le modèle de dépôt : le combiné porte déjà la décision
+    state = if combined_declarative_acceptation?
+      Dossier.states.fetch(:en_construction)
+    else
+      Dossier.states.fetch(:accepte)
+    end
+    EmailTemplatePresenterService.create_commentaire_for_state(self, state)
 
     log_automatic_dossier_operation(:accepter, self)
   end
@@ -224,7 +247,10 @@ module DossierStateConcern
   def after_commit_accepter_automatiquement
     enqueue_attestation_generation
 
-    if procedure.accuse_lecture?
+    if combined_declarative_acceptation?
+      # the combined accusé de réception announces the acceptation, accusé de lecture included
+      NotificationMailer.send_depose_notification(self).deliver_later
+    elsif procedure.accuse_lecture?
       NotificationMailer.send_accuse_lecture_notification(self).deliver_later
     else
       NotificationMailer.send_accepte_notification(self).deliver_later
@@ -408,6 +434,20 @@ module DossierStateConcern
   end
 
   private
+
+  # Seul le dépôt déclaratif porte l’accusé de réception : l’auto archivage et
+  # la sva empruntent la même transition et gardent le passage en instruction.
+  # D’où le drapeau, que seuls le dépôt et son cron de rattrapage passent.
+  def combined_declarative_accuse_reception?(declarative_trigger)
+    declarative_trigger && procedure.send_combined_declarative_email? && procedure.declarative_en_instruction?
+  end
+
+  # L’acceptation automatique se passe de drapeau : son guard réserve déjà la
+  # transition au premier déclenchement déclaratif, et rien ne remet ensuite
+  # declarative_triggered_at à nil.
+  def combined_declarative_acceptation?
+    procedure.send_combined_declarative_email? && procedure.declarative_accepte?
+  end
 
   def remove_not_in_revision_champs!
     champ_data.where.not(stable_id: revision_stable_ids).where(stream: Dossier::MAIN_STREAM).destroy_all

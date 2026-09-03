@@ -132,7 +132,9 @@
         'aria-label': 'Tags',
         'aria-describedby': 'procedure-tags'
 
-  %details.procedure-form__options-details
+  -# Replié par défaut : seul un lien qui pointe explicitement la section
+  -# l’ouvre, l’ancre seule ne parvenant jamais au serveur.
+  %details.procedure-form__options-details{ open: params[:section] == 'options-avancees' }
     %summary.procedure-form__options-summary
       %h3.fr-h6 Options avancées
     .card

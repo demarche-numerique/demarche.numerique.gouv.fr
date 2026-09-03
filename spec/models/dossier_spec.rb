@@ -1634,6 +1634,7 @@ describe Dossier, type: :model do
 
     before do
       allow(NotificationMailer).to receive(:send_accepte_notification).and_return(double(deliver_later: true))
+      allow(NotificationMailer).to receive(:send_depose_notification).and_return(double(deliver_later: true))
 
       travel_to(now)
     end
@@ -1658,7 +1659,7 @@ describe Dossier, type: :model do
         expect(subject).to be_accepte
         expect(last_operation.operation).to eq('accepter')
         expect(last_operation.automatic_operation?).to be_truthy
-        expect(NotificationMailer).to have_received(:send_accepte_notification).with(dossier)
+        expect(NotificationMailer).to have_received(:send_depose_notification).with(dossier)
         expect(subject.attestation).to be_present
       end
     end

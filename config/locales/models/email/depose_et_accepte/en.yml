@@ -1,0 +1,7 @@
+en:
+  activerecord:
+    models:
+      email:
+        depose_et_accepte:
+          default_subject: Your file n° %{dossier_number} has been successfully submitted and accepted (%{procedure_libelle})
+          proof_of_receipt: Acknowledgment of receipt with automatic switch to the "Accepted" status

@@ -55,12 +55,12 @@ RSpec.describe NotificationMailer, type: :mailer do
     end
   end
 
-  describe 'send_en_construction_notification' do
+  describe 'send_depose_notification' do
     before { stub_request(:post, WEASYPRINT_URL).to_return(body: '%PDF-1.4 fake') }
 
     let(:dossier) { create(:dossier, :en_construction, :with_individual, user: user, procedure:) }
 
-    subject(:mail) { described_class.send_en_construction_notification(dossier) }
+    subject(:mail) { described_class.send_depose_notification(dossier) }
 
     let(:body) { (mail.html_part || mail).body }
 
@@ -126,7 +126,7 @@ RSpec.describe NotificationMailer, type: :mailer do
 
       let(:dossier) { create(:dossier, :en_construction, :with_individual, user: user, procedure:) }
 
-      subject(:mail) { described_class.send_en_construction_notification(dossier) }
+      subject(:mail) { described_class.send_depose_notification(dossier) }
 
       it 'includes the JDMA feedback link with source=email and the Services Publics + logo' do
         expect(body).to include('nd_source=email')
@@ -168,7 +168,7 @@ RSpec.describe NotificationMailer, type: :mailer do
       let(:monavis_embed) { nil }
       let(:dossier) { create(:dossier, :en_construction, :with_individual, user: user, procedure:) }
 
-      subject(:mail) { described_class.send_en_construction_notification(dossier) }
+      subject(:mail) { described_class.send_depose_notification(dossier) }
 
       before do
         stub_request(:post, WEASYPRINT_URL).to_return(body: '%PDF-1.4 fake')
@@ -178,6 +178,25 @@ RSpec.describe NotificationMailer, type: :mailer do
 
       it 'omits the feedback block rather than falling back' do
         expect(body).not_to include('Comment s’est passée cette démarche ?')
+      end
+    end
+
+    context 'on the combined declarative email, sent once the dossier is processed' do
+      let(:monavis_embed) { nil }
+      let(:procedure) { create(:simple_procedure, :with_service, monavis_embed:, declarative_with_state: :accepte) }
+      let(:dossier) { create(:dossier, :accepte, :with_individual, user: user, procedure:) }
+
+      subject(:mail) { described_class.send_depose_notification(dossier) }
+
+      before do
+        stub_request(:post, WEASYPRINT_URL).to_return(body: '%PDF-1.4 fake')
+        allow(ENV).to receive(:[]).and_call_original
+        allow(ENV).to receive(:[]).with('SERVICES_PUBLICS_PLUS_URL').and_return('https://www.plus.transformation.gouv.fr/experience')
+      end
+
+      it 'falls back to the instance-wide feedback link' do
+        expect(body).to include('Comment s’est passée cette démarche ?')
+        expect(body).to include('https://www.plus.transformation.gouv.fr/experience')
       end
     end
 
