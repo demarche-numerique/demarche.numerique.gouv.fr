@@ -13,7 +13,7 @@ class Procedure::Card::APITokenComponent < ApplicationComponent
   def api_tokens_count
     [
       @procedure.specific_api_entreprise_token? || nil,
-      @procedure.api_particulier_token.presence,
+      @procedure.api_particulier_token? || nil,
     ].compact.size
   end
 end
