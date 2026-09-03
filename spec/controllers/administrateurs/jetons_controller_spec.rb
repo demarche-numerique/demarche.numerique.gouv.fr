@@ -123,6 +123,17 @@ describe Administrateurs::JetonsController, type: :controller do
           expect(procedure.reload.api_particulier_token?).to be(false)
         end
       end
+
+      context "when jeton has already expired" do
+        let(:token) { JWT.encode({ exp: 2.days.ago.to_i }, nil, 'none') }
+
+        it 'rejects the jeton' do
+          subject
+          expect(flash.alert).to eq("Mise à jour impossible : le jeton n’est pas valide")
+          expect(response.body).to include("a expiré le")
+          expect(procedure.reload.api_particulier_token?).to be(false)
+        end
+      end
     end
 
     describe 'DELETE #destroy_particulier' do

@@ -93,6 +93,7 @@ fr:
           attributes:
             api_particulier_token:
               invalid: 'n’est pas valide (format attendu : v3)'
+              expired: 'a expiré le %{date}'
             public_draft_type_de_champs:
               format: 'Le champ %{message}'
               invalid_condition: "a une logique conditionnelle invalide"

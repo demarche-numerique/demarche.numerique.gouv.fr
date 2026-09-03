@@ -396,10 +396,20 @@ describe Procedure do
     context 'api_particulier_token' do
       let(:jwt_token) { JWT.encode({ exp: 2.months.from_now.to_i }, nil, 'none') }
       let(:legacy_token) { "3841b13fa8032ed3c31d160d3437a76a" }
+      let(:expired_token) { JWT.encode({ exp: 1.day.ago.to_i }, nil, 'none') }
 
       it do
         is_expected.to allow_value(jwt_token).for(:api_particulier_token)
         is_expected.not_to allow_value(legacy_token).for(:api_particulier_token)
+        is_expected.not_to allow_value(expired_token).for(:api_particulier_token)
+      end
+
+      it 'still saves a procedure whose stored token has expired since' do
+        procedure = create(:procedure, api_particulier_token: jwt_token)
+
+        travel_to(3.months.from_now) do
+          expect(procedure.update(libelle: 'renamed')).to be(true)
+        end
       end
 
       it 'still saves a procedure whose stored token is a legacy key' do

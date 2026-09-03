@@ -87,6 +87,7 @@ en:
           attributes:
             api_particulier_token:
               invalid: 'is not valid (expected format: v3)'
+              expired: 'expired on %{date}'
             public_draft_type_de_champs:
               format: 'Public field %{message}'
               invalid_condition: "have an invalid logic"
