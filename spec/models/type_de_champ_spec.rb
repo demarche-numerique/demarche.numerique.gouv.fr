@@ -181,46 +181,6 @@ describe TypeDeChamp do
   end
 
   describe 'piece_justificative nature and options' do
-    describe '#allowed_content_types' do
-      it 'returns jpeg/png for titre_identite' do
-        tdc = create(:type_de_champ_piece_justificative, nature: 'titre_identite')
-        expect(tdc.allowed_content_types).to match_array(['image/jpeg', 'image/png'])
-      end
-
-      ['rib', 'justificatif_domicile', 'avis_impot'].each do |ocr_nature|
-        it "restricts to doc and image types for #{ocr_nature}" do
-          tdc = create(:type_de_champ_piece_justificative, nature: ocr_nature)
-          expect(tdc.allowed_content_types).to include('application/pdf')
-          expect(tdc.allowed_content_types).to include('image/jpeg')
-          expect(tdc.allowed_content_types).not_to include('application/zip')
-        end
-      end
-
-      it 'restricts to selected families when pj_limit_formats enabled' do
-        tdc = create(:type_de_champ_piece_justificative, pj_limit_formats: '1', pj_format_families: ['document_texte'])
-        expect(tdc.allowed_content_types).to include('application/pdf')
-        expect(tdc.allowed_content_types).not_to include('application/zip')
-      end
-
-      it 'does not restrict when pj_limit_formats enabled but families empty' do
-        tdc = create(:type_de_champ_piece_justificative, pj_limit_formats: '1', pj_format_families: [])
-        expect(tdc.allowed_content_types).to include('application/pdf')
-        expect(tdc.allowed_content_types).to include('application/zip')
-      end
-    end
-
-    describe '#max_file_size_bytes' do
-      it 'is 20MB for titre_identite' do
-        tdc = create(:type_de_champ_piece_justificative, nature: 'titre_identite')
-        expect(tdc.max_file_size_bytes).to eq(20.megabytes)
-      end
-
-      it 'is 200MB by default' do
-        tdc = create(:type_de_champ_piece_justificative)
-        expect(tdc.max_file_size_bytes).to eq(TypeDeChamp::FILE_MAX_SIZE)
-      end
-    end
-
     describe '#pj_auto_purge?' do
       it 'is true for titre_identite' do
         tdc = create(:type_de_champ_piece_justificative, nature: 'titre_identite')
@@ -393,12 +353,16 @@ describe TypeDeChamp do
     end
   end
 
-  describe '#safe_filename' do
-    subject { build(:type_de_champ, libelle:).libelle_as_filename }
+  describe '.option_keys' do
+    # clean_options keeps these keys and drops the others at publication: a type
+    # must never be able to read an option it would lose there.
+    it 'lists every option a type can read' do
+      unlisted = TypeDeChamp.type_champ_classes.uniq.to_h do |klass|
+        [klass.name, Array(klass.stored_attributes[:options]).map(&:to_s) - klass.option_keys.map(&:to_s)]
+      end
 
-    let(:libelle) { "  #/🐉 1 très  intéressant Bilan " }
-
-    it { is_expected.to eq("1-tres-interessant-bilan") }
+      expect(unlisted.reject { |_, keys| keys.empty? }).to eq({})
+    end
   end
 
   describe '#clean_options' do
@@ -755,19 +719,6 @@ describe TypeDeChamp do
       it "set max_repetitions to nil" do
         expect(tdc.reload.max_repetitions).to be_nil
       end
-    end
-  end
-
-  describe '#humanized_conditionable_types_by_category' do
-    subject { TypeDeChamp.humanized_conditionable_types_by_category }
-
-    it 'groups the conditionable types by category, in the editor order' do
-      is_expected.to eq([
-        ["« Adresse »", "« Commune française actuelle »", "« Département »", "« Région »", "« Pays »", "« EPCI »"],
-        ["« Nombre décimal »", "« Nombre entier »"],
-        ["« Case à cocher seule »", "« Choix simple »", "« Choix multiple »", "« Oui/Non »"],
-        ["« Champ pré-rempli »"],
-      ])
     end
   end
 

@@ -30,6 +30,6 @@ module RevisionDescribableToLLMConcern
     return nil unless TYPES_WITH_OPTIONS.include?(tdc.type_champ)
     return nil if tdc.options.blank?
 
-    tdc.options.slice(*tdc.class.option_keys.map(&:to_s)).presence
+    tdc.clean_options.presence
   end
 end

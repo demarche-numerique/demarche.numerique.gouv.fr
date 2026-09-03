@@ -14,7 +14,4 @@
                 Deux groupes par défaut ont été créés
               %p
                 Vous devez maintenant les renommer et leur attribuer des règles de routage à partir du ou des champs « routables » de votre formulaire, soit des champs de type :
-              %ul
-                - TypeDeChamp.humanized_conditionable_types_by_category.each do |category|
-                  %li
-                    = category.join(', ')
+              = render TypesDeChamp::ByCategoryListComponent.new(types: TypeDeChamp.conditionable_types)

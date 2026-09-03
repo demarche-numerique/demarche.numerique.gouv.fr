@@ -1,7 +1,7 @@
 <%= tag.li(**html_options.merge(class: ["type-de-champ flex column justify-start fr-mb-5v", html_options[:class]])) do %>
   <div
     class="type-de-champ-container"
-    id="<%= dom_id(type_de_champ.stable_self, :editor_error) %>"
+    id="<%= dom_id(type_de_champ, :editor_error) %>"
   >
     <% if @errors.present? %>
       <div class="types-de-champ-errors"><%= @errors %></div>

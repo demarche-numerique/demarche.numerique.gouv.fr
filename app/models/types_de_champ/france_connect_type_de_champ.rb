@@ -58,6 +58,9 @@ class TypesDeChamp::FranceConnectTypeDeChamp < TypeDeChamp
     FILL_DURATION_MEDIUM
   end
 
+  # the justificatif uploaded when the data cannot be fetched
+  def max_file_size_bytes = TypesDeChamp::PieceJustificativeTypeDeChamp::FILE_MAX_SIZE
+
   def typed_champ_blank?(champ)
     return true if champ.fetched? && champ.fc_data_approved?.nil?
     return false if champ.fc_data_correct?

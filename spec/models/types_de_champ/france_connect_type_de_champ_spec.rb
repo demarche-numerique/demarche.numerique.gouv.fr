@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 describe TypesDeChamp::FranceConnectTypeDeChamp do
+  describe '#max_file_size_bytes' do
+    it 'caps the fallback justificatif like a pièce justificative' do
+      expect(build(:type_de_champ_quotient_familial).max_file_size_bytes).to eq(200.megabytes)
+    end
+  end
+
   context "when type de champ is quotient_famiilial" do
     describe '#champ_blank?' do
       let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :quotient_familial }]) }

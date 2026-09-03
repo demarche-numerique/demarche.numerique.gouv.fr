@@ -93,8 +93,6 @@ module ProcedureCloneConcern
   def clone(options: nil, admin:)
     options = default_options.merge(options || {})
 
-    populate_champ_stable_ids
-
     procedure = self.deep_clone(include: cloneable_associations(options, admin)) do |original, kopy|
       ClonePiecesJustificativesService.clone_attachments(original, kopy)
       if original.is_a?(TypeDeChamp) && original.type_champ == 'referentiel'
@@ -147,15 +145,6 @@ module ProcedureCloneConcern
   end
 
   private
-
-  def populate_champ_stable_ids
-    TypeDeChamp
-      .joins(:revisions)
-      .where(procedure_revisions: { procedure_id: id }, stable_id: nil)
-      .find_each do |type_de_champ|
-        type_de_champ.update_column(:stable_id, type_de_champ.id)
-      end
-  end
 
   def same_admin?(admin)
     @same_admin ||= admin.owns?(self)

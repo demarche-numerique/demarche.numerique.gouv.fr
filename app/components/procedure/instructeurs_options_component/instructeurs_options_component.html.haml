@@ -45,10 +45,7 @@
       %i.fr-mt-2w= t('.routing_configured_html', groupe_instructeurs_count: @procedure.groupe_instructeurs.count)
   - if @procedure.active_revision.conditionable_type_de_champs.none?
     %p.fr-mt-2w.fr-mb-0= t('.routing_configuration_notice_2_html')
-    %ul
-      - TypeDeChamp.humanized_conditionable_types_by_category.each do |category|
-        %li
-          = category.join(', ')
+    = render TypesDeChamp::ByCategoryListComponent.new(types: TypeDeChamp.conditionable_types)
     %p.fr-mt-2w= t('.routing_configuration_notice_3_html', path: champs_admin_procedure_path(@procedure))
   - elsif @procedure.groupe_instructeurs.active.one?
     = link_to t('.configure_routing'), options_admin_procedure_groupe_instructeurs_path(@procedure, state: :choix), class: 'fr-btn'

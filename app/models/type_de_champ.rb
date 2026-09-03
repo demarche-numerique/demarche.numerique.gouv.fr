@@ -6,13 +6,7 @@ class TypeDeChamp < ApplicationRecord
   self.inheritance_column = :type_champ
   class_attribute :boolean_option_keys, default: [].freeze
 
-  FILE_MAX_SIZE = 200.megabytes
-  MINIMUM_TEXTAREA_CHARACTER_LIMIT_LENGTH = 400
-
-  FILL_DURATION_SHORT  = 10.seconds
-  FILL_DURATION_MEDIUM = 1.minute
-  FILL_DURATION_LONG   = 3.minutes
-  READ_WORDS_PER_SECOND = 140.0 / 60 # 140 words per minute
+  include EstimatedDurationConcern
 
   STRUCTURE = :structure
   ETAT_CIVIL = :etat_civil
@@ -110,7 +104,7 @@ class TypeDeChamp < ApplicationRecord
 
   after_create :populate_stable_id
 
-  before_validation :check_mandatory
+  before_validation :enforce_mandatory_constraints
   before_validation :set_default_libelle, if: -> { type_champ_changed? }
 
   normalizes :libelle, with: -> (value) { value.strip }
@@ -125,19 +119,6 @@ class TypeDeChamp < ApplicationRecord
     else
       libelle
     end
-  end
-
-  def set_default_libelle
-    libelle_was_default = libelle == default_libelle(type_champ_was)
-    self.libelle = default_libelle(type_champ) if libelle.blank? || libelle_was_default
-  end
-
-  def default_libelle(type_champ)
-    return if type_champ.blank?
-
-    I18n.t(type_champ,
-      scope: [:activerecord, :attributes, :type_de_champ, :default_libelle],
-      default: I18n.t(type_champ, scope: [:activerecord, :attributes, :type_de_champ, :type_champs]), app_name: APPLICATION_NAME)
   end
 
   def libelle_optionnal? = false
@@ -171,13 +152,6 @@ class TypeDeChamp < ApplicationRecord
     becomes(self.class.find_sti_class(new_type_champ))
   end
 
-  def check_mandatory
-    return if mandatory_changed?
-
-    self.mandatory = false if non_fillable? || cannot_be_mandatory?
-    self.mandatory = true if must_be_mandatory?
-  end
-
   def only_present_on_draft?
     revisions.one? && revisions.first.draft?
   end
@@ -186,13 +160,9 @@ class TypeDeChamp < ApplicationRecord
 
   def fillable? = true
 
-  def non_fillable? = !fillable?
-
   def must_be_mandatory? = false
 
   def cannot_be_mandatory? = false
-
-  def choice_type? = false
 
   def public?
     !private?
@@ -202,11 +172,11 @@ class TypeDeChamp < ApplicationRecord
 
   def api_particulier? = false
 
+  def any_drop_down_list? = false
+
   def child?(revision)
     revision.coordinate_for(self)&.child?
   end
-
-  def formatted_advanced? = false
 
   def options_for_select = nil
 
@@ -227,10 +197,6 @@ class TypeDeChamp < ApplicationRecord
     GraphQL::Schema::UniqueWithinType.encode('Champ', stable_id)
   end
 
-  def editable_options=(options)
-    self.options.merge!(options)
-  end
-
   def read_attribute_for_serialization(name)
     if name == 'id'
       stable_id
@@ -245,12 +211,8 @@ class TypeDeChamp < ApplicationRecord
     end
   end
 
-  def stable_self
-    KeyableModel.new(
-      to_key: [stable_id],
-      model_name: KeyableModel.new(param_key: model_name.param_key)
-    )
-  end
+  # dom ids follow the stable_id so they survive the revision clones
+  def to_key = ([stable_id] if stable_id)
 
   # We should refresh all champs after update except for champs using react or
   # custom refresh logic (RNA, SIRET, etc.)
@@ -263,32 +225,8 @@ class TypeDeChamp < ApplicationRecord
   def condition_value_type = :unmanaged
   def condition_options = []
 
-  def self.humanized_conditionable_types_by_category
-    humanized_types_by_category(type_champ_classes.filter(&:conditionable?))
-  end
-
-  def self.humanized_simple_routable_types_by_category
-    humanized_types_by_category(type_champ_classes.filter { _1.conditionable? && _1.simple_routable? })
-  end
-
-  def self.humanized_custom_routable_types_by_category
-    humanized_types_by_category(type_champ_classes.filter { _1.conditionable? && !_1.simple_routable? })
-  end
-
-  def self.humanized_types_by_category(klasses)
-    klasses.group_by(&:category)
-      .sort_by { |category, _| CATEGORIES.find_index(category) }
-      .map { |_, group| group.map { "« #{I18n.t(_1.sti_name, scope: [:activerecord, :attributes, :type_de_champ, :type_champs])} »" } }
-  end
-
   def public_id(row_id)
     self.class.public_id(stable_id, row_id)
-  end
-
-  def libelle_as_filename
-    libelle.gsub(/[[:space:]]+/, ' ')
-      .truncate(30, omission: '', separator: ' ')
-      .parameterize
   end
 
   def self.option_keys = []
@@ -321,7 +259,6 @@ class TypeDeChamp < ApplicationRecord
     options.slice(*self.class.option_keys.map(&:to_s))
   end
 
-  def max_file_size_bytes = FILE_MAX_SIZE
   def allowed_content_types = AUTHORIZED_CONTENT_TYPES
 
   def champ_value(champ)
@@ -437,27 +374,6 @@ class TypeDeChamp < ApplicationRecord
     paths.map { [_1[:libelle], _1[:path]] }
   end
 
-  # Default estimated duration to fill the champ in a form, in seconds.
-  # May be overridden by subclasses.
-  def estimated_fill_duration(revision)
-    if fillable?
-      FILL_DURATION_SHORT
-    else
-      0.seconds
-    end
-  end
-
-  def estimated_read_duration
-    return 0.seconds if description.blank?
-
-    sanitizer = Rails::Html::Sanitizer.full_sanitizer.new
-    content = sanitizer.sanitize(description)
-
-    words = content.split(/\s+/).size
-
-    (words / READ_WORDS_PER_SECOND).round.seconds
-  end
-
   def canonical_column(procedure_id:, displayable: true, prefix: nil)
     return nil unless fillable?
 
@@ -516,6 +432,12 @@ class TypeDeChamp < ApplicationRecord
 
     def type_champ_classes = type_champs.values.map { find_sti_class(_1) }
 
+    def conditionable_types = type_champ_classes.filter(&:conditionable?)
+
+    def simple_routable_types = conditionable_types.filter(&:simple_routable?)
+
+    def custom_routable_types = conditionable_types.reject(&:simple_routable?)
+
     def sti_name = CLASS_NAME_TO_TYPE_CHAMP[name]
 
     # Forms, params, dom ids and i18n keys expect 'type_de_champ' for every subclass.
@@ -536,9 +458,26 @@ class TypeDeChamp < ApplicationRecord
   CHAMP_TYPE_TO_TYPE_CHAMP = type_champs.values.index_by { type_champ_to_champ_class_name(_1) }
   CLASS_NAME_TO_TYPE_CHAMP = type_champs.values.index_by { type_champ_to_class_name(_1) }
 
-  def any_drop_down_list? = false
-
   private
+
+  def set_default_libelle
+    old_default, new_default = [type_champ_was, type_champ].map do |type_champ|
+      next if type_champ.blank?
+
+      I18n.t(type_champ,
+        scope: [:activerecord, :attributes, :type_de_champ, :default_libelle],
+        default: I18n.t(type_champ, scope: [:activerecord, :attributes, :type_de_champ, :type_champs]), app_name: APPLICATION_NAME)
+    end
+
+    self.libelle = new_default if libelle.blank? || libelle == old_default
+  end
+
+  def enforce_mandatory_constraints
+    return if mandatory_changed?
+
+    self.mandatory = false if !fillable? || cannot_be_mandatory?
+    self.mandatory = true if must_be_mandatory?
+  end
 
   # A value written by a multiple drop-down list, read after a type change.
   def champ_text_value(champ)

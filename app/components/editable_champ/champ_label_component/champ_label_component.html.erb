@@ -8,7 +8,7 @@
       <%= render SimpleFormatComponent.new(@champ.description, allow_a: true) %>
     </div>
   <% end %>
-  <% if @champ.type_de_champ.formatted_advanced? && @champ.type_de_champ.expression_reguliere_indications.present? %>
+  <% if @champ.formatted? && @champ.type_de_champ.formatted_advanced? && @champ.type_de_champ.expression_reguliere_indications.present? %>
     <div class="fr-hint-text" id="<%= @champ.describedby_id %>">
       <%= @champ.type_de_champ.expression_reguliere_indications %>
     </div>

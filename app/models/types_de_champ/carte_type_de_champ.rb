@@ -41,6 +41,10 @@ class TypesDeChamp::CarteTypeDeChamp < TypeDeChamp
     end.sort
   end
 
+  def editable_options=(options)
+    self.options.merge!(options)
+  end
+
   def editable_options
     layers = LAYERS.map do |layer|
       disabled = case layer
