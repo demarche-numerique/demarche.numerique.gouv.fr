@@ -6,7 +6,7 @@ namespace :lint do
     sh "bundle exec rubocop --parallel"
     sh "bundle exec haml-lint app/views/ app/components/"
     sh "bundle exec i18n-tasks missing --locales fr"
-    sh "bundle exec i18n-tasks unused --locale en" # TODO: check for all locales
+    sh "bundle exec i18n-tasks unused"
     sh "bundle exec i18n-tasks check-consistent-interpolations"
 
     # Invoked in-process rather than shelled out: these are plain file scans,

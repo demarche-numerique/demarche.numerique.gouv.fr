@@ -22,12 +22,12 @@ data:
     - app/components/**/*%{locale}.yml
 
   # Locale files to write new keys to, based on a list of key pattern => file rules. Matched from top to bottom:
-  # `i18n-tasks normalize -p` will force move the keys according to these rules
+  # `i18n-tasks normalize -p` will force move the keys according to these rules.
+  # Component sidecar files are read-only for i18n-tasks: never route writes to app/components.
   write:
-    ## For example, write devise and simple form keys to their respective files:
-    # - ['{devise, simple_form}.*', 'config/locales/\1.%{locale}.yml']
-    ## Catch-all default:
-    # - config/locales/%{locale}.yml
+    - ['views.{users,instructeurs,administrateurs,shared}.*', 'config/locales/views/\1/%{locale}.yml']
+    - ['{errors,utils,shared,layouts,helpers,activerecord,activemodel}.*', 'config/locales/%{locale}.yml']
+    - config/locales/%{locale}.yml
 
   # External locale data (e.g. gems).
   # This data is not considered unused and is never written to.
@@ -118,6 +118,12 @@ ignore_unused:
   - 'editable_champ.france_connect_champ_base_component.piece_justificative_champ.*'
   - 'errors.format'
   - 'user_mailer.*.subject'
+  - 'dossier_mailer.*.subject'
+  - 'dossier_mailer.*.subject.*' # pluralized subjects
+  - 'dossier_mailer.*.subject_termine' # t("subject_#{state}", scope: [mailer_scope, action_name])
+  - 'dossier_mailer.*.subject_termine.*'
+  - 'notification_mailer.*.subject'
+  - 'notification_mailer.*.subject.*'
   - 'groupe_gestionnaire_mailer.*.subject'
   - 'invite_mailer.*.subject'
   - 'instructeur_mailer.*.subject'
@@ -125,6 +131,8 @@ ignore_unused:
   - 'activerecord.models.*'
   - 'activerecord.attributes.*'
   - 'activemodel.attributes.map_filter.*'
+  - 'activemodel.attributes.published_procedure.*' # Administrate dashboard (manager)
+  - 'activemodel.models.*'
   - 'activemodel.attributes.justificatif_domicile.*' # used dynamically in ocr_viewer_component
   - 'activemodel.attributes.avis_impot.*' # used dynamically in ocr_viewer_component
   - 'activemodel.errors.models.*'
@@ -134,6 +142,20 @@ ignore_unused:
   - 'errors.messages.file_size_out_of_range'
   - 'errors.messages.file_empty'
   - 'pluralize.*'
+  - 'datetime.distance_in_words.*' # used by the distance_of_time_in_words / time_ago_in_words helpers
+  - 'logic.operators.*' # t(name, scope: 'logic.operators') in conditions_component
+  - 'administrateurs.carte_layers.*' # t(term, scope: [:administrateurs, :carte_layers]) in revision_changes_component
+  - 'instructeurs.dossiers.filterable_notification.*' # whole-hash lookup in ColumnsConcern
+  - 'instructeurs.instruction_button_component.action_buttons.*' # t("...action_buttons.#{key}.title") in instruction_button_helper
+  - 'instructeurs.instruction_button_component.modal.actions.*' # t("...modal.actions.#{action}") in instruction_button_helper
+  - 'manager.administrateurs.delete.*' # t(reason, scope: "manager.administrateurs.delete")
+  # used from the abstract Conditions::ConditionsComponent via t('.add_condition') etc.
+  - 'conditions.champs_conditions_component.*'
+  - 'conditions.ineligibilite_rules_component.*'
+  - 'conditions.routing_rules_component.*'
+  # scanner misses t() calls on a ternary line in instructeurs_component.html.haml
+  - 'procedure.card.instructeurs_component.title.*'
+  - 'procedure.card.instructeurs_component.routee.title.*'
   - 'views.pagination.*'
   - 'time.formats.*'
   - 'date.formats.*'

@@ -30,10 +30,6 @@ fr:
       move_down: Déplacer vers le bas
 
     champs:
-      rna:
-        association:
-          data_fetched: "Ce RNA correspond à : %{title}, %{address}"
-          invalid_number: "doit commencer par un W majuscule suivi de 9 chiffres ou lettres. Exemple : W503726238"
       drop_down_list:
         other: Entrer une autre option
         other_label: Saisir votre option

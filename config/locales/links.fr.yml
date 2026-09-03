@@ -2,8 +2,6 @@ fr:
   links:
     provider:
       provided_by: "la DINUM"
-      title: "Direction Interministérielle au Numérique"
-      url: "https://numerique.gouv.fr"
     common:
       faq:
         label: "FAQ"
@@ -47,9 +45,6 @@ fr:
       code:
         label: "Code source"
         url: "https://github.com/demarche-numerique/demarche.numerique.gouv.fr"
-      contact_technique:
-        label: "Contact technique"
-        title: "Contacter notre équipe technique"
       doc:
         label: "Documentation"
         title: "Documentation utilisateur"
@@ -78,10 +73,6 @@ fr:
         url: "https://status.demarche.numerique.gouv.fr"
       suivi:
         label: "Suivi d’audience et vie privée"
-      solidarite_numerique:
-        label: "Besoin d’aide avec vos démarches en ligne ?"
-        title: "Avez-vous besoin d’aide concernant vos démarchez informatisées, essayez solidarite-numerique.fr"
-        url: "https://www.solidarite-numerique.fr/cartographie/"
       cookies:
         label: Gestion des cookies
       contact:

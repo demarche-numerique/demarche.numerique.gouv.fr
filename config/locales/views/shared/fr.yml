@@ -31,7 +31,6 @@ fr:
         cta_email_unverified: "Renvoyer l’email de vérification"
       messages:
         remove_file: 'Supprimer le fichier'
-        remove_all: "Supprimer tous les fichiers"
       piece_justificative:
         name: "Télécharger le modèle"
       groupe_instructeurs:

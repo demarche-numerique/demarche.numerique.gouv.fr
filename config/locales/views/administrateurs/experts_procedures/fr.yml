@@ -3,7 +3,6 @@ fr:
     experts_procedures:
       index:
         titles:
-          main: Experts invités sur %{libelle}
           allow_invite_experts: "Autoriser les instructeurs à solliciter des experts"
           allow_expert_messaging: "Autoriser les experts à accéder à la messagerie usager"
           manage_procedure_experts: "Gérer les experts de la démarche avec une liste prédéfinie"

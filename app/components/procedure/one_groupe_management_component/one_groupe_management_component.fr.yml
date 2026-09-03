@@ -1,6 +1,5 @@
 ---
 fr:
-  select: Sélectionner
   move_files_confirmation: Réaffecter les dossiers à un autre groupe afin de pouvoir le supprimer
   move_files:
     zero: Réaffecter les dossiers en brouillon
@@ -10,5 +9,4 @@ fr:
     zero: Aucun dossier n’est actuellement affecté à ce groupe.
     one: "%{count} dossier est actuellement affecté à ce groupe."
     other: "%{count} dossiers sont actuellement affectés à ce groupe."
-  delete: Supprimer le groupe
   delete_confirmation: Êtes-vous sûr de vouloir supprimer le groupe "%{group_name}" ?

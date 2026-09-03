@@ -1,29 +1,3 @@
 fr:
   dynamics:
     page_title: demarche.numerique.gouv.fr
-    users:
-      connexion_title: Connexion
-      mes_dossiers: 'Mes dossiers'
-    dossiers:
-      depositaite: "Dépositaire"
-      numéro: 'Dossier n° '
-      invites:
-        title: "Personnes invitées à voir ce dossier"
-        empty: "Aucune personne invitée"
-      liste_champs: "Champs du dossier"
-    admin:
-      connexion_title: Administration
-      dossiers:
-        tableau_de_bord:
-          title: 'Gestion des démarches'
-          nouvelle_procedure: 'Nouvelle démarche'
-      menu:
-        title: Mes démarches
-        instructeurs: Instructeurs
-        procedures: Démarches
-      procedure:
-        onglets:
-          instructeurs: Instructeurs
-        onglet_instructeurs:
-          add:
-            title: 'Ajouter un instructeur'

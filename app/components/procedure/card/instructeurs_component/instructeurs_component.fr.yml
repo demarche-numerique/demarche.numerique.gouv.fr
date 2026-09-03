@@ -1,11 +1,11 @@
 ---
 fr:
   title:
-    "0": Instructeurs
+    zero: Instructeurs
     one: Instructeur
     other: Instructeurs
   routee:
     title:
-      "0": Groupe Instructeurs
+      zero: Groupe Instructeurs
       one: Groupe Instructeur
       other: Groupe Instructeurs
