@@ -86,6 +86,25 @@ describe Administrateurs::JetonsController, type: :controller do
       sign_in(admin.user)
     end
 
+    describe "GET #index" do
+      render_views
+
+      let(:procedure) { create(:procedure, :with_api_particulier_token, administrateur: admin) }
+
+      subject { get :index, params: { procedure_id: procedure.id } }
+
+      it { expect(subject.body).to include(I18n.l(2.months.from_now.to_date, format: :long)) }
+
+      context "when the token is a legacy key" do
+        before do
+          procedure.api_particulier_token = 'd7e9c9f4c3ca00caadde31f50fd4521a'
+          procedure.save(validate: false)
+        end
+
+        it { expect(subject.body).to include('Jeton invalide') }
+      end
+    end
+
     describe "GET #edit_particulier" do
       render_views
 

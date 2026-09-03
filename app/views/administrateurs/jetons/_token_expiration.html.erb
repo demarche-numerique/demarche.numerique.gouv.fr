@@ -1,0 +1,9 @@
+<% if token.invalid? %>
+  <p class="fr-badge fr-badge--error">Jeton invalide</p>
+<% elsif token.expires_at.nil? %>
+  <p class="fr-badge fr-badge--success">Sans expiration</p>
+<% else %>
+  <p class="<%= class_names('fr-badge', 'fr-badge--error': token.expired_or_expires_soon?, 'fr-badge--success': !token.expired_or_expires_soon?) %>">
+    <%= l(token.expires_at.to_date, format: :long) %>
+  </p>
+<% end %>
