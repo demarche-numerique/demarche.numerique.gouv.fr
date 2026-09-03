@@ -2,7 +2,6 @@
 
 class TiptapService
   BODY_START_CLASS = 'body-start'
-  BODY_START_MARK = " class=\"#{BODY_START_CLASS}\"".freeze
 
   # Level-0 nodes that can open the body of an attestation (everything after
   # the header and the title).
@@ -150,10 +149,8 @@ class TiptapService
   end
 
   def node_to_html(node, level)
-    if level == 0 && !@body_started && node[:type].in?(BODY_BLOCK_TYPES) && node.key?(:content)
-      @body_started = true
-      body_start_mark = BODY_START_MARK
-    end
+    body_start = level == 0 && !@body_started && node[:type].in?(BODY_BLOCK_TYPES) && node.key?(:content)
+    @body_started = true if body_start
 
     case node
     in type: 'header', content:
@@ -163,19 +160,19 @@ class TiptapService
     in type: 'headerColumn', content:, **rest
       "<div#{text_align(rest[:attrs])}>#{children(content, level + 1)}</div>"
     in type: 'paragraph', content:, **rest
-      "<p#{body_start_mark}#{text_align(rest[:attrs])}>#{children(content, level + 1)}</p>"
+      "<p#{class_list(nil, body_start)}#{text_align(rest[:attrs])}>#{children(content, level + 1)}</p>"
     in type: 'title', content:, **rest
       "<h1#{text_align(rest[:attrs])}>#{children(content, level + 1)}</h1>"
     in type: 'heading', attrs: { level: hlevel, **attrs }, content:
-      "<h#{hlevel}#{body_start_mark}#{text_align(attrs)}>#{children(content, level + 1)}</h#{hlevel}>"
+      "<h#{hlevel}#{class_list(nil, body_start)}#{text_align(attrs)}>#{children(content, level + 1)}</h#{hlevel}>"
     in type: 'bulletList', content:, **rest
-      "<ul#{class_list(rest[:attrs], body_start_mark)}>#{children(content, level + 1)}</ul>"
+      "<ul#{class_list(rest[:attrs], body_start)}>#{children(content, level + 1)}</ul>"
     in type: 'orderedList', content:, **rest
-      "<ol#{class_list(rest[:attrs], body_start_mark)}>#{children(content, level + 1)}</ol>"
+      "<ol#{class_list(rest[:attrs], body_start)}>#{children(content, level + 1)}</ol>"
     in type: 'listItem', content:
       "<li>#{list_item_body(content, level + 1)}</li>"
     in type: 'descriptionList', content:
-      "<dl#{body_start_mark}>#{children(content, level + 1)}</dl>"
+      "<dl#{class_list(nil, body_start)}>#{children(content, level + 1)}</dl>"
     in type: 'descriptionTerm', content:, **rest
       "<dt#{class_list(rest[:attrs])}>#{children(content, level + 1)}</dt>"
     in type: 'descriptionDetails', content:
@@ -191,10 +188,8 @@ class TiptapService
       end
     in type: 'pageBreak'
       level == 0 && !@body_started ? '' : '<div class="page-break"></div>'
-    in { type: type } if ["paragraph", "title", "heading"].include?(type) && !node.key?(:content)
-      '' # empty block
     else
-      # ignore unknown node types
+      # empty blocks and unknown node types
       ''
     end
   end
@@ -207,8 +202,8 @@ class TiptapService
     end
   end
 
-  def class_list(attrs, body_start_mark = nil)
-    classes = [attrs&.dig(:class).presence, body_start_mark && BODY_START_CLASS].compact
+  def class_list(attrs, body_start = false)
+    classes = [attrs&.dig(:class).presence, (BODY_START_CLASS if body_start)].compact
     " class=\"#{classes.join(' ')}\"" if classes.any?
   end
 
