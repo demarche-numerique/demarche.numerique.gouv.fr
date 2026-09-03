@@ -68,5 +68,9 @@ public/graphql/schema
 CLAUDE.local.md
 /.playwright-mcp
 
+# Hooks git locaux (lefthook n'est pas une dépendance du projet)
+lefthook.yml
+lefthook-local.yml
+
 # git worktrees
 .worktrees/
