@@ -39,15 +39,19 @@ describe DemarchesPubliquesExportService do
         zones: ["Ministère 1"],
         tags: [],
         dossiersCount: 4,
+        routingRules: nil,
         revision: {
           id: procedure.active_revision.to_typed_id,
           datePublication: procedure.published_at.iso8601,
+          ineligibilite: nil,
           champDescriptors: [
             {
               id: procedure.active_revision.public_root_type_de_champs.first.to_typed_id,
               description: procedure.active_revision.public_root_type_de_champs.first.description,
               label: procedure.active_revision.public_root_type_de_champs.first.libelle,
               required: true,
+              condition: nil,
+              conditionExpression: nil,
               __typename: "TextChampDescriptor",
             },
           ],

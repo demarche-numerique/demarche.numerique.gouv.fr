@@ -1029,6 +1029,98 @@ describe API::V2::GraphqlController do
         }
       end
 
+      context 'with a conditioned champ' do
+        let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :yes_no, libelle: 'majeur' }, { libelle: 'justificatif' }], administrateurs: [admin]) }
+        let(:variables) { { demarche: { number: procedure.id }, includeRevision: true } }
+        let(:majeur) { procedure.active_revision.public_root_type_de_champs.first }
+        let(:justificatif) { procedure.active_revision.public_root_type_de_champs.second }
+        let(:descriptors) { gql_data[:demarcheDescriptor][:revision][:champDescriptors] }
+
+        before { justificatif.update!(condition: Logic::Eq.new(Logic::ChampValue.new(majeur.stable_id), Logic::Constant.new(true))) }
+
+        it 'exposes the condition as an expression' do
+          expect(gql_errors).to be_nil
+          expect(descriptors.first).to include(condition: nil, conditionExpression: nil)
+          expect(descriptors.second).to include(
+            condition: ['=', ['champ', majeur.to_typed_id], true],
+            conditionExpression: %{(= (champ "#{majeur.to_typed_id}") true)}
+          )
+        end
+      end
+
+      context 'with ineligibilite rules' do
+        let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :integer_number, libelle: 'age' }], administrateurs: [admin]) }
+        let(:variables) { { demarche: { number: procedure.id }, includeRevision: true } }
+        let(:age) { procedure.active_revision.public_root_type_de_champs.first }
+        let(:ineligibilite) { gql_data[:demarcheDescriptor][:revision][:ineligibilite] }
+
+        it 'is null by default' do
+          expect(gql_errors).to be_nil
+          expect(ineligibilite).to be_nil
+        end
+
+        context 'when enabled' do
+          before do
+            procedure.active_revision.update!(
+              ineligibilite_enabled: true,
+              ineligibilite_message: 'Trop jeune',
+              ineligibilite_rules: Logic::LessThan.new(Logic::ChampValue.new(age.stable_id), Logic::Constant.new(18))
+            )
+          end
+
+          it 'exposes the rule as an expression' do
+            expect(gql_errors).to be_nil
+            expect(ineligibilite).to eq(
+              message: 'Trop jeune',
+              rule: ['<', ['champ', age.to_typed_id], 18],
+              ruleExpression: %{(< (champ "#{age.to_typed_id}") 18)}
+            )
+          end
+        end
+      end
+
+      context 'routing' do
+        let(:procedure) { create(:procedure, :published, :routee, public_type_de_champs: [{ type: :departements, libelle: 'departement' }], administrateurs: [admin]) }
+        let(:variables) { { demarche: { number: procedure.id } } }
+        let(:departement) { procedure.active_revision.public_root_type_de_champs.first }
+        let(:defaut) { procedure.defaut_groupe_instructeur }
+        let(:second) { procedure.groupe_instructeurs.find_by(label: 'deuxième groupe') }
+        let(:routing_rules) { gql_data[:demarcheDescriptor][:routingRules] }
+
+        context 'when routing is not enabled' do
+          let(:procedure) { create(:procedure, :published, administrateurs: [admin]) }
+
+          it 'is null' do
+            expect(gql_errors).to be_nil
+            expect(routing_rules).to be_nil
+          end
+        end
+
+        context 'when routing is enabled' do
+          before do
+            defaut.update!(routing_rule: Logic::NotEq.new(Logic::ChampValue.new(departement.stable_id), Logic::Constant.new('75')))
+            second.update!(routing_rule: Logic::Eq.new(Logic::ChampValue.new(departement.stable_id), Logic::Constant.new('75')))
+          end
+
+          it 'lists the groupes with their rules' do
+            expect(gql_errors).to be_nil
+            expect(routing_rules).to eq([
+              { number: defaut.id, label: defaut.label, defaut: true, rule: ['!=', ['champ', departement.to_typed_id], '75'], ruleExpression: %{(!= (champ "#{departement.to_typed_id}") "75")} },
+              { number: second.id, label: 'deuxième groupe', defaut: false, rule: ['=', ['champ', departement.to_typed_id], '75'], ruleExpression: %{(= (champ "#{departement.to_typed_id}") "75")} },
+            ])
+          end
+
+          context 'with a closed groupe and a groupe without rule' do
+            before do
+              second.update!(closed: true)
+              defaut.update!(routing_rule: nil)
+            end
+
+            it { expect(routing_rules).to eq([]) }
+          end
+        end
+      end
+
       context 'not found' do
         let(:variables) { { demarche: { number: 0 } } }
 

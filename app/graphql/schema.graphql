@@ -10,6 +10,16 @@ type AAHChampDescriptor implements ChampDescriptor {
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
 
   """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
+
+  """
   Description du champ.
   """
   description: String
@@ -38,6 +48,16 @@ type AEEHChampDescriptor implements ChampDescriptor {
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
 
   """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
+
+  """
   Description du champ.
   """
   description: String
@@ -64,6 +84,16 @@ type ARSChampDescriptor implements ChampDescriptor {
   Description des champs d’un bloc répétable.
   """
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
+
+  """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
 
   """
   Description du champ.
@@ -205,6 +235,16 @@ type AddressChampDescriptor implements ChampDescriptor {
   Description des champs d’un bloc répétable.
   """
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
+
+  """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
 
   """
   Description du champ.
@@ -377,6 +417,16 @@ type AnnuaireEducationChampDescriptor implements ChampDescriptor {
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
 
   """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
+
+  """
   Description du champ.
   """
   description: String
@@ -465,6 +515,16 @@ type COJOChampDescriptor implements ChampDescriptor {
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
 
   """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
+
+  """
   Description du champ.
   """
   description: String
@@ -524,6 +584,16 @@ type CarteChampDescriptor implements ChampDescriptor {
   Description des champs d’un bloc répétable.
   """
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
+
+  """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
 
   """
   Description du champ.
@@ -586,6 +656,16 @@ interface ChampDescriptor {
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
 
   """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
+
+  """
   Description du champ.
   """
   description: String
@@ -645,6 +725,16 @@ type CheckboxChampDescriptor implements ChampDescriptor {
   Description des champs d’un bloc répétable.
   """
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
+
+  """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
 
   """
   Description du champ.
@@ -735,6 +825,16 @@ type CiviliteChampDescriptor implements ChampDescriptor {
   Description des champs d’un bloc répétable.
   """
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
+
+  """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
 
   """
   Description du champ.
@@ -828,6 +928,16 @@ type CommuneChampDescriptor implements ChampDescriptor {
   Description des champs d’un bloc répétable.
   """
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
+
+  """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
 
   """
   Description du champ.
@@ -995,6 +1105,16 @@ type DateChampDescriptor implements ChampDescriptor {
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
 
   """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
+
+  """
   Description du champ.
   """
   description: String
@@ -1090,6 +1210,16 @@ type DatetimeChampDescriptor implements ChampDescriptor {
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
 
   """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
+
+  """
   Description du champ.
   """
   description: String
@@ -1164,6 +1294,16 @@ type DecimalNumberChampDescriptor implements ChampDescriptor {
   Description des champs d’un bloc répétable.
   """
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
+
+  """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
 
   """
   Description du champ.
@@ -1659,6 +1799,12 @@ type DemarcheDescriptor {
   number: Int!
   opendata: Boolean!
   revision: Revision!
+
+  """
+  Règles de routage des dossiers vers les groupes instructeurs actifs (`null` si
+  le routage n’est pas activé ; vide si aucune règle n’est encore définie).
+  """
+  routingRules: [RoutingRule!]
   service: Service
 
   """
@@ -1931,6 +2077,16 @@ type DepartementChampDescriptor implements ChampDescriptor {
   Description des champs d’un bloc répétable.
   """
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
+
+  """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
 
   """
   Description du champ.
@@ -2577,6 +2733,16 @@ type DossierLinkChampDescriptor implements ChampDescriptor {
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
 
   """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
+
+  """
   Description du champ.
   """
   description: String
@@ -3218,6 +3384,16 @@ type DropDownListChampDescriptor implements ChampDescriptor {
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
 
   """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
+
+  """
   Description du champ.
   """
   description: String
@@ -3259,6 +3435,16 @@ type EmailChampDescriptor implements ChampDescriptor {
   Description des champs d’un bloc répétable.
   """
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
+
+  """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
 
   """
   Description du champ.
@@ -3329,6 +3515,16 @@ type EngagementJuridiqueChampDescriptor implements ChampDescriptor {
   Description des champs d’un bloc répétable.
   """
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
+
+  """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
 
   """
   Description du champ.
@@ -3474,6 +3670,16 @@ type EpciChampDescriptor implements ChampDescriptor {
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
 
   """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
+
+  """
   Description du champ.
   """
   description: String
@@ -3500,6 +3706,16 @@ type EtudiantBoursierChampDescriptor implements ChampDescriptor {
   Description des champs d’un bloc répétable.
   """
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
+
+  """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
 
   """
   Description du champ.
@@ -3564,6 +3780,16 @@ type ExplicationChampDescriptor implements ChampDescriptor {
   collapsibleExplanationText: String
 
   """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
+
+  """
   Description du champ.
   """
   description: String
@@ -3617,6 +3843,16 @@ type FormattedChampDescriptor implements ChampDescriptor {
   Description des champs d’un bloc répétable.
   """
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
+
+  """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
 
   """
   Description du champ.
@@ -4072,6 +4308,16 @@ type HeaderSectionChampDescriptor implements ChampDescriptor {
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
 
   """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
+
+  """
   Description du champ.
   """
   description: String
@@ -4111,6 +4357,16 @@ type IbanChampDescriptor implements ChampDescriptor {
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
 
   """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
+
+  """
   Description du champ.
   """
   description: String
@@ -4130,6 +4386,26 @@ type IbanChampDescriptor implements ChampDescriptor {
   Type de la valeur du champ.
   """
   type: TypeDeChamp! @deprecated(reason: "Utilisez le champ `__typename` à la place.")
+}
+
+"""
+Règle d’inéligibilité d’une révision : un dossier qui la vérifie ne peut pas être déposé.
+"""
+type Ineligibilite {
+  """
+  Message affiché à l’usager lorsque le dossier est inéligible.
+  """
+  message: String!
+
+  """
+  Règle d’inéligibilité.
+  """
+  rule: LogicExpression!
+
+  """
+  Règle d’inéligibilité, rendue sous forme de s-expression.
+  """
+  ruleExpression: String!
 }
 
 type IntegerColumn implements Column {
@@ -4185,6 +4461,16 @@ type IntegerNumberChampDescriptor implements ChampDescriptor {
   Description des champs d’un bloc répétable.
   """
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
+
+  """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
 
   """
   Description du champ.
@@ -4274,6 +4560,16 @@ type LinkedDropDownListChampDescriptor implements ChampDescriptor {
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
 
   """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
+
+  """
   Description du champ.
   """
   description: String
@@ -4299,6 +4595,22 @@ type LinkedDropDownListChampDescriptor implements ChampDescriptor {
   """
   type: TypeDeChamp! @deprecated(reason: "Utilisez le champ `__typename` à la place.")
 }
+
+"""
+Expression logique en notation préfixée, encodée en tableaux JSON.
+
+Un terme est soit une référence à un champ `["champ", <id du ChampDescriptor>]`
+ou à une de ses colonnes `["column", <id du ChampDescriptor>, <colonne>]`,
+soit une constante (chaîne, nombre ou booléen), soit `null` (vide),
+soit une opération `[<opérateur>, <terme>, <terme>, …]`.
+
+Opérateurs binaires : `=`, `!=`, `<`, `<=`, `>`, `>=`, `empty?`, `includes`, `excludes`,
+`in-departement`, `not-in-departement`, `in-region`, `not-in-region`.
+Opérateurs n-aires : `and`, `or`.
+
+Exemple : `["and", ["=", ["champ", "Q2hhbXAtMQ=="], "oui"], [">=", ["champ", "Q2hhbXAtMg=="], 18]]`
+"""
+scalar LogicExpression
 
 type Message {
   attachment: File @deprecated(reason: "Utilisez le champ `attachments` à la place.")
@@ -4349,6 +4661,16 @@ type MultipleDropDownListChampDescriptor implements ChampDescriptor {
   Description des champs d’un bloc répétable.
   """
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
+
+  """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
 
   """
   Description du champ.
@@ -4720,6 +5042,16 @@ type NumberChampDescriptor implements ChampDescriptor {
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
 
   """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
+
+  """
   Description du champ.
   """
   description: String
@@ -4842,6 +5174,16 @@ type PaysChampDescriptor implements ChampDescriptor {
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
 
   """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
+
+  """
   Description du champ.
   """
   description: String
@@ -4917,6 +5259,16 @@ type PhoneChampDescriptor implements ChampDescriptor {
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
 
   """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
+
+  """
   Description du champ.
   """
   description: String
@@ -4984,6 +5336,16 @@ type PieceJustificativeChampDescriptor implements ChampDescriptor {
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
 
   """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
+
+  """
   Description du champ.
   """
   description: String
@@ -5015,6 +5377,16 @@ type PreRempliChampDescriptor implements ChampDescriptor {
   Description des champs d’un bloc répétable.
   """
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
+
+  """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
 
   """
   Description du champ.
@@ -5131,6 +5503,16 @@ type QuotientFamilialChampDescriptor implements ChampDescriptor {
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
 
   """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
+
+  """
   Description du champ.
   """
   description: String
@@ -5198,6 +5580,16 @@ type RNAChampDescriptor implements ChampDescriptor {
   Description des champs d’un bloc répétable.
   """
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
+
+  """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
 
   """
   Description du champ.
@@ -5269,6 +5661,16 @@ type RNFChampDescriptor implements ChampDescriptor {
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
 
   """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
+
+  """
   Description du champ.
   """
   description: String
@@ -5295,6 +5697,16 @@ type ReferentielChampDescriptor implements ChampDescriptor {
   Description des champs d’un bloc répétable.
   """
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
+
+  """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
 
   """
   Description du champ.
@@ -5361,6 +5773,16 @@ type RegionChampDescriptor implements ChampDescriptor {
   Description des champs d’un bloc répétable.
   """
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
+
+  """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
 
   """
   Description du champ.
@@ -5430,6 +5852,16 @@ type RepetitionChampDescriptor implements ChampDescriptor {
   champDescriptors: [ChampDescriptor!]
 
   """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
+
+  """
   Description du champ.
   """
   description: String
@@ -5465,6 +5897,41 @@ type Revision {
   """
   datePublication: ISO8601DateTime
   id: ID!
+
+  """
+  Règle d’inéligibilité de la révision (`null` si elle n’est pas activée).
+  """
+  ineligibilite: Ineligibilite
+}
+
+"""
+Un groupe instructeur et la règle qui lui affecte des dossiers.
+"""
+type RoutingRule {
+  """
+  Groupe qui reçoit les dossiers qu’aucune règle ne route.
+  """
+  defaut: Boolean!
+
+  """
+  Libellé du groupe instructeur.
+  """
+  label: String!
+
+  """
+  Le numero du groupe instructeur.
+  """
+  number: Int!
+
+  """
+  Règle de routage.
+  """
+  rule: LogicExpression!
+
+  """
+  Règle de routage, rendue sous forme de s-expression.
+  """
+  ruleExpression: String!
 }
 
 type Row {
@@ -5557,6 +6024,16 @@ type SiretChampDescriptor implements ChampDescriptor {
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
 
   """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
+
+  """
   Description du champ.
   """
   description: String
@@ -5618,6 +6095,16 @@ type TextChampDescriptor implements ChampDescriptor {
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
 
   """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
+
+  """
   Description du champ.
   """
   description: String
@@ -5659,6 +6146,16 @@ type TextareaChampDescriptor implements ChampDescriptor {
   Description des champs d’un bloc répétable.
   """
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
+
+  """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
 
   """
   Description du champ.
@@ -5721,6 +6218,16 @@ type TitreIdentiteChampDescriptor implements ChampDescriptor {
   Description des champs d’un bloc répétable.
   """
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
+
+  """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
 
   """
   Description du champ.
@@ -6144,6 +6651,16 @@ type YesNoChampDescriptor implements ChampDescriptor {
   Description des champs d’un bloc répétable.
   """
   champDescriptors: [ChampDescriptor!] @deprecated(reason: "Utilisez le champ `RepetitionChampDescriptor.champ_descriptors` à la place.")
+
+  """
+  Condition d’affichage du champ (`null` si le champ est toujours affiché).
+  """
+  condition: LogicExpression
+
+  """
+  Condition d’affichage du champ, rendue sous forme de s-expression.
+  """
+  conditionExpression: String
 
   """
   Description du champ.

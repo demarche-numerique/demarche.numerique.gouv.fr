@@ -8,6 +8,13 @@ module Types
 
     field :champ_descriptors, [Types::ChampDescriptorType], null: false, method: :public_revision_type_de_champs
     field :annotation_descriptors, [Types::ChampDescriptorType], null: false
+    field :ineligibilite, Types::IneligibiliteType, "Règle d’inéligibilité de la révision (`null` si elle n’est pas activée).", null: true
+
+    def ineligibilite
+      if object.ineligibilite_enabled? && object.ineligibilite_rules.present?
+        object
+      end
+    end
 
     def annotation_descriptors
       if context.authorized_demarche?(object.procedure)

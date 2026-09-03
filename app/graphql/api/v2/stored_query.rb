@@ -474,6 +474,13 @@ class API::V2::StoredQuery
     revision @include(if: $includeRevision) {
       ...RevisionFragment
     }
+    routingRules {
+      number
+      label
+      defaut
+      rule
+      ruleExpression
+    }
   }
 
   fragment DeletedDossierFragment on DeletedDossier {
@@ -503,6 +510,11 @@ class API::V2::StoredQuery
   fragment RevisionFragment on Revision {
     id
     datePublication
+    ineligibilite {
+      message
+      rule
+      ruleExpression
+    }
     champDescriptors {
       ...ChampDescriptorFragment
       ... on RepetitionChampDescriptor {
@@ -527,6 +539,8 @@ class API::V2::StoredQuery
     label
     description
     required
+    condition
+    conditionExpression
     ... on DropDownListChampDescriptor {
       options
       otherOption
