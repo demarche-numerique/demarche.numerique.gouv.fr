@@ -5,10 +5,11 @@ require "rails_helper"
 module Maintenance
   RSpec.describe T20250820migrateOldFilterFormatTask do
     describe "#process" do
-      let(:procedure) { create(:procedure) }
-      let(:procedure_id) { procedure.id }
-      let(:instructeur) { create(:instructeur) }
-      let(:assign_to) { create(:assign_to, procedure: procedure, instructeur: instructeur) }
+      let_it_be(:procedure) { procedures.individual }
+      # instructeurs.admin, not .default: the latter is already assigned to
+      # procedures.individual by the seeds, so a second assign_to would clash.
+      let_it_be(:instructeur) { instructeurs.admin }
+      let_it_be(:assign_to) { create(:assign_to, procedure: procedure, instructeur: instructeur) }
       let(:procedure_presentation) { create(:procedure_presentation, assign_to: assign_to) }
 
       subject(:process) { described_class.process(procedure_presentation) }
