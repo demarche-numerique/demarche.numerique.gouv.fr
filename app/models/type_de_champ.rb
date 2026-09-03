@@ -356,6 +356,10 @@ class TypeDeChamp < ApplicationRecord
   def typed_champ_blank?(champ) = champ.value.blank?
   def typed_champ_blank_or_invalid?(champ) = typed_champ_blank?(champ)
 
+  # true when `champ_value_for_tag` returns a block presentation (a list)
+  # rather than inline text: such a tag cannot live inside a title or heading.
+  def block_level_tag? = false
+
   def tags_for_template
     type_de_champ = self
     conditional = type_de_champ.condition.present?
@@ -365,6 +369,7 @@ class TypeDeChamp < ApplicationRecord
         id: path[:path] == :value ? "tdc#{stable_id}" : "tdc#{stable_id}/#{path[:path]}",
         conditional:,
         mandatory: mandatory?,
+        block: block_level_tag?,
         lambda: -> (dossier) { dossier.champ_value_for_tag(type_de_champ, path[:path]) }
       )
     end

@@ -544,6 +544,21 @@ RSpec.describe TiptapService do
     end
   end
 
+  describe '.mentions_within' do
+    it 'lists the mentions nested inside the given node types' do
+      json = {
+        type: 'doc',
+        content: [
+          { type: 'title', content: [{ type: 'mention', attrs: { id: 'tdc1', label: 'A' } }] },
+          { type: 'paragraph', content: [{ type: 'mention', attrs: { id: 'tdc2', label: 'B' } }] },
+          { type: 'bulletList', content: [{ type: 'listItem', content: [{ type: 'heading', attrs: { level: 2 }, content: [{ type: 'mention', attrs: { id: 'tdc3', label: 'C' } }] }] }] },
+        ],
+      }
+
+      expect(described_class.mentions_within(json, ['title', 'heading'])).to eq([['tdc1', 'A'], ['tdc3', 'C']])
+    end
+  end
+
   describe '#used_tags' do
     it 'returns used tags' do
       expect(described_class.used_tags_and_libelle_for(json)).to eq(Set.new([['name', 'Nom'], ['languages', 'Langages']]))
