@@ -12,37 +12,31 @@
     </h4>
 
     <% dossiers_by_notification_type.each do |notification_type, dossiers| %>
-      <div class="flex align-center fr-mt-1w notification-container-type">
-        <div class="fr-col-3 fr-pr-1w notification-badge">
+      <div class="flex align-start fr-mt-1w notification-container-type">
+        <div class="fr-col-6 fr-col-sm-3 fr-pr-1w notification-badge">
           <%= tag_notification(notification_type, generic: true) %>
         </div>
 
-        <div class="fr-col-9 flex align-center notification-dossiers">
-          <% dossiers.each_with_index do |dossier, dossier_index| %>
-            <div class="flex align-center notification-dossier">
-              <% if statut != 'supprimes' %>
-                <div class="fr-link fr-link--sm fr-mr-1w">
-                  <%= link_to dossier.id, instructeur_dossier_path(procedure_id, dossier.id) %>
-                </div>
-              <% else %>
-                <span class="fr-mr-1w fr-text--sm fr-mb-0">
-                  <%= dossier.id %>
-                </span>
-              <% end %>
+        <div class="fr-col-6 fr-col-sm-9 flex">
+          <ul class="flex wrap notification-dossiers">
+            <% dossiers.each_with_index do |dossier, dossier_index| %>
+              <li class="flex align-start notification-dossier">
+                <% if statut != 'supprimes' %>
+                  <%= link_to dossier.id, instructeur_dossier_path(procedure_id, dossier.id), class: "notification-dossier-contenu fr-link" %>
+                <% else %>
+                  <span class="notification-dossier-contenu">
+                    <%= dossier.id %>
+                  </span>
+                <% end %>
 
-              <div class="fr-mb-0">
-                <span class="no-wrap fr-text--sm">
+                <span class="notification-dossier-contenu fr-ml-1w">
                   <%= dossier.owner_name %>
                 </span>
-              </div>
+              </li>
+            <% end %>
 
-              <% if dossier_index != (dossiers.size - 1) %>
-                <div class="fr-mx-2w">|</div>
-              <% end %>
-            </div>
-          <% end %>
-
-          <span class="no-wrap fr-text--sm fr-text--bold fr-mb-0 notification-indicator"></span>
+            <li class="fr-text--sm notification-indicator"></li>
+          </ul>
         </div>
       </div>
     <% end %>

@@ -6,7 +6,7 @@ export class TruncateNotificationsController extends ApplicationController {
       this.calculateNotificationContainerWidth();
 
     const notifications = document.querySelectorAll<HTMLElement>(
-      '.notification-dossiers'
+      '.notification-container-type'
     );
     notifications.forEach((notificationType) => {
       const notificationDossiers = Array.from(
@@ -25,7 +25,7 @@ export class TruncateNotificationsController extends ApplicationController {
         if (usedWidth < notificationContainerWidth) {
           visibleCount++;
         } else {
-          const hiddenCount = notificationDossiers.length - visibleCount - 1;
+          const hiddenCount = notificationDossiers.length - visibleCount;
           truncateContainer = this.truncateNotification(
             truncateContainer,
             hiddenCount,
@@ -38,13 +38,11 @@ export class TruncateNotificationsController extends ApplicationController {
   }
 
   private calculateNotificationContainerWidth() {
-    const container = document.querySelector<HTMLElement>(
-      '.notification-container-type'
-    );
     const notificationBadge = document.querySelector<HTMLElement>(
       '.notification-badge'
     );
-    return container!.offsetWidth - notificationBadge!.offsetWidth;
+    // 1168 : `.notification-container-type` width in desktop view
+    return 1168 - notificationBadge!.offsetWidth;
   }
 
   private truncateNotification(
@@ -53,13 +51,11 @@ export class TruncateNotificationsController extends ApplicationController {
     indicator: HTMLElement,
     notification: HTMLElement
   ) {
+    notification.classList.add('hidden');
     if (truncateContainer == false) {
       if (hiddenCount > 0) {
-        indicator!.textContent = `... +${hiddenCount}`;
+        indicator!.innerHTML = `<span class="notification-dossier-contenu fr-mr-1w" aria-hidden="true">…</span><span class="notification-dossier-contenu fr-text--bold">(+ ${hiddenCount})</span>`;
       }
-      notification.style.overflow = 'hidden';
-    } else {
-      notification.classList.add('hidden');
     }
     return true;
   }
