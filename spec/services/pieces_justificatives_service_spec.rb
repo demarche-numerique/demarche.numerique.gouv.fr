@@ -206,7 +206,7 @@ describe PiecesJustificativesService do
 
       context 'with a motivation' do
         let(:dossier) { create(:dossier, :with_justificatif) }
-        let!(:witness) { create(:dossier, :with_justificatif) }
+        let(:witness) { create(:dossier, :with_justificatif) }
 
         it { expect(subject).to match_array(dossier.justificatif_motivation.attachment) }
 
@@ -227,7 +227,7 @@ describe PiecesJustificativesService do
 
       context 'with an attestation' do
         let(:dossier) { create(:dossier, :accepte, :with_attestation_acceptation) }
-        let!(:witness) { create(:dossier, :accepte, :with_attestation_acceptation) }
+        let(:witness) { create(:dossier, :accepte, :with_attestation_acceptation) }
 
         it { expect(subject).to match_array(dossier.attestation.pdf.attachment) }
         it 'uses default name for dossier directory' do
@@ -246,9 +246,9 @@ describe PiecesJustificativesService do
         let(:attestation_sociale) { dossier.etablissement.entreprise_attestation_sociale }
         let(:attestation_fiscale) { dossier.etablissement.entreprise_attestation_fiscale }
 
-        let!(:witness) { create(:dossier, :with_entreprise) }
-        let!(:witness_attestation_sociale) { witness.etablissement.entreprise_attestation_sociale }
-        let!(:witness_attestation_fiscale) { witness.etablissement.entreprise_attestation_fiscale }
+        let(:witness) { create(:dossier, :with_entreprise) }
+        let(:witness_attestation_sociale) { witness.etablissement.entreprise_attestation_sociale }
+        let(:witness_attestation_fiscale) { witness.etablissement.entreprise_attestation_fiscale }
 
         before do
           attach_file(attestation_sociale)
