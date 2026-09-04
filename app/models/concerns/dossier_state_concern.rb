@@ -450,7 +450,9 @@ module DossierStateConcern
       next false unless champ.is_a?(Champs::PieceJustificativeChamp)
 
       begin
-        champ.titre_identite?
+        # because of revisions, champ.type can differ from champ.type_de_champ.type_champ
+        # (e.g. piece_justificative → iban): the type_de_champ then has no titre_identite?
+        champ.is_type?(champ.type_de_champ.type_champ) && champ.titre_identite?
       rescue RuntimeError
         # Champ has no type_de_champ in current revision (orphaned), skip it
         false
