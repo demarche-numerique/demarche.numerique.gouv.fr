@@ -78,7 +78,8 @@ module TagsSubstitutionConcern
       libelle: 'motivation',
       description: 'Motivation facultative associée à la décision finale d’acceptation, refus ou classement sans suite',
       lambda: -> (d) { simple_format(d.motivation) },
-      escapable: false, # sanitized by simple_format
+      tiptap_lambda: -> (d) { ChampPresentations::MultilineTextPresentation.new(d.motivation) },
+      escapable: false, # legacy: sanitized by simple_format; tiptap: the renderer escapes the text nodes
       available_for_states: Dossier::TERMINE,
     },
     {
@@ -329,7 +330,7 @@ module TagsSubstitutionConcern
 
     tags_and_libelles.each_with_object({}) do |(tag_id, libelle), substitutions|
       substitutions[tag_id] = if flat_tags[tag_id].present?
-        replace_tag(flat_tags[tag_id], dossier)
+        replace_tag(flat_tags[tag_id], dossier, tiptap: true)
       else # champ not in dossier, for example during preview on draft revision
         libelle
       end
@@ -453,8 +454,10 @@ module TagsSubstitutionConcern
     end.join('')
   end
 
-  def replace_tag(tag, dossier)
-    value = instance_exec(dossier, &tag[:lambda])
+  # `tiptap_lambda` gives a tag a structured value (a presentation) for tiptap
+  # templates, where `lambda` keeps the HTML the legacy text templates expect.
+  def replace_tag(tag, dossier, tiptap: false)
+    value = instance_exec(dossier, &(tiptap && tag[:tiptap_lambda] || tag[:lambda]))
 
     if escape_unsafe_tags? && tag.fetch(:escapable, true)
       escape_once(value)
