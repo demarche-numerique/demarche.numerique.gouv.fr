@@ -610,6 +610,19 @@ RSpec.describe Types::DossierType, type: :graphql do
   }
   GRAPHQL
 
+  describe 'dossier with traitement revision descriptors' do
+    let(:dossier) { create(:dossier, :accepte) }
+    let(:query) { DOSSIER_WITH_TRAITEMENT_REVISION_QUERY }
+    let(:variables) { { number: dossier.id } }
+
+    it 'loads the descriptors of the revision on demand' do
+      traitement = data[:dossier][:traitements].first
+      expect(traitement[:revision][:id]).to eq(dossier.revision.to_typed_id)
+      expect(traitement[:revision][:champDescriptors].map { _1[:id] }).to eq(dossier.revision.public_revision_type_de_champs.map(&:to_typed_id))
+      expect(traitement[:revision][:annotationDescriptors].map { _1[:id] }).to eq(dossier.revision.private_revision_type_de_champs.map(&:to_typed_id))
+    end
+  end
+
   describe 'dossier with traitement changed columns' do
     let(:procedure) { create(:procedure, :published, public_type_de_champs:) }
     let(:public_type_de_champs) do
@@ -894,6 +907,20 @@ RSpec.describe Types::DossierType, type: :graphql do
         state
       }
       dateExpiration
+    }
+  }
+  GRAPHQL
+
+  DOSSIER_WITH_TRAITEMENT_REVISION_QUERY = <<-GRAPHQL
+  query($number: Int!) {
+    dossier(number: $number) {
+      traitements {
+        revision {
+          id
+          champDescriptors { id }
+          annotationDescriptors { id }
+        }
+      }
     }
   }
   GRAPHQL
