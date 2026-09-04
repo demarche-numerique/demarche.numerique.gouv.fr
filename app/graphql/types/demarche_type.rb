@@ -88,7 +88,7 @@ module Types
     end
 
     def revisions
-      dataloader.with(Sources::Association, revisions: :revision_type_de_champs).load(object)
+      dataloader.with(Sources::Association, :revisions).load(object)
     end
 
     def dossiers(updated_since: nil, created_since: nil, state: nil, archived: nil, revision: nil, max_revision: nil, min_revision: nil, order:, lookahead:)

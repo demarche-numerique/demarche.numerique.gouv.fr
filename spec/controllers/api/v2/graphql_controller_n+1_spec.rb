@@ -61,6 +61,23 @@ describe API::V2::GraphqlController do
       expect(revision_queries.size).to eq(2)
     end
 
+    # The stored query only reads `traitements { revision { id datePublication } }`:
+    # the types de champ of those revisions must not be loaded. The two expected
+    # queries load the démarche's active revisions and the dossiers' revision.
+    it "does not load the types de champ of the traitements' revision" do
+      variables = { demarcheNumber: procedure.id, includeDossiers: true, includeTraitements: true, includeChamps: false, includeAnnotations: false }
+      dossier
+      revision_queries = []
+      callback = lambda { |*args| revision_queries << args.last[:sql] if args.last[:sql].include?('"procedure_revision_types_de_champ"') }
+      ActiveSupport::Notifications.subscribed(callback, "sql.active_record") do
+        post :execute, params: { queryId: query_id, variables:, operationName: operation_name }, as: :json
+      end
+
+      expect(gql_errors).to be_nil
+      expect(gql_data[:demarche][:dossiers][:nodes].first[:traitements].first[:revision][:id]).to eq(dossier.revision.to_typed_id)
+      expect(revision_queries.size).to eq(2)
+    end
+
     context "with 3 dossiers per state" do
       let(:dossiers_per_state) { 3 }
 
