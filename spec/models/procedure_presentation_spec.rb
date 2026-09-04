@@ -119,4 +119,32 @@ describe ProcedurePresentation do
       ])
     end
   end
+
+  describe '#unset_admin_default_on_procedure' do
+    let(:procedure_presentation) { create(:procedure_presentation, assign_to:) }
+
+    before do
+      procedure.update!(admin_default_procedure_presentation_id: procedure_presentation.id, admin_default_procedure_presentation_active: true)
+    end
+
+    it 'unsets the admin default before the presentation is destroyed' do
+      procedure_presentation.destroy!
+
+      expect(procedure.reload.admin_default_procedure_presentation_id).to be_nil
+      expect(procedure.admin_default_procedure_presentation_active).to be(false)
+    end
+
+    # Cron::DiscardedProceduresDeletionJob destroys presentations through the
+    # groupe_instructeur cascade of a discarded procedure: the default scope
+    # must not hide that procedure from the nullify, or the FK blocks the delete.
+    context 'when the procedure is discarded' do
+      before { procedure.discard! }
+
+      it 'still unsets the admin default' do
+        expect { procedure_presentation.destroy! }.not_to raise_error
+
+        expect(Procedure.with_discarded.find(procedure.id).admin_default_procedure_presentation_id).to be_nil
+      end
+    end
+  end
 end

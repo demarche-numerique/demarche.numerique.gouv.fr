@@ -122,7 +122,11 @@ class ProcedurePresentation < ApplicationRecord
   end
 
   def unset_admin_default_on_procedure
+    # with_discarded: the purge of a discarded procedure destroys its
+    # presentations through the groupe_instructeur cascade, and the default
+    # scope would hide that procedure from the nullify (FK violation).
     Procedure
+      .with_discarded
       .where(admin_default_procedure_presentation_id: id)
       .update_all(
         admin_default_procedure_presentation_active: false,
