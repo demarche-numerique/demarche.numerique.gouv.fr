@@ -127,6 +127,10 @@ en:
               format: "%{attribute} %{message}"
             lien_dpo:
               invalid_uri_or_email: "Fill in with an email or a link"
+            auto_archive_on:
+              greater_than: must be in the future
+            replaced_by_procedure_id:
+              other_than: can not be the procedure itself
             sva_svr:
               immutable: "SVA/SVR configuration can no longer be modified"
               declarative_incompatible: "SVA/SVR is incompatible with a declarative procedure"

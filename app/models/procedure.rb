@@ -286,7 +286,14 @@ class Procedure < ApplicationRecord
   validate :check_juridique, on: [:create, :publication]
 
   validates :replaced_by_procedure_id, presence: true, if: :closing_reason_internal_procedure?
-  validate :check_replaced_by_procedure_not_self, if: :closing_reason_internal_procedure?
+  # `presence` and `comparison` must stay in two separate `validates` calls:
+  # `comparison` reports a nil value as `:blank` too, and `allow_nil` applies to
+  # the whole call — sharing one would either duplicate the blank error or
+  # disable the presence check entirely.
+  validates :replaced_by_procedure_id,
+            comparison: { other_than: :id },
+            allow_nil: true,
+            if: :closing_reason_internal_procedure?
 
   validates :duree_conservation_dossiers_dans_ds, allow_nil: false,
                                                   numericality: {
@@ -344,7 +351,10 @@ class Procedure < ApplicationRecord
     if: -> { new_record? || created_at > Date.new(2020, 11, 13) }
 
   validates :api_particulier_token, format: { with: /\A[A-Za-z0-9\-_=.]{15,}\z/ }, allow_blank: true
-  validate :validate_auto_archive_on_in_the_future, if: :will_save_change_to_auto_archive_on?
+  validates :auto_archive_on,
+            comparison: { greater_than: -> (_) { Date.current } },
+            allow_nil: true,
+            if: :will_save_change_to_auto_archive_on?
 
   before_save :update_juridique_required
   after_save :extend_conservation_for_dossiers
@@ -728,12 +738,6 @@ class Procedure < ApplicationRecord
     end
   end
 
-  def check_replaced_by_procedure_not_self
-    if replaced_by_procedure_id == id
-      errors.add(:replaced_by_procedure_id, "ne peut pas être la procédure elle-même")
-    end
-  end
-
   def extend_conservation_for_dossiers
     return if !previous_changes.include?(:duree_conservation_dossiers_dans_ds)
     before, after = duree_conservation_dossiers_dans_ds_previous_change
@@ -922,12 +926,5 @@ class Procedure < ApplicationRecord
     return if draft_revision.validate(validation_context)
 
     draft_revision.errors.map { errors.import(_1) }
-  end
-
-  def validate_auto_archive_on_in_the_future
-    return if auto_archive_on.nil?
-    return if auto_archive_on.future?
-
-    errors.add(:auto_archive_on, 'doit être dans le futur')
   end
 end

@@ -3,8 +3,17 @@
 class Champs::DepartementChamp < Champs::TextChamp
   store_accessor :value_json,  :code_region
 
-  validate :value_in_departement_names, if: -> { !value.nil? && should_validate_in_current_context? }
-  validate :external_id_in_departement_codes, if: -> { !external_id.nil? && should_validate_in_current_context? }
+  NAMES = APIGeoService.departements.pluck(:name).freeze
+  CODES = APIGeoService.departements.pluck(:code).freeze
+
+  validates :value,
+            inclusion: { in: NAMES, message: :not_in_departement_names },
+            allow_nil: true,
+            if: :should_validate_in_current_context?
+  validates :external_id,
+            inclusion: { in: CODES, message: :not_in_departement_codes },
+            allow_nil: true,
+            if: :should_validate_in_current_context?
   before_save :store_code_region
 
   def code_region=(v)
@@ -42,18 +51,6 @@ class Champs::DepartementChamp < Champs::TextChamp
   def condition_value = { value: code, region_code: code_region }
 
   private
-
-  def value_in_departement_names
-    return if value.in?(APIGeoService.departements.pluck(:name))
-
-    errors.add(:value, :not_in_departement_names)
-  end
-
-  def external_id_in_departement_codes
-    return if external_id.in?(APIGeoService.departements.pluck(:code))
-
-    errors.add(:external_id, :not_in_departement_codes)
-  end
 
   def store_code_region
     self.code_region = code_region

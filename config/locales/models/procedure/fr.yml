@@ -135,7 +135,9 @@ fr:
             lien_dpo:
               invalid_uri_or_email: "Veuillez saisir une adresse électronique ou un lien"
             auto_archive_on:
-              future: doit être dans le futur
+              greater_than: doit être dans le futur
+            replaced_by_procedure_id:
+              other_than: ne peut pas être la procédure elle-même
             sva_svr:
               immutable: "La configuration SVA/SVR ne peut plus être modifiée"
               declarative_incompatible: "Le SVA/SVR est incompatible avec une démarche déclarative"

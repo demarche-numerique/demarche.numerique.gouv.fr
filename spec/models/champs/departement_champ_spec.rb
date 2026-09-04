@@ -32,7 +32,11 @@ describe Champs::DepartementChamp, type: :model do
       context 'when not included in the departement codes' do
         let(:external_id) { "totoro" }
 
-        it { is_expected.to be_falsey }
+        it 'reports an inclusion error on external_id' do
+          is_expected.to be_falsey
+          expect(champ.errors).to be_of_kind(:external_id, :inclusion)
+          expect(champ.errors.messages_for(:external_id)).to eq(["doit être un code de département valide"])
+        end
       end
     end
 
@@ -58,7 +62,11 @@ describe Champs::DepartementChamp, type: :model do
       context 'when not included in the departement names' do
         let(:value) { "totoro" }
 
-        it { is_expected.to be_falsey }
+        it 'reports an inclusion error on value' do
+          is_expected.to be_falsey
+          expect(champ.errors).to be_of_kind(:value, :inclusion)
+          expect(champ.errors.messages_for(:value)).to eq(["doit être un nom de département valide"])
+        end
       end
     end
   end

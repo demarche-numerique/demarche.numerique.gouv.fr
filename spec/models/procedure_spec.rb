@@ -326,6 +326,38 @@ describe Procedure do
           it { expect(procedure).to be_valid }
         end
       end
+
+      context 'replaced by another procedure in DS' do
+        let(:procedure) { procedures.brouillon }
+
+        before { procedure.closing_reason = Procedure.closing_reasons.fetch(:internal_procedure) }
+
+        context 'when the replacing procedure is missing' do
+          it 'reports a single blank error' do
+            procedure.replaced_by_procedure_id = nil
+
+            expect(procedure).not_to be_valid
+            expect(procedure.errors.where(:replaced_by_procedure_id).map(&:type)).to eq([:blank])
+          end
+        end
+
+        context 'when the replacing procedure is the procedure itself' do
+          it 'is invalid' do
+            procedure.replaced_by_procedure_id = procedure.id
+
+            expect(procedure).not_to be_valid
+            expect(procedure.errors).to be_of_kind(:replaced_by_procedure_id, :other_than)
+          end
+        end
+
+        context 'when the replacing procedure is another one' do
+          it 'is valid' do
+            procedure.replaced_by_procedure_id = procedures.individual.id
+
+            expect(procedure).to be_valid
+          end
+        end
+      end
     end
 
     context 'description' do
@@ -835,8 +867,24 @@ describe Procedure do
         it 'validates only when attribute is changed' do
           procedure.auto_archive_on = 1.day.ago
           expect(procedure).not_to be_valid
+          expect(procedure.errors).to be_of_kind(:auto_archive_on, :greater_than)
 
           procedure.save!(validate: false)
+          expect(procedure).to be_valid
+        end
+      end
+
+      context 'when auto_archive_on is today' do
+        it 'is invalid' do
+          procedure.auto_archive_on = Date.current
+          expect(procedure).not_to be_valid
+          expect(procedure.errors).to be_of_kind(:auto_archive_on, :greater_than)
+        end
+      end
+
+      context 'when auto_archive_on is removed' do
+        it 'is valid' do
+          procedure.auto_archive_on = nil
           expect(procedure).to be_valid
         end
       end

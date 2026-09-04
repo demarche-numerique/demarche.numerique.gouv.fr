@@ -199,6 +199,13 @@ Controllers are organized by user role:
   - `Tech: [description]` for purely technical changes
 - **PR description**: Short summary with essential points for reviewers, avoid excessive technical detail
 
+**Validations:**
+- Prefer a built-in validator (`comparison`, `numericality`, `inclusion`, `length`, `format`, `presence`, `uniqueness`) over a hand-written `validate :method`. Keep the custom method when it carries business logic the built-in cannot express, or when it produces several distinct errors that matter to the user.
+- Pick the cheapest form the bound allows: a frozen constant for a static list (`in: NAMES`), a symbol when the bound is read off the record (`other_than: :id`), a lambda **only** when the bound genuinely varies over time (`greater_than: -> (_) { Date.current }`, which a constant would freeze at class load). A lambda on a static list is re-evaluated at every validation for nothing.
+- `presence` and `comparison` belong in **two separate `validates` calls**, with `allow_nil: true` on the `comparison` one only. Sharing a call breaks both ways: `comparison` reports a nil value as `:blank` too, so the message shows twice; and `allow_nil` applies to the whole call, so adding it silently disables the presence check.
+- Override the default messages in i18n under `activerecord.errors.models.<model>.attributes.<attr>.<kind>` (fr **and** en) — the built-in ones quote the raw bound ("doit être supérieur à 2026-09-02").
+- Specs must assert the attribute **and** the error kind (`expect(record.errors).to be_of_kind(:attr, :kind)`), never a bare `be_invalid`. Beware: with `inclusion: { message: :custom_symbol }` the kind stays `:inclusion` — the symbol only drives the translation lookup.
+
 **Code Cleanliness:**
 - Remove dead code and commented code
 - Separate refactoring commits from feature commits
