@@ -341,6 +341,30 @@ RSpec.describe DossierStateConcern do
       end
     end
 
+    # After a revision changed the type of the champ, the champ_data row keeps
+    # its piece_justificative STI type while type_de_champ is now an IBAN,
+    # which has no titre_identite? (RAILS-MH0).
+    context 'when the revision changed the type of a titre_identite champ' do
+      let(:procedure) { create(:procedure, :published, :for_individual, public_type_de_champs: [{ type: :piece_justificative, nature: 'titre_identite', stable_id: 99 }]) }
+      let(:dossier) { create(:dossier, :en_instruction, :followed, :with_individual, procedure:) }
+      let(:instructeur) { dossier.followers_instructeurs.first }
+
+      before do
+        dossier
+        tdc = procedure.draft_revision.find_and_ensure_exclusive_use(99).becomes_type(:iban)
+        tdc.update!(type_champ: TypeDeChamp.type_champs.fetch(:iban))
+        procedure.publish_revision!(procedure.administrateurs.first)
+        perform_enqueued_jobs
+        dossier.reload
+        expect(dossier.champ_data.find_by(stable_id: 99)).to be_a(Champs::PieceJustificativeChamp)
+      end
+
+      it 'accepts the dossier without clearing the champ' do
+        expect { dossier.accepter!(instructeur: instructeur, motivation: 'ok') }.not_to raise_error
+        expect(dossier.reload).to be_accepte
+      end
+    end
+
     context 'when pj_auto_purge is enabled' do
       let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :piece_justificative, pj_auto_purge: '1' }]) }
       let(:dossier) { create(:dossier, :en_instruction, :followed, procedure:) }
