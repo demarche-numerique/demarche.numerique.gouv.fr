@@ -353,6 +353,11 @@ class TypeDeChamp < ApplicationRecord
     end
   end
 
+  # Neither is a condition predicate. typed_champ_blank? ("did the usager
+  # answer?") drives ChampData#blank?, the :missing error, "Non renseigné" in
+  # views, and export/API/tag defaults; typed_champ_blank_or_invalid? adds "is
+  # the answer usable?" and only serves validation. Conditions read
+  # ChampData#condition_value instead — do not specialize these to fix one.
   def typed_champ_blank?(champ) = champ.value.blank?
   def typed_champ_blank_or_invalid?(champ) = typed_champ_blank?(champ)
 

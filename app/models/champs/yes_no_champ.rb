@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Champs::YesNoChamp < Champs::BooleanChamp
+  def condition_value = value.blank? ? nil : true?
+
   def legend_label?
     true
   end

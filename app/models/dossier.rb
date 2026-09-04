@@ -589,9 +589,16 @@ class Dossier < ApplicationRecord
   end
 
   def can_passer_en_construction?
-    return true if !revision.ineligibilite_enabled || !revision.ineligibilite_rules
+    !ineligibilite_triggered?(filled_champs_public)
+  end
 
-    !revision.ineligibilite_rules.compute(filled_champs_public)
+  # Same rule as can_passer_en_construction?, minus the champs the usager never
+  # wrote: their implicit answer would make the rule true on an untouched
+  # brouillon. Every other champ keeps its weight.
+  def ineligibilite_triggered_by_answered_champs?
+    champs = brouillon? ? filled_champs_public.reject(&:implicit_value?) : filled_champs_public
+
+    ineligibilite_triggered?(champs)
   end
 
   def can_passer_en_instruction?
@@ -1156,6 +1163,12 @@ class Dossier < ApplicationRecord
       # commit un état partiel (champs deja batch-destroy, dossier intact).
       raise ActiveRecord::Rollback
     end
+  end
+
+  def ineligibilite_triggered?(champs)
+    return false if !revision.ineligibilite_enabled || !revision.ineligibilite_rules
+
+    revision.ineligibilite_rules.compute(champs)
   end
 
   def build_default_champs

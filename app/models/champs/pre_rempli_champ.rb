@@ -5,5 +5,5 @@ class Champs::PreRempliChamp < ChampData
     value
   end
 
-  def condition_value = selected
+  def condition_value = selected.presence
 end

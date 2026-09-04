@@ -14,14 +14,18 @@ class Logic::ChampColumnValue < Logic::Term
 
     return nil if targeted_champ.nil?
     return nil if !targeted_champ.visible?
-    return nil if targeted_champ.blank_for_condition?
+    return nil if !targeted_champ.condition_answered?
 
     column = targeted_column([targeted_champ.type_de_champ])
 
-    # if it s a dropdown champ and a dropdown tdc (no cast)
-    # and the dropdown is other, return other
-    if targeted_champ.is_type?(column.tdc_type) && targeted_champ.drop_down_list? && targeted_champ.other?
+    # Without a cast the champ answers for itself, like Logic::ChampValue: the
+    # column also feeds exports and the API, where "no answer" must stay blank.
+    if !targeted_champ.is_type?(column.tdc_type)
+      column.value(targeted_champ)
+    elsif targeted_champ.drop_down_list? && targeted_champ.other?
       Champs::DropDownListChamp::OTHER
+    elsif targeted_champ.checkbox?
+      targeted_champ.condition_value
     else
       column.value(targeted_champ)
     end

@@ -1,13 +1,9 @@
 # frozen_string_literal: true
 
 class Dossiers::InvalidIneligibiliteRulesComponent < ApplicationComponent
-  delegate :can_passer_en_construction?, to: :dossier
-
   def initialize(dossier:, wrapped: true)
     @dossier = dossier
     @revision = dossier.revision
-
-    @opened = !dossier.can_passer_en_construction?
     @wrapped = wrapped
   end
 
@@ -23,6 +19,6 @@ class Dossiers::InvalidIneligibiliteRulesComponent < ApplicationComponent
     dossier.revision.ineligibilite_message
   end
 
-  def opened? = @opened
+  def opened? = dossier.ineligibilite_triggered_by_answered_champs?
   def wrapped? = @wrapped
 end

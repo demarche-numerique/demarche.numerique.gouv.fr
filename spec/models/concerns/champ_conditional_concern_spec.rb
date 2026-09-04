@@ -77,6 +77,53 @@ describe ChampConditionalConcern do
         end
       end
     end
+
+    context 'when the condition targets a single checkbox' do
+      let(:procedure) do
+        create(:procedure, public_type_de_champs: [
+          { type: :checkbox, stable_id: 1 },
+          { type: :text, stable_id: 2, condition: },
+        ])
+      end
+      let(:dossier) { create(:dossier, procedure:) }
+      let(:checkbox) { dossier.champ_data.find { it.stable_id == 1 } }
+      let(:conditional_champ) { dossier.reload.root_champs_public.find { it.stable_id == 2 } }
+
+      context 'on « Non »' do
+        let(:condition) { ds_eq(champ_value(1), constant(false)) }
+
+        it 'is visible while the checkbox is untouched' do
+          expect(conditional_champ.visible?).to be true
+        end
+
+        it 'is visible once the checkbox has been checked then unchecked' do
+          checkbox.update!(value: 'true')
+          checkbox.update!(value: 'false')
+
+          expect(conditional_champ.visible?).to be true
+        end
+
+        it 'is hidden while the checkbox is checked' do
+          checkbox.update!(value: 'true')
+
+          expect(conditional_champ.visible?).to be false
+        end
+      end
+
+      context 'on « Oui »' do
+        let(:condition) { ds_eq(champ_value(1), constant(true)) }
+
+        it 'is hidden while the checkbox is untouched' do
+          expect(conditional_champ.visible?).to be false
+        end
+
+        it 'is visible once the checkbox is checked' do
+          checkbox.update!(value: 'true')
+
+          expect(conditional_champ.visible?).to be true
+        end
+      end
+    end
   end
 
   describe '#submitted_filled?' do

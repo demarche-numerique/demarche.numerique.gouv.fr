@@ -67,6 +67,34 @@ describe Logic::ChampColumnValue do
     end
   end
 
+  describe '#compute with a checkbox, which has no empty state unlike a yes_no' do
+    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :checkbox, libelle: 'case' }]) }
+    let(:column) { procedure.find_column(label: 'case') }
+    let(:champ_column_value) { Logic::ChampColumnValue.new(column.stable_id, column.column_id) }
+    let(:dossier) { create(:dossier, procedure:) }
+    let(:champ) { dossier.champ_data.first }
+
+    context 'when the checkbox is checked' do
+      before { champ.update!(value: 'true') }
+
+      it { expect(champ_column_value.compute([champ])).to be(true) }
+    end
+
+    context 'when the checkbox is explicitly unchecked' do
+      before { champ.update!(value: 'false') }
+
+      it { expect(champ_column_value.compute([champ])).to be(false) }
+    end
+
+    context 'when the checkbox was never touched' do
+      before { champ.update_column(:value, nil) }
+
+      it 'computes « Non », like Logic::ChampValue' do
+        expect(champ_column_value.compute([champ])).to be(false)
+      end
+    end
+  end
+
   describe '#sources' do
     it { expect(champ_column_value.sources).to eq([column.stable_id]) }
   end

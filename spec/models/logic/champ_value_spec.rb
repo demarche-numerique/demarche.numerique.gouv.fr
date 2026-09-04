@@ -92,6 +92,33 @@ describe Logic::ChampValue do
 
           it { is_expected.to eq(Champs::DropDownListChamp::OTHER) }
         end
+
+        context 'with other selected but no text, which is still an answer' do
+          let(:other) { true }
+          let(:value) { nil }
+
+          it { is_expected.to eq(Champs::DropDownListChamp::OTHER) }
+        end
+      end
+
+      context 'with blank value' do
+        let(:value) { nil }
+
+        it { is_expected.to be_nil }
+      end
+    end
+
+    context 'multiple_drop_down_list tdc' do
+      let(:tdc_type) { :multiple_drop_down_list }
+      let(:champ) { Champs::MultipleDropDownListChamp.new(value:, stable_id: tdc.stable_id, dossier:) }
+      let(:value) { '["val1"]' }
+
+      it { is_expected.to eq(['val1']) }
+
+      context 'with blank value, so that « ne contient pas » stays false' do
+        let(:value) { nil }
+
+        it { is_expected.to be_nil }
       end
     end
 
@@ -134,6 +161,18 @@ describe Logic::ChampValue do
         expect(champ_value(champ.stable_id).type([champ.type_de_champ])).to eq(:boolean)
         is_expected.to eq(true)
       end
+
+      context 'with false value' do
+        let(:value) { 'false' }
+
+        it { is_expected.to be(false) }
+      end
+
+      context 'with a blank value, an untouched box reading as unchecked' do
+        let(:value) { nil }
+
+        it { is_expected.to be(false) }
+      end
     end
 
     context 'departement tdc' do
@@ -144,6 +183,12 @@ describe Logic::ChampValue do
       it do
         expect(champ_value(champ.stable_id).type([champ.type_de_champ])).to eq(:departement_enum)
         is_expected.to eq({ value: '02', region_code: '32' })
+      end
+
+      context "with blank value, so that « n'est pas dans la région » stays false" do
+        let(:value) { nil }
+
+        it { is_expected.to be_nil }
       end
     end
 
@@ -167,6 +212,13 @@ describe Logic::ChampValue do
       it do
         is_expected.to eq({ department_code: '92', region_code: '11' })
       end
+
+      context 'with blank value' do
+        let(:code_postal) { nil }
+        let(:external_id) { nil }
+
+        it { is_expected.to be_nil }
+      end
     end
 
     context 'epci tdc' do
@@ -179,6 +231,13 @@ describe Logic::ChampValue do
       let(:external_id) { '244301016' }
 
       it { is_expected.to eq({ department_code: '43', region_code: '84' }) }
+
+      context 'with blank value' do
+        let(:code_departement) { nil }
+        let(:external_id) { nil }
+
+        it { is_expected.to be_nil }
+      end
     end
 
     describe 'errors' do

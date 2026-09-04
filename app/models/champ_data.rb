@@ -220,10 +220,21 @@ class ChampData < ApplicationRecord
     type_de_champ.champ_value(self) || ''
   end
 
-  # The value a condition compares, nil when conditions do not manage the type.
+  # The value a condition compares. Read only by Logic::ChampValue and
+  # Logic::ChampColumnValue. nil means "matches nothing": either the type is not
+  # conditionable, or the usager did not answer — the negative operators
+  # (exclude?, n_est_pas_dans_le_departement) rely on that nil.
   def condition_value = nil
 
-  def blank_for_condition? = blank?
+  # Whether the usager answered, as conditions see it. Logic::ChampColumnValue
+  # needs it separately: a column renders a value without knowing if it is an
+  # answer, and it may be a sub-column (a commune's department code) that
+  # condition_value cannot stand in for.
+  def condition_answered? = !condition_value.nil?
+
+  # True when condition_value comes from the type rather than from the usager:
+  # a row exists for every root champ from the dossier creation on.
+  def implicit_value? = false
 
   def last_write_type_champ
     TypeDeChamp::CHAMP_TYPE_TO_TYPE_CHAMP.fetch(type)

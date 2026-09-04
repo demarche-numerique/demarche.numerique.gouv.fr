@@ -39,7 +39,7 @@ class Champs::DepartementChamp < Champs::TextChamp
     super(resolution&.name)
   end
 
-  def condition_value = { value: code, region_code: code_region }
+  def condition_value = blank? ? nil : { value: code, region_code: code_region }
 
   private
 
