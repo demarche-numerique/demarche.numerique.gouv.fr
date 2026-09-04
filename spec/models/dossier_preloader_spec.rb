@@ -48,6 +48,36 @@ describe DossierPreloader do
     end
   end
 
+  describe 'all with revisions already loaded' do
+    let!(:dossiers) { [create(:dossier, procedure:)] }
+
+    def sql_touching(table, &block)
+      queries = []
+      callback = lambda { |*args| queries << args.last[:sql] if args.last[:sql].include?(table) }
+      ActiveSupport::Notifications.subscribed(callback, 'sql.active_record', &block)
+      queries
+    end
+
+    it 'reuses revisions loaded with their types de champ instead of loading them again' do
+      loaded_dossiers = Dossier.where(id: dossiers).for_api_v2.to_a
+
+      expect(sql_touching('procedure_revision') { DossierPreloader.new(loaded_dossiers).all }).to be_empty
+
+      loaded_dossier = loaded_dossiers.first
+      expect(loaded_dossier.revision.association(:procedure)).to be_loaded
+      expect(sql_touching('') { loaded_dossier.root_champs_public.map(&:type_de_champ) }).to be_empty
+    end
+
+    it 'loads revisions that are missing or loaded without their types de champ' do
+      loaded_dossiers = Dossier.where(id: dossiers).includes(:revision).to_a
+
+      queries = sql_touching('"procedure_revision_types_de_champ"') { DossierPreloader.new(loaded_dossiers).all }
+
+      expect(queries.size).to eq(1)
+      expect(sql_touching('') { loaded_dossiers.first.root_champs_public.map(&:type_de_champ) }).to be_empty
+    end
+  end
+
   describe '#in_batches (preloading for PDF/zip export)' do
     let(:instructeur) { create(:instructeur) }
     let(:expert) { experts.default }

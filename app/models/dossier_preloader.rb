@@ -61,13 +61,42 @@ class DossierPreloader
 
   private
 
-  def revisions(pj_template: false)
-    @revisions ||= ProcedureRevision.where(id: @dossiers.pluck(:revision_id, :submitted_revision_id).flatten.compact.uniq)
-      .includes(procedure: [], revision_type_de_champs: { type_de_champ: pj_template ? { piece_justificative_template_attachment: :blob, notice_explicative_attachment: :blob } : [] })
-      .index_by(&:id)
+  # Révisions indexées par id pour un batch de dossiers, mémorisées d'un batch
+  # à l'autre. Les révisions déjà chargées avec leurs `revision_type_de_champs`
+  # (ex: `Dossier.for_api_v2`) sont réutilisées : recharger les types de champ
+  # d'une révision est la requête la plus coûteuse du préchargement.
+  def revisions_for(dossiers, pj_template: false)
+    @revisions ||= {}
+    @revisions.merge!(preloaded_revisions(dossiers)) unless pj_template
+
+    missing_ids = dossiers.flat_map { [it.revision_id, it.submitted_revision_id] }.compact.uniq - @revisions.keys
+    if missing_ids.any?
+      @revisions.merge!(
+        ProcedureRevision.where(id: missing_ids)
+          .includes(procedure: [], revision_type_de_champs: { type_de_champ: pj_template ? { piece_justificative_template_attachment: :blob, notice_explicative_attachment: :blob } : [] })
+          .index_by(&:id)
+      )
+    end
+
+    @revisions
+  end
+
+  def preloaded_revisions(dossiers)
+    revisions = dossiers.filter_map do |dossier|
+      association = dossier.association(:revision)
+      revision = association.target if association.loaded?
+      revision if revision&.association(:revision_type_de_champs)&.loaded?
+    end.index_by(&:id)
+
+    if revisions.any?
+      ::ActiveRecord::Associations::Preloader.new(records: revisions.values, associations: :procedure).call
+    end
+
+    revisions
   end
 
   def load_dossiers(dossiers, pj_template: false)
+    revisions = revisions_for(dossiers, pj_template:)
     to_include = @includes_for_champ.dup
 
     blob_include = if pj_template
@@ -97,7 +126,7 @@ class DossierPreloader
     champs_by_dossier = all_champs.group_by(&:dossier_id)
 
     dossiers.each do |dossier|
-      load_dossier(dossier, champs_by_dossier[dossier.id] || [], pj_template:)
+      load_dossier(dossier, champs_by_dossier[dossier.id] || [], revisions)
     end
 
     load_etablissements(all_champs)
@@ -117,8 +146,8 @@ class DossierPreloader
     end
   end
 
-  def load_dossier(dossier, champs, pj_template: false)
-    revision = revisions(pj_template:)[dossier.revision_id]
+  def load_dossier(dossier, champs, revisions)
+    revision = revisions[dossier.revision_id]
     if revision.present?
       dossier.association(:revision).target = revision
     end

@@ -45,6 +45,22 @@ describe API::V2::GraphqlController do
       expect(query_count).to be <= MAX_QUERY_COUNT
     end
 
+    # `Procedure.for_api_v2` loads the types de champ of the démarche's active
+    # revisions, then the dossiers of the connection carry their own revision:
+    # DossierPreloader must reuse it rather than load its types de champ again.
+    it "loads the types de champ of the dossiers' revision once" do
+      variables = { demarcheNumber: procedure.id, includeDossiers: true, includeChamps: true, includeTraitements: false }
+      dossier
+      revision_queries = []
+      callback = lambda { |*args| revision_queries << args.last[:sql] if args.last[:sql].include?('"procedure_revision_types_de_champ"') }
+      ActiveSupport::Notifications.subscribed(callback, "sql.active_record") do
+        post :execute, params: { queryId: query_id, variables:, operationName: operation_name }, as: :json
+      end
+
+      expect(gql_errors).to be_nil
+      expect(revision_queries.size).to eq(2)
+    end
+
     context "with 3 dossiers per state" do
       let(:dossiers_per_state) { 3 }
 
