@@ -16,6 +16,8 @@ HEADER_LOGO_HEIGHT = ENV.fetch("HEADER_LOGO_HEIGHT", "56")
 
 # Institution logo and Marianne logo, used in emails and PDF documents (attestations, etc.).
 # Set LOGO_MARIANNE_SRC to an empty value to hide the Marianne logo entirely.
+# The Typst PDF documents only embed images from lib/typst/root/images (the
+# defaults ship there): copy custom logos alongside, or they render as their alt text.
 # DIRECTION_LABEL is displayed next to APPLICATION_NAME in document headers (e.g. "Direction Interministérielle du Numérique").
 # For deeper customization, you can override the email layout partials:
 # app/views/layouts/mailers/_dsfr_header.html.erb, _dsfr_identity.html.erb, _dsfr_footer.html.erb
