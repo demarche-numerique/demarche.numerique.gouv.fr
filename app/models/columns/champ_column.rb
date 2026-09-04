@@ -22,13 +22,16 @@ class Columns::ChampColumn < Column
   end
 
   def value(champ)
-    return if champ.nil?
-
-    # nominal case
-    if champ.is_type?(@tdc_type)
-      typed_value(champ)
+    if @tdc_type == 'yes_no' && (champ.nil? || champ.value.nil?)
+      false
     else
-      cast_value(champ)
+      return if champ.nil? # !Champs::CheckboxChamp.nil?
+
+      if champ.is_type?(@tdc_type)
+        typed_value(champ)
+      else
+        cast_value(champ)
+      end
     end
   end
 
@@ -247,7 +250,7 @@ class Columns::ChampColumn < Column
     case value
     when 'true', 'on', '1'
       true
-    when 'false'
+    when 'false',
       false
     end
   end

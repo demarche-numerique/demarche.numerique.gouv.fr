@@ -2,7 +2,7 @@
 
 describe Columns::ChampColumn do
   describe '#value' do
-    let(:procedure) { create(:procedure, :with_all_champs_mandatory) }
+    let_it_be(:procedure) { create(:procedure, :with_all_champs_mandatory) }
 
     context 'without any cast' do
       let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
@@ -176,7 +176,7 @@ describe Columns::ChampColumn do
     subject { column.filtered_ids(dossiers, { operator: 'match', value: search_terms }) }
 
     context "with a text champ" do
-      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text, mandatory: false, libelle: "text" }]) }
+      let_it_be(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text, mandatory: false, libelle: "text" }]) }
       let(:dossier_with_value) { create(:dossier, :en_instruction, procedure:) }
 
       let(:column) { procedure.find_column(label: "text") }
@@ -205,7 +205,7 @@ describe Columns::ChampColumn do
     end
 
     context "with a multiple_drop_down_list champ" do
-      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :multiple_drop_down_list, mandatory: false, libelle: "multiple_drop_down_list", options: ["Fromage", 'Fromage "blanc"'] }]) }
+      let_it_be(:procedure) { create(:procedure, public_type_de_champs: [{ type: :multiple_drop_down_list, mandatory: false, libelle: "multiple_drop_down_list", options: ["Fromage", 'Fromage "blanc"'] }]) }
       let(:dossier_with_value) { create(:dossier, :en_instruction, procedure:) }
 
       let(:column) { procedure.find_column(label: "multiple_drop_down_list") }
@@ -235,7 +235,7 @@ describe Columns::ChampColumn do
     end
 
     context "with a yes no champ not mandatory" do
-      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :yes_no, mandatory: false, libelle: "oui/non" }]) }
+      let_it_be(:procedure) { create(:procedure, public_type_de_champs: [{ type: :yes_no, mandatory: false, libelle: "oui/non" }]) }
       let(:dossier_with_yes) { create(:dossier, :en_instruction, procedure:) }
       let(:dossier_with_no) { create(:dossier, :en_instruction, procedure:) }
       let(:dossier_not_filled) { create(:dossier, :en_instruction, procedure:) }
@@ -275,7 +275,7 @@ describe Columns::ChampColumn do
     end
 
     context "with a checkbox champ not mandatory" do
-      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :checkbox, mandatory: false, libelle: "checkbox" }]) }
+      let_it_be(:procedure) { create(:procedure, public_type_de_champs: [{ type: :checkbox, mandatory: false, libelle: "checkbox" }]) }
       let(:dossier_with_checked) { create(:dossier, :en_instruction, procedure:) }
       let(:dossier_not_checked) { create(:dossier, :en_instruction, procedure:) }
 
@@ -305,7 +305,7 @@ describe Columns::ChampColumn do
     end
 
     context "with a checkbox champ not mandatory" do
-      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :checkbox, mandatory: false, libelle: "checkbox" }]) }
+      let_it_be(:procedure) { create(:procedure, public_type_de_champs: [{ type: :checkbox, mandatory: false, libelle: "checkbox" }]) }
       let(:dossier_with_checked) { create(:dossier, :en_instruction, procedure:) }
       let(:dossier_not_checked) { create(:dossier, :en_instruction, procedure:) }
 
@@ -335,7 +335,7 @@ describe Columns::ChampColumn do
     end
 
     context "with a drop_down_list champ" do
-      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :drop_down_list, libelle: "drop_down_list", options: ["Fromage", "Dessert", "Chocolat"] }]) }
+      let_it_be(:procedure) { create(:procedure, public_type_de_champs: [{ type: :drop_down_list, libelle: "drop_down_list", options: ["Fromage", "Dessert", "Chocolat"] }]) }
       let(:dossier_with_fromage) { create(:dossier, :en_instruction, procedure:) }
       let(:dossier_with_dessert) { create(:dossier, :en_instruction, procedure:) }
       let(:dossier_with_chocolat) { create(:dossier, :en_instruction, procedure:) }
@@ -367,7 +367,7 @@ describe Columns::ChampColumn do
     end
 
     context "with a pays champ" do
-      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :pays, libelle: "pays" }]) }
+      let_it_be(:procedure) { create(:procedure, public_type_de_champs: [{ type: :pays, libelle: "pays" }]) }
       let(:dossier_fr) { create(:dossier, :en_instruction, procedure:) }
       let(:dossier_de) { create(:dossier, :en_instruction, procedure:) }
 
@@ -389,7 +389,7 @@ describe Columns::ChampColumn do
     end
 
     context "with a date champ" do
-      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :date, libelle: "date" }]) }
+      let_it_be(:procedure) { create(:procedure, public_type_de_champs: [{ type: :date, libelle: "date" }]) }
 
       subject { column.filtered_ids(dossiers, filter) }
 
@@ -516,7 +516,7 @@ describe Columns::ChampColumn do
     end
 
     context "with a datetime champ" do
-      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :datetime, libelle: "datetime" }]) }
+      let_it_be(:procedure) { create(:procedure, public_type_de_champs: [{ type: :datetime, libelle: "datetime" }]) }
 
       subject { column.filtered_ids(dossiers, filter) }
 
