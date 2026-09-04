@@ -44,6 +44,55 @@ RSpec.describe Connections::DossiersConnection, type: :graphql do
     it_behaves_like 'a shape preloading champs'
   end
 
+  context 'when linked dossiers are selected' do
+    let_it_be(:procedure_with_link) { create(:procedure, :published, :for_individual, administrateurs: [admin], public_type_de_champs: [{ type: :dossier_link }]) }
+    let(:query) { LINKED_DOSSIERS_QUERY }
+
+    def execute(query)
+      API::V2::Schema.execute(query, variables: { number: procedure_with_link.id }, context: { administrateur_id: admin.id, procedure_ids: admin.reload.procedure_ids })
+    end
+
+    # Each linked dossier lives on its own procedure, so its revision and
+    # procedure are not shared with the dossiers of the connection.
+    def create_dossier_with_link
+      linked_procedure = create(:procedure, :published, :for_individual, administrateurs: [admin])
+      linked_dossier = create(:dossier, :en_construction, :with_individual, procedure: linked_procedure)
+      dossier = create(:dossier, :en_construction, :with_individual, :with_populated_champs, procedure: procedure_with_link)
+      dossier.root_champs_public.first.update(value: linked_dossier.id)
+    end
+
+    it 'does not run one query per linked dossier' do
+      create_dossier_with_link
+      count_for_one_dossier = count_queries(query)
+
+      3.times { create_dossier_with_link }
+
+      expect(count_queries(query)).to eq(count_for_one_dossier)
+    end
+  end
+
+  LINKED_DOSSIERS_QUERY = <<-GRAPHQL
+  query getDemarche($number: Int!) {
+    demarche(number: $number) {
+      dossiers {
+        nodes {
+          id
+          champs {
+            id
+            ... on DossierLinkChamp {
+              dossier {
+                id
+                state
+                demandeur { id }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  GRAPHQL
+
   NODES_CHAMPS_QUERY = <<-GRAPHQL
   query getDemarche($number: Int!) {
     demarche(number: $number) {
