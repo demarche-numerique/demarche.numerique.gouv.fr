@@ -10,7 +10,7 @@ class Procedure::ProcedureAdministrateurs::AdministrateurComponent < Application
 
   def email
     if @administrateur == current_administrateur
-      "#{@administrateur.email} (C’est vous !)"
+      "#{@administrateur.email} #{t('.its_you')}"
     else
       @administrateur.email
     end
@@ -26,11 +26,11 @@ class Procedure::ProcedureAdministrateurs::AdministrateurComponent < Application
 
   def remove_button
     if is_there_at_least_another_active_admin?
-      button_to 'Retirer',
+      button_to t(".remove"),
        admin_procedure_administrateur_path(@procedure, @administrateur),
        method: :delete,
        class: 'fr-btn fr-btn--tertiary fr-btn--sm',
-       form: { data: { turbo: true, turbo_confirm: "Retirer « #{@administrateur.email} » des administrateurs de « #{@procedure.libelle} » ?" } }
+       form: { data: { turbo: true, turbo_confirm: t(".confirm_remove", email: @administrateur.email, libelle: @procedure.libelle) } }
     end
   end
 

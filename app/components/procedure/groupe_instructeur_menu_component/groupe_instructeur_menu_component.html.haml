@@ -3,7 +3,7 @@
     .fr-col.fr-col-12.fr-col-md-3
       .fr-mb-2w.fr-ml-2w
         = link_to admin_procedure_groupe_instructeurs_path, class: 'fr-link fr-icon-arrow-left-line fr-link--icon-left' do
-          Revenir à la liste
+          = t(".back_to_list")
       = render(Dsfr::SidemenuComponent.new) do |component|
         - component.with_links(links)
     .fr-col= content
