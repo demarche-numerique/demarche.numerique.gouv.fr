@@ -178,72 +178,7 @@ module Users
     end
 
     def generate_empty_pdf(revision)
-      @revision = revision
-      @procedure = revision.procedure
-      filename = "#{@procedure.libelle}.pdf"
-
-      send_data(dossier_vide_pdf_content(revision), filename:, type: 'application/pdf')
-    rescue StandardError => e
-      # Any failure of the WeasyPrint path falls back to the proven Prawn rendering.
-      Sentry.capture_exception(e, extra: { procedure_id: @procedure.id })
-      send_data(render_dossier_vide_prawn, filename:, type: 'application/pdf')
-    end
-
-    # The renderer the procedure's flags select, each newer one falling back to
-    # the previous on any failure: the native Typst template
-    # (:dossier_vide_typst), the HTML + WeasyPrint rendering
-    # (:dossier_vide_weasyprint), the Prawn rendering.
-    def dossier_vide_pdf_content(revision)
-      if @procedure.feature_enabled?(:dossier_vide_typst)
-        begin
-          return dossier_vide_cached_pdf(revision, :typst)
-        rescue StandardError => e
-          Sentry.capture_exception(e, extra: { procedure_id: @procedure.id })
-        end
-      end
-
-      if @procedure.feature_enabled?(:dossier_vide_weasyprint)
-        dossier_vide_cached_pdf(revision, :weasyprint)
-      else
-        render_dossier_vide_prawn
-      end
-    end
-
-    # A published PDF is cached in Active Storage, behind a cache key built from
-    # everything it depends on. The draft ("test") PDF is never cached.
-    def dossier_vide_cached_pdf(revision, renderer)
-      return render_dossier_vide(revision, renderer) if revision.draft?
-
-      procedure = revision.procedure
-      cache_key = procedure.dossier_vide_pdf_cache_key_for(revision, renderer)
-
-      return procedure.dossier_vide_pdf.download if procedure.dossier_vide_pdf_fresh?(cache_key)
-
-      render_dossier_vide(revision, renderer).tap do |pdf|
-        procedure.store_dossier_vide_pdf(pdf, cache_key:)
-      rescue StandardError => e
-        # A storage failure must not cost the user the PDF just rendered.
-        Sentry.capture_exception(e, extra: { procedure_id: procedure.id })
-      end
-    end
-
-    def render_dossier_vide(revision, renderer)
-      case renderer
-      when :typst
-        TypstService.render(Typst::DossierVidePayload.new(revision))
-      when :weasyprint
-        html = render_to_string(
-          Dossiers::DossierVidePdfComponent.new(revision:),
-          layout: 'dossier_vide_pdf',
-          formats: [:html]
-        )
-
-        WeasyprintService.generate_pdf(html, { procedure_id: revision.procedure.id, path: request.path })
-      end
-    end
-
-    def render_dossier_vide_prawn
-      render_to_string(template: 'dossiers/dossier_vide', formats: [:pdf])
+      send_data(DossierVidePdfService.render(revision), filename: "#{revision.procedure.libelle}.pdf", type: 'application/pdf')
     end
   end
 end
