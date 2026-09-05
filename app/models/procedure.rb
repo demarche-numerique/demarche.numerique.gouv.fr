@@ -77,6 +77,8 @@ class Procedure < ApplicationRecord
 
   has_many :bulk_messages, dependent: :destroy
   has_many :labels, -> { order(:position, :id) }, dependent: :destroy, inverse_of: :procedure
+  has_many :webhooks, dependent: :destroy
+  has_many :webhook_events, dependent: :delete_all
 
   has_many :instructeurs_procedures, dependent: :destroy
 
@@ -646,6 +648,12 @@ class Procedure < ApplicationRecord
   end
 
   def discard_and_keep_track!(author)
+    # No webhook bookkeeping: the discarded state itself suspends the
+    # integration — emission through EmitEventService's procedure check,
+    # delivery through Webhook.deliverable — so #restore resumes it by
+    # construction, in whatever enabled/disabled state each webhook was left.
+    # The dossier hides below stay silent through their :procedure_removed
+    # reason, and the undelivered backlog ages out via event retention.
     if brouillon?
       reset!
     elsif publiee?

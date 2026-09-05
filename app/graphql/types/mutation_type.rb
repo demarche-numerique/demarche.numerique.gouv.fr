@@ -41,5 +41,12 @@ module Types
     field :demarche_supprimer_administrateur, mutation: Mutations::DemarcheSupprimerAdministrateur
     field :demarche_modifier_parametres, mutation: Mutations::DemarcheModifierParametres
     field :demarche_publier, mutation: Mutations::DemarchePublier
+
+    field :webhook_creer, mutation: Mutations::WebhookCreer
+    field :webhook_modifier, mutation: Mutations::WebhookModifier
+    field :webhook_supprimer, mutation: Mutations::WebhookSupprimer
+    field :webhook_renouveler_secret, mutation: Mutations::WebhookRenouvelerSecret
+    field :webhook_activer, mutation: Mutations::WebhookActiver
+    field :webhook_desactiver, mutation: Mutations::WebhookDesactiver
   end
 end

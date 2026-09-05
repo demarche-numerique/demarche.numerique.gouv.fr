@@ -25,6 +25,16 @@ class AdministrateurMailer < ApplicationMailer
       reply_to: CONTACT_EMAIL)
   end
 
+  def notify_webhook_auto_disabled(administrateur, webhook)
+    @webhook = webhook
+    @procedure = webhook.procedure
+    @subject = "Un webhook de votre démarche nº#{@procedure.id} a été désactivé"
+
+    mail(to: administrateur.email,
+      subject: @subject,
+      reply_to: CONTACT_EMAIL)
+  end
+
   def api_token_expiration(user, tokens)
     @subject = "Renouvellement de jeton d'API nécessaire"
     @tokens = tokens

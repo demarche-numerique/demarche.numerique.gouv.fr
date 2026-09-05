@@ -1459,6 +1459,36 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_02_100000) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  create_table "webhook_events", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "dossier_id", null: false
+    t.string "event_type", null: false
+    t.bigint "procedure_id", null: false
+    t.index ["created_at"], name: "index_webhook_events_on_created_at"
+    t.index ["procedure_id", "event_type", "id"], name: "index_webhook_events_on_procedure_id_and_event_type_and_id"
+    t.index ["procedure_id", "id"], name: "index_webhook_events_on_procedure_id_and_id"
+  end
+
+  create_table "webhooks", force: :cascade do |t|
+    t.datetime "auto_disabled_at"
+    t.integer "consecutive_failures", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.bigint "cursor", default: 0, null: false
+    t.datetime "delivery_claimed_at"
+    t.boolean "enabled", default: true, null: false
+    t.jsonb "event_type_floors", default: {}, null: false
+    t.string "event_types", default: [], null: false, array: true
+    t.string "label"
+    t.datetime "last_attempt_at"
+    t.string "last_error"
+    t.datetime "last_success_at"
+    t.bigint "procedure_id", null: false
+    t.string "secret", null: false
+    t.datetime "updated_at", null: false
+    t.string "url", null: false
+    t.index ["procedure_id"], name: "index_webhooks_on_procedure_id"
+  end
+
   create_table "without_continuation_mails", id: :serial, force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", precision: nil, null: false
@@ -1582,6 +1612,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_02_100000) do
   add_foreign_key "trusted_device_tokens", "instructeurs"
   add_foreign_key "types_de_champ", "referentiels"
   add_foreign_key "users", "users", column: "requested_merge_into_id"
+  add_foreign_key "webhook_events", "procedures"
+  add_foreign_key "webhooks", "procedures"
   add_foreign_key "without_continuation_mails", "procedures", on_delete: :cascade
   add_foreign_key "zone_labels", "zones"
 end

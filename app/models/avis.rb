@@ -28,7 +28,11 @@ class Avis < ApplicationRecord
   validates :introduction_file, size: { less_than: FILE_MAX_SIZE }
 
   normalizes :question_label, with: -> (value) { value.strip.presence }
-  normalizes :answer, with: NORMALIZES_NON_PRINTABLE_PROC
+  # `.presence` keeps blank collapsed to nil: the with_answer/without_answer
+  # scopes are nil-based while revokable/remindable predicates are
+  # presence-based — an empty string would count as answered for the former
+  # and unanswered for the latter.
+  normalizes :answer, with: -> (value) { NORMALIZES_NON_PRINTABLE_PROC.call(value).presence }
 
   default_scope { joins(:dossier) }
   scope :with_answer, -> { where.not(answer: nil) }
@@ -90,5 +94,25 @@ class Avis < ApplicationRecord
   def remind_by!(revocator)
     return false if !remindable_by?(revocator) || answer.present?
     update_column(:reminded_at, Time.zone.now)
+  end
+
+  # An avis is answered once; later edits amend the same answer silently.
+  def submit_answer(params)
+    newly_answered = answer.nil?
+
+    assign_attributes(params)
+    # Checked after normalization (blank collapses to nil): the form marks the
+    # field required, so only a crafted request lands here — refuse it rather
+    # than record an empty answer, which would consume the one-shot
+    # avis_repondu emission below and starve the real answer of it.
+    if answer.nil?
+      errors.add(:answer, :blank)
+      return false
+    end
+
+    return false if !save
+
+    dossier.emit_webhook_event(:avis_repondu) if newly_answered
+    true
   end
 end

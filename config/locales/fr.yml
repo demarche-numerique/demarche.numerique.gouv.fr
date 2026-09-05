@@ -873,6 +873,7 @@ fr:
     format: "Le champ « %{attribute} » %{message}"
     messages:
       dossier_not_found: "Le dossier n’existe pas ou vous n’y avez pas accès."
+      private_ip_url: "pointe vers une adresse IP privée"
       # dossier_map_not_activated: "Le dossier n’a pas accès à la cartographie."
       targeted_user_link_expired: "Ce lien d’invitation n’est plus valable ou le dossier n’est plus accessible."
       procedure_not_found: "La démarche n’existe pas"

@@ -109,7 +109,7 @@ module Experts
     def update
       was_unanswered = @avis.answer.nil?
       updated_recently = @avis.updated_recently?
-      if @avis.update(avis_answer_params)
+      if @avis.submit_answer(avis_answer_params)
         flash.notice = 'Votre réponse est enregistrée.'
 
         timestamps = [:last_avis_updated_at, :updated_at]
