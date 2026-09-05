@@ -1,0 +1,36 @@
+<%#
+  La partial affiche la valeur d'un champ drop_down_list selon le contexte.
+  - Si une ligne de référentiel est sélectionnée (instructeur) : affiche les colonnes du référentiel
+  - Sinon, si le champ est utilisé pour du routage et que le dossier a été réaffecté : badge d'avertissement
+  - Sinon : affiche simplement la valeur du champ
+-%>
+
+<div class="copy-zone">
+  <%- if champ.referentiel_item_selected? -%>
+    <%- if current_user.instructeur? && controller.try(:nav_bar_profile) == :instructeur -%>
+      <div class="fr-background-alt--grey fr-p-3v">
+        <%- champ.referentiel_item_column_values.each do |(header, value)| -%>
+          <%= render Dossiers::RowShowComponent.new(label: header) do |c| -%>
+            <%- c.with_value do -%>
+              <p><%= value %></p>
+            <%- end -%>
+          <% end -%>
+        <%- end -%>
+      </div>
+    <%- else -%>
+      <p><%= champ.to_s %></p>
+    <%- end -%>
+  <%- elsif champ.used_by_routing_rules? && champ.dossier.forced_groupe_instructeur -%>
+    <p>
+      <span data-to-copy="true"><%= champ.value %></span>
+
+      <span class="fr-badge fr-badge--warning fr-badge--sm">
+        <%= t(".dossier_reaffected_to_group", label: champ.dossier.groupe_instructeur.label) %>
+      </span>
+
+      <span data-copy-message-placeholder="true"></span>
+    </p>
+  <%- else -%>
+    <p><%= champ.value %></p>
+  <%- end -%>
+</div>

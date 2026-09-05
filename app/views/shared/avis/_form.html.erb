@@ -1,0 +1,137 @@
+<section class="ask-avis fr-mb-4w">
+  <%- if !batch_action -%>
+    <h1 class="tab-title fr-mb-0"><%= t(".ask_for_external_opinion") %></h1>
+  <%- end -%>
+
+  <%= render Dsfr::NoticeComponent.new(data_attributes: { class: 'fr-mb-2w' }) do |c| -%>
+    <%- c.with_title do -%>
+      <%= t(".expert_notice") %>
+    <%- end -%>
+  <%- end -%>
+
+  <div class="fr-highlight">
+    <p class="fr-text--sm">
+      <strong><%= t('asterisk_html', scope: [:utils]) %></strong>
+    </p>
+  </div>
+
+  <%= render NestedForms::FormOwnerComponent.new %>
+
+  <%- form_data = { controller: 'persisted-form', persisted_form_key_value: 'create_avis_form'} -%>
+  <%- form_data.merge!({remote: true, 'batch-operation-target': 'avisForm'}) if batch_action -%>
+
+  <%= form_for avis, url: url, html: { multipart: true, data: form_data } do |f| -%>
+    <%- if avis.errors.any? -%>
+      <div class="fr-alert fr-alert--error fr-mb-3w" role="alert">
+        <ul>
+          <%- avis.errors.full_messages.each do |msg| -%>
+            <li><%= msg %></li>
+          <%- end -%>
+        </ul>
+      </div>
+    <%- end -%>
+
+    <%= f.label :emails, class: 'fr-label' do -%>
+      <%= t('helpers.label.avis_emails') %>
+      <%= render EditableChamp::AsteriskMandatoryComponent.new %>
+
+      <%- if procedure.experts_require_administrateur_invitation -%>
+        <span class="fr-hint-text fr-mb-1w">
+          <%= t('helpers.label.avis_emails_list_admin_hint') %>
+        </span>
+      <%- else -%>
+        <span class="fr-hint-text fr-mb-1w">
+          <%= t('helpers.label.avis_emails_hint') %>
+        </span>
+      <%- end -%>
+    <%- end -%>
+
+    <div class="fr-input-group">
+      <react-fragment>
+        <%= render ReactComponent.new "ComboBox/MultiComboBox", items: current_expert_not_instructeur? ? [] : Expert.autocomplete_mails(procedure), name: f.field_name(:emails, multiple: true), id: 'avis_emails', 'aria-label': 'Emails', 'aria-describedby': 'avis-emails-description', allows_custom_value: !procedure.experts_require_administrateur_invitation %>
+      </react-fragment>
+    </div>
+
+    <div class="fr-input-group">
+      <%= render Dsfr::InputComponent.new(form: f, attribute: :introduction, input_type: :text_area, opts: {value: avis.introduction || t(".default_introduction")}) %>
+    </div>
+
+    <div class="fr-input-group">
+      <%= render Dsfr::InputComponent.new(form: f, attribute: :question_label, input_type: :text_area, required: false) %>
+    </div>
+
+    <div class="fr-input-group">
+      <%= f.label :introduction_file, class: 'fr-label' %>
+      <%= render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: avis.introduction_file), drop_zone: :none) %>
+    </div>
+
+    <%- if linked_dossiers.present? -%>
+      <%= f.check_box :invite_linked_dossiers, {}, true, false %>
+      <%= f.label :invite_linked_dossiers, t('helpers.label.invite_linked_dossiers', count: linked_dossiers.length, ids: linked_dossiers.map(&:id).to_sentence) %>
+    <%- end -%>
+
+    <div class="fr-input-group">
+      <%- if must_be_confidentiel -%>
+        <p class="confidentiel flex">
+          <span class="icon lock"></span>
+          <span><%= t(".confidentiel_notice") %></span>
+        </p>
+      <%- else -%>
+        <fieldset class="fr-fieldset" name="question_type">
+          <legend class="fr-fieldset__legend fr-fieldset__legend--regular">
+            <%= t(".avis_will_be") %>
+            <%= asterisk %>
+          </legend>
+
+          <div class="fr-fieldset__element">
+            <div class="fr-radio-group">
+              <%= f.radio_button :confidentiel, false, id: 'confidentiel_false' %>
+
+              <%= f.label :confidentiel, false, class: 'fr-label', for: 'confidentiel_false' do -%>
+                <%= t(".shared_with_other_experts") %>
+              <%- end -%>
+            </div>
+          </div>
+
+          <div class="fr-fieldset__element">
+            <div class="fr-radio-group">
+              <%= f.radio_button :confidentiel, true, id: 'confidentiel_true' %>
+
+              <%= f.label :confidentiel, true, class: 'fr-label', for: 'confidentiel_true' do -%>
+                <%= t(".confidentiel_label") %>
+                <span class="fr-hint-text"><%= t(".confidentiel_hint") %></span>
+              <%- end -%>
+            </div>
+          </div>
+        </fieldset>
+      <%- end -%>
+    </div>
+
+    <%- if batch_action && dossier_ids.present? -%>
+      <%- dossier_ids.each do |id| -%>
+        <%= hidden_field_tag 'batch_operation[dossier_ids][]', id %>
+      <%- end -%>
+    <%- end -%>
+
+    <%- if batch_action -%>
+      <ul class="fr-btns-group fr-btns-group--inline-md">
+        <li>
+          <button
+            class="fr-btn fr-btn--secondary"
+            aria-controls="modal-avis-batch"
+            data-fr-js-modal-button="true"
+            type="button"
+          >
+            <%= t(".cancel") %>
+          </button>
+        </li>
+
+        <li>
+          <%= f.submit t(".submit_avis_request"), class: 'fr-btn' %>
+        </li>
+      </ul>
+    <%- else -%>
+      <%= f.submit t(".submit_avis_request"), class: 'fr-btn fr-mt-2w' %>
+    <%- end -%>
+  <%- end -%>
+</section>

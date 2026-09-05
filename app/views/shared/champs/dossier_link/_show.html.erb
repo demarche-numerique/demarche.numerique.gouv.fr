@@ -1,0 +1,58 @@
+<% dossier = Dossier.includes(:procedure).find_by(id: champ.to_s) %>
+<% deleted_dossier = dossier.nil? ? DeletedDossier.includes(:procedure).find_by(dossier_id: champ.to_s) : nil %>
+<% profile = controller.try(:nav_bar_profile) %>
+<% hidden_at = dossier && ((profile == :user && dossier.hidden_by_user_at) || (profile == :instructeur && dossier.hidden_by_administration_at)) %>
+
+<% if deleted_dossier %>
+  <p>
+    <%= t('shared.champs.dossier_link.dossier_number', dossier_id: champ.to_s) %>
+  </p>
+  <br>
+  <div class="copy-zone">
+    <p>
+      <%= t('shared.champs.dossier_link.deleted', procedure_libelle: deleted_dossier.procedure&.libelle) %>
+    </p>
+  </div>
+<% elsif dossier %>
+  <% if dossier.hidden_by_expired_at.present? %>
+    <p>
+      <%= t('shared.champs.dossier_link.dossier_number', dossier_id: dossier.id) %>
+    </p>
+    <br>
+    <div class="copy-zone">
+      <p>
+        <%= t('shared.champs.dossier_link.expired', depose_at: l(dossier.depose_at.to_date), procedure_libelle: dossier.procedure.libelle, expired_at: l(dossier.hidden_by_expired_at.to_date)) %>
+      </p>
+    </div>
+  <% elsif hidden_at.present? %>
+    <p>
+      <%= t('shared.champs.dossier_link.dossier_number', dossier_id: dossier.id) %>
+    </p>
+    <br>
+    <div class="copy-zone">
+      <p>
+        <%= t('shared.champs.dossier_link.hidden', depose_at: l(dossier.depose_at.to_date), procedure_libelle: dossier.procedure.libelle, hidden_at: l(hidden_at.to_date)) %>
+      </p>
+    </div>
+  <% else %>
+    <% path = dossier_linked_path(current_instructeur || current_user, dossier) %>
+    <% if path.present? %>
+      <p>
+        <%= link_to(t('shared.champs.dossier_link.dossier_number', dossier_id: dossier.id), path, target: '_blank', rel: 'noopener') %>
+      </p>
+    <% elsif current_instructeur %>
+      <%= render Dossiers::NoAccessToDossierComponent.new(dossier, current_instructeur) %>
+    <% else %>
+      <p>
+        <%= t('shared.champs.dossier_link.dossier_number', dossier_id: dossier.id) %>
+      </p>
+    <% end %>
+    <div class="copy-zone">
+      <p>
+        <%= t("dossiers.text_summary.#{dossier.brouillon? ? :brouillon : :depose}_html", date: dossier.depose_at && l(dossier.depose_at.to_date, format: :short), procedure: tag.strong(dossier.procedure.libelle), organisme: tag.strong(dossier.procedure.organisation_name)) %>
+      </p>
+    </div>
+  <% end %>
+<% else %>
+  <p><%= t('shared.champs.dossier_link.no_dossier') %></p>
+<% end %>

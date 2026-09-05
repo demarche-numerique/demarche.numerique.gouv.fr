@@ -1,0 +1,81 @@
+# Source de vérité du lefthook.yml de demarche.numerique.gouv.fr.
+#
+# Ce fichier n'est PAS versionné dans le repo demarches (lefthook n'y est ni
+# dans le Gemfile ni dans package.json, et bin/setup ne lance pas
+# `lefthook install`). Il est donc versionné ici.
+#
+# Chemin de diffusion, à sens unique :
+#   night-shift (ici) --install.sh--> repo principal --post-checkout--> worktrees
+#
+# Toute modification se fait ICI, puis `hooks/worktree/install.sh <repo>` pour
+# la pousser. Éditer une copie ne sert à rien : elle est écrasée au checkout
+# suivant.
+
+# Les jobs correcteurs ne parlent que s'ils échouent : `herb-lint` affiche à
+# chaque exécution un bandeau « New rules available » (36 règles en attente
+# derrière le `version:` de .herb.yml), qu'aucun flag ne tait.
+output:
+  - summary
+  - failure
+
+pre-commit:
+  parallel: true
+  jobs:
+    # Piped : `rubocop -A` réécrit les fichiers, la passe de vérification doit
+    # les lire après.
+    - name: ruby
+      group:
+        piped: true
+        jobs:
+          # Correction : seul un Fatal arrête le commit, le reste est corrigé
+          # sur place et restagé.
+          - name: rubocop
+            run: bundle exec rubocop -A --force-exclusion --fail-level=F {staged_files}
+            glob: "*.rb"
+            stage_fixed: true
+
+          # Les cops de sûreté de sortie n'ont pas d'autocorrection : sans un
+          # fail level à eux, ils s'affichent et le commit passe quand même.
+          # `--fail-level=C` sur le job principal bloquerait sur n'importe
+          # quelle convention non corrigeable du dépôt, d'où ce job dédié.
+          - name: rubocop-output-safety
+            run: bundle exec rubocop --force-exclusion --only DS/I18nOutputSafety,Rails/OutputSafety --fail-level=C {staged_files}
+            glob: "*.rb"
+
+    # Piped : herb-format réécrit les fichiers, herb-lint doit les lire après.
+    - name: erb
+      group:
+        piped: true
+        jobs:
+          - name: herb-format
+            run: bun herb-format {staged_files}
+            glob: "*.html.erb"
+            stage_fixed: true
+
+          # Attrape `raw` et `.html_safe` dans les sorties ERB, que RuboCop ne
+          # lit pas.
+          - name: herb-lint
+            run: bun herb-lint {staged_files}
+            glob: "*.html.erb"
+
+    # Même angle mort côté HAML, via le linter maison OutputSafetyLinter.
+    - name: haml-lint
+      run: bundle exec haml-lint {staged_files}
+      glob: "*.html.haml"
+
+    - name: apostrophe
+      run: bundle exec rake lint:apostrophe:fix
+      glob: "config/locales/**/*.{yml,yaml}"
+      stage_fixed: true
+
+    - name: eslint
+      run: bun eslint --fix {staged_files}
+      glob: "*.{ts,tsx,js,jsx}"
+      stage_fixed: true
+
+    - name: prettier
+      run: bun prettier --write {staged_files}
+      # Pas de `**/` : lefthook l'interprete comme "au moins un sous-repertoire",
+      # or l'arbo est plate. `*` traverse deja les separateurs.
+      glob: "app/assets/stylesheets/*.{css,scss}"
+      stage_fixed: true

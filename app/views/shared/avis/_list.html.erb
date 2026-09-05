@@ -1,0 +1,103 @@
+<section>
+  <h1 class="tab-title">
+    <%= t(".avis_des_experts") %>
+    <span class="fr-badge"><%= avis.count %></span>
+  </h1>
+
+  <ul class="list-style-type-none fr-p-0">
+    <%- avis.each do |avis| -%>
+      <li>
+        <h2 class="fr-text--sm fr-mb-2w">
+          <span class="fr-icon-questionnaire-line fr-mr-1v"></span>
+          <%= "#{t('claimant', scope: 'activerecord.attributes.avis')} :" %>
+
+          <span>
+            <%= (avis.claimant.email == expert_or_instructeur.email) ? t(".vous") : avis.claimant.email %>
+          </span>
+
+          <%- if avis.confidentiel? -%>
+            <span class="fr-badge fr-badge--sm fr-badge--warning fr-badge--no-icon">
+              <%= t('confidentiel', scope: 'activerecord.attributes.avis') %>
+            </span>
+          <%- end -%>
+
+          <span class="<%= class_names("fr-text--xs fr-text-mention--grey pull-right", highlight_if_unseen_class(avis_seen_at, avis.created_at)) %>">
+            <%= t('demande_envoyee_le', scope: 'views.shared.avis', date: l(avis.created_at, format: :short_with_time)) %>
+          </span>
+        </h2>
+
+        <div class="border-left">
+          <%= render SimpleFormatComponent.new(avis.introduction, allow_a: false) %>
+
+          <%- if avis.question_label -%>
+            <%= render SimpleFormatComponent.new(avis.question_label, allow_a: false) %>
+          <%- end -%>
+        </div>
+
+        <h2 class="fr-text--sm fr-mt-5w fr-mb-2w">
+          <span class="fr-icon-message-2-line fr-mr-1v"></span>
+          <%= (avis.expert.email == expert_or_instructeur.email) ? t(".vous") : avis.expert.email %>
+
+          <%- if avis.answer.present? -%>
+            <%- if avis.revoked? -%>
+              <span class="<%= class_names("fr-badge fr-badge--sm", highlight_if_unseen_class(avis_seen_at, avis.revoked_at)) %>">
+                <%= t('demande_revoquee_le', scope: 'views.shared.avis', date: l(avis.revoked_at, format: :short_with_time)) %>
+              </span>
+            <%- end -%>
+            <span class="<%= class_names("fr-text--xs fr-text-mention--grey pull-right", highlight_if_unseen_class(avis_seen_at, avis.updated_at)) %>">
+              <%= t('reponse_donnee_le', scope: 'views.shared.avis', date: l(avis.updated_at, format: :short_with_time)) %>
+            </span>
+          <%- else -%>
+            <span class="fr-badge fr-badge--sm">
+              <%= t(avis.dossier.termine? ? 'views.shared.avis.avis_non_rendu' : 'views.shared.avis.en_attente') %>
+            </span>
+          <%- end -%>
+        </h2>
+
+        <div class="fr-mb-2w">
+          <%- if avis.reminded_at -%>
+            <span class="<%= class_names("date fr-text--xs fr-text-mention--grey", highlight_if_unseen_class(avis_seen_at, avis.reminded_at)) %>">
+              <%= t('relance_effectuee_le', scope: 'views.shared.avis', date: l(avis.reminded_at, format: :short_with_time)) %>
+            </span>
+          <%- end -%>
+
+          <%- if expert_or_instructeur.is_a?(Instructeur) -%>
+            <%- if avis.answer.blank? && !avis.dossier.termine? -%>
+              <%= button_to(t('remind', scope: 'helpers.label'), remind_instructeur_avis_path(avis.procedure, params[:statut], avis), class: 'fr-btn fr-btn--sm fr-btn--tertiary-no-outline', method: :patch, data: { confirm: t('remind', scope: 'helpers.confirmation', email: avis.expert.email) }) %>
+              <%- if avis.revokable_by?(expert_or_instructeur) -%>
+                <%= link_to(t('revoke', scope: 'helpers.label'), revoquer_instructeur_avis_path(avis.procedure, params[:statut], avis), class: 'fr-btn fr-btn--sm fr-btn--tertiary-no-outline', data: { confirm: t('revoke', scope: 'helpers.confirmation', email: avis.expert.email) }, method: :patch) %>
+              <%- end -%>
+            <%- end -%>
+          <%- end -%>
+        </div>
+
+        <div class="border-left">
+          <%- if avis.introduction_file.attached? -%>
+            <%= render Attachment::ShowComponent.new(attachment: avis.introduction_file.attachment) %>
+            <div class="fr-mb-2w">
+              <p>
+                <%= "#{t('views.instructeurs.avis.introduction_file_explaination')} #{avis.claimant.email}" %>
+              </p>
+            </div>
+          <%- end -%>
+
+          <%- if avis.piece_justificative_file.attached? -%>
+            <%= render Attachment::ShowComponent.new(attachment: avis.piece_justificative_file.attachment) %>
+          <%- end -%>
+
+          <div class="fr-mb-2w">
+            <%- if [true, false].include? avis.question_answer -%>
+              <p>
+                <%= t("question_answer.#{avis.question_answer}", scope: 'helpers.label') %>
+              </p>
+            <%- end -%>
+
+            <%= render SimpleFormatComponent.new(avis.answer, allow_a: false) %>
+          </div>
+        </div>
+      </li>
+
+      <hr class="fr-mt-2w fr-mb-2w">
+    <%- end -%>
+  </ul>
+</section>

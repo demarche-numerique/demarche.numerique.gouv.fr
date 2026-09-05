@@ -1258,6 +1258,7 @@ fr:
         svr: "Silence Vaut Rejet"
     procedure_description:
       estimated_fill_duration: "Temps de remplissage estimé : %{estimated_minutes} min (variable selon les options choisies)"
+      date_limite: "Date limite : %{date}."
       usual_traitement_time_title: Quels sont les délais d’instruction pour cette démarche ?
       pieces_jointes : Quelles sont les pièces justificatives à fournir ?
       pieces_jointes_conditionnal_list_title : Liste des pièces en fonction de votre situation

@@ -1,0 +1,27 @@
+<p class="fr-mb-0 copy-zone"><%= champ.to_s %></p>
+
+<% if champ.full_address? -%>
+  <% if champ.france? -%>
+    <p class="fr-text--sm fr-mb-0 copy-zone">
+      <%= t(".code_insee") %>
+      <span data-to-copy="true"><%= champ.city_code %></span>
+    </p>
+    <p class="fr-text--sm fr-mb-0 fr-text--secondary copy-zone">
+      <%= t(".departement") %>
+      <span data-to-copy="true"><%= champ.departement_code_and_name %></span>
+    </p>
+    <% if champ.ban? -%>
+      <p class="fr-text--sm fr-mt-1w">
+        <%= content_tag :span, class: "fr-tag fr-fi-information-line fr-tag--icon-left fr-tag--sm fr-text--regular" do %>
+          <%= t(".address_known_from_ban") %>&nbsp;
+          <acronym title="Base Adresse Nationale">BAN</acronym>
+        <% end %>
+      </p>
+    <% end -%>
+  <% else -%>
+    <p class="fr-text--sm fr-mb-0">
+      <%= t(".pays") %>
+      <span class="copy-zone"><%= champ.country_name %></span>
+    </p>
+  <% end -%>
+<% end -%>

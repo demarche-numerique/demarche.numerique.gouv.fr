@@ -1,0 +1,17 @@
+<li class="relative <%= active ? 'active' : nil %>">
+  <%= link_to(url, 'aria-current': active ? 'page' : nil, class: class_names("fr-tabs__tab", html_class)) do %>
+    <% if badge.present? %>
+      <span class="fr-badge fr-badge--blue-ecume fr-mr-1w"><%= badge %></span>
+    <% end %>
+
+    <%= label %>
+
+    <% if small_counter.present? %>
+      <span class="fr-text--sm fr-text--regular fr-ml-1v">
+        (<%= small_counter %>)
+      </span>
+    <% end %>
+
+    <%= render partial: 'shared/notification_sticker', locals: { label:, notification: } %>
+  <% end %>
+</li>

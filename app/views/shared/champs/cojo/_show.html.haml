@@ -1,9 +1,0 @@
-= champ.to_s
-- if profile == 'instructeur'
-  %dl
-    %dt
-      Nom et prénom dans la base d’accréditation :
-    %dd= "#{champ.accreditation_last_name} #{champ.accreditation_first_name}"
-    %dt
-      Nom et prénom saisie dans le dossier :
-    %dd= "#{champ.dossier.individual.nom} #{champ.dossier.individual.prenom}"

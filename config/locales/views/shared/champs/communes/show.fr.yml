@@ -1,0 +1,7 @@
+fr:
+  shared:
+    champs:
+      communes:
+        show:
+          insee_code: "Code INSEE :"
+          departement: "Département :"
