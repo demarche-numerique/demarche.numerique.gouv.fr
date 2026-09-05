@@ -140,10 +140,11 @@ describe APIEntrepriseService do
         allow(APIEntreprise::HealthChecker).to receive(:provider_up?).with(:insee_sirene).and_return(false)
       end
 
-      it 'returns Success with degraded etablissement' do
-        expect(subject).to be_success
-        expect(subject.value!.siret).to eq(siret)
-        expect(subject.value!).to be_as_degraded_mode
+      it 'returns an explicit degraded Failure carrying the stub' do
+        expect(subject).to be_failure
+        expect(subject.failure[:degraded]).to be true
+        expect(subject.failure[:etablissement].siret).to eq(siret)
+        expect(subject.failure[:etablissement]).to be_as_degraded_mode
       end
     end
 
@@ -168,9 +169,9 @@ describe APIEntrepriseService do
 
       it 'falls back to degraded mode without checking provider health' do
         expect(APIEntreprise::HealthChecker).not_to receive(:provider_up?)
-        expect(subject).to be_success
-        expect(subject.value!.siret).to eq(siret)
-        expect(subject.value!).to be_as_degraded_mode
+        expect(subject).to be_failure
+        expect(subject.failure[:degraded]).to be true
+        expect(subject.failure[:etablissement]).to be_as_degraded_mode
       end
     end
 
@@ -183,6 +184,147 @@ describe APIEntrepriseService do
       it 'returns Failure without fallback' do
         expect(subject).to be_failure
         expect(subject.failure[:type]).to eq(:unavailable_for_legal_reasons)
+      end
+    end
+  end
+
+  describe '#update_etablissement_from_degraded_mode' do
+    let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :siret }]) }
+    let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
+    let(:champ) { dossier.champ_data.first }
+    let(:etablissement) { create(:etablissement, adresse: nil, siret: '01234567891011') }
+
+    before do
+      allow_any_instance_of(APIEntreprise::EtablissementAdapter).to receive(:to_params)
+        .and_return(Dry::Monads::Success(adresse: '7 rue du puits, coye la foret'))
+    end
+
+    context 'when the etablissement belongs to a degraded champ' do
+      before do
+        champ.update_columns(etablissement_id: etablissement.id, external_state: 'degraded')
+      end
+
+      it 'completes the data and leaves the degraded state' do
+        described_class.update_etablissement_from_degraded_mode(etablissement, procedure.id)
+
+        expect(etablissement.reload.adresse).to eq('7 rue du puits, coye la foret')
+        expect(champ.reload).to be_fetched
+      end
+
+      it 'reindexes the dossier search terms' do
+        expect_any_instance_of(Dossier).to receive(:index_search_terms_later)
+
+        described_class.update_etablissement_from_degraded_mode(etablissement, procedure.id)
+      end
+    end
+
+    context 'when the etablissement belongs to a dossier (no champ)' do
+      let!(:dossier_with_etablissement) { create(:dossier, :en_construction, etablissement:) }
+
+      it 'completes the data without raising' do
+        expect { described_class.update_etablissement_from_degraded_mode(etablissement, procedure.id) }
+          .to change { etablissement.reload.adresse }.from(nil).to('7 rue du puits, coye la foret')
+      end
+    end
+
+    context 'when the API gives a definitive answer' do
+      before { champ.update_columns(etablissement_id: etablissement.id, external_state: 'degraded') }
+
+      context 'a not_found, which the adapter maps to an empty Success' do
+        before do
+          allow_any_instance_of(APIEntreprise::EtablissementAdapter).to receive(:to_params)
+            .and_return(Dry::Monads::Success({}))
+        end
+
+        it 'moves the champ to external_error and drops the stub' do
+          expect { described_class.update_etablissement_from_degraded_mode(etablissement, procedure.id) }
+            .to change { Etablissement.exists?(etablissement.id) }.from(true).to(false)
+
+          champ.reload
+          expect(champ).to be_external_error
+          expect(champ.etablissement).to be_nil
+          expect(champ.fetch_external_data_exceptions.last.code).to eq(404)
+        end
+
+        it 'unblocks the dossier' do
+          described_class.update_etablissement_from_degraded_mode(etablissement, procedure.id)
+
+          expect(dossier.reload.any_etablissement_as_degraded_mode?).to be false
+        end
+      end
+
+      [422, 451].each do |code|
+        context "a #{code}" do
+          before do
+            allow_any_instance_of(APIEntreprise::EtablissementAdapter).to receive(:to_params)
+              .and_return(Dry::Monads::Failure(type: :unprocessable, code:, retryable: false, raw_response: nil))
+          end
+
+          it 'moves the champ to external_error and drops the stub' do
+            expect { described_class.update_etablissement_from_degraded_mode(etablissement, procedure.id) }
+              .to change { Etablissement.exists?(etablissement.id) }.from(true).to(false)
+
+            expect(champ.reload).to be_external_error
+            expect(champ.fetch_external_data_exceptions.last.code).to eq(code)
+          end
+        end
+      end
+
+      context 'on an etablissement that belongs to a dossier' do
+        let(:dossier_etablissement) { create(:etablissement, adresse: nil, siret: '01234567891012') }
+        let!(:dossier_with_etablissement) { create(:dossier, :en_construction, etablissement: dossier_etablissement) }
+
+        before do
+          allow_any_instance_of(APIEntreprise::EtablissementAdapter).to receive(:to_params)
+            .and_return(Dry::Monads::Success({}))
+        end
+
+        it 'keeps it: dropping it would take the dossier identity with it' do
+          expect(described_class.update_etablissement_from_degraded_mode(dossier_etablissement, procedure.id)).to be_nil
+          expect(Etablissement.exists?(dossier_etablissement.id)).to be true
+        end
+      end
+    end
+
+    context 'when the backfill cannot converge' do
+      before { champ.update_columns(etablissement_id: etablissement.id, external_state: 'degraded') }
+
+      [401, 403].each do |code|
+        context "on a credentials failure (#{code})" do
+          before do
+            allow_any_instance_of(APIEntreprise::EtablissementAdapter).to receive(:to_params)
+              .and_return(Dry::Monads::Failure(type: :token_expired, code:, retryable: false, raw_response: nil))
+          end
+
+          it 'alerts and leaves the champ degraded' do
+            expect(Rails.logger).to receive(:error).with(/API Entreprise backfill blocked/)
+            expect(Sentry).to receive(:capture_message).with(
+              'API Entreprise error: token_expired',
+              level: :error,
+              extra: hash_including(code:, siret: etablissement.siret)
+            )
+
+            expect(described_class.update_etablissement_from_degraded_mode(etablissement, procedure.id)).to be_nil
+            expect(champ.reload).to be_degraded
+          end
+        end
+      end
+
+      context 'on any other failure' do
+        before do
+          allow_any_instance_of(APIEntreprise::EtablissementAdapter).to receive(:to_params)
+            .and_return(Dry::Monads::Failure(type: :server_error, code: 503, retryable: true, raw_response: nil))
+        end
+
+        it 'hands the failure back so the job can retry, and stays silent' do
+          expect(Sentry).not_to receive(:capture_message)
+
+          result = described_class.update_etablissement_from_degraded_mode(etablissement, procedure.id)
+
+          expect(result).to be_failure
+          expect(result.failure[:code]).to eq(503)
+          expect(champ.reload).to be_degraded
+        end
       end
     end
   end

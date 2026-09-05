@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class APIEntrepriseService
+  CREDENTIALS_CODES = [401, 403].freeze
+
   class << self
     include Dry::Monads[:result]
 
@@ -42,15 +44,20 @@ class APIEntrepriseService
 
     # Tries to create an etablissement; falls back to degraded mode if API is unavailable.
     #
-    # Returns Success(etablissement) on success or degraded fallback
-    # Returns Failure(type: :not_found, ...) if SIRET not found
-    # Returns Failure(type:, code:, retryable:, raw_response:) on non-recoverable errors
+    # Returns Success(etablissement) when the data is complete
+    # Returns Failure(degraded: true, etablissement:, type:, code:) when only a
+    #   stub could be built: the caller can carry on, a backfill completes it later
+    # Returns Failure(type:, code:, retryable:, raw_response:) on a plain failure
     def create_etablissement_with_fallback(dossier_or_champ, siret, user_id = nil)
       case create_etablissement(dossier_or_champ, siret, user_id)
-      in Failure(type: :rate_limited, **)
-        Success(create_etablissement_as_degraded_mode(dossier_or_champ, siret, user_id))
-      in Failure(retryable: true, **) if !APIEntreprise::HealthChecker.provider_up?(:insee_sirene)
-        Success(create_etablissement_as_degraded_mode(dossier_or_champ, siret, user_id))
+      in Success(etablissement) if etablissement.as_degraded_mode?
+        Failure(degraded: true, etablissement:, type: :incomplete_payload, code: 200)
+      in Success(etablissement)
+        Success(etablissement)
+      in Failure(type: :rate_limited => type, code:, **)
+        degraded(dossier_or_champ, siret, user_id, type:, code:)
+      in Failure(type:, code:, retryable: true, **) if !APIEntreprise::HealthChecker.provider_up?(:insee_sirene)
+        degraded(dossier_or_champ, siret, user_id, type:, code:)
       in result
         result
       end
@@ -61,10 +68,38 @@ class APIEntrepriseService
       in Success(etablissement_params) if etablissement_params.present?
         etablissement.update!(etablissement_params)
         etablissement.update_champ_value_json!
+        champ = etablissement.champ_data
+        champ.external_data_fetched! if champ&.may_external_data_fetched?
+        # Etablissement#after_commit only reindexes a dossier-level etablissement.
+        champ&.dossier&.index_search_terms_later
         etablissement
+      in Success(_)
+        # The adapter maps a not_found to an empty Success.
+        give_up_degraded_mode(etablissement, 'not_found', 404)
+      in Failure(type:, code:, **) if code.in?(ExternalDataException::DEFINITIVE_CODES)
+        give_up_degraded_mode(etablissement, type, code)
+      in Failure(type:, code:, **) => result if code.in?(CREDENTIALS_CODES)
+        # Our own credentials: no retry converges, the champ would stay degraded forever.
+        Rails.logger.error("API Entreprise backfill blocked: etablissement=#{etablissement.id} type=#{type} code=#{code}")
+        report_error(result.failure, siret: etablissement.siret, etablissement_id: etablissement.id)
+        nil
+      in Failure(retryable: true, **) => result
+        # Hand it back: EtablissementJob retries under the rate limiter, the cron does not.
+        result
       else
         nil
       end
+    end
+
+    # Drops the stub, which would otherwise block the dossier forever.
+    def give_up_degraded_mode(etablissement, type, code)
+      champ = etablissement.champ_data
+      # A dossier-level etablissement has no champ to carry the error, and
+      # dropping it would take the dossier's identity with it.
+      return nil if champ.nil?
+
+      champ.handle_definitive_external_data_failure!(StandardError.new("API Entreprise: #{type}"), code)
+      nil
     end
 
     def perform_later_fetch_jobs(etablissement, procedure_id, user_id, wait: nil)
@@ -82,6 +117,11 @@ class APIEntrepriseService
       end
 
       APIEntreprise::AttestationFiscaleJob.set(wait:).perform_later(etablissement.id, procedure_id, user_id)
+    end
+
+    def degraded(dossier_or_champ, siret, user_id, type:, code:)
+      Failure(degraded: true, type:, code:,
+        etablissement: create_etablissement_as_degraded_mode(dossier_or_champ, siret, user_id))
     end
 
     def report_error(failure, extra = {})
