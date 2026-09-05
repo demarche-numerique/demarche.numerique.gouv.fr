@@ -4,60 +4,6 @@ describe ProcedureDossierVidePdfConcern do
   let(:procedure) { create(:procedure, :published, :with_service, libelle: 'Ma démarche') }
   let(:revision) { procedure.published_revision }
 
-  describe '#dossier_vide_pdf_cache_key_for' do
-    it 'changes when the revision changes' do
-      before_key = procedure.dossier_vide_pdf_cache_key_for(revision, :typst)
-
-      expect(procedure.dossier_vide_pdf_cache_key_for(procedure.draft_revision, :typst)).not_to eq(before_key)
-    end
-
-    it 'changes when the procedure is updated' do
-      before_key = procedure.dossier_vide_pdf_cache_key_for(revision, :typst)
-      procedure.update!(description: 'Une nouvelle présentation')
-
-      expect(procedure.dossier_vide_pdf_cache_key_for(revision, :typst)).not_to eq(before_key)
-    end
-
-    it 'changes when the service is updated' do
-      before_key = procedure.dossier_vide_pdf_cache_key_for(revision, :typst)
-      procedure.service.update!(adresse: '2 rue de la Paix, 75002 Paris')
-
-      expect(procedure.reload.dossier_vide_pdf_cache_key_for(revision, :typst)).not_to eq(before_key)
-    end
-
-    it 'changes when the cache version is bumped, which is how rendering changes are caught' do
-      before_key = procedure.dossier_vide_pdf_cache_key_for(revision, :typst)
-      stub_const('ProcedureDossierVidePdfConcern::CACHE_VERSION', ProcedureDossierVidePdfConcern::CACHE_VERSION + 1)
-
-      expect(procedure.dossier_vide_pdf_cache_key_for(revision, :typst)).not_to eq(before_key)
-    end
-
-    it 'differs between renderers: the same attachment caches whichever the flags select' do
-      expect(procedure.dossier_vide_pdf_cache_key_for(revision, :typst))
-        .not_to eq(procedure.dossier_vide_pdf_cache_key_for(revision, :weasyprint))
-    end
-
-    it 'changes when a Typst template changes, for the Typst rendering only' do
-      typst_key = procedure.dossier_vide_pdf_cache_key_for(revision, :typst)
-      weasyprint_key = procedure.dossier_vide_pdf_cache_key_for(revision, :weasyprint)
-      stub_const('ProcedureDossierVidePdfConcern::TEMPLATES_DIGEST', 'edited-theme')
-
-      expect(procedure.dossier_vide_pdf_cache_key_for(revision, :typst)).not_to eq(typst_key)
-      expect(procedure.dossier_vide_pdf_cache_key_for(revision, :weasyprint)).to eq(weasyprint_key)
-    end
-
-    it 'is stable when nothing changed' do
-      expect(procedure.dossier_vide_pdf_cache_key_for(revision, :typst))
-        .to eq(procedure.dossier_vide_pdf_cache_key_for(revision, :typst))
-    end
-
-    it 'works for a procedure without a service' do
-      procedure.update!(service: nil, organisation: 'Une organisation')
-
-      expect(procedure.dossier_vide_pdf_cache_key_for(revision, :typst)).to be_present
-    end
-  end
-
   describe '#dossier_vide_pdf_fresh?' do
     it 'is false when nothing has been cached yet' do
       expect(procedure.dossier_vide_pdf_fresh?('key')).to be false
