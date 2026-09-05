@@ -340,6 +340,68 @@ describe Administrateurs::ProceduresController, type: :controller do
         expect(assigns(:procedures).any? { |p| p.id == procedure1.id }).to be_falsey
       end
     end
+
+    context 'with libelle search matching a procedure id' do
+      let!(:procedure1) { create(:procedure, :published, libelle: 'Demande de subvention') }
+      let!(:procedure2) { create(:procedure, :published, libelle: 'Autre démarche') }
+
+      it 'returns the procedure whose id matches the numeric search term' do
+        get :all, params: { libelle: procedure1.id.to_s }
+        expect(assigns(:procedures).any? { |p| p.id == procedure1.id }).to be_truthy
+        expect(assigns(:procedures).any? { |p| p.id == procedure2.id }).to be_falsey
+      end
+
+      it 'still matches by libelle when the search term is not numeric' do
+        get :all, params: { libelle: 'subvention' }
+        expect(assigns(:procedures).any? { |p| p.id == procedure1.id }).to be_truthy
+        expect(assigns(:procedures).any? { |p| p.id == procedure2.id }).to be_falsey
+      end
+
+      it 'does not match an unrelated procedure id contained in the libelle text' do
+        other_procedure = create(:procedure, :published, libelle: procedure2.id.to_s)
+        get :all, params: { libelle: procedure1.id.to_s }
+        expect(assigns(:procedures).any? { |p| p.id == other_procedure.id }).to be_falsey
+      end
+    end
+
+    context 'with administrateur email search' do
+      let!(:admin_matching) { create(:administrateur, email: 'jesuis.surmene@education.gouv.fr') }
+      let!(:admin_other) { create(:administrateur, email: 'jesuis.alecoute@social.gouv.fr') }
+      let!(:procedure1) { create(:procedure, :published, administrateur: admin_matching) }
+      let!(:procedure2) { create(:procedure, :published, administrateur: admin_other) }
+
+      it 'returns procedures administered by an admin matching the email or domain' do
+        get :all, params: { email: 'education.gouv.fr' }
+        expect(assigns(:procedures).any? { |p| p.id == procedure1.id }).to be_truthy
+        expect(assigns(:procedures).any? { |p| p.id == procedure2.id }).to be_falsey
+      end
+    end
+
+    context 'with procedure-only filters (tags, template, kind_usagers, libelle)' do
+      let!(:template_procedure) { create(:procedure, :published, template: true, libelle: 'Modèle générique') }
+      let!(:other_procedure) { create(:procedure, :published, template: false, libelle: 'Autre démarche') }
+
+      it 'applies the template filter on the all action' do
+        get :all, params: { template: '1' }
+        expect(assigns(:procedures).any? { |p| p.id == template_procedure.id }).to be_truthy
+        expect(assigns(:procedures).any? { |p| p.id == other_procedure.id }).to be_falsey
+      end
+    end
+
+    context 'with libelle and email filters combined' do
+      let(:admin1) { create(:administrateur, email: 'admin@education.gouv.fr') }
+      let(:admin2) { create(:administrateur, email: 'autre@test.fr') }
+      let!(:matching_procedure) { create(:procedure, :published, libelle: 'Demande de bourse', administrateur: admin1) }
+      let!(:wrong_libelle) { create(:procedure, :published, libelle: 'Autre chose', administrateur: admin1) }
+      let!(:wrong_admin) { create(:procedure, :published, libelle: 'Demande de bourse', administrateur: admin2) }
+
+      it 'applies both filters simultaneously rather than exclusively' do
+        get :all, params: { libelle: 'bourse', email: 'education.gouv.fr' }
+        expect(assigns(:procedures).any? { |p| p.id == matching_procedure.id }).to be_truthy
+        expect(assigns(:procedures).any? { |p| p.id == wrong_libelle.id }).to be_falsey
+        expect(assigns(:procedures).any? { |p| p.id == wrong_admin.id }).to be_falsey
+      end
+    end
   end
 
   describe 'GET #administrateurs' do
@@ -387,6 +449,16 @@ describe Administrateurs::ProceduresController, type: :controller do
         assigned_admin1 = assigns(:admins).find { it.id == admin1.id }
         expect(assigned_admin1.procedures).not_to include(published_procedure)
         expect(assigned_admin1.procedures).to include(antoher_published_procedure_for_admin1)
+      end
+    end
+
+    context 'with procedure-only filters in params' do
+      it 'ignores the template filter — admins are not restricted by procedure content' do
+        get :administrateurs, params: { template: '1' }
+        expect(assigns(:admins)).to include(admin1)
+        expect(assigns(:admins)).to include(admin2)
+        expect(assigns(:admins)).to include(admin4)
+        expect(assigns(:admins)).not_to include(admin3)
       end
     end
   end

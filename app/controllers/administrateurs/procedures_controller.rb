@@ -569,7 +569,7 @@ module Administrateurs
       procedures_result = procedures_result.where(procedures_zones: { zone_id: filter.zone_ids }) if filter.zone_ids.present?
       procedures_result = procedures_result.where(hidden_at_as_template: nil)
       procedures_result = procedures_result.where(aasm_state: filter.statuses) if filter.statuses.present?
-      if filter.tags.present?
+      if filter.tags.present? && filter_applicable?(filter, :tags)
         tag_ids = ProcedureTag.where(name: filter.tags).pluck(:id).flatten
 
         if tag_ids.any?
@@ -579,12 +579,26 @@ module Administrateurs
             .distinct
         end
       end
-      procedures_result = procedures_result.where(template: true) if filter.template?
+      procedures_result = procedures_result.where(template: true) if filter.template? && filter_applicable?(filter, :template)
       procedures_result = procedures_result.where(published_at: filter.from_publication_date..) if filter.from_publication_date.present?
       procedures_result = procedures_result.where(service: service) if filter.service_siret.present?
       procedures_result = procedures_result.where(service: services) if services
-      procedures_result = procedures_result.where(for_individual: filter.for_individual) if filter.for_individual.present?
-      procedures_result = procedures_result.where('unaccent(libelle) ILIKE unaccent(?)', "%#{filter.libelle}%") if filter.libelle.present?
+      procedures_result = procedures_result.where(for_individual: filter.for_individual) if filter.for_individual.present? && filter_applicable?(filter, :for_individual)
+      if filter.libelle.present? && filter_applicable?(filter, :libelle)
+        if filter.libelle.match?(/\A\d+\z/)
+          procedures_result = procedures_result.where(
+            'unaccent(libelle) ILIKE unaccent(?) OR procedures.id = ?',
+            "%#{filter.libelle}%", filter.libelle.to_i
+          )
+        else
+          procedures_result = procedures_result.where('unaccent(libelle) ILIKE unaccent(?)', "%#{filter.libelle}%")
+        end
+      end
+      if filter.email.present?
+        procedures_result = procedures_result
+          .joins(administrateurs_procedures: { administrateur: :user })
+          .where('unaccent(users.email) ILIKE unaccent(?)', "%#{filter.email}%")
+      end
       procedures_sql = procedures_result.to_sql
 
       sql = "select procedures.id, libelle, published_at, aasm_state, estimated_dossiers_count, template, array_agg(distinct latest_labels.name) filter (where latest_labels.name is not null) as latest_zone_labels from administrateurs_procedures inner join procedures on procedures.id = administrateurs_procedures.procedure_id left join procedures_zones ON procedures.id = procedures_zones.procedure_id left join zones ON zones.id = procedures_zones.zone_id left join (select zone_id, name from zone_labels where (zone_id, designated_on) in (select zone_id, max(designated_on) from zone_labels group by zone_id)) as latest_labels on zones.id = latest_labels.zone_id
@@ -594,6 +608,14 @@ module Administrateurs
 
     def paginate(result, ordered_by)
       result.page(params[:page]).per(ITEMS_PER_PAGE).order(ordered_by)
+    end
+
+    # A procedure-only filter (see ProceduresFilter::PROCEDURE_ONLY_FILTERS) only
+    # applies on the "all" tab, since it describes the content of a procedure
+    # rather than an administrative/relational property — it doesn't make sense
+    # to restrict administrateurs by it.
+    def filter_applicable?(filter, name)
+      !filter.procedure_only_filter?(name) || action_name == 'all'
     end
 
     def draft_valid?

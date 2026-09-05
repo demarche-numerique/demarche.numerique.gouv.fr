@@ -1,77 +1,61 @@
 - content_for(:title, "Démarches")
 - content_for :results do
-  .main-filter-header.fr-my-3w
-    = form_with(url: all_admin_procedures_path, method: :get, data: { turbo_frame: 'procedures' }, html: { role: 'search', class: 'search' }) do |f|
-      - @filter.zone_ids&.each do |zone_id|
-        = hidden_field_tag 'zone_ids[]', zone_id, id: "zone_#{zone_id}"
-      - @filter.statuses&.each do |status|
-        = hidden_field_tag 'statuses[]', status, id: "status_#{status}"
-      - @filter.tags&.each do|tag|
-        = hidden_field_tag 'tags[]', tag, id: "tag_#{tag}"
-      = hidden_field_tag 'from_publication_date', @filter.from_publication_date if @filter.from_publication_date.present?
+  .fr-mb-3w.width-66
+    = label_tag :libelle, t('.search_label'), class: 'fr-label'
+    %span.fr-hint-text.fr-mb-1w= t('.search_hint')
+    .fr-input-wrap.fr-input-wrap--addon
+      = search_field_tag :libelle, @filter.libelle, class: 'fr-input', form: 'procedures-filter-form', data: { no_autosubmit: 'input', turbo_force: :server }
+      = button_tag 'Rechercher', type: 'submit', form: 'procedures-filter-form', class: 'fr-btn fr-icon-search-line'
 
-      = f.label :libelle, 'Rechercher des démarches par libellé', class: 'fr-label'
-      = f.search_field 'libelle', size: 30, class: 'fr-input', data: { turbo_force: :server }
-    .actions
-      .link.fr-mx-1w= link_to 'Voir les administrateurs', administrateurs_admin_procedures_path(@filter.params), class: 'fr-btn fr-btn--secondary'
-      .link.fr-mx-1w{ "data-turbo": "false" }= link_to 'Exporter les résultats', all_admin_procedures_path(@filter.params.merge(format: :xlsx)), class: 'fr-btn fr-btn--secondary'
 
-  - if @filter.libelle
-    .selected-query.fr-mb-2w
-      = link_to @filter.libelle, all_admin_procedures_path(@filter.without(:libelle)), class: 'fr-tag fr-tag--dismiss fr-mb-1w'
-  - if @filter.service_siret
-    .selected-query.fr-mb-2w
-      = link_to @filter.service_siret, all_admin_procedures_path(@filter.without(:service_siret)), class: 'fr-tag fr-tag--dismiss fr-mb-1w'
-  - if @filter.service_departement
-    .selected-query.fr-mb-2w
-      = link_to "#{@filter.service_departement} – #{APIGeoService.departement_name(@filter.service_departement)}", all_admin_procedures_path(@filter.without(:service_departement)), class: 'fr-tag fr-tag--dismiss fr-mb-1w'
-  - if @filter.selected_zones.present?
-    .selected-zones.fr-mb-2w
-      - @filter.selected_zones.each do |zone|
-        = link_to zone.current_label, all_admin_procedures_path(@filter.without(:zone_ids, zone.id)), class: 'fr-tag fr-tag--dismiss fr-mb-1w'
-  - if @filter.statuses.present?
-    .selected-statuses.fr-mb-2w
-      - @filter.statuses.each do |status|
-        = link_to status, all_admin_procedures_path(@filter.without(:statuses, status)), class: 'fr-tag fr-tag--dismiss fr-mb-1w'
-  - if @filter.kind_usagers.present?
-    .selected-kind_usagers.fr-mb-2w
-      - @filter.kind_usagers.each do |kind_usager|
-        = link_to t(kind_usager, scope: 'activerecord.attributes.procedure.kind_usager'), all_admin_procedures_path(@filter.without(:kind_usagers, kind_usager)), class: 'fr-tag fr-tag--dismiss fr-mb-1w'
-  - if @filter.tags.present?
-    .selected-tag.fr-mb-2w
-      - @filter.tags.each do |tag|
-        = link_to tag, all_admin_procedures_path(@filter.without(:tags, tag)), class: 'fr-tag fr-tag--dismiss fr-mb-1w'
-  - if @filter.template?
-    .selected-template.fr-mb-2w
-      = link_to "Modèle DS", all_admin_procedures_path(@filter.without(:template)), class: 'fr-tag fr-tag--dismiss fr-mb-1w'
-  - if @filter.from_publication_date.present?
-    .selected-from-publication-date.fr-mb-2w
-      = link_to "Depuis #{l(@filter.from_publication_date)}", all_admin_procedures_path(@filter.without(:from_publication_date)), class: 'fr-tag fr-tag--dismiss fr-mb-1w'
+  .flex.flex-gap-1.wrap.align-center
+    - if @filter.libelle
+      .selected-query
+        = link_to "Libellé ou numéro : #{@filter.libelle}", all_admin_procedures_path(@filter.without(:libelle)), class: 'fr-tag fr-tag--dismiss fr-tag--sm'
+    = render 'administrateurs/procedures/common_filter_tags'
+    - if @filter.kind_usagers.present?
+      .selected-kind_usagers
+        - @filter.kind_usagers.each do |kind_usager|
+          = link_to "Type d’usager : #{t(kind_usager, scope: 'activerecord.attributes.procedure.kind_usager')}", all_admin_procedures_path(@filter.without(:kind_usagers, kind_usager)), class: 'fr-tag fr-tag--dismiss fr-tag--sm'
+    - if @filter.tags.present?
+      .selected-tag
+        - @filter.tags.each do |tag|
+          = link_to "Thématique : #{tag}", all_admin_procedures_path(@filter.without(:tags, tag)), class: 'fr-tag fr-tag--dismiss fr-tag--sm'
+    - if @filter.template?
+      .selected-template
+        = link_to "Modèle DS", all_admin_procedures_path(@filter.without(:template)), class: 'fr-tag fr-tag--dismiss fr-tag--sm'
+    - if visible_filter_tags_count(@filter) >= 3
+      = link_to 'Tout supprimer', procedures_filter_path, { data: { turbo: 'false' }, class: 'fr-btn fr-btn--tertiary-no-outline fr-btn--sm' }
 
-  .fr-table.fr-table--sm.fr-table--no-scroll.fr-table--bordered{ 'data-turbo': 'true', 'data-turbo-force': 'server' }
-    .fr-table__wrapper
-      .fr-table__container
-        .fr-table__content
-          %table
-            %caption
-              = "#{@procedures.total_count} #{t('pluralize.procedures', count: @procedures.total_count)}"
-              %span.hidden.spinner{ 'aria-hidden': 'true', 'data-turbo-target': 'spinner' }
+  - if @procedures.any?
+    .flex.align-center.fr-mt-2w
+      .fr-h6.fr-mb-0= "#{@procedures.total_count} #{t('pluralize.procedures', count: @procedures.total_count)}"
+      %span.hidden.spinner{ 'aria-hidden': 'true', 'data-turbo-target': 'spinner' }
 
-            %thead
-              %tr
-                %th{ role: 'columnheader' }
-                %th{ scope: 'col' } Démarche
-                %th{ scope: 'col' } №
-                %th{ scope: 'col' } Nombre de dossiers
-                %th{ scope: 'col' } Zones
-                %th{ scope: 'col' } Statut
-                %th{ scope: 'col' } Date
-                %th{ scope: 'col' } Action
-            %tbody
-              - @procedures.each do |procedure|
-                = render partial: 'detail', locals: { procedure: procedure, show_detail: false }
-    .fr-table__footer
-      .fr-table__footer--start
-      .fr-table__footer--middle
-        = paginate @procedures, views_prefix: 'shared'
-      .fr-table__footer--end.flex-no-grow
+      .fr-ml-auto{ "data-turbo": "false" }= link_to 'Exporter les résultats', all_admin_procedures_path(@filter.params.merge(format: :xlsx)), class: 'fr-btn fr-btn--secondary'
+    .fr-table.fr-table--sm.fr-table--no-scroll.fr-table--bordered{ 'data-turbo': 'true', 'data-turbo-force': 'server' }
+      .fr-table__wrapper
+        .fr-table__container
+          .fr-table__content
+            %table
+              %thead
+                %tr
+                  %th{ role: 'columnheader' }
+                  %th{ scope: 'col' } Démarche
+                  %th{ scope: 'col' } №
+                  %th{ scope: 'col' } Nombre de dossiers
+                  %th{ scope: 'col' } Zones
+                  %th{ scope: 'col' } Statut
+                  %th{ scope: 'col' } Date
+                  %th{ scope: 'col' } Action
+              %tbody
+                - @procedures.each do |procedure|
+                  = render partial: 'detail', locals: { procedure: procedure, show_detail: false }
+      .fr-table__footer
+        .fr-table__footer--start
+        .fr-table__footer--middle
+          = paginate @procedures, views_prefix: 'shared'
+        .fr-table__footer--end.flex-no-grow
+
+  - else
+    %p Aucune démarche trouvée.

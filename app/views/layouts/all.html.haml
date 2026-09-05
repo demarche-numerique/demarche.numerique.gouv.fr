@@ -1,124 +1,151 @@
 - content_for(:main_navigation) do
   = render 'administrateurs/main_navigation'
 - content_for :content do
-  .fr-container
-    %h1.fr-my-4w Toutes les démarches
+  .sub-header
+    .fr-container
+      %h1.fr-my-4w= t('administrateurs.procedures.all.title')
+      .fr-container
+        .fr-grid-row.fr-grid-row--gutters
+          .fr-col-12
+            .fr-highlight.fr-mb-4w
+              %p= t('administrateurs.procedures.all.description_html')
 
-    .fr-container--fluid
+  %turbo-frame#procedures{ data: { turbo_action: 'advance', turbo: 'true' } }
+    .sub-header.fr-mt-n4w
+      .fr-container
+        %nav.fr-tabs{ role: 'navigation', 'aria-label': t('administrateurs.all_procedures_menu') }
+          %ul.fr-tabs__list
+            = tab_item(t('administrateurs.procedure_list'), procedures_filter_path(request.query_parameters.merge(action: 'all')), active: action_name == 'all')
+            = tab_item(t('administrateurs.administrator_list'), procedures_filter_path(request.query_parameters.merge(action: 'administrateurs')), active: action_name == 'administrateurs')
+
+    .fr-container
       .fr-grid-row.fr-grid-row--gutters
-        .fr-col-8
-          .fr-highlight.fr-mb-4w
-            %p Ce tableau de bord permet de consulter les informations sur les démarches pour toutes les zones. Filtrez par zone et statut. Consultez la liste des démarches et cliquez sur une démarche pour voir la zone et quels sont les administrateurs.
-
-    .fr-container--fluid{ data: { turbo: 'true' } }
-      %turbo-frame#procedures.fr-grid-row.fr-grid-row--gutters{ 'data-turbo-action': 'advance' }
         .fr-col-12.fr-col-lg-3
-          = form_with(url: all_admin_procedures_path, method: :get, data: { controller: 'autosubmit', turbo_frame: 'procedures' }) do |f|
-
+          = form_with(url: procedures_filter_path, method: :get, id: 'procedures-filter-form', data: { controller: 'autosubmit', turbo_frame: 'procedures' }) do |f|
             %fieldset.sidebar-filter
               %legend
-                .title.fr-text--bold.fr-pl-2w
-                  %span.fr-icon-filter-fill.fr-icon--sm.fr-mr-1w{ 'aria-hidden': 'true' }
+                .title.fr-text--bold
                   Filtrer
-                .reinit
-                  = link_to all_admin_procedures_path(zone_ids: current_administrateur.zones), { data: { turbo: 'false' } } do
-                    %span.fr-icon-arrow-go-back-line Réinitialiser
-              %ul
 
-                %li.fr-py-2w.fr-pl-2w{ 'data-controller': "expand" }
-                  .fr-mb-1w
-                    %button{ 'data-action': 'expand#toggle' }
-                      %span.fr-icon-add-line.fr-icon--sm.fr-mr-1w.fr-text-action-high--blue-france{ 'aria-hidden': 'true', 'data-expand-target': 'icon' }
-                      Thématique
-                  .fr-ml-1w.hidden{ 'data-expand-target': 'content' }
-                    %div
-                      = f.search_field :tags, placeholder: 'Choisissez un thème', list: 'tags_list', class: 'fr-input', data: { no_autosubmit: 'input', turbo_force: :server }, multiple: true
-                      %datalist#tags_list
-                        - ProcedureTag.order(:name).each do |tag|
-                          %option{ value: tag.name, data: { id: tag.id } }
-                      - if @filter.tags.present?
-                        - @filter.tags.each do |tag|
-                          = f.hidden_field :tags, value: tag, multiple: true, id: "tag-#{tag.tr(' ', '_')}"
+              - if action_name == 'all'
+                = render Dsfr::AccordionComponent.new(expanded: @filter.email.present?) do |c|
+                  - c.with_title do
+                    Administrateur
+                    - if @filter.email.present?
+                      %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w 1
+                  .fr-checkbox-group
+                    = f.label :email, 'Adresse électronique ou domaine', class: 'fr-label'
+                    %span.fr-hint-text.fr-mb-1w Exemple: adresse@mail.com ou @culture.gouv.fr
+                    .fr-input-wrap.fr-input-wrap--addon
+                      = f.search_field :email, value: @filter.email, class: 'fr-input', data: { no_autosubmit: 'input', turbo_force: :server }
+                      = f.button 'Rechercher', class: 'fr-btn fr-icon-search-line'
 
-                %li.fr-py-2w.fr-pl-2w{ 'data-controller': "expand" }
-                  .fr-mb-1w
-                    %button{ 'data-action': 'expand#toggle' }
-                      %span.fr-icon-add-line.fr-icon--sm.fr-mr-1w.fr-text-action-high--blue-france{ 'aria-hidden': 'true', 'data-expand-target': 'icon' }
-                      Démarches modèles
-                  .fr-ml-1w.hidden{ 'data-expand-target': 'content' }
+              - if action_name == 'all'
+                = render Dsfr::AccordionComponent.new(expanded: @filter.tags.present?) do |c|
+                  - c.with_title do
+                    Thématique
+                    - if @filter.tags.present?
+                      %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w= @filter.tags.size
+                  %div
+                    = f.search_field :tags, placeholder: 'Choisissez un thème', list: 'tags_list', class: 'fr-input', data: { no_autosubmit: 'input', turbo_force: :server }, multiple: true
+                    %datalist#tags_list
+                      - ProcedureTag.order(:name).each do |tag|
+                        %option{ value: tag.name, data: { id: tag.id } }
+                    - if @filter.tags.present?
+                      - @filter.tags.each do |tag|
+                        = f.hidden_field :tags, value: tag, multiple: true, id: "tag-#{tag.tr(' ', '_')}"
+
+              - if action_name == 'all'
+                = render Dsfr::AccordionComponent.new(expanded: @filter.template?) do |c|
+                  - c.with_title do
+                    Démarches modèles
+                    - if @filter.template?
+                      %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w 1
+                  .fr-checkbox-group.fr-py-1w
+                    = f.check_box :template, class: 'fr-input'
+                    = f.label :template, 'Modèle DS', class: 'fr-label'
+
+              - admin_zones_count = @filter.admin_zones.count { |z| @filter.zone_filtered?(z.id) }
+              = render Dsfr::AccordionComponent.new(expanded: admin_zones_count > 0) do |c|
+                - c.with_title do
+                  Mes zones
+                  - if admin_zones_count > 0
+                    %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w= admin_zones_count
+                = f.collection_check_boxes :zone_ids, @filter.admin_zones, :id, :current_label, include_hidden: false do |b|
+                  .fr-checkbox-group.fr-ml-2w.fr-py-1w
+                    = b.check_box(checked: @filter.zone_filtered?(b.value))
+                    = b.label(class: 'fr-label') { b.text }
+
+              - other_zones_count = @filter.other_zones.count { |z| @filter.zone_filtered?(z.id) }
+              = render Dsfr::AccordionComponent.new(expanded: other_zones_count > 0) do |c|
+                - c.with_title do
+                  Autres zones
+                  - if other_zones_count > 0
+                    %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w= other_zones_count
+                = f.collection_check_boxes :zone_ids, @filter.other_zones, :id, :current_label, include_hidden: false do |b|
+                  .fr-checkbox-group.fr-ml-2w.fr-py-1w
+                    = b.check_box(checked: @filter.zone_filtered?(b.value))
+                    = b.label(class: 'fr-label') { b.text }
+
+
+              = render Dsfr::AccordionComponent.new(expanded: @filter.service_siret.present?) do |c|
+                - c.with_title do
+                  Service
+                  - if @filter.service_siret.present?
+                    %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w 1
+                %div
+                  = f.label :service_siret, 'Numéro SIRET', class: 'fr-label'
+                  %span.fr-hint-text.fr-mb-1w Exemple : 500 001 234 56789
+                  .fr-input-wrap.fr-input-wrap--addon
+                    = f.text_field :service_siret, value: @filter.service_siret, class: 'fr-input', data: { no_autosubmit: 'input', turbo_force: :server }
+                    = f.button 'Rechercher', class: 'fr-btn fr-icon-search-line'
+
+
+              = render Dsfr::AccordionComponent.new(expanded: @filter.service_departement.present?) do |c|
+                - c.with_title do
+                  Département
+                  - if @filter.service_departement.present?
+                    %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w 1
+                %div
+                  = f.select :service_departement,
+                    APIGeoService.departement_options,
+                    { selected: @filter.service_departement, include_blank: ''},
+                    id: "service_dep_select",
+                    class: 'fr-select'
+
+              - if action_name == 'all'
+                = render Dsfr::AccordionComponent.new(expanded: @filter.kind_usagers.present?) do |c|
+                  - c.with_title do
+                    Type d’usager
+                    - if @filter.kind_usagers.present?
+                      %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w= @filter.kind_usagers.size
+                  = f.collection_check_boxes :kind_usagers, ['individual', 'personne_morale'], :to_s, :to_s, include_hidden: false do |b|
                     .fr-checkbox-group.fr-ml-2w.fr-py-1w
-                      = f.check_box :template, class: 'fr-input'
-                      = f.label :template, 'Modèle DS', class: 'fr-label'
-                %li.fr-py-2w.fr-pl-2w{ 'data-controller': "expand" }
-                  .fr-mb-1w
-                    %button{ 'data-action': 'expand#toggle' }
-                      %span.fr-icon-add-line.fr-icon--sm.fr-mr-1w.fr-text-action-high--blue-france{ 'aria-hidden': 'true', 'data-expand-target': 'icon' }
-                      Autres zones
-                  .fr-ml-1w.hidden{ 'data-expand-target': 'content' }
-                    = f.collection_check_boxes :zone_ids, @filter.other_zones, :id, :current_label, include_hidden: false do |b|
-                      .fr-checkbox-group.fr-ml-2w.fr-py-1w
-                        = b.check_box(checked: @filter.zone_filtered?(b.value))
-                        = b.label(class: 'fr-label') { b.text }
-                %li.fr-py-2w.fr-pl-2w{ 'data-controller': "expand" }
-                  .fr-mb-1w
-                    %button{ 'data-action': 'expand#toggle' }
-                      %span.fr-icon-add-line.fr-icon--sm.fr-mr-1w.fr-text-action-high--blue-france{ 'aria-hidden': 'true', 'data-expand-target': 'icon' }
-                      Mes zones
-                  .fr-ml-1w.hidden{ 'data-expand-target': 'content' }
-                    = f.collection_check_boxes :zone_ids, @filter.admin_zones, :id, :current_label, include_hidden: false do |b|
-                      .fr-checkbox-group.fr-ml-2w.fr-py-1w
-                        = b.check_box(checked: @filter.zone_filtered?(b.value))
-                        = b.label(class: 'fr-label') { b.text }
-                %li.fr-py-2w.fr-pl-2w{ 'data-controller': "expand" }
-                  .fr-mb-1w
-                    %button{ 'data-action': 'expand#toggle' }
-                      %span.fr-icon-add-line.fr-icon--sm.fr-mr-1w.fr-text-action-high--blue-france{ 'aria-hidden': 'true', 'data-expand-target': 'icon' }
-                      Service
-                  .fr-ml-1w.hidden{ 'data-expand-target': 'content' }
-                    %div
-                      = f.text_field :service_siret, placeholder: 'Indiquez le SIRET', class: 'fr-input'
-                %li.fr-py-2w.fr-pl-2w{ 'data-controller': "expand" }
-                  .fr-mb-1w
-                    %button{ 'data-action': 'expand#toggle' }
-                      %span.fr-icon-add-line.fr-icon--sm.fr-mr-1w.fr-text-action-high--blue-france{ 'aria-hidden': 'true', 'data-expand-target': 'icon' }
-                      Département
-                  .fr-ml-1w.hidden{ 'data-expand-target': 'content' }
-                    %div
-                      = f.select :service_departement,
-                        APIGeoService.departement_options,
-                        { selected: @filter.service_departement, include_blank: ''},
-                        id: "service_dep_select",
-                        class: 'fr-select'
-                %li.fr-py-2w.fr-pl-2w{ 'data-controller': "expand" }
-                  .fr-mb-1w
-                    %button{ 'data-action': 'expand#toggle' }
-                      %span.fr-icon-add-line.fr-icon--sm.fr-mr-1w.fr-text-action-high--blue-france{ 'aria-hidden': 'true', 'data-expand-target': 'icon' }
-                      Type d’usager
-                  .fr-ml-1w.hidden{ 'data-expand-target': 'content' }
-                    = f.collection_check_boxes :kind_usagers, ['individual', 'personne_morale'], :to_s, :to_s, include_hidden: false do |b|
-                      .fr-checkbox-group.fr-ml-2w.fr-py-1w
-                        = b.check_box(checked: @filter.kind_usager_filtered?(b.value))
-                        = b.label(class: 'fr-label') { t b.text, scope: 'activerecord.attributes.procedure.kind_usager' }
-                %li.fr-py-2w{ 'data-controller': "expand" }
-                  .fr-mb-1w.fr-pl-2w
-                    %button{ 'data-action': 'click->expand#toggle' }
-                      %span.fr-icon-add-line.fr-icon--sm.fr-mr-1w.fr-text-action-high--blue-france{ 'aria-hidden': 'true', 'data-expand-target': 'icon' }
-                      Date de publication
-                  .fr-input-group.hidden{ 'data-expand-target': 'content' }
-                    = f.label 'from_publication_date', 'Depuis', class: 'fr-label'
-                    .fr-input-wrap.fr-fi-calendar-line
-                      = f.date_field 'from_publication_date', value: @filter.from_publication_date, class: 'fr-input'
+                      = b.check_box(checked: @filter.kind_usager_filtered?(b.value))
+                      = b.label(class: 'fr-label') { t b.text, scope: 'activerecord.attributes.procedure.kind_usager' }
 
-                %li.fr-py-2w.fr-pl-2w{ 'data-controller': "expand" }
-                  .fr-mb-1w
-                    %button{ 'data-action': 'expand#toggle' }
-                      %span.fr-icon-add-line.fr-icon--sm.fr-mr-1w.fr-text-action-high--blue-france{ 'aria-hidden': 'true', 'data-expand-target': 'icon' }
-                      Statut
-                  .fr-ml-1w.hidden{ 'data-expand-target': 'content' }
-                    = f.collection_check_boxes :statuses, ['publiee', 'close'], :to_s, :to_s, include_hidden: false do |b|
-                      .fr-checkbox-group.fr-ml-2w.fr-py-1w
-                        = b.check_box(checked: @filter.status_filtered?(b.value))
-                        = b.label(class: 'fr-label') { t b.text, scope: 'activerecord.attributes.procedure.aasm_state' }
+
+              = render Dsfr::AccordionComponent.new(expanded: @filter.from_publication_date.present?) do |c|
+                - c.with_title do
+                  Date de publication
+                  - if @filter.from_publication_date.present?
+                    %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w 1
+                .fr-input-group
+                  = f.label 'from_publication_date', 'Depuis', class: 'fr-label'
+                  .fr-input-wrap.fr-input-wrap--addon
+                    = f.date_field 'from_publication_date', value: @filter.from_publication_date, class: 'fr-input', data: { no_autosubmit: 'input change blur', turbo_force: :server }
+                    = f.button 'Rechercher', class: 'fr-btn fr-icon-search-line'
+
+
+              = render Dsfr::AccordionComponent.new(expanded: @filter.statuses.present?) do |c|
+                - c.with_title do
+                  Statut
+                  - if @filter.statuses.present?
+                    %span.fr-badge.fr-badge--sm.fr-badge--blue-france.fr-ml-1w= @filter.statuses.size
+                = f.collection_check_boxes :statuses, ['publiee', 'close'], :to_s, :to_s, include_hidden: false do |b|
+                  .fr-checkbox-group.fr-ml-2w.fr-py-1w
+                    = b.check_box(checked: @filter.status_filtered?(b.value))
+                    = b.label(class: 'fr-label') { t b.text, scope: 'activerecord.attributes.procedure.aasm_state' }
 
         .fr-col-12.fr-col-lg-9
           = yield(:results)

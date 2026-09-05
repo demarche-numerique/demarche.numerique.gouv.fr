@@ -2,7 +2,7 @@
   %ul.fr-nav__list
     %li.fr-nav__item= link_to 'Mes démarches', admin_procedures_path, class:'fr-nav__link', 'aria-current': current_page?(controller: 'administrateurs/procedures', action: :index) ? 'true' : nil
     - if Rails.application.config.ds_zonage_enabled
-      %li.fr-nav__item= link_to 'Toutes les démarches', all_admin_procedures_path(zone_ids: :admin_default), class:'fr-nav__link', 'aria-current': current_page?(all_admin_procedures_path) ? 'page' : nil
+      %li.fr-nav__item= link_to 'Annuaire des démarches', all_admin_procedures_path(zone_ids: :admin_default), class:'fr-nav__link', 'aria-current': current_page?(all_admin_procedures_path) ? 'page' : nil
     - if current_administrateur.groupe_gestionnaire_id
       %li.fr-nav__item= link_to 'Mon groupe gestionnaire', admin_groupe_gestionnaire_path, class:'fr-nav__link', 'aria-current': current_page?(admin_groupe_gestionnaire_path) ? 'page' : nil
 

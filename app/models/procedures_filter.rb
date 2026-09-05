@@ -4,6 +4,7 @@ class ProceduresFilter
   attr_reader :admin, :params
 
   ITEMS_PER_PAGE = 25
+  PROCEDURE_ONLY_FILTERS = [:template, :for_individual, :libelle, :tags].freeze
 
   def initialize(admin, params)
     @admin = admin
@@ -86,6 +87,10 @@ class ProceduresFilter
 
   def status_filtered?(status)
     statuses&.include?(status)
+  end
+
+  def procedure_only_filter?(name)
+    PROCEDURE_ONLY_FILTERS.include?(name)
   end
 
   def without(filter, value = nil)
