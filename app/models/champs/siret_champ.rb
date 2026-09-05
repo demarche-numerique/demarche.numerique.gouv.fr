@@ -9,6 +9,12 @@ class Champs::SiretChamp < ChampData
     true
   end
 
+  # A condition based on one of this champ's columns (value_json) cannot be
+  # evaluated until the data is fetched: restore the blocking validation.
+  def permissive_external_data_validation?
+    !dependent_conditions?
+  end
+
   def focusable_input_id(attribute = :value)
     [input_id, :value].compact.join('-')
   end
@@ -34,15 +40,23 @@ class Champs::SiretChamp < ChampData
 
   def fetch_external_data
     case APIEntrepriseService.create_etablissement_with_fallback(self, external_id.delete(" "), dossier.user&.id)
-    in Success(etablissement) if etablissement.as_degraded_mode?
-      Failure(retryable: true, error: StandardError.new("API Entreprise: degraded mode"), code: 503)
     in Success(etablissement)
       Success(etablissement:, value: external_id)
+    in Failure(degraded: true, etablissement:, type:, code:)
+      Failure(degraded: true, etablissement:, value: external_id,
+        error: StandardError.new("API Entreprise: #{type}"), code:)
     in Failure(type: :not_found, **)
       Failure(retryable: false, error: StandardError.new('NotFound'), code: 404)
     in Failure(type:, code:, retryable:, **)
       Failure(retryable:, error: StandardError.new("API Entreprise: #{type}"), code:)
     end
+  end
+
+  def handle_exhausted_external_data_retries!
+    etablissement = APIEntrepriseService.create_etablissement_as_degraded_mode(self, external_id.delete(" "), dossier.user&.id)
+
+    handle_result(Failure(degraded: true, etablissement:, value: external_id,
+      error: StandardError.new('API Entreprise: retries exhausted'), code: 504))
   end
 
   def search_terms
@@ -63,8 +77,11 @@ class Champs::SiretChamp < ChampData
   # SIRET controller creates an etablissement in degraded mode
   def validate_etablissement
     return if external_id.blank?
+
     return if etablissement.present?
-    return if pending?
+    # Once a fetch has been attempted, blocking is ExternalDataChampValidator's
+    # job; this validation only covers the synchronous format-check path.
+    return unless idle?
 
     validator = ActiveModel::Validations::SiretValidator.new(attributes: { value: true })
 
