@@ -39,6 +39,7 @@ features = [
   :dossier_vide_weasyprint,
   :dossier_vide_typst,
   :attestation_depot_typst,
+  :dossier_pdf_typst,
   :usager_dossiers_alert_filters,
   :s3_storage,
   # Enable only once T20260728BackfillSearchTermsTsvectorTask has completed.

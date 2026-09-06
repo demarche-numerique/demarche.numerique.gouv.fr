@@ -471,6 +471,11 @@ class ApplicationController < ActionController::Base
     prepend_view_path "app/custom_views"
   end
 
+  # The dossier PDF (DossierPdfService), served inline like a rendered document.
+  def send_dossier_pdf(dossier, acls:)
+    send_data(DossierPdfService.render(dossier, acls:), filename: "dossier-#{dossier.id}.pdf", type: 'application/pdf', disposition: 'inline')
+  end
+
   def cast_bool(value)
     ActiveRecord::Type::Boolean.new.deserialize(value)
   end

@@ -72,6 +72,7 @@ describe TypstService do
 
       expect(entries).to eq([
         'attestation_depot.typ',
+        'dossier.typ',
         'dossier_vide.typ',
         'fonts',
         'fonts/marianne-bold-italic.ttf',
@@ -191,6 +192,90 @@ describe TypstService do
 
       expect { described_class.generate_pdf('attestation_depot', {}) }
         .to raise_error(described_class::Error, /PDF generation failed: Permission denied/)
+    end
+  end
+
+  describe '.with_assets' do
+    let(:blob) do
+      ActiveStorage::Blob.create_and_upload!(io: Rails.root.join('spec/fixtures/files/image-no-exif.jpg').open, filename: 'carte.jpg', content_type: 'image/jpeg')
+    end
+
+    it 'downloads a blob into the compilation root of the block, gone with it' do
+      asset = root = nil
+
+      described_class.with_assets do |assets|
+        root = assets.root
+        asset = assets.image(blob, alt: 'Carte de la zone')
+
+        expect(asset).to eq(path: '/assets/1.jpg', alt: 'Carte de la zone')
+        expect(root.join('assets/1.jpg').binread).to eq(blob.download)
+        expect(root.join('theme.typ')).to be_symlink
+      end
+
+      expect(root).not_to be_exist
+    end
+
+    it 'reads an attachment through its blob and returns nil for an empty one' do
+      procedure = Procedure.new
+      procedure.logo.attach(blob)
+
+      described_class.with_assets do |assets|
+        expect(assets.image(procedure.logo, alt: 'Logo')).to include(alt: 'Logo')
+        expect(assets.image(Procedure.new.logo, alt: 'Logo')).to be_nil
+        expect(assets.image(nil, alt: 'Logo')).to be_nil
+      end
+    end
+
+    it 'compiles in that root when given the assets' do
+      allow(described_class).to receive(:generate_pdf).and_call_original
+      argv = nil
+      allow(Open3).to receive(:capture3) do |*args, **|
+        argv = args
+        ['%PDF-fake', '', instance_double(Process::Status, success?: true)]
+      end
+
+      described_class.with_assets do |assets|
+        described_class.generate_pdf('attestation_depot', {}, assets:)
+
+        expect(argv[argv.index('--root') + 1]).to eq(assets.root.to_s)
+      end
+    end
+
+    it 'embeds the image with its alt text in a PDF/UA-1 document', :external_deps do
+      require_tool!('typst')
+
+      Dir.mktmpdir('spec-illustration', TypstService::ROOT) do |dir|
+        File.write(File.join(dir, 'illustration.typ'), <<~TYPST)
+          #import "/theme.typ": *
+          #let render(data) = {
+            show: letterhead.with(title: "Illustration", marianne: data.marianne, logo: data.logo, sender: data.sender)
+            heading(level: 1)[Carte]
+            illustration(data.map)
+          }
+        TYPST
+        template = "#{File.basename(dir)}/illustration"
+
+        described_class.with_assets do |assets|
+          data = { **described_class.letterhead, map: assets.image(blob, alt: 'Carte de la zone') }
+
+          expect(described_class.query(template, data, 'images()', assets:)).to include('alt' => 'Carte de la zone')
+
+          pdf = described_class.generate_pdf(template, data, assets:)
+          expect(pdf[0, 5]).to eq('%PDF-')
+
+          require_tool!('verapdf')
+
+          Tempfile.create(['illustration', '.pdf']) do |file|
+            file.binmode
+            file.write(pdf)
+            file.flush
+
+            report, warnings, = Open3.capture3('verapdf', '--format', 'text', '--flavour', 'ua1', file.path)
+
+            expect(report).to start_with('PASS'), -> { "veraPDF PDF/UA-1 validation failed:\n#{report}\n#{warnings}" }
+          end
+        end
+      end
     end
   end
 

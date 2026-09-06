@@ -10,6 +10,10 @@ class Typst::Payload
 
   def template = self.class.template
 
+  # The TypstService::Assets a payload downloaded files into, when it embeds
+  # any: TypstService.render then compiles in that store's root.
+  def assets = nil
+
   def to_h
     raise NotImplementedError, "#{self.class} must build its payload in #to_h"
   end

@@ -69,7 +69,7 @@ module Users
         format.pdf do
           @dossier = dossier_with_champs(pj_template: false)
           @acls = pj_service.acl_for_dossier_export(@dossier.procedure)
-          render(template: 'dossiers/show', formats: [:pdf])
+          send_dossier_pdf(@dossier, acls: @acls)
         end
         format.all do
           @dossier = dossier_with_champs

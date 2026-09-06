@@ -66,7 +66,7 @@ module Instructeurs
       respond_to do |format|
         format.pdf do
           @acls = PiecesJustificativesService.new(user_profile: current_instructeur, export_template: nil).acl_for_dossier_export(dossier.procedure)
-          render(template: 'dossiers/show', formats: [:pdf])
+          send_dossier_pdf(@dossier, acls: @acls)
         end
         format.all
       end
@@ -77,7 +77,7 @@ module Instructeurs
       respond_to do |format|
         format.pdf do
           @acls = PiecesJustificativesService.new(user_profile: current_instructeur, export_template: nil).acl_for_dossier_export(dossier.procedure)
-          render(template: 'dossiers/show', formats: [:pdf])
+          send_dossier_pdf(@dossier, acls: @acls)
         end
         format.html do
           render layout: "empty_layout"
