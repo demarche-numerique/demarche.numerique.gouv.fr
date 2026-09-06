@@ -178,52 +178,7 @@ module Users
     end
 
     def generate_empty_pdf(revision)
-      @revision = revision
-      @procedure = revision.procedure
-      filename = "#{@procedure.libelle}.pdf"
-
-      if @procedure.feature_enabled?(:dossier_vide_weasyprint)
-        send_data(dossier_vide_weasyprint_pdf(revision), filename:, type: 'application/pdf')
-      else
-        send_data(render_dossier_vide_prawn, filename:)
-      end
-    rescue StandardError => e
-      # Any failure of the new WeasyPrint path falls back to the proven Prawn rendering.
-      Sentry.capture_exception(e, extra: { procedure_id: @procedure.id })
-      send_data(render_dossier_vide_prawn, filename:)
-    end
-
-    # A published PDF is cached in Active Storage, behind a cache key built from
-    # everything it depends on. The draft ("test") PDF is never cached.
-    def dossier_vide_weasyprint_pdf(revision)
-      return render_dossier_vide_weasyprint(revision) if revision.draft?
-
-      procedure = revision.procedure
-      cache_key = procedure.dossier_vide_pdf_cache_key_for(revision)
-
-      return procedure.dossier_vide_pdf.download if procedure.dossier_vide_pdf_fresh?(cache_key)
-
-      render_dossier_vide_weasyprint(revision)
-        .tap { procedure.store_dossier_vide_pdf(it, cache_key:) }
-    end
-
-    def render_dossier_vide_weasyprint(revision)
-      html = render_to_string(
-        Dossiers::DossierVidePdfComponent.new(revision:),
-        layout: 'dossier_vide_pdf',
-        formats: [:html]
-      )
-
-      options = {
-        procedure_id: revision.procedure.id,
-        path: request.path,
-      }
-
-      WeasyprintService.generate_pdf(html, options)
-    end
-
-    def render_dossier_vide_prawn
-      render_to_string(template: 'dossiers/dossier_vide', formats: [:pdf])
+      send_data(DossierVidePdfService.render(revision), filename: "#{revision.procedure.libelle}.pdf", type: 'application/pdf')
     end
   end
 end
