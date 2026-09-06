@@ -1038,7 +1038,7 @@ fr:
           refuse: "refusé"
           sans_suite: "classé sans suite"
         administrative_service: "Service administratif"
-        generated_at: "Fait le %{date},"
+        generated_at: "Fait le %{date}"
         signature: "La direction de %{app_name}"
       show:
         attestation_depot:

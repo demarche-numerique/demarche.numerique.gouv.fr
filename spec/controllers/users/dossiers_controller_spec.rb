@@ -2299,6 +2299,7 @@ describe Users::DossiersController, type: :controller do
 
       before do
         allow(WeasyprintService).to receive(:generate_pdf).and_return("%PDF-1.4 fake")
+        allow(TypstService).to receive(:generate_pdf).and_return("%PDF-1.4 typst")
       end
 
       it 'sends a PDF document' do
@@ -2310,12 +2311,58 @@ describe Users::DossiersController, type: :controller do
         subject
         expect(WeasyprintService).to have_received(:generate_pdf)
           .with(a_string_matching(/#{dossier.procedure.libelle}/), { procedure_id: dossier.procedure.id, dossier_id: dossier.id })
+        expect(TypstService).not_to have_received(:generate_pdf)
       end
 
       it 'includes dossier identity in the HTML' do
         subject
         expect(WeasyprintService).to have_received(:generate_pdf)
           .with(a_string_matching(/#{dossier.individual.prenom}/), anything)
+      end
+
+      context 'with the :attestation_depot_typst flag enabled' do
+        before { Flipper.enable(:attestation_depot_typst, dossier.procedure) }
+
+        it 'calls Typst with the correct payload' do
+          subject
+          expect(TypstService).to have_received(:generate_pdf)
+            .with('attestation_depot', hash_including(procedure: dossier.procedure.libelle))
+          expect(WeasyprintService).not_to have_received(:generate_pdf)
+          expect(response.body).to eq("%PDF-1.4 typst")
+        end
+
+        it 'includes the dossier identity in the payload' do
+          subject
+          expect(TypstService).to have_received(:generate_pdf)
+            .with('attestation_depot', hash_including(description: a_string_matching(/#{dossier.individual.prenom}/)))
+        end
+
+        it 'falls back to WeasyPrint when Typst fails, and reports the failure' do
+          allow(Sentry).to receive(:capture_exception)
+          allow(TypstService).to receive(:generate_pdf).and_raise(TypstService::Error, 'compiler down')
+
+          subject
+
+          expect(response.body).to eq("%PDF-1.4 fake")
+          expect(Sentry).to have_received(:capture_exception)
+            .with(an_instance_of(TypstService::Error), extra: { dossier_id: dossier.id })
+        end
+      end
+    end
+
+    context 'when the PDF generation fails' do
+      let(:dossier) { dossiers.en_construction }
+
+      before do
+        allow(Sentry).to receive(:capture_exception)
+        allow(WeasyprintService).to receive(:generate_pdf).and_raise(WeasyprintService::Error, 'PDF Generation failed')
+      end
+
+      it 'redirects to the dossier with an alert instead of a 500' do
+        subject
+        expect(response).to redirect_to(dossier_path(dossier))
+        expect(flash.alert).to eq(I18n.t('users.dossiers.attestation.not_available'))
+        expect(Sentry).to have_received(:capture_exception).with(an_instance_of(WeasyprintService::Error), anything)
       end
     end
 

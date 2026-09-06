@@ -80,6 +80,26 @@ RSpec.describe NotificationMailer, type: :mailer do
       end
     end
 
+    context "with the :attestation_depot_typst flag enabled" do
+      before { Flipper.enable(:attestation_depot_typst, procedure) }
+
+      it 'attaches the Typst attestation' do
+        allow(TypstService).to receive(:generate_pdf).and_return('%PDF-1.4 typst')
+
+        expect(mail.attachments.first.filename).to eq("attestation-depot_dossier-#{dossier.id}.pdf")
+        expect(mail.attachments.first.body.decoded).to eq('%PDF-1.4 typst')
+      end
+
+      it 'falls back to the WeasyPrint attestation when Typst fails' do
+        allow(Sentry).to receive(:capture_exception)
+        allow(TypstService).to receive(:generate_pdf).and_raise(TypstService::Error, 'compiler down')
+
+        expect(mail.attachments.first.filename).to eq("attestation-depot_dossier-#{dossier.id}.pdf")
+        expect(mail.attachments.first.body.decoded).to eq('%PDF-1.4 fake')
+        expect(Sentry).to have_received(:capture_exception).with(an_instance_of(TypstService::Error), anything)
+      end
+    end
+
     context "with a custom template" do
       let(:email_template) { create(:email_depose, subject: 'Email subject', body: 'Your dossier was received. Thanks.', procedure:) }
 
