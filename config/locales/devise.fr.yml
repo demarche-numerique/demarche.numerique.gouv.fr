@@ -1,7 +1,5 @@
 fr:
   devise:
-    failure:
-      session_revoked: Votre session a été fermée. Reconnectez-vous.
     passwords:
       new:
         request_new_password: Demander un nouveau mot de passe

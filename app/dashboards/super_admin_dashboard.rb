@@ -13,7 +13,6 @@ class SuperAdminDashboard < Administrate::BaseDashboard
     id: Field::Number,
     email: Field::String,
     reset_password_sent_at: Field::DateTime,
-    remember_created_at: Field::DateTime,
     sign_in_count: Field::Number,
     current_sign_in_at: Field::DateTime,
     last_sign_in_at: Field::DateTime,

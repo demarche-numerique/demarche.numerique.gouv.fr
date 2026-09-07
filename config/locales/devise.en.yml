@@ -1,7 +1,5 @@
 en:
   devise:
-    failure:
-      session_revoked: Your session has been closed. Please sign in again.
     passwords:
       new:
         request_new_password: Request new password

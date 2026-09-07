@@ -4,12 +4,16 @@ class SuperAdmin < ApplicationRecord
   include PasswordComplexityConcern
   include SessionRegistrableConcern
 
-  devise :rememberable, :trackable, :validatable, :lockable, :recoverable
+  # No :rememberable, it would make the daily deadline below a fiction: on the
+  # 25th hour the cookie reopens the session for another day.
+  devise :trackable, :validatable, :lockable, :recoverable
   if SUPER_ADMIN_OTP_ENABLED
     devise :two_factor_authenticatable, sign_in_after_reset_password: false
   else
     devise :database_authenticatable
   end
+
+  def session_max_lifetime = 24.hours
 
   def enable_otp!
     self.otp_secret = SuperAdmin.generate_otp_secret

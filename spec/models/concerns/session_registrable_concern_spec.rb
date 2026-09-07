@@ -5,11 +5,11 @@ describe SessionRegistrableConcern do
   let(:chrome_on_mac) { "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" }
 
   describe '#open_user_session!' do
-    it 'keeps the user agent and leaves the session without a deadline for now' do
+    it 'keeps the user agent and freezes the deadline from the role' do
       user_session = super_admin.open_user_session!(chrome_on_mac)
 
       expect(user_session.user_agent).to eq(chrome_on_mac)
-      expect(user_session.expires_at).to be_nil
+      expect(user_session.expires_at).to be_within(1.second).of(super_admin.session_max_lifetime.from_now)
     end
   end
 
