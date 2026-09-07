@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class Dossiers::DegradedIdentiteEntrepriseComponent < ApplicationComponent
-  attr_reader :etablissement, :profile
+  attr_reader :siret, :profile
 
-  def initialize(etablissement:, profile:)
-    @etablissement = etablissement
+  def initialize(siret:, profile:)
+    @siret = siret
     @profile = profile
   end
 
@@ -13,13 +13,17 @@ class Dossiers::DegradedIdentiteEntrepriseComponent < ApplicationComponent
     header = safe_join([
       render(insee_down),
       render(Dossiers::AnnuaireEntrepriseLinkComponent.new(
-        siret: etablissement.siret,
+        siret:,
         extra_class_names: 'pull-left'
       )),
     ])
 
-    render Dossiers::ExternalChampComponent.new(source:)
+    render Dossiers::ExternalChampComponent.new(source:, data:)
       .tap { it.with_header { header } }
+  end
+
+  def data
+    [[t('.siret'), helpers.pretty_siret(siret), data_to_copy: siret]]
   end
 
   def insee_down

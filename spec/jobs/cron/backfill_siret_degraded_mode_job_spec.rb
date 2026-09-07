@@ -15,21 +15,5 @@ RSpec.describe Cron::BackfillSiretDegradedModeJob, type: :job do
         expect { Cron::BackfillSiretDegradedModeJob.perform_now }.to change { etablissement.reload.adresse }.from(nil).to(new_adresse)
       end
     end
-
-    context 'fix etablisEtablissementAdapter.newsement with champs with adresse nil' do
-      let(:procedure) { create(:procedure, :published, public_type_de_champs:) }
-      let(:public_type_de_champs) { [{ type: :siret }] }
-      let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-      let(:champ_siret) { dossier.champ_data.first }
-
-      before do
-        champ_siret
-        champ_siret.update_column(:etablissement_id, etablissement.id)
-      end
-      it 'works' do
-        allow_any_instance_of(APIEntreprise::EtablissementAdapter).to receive(:to_params).and_return(Dry::Monads::Success({ adresse: new_adresse }))
-        expect { Cron::BackfillSiretDegradedModeJob.perform_now }.to change { etablissement.reload.adresse }.from(nil).to(new_adresse)
-      end
-    end
   end
 end

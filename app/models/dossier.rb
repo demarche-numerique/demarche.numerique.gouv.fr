@@ -639,9 +639,8 @@ class Dossier < ApplicationRecord
 
   def any_etablissement_as_degraded_mode?
     return true if etablissement&.as_degraded_mode?
-    return true if filled_champs_public.any? { _1.etablissement&.as_degraded_mode? }
 
-    false
+    filled_champs_public.any? { _1.degraded? || _1.etablissement&.as_degraded_mode? }
   end
 
   def messagerie_available?

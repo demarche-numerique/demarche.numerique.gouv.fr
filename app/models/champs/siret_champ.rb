@@ -33,15 +33,13 @@ class Champs::SiretChamp < ChampData
   end
 
   def fetch_external_data
-    case APIEntrepriseService.create_etablissement_with_fallback(self, external_id.delete(" "), dossier.user&.id)
-    in Success(etablissement) if etablissement.as_degraded_mode?
-      Failure(retryable: true, error: StandardError.new("API Entreprise: degraded mode"), code: 503)
+    case APIEntreprise::Sirene.fetch_etablissement(external_id, procedure.id)
     in Success(etablissement)
       Success(etablissement:, value: external_id)
-    in Failure(type: :not_found, **)
-      Failure(retryable: false, error: StandardError.new('NotFound'), code: 404)
-    in Failure(type:, code:, retryable:, **)
-      Failure(retryable:, error: StandardError.new("API Entreprise: #{type}"), code:)
+    in Failure(type:, code:, **) if code.in?(ExternalDataException::DEFINITIVE_CODES)
+      Failure(retryable: false, error: StandardError.new("API Entreprise: #{type}"), code:)
+    in Failure(type:, code:, **)
+      Failure(degraded: true, value: external_id, error: StandardError.new("API Entreprise: #{type}"), code:)
     end
   end
 
@@ -57,6 +55,15 @@ class Champs::SiretChamp < ChampData
 
   private
 
+  # Only a fetch brings an etablissement: the degraded branch carries the siret alone.
+  def update_external_data!(hash)
+    super
+    return if !hash.key?(:etablissement)
+
+    etablissement.update_champ_value_json!
+    APIEntrepriseService.perform_later_fetch_jobs(etablissement, procedure.id, dossier.user&.id)
+  end
+
   # We want to validate if SIRET really exists
   # It's valid when an etablissement have been created in turbo with SIRET controller
   # When API Entreprise is down, user won't be stuck because
@@ -64,7 +71,7 @@ class Champs::SiretChamp < ChampData
   def validate_etablissement
     return if external_id.blank?
     return if etablissement.present?
-    return if pending?
+    return if pending? || degraded?
 
     validator = ActiveModel::Validations::SiretValidator.new(attributes: { value: true })
 
