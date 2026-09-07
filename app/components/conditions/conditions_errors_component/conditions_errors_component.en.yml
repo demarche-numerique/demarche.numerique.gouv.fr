@@ -20,3 +20,4 @@ en:
       min: "to « %{min} » at least"
       max: "to « %{max} » at most"
     unreachable: "This condition can never be true: the field « %{libelle} » is not displayed in that case."
+    unreachable_branch: "One « Or » branch of this condition can never be true: the field « %{libelle} » is not displayed in that case."

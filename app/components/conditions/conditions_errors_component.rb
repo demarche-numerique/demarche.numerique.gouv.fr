@@ -78,6 +78,9 @@ class Conditions::ConditionsErrorsComponent < ApplicationComponent
         count: comparisons.size,
         libelle: targeted_champ.libelle,
         comparisons: comparisons.map { humanize_comparison(it) }.to_sentence)
+    in { type: :unreachable, stable_id: stable_id, branch: true }
+      targeted_champ = @source_tdcs.find { |tdc| tdc.stable_id == stable_id }
+      t('unreachable_branch', scope: '.errors', libelle: targeted_champ.libelle)
     in { type: :unreachable, stable_id: stable_id }
       targeted_champ = @source_tdcs.find { |tdc| tdc.stable_id == stable_id }
       t('unreachable', scope: '.errors', libelle: targeted_champ.libelle)

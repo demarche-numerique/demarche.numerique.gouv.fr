@@ -98,6 +98,15 @@ describe Conditions::ConditionsErrorsComponent, type: :component do
       it { expect(page).to have_content("Le champ « #{tdc.libelle} » ne peut pas être à la fois supérieur à « 3 » et inférieur à « 2 ».") }
     end
 
+    context 'when a branch of an or targets a champ hidden in that case' do
+      let(:number) { create(:type_de_champ_integer_number) }
+      let(:tdc) { create(:type_de_champ_yes_no, condition: greater_than(champ_value(number.stable_id), constant(10))) }
+      let(:source_tdcs) { [number, tdc] }
+      let(:condition) { ds_or([ds_and([ds_eq(champ_value(tdc.stable_id), constant(true)), less_than(champ_value(number.stable_id), constant(5))]), less_than(champ_value(number.stable_id), constant(3))]) }
+
+      it { expect(page).to have_content("Une des branches « Ou » de cette condition ne peut jamais être vraie : le champ « #{tdc.libelle} » n’est pas affiché dans ce cas.") }
+    end
+
     context 'when a row runs into the validation limits of a number champ' do
       let(:tdc) { create(:type_de_champ_decimal_number, options: { range_number: '1', min_number: '0', max_number: '5' }) }
       let(:source_tdcs) { [tdc] }
