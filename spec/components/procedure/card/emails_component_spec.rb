@@ -24,6 +24,22 @@ RSpec.describe Procedure::Card::EmailsComponent, type: :component do
     end
   end
 
+  context 'when the customized email template is a declarative variant' do
+    let(:procedure) { create(:procedure, declarative_with_state: :accepte).tap { create(:email_depose_et_accepte, procedure: it) } }
+
+    it 'counts it as customized' do
+      expect(page).to have_css('.fr-tag', text: '1 / 6')
+    end
+  end
+
+  context 'when the only customized template is left over by a previous setting' do
+    let(:procedure) { create(:procedure, declarative_with_state: :accepte).tap { create(:email_depose, procedure: it) } }
+
+    it 'counts the templates the procedure actually sends' do
+      expect(page).to have_css('.fr-tag', text: '0 / 6')
+    end
+  end
+
   context 'when the repasse en instruction email has a validation error' do
     let(:procedure) { create(:procedure).tap { it.errors.add(:email_repasse_en_instruction, :invalid) } }
 

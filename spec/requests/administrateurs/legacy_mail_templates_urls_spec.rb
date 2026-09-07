@@ -28,10 +28,10 @@ describe 'legacy mail_templates URLs', type: :request do
     expect(response).to have_http_status(:not_found)
   end
 
-  # What an editor rendered before the rename posts is served in place: its CSRF
-  # token is an HMAC of the path it was rendered for, so redirecting the save
-  # would get it rejected.
-  context 'what an editor rendered before the rename posts' do
+  # What is posted to a legacy path is served in place: a CSRF token is an HMAC
+  # of the path the form was rendered for, so redirecting the save would get it
+  # rejected.
+  context 'what is posted to a legacy path' do
     let(:administrateur) { create(:administrateur) }
     let(:procedure) { create(:procedure, administrateur:) }
     let(:tiptap_body) { { "type" => "doc", "content" => [{ "type" => "paragraph", "content" => [{ "type" => "text", "text" => "Salut" }] }] } }
@@ -40,7 +40,7 @@ describe 'legacy mail_templates URLs', type: :request do
 
     it 'saves without leaving the legacy path' do
       put "/admin/procedures/#{procedure.id}/mail_templates/without_continuation",
-        params: { mails_without_continuation_mail: { tiptap_body: tiptap_body.to_json } }
+        params: { email_template: { tiptap_body: tiptap_body.to_json } }
 
       expect(response).to redirect_to(edit_admin_procedure_email_template_path(procedure, 'classe_sans_suite'))
       expect(procedure.reload.email_classe_sans_suite.json_body).to eq(tiptap_body)
@@ -48,7 +48,7 @@ describe 'legacy mail_templates URLs', type: :request do
 
     it 'previews without leaving the legacy path' do
       post "/admin/procedures/#{procedure.id}/mail_templates/received_mail/preview",
-        params: { mails_received_mail: { tiptap_body: tiptap_body.to_json } },
+        params: { email_template: { tiptap_body: tiptap_body.to_json } },
         headers: { 'Accept' => 'text/vnd.turbo-stream.html' }
 
       expect(response).to have_http_status(:ok)

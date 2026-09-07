@@ -78,14 +78,13 @@ class EmailTemplate < ApplicationRecord
   end
 
   def self.default_for_procedure(procedure)
-    template_name = default_template_name_for_procedure(procedure)
-    body = ActionController::Base.render(template: template_name).gsub(/<!--.*?-->/m, '')
+    body = ActionController::Base.render(template: const_get(:DEFAULT_TEMPLATE_NAME), locals: default_template_locals(procedure)).gsub(/<!--.*?-->/m, '')
     body = body.gsub(/(?<!^|[.-])(?<!<\/strong>)\n/, ' ')
     new(subject: const_get(:DEFAULT_SUBJECT), body:, procedure:)
   end
 
-  def self.default_template_name_for_procedure(procedure)
-    const_get(:DEFAULT_TEMPLATE_NAME)
+  def self.default_template_locals(_procedure)
+    { with_attestation: false }
   end
 
   def tiptap_inline_nodes_for(text)

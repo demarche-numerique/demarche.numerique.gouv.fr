@@ -8,20 +8,45 @@ fr:
         Une attestation de dépôt est jointe à cet email.
 
         L’usager peut encore modifier son dossier.
+    depose_et_passe_en_instruction:
+      default: |-
+        Cet email est envoyé à l’usager **après qu’il a déposé son dossier**.
+
+        Une attestation de dépôt est jointe à cet email.
+
+        Votre démarche est **déclarative**, avec un passage automatique en instruction, l’usager ne peut donc plus modifier son dossier après l’avoir déposé.
+    depose_et_accepte:
+      default: |-
+        Cet email est envoyé à l’usager **après qu’il a déposé son dossier**.
+
+        Une attestation de dépôt est jointe à cet email.
+
+        Votre démarche est **déclarative**, avec un passage automatique au statut « accepté », l’usager ne peut donc plus modifier son dossier après l’avoir déposé.
     passe_en_instruction:
       default: |-
         Cet email est envoyé à l’usager lorsque **l’instructeur passe en instruction son dossier**, ou à la clôture automatique de la démarche (si vous avez paramétré une date limite de dépôt des dossiers).
 
         L’usager ne peut plus modifier son dossier.
+      en_instruction: &passe_en_instruction_declarative |-
+        Cet email est envoyé à l’usager **lorsque l’instructeur passe en instruction** son dossier, **s’il avait été repassé en construction**, ou à la clôture automatique de la démarche (si vous avez paramétré une date limite de dépôt des dossiers).
+      accepte: *passe_en_instruction_declarative
     accepte:
       default: |-
         Cet email est envoyé à l’usager **lorsque l’instructeur accepte** son dossier.
+      accepte: |-
+        Cet email est envoyé à l’usager **lorsque l’instructeur accepte** son dossier, **s’il avait été réexaminé / repassé en instruction**.
     refuse:
       default: |-
         Cet email est envoyé à l’usager **lorsque l’instructeur refuse** son dossier.
+      accepte: |-
+        Cet email est envoyé à l’usager **lorsque l’instructeur refuse** son dossier, **s’il avait été réexaminé / repassé en instruction**.
     classe_sans_suite:
       default: |-
         Cet email est envoyé à l’usager **lorsque l’instructeur classe sans suite** son dossier.
+      accepte: |-
+        Cet email est envoyé à l’usager **lorsque l’instructeur classe sans suite** son dossier, **s’il avait été réexaminé / repassé en instruction**.
     repasse_en_instruction:
       default: |-
         Cet email est envoyé à l’usager **lorsque l’instructeur repasse en instruction** son dossier, **après qu’une décision a déjà été rendue**.
+      accepte: |-
+        Cet email est envoyé à l’usager **lorsque l’instructeur repasse en instruction** son dossier, **après que la décision « Accepter » a été automatiquement rendue**.

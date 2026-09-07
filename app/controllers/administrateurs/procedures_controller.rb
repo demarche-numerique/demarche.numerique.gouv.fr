@@ -81,7 +81,7 @@ module Administrateurs
           },
           attestation_acceptation_template: [],
           attestation_refus_template: [],
-          email_depose: [],
+          email_depose_templates: [],
           email_passe_en_instruction: [],
           email_accepte: [],
           email_refuse: [],

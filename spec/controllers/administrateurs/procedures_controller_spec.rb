@@ -478,6 +478,20 @@ describe Administrateurs::ProceduresController, type: :controller do
         it { is_expected.to have_http_status(:success) }
       end
 
+      context 'when the advanced options are rendered' do
+        render_views
+
+        it 'keeps them folded, and holds the anchor the email templates screen links to' do
+          expect(subject.body).to have_css('details:not([open]) #declarative_with_state-legend', visible: :all)
+        end
+
+        it 'unfolds them when the email templates screen links to them' do
+          get :edit, params: { id: procedure_id, section: 'options-avancees' }
+
+          expect(response.body).to have_css('details[open] #declarative_with_state-legend', visible: :all)
+        end
+      end
+
       context 'when procedure doesn’t exist' do
         let(:procedure_id) { bad_procedure_id }
 

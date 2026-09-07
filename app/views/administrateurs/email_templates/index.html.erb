@@ -14,11 +14,21 @@
       <% if @procedure.accuse_lecture? %>
         <%= render Dsfr::AlertComponent.new(state: :info, size: :sm) do |c| %>
           <% c.with_body do %>
+            <p><%= t(".accuse_lecture_notice.body") %></p>
+
+            <% if @procedure.send_combined_declarative_email? && @procedure.declarative_accepte? %>
+              <p><%= t(".accuse_lecture_notice.declarative_accepte") %></p>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% if @procedure.send_combined_declarative_email? %>
+        <%= render Dsfr::AlertComponent.new(state: :info, title: t(".declarative_notice.title"), heading_level: "h2", extra_class_names: "fr-mt-2w") do |c| %>
+          <% c.with_body do %>
             <p>
-              L’accusé de lecture est activé sur cette démarche. Dans ce
-              contexte, les emails « d’acceptation », « de refus » et de «
-              classement sans suite », ne sont pas modifiables afin de s’assurer
-              que la décision finale reste masquée pour l’usager.
+              <%= t(".declarative_notice.#{@procedure.email_templates_context}_html",
+                    link: link_to(t(".declarative_notice.presentation"), edit_admin_procedure_path(@procedure, section: "options-avancees", anchor: "declarative_with_state-legend"))) %>
             </p>
           <% end %>
         <% end %>
@@ -27,7 +37,7 @@
 
     <% @email_templates.each do |email_template| %>
       <div class="fr-col-12">
-        <%= render Procedure::EmailTemplateCardComponent.new(email_template: email_template) %>
+        <%= render Procedure::EmailTemplateCardComponent.new(email_template: email_template, context: @procedure.email_templates_context) %>
       </div>
     <% end %>
   </div>

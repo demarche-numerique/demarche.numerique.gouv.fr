@@ -8,20 +8,45 @@ en:
         A deposit receipt is attached to this email.
 
         The user can still make changes to their file.
+    depose_et_passe_en_instruction:
+      default: |-
+        This email is sent to the user **after they submit their file**.
+
+        A deposit receipt is attached to this email.
+
+        Your procedure is **declarative**, with an automatic switch to instruction, so the user can no longer make changes to their file once submitted.
+    depose_et_accepte:
+      default: |-
+        This email is sent to the user **after they submit their file**.
+
+        A deposit receipt is attached to this email.
+
+        Your procedure is **declarative**, with an automatic switch to the "Accepted" status, so the user can no longer make changes to their file once submitted.
     passe_en_instruction:
       default: |-
         This email is sent to the user when **the instructor starts processing their file**, or when the procedure closes automatically (if you have set a submission deadline).
 
         The user can no longer make changes to their file.
+      en_instruction: &passe_en_instruction_declarative |-
+        This email is sent to the user **when the instructor starts processing** their file, **if it had been reverted to submitted**, or when the procedure closes automatically (if you have set a submission deadline).
+      accepte: *passe_en_instruction_declarative
     accepte:
       default: |-
         This email is sent to the user **when the instructor accepts** their file.
+      accepte: |-
+        This email is sent to the user **when the instructor accepts** their file, **if it had been re-examined / reverted to processing**.
     refuse:
       default: |-
         This email is sent to the user **when the instructor refuses** their file.
+      accepte: |-
+        This email is sent to the user **when the instructor refuses** their file, **if it had been re-examined / reverted to processing**.
     classe_sans_suite:
       default: |-
         This email is sent to the user **when the instructor closes their file without follow-up**.
+      accepte: |-
+        This email is sent to the user **when the instructor closes their file without follow-up**, **if it had been re-examined / reverted to processing**.
     repasse_en_instruction:
       default: |-
         This email is sent to the user **when the instructor re-examines** their file, **after a decision has already been made**.
+      accepte: |-
+        This email is sent to the user **when the instructor re-examines** their file, **after the "Accept" decision has been automatically made**.

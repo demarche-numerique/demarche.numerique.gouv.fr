@@ -1,0 +1,12 @@
+en:
+  administrateurs:
+    email_templates:
+      index:
+        accuse_lecture_notice:
+          body: The reading acknowledgment is enabled on this procedure. In this context, the "acceptance", "refusal" and "closure without follow-up" emails cannot be edited, so that the final decision stays hidden from the user.
+          declarative_accepte: Since this procedure is declarative, with an automatic switch to the "Accepted" status, the proof of receipt sent on submission does announce that acceptance to the user.
+        declarative_notice:
+          title: Declarative procedure
+          presentation: presentation page
+          en_instruction_html: This procedure is declarative, with an <strong>automatic switch to instruction</strong>. You can change this setting in the advanced options of the procedure’s %{link}.
+          accepte_html: This procedure is declarative, with an <strong>automatic switch to the "Accepted" status</strong>. You can change this setting in the advanced options of the procedure’s %{link}.

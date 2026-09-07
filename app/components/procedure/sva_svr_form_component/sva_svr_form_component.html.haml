@@ -13,7 +13,7 @@
 
     - if procedure.declarative?
       .fr-alert.fr-alert--warning.fr-alert--sm.fr-mb-4w
-        %p= t('.notice_incompatible_with_declarative_html', edit_admin_procedure_path: edit_admin_procedure_path(procedure, anchor: ":~:text=Options avancées"))
+        %p= t('.notice_incompatible_with_declarative_html', edit_admin_procedure_path: edit_admin_procedure_path(procedure, section: "options-avancees", anchor: "declarative_with_state-legend"))
 
     - if procedure.publiee? && procedure.sva_svr_enabled?
       .fr-alert.fr-alert--warning.fr-alert--sm.fr-mb-4w

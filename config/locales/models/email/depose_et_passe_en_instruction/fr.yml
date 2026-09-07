@@ -1,0 +1,7 @@
+fr:
+  activerecord:
+    models:
+      email:
+        depose_et_passe_en_instruction:
+          default_subject: Votre dossier n° %{dossier_number} a bien été déposé et va être examiné (%{procedure_libelle})
+          proof_of_receipt: Accusé de réception avec passage automatique en instruction

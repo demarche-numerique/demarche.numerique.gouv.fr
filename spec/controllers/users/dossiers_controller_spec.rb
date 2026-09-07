@@ -659,12 +659,12 @@ describe Users::DossiersController, type: :controller do
       delivery = double
       expect(delivery).to receive(:deliver_later).with(no_args)
 
-      expect(NotificationMailer).to receive(:send_en_construction_notification)
+      expect(NotificationMailer).to receive(:send_depose_notification)
         .and_return(delivery)
 
       subject
 
-      expect(NotificationMailer).not_to receive(:send_en_construction_notification)
+      expect(NotificationMailer).not_to receive(:send_depose_notification)
 
       subject
     end
@@ -687,7 +687,7 @@ describe Users::DossiersController, type: :controller do
       end
 
       it 'does not send an email' do
-        expect(NotificationMailer).not_to receive(:send_en_construction_notification)
+        expect(NotificationMailer).not_to receive(:send_depose_notification)
 
         subject
       end
@@ -737,7 +737,7 @@ describe Users::DossiersController, type: :controller do
 
       it 'passe automatiquement en instruction' do
         delivery = double.tap { expect(_1).to receive(:deliver_later).with(no_args).twice }
-        expect(NotificationMailer).to receive(:send_en_construction_notification).and_return(delivery)
+        expect(NotificationMailer).to receive(:send_depose_notification).and_return(delivery)
         expect(NotificationMailer).to receive(:send_en_instruction_notification).and_return(delivery)
 
         subject
