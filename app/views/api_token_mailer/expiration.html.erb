@@ -8,14 +8,16 @@
 </p>
 
 <p>
-  <strong>Ce jeton expirera le <%= l(@api_token.expires_at, format: :long) %>.</strong>
+  <strong>Ce jeton expire le <%= l(@api_token.expires_at, format: :long) %>.</strong>
   <br>
   L’accès à l’API de <%= APPLICATION_NAME %> sera alors bloqué pour ce jeton.
 </p>
 
 <p>
   Pour le renouveler, rendez-vous sur votre page de profil, dans la section «
-  Jetons d’identification de l’API »: <%= link_to profil_url, profil_url %>
+  Jetons d’identification de l’API ».
 </p>
+
+<p><%= link_to profil_url, profil_url %></p>
 
 <%= render partial: "layouts/mailers/signature" %>
