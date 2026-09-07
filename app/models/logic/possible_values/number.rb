@@ -7,7 +7,11 @@
 # Restricting intersects, so the intervals only ever shrink; `n’est pas`
 # (Logic::NotEq) is the one operator that cuts a hole in the middle, which is
 # why several intervals are kept rather than one.
-class Logic::PossibleValues::Number < Data.define(:integer, :intervals)
+#
+# A champ validated within limits (`positive_number`, `min_number`,
+# `max_number`) starts out already narrowed to them, and remembers them in
+# `limits` so that an error can say which limit a comparison runs into.
+class Logic::PossibleValues::Number < Data.define(:integer, :intervals, :limits)
   Interval = Data.define(:min, :min_inclusive, :max, :max_inclusive) do
     def self.unbounded = new(min: nil, min_inclusive: false, max: nil, max_inclusive: false)
 
@@ -51,11 +55,33 @@ class Logic::PossibleValues::Number < Data.define(:integer, :intervals)
     end
   end
 
-  def initialize(integer:, intervals: [Interval.unbounded])
-    super(integer:, intervals: intervals.map { integer ? it.snap_to_integers : it }.reject(&:empty?))
+  # The values the champ's own validation leaves it (see
+  # NumberLimitValidator): non-negative when `positive_number`, within
+  # `min_number`..`max_number` when `range_number`, both ends included and
+  # either one optional. A bound is read the way the validator reads it, as
+  # an integer or a decimal depending on the champ.
+  def self.for(type_de_champ)
+    integer = type_de_champ.integer_number?
+    range = type_de_champ.range_number?
+    range_min, range_max = [type_de_champ.min_number, type_de_champ.max_number].map do |bound|
+      next if !range || bound.blank?
+
+      integer ? bound.to_i : bound.to_f
+    end
+    min = [type_de_champ.positive_number? ? 0 : nil, range_min].compact.max
+    limits = { min:, max: range_max } if min || range_max
+
+    new(integer:, limits:).restrict(Logic::GreaterThanEq, min).restrict(Logic::LessThanEq, range_max)
+  end
+
+  def initialize(integer:, intervals: [Interval.unbounded], limits: nil)
+    super(integer:, intervals: intervals.map { integer ? it.snap_to_integers : it }.reject(&:empty?), limits:)
   end
 
   def empty? = intervals.empty?
+
+  # The same champ as if it had no limits: what its comparisons alone leave.
+  def unlimited = self.class.new(integer:)
 
   def restrict(operator_class, value)
     return self if !value.is_a?(Numeric)
@@ -79,6 +105,6 @@ class Logic::PossibleValues::Number < Data.define(:integer, :intervals)
   # intervals means intersecting them pairwise, and the constructor drops the
   # pairs that do not overlap.
   def intersect(others)
-    self.class.new(integer: integer, intervals: intervals.product(others).map { |a, b| a.intersect(b) })
+    with(intervals: intervals.product(others).map { |a, b| a.intersect(b) })
   end
 end

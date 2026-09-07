@@ -47,18 +47,25 @@ describe Logic::PossibleValues do
   end
 
   describe '.for_column' do
-    def column(tdc) = tdc.columns(procedure_id: nil).first
+    def for_column(tdc) = described_class.for_column(tdc.columns(procedure_id: nil).first, tdc)
 
     it 'builds a values for every conditionable column type' do
-      expect(described_class.for_column(column(build(:type_de_champ_integer_number))).restrict(Logic::GreaterThan, 2).restrict(Logic::LessThan, 3)).to be_empty
-      expect(described_class.for_column(column(build(:type_de_champ_decimal_number))).restrict(Logic::GreaterThan, 2).restrict(Logic::LessThan, 3)).not_to be_empty
-      expect(described_class.for_column(column(build(:type_de_champ_yes_no))).restrict(Logic::Eq, true).restrict(Logic::Eq, false)).to be_empty
-      expect(described_class.for_column(column(build(:type_de_champ_drop_down_list, drop_down_options: ['a', 'b']))).restrict(Logic::NotEq, 'a').restrict(Logic::NotEq, 'b')).to be_empty
-      expect(described_class.for_column(column(build(:type_de_champ_multiple_drop_down_list, drop_down_options: ['a', 'b']))).restrict(Logic::ExcludeOperator, 'a').restrict(Logic::ExcludeOperator, 'b')).to be_empty
+      expect(for_column(build(:type_de_champ_integer_number)).restrict(Logic::GreaterThan, 2).restrict(Logic::LessThan, 3)).to be_empty
+      expect(for_column(build(:type_de_champ_decimal_number)).restrict(Logic::GreaterThan, 2).restrict(Logic::LessThan, 3)).not_to be_empty
+      expect(for_column(build(:type_de_champ_yes_no)).restrict(Logic::Eq, true).restrict(Logic::Eq, false)).to be_empty
+      expect(for_column(build(:type_de_champ_drop_down_list, drop_down_options: ['a', 'b'])).restrict(Logic::NotEq, 'a').restrict(Logic::NotEq, 'b')).to be_empty
+      expect(for_column(build(:type_de_champ_multiple_drop_down_list, drop_down_options: ['a', 'b'])).restrict(Logic::ExcludeOperator, 'a').restrict(Logic::ExcludeOperator, 'b')).to be_empty
+    end
+
+    it 'applies the validation limits of a numeric champ' do
+      values = for_column(build(:type_de_champ_integer_number, options: { range_number: '1', max_number: '5' }))
+
+      expect(values.limits).to eq(min: nil, max: 5)
+      expect(values.restrict(Logic::GreaterThan, 5)).to be_empty
     end
 
     it 'returns nil for other column types' do
-      expect(described_class.for_column(column(build(:type_de_champ_text)))).to be_nil
+      expect(for_column(build(:type_de_champ_text))).to be_nil
     end
   end
 end

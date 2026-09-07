@@ -66,6 +66,12 @@ class Conditions::ConditionsErrorsComponent < ApplicationComponent
       targeted_champ = @source_tdcs.find { |tdc| tdc.stable_id == stable_id }
       t('empty_options', scope: '.errors',
         libelle: targeted_champ.libelle)
+    in { type: :contradiction, stable_id: stable_id, comparisons: comparisons, limits: limits }
+      targeted_champ = @source_tdcs.find { |tdc| tdc.stable_id == stable_id }
+      t('limited', scope: '.errors',
+        libelle: targeted_champ.libelle,
+        comparisons: comparisons.map { humanize_comparison(it) }.to_sentence,
+        limits: humanize_limits(limits))
     in { type: :contradiction, stable_id: stable_id, comparisons: comparisons }
       targeted_champ = @source_tdcs.find { |tdc| tdc.stable_id == stable_id }
       t('contradiction', scope: '.errors',
@@ -79,6 +85,20 @@ class Conditions::ConditionsErrorsComponent < ApplicationComponent
       nil
     end
   end
+
+  def humanize_limits(limits)
+    case limits
+    in { min: Numeric => min, max: Numeric => max }
+      t('limits.between', scope: '.errors', min: humanize_number(min), max: humanize_number(max))
+    in { min: Numeric => min }
+      t('limits.min', scope: '.errors', min: humanize_number(min))
+    in { max: Numeric => max }
+      t('limits.max', scope: '.errors', max: humanize_number(max))
+    end
+  end
+
+  # A decimal bound typed as a whole number reads as one
+  def humanize_number(number) = (number.is_a?(Float) && number == number.to_i ? number.to_i : number).to_s
 
   def humanize_comparison(comparison)
     "#{t(comparison.class.name, scope: 'logic.operators').downcase} « #{humanize_value(comparison)} »"

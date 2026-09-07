@@ -14,4 +14,9 @@ en:
     contradiction:
       one: "The field « %{libelle} » can never be %{comparisons}."
       other: "The field « %{libelle} » cannot be both %{comparisons}."
+    limited: "The field « %{libelle} » cannot be %{comparisons}: its values are limited %{limits}."
+    limits:
+      between: "between « %{min} » and « %{max} »"
+      min: "to « %{min} » at least"
+      max: "to « %{max} » at most"
     unreachable: "This condition can never be true: the field « %{libelle} » is not displayed in that case."

@@ -50,7 +50,7 @@ class Logic::ChampColumnValue < Logic::Term
 
   def possible_values(type_de_champs)
     column = targeted_column(type_de_champs)
-    Logic::PossibleValues.for_column(column) if column
+    Logic::PossibleValues.for_column(column, targeted_tdc(type_de_champs)) if column
   end
 
   def errors(type_de_champs)
