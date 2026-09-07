@@ -10,6 +10,8 @@ class Logic::PossibleValues::Geo < Data.define(:codes)
 
   def empty? = codes.empty?
 
+  def limits = nil
+
   def restrict(operator_class, value)
     case operator_class.name
     when Logic::Eq.name, Logic::InDepartementOperator.name then self.class.new(codes & [value])

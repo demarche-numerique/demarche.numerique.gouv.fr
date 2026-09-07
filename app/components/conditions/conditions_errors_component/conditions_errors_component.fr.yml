@@ -14,4 +14,9 @@ fr:
     contradiction:
       one: "Le champ « %{libelle} » ne peut jamais être %{comparisons}."
       other: "Le champ « %{libelle} » ne peut pas être à la fois %{comparisons}."
+    limited: "Le champ « %{libelle} » ne peut pas être %{comparisons} : ses valeurs sont limitées %{limits}."
+    limits:
+      between: "entre « %{min} » et « %{max} »"
+      min: "à « %{min} » au minimum"
+      max: "à « %{max} » au maximum"
     unreachable: "Cette condition ne peut jamais être vraie : le champ « %{libelle} » n’est pas affiché dans ce cas."

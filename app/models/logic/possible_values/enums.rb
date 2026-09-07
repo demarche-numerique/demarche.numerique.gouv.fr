@@ -11,6 +11,8 @@ class Logic::PossibleValues::Enums < Data.define(:options, :must_include, :must_
 
   def empty? = must_include.intersect?(must_exclude) || (options.any? && options.subset?(must_exclude))
 
+  def limits = nil
+
   def restrict(operator_class, value)
     case operator_class.name
     when Logic::IncludeOperator.name then with(must_include: must_include | [value], must_exclude: must_exclude)

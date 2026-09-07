@@ -88,6 +88,39 @@ describe Logic::Solver do
     it { is_expected.to eq([contradiction(column, [ds_eq(column, constant('a')), ds_eq(column, constant('b'))])]) }
   end
 
+  context 'with a champ validated within limits' do
+    let(:number) { build(:type_de_champ_integer_number, stable_id: 1, options: { range_number: '1', min_number: '0', max_number: '5' }) }
+
+    def limited(term, comparisons, limits) = contradiction(term, comparisons).merge(limits:)
+
+    context 'when a comparison runs into a limit' do
+      let(:condition) { greater_than(n, constant(6)) }
+
+      it { is_expected.to eq([limited(n, [greater_than(n, constant(6))], { min: 0, max: 5 })]) }
+    end
+
+    context 'when the comparisons contradict each other on their own' do
+      let(:condition) { ds_and([greater_than_eq(n, constant(2)), less_than(n, constant(1))]) }
+
+      it 'does not blame the limits' do
+        expect(errors).to eq([contradiction(n, [greater_than_eq(n, constant(2)), less_than(n, constant(1))])])
+      end
+    end
+
+    context 'when the comparison stays within the limits' do
+      let(:condition) { greater_than_eq(n, constant(5)) }
+
+      it { is_expected.to be_empty }
+    end
+
+    context 'when the champ is read as a column' do
+      let(:column) { champ_column_value(number.columns(procedure_id: nil).first) }
+      let(:condition) { greater_than(column, constant(6)) }
+
+      it { is_expected.to eq([limited(column, [greater_than(column, constant(6))], { min: 0, max: 5 })]) }
+    end
+  end
+
   describe 'reachability' do
     let(:hidden) { build(:type_de_champ_drop_down_list, stable_id: 4, drop_down_options: ['x', 'y'], condition: greater_than(n, constant(10))) }
     let(:deeper) { build(:type_de_champ_yes_no, stable_id: 5, condition: ds_eq(champ_value(4), constant('x'))) }

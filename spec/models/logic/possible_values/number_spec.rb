@@ -31,6 +31,57 @@ describe Logic::PossibleValues::Number do
     expect(described_class.new(integer: true).restrict(Logic::IncludeOperator, 1)).not_to be_empty
   end
 
+  describe '.for' do
+    def tdc(type, **options) = build(:"type_de_champ_#{type}", options:)
+
+    it 'starts unlimited on a champ without validation' do
+      values = described_class.for(tdc(:integer_number))
+
+      expect(values.limits).to be_nil
+      expect(values.restrict(Logic::GreaterThan, 10**9)).not_to be_empty
+    end
+
+    it 'starts at zero on a positive champ' do
+      values = described_class.for(tdc(:integer_number, positive_number: '1'))
+
+      expect(values.limits).to eq(min: 0, max: nil)
+      expect(values.restrict(Logic::LessThan, 0)).to be_empty
+      expect(values.restrict(Logic::Eq, 0)).not_to be_empty
+    end
+
+    it 'starts within the range, both ends included' do
+      values = described_class.for(tdc(:decimal_number, range_number: '1', min_number: '2.5', max_number: '18'))
+
+      expect(values.limits).to eq(min: 2.5, max: 18.0)
+      expect(values.restrict(Logic::Eq, 18)).not_to be_empty
+      expect(values.restrict(Logic::GreaterThan, 18)).to be_empty
+      expect(values.restrict(Logic::LessThan, 2.5)).to be_empty
+    end
+
+    it 'keeps the tighter of positive and range' do
+      expect(described_class.for(tdc(:integer_number, positive_number: '1', range_number: '1', min_number: '3')).limits).to eq(min: 3, max: nil)
+      expect(described_class.for(tdc(:integer_number, positive_number: '1', range_number: '1', min_number: '-3')).limits).to eq(min: 0, max: nil)
+    end
+
+    it 'ignores the range when it is switched off' do
+      expect(described_class.for(tdc(:integer_number, range_number: '0', min_number: '2', max_number: '18')).limits).to be_nil
+    end
+
+    it 'reads a bound the way the validator does' do
+      values = described_class.for(tdc(:integer_number, range_number: '1', min_number: '', max_number: '4.9'))
+
+      expect(values.limits).to eq(min: nil, max: 4)
+      expect(values.restrict(Logic::GreaterThan, 4)).to be_empty
+    end
+
+    it 'can forget its limits' do
+      values = described_class.for(tdc(:integer_number, range_number: '1', max_number: '5'))
+
+      expect(values.unlimited.limits).to be_nil
+      expect(values.unlimited.restrict(Logic::GreaterThan, 5)).not_to be_empty
+    end
+  end
+
   it_behaves_like 'a numeric champ', integer: false, cases: [
     [[[Logic::Eq, 2], [Logic::Eq, 2]], false],
     [[[Logic::Eq, 2], [Logic::Eq, 3]], true],

@@ -8,6 +8,8 @@ class Logic::PossibleValues::Enum < Data.define(:values)
 
   def empty? = values.empty?
 
+  def limits = nil
+
   def restrict(operator_class, value)
     case operator_class.name
     when Logic::Eq.name then self.class.new(values & [value])

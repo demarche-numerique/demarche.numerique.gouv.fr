@@ -70,7 +70,7 @@ class Logic::Solver
   private
 
   def contradictions(condition)
-    conflicts([condition]).map { |source, comparisons| { type: :contradiction, stable_id: source.stable_id, comparisons: } }.uniq
+    conflicts([condition]).map { |source, comparisons, limits| { type: :contradiction, stable_id: source.stable_id, comparisons:, limits: }.compact }.uniq
   end
 
   # The search itself: the champs left without a value on every way of
@@ -122,10 +122,12 @@ class Logic::Solver
   # independent and can be looked at one at a time: take everything that champ
   # could hold, narrow it with each comparison on it, and if nothing is left
   # those comparisons cannot hold together. They are returned along with the
-  # champ, to be named in the error.
+  # champ, to be named in the error, and with the champ's validation limits
+  # when the comparisons only conflict within them: `age > 6` on a champ
+  # capped at 5 is fine on its own, and the error has to say what it runs into.
   #
-  # [[source, comparisons]] for every champ the alternative leaves with no
-  # possible value
+  # [[source, comparisons, limits]] for every champ the alternative leaves
+  # with no possible value
   def conflicting_sources(comparisons)
     comparisons
       .filter { checkable?(it) }
@@ -134,10 +136,17 @@ class Logic::Solver
         values = source.possible_values(@type_de_champs)
         next if values.nil?
 
-        narrowed = source_comparisons.reduce(values) { |v, comparison| v.restrict(comparison.class, comparison.right.value) }
-        [source, source_comparisons] if narrowed.empty?
+        next if !restrict(values, source_comparisons).empty?
+
+        [source, source_comparisons, limits_to_blame(values, source_comparisons)]
       end
   end
+
+  def limits_to_blame(values, comparisons)
+    values.limits if values.limits && !restrict(values.unlimited, comparisons).empty?
+  end
+
+  def restrict(values, comparisons) = comparisons.reduce(values) { |v, comparison| v.restrict(comparison.class, comparison.right.value) }
 
   # A comparison Logic::PossibleValues can interpret: `champ operator
   # constant`. Anything else is left out, which can only make a condition look
