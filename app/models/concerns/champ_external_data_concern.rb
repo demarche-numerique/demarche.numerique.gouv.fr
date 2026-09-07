@@ -16,6 +16,10 @@ module ChampExternalDataConcern
   # fetching -> external_error
   # if the data is fetched successfully, the external_data_fetched event is triggered
   # fetching -> fetched
+  # if the API did not answer, the external_data_degraded event is triggered
+  # fetching -> degraded
+  # a degraded champ goes back in the queue until the API answers
+  # degraded -> waiting_for_job -> fetching -> fetched
 
   included do
     include AASM
@@ -28,6 +32,7 @@ module ChampExternalDataConcern
       waiting_for_job: 'waiting_for_job',
       fetching: 'fetching',
       fetched: 'fetched',
+      degraded: 'degraded',
       external_error: 'external_error',
     }
 
@@ -36,6 +41,7 @@ module ChampExternalDataConcern
       state :waiting_for_job
       state :fetching
       state :fetched
+      state :degraded
       state :external_error
 
       event :fetch_later, after_commit: :fetch_external_data_later do
@@ -47,11 +53,19 @@ module ChampExternalDataConcern
       end
 
       event :external_data_fetched do
-        transitions from: [:fetching], to: :fetched
+        transitions from: [:fetching, :degraded], to: :fetched
+      end
+
+      event :external_data_degraded do
+        transitions from: [:fetching], to: :degraded
+      end
+
+      event :fix_degraded, after_commit: :fetch_external_data_later do
+        transitions from: :degraded, to: :waiting_for_job
       end
 
       event :external_data_error do
-        transitions from: [:waiting_for_job, :fetching], to: :external_error
+        transitions from: [:waiting_for_job, :fetching, :degraded], to: :external_error
       end
 
       event :retry do
@@ -59,13 +73,13 @@ module ChampExternalDataConcern
       end
 
       event :reset_external_data, after: :after_reset_external_data do
-        transitions from: [:idle, :waiting_for_job, :fetching, :fetched, :external_error], to: :idle
+        transitions from: [:idle, :waiting_for_job, :fetching, :fetched, :degraded, :external_error], to: :idle
       end
     end
   end
 
   def pending? = waiting_for_job? || fetching?
-  def done? = fetched? || external_error?
+  def done? = fetched? || degraded? || external_error?
   def external_data_not_found? = external_error? && fetch_external_data_exceptions&.last&.not_found?
 
   def has_async_external_data? = false
@@ -94,6 +108,10 @@ module ChampExternalDataConcern
     in Success(hash)
       update_external_data!(hash)
       external_data_fetched!
+    in Failure(degraded: true, error:, code:, **data)
+      update_external_data!(data)
+      save_external_error(error, code)
+      external_data_degraded!
     in Failure(retryable: true, error:, code:)
       save_external_error(error, code)
       retry!
