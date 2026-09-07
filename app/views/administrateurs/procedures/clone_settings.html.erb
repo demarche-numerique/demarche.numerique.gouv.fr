@@ -187,6 +187,25 @@
               <% end %>
             </div>
           </div>
+          <%- if @procedure.legacy_declarative_emails? && @procedure.email_depose.present? -%>
+            <div class="fr-fieldset__element">
+              <div class="fr-notice fr-notice--warning">
+                <div class="fr-container">
+                  <div class="fr-notice__body">
+                    <p>
+                      <span class="fr-notice__title fr-text--sm">
+                        <%= t('administrateurs.procedures.clone.email_templates_declarative_notice.title') %>
+                      </span>
+
+                      <span class="fr-notice__desc fr-text--sm">
+                        <%= t('administrateurs.procedures.clone.email_templates_declarative_notice.desc_html') %>
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <%- end -%>
         <%- end -%>
 
         <%- if @procedure.active_revision.private_root_type_de_champs.present? -%>

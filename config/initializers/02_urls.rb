@@ -33,6 +33,7 @@ USAGER_TUTORIAL_URL = [DOC_URL, "tutoriels", "tutoriel-usager"].join("/")
 EXPERT_TUTORIAL_URL = [DOC_URL, "tutoriels", "tutoriel-expert-invite"].join("/")
 DEMO_VIDEO_URL = [DOC_URL, "#consultez-notre-demonstration-en-ligne-pour-decouvrir-notre-outil-en-cliquant-ici"].join("/")
 ADMINISTRATEUR_TUTORIAL_URL = [DOC_URL, "tutoriels", "tutoriel-administrateur"].join("/")
+EMAILS_AUTOMATIQUES_DOC_URL = "#{ADMINISTRATEUR_TUTORIAL_URL}#les-e-mails-automatiques"
 INSTRUCTEUR_TUTORIAL_URL = [DOC_URL, "tutoriels", "tutoriel-instructeur"].join("/")
 CADRE_JURIDIQUE_URL = [DOC_URL, "tutoriels/video-le-cadre-juridique"].join("/")
 LISTE_DES_DEMARCHES_URL = [DOC_URL, "listes-des-demarches"].join("/")

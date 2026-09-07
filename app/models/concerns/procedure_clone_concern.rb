@@ -213,9 +213,7 @@ module ProcedureCloneConcern
     procedure.experts_require_administrateur_invitation = false if !options[:clone_avis]
     procedure.api_entreprise_token = nil if !options[:clone_api_entreprise_token] || !same_admin?(admin)
     procedure.sva_svr = {} if !options[:clone_sva_svr]
-    # Le réglage suit les modèles, qu’il fait envoyer ou non : sans eux, le clone
-    # repart sur l’email combiné comme une démarche neuve.
-    procedure.combined_declarative_email = true if !options[:clone_email_templates]
+    procedure.combined_declarative_email = true
 
     if !options[:clone_instructeurs] || !same_admin?(admin)
       procedure.routing_enabled = false
@@ -249,11 +247,19 @@ module ProcedureCloneConcern
     procedure
   end
 
+  # The clone sends the combined email, which would never read the depose template
+  # of a legacy declarative procedure: it stays behind, and the clone form says so.
+  def cloneable_email_templates
+    return custom_email_templates if !legacy_declarative_emails?
+
+    custom_email_templates.where.not(type: Emails::DEPOSE_TYPES)
+  end
+
   # Copied once the clone is persisted: the tags validator resolves tags against
   # revisions in database, which don't exist before the save. Validation is
   # skipped so a template referencing a since-removed champ is cloned as is.
   def clone_email_templates(procedure)
-    custom_email_templates.each do |email_template|
+    cloneable_email_templates.each do |email_template|
       copy = email_template.dup
       copy.procedure = procedure
       copy.save!(validate: false)

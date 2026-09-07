@@ -1,6 +1,8 @@
 en:
   administrateurs:
     email_templates:
+      switch_to_combined:
+        switched: The customized acknowledgment of receipt was deleted and replaced with the standard template of your declarative procedure.
       index:
         accuse_lecture_notice:
           body: The reading acknowledgment is enabled on this procedure. In this context, the "acceptance", "refusal" and "closure without follow-up" emails cannot be edited, so that the final decision stays hidden from the user.

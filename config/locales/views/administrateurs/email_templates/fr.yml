@@ -1,6 +1,8 @@
 fr:
   administrateurs:
     email_templates:
+      switch_to_combined:
+        switched: L’accusé de réception personnalisé a été supprimé et remplacé par le modèle standard de votre démarche déclarative.
       index:
         accuse_lecture_notice:
           body: L’accusé de lecture est activé sur cette démarche. Dans ce contexte, les emails « d’acceptation », « de refus » et de « classement sans suite » ne sont pas modifiables afin de s’assurer que la décision finale reste masquée pour l’usager.

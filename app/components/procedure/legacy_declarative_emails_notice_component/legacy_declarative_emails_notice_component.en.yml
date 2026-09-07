@@ -1,0 +1,11 @@
+en:
+  body_html: You are not using the <strong>new version</strong> of the email templates configuration for a <strong>declarative procedure</strong>
+  learn_more: Learn more
+  modal:
+    title: New version (declarative procedure)
+    what_changes_html: The new email templates configuration <strong>for a declarative procedure</strong> avoids <strong>sending two consecutive emails</strong> to the user (for instance an acknowledgment of receipt followed by the automatic switch to instruction). The email templates now match this setting of the procedure.
+    what_you_lose:
+      en_instruction_html: "Switching to this new version only deletes the acknowledgment of receipt previously customized on this procedure and replaces it with the new standard one, your other customized templates being kept. You can of course <strong>customize it again</strong>: check in particular the content of the new acknowledgment of receipt with the automatic switch to instruction."
+      accepte_html: "Switching to this new version only deletes the acknowledgment of receipt previously customized on this procedure and replaces it with the new standard one, your other customized templates being kept. You can of course <strong>customize it again</strong>: check in particular the content of the new acknowledgment of receipt with the automatic acceptance."
+    documentation: More information about the email templates configuration
+    switch: Switch to the new version
