@@ -116,6 +116,8 @@ ignore_unused:
   - 'procedure.instructeurs_management_component.notification_alert.*'
   # t(@champ.fc_data_not_found? ? '.piece_justificative_champ.data_not_found' : '...data_not_recovered')
   - 'editable_champ.france_connect_champ_base_component.piece_justificative_champ.*'
+  # thrown as a Warden message by config/initializers/user_sessions.rb, never t()'d
+  - 'devise.failure.session_revoked'
   - 'errors.format'
   - 'user_mailer.*.subject'
   - 'dossier_mailer.*.subject'

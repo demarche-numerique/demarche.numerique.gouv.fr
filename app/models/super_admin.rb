@@ -2,6 +2,7 @@
 
 class SuperAdmin < ApplicationRecord
   include PasswordComplexityConcern
+  include SessionRegistrableConcern
 
   devise :rememberable, :trackable, :validatable, :lockable, :recoverable
   if SUPER_ADMIN_OTP_ENABLED
