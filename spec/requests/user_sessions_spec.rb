@@ -130,10 +130,68 @@ describe 'the session registry', type: :request do
   context 'when a usager signs in' do
     let(:user) { users.usager }
 
-    it 'registers nothing at all' do
-      post user_session_path, params: { user: { email: user.email, password: users.default_password } }
+    before { Flipper.enable_actor(:session_registry, user) }
 
-      expect(UserSession.where(sessionable: user)).to be_empty
+    def sign_in_user
+      post user_session_path,
+        params: { user: { email: user.email, password: users.default_password } },
+        headers: { 'HTTP_USER_AGENT' => chrome_on_mac }
+    end
+
+    def user_sessions = UserSession.where(sessionable: user)
+
+    it 'registers a row' do
+      expect { sign_in_user }.to change { user_sessions.count }.by(1)
+    end
+
+    # Devise's `sign_in` raises the :set_user event, not :authentication. Every
+    # federated and link-based path signs people in that way -- FranceConnect,
+    # ProConnect, invitations, email confirmation, password reset, expert links
+    # -- so keying the row on :authentication alone left all of them without
+    # one. Adoption used to paper over it; without adoption they loop back to
+    # the sign in page forever.
+    #
+    # This is the first step where the hook can be exercised on that half: a
+    # super admin never reaches a `sign_in` in test, OTP being forced on there.
+    context 'through a path that calls Devise sign_in, as the activation link does' do
+      let(:user) { create(:user) }
+      let(:token) { user.send(:set_reset_password_token) }
+      let(:new_password) { "#{users.default_password} (neuf)" }
+
+      before { Flipper.enable_actor(:session_registry, user) }
+
+      def activate
+        patch users_activate_path,
+          params: { user: { reset_password_token: token, password: new_password } }
+      end
+
+      it 'registers a row and lets the next request through' do
+        expect { activate }.to change { UserSession.where(sessionable: user).count }.by(1)
+
+        get profil_path
+
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    # Usagers have no deadline until step 8. Opening the registry to everyone
+    # must not expire anyone.
+    it 'gives that row no deadline' do
+      sign_in_user
+
+      expect(user_sessions.sole.expires_at).to be_nil
+    end
+
+    it 'adopts a session opened before the registry rather than reject it' do
+      Flipper.disable_actor(:session_registry, user)
+      sign_in_user
+      expect(user_sessions).to be_empty
+      Flipper.enable_actor(:session_registry, user)
+
+      get dossiers_path
+
+      expect(response).to have_http_status(:ok)
+      expect(user_sessions.count).to eq(1)
     end
   end
 end
