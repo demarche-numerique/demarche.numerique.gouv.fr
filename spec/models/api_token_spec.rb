@@ -263,6 +263,32 @@ describe APIToken, type: :model do
     end
   end
 
+  describe '.authenticable' do
+    let(:api_token) { APIToken.generate(administrateur).first }
+
+    subject { APIToken.authenticable }
+
+    context 'with a version 3 token' do
+      it { is_expected.to include(api_token) }
+    end
+
+    [1, 2].each do |version|
+      context "with a version #{version} token" do
+        before { api_token.update_column(:version, version) }
+
+        it { is_expected.not_to include(api_token) }
+      end
+    end
+
+    # A newer format would authenticate; pinning the scope to 3 would reject it
+    # everywhere at once, silently.
+    context 'with a token from a future version' do
+      before { api_token.update_column(:version, 4) }
+
+      it { is_expected.to include(api_token) }
+    end
+  end
+
   describe '#authenticate' do
     let(:api_token_and_packed_token) { APIToken.generate(administrateur) }
     let(:api_token) { api_token_and_packed_token.first }
@@ -485,6 +511,18 @@ describe APIToken, type: :model do
 
       it do
         is_expected.to eq([api_token])
+      end
+
+      # Version 1 and 2 tokens cannot authenticate any more, so announcing their
+      # expiration would be telling an administrateur that something is about to
+      # break when it broke years ago. They only reach this scope once the
+      # backfill gives them a date.
+      [1, 2].each do |version|
+        context "when the token is a version #{version}" do
+          before { api_token.update_column(:version, version) }
+
+          it { is_expected.to be_empty }
+        end
       end
 
       context 'when the token has been created within the time frame' do
