@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_02_100000) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_07_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
@@ -1416,6 +1416,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_02_100000) do
     t.index ["private"], name: "index_types_de_champ_on_private"
     t.index ["referentiel_id"], name: "index_types_de_champ_on_referentiel_id"
     t.index ["stable_id"], name: "index_types_de_champ_on_stable_id"
+  end
+
+  create_table "user_sessions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "expires_at"
+    t.datetime "revoked_at"
+    t.string "revoked_reason"
+    t.bigint "sessionable_id", null: false
+    t.string "sessionable_type", null: false
+    t.datetime "updated_at", null: false
+    t.string "user_agent"
+    t.index ["sessionable_type", "sessionable_id", "revoked_at"], name: "index_user_sessions_on_sessionable_and_revoked_at"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
