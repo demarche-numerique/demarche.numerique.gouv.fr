@@ -12,10 +12,4 @@ class AdministrateurMailerPreview < ActionMailer::Preview
     procedure = Procedure.kept.where.not(api_entreprise_token: [nil, '']).first || Procedure.first
     AdministrateurMailer.api_entreprise_token_expiration(administrateur, procedure)
   end
-
-  def api_token_expiration
-    user = User.last
-    tokens = [APIToken.last, APIToken.last]
-    AdministrateurMailer.api_token_expiration(user, tokens)
-  end
 end
