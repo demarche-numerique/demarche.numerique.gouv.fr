@@ -15,6 +15,7 @@ describe Logic::Solver do
   subject(:errors) { described_class.new(type_de_champs).errors(condition) }
 
   def contradiction(term, comparisons) = { type: :contradiction, stable_id: term.stable_id, comparisons: }
+  def dead_branch(error) = error.merge(branch: true)
 
   context 'with a single comparison' do
     let(:condition) { greater_than(n, constant(3)) }
@@ -48,9 +49,27 @@ describe Logic::Solver do
   context 'with an or' do
     let(:condition) { ds_or([ds_and([ds_eq(n, constant(2)), ds_eq(n, constant(3))]), ds_eq(c, constant('a'))]) }
 
-    it 'is possible when one branch is' do
-      expect(errors).to be_empty
+    it 'reports the dead branch even though the other holds' do
+      expect(errors).to eq([dead_branch(contradiction(n, [ds_eq(n, constant(2)), ds_eq(n, constant(3))]))])
     end
+  end
+
+  context 'with an or whose branches all hold' do
+    let(:condition) { ds_or([ds_and([greater_than(n, constant(2)), less_than(n, constant(5))]), ds_eq(c, constant('a'))]) }
+
+    it { is_expected.to be_empty }
+  end
+
+  context 'with a branch dead only where it stands' do
+    let(:condition) { ds_and([greater_than(n, constant(1)), ds_or([ds_eq(n, constant(0)), ds_eq(n, constant(5))])]) }
+
+    it { is_expected.to eq([dead_branch(contradiction(n, [greater_than(n, constant(1)), ds_eq(n, constant(0))]))]) }
+  end
+
+  context 'with a nested dead branch under a live sibling' do
+    let(:condition) { ds_or([ds_and([greater_than(n, constant(2)), ds_or([greater_than(n, constant(1)), less_than(n, constant(1))])]), ds_eq(c, constant('a'))]) }
+
+    it { is_expected.to eq([dead_branch(contradiction(n, [greater_than(n, constant(2)), less_than(n, constant(1))]))]) }
   end
 
   context 'with an or of contradictions' do
@@ -229,7 +248,7 @@ describe Logic::Solver do
     context 'with an or whose branch on the targeted champ is dead' do
       let(:condition) { ds_or([ds_and([ds_eq(h, constant('x')), less_than(n, constant(5))]), less_than(n, constant(3))]) }
 
-      it { is_expected.to be_empty }
+      it { is_expected.to eq([dead_branch({ type: :unreachable, stable_id: hidden.stable_id })]) }
     end
 
     context 'with an or on the targeted champ under a dead and' do
@@ -238,8 +257,8 @@ describe Logic::Solver do
       it { is_expected.to eq([{ type: :unreachable, stable_id: hidden.stable_id }]) }
     end
 
-    context 'with an or that keeps a reachable branch' do
-      let(:condition) { ds_or([ds_and([ds_eq(h, constant('x')), less_than(n, constant(5))]), ds_eq(c, constant('a'))]) }
+    context 'with an or whose branches are all reachable' do
+      let(:condition) { ds_or([ds_and([ds_eq(h, constant('x')), greater_than(n, constant(20))]), ds_eq(c, constant('a'))]) }
 
       it { is_expected.to be_empty }
     end

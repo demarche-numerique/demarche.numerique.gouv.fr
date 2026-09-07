@@ -28,7 +28,7 @@ describe Logic do
 
     it 'then the contradictions, on the root only' do
       expect(Logic.errors(ds_or([too_big, too_small]), [number])).to be_empty
-      expect(Logic.errors(ds_or([ds_and([too_big, too_small]), too_big]), [number])).to be_empty
+      expect(Logic.errors(ds_or([ds_and([too_big, too_small]), too_big]), [number])).to eq([{ type: :contradiction, stable_id: 1, comparisons: [too_big, too_small], branch: true }])
       expect(Logic.errors(ds_and([too_big, too_small]), [number])).to eq([{ type: :contradiction, stable_id: 1, comparisons: [too_big, too_small] }])
     end
 

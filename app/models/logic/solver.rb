@@ -57,6 +57,14 @@
 # on a conditional champ is only ever true when the champ is displayed: the
 # condition is also checked rewritten with the display condition of each
 # champ it targets (Logic::DisplayConditions).
+#
+# Every branch of every `or` has to be able to hold as well: a group of rows
+# that never matches was written for nothing, and hides the same mistake as a
+# contradictory condition behind its siblings. A branch is dead when the
+# condition, read with that branch in place of its `or` (and, above it, with
+# the branch leading to it in place of each enclosing `or`), is impossible —
+# which also catches a branch that holds on its own but not where it stands,
+# as `a == 0` in `a > 1 and (a == 0 or a == 5)`.
 class Logic::Solver
   def initialize(type_de_champs)
     @type_de_champs = type_de_champs
@@ -64,10 +72,37 @@ class Logic::Solver
   end
 
   def errors(condition)
-    contradictions(condition).presence || unreachable(condition)
+    impossibility(condition).presence || dead_branches(condition)
   end
 
   private
+
+  # Why the condition can never be true: its own contradictions, or else the
+  # champs it targets that are never displayed when it holds.
+  def impossibility(condition)
+    contradictions(condition).presence || unreachable(condition)
+  end
+
+  # Checked once the condition itself holds: an impossible condition makes
+  # every branch dead, and saying so once is enough.
+  def dead_branches(condition)
+    branch_conditions(condition).flat_map { impossibility(it) }.map { it.merge(branch: true) }.uniq
+  end
+
+  # The condition as it reads for each branch of each `or` in it, at any
+  # depth: the `or` replaced by the branch, everything around it kept.
+  def branch_conditions(term)
+    case term
+    when Logic::Or
+      term.operands.flat_map { |branch| [branch, *branch_conditions(branch)] }
+    when Logic::And
+      term.operands.each_with_index.flat_map do |operand, index|
+        branch_conditions(operand).map { |branch| Logic::And.new(term.operands.dup.tap { it[index] = branch }) }
+      end
+    else
+      []
+    end
+  end
 
   def contradictions(condition)
     conflicts([condition]).map { |source, comparisons, limits| { type: :contradiction, stable_id: source.stable_id, comparisons:, limits: }.compact }.uniq
