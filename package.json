@@ -4,7 +4,7 @@
     "@formatjs/intl-listformat": "^8.3.9",
     "@frsource/autoresize-textarea": "^2.0.203",
     "@gouvfr-lasuite/integration": "^1.0.2",
-    "@gouvfr/dsfr": "^1.14.3",
+    "@gouvfr/dsfr": "1.15.2",
     "@graphiql/plugin-explorer": "^5.1.1",
     "@graphiql/toolkit": "^0.11.3",
     "@hotwired/stimulus": "^3.2.2",
@@ -128,6 +128,7 @@
     "i18n:extract": "lingui extract"
   },
   "trustedDependencies": [
+    "@gouvfr/dsfr",
     "core-js",
     "esbuild",
     "rollup"
