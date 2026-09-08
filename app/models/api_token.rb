@@ -132,11 +132,6 @@ class APIToken < ApplicationRecord
     expires_at&.past?
   end
 
-  # Only describes the tokens created before an expiration date was mandatory.
-  def eternal?
-    expires_at.nil?
-  end
-
   class << self
     def selectable_lifetimes
       LIFETIMES.filter { |_, lifetime| lifetime <= MAX_LIFETIME }

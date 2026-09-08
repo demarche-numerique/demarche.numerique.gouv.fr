@@ -89,7 +89,7 @@ describe APIToken, type: :model do
         persisted = APIToken.generate(administrateur, expires_at:).first
         persisted.update_column(:expires_at, nil)
 
-        expect(persisted.reload).to be_eternal
+        expect(persisted.reload.expires_at).to be_nil
         expect { persisted.update!(name: 'renamed') }.not_to raise_error
       end
     end

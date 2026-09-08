@@ -39,7 +39,7 @@
     <%= form_with url: admin_api_token_path(@api_token), method: :patch, html: { class: 'fr-mt-2w' } do |f| -%>
       <div class="fr-input-group fr-mb-4w <%= class_names('fr-input-group--error': @invalid_network_message.present?) %>">
         <%= f.label :name, class: 'fr-label' do -%>
-          <%- if @api_token.eternal? -%>
+          <%- if !@api_token.requires_ip_filtering? -%>
             <%= t('.enter_at_least_one_network') %>
           <%- else -%>
             <%= t('.enter_authorized_ips') %>
