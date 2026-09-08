@@ -181,6 +181,20 @@ describe ProConnectController, type: :controller do
               expect(instructeur.user.pro_connect_informations.first.acr).to eq('eidas1-mfa')
             end
           end
+
+          context 'and ProConnect asserts the MFA with the acr claim only' do
+            let(:amr) { ['pwd'] }
+            let(:acr) { 'eidas1-mfa' }
+
+            it 'records it as a proof in the ProConnect session' do
+              expect(controller).to receive(:sign_in)
+
+              subject
+
+              cookie = JSON.parse(cookies.encrypted[ProConnectSessionConcern::SESSION_INFO_COOKIE_NAME])
+              expect(cookie).to include('mfa' => true)
+            end
+          end
         end
 
         context 'and the user is an administrateur who must use ProConnect' do
