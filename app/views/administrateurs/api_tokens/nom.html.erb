@@ -16,6 +16,8 @@
       <% end %>
 
       <%= f.text_field :name, class: 'fr-input width-33', autocomplete: 'off', autocapitalize: 'off', autocorrect: 'off', spellcheck: false, required: true, value: @name, autofocus: true %>
+
+      <%= render APITokens::HiddenFieldsComponent.new(fields: @api_token_params.hidden_fields_for(%i[name])) %>
     </div>
 
     <ul class="fr-btns-group fr-btns-group--inline">

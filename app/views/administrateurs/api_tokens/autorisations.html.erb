@@ -75,7 +75,8 @@
       <% end %>
     </div>
 
-    <%= f.hidden_field :name, value: @name %>
+    <%= render APITokens::HiddenFieldsComponent.new(fields: @api_token_params.hidden_fields_for(%i[target targets access])) %>
+
 
     <ul class="fr-btns-group fr-btns-group--inline">
       <li>
@@ -88,7 +89,7 @@
       </li>
 
       <li>
-        <%= link_to t('.cancel'), nom_admin_api_tokens_path(name: @name), class: "fr-btn fr-btn--secondary" %>
+        <%= link_to t('.cancel'), nom_admin_api_tokens_path(@api_token_params.to_h), class: "fr-btn fr-btn--secondary" %>
       </li>
     </ul>
   <% end %>
