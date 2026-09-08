@@ -32,13 +32,20 @@ class Champs::SiretChamp < ChampData
     Siret.new(siret: external_id).valid?
   end
 
+  def ready_for_external_retry? = !procedure.api_entreprise_token_recently_rejected?
+
   def fetch_external_data
+    return token_rejected_failure if procedure.api_entreprise_token_recently_rejected?
+
     case APIEntreprise::Sirene.fetch_etablissement(external_id, procedure.id)
     in Success(etablissement)
+      procedure.forget_api_entreprise_token_rejection!
       Success(etablissement:, value: external_id)
     in Failure(type:, code:, **) if code.in?(ExternalDataException::DEFINITIVE_CODES)
       Failure(retryable: false, error: StandardError.new("API Entreprise: #{type}"), code:)
     in Failure(type:, code:, **)
+      procedure.reject_api_entreprise_token! if token_rejected_by_api?(type, code)
+
       Failure(degraded: true, value: external_id, error: StandardError.new("API Entreprise: #{type}"), code:)
     end
   end
@@ -54,6 +61,19 @@ class Champs::SiretChamp < ChampData
   end
 
   private
+
+  # token_missing and token_expired are decided before any call, and the
+  # expiration alert already tells the administrateur about them.
+  LOCAL_TOKEN_FAILURES = [:token_missing, :token_expired].freeze
+
+  def token_rejected_by_api?(type, code)
+    code.in?(ExternalDataException::CREDENTIALS_CODES) && !type.in?(LOCAL_TOKEN_FAILURES)
+  end
+
+  def token_rejected_failure
+    Failure(degraded: true, value: external_id,
+      error: StandardError.new("API Entreprise: token rejected"), code: 401)
+  end
 
   # Only a fetch brings an etablissement: the degraded branch carries the siret alone.
   def update_external_data!(hash)

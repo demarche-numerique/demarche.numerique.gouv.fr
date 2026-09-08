@@ -61,7 +61,7 @@ module ChampExternalDataConcern
       end
 
       event :fix_degraded, after_commit: :fetch_external_data_later do
-        transitions from: :degraded, to: :waiting_for_job
+        transitions from: :degraded, to: :waiting_for_job, guard: :ready_for_external_retry?
       end
 
       event :external_data_error do
@@ -89,6 +89,10 @@ module ChampExternalDataConcern
   private
 
   def ready_for_external_call? = external_id.present?
+
+  # Distinct from ready_for_external_call?, which also guards the first fetch:
+  # a champ must always get one chance to fail on its own.
+  def ready_for_external_retry? = true
 
   def fetch_external_data_later(wait: nil)
     ChampFetchExternalDataJob.set(wait:).perform_later(self, external_id)

@@ -4,6 +4,9 @@ class ExternalDataException
   # The API answered about this identifier and will not answer differently later.
   DEFINITIVE_CODES = [404, 422, 451].freeze
 
+  # Our own credentials are at fault, not the identifier: no retry converges.
+  CREDENTIALS_CODES = [401, 403].freeze
+
   attr_accessor :error, :code
 
   def initialize(error:, code:)
@@ -13,5 +16,9 @@ class ExternalDataException
 
   def not_found?
     code == 404
+  end
+
+  def credentials_rejected?
+    code.in?(CREDENTIALS_CODES)
   end
 end

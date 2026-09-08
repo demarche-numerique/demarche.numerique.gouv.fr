@@ -70,4 +70,14 @@ RSpec.describe Cron::RetryDegradedSiretChampJob, type: :job do
       expect { described_class.perform_now }.not_to change { champ.reload.external_state }
     end
   end
+
+  context 'when API Entreprise rejected the token of the procedure' do
+    let(:external_state) { 'degraded' }
+
+    before { procedure.update_column(:api_entreprise_token_rejected_at, 3.hours.ago) }
+
+    it 'does not retry: no attempt converges until the token is renewed' do
+      expect { described_class.perform_now }.not_to change { champ.reload.external_state }
+    end
+  end
 end
