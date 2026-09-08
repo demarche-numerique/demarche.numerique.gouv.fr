@@ -51,7 +51,7 @@ class ProConnectController < ApplicationController
       .merge(amr:, acr:)
     )
 
-    mfa = amr.include?('mfa')
+    mfa = ProConnectService.mfa?(amr:, acr:)
 
     if user.instructeur?
       if user_info['idp_id'] == MON_COMPTE_PRO_IDP_ID && !mfa
