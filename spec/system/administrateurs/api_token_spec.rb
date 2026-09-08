@@ -116,4 +116,43 @@ describe 'As an administrateur I create an API token', js: true do
 
     expect(APIToken.last.expires_at).to eq(3.months.from_now.to_date)
   end
+
+  scenario 'going back through the steps preserves previously entered data' do
+    visit profil_path
+
+    click_on 'Créer un nouveau jeton'
+    fill_in 'Nom du jeton', with: 'jeton avec retour'
+    click_on 'Continuer'
+
+    custom_check 'target_custom'
+    select "#{procedure.id} - #{procedure.libelle}", from: 'procedureSelect'
+    click_on 'Ajouter'
+    custom_check 'access_read_write'
+    click_on 'Continuer'
+    expect(page).to have_content('Sécurité')
+
+    click_on 'Retour'
+    expect(page).to have_content('Privilèges du jeton')
+    expect(page).to have_checked_field('access_read_write')
+    expect(page).to have_text(procedure.libelle)
+
+    click_on 'Retour'
+    expect(page).to have_field('Nom du jeton', with: 'jeton avec retour')
+
+    click_on 'Continuer'
+    expect(page).to have_checked_field('access_read_write')
+    expect(page).to have_text(procedure.libelle)
+    click_on 'Continuer'
+    expect(page).to have_content('Sécurité')
+
+    custom_check 'networkFiltering_customnetworks'
+    fill_in 'networks', with: '192.168.1.0/24'
+    custom_check 'lifetime_oneweek'
+
+    click_on('Créer le jeton')
+    expect(page).to have_content('Votre jeton est prêt')
+
+    token = APIToken.last
+    expect(token.authorized_networks).to eq([IPAddr.new('192.168.1.0/24')])
+  end
 end

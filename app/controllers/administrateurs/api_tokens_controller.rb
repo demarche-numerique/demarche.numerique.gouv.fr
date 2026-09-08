@@ -5,9 +5,10 @@ module Administrateurs
     include ActionView::RecordIdentifier
 
     before_action :set_api_token, only: [:edit, :update, :destroy, :remove_procedure]
+    before_action :set_api_token_params, only: [:nom, :autorisations, :securite, :create]
 
     def nom
-      @name = name
+      @name = @api_token_params.name
     end
 
     def autorisations
@@ -150,6 +151,10 @@ module Administrateurs
 
     def set_api_token
       @api_token = current_administrateur.api_tokens.find(params[:id])
+    end
+
+    def set_api_token_params
+      @api_token_params = APITokenParams.new(params)
     end
 
     def name
