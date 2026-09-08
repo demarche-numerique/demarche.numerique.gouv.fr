@@ -1,9 +1,0 @@
-%p.copy-zone= champ.to_s
-- if champ.code?
-  %p.fr-text--sm.copy-zone
-    Code INSEE :
-    %span{ data: { to_copy: true } }= champ.code
-- if champ.departement?
-  %p.fr-text--sm.copy-zone
-    Departement :
-    %span{ data: { to_copy: true } }= champ.departement_code_and_name
