@@ -110,6 +110,28 @@ describe Champs::ReferentielChamp, type: :model do
       reloaded.repetition_row_ids(reloaded.find_type_de_champ_by_stable_id(stable_id))
     end
 
+    context 'when the prefill targets its own repetition' do
+      let(:prefilled_stable_id) { 102 }
+      let(:public_type_de_champs) do
+        [
+          {
+            type: :repetition, stable_id: 100, children: [
+              { type: :referentiel, stable_id: 101, referentiel:, referentiel_mapping: mapping },
+              { type: :text, stable_id: 102 },
+            ],
+          },
+        ]
+      end
+
+      it 'keeps the data on its own row, without adding one' do
+        rows_before = row_ids_of(100)
+
+        expect(prefilled.value).to eq('ACME')
+        expect(prefilled.row_id).to eq(own_row_id)
+        expect(row_ids_of(100)).to eq(rows_before)
+      end
+    end
+
     # Réutiliser son propre row_id écrirait une ligne de sa répétition dans une autre :
     # aucun marqueur de ligne ne la porterait, la donnée serait persistée mais invisible.
     context 'when a public prefill targets a private repetition' do
