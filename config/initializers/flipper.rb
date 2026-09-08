@@ -19,6 +19,7 @@ end
 
 # A list of features to be deployed on first push
 features = [
+  :administrateur_mfa_required,
   :administrateur_web_hook,
   :blocking_pending_correction,
   :cojo_type_de_champ,
