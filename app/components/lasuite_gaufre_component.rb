@@ -5,7 +5,7 @@
 # layouts/_lasuite_gaufre_button); this component only loads the widget script,
 # initializes it (labels translated via i18n) and themes its panel for dark mode.
 class LasuiteGaufreComponent < ApplicationComponent
-  WIDGET_SCRIPT_URL = "https://integration.lasuite.numerique.gouv.fr/widgets/dist/lagaufre.js"
+  WIDGET_SCRIPT_URL = "https://static.suite.anct.gouv.fr/widgets/lagaufre.js"
   SERVICES_API_URL = "https://lasuite.numerique.gouv.fr/api/services"
 
   def render?
