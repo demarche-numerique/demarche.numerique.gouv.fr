@@ -26,24 +26,6 @@ trix-editor.fr-input {
   }
 }
 
-// Fix firefox < 80, Safari < 15.4, Chrome < 83 not supporting "appearance: auto" on inputs
-// This rule was set by DSFR for DSFR design, but broke our legacy forms.
-input[type='checkbox'] {
-  -moz-appearance: checkbox;
-  -moz-appearance: auto;
-
-  -webkit-appearance: checkbox;
-  -webkit-appearance: auto;
-}
-
-input[type='radio'] {
-  -moz-appearance: radio;
-  -moz-appearance: auto;
-
-  -webkit-appearance: radio;
-  -webkit-appearance: auto;
-}
-
 // remove additional calendar icon on date input already handle by Firefox navigator
 @-moz-document url-prefix() {
   .fr-input[type='date'] {
@@ -287,10 +269,6 @@ input[type='radio'] {
 
 .fr-message--warning {
   color: var(--text-default-warning);
-}
-
-.fr-modal__body {
-  scroll-padding-bottom: 130px; /* hauteur des boutons sticky + marge */
 }
 
 // fix https://github.com/demarche-numerique/demarche.numerique.gouv.fr/issues/12648
