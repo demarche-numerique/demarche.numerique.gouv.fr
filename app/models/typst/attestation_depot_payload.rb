@@ -15,7 +15,7 @@ class Typst::AttestationDepotPayload < Typst::Payload
   # i18n-tasks-use t('users.dossiers.attestation_depot.description')
   # i18n-tasks-use t('users.dossiers.attestation_depot.generated_at')
   # i18n-tasks-use t('users.dossiers.attestation_depot.signature')
-  def to_h
+  def build
     scope = 'users.dossiers.attestation_depot'
 
     {
