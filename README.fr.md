@@ -8,6 +8,8 @@
 
 demarche.numerique.gouv.fr est un [logiciel libre](https://fr.wikipedia.org/wiki/Logiciel_libre) sous licence AGPL.
 
+Le système de design de l'État (`@gouvfr/dsfr`), embarqué dans ce dépôt, fait exception : son code est sous licence Etalab 2.0, mais son usage est encadré par des [modalités d'utilisation](https://github.com/GouvernementFR/dsfr/blob/main/doc/legal/cgu.md) qui le réservent aux services de l'État, sur un nom de domaine en `.gouv.fr`. L'AGPL vous autorise à réutiliser ce dépôt ; ces modalités ne nous permettent pas de vous concéder le DSFR avec. Si vous n'êtes pas une administration, retirez ou remplacez ses ressources.
+
 Vous souhaitez y apporter des changements ou des améliorations ? Lisez notre [guide de contribution](CONTRIBUTING.md).
 
 ## Installation pour le développement

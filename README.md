@@ -11,6 +11,8 @@
 
 demarche.numerique.gouv.fr is [open source](https://en.wikipedia.org/wiki/Open-source_software) software under the AGPL license.
 
+The French State design system (`@gouvfr/dsfr`), bundled in this repository, is the exception: its code is under the Etalab 2.0 licence, but its use is governed by [terms of use](https://github.com/GouvernementFR/dsfr/blob/main/doc/legal/cgu.md) restricting it to State services, on a `.gouv.fr` domain. The AGPL lets you reuse this repository; those terms do not let us grant you the DSFR along with it. If you are not a public administration, remove or replace its assets.
+
 Would you like to make changes or improvements? Read our [contribution guide](CONTRIBUTING.md).
 
 ## Development setup
