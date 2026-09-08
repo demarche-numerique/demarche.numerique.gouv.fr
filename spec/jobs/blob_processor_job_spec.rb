@@ -23,6 +23,15 @@ describe BlobProcessorJob, :external_deps, type: :job do
     allow(watermark_service).to receive(:apply) { |image, **| image }
   end
 
+  # ApplicationJob tags Sentry with what it was handed — a Dossier, a Procedure, a Blob —
+  # so that every failure of one upload can be found at once.
+  it "tags Sentry with the blob" do
+    allow(ClamavService).to receive(:safe_file?).and_return(true)
+    expect(Sentry).to receive(:set_tags).with(blob: blob.id)
+
+    described_class.perform_now(blob)
+  end
+
   describe 'virus scanning' do
     context 'when virus scan passes' do
       before do
