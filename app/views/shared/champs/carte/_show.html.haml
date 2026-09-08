@@ -1,5 +1,0 @@
-- if champ.geometry?
-  %react-fragment.width-100
-    = render ReactComponent.new "MapReader", feature_collection: champ.to_feature_collection, options: champ.render_options
-  .geo-areas
-    = render Dossiers::GeoAreasComponent.new(champ:, editing: false)
