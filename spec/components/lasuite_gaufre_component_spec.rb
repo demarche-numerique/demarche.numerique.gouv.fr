@@ -29,7 +29,7 @@ describe LasuiteGaufreComponent, type: :component do
 
     it 'initializes the widget with localized labels' do
       html = I18n.with_locale(:fr) { subject.to_html }
-      expect(html).to include('Les services de La Suite numérique')
+      expect(html).to include('Services de LaSuite')
       expect(html).to include('Plus de services')
     end
   end

@@ -758,10 +758,10 @@ describe Administrateurs::ProceduresController, type: :controller do
     context 'when admin is the owner of the procedure' do
       it 'displays all relevant options' do
         is_expected.to have_http_status(:success)
-        expect(response.body).to include "Service"
-        expect(response.body).to include "Administrateurs"
-        expect(response.body).to include "Instructeurs"
-        expect(response.body).not_to include "Jeton API entreprise"
+        expect(response.body).to include "procedure_clone_options_service"
+        expect(response.body).to include "procedure_clone_options_administrateurs"
+        expect(response.body).to include "procedure_clone_options_instructeurs"
+        expect(response.body).not_to include "procedure_clone_options_api_entreprise_token"
       end
     end
 
@@ -774,9 +774,9 @@ describe Administrateurs::ProceduresController, type: :controller do
 
       it 'hides some options' do
         is_expected.to have_http_status(:success)
-        expect(response.body).not_to include "Service"
-        expect(response.body).not_to include "Administrateurs"
-        expect(response.body).not_to include "Instructeurs"
+        expect(response.body).not_to include "procedure_clone_options_service"
+        expect(response.body).not_to include "procedure_clone_options_administrateurs"
+        expect(response.body).not_to include "procedure_clone_options_instructeurs"
       end
     end
 
