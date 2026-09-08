@@ -109,13 +109,7 @@
       >
     </div>
 
-    <%= f.hidden_field :name, value: params[:name] %>
-    <%= f.hidden_field :access, value: params[:access] %>
-    <%= f.hidden_field :target, value: params[:target] %>
-
-    <%- params[:targets]&.each do |target| -%>
-      <%= f.hidden_field 'targets[]', value: target %>
-    <%- end -%>
+    <%= render APITokens::HiddenFieldsComponent.new(fields: @api_token_params.hidden_fields_for(%i[networkFiltering networks lifetime customLifetime])) %>
 
     <ul class="fr-btns-group fr-btns-group--inline">
       <li>
@@ -128,7 +122,7 @@
       </li>
 
       <li>
-        <%= link_to t('.back'), autorisations_admin_api_tokens_path(name: params[:name], access: params[:access], target: params[:target], targets: params[:targets]), class: "fr-btn fr-btn--secondary" %>
+        <%= link_to t('.back'), autorisations_admin_api_tokens_path(@api_token_params.to_h), class: "fr-btn fr-btn--secondary" %>
       </li>
     </ul>
   <% end %>
