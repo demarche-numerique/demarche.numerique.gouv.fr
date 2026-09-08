@@ -32,7 +32,7 @@
             <% when TypeDeChamp.type_champs.fetch(:siret) %>
               <% etablissement = champ.etablissement %>
               <% if champ.degraded? %>
-                <%= render Dossiers::DegradedIdentiteEntrepriseComponent.new(siret: champ.external_id, profile: @profile) %>
+                <%= render Dossiers::DegradedIdentiteEntrepriseComponent.new(siret: champ.external_id, profile: @profile, token_rejected: champ.external_data_credentials_rejected?) %>
               <% elsif etablissement.present? %>
                 <% if etablissement.as_degraded_mode? %>
                   <%= render Dossiers::DegradedIdentiteEntrepriseComponent.new(siret: etablissement.siret, profile: @profile) %>
