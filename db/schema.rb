@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_08_141425) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_08_143438) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
@@ -282,6 +282,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_08_141425) do
     t.index ["dossier_id", "stream", "stable_id", "row_id"], name: "index_champs_on_stream_and_public_id", unique: true, nulls_not_distinct: true
     t.index ["dossier_id"], name: "index_champs_on_dossier_id"
     t.index ["etablissement_id"], name: "index_champs_on_etablissement_id"
+    t.index ["id"], name: "index_champs_on_degraded_external_state", where: "((external_state)::text = 'degraded'::text)"
     t.index ["row_id"], name: "index_champs_on_row_id"
     t.index ["stable_id", "dossier_id"], name: "index_champs_on_stable_id_and_dossier_id"
     t.index ["type"], name: "index_champs_on_type"
