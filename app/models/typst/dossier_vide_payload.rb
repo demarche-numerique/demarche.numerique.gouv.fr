@@ -15,6 +15,19 @@ class Typst::DossierVidePayload < Typst::Payload
   # MAX_PRINTABLE_OPTIONS it is not printed at all.
   REPETITION_OCCURRENCES = 3
 
+  # A linked list runs longer than a simple one by nature (each primary
+  # heads its secondaries: the median published list is 27 lines, where the
+  # simple-list annex threshold of 20 would send most of them off the form)
+  # and its two levels stay readable inline: only past this many lines does
+  # it move to an annex, which then keeps the hierarchy.
+  LINKED_ANNEX_THRESHOLD = 100
+
+  ANNEX_INSTRUCTIONS = {
+    single: 'Renseignez la mention applicable, une seule valeur possible',
+    multiple: 'Renseignez les mentions applicables, plusieurs valeurs possibles',
+    linked: 'Renseignez la mention applicable puis, le cas échéant, sa sous-mention',
+  }.freeze
+
   CHOICE_LIST_TYPES = [
     TypeDeChamp.type_champs.fetch(:drop_down_list),
     TypeDeChamp.type_champs.fetch(:multiple_drop_down_list),
@@ -51,7 +64,7 @@ class Typst::DossierVidePayload < Typst::Payload
       annexes: @annexes.each_with_index.map do |type_de_champ, index|
         {
           title: "Annexe #{index + 1} : #{type_de_champ.libelle}",
-          options: type_de_champ.drop_down_options.map { option_label(it) },
+          options: annex_options(type_de_champ),
         }
       end,
     }
@@ -104,7 +117,7 @@ class Typst::DossierVidePayload < Typst::Payload
       if type_de_champ.drop_down_advanced?
         box_block(type_de_champ, base)
       elsif too_many_options?(type_de_champ)
-        annex_reference_block(type_de_champ, base, multiple: false)
+        annex_reference_block(type_de_champ, base, :single)
       else
         checkboxes_block(type_de_champ, base, type_de_champ.drop_down_options, explanation: 'Cochez la mention applicable, une seule valeur possible')
       end
@@ -112,12 +125,16 @@ class Typst::DossierVidePayload < Typst::Payload
       if type_de_champ.drop_down_advanced?
         box_block(type_de_champ, base)
       elsif too_many_options?(type_de_champ)
-        annex_reference_block(type_de_champ, base, multiple: true)
+        annex_reference_block(type_de_champ, base, :multiple)
       else
         checkboxes_block(type_de_champ, base, type_de_champ.drop_down_options, explanation: 'Cochez la mention applicable, plusieurs valeurs possibles')
       end
     when TypeDeChamp.type_champs.fetch(:linked_drop_down_list)
-      base.merge(type: 'checkboxes', options: linked_options(type_de_champ))
+      if too_many_linked_options?(type_de_champ)
+        annex_reference_block(type_de_champ, base, :linked)
+      else
+        base.merge(type: 'checkboxes', options: linked_options(type_de_champ))
+      end
     when TypeDeChamp.type_champs.fetch(:siret)
       base.merge(type: 'establishment')
     when TypeDeChamp.type_champs.fetch(:repetition)
@@ -171,14 +188,19 @@ class Typst::DossierVidePayload < Typst::Payload
   end
 
   # Write-in box referencing the annex that lists every option.
-  def annex_reference_block(type_de_champ, base, multiple:)
+  def annex_reference_block(type_de_champ, base, instruction)
     number = register_annex(type_de_champ)
-    instruction = if multiple
-      'Renseignez les mentions applicables, plusieurs valeurs possibles'
+    box_block(type_de_champ, base, explanation: "La liste complète des options figure en Annexe #{number}. #{ANNEX_INSTRUCTIONS.fetch(instruction)}")
+  end
+
+  # Same shape as the checkboxes options: a linked list keeps its two levels
+  # in the annex (secondary: true), a simple list is flat.
+  def annex_options(type_de_champ)
+    if type_de_champ.type_champ == TypeDeChamp.type_champs.fetch(:linked_drop_down_list)
+      linked_options(type_de_champ)
     else
-      'Renseignez la mention applicable, une seule valeur possible'
+      type_de_champ.drop_down_options.map { { label: option_label(it) } }
     end
-    box_block(type_de_champ, base, explanation: "La liste complète des options figure en Annexe #{number}. #{instruction}")
   end
 
   # Records the champ (once, even across repetition occurrences) and returns
@@ -190,6 +212,10 @@ class Typst::DossierVidePayload < Typst::Payload
 
   def too_many_options?(type_de_champ)
     type_de_champ.drop_down_options.size >= Champs::DropDownListChamp::THRESHOLD_NB_OPTIONS_AS_AUTOCOMPLETE
+  end
+
+  def too_many_linked_options?(type_de_champ)
+    type_de_champ.drop_down_options.size >= LINKED_ANNEX_THRESHOLD
   end
 
   def too_many_options_to_print?(type_de_champ)

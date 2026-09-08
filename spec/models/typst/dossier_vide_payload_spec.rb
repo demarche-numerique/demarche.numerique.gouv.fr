@@ -318,7 +318,7 @@ describe Typst::DossierVidePayload do
       end
 
       it 'lists every option in the annex' do
-        expect(payload[:annexes]).to eq([{ title: 'Annexe 1 : Choix', options: }])
+        expect(payload[:annexes]).to eq([{ title: 'Annexe 1 : Choix', options: options.map { { label: it } } }])
       end
     end
 
@@ -363,6 +363,42 @@ describe Typst::DossierVidePayload do
           { label: 'Lyon', secondary: true },
           { label: 'Villeurbanne', secondary: true },
         ])
+      end
+    end
+
+    context 'linked_drop_down_list with too many lines' do
+      let(:options) { (1..(described_class::LINKED_ANNEX_THRESHOLD / 2)).flat_map { |i| ["--Département #{i}--", "Ville #{i}"] } }
+      let(:public_type_de_champs) do
+        [{ type: :linked_drop_down_list, libelle: 'Lieu', options: }]
+      end
+
+      it 'falls back to a fillable box referencing the annex with the two-level instruction' do
+        expect(champ('Lieu')[:type]).to eq('box')
+        expect(champ('Lieu')[:explanation])
+          .to eq('La liste complète des options figure en Annexe 1. Renseignez la mention applicable puis, le cas échéant, sa sous-mention')
+      end
+
+      it 'keeps both levels in the annex' do
+        expect(payload[:annexes].sole[:title]).to eq('Annexe 1 : Lieu')
+        expect(payload[:annexes].sole[:options].first(3)).to eq([
+          { label: 'Département 1' },
+          { label: 'Ville 1', secondary: true },
+          { label: 'Département 2' },
+        ])
+        expect(payload[:annexes].sole[:options].size).to eq(options.size)
+      end
+    end
+
+    context 'linked_drop_down_list below the linked threshold but above the simple-list one' do
+      let(:options) { (1..Champs::DropDownListChamp::THRESHOLD_NB_OPTIONS_AS_AUTOCOMPLETE).flat_map { |i| ["--Département #{i}--", "Ville #{i}"] } }
+      let(:public_type_de_champs) do
+        [{ type: :linked_drop_down_list, libelle: 'Lieu', options: }]
+      end
+
+      it 'still prints the list inline' do
+        expect(champ('Lieu')[:type]).to eq('checkboxes')
+        expect(champ('Lieu')[:options].size).to eq(options.size)
+        expect(payload[:annexes]).to be_empty
       end
     end
 
@@ -429,6 +465,11 @@ describe Typst::DossierVidePayload do
         libelle: 'Grande liste',
         drop_down_options: (1..(Champs::DropDownListChamp::THRESHOLD_NB_OPTIONS_AS_AUTOCOMPLETE + 5)).map { "Option #{it}" }
       )
+      revision.add_type_de_champ(
+        type_champ: TypeDeChamp.type_champs.fetch(:linked_drop_down_list),
+        libelle: 'Grande liste liée',
+        drop_down_options: (1..described_class::LINKED_ANNEX_THRESHOLD).flat_map { ["--Département #{it}--", "Ville #{it}"] }
+      )
     end
 
     it 'lays out the form structure: headings, annex, rendered Markdown', :external_deps do
@@ -438,7 +479,9 @@ describe Typst::DossierVidePayload do
 
       expect(document['headings'].first).to eq('level' => 1, 'text' => revision.procedure.libelle)
       expect(document['headings'].filter { it['level'] == 2 }.map { it['text'] }).to eq(['Identité du demandeur', 'Formulaire', 'Annexes'])
-      expect(document['headings']).to include('level' => 3, 'text' => 'Annexe 1 : Grande liste')
+      expect(document['headings'].map { it['text'] }.grep(/\AAnnexe \d/))
+        .to contain_exactly(match(/\AAnnexe \d : Grande liste\z/), match(/\AAnnexe \d : Grande liste liée\z/))
+      expect(document['paragraphs']).to include('Département 1', 'Ville 1')
       expect(document['headings'].map { it['text'] }).not_to include('')
       expect(document['paragraphs']).to include('Section sans titre')
       expect(document['links']).to include(

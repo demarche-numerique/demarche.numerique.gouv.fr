@@ -227,8 +227,18 @@
 )
 
 // Annex reference list: two columns of small type, one option per line.
+// A linked list keeps its two levels: primaries in bold, secondaries indented.
 #let annex-options(options) = columns(2, gutter: 6mm, {
   set text(size: 8.5pt)
   set par(spacing: 1mm, leading: 0.5em)
-  for option in options { par[#option] }
+  let hierarchical = options.any(option => option.at("secondary", default: false))
+  for option in options {
+    if option.at("secondary", default: false) {
+      par(h(4mm) + option.label)
+    } else if hierarchical {
+      par(strong(option.label))
+    } else {
+      par(option.label)
+    }
+  }
 })
