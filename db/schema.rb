@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_07_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_08_141425) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
@@ -1099,6 +1099,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_07_120000) do
     t.boolean "allow_expert_review", default: true, null: false
     t.string "api_entreprise_token"
     t.datetime "api_entreprise_token_expiration_notice_sent_at"
+    t.datetime "api_entreprise_token_rejected_at"
     t.string "api_particulier_token"
     t.boolean "ask_birthday", default: false, null: false
     t.date "auto_archive_on"
