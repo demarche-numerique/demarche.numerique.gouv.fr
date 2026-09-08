@@ -1,0 +1,9 @@
+en:
+  shared:
+    archives:
+      table:
+        nombre_dossiers_termines: "Number of completed dossiers"
+        poids_estime: "Estimated weight"
+        telecharger: "Download"
+        demander_la_creation: "Request creation"
+        archive_trop_volumineuse: "Archive too large"
