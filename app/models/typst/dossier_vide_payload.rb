@@ -147,10 +147,13 @@ class Typst::DossierVidePayload < Typst::Payload
     )
   end
 
+  # secondary_options parses the whole option list on every call: read it once,
+  # not once per primary (quadratic on lists of thousands of options).
   def linked_options(type_de_champ)
-    type_de_champ.primary_options.compact_blank.flat_map do |primary|
-      secondaries = type_de_champ.secondary_options[primary].to_a.compact_blank
-      [{ label: primary }] + secondaries.map { { label: it, secondary: true } }
+    type_de_champ.secondary_options.flat_map do |primary, secondaries|
+      next [] if primary.blank?
+
+      [{ label: primary }] + secondaries.compact_blank.map { { label: it, secondary: true } }
     end
   end
 
