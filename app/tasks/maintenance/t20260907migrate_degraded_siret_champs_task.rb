@@ -20,7 +20,7 @@ module Maintenance
 
       # Some champs never got their external_id backfilled; the stub carries
       # the siret the user typed, and dropping it would lose it for good.
-      siret = champ.external_id.presence || etablissement.siret
+      siret = champ.siret.presence || etablissement.siret
       return if siret.blank?
 
       champ.update_columns(etablissement_id: nil, external_id: siret, value: siret, external_state: 'degraded')

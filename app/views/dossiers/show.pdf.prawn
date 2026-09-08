@@ -296,7 +296,7 @@ def add_single_champ(pdf, champ)
       add_identite_etablissement(pdf, champ.etablissement)
     elsif champ.degraded?
       pdf.pad_bottom(default_margin) do
-        format_in_2_columns(pdf, "SIRET", champ.external_id)
+        format_in_2_columns(pdf, "SIRET", champ.siret)
         pdf.text "Les informations sur l’entreprise n’ont pas pu être récupérées."
       end
     end

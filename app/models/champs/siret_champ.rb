@@ -22,6 +22,8 @@ class Champs::SiretChamp < ChampData
     idle? && etablissement_id.present? ? value : super
   end
 
+  def siret = external_id
+
   def after_reset_external_data(opts = {})
     old_etablissement = etablissement
     super(etablissement_id: nil, prefilled: false, value: nil)
@@ -29,7 +31,7 @@ class Champs::SiretChamp < ChampData
   end
 
   def ready_for_external_call?
-    Siret.new(siret: external_id).valid?
+    Siret.new(siret:).valid?
   end
 
   def ready_for_external_retry? = !procedure.api_entreprise_token_recently_rejected?
@@ -37,16 +39,16 @@ class Champs::SiretChamp < ChampData
   def fetch_external_data
     return token_rejected_failure if procedure.api_entreprise_token_recently_rejected?
 
-    case APIEntreprise::Sirene.fetch_etablissement(external_id, procedure.id)
+    case APIEntreprise::Sirene.fetch_etablissement(siret, procedure.id)
     in Success(etablissement)
       procedure.forget_api_entreprise_token_rejection!
-      Success(etablissement:, value: external_id)
+      Success(etablissement:, value: siret)
     in Failure(type:, code:, **) if code.in?(ExternalDataException::DEFINITIVE_CODES)
       Failure(retryable: false, error: StandardError.new("API Entreprise: #{type}"), code:)
     in Failure(type:, code:, **)
       procedure.reject_api_entreprise_token! if token_rejected_by_api?(type, code)
 
-      Failure(degraded: true, value: external_id, error: StandardError.new("API Entreprise: #{type}"), code:)
+      Failure(degraded: true, value: siret, error: StandardError.new("API Entreprise: #{type}"), code:)
     end
   end
 
@@ -71,7 +73,7 @@ class Champs::SiretChamp < ChampData
   end
 
   def token_rejected_failure
-    Failure(degraded: true, value: external_id,
+    Failure(degraded: true, value: siret,
       error: StandardError.new("API Entreprise: token rejected"), code: 401)
   end
 
@@ -89,14 +91,14 @@ class Champs::SiretChamp < ChampData
   # When API Entreprise is down, user won't be stuck because
   # SIRET controller creates an etablissement in degraded mode
   def validate_etablissement
-    return if external_id.blank?
+    return if siret.blank?
     return if etablissement.present?
     return if pending? || degraded?
 
     validator = ActiveModel::Validations::SiretValidator.new(attributes: { value: true })
 
     # siret may have been formatted with spaces
-    validator.validate_each(self, :external_id, external_id.gsub(/[[:space:]]/, ""))
+    validator.validate_each(self, :external_id, siret.gsub(/[[:space:]]/, ""))
 
     if errors.empty?
       errors.add(:external_id, :not_found)

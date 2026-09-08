@@ -83,11 +83,11 @@ module Dsfr
         elsif @champ.etablissement && @champ.etablissement.entreprise_capital_social.blank?
           { state: :info, text: t('.siret.fetched', raison_sociale_or_name: displayable_raison_sociale_or_name(@champ.etablissement), forme_juridique: @champ.etablissement.entreprise_forme_juridique) }
         elsif @champ.external_error?
-          { state: :warning, text: t('.siret.error', value: pretty_siret(@champ.external_id)) }
+          { state: :warning, text: t('.siret.error', value: pretty_siret(@champ.siret)) }
         elsif @champ.degraded?
-          { state: :warning, text: t('.siret.degraded', value: pretty_siret(@champ.external_id)) }
+          { state: :warning, text: t('.siret.degraded', value: pretty_siret(@champ.siret)) }
         elsif @champ.pending?
-          { state: :info, text: t('.siret.pending', value: pretty_siret(@champ.external_id)) }
+          { state: :info, text: t('.siret.pending', value: pretty_siret(@champ.siret)) }
         end
       when TypeDeChamp.type_champs[:rna]
         if @champ.pending?
