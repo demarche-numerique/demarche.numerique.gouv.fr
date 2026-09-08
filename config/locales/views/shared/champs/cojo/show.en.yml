@@ -1,0 +1,7 @@
+en:
+  shared:
+    champs:
+      cojo:
+        show:
+          accreditation_name: "Name and surname in the accreditation database:"
+          dossier_name: "Name and surname entered in the dossier:"
