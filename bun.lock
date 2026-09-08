@@ -6,7 +6,7 @@
       "dependencies": {
         "@formatjs/intl-listformat": "^8.3.9",
         "@frsource/autoresize-textarea": "^2.0.203",
-        "@gouvfr/dsfr": "^1.14.3",
+        "@gouvfr/dsfr": "1.15.2",
         "@hotwired/stimulus": "^3.2.2",
         "@hotwired/turbo": "^7.3.0",
         "@lingui/react": "^6.2.0",
@@ -211,7 +211,7 @@
 
     "@frsource/autoresize-textarea": ["@frsource/autoresize-textarea@2.0.203", "", {}, "sha512-Q5TRtGVhwLoVur1pRTLnrjzLgSYi21ClxJU7HSKIQTuOHhk8u1focmgXa0BONuwDsB7+dHwLJ3EBrh6lgqheYw=="],
 
-    "@gouvfr/dsfr": ["@gouvfr/dsfr@1.14.3", "", {}, "sha512-UTplClQLp635J4vRHx/rJ7SKEi+bepc1FisvzTS8efQGQ3Gm8LttZf11NJ+4XhEMYLbCf8TBvFFwWBZ9ztRFkg=="],
+    "@gouvfr/dsfr": ["@gouvfr/dsfr@1.15.2", "", {}, "sha512-IrV/a/eV6KE06Az8Ky3wN2h0INka+ntk5UWuJg/T+ST7/tMUvIWC8fZi9azx+2YsqMFGgAkocIHxeVbPoLHAUQ=="],
 
     "@herb-tools/config": ["@herb-tools/config@0.10.2", "", { "dependencies": { "@herb-tools/core": "0.10.2", "picomatch": "^4.0.5", "tinyglobby": "^0.2.16", "yaml": "^2.9.0" } }, "sha512-hNyNpspNoeiwO7VEorXrr827byq8hCMk6jP24X5d/RAVoVlzlRssqux5zDu3d8MG69J+Zb4EN3hkPDiVhkkELw=="],
 
