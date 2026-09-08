@@ -873,6 +873,7 @@ en:
       pro_connect:
         connexion: "Error trying to connect to ProConnect. Please try again."
         required: "You must use ProConnect to sign in."
+        mfa_failed: "ProConnect could not verify your two-factor authentication. Try again, then contact support if the problem persists."
       france_connect:
         connexion: "Error trying to connect to FranceConnect."
         forbidden_html: "Only citizen can use FranceConnect. As an instructor or administrator, please identify yourself with ProConnect or log in with your %{app_name} account."
