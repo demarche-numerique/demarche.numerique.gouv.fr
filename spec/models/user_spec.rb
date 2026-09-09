@@ -962,6 +962,20 @@ describe User, type: :model do
         expect { usager.revoke_sessions!(reason: :logout_all, except: UserSession.new) }
           .to raise_error(ArgumentError, /not persisted/)
       end
+
+      it 'spares the current session when the password changes' do
+        kept = usager.open_user_session!('a browser')
+        other = usager.open_user_session!('another browser')
+        Current.user_session_id = kept.id
+
+        usager.update!(password: "#{users.default_password} (bis)")
+
+        expect(kept.reload).not_to be_unusable
+        expect(other.reload).to be_unusable
+      ensure
+        Current.user_session_id = nil
+      end
+
       it 'rotates the remember token' do
         usager.update_column(:remember_token, 'a-token')
 

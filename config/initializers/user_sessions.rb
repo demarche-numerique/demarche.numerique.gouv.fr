@@ -28,7 +28,7 @@ Warden::Manager.after_set_user do |record, warden, options|
   # second line without one: invisible while sessions without a row are still
   # adopted, a sign in loop the moment they no longer are.
   in :authentication | :set_user
-    SessionRegistrableConcern.open_session!(record, warden, scope)
+    Current.user_session_id = SessionRegistrableConcern.open_session!(record, warden, scope)
 
   # :fetch -- the user was read back from the cookie, on every request after the
   #           one that signed them in. The session continues, so the row it names
@@ -42,8 +42,9 @@ Warden::Manager.after_set_user do |record, warden, options|
     session_id = warden.session(scope)[SessionRegistrableConcern::SESSION_KEY]
 
     if session_id.nil?
-      SessionRegistrableConcern.open_session!(record, warden, scope)
+      Current.user_session_id = SessionRegistrableConcern.open_session!(record, warden, scope)
     else
+      Current.user_session_id = session_id
       user_session = UserSession.find_by(id: session_id, sessionable: record)
 
       if user_session.nil? || user_session.unusable?

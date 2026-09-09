@@ -12,6 +12,7 @@ module SessionRegistrableConcern
     warden.raw_session["warden.user.#{scope}.session"] || {}
   end
 
+  # Returns the id it just wrote, so the caller can publish it on Current.
   def self.open_session!(record, warden, scope)
     request = warden.request
 
@@ -38,11 +39,13 @@ module SessionRegistrableConcern
     )
   end
 
-  # `except&.id`, not `except.present?`: an unsaved record has a nil id, and
-  # `where.not(id: nil)` would revoke the very row we mean to spare.
+  # The id is generated database-side: an unsaved row has none, and
+  # `where.not(id: nil)` would revoke the very session we mean to spare.
   def revoke_sessions!(reason:, except: nil)
+    raise ArgumentError, 'cannot spare a session that is not persisted' if except && !except.persisted?
+
     scope = user_sessions
-    scope = scope.where.not(id: except.id) if except&.id
+    scope = scope.where.not(id: except.id) if except
     scope.revoke_all!(reason)
   end
 
