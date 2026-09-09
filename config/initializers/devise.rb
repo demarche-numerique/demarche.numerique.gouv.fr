@@ -155,9 +155,8 @@ Devise.setup do |config|
   config.email_regexp = URI::MailTo::EMAIL_REGEXP
 
   # ==> Configuration for :timeoutable
-  # The time you want to timeout the user session without activity. After this
-  # time the user will be asked for credentials again. Default is 30 minutes.
-  config.timeout_in = 1.hour
+  # Not configured: the module measures inactivity, not the age of a session,
+  # and no scope enables it. Session deadlines live on user_sessions (D2).
 
   # If true, expires auth token on session timeout.
   # config.expire_auth_token_on_timeout = false

@@ -970,4 +970,47 @@ describe User, type: :model do
       end
     end
   end
+
+  describe '#session_max_lifetime' do
+    it 'gives an usager the housekeeping horizon' do
+      expect(create(:user).session_max_lifetime).to eq(User::USAGER_SESSION_MAX_LIFETIME)
+    end
+
+    it 'gives an administrateur a week' do
+      expect(create(:administrateur).user.session_max_lifetime).to eq(1.week)
+    end
+
+    it 'gives a gestionnaire a week' do
+      expect(create(:gestionnaire).user.session_max_lifetime).to eq(1.week)
+    end
+
+    # CreateAvisService turns any invited citizen into an expert: they must not
+    # inherit an agent's bounded session, nor lose their remember-me cookie.
+    it 'leaves an expert with an usager session' do
+      expect(create(:expert).user.session_max_lifetime).to eq(User::USAGER_SESSION_MAX_LIFETIME)
+    end
+
+    it 'gives an instructeur the trusted device period, so both expire together' do
+      expect(create(:instructeur).user.session_max_lifetime)
+        .to eq(TrustedDeviceConcern::TRUSTED_DEVICE_PERIOD)
+    end
+
+    it 'takes the shortest when the account holds several roles' do
+      user = create(:instructeur).user
+      user.create_administrateur!
+
+      expect(user.reload.session_max_lifetime).to eq(1.week)
+    end
+
+    # `privileged?` queries the gestionnaire table while the role predicates go
+    # through the associations, so a record loaded earlier in the request can
+    # answer the two differently. The deadline must fall back to the shortest,
+    # never to nil: nil is a session that never expires.
+    it 'falls back to the shortest deadline when no role predicate matches' do
+      user = create(:user)
+      allow(user).to receive(:privileged?).and_return(true)
+
+      expect(user.session_max_lifetime).to eq(1.week)
+    end
+  end
 end

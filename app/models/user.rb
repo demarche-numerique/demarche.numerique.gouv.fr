@@ -256,6 +256,37 @@ class User < ApplicationRecord
     administrateur? || instructeur? || Gestionnaire.exists?(user_id: id)
   end
 
+  # Security deadlines for the agent roles, a housekeeping horizon for the
+  # usager. The year is not a policy: without a deadline their rows could never
+  # be purged, and any purge horizon is a deadline anyway. What actually bounds
+  # an usager is the sliding remember-me window.
+  #
+  # The instructeur matches TRUSTED_DEVICE_PERIOD so the session and the trust
+  # granted to their device expire together.
+  SESSION_MAX_LIFETIMES = {
+    administrateur: 1.week,
+    gestionnaire: 1.week,
+    instructeur: TrustedDeviceConcern::TRUSTED_DEVICE_PERIOD,
+  }.freeze
+
+  USAGER_SESSION_MAX_LIFETIME = 1.year
+
+  # Frozen on the row at creation, never recomputed: the contract stays auditable
+  # and a role granted mid-session does not shorten a session already open.
+  # Several roles on one account take the shortest.
+  def session_max_lifetime
+    return USAGER_SESSION_MAX_LIFETIME unless privileged?
+
+    # The shortest deadline as a fallback, not nil: `privileged?` asks the
+    # gestionnaire table directly while the predicates below go through the
+    # associations, so the two can disagree on a record loaded earlier in the
+    # request. `.min` on nothing would then hand an agent a session with no
+    # deadline at all -- failing open on the one thing this is here to enforce.
+    SESSION_MAX_LIFETIMES
+      .filter_map { |role, lifetime| lifetime if public_send(:"#{role}?") }
+      .min || SESSION_MAX_LIFETIMES.values.min
+  end
+
   # The checkbox sits on the sign in form, before we know who is signing in, so
   # it cannot be hidden per role. It is refused here instead, once we do know.
   def remember_me=(value)
