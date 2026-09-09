@@ -341,4 +341,76 @@ describe Users::ProfilController, type: :controller do
       end
     end
   end
+
+  describe 'session revocation' do
+    let(:other_user) { create(:user) }
+    let!(:current_session) { user.open_user_session!('Chrome') }
+    let!(:other_session) { user.open_user_session!('Firefox') }
+
+    before do
+      session['warden.user.user.session'] = { SessionRegistrableConcern::SESSION_KEY => current_session.id }
+    end
+
+    describe '#revoke_session' do
+      it 'leaves a session of another account alone' do
+        someone_elses = other_user.open_user_session!('Chrome')
+
+        delete :revoke_session, params: { id: someone_elses.id }
+
+        expect(someone_elses.reload).not_to be_unusable
+        expect(flash.alert).to eq(I18n.t('users.profil.revoke_session.already_closed'))
+      end
+
+      it 'answers an unknown id the same way' do
+        delete :revoke_session, params: { id: SecureRandom.uuid }
+
+        expect(response).to redirect_to(profil_path)
+        expect(flash.alert).to eq(I18n.t('users.profil.revoke_session.already_closed'))
+      end
+
+      it 'says so for a row that is already revoked, and touches nothing else' do
+        other_session.update!(revoked_at: Time.current, revoked_reason: 'logout_device')
+        version = user.trusted_device_version
+
+        delete :revoke_session, params: { id: other_session.id }
+
+        expect(response).to redirect_to(profil_path)
+        expect(flash.alert).to eq(I18n.t('users.profil.revoke_session.already_closed'))
+        expect(user.reload.trusted_device_version).to eq(version)
+      end
+
+      it 'revokes the one it is given, and only that one' do
+        delete :revoke_session, params: { id: other_session.id }
+
+        expect(other_session.reload.unusable_reason).to eq(:logout_device)
+        expect(current_session.reload).not_to be_unusable
+        expect(response).to redirect_to(profil_path)
+      end
+
+      it 'refuses the session being browsed with' do
+        delete :revoke_session, params: { id: current_session.id }
+
+        expect(current_session.reload).not_to be_unusable
+        expect(flash.alert).to eq(I18n.t('users.profil.revoke_session.already_closed'))
+      end
+    end
+
+    describe '#revoke_all_sessions' do
+      it 'revokes every session of the account, the current one included' do
+        delete :revoke_all_sessions
+
+        expect(other_session.reload.unusable_reason).to eq(:logout_all)
+        expect(current_session.reload.unusable_reason).to eq(:logout_all)
+        expect(response).to redirect_to(root_path)
+      end
+
+      it 'leaves other accounts untouched' do
+        someone_elses = other_user.open_user_session!('Chrome')
+
+        delete :revoke_all_sessions
+
+        expect(someone_elses.reload).not_to be_unusable
+      end
+    end
+  end
 end
