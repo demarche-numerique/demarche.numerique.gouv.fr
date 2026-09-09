@@ -1,0 +1,6 @@
+---
+fr:
+  loading: Chargement de vos préférences de suivi…
+  grant: Je souhaite suivre mes démarches sur %{app_name}
+  granted: Vous suivez vos démarches sur %{app_name}
+  error: "L’enregistrement de votre choix a échoué. Vous pouvez réessayer."

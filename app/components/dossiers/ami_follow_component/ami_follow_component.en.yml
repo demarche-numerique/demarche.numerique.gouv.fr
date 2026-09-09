@@ -1,0 +1,11 @@
+---
+en:
+  title: Follow your procedures on %{app_name}, the official and free mobile app of the French administration
+  see_in_app: Open in the app
+  more_info: All the information about the app
+  modal:
+    title: All the information about %{app_name}
+    body_html: |
+      <p class="fr-text--bold">You can change your procedure follow-up preferences in the app at any time.</p>
+      <p>The official and free mobile app of the French administration is operated by the direction de l’information légale et administrative and the direction interministérielle du numérique (Services du Premier Ministre). It lets you <strong>follow all your procedures</strong>, receive <strong>personalised alerts</strong> and <strong>talk to the administrations</strong> from <strong>a single mobile app</strong>.</p>
+      <p>See the “Données personnelles et sécurité” page on the Service Public website and in the app for more information.</p>

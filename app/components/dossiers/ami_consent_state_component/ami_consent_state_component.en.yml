@@ -1,0 +1,6 @@
+---
+en:
+  loading: Loading your follow-up preferences…
+  grant: I want to follow my procedures on %{app_name}
+  granted: You follow your procedures on %{app_name}
+  error: Your choice could not be saved. You can try again.
