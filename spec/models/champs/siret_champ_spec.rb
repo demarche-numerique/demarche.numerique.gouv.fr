@@ -273,6 +273,7 @@ describe Champs::SiretChamp do
         expect(subject).to be_fetched
         expect(subject.etablissement.siret).to eq(siret)
         expect(subject.value).to eq(siret)
+        expect(subject.value_json).to be_present
       end
 
       it 'asks for the complementary data' do

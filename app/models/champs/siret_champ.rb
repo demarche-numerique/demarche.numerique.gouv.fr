@@ -41,7 +41,7 @@ class Champs::SiretChamp < ChampData
       # No call goes out, so the failure branch below would never alert.
       alert_global_token_refused(local_token_failure, 401) if !procedure.specific_api_entreprise_token?
 
-      return token_rejected_failure
+      return degraded_failure(:token_rejected, 401)
     end
 
     case APIEntreprise::Sirene.fetch_etablissement(siret, procedure.id)
@@ -53,7 +53,7 @@ class Champs::SiretChamp < ChampData
     in Failure(type:, code:, **)
       record_credentials_failure(type, code) if code.in?(ExternalDataException::CREDENTIALS_CODES)
 
-      Failure(degraded: true, value: siret, error: StandardError.new("API Entreprise: #{type}"), code:)
+      degraded_failure(type, code)
     end
   end
 
@@ -97,24 +97,19 @@ class Champs::SiretChamp < ChampData
     procedure.api_entreprise_token.missing? ? :token_missing : :token_expired
   end
 
-  def token_rejected_failure
-    Failure(degraded: true, value: siret,
-      error: StandardError.new("API Entreprise: token rejected"), code: 401)
+  def degraded_failure(type, code)
+    Failure(degraded: true, value: siret, error: StandardError.new("API Entreprise: #{type}"), code:)
   end
 
   # Only a fetch brings an etablissement: the degraded branch carries the siret alone.
   def update_external_data!(hash)
-    super
-    return if !hash.key?(:etablissement)
+    etablissement = hash[:etablissement]
+    return super if etablissement.nil?
 
-    etablissement.update_champ_value_json!
+    super(hash.merge(value_json: etablissement.champ_value_json))
     APIEntrepriseService.perform_later_fetch_jobs(etablissement, procedure.id, dossier.user&.id)
   end
 
-  # We want to validate if SIRET really exists
-  # It's valid when an etablissement have been created in turbo with SIRET controller
-  # When API Entreprise is down, user won't be stuck because
-  # SIRET controller creates an etablissement in degraded mode
   def validate_etablissement
     return if siret.blank?
     return if etablissement.present?

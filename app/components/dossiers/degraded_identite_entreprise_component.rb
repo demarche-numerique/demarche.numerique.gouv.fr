@@ -24,7 +24,7 @@ class Dossiers::DegradedIdentiteEntrepriseComponent < ApplicationComponent
   end
 
   def data
-    [[t('.siret'), helpers.pretty_siret(siret), data_to_copy: siret]]
+    [[Etablissement.human_attribute_name(:siret), helpers.pretty_siret(siret), data_to_copy: siret]]
   end
 
   def alert
