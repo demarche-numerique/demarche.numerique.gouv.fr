@@ -45,7 +45,17 @@ Warden::Manager.after_set_user do |record, warden, options|
       SessionRegistrableConcern.open_session!(record, warden, scope)
     else
       user_session = UserSession.find_by(id: session_id, sessionable: record)
-      warden.logout(scope) if user_session.nil? || user_session.unusable?
+
+      if user_session.nil? || user_session.unusable?
+        # On Current, not in the session: we log out rather than throw, so
+        # there is no `throw(:warden, message:)` to carry the reason, and a
+        # session key would survive the request. This hook fires from
+        # `user_signed_in?` in the layout too, on pages that then render fine
+        # -- a stored key would go on to mislabel an unrelated failure days
+        # later. The failure app runs in this same request or not at all.
+        Current.session_end_reason = (user_session&.unusable_reason || :session_revoked).to_s
+        warden.logout(scope)
+      end
     end
   end
 rescue StandardError => e
