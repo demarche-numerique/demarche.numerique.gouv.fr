@@ -5,6 +5,7 @@ en:
       nom:
         title: New API token
         new_token: New token creation
+        duplicate_title: Duplicate API token
         name: Name of the token
         name-hint: 'examples: prod orus, test presta'
         continue: Continue

@@ -14,6 +14,12 @@
         = link_to 'Modifier',
           edit_admin_api_token_path(@api_token),
           class: 'fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-btn--icon-left fr-icon-settings-5-line'
+
+      %li
+        = link_to 'Dupliquer',
+          nom_admin_api_tokens_path(APITokenParams.from_token(@api_token).to_h),
+          class: 'fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-btn--icon-left fr-icon-file-copy-line'
+
       %li
         = link_to 'Supprimer',
           admin_api_token_path(@api_token),
