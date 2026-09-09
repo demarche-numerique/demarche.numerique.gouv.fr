@@ -68,6 +68,8 @@
               - @waiting_transfers.each do |email, nb_dossier|
                 %li= t('.one_waiting_transfer', email: email, count: nb_dossier)
 
+  = render Profile::SessionsCardComponent.new
+
   = render Profile::APITokenCardComponent.new
 
   - if @france_connect_informations.present?

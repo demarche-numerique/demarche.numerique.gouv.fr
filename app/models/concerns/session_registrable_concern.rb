@@ -49,11 +49,17 @@ module SessionRegistrableConcern
 
   # The id is generated database-side: an unsaved row has none, and
   # `where.not(id: nil)` would revoke the very session we mean to spare.
-  def revoke_sessions!(reason:, except: nil)
+  #
+  # `only:` closes a single device. It goes through here rather than straight to
+  # the relation so that everything else a revocation must cut -- the remember
+  # token above all -- happens for one device as it does for all of them.
+  def revoke_sessions!(reason:, except: nil, only: nil)
     raise ArgumentError, 'cannot spare a session that is not persisted' if except && !except.persisted?
+    raise ArgumentError, 'cannot revoke a session that is not persisted' if only && !only.persisted?
 
     scope = user_sessions
     scope = scope.where.not(id: except.id) if except
+    scope = scope.where(id: only.id) if only
     scope.revoke_all!(reason)
   end
 

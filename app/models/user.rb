@@ -326,13 +326,15 @@ class User < ApplicationRecord
   # once -- there is one per account, not per device. Closing a single device
   # therefore signs the account out of "remember me" everywhere, which is the
   # price of a revocation that does not lie.
-  def revoke_sessions!(reason:, except: nil)
+  def revoke_sessions!(reason:, except: nil, only: nil)
     # Before anything irreversible: rotating the token, bumping the device
     # version and destroying the email tokens cannot be taken back, and nothing
-    # here runs in a transaction. Both guards belong above them -- the reason
-    # one is enforced deep inside UserSession.revoke_all!, far too late.
+    # here runs in a transaction. All three guards belong above them -- enforced
+    # in the concern, they would only fire inside `super`, once the token had
+    # already been rotated.
     raise ArgumentError, "unknown revocation reason #{reason.inspect}" unless UserSession::REVOCATION_REASONS.include?(reason.to_s)
     raise ArgumentError, 'cannot spare a session that is not persisted' if except && !except.persisted?
+    raise ArgumentError, 'cannot revoke a session that is not persisted' if only && !only.persisted?
 
     update_column(:remember_token, Devise.friendly_token) unless reason.to_sym == :new_session
 
