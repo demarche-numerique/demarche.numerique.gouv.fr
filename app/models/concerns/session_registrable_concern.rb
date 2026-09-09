@@ -40,6 +40,13 @@ module SessionRegistrableConcern
 
     session[LAST_SEEN_KEY] = Date.current.iso8601
 
+    # The key is about to name a different session, so the one it names now is
+    # over. Left alone, its row stays usable for as long as its deadline allows
+    # and the account keeps advertising a device nobody is signed in on. Revoked
+    # by id rather than through `record`: signing Bob in on Alice's browser --
+    # an activation link, a password reset -- takes the key over from her.
+    UserSession.where(id: session[SESSION_KEY]).revoke_all!(:sign_out) if session[SESSION_KEY].present?
+
     session[SESSION_KEY] = record.open_user_session!(request.user_agent, request.remote_ip).id
   end
 

@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 # These hooks run on every authenticated request: a bug here locks out everyone,
-# ourselves included. Hence the rescue on each one, and the adoption of sessions
-# older than the registry.
+# ourselves included. Hence the rescue on each one.
 
 # Warden funnels three events through this single callback, and they split in
 # two: two ways a session opens, one way it continues. Matching on the event
@@ -25,8 +24,8 @@ Warden::Manager.after_set_user do |record, warden, options|
   #
   # Both mean a session opens, so both write its row. Keying on :authentication
   # alone -- what `after_authentication` does -- would leave every path on the
-  # second line without one: invisible while sessions without a row are still
-  # adopted, a sign in loop the moment they no longer are.
+  # second line without one: invisible while sessions without a row were still
+  # adopted, a sign in loop now that they are not.
   in :authentication | :set_user
     SessionRegistrableConcern.open_session!(record, warden, scope)
 
@@ -43,7 +42,12 @@ Warden::Manager.after_set_user do |record, warden, options|
     session_id = warden_session[SessionRegistrableConcern::SESSION_KEY]
 
     if session_id.nil?
-      SessionRegistrableConcern.open_session!(record, warden, scope)
+      # A session opened before the registry. These used to be adopted rather
+      # than rejected, so that turning the registry on logged nobody out; the
+      # adoption ran for a week after every account was covered. Anything still
+      # arriving without a row has made no request in all that time.
+      warden.request.env[SessionRegistrableConcern::END_REASON_KEY] = 'expired'
+      warden.logout(scope)
     else
       user_session = UserSession.find_by(id: session_id, sessionable: record)
 

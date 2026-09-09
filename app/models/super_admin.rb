@@ -4,6 +4,11 @@ class SuperAdmin < ApplicationRecord
   include PasswordComplexityConcern
   include SessionRegistrableConcern
 
+  # Left over from :rememberable. Ignored here first, dropped in a later
+  # migration: a column removed while running code still selects it breaks
+  # every query in the window between migration and deploy.
+  self.ignored_columns += [:remember_created_at]
+
   # No :rememberable, it would make the daily deadline below a fiction: on the
   # 25th hour the cookie reopens the session for another day.
   devise :trackable, :validatable, :lockable, :recoverable
