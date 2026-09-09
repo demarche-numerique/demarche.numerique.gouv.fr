@@ -5,6 +5,7 @@ fr:
       nom:
         title: Nouveau jeton d’API
         new_token: Création d’un nouveau jeton
+        duplicate_title: Duplication du jeton d’API
         name: Nom du jeton
         name-hint: 'exemples: prod orus, test presta'
         continue: Continuer

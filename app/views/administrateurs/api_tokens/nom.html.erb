@@ -6,7 +6,7 @@
     [t('administrateurs.api_tokens.nom.new_token')]] } %>
 
 <div class="fr-container fr-mt-2w" data-turbo="true">
-  <h1><%= t('.new_token') %></h1>
+  <h1><%= @api_token_params.duplicating? ? t('.duplicate_title') : t('.new_token') %></h1>
 
   <%= form_with url: autorisations_admin_api_tokens_path, method: :get,  html: { class: 'fr-mt-2w' } do |f| %>
     <div class="fr-input-group">
