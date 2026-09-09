@@ -69,7 +69,10 @@ describe 'the session registry', type: :request do
       expect(response).to redirect_to(new_super_admin_session_path)
     end
 
-    it 'adopts a session opened before the registry rather than reject it' do
+    # The adoption path is gone: a session that predates the registry is no
+    # longer taken in, it is rejected. Anything still arriving without a row has
+    # made no request since the registry reached every account.
+    it 'rejects a session opened before the registry, and opens no row for it' do
       Flipper.disable_actor(:session_registry, super_admin)
       sign_in_super_admin
       expect(super_admin_sessions).to be_empty
@@ -77,8 +80,8 @@ describe 'the session registry', type: :request do
 
       get manager_root_path
 
-      expect(response).to have_http_status(:ok)
-      expect(super_admin_sessions.count).to eq(1)
+      expect(response).to redirect_to(new_super_admin_session_path)
+      expect(super_admin_sessions).to be_empty
     end
 
     it 'signs nobody out when the hook raises' do
@@ -189,6 +192,21 @@ describe 'the session registry', type: :request do
 
         expect(response).to have_http_status(:ok)
       end
+
+      # Bob takes the browser over from Alice, who never signed out. Her row
+      # would otherwise stay usable until its deadline -- up to a year for an
+      # usager -- and her profile would advertise a device nobody is on.
+      it 'closes the session it takes the browser over from' do
+        someone_else = create(:user, password: users.default_password)
+        Flipper.enable_actor(:session_registry, someone_else)
+        post user_session_path,
+          params: { user: { email: someone_else.email, password: users.default_password } }
+        theirs = UserSession.where(sessionable: someone_else).sole
+
+        activate
+
+        expect(theirs.reload.unusable_reason).to eq(:sign_out)
+      end
     end
 
     # A year is a housekeeping horizon, not a policy: it exists so the rows can
@@ -201,7 +219,7 @@ describe 'the session registry', type: :request do
         .to be_within(1.minute).of(User::USAGER_SESSION_MAX_LIFETIME.from_now)
     end
 
-    it 'adopts a session opened before the registry rather than reject it' do
+    it 'rejects a session opened before the registry, and opens no row for it' do
       Flipper.disable_actor(:session_registry, user)
       sign_in_user
       expect(user_sessions).to be_empty
@@ -209,8 +227,18 @@ describe 'the session registry', type: :request do
 
       get dossiers_path
 
-      expect(response).to have_http_status(:ok)
-      expect(user_sessions.count).to eq(1)
+      expect(response).to redirect_to(new_user_session_path)
+      expect(user_sessions).to be_empty
+    end
+
+    it 'tells the rejected session it expired, rather than leaving it mute' do
+      Flipper.disable_actor(:session_registry, user)
+      sign_in_user
+      Flipper.enable_actor(:session_registry, user)
+
+      get dossiers_path
+
+      expect(flash[:alert]).to eq(I18n.t('devise.failure.expired'))
     end
   end
 end
