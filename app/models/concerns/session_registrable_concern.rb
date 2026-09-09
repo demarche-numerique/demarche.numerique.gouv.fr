@@ -45,14 +45,18 @@ module SessionRegistrableConcern
 
     session[LAST_SEEN_KEY] = Date.current.iso8601
 
+    # The key is about to name another session, so this one is over; its row
+    # would otherwise stay usable. By id and not through `record`: signing Bob
+    # in on Alice's browser takes the key over from her.
+    UserSession.where(id: session[SESSION_KEY]).revoke_all!(:sign_out) if session[SESSION_KEY].present?
+
     session[SESSION_KEY] = record.open_user_session!(request.user_agent, request.remote_ip).id
   end
 
   # Read from the signed cookie, so the client cannot push the date forward.
   # A date and not an instant: the window is counted in weeks.
   def self.inactive?(session)
-    # No stamp means a session older than this code: adopt it, the request that
-    # adopts it stamps it.
+    # Not stamped yet: the sign in wrote the row, the next request stamps it.
     last_seen = session[LAST_SEEN_KEY]
     return false if last_seen.blank?
 
@@ -101,14 +105,16 @@ module SessionRegistrableConcern
     session = warden.session(scope)
     session_id = session[SESSION_KEY]
 
-    return open_session!(record, warden, scope) if session_id.nil?
-
-    user_session = UserSession.find_by(id: session_id, sessionable: record)
+    user_session = UserSession.find_by(id: session_id, sessionable: record) if session_id.present?
 
     # The row first: a session both revoked and stale must say it was revoked,
     # which is the message the user needs.
     reason =
-      if user_session.nil? || user_session.unusable?
+      if session_id.nil?
+        # Opened before the registry. Such sessions were adopted for a week after
+        # every account was covered; one still arriving has been away all that time.
+        :expired
+      elsif user_session.nil? || user_session.unusable?
         user_session&.unusable_reason || :session_revoked
       elsif inactive?(session)
         :inactivity
