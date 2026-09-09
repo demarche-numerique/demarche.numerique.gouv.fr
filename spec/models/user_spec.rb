@@ -871,4 +871,103 @@ describe User, type: :model do
       end
     end
   end
+
+  describe '#privileged?' do
+    # Not read from the default scope: adding a fourth LEFT JOIN to every User
+    # load in the app to save one query at sign in is a bad trade.
+    it 'counts a gestionnaire, whose role is not eager loaded' do
+      gestionnaire = create(:gestionnaire)
+
+      expect(User.find(gestionnaire.user_id)).to be_privileged
+    end
+
+    it 'does not count an expert' do
+      expect(create(:expert).user).not_to be_privileged
+    end
+  end
+
+  describe 'remember me' do
+    let(:usager) { create(:user) }
+    let(:agent) { create(:instructeur).user }
+
+    describe '#remember_me=' do
+      it 'accepts it for an usager' do
+        usager.remember_me = true
+
+        expect(usager.remember_me).to be(true)
+      end
+
+      it 'refuses it for an agent, even when forced' do
+        agent.remember_me = true
+
+        expect(agent.remember_me).to be(false)
+      end
+    end
+
+    describe '#rememberable_value' do
+      it 'answers the authenticatable salt while the token is nil' do
+        expect(usager.remember_token).to be_nil
+        expect(usager.rememberable_value).to eq(usager.authenticatable_salt)
+      end
+
+      it 'answers the token once it is set' do
+        usager.update_column(:remember_token, 'a-token')
+
+        expect(usager.rememberable_value).to eq('a-token')
+      end
+    end
+
+    describe 'a cookie issued before the migration' do
+      # The invariant of this step: adding the column must not sign anyone out.
+      # Such a cookie carries the salt, which is what Devise stored back then.
+      it 'is still recognised' do
+        usager.update_columns(remember_created_at: 1.day.ago, remember_token: nil)
+        cookie = [usager.to_key, usager.authenticatable_salt, Time.current.utc.to_f.to_s]
+
+        expect(User.serialize_from_cookie(*cookie)).to eq(usager)
+      end
+
+      it 'is rejected once the sessions are revoked' do
+        usager.update_columns(remember_created_at: 1.day.ago, remember_token: nil)
+        cookie = [usager.to_key, usager.authenticatable_salt, Time.current.utc.to_f.to_s]
+
+        usager.revoke_sessions!(reason: :logout_all)
+
+        expect(User.serialize_from_cookie(*cookie)).to be_nil
+      end
+    end
+
+    it 'refuses the salt fallback for an agent, so cookies issued before this policy die' do
+      expect(agent.remember_token).to be_nil
+      expect(agent.rememberable_value).not_to eq(agent.authenticatable_salt)
+    end
+
+    # A usager who ticked the box already holds a token, and promotion reuses
+    # the row: without this, a brand new administrateur would go on being signed
+    # in without a password until remember_for elapsed.
+    it 'refuses the token an usager already held when they are promoted' do
+      usager.update_column(:remember_token, 'a-token')
+      cookie = [usager.to_key, 'a-token', Time.current.utc.to_f.to_s]
+      usager.update_columns(remember_created_at: 1.day.ago)
+      expect(User.serialize_from_cookie(*cookie)).to eq(usager)
+
+      usager.create_instructeur!
+
+      expect(User.find(usager.id).rememberable_value).to be_nil
+      expect(User.serialize_from_cookie(*cookie)).to be_nil
+    end
+
+    describe '#revoke_sessions!' do
+      it 'refuses to spare a session that is not persisted' do
+        expect { usager.revoke_sessions!(reason: :logout_all, except: UserSession.new) }
+          .to raise_error(ArgumentError, /not persisted/)
+      end
+      it 'rotates the remember token' do
+        usager.update_column(:remember_token, 'a-token')
+
+        expect { usager.revoke_sessions!(reason: :logout_all) }
+          .to change { usager.reload.remember_token }.from('a-token')
+      end
+    end
+  end
 end

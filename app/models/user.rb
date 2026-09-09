@@ -244,6 +244,62 @@ class User < ApplicationRecord
     expert.present?
   end
 
+  # An account holding any agent role. These trade the convenience of staying
+  # signed in for a bounded session: a stolen access must not outlive its window.
+  # Deliberately not `expert?`: CreateAvisService turns any invited citizen into
+  # one, and they must keep an usager's session -- and their remember-me cookie.
+  #
+  # `gestionnaire` is not in the default scope, and putting it there would add a
+  # fourth LEFT JOIN to every User load in the app to save one query at sign in,
+  # which is the only place this runs. An exists? is the cheaper trade.
+  def privileged?
+    administrateur? || instructeur? || Gestionnaire.exists?(user_id: id)
+  end
+
+  # The checkbox sits on the sign in form, before we know who is signing in, so
+  # it cannot be hidden per role. It is refused here instead, once we do know.
+  def remember_me=(value)
+    super(privileged? ? false : value)
+  end
+
+  # Devise picks `remember_token` over `authenticatable_salt` as soon as the
+  # column exists -- it tests `respond_to?`, not the value. Falling back keeps
+  # the cookies issued before this migration valid; without it they would all be
+  # compared against nil and silently rejected.
+  #
+  # Transitional: droppable once `remember_for` has elapsed since the deploy.
+  def rememberable_value
+    # nil for an agent, which no cookie can ever match. Not `remember_token`:
+    # an usager who ticked the box already has one, and every promotion path
+    # (create_or_promote_to_instructeur and friends) reuses the row without
+    # touching it -- so a brand new administrateur would have gone on being
+    # signed in without a password for a fortnight, which is precisely what
+    # `remember_me=` and the deadlines exist to prevent.
+    return if privileged?
+
+    remember_token.presence || authenticatable_salt
+  end
+
+  # Returns how many sessions were actually closed, so a caller can report what
+  # happened rather than imply success.
+  #
+  # Rotating the remember token kills every remember-me cookie of the account at
+  # once -- there is one per account, not per device. Closing a single device
+  # therefore signs the account out of "remember me" everywhere, which is the
+  # price of a revocation that does not lie.
+  def revoke_sessions!(reason:, except: nil)
+    # Before anything irreversible: rotating the token, bumping the device
+    # version and destroying the email tokens cannot be taken back, and nothing
+    # here runs in a transaction. Both guards belong above them -- the reason
+    # one is enforced deep inside UserSession.revoke_all!, far too late.
+    raise ArgumentError, "unknown revocation reason #{reason.inspect}" unless UserSession::REVOCATION_REASONS.include?(reason.to_s)
+    raise ArgumentError, 'cannot spare a session that is not persisted' if except && !except.persisted?
+
+    update_column(:remember_token, Devise.friendly_token) unless reason.to_sym == :new_session
+
+    super
+  end
+
   def crisp_segments
     segments = []
     segments << 'administrateur' if administrateur?
