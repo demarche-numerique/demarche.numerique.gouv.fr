@@ -73,51 +73,28 @@ describe API::V2::BaseController, type: :controller do
       end
     end
 
-    describe 'with admin' do
-      before do
-        sign_in(admin.user)
-      end
-
-      describe 'GET #fake_action' do
-        subject { get :fake_action }
-
-        context 'when admin is logged in' do
-          it { is_expected.to have_http_status(:ok) }
-        end
-      end
+    describe 'with a signed-in admin session but no token' do
+      before { sign_in(admin.user) }
 
       describe 'POST #fake_action' do
-        subject { post :fake_action }
+        it 'ignores the session and rejects the request like an unauthenticated one' do
+          post :fake_action
 
-        context 'when admin is logged in without csrf token' do
-          it { is_expected.to have_http_status(:forbidden) }
+          expect(response).to have_http_status(:forbidden)
+          expect(controller.send(:current_user)).to be_nil
+          expect(Current.user).to be_nil
         end
 
-        context 'when admin is logged in with csrf token' do
-          let(:raw_token) do
-            Base64.urlsafe_encode64(SecureRandom.random_bytes(32), padding: false)
-          end
+        it 'allows public queries without any identity' do
+          post :fake_action, params: { queryId: 'introspection' }
 
-          before do
-            # Respecte le format attendu par ActionController::RequestForgeryProtection::CookieStore :
-            # un JSON { token:, session_id: } chiffré, dont le token est la version Base64 URL-safe
-            # (sans padding) du token brut.
-            cookies.encrypted.permanent[:csrf_token] = {
-              value: {
-                token: raw_token,
-                session_id: request.session.id,
-              }.to_json,
-            }
-          end
-
-          subject { post :fake_action, params: { authenticity_token: raw_token } }
-
-          it { is_expected.to have_http_status(:ok) }
+          expect(response).to have_http_status(:ok)
+          expect(controller.send(:context)).to include(administrateur_id: nil, procedure_ids: [], write_access: false)
         end
       end
     end
 
-    describe 'without token or admin' do
+    describe 'without token' do
       describe 'GET #index' do
         let(:params) { {} }
         subject { get :fake_action, params: }
