@@ -963,6 +963,29 @@ describe User, type: :model do
           .to raise_error(ArgumentError, /not persisted/)
       end
 
+      # The guards have to fire before the token rotation, not inside `super`:
+      # nothing here runs in a transaction, so a late raise leaves the account
+      # signed out of remember-me for a call that did nothing else.
+      it 'refuses to revoke a session that is not persisted, before rotating anything' do
+        usager.update_column(:remember_token, 'a-stable-token')
+
+        expect { usager.revoke_sessions!(reason: :logout_device, only: UserSession.new) }
+          .to raise_error(ArgumentError, /not persisted/)
+
+        expect(usager.reload.remember_token).to eq('a-stable-token')
+      end
+
+      it 'closes one device without the side effects of a total revocation' do
+        one = usager.open_user_session!('a browser')
+        another = usager.open_user_session!('another browser')
+
+        expect { usager.revoke_sessions!(reason: :logout_device, only: one) }
+          .not_to change { usager.reload.trusted_device_version }
+
+        expect(one.reload.unusable_reason).to eq(:logout_device)
+        expect(another.reload).not_to be_unusable
+      end
+
       it 'spares the current session when the password changes' do
         kept = usager.open_user_session!('a browser')
         other = usager.open_user_session!('another browser')

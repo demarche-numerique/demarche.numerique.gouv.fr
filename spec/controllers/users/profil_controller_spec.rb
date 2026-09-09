@@ -320,4 +320,125 @@ describe Users::ProfilController, type: :controller do
       end
     end
   end
+
+  describe 'session revocation' do
+    let(:other_user) { create(:user) }
+    let!(:current_session) { user.open_user_session!('Chrome') }
+    let!(:other_session) { user.open_user_session!('Firefox') }
+
+    # The Warden session is seeded rather than `Current` stubbed: `Current` is
+    # reset by the executor at the start of each request, and with the registry
+    # open the fetch hook rejects a session that carries no row id. Seeding the
+    # key exercises the real path -- the hook reads it and publishes it on
+    # `Current`, exactly as it does in production.
+    before do
+      Flipper.enable_actor(:session_registry, user)
+      session['warden.user.user.session'] = { SessionRegistrableConcern::SESSION_KEY => current_session.id }
+    end
+
+    describe '#revoke_session' do
+      # First, and non negotiable: the id comes from the URL, so the only thing
+      # standing between someone and another account's session is this scope.
+      it 'answers 404 for a session of another account, and leaves it alone' do
+        someone_elses = other_user.open_user_session!('Chrome')
+
+        delete :revoke_session, params: { id: someone_elses.id }
+
+        expect(response).to have_http_status(:not_found)
+        expect(someone_elses.reload).not_to be_unusable
+      end
+
+      it 'answers 404 for an unknown id' do
+        delete :revoke_session, params: { id: SecureRandom.uuid }
+
+        expect(response).to have_http_status(:not_found)
+      end
+
+      # `revoke_sessions!` rotates the remember token before it touches any row,
+      # so acting on a row that is already dead closes nothing but still cuts
+      # remember-me on every device. A profile page left open while the session
+      # died elsewhere would have done exactly that.
+      it 'answers 404 for a row that is already revoked, and spares the remember token' do
+        other_session.update!(revoked_at: Time.current, revoked_reason: 'logout_device')
+        user.update_column(:remember_token, 'still-good')
+
+        delete :revoke_session, params: { id: other_session.id }
+
+        expect(response).to have_http_status(:not_found)
+        expect(user.reload.remember_token).to eq('still-good')
+      end
+
+      it 'revokes the one it is given, and only that one' do
+        delete :revoke_session, params: { id: other_session.id }
+
+        expect(other_session.reload.unusable_reason).to eq(:logout_device)
+        expect(current_session.reload).not_to be_unusable
+        expect(response).to redirect_to(profil_path)
+      end
+
+      # Closing the session you are browsing with is a sign out, so there is no
+      # profile page to come back to -- the redirect would only be rejected by
+      # the fetch hook and land on the sign in page with an alert.
+      it 'lets someone close the session they are browsing with, and sends them home' do
+        delete :revoke_session, params: { id: current_session.id }
+
+        expect(current_session.reload.unusable_reason).to eq(:logout_device)
+        expect(response).to redirect_to(root_path)
+      end
+
+      # A remember-me cookie reopens a session on its own, so a revocation that
+      # left it alive would be a lie -- and the card says, in as many words,
+      # that closing a device cancels "se souvenir de moi" everywhere.
+      it 'rotates the remember token, so no remember-me cookie survives' do
+        user.update_column(:remember_token, 'a-stolen-token')
+
+        delete :revoke_session, params: { id: other_session.id }
+
+        expect(user.reload.remember_token).not_to eq('a-stolen-token')
+      end
+    end
+
+    # Rows outlive a rollback of the flag. While it is off nothing enforces
+    # them, so acting on them would report something that did not happen -- and
+    # `Current` carries no session id, so sparing the current one is impossible.
+    describe 'with the registry closed for the account' do
+      before { Flipper.disable_actor(:session_registry, user) }
+
+      it 'refuses to revoke one session' do
+        delete :revoke_session, params: { id: other_session.id }
+
+        expect(response).to have_http_status(:not_found)
+        expect(other_session.reload).not_to be_unusable
+      end
+
+      it 'refuses to revoke them all, rather than close the current one' do
+        delete :revoke_all_sessions
+
+        expect(response).to have_http_status(:not_found)
+        expect(current_session.reload).not_to be_unusable
+        expect(other_session.reload).not_to be_unusable
+      end
+    end
+
+    describe '#revoke_all_sessions' do
+      # Every session, this one included. Sparing it would leave the browser
+      # signed in while the account-wide trusted device bump treats it as
+      # untrusted: signed in, and stuck on the next sensitive page.
+      it 'revokes every session of the account, the current one included' do
+        delete :revoke_all_sessions
+
+        expect(other_session.reload.unusable_reason).to eq(:logout_all)
+        expect(current_session.reload.unusable_reason).to eq(:logout_all)
+        expect(response).to redirect_to(root_path)
+      end
+
+      it 'leaves other accounts untouched' do
+        someone_elses = other_user.open_user_session!('Chrome')
+
+        delete :revoke_all_sessions
+
+        expect(someone_elses.reload).not_to be_unusable
+      end
+    end
+  end
 end

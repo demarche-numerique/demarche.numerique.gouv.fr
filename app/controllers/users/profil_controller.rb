@@ -7,6 +7,7 @@ module Users
     ALLOWED_NAV_BAR_PROFILES = [:user, :instructeur, :administrateur, :expert, :gestionnaire].freeze
 
     before_action :ensure_update_email_is_authorized, only: :update_email
+    before_action :ensure_session_registry_enabled, only: [:revoke_session, :revoke_all_sessions]
     before_action :find_transfers, only: [:show]
 
     def nav_bar_profile
@@ -73,6 +74,41 @@ module Users
       redirect_to profil_path
     end
 
+    # `current_user.user_sessions`, never `UserSession.find`: the id comes from
+    # the URL, and this scope is the only thing between someone and another
+    # account's session. A miss is a 404, not a redirect -- we do not tell the
+    # caller whether the id exists.
+    #
+    # `.usable` too: revoking a row that is already dead closes nothing, but
+    # `revoke_sessions!` rotates the remember token first, which cuts remember-me
+    # on every device of the account. A stale page left open would have signed
+    # someone out everywhere while reporting that one device was closed.
+    def revoke_session
+      user_session = current_user.user_sessions.usable.find_by(id: params[:id])
+
+      return head(:not_found) if user_session.nil?
+
+      current_user.revoke_sessions!(reason: :logout_device, only: user_session)
+
+      # Closing the session you are browsing with is a sign out: there is no
+      # profile page left to send anyone back to.
+      return redirect_to(root_path) if user_session == current_user_session
+
+      flash.notice = t('.revoked')
+      redirect_to profil_path
+    end
+
+    # Every session, this one included. Sparing it would contradict what the
+    # revocation does anyway: the trusted device version is bumped for the whole
+    # account, so this browser would stay signed in yet be treated as untrusted
+    # on the next sensitive page -- signed in and stuck.
+    def revoke_all_sessions
+      current_user.revoke_sessions!(reason: :logout_all)
+
+      flash.notice = t('.revoked_all')
+      redirect_to root_path
+    end
+
     def destroy_fci
       fci = current_user.france_connect_informations.find_by(id: params[:fci_id])
       return redirect_to profil_path if fci.nil?
@@ -95,6 +131,21 @@ module Users
     end
 
     private
+
+    # With the registry closed nothing reads the rows, so revoking one would
+    # report closing a device that stays signed in -- and `Current` carries no
+    # session id, so "sign out everywhere" would spare nothing and revoke the
+    # very session doing the asking.
+    def ensure_session_registry_enabled
+      head :not_found unless Flipper.enabled?(:session_registry, current_user)
+    end
+
+    def current_user_session
+      return @current_user_session if defined?(@current_user_session)
+
+      @current_user_session = current_user.user_sessions.find_by(id: Current.user_session_id)
+    end
+    helper_method :current_user_session
 
     def find_transfers
       @waiting_merge_emails = waiting_merge_emails
