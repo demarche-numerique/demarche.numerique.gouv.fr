@@ -12,7 +12,7 @@ module Administrateurs
     end
 
     def autorisations
-      @name = name
+      @name = @api_token_params.name
       @libelle_id_procedures = libelle_id_procedures
     end
 
@@ -32,7 +32,7 @@ module Administrateurs
 
       @api_token, @packed_token = APIToken.generate(current_administrateur, expires_at:)
 
-      @api_token.update!(name:, write_access:,
+      @api_token.update!(name: @api_token_params.name, write_access:,
                          allowed_procedure_ids:, authorized_networks:,
                          requires_ip_filtering: true)
 
@@ -73,7 +73,7 @@ module Administrateurs
       end
 
       if params[:name].present?
-        h[:name] = name
+        h[:name] = params[:name]
       end
 
       @api_token.update!(h)
@@ -155,10 +155,6 @@ module Administrateurs
 
     def set_api_token_params
       @api_token_params = APITokenParams.new(params)
-    end
-
-    def name
-      params[:name]
     end
 
     def procedure_to_add
