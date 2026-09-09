@@ -8,7 +8,7 @@ module TrustedDeviceConcern
 
   def trust_device(start_at, instructeur, trusted_device_token = nil)
     cookies.encrypted[TRUSTED_DEVICE_COOKIE_NAME] = {
-      value: JSON.generate({ created_at: start_at, instructeur_id: instructeur.id }),
+      value: JSON.generate({ created_at: start_at, instructeur_id: instructeur.id, version: instructeur.user.trusted_device_version }),
       expires: start_at + TRUSTED_DEVICE_PERIOD,
       httponly: true,
       secure: Rails.env.production?,
@@ -20,6 +20,11 @@ module TrustedDeviceConcern
 
   # The cookie only vouches for the instructeur it was issued to: a browser trusted
   # for one account must still go through the email link for any other account.
+  #
+  # It carries that account's revocation counter too. Without one the cookie was
+  # self-asserting -- it stated its own age and nothing on the server could
+  # contradict it, so a stolen cookie was worth a month of skipping the email
+  # token and no revocation could reach it.
   def trusted_device?
     payload = trusted_device_cookie_payload
 
@@ -28,6 +33,12 @@ module TrustedDeviceConcern
     created_at = Time.zone.parse(payload['created_at'].to_s)
 
     return false if created_at.blank? || created_at <= TRUSTED_DEVICE_PERIOD.ago
+
+    # Above the legacy branch, not inside it: a cookie predating the counter reads
+    # as version zero, so a counter that has moved means a revocation happened
+    # after that cookie was written. Adopting it there would hand back the very
+    # trust the revocation cut.
+    return false if payload.fetch('version', 0) != current_instructeur.user.trusted_device_version
 
     if payload['instructeur_id'].present?
       payload['instructeur_id'] == current_instructeur.id

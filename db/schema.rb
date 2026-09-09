@@ -1463,6 +1463,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_180000) do
     t.integer "sign_in_count", default: 0, null: false
     t.string "siret"
     t.boolean "team_account", default: false
+    t.integer "trusted_device_version", default: 0, null: false
     t.text "unconfirmed_email"
     t.string "unlock_token"
     t.datetime "updated_at", precision: nil

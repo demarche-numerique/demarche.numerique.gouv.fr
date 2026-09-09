@@ -45,6 +45,10 @@ class User < ApplicationRecord
 
   validate :does_not_merge_on_self, if: :requested_merge_into_id_changed?
 
+  # Changing a password already invalidates every session cookie through the
+  # salt, but it leaves the rows usable -- and the session list would then lie.
+  after_update :revoke_sessions_after_password_change, if: :saved_change_to_encrypted_password?
+
   before_validation :remove_devise_email_format_validator
   # plug our custom validation a la devise (same options) https://github.com/heartcombo/devise/blob/main/lib/devise/models/validatable.rb#L30
   validates :email, strict_email: true, allow_blank: true, if: :devise_will_save_change_to_email?
@@ -311,6 +315,10 @@ class User < ApplicationRecord
     remember_token.presence || authenticatable_salt
   end
 
+  # Reasons that mean "cut every access of this account", as opposed to closing
+  # one device or making room for a session that is just opening.
+  TOTAL_REVOCATION_REASONS = [:logout_all, :support, :password_change].freeze
+
   # Returns how many sessions were actually closed, so a caller can report what
   # happened rather than imply success.
   #
@@ -327,6 +335,14 @@ class User < ApplicationRecord
     raise ArgumentError, 'cannot spare a session that is not persisted' if except && !except.persisted?
 
     update_column(:remember_token, Devise.friendly_token) unless reason.to_sym == :new_session
+
+    if TOTAL_REVOCATION_REASONS.include?(reason.to_sym)
+      # The trusted device cookie is self-asserting; bumping the version is the
+      # only thing that can reach it. Pending email tokens go too: they open a
+      # session on their own.
+      increment!(:trusted_device_version)
+      instructeur&.trusted_device_tokens&.destroy_all
+    end
 
     super
   end
@@ -462,5 +478,13 @@ class User < ApplicationRecord
 
       callback.filter.attributes.delete(:email)
     end
+  end
+
+  # Everything but the browser that asked for the change: being signed out of
+  # the very session you just used to set a new password reads like a bug.
+  # Current.user_session_id is nil when the change comes from a reset link
+  # followed while signed out, and then nothing is spared -- which is right.
+  def revoke_sessions_after_password_change
+    revoke_sessions!(reason: :password_change, except: user_sessions.find_by(id: Current.user_session_id))
   end
 end

@@ -11,5 +11,6 @@ class Current < ActiveSupport::CurrentAttributes
   attribute :request_id
   attribute :user
   attribute :session_end_reason
+  attribute :user_session_id
   attribute :procedure_columns
 end
