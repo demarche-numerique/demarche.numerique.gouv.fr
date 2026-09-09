@@ -89,6 +89,30 @@ module Users
       redirect_to profil_path
     end
 
+    def revoke_session
+      user_session = revocable_sessions.find_by(id: params[:id])
+
+      if user_session.nil?
+        flash.alert = t('.already_closed')
+
+        return redirect_to(profil_path)
+      end
+
+      current_user.revoke_sessions!(reason: :logout_device, only: user_session)
+
+      flash.notice = t('.revoked')
+      redirect_to profil_path
+    end
+
+    def revoke_other_sessions
+      keeping_this_device_trusted do
+        current_user.revoke_sessions!(reason: :logout_all, except: Current.user_session)
+      end
+
+      flash.notice = t('.revoked_others')
+      redirect_to profil_path
+    end
+
     def destroy_fci
       fci = current_user.france_connect_informations.find_by(id: params[:fci_id])
       return redirect_to profil_path if fci.nil?
@@ -116,6 +140,10 @@ module Users
     end
 
     private
+
+    def revocable_sessions
+      current_user.user_sessions.usable.where.not(id: Current.user_session&.id)
+    end
 
     def find_transfers
       @waiting_merge_emails = waiting_merge_emails

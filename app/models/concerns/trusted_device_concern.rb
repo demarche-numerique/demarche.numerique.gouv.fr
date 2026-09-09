@@ -44,6 +44,16 @@ module TrustedDeviceConcern
     end
   end
 
+  # A revocation bumps the account's counter, which untrusts this browser too.
+  # Its cookie is rewritten with the same created_at: trust kept, no fresh period.
+  def keeping_this_device_trusted
+    created_at = Time.zone.parse(trusted_device_cookie_payload['created_at'].to_s) if trusted_device?
+
+    yield
+
+    trust_device(created_at, current_instructeur) if created_at
+  end
+
   def trusted_device_renewal_notice(trusted_device_token)
     period = ((trusted_device_token.created_at + TRUSTED_DEVICE_PERIOD) - Time.zone.now).to_i / ActiveSupport::Duration::SECONDS_PER_DAY
 
