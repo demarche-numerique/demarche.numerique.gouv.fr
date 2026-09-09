@@ -284,8 +284,8 @@ class User < ApplicationRecord
   # one device or making room for a session that is just opening.
   TOTAL_REVOCATION_REASONS = [:logout_all, :support, :password_change].freeze
 
-  def revoke_sessions!(reason:, except: nil)
-    validate_revocation!(reason:, except:)
+  def revoke_sessions!(reason:, except: nil, only: nil)
+    validate_revocation!(reason:, except:, only:)
 
     # The irreversible steps run first, so a failure on `user_sessions` would
     # otherwise leave the account half signed out.
@@ -297,7 +297,7 @@ class User < ApplicationRecord
         instructeur&.trusted_device_tokens&.destroy_all
       end
 
-      super(reason:, except:)
+      super(reason:, except:, only:)
     end
   end
 

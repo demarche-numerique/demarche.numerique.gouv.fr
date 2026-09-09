@@ -109,9 +109,10 @@ module SessionRegistrableConcern
 
   # Called by every override: a subclass that revokes more than rows must refuse
   # a bad call before touching anything irreversible.
-  def validate_revocation!(reason:, except:)
+  def validate_revocation!(reason:, except:, only: nil)
     raise ArgumentError, "unknown revocation reason #{reason.inspect}" unless UserSession::REVOCATION_REASONS.include?(reason.to_s)
     raise ArgumentError, 'cannot spare a session that is not persisted' if except && !except.persisted?
+    raise ArgumentError, 'cannot revoke a session that is not persisted' if only && !only.persisted?
   end
 
   # Read afresh rather than `reload`: `has_one` assigns its target only after
@@ -129,11 +130,14 @@ module SessionRegistrableConcern
     end
   end
 
-  def revoke_sessions!(reason:, except: nil)
-    validate_revocation!(reason:, except:)
+  # `only:` goes through here rather than straight to the relation, so closing
+  # one device still does everything else a revocation must do.
+  def revoke_sessions!(reason:, except: nil, only: nil)
+    validate_revocation!(reason:, except:, only:)
 
     scope = user_sessions
     scope = scope.where.not(id: except.id) if except
+    scope = scope.where(id: only.id) if only
     scope.revoke_all!(reason)
   end
 

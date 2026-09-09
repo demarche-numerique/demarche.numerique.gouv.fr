@@ -899,6 +899,29 @@ describe User, type: :model do
           .to raise_error(ArgumentError, /not persisted/)
       end
 
+      # The guards fire before anything irreversible, not inside `super`: a late
+      # raise would leave the trusted device broken for a call that did nothing
+      # else.
+      it 'refuses to revoke a session that is not persisted, before breaking anything' do
+        version = usager.trusted_device_version
+
+        expect { usager.revoke_sessions!(reason: :logout_device, only: UserSession.new) }
+          .to raise_error(ArgumentError, /not persisted/)
+
+        expect(usager.reload.trusted_device_version).to eq(version)
+      end
+
+      it 'closes one device without the side effects of a total revocation' do
+        one = usager.open_user_session!('a browser')
+        another = usager.open_user_session!('another browser')
+
+        expect { usager.revoke_sessions!(reason: :logout_device, only: one) }
+          .not_to change { usager.reload.trusted_device_version }
+
+        expect(one.reload.unusable_reason).to eq(:logout_device)
+        expect(another.reload).not_to be_unusable
+      end
+
       it 'closes every session, the current one included' do
         one = usager.open_user_session!('a browser')
         two = usager.open_user_session!('another browser')
