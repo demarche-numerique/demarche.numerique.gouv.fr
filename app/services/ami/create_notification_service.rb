@@ -4,6 +4,9 @@ module Ami
   class CreateNotificationService
     SOURCE = ApplicationHelper::APP_HOST
 
+    DECISION_STATES = [:accepte, :refuse, :sans_suite].freeze
+    MESSAGE_TRIGGERS = [:messagerie_message, :pending_correction].freeze
+
     ITEM_GENERIC_STATUS_BY_STATE = {
       brouillon: "new",
       en_construction: "wip",
@@ -63,7 +66,7 @@ module Ami
     private
 
     def item_external_url
-      if messagerie_message?
+      if message_trigger?
         Rails.application.routes.url_helpers.messagerie_dossier_url(dossier)
       else
         Rails.application.routes.url_helpers.dossier_url(dossier)
@@ -79,20 +82,36 @@ module Ami
       return ":ami_notifications feature flag disabled" unless dossier.procedure.feature_enabled?(:ami_notifications)
     end
 
-    def content_title
-      return APPLICATION_NAME
+    # Les libellés sont figés dans l'application, et non repris des modèles
+    # d'email : AMI impose ses propres conventions de formulation, et un sujet
+    # d'email personnalisé par l'administrateur ne les respecterait pas.
+    def content_title = wording(:title)
+
+    def content_body = wording(:body)
+
+    def wording(part)
+      I18n.with_locale(dossier.user_locale) do
+        I18n.t(
+          part,
+          scope: [:ami, :notifications, notification_key],
+          libelle_demarche: dossier.procedure.libelle,
+          dossier_id: dossier.id,
+          app_host: ApplicationHelper::APP_HOST
+        )
+      end
     end
 
-    def content_body
-      I18n.with_locale(dossier.user_locale) do
-        if messagerie_message?
-          I18n.t("dossier_mailer.notify_new_answer.subject", dossier_id: dossier.id, libelle_demarche: dossier.procedure.libelle)
-        elsif state == :brouillon
-          I18n.t("dossier_mailer.notify_new_draft.subject", libelle_demarche: dossier.procedure.libelle)
-        else
-          dossier.email_template_for(email_template_state).subject_for_dossier(dossier)
-        end
-      end
+    def notification_key
+      return trigger if message_trigger?
+      return :decision_rendue if hidden_decision?
+
+      state
+    end
+
+    # Avec l'accusé de lecture, la plateforme ne dévoile la décision qu'une fois
+    # que l'usager l'a affichée : la notification ne doit pas la divulguer avant.
+    def hidden_decision?
+      state.in?(DECISION_STATES) && dossier.hide_info_with_accuse_lecture?
     end
 
     def context
@@ -112,16 +131,9 @@ module Ami
       ITEM_GENERIC_STATUS_BY_STATE.fetch(state.to_sym, ITEM_GENERIC_STATUS_BY_STATE.fetch(state, "wip"))
     end
 
-    def messagerie_message?
-      trigger == :messagerie_message
-    end
-
-    def email_template_state
-      if state == :repasser_en_instruction
-        DossierOperationLog.operations.fetch(:repasser_en_instruction)
-      else
-        Dossier.states.fetch(state)
-      end
-    end
+    # Ces déclencheurs ne sont pas des changements d'état : ils nomment eux-mêmes
+    # le libellé, et renvoient l'usager au fil de discussion du dossier, où se
+    # trouvent aussi bien le message que la demande de correction.
+    def message_trigger? = trigger.in?(MESSAGE_TRIGGERS)
   end
 end
