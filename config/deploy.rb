@@ -52,9 +52,14 @@ end
 namespace :yarn do
   desc "Install package dependencies using yarn."
   task :install do
+    # DSFR_ACCEPT_LICENSE: @gouvfr/dsfr refuses to install until its terms of use
+    # are accepted. We are a State service on a .gouv.fr domain, so we accept them
+    # on the machines that build our own deployment, rather than committing a
+    # .dsfr.yml that would answer for every instance of this codebase.
+    # See doc/DEPLOYMENT.md.
     command %{
       echo "-----> Installing package dependencies using yarn"
-      #{echo_cmd %[yarn install --non-interactive]}
+      #{echo_cmd %[DSFR_ACCEPT_LICENSE=1 yarn install --non-interactive]}
     }
   end
 end
