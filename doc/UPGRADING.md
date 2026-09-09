@@ -21,6 +21,27 @@ A deploy on multiple application servers is typically done using:
 DOMAINS="web1 web2" BRANCH="main" bin/rake deploy
 ```
 
+### 6.0 One-off: accepting the DSFR terms of use
+
+Starting with the release that upgrades `@gouvfr/dsfr` to 1.15.2, installing the
+JavaScript dependencies fails with `[NO_YML]` until the deployment has accepted
+the DSFR [terms of use](https://github.com/GouvernementFR/dsfr/blob/main/doc/legal/cgu.md).
+This is deliberate and it is a decision only you can make for your instance — see
+the note in [section 3.3 of DEPLOYMENT.md](DEPLOYMENT.md#33-installing-dependencies).
+
+Be aware that the change is not only procedural. Up to 1.14.3 the DSFR code was
+published under the MIT licence, and its terms stated that *"all Other Users are
+authorised to use the source code under the conditions of the MIT licence"*. From
+1.15.1 the code moves to the Etalab 2.0 licence and that permission is gone: the
+licence file now states that the DSFR *"must not be used by entities outside the
+administration, and limits its replicability outside a .gouv.fr domain name"*.
+
+If your instance is not entitled to use the DSFR, the upgrade is the moment to
+remove or replace its assets — including the Marianne typefaces vendored in
+`app/assets/fonts/`, `public/fonts/` and `lib/prawn/fonts/marianne/`, and the
+Marianne logos in `app/assets/images/`, which carry
+[separate terms](https://www.info.gouv.fr/marque-de-letat/la-typographie).
+
 ### 6.1 Standard upgrade path
 
 Theoretically, only deploying each version sequentially is fully supported. This means that to deploy the version N+3, the upgrade plan should be to deploy the version N+1, N+2 and then only N+3, in that order.

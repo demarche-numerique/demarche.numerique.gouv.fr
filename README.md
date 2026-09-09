@@ -11,6 +11,10 @@
 
 demarche.numerique.gouv.fr is [open source](https://en.wikipedia.org/wiki/Open-source_software) software under the AGPL license.
 
+The French State design system (`@gouvfr/dsfr`) and the State brand assets bundled in this repository are the exception to the AGPL. Up to version 1.14.3 the DSFR was published under the MIT licence, and its terms expressly authorised users outside the administration to reuse its source code. That is no longer true: since 1.15.1 the code is under the [Etalab 2.0 licence](https://github.com/GouvernementFR/dsfr/blob/main/LICENSE.md), which states that the DSFR "must not be used by entities outside the administration, and limits its replicability outside a `.gouv.fr` domain name", and its use is governed by [terms of use](https://github.com/GouvernementFR/dsfr/blob/main/doc/legal/cgu.md) that you accept by the sole act of downloading and using it, and from which we cannot exempt you.
+
+In practice: we do not commit a `.dsfr.yml` file, so that accepting those terms remains your decision, and installing the JavaScript dependencies will ask you explicitly (see [`doc/DEPLOYMENT.md`](doc/DEPLOYMENT.md)). If your deployment is not entitled to them, remove or replace those assets — including the Marianne typefaces vendored in `app/assets/fonts/`, `public/fonts/` and `lib/prawn/fonts/marianne/`, and the Marianne logos in `app/assets/images/`, which carry [separate terms](https://www.info.gouv.fr/marque-de-letat/la-typographie) of their own.
+
 Would you like to make changes or improvements? Read our [contribution guide](CONTRIBUTING.md).
 
 ## Development setup
@@ -64,6 +68,14 @@ On Ubuntu, some packages must be installed first:
 To initialize the development environment, run the following command:
 
     bin/setup
+
+The first run stops before installing the JavaScript dependencies, because
+`@gouvfr/dsfr` will not install until its [terms of use](https://github.com/GouvernementFR/dsfr/blob/main/doc/legal/cgu.md)
+have been accepted. `bin/setup` has just created your `.env` from
+`config/env.example`: read the terms, uncomment `DSFR_ACCEPT_LICENSE` in that
+file if you are entitled to use the DSFR, and run `bin/setup` again. Your `.env`
+is never committed — we deliberately do not ship an acceptance file, so that the
+decision is made once per machine rather than inherited from this repository.
 
 ### Launching the application
 

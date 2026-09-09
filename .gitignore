@@ -74,3 +74,6 @@ lefthook-local.yml
 
 # git worktrees
 .worktrees/
+
+# Acceptance of the DSFR terms of use, generated per-machine — see config/env.example
+.dsfr.yml

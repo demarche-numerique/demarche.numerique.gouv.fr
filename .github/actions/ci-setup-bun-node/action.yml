@@ -12,3 +12,8 @@ runs:
         bun --version
         bun install
       shell: bash
+      # The DSFR refuses to install unless its terms of use are accepted. We are
+      # a State service on a .gouv.fr domain, so we accept them here rather than
+      # committing a .dsfr.yml that would answer for anyone cloning this repo.
+      env:
+        DSFR_ACCEPT_LICENSE: '1'
