@@ -9,10 +9,10 @@ fr:
     pending: "Vérification du RNF en cours"
     success: "Ce RNF correspond à : %{title}, %{address}"
   siret:
+    technical_error: "La vérification automatique est temporairement indisponible. Vous pouvez poursuivre le dépôt ; les informations seront récupérées dès que possible."
     pending: "Recherche en cours pour le SIRET %{value}…"
     fetched_with_capital: "%{raison_sociale_or_name} %{forme_juridique} au capital social de %{capital_sociale}"
     fetched: "%{raison_sociale_or_name} %{forme_juridique}"
-    error: "Une erreur est survenue lors de la récupération des informations SIRET."
   referentiel:
     not_configured: "Ce champ n’est pas encore configuré par l’administrateur."
     fetching: "Recherche en cours."

@@ -9,10 +9,10 @@ en:
     pending: "RNF verification pending"
     success: "This RNF matches: %{title}, %{address}"
   siret:
+    technical_error: "Automatic verification is temporarily unavailable. You can continue submitting; the information will be retrieved as soon as possible."
     pending: "Search in progress for SIRET %{value}…"
     fetched_with_capital: "%{raison_sociale_or_name} %{forme_juridique} with a share capital of %{capital_sociale}"
     fetched: "%{raison_sociale_or_name} %{forme_juridique}"
-    error: "An error occurred while retrieving SIRET information."
   referentiel:
     not_configured: "This field has not been configured by the administrator yet."
     fetching: "Search in progress."

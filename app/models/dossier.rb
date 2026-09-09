@@ -639,7 +639,7 @@ class Dossier < ApplicationRecord
 
   def any_etablissement_as_degraded_mode?
     return true if etablissement&.as_degraded_mode?
-    return true if filled_champs_public.any? { _1.etablissement&.as_degraded_mode? }
+    return true if filled_champs.any? { _1.etablissement&.as_degraded_mode? }
 
     false
   end

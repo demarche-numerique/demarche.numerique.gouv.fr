@@ -24,11 +24,16 @@ RSpec.describe Cron::BackfillSiretDegradedModeJob, type: :job do
 
       before do
         champ_siret
-        champ_siret.update_column(:etablissement_id, etablissement.id)
+        champ_siret.update_columns(etablissement_id: etablissement.id, external_state: 'degraded')
       end
       it 'works' do
         allow_any_instance_of(APIEntreprise::EtablissementAdapter).to receive(:to_params).and_return(Dry::Monads::Success({ adresse: new_adresse }))
         expect { Cron::BackfillSiretDegradedModeJob.perform_now }.to change { etablissement.reload.adresse }.from(nil).to(new_adresse)
+      end
+
+      it 'gets the champ out of the degraded state' do
+        allow_any_instance_of(APIEntreprise::EtablissementAdapter).to receive(:to_params).and_return(Dry::Monads::Success({ adresse: new_adresse }))
+        expect { Cron::BackfillSiretDegradedModeJob.perform_now }.to change { champ_siret.reload.external_state }.from('degraded').to('fetched')
       end
     end
   end

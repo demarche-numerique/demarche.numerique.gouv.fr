@@ -2124,6 +2124,21 @@ describe Dossier, type: :model do
         expect(dossier_ok.may_accepter?(instructeur:, motivation:)).to be_truthy
       end
     end
+
+    context "when a SIRET annotation privee has etablissement in degraded mode" do
+      let(:procedure) { create(:procedure, private_type_de_champs: [{ type: :siret }]) }
+      let(:dossier_incomplete) { create(:dossier, :en_instruction, :with_populated_annotations, procedure:) }
+      let(:dossier_ok) { create(:dossier, :en_instruction, :with_populated_annotations, procedure:) }
+
+      before do
+        dossier_incomplete.champ_data.first.update(etablissement: Etablissement.new(siret: build(:etablissement).siret))
+      end
+
+      it "can't accepter" do
+        expect(dossier_incomplete.may_accepter?(instructeur:, motivation:)).to be_falsey
+        expect(dossier_ok.may_accepter?(instructeur:, motivation:)).to be_truthy
+      end
+    end
   end
 
   describe "can't transition to terminer when annotations privees are not valid" do
@@ -2182,7 +2197,7 @@ describe Dossier, type: :model do
       let(:champ_siret) { dossier.champ_data.first }
 
       before do
-        champ_siret.update(value: '44011762001530')
+        champ_siret.update(external_id: '44011762001530', value: '44011762001530', etablissement: build(:etablissement, siret: '44011762001530'))
       end
 
       it 'should not have errors' do
@@ -2191,7 +2206,7 @@ describe Dossier, type: :model do
 
       context "and invalid SIRET" do
         before do
-          champ_siret.update(value: "1234")
+          champ_siret.update(external_id: "1234", value: "1234")
           dossier.reload
         end
 

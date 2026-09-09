@@ -787,6 +787,8 @@ fr:
         code_400: 'Demande incorrecte. Vérifiez vos informations.'
         code_403: 'Accès refusé. Vous n’avez pas les droits nécessaires.'
         code_401: 'Non autorisé. Connectez-vous pour continuer.'
+        code_422: 'Les informations transmises n’ont pas pu être traitées. Vérifiez le numéro saisi.'
+        code_451: 'Ces informations ne peuvent pas être communiquées pour des raisons légales.'
         code_unknown: 'Le service externe ne répond pas correctement. Réessayez plus tard.'
       models:
         attestation_template:
