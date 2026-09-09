@@ -4,6 +4,8 @@ class SuperAdmin < ApplicationRecord
   include PasswordComplexityConcern
   include SessionRegistrableConcern
 
+  self.ignored_columns += [:remember_created_at]
+
   # No :rememberable, it would make the daily deadline below a fiction: on the
   # 25th hour the cookie reopens the session for another day.
   #
