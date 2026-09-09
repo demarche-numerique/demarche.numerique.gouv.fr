@@ -8,6 +8,10 @@
 
 demarche.numerique.gouv.fr est un [logiciel libre](https://fr.wikipedia.org/wiki/Logiciel_libre) sous licence AGPL.
 
+Le système de design de l'État (`@gouvfr/dsfr`) et les éléments de la marque de l'État présents dans ce dépôt font exception à l'AGPL. Jusqu'à la version 1.14.3, le DSFR était publié sous licence MIT et ses conditions d'utilisation autorisaient expressément les tiers hors administration à en réutiliser le code source. Ce n'est plus le cas : depuis la 1.15.1, le code est sous [licence Etalab 2.0](https://github.com/GouvernementFR/dsfr/blob/main/LICENSE.md), qui précise que « le DSFR ne doit pas être utilisé par des entités extérieures à l'administration, et limite sa réplicabilité en dehors d'un nom de domaine en `.gouv.fr` », et son usage est encadré par des [modalités d'utilisation](https://github.com/GouvernementFR/dsfr/blob/main/doc/legal/cgu.md) que vous acceptez du seul fait de les télécharger et de les utiliser, et dont nous ne pouvons pas vous dispenser.
+
+Concrètement : nous ne versionnons pas de fichier `.dsfr.yml`, pour que la décision d'accepter ces modalités reste la vôtre, et l'installation des dépendances JavaScript vous la posera explicitement (voir [`doc/DEPLOYMENT.md`](doc/DEPLOYMENT.md)). Si votre déploiement n'y est pas fondé, retirez ou remplacez ces ressources — y compris les polices Marianne embarquées dans `app/assets/fonts/`, `public/fonts/` et `lib/prawn/fonts/marianne/`, et les logos Marianne de `app/assets/images/`, qui relèvent en outre de [modalités distinctes](https://www.info.gouv.fr/marque-de-letat/la-typographie).
+
 Vous souhaitez y apporter des changements ou des améliorations ? Lisez notre [guide de contribution](CONTRIBUTING.md).
 
 ## Installation pour le développement
@@ -54,6 +58,8 @@ Sous Ubuntu, certains packages doivent être installés au préalable :
 Afin d’initialiser l’environnement de développement, exécutez la commande suivante :
 
     bin/setup
+
+Le premier passage s’arrête avant l’installation des dépendances JavaScript : `@gouvfr/dsfr` refuse de s’installer tant que ses [modalités d’utilisation](https://github.com/GouvernementFR/dsfr/blob/main/doc/legal/cgu.md) n’ont pas été acceptées. `bin/setup` vient de créer votre `.env` à partir de `config/env.example` : lisez ces modalités, décommentez `DSFR_ACCEPT_LICENSE` dans ce fichier si vous êtes fondé à utiliser le DSFR, puis relancez `bin/setup`. Votre `.env` n’est jamais commité — nous ne versionnons délibérément aucun fichier d’acceptation, pour que la décision soit prise une fois par machine plutôt qu’héritée de ce dépôt.
 
 ### Lancement de l’application
 

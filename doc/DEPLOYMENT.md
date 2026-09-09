@@ -168,8 +168,30 @@ Install the required Ruby and Javascript dependencies with:
 bundle config deployment 'true'
 bundle config without 'development test'
 bundle install
-bun install
+DSFR_ACCEPT_LICENSE=1 bun install
 ```
+
+> [!IMPORTANT]
+> `@gouvfr/dsfr`, the French State Design System, refuses to install until the
+> project has accepted its [terms of use](https://github.com/GouvernementFR/dsfr/blob/main/doc/legal/cgu.md).
+> We deliberately do not commit the `.dsfr.yml` acceptance file, because it would
+> answer that question for every deployment of this codebase. **You are the one
+> deciding for yours.**
+>
+> Those terms are not a licence. They intend the DSFR for State services on a
+> `.gouv.fr` domain, subject State operators to an approval procedure with their
+> supervising ministry, and leave third parties outside the State to use it under
+> their own responsibility — with an explicit warning about creating confusion
+> with an official public service. The Marianne typefaces bundled in this
+> repository (`app/assets/fonts/`, `public/fonts/`, `lib/prawn/fonts/marianne/`)
+> and the Marianne logos (`app/assets/images/`) carry
+> [separate terms](https://www.info.gouv.fr/marque-de-letat/la-typographie) of
+> their own.
+>
+> Read them, then either set `DSFR_ACCEPT_LICENSE=1` in the shell that installs
+> the dependencies, or remove and replace those assets. Note that the variable
+> must be exported in the shell: `bun install` runs before the `.env` file of
+> section 3.4 exists, and that file is read by Ruby, not by the shell.
 
 ### 3.4 Configuring with env vars
 
