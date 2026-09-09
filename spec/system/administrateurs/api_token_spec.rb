@@ -155,4 +155,25 @@ describe 'As an administrateur I create an API token', js: true do
     token = APIToken.last
     expect(token.authorized_networks).to eq([IPAddr.new('192.168.1.0/24')])
   end
+
+  scenario 'duplicating a token pre-fills steps 1 and 2 but leaves lifetime blank' do
+    original_token = APIToken.generate(administrateur).first
+    original_token.update!(name: 'Jeton original', write_access: true, allowed_procedure_ids: [procedure.id], authorized_networks: [IPAddr.new('192.168.1.0/24')])
+
+    visit profil_path
+    click_on 'Dupliquer'
+
+    expect(page).to have_field('Nom du jeton', with: 'Jeton original')
+    click_on 'Continuer'
+
+    expect(page).to have_checked_field('access_read_write')
+    expect(page).to have_text(procedure.libelle)
+    click_on 'Continuer'
+
+    expect(page).to have_content('Sécurité')
+    expect(page).to have_checked_field('networkFiltering_customnetworks')
+    expect(page).to have_field('networks', with: '192.168.1.0/24')
+    expect(page).to have_no_checked_field('lifetime_oneweek')
+    expect(page).to have_no_checked_field('lifetime_custom')
+  end
 end
