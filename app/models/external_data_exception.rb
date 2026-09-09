@@ -17,8 +17,4 @@ class ExternalDataException
   def not_found?
     code == 404
   end
-
-  def credentials_rejected?
-    code.in?(CREDENTIALS_CODES)
-  end
 end

@@ -34,10 +34,15 @@ class Champs::SiretChamp < ChampData
     Siret.new(siret:).valid?
   end
 
-  def ready_for_external_retry? = !procedure.api_entreprise_token_recently_rejected?
+  def ready_for_external_retry? = procedure.api_entreprise_token_usable?
 
   def fetch_external_data
-    return token_rejected_failure if procedure.api_entreprise_token_recently_rejected?
+    if !procedure.api_entreprise_token_usable?
+      # No call goes out, so the failure branch below would never alert.
+      alert_global_token_refused(local_token_failure, 401) if !procedure.specific_api_entreprise_token?
+
+      return token_rejected_failure
+    end
 
     case APIEntreprise::Sirene.fetch_etablissement(siret, procedure.id)
     in Success(etablissement)
@@ -46,7 +51,7 @@ class Champs::SiretChamp < ChampData
     in Failure(type:, code:, **) if code.in?(ExternalDataException::DEFINITIVE_CODES)
       Failure(retryable: false, error: StandardError.new("API Entreprise: #{type}"), code:)
     in Failure(type:, code:, **)
-      procedure.reject_api_entreprise_token! if token_rejected_by_api?(type, code)
+      record_credentials_failure(type, code) if code.in?(ExternalDataException::CREDENTIALS_CODES)
 
       Failure(degraded: true, value: siret, error: StandardError.new("API Entreprise: #{type}"), code:)
     end
@@ -64,12 +69,32 @@ class Champs::SiretChamp < ChampData
 
   private
 
-  # token_missing and token_expired are decided before any call, and the
-  # expiration alert already tells the administrateur about them.
-  LOCAL_TOKEN_FAILURES = [:token_missing, :token_expired].freeze
+  # The administrateur can act on a token of their own; on the instance one,
+  # only operations can — and only if we tell them.
+  def record_credentials_failure(type, code)
+    if procedure.specific_api_entreprise_token?
+      procedure.mark_api_entreprise_token_as_rejected!
+    else
+      alert_global_token_refused(type, code)
+    end
+  end
 
-  def token_rejected_by_api?(type, code)
-    code.in?(ExternalDataException::CREDENTIALS_CODES) && !type.in?(LOCAL_TOKEN_FAILURES)
+  GLOBAL_TOKEN_ALERT_EVERY = 1.hour
+
+  # Every dossier of every procedure hits the same wall: one alert per hour is
+  # enough. The type says what to do — renew the key, fill the env var, or ask
+  # for the missing scope.
+  def alert_global_token_refused(type, code)
+    key = "api_entreprise:global_token_refused:#{type}"
+    return if !Rails.cache.write(key, true, expires_in: GLOBAL_TOKEN_ALERT_EVERY, unless_exist: true)
+
+    Sentry.capture_message("global API Entreprise token is refused ! DO SOMETHING ! TTU !",
+      level: :error, extra: { type:, code:, procedure_id: procedure.id })
+  end
+
+  # Same distinction as APIEntreprise::API makes, so the alert stays actionable.
+  def local_token_failure
+    procedure.api_entreprise_token.missing? ? :token_missing : :token_expired
   end
 
   def token_rejected_failure

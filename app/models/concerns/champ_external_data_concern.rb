@@ -81,7 +81,6 @@ module ChampExternalDataConcern
   def pending? = waiting_for_job? || fetching?
   def done? = fetched? || degraded? || external_error?
   def external_data_not_found? = external_error? && fetch_external_data_exceptions&.last&.not_found?
-  def external_data_credentials_rejected? = degraded? && fetch_external_data_exceptions&.last&.credentials_rejected?
 
   def has_async_external_data? = false
 

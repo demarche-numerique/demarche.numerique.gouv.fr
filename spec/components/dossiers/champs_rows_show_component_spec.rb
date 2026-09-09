@@ -116,10 +116,12 @@ RSpec.describe Dossiers::ChampsRowsShowComponent, type: :component do
       expect(page).to have_text("306 138 900 01294")
     end
 
-    context "when our token was rejected rather than INSEE being down" do
-      let(:rejection) { [ExternalDataException.new(error: 'boom', code: 401)] }
-      let(:champs) do
-        [dossier.champ_data.first.tap { _1.update_columns(external_id: '30613890001294', value: '30613890001294', external_state: 'degraded', fetch_external_data_exceptions: rejection) }]
+    # The champ may have degraded on a plain INSEE outage; what decides the
+    # message is whether the procedure is now waiting on its token.
+    context "when the token of the procedure was rejected" do
+      let(:procedure) do
+        create(:procedure, :published, public_type_de_champs: [{ type: :siret }])
+          .tap { _1.update_column(:api_entreprise_token_rejected_at, 1.hour.ago) }
       end
 
       it "does not blame INSEE for a token that has to be renewed" do

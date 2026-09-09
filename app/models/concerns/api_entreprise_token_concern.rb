@@ -6,7 +6,7 @@ module APIEntrepriseTokenConcern
   included do
     validates_associated :api_entreprise_token
 
-    before_save :forget_api_entreprise_token_rejection, if: :will_save_change_to_api_entreprise_token?
+    before_save :clear_api_entreprise_token_rejection, if: :will_save_change_to_api_entreprise_token?
   end
 
   def api_entreprise_token
@@ -24,32 +24,31 @@ module APIEntrepriseTokenConcern
   TOKEN_REJECTION_HOLDS_FOR = 24.hours
 
   def api_entreprise_token_recently_rejected?
-    api_entreprise_token_rejected_at&.after?(TOKEN_REJECTION_HOLDS_FOR.ago) || false
+    api_entreprise_token_rejected_at&.after?(TOKEN_REJECTION_HOLDS_FOR.ago)
   end
 
-  # Every dossier of the procedure hits the same wall: record it once.
-  def reject_api_entreprise_token!
+  # Only called for a token of the procedure's own: nobody could renew the
+  # instance one from the interface, so blocking on it would have no way out.
+  def mark_api_entreprise_token_as_rejected!
     Rails.logger.error("API Entreprise rejected the token of procedure #{id}")
-
-    # Nobody can renew the instance token from the interface: blocking the
-    # procedure would have no way out. We keep retrying and wake up operations.
-    if !specific_api_entreprise_token?
-      return Sentry.capture_message("Global API Entreprise token rejected", level: :error, extra: { procedure_id: id })
-    end
 
     update_column(:api_entreprise_token_rejected_at, Time.current)
   end
 
-  # A call went through: whoever repaired the token, it works again.
   def forget_api_entreprise_token_rejection!
     return if api_entreprise_token_rejected_at.nil?
 
     update_column(:api_entreprise_token_rejected_at, nil)
   end
 
+  def api_entreprise_token_usable?
+    return false if api_entreprise_token_recently_rejected?
+    api_entreprise_token.usable?
+  end
+
   private
 
-  def forget_api_entreprise_token_rejection
+  def clear_api_entreprise_token_rejection
     self.api_entreprise_token_rejected_at = nil
   end
 end

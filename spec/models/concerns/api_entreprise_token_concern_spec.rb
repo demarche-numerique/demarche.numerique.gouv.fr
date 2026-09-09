@@ -20,39 +20,20 @@ describe APIEntrepriseTokenConcern do
     end
   end
 
-  describe '#reject_api_entreprise_token!' do
-    let(:procedure) { create(:procedure, api_entreprise_token: token) }
+  describe '#mark_api_entreprise_token_as_rejected!' do
+    let(:procedure) { create(:procedure) }
 
-    before { allow(Sentry).to receive(:capture_message) }
+    it 'records it so the cron stops and the administrateur is warned' do
+      expect { procedure.mark_api_entreprise_token_as_rejected! }
+        .to change { procedure.reload.api_entreprise_token_rejected_at }.from(nil)
 
-    context 'when the procedure has its own token' do
-      let(:token) { JWT.encode({ exp: 2.months.from_now.to_i }, nil, 'none') }
-
-      it 'records it so the cron stops and the administrateur is warned' do
-        expect { procedure.reject_api_entreprise_token! }
-          .to change { procedure.reload.api_entreprise_token_rejected_at }.from(nil)
-
-        expect(procedure).to be_api_entreprise_token_recently_rejected
-      end
-
-      it 'holds for a while, then lets the cron try again' do
-        procedure.update_column(:api_entreprise_token_rejected_at, 2.days.ago)
-
-        expect(procedure).not_to be_api_entreprise_token_recently_rejected
-      end
+      expect(procedure).to be_api_entreprise_token_recently_rejected
     end
 
-    context 'when the procedure falls back on the instance token' do
-      let(:token) { nil }
+    it 'holds for a while, then lets the cron try again' do
+      procedure.update_column(:api_entreprise_token_rejected_at, 2.days.ago)
 
-      it 'alerts operations without blocking a procedure nobody can unblock' do
-        expect(Sentry).to receive(:capture_message).with(/Global API Entreprise token rejected/, any_args)
-
-        expect { procedure.reject_api_entreprise_token! }
-          .not_to change { procedure.reload.api_entreprise_token_rejected_at }
-
-        expect(procedure).not_to be_api_entreprise_token_recently_rejected
-      end
+      expect(procedure).not_to be_api_entreprise_token_recently_rejected
     end
   end
 

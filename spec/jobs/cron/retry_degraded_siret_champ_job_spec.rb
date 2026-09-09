@@ -71,6 +71,17 @@ RSpec.describe Cron::RetryDegradedSiretChampJob, type: :job do
     end
   end
 
+  context 'when the instance token cannot work' do
+    let(:procedure) { create(:procedure, :published, api_entreprise_token: nil, public_type_de_champs: [{ type: :siret }]) }
+    let(:external_state) { 'degraded' }
+
+    before { allow_any_instance_of(APIEntrepriseToken).to receive(:expired?).and_return(true) }
+
+    it 'leaves them degraded rather than replaying a call that cannot succeed' do
+      expect { described_class.perform_now }.not_to change { champ.reload.external_state }
+    end
+  end
+
   context 'when API Entreprise rejected the token of the procedure' do
     let(:external_state) { 'degraded' }
 
