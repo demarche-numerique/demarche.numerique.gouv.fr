@@ -9,6 +9,7 @@ import {
 } from '../shared/activestorage/file-upload-error';
 import { parseAcceptForDisplay } from '../shared/accept-format';
 import {
+  fileSizeErrorMessage,
   hideAttachmentError,
   showAttachmentError
 } from '../shared/attachment-error';
@@ -293,7 +294,7 @@ export class AutosaveController extends ApplicationController {
         errors.push(formatError);
       }
 
-      const sizeError = this.checkFileSize(input, file);
+      const sizeError = fileSizeErrorMessage(input, file);
       if (sizeError) {
         errors.push(sizeError);
       }
@@ -350,21 +351,6 @@ export class AutosaveController extends ApplicationController {
       // Parser accept directement pour construire le message d'erreur
       const formatsLabel = parseAcceptForDisplay(accept);
       return `Les formats de fichier acceptés sont :&nbsp;<strong>${formatsLabel}</strong>.`;
-    }
-
-    return null;
-  }
-
-  private checkFileSize(input: HTMLInputElement, file: File): string | null {
-    const maxSize = input.dataset.maxFileSize
-      ? parseInt(input.dataset.maxFileSize, 10)
-      : 0;
-
-    if (!maxSize) return null; // Pas de limite
-
-    if (file.size > maxSize) {
-      const maxSizeMB = (maxSize / (1024 * 1024)).toFixed(0);
-      return `La taille maximale du fichier autorisée est de&nbsp;<strong>${maxSizeMB} Mo</strong>.`;
     }
 
     return null;
