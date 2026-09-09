@@ -6,7 +6,17 @@ describe 'super admin rejected attempt logs', type: :request do
 
   # :fetch, a session opened by an earlier request: on any other event, Devise
   # resets failed_attempts and the lockout below never comes.
-  before { login_as super_admin, scope: :super_admin, event: :fetch }
+  before do
+    row = super_admin.open_user_session!('a browser')
+
+    Warden.on_next_request do |proxy|
+      session = SessionRegistrableConcern.warden_session(proxy, :super_admin)
+      session[SessionRegistrableConcern::SESSION_KEY] = row.id
+      session[SessionRegistrableConcern::LAST_SEEN_KEY] = Date.current.iso8601
+    end
+
+    login_as super_admin, scope: :super_admin, event: :fetch
+  end
 
   around do |example|
     ActiveSupport::Notifications.subscribed(-> (*, payload) { logs << payload[:to_log] }, 'process_action.action_controller') do

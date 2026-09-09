@@ -116,6 +116,16 @@ describe 'the session registry', type: :request do
       expect { post_user_session(user, user_agent: chrome_on_mac) }.to change { user_sessions.count }.by(1)
     end
 
+    it 'rejects a session whose row no longer exists, and says it was closed' do
+      post_user_session(user, user_agent: chrome_on_mac)
+      user_sessions.destroy_all
+
+      get dossiers_path
+
+      expect(response).to redirect_to(new_user_session_path)
+      expect(flash[:alert]).to eq(I18n.t('devise.failure.session_revoked'))
+    end
+
     # Devise's `sign_in` raises the :set_user event, not :authentication. Every
     # federated and link-based path signs people in that way -- FranceConnect,
     # ProConnect, invitations, email confirmation, password reset, expert links
