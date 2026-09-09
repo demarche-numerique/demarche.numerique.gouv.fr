@@ -24,8 +24,7 @@
                   %button.fr-btn--search.fr-btn{ "aria-controls" => "search-modal", "aria-haspopup" => "dialog", "data-fr-opened" => "false", :title => t('views.users.dossiers.search.search_file') }= t('views.users.dossiers.search.search_file')
 
                 - if is_instructeur_context || is_administrateur_context
-                  %button.lasuite-gaufre-btn.lasuite-gaufre-btn--vanilla.js-lasuite-gaufre-btn.lasuite-gaufre-btn--small{ title: "Les services de La Suite numérique", type: "button" }
-                    Les services de La Suite numérique
+                  = render partial: 'layouts/lasuite_gaufre_button', locals: { button_id: 'lasuite-gaufre-mobile' }
                 %button#navbar-burger-button.fr-btn--menu.fr-btn{ "aria-controls" => "modal-header__menu", "aria-haspopup" => "dialog", "data-fr-opened" => "false", title: "Menu" } Menu
             .fr-header__service
               - root_profile_link, root_profile_libelle = root_path_info_for_profile(nav_bar_profile)
@@ -69,8 +68,7 @@
 
                 - if is_instructeur_context || is_administrateur_context
                   %li.fr-mr-1v.fr-hidden.fr-unhidden-lg
-                    %button.lasuite-gaufre-btn.lasuite-gaufre-btn--vanilla.js-lasuite-gaufre-btn.lasuite-gaufre-btn--small.box-shadow-none{ title: "Les services de La Suite numérique", type: "button" }
-                      Les services de La Suite numérique
+                    = render partial: 'layouts/lasuite_gaufre_button', locals: { button_id: 'lasuite-gaufre-desktop' }
 
 
             - if is_instructeur_context

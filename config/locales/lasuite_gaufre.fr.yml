@@ -1,0 +1,4 @@
+fr:
+  lasuite_gaufre:
+    # Shared between the trigger button (aria-label) and the widget panel title.
+    label: Services de LaSuite

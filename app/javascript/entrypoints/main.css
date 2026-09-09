@@ -2,9 +2,6 @@
 @import '@gouvfr/dsfr/dist/utility/utility.css';
 @import '@gouvfr/dsfr/dist/scheme/scheme.css';
 
-/* La suite gaufre */
-@import '@gouvfr-lasuite/integration/dist/css/gaufre.css';
-
 /* These base components may be dependencies of other components */
 @import '@gouvfr/dsfr/dist/component/link/link.css';
 @import '@gouvfr/dsfr/dist/component/form/form.css';

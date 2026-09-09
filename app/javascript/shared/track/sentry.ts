@@ -39,7 +39,7 @@ if (enabled && key) {
       "'get' on proxy: property 'javaEnabled' is a read-only and non-configurable data property on the proxy target but the proxy did not return its actual value",
 
       // La gaufre script often triggers an error while loading other dependencies
-      'NetworkError when attempting to fetch resource. (integration.lasuite.numerique.gouv.fr)'
+      'NetworkError when attempting to fetch resource. (static.suite.anct.gouv.fr)'
     ],
     // Unhandled errors that did not originate in our bundles, and requests
     // that failed for availability reasons: see sentry-filters.ts.
