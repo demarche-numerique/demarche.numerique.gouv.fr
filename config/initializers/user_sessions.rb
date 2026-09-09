@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 # These hooks run on every authenticated request: a bug here locks out everyone,
-# ourselves included. Hence the rescue on each one, and the adoption of sessions
-# older than the registry.
+# ourselves included. Hence the rescue on each one.
 
 # Matched on the event rather than filtered: a fourth event would be dropped in
 # silence, which is how `sign_in` went unregistered for a while. Here it raises
@@ -14,16 +13,10 @@ Warden::Manager.after_set_user do |record, warden, options|
   scope = options[:scope]
 
   case options[:event]
-  # :authentication -- a strategy won, which here means the sign in form, OTP
-  #                    step included.
-  # :set_user       -- application code called Devise's `sign_in`. That is how
-  #                    FranceConnect, ProConnect, invitations, email confirmation,
-  #                    password resets and expert links all sign people in.
-  #
-  # Both mean a session opens, so both write its row. Keying on :authentication
-  # alone -- what `after_authentication` does -- would leave every path on the
-  # second line without one: invisible while sessions without a row are still
-  # adopted, a sign in loop the moment they no longer are.
+  # :set_user is how FranceConnect, ProConnect, invitations, confirmations and
+  # expert links sign people in. Both open a session, so both write a row:
+  # keying on :authentication alone -- what `after_authentication` does -- would
+  # leave every one of those in a sign in loop.
   in :authentication | :set_user
     SessionRegistrableConcern.open_session!(record, warden, scope)
 
@@ -35,7 +28,10 @@ Warden::Manager.after_set_user do |record, warden, options|
     session_id = warden_session[SessionRegistrableConcern::SESSION_KEY]
 
     if session_id.nil?
-      SessionRegistrableConcern.open_session!(record, warden, scope)
+      # Opened before the registry. Such sessions were adopted for a week after
+      # every account was covered; one still arriving has been away all that time.
+      warden.request.env[SessionRegistrableConcern::END_REASON_KEY] = 'expired'
+      warden.logout(scope)
     else
       user_session = UserSession.find_by(id: session_id, sessionable: record)
 

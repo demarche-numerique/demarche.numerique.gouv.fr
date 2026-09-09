@@ -35,14 +35,18 @@ module SessionRegistrableConcern
 
     session[LAST_SEEN_KEY] = Date.current.iso8601
 
+    # The key is about to name another session, so this one is over; its row
+    # would otherwise stay usable. By id and not through `record`: signing Bob
+    # in on Alice's browser takes the key over from her.
+    UserSession.where(id: session[SESSION_KEY]).revoke_all!(:sign_out) if session[SESSION_KEY].present?
+
     session[SESSION_KEY] = record.open_user_session!(request.user_agent, request.remote_ip).id
   end
 
   # Read from the signed cookie, so the client cannot push the date forward.
   # A date and not an instant: the window is counted in weeks.
   def self.inactive?(session)
-    # No stamp means a session older than this code: adopt it, the request that
-    # adopts it stamps it.
+    # Not stamped yet: the sign in wrote the row, the next request stamps it.
     last_seen = session[LAST_SEEN_KEY]
     return false if last_seen.blank?
 
