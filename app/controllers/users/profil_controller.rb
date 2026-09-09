@@ -6,6 +6,7 @@ module Users
 
     ALLOWED_NAV_BAR_PROFILES = [:user, :instructeur, :administrateur, :expert, :gestionnaire].freeze
 
+    before_action :ensure_session_registry_enabled, only: [:revoke_session, :revoke_all_sessions]
     before_action :ensure_update_email_is_authorized, only: :update_email
     before_action :find_transfers, only: [:show]
 
@@ -73,6 +74,33 @@ module Users
       redirect_to profil_path
     end
 
+    # `current_user.user_sessions`, never `UserSession.find`: the id comes from
+    # the URL, and this scope is the only thing between someone and another
+    # account's session. A miss is a 404, not a redirect.
+    def revoke_session
+      user_session = current_user.user_sessions.usable.find_by(id: params[:id])
+
+      return head(:not_found) if user_session.nil?
+
+      current_user.revoke_sessions!(reason: :logout_device, only: user_session)
+
+      # Closing the session you are browsing with is a sign out: there is no
+      # profile page left to send anyone back to.
+      return redirect_to(root_path) if user_session == current_user_session
+
+      flash.notice = t('.revoked')
+      redirect_to profil_path
+    end
+
+    # This one included: the trusted device version is bumped for the whole
+    # account, so a spared browser would be signed in yet untrusted.
+    def revoke_all_sessions
+      current_user.revoke_sessions!(reason: :logout_all)
+
+      flash.notice = t('.revoked_all')
+      redirect_to root_path
+    end
+
     def destroy_fci
       fci = current_user.france_connect_informations.find_by(id: params[:fci_id])
       return redirect_to profil_path if fci.nil?
@@ -95,6 +123,23 @@ module Users
     end
 
     private
+
+    # With the registry closed nothing reads the rows, so revoking one would
+    # report closing a device that stays signed in.
+    def ensure_session_registry_enabled
+      head :not_found unless Flipper.enabled?(:session_registry, current_user)
+    end
+
+    def current_user_session
+      return @current_user_session if defined?(@current_user_session)
+
+      # Straight from the cookie: it is what names the session this request runs
+      # under, and the model layer has no way to reach it.
+      session_id = SessionRegistrableConcern.warden_session(warden, :user)[SessionRegistrableConcern::SESSION_KEY]
+
+      @current_user_session = session_id.present? ? current_user.user_sessions.find_by(id: session_id) : nil
+    end
+    helper_method :current_user_session
 
     def find_transfers
       @waiting_merge_emails = waiting_merge_emails

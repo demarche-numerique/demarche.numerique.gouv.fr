@@ -35,6 +35,10 @@ fr:
           other: 'Votre compte sur %{application_name} est actuellement lié aux %{count} identité suivantes :'
         unlink_confirmation: 'le compte FranceConnect « %{full_name} » ne pourra plus accéder à vos dossiers.'
         forbid_access: Interdire l’accès
+      revoke_session:
+        revoked: L’appareil a été déconnecté.
+      revoke_all_sessions:
+        revoked_all: Tous vos appareils ont été déconnectés.
       ensure_update_email_is_authorized:
         email_not_allowed: "L’email %{requested_email} ne peut être utilisé, contactez le support : <a href='mailto:%{contact_email}'>%{contact_email}</a>"
       transfer_all_dossiers:

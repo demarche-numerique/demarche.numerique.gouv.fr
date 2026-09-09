@@ -177,14 +177,20 @@ module SessionRegistrableConcern
   # turn into `where.not(id: nil)` and revoke every row, the one to spare first.
   # Then the account-wide steps, so a failure on the rows cannot leave an account
   # half signed out.
-  def revoke_sessions!(reason:, except: nil)
+  #
+  # `only:` goes through here rather than straight to the relation, so closing one
+  # device still does everything else a revocation must do.
+  def revoke_sessions!(reason:, except: nil, only: nil)
     UserSession.validate_reason!(reason)
     raise ArgumentError, 'cannot spare a session that is not persisted' if except && !except.persisted?
+    raise ArgumentError, 'cannot revoke a session that is not persisted' if only && !only.persisted?
 
     transaction do
       revoke_account_wide!(reason)
 
-      scope = except ? user_sessions.where.not(id: except.id) : user_sessions
+      scope = user_sessions
+      scope = scope.where.not(id: except.id) if except
+      scope = scope.where(id: only.id) if only
       scope.revoke_all!(reason)
     end
   end
