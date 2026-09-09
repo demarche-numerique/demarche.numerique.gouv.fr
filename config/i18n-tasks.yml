@@ -102,6 +102,8 @@ ignore_missing:
 
 ## Consider these keys used:
 ignore_unused:
+  # I18n.t(reason, scope: [:devise, :failure]) in session_failure_app.rb
+  - 'devise.failure.*'
   # YAML anchors aliased under public/private in revision_changes_component.fr.yml
   - 'procedure.revision_changes_component.update_referentiel_{public,private}.*'
   # t(".#{batch.operation}.finish.text_success") in batch_alert_component.html.haml

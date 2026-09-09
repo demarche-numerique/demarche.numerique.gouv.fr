@@ -242,6 +242,9 @@ Devise.setup do |config|
   #
   config.warden do |manager|
     manager.default_strategies(:scope => :administration).unshift :two_factor_authenticatable if SUPER_ADMIN_OTP_ENABLED
+    # Lazily: referencing an autoloadable constant here would pin a stale class
+    # across reloads in development.
+    manager.failure_app = -> (env) { SessionFailureApp.call(env) }
   end
 
   # ==> Mountable engine configurations
