@@ -12,6 +12,7 @@ class CreateRepresentationsJob < ApplicationJob
   discard_on ActiveRecord::InvalidForeignKey
 
   retry_on "Vips::Error", attempts: 3 # not as const because vips is loaded at runtime
+  retry_on SandboxedCommand::WrapperFailed, attempts: 3 # should be rare
 
   rescue_from ActiveStorage::PreviewError do |exception|
     if executions < 3
