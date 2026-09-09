@@ -8,7 +8,6 @@ RSpec.describe Dossiers::UserFilterPanelComponent, type: :component do
     instance_double(Users::DossierFilterService,
       active?: false,
       total_count: 12,
-      alerts_enabled?: true,
       counts: {
         procedure_ids: {},
         states: { 'brouillon' => 1, 'en_construction' => 5, 'en_instruction' => 0, 'accepte' => 0, 'refuse' => 0, 'sans_suite' => 0 },

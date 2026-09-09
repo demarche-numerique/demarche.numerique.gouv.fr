@@ -156,7 +156,6 @@ RSpec.describe Users::DossierFilterService do
     end
 
     it 'returns counts for alerts (contextualized by state filter)' do
-      Flipper.enable_actor(:usager_dossiers_alert_filters, user)
       service = described_class.new(user: user, params: ActionController::Parameters.new(state: ['en_construction']))
       expect(service.counts[:alerts]['a_corriger']).to eq(1)
     end
@@ -182,41 +181,11 @@ RSpec.describe Users::DossierFilterService do
     end
 
     it 'counts only the user own alerts, not other users matching dossiers' do
-      Flipper.enable_actor(:usager_dossiers_alert_filters, user)
       other_dossier_with_correction = create(:dossier, :en_construction)
       create(:dossier_correction, dossier: other_dossier_with_correction)
 
       service = described_class.new(user: user, params: ActionController::Parameters.new)
       expect(service.counts[:alerts]['a_corriger']).to eq(1)
-    end
-
-    context 'when the alert filters feature is disabled (default)' do
-      it 'exposes alerts_enabled? as false' do
-        expect(service.alerts_enabled?).to be(false)
-      end
-
-      it 'returns zero for every alert without running the alert subqueries' do
-        expect(service).not_to receive(:bounded_alert_subquery)
-        expect(service.counts[:alerts].values).to all(eq(0))
-      end
-
-      it 'ignores alert params forged via the URL (no alert filter tag)' do
-        service = described_class.new(user: user, params: ActionController::Parameters.new(alert: ['a_corriger']))
-        expect(service.active_filter_tags.map { it[:group] }).not_to include(:alert)
-      end
-
-      it 'does not filter dossiers by a forged alert param' do
-        service = described_class.new(user: user, params: ActionController::Parameters.new(alert: ['a_corriger']))
-        expect(service.dossiers).to include(dossier_depose_nothing)
-      end
-    end
-
-    context 'when the alert filters feature is enabled' do
-      before { Flipper.enable_actor(:usager_dossiers_alert_filters, user) }
-
-      it 'exposes alerts_enabled? as true' do
-        expect(service.alerts_enabled?).to be(true)
-      end
     end
 
     it 'runs a constant number of queries regardless of dossier volume (no N+1)' do
@@ -241,7 +210,6 @@ RSpec.describe Users::DossierFilterService do
     let!(:dossier_in_procedure) { create(:dossier, :en_construction, user: user, procedure: procedure) }
 
     it 'returns one tag per active filter value' do
-      Flipper.enable_actor(:usager_dossiers_alert_filters, user)
       service = described_class.new(user: user, params: ActionController::Parameters.new(
         procedure_id: procedure.id.to_s,
         state: ['en_construction', 'en_instruction'],
@@ -352,7 +320,6 @@ RSpec.describe Users::DossierFilterService do
     let!(:dossier_unread_message) { create(:dossier, :en_construction, user: user) }
 
     before do
-      Flipper.enable_actor(:usager_dossiers_alert_filters, user)
       # A pending correction/response always carries an unread agent message,
       # so these dossiers must NOT surface under the « nouveau_message » filter:
       # their prioritary badge is « à corriger » / « en attente de réponse ».
