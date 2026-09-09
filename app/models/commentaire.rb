@@ -16,7 +16,7 @@ class Commentaire < ApplicationRecord
 
   normalizes :body, with: NORMALIZES_NON_PRINTABLE_PROC
 
-  FILE_MAX_SIZE = 20.megabytes
+  FILE_MAX_SIZE = 200.megabytes
   SYSTEM_EMAILS = [CONTACT_EMAIL, OLD_CONTACT_EMAIL.split(",")].flatten
 
   validates :piece_jointe,

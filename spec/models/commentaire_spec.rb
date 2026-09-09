@@ -183,6 +183,32 @@ describe Commentaire do
     end
   end
 
+  describe 'piece_jointe size validation' do
+    let(:dossier) { create(:dossier, :en_construction) }
+    let(:commentaire) { build(:commentaire, dossier:, body: 'Hello') }
+
+    before do
+      commentaire.piece_jointe.attach(io: StringIO.new('fake'), filename: 'doc.pdf', content_type: 'application/pdf')
+      commentaire.piece_jointe.attachments.each { it.blob.byte_size = byte_size }
+      commentaire.validate
+    end
+
+    context 'when the file fits in the limit' do
+      let(:byte_size) { Commentaire::FILE_MAX_SIZE - 1 }
+
+      it { expect(commentaire.errors).not_to be_of_kind(:piece_jointe, :file_size_not_less_than) }
+    end
+
+    context 'when the file exceeds the limit' do
+      let(:byte_size) { Commentaire::FILE_MAX_SIZE + 1 }
+
+      it 'rejects the file with the maximum size message' do
+        expect(commentaire.errors).to be_of_kind(:piece_jointe, :file_size_not_less_than)
+        expect(commentaire.errors.messages_for(:piece_jointe)).to eq(['La taille maximale du fichier autorisée est de 200 Mo.'])
+      end
+    end
+  end
+
   describe 'normalization' do
     it 'removes non-printable characters from body' do
       commentaire = build(:commentaire, body: "Valid\x00Body\x1F")

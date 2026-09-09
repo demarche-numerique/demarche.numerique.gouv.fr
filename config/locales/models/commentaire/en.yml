@@ -10,3 +10,4 @@ en:
           attributes:
             piece_jointe:
               attachment_expired: "is no longer valid, the file was selected too long ago: please pick it again"
+              file_size_not_less_than: "The maximum authorized file size is %{max}."
