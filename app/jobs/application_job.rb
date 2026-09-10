@@ -20,6 +20,8 @@ class ApplicationJob < ActiveJob::Base
       Sentry.set_tags(procedure: arg.id)
     when LLMRuleSuggestion
       Sentry.set_tags(procedure: arg.procedure_revision.procedure_id)
+    when ActiveStorage::Blob
+      Sentry.set_tags(blob: arg.id)
     end
   end
 
