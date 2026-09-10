@@ -42,6 +42,18 @@ describe Experts::AvisController, type: :controller do
         end
       end
 
+      context 'when the expert has been revoked from the procedure' do
+        before do
+          experts_procedure.update!(revoked_at: Time.zone.now)
+          get :index
+        end
+
+        it 'hides every avis of that procedure' do
+          expect(response).to have_http_status(:success)
+          expect(assigns(:avis_by_procedure).values.flatten).not_to include(avis_without_answer, avis_with_answer)
+        end
+      end
+
       context 'avis on termine dossier' do
         let(:another_experts_procedure) { create(:experts_procedure, expert:, procedure: another_procedure) }
         let(:dossier_termine) { create(:dossier, :accepte, procedure: another_procedure) }
@@ -173,6 +185,15 @@ describe Experts::AvisController, type: :controller do
       context 'with a revoked avis' do
         it "refuse l’accès au dossier" do
           avis_with_answer.update!(revoked_at: Time.zone.now)
+          subject
+          expect(flash.alert).to eq("Vous n’avez plus accès à ce dossier.")
+          expect(response).to redirect_to(root_path)
+        end
+      end
+
+      context 'when the expert has been revoked from the procedure' do
+        it "refuse l’accès au dossier même si l’avis n’est pas révoqué" do
+          experts_procedure.update!(revoked_at: Time.zone.now)
           subject
           expect(flash.alert).to eq("Vous n’avez plus accès à ce dossier.")
           expect(response).to redirect_to(root_path)

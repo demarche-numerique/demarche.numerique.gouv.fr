@@ -163,4 +163,30 @@ RSpec.describe Expert, type: :model do
       end
     end
   end
+
+  describe '#dossiers_from_not_revoked_avis' do
+    let(:expert) { create(:expert) }
+    let(:claimant) { create(:expert) }
+    let(:procedure) { create(:procedure, :published) }
+    let(:experts_procedure) { create(:experts_procedure, expert:, procedure:) }
+    let(:dossier) { create(:dossier, :en_construction, procedure:) }
+    let!(:avis) { create(:avis, dossier:, claimant:, experts_procedure:) }
+
+    subject { expert.dossiers_from_not_revoked_avis }
+
+    it { is_expected.to contain_exactly(dossier) }
+
+    context 'when the avis itself is revoked' do
+      # update_column: revoking bypasses the on: :update answer-presence validation
+      before { avis.update_column(:revoked_at, Time.zone.now) }
+
+      it { is_expected.to be_empty }
+    end
+
+    context 'when the expert is revoked from the procedure' do
+      before { experts_procedure.update!(revoked_at: Time.zone.now) }
+
+      it { is_expected.to be_empty }
+    end
+  end
 end
