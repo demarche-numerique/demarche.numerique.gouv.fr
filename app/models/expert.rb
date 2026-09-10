@@ -14,7 +14,8 @@ class Expert < ApplicationRecord
     user.email
   end
 
-  # Dossiers the expert can currently access, excluding those whose avis has been revoked.
+  # Dossiers the expert can currently access, excluding those whose avis has been
+  # revoked or whose whole ExpertsProcedure link has been revoked by an admin.
   def dossiers_from_not_revoked_avis
     Dossier.where(id: avis.not_revoked.select(:dossier_id))
   end
