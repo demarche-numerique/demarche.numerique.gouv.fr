@@ -66,9 +66,7 @@ const Gon = s.defaulted(
         )
       }),
       {}
-    ),
-    defaultQuery: s.optional(s.string()),
-    defaultVariables: s.optional(s.string())
+    )
   }),
   {}
 );

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 get 'graphql/schema' => redirect('/graphql/schema/index.html')
-get 'graphql', to: "graphql#playground"
 
 namespace :api do
   namespace :v1 do

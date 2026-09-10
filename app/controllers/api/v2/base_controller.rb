@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 class API::V2::BaseController < ApplicationController
-  # This controller is used for API v2 through api endpoint (/api/v2/graphql)
-  # and through the web interface (/graphql). When used through the web interface,
-  # we use connected administrateur to authenticate the request. We want CSRF protection
-  # for the web interface, but not for the API endpoint. :null_session means that when the
-  # request is not CSRF protected, we will not raise an exception,
-  # but we will provide the controller with an empty session.
+  # API v2 is authenticated by bearer token only: the session is never consulted
+  # (see current_user below), so a stolen session cookie gives no access to the API.
+  # :null_session is defense in depth rather than something the API relies on: a
+  # request without a CSRF token (every API client) runs with an empty session,
+  # so nothing cookie-based could leak in even if current_user were bypassed.
   protect_from_forgery with: :null_session, store: :cookie
   skip_before_action :setup_tracking
   before_action :authenticate_from_token
@@ -25,21 +24,9 @@ class API::V2::BaseController < ApplicationController
       ctx = @api_token.context
       ctx[:remote_ip] = request.remote_ip
       ctx
-    # web interface (/graphql) give current_administrateur
-    elsif current_administrateur.present?
-      graphql_web_interface_context
     else
       unauthenticated_request_context
     end
-  end
-
-  def graphql_web_interface_context
-    {
-      administrateur_id: current_administrateur.id,
-      procedure_ids: current_administrateur.procedure_ids,
-      write_access: true,
-      remote_ip: request.remote_ip,
-    }
   end
 
   def unauthenticated_request_context
@@ -63,7 +50,10 @@ class API::V2::BaseController < ApplicationController
     end
   end
 
-  def unauthenticated? = @api_token.blank? && current_administrateur.blank?
+  # Overrides Devise: the only identity this API knows is the one carried by the token.
+  def current_user = @current_user
+
+  def unauthenticated? = @api_token.blank?
 
   PUBLIC_OPERATIONS = ['getDemarcheDescriptor', 'getDemarcheDescriptors'].freeze
 
