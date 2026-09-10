@@ -1,0 +1,26 @@
+<%= render Dsfr::CalloutComponent.new(title: @champ.libelle, extra_class_names: ['fr-mb-2w', 'fr-callout--blue-cumulus']) do |c| %>
+  <% c.with_html_body do %>
+    <%= render SimpleFormatComponent.new(@champ.description, allow_a: true) %>
+
+    <% if @champ.collapsible_explanation_enabled? && @champ.collapsible_explanation_text.present? %>
+      <p class="fr-my-2w">
+        <button
+          type="button"
+          aria-controls="<%= dom_id(@champ, :explanation) %>"
+          aria-expanded="false"
+          href="<%= dom_id(@champ, :explanation) %>"
+          class="fr-btn ft-btn--sm fr-btn--secondary"
+        >
+          <%= t(".read_more") %>
+        </button>
+      </p>
+      <div class="fr-collapse" id="<%= dom_id(@champ, :explanation) %>">
+        <%= render SimpleFormatComponent.new(@champ.collapsible_explanation_text, allow_a: true) %>
+      </div>
+    <% end %>
+
+    <% if notice_explicative.attached? %>
+      <%= render Dsfr::DownloadComponent.new(attachment: notice_explicative, virus_not_analyzed: !notice_explicative.virus_scanner.started?, new_tab: true) %>
+    <% end %>
+  <% end %>
+<% end %>
