@@ -13,31 +13,31 @@ class Referentiels::StepperComponent < StepperBaseComponent
 
   def title
     if type_de_champ.public?
-      "Configuration du champ « #{type_de_champ.libelle} »"
+      t(".configuration_champ", libelle: type_de_champ.libelle)
     else
-      "Configuration de l’annotation privée « #{type_de_champ.libelle} »"
+      t(".configuration_annotation", libelle: type_de_champ.libelle)
     end
   end
 
   def step_title
     if step_component_class == Referentiels::NewFormComponent || (step_component_class == Referentiels::ConfigurationErrorComponent && referentiel.exact_match?)
-      "Requête"
+      t(".step_title_query")
     elsif step_component_class == Referentiels::MappingFormComponent
-      "Réponse et mapping"
+      t(".step_title_response_mapping")
     elsif step_component_class == Referentiels::PrefillAndDisplayComponent
-      "Pré remplissage des champs et/ou affichage des données récupérées"
+      t(".step_title_prefill")
     elsif step_component_class == Referentiels::AutocompleteConfigurationComponent || (step_component == Referentiels::ConfigurationErrorComponent && referentiel.autocomplete?)
-      "Configuration de l’autocomplétion"
+      t(".step_title_autocomplete_configuration")
     end
   end
 
   def next_step_title
     if step_component_class == Referentiels::NewFormComponent && referentiel.mode == 'autocomplete'
-      "Configuration de l’autocomplétion"
+      t(".step_title_autocomplete_configuration")
     elsif step_component_class == Referentiels::NewFormComponent && referentiel.mode == 'exact_match' || step_component_class == Referentiels::AutocompleteConfigurationComponent
-      "Réponse et mapping"
+      t(".step_title_response_mapping")
     elsif step_component_class == Referentiels::MappingFormComponent
-      "Pré remplissage des champs et/ou affichage des données récupérées"
+      t(".step_title_prefill")
     end
   end
 
@@ -65,7 +65,11 @@ class Referentiels::StepperComponent < StepperBaseComponent
   private
 
   def back_link_label
-    type_de_champ.public? ? 'Champs du formulaire' : 'Annotations privées'
+    if type_de_champ.public?
+      t("administrateurs.procedures.clone.types_de_champ_public")
+    else
+      t("administrateurs.procedures.clone.types_de_champ_private")
+    end
   end
 
   def back_path

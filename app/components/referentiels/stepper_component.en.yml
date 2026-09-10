@@ -1,0 +1,7 @@
+en:
+  configuration_champ: "Configuration of field « %{libelle} »"
+  configuration_annotation: "Configuration of private annotation « %{libelle} »"
+  step_title_query: "Request"
+  step_title_response_mapping: "Response and mapping"
+  step_title_prefill: "Pre-filling of fields and/or display of retrieved data"
+  step_title_autocomplete_configuration: "Autocomplete configuration"
