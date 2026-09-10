@@ -4,15 +4,15 @@ describe 'Inviting an expert:', js: true do
   include ActiveJob::TestHelper
   include ActionView::Helpers
 
-  let(:instructeur) { create(:instructeur, password: SECURE_PASSWORD) }
-  let(:expert) { create(:expert, password: expert_password) }
-  let(:expert2) { create(:expert, password: expert_password) }
-  let(:expert3) { create(:expert, password: expert_password) }
-  let(:expert4) { create(:expert, password: expert_password) }
-  let(:expert_password) { 'mot de passe d’expert' }
-  let(:procedure) { create(:procedure, :published, instructeurs: [instructeur], public_type_de_champs: [{ type: :dossier_link }]) }
-  let(:dossier) { create(:dossier, :en_construction, :with_populated_champs, procedure:) }
-  let(:linked_dossier) { Dossier.find_by(id: dossier.champ_data.first.value) }
+  let_it_be(:expert_password) { 'mot de passe d’expert' }
+  let_it_be(:instructeur) { create(:instructeur, password: SECURE_PASSWORD) }
+  let_it_be(:expert) { create(:expert, password: expert_password) }
+  let_it_be(:expert2) { create(:expert, password: expert_password) }
+  let_it_be(:expert3) { create(:expert, password: expert_password) }
+  let_it_be(:expert4) { create(:expert, password: expert_password) }
+  let_it_be(:procedure, reload: true) { create(:procedure, :published, instructeurs: [instructeur], public_type_de_champs: [{ type: :dossier_link }]) }
+  let_it_be(:dossier) { create(:dossier, :en_construction, :with_populated_champs, procedure:) }
+  let_it_be(:linked_dossier) { Dossier.find_by(id: dossier.champ_data.first.value) }
 
   before do
     clear_emails
@@ -112,8 +112,6 @@ describe 'Inviting an expert:', js: true do
 
     context 'when experts list is restricted by admin' do
       let!(:expert_procedure) { ExpertsProcedure.create(expert: expert, procedure: procedure, allow_decision_access: true) }
-      let(:expert_email) { expert.email }
-      let(:expert2_email) { expert2.email }
 
       before do
         procedure.update!(experts_require_administrateur_invitation: true)
