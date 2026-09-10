@@ -46,8 +46,6 @@ fr:
         title: Sécurité du jeton « %{name} »
         dashboard: Tableau de bord
         security: Sécurité
-        great_power_quote: Avec un grand pouvoir vient une grande responsabilité
-        quote_source: Oncle Ben dans Spider-Man
         security_warning: Votre jeton va probablement vous permettre de manipuler des données confidentielles, voir personnelles.
         responsibility: Il est de votre responsabilité de le conserver en sécurité et d’en limiter l’utilisation aux seules personnes habilitées.
         features_intro: Pour vous aider, nous vous proposons des fonctionnalités de filtrage réseau et de durée de vie du jeton.

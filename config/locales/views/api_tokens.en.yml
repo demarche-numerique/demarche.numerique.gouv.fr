@@ -46,8 +46,6 @@ en:
         title: Security of the token « %{name} »
         dashboard: Dashboard
         security: Security
-        great_power_quote: With great power comes great responsibility
-        quote_source: Uncle Ben in Spider-Man
         security_warning: Your token will likely allow you to handle confidential or personal data.
         responsibility: It is your responsibility to keep it secure and limit its use to authorised persons only.
         features_intro: To help you, we offer network filtering and token lifetime features.
