@@ -97,7 +97,7 @@ describe 'linked dropdown lists', js: true do
     sign_in_with(email, password)
 
     expect(page).to have_current_path(commencer_path(path: procedure.path))
-    click_on 'Commencer la démarche'
+    click_on 'Commencer un dossier'
 
     find('label', text: "Pour vous").click
     expect(page).to have_content("Votre identité")

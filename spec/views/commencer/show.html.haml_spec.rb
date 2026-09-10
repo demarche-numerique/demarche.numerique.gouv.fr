@@ -73,7 +73,7 @@ RSpec.describe 'commencer/show', type: :view do
     end
 
     context 'and they don’t have any dossier on this procedure' do
-      it_behaves_like 'it renders a link to create a new dossier', 'Commencer la démarche'
+      it_behaves_like 'it renders a link to create a new dossier', 'Commencer un dossier'
     end
 
     context 'and they have a pending draft' do

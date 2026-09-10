@@ -17,7 +17,7 @@ describe 'Creating a new dossier:', js: true do
 
       before do
         visit commencer_path(path: procedure.path)
-        click_on 'Commencer la démarche'
+        click_on 'Commencer un dossier'
 
         expect(page).to have_current_path identite_dossier_path(user.reload.dossiers.last)
       end
@@ -223,7 +223,7 @@ describe 'Creating a new dossier:', js: true do
 
       scenario 'the user can enter the SIRET of its etablissement and create a new draft' do
         visit commencer_path(path: procedure.path)
-        click_on 'Commencer la démarche'
+        click_on 'Commencer un dossier'
 
         expect(page).to have_current_path siret_dossier_path(dossier)
         expect(page).to have_content(procedure.libelle)
@@ -240,7 +240,7 @@ describe 'Creating a new dossier:', js: true do
 
       scenario 'the user is notified when its SIRET is invalid' do
         visit commencer_path(path: procedure.path)
-        click_on 'Commencer la démarche'
+        click_on 'Commencer un dossier'
 
         expect(page).to have_current_path(siret_dossier_path(dossier))
         expect(page).to have_content(procedure.libelle)

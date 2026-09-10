@@ -12,7 +12,7 @@ describe 'Piece justificative drag and drop', js: true do
     before do
       login_as(user, scope: :user)
       visit commencer_path(path: procedure.path)
-      click_on 'Commencer la démarche'
+      click_on 'Commencer un dossier'
       fill_individual
       expect(page).to have_current_path(brouillon_dossier_path(dossier))
       visit brouillon_dossier_path(dossier)
@@ -61,7 +61,7 @@ describe 'Piece justificative drag and drop', js: true do
       procedure_pj = create(:procedure, :published, :for_individual, public_type_de_champs: [{ type: :piece_justificative, libelle: 'Document' }])
       login_as(user, scope: :user)
       visit commencer_path(path: procedure_pj.path)
-      click_on 'Commencer la démarche'
+      click_on 'Commencer un dossier'
       fill_individual
 
       within find('.editable-champ', text: 'Document') do
@@ -73,7 +73,7 @@ describe 'Piece justificative drag and drop', js: true do
       procedure_ti = create(:procedure, :published, :for_individual, public_type_de_champs: [{ type: :piece_justificative, libelle: 'Pièce d\'identité', nature: 'titre_identite' }])
       login_as(user, scope: :user)
       visit commencer_path(path: procedure_ti.path)
-      click_on 'Commencer la démarche'
+      click_on 'Commencer un dossier'
       fill_individual
 
       within find('.editable-champ', text: 'Pièce d\'identité') do
@@ -87,7 +87,7 @@ describe 'Piece justificative drag and drop', js: true do
       procedure_rib = create(:procedure, :published, :for_individual, public_type_de_champs: [{ type: :piece_justificative, libelle: 'RIB', nature: 'rib' }])
       login_as(user, scope: :user)
       visit commencer_path(path: procedure_rib.path)
-      click_on 'Commencer la démarche'
+      click_on 'Commencer un dossier'
       fill_individual
 
       within find('.editable-champ', text: 'RIB') do
@@ -99,7 +99,7 @@ describe 'Piece justificative drag and drop', js: true do
       procedure_rib = create(:procedure, :published, :for_individual, public_type_de_champs: [{ type: :piece_justificative, libelle: 'RIB', nature: 'rib' }])
       login_as(user, scope: :user)
       visit commencer_path(path: procedure_rib.path)
-      click_on 'Commencer la démarche'
+      click_on 'Commencer un dossier'
       fill_individual
 
       # Capture the persistent live region id before upload: a RIB is single-file,
@@ -130,7 +130,7 @@ describe 'Piece justificative drag and drop', js: true do
       allow_any_instance_of(EditableChamp::PieceJustificativeComponent).to receive(:max).and_return(2)
       login_as(user, scope: :user)
       visit commencer_path(path: procedure.path)
-      click_on 'Commencer la démarche'
+      click_on 'Commencer un dossier'
       fill_individual
       expect(page).to have_current_path(brouillon_dossier_path(dossier))
       visit brouillon_dossier_path(dossier)
@@ -200,7 +200,7 @@ describe 'Piece justificative drag and drop', js: true do
       # Créer une procédure avec titre_identite (limite 20 Mo)
       procedure_ti = create(:procedure, :published, :for_individual, public_type_de_champs: [{ type: :piece_justificative, libelle: 'Pièce d\'identité', nature: 'titre_identite' }])
       visit commencer_path(path: procedure_ti.path)
-      click_on 'Commencer la démarche'
+      click_on 'Commencer un dossier'
       fill_individual
       expect(page).to have_current_path(brouillon_dossier_path(user.dossiers.last))
 
@@ -231,7 +231,7 @@ describe 'Piece justificative drag and drop', js: true do
       # Créer une procédure avec titre_identite (accepte seulement JPEG/PNG)
       procedure_ti = create(:procedure, :published, :for_individual, public_type_de_champs: [{ type: :piece_justificative, libelle: 'Pièce d\'identité', nature: 'titre_identite' }])
       visit commencer_path(path: procedure_ti.path)
-      click_on 'Commencer la démarche'
+      click_on 'Commencer un dossier'
       fill_individual
       expect(page).to have_current_path(brouillon_dossier_path(user.dossiers.last))
 
@@ -272,7 +272,7 @@ describe 'Piece justificative drag and drop', js: true do
     before do
       login_as(user, scope: :user)
       visit commencer_path(path: procedure.path)
-      click_on 'Commencer la démarche'
+      click_on 'Commencer un dossier'
       fill_individual
       expect(page).to have_current_path(brouillon_dossier_path(dossier))
       visit brouillon_dossier_path(dossier)
@@ -334,7 +334,7 @@ describe 'Piece justificative drag and drop', js: true do
       procedure_pjs = create(:procedure, :published, :for_individual, public_type_de_champs: [{ type: :piece_justificative, mandatory: true, libelle: 'Pièce justificative 1' }])
       login_as(user, scope: :user)
       visit commencer_path(path: procedure_pjs.path)
-      click_on 'Commencer la démarche'
+      click_on 'Commencer un dossier'
       fill_individual
 
       # Make the subsequent auto-upload request fail
@@ -364,7 +364,7 @@ describe 'Piece justificative drag and drop', js: true do
       procedure_pjs = create(:procedure, :published, :for_individual, public_type_de_champs: [{ type: :piece_justificative, mandatory: true, libelle: 'Pièce justificative 1' }])
       login_as(user, scope: :user)
       visit commencer_path(path: procedure_pjs.path)
-      click_on 'Commencer la démarche'
+      click_on 'Commencer un dossier'
       fill_individual
 
       attach_file('Pièce justificative 1', Rails.root.join('spec/fixtures/files/file.pdf'))
@@ -413,7 +413,7 @@ describe 'Piece justificative drag and drop', js: true do
       old_procedure_with_disabled_pj_validation = create(:procedure, :published, :for_individual, public_type_de_champs: [{ type: :piece_justificative, mandatory: true, libelle: 'Pièce justificative 1', skip_pj_validation: true }])
       login_as(user, scope: :user)
       visit commencer_path(path: old_procedure_with_disabled_pj_validation.path)
-      click_on 'Commencer la démarche'
+      click_on 'Commencer un dossier'
       fill_individual
 
       # Test invalid file type

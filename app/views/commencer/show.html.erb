@@ -92,7 +92,7 @@
         <%- end -%>
       <%- end -%>
     <%- elsif @dossiers.empty? -%>
-      <%= link_to t('.start_procedure'), url_for_new_dossier(@revision), class: 'fr-btn fr-mb-2w' %>
+      <%= link_to t('.start_dossier'), url_for_new_dossier(@revision), class: 'fr-btn fr-mb-2w' %>
     <%- elsif @drafts.size == 1 && @not_drafts.empty? -%>
       <% dossier = @drafts.first %>
       <%= render Dsfr::CalloutComponent.new(title: t(".already_draft"), heading_level: 'h2') do |c| -%>

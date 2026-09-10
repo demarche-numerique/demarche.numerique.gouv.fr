@@ -28,7 +28,7 @@ describe 'Instructing a dossier:', js: true do
       # expect(page).to have_current_path(commencer_path(path: procedure.path))
 
       visit commencer_path(path: procedure.path)
-      click_on 'Commencer la démarche'
+      click_on 'Commencer un dossier'
 
       expect(page).to have_content('Identifier votre établissement')
       expect(page).to have_current_path(siret_dossier_path(procedure.reload.dossiers.last))

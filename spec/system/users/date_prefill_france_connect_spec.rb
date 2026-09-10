@@ -12,7 +12,7 @@ describe 'Prefill date champ from FranceConnect:', js: true do
 
   scenario 'usager voit le champ prérempli, instructeur voit le badge, le badge disparaît si modifié' do
     visit commencer_path(path: procedure.path)
-    click_on 'Commencer la démarche'
+    click_on 'Commencer un dossier'
 
     find('label', text: "Pour vous").click
 
