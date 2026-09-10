@@ -13,15 +13,16 @@
     data: { controller: 'api-token-autorisation' } do |f| %>
     <%= render Dsfr::RadioButtonListComponent.new(form: f,
       target: :target,
-      buttons: [ { label: t('.custom_procedures'),
-        value: :custom,
-        checked: params[:target] == 'custom',
-        data: { 'action': 'click->api-token-autorisation#showProcedureSelectGroup' } },
+      buttons: [
         { label: t('.all_procedures'),
         value: :all,
         hint: t('.all_procedures_hint'),
         checked: params[:target] == 'all',
-        data: { 'action': 'click->api-token-autorisation#hideProcedureSelectGroup' } }]) do %>
+        data: { 'action': 'click->api-token-autorisation#hideProcedureSelectGroup' } },
+        { label: t('.custom_procedures'),
+        value: :custom,
+        checked: params[:target] == 'custom',
+        data: { 'action': 'click->api-token-autorisation#showProcedureSelectGroup' } },]) do %>
       <%= t('.token_access') %>
     <% end %>
 
