@@ -1,0 +1,6 @@
+---
+  en:
+    more: (+ %{count})
+    more_a11y:
+      one: and one more file
+      other: and %{count} more files
