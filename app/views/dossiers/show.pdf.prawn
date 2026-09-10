@@ -294,6 +294,11 @@ def add_single_champ(pdf, champ)
     end
     if champ.etablissement.present?
       add_identite_etablissement(pdf, champ.etablissement)
+    elsif champ.degraded?
+      pdf.pad_bottom(default_margin) do
+        format_in_2_columns(pdf, "SIRET", champ.siret)
+        pdf.text "Les informations sur l’entreprise n’ont pas pu être récupérées."
+      end
     end
   when 'Champs::NumberChamp', 'Champs::IntegerNumberChamp', 'Champs::DecimalNumberChamp'
     value = champ.blank? ? 'Non communiqué' : number_with_delimiter(champ.to_s)

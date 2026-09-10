@@ -31,9 +31,11 @@
               <%= render partial: "shared/champs/piece_justificative/show", locals: { champ: champ, profile: @profile } %>
             <% when TypeDeChamp.type_champs.fetch(:siret) %>
               <% etablissement = champ.etablissement %>
-              <% if etablissement.present? %>
+              <% if champ.degraded? %>
+                <%= render Dossiers::DegradedIdentiteEntrepriseComponent.new(siret: champ.siret, profile: @profile, token_rejected: !champ.procedure.api_entreprise_token_usable?) %>
+              <% elsif etablissement.present? %>
                 <% if etablissement.as_degraded_mode? %>
-                  <%= render Dossiers::DegradedIdentiteEntrepriseComponent.new(etablissement:, profile: @profile) %>
+                  <%= render Dossiers::DegradedIdentiteEntrepriseComponent.new(siret: etablissement.siret, profile: @profile) %>
                 <% elsif @profile == 'usager' %>
                   <%= render Dossiers::IdentiteEntrepriseForUsagerComponent.new(etablissement:) %>
                 <% else %>

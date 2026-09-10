@@ -46,4 +46,19 @@ describe Dsfr::InputStatusMessageComponent, type: :component do
       end
     end
   end
+
+  describe 'a degraded siret champ' do
+    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :siret }]) }
+
+    before do
+      champ.update_columns(external_id: '30613890001294', value: '30613890001294', external_state: 'degraded')
+    end
+
+    it 'tells the user their SIRET is kept, instead of staying silent' do
+      render_inline(described_class.new(champ:, as_announcement: true))
+
+      expect(page).to have_text('306 138 900 01294')
+      expect(page).to have_text('vous pouvez continuer')
+    end
+  end
 end
