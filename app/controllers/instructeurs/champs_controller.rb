@@ -2,6 +2,8 @@
 
 module Instructeurs
   class ChampsController < InstructeurController
+    STREAM_UNIQUE_INDEX = 'index_champs_on_stream_and_public_id'
+
     before_action :set_dossier
     before_action :set_dossier_stream
     before_action :set_rib_champ, only: [:edit]
@@ -16,12 +18,36 @@ module Instructeurs
 
       @rib_champ_for_update.update!(value_json: { rib:, hint: 'rib' })
 
-      @dossier.merge_instructeur_buffer_stream!
+      merge_instructeur_buffer_stream
 
       redirect_to instructeur_dossier_path(@dossier.procedure, @dossier), notice: t(".success", libelle: @rib_champ_for_update.libelle)
     end
 
     private
+
+    # A merge names its history stream after the current second, so a form
+    # submitted twice inside that second trips the unique index on the second
+    # merge. The client keeps the form locked until the redirect renders; if a
+    # duplicate still gets through, the first save already holds these values
+    # and the pending copy is folded into the next checkpoint. It is still
+    # reported: it should not happen, and anything else hitting that index
+    # must keep raising.
+    def merge_instructeur_buffer_stream
+      @dossier.merge_instructeur_buffer_stream!
+    rescue ActiveRecord::RecordNotUnique => e
+      raise unless violated_constraint(e) == STREAM_UNIQUE_INDEX
+
+      Sentry.capture_exception(
+        e,
+        level: :warning,
+        fingerprint: ['rib_update_duplicate_merge'],
+        extra: { dossier: @dossier.id, public_id: params[:public_id] }
+      )
+    end
+
+    def violated_constraint(error)
+      error.cause.try(:result)&.error_field(PG::PG_DIAG_CONSTRAINT_NAME)
+    end
 
     def set_dossier
       @dossier = DossierPreloader.load_one(

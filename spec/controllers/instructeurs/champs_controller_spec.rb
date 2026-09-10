@@ -55,6 +55,25 @@ describe Instructeurs::ChampsController, type: :controller do
       expect(history_champ.stream).to start_with(Dossier::HISTORY_STREAM)
     end
 
+    context 'when the form is submitted twice within the same second' do
+      it 'keeps the first save, answers the duplicate with the same redirect and reports it' do
+        expect(Sentry).to receive(:capture_exception)
+          .with(an_instance_of(ActiveRecord::RecordNotUnique), hash_including(level: :warning, extra: { dossier: dossier.id, public_id: champ.public_id }))
+
+        freeze_time do
+          subject
+          put :update, params: { dossier_id: dossier.id, public_id: champ.public_id, rib: rib_params }
+        end
+
+        expect(response).to redirect_to(instructeur_dossier_path(procedure, dossier))
+        expect(flash[:notice]).to end_with("ont bien été modifiées.")
+
+        main = ChampData.find_by!(stable_id: champ.stable_id, row_id: champ.row_id, stream: Dossier::MAIN_STREAM)
+        expect(main.value_json['rib']).to eq(rib_params.stringify_keys)
+        expect(ChampData.where(stable_id: champ.stable_id, row_id: champ.row_id).count(&:history_stream?)).to eq(1)
+      end
+    end
+
     context 'when the public_id points to a public champ that is not a RIB' do
       let(:public_type_de_champs) do
         [
