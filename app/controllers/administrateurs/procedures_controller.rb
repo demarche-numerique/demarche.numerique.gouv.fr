@@ -451,7 +451,7 @@ module Administrateurs
     end
 
     def detail
-      @procedure = Procedure.find(params[:id])
+      @procedure = Procedure.publiees_ou_closes.where(hidden_at_as_template: nil).find(params[:id])
       @show_detail = params[:show_detail]
       respond_to do |format|
         format.turbo_stream

@@ -463,6 +463,33 @@ describe Administrateurs::ProceduresController, type: :controller do
     end
   end
 
+  describe 'POST #detail' do
+    render_views
+
+    let(:procedure) { procedures.individual }
+
+    before { sign_in(administrateurs.blank.user) }
+
+    subject { post :detail, params: { id: procedure.id, show_detail: true }, format: :turbo_stream }
+
+    it 'shows the administrateurs of a procedure listed in the directory' do
+      subject
+      expect(response.body).to include(administrateurs.default.email)
+    end
+
+    context 'when the procedure is a draft' do
+      let(:procedure) { procedures.brouillon }
+
+      it { expect { subject }.to raise_error(ActiveRecord::RecordNotFound) }
+    end
+
+    context 'when the procedure is hidden from the templates' do
+      before { procedure.update!(hidden_at_as_template: Time.zone.now) }
+
+      it { expect { subject }.to raise_error(ActiveRecord::RecordNotFound) }
+    end
+  end
+
   describe 'POST #search' do
     before do
       stub_const("Administrateurs::ProceduresController::SIGNIFICANT_DOSSIERS_THRESHOLD", 2)
