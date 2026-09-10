@@ -48,6 +48,54 @@ describe API::V2::GraphqlController do
     end
   end
 
+  describe 'anonymous introspection' do
+    let!(:authorization_header) { nil }
+    let(:forbidden_message) { 'Without a token, only the public getDemarcheDescriptor and getDemarcheDescriptors queries and introspection are allowed' }
+
+    subject { post :execute, params: { query:, operationName: operation_name }.compact, as: :json }
+
+    context 'with the standard introspection document sent by GraphQL clients' do
+      let(:query) { GraphQL::Introspection::INTROSPECTION_QUERY }
+      let(:operation_name) { 'IntrospectionQuery' }
+
+      it {
+        expect(gql_errors).to be_nil
+        expect(gql_data[:__schema][:queryType][:name]).to eq('Query')
+      }
+    end
+
+    context 'with a data query named IntrospectionQuery' do
+      let(:query) { 'query IntrospectionQuery { demarche(number: 1) { id } }' }
+      let(:operation_name) { 'IntrospectionQuery' }
+
+      it { expect(gql_errors.first[:message]).to eq(forbidden_message) }
+    end
+
+    context 'with a data field next to an introspection field' do
+      let(:query) { 'query { __schema { queryType { name } } demarche(number: 1) { id } }' }
+
+      it { expect(gql_errors.first[:message]).to eq(forbidden_message) }
+    end
+
+    context 'with a root fragment hiding a data field' do
+      let(:query) { 'query { __typename ...on Query { demarche(number: 1) { id } } }' }
+
+      it { expect(gql_errors.first[:message]).to eq(forbidden_message) }
+    end
+
+    context 'with a mutation' do
+      let(:query) { 'mutation { __typename }' }
+
+      it { expect(gql_errors.first[:message]).to eq(forbidden_message) }
+    end
+
+    context 'with an unparsable query' do
+      let(:query) { 'query {' }
+
+      it { expect(gql_errors.first[:message]).to eq(forbidden_message) }
+    end
+  end
+
   describe 'token authentication' do
     let(:query_id) { 'ds-query-v2' }
     let(:operation_name) { 'getDemarche' }
