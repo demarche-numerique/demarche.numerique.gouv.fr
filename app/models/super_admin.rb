@@ -12,6 +12,7 @@ class SuperAdmin < ApplicationRecord
 
   def enable_otp!
     self.otp_secret = SuperAdmin.generate_otp_secret
+    self.consumed_timestep = nil
     self.otp_required_for_login = true
     save!
   end
