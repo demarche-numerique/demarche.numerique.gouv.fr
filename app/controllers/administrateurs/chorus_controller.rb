@@ -11,6 +11,8 @@ module Administrateurs
       @configuration = @procedure.chorus_configuration
       @configuration.assign_attributes(configurations_params)
       if @configuration.valid?
+        # Preload deliberation to avoid N+1 in before_save callback and validations
+        @procedure.deliberation.attached?
         @procedure.update!(chorus: @configuration.attributes)
 
         if @configuration.complete?
