@@ -7,29 +7,16 @@
 
 <div class="fr-container fr-mt-2w">
   <h1><%= t('.security') %></h1>
-
-  <div class="flex align-center">
-    <div>
-      <%= image_tag("spider-128.png", width: '128px', style: 'display: block;', alt: "") %>
-    </div>
-
-    <div>
-      <blockquote
-        cite="https://fr.wikipedia.org/wiki/Un_grand_pouvoir,_grandes_responsabilit%C3%A9s#Utilisation_dans_Spider-Man"
-      >
-        <p>« <%= t('.great_power_quote') %> »</p>
-        <p class="fr-text--sm"><%= t('.quote_source') %></p>
-      </blockquote>
-    </div>
-  </div>
-
-  <p class="fr-mt-2w">
-    <%= t('.security_warning') %>
-    <br>
-    <b><%= t('.responsibility') %></b>
-  </p>
-
-  <p><%= t('.features_intro') %></p>
+  <%= render Dsfr::AlertComponent.new(title: nil, size: :sm, state: :info, extra_class_names: 'fr-mb-2w') do |c| %>
+    <% c.with_body do %>
+      <p>
+        <%= t('.security_warning') %>
+        <br>
+        <b><%= t('.responsibility') %></b>
+      </p>
+      <p><%= t('.features_intro') %></p>
+    <% end %>
+  <% end %>
 
   <%= form_with url: admin_api_tokens_path,
     method: :post,
