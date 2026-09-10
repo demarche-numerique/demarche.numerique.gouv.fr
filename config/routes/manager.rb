@@ -103,7 +103,9 @@ namespace :manager do
   resources :safe_mailers
   resources :top_activity_procedures, only: [:index]
 
-  authenticate :super_admin do
+  # Mounted engines bypass Manager::ApplicationController, so the OTP enrollment
+  # gate (RequiresEnrolledSuperAdminOtp) has to be re-applied here.
+  authenticate :super_admin, -> (super_admin) { !SUPER_ADMIN_OTP_ENABLED || super_admin.otp_required_for_login? } do
     mount Flipper::UI.app(-> { Flipper.instance }) => "/features", as: :flipper
     mount MaintenanceTasks::Engine => "/maintenance_tasks"
     mount Sidekiq::Web => "/sidekiq"
