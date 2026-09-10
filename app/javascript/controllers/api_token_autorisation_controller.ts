@@ -32,12 +32,20 @@ export class ApiTokenAutorisationController extends ApplicationController {
 
     targetIds
       .map((id) => options.find((x) => x.value == id))
-      .forEach((option) => option && this.addProcedureToSelect(option));
+      .forEach((option) => {
+        if (option) {
+          this.addProcedureToSelect(option);
+          option.disabled = true;
+        }
+      });
   }
 
   addProcedure(e: Event) {
     e.preventDefault();
     const selectedOption = this.procedureSelectTarget.selectedOptions[0];
+    if (!selectedOption || selectedOption.disabled) {
+      return;
+    }
     this.addProcedureToSelect(selectedOption);
 
     this.setContinueButtonState();
@@ -61,12 +69,23 @@ export class ApiTokenAutorisationController extends ApplicationController {
     li.append(input);
 
     this.proceduresTarget.append(li);
+    option.disabled = true;
   }
 
   deleteProcedure(e: Event) {
     e.preventDefault();
     const target = e.target as HTMLElement;
-    target.closest('li')?.remove();
+    const li = target.closest('li');
+    const input = li?.querySelector(
+      'input[name="targets[]"]'
+    ) as HTMLInputElement | null;
+    if (input) {
+      const option = this.procedureSelectTarget.querySelector(
+        `option[value="${input.value}"]`
+      ) as HTMLOptionElement | null;
+      if (option) option.disabled = false;
+    }
+    li?.remove();
     this.setContinueButtonState();
   }
 
