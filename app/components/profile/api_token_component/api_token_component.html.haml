@@ -7,7 +7,9 @@
       %span (commence par #{@api_token.prefix})
     %div= autorizations
     %div= network_filtering
-    %div= use_and_expiration
+    %div
+      = expiration_badge
+      = use_and_expiration
   %div
     %ul
       %li

@@ -9,3 +9,5 @@ fr:
   used_ago: "utilisé il y a %{time} - "
   valid_until: "valable jusquʼau %{date}"
   valid_indefinitely: "Valable indéfiniment"
+  expired: "Expiré"
+  expiring_soon: "Expire bientôt"

@@ -132,6 +132,10 @@ class APIToken < ApplicationRecord
     expires_at&.past?
   end
 
+  def expiring_soon?
+    !!expires_at&.between?(Date.current, 1.month.from_now.to_date)
+  end
+
   class << self
     def selectable_lifetimes
       LIFETIMES.filter { |_, lifetime| lifetime <= MAX_LIFETIME }
