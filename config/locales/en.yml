@@ -700,6 +700,9 @@ en:
         link_sent:
           consult_help_page_html: If you're seeing this page too often, <a target="_blank" rel="noopener noreferrer" href="%{href}">please consult our help page</a>.
           email_cta_html: "We have to validate your email address <strong>%{email}</strong>."
+        trusted_device_renewal_notice:
+          one: "Your secure connection has been renewed. Your browser is authenticated for %{count} day."
+          other: "Your secure connection has been renewed. Your browser is authenticated for %{count} days."
       passwords:
         edit:
           subtitle: Change password

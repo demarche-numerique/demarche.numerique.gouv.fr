@@ -58,14 +58,32 @@ describe Users::SessionsController, type: :controller do
         end
       end
 
-      context 'when a trusted device renewal confirmation is pending' do
-        before { session[:trusted_device_renewal_notice] = 'Votre connexion sécurisée a bien été renouvelée.' }
+      context 'when a trusted device renewal is pending' do
+        let(:instructeur) { create(:instructeur, email: email, password: password) }
+        let(:user) { instructeur.user }
+        let(:pending_token) { instructeur.trusted_device_tokens.create }
 
-        it 'displays it after sign-in and clears it from the session' do
+        before { session[:trusted_device_token_id] = pending_token.id }
+
+        it 'completes the renewal after sign-in and clears it from the session' do
           subject
 
-          expect(flash[:notice]).to eq('Votre connexion sécurisée a bien été renouvelée.')
-          expect(session[:trusted_device_renewal_notice]).to be_nil
+          expect(controller.trusted_device?).to be true
+          expect(flash[:notice]).to include('renouvelée')
+          expect(pending_token.reload.activated_at).to be_present
+          expect(session[:trusted_device_token_id]).to be_nil
+        end
+
+        context 'when the pending token belongs to another instructeur' do
+          let(:pending_token) { create(:trusted_device_token) }
+
+          it 'does not trust the device' do
+            subject
+
+            expect(controller.trusted_device?).to be false
+            expect(pending_token.reload.activated_at).to be_nil
+            expect(session[:trusted_device_token_id]).to be_nil
+          end
         end
       end
 
@@ -274,16 +292,16 @@ describe Users::SessionsController, type: :controller do
 
       context 'when the instructeur is not logged in' do
         context 'when the token is valid' do
-          it do
+          it 'does not trust the browser before anybody authenticates' do
             is_expected.to redirect_to new_user_session_path
             expect(controller.current_instructeur).to be_nil
-            expect(controller).to have_received(:trust_device)
-            expect(TrustedDeviceToken.find_by(token: jeton).activated_at).to be_present
+            expect(controller).not_to have_received(:trust_device)
+            expect(TrustedDeviceToken.find_by(token: jeton).activated_at).to be_nil
           end
 
-          it 'persists a renewal confirmation to display after sign-in' do
-            expect(session[:trusted_device_renewal_notice]).to be_present
-            expect(flash.notice).to include('renouvelée')
+          it 'defers the renewal until the instructeur signs in' do
+            expect(session[:trusted_device_token_id]).to eq(TrustedDeviceToken.find_by(token: jeton).id)
+            expect(flash.notice).to include('Connectez-vous')
           end
         end
 
@@ -363,7 +381,11 @@ describe Users::SessionsController, type: :controller do
   end
 
   describe '#trust_device and #trusted_device?' do
+    let(:instructeur) { create(:instructeur) }
+
     subject { controller.trusted_device? }
+
+    before { sign_in(instructeur.user) }
 
     context 'when the trusted cookie is not present' do
       it { is_expected.to be false }
@@ -372,16 +394,22 @@ describe Users::SessionsController, type: :controller do
     context 'when the cookie is outdated' do
       before do
         emission_date = Time.zone.now - TrustedDeviceConcern::TRUSTED_DEVICE_PERIOD - 1.minute
-        controller.trust_device(emission_date)
+        controller.trust_device(emission_date, instructeur)
       end
 
       it { is_expected.to be false }
     end
 
     context 'when the cookie is ok' do
-      before { controller.trust_device(Time.zone.now) }
+      before { controller.trust_device(Time.zone.now, instructeur) }
 
       it { is_expected.to be true }
+    end
+
+    context 'when the cookie was issued for another instructeur' do
+      before { controller.trust_device(Time.zone.now, create(:instructeur)) }
+
+      it { is_expected.to be false }
     end
   end
 

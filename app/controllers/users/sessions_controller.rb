@@ -39,11 +39,9 @@ class Users::SessionsController < Devise::SessionsController
       flash[:notice] = t("devise.sessions.signed_in_multiple_profile", roles: current_account.keys.map { |role| t("layouts.#{role}") }.to_sentence)
     end
 
-    # Display the trusted device renewal confirmation that was deferred when the
-    # user followed the renewal link without being signed in (see #sign_in_by_link).
-    if current_user && session[:trusted_device_renewal_notice].present?
-      flash[:notice] = session.delete(:trusted_device_renewal_notice)
-    end
+    # Complete the trusted device renewal that was deferred when the user followed
+    # the renewal link without being signed in (see #sign_in_by_link).
+    finish_pending_trusted_device_renewal
   end
 
   def reset_link_sent
@@ -117,26 +115,21 @@ class Users::SessionsController < Devise::SessionsController
 
       redirect_to root_path
     elsif trusted_device_token.token_valid?
-      trust_device(trusted_device_token.created_at, trusted_device_token)
-
-      period = ((trusted_device_token.created_at + TRUSTED_DEVICE_PERIOD) - Time.zone.now).to_i / ActiveSupport::Duration::SECONDS_PER_DAY
-
-      notice = "Votre connexion sécurisée a bien été renouvelée. Votre navigateur est authentifié pour #{period} jours."
-
       # redirect to procedure'url if stored by store_location_for(:user) in dossiers_controller
       # redirect to root_path otherwise
 
       if instructeur_signed_in?
+        trust_device(trusted_device_token.created_at, current_instructeur, trusted_device_token)
         current_user.update!(email_verified_at: Time.zone.now)
 
-        flash.notice = notice
+        flash.notice = trusted_device_renewal_notice(trusted_device_token)
         redirect_to after_sign_in_path_for(:user)
       else
-        # The renewal is already done; the user only needs to authenticate.
-        # Persist the confirmation so it is shown once signed in instead of
-        # being lost on the login page.
-        session[:trusted_device_renewal_notice] = notice
-        flash.notice = "#{notice} Connectez-vous pour accéder à vos dossiers."
+        # Never trust the browser before somebody has authenticated: only remember
+        # the validated token, and finish the renewal once the instructeur it
+        # belongs to signs in (see #finish_pending_trusted_device_renewal).
+        session[:trusted_device_token_id] = trusted_device_token.id
+        flash.notice = "Connectez-vous pour finaliser le renouvellement de votre connexion sécurisée."
         redirect_to new_user_session_path
       end
     else
@@ -161,6 +154,21 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   private
+
+  def finish_pending_trusted_device_renewal
+    token_id = session.delete(:trusted_device_token_id)
+
+    return if token_id.nil? || current_instructeur.nil?
+
+    trusted_device_token = TrustedDeviceToken.find_by(id: token_id, instructeur_id: current_instructeur.id)
+
+    return if trusted_device_token.nil? || !trusted_device_token.token_valid?
+
+    trust_device(trusted_device_token.created_at, current_instructeur, trusted_device_token)
+    current_user.update!(email_verified_at: Time.zone.now)
+
+    flash[:notice] = trusted_device_renewal_notice(trusted_device_token)
+  end
 
   def signed_email_for_instructeur(instructeur)
     message_encryptor_service.encrypt_and_sign(instructeur.email, purpose: :reset_link, expires_in: 1.hour)

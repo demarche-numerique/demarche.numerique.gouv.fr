@@ -29,7 +29,7 @@ class Users::ActivateController < ApplicationController
     if user.valid?
       sign_in(user, scope: :user)
 
-      trust_device(Time.zone.now) if user.instructeur.present?
+      trust_device(Time.zone.now, user.instructeur) if user.instructeur.present?
       user.update!(email_verified_at: Time.zone.now) if user.email_verified_at.nil?
 
       flash.notice = t('.password_registered')

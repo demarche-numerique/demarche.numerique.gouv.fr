@@ -709,6 +709,9 @@ fr:
         link_sent:
           consult_help_page_html: Si vous voyez cette page trop souvent, <a target="_blank" rel="noopener noreferrer" href="%{href}">consultez notre aide</a>.
           email_cta_html: "Nous avons besoin de vérifier votre adresse électronique <strong>%{email}</strong>."
+        trusted_device_renewal_notice:
+          one: "Votre connexion sécurisée a bien été renouvelée. Votre navigateur est authentifié pour %{count} jour."
+          other: "Votre connexion sécurisée a bien été renouvelée. Votre navigateur est authentifié pour %{count} jours."
       passwords:
         edit:
           subtitle: Changement de mot de passe
