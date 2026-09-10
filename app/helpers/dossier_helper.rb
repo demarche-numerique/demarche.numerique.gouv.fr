@@ -131,8 +131,6 @@ module DossierHelper
   end
 
   def show_new_message_notification?(dossier)
-    return false unless current_user.dossiers_alerts_enabled?
-
     # Le badge « nouveau message » passe derrière « à corriger » et « en attente
     # de réponse » : on n'affiche qu'un seul badge de type messagerie à la fois.
     return false if dossier.pending_correction? || dossier.pending_response?

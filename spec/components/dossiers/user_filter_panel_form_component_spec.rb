@@ -7,7 +7,6 @@ RSpec.describe Dossiers::UserFilterPanelFormComponent, type: :component do
   let(:filter) do
     instance_double(Users::DossierFilterService,
       total_count: 12,
-      alerts_enabled?: true,
       counts: {
         procedure_ids: {},
         states: { 'brouillon' => 1, 'en_construction' => 5, 'en_instruction' => 0, 'accepte' => 0, 'refuse' => 0, 'sans_suite' => 0 },
@@ -28,24 +27,6 @@ RSpec.describe Dossiers::UserFilterPanelFormComponent, type: :component do
 
   it 'renders all 4 alert checkboxes' do
     expect(subject.css('input[name="alert[]"]').size).to eq(4)
-  end
-
-  context 'when the alert filters feature is disabled' do
-    let(:filter) do
-      instance_double(Users::DossierFilterService,
-        total_count: 12,
-        alerts_enabled?: false,
-        counts: {
-          procedure_ids: {},
-          states: { 'brouillon' => 1, 'en_construction' => 5, 'en_instruction' => 0, 'accepte' => 0, 'refuse' => 0, 'sans_suite' => 0 },
-          alerts: { 'nouveau_message' => 0, 'message_avec_attente_de_reponse' => 0, 'a_corriger' => 0, 'expire_bientot' => 0 },
-          shared_with_me: 0,
-        })
-    end
-
-    it 'does not render the alert checkboxes' do
-      expect(subject.css('input[name="alert[]"]')).to be_empty
-    end
   end
 
   it 'renders state counters inline' do
@@ -87,7 +68,6 @@ RSpec.describe Dossiers::UserFilterPanelFormComponent, type: :component do
     let(:filter) do
       instance_double(Users::DossierFilterService,
         total_count: 0,
-        alerts_enabled?: true,
         counts: {
           procedure_ids: {},
           states: { 'brouillon' => 0, 'en_construction' => 0, 'en_instruction' => 0, 'accepte' => 0, 'refuse' => 0, 'sans_suite' => 0 },
