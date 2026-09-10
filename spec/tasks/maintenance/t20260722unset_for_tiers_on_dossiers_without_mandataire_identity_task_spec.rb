@@ -27,6 +27,13 @@ module Maintenance
         expect(collection).not_to include(valid_for_tiers)
         expect(collection).not_to include(brouillon)
       end
+
+      it "leaves out a dossier whose mandataire identity is filled once the ids are collected" do
+        relation = described_class.new.collection
+        poisoned.update_columns(mandataire_first_name: 'Jeanne', mandataire_last_name: 'Dupont')
+
+        expect(relation).not_to include(poisoned)
+      end
     end
 
     describe "#process" do

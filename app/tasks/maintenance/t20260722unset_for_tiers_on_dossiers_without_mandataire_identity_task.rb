@@ -15,10 +15,16 @@ module Maintenance
     run_on_first_deploy
 
     def collection
-      Dossier
+      poisoned = Dossier
         .state_not_brouillon
         .where(for_tiers: true)
         .where("mandataire_first_name IS NULL OR mandataire_first_name = '' OR mandataire_last_name IS NULL OR mandataire_last_name = ''")
+
+      # le timeout local ne couvre pas les requêtes que la gem lance ensuite,
+      # et ce pluck doit tenir dans chaque tranche de 5 min du job, qui le rejoue
+      ids = with_statement_timeout("4min") { poisoned.pluck(:id) }
+
+      poisoned.where(id: ids)
     end
 
     def process(dossier)
