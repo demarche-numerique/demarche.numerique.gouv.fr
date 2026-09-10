@@ -11,6 +11,7 @@ class ProConnectController < ApplicationController
 
   STATE_COOKIE_NAME = :proConnect_state
   NONCE_COOKIE_NAME = :proConnect_nonce
+  MFA_FORCED_COOKIE_NAME = :proConnect_mfa_forced
 
   def index
   end
@@ -18,6 +19,10 @@ class ProConnectController < ApplicationController
   def required; end
 
   def login
+    # A forced MFA round trip that never reached the callback (aborted, wrong OTP)
+    # leaves its marker behind: clear it so a new login is not read as a failure.
+    cookies.delete MFA_FORCED_COOKIE_NAME
+
     uri, state, nonce = ProConnectService.authorization_uri
 
     cookies.encrypted[STATE_COOKIE_NAME] = { value: state, secure: Rails.env.production?, httponly: true }
@@ -51,22 +56,17 @@ class ProConnectController < ApplicationController
       .merge(amr:, acr:)
     )
 
-    mfa = amr.include?('mfa')
+    mfa = ProConnectService.mfa?(amr:, acr:)
+    mfa_already_forced = cookies.encrypted[MFA_FORCED_COOKIE_NAME].present?
+    cookies.delete MFA_FORCED_COOKIE_NAME
 
-    if user.instructeur?
-      if user_info['idp_id'] == MON_COMPTE_PRO_IDP_ID && !mfa
-        # a new session is built to force MFA as we know MON COMPTE PRO allows it
-        # we also provide a login_hint to avoid the user having to retype its email / pwd
-        uri, state, nonce = ProConnectService.authorization_uri(force_mfa: true, login_hint: email)
+    if !mfa && must_force_mfa?(user, user_info)
+      return redirect_pro_connect_mfa_failed if mfa_already_forced
 
-        cookies.encrypted[STATE_COOKIE_NAME] = { value: state, secure: Rails.env.production?, httponly: true }
-        cookies.encrypted[NONCE_COOKIE_NAME] = { value: nonce, secure: Rails.env.production?, httponly: true }
-
-        return redirect_to uri, allow_other_host: true
-      end
-
-      user.instructeur.update!(pro_connect_id_token: id_token)
+      return redirect_to_forced_mfa(email)
     end
+
+    user.instructeur&.update!(pro_connect_id_token: id_token)
 
     set_pro_connect_session_info_cookie(user.id, mfa:)
 
@@ -83,6 +83,29 @@ class ProConnectController < ApplicationController
 
   def santized_email(user_info)
     user_info['email'].strip.downcase
+  end
+
+  def must_force_mfa?(user, user_info)
+    user.administrateur&.mfa_required? ||
+      (user.instructeur? && user_info['idp_id'] == MON_COMPTE_PRO_IDP_ID)
+  end
+
+  def redirect_to_forced_mfa(email)
+    uri, state, nonce = ProConnectService.authorization_uri(force_mfa: true, login_hint: email)
+
+    cookies.encrypted[STATE_COOKIE_NAME] = { value: state, secure: Rails.env.production?, httponly: true }
+    cookies.encrypted[NONCE_COOKIE_NAME] = { value: nonce, secure: Rails.env.production?, httponly: true }
+    cookies.encrypted[MFA_FORCED_COOKIE_NAME] = { value: 'true', secure: Rails.env.production?, httponly: true }
+
+    redirect_to uri, allow_other_host: true
+  end
+
+  # ProConnect leaves it to the service provider to reject an id_token whose
+  # acr does not meet the requested level, so a second answer without MFA
+  # ends here instead of being sent back again.
+  def redirect_pro_connect_mfa_failed
+    flash.alert = t('errors.messages.pro_connect.mfa_failed')
+    redirect_to pro_connect_path
   end
 
   def redirect_to_login_if_fc_aborted

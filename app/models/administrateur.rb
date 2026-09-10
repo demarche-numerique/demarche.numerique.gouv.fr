@@ -61,6 +61,12 @@ class Administrateur < ApplicationRecord
     pro_connect_required_at? || Flipper.enabled?(:pro_connect_required_for_all_administrateurs, user)
   end
 
+  # The only MFA available is the ProConnect one: the MFA wave is a subset
+  # of the ProConnect wave.
+  def mfa_required?
+    pro_connect_required? && Flipper.enabled?(:administrateur_mfa_required, user)
+  end
+
   def owns?(procedure)
     procedure.administrateurs.include?(self)
   end

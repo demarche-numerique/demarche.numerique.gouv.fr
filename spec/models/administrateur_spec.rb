@@ -374,4 +374,25 @@ describe Administrateur, type: :model do
       it { is_expected.to be true }
     end
   end
+
+  describe '#mfa_required?' do
+    let(:administrateur) { administrateurs.blank }
+
+    before do
+      allow(ProConnectService).to receive(:enabled?).and_return(true)
+      Flipper.enable_actor(:administrateur_mfa_required, administrateur.user)
+    end
+
+    subject { administrateur.mfa_required? }
+
+    it 'needs the administrateur to be in the ProConnect wave first' do
+      is_expected.to be false
+    end
+
+    context 'when the administrateur must use ProConnect' do
+      before { administrateur.update!(pro_connect_required_at: Time.zone.now) }
+
+      it { is_expected.to be true }
+    end
+  end
 end
