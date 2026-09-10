@@ -1,4 +1,8 @@
-import { session as TurboSession, type StreamElement } from '@hotwired/turbo';
+import {
+  session as TurboSession,
+  type StreamElement,
+  type TurboSubmitEndEvent
+} from '@hotwired/turbo';
 import { Actions } from 'coldwired/actions';
 import { createReactPlugin, createRoot, type Root } from 'coldwired/react';
 import { parseTurboStream } from 'coldwired/turbo-stream';
@@ -6,6 +10,7 @@ import { makeRetriable } from 'p-retry';
 import type { ComponentType } from 'react';
 import invariant from 'tiny-invariant';
 
+import { SubmitRenderGuard } from '../shared/submit-render-guard';
 import { ApplicationController } from './application_controller';
 
 type StreamRenderEvent = CustomEvent<{
@@ -22,6 +27,7 @@ export class TurboController extends ApplicationController {
   declare readonly spinnerTargets: HTMLElement[];
 
   #submitting = false;
+  #submitRenderGuard = new SubmitRenderGuard();
   #actions?: Actions;
   #root?: Root;
 
@@ -69,8 +75,18 @@ export class TurboController extends ApplicationController {
 
     // setup spinner events
     this.onGlobal('turbo:submit-start', () => this.startSpinner());
-    this.onGlobal('turbo:submit-end', () => this.stopSpinner());
-    this.onGlobal('turbo:fetch-request-error', () => this.stopSpinner());
+    this.onGlobal('turbo:submit-end', (event: TurboSubmitEndEvent) => {
+      this.stopSpinner();
+      this.#submitRenderGuard.submitEnded(event);
+    });
+    this.onGlobal('turbo:fetch-request-error', () => {
+      this.stopSpinner();
+      this.#submitRenderGuard.rendered();
+    });
+
+    // a submitted form stays locked until the page it led to is rendered
+    this.onGlobal('turbo:load', () => this.#submitRenderGuard.rendered());
+    this.onGlobal('turbo:frame-load', () => this.#submitRenderGuard.rendered());
 
     // prevent scroll on turbo form submits
     this.onGlobal('turbo:render', () => this.preventScrollIfNeeded());
