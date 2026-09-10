@@ -26,7 +26,11 @@ class Users::ActivateController < ApplicationController
       reset_password_token: user_params[:reset_password_token],
     })
 
-    if user.valid?
+    # Gate on the errors reset_password_by_token leaves, not on User#valid?:
+    # for an expired token Devise leaves the password unchanged and only adds
+    # a :reset_password_token => :expired error, which valid? would clear before
+    # re-running (passing) model validations — signing the user in on a stale token.
+    if user.errors.empty?
       sign_in(user, scope: :user)
 
       trust_device(Time.zone.now, user.instructeur) if user.instructeur.present?
