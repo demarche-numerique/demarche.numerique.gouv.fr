@@ -153,6 +153,34 @@ describe Users::ActivateController, type: :controller do
     end
   end
 
+  # Regression: an expired (but still digest-matching) activation / reset token
+  # must not grant a session. reset_password_by_token leaves the password
+  # unchanged and only adds a :expired error; the controller must reject on that
+  # error rather than on User#valid?, which cleared it and let the sign-in through.
+  describe '#create with an expired reset password token' do
+    let!(:user) { create(:instructeur).user }
+    let(:password) { '{another-password-ok?}' }
+    let(:token) do
+      raw = user.send(:set_reset_password_token)
+      # Push the send time past the validity window: the token still matches the
+      # stored digest but reset_password_period_valid? is now false.
+      user.update_column(:reset_password_sent_at, (Devise.reset_password_within + 1.day).ago)
+      raw
+    end
+
+    before do
+      allow(controller).to receive(:trust_device)
+      post :create, params: { user: { reset_password_token: token, password: password } }
+    end
+
+    it 'refuses to sign in, leaves the password unchanged and does not trust the device' do
+      expect(controller.current_user).to be_nil
+      expect(user.reload.valid_password?(password)).to be false
+      expect(controller).not_to have_received(:trust_device)
+      expect(response).to redirect_to(users_activate_path(token: token))
+    end
+  end
+
   describe '#create when the administrateur must use ProConnect' do
     let(:user) { administrateurs.default.user }
     let(:token) { user.send(:set_reset_password_token) }
