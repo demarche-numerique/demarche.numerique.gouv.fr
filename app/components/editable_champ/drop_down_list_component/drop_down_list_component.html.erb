@@ -1,0 +1,50 @@
+<% if @champ.render_as_radios? %>
+  <div class="fr-fieldset__content">
+    <% items.each do |value, option_id| %>
+      <div class="fr-radio-group">
+        <%= @form.radio_button :value, option_id, id: @champ.radio_id(option_id), translate: 'no', aria: labelledby_id_attr(input_label_id(@champ, option_id)) %>
+
+        <label
+          class="fr-label"
+          for="<%= @champ.radio_id(option_id) %>"
+          id="<%= input_label_id(@champ, option_id) %>"
+        >
+          <%= value %>
+        </label>
+      </div>
+    <% end %>
+
+    <% if !@champ.mandatory? %>
+      <div class="fr-radio-group">
+        <%= @form.radio_button :value, '', checked: @champ.value.blank? && !@champ.other?, id: @champ.radio_id(:blank), aria: labelledby_id_attr(input_label_id(@champ, :blank)) %>
+
+        <label
+          class="fr-label"
+          for="<%= @champ.radio_id(:blank) %>"
+          id="<%= input_label_id(@champ, :blank) %>"
+        >
+          <%= t(".not_filled") %>
+        </label>
+      </div>
+    <% end %>
+  </div>
+<% elsif @champ.render_as_combobox? %>
+  <react-fragment>
+    <%= render ReactComponent.new "Select/SingleSelect", **react_props %>
+  </react-fragment>
+<% else %>
+  <%= @form.select :value,
+        items,
+        select_options,
+        { required: @champ.required?,
+          id: @champ.focusable_input_id,
+          class: select_class_names,
+          aria: { **labelledby_id_attr, describedby: select_aria_describedby },
+          translate: 'no' } %>
+<% end %>
+
+<% if @champ.drop_down_other? %>
+  <div class="<%= other_element_class_names %>">
+    <%= render EditableChamp::DropDownOtherInputComponent.new(form: @form, champ: @champ, aria_labelledby_prefix: other_input_aria_labelledby_prefix) %>
+  </div>
+<% end %>
