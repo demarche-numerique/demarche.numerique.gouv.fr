@@ -12,7 +12,7 @@ module Mutations
     field :errors, [Types::ValidationErrorType], null: true
 
     def resolve(dossier:, label:)
-      dossier_label = dossier.dossier_labels.create(label: label)
+      dossier_label = dossier.add_label(label)
 
       if dossier_label.persisted?
         { dossier:, label: }

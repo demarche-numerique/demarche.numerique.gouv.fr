@@ -101,4 +101,24 @@ class Avis < ApplicationRecord
     return false if !remindable_by?(revocator) || answer.present?
     update_column(:reminded_at, Time.zone.now)
   end
+
+  # An avis is answered once; later edits amend the same answer silently.
+  def submit_answer(params)
+    newly_answered = answer.nil?
+
+    assign_attributes(params)
+    # Checked after normalization (blank collapses to nil): the form marks the
+    # field required, so only a crafted request lands here — refuse it rather
+    # than record an empty answer, which would consume the one-shot
+    # avis_repondu emission below and starve the real answer of it.
+    if answer.nil?
+      errors.add(:answer, :blank)
+      return false
+    end
+
+    return false if !save
+
+    dossier.emit_webhook_event(:avis_repondu) if newly_answered
+    true
+  end
 end

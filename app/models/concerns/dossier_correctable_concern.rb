@@ -19,17 +19,26 @@ module DossierCorrectableConcern
     return unless may_flag_as_pending_correction?
 
     reason ||= :incorrect
+    newly_created_commentaire = commentaire.new_record?
 
     commentaire.dossier_correction = corrections.build(commentaire:, reason:)
     commentaire.dossier_correction.save!
+
+    # This flow persists the commentaire itself (callers hand it in unsaved),
+    # so it announces the message, before the correction it carries.
+    emit_webhook_event(:message_cree) if newly_created_commentaire
 
     create_dossier_notifications(commentaire.instructeur)
 
     log_pending_correction_operation(commentaire, reason) if procedure.sva_svr_enabled?
 
-    return if en_construction?
+    # Transition first: never announce a correction whose dossier failed to
+    # move back en construction.
+    if !en_construction?
+      repasser_en_construction_with_pending_correction!(instructeur: commentaire.instructeur)
+    end
 
-    repasser_en_construction_with_pending_correction!(instructeur: commentaire.instructeur)
+    emit_webhook_event(:correction_demandee)
   end
 
   def may_flag_as_pending_correction?
