@@ -1,5 +1,5 @@
 <% if blob.representable? %>
-  <% representation = blob.representation(resize_to_limit: local_assigns[:in_gallery] ? [ 800, 600 ] : [ 1024, 768 ]) %>
+  <% representation = blob.representation(resize_to_limit: [ 1024, 768 ]) %>
   <% attachment_class, to_show = (representation.image&.attached? || representation.key.present?) ? [ "attachment--preview", representation ] : [ "attachment--file", blob ] %>
   <figure class="attachment <%= attachment_class %> attachment--<%= blob.filename.extension %>">
     <%# The figcaption below already names the attachment, so the image itself is decorative %>
