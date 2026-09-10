@@ -121,5 +121,20 @@ describe Administrateurs::EmailTemplatesController, type: :controller do
       expect(response.body).to include('mail-body-preview')
       expect(response.body).to include('Salut')
     end
+
+    context 'when the sample dossier holds markup in a usager-controlled tag' do
+      let(:json_subject) { { "type" => "doc", "content" => [{ "type" => "paragraph", "content" => [{ "type" => "mention", "attrs" => { "id" => "individual_last_name", "label" => "nom" } }] }] }.to_json }
+
+      before { procedure.dossier_for_preview(admin.user).individual.update!(nom: '<img src=x onerror=alert(1)>') }
+
+      it 'escapes the subject preview' do
+        post :preview, params: {
+          procedure_id: procedure.id, id: 'passe_en_instruction',
+          emails_passe_en_instruction: { tiptap_subject: json_subject },
+        }, format: :turbo_stream
+        expect(response.body).to include('&lt;img src=x onerror=alert(1)&gt;')
+        expect(response.body).not_to include('<img src=x')
+      end
+    end
   end
 end

@@ -6,5 +6,8 @@
 <% end %>
 
 <% if @updated_subject %>
-  <%= turbo_stream.update "mail-subject-preview", @subject_preview %>
+  <%# The subject is plain text holding usager-typed tag values: the block escapes it, a string argument would not. %>
+  <%= turbo_stream.update "mail-subject-preview" do %>
+    <%= @subject_preview %>
+  <% end %>
 <% end %>
