@@ -2,3 +2,6 @@ en:
   instructeur_mailer:
     send_login_token:
       subject: "Secure login to %{application_name}"
+      login_link: "Please click the following secure link to sign in to %{application_name}:"
+      legacy_address: "If you have any trouble, try the former address:"
+      link_validity_html: This link is <b>valid for one week</b> and can be reused <b>several times.</b>

@@ -13,6 +13,8 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception, store: :cookie # define same store in config/initializers/active_storage.rb
 
+  around_action :switch_locale
+
   before_action :set_sentry_user
   before_action :redirect_if_untrusted
   before_action :reject, if: -> { ENV.fetch("MAINTENANCE_MODE", 'false') == 'true' }
@@ -27,8 +29,6 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   rescue_from DossierChampsConcern::ChampNotInRevisionError, with: :champ_not_in_revision
-
-  around_action :switch_locale
 
   helper_method :multiple_devise_profile_connect?, :instructeur_signed_in?, :current_instructeur, :current_expert, :expert_signed_in?,
     :administrateur_signed_in?, :current_administrateur, :current_account, :localization_enabled?, :set_locale, :current_expert_not_instructeur?,

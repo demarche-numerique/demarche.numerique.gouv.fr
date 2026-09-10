@@ -4,11 +4,6 @@ module ProConnectSessionConcern
   extend ActiveSupport::Concern
 
   SESSION_INFO_COOKIE_NAME = :pro_connect_session_info
-  # Cookies set before mfa_at was introduced have no client-side expiry and
-  # could otherwise persist indefinitely. Refuse them past this date (~1 month
-  # after deploy, aligned with TRUSTED_DEVICE_PERIOD) so any remaining ones
-  # are forced to renew their MFA assertion via ProConnect.
-  LEGACY_COOKIE_DEADLINE = Time.zone.local(2026, 6, 13).freeze
 
   included do
     helper_method :logged_in_with_pro_connect?
@@ -30,12 +25,9 @@ module ProConnectSessionConcern
 
   def pro_connect_mfa?
     info = pro_connect_session
-    return false if info['mfa'] != true
-    return Time.current < LEGACY_COOKIE_DEADLINE if info['mfa_at'].blank?
+    return false if info['mfa'] != true || info['mfa_at'].blank?
 
     Time.iso8601(info['mfa_at']) > TrustedDeviceConcern::TRUSTED_DEVICE_PERIOD.ago
-  rescue ArgumentError
-    false
   end
 
   def delete_pro_connect_session_info_cookie

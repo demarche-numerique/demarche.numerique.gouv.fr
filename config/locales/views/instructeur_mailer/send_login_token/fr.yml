@@ -2,3 +2,6 @@ fr:
   instructeur_mailer:
     send_login_token:
       subject: "Connexion sécurisée à %{application_name}"
+      login_link: "Veuillez cliquer sur le lien sécurisé suivant pour vous connecter à %{application_name} :"
+      legacy_address: "En cas de difficulté, essayez l’ancienne adresse :"
+      link_validity_html: Ce lien est <b>valide une semaine</b> et peut être réutilisé <b>plusieurs fois.</b>

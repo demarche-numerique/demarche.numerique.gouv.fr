@@ -3,8 +3,15 @@
 class ProConnectService
   include OpenIDConnect
 
+  # https://partenaires.proconnect.gouv.fr/docs/fournisseur-service/double_authentification
+  MFA_ACR_VALUES = ["eidas0-mfa", "eidas1-mfa", "eidas2", "eidas3"].freeze
+
   def self.enabled?
     ENV['PRO_CONNECT_BASE_URL'].present?
+  end
+
+  def self.mfa?(amr:, acr:)
+    amr.include?('mfa') || MFA_ACR_VALUES.include?(acr)
   end
 
   def self.authorization_uri(force_mfa: false, login_hint: nil)
@@ -27,19 +34,7 @@ class ProConnectService
 
     if force_mfa
       # acr (Authentication Context Class Reference) force the level of security
-      # https://partenaires.proconnect.gouv.fr/docs/fournisseur-service/double_authentification
-      claims[:id_token][:acr] = {
-        essential: true,
-        values: [
-          "eidas0-mfa", # Identité : Faible ou déclarative, Auth: MFA (auto-géré), Orga: Modération ou déclaratif
-          "eidas1-mfa", # Identité : Faible, Auth: MFA (auto-géré), Orga: Modération ou plus
-          "eidas2",     # Identité : Substantielle, Auth: MFA (géré par l'organisation), Orga: Lien certifié par une source officielle
-          "eidas3",     # Identité : Élevée, Auth: MFA matérielle (géré par l'organisation), Orga: Lien certifié par une source officielle
-          # deprecated claims to be removed after 18/06/2026
-          "https://proconnect.gouv.fr/assurance/self-asserted-2fa", # declarative identity + 2FA
-          "https://proconnect.gouv.fr/assurance/consistency-checked-2fa", # verified identity + 2FA
-        ],
-      }
+      claims[:id_token][:acr] = { essential: true, values: MFA_ACR_VALUES }
     end
 
     uri = client.authorization_uri(
@@ -65,7 +60,7 @@ class ProConnectService
 
     amr = id_token.amr.present? ? JSON.parse(id_token.amr) : []
 
-    [access_token.userinfo!.raw_attributes, access_token.id_token, amr]
+    [access_token.userinfo!.raw_attributes, access_token.id_token, amr, id_token.acr]
   end
 
   def self.logout_url(id_token, host_with_port:)

@@ -43,6 +43,7 @@ describe ProConnectController, type: :controller do
       }
     end
     let(:amr) { [] }
+    let(:acr) { nil }
     let(:idp_id) { 'an_id' }
     subject { get :callback, params: { code: code, state: state } }
 
@@ -57,7 +58,7 @@ describe ProConnectController, type: :controller do
 
       context 'and user_info returns some info' do
         before do
-          expect(ProConnectService).to receive(:user_info).with(code, nonce).and_return([user_info, id_token, amr])
+          expect(ProConnectService).to receive(:user_info).with(code, nonce).and_return([user_info, id_token, amr, acr])
         end
 
         context 'and the user does not have an account yet' do
@@ -159,6 +160,7 @@ describe ProConnectController, type: :controller do
 
           context 'and the user uses Mon Compte Pro with MFA' do
             let(:amr) { ['pwd', 'totp', 'mfa'] }
+            let(:acr) { 'eidas1-mfa' }
             let(:idp_id) { ProConnectController::MON_COMPTE_PRO_IDP_ID }
 
             it 'logs in the user' do
@@ -169,6 +171,14 @@ describe ProConnectController, type: :controller do
               cookie = JSON.parse(cookies.encrypted[ProConnectSessionConcern::SESSION_INFO_COOKIE_NAME])
               expect(cookie).to include('user_id' => instructeur.user.id, 'mfa' => true)
               expect(cookie['mfa_at']).to be_present
+            end
+
+            it 'stores the acr claim' do
+              expect(controller).to receive(:sign_in)
+
+              subject
+
+              expect(instructeur.user.pro_connect_informations.first.acr).to eq('eidas1-mfa')
             end
           end
         end
@@ -199,7 +209,7 @@ describe ProConnectController, type: :controller do
           let(:initial_instructeur_count) { Instructeur.count }
 
           before do
-            expect(ProConnectService).to receive(:user_info).with(code, nonce).and_return([user_info, id_token, amr]).twice
+            expect(ProConnectService).to receive(:user_info).with(code, nonce).and_return([user_info, id_token, amr, acr]).twice
             expect(controller).to receive(:sign_in).twice
           end
 
@@ -222,10 +232,10 @@ describe ProConnectController, type: :controller do
           end
 
           it 'does not create an instructeur' do
-            expect(ProConnectService).to receive(:user_info).with(code, nonce).and_return([user_info, id_token, amr])
+            expect(ProConnectService).to receive(:user_info).with(code, nonce).and_return([user_info, id_token, amr, acr])
             get :callback, params: { code: code, state: state }
 
-            expect(ProConnectService).to receive(:user_info).with(code, nonce).and_return([user_info.merge('sub' => 'sub2'), id_token, amr])
+            expect(ProConnectService).to receive(:user_info).with(code, nonce).and_return([user_info.merge('sub' => 'sub2'), id_token, amr, acr])
             get :callback, params: { code: code, state: state }
 
             expect(Instructeur.count).to eq(initial_instructeur_count)

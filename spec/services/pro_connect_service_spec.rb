@@ -50,8 +50,6 @@ describe ProConnectService do
         expect(uri).to include('eidas1-mfa')
         expect(uri).to include('eidas2')
         expect(uri).to include('eidas3')
-        expect(uri).to include('self-asserted-2fa')
-        expect(uri).to include('consistency-checked-2fa')
       end
     end
 
@@ -62,6 +60,17 @@ describe ProConnectService do
         uri, _state, _nonce = subject
         expect(uri).to include('login_hint=toto%40a.com')
       end
+    end
+  end
+
+  describe '.mfa?' do
+    it 'is true when amr or acr asserts a multi factor authentication' do
+      expect(described_class.mfa?(amr: ['pwd', 'mail', 'mfa'], acr: nil)).to be true
+      expect(described_class.mfa?(amr: ['pwd'], acr: 'eidas1-mfa')).to be true
+    end
+
+    it 'is false otherwise' do
+      expect(described_class.mfa?(amr: ['pwd'], acr: 'eidas1')).to be false
     end
   end
 end

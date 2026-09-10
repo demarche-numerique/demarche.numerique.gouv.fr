@@ -27,7 +27,7 @@ class ProConnectController < ApplicationController
   end
 
   def callback
-    user_info, id_token, amr = ProConnectService.user_info(params[:code], cookies.encrypted[NONCE_COOKIE_NAME])
+    user_info, id_token, amr, acr = ProConnectService.user_info(params[:code], cookies.encrypted[NONCE_COOKIE_NAME])
     cookies.delete NONCE_COOKIE_NAME
 
     email = santized_email(user_info)
@@ -48,7 +48,7 @@ class ProConnectController < ApplicationController
     pro_connect_info = ProConnectInformation.find_or_initialize_by(user:, sub: user_info['sub'])
     pro_connect_info.update!(
       user_info.slice('given_name', 'usual_name', 'email', 'sub', 'siret', 'organizational_unit', 'belonging_population', 'phone')
-      .merge(amr:)
+      .merge(amr:, acr:)
     )
 
     mfa = amr.include?('mfa')

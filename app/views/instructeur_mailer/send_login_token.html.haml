@@ -3,24 +3,21 @@
 - ds_link = sign_in_by_link_url(@instructeur.id, jeton: @login_token, host: 'www.demarches-simplifiees.fr')
 
 %p
-  Bonjour,
+  = t(:hello, scope: [:views, :shared, :greetings])
 
 %p
-  Veuillez cliquer sur le lien sécurisé suivant pour vous connecter à  #{APPLICATION_NAME} : 
+  = t('.login_link', application_name: APPLICATION_NAME)
   - if ENV['APP_HOST'] == 'demarche.numerique.gouv.fr'
     = link_to(demarche_link, demarche_link)
 
     %p
-      En cas de difficulté, essayez l’ancienne adresse : 
+      = t('.legacy_address')
       = link_to(ds_link, ds_link)
   - else
     = link_to(sign_in_by_link_url(@instructeur.id, jeton: @login_token), sign_in_by_link_url(@instructeur.id, jeton: @login_token))
 
 %p
-  Ce lien est
-  %b valide une semaine
-  et peut être réutilisé
-  %b plusieurs fois.
+  = t('.link_validity_html')
 
 = render partial: "layouts/mailers/signature"
 -# haml-lint:enable ApplicationNameLinter
