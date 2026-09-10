@@ -14,6 +14,11 @@ class SuperAdminsController < ApplicationController
       redirect_to(edit_super_admin_otp_path) and return
     end
 
+    if current_super_admin.otp_required_for_login? && !current_super_admin.validate_and_consume_otp!(params[:otp_attempt].to_s)
+      flash[:alert] = "Code OTP invalide ou manquant."
+      redirect_to(edit_super_admin_otp_path) and return
+    end
+
     current_super_admin.enable_otp!
     @qrcode = generate_qr_code
     sign_out :super_admin

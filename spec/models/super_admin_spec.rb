@@ -48,6 +48,12 @@ describe SuperAdmin, type: :model do
     it 'updates otp_secret' do
       expect { subject }.to change { super_admin.otp_secret }
     end
+
+    it 'forgets the timestep consumed with the previous secret' do
+      super_admin.update!(consumed_timestep: 1)
+
+      expect { subject }.to change { super_admin.consumed_timestep }.to(nil)
+    end
   end
 
   describe 'disable_otp!' do

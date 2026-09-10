@@ -2,9 +2,19 @@
   %div
     %h2.huge-title Espace Manager
     %p Munissez-vous de votre téléphone sur lequel vous avez installé une application cliente 2FA (Google Authenticator, Authy, AndOTP, ...)
+    - if current_super_admin.otp_required_for_login?
+      %p
+        %strong Votre authentification double-facteur est déjà activée.
+        Continuer remplacera votre application actuelle par une nouvelle&nbsp;: saisissez le code qu’elle affiche pour confirmer.
     %br
     = form_with url: enable_super_admin_otp_path, method: :put, local: true do |f|
       .fr-input-group
         = f.label :current_password, "Mot de passe actuel", class: 'fr-label'
         = f.password_field :current_password, autocomplete: 'current-password', required: true, class: 'fr-input'
-      = f.submit "Activer l’authentification double-facteur", class: 'fr-btn fr-btn--lg'
+      - if current_super_admin.otp_required_for_login?
+        .fr-input-group
+          = f.label :otp_attempt, "Code de votre application d’authentification actuelle", class: 'fr-label'
+          = f.text_field :otp_attempt, inputmode: :numeric, autocomplete: 'one-time-code', required: true, class: 'fr-input'
+        = f.submit "Remplacer l’authentification double-facteur", class: 'fr-btn fr-btn--lg'
+      - else
+        = f.submit "Activer l’authentification double-facteur", class: 'fr-btn fr-btn--lg'
