@@ -63,8 +63,33 @@ class API::V2::BaseController < ApplicationController
 
     return if query_id == 'introspection'
     return if query_id == 'ds-query-v2' && PUBLIC_OPERATIONS.include?(operation_name)
+    return if query_id.blank? && introspection_query?(params[:query])
 
     render json: graphql_error('Without a token, only the public getDemarcheDescriptor and getDemarcheDescriptors queries and introspection are allowed', :forbidden), status: :forbidden
+  end
+
+  INTROSPECTION_FIELDS = ['__schema', '__type', '__typename'].freeze
+
+  # GraphQL clients fetch the schema with their own introspection document rather
+  # than our stored `introspection` query. The schema is public, so such a document
+  # is allowed without a token as long as every root selection of every operation is
+  # an introspection field: a root fragment or a data field could reach actual data.
+  def introspection_query?(query)
+    return false if query.blank?
+
+    operations = GraphQL.parse(query).definitions.grep(GraphQL::Language::Nodes::OperationDefinition)
+
+    operations.present? && operations.all? { introspection_operation?(it) }
+  rescue GraphQL::ParseError
+    false
+  end
+
+  def introspection_operation?(operation)
+    return false unless operation.operation_type.in?([nil, 'query'])
+
+    operation.selections.all? do |selection|
+      selection.is_a?(GraphQL::Language::Nodes::Field) && INTROSPECTION_FIELDS.include?(selection.name)
+    end
   end
 
   def ensure_authorized_network
