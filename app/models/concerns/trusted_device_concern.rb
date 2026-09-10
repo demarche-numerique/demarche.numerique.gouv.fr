@@ -39,7 +39,7 @@ module TrustedDeviceConcern
   def trusted_device_renewal_notice(trusted_device_token)
     period = ((trusted_device_token.created_at + TRUSTED_DEVICE_PERIOD) - Time.zone.now).to_i / ActiveSupport::Duration::SECONDS_PER_DAY
 
-    "Votre connexion sécurisée a bien été renouvelée. Votre navigateur est authentifié pour #{period} jours."
+    t('views.users.sessions.trusted_device_renewal_notice', count: period)
   end
 
   def send_login_token_or_bufferize(instructeur)
