@@ -33,6 +33,34 @@ RSpec.describe GeoArea, type: :model do
     end
   end
 
+  describe 'uuid' do
+    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :carte }]) }
+    let(:dossier) { create(:dossier, procedure:) }
+    let(:main_champ) { dossier.champ_data.first }
+    let(:buffer_champ) do
+      champ = main_champ.dup
+      champ.stream = Dossier::USER_BUFFER_STREAM
+      champ.save!(validate: false)
+      champ
+    end
+
+    it 'is assigned on the main stream' do
+      expect(create(:geo_area, :selection_utilisateur, :polygon, champ_data: main_champ).uuid).to be_present
+    end
+
+    it 'is assigned on a buffer stream too' do
+      expect(create(:geo_area, :selection_utilisateur, :polygon, champ_data: buffer_champ).uuid).to be_present
+    end
+
+    it 'survives cloning to another stream' do
+      geo_area = create(:geo_area, :selection_utilisateur, :polygon, champ_data: main_champ)
+      clone = geo_area.dup.tap { it.champ_data = buffer_champ }.tap(&:save!)
+
+      expect(clone.uuid).to eq(geo_area.uuid)
+      expect(clone.to_feature[:properties][:id]).to eq(geo_area.to_feature[:properties][:id])
+    end
+  end
+
   describe 'validations' do
     context 'geometry' do
       subject! { geo_area.validate }
