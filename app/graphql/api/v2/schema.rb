@@ -29,7 +29,7 @@ class API::V2::Schema < GraphQL::Schema
       object.is_a?(DeletedDossier) ? object.to_typed_id : GraphQL::Schema::UniqueWithinType.encode('DeletedDossier', object.id)
     elsif object.is_a?(Hash)
       object[:id]
-    elsif object.is_a?(Column)
+    elsif object.is_a?(Column) || object.is_a?(ChangedColumn)
       GraphQL::Schema::UniqueWithinType.encode('Column', object.h_id.fetch(:column_id))
     else
       object.to_typed_id

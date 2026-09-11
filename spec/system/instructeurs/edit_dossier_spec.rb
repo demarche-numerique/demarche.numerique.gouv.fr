@@ -70,7 +70,8 @@ describe 'Editing a dossier as an instructeur:', js: true do
       # the usager is notified through the messagerie, with the detailed change and the motivation
       commentaire_body = dossier.commentaires.last.body
       expect(commentaire_body).to include('a apporté les modifications suivantes')
-      expect(commentaire_body).to include('Valeur corrigée par l’instructeur')
+      expect(commentaire_body).to include('<dt>Texte :</dt>')
+      expect(commentaire_body).to include('<strong>Valeur corrigée par l’instructeur</strong>')
       expect(commentaire_body).to include('J’ai corrigé une coquille.')
     end
 
