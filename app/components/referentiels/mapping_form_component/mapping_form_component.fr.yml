@@ -11,3 +11,5 @@ fr:
   cancel: "Annuler"
   previous_step: "Étape précédente"
   next_step: "Étape suivante"
+  disabled_libelle_label: "Libellé du champ ou de l’annotation"
+  disabled_libelle_subtitle: "(à définir à l’étape suivante)"
