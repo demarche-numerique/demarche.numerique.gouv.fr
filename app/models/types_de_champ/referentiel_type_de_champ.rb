@@ -52,6 +52,12 @@ class TypesDeChamp::ReferentielTypeDeChamp < TypeDeChamp
     Hash(referentiel_mapping).with_indifferent_access
   end
 
+  # Le préfixe commun des chemins mappés : c'est là que la réponse doit porter une valeur
+  # pour que la référence compte comme trouvée. Sans mapping, la racine suffit.
+  def referentiel_mapping_result_path
+    JSONPathUtil.common_prefix(safe_referentiel_mapping.keys).presence || '$'
+  end
+
   def referentiel_mapping_prefillable
     safe_referentiel_mapping.filter { |_jsonpath, mapping_opts| mapping_opts[:prefill] == "1" }
   end

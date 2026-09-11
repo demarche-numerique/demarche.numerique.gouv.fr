@@ -130,6 +130,28 @@ describe JSONPathUtil do
       end
     end
   end
+  describe '.common_prefix' do
+    it 'keeps the segments shared by every path' do
+      expect(described_class.common_prefix(["$.records[0].id", "$.records[0].fields.Nom"])).to eq("$.records[0]")
+    end
+
+    it 'stops at the parent of sibling fields' do
+      expect(described_class.common_prefix(["$.records[0].fields.Nom", "$.records[0].fields.Type"])).to eq("$.records[0].fields")
+    end
+
+    it 'returns a single path unchanged' do
+      expect(described_class.common_prefix(["$.[0].nom"])).to eq("$.[0].nom")
+    end
+
+    it 'falls back to the root for unrelated paths' do
+      expect(described_class.common_prefix(["$.a.x", "$.b.y"])).to eq("$")
+    end
+
+    it 'returns nil without paths' do
+      expect(described_class.common_prefix([])).to be_nil
+    end
+  end
+
   describe '.extract_key_after_array' do
     it 'returns the string after the first bracket' do
       expect(JSONPathUtil.extract_key_after_array('foo[123].baz')).to eq('.baz')

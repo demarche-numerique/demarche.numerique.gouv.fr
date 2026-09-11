@@ -74,6 +74,17 @@ class JSONPathUtil
     end
   end
 
+  # Plus long préfixe commun de plusieurs chemins, segment par segment :
+  # "$.records[0].id" et "$.records[0].fields.Nom" donnent "$.records[0]".
+  def self.common_prefix(jsonpaths)
+    return nil if jsonpaths.blank?
+
+    segments = jsonpaths.map { it.split('.') }
+    segments.first
+      .take_while.with_index { |segment, index| segments.all? { it[index] == segment } }
+      .join('.')
+  end
+
   # navigation
   def self.extract_array_name(str)
     str[/^[^\[]+/]

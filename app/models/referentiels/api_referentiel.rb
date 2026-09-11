@@ -21,7 +21,10 @@ class Referentiels::APIReferentiel < Referentiel
   validates :url_tiptap, presence: true
   validate :validate_tiptap_test_data
 
-  store_accessor :autocomplete_configuration, :datasource, :json_template
+  # datasource et json_template servent l'autocomplétion ; result_path est son pendant en
+  # correspondance exacte : le chemin sous lequel la réponse doit porter une valeur pour
+  # que la référence compte comme trouvée. Il est dérivé du mapping à son enregistrement.
+  store_accessor :autocomplete_configuration, :datasource, :json_template, :result_path
   before_save :name_as_uuid
   before_save :resets_tiptap_template
 

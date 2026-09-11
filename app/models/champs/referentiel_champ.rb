@@ -2,6 +2,7 @@
 
 class Champs::ReferentielChamp < ChampData
   delegate :referentiel,
+           :referentiel_mapping_result_path,
            :referentiel_mapping_displayable,
            :referentiel_mapping_prefillable_with_stable_id,
            to: :type_de_champ
@@ -15,13 +16,23 @@ class Champs::ReferentielChamp < ChampData
     # de répétition en cours de saisie n'existe pas encore sur le stream principal.
     dossier.with_champ_stream(self) do
       ReferentielService.new(referentiel:).call(external_id, dossier:, row_id:)
-    end.fmap do |data|
-      {
-        data:, # keep raw API response
-        value: external_id, # now that we have the data, we can set the value
-        value_json: cast_displayable_values(data.with_indifferent_access), # columnize the data
-      }
+    end.bind do |data|
+      data = indifferent(data)
+      if result_missing?(data)
+        Failure(retryable: false, error: StandardError.new("Not found: nothing at #{result_path}"), code: 404)
+      else
+        Success({
+          data:, # keep raw API response
+          value: external_id, # now that we have the data, we can set the value
+          value_json: cast_displayable_values(data), # columnize the data
+        })
+      end
     end
+  end
+
+  # Le chemin configuré sur le référentiel prime ; à défaut, celui que le mapping implique.
+  def result_path
+    referentiel.result_path.presence || referentiel_mapping_result_path
   end
 
   def update_external_data!(hash)
@@ -118,6 +129,23 @@ class Champs::ReferentielChamp < ChampData
     self.fetch_external_data_exceptions = []
   end
 
+  # Les API de liste (Grist, tabular-api, opendatasoft…) répondent 200 avec une collection
+  # vide quand rien ne correspond à la référence saisie : la réponse ne compte comme trouvée
+  # que si elle porte une valeur sous le chemin de résultat. false et 0 en sont une.
+  def result_missing?(data)
+    value = JSONPathUtil.on_safe(data, result_path).first
+    value.nil? || value == '' || value == [] || value == {}
+  end
+
+  # API::Client symbolise les clés ; JSONPathUtil ne sait normaliser que celles d'un Hash.
+  def indifferent(data)
+    case data
+    when Hash then data.with_indifferent_access
+    when Array then data.map { indifferent(it) }
+    else data
+    end
+  end
+
   def cast_display_value(type, value)
     case [type&.to_sym, value]
     in [:integer_number, v] if v.present?
@@ -140,7 +168,7 @@ class Champs::ReferentielChamp < ChampData
       ActiveModel::Type::Boolean.new.cast(v)
     in [:array, Array => arr] if ReferentielMappingUtils.array_of_supported_simple_types?(arr)
       Array(arr)
-    in [:string, v]
+    in [:string, v] if !v.nil?
       v.to_s
     else
       nil

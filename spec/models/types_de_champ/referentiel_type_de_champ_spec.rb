@@ -66,4 +66,24 @@ describe TypesDeChamp::ReferentielTypeDeChamp do
       expect(type_de_champ.referentiel_url_as_text).to eq("https://example.gouv.fr/?a={Un autre champ}&q={Valeur saisie par l'usager}")
     end
   end
+
+  describe "#referentiel_mapping_result_path" do
+    let(:type_de_champ) { build(:type_de_champ_referentiel, referentiel_mapping:) }
+
+    context "with a mapping" do
+      let(:referentiel_mapping) { { "$.records[0].id" => { type: "integer_number" }, "$.records[0].fields.Nom" => { type: "string" } } }
+
+      it "is the common prefix of the mapped paths" do
+        expect(type_de_champ.referentiel_mapping_result_path).to eq("$.records[0]")
+      end
+    end
+
+    context "without a mapping" do
+      let(:referentiel_mapping) { nil }
+
+      it "is the root" do
+        expect(type_de_champ.referentiel_mapping_result_path).to eq("$")
+      end
+    end
+  end
 end

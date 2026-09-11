@@ -5,7 +5,7 @@ module Administrateurs
     before_action :retrieve_procedure
     before_action :retrieve_type_de_champ
     before_action :retrieve_referentiel, except: [:new, :create, :validate_url]
-    before_action :ensure_exclusive_referentiel, only: [:update, :update_autocomplete_configuration]
+    before_action :ensure_exclusive_referentiel, only: [:update, :update_autocomplete_configuration, :update_mapping_type_de_champ, :update_prefill_and_display_type_de_champ, :reset_mapping]
     before_action :reachable_referentiel?, only: [:mapping_type_de_champ, :autocomplete_configuration]
     layout 'empty_layout'
 
@@ -64,7 +64,7 @@ module Administrateurs
     end
 
     def update_mapping_type_de_champ
-      if @type_de_champ.update(referentiel_mapping: @type_de_champ.safe_referentiel_mapping.deep_merge(referentiel_mapping_params))
+      if save_mapping(@type_de_champ.safe_referentiel_mapping.deep_merge(referentiel_mapping_params))
         redirect_to prefill_and_display_admin_procedure_referentiel_path(@procedure, @type_de_champ.stable_id, @referentiel), flash: { notice: "La configuration du mapping a bien été enregistrée" }
       else
         redirect_to mapping_type_de_champ_admin_procedure_referentiel_path(@procedure, @type_de_champ.stable_id, @referentiel), flash: { alert: "Une erreur est survenue" }
@@ -72,7 +72,7 @@ module Administrateurs
     end
 
     def update_prefill_and_display_type_de_champ
-      if @type_de_champ.update(referentiel_mapping: @type_de_champ.safe_referentiel_mapping.deep_merge(referentiel_mapping_params))
+      if save_mapping(@type_de_champ.safe_referentiel_mapping.deep_merge(referentiel_mapping_params))
         if @type_de_champ.public?
           redirect_to champs_admin_procedure_path(@procedure), flash: { notice: "La configuration du pré remplissage des champs et/ou affichage des données récupérées a bien été enregistrée" }
         else
@@ -88,14 +88,19 @@ module Administrateurs
       raise ActionController::BadRequest unless RESET_MAPPING_KEYS.key?(scope)
 
       if scope == 'all'
-        @type_de_champ.update!(referentiel_mapping: {})
+        save_mapping({})
       else
-        cleaned = @type_de_champ.safe_referentiel_mapping.transform_values { it.except(*RESET_MAPPING_KEYS[scope]) }
-        @type_de_champ.update!(referentiel_mapping: cleaned)
+        save_mapping(@type_de_champ.safe_referentiel_mapping.transform_values { it.except(*RESET_MAPPING_KEYS[scope]) })
       end
 
-      redirect_back_or_to mapping_type_de_champ_admin_procedure_referentiel_path(@procedure, @type_de_champ.stable_id, @referentiel),
-                         flash: { notice: "La configuration a bien été réinitialisée" }
+      # Pas de redirect_back : le referrer porte l'id d'avant duplication du référentiel.
+      # Le bouton « all » est sur la page du mapping, « display » et « prefill » sur celle du pré-remplissage.
+      back_path = if scope == 'all'
+        mapping_type_de_champ_admin_procedure_referentiel_path(@procedure, @type_de_champ.stable_id, @referentiel)
+      else
+        prefill_and_display_admin_procedure_referentiel_path(@procedure, @type_de_champ.stable_id, @referentiel)
+      end
+      redirect_to back_path, flash: { notice: "La configuration a bien été réinitialisée" }
     end
 
     private
@@ -105,6 +110,15 @@ module Administrateurs
       'display' => [:display_instructeur, :display_usager],
       'prefill' => [:prefill, :prefill_stable_id],
     }.freeze
+
+    # Le chemin de résultat suit le mapping : on le resynchronise à chaque enregistrement,
+    # sans revalider un référentiel dont l'URL n'a pas bougé.
+    def save_mapping(referentiel_mapping)
+      return false if !@type_de_champ.update(referentiel_mapping:)
+
+      @referentiel.result_path = @type_de_champ.referentiel_mapping_result_path
+      @referentiel.save(validate: false)
+    end
 
     def reachable_referentiel?
       if !ReferentielService.new(referentiel: @referentiel).validate_referentiel

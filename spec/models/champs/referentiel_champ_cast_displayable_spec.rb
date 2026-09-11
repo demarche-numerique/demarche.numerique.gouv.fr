@@ -36,6 +36,26 @@ describe Champs::ReferentielChamp, type: :model do
       it 'casts and stores displayable string value for usager' do
         expect(subject["$.string"]).to eq("abc")
       end
+
+      context 'when the response does not carry the value' do
+        let(:public_type_de_champs) do
+          [
+            {
+              type: :referentiel,
+              referentiel: referentiel,
+              referentiel_mapping: {
+                "$.string" => { type: types[:string], display_usager: "1" },
+                "$.other" => { type: types[:string], display_usager: "1" },
+              },
+            },
+          ]
+        end
+        let(:data) { { other: "abc" } }
+
+        it 'leaves the value out rather than storing an empty string' do
+          expect(subject).not_to have_key("$.string")
+        end
+      end
     end
 
     context 'when displayable mapping is configured for float' do

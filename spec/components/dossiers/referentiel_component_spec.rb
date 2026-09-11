@@ -7,6 +7,7 @@ RSpec.describe Dossiers::ReferentielComponent, type: :component do
   let(:champ) { dossier.root_champs_public.first }
 
   let(:pending) { false }
+  let(:fetched) { false }
   let(:not_found) { false }
   let(:value_json) { nil }
   let(:external_error) { false }
@@ -17,6 +18,7 @@ RSpec.describe Dossiers::ReferentielComponent, type: :component do
 
   before do
     allow(champ).to receive(:pending?).and_return(pending)
+    allow(champ).to receive(:fetched?).and_return(fetched)
     allow(champ).to receive(:value_json).and_return(value_json)
     allow(champ).to receive(:external_data_not_found?).and_return(not_found)
     allow(champ).to receive(:external_error?).and_return(external_error)
@@ -65,6 +67,17 @@ RSpec.describe Dossiers::ReferentielComponent, type: :component do
     it 'renders ExternalChampComponent with the identifier' do
       expect(Dossiers::ExternalChampComponent).to have_received(:new) do |data:, **|
         expect(data).to include(['Identifiant', 'Mon référentiel'])
+      end
+    end
+  end
+
+  context 'when the champ is fetched but none of the displayed values came back (exact_match)' do
+    let(:fetched) { true }
+    let(:value_json) { {} }
+
+    it 'still renders ExternalChampComponent with the identifier' do
+      expect(Dossiers::ExternalChampComponent).to have_received(:new) do |data:, **|
+        expect(data).to include(['Identifiant', 'ABC123'])
       end
     end
   end
