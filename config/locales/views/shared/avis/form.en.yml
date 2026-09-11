@@ -1,0 +1,14 @@
+en:
+  shared:
+    avis:
+      form:
+        ask_for_external_opinion: "Request an external opinion"
+        expert_notice: "Experts will be able to review the file, give their opinion, and contribute to the message thread. They will not be able to modify the file."
+        default_introduction: "Hello, thank you for giving your opinion on this file."
+        avis_will_be: "This opinion will be"
+        confidentiel_notice: "This opinion will be confidential: it will not be displayed to other consulted experts, but will be visible to instructeurs."
+        shared_with_other_experts: "shared with other experts"
+        confidentiel_label: "confidential"
+        confidentiel_hint: "It will not be displayed to other consulted experts, but will be visible to instructeurs."
+        cancel: "Cancel"
+        submit_avis_request: "Submit the opinion request"

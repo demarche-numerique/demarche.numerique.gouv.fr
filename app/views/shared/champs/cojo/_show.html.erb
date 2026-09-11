@@ -1,0 +1,17 @@
+<%= champ.to_s %>
+
+<% if profile == 'instructeur' -%>
+  <dl>
+    <dt><%= t(".accreditation_name") %></dt>
+
+    <dd>
+      <%= "#{champ.accreditation_last_name} #{champ.accreditation_first_name}" %>
+    </dd>
+
+    <dt><%= t(".dossier_name") %></dt>
+
+    <dd>
+      <%= "#{champ.dossier.individual.nom} #{champ.dossier.individual.prenom}" %>
+    </dd>
+  </dl>
+<% end -%>

@@ -1,0 +1,63 @@
+<div class="fr-table fr-table--bordered fr-my-4w">
+  <div class="fr-table__wrapper">
+    <div class="fr-table__container">
+      <div class="fr-table__content">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col"></th>
+
+              <th scope="col" class="fr-cell--right">
+                <%= t(".nombre_dossiers_termines") %>
+              </th>
+
+              <th scope="col" class="fr-cell--right">
+                <%= t(".poids_estime") %>
+              </th>
+
+              <th scope="col"><%= t(".telecharger") %></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <%- count_dossiers_termines_by_month.each do |date, count| -%>
+              <%- matching_archive = archives.find { |archive| archive.time_span_type == 'monthly' && archive.month == date } -%>
+              <%- weight = estimate_weight(matching_archive, count, average_dossier_weight) -%>
+
+              <tr>
+                <td>
+                  <%= I18n.l(date.to_date, format: :month_year).capitalize %>
+                </td>
+
+                <td class="fr-cell--right fr-cell--numeric">
+                  <%= count %>
+                </td>
+
+                <td class="fr-cell--right">
+                  <%= number_to_human_size(weight) %>
+                </td>
+
+                <td>
+                  <%- if matching_archive.present? -%>
+                    <%- if matching_archive.available? -%>
+                      <%= link_to url_for(matching_archive.file), class: 'fr-btn fr-btn--secondary fr-icon-download-line fr-btn--icon-left fr-btn--sm' do %>
+                        <%= t(:archive_ready_html, scope: [:instructeurs, :procedure], generated_period: time_ago_in_words(matching_archive.updated_at)) %>
+                      <% end %>
+                    <%- else -%>
+                      <%= dsfr_icon("fr-icon-flashlight-line", :sm) %>
+                      <%= t(:archive_pending_html, scope: [:instructeurs, :procedure], created_period: time_ago_in_words(matching_archive.created_at)) %>
+                    <%- end -%>
+                  <%- elsif weight.nil? || weight < Archive::MAX_SIZE -%>
+                    <%= link_to t(".demander_la_creation"), create_archive_url(procedure, date), method: :post, class: "fr-btn fr-btn--secondary fr-icon-download-line fr-btn--icon-left fr-btn--sm" %>
+                  <%- else -%>
+                    <%= t(".archive_trop_volumineuse") %>
+                  <%- end -%>
+                </td>
+              </tr>
+            <%- end -%>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

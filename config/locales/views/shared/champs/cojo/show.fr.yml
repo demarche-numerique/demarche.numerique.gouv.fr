@@ -1,0 +1,7 @@
+fr:
+  shared:
+    champs:
+      cojo:
+        show:
+          accreditation_name: "Nom et prénom dans la base d’accréditation :"
+          dossier_name: "Nom et prénom saisi dans le dossier :"

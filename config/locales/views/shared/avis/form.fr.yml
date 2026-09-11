@@ -1,0 +1,14 @@
+fr:
+  shared:
+    avis:
+      form:
+        ask_for_external_opinion: "Demander un avis externe"
+        expert_notice: "Les experts pourront consulter le dossier, donner un avis et contribuer au fil de messagerie. Ils ne pourront pas modifier le dossier."
+        default_introduction: "Bonjour, merci de me donner votre avis sur ce dossier."
+        avis_will_be: "Cet avis sera"
+        confidentiel_notice: "Cet avis sera confidentiel : il ne sera pas affiché aux autres experts consultés, mais sera visible par les instructeurs."
+        shared_with_other_experts: "partagé avec les autres experts"
+        confidentiel_label: "confidentiel"
+        confidentiel_hint: "Il ne sera pas affiché aux autres experts consultés, mais sera visible par les instructeurs."
+        cancel: "Annuler"
+        submit_avis_request: "Envoyer la demande d’avis"
