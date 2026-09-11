@@ -1,0 +1,34 @@
+<ul class="flex wrap notification-dossiers">
+  <% visible_dossiers.each do |dossier| %>
+    <li class="flex align-start notification-dossier">
+      <% if linked? %>
+        <%= link_to dossier.id, instructeur_dossier_path(procedure_id, dossier.id), class: "notification-dossier-contenu fr-link" %>
+      <% else %>
+        <span class="notification-dossier-contenu"><%= dossier.id %></span>
+      <% end %>
+
+      <span class="notification-dossier-contenu fr-ml-1w">
+        <%= dossier.owner_name %>
+      </span>
+    </li>
+  <% end %>
+
+  <% if truncated? %>
+    <li class="flex align-start notification-indicator">
+      <span class="notification-dossier-contenu fr-mr-1w" aria-hidden="true">
+        …
+      </span>
+
+      <span
+        class="notification-dossier-contenu fr-text--bold"
+        aria-hidden="true"
+      >
+        <%= t('.more', count: hidden_count) %>
+      </span>
+
+      <span class="fr-sr-only">
+        <%= t('.more_a11y', count: hidden_count) %>
+      </span>
+    </li>
+  <% end %>
+</ul>

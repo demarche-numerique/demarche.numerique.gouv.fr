@@ -27,3 +27,40 @@ span.notifications {
     right: -0.25rem;
   }
 }
+
+// Notifications details
+.notification-dossiers {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.notification-dossier,
+.notification-indicator {
+  margin-top: 0.25rem;
+  padding: 0;
+}
+
+.notification-dossier + .notification-dossier::before {
+  content: '';
+  flex-shrink: 0;
+  margin: 0.25rem 1rem 0;
+  width: 1px;
+  height: 0.875rem;
+  background-color: var(--text-default-grey);
+
+  // Below the DSFR sm breakpoint the list stacks, one dossier per line.
+  @media (max-width: 35.99em) {
+    display: none;
+  }
+}
+
+.notification-dossier-contenu {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  word-break: break-word;
+}
+
+.notification-dossier-contenu.fr-link {
+  word-break: keep-all;
+}

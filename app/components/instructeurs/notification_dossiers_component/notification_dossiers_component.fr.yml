@@ -1,0 +1,6 @@
+---
+  fr:
+    more: (+ %{count})
+    more_a11y:
+      one: et un autre dossier
+      other: et %{count} autres dossiers
