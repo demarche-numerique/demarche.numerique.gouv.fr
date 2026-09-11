@@ -93,6 +93,73 @@ describe Champs::ReferentielChamp, type: :model do
     end
   end
 
+  describe '#update_external_data! when the referentiel champ is inside a repetition' do
+    let(:mapping) { { "$.societes[0].nom" => { prefill: "1", prefill_stable_id: prefilled_stable_id } } }
+    let(:own_row_id) { dossier.repetition_add_row(dossier.find_type_de_champ_by_stable_id(100), updated_by: 'test') }
+    let(:champ_in_row) { dossier.champ_for_update(dossier.find_type_de_champ_by_stable_id(101), row_id: own_row_id, updated_by: 'test') }
+
+    before { champ_in_row }
+
+    subject(:prefilled) do
+      champ_in_row.update_external_data!(data: { societes: [{ nom: 'ACME' }] })
+      Dossier.find(dossier.id).champ_data.find { it.stable_id == prefilled_stable_id }
+    end
+
+    def row_ids_of(stable_id)
+      reloaded = Dossier.find(dossier.id)
+      reloaded.repetition_row_ids(reloaded.find_type_de_champ_by_stable_id(stable_id))
+    end
+
+    context 'when the prefill targets its own repetition' do
+      let(:prefilled_stable_id) { 102 }
+      let(:public_type_de_champs) do
+        [
+          {
+            type: :repetition, stable_id: 100, children: [
+              { type: :referentiel, stable_id: 101, referentiel:, referentiel_mapping: mapping },
+              { type: :text, stable_id: 102 },
+            ],
+          },
+        ]
+      end
+
+      it 'keeps the data on its own row, without adding one' do
+        rows_before = row_ids_of(100)
+
+        expect(prefilled.value).to eq('ACME')
+        expect(prefilled.row_id).to eq(own_row_id)
+        expect(row_ids_of(100)).to eq(rows_before)
+      end
+    end
+
+    # Réutiliser son propre row_id écrirait une ligne de sa répétition dans une autre :
+    # aucun marqueur de ligne ne la porterait, la donnée serait persistée mais invisible.
+    context 'when a public prefill targets a private repetition' do
+      let(:prefilled_stable_id) { 201 }
+      let(:public_type_de_champs) do
+        [
+          {
+            type: :repetition, stable_id: 100, children: [
+              { type: :referentiel, stable_id: 101, referentiel:, referentiel_mapping: mapping },
+            ],
+          },
+        ]
+      end
+      let(:private_type_de_champs) do
+        [{ type: :repetition, stable_id: 200, children: [{ type: :text, stable_id: 201 }] }]
+      end
+      let(:procedure) { create(:procedure, public_type_de_champs:, private_type_de_champs:) }
+
+      it 'adds a row to the targeted repetition rather than reusing its own row_id' do
+        rows_before = row_ids_of(200)
+
+        expect(prefilled.value).to eq('ACME')
+        expect(prefilled.row_id).not_to eq(own_row_id)
+        expect(row_ids_of(200) - rows_before).to eq([prefilled.row_id])
+      end
+    end
+  end
+
   describe '#fetch_external_data' do
     subject { referentiel_champ.update_external_data!(data:) }
 

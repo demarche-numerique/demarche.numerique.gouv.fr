@@ -191,10 +191,12 @@ class Champs::ReferentielChamp < ChampData
   end
 
   def determine_row_id(repetition_type_de_champ)
-    # When referentiel champ is inside a repetition, use current row_id to keep related data together.
-    # When outside, create new rows for each array element from external data.
-    # Note: Limited to updating current row only when inside repetition.
-    if type_de_champ.child?(dossier.revision)
+    # When the referentiel champ belongs to the very repetition being prefilled, keep the data
+    # on its own row. Note: limited to updating that row only.
+    # Otherwise (root champ, or a champ of another repetition), create a new row for each array
+    # element: reusing our own row_id would write a row of our repetition into another one, where
+    # no row marker carries it — the data would be persisted but invisible to the whole app.
+    if dossier.revision.parent_of(type_de_champ) == repetition_type_de_champ
       self.row_id
     else
       dossier.repetition_add_row(repetition_type_de_champ, updated_by:)
