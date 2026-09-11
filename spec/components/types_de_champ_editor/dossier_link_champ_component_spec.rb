@@ -24,11 +24,11 @@ describe TypesDeChampEditor::DossierLinkChampComponent, type: :component do
         props = subject.react_props
 
         expect(props[:id]).to eq("procedures_type_de_champ")
-        expect(props[:label]).to eq("Sélectionnez la ou les démarches concernées")
+        expect(props[:label]).to eq(t(".label"))
         expect(props[:selected_keys]).to eq([])
-        expect(props[:'aria-label']).to eq("Liste des démarches")
+        expect(props[:'aria-label']).to eq(t(".aria_label"))
         expect(props[:value_separator]).to be(false)
-        expect(props[:sections].map { it[:label] }).to contain_exactly('Démarches publiées', 'Démarches en test', 'Démarches closes/dépubliées')
+        expect(props[:sections].map { it[:label] }).to contain_exactly(t(".published_procedures"), t(".test_procedures"), t(".closed_procedures"))
       end
     end
 
@@ -37,9 +37,9 @@ describe TypesDeChampEditor::DossierLinkChampComponent, type: :component do
         sections = subject.sections
         sections_by_label = sections.index_by { it[:label] }
 
-        expect(sections_by_label['Démarches publiées'][:items].size).to eq(1)
-        expect(sections_by_label['Démarches en test'][:items].size).to eq(1)
-        expect(sections_by_label['Démarches closes/dépubliées'][:items].size).to eq(2)
+        expect(sections_by_label[t(".published_procedures")][:items].size).to eq(1)
+        expect(sections_by_label[t(".test_procedures")][:items].size).to eq(1)
+        expect(sections_by_label[t(".closed_procedures")][:items].size).to eq(2)
       end
     end
 
