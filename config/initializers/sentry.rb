@@ -28,6 +28,9 @@ Sentry.init do |config|
 
   config.excluded_exceptions += ['APIEntreprise::Job::ProviderDownError']
 
+  # Lambda so the app constant is resolved at send time, not at boot.
+  config.before_send = -> (event, hint) { SentryFingerprint.call(event, hint) }
+
   # Note: sentry-ruby's :graphql patch is intentionally NOT enabled here.
   # It attaches GraphQL::Tracing::SentryTrace which wraps every field resolution
   # with a span + clock_gettime calls. On large API V2 responses (tens of
