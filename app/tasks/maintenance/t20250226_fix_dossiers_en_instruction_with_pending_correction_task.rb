@@ -36,7 +36,7 @@ module Maintenance
       end
     rescue => e
       Rails.logger.error("Failed to process dossier #{dossier.id}: #{e.message}")
-      Sentry.capture_exception(e, dossier: dossier.id)
+      Sentry.capture_exception(e, tags: { dossier: dossier.id })
     end
   end
 end

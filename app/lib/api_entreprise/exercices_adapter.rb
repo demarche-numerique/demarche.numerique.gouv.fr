@@ -12,23 +12,20 @@ class APIEntreprise::ExercicesAdapter < APIEntreprise::Adapter
 
   def process_params
     data = data_source[:data]
-    Sentry.with_scope do |scope|
-      scope.set_tags(siret: @siret)
-      scope.set_extras(source: data)
+    Sentry.set_tags(siret: @siret)
 
-      if data
-        exercices_array = data.map do |exercice|
-          {
-            ca: exercice[:data][:chiffre_affaires].to_s,
-            date_fin_exercice: Date.parse(exercice[:data][:date_fin_exercice]),
-          }
-        end
+    if data
+      exercices_array = data.map do |exercice|
+        {
+          ca: exercice[:data][:chiffre_affaires].to_s,
+          date_fin_exercice: Date.parse(exercice[:data][:date_fin_exercice]),
+        }
+      end
 
-        if exercices_array.all? { |params| valid_params?(params) }
-          { exercices_attributes: exercices_array }
-        else
-          {}
-        end
+      if exercices_array.all? { |params| valid_params?(params) }
+        { exercices_attributes: exercices_array }
+      else
+        {}
       end
     end
   end

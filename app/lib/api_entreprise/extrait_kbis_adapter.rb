@@ -14,14 +14,12 @@ class APIEntreprise::ExtraitKbisAdapter < APIEntreprise::Adapter
     result = {}
     data = data_source[:data]
 
-    Sentry.with_scope do |scope|
-      scope.set_tags(siret: @siret)
-      scope.set_extras(source: data)
-      if data
-        result[:entreprise_capital_social] = data[:capital][:montant] if data[:capital]
-        result[:entreprise_nom_commercial] = data[:nom_commercial]
-      end
-      result
+    Sentry.set_tags(siret: @siret)
+
+    if data
+      result[:entreprise_capital_social] = data[:capital][:montant] if data[:capital]
+      result[:entreprise_nom_commercial] = data[:nom_commercial]
     end
+    result
   end
 end

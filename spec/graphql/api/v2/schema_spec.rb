@@ -81,6 +81,24 @@ RSpec.describe API::V2::Schema do
       expect(subject['errors'].map { _1['message'] }.join).to match(/provided invalid value/)
     end
   end
+
+  # Logs and Sentry reports carry the query text and its variables, which are not
+  # request parameters: nothing upstream filters them.
+  describe '#query_info' do
+    subject do
+      described_class.execute(
+        query: 'query getDemarche($demarcheNumber: Int!, $token: String) { demarche(number: $demarcheNumber) { id, token } }',
+        variables: { 'demarcheNumber' => 1, 'token' => 'secret' },
+        context: { internal_use: false }
+      ).context.query_info
+    end
+
+    it 'applies the Rails parameter filter to the query text and the variables' do
+      expect(subject[:graphql_query]).to end_with('{ id, [FILTERED] } }')
+      expect(subject[:graphql_variables]).to eq({ 'demarcheNumber' => 1, 'token' => '[FILTERED]' }.to_json)
+      expect(subject[:graphql_operation_name]).to eq('getDemarche')
+    end
+  end
 end
 
 RSpec.describe API::V2::Schema::Timeout do
@@ -97,21 +115,6 @@ RSpec.describe API::V2::Schema::Timeout do
     # interactive ceiling only truncated it.
     it 'gives internal serializer queries a batch-sized budget' do
       expect(timeout_instance.max_seconds(query_with(internal_use: true))).to be > 30
-    end
-  end
-
-  describe '#filter_sensitive_query_string' do
-    let(:timeout_instance) { described_class.new(max_seconds: 30) }
-
-    before do
-      Rails.application.config.filter_parameters += [:token] unless Rails.application.config.filter_parameters.include?(:token)
-    end
-
-    it 'filters sensitive patterns from the query string' do
-      query_string = 'query getDemarche($demarcheNumber: Int!) { demarche(number: $demarcheNumber) { id, token } }'
-      result = timeout_instance.send(:filter_sensitive_query_string, query_string.dup)
-
-      expect(result).to eq('query getDemarche($demarcheNumber: Int!) { demarche(number: $demarcheNumber) { id, [FILTERED] } }')
     end
   end
 end

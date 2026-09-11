@@ -12,18 +12,15 @@ class APIEntreprise::EtablissementAdapter < APIEntreprise::Adapter
 
   def process_params
     raw_data = data_source[:data]
-    Sentry.with_scope do |scope|
-      scope.set_tags(siret: @siret)
-      scope.set_extras(source: raw_data)
+    Sentry.set_tags(siret: @siret)
 
-      etablissement_params = extract_etablissement_params(raw_data)
-      return {} unless valid_params?(etablissement_params)
+    etablissement_params = extract_etablissement_params(raw_data)
+    return {} unless valid_params?(etablissement_params)
 
-      enterprise_params = extract_enterprise_params(raw_data[:unite_legale])
-      enterprise_params = {} unless valid_params?(enterprise_params)
+    enterprise_params = extract_enterprise_params(raw_data[:unite_legale])
+    enterprise_params = {} unless valid_params?(enterprise_params)
 
-      etablissement_params.merge(enterprise_params)
-    end
+    etablissement_params.merge(enterprise_params)
   end
 
   def extract_etablissement_params(raw_data)
