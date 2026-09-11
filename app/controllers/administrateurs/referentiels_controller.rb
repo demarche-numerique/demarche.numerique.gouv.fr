@@ -5,6 +5,7 @@ module Administrateurs
     before_action :retrieve_procedure
     before_action :retrieve_type_de_champ
     before_action :retrieve_referentiel, except: [:new, :create, :validate_url]
+    before_action :ensure_exclusive_referentiel, only: [:update, :update_autocomplete_configuration]
     before_action :reachable_referentiel?, only: [:mapping_type_de_champ, :autocomplete_configuration]
     layout 'empty_layout'
 
@@ -177,9 +178,18 @@ module Administrateurs
       @type_de_champ = @procedure.draft_revision.find_and_ensure_exclusive_use(params[:stable_id])
     end
 
+    # L'id de l'URL doit être celui du référentiel courant du champ. Après une duplication
+    # (ensure_exclusive_referentiel), une requête encore en vol qui porte l'ancien id
+    # obtient un 404 plutôt que d'écrire sur le référentiel de la révision publiée.
     def retrieve_referentiel
       @referentiel = @type_de_champ.referentiel
       raise ActiveRecord::RecordNotFound if @referentiel.nil? || @referentiel.id != params[:id].to_i
+    end
+
+    # Le champ du brouillon est déjà exclusif (retrieve_type_de_champ) ; son référentiel
+    # doit l'être aussi avant d'être modifié, sinon la révision publiée le verrait changer.
+    def ensure_exclusive_referentiel
+      @referentiel = @type_de_champ.ensure_exclusive_referentiel!
     end
 
     def build_or_clone_by_id_params

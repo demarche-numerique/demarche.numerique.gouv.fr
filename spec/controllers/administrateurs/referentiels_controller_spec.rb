@@ -367,6 +367,44 @@ describe Administrateurs::ReferentielsController, type: :controller do
     end
   end
 
+  describe 'writing to a referentiel shared with the published revision' do
+    let(:procedure) { create(:procedure, :published, public_type_de_champs:) }
+    let(:published_type_de_champ) { procedure.published_revision.type_de_champs.find { it.stable_id == stable_id } }
+    let!(:referentiel) { create(:api_referentiel, :exact_match, hint: 'avant', type_de_champs: [published_type_de_champ]) }
+    let(:draft_type_de_champ) { procedure.draft_revision.type_de_champs.find { it.stable_id == stable_id } }
+
+    describe '#update' do
+      subject do
+        patch :update, params: { procedure_id: procedure.id, stable_id:, id: referentiel.id, referentiel: { hint: 'après' } }, format: :turbo_stream
+      end
+
+      it 'applies the change to a copy and leaves the published revision on the original' do
+        expect { subject }.to change { Referentiel.count }.by(1)
+
+        expect(referentiel.reload.hint).to eq('avant')
+        expect(published_type_de_champ.reload.referentiel).to eq(referentiel)
+        expect(draft_type_de_champ.referentiel).not_to eq(referentiel)
+        expect(draft_type_de_champ.referentiel.hint).to eq('après')
+      end
+    end
+
+    describe '#update_autocomplete_configuration' do
+      let!(:referentiel) { create(:api_referentiel, :autocomplete, :with_autocomplete_response, type_de_champs: [published_type_de_champ]) }
+
+      subject do
+        patch :update_autocomplete_configuration, params: { procedure_id: procedure.id, stable_id:, id: referentiel.id, commit: 'Étape suivante', referentiel: { datasource: '$.', tiptap_template: '{}' } }
+      end
+
+      it 'applies the change to a copy and redirects to the mapping of that copy' do
+        expect { subject }.to change { Referentiel.count }.by(1)
+
+        expect(referentiel.reload.datasource).to be_nil
+        expect(draft_type_de_champ.referentiel.datasource).to eq('$.')
+        expect(response).to redirect_to(mapping_type_de_champ_admin_procedure_referentiel_path(procedure, stable_id, draft_type_de_champ.referentiel))
+      end
+    end
+  end
+
   describe "#edit" do
     let(:type_de_champ) { procedure.draft_revision.type_de_champs.first }
     let(:referentiel) { create(:api_referentiel, :exact_match, type_de_champs: [type_de_champ]) }

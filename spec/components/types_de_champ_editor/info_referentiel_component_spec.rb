@@ -36,8 +36,8 @@ describe TypesDeChampEditor::InfoReferentielComponent, type: :component do
       context "having referentiel" do
         let(:referentiel) { create(:api_referentiel, :exact_match, type_de_champs: [type_de_champ]) }
 
-        it "does not allow to edit existing referentiel" do
-          expect(page).to have_link("Configurer le champ", href: Rails.application.routes.url_helpers.new_admin_procedure_referentiel_path(procedure, type_de_champ.stable_id, referentiel_id: referentiel.id))
+        it "links to the referentiel, which the controller duplicates on write" do
+          expect(page).to have_link("Configurer le champ", href: Rails.application.routes.url_helpers.edit_admin_procedure_referentiel_path(procedure, type_de_champ.stable_id, referentiel.id))
         end
       end
 
