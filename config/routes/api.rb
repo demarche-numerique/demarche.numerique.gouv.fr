@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 get 'graphql/schema' => redirect('/graphql/schema/index.html')
+# Le playground servi ici a été retiré : on oriente vers la doc expliquant comment interroger l'API avec un client GraphQL.
+get 'graphql' => redirect(API_GRAPHQL_CLIENT_DOC_URL, status: 302)
 
 namespace :api do
   namespace :v1 do
