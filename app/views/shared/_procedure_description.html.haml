@@ -9,7 +9,7 @@
   - if procedure.persisted? && procedure.estimated_duration_visible?
     %p.fr-text--sm
       %span.fr-icon-timer-line{ "aria-hidden" => "true" }
-      = t('shared.procedure_description.estimated_fill_duration', estimated_minutes: estimated_fill_duration_minutes(procedure))
+      = t('shared.procedure_description.estimated_fill_duration', estimated_minutes: estimated_fill_minutes_text(procedure.active_revision))
 
   - if procedure.auto_archive_on
     %p.fr-text--sm

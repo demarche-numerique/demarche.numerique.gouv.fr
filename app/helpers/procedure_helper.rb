@@ -43,10 +43,15 @@ module ProcedureHelper
     uri.to_s
   end
 
-  def estimated_fill_duration_minutes(procedure)
-    seconds = procedure.active_revision.estimated_fill_duration
-    minutes = (seconds / 60.0).round
-    [1, minutes].max
+  # "3", or "3 à 7" when the conditions make the form shorter or longer.
+  def estimated_fill_minutes_text(revision)
+    minutes = revision.estimated_fill_duration_minutes
+
+    if minutes.size == 1
+      minutes.begin.to_s
+    else
+      t('helpers.estimated_fill_duration.range', min: minutes.begin, max: minutes.end)
+    end
   end
 
   def admin_procedures_back_path(procedure)

@@ -6,7 +6,7 @@
           Logique conditionnelle
           = logic_conditionnel_button
 
-      = render Conditions::ConditionsErrorsComponent.new(conditions: condition_per_row, source_tdcs: @source_tdcs)
+      = render Conditions::ConditionsErrorsComponent.new(condition: @condition, source_tdcs: @source_tdcs)
 
       - if @condition.present?
         %table.condition-table.fr-mt-4v
