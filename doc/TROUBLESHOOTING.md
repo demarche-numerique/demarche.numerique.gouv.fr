@@ -72,6 +72,13 @@ Rails probably thinks the connection is made over HTTP, and redirects to the HTT
 - Check the Sidekiq queues (in `Manager > Sidekiq`), some of them may be clogged.
 - Manually purge the queues, or restart the dn-sidekiq service (`systemctl restart dn-sidekiq`).
 
+### Thumbnails, previews or watermarks are not generated
+
+- On an instance running with `BWRAP_ISOLATION`, ensure the `libvips-tools` package is installed: the isolated path shells out to `vips`, `vipsheader` and `vipsthumbnail`, and it is only a *recommends* of `libvips-dev`.
+- Variants look slightly softer than before: `vipsthumbnail` does not sharpen after resizing, where the in-process path did. Only edges of text show it, and only where a variant was built under `BWRAP_ISOLATION`; it is a known trade-off, not a fault.
+- `too large to decode`: the file's header announces more than 512 MB once decoded, and it is refused on purpose — no thumbnail will ever come, and nothing is reported, since retrying could not help. One exception is reported to Sentry, without retries: a document that was to be watermarked, which stays pending — hidden from its owner — with nothing left to re-run it.
+- Look for `SandboxedCommand::WrapperFailed` in Sentry: bubblewrap failed on this particular call (a bind it could not make), where it worked at boot.
+
 ### Exports and archives are not generated
 
 - Check the failed Sidekiq job that generates archives for an error message.

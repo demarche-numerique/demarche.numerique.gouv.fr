@@ -88,9 +88,9 @@ The web application and the asynchronous jobs require some binary dependencies.
     > rather than decode user-supplied files with them.
 
     > [!TIP]
-    > To run libvips in a throwaway namespace rather than in the worker holding the
-    > database connection and the storage credentials, install `bubblewrap` and
-    > `libvips-tools` as well, and set
+    > To run the image decoders — libvips, pdftoppm, ffmpeg — in a throwaway namespace
+    > rather than in the worker holding the database connection and the storage
+    > credentials, install `bubblewrap` and `libvips-tools` as well, and set
     > `BWRAP_ISOLATION=enabled`. Note that `libvips-tools` is only a *recommends* of
     > `libvips-dev`, so `--no-install-recommends` leaves it out, and the isolated path
     > needs its `vips`, `vipsheader` and `vipsthumbnail` binaries. `bwrap` has to be
@@ -101,7 +101,11 @@ The web application and the asynchronous jobs require some binary dependencies.
     > unprotected while being told to isolate. An older `bwrap` reads
     > `the sandbox will not start: bwrap: Unknown option --disable-userns`.
     >
-    > Set the variable on the hosts that run Sidekiq: uploads are mutated there, in a job.
+    > Set the variable on the hosts that run Sidekiq: every upload is decoded there, in a
+    > job. The web processes decode too — a variant a page asks for before the job has
+    > produced it — and would need the same packages to boot with the variable; left
+    > without it, they decode as they always have, in-process, under the loader allow
+    > list, and a failure there is a plain error page rather than a retried job.
     >
     > On Ubuntu 24.04 the package alone is not enough: AppArmor restricts the
     > unprivileged user namespaces bubblewrap builds its sandbox out of. Grant them to
