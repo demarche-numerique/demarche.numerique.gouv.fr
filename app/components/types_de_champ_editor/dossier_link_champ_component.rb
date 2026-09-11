@@ -9,11 +9,11 @@ class TypesDeChampEditor::DossierLinkChampComponent < TypesDeChampEditor::BaseCh
   def react_props
     {
       id: dom_id(@type_de_champ, :procedures),
-      label: "Sélectionnez la ou les démarches concernées",
+      label: t(".label"),
       sections:,
       name: @form.field_name(:dossier_link_procedure_ids, multiple: true),
       selected_keys: @type_de_champ.dossier_link_procedure_ids.map(&:to_s),
-      'aria-label': "Liste des démarches",
+      'aria-label': t(".aria_label"),
       # Les libellés de démarches contiennent des espaces (et parfois des `,`/`;`) ;
       # sans cela le séparateur par défaut `/\s|,|;/` empêche de saisir une espace dans la recherche.
       value_separator: false,
@@ -22,20 +22,25 @@ class TypesDeChampEditor::DossierLinkChampComponent < TypesDeChampEditor::BaseCh
 
   def sections
     groups = {
-      'Démarches publiées' => [],
-      'Démarches en test' => [],
-      'Démarches closes/dépubliées' => [],
+      published: [],
+      test: [],
+      closed: [],
     }
 
     @procedures.each do |procedure|
-      item = { label: "N°#{procedure.id} - #{procedure.libelle}", value: procedure.id.to_s }
+      item = { label: t(".item_label", id: procedure.id, libelle: procedure.libelle), value: procedure.id.to_s }
       case procedure.aasm_state
-      when "publiee" then groups['Démarches publiées'] << item
-      when "brouillon" then groups['Démarches en test'] << item
-      when "close", "depubliee" then groups['Démarches closes/dépubliées'] << item
+      when "publiee" then groups[:published] << item
+      when "brouillon" then groups[:test] << item
+      when "close", "depubliee" then groups[:closed] << item
       end
     end
 
-    groups.filter_map { |label, items| { label:, items: } if items.present? }
+    labels = {
+      published: t(".published_procedures"),
+      test: t(".test_procedures"),
+      closed: t(".closed_procedures"),
+    }
+    groups.filter_map { |key, items| { label: labels[key], items: } if items.present? }
   end
 end

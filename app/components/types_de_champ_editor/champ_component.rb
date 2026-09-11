@@ -48,7 +48,7 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
     {
       type: 'button',
       data: { action: 'type-de-champ-editor#onMoveButtonClick', type_de_champ_editor_direction_param: direction },
-      title: direction == :up ? 'Déplacer le champ vers le haut' : 'Déplacer le champ vers le bas',
+      title: direction == :up ? t(".move_up_title") : t(".move_down_title"),
     }
   end
 
@@ -143,9 +143,9 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
 
   def turbo_confirm
     if coordinate.prefilled_by_type_de_champ
-      "Vous avez configuré un pré remplissage de ce champ à partir des données du référentiel du champ « #{coordinate.prefilled_by_type_de_champ.libelle} ». Voulez-vous vraiment le supprimer ?"
+      t(".confirm_prefilled_removal", libelle: coordinate.prefilled_by_type_de_champ.libelle)
     else
-      'Êtes vous sûr de vouloir supprimer ce champ ?'
+      t(".confirm_removal")
     end
   end
 end

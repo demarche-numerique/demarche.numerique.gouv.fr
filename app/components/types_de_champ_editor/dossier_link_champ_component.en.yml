@@ -1,0 +1,7 @@
+en:
+  label: "Select the procedures concerned"
+  aria_label: "List of procedures"
+  published_procedures: "Published procedures"
+  test_procedures: "Procedures in test"
+  closed_procedures: "Closed/unpublished procedures"
+  item_label: "No. %{id} - %{libelle}"

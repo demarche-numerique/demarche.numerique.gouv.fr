@@ -7,7 +7,7 @@ class TypesDeChampEditor::SelectChampPositionComponent < ApplicationComponent
   end
 
   def options
-    [["Déplacer le champ après", @coordinate.stable_id]]
+    [[t(".move_after"), @coordinate.stable_id]]
   end
 
   def describedby_id

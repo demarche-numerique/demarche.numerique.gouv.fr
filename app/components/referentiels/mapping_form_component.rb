@@ -45,8 +45,8 @@ class Referentiels::MappingFormComponent < Referentiels::MappingFormBase
 
   def disabled_libelle_tag(jsonpath)
     safe_join([
-      tag.p("Libellé du champ ou de l’annotation"),
-      tag.p("(à définir à l’étape suivante)", class: 'fr-text--sm fr-text-action-high--blue-france'),
+      tag.p(t(".disabled_libelle_label")),
+      tag.p(t(".disabled_libelle_subtitle"), class: 'fr-text--sm fr-text-action-high--blue-france'),
     ])
   end
 

@@ -17,6 +17,9 @@ describe TypesDeChampEditor::DossierLinkChampComponent, type: :component do
 
     before do
       allow(form).to receive(:field_name).and_return("")
+      # `#t` (sidecar translations) needs the view context, which only exists once
+      # the component has gone through the render pipeline.
+      render_inline(subject)
     end
 
     describe '#react_props' do

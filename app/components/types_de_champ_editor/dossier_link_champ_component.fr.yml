@@ -1,0 +1,7 @@
+fr:
+  label: "Sélectionnez la ou les démarches concernées"
+  aria_label: "Liste des démarches"
+  published_procedures: "Démarches publiées"
+  test_procedures: "Démarches en test"
+  closed_procedures: "Démarches closes/dépubliées"
+  item_label: "N° %{id} - %{libelle}"
