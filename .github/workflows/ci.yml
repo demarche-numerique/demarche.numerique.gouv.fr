@@ -15,6 +15,7 @@ jobs:
   linters:
     name: Linters
     runs-on: ubuntu-24.04
+    timeout-minutes: 10
     services:
       postgres:
         image: postgis/postgis:17-3.5
@@ -38,6 +39,7 @@ jobs:
   js_linters:
     name: JavaScript linters
     runs-on: ubuntu-24.04
+    timeout-minutes: 10
 
     steps:
       - uses: actions/checkout@v4
@@ -51,6 +53,7 @@ jobs:
   brakeman:
     name: Brakeman
     runs-on: ubuntu-24.04
+    timeout-minutes: 10
 
     steps:
       - uses: actions/checkout@v4
@@ -244,6 +247,7 @@ jobs:
     name: Save test reports
     needs: [unit_tests, system_tests]
     runs-on: ubuntu-24.04
+    timeout-minutes: 10
 
     steps:
       - uses: actions/checkout@v4
