@@ -52,6 +52,54 @@ RSpec.describe Cron::PurgeSoftDeletedBlobsJob, type: :job do
       expect(ActiveStorage::Blob.exists?(id: blob_never_soft_deleted.id)).to be(true)
     end
 
+    context 'with more expired blobs than a batch holds' do
+      let(:blob_older) do
+        ActiveStorage::Blob.create_and_upload!(io: StringIO.new("older"), filename: "older.txt", content_type: "text/plain").tap do |blob|
+          blob.update_columns(soft_deleted_at: 3.days.ago, service_name: 'openstack')
+        end
+      end
+
+      before do
+        blob_older
+        stub_const('BlobService::BULK_DELETE_LIMIT', 1)
+      end
+
+      it 'purges batch after batch, oldest soft-deleted first' do
+        perform
+
+        expect(client).to have_received(:delete_multiple_objects).with('bucket', [blob_older.key]).ordered
+        expect(client).to have_received(:delete_multiple_objects).with('bucket', [blob_old.key]).ordered
+        expect(ActiveStorage::Blob.exists?(id: [blob_older.id, blob_old.id])).to be(false)
+      end
+
+      it 'stops at the per-run cap and leaves the rest to the next run' do
+        stub_const('Cron::PurgeSoftDeletedBlobsJob::MAX_BATCHES_PER_RUN', 1)
+
+        perform
+
+        expect(ActiveStorage::Blob.exists?(id: blob_older.id)).to be(false)
+        expect(ActiveStorage::Blob.exists?(id: blob_old.id)).to be(true)
+      end
+
+      it 'does not skip a blob soft-deleted at the same instant as the previous batch' do
+        blob_twin = ActiveStorage::Blob
+          .create_and_upload!(io: StringIO.new("twin"), filename: "twin.txt", content_type: "text/plain")
+          .tap { it.update_columns(soft_deleted_at: blob_older.soft_deleted_at, service_name: 'openstack') }
+
+        perform
+
+        expect(ActiveStorage::Blob.exists?(id: [blob_older.id, blob_twin.id, blob_old.id])).to be(false)
+      end
+
+      it 'gives up on a batch whose rows survive the purge instead of retrying it' do
+        allow(BlobService).to receive(:purge_blobs_with_variants)
+
+        perform
+
+        expect(BlobService).to have_received(:purge_blobs_with_variants).with([blob_older.id]).once
+      end
+    end
+
     it 'keeps blobs stored on another service' do
       blob_other_service = ActiveStorage::Blob
         .create_and_upload!(io: StringIO.new("other"), filename: "other.txt", content_type: "text/plain")
