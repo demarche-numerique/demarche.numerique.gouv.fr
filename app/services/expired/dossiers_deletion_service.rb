@@ -3,6 +3,13 @@
 class Expired::DossiersDeletionService < Expired::MailRateLimiter
   BROUILLON_DELETION_EMAILS_LIMIT_PER_DAY = ENV.fetch("BROUILLON_DELETION_EMAILS_LIMIT_PER_DAY", 10_000).to_i
   BROUILLON_WITHOUT_NOTICE_DELETION_LIMIT_PER_DAY = ENV.fetch("BROUILLON_WITHOUT_NOTICE_DELETION_LIMIT_PER_DAY", 20_000).to_i
+  TERMINE_NOTICES_LIMIT_PER_DAY = ENV.fetch("TERMINE_NOTICES_LIMIT_PER_DAY", 50_000).to_i
+  TERMINE_DELETION_LIMIT_PER_DAY = ENV.fetch("TERMINE_DELETION_LIMIT_PER_DAY", 50_000).to_i
+  # Termine dossiers are flagged or hidden, then mailed, batch by batch: what a
+  # failure mid-run can lose is bounded to one batch (a retry starts over from
+  # the scopes, which no longer match the dossiers already flagged or hidden).
+  # A batch grows past this size rather than splitting a user's dossiers.
+  TERMINE_BATCH_SIZE = 1000
 
   def process_never_touched_dossiers_brouillon; delete_never_touched_brouillons; end
 
@@ -41,10 +48,16 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
   end
 
   def send_termine_expiration_notices
-    send_expiration_notices(
-      Dossier.termine_close_to_expiration.without_termine_expiration_notice_sent,
-      :termine_close_to_expiration_notice_sent_at
-    )
+    # Ids first: the scope is a sparse filter over the 8M termine dossiers, and
+    # iterating it with in_batches walked the primary key (#13816).
+    ids_and_user_ids = Dossier.termine_close_to_expiration.without_termine_expiration_notice_sent
+      .order(:expired_at)
+      .limit(TERMINE_NOTICES_LIMIT_PER_DAY)
+      .pluck(:id, :user_id)
+
+    each_termine_batch(ids_and_user_ids) do |dossiers|
+      send_expiration_notices(dossiers, :termine_close_to_expiration_notice_sent_at)
+    end
   end
 
   def delete_never_touched_brouillons
@@ -73,28 +86,64 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
   end
 
   def delete_expired_termine_and_notify
-    delete_expired_and_notify(Dossier.termine_expired_after_notice_grace, notify_on_closed_procedures_to_user: true)
+    ids_and_user_ids = Dossier.termine_expired_after_notice_grace
+      .order(:termine_close_to_expiration_notice_sent_at)
+      .limit(TERMINE_DELETION_LIMIT_PER_DAY)
+      .pluck(:id, :user_id)
+
+    each_termine_batch(ids_and_user_ids) do |dossiers|
+      delete_expired_and_notify(dossiers, notify_on_closed_procedures_to_user: true)
+    end
   end
 
   def update_notifications_dossiers_termine
-    DossierNotification.create_notifications_for_non_customisable_type(Dossier.termine_close_to_expiration.without_dossier_expirant_notification, :dossier_expirant)
-    DossierNotification.destroy_notifications_by_dossier_and_type(Dossier.termine_expired_after_notice_grace, :dossier_expirant)
-    DossierNotification.create_notifications_for_non_customisable_type(Dossier.termine_expired_after_notice_grace, :dossier_suppression)
+    # Ids, not a subquery: it would put the sparse scan back inside the in_batches
+    # cursor of create_notifications_for_non_customisable_type.
+    close_to_expiration_ids = Dossier.termine_close_to_expiration.without_dossier_expirant_notification
+      .order(:expired_at)
+      .limit(TERMINE_NOTICES_LIMIT_PER_DAY)
+      .pluck(:id)
+    expired_ids = Dossier.termine_expired_after_notice_grace
+      .order(:termine_close_to_expiration_notice_sent_at)
+      .limit(TERMINE_DELETION_LIMIT_PER_DAY)
+      .pluck(:id)
+    close_to_expiration = Dossier.where(id: close_to_expiration_ids)
+    expired = Dossier.where(id: expired_ids)
+
+    DossierNotification.create_notifications_for_non_customisable_type(close_to_expiration, :dossier_expirant)
+    DossierNotification.destroy_notifications_by_dossier_and_type(expired, :dossier_expirant)
+    DossierNotification.create_notifications_for_non_customisable_type(expired, :dossier_suppression)
   end
 
   private
+
+  # All the dossiers of one user land in the same batch, hence in the same mail.
+  def each_termine_batch(ids_and_user_ids)
+    batches = [[]]
+    ids_and_user_ids.group_by(&:last).each_value do |user_dossiers|
+      batches << [] if batches.last.size >= TERMINE_BATCH_SIZE
+      batches.last.concat(user_dossiers.map(&:first))
+    end
+
+    batches.each do |ids|
+      # The state is checked again at processing time: a dossier sent back to
+      # instruction since the selection must be neither flagged nor hidden.
+      yield Dossier.where(id: ids).state_termine if ids.any?
+    end
+  end
 
   def send_expiration_notices(dossiers_close_to_expiration, close_to_expiration_flag)
     user_notifications = group_by_user_email(dossiers_close_to_expiration)
     tiers_notifications = group_by_tiers_email(dossiers_close_to_expiration)
     administration_notifications = group_by_administration_email(dossiers_close_to_expiration, preference: :instant_email_dossier_expiration)
 
-    dossier_ids = dossiers_close_to_expiration.pluck(:id)
-
-    dossiers_close_to_expiration.in_batches.update_all(close_to_expiration_flag => Time.zone.now)
-
-    updated_dossiers = Dossier.where(id: dossier_ids)
-    updated_dossiers.find_each(&:update_expired_at)
+    # One statement per batch: for a notified termine dossier, expiration_date
+    # is the notice date plus the remaining weeks.
+    now = Time.zone.now
+    dossiers_close_to_expiration.update_all(
+      close_to_expiration_flag => now,
+      expired_at: now + Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks
+    )
 
     user_notifications.each do |(email, dossiers)|
       mail = DossierMailer.notify_near_deletion_to_user(dossiers, email)
