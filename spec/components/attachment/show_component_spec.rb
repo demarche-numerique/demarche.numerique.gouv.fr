@@ -64,4 +64,17 @@ RSpec.describe Attachment::ShowComponent, type: :component do
       expect(subject).to have_text('corrompu')
     end
   end
+
+  context 'when a titre d’identité could not be watermarked' do
+    let(:public_type_de_champs) { [{ type: :piece_justificative, nature: 'titre_identite' }] }
+    let(:virus_scan_result) { ActiveStorage::VirusScanner::SAFE }
+
+    before { attachment.blob.update(metadata: attachment.blob.metadata.merge("watermark_failed" => true)) }
+
+    it 'shows an error instead of the file or a pending state' do
+      expect(subject).not_to have_link(filename)
+      expect(subject).to have_text('n’a pas pu être traité')
+      expect(subject).not_to have_text('en cours')
+    end
+  end
 end

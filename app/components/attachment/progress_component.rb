@@ -15,7 +15,7 @@ class Attachment::ProgressComponent < ApplicationComponent
     case
     when !ignore_antivirus && attachment.virus_scanner.pending?
       t(".antivirus_pending")
-    when !ignore_watermark && attachment.watermark_pending?
+    when !ignore_watermark && attachment.watermark_pending? && !attachment.watermark_failed?
       t(".watermark_pending")
     end
   end

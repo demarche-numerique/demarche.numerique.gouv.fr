@@ -3,3 +3,4 @@ fr:
   errors:
     virus_infected: "Virus détecté, le téléchargement est bloqué."
     corrupted_file: "Le fichier est corrompu, le téléchargement est bloqué."
+    watermark_failed: "Ce document n’a pas pu être traité (illisible ou trop volumineux). Merci d’en déposer un autre."

@@ -19,10 +19,12 @@ class Attachment::ShowComponent < ApplicationComponent
       t(".errors.virus_infected")
     when attachment.virus_scanner.corrupt?
       t(".errors.corrupted_file")
+    when attachment.watermark_failed?
+      t(".errors.watermark_failed")
     end
   end
 
   def error?
-    attachment.virus_scanner_error?
+    attachment.virus_scanner_error? || attachment.watermark_failed?
   end
 end
