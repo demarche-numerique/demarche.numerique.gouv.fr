@@ -13,7 +13,9 @@ module SessionRegistrableConcern
   end
 
   def self.open_session!(record, warden, scope)
-    warden.session(scope)[SESSION_KEY] = record.open_user_session!(warden.request.user_agent).id
+    request = warden.request
+
+    warden.session(scope)[SESSION_KEY] = record.open_user_session!(request.user_agent, request.remote_ip).id
   end
 
   included do
@@ -24,8 +26,16 @@ module SessionRegistrableConcern
 
   # The raw user-agent is stored, not a label: deriving it at display time means
   # a better parser later also improves existing rows.
-  def open_user_session!(user_agent)
-    user_sessions.create!(user_agent: sanitized_user_agent(user_agent), expires_at: session_max_lifetime&.from_now)
+  #
+  # The address is the one the session was opened from, and it is never rewritten
+  # afterwards: reading a row on every request must stay a read. What it is for is
+  # spotting a session that was opened from somewhere unexpected.
+  def open_user_session!(user_agent, ip_address = nil)
+    user_sessions.create!(
+      user_agent: sanitized_user_agent(user_agent),
+      ip_address:,
+      expires_at: session_max_lifetime&.from_now
+    )
   end
 
   # `except&.id`, not `except.present?`: an unsaved record has a nil id, and

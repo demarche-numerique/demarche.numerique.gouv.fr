@@ -19,7 +19,24 @@ describe 'the session registry', type: :request do
       sign_in_super_admin
 
       expect(super_admin_sessions.sole.user_agent).to eq(chrome_on_mac)
-      expect(UserSession.column_names).not_to include('ip_address')
+    end
+
+    # Recorded once, when the session opens. It is what makes a session opened
+    # from somewhere unexpected recognisable.
+    it 'records the address the session was opened from' do
+      sign_in_super_admin
+
+      expect(super_admin_sessions.sole.ip_address).to eq(IPAddr.new('127.0.0.1'))
+    end
+
+    # The row is read on every request; rewriting it on a changed address would
+    # turn that read into a write, on every request of every signed in account.
+    it 'leaves that address alone once the session is open' do
+      sign_in_super_admin
+
+      get manager_root_path, headers: { 'REMOTE_ADDR' => '10.11.12.13' }
+
+      expect(super_admin_sessions.sole.ip_address).to eq(IPAddr.new('127.0.0.1'))
     end
 
     # The user agent is a header, so a client can send bytes that are not valid
