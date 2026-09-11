@@ -1,10 +1,12 @@
 GIT
   remote: https://github.com/demarche-numerique/reliable-fetch.git
-  revision: f547a270c402b0180091516d790434e83287fae7
+  revision: ea9a9348a82ee5b21d481fac0d854eea388e44b5
+  branch: sidekiq-8
   specs:
-    gitlab-sidekiq-fetcher (0.11.0)
+    gitlab-sidekiq-fetcher (0.12.1)
+      base64
       json (>= 2.5)
-      sidekiq (~> 7.0)
+      sidekiq (>= 7.0, < 9)
 
 GEM
   remote: https://rubygems.org/

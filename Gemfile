@@ -36,7 +36,11 @@ gem 'front_matter_parser'
 gem 'fugit'
 gem 'geocoder'
 gem 'geo_coord', require: "geo/coord"
-gem 'gitlab-sidekiq-fetcher', require: 'sidekiq-reliable-fetch', git: 'https://github.com/demarche-numerique/reliable-fetch.git'
+# Temporary branch pin, until the fork's sidekiq-8 PR is merged.
+# Drop it before merging: the lock will point back at main.
+gem 'gitlab-sidekiq-fetcher', require: 'sidekiq-reliable-fetch',
+  git: 'https://github.com/demarche-numerique/reliable-fetch.git',
+  branch: 'sidekiq-8'
 gem 'gon'
 gem 'graphql'
 gem 'groupdate'
