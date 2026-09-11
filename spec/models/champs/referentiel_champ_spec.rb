@@ -53,6 +53,86 @@ describe Champs::ReferentielChamp, type: :model do
     end
   end
 
+  describe '#fetch! when the API answers 200 with nothing at the result path' do
+    let(:public_type_de_champs) { [{ type: :referentiel, referentiel:, referentiel_mapping: }] }
+    let(:url) { ReferentielService.new(referentiel:).url("BAD_CODE") }
+    let(:collection_mapping) do
+      {
+        "$.records[0].id" => { type: "integer_number" },
+        "$.records[0].fields.Nom" => { type: "string", display_usager: "1" },
+      }
+    end
+
+    before do
+      stub_request(:get, url).to_return(status: 200, body: body.to_json, headers: { 'content-type' => 'application/json' })
+      referentiel_champ.update!(external_id: "BAD_CODE")
+      referentiel_champ.fetch_later!
+      perform_enqueued_jobs
+      referentiel_champ.reload
+    end
+
+    context 'when the mapping targets the first element of an empty collection' do
+      let(:referentiel_mapping) { collection_mapping }
+      let(:body) { { records: [] } }
+
+      it 'treats the response as not found' do
+        expect(referentiel_champ).to be_external_data_not_found
+        expect(referentiel_champ.value).to be_nil
+        expect(referentiel_champ.value_json).to be_nil
+
+        referentiel_champ.valid?(:champ_value)
+        expect(referentiel_champ.errors).to be_of_kind(:external_id, :code_404)
+      end
+    end
+
+    context 'when the collection holds a record' do
+      let(:referentiel_mapping) { collection_mapping }
+      let(:body) { { records: [{ id: 1, fields: { Nom: nil } }] } }
+
+      it 'keeps the response as fetched even when the mapped fields are empty' do
+        expect(referentiel_champ).to be_fetched
+        expect(referentiel_champ.value).to eq("BAD_CODE")
+      end
+    end
+
+    context 'when the mapping targets the first element of an empty top-level array' do
+      let(:referentiel_mapping) { { "$.[0].nom" => { type: "string", display_usager: "1" } } }
+      let(:body) { [] }
+
+      it 'treats the response as not found' do
+        expect(referentiel_champ).to be_external_data_not_found
+      end
+    end
+
+    context 'when the only mapped field is empty' do
+      let(:referentiel_mapping) { { "$.records[0].fields.Nom" => { type: "string", display_usager: "1" } } }
+      let(:body) { { records: [{ fields: { Nom: nil } }] } }
+
+      it 'treats the response as not found' do
+        expect(referentiel_champ).to be_external_data_not_found
+      end
+    end
+
+    context 'when the only mapped field is false' do
+      let(:referentiel_mapping) { { "$.records[0].fields.Actif" => { type: "boolean", display_usager: "1" } } }
+      let(:body) { { records: [{ fields: { Actif: false } }] } }
+
+      it 'keeps the response as fetched' do
+        expect(referentiel_champ).to be_fetched
+      end
+    end
+
+    context 'when the referentiel carries its own result path' do
+      let(:referentiel) { create(:api_referentiel, :exact_match, result_path: "$.records") }
+      let(:referentiel_mapping) { { "$.records[0].fields.Nom" => { type: "string", display_usager: "1" } } }
+      let(:body) { { records: [{ fields: { Nom: nil } }] } }
+
+      it 'checks that path rather than the one implied by the mapping' do
+        expect(referentiel_champ).to be_fetched
+      end
+    end
+  end
+
   describe '#fetch_external_data when the champ is inside a repetition' do
     include Dry::Monads[:result]
 
