@@ -306,19 +306,21 @@ describe Instructeurs::GroupeInstructeursController, type: :controller do
     let(:procedure) { create(:procedure, :published, instructeurs_self_management_enabled: true) }
 
     describe '#show' do
-      it 'exposes the instructeurs of a group the instructeur has not joined' do
-        get :show, params: { procedure_id: procedure.id, id: gi_1_1.id }
-
-        expect(response).to have_http_status(:ok)
+      it 'does not expose the instructeurs of a group the instructeur has not joined' do
+        expect {
+          get :show, params: { procedure_id: procedure.id, id: gi_1_1.id }
+        }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
 
     describe '#add_instructeurs' do
-      it 'lets the instructeur join a group they are not a member of' do
-        post :add_instructeurs,
-          params: { procedure_id: procedure.id, id: gi_1_1.id, emails: [instructeur.email] }
+      it 'does not let the instructeur join a group they are not a member of' do
+        expect {
+          post :add_instructeurs,
+            params: { procedure_id: procedure.id, id: gi_1_1.id, emails: [instructeur.email] }
+        }.to raise_error(ActiveRecord::RecordNotFound)
 
-        expect(gi_1_1.reload.instructeurs).to include(instructeur)
+        expect(gi_1_1.reload.instructeurs).not_to include(instructeur)
       end
     end
 
@@ -327,22 +329,46 @@ describe Instructeurs::GroupeInstructeursController, type: :controller do
 
       before { gi_1_1.instructeurs << victim_instructeur << create(:instructeur) }
 
-      it 'lets the instructeur remove a member from a group they have not joined' do
-        delete :remove_instructeur,
-          params: { procedure_id: procedure.id, id: gi_1_1.id, instructeur: { id: victim_instructeur.id } }
+      it 'does not let the instructeur remove a member from a group they have not joined' do
+        expect {
+          delete :remove_instructeur,
+            params: { procedure_id: procedure.id, id: gi_1_1.id, instructeur: { id: victim_instructeur.id } }
+        }.to raise_error(ActiveRecord::RecordNotFound)
 
-        expect(gi_1_1.reload.instructeurs).not_to include(victim_instructeur)
+        expect(gi_1_1.reload.instructeurs).to include(victim_instructeur)
       end
     end
 
     describe '#add_signature' do
       let(:signature) { fixture_file_upload('spec/fixtures/files/black.png', 'image/png') }
 
-      it 'lets the instructeur replace the signature of a group they have not joined' do
-        post :add_signature,
-          params: { procedure_id: procedure.id, id: gi_1_1.id, groupe_instructeur: { signature: signature } }
+      it 'does not let the instructeur replace the signature of a group they have not joined' do
+        expect {
+          post :add_signature,
+            params: { procedure_id: procedure.id, id: gi_1_1.id, groupe_instructeur: { signature: signature } }
+        }.to raise_error(ActiveRecord::RecordNotFound)
 
-        expect(gi_1_1.reload.signature).to be_attached
+        expect(gi_1_1.reload.signature).not_to be_attached
+      end
+    end
+
+    context 'when the instructeur owns the procedure' do
+      # Default top-level lets: instructeur is administrateur.instructeur, owner
+      # of the procedure, member of gi_1_2 only — must keep procedure-wide access.
+      let(:instructeur) { administrateur.instructeur }
+      let(:procedure) { create(:procedure, :published, administrateurs: [administrateur]) }
+
+      it 'still shows a group they have not joined' do
+        get :show, params: { procedure_id: procedure.id, id: gi_1_1.id }
+
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'still adds instructeurs to a group they have not joined' do
+        post :add_instructeurs,
+          params: { procedure_id: procedure.id, id: gi_1_1.id, emails: ['new_instructeur@example.com'] }
+
+        expect(gi_1_1.reload.instructeurs.map(&:email)).to include('new_instructeur@example.com')
       end
     end
   end
