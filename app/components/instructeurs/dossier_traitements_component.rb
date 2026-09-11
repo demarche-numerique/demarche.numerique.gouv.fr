@@ -9,6 +9,6 @@ class Instructeurs::DossierTraitementsComponent < ApplicationComponent
 
   def traitement_props(traitement)
     processed_at = l(traitement.processed_at, format: :long_with_time)
-    { processed_at:, email: traitement.instructeur_email }.compact
+    { processed_at:, email: traitement.instructeur_email.presence || t('.instructeur_inconnu') }
   end
 end

@@ -1,4 +1,5 @@
 en:
+  instructeur_inconnu: unidentified
   title: Events and decisions made
   depose: "On %{processed_at}, this file was submitted"
   depose_correction_usager: "On %{processed_at}, corrections were submitted"
