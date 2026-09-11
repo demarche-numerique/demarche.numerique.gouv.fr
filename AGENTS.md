@@ -50,7 +50,7 @@ Production row counts, from the cleaned production dump of **2026-09-07** (updat
 | `individuals` | 6.6 M |
 | `procedures` / `procedure_revisions` / `groupe_instructeurs` / `instructeurs` | 101 k / 231 k / 214 k / 177 k |
 
-`champs` was not measured (it is the largest table).
+`champs` was not measured (it is the largest table). last id : 1_566_501_743, assume 1B
 
 ## Conventions
 
