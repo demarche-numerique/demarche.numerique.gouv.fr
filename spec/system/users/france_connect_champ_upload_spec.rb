@@ -10,7 +10,7 @@ describe 'Quotient familial piece justificative upload', js: true do
 
   scenario 'usager uploads a piece justificative when QF data is not fetched' do
     visit commencer_path(path: procedure.path)
-    click_on 'Commencer la démarche'
+    click_on 'Commencer un dossier'
 
     find('label', text: "Pour vous").click
     within('.individual-infos') do

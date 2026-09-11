@@ -84,7 +84,7 @@ describe 'Signing up:', js: true do
       # (even when confirming the account in another browser).
       expect(page).to have_current_path(commencer_path(path: procedure.path))
       expect(page).to have_content I18n.t('devise.confirmations.confirmed')
-      click_on 'Commencer la démarche'
+      click_on 'Commencer un dossier'
 
       expect(page).to have_current_path identite_dossier_path(procedure.reload.dossiers.last)
       expect(page).to have_content(procedure.libelle)
@@ -116,7 +116,7 @@ describe 'Signing up:', js: true do
       # (even when confirming the account in another browser).
       expect(page).to have_current_path(commencer_path(path: procedure.path))
       expect(page).to have_content I18n.t('devise.confirmations.confirmed')
-      expect(page).to have_content 'Commencer la démarche'
+      expect(page).to have_content 'Commencer un dossier'
     end
   end
 

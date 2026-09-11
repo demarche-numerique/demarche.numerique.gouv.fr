@@ -121,13 +121,13 @@ describe 'wcag rules for usager', js: true do
     end
 
     scenario 'écran identité usager' do
-      click_on 'Commencer la démarche'
+      click_on 'Commencer un dossier'
       expect(page).to be_axe_clean
     end
 
     # with no surprise, there's a lot of work on this one
     scenario "dépot d’un dossier" do
-      click_on 'Commencer la démarche'
+      click_on 'Commencer un dossier'
 
       find('label', text: "Pour vous").click
       within('.individual-infos') do
@@ -151,7 +151,7 @@ describe 'wcag rules for usager', js: true do
     end
 
     scenario "écran identification de l’entreprise" do
-      click_on 'Commencer la démarche'
+      click_on 'Commencer un dossier'
       expect(page).to be_axe_clean
     end
   end

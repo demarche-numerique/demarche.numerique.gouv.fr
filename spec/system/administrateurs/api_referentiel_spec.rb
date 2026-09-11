@@ -693,7 +693,7 @@ describe 'Referentiel API:' do
   def commencer(procedure)
     # start a dossier
     visit commencer_path(procedure.path)
-    click_on("Commencer la démarche")
+    click_on("Commencer un dossier")
     find('label', text: "Pour vous").click
     expect(page).to have_content("Votre identité")
     fill_in("Prénom", with: "Jeanne")

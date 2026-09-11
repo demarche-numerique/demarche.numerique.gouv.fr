@@ -88,7 +88,7 @@ describe 'address champ', js: true do
     login_as user, scope: :user
 
     visit "/commencer/#{procedure.path}"
-    click_on 'Commencer la démarche'
+    click_on 'Commencer un dossier'
 
     find('label', text: "Pour vous").click
     expect(page).to have_content("Votre identité")

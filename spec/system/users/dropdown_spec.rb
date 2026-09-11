@@ -11,7 +11,7 @@ describe 'dropdown list with other option activated', js: true do
   before do
     login_as(user, scope: :user)
     visit "/commencer/#{procedure.path}?locale=fr"
-    click_on 'Commencer la démarche'
+    click_on 'Commencer un dossier'
   end
   context 'with radios' do
     let(:options) do
@@ -95,7 +95,7 @@ describe 'multiple dropdown tag removal', js: true do
   before do
     login_as(user, scope: :user)
     visit "/commencer/#{procedure.path}?locale=fr"
-    click_on 'Commencer la démarche'
+    click_on 'Commencer un dossier'
     find('label', text: "Pour vous").click
     within('.individual-infos') do
       fill_in('Prénom', with: 'prenom')

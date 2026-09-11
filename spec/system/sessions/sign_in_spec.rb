@@ -78,7 +78,7 @@ describe 'Signin in:' do
       sign_in_with user.email, password
 
       expect(page).to have_current_path(commencer_path(path: procedure.path))
-      click_on 'Commencer la démarche'
+      click_on 'Commencer un dossier'
 
       expect(page).to have_current_path identite_dossier_path(user.reload.dossiers.last)
       expect(page).to have_content(procedure.libelle)

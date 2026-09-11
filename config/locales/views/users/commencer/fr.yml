@@ -2,6 +2,7 @@ fr:
   commencer:
     show:
       start_procedure: Commencer la démarche
+      start_dossier: Commencer un dossier
       pro_connect_restriction_all_info_html: "Cette démarche nécessite une <a href=\"%{path}\" title=\"S’identifier avec ProConnect\">authentification via ProConnect</a>. Seuls les agents disposant d’un compte ProConnect peuvent y accéder."
       existing_dossiers: Vous avez déjà des dossiers pour cette démarche
       show_dossiers: Voir mes dossiers en cours

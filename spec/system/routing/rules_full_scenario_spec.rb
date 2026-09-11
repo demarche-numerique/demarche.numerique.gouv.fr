@@ -295,7 +295,7 @@ describe 'The routing with rules', js: true do
   def user_send_dossier(user, groupe)
     login_as user, scope: :user
     visit commencer_path(path: procedure.reload.path)
-    click_on 'Commencer la démarche'
+    click_on 'Commencer un dossier'
 
     find('label', text: "Pour vous").click
     fill_in('Prénom', with: 'prenom', visible: true)
