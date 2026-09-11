@@ -4,6 +4,7 @@ module Administrateurs
   class ServicesController < AdministrateurController
     skip_before_action :alert_for_missing_siret_service, only: :edit
     skip_before_action :alert_for_missing_service, only: :edit
+
     def index
       @procedure = procedure
       @services = ([procedure.service].compact + services.ordered).uniq
@@ -16,7 +17,8 @@ module Administrateurs
       siret = current_administrateur.user.last_pro_connect_information&.siret
       if siret
         @service.siret = siret
-        @prefilled = handle_siret_prefill
+        prefill_result = @service.prefill_from_siret
+        @prefilled = prefill_result.any?(Dry::Monads::Result::Success)
       end
     end
 
@@ -62,25 +64,37 @@ module Administrateurs
 
     def prefill
       @procedure = procedure
-      @service = Service.new(siret: params[:siret])
+      @service = params[:id].present? ? service : Service.new
+      @service.siret = siret_params[:siret]
 
-      prefilled = handle_siret_prefill
+      prefilled = nil
+
+      if @service.valid_siret?
+        prefill_result = @service.prefill_from_siret
+        prefilled = prefill_result.any?(Dry::Monads::Result::Success)
+      end
 
       render turbo_stream: turbo_stream.replace(
         "service_form",
         partial: "administrateurs/services/form",
         locals: { service: @service, prefilled:, procedure: @procedure }
       )
-        end
+    end
 
     def add_to_procedure
       procedure = current_administrateur.procedures.find(procedure_params[:id])
       service = services.find(procedure_params[:service_id])
 
+      if service.siret == Service::SIRET_TEST
+        redirect_to admin_services_path(procedure_id: procedure.id),
+          alert: "Le service #{service.nom} utilise un SIRET de test et ne peut pas être affecté à une démarche."
+        return
+      end
+
       procedure.update(service: service)
 
       redirect_to admin_procedure_path(procedure.id),
-        notice: "service affecté : #{procedure.service.nom}"
+        notice: "Service affecté : #{procedure.service.nom}"
     end
 
     def destroy
@@ -134,27 +148,8 @@ module Administrateurs
       current_administrateur.procedures.find(params[:procedure_id])
     end
 
-    def handle_siret_prefill
-      @service.validate
-
-      if !@service.errors.include?(:siret)
-        prefilled = case @service.prefill_from_siret
-        in [Dry::Monads::Result::Success, Dry::Monads::Result::Success]
-          :success
-        in [Dry::Monads::Result::Failure, Dry::Monads::Result::Success] | [Dry::Monads::Result::Success, Dry::Monads::Result::Failure]
-          :partial
-        else
-          :failure
-        end
-      end
-
-      # On prefill from SIRET, we only want to display errors for the SIRET input
-      # so we have to remove other errors (ie. required attributes not yet filled)
-      siret_errors = @service.errors.where(:siret)
-      @service.errors.clear
-      siret_errors.each { @service.errors.import(_1) }
-
-      prefilled
+    def siret_params
+      params.require(:service).permit(:siret)
     end
   end
 end
