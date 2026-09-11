@@ -281,6 +281,60 @@ describe Expired::DossiersDeletionService do
       end
     end
 
+    context 'when there are more dossiers than the per-day limit' do
+      let!(:dossier_expiring_first) { create(:dossier, state: :accepte, procedure: procedure, processed_at: (conservation_par_defaut - 2.weeks + 3.days).ago) }
+      let!(:dossier_expiring_later) { create(:dossier, state: :accepte, procedure: procedure, processed_at: (conservation_par_defaut - 2.weeks + 1.day).ago) }
+
+      before do
+        [dossier_expiring_first, dossier_expiring_later].each(&:update_expired_at)
+        stub_const("#{described_class}::TERMINE_NOTICES_LIMIT_PER_DAY", 1)
+        service.send_termine_expiration_notices
+      end
+
+      it 'notifies the dossiers expiring first, the rest waits for the next run' do
+        expect(dossier_expiring_first.reload.termine_close_to_expiration_notice_sent_at).not_to be_nil
+        expect(dossier_expiring_later.reload.termine_close_to_expiration_notice_sent_at).to be_nil
+        expect(DossierMailer).to have_received(:notify_near_deletion_to_user).once
+      end
+    end
+
+    context 'when a dossier was sent back to instruction after the selection' do
+      let!(:dossier) { create(:dossier, :followed, state: :accepte, procedure: procedure, processed_at: (conservation_par_defaut - 2.weeks + 1.day).ago) }
+
+      before do
+        dossier.update_expired_at
+        allow(service).to receive(:each_termine_batch).and_wrap_original do |each_termine_batch, ids_and_user_ids, &block|
+          dossier.update_columns(state: Dossier.states.fetch(:en_instruction))
+          each_termine_batch.call(ids_and_user_ids, &block)
+        end
+        service.send_termine_expiration_notices
+      end
+
+      it 'neither flags nor notifies it' do
+        expect(dossier.reload.termine_close_to_expiration_notice_sent_at).to be_nil
+        expect(DossierMailer).not_to have_received(:notify_near_deletion_to_user)
+        expect(DossierMailer).not_to have_received(:notify_near_deletion_to_administration)
+      end
+    end
+
+    context 'when a user has more dossiers than the batch size' do
+      let!(:dossier_1) { create(:dossier, state: :accepte, procedure: procedure, user: user, processed_at: (conservation_par_defaut - 2.weeks + 1.day).ago) }
+      let!(:dossier_2) { create(:dossier, state: :accepte, procedure: procedure_2, user: user, processed_at: (conservation_par_defaut - 2.weeks + 1.day).ago) }
+      let!(:other_dossier) { create(:dossier, state: :accepte, procedure: procedure, processed_at: (conservation_par_defaut - 2.weeks + 1.day).ago) }
+
+      before do
+        [dossier_1, dossier_2, other_dossier].each(&:update_expired_at)
+        stub_const("#{described_class}::TERMINE_BATCH_SIZE", 1)
+        service.send_termine_expiration_notices
+      end
+
+      it 'keeps the dossiers of the user in one mail' do
+        expect(DossierMailer).to have_received(:notify_near_deletion_to_user).twice
+        expect(DossierMailer).to have_received(:notify_near_deletion_to_user).with(match_array([dossier_1, dossier_2]), user.email)
+        expect(DossierMailer).to have_received(:notify_near_deletion_to_user).with([other_dossier], other_dossier.user.email)
+      end
+    end
+
     context 'when an instructeur is also administrateur' do
       let!(:administrateur) { procedure.administrateurs.first }
       let!(:dossier) { create(:dossier, state: :accepte, procedure: procedure, processed_at: (conservation_par_defaut - 2.weeks + 1.day).ago) }
@@ -423,6 +477,74 @@ describe Expired::DossiersDeletionService do
       end
     end
 
+    context 'when there are more dossiers than the per-day limit' do
+      let!(:dossier_notified_first) { create(:dossier, :accepte, procedure: procedure, termine_close_to_expiration_notice_sent_at: (warning_period + 4.days).ago) }
+      let!(:dossier_notified_later) { create(:dossier, :accepte, procedure: procedure, termine_close_to_expiration_notice_sent_at: (warning_period + 1.day).ago) }
+
+      before do
+        stub_const("#{described_class}::TERMINE_DELETION_LIMIT_PER_DAY", 1)
+        service.delete_expired_termine_and_notify
+      end
+
+      it 'hides the dossiers notified first, the rest waits for the next run' do
+        expect(dossier_notified_first.reload.hidden_by_expired_at).not_to be_nil
+        expect(dossier_notified_later.reload.hidden_by_expired_at).to be_nil
+      end
+    end
+
+    context 'when the dossiers span several batches' do
+      let!(:dossier_1) { create(:dossier, :accepte, procedure: procedure, termine_close_to_expiration_notice_sent_at: (warning_period + 1.day).ago) }
+      let!(:dossier_2) { create(:dossier, :accepte, procedure: procedure, termine_close_to_expiration_notice_sent_at: (warning_period + 1.day).ago) }
+
+      before do
+        stub_const("#{described_class}::TERMINE_BATCH_SIZE", 1)
+        service.delete_expired_termine_and_notify
+      end
+
+      it 'hides and notifies every batch' do
+        expect(dossier_1.reload.hidden_by_expired_at).not_to be_nil
+        expect(dossier_2.reload.hidden_by_expired_at).not_to be_nil
+        expect(DossierMailer).to have_received(:notify_automatic_deletion_to_user).with([dossier_1], dossier_1.user.email)
+        expect(DossierMailer).to have_received(:notify_automatic_deletion_to_user).with([dossier_2], dossier_2.user.email)
+      end
+    end
+
+    context 'when a dossier was sent back to instruction after the selection' do
+      let!(:dossier) { create(:dossier, :followed, :accepte, procedure: procedure, termine_close_to_expiration_notice_sent_at: (warning_period + 1.day).ago) }
+
+      before do
+        allow(service).to receive(:each_termine_batch).and_wrap_original do |each_termine_batch, ids_and_user_ids, &block|
+          dossier.update_columns(state: Dossier.states.fetch(:en_instruction))
+          each_termine_batch.call(ids_and_user_ids, &block)
+        end
+      end
+
+      it 'neither hides nor notifies it' do
+        expect { service.delete_expired_termine_and_notify }.not_to raise_error
+        expect(dossier.reload.hidden_by_expired_at).to be_nil
+        expect(DossierMailer).not_to have_received(:notify_automatic_deletion_to_user)
+        expect(DossierMailer).not_to have_received(:notify_automatic_deletion_to_administration)
+      end
+    end
+
+    context 'when a user has more dossiers than the batch size' do
+      let!(:dossier_1) { create(:dossier, :accepte, procedure: procedure, user: user, termine_close_to_expiration_notice_sent_at: (warning_period + 1.day).ago) }
+      let!(:dossier_2) { create(:dossier, :accepte, procedure: procedure_2, user: user, termine_close_to_expiration_notice_sent_at: (warning_period + 1.day).ago) }
+      let!(:other_dossier) { create(:dossier, :accepte, procedure: procedure, termine_close_to_expiration_notice_sent_at: (warning_period + 1.day).ago) }
+
+      before do
+        stub_const("#{described_class}::TERMINE_BATCH_SIZE", 1)
+        service.delete_expired_termine_and_notify
+      end
+
+      it 'keeps the dossiers of the user in one mail' do
+        expect([dossier_1, dossier_2, other_dossier].map { it.reload.hidden_by_expired_at }).to all(be_present)
+        expect(DossierMailer).to have_received(:notify_automatic_deletion_to_user).twice
+        expect(DossierMailer).to have_received(:notify_automatic_deletion_to_user).with(match_array([dossier_1, dossier_2]), user.email)
+        expect(DossierMailer).to have_received(:notify_automatic_deletion_to_user).with([other_dossier], other_dossier.user.email)
+      end
+    end
+
     context 'with 1 dossier deleted by user and 1 dossier deleted by administration' do
       let!(:dossier_1) { create(:dossier, :accepte, procedure: procedure, user: user, hidden_by_administration_at: 1.hour.ago, termine_close_to_expiration_notice_sent_at: (warning_period + 1.day).ago) }
       let!(:dossier_2) { create(:dossier, :refuse, procedure: procedure_2, user: user, hidden_by_user_at: 1.hour.ago, termine_close_to_expiration_notice_sent_at: (warning_period + 1.day).ago) }
@@ -507,6 +629,36 @@ describe Expired::DossiersDeletionService do
 
       it "destroys :dossier_expirant notifications" do
         expect { subject }.to change { DossierNotification.where(notification_type: :dossier_expirant).count }.from(1).to(0)
+      end
+    end
+
+    context "when there are more dossiers close to expiration than the per-day limit" do
+      let(:groupe_instructeur) { create(:groupe_instructeur, instructeurs: [create(:instructeur)]) }
+      let!(:dossier_expiring_first) { create(:dossier, :accepte, groupe_instructeur:).tap { it.update_column(:expired_at, 6.days.from_now) } }
+      let!(:dossier_expiring_later) { create(:dossier, :accepte, groupe_instructeur:).tap { it.update_column(:expired_at, 13.days.from_now) } }
+
+      before { stub_const("#{described_class}::TERMINE_NOTICES_LIMIT_PER_DAY", 1) }
+
+      it "notifies the dossiers expiring first, the rest waits for the next run" do
+        subject
+
+        notifs = DossierNotification.where(dossier: [dossier_expiring_first, dossier_expiring_later], notification_type: :dossier_expirant)
+        expect(notifs.pluck(:dossier_id)).to eq([dossier_expiring_first.id])
+      end
+    end
+
+    context "when there are more expired dossiers than the per-day limit" do
+      let(:groupe_instructeur) { create(:groupe_instructeur, instructeurs: [create(:instructeur)]) }
+      let!(:dossier_notified_first) { create(:dossier, :accepte, groupe_instructeur:, termine_close_to_expiration_notice_sent_at: 3.weeks.ago) }
+      let!(:dossier_notified_later) { create(:dossier, :accepte, groupe_instructeur:, termine_close_to_expiration_notice_sent_at: (2.weeks + 1.day).ago) }
+
+      before { stub_const("#{described_class}::TERMINE_DELETION_LIMIT_PER_DAY", 1) }
+
+      it "notifies the dossiers notified first, the rest waits for the next run" do
+        subject
+
+        notifs = DossierNotification.where(dossier: [dossier_notified_first, dossier_notified_later], notification_type: :dossier_suppression)
+        expect(notifs.pluck(:dossier_id)).to eq([dossier_notified_first.id])
       end
     end
 
