@@ -5,11 +5,12 @@ module Administrateurs
     before_action :retrieve_procedure
     before_action :retrieve_type_de_champ
     before_action :retrieve_referentiel, except: [:new, :create, :validate_url]
+    before_action :ensure_exclusive_referentiel, only: [:update, :update_autocomplete_configuration]
     before_action :reachable_referentiel?, only: [:mapping_type_de_champ, :autocomplete_configuration]
     layout 'empty_layout'
 
     def new
-      @referentiel = @type_de_champ.build_referentiel(build_or_clone_by_id_params)
+      @referentiel = @type_de_champ.build_referentiel(new_referentiel_params)
     end
 
     def configuration_error
@@ -20,7 +21,7 @@ module Administrateurs
     end
 
     def create
-      handle_referentiel_save(@type_de_champ.build_referentiel(referentiel_params_with_carried_attributes))
+      handle_referentiel_save(@type_de_champ.build_referentiel(referentiel_params))
     end
 
     def update
@@ -154,44 +155,28 @@ module Administrateurs
       {}
     end
 
-    # When cloning an existing referentiel, some attributes are not submitted by the
-    # form and would be lost on save: the auth inputs are rendered as `disabled` to
-    # hide the secret, and the autocomplete configuration belongs to a later step of
-    # the wizard. We carry them over from the source.
-    def referentiel_params_with_carried_attributes
-      attrs = referentiel_params.to_h
-      source_id = params.dig(:referentiel, :referentiel_id).presence
-      return attrs if source_id.blank?
-
-      source = @type_de_champ.referentiel
-      return attrs if source.nil? || source.id != source_id.to_i
-
-      if attrs[:authentication_method] == 'header_token' && attrs[:authentication_data].blank?
-        attrs[:authentication_data] = source.authentication_data
-      end
-      attrs[:autocomplete_configuration] = source.autocomplete_configuration if source.autocomplete_configuration.present?
-      attrs
-    end
-
     def retrieve_type_de_champ
       @type_de_champ = @procedure.draft_revision.find_and_ensure_exclusive_use(params[:stable_id])
     end
 
+    # L'id de l'URL doit être celui du référentiel courant du champ. Après une duplication
+    # (ensure_exclusive_referentiel), une requête encore en vol qui porte l'ancien id
+    # obtient un 404 plutôt que d'écrire sur le référentiel de la révision publiée.
     def retrieve_referentiel
       @referentiel = @type_de_champ.referentiel
       raise ActiveRecord::RecordNotFound if @referentiel.nil? || @referentiel.id != params[:id].to_i
     end
 
-    def build_or_clone_by_id_params
-      if params[:referentiel_id]
-        referentiel = @type_de_champ.referentiel
-        raise ActiveRecord::RecordNotFound if referentiel.nil? || referentiel.id != params[:referentiel_id].to_i
-        referentiel.attributes.slice(*%w[url_tiptap test_data_tiptap hint mode type authentication_data authentication_method])
-      else
-        params = referentiel_params.to_h
-        params = params.merge(type: Referentiels::APIReferentiel) if !Referentiels::APIReferentiel.csv_available?
-        params
-      end
+    # Le champ du brouillon est déjà exclusif (retrieve_type_de_champ) ; son référentiel
+    # doit l'être aussi avant d'être modifié, sinon la révision publiée le verrait changer.
+    def ensure_exclusive_referentiel
+      @referentiel = @type_de_champ.ensure_exclusive_referentiel!
+    end
+
+    def new_referentiel_params
+      params = referentiel_params.to_h
+      params = params.merge(type: Referentiels::APIReferentiel) if !Referentiels::APIReferentiel.csv_available?
+      params
     end
 
     def autocomplete_configuration_params

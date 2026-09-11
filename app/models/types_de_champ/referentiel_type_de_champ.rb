@@ -10,6 +10,23 @@ class TypesDeChamp::ReferentielTypeDeChamp < TypeDeChamp
 
   def referentiel_in_exact_match? = referentiel.present? && referentiel.exact_match?
 
+  # Un référentiel partagé avec un champ d'une autre révision est dupliqué avant
+  # d'être modifié : les dossiers de cette révision gardent le leur.
+  def ensure_exclusive_referentiel!
+    return referentiel if !referentiel.type_de_champs.where.not(id:).exists?
+
+    # Copie conforme d'une ligne déjà en base : ne pas la valider, sinon une ligne
+    # devenue invalide (URL retirée de la liste blanche, données de test manquantes)
+    # ne serait pas sauvée et l'autosave du belongs_to poserait referentiel_id à nil.
+    # Le formulaire valide l'écriture qui suit.
+    transaction do
+      copy = referentiel.dup
+      copy.save!(validate: false)
+      update!(referentiel: copy)
+      copy
+    end
+  end
+
   def revision_diff_options
     {
       referentiel_url_tiptap: RevisionDiffValue.new(referentiel&.url_tiptap) { referentiel_url_as_text },
