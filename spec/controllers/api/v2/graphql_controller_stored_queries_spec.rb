@@ -1084,6 +1084,18 @@ describe API::V2::GraphqlController do
           }
         end
 
+        context 'draft procedure, opendata left to its default' do
+          let(:draft_procedure) { create(:procedure, :with_type_de_champ, libelle: 'Secret brouillon interne') }
+          let(:variables) { { demarche: { number: draft_procedure.id } } }
+
+          it 'serves the never-published procedure to an anonymous caller' do
+            expect(draft_procedure).to be_brouillon
+            expect(draft_procedure.opendata).to be(true)
+            expect(gql_errors).to be_nil
+            expect(gql_data[:demarcheDescriptor][:id]).to eq(draft_procedure.to_typed_id)
+          end
+        end
+
         context 'not opendata' do
           let(:variables) { { demarche: { id: procedure.to_typed_id } } }
 
