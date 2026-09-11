@@ -1072,6 +1072,17 @@ describe API::V2::GraphqlController do
         }
       end
 
+      context 'own draft procedure, with token' do
+        let(:draft_procedure) { create(:procedure, :with_type_de_champ, administrateurs: [admin]) }
+        let(:variables) { { demarche: { number: draft_procedure.id } } }
+
+        it 'stays readable by its administrateur' do
+          expect(draft_procedure).to be_brouillon
+          expect(gql_errors).to be_nil
+          expect(gql_data[:demarcheDescriptor][:id]).to eq(draft_procedure.to_typed_id)
+        end
+      end
+
       context 'without authorization token' do
         let(:authorization_header) { nil }
 
@@ -1088,11 +1099,21 @@ describe API::V2::GraphqlController do
           let(:draft_procedure) { create(:procedure, :with_type_de_champ, libelle: 'Secret brouillon interne') }
           let(:variables) { { demarche: { number: draft_procedure.id } } }
 
-          it 'serves the never-published procedure to an anonymous caller' do
+          it 'hides the never-published procedure from an anonymous caller' do
             expect(draft_procedure).to be_brouillon
             expect(draft_procedure.opendata).to be(true)
+            expect(gql_errors).not_to be_nil
+            expect(gql_errors.first[:message]).to eq('An object of type DemarcheDescriptor was hidden due to permissions')
+          end
+        end
+
+        context 'published then closed procedure, opendata' do
+          let(:closed_procedure) { create(:procedure, :closed) }
+          let(:variables) { { demarche: { number: closed_procedure.id } } }
+
+          it 'stays publicly readable' do
             expect(gql_errors).to be_nil
-            expect(gql_data[:demarcheDescriptor][:id]).to eq(draft_procedure.to_typed_id)
+            expect(gql_data[:demarcheDescriptor][:id]).to eq(closed_procedure.to_typed_id)
           end
         end
 
