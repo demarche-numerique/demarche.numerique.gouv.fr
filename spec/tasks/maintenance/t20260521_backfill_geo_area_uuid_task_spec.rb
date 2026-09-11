@@ -51,9 +51,12 @@ module Maintenance
           champ.save!(validate: false)
           champ
         end
-        let!(:buffer_geo_area) { create(:geo_area, :selection_utilisateur, :point, champ_data: buffer_champ) }
+        let!(:buffer_geo_area) do
+          create(:geo_area, :selection_utilisateur, :point, champ_data: buffer_champ).tap { it.update_column(:uuid, nil) }
+        end
 
         it 'does not update its uuid' do
+          process
           expect(buffer_geo_area.reload.uuid).to be_nil
         end
       end
