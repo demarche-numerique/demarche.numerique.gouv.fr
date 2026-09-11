@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_07_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_11_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
@@ -558,6 +558,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_07_120000) do
     t.index ["batch_operation_id"], name: "index_dossiers_on_batch_operation_id"
     t.index ["depose_at", "id"], name: "index_dossiers_on_depose_at_and_id", where: "((hidden_by_administration_at IS NULL) AND (hidden_by_expired_at IS NULL))"
     t.index ["dossier_transfer_id"], name: "index_dossiers_on_dossier_transfer_id"
+    t.index ["expired_at"], name: "index_dossiers_on_expired_at"
     t.index ["groupe_instructeur_id", "depose_at", "id"], name: "index_dossiers_on_groupe_instructeur_id_and_depose_at_and_id", where: "((hidden_by_administration_at IS NULL) AND (hidden_by_expired_at IS NULL))"
     t.index ["groupe_instructeur_id", "state", "archived"], name: "index_dossiers_on_groupe_instructeur_id_and_state_and_archived", where: "((hidden_by_administration_at IS NULL) AND (hidden_by_expired_at IS NULL))"
     t.index ["groupe_instructeur_id", "updated_at", "id"], name: "index_dossiers_on_groupe_instructeur_id_and_updated_at_and_id", where: "((hidden_by_administration_at IS NULL) AND (hidden_by_expired_at IS NULL))"
@@ -568,6 +569,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_07_120000) do
     t.index ["revision_id"], name: "index_dossiers_stalled_declarative", where: "(((state)::text = 'en_construction'::text) AND (declarative_triggered_at IS NULL))"
     t.index ["search_terms_tsvector"], name: "index_dossiers_on_search_terms_tsvector", using: :gin
     t.index ["state"], name: "index_dossiers_on_state"
+    t.index ["termine_close_to_expiration_notice_sent_at"], name: "index_dossiers_on_termine_close_to_expiration_notice_sent_at", where: "(termine_close_to_expiration_notice_sent_at IS NOT NULL)"
     t.index ["updated_at", "id"], name: "index_dossiers_on_updated_at_and_id", where: "((hidden_by_administration_at IS NULL) AND (hidden_by_expired_at IS NULL))"
     t.index ["user_id"], name: "index_dossiers_on_user_id"
   end
