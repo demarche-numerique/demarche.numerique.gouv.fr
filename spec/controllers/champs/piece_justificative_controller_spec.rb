@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe Champs::PieceJustificativeController, type: :controller do
-  let(:user) { create(:user) }
+  let(:user) { users.usager }
   let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :piece_justificative }], private_type_de_champs: [{ type: :piece_justificative }]) }
   let(:dossier) { create(:dossier, user: user, procedure: procedure) }
   let(:champ) { dossier.root_champs_public.first }
@@ -76,26 +76,17 @@ describe Champs::PieceJustificativeController, type: :controller do
         allow_any_instance_of(Champs::PieceJustificativeChamp).to receive(:has_async_external_data?).and_return(true)
       end
 
-      it 'attach the file' do
-        subject
-        champ.reload
-        expect(champ.piece_justificative_file.attached?).to be true
-        expect(champ.piece_justificative_file[0].filename).to eq('piece_justificative_0.pdf')
-      end
-
-      it 'marks the champ waiting_for_job' do
-        subject
-        expect(champ.reload).to be_waiting_for_job
-      end
-
-      it 'renders the attachment template as Javascript' do
-        subject
-        expect(response.status).to eq(200)
-        expect(response.body).to include("<turbo-stream action=\"replace\" target=\"#{champ.input_group_id}\">")
-      end
-
-      it 'updates dossier.last_champ_updated_at' do
-        expect { subject }.to change { dossier.reload.last_champ_updated_at }
+      it 'handles the file upload correctly' do
+        aggregate_failures do
+          expect { subject }
+            .to change { dossier.reload.last_champ_updated_at }
+          champ.reload
+          expect(champ.piece_justificative_file.attached?).to be true
+          expect(champ.piece_justificative_file[0].filename).to eq('piece_justificative_0.pdf')
+          expect(champ).to be_waiting_for_job
+          expect(response.status).to eq(200)
+          expect(response.body).to include("<turbo-stream action=\"replace\" target=\"#{champ.input_group_id}\">")
+        end
       end
     end
 
@@ -116,7 +107,7 @@ describe Champs::PieceJustificativeController, type: :controller do
 
     context 'when the champ is private and the dossier is not brouillon' do
       let(:file) { fixture_file_upload('spec/fixtures/files/piece_justificative_0.pdf', 'application/pdf') }
-      let(:instructeur) { create(:instructeur) }
+      let(:instructeur) { instructeurs.default }
       let!(:dossier) { create(:dossier, :en_construction, user: user, procedure: procedure) }
       let!(:champ) { dossier.root_champs_private.first }
 
@@ -215,7 +206,7 @@ describe Champs::PieceJustificativeController, type: :controller do
     end
 
     context "another user signed in" do
-      before { sign_in create(:user) }
+      before { sign_in users.instructeur }
 
       it "should not share template url" do
         subject
