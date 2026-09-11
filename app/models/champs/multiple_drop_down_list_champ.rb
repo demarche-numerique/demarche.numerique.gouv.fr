@@ -11,9 +11,8 @@ class Champs::MultipleDropDownListChamp < ChampData
     selected_options
   end
 
-  def selected_options
-    value.blank? ? [] : JSON.parse(value)
-  end
+  # One reading for both paths: champ_blank? goes through the type de champ.
+  def selected_options = TypesDeChamp::MultipleDropDownListTypeDeChamp.parse_selected_options(self)
 
   def render_as_checkboxes?
     drop_down_options.size <= THRESHOLD_NB_OPTIONS_AS_CHECKBOX

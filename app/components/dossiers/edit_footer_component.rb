@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Dossiers::EditFooterComponent < ApplicationComponent
-  delegate :can_passer_en_construction?, :can_transition_to_en_construction?, :user_buffer_changes?, to: :@dossier
+  delegate :can_passer_en_construction?, :can_submit_modifications?,
+           :can_transition_to_en_construction?, :user_buffer_changes?, to: :@dossier
 
   def initialize(dossier:, annotation:)
     @dossier = dossier
@@ -36,6 +37,12 @@ class Dossiers::EditFooterComponent < ApplicationComponent
     @dossier.en_construction?
   end
 
+  # Reads the rule the button below applies, so the link shows exactly when it is
+  # the ineligibilite that disables it.
+  def ineligibilite_blocks_submit?
+    can_submit_draft? ? !can_passer_en_construction? : !can_submit_modifications?
+  end
+
   def submit_button_label
     if can_submit_draft?
       t('.submit')
@@ -60,10 +67,12 @@ class Dossiers::EditFooterComponent < ApplicationComponent
     end
   end
 
+  # fr-opened must stay present for the click to work, "true" would open the modal
+  # as soon as DSFR initializes.
   def disabled_submit_button_options
     {
       class: 'fr-text--sm fr-mb-0 fr-mr-2w',
-      data: { 'fr-opened': "true" },
+      data: { 'fr-opened': "false" },
       aria: { controls: 'modal-eligibilite-rules-dialog', haspopup: 'dialog' },
       role: :button,
     }
@@ -79,7 +88,7 @@ class Dossiers::EditFooterComponent < ApplicationComponent
   end
 
   def submit_en_construction_button_options
-    disabled = !can_passer_en_construction? || !user_buffer_changes?
+    disabled = !can_submit_modifications? || !user_buffer_changes?
 
     {
       class: 'fr-btn',

@@ -588,10 +588,17 @@ class Dossier < ApplicationRecord
     procedure.publiee? && procedure.feature_enabled?(:blocking_pending_correction) && pending_correction?
   end
 
+  # Guards the brouillon deposit and the AASM transition: the rule applies whole,
+  # implicit answers included.
   def can_passer_en_construction?
-    return true if !revision.ineligibilite_enabled || !revision.ineligibilite_rules
+    !ineligibilite_triggered?(filled_champs_public)
+  end
 
-    !revision.ineligibilite_rules.compute(filled_champs_public)
+  # Guards the other doors: the usager editing a deposited dossier, the
+  # instructeur correcting one. They were deposited under a rule blind to an
+  # implicit answer, so it must not close them now.
+  def can_submit_modifications?
+    !ineligibilite_triggered?(filled_champs_public.reject(&:implicit_value?))
   end
 
   def can_passer_en_instruction?
@@ -1156,6 +1163,12 @@ class Dossier < ApplicationRecord
       # commit un état partiel (champs deja batch-destroy, dossier intact).
       raise ActiveRecord::Rollback
     end
+  end
+
+  def ineligibilite_triggered?(champs)
+    return false if !revision.ineligibilite_enabled || !revision.ineligibilite_rules
+
+    revision.ineligibilite_rules.compute(champs)
   end
 
   def build_default_champs

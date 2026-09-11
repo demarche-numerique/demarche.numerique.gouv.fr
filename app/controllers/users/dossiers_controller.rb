@@ -299,7 +299,7 @@ module Users
 
       dossier.champs_public_valid?
 
-      if dossier.errors.blank? && dossier.can_passer_en_construction?
+      if dossier.errors.blank? && dossier.can_submit_modifications?
         dossier.submitted_with_france_connect = current_user.loged_in_with_france_connect.present?
         dossier.submitted_with_pro_connect = logged_in_with_pro_connect?
         dossier.usager_submit_en_construction!
@@ -313,8 +313,9 @@ module Users
     def check_completude
       @dossier = dossier_with_champs
       dossier.champs_public_valid?
+      submittable = dossier.brouillon? ? dossier.can_passer_en_construction? : dossier.can_submit_modifications?
 
-      if @dossier.errors.blank? && @dossier.can_passer_en_construction?
+      if @dossier.errors.blank? && submittable
         flash.notice = t('.success')
         if dossier.brouillon?
           redirect_to brouillon_dossier_path(@dossier)

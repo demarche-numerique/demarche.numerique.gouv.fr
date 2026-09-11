@@ -353,6 +353,9 @@ class TypeDeChamp < ApplicationRecord
     end
   end
 
+  # Not condition predicates: these drive ChampData#blank?, the :missing error,
+  # "Non renseigné" and the export/API/tag defaults. Conditions go through
+  # ChampData#blank_for_condition? — do not specialize these to fix one.
   def typed_champ_blank?(champ) = champ.value.blank?
   def typed_champ_blank_or_invalid?(champ) = typed_champ_blank?(champ)
 

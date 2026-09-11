@@ -168,17 +168,39 @@ describe 'shared/dossiers/edit', type: :view do
     end
   end
 
-  context 'when dossier transitions rules are computable and passer_en_construction is false' do
-    let(:public_type_de_champs) { [] }
+  context 'when the ineligibilite rules are met' do
+    include Logic
+
+    let(:public_type_de_champs) { [{ type: :checkbox, stable_id: 1 }] }
     let(:dossier) { create(:dossier, procedure:) }
 
     before do
-      allow(dossier).to receive(:can_passer_en_construction?).and_return(false)
-      allow(dossier.revision).to receive(:ineligibilite_enabled?).and_return(true)
+      dossier.revision.update!(
+        ineligibilite_enabled: true,
+        ineligibilite_message: 'non éligible',
+        ineligibilite_rules: ds_eq(champ_value(1), constant(false))
+      )
     end
 
-    it 'renders broken transitions rules dialog' do
-      expect(subject).to have_selector("#ineligibilite_rules_modal [data-fr-opened='true']")
+    context 'thanks to a champ the usager answered, here a box checked then unchecked' do
+      before do
+        champ = dossier.champ_data.first
+        champ.update!(value: 'true')
+        champ.update_timestamps
+        champ.update!(value: 'false')
+        dossier.reload
+      end
+
+      it 'renders broken transitions rules dialog' do
+        expect(subject).to have_selector("#ineligibilite_rules_modal [data-fr-opened='true']")
+      end
+    end
+
+    context 'on an untouched dossier, where only the implicit « Non » makes them met' do
+      it 'closes the deposit without opening the dialog' do
+        expect(dossier.can_passer_en_construction?).to be false
+        expect(subject).to have_no_selector("#ineligibilite_rules_modal [data-fr-opened='true']")
+      end
     end
   end
 end

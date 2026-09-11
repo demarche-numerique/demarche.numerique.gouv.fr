@@ -31,7 +31,7 @@ module Instructeurs
       dossier.champs_public_valid?
 
       @demande_seen_at = current_instructeur.follows.find_by(dossier:)&.demande_seen_at
-      @can_confirm = dossier.errors.blank? && dossier.can_passer_en_construction?
+      @can_confirm = dossier.errors.blank? && dossier.can_submit_modifications?
 
       respond_to do |format|
         format.turbo_stream do
@@ -43,7 +43,7 @@ module Instructeurs
     def submit
       dossier.champs_public_valid?
 
-      if dossier.errors.blank? && dossier.can_passer_en_construction?
+      if dossier.errors.blank? && dossier.can_submit_modifications?
         dossier.instructeur_submit_en_construction!(instructeur: current_instructeur, motivation: submit_params[:motivation])
 
         redirect_to instructeur_dossier_path(dossier.procedure, dossier, statut: params[:statut])

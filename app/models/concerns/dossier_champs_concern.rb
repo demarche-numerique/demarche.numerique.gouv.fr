@@ -448,8 +448,9 @@ module DossierChampsConcern
     if data.class != type_de_champ.champ_class
       data = data.becomes!(type_de_champ.champ_class)
       # external_state must be reset too: a champ left "fetched" with nil data
-      # crashes the components rendering the fetched external data
-      data.assign_attributes(value: nil, value_json: nil, external_id: nil, data: nil, external_state: nil, fetch_external_data_exceptions: [])
+      # crashes the components rendering the fetched external data. So must
+      # value_updated_at, which would date a write made under the previous type.
+      data.assign_attributes(value: nil, value_json: nil, external_id: nil, data: nil, external_state: nil, fetch_external_data_exceptions: [], value_updated_at: nil)
     elsif !main_stream? && data.previously_new_record?
       main_stream_data = champ_data.find_by(stable_id: type_de_champ.stable_id, row_id:, stream: Dossier::MAIN_STREAM)
       data.clone_value_from(main_stream_data) if main_stream_data.present?
