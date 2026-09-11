@@ -19,18 +19,16 @@ class APIEntreprise::EffectifsAnnuelsAdapter < APIEntreprise::Adapter
 
   def process_params
     data = data_source.fetch(:data, nil)
-    Sentry.with_scope do |scope|
-      scope.set_tags(siret: @siret)
-      scope.set_extras(source: data)
-      effectifs = data&.fetch(:effectifs_annuel, nil)&.first
-      if effectifs.present?
-        {
-          entreprise_effectif_annuel: effectifs[:value],
-          entreprise_effectif_annuel_annee: data[:annee],
-        }
-      else
-        {}
-      end
+    Sentry.set_tags(siret: @siret)
+
+    effectifs = data&.fetch(:effectifs_annuel, nil)&.first
+    if effectifs.present?
+      {
+        entreprise_effectif_annuel: effectifs[:value],
+        entreprise_effectif_annuel_annee: data[:annee],
+      }
+    else
+      {}
     end
   end
 end

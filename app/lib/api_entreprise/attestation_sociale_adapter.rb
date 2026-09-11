@@ -18,17 +18,14 @@ class APIEntreprise::AttestationSocialeAdapter < APIEntreprise::Adapter
   def process_params
     data = data_source[:data]
 
-    Sentry.with_scope do |scope|
-      scope.set_tags(siret: @siret)
-      scope.set_extras(source: data)
+    Sentry.set_tags(siret: @siret)
 
-      if data && data[:document_url].present?
-        {
-          entreprise_attestation_sociale_url: data[:document_url],
-        }
-      else
-        {}
-      end
+    if data && data[:document_url].present?
+      {
+        entreprise_attestation_sociale_url: data[:document_url],
+      }
+    else
+      {}
     end
   end
 end
