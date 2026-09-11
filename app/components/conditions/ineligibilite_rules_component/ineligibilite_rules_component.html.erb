@@ -1,6 +1,6 @@
 <div id="<%= dom_id(@draft_revision, :ineligibilite_rules) %>">
   <%= render Procedure::PendingRepublishComponent.new(procedure: @draft_revision.procedure, render_if: pending_changes?) %>
-  <%= render Conditions::ConditionsErrorsComponent.new(conditions: condition_per_row, source_tdcs: @source_tdcs) %>
+  <%= render Conditions::ConditionsErrorsComponent.new(condition: @condition, source_tdcs: @source_tdcs) %>
 
   <div class="fr-fieldset">
     <%= form_for(@draft_revision, url: change_admin_procedure_ineligibilite_rules_path(@draft_revision.procedure_id), html: { id: 'ineligibilite_form', class: 'width-100', novalidate: true }) do |f| %>

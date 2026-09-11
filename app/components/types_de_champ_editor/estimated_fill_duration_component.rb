@@ -20,9 +20,5 @@ class TypesDeChampEditor::EstimatedFillDurationComponent < ApplicationComponent
     !annotations? && @revision.public_root_type_de_champs.present?
   end
 
-  def estimated_fill_duration_minutes
-    seconds = @revision.estimated_fill_duration
-    minutes = (seconds / 60.0).round
-    [1, minutes].max
-  end
+  def estimated_fill_minutes_text = helpers.estimated_fill_minutes_text(@revision)
 end
