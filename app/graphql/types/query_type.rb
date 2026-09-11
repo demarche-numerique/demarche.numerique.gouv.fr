@@ -52,9 +52,5 @@ module Types
     def groupe_instructeur(number:)
       GroupeInstructeur.for_api_v2.find(number)
     end
-
-    def self.accessible?(context)
-      context[:token] || context[:administrateur_id]
-    end
   end
 end

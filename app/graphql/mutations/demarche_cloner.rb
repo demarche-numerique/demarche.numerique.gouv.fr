@@ -18,6 +18,7 @@ module Mutations
       if demarche.present? && (demarche.opendata? || context.authorized_demarche?(demarche))
         cloned_demarche = demarche.clone(admin: context.current_administrateur, options: { clone_service: })
         cloned_demarche.update!(libelle: title) if title.present?
+        context.authorize_demarche!(cloned_demarche)
 
         { demarche: cloned_demarche.draft_revision }
       else

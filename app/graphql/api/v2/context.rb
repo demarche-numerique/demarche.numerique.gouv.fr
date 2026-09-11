@@ -43,6 +43,14 @@ class API::V2::Context < GraphQL::Query::Context
     Administrateur.find(self[:administrateur_id])
   end
 
+  # Grants access for the rest of the query to a demarche the caller just
+  # created (e.g. the clone returned by demarcheCloner): it starts as a
+  # brouillon and is not part of the token's procedure_ids snapshot.
+  def authorize_demarche!(demarche)
+    self[:authorized] ||= {}
+    self[:authorized][demarche.id] = true
+  end
+
   def authorized_demarche?(demarche, opendata: false)
     # `Procedure` has a `default_scope -> { kept }`, so `label.procedure`,
     # `dossier.revision.procedure`, … return nil once the démarche is hidden,
@@ -54,7 +62,7 @@ class API::V2::Context < GraphQL::Query::Context
       return true
     end
 
-    if opendata && demarche.opendata?
+    if opendata && demarche.opendata? && !demarche.brouillon?
       return true
     end
 
