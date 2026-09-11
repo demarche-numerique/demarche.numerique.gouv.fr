@@ -421,6 +421,30 @@ RSpec.describe Types::DossierType, type: :graphql do
     end
   end
 
+  describe 'dossier with a piece justificative nature' do
+    let(:dossier) { create(:dossier, :accepte, :with_populated_champs, procedure:) }
+    let(:query) { DOSSIER_WITH_PIECE_JUSTIFICATIVE_NATURE_QUERY }
+    let(:variables) { { number: dossier.id } }
+
+    context 'when a nature is set on the type de champ' do
+      let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :piece_justificative, nature: 'justificatif_domicile' }]) }
+
+      it 'returns the nature of the type de champ' do
+        expect(errors).to be_nil
+        expect(data[:dossier][:champs][0][:nature]).to eq('JUSTIFICATIF_DOMICILE')
+      end
+    end
+
+    context 'when no nature is set on the type de champ' do
+      let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :piece_justificative }]) }
+
+      it 'falls back to NON_SPECIFIE' do
+        expect(errors).to be_nil
+        expect(data[:dossier][:champs][0][:nature]).to eq('NON_SPECIFIE')
+      end
+    end
+  end
+
   describe 'dossier with motivation attachment' do
     let(:dossier) { create(:dossier, :accepte, :with_motivation, :with_justificatif) }
     let(:query) { DOSSIER_WITH_MOTIVATION_QUERY }
@@ -1084,6 +1108,20 @@ RSpec.describe Types::DossierType, type: :graphql do
           ... on IntegerColumn {
             value
           }
+        }
+      }
+    }
+  }
+  GRAPHQL
+
+  DOSSIER_WITH_PIECE_JUSTIFICATIVE_NATURE_QUERY = <<-GRAPHQL
+  query($number: Int!) {
+    dossier(number: $number) {
+      id
+      champs {
+        __typename
+        ... on PieceJustificativeChamp {
+          nature
         }
       }
     }

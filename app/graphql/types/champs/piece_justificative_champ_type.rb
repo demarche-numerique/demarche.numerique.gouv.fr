@@ -17,7 +17,7 @@ module Types::Champs
     ]
 
     def nature
-      (object.nature || "non_specifie").upcase
+      (object.type_de_champ.nature || "non_specifie").upcase
     end
   end
 end
