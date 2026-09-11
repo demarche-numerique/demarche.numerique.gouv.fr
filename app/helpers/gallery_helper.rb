@@ -43,21 +43,24 @@ module GalleryHelper
     preview_image = attachment.blob.preview_image
     return unless preview_image.attached?
 
-    variant = preview_image.variant(resize_to_limit: [400, 400])
-    variant.key.present? ? variant.processed.url : nil
-  rescue StandardError
+    existing_variant_url(preview_image.variant(resize_to_limit: [400, 400]))
   end
 
   def image_variant_url_for(attachment)
-    variant = attachment.variant(resize_to_limit: [400, 400])
-    variant.key.present? ? variant.processed.url : nil
-  rescue StandardError
+    return if !attachment.blob.variable?
+
+    existing_variant_url(attachment.variant(resize_to_limit: [400, 400]))
   end
 
   def blob_url(attachment)
-    variant = attachment.variant(resize_to_limit: [2000, 2000])
-    attachment.blob.content_type.in?(RARE_IMAGE_TYPES) && variant.key.present? ? variant.processed.url : attachment.blob.url
-  rescue StandardError
-    attachment.blob.url
+    return attachment.blob.url if !attachment.blob.content_type.in?(RARE_IMAGE_TYPES) || !attachment.blob.variable?
+
+    existing_variant_url(attachment.variant(resize_to_limit: [2000, 2000])) || attachment.blob.url
+  end
+
+  private
+
+  def existing_variant_url(variant)
+    variant.url if variant.image&.attached?
   end
 end
