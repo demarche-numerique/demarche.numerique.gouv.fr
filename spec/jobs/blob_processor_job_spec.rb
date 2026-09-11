@@ -241,6 +241,12 @@ describe BlobProcessorJob, :external_deps, type: :job do
 
         described_class.perform_now(blob)
       end
+
+      it 'marks the blob so the usager sees an error instead of an endless pending state' do
+        described_class.perform_now(blob)
+
+        expect(blob.reload.watermark_failed?).to be true
+      end
     end
   end
 

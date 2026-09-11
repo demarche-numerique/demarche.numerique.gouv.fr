@@ -119,7 +119,11 @@ class BlobProcessorJob < ApplicationJob
     raise if !unreadable_vips_source?(error)
 
     Rails.logger.warn("BlobProcessorJob skipped blob #{blob.id}: #{error.message}")
-    Sentry.capture_exception(error) if blob.watermark_pending?
+
+    if blob.watermark_pending?
+      blob.metadata["watermark_failed"] = true
+      Sentry.capture_exception(error)
+    end
   end
 
   def needs_mutations?

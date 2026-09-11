@@ -15,6 +15,10 @@ module BlobProcessorConcern
     watermarked_at.present?
   end
 
+  def watermark_failed?
+    metadata["watermark_failed"] == true
+  end
+
   def representation_required?
     from_champ? || from_messagerie? || logo? || from_action_text? || from_avis? || from_justificatif_motivation? || from_attestation?
   end

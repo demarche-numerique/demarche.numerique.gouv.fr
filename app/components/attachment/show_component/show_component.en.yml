@@ -3,3 +3,4 @@ en:
   errors:
     virus_infected: Virus detected, download is blocked.
     corrupted_file: The file is corrupted, the download is blocked.
+    watermark_failed: "This document could not be processed (unreadable or too large). Please upload another one."
