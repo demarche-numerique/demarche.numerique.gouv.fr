@@ -95,7 +95,11 @@ module Instructeurs
     end
 
     def groupe_instructeur
-      procedure.groupe_instructeurs.find(params[:id])
+      if current_administrateur&.owns?(procedure)
+        procedure.groupe_instructeurs.find(params[:id])
+      else
+        current_instructeur.groupe_instructeurs.where(procedure: procedure).find(params[:id])
+      end
     end
 
     def paginated_groupe_instructeurs
