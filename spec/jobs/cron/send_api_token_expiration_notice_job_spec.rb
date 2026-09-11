@@ -85,6 +85,25 @@ RSpec.describe Cron::SendAPITokenExpirationNoticeJob, type: :job do
           ])
         end
       end
+
+      # A version 1 or 2 token stopped authenticating years ago. Once the
+      # backfill gives it a date, nothing else keeps it out of the notice
+      # scopes — an administrateur holding a dozen of them would get three
+      # emails each about tokens that have long been dead.
+      context 'when the token can no longer authenticate' do
+        before do
+          token.update_column(:version, 1)
+
+          travel_to(expires_at - 1.month)
+          perform_now
+          travel_to(expires_at - 1.week)
+          perform_now
+          travel_to(expires_at - 1.day)
+          perform_now
+        end
+
+        it { expect(mailer_double).not_to have_received(:deliver_later) }
+      end
     end
   end
 end

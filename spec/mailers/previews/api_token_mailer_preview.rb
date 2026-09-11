@@ -5,6 +5,15 @@ class APITokenMailerPreview < ActionMailer::Preview
     APITokenMailer.expiration(api_token)
   end
 
+  def becomes_expirable
+    APITokenMailer.becomes_expirable(user, [api_token], Date.new(2027, 8, 31))
+  end
+
+  def becomes_expirable_with_several_tokens
+    tokens = ['Jeton prod', 'Jeton recette'].map { APIToken.new(administrateur:, name: it) }
+    APITokenMailer.becomes_expirable(user, tokens, Date.new(2027, 8, 31))
+  end
+
   private
 
   def api_token

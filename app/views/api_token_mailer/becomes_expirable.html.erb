@@ -1,0 +1,44 @@
+<% content_for(:title, "Votre accès à l’API expire le #{l(@expires_on, format: :long)}") %>
+
+<p>Bonjour,</p>
+
+<p>
+  Vous recevez ce courriel car vous détenez
+  <%= @api_tokens.one? ? "un jeton d’API sans date d’expiration" : "des jetons d’API sans date d’expiration" %>
+  sur <%= APPLICATION_NAME %>.
+</p>
+
+<p>
+  Pour des raisons de sécurité, un jeton d’API ne peut plus être
+  permanent&nbsp;: un jeton qui fuite resterait sinon utilisable indéfiniment.
+</p>
+
+<p>
+  <strong><%= @api_tokens.one? ? "Ce jeton expire le" : "Ces jetons expirent le" %> <%= l(@expires_on, format: :long) %>.</strong>
+  <br>
+  L’accès à l’API de <%= APPLICATION_NAME %> sera alors bloqué pour
+  <%= @api_tokens.one? ? "ce jeton" : "ces jetons" %>.
+</p>
+
+<ul>
+  <% @api_tokens.each do |api_token| %>
+    <li>« <%= api_token.name %> »</li>
+  <% end %>
+</ul>
+
+<p>
+  D’ici là, rien ne change&nbsp;:
+  <%= @api_tokens.one? ? "il continue" : "ils continuent" %> de fonctionner
+  normalement. Pour éviter toute interruption, créez
+  <%= @api_tokens.one? ? "un nouveau jeton" : "de nouveaux jetons" %> avant
+  cette date depuis votre page de profil, section « Jetons d’identification de
+  l’API ».
+</p>
+
+<p><%= link_to profil_url, profil_url %></p>
+
+<p>
+  Vous recevrez des rappels un mois, une semaine et un jour avant l’échéance.
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>

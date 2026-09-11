@@ -174,12 +174,14 @@ describe Administrateurs::APITokensController, type: :controller do
       end
     end
 
-    # Eternal tokens can no longer be created, but the existing ones keep their
-    # own rule: they must always be restricted to at least one network.
-    context 'with no network on a legacy eternal token' do
+    # Tokens predating automatic IP pinning never re-pin themselves, so they must
+    # always keep at least one network. Keyed on requires_ip_filtering rather
+    # than on the expiration date, which the backfill is about to fill in for
+    # every token.
+    context 'with no network on a token without automatic IP pinning' do
       before do
         token.update!(authorized_networks: [IPAddr.new('118.218.200.200')])
-        token.update_column(:expires_at, nil)
+        token.update_column(:requires_ip_filtering, false)
         subject
         token.reload
       end
