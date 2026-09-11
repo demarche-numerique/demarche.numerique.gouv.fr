@@ -21,7 +21,7 @@ module PrefillableFromServicePublicConcern
   def prefill_from_service_public(result)
     case result
     in Dry::Monads::Success(data)
-      self.nom = data[:nom] if data[:nom].present?
+      self.organisme = data[:nom] if data[:nom].present?
       self.email = data[:adresse_courriel] if data[:adresse_courriel].present?
       self.telephone = data[:telephone]&.first&.dig("valeur") if data[:telephone].present?
       self.horaires = denormalize_plage_ouverture(data[:plage_ouverture]) if data[:plage_ouverture].present?
@@ -37,7 +37,7 @@ module PrefillableFromServicePublicConcern
       type_organisme = detect_type_organisme(data)
       self.type_organisme = type_organisme if type_organisme.present?
 
-      self.nom = data[:nom_complet] if data[:nom_complet].present?
+      self.organisme = data[:nom_complet] if data[:nom_complet].present?
 
       adresse = data.dig(:siege, :geo_adresse) || data.dig(:siege, :adresse)
       self.adresse = adresse if adresse.present?
