@@ -17,6 +17,9 @@ describe TypesDeChampEditor::DossierLinkChampComponent, type: :component do
 
     before do
       allow(form).to receive(:field_name).and_return("")
+      # `#t` (sidecar translations) needs the view context, which only exists once
+      # the component has gone through the render pipeline.
+      render_inline(subject)
     end
 
     describe '#react_props' do
@@ -24,11 +27,11 @@ describe TypesDeChampEditor::DossierLinkChampComponent, type: :component do
         props = subject.react_props
 
         expect(props[:id]).to eq("procedures_type_de_champ")
-        expect(props[:label]).to eq(t(".label"))
+        expect(props[:label]).to eq("Sélectionnez la ou les démarches concernées")
         expect(props[:selected_keys]).to eq([])
-        expect(props[:'aria-label']).to eq(t(".aria_label"))
+        expect(props[:'aria-label']).to eq("Liste des démarches")
         expect(props[:value_separator]).to be(false)
-        expect(props[:sections].map { it[:label] }).to contain_exactly(t(".published_procedures"), t(".test_procedures"), t(".closed_procedures"))
+        expect(props[:sections].map { it[:label] }).to contain_exactly('Démarches publiées', 'Démarches en test', 'Démarches closes/dépubliées')
       end
     end
 
@@ -37,9 +40,9 @@ describe TypesDeChampEditor::DossierLinkChampComponent, type: :component do
         sections = subject.sections
         sections_by_label = sections.index_by { it[:label] }
 
-        expect(sections_by_label[t(".published_procedures")][:items].size).to eq(1)
-        expect(sections_by_label[t(".test_procedures")][:items].size).to eq(1)
-        expect(sections_by_label[t(".closed_procedures")][:items].size).to eq(2)
+        expect(sections_by_label['Démarches publiées'][:items].size).to eq(1)
+        expect(sections_by_label['Démarches en test'][:items].size).to eq(1)
+        expect(sections_by_label['Démarches closes/dépubliées'][:items].size).to eq(2)
       end
     end
 
