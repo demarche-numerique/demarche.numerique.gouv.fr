@@ -61,15 +61,6 @@
           .chart.cumulative-dossiers-chart.hidden{ data: { 'chartkick-target': 'chart' } }
             = area_chart @dossiers_cumulative, library: Chartkick.options[:default_library_config]
 
-    .fr-col-xs-12.fr-col-sm-12.fr-col-lg-6
-      .fr-callout
-        %h2.fr-callout__title Répartition des dossiers
-
-        .fr-mt-4w
-          .chart
-            = pie_chart @dossiers_states_for_pie, library: Chartkick.options[:default_library_config],
-              colors: ["#000091", "#7F7FC8", "#9A9AFF", "#00006D"]
-
   - if super_admin_signed_in?
     %h2.fr-h4 Téléchargement
 
