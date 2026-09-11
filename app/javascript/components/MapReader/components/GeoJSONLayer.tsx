@@ -40,7 +40,7 @@ export function GeoJSONLayer({
         const coordinates = getCenter(feature.geometry, event.lngLat);
         const description = feature.properties.description;
         map.getCanvas().style.cursor = 'pointer';
-        popup.setLngLat(coordinates).setHTML(description).addTo(map);
+        popup.setLngLat(coordinates).setText(description).addTo(map);
       } else {
         popup.remove();
       }
