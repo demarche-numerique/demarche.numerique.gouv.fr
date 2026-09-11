@@ -29,43 +29,10 @@ describe Administrateurs::ReferentielsController, type: :controller do
     end
   end
 
-  describe 'IDOR on build_or_clone_by_id_params (clone credentials)' do
-    let(:other_referentiel) { create(:api_referentiel, :exact_match, :with_authentication_data) }
-    let(:other_procedure) { create(:procedure, public_type_de_champs: [{ type: :referentiel, referentiel: other_referentiel }]) }
-    let(:other_admin) { other_procedure.administrateurs.first }
-
-    it 'blocks cloning authentication_data from another admin referentiel' do
-      expect {
-        get :new, params: { procedure_id: procedure.id, stable_id:, referentiel_id: other_referentiel.id }
-      }.to raise_error(ActiveRecord::RecordNotFound)
-    end
-  end
-
   describe '#new' do
     it 'renders successifully' do
       get :new, params: { procedure_id: procedure.id, stable_id: }
       expect(response).to have_http_status(:success)
-    end
-
-    context 'given a referentiel_id' do
-      let(:original_data) do
-        {
-          hint: 'howtofillme',
-          mode: 'exact_match',
-        }
-      end
-      let(:type_de_champ) { procedure.draft_revision.type_de_champs.first }
-      let(:referentiel) { create(:api_referentiel, :exact_match, type_de_champs: [type_de_champ], **original_data) }
-
-      it 'clone existing one' do
-        get :new, params: { procedure_id: procedure.id, referentiel_id: referentiel.id, stable_id: }
-        cloned = assigns(:referentiel)
-        expect(cloned.hint).to eq(original_data[:hint])
-        expect(cloned.mode).to eq(original_data[:mode])
-        expect(cloned.url_tiptap).to eq(referentiel.url_tiptap)
-        expect(cloned.test_data_tiptap).to eq(referentiel.test_data_tiptap)
-        expect(response).to have_http_status(:success)
-      end
     end
   end
 
@@ -199,75 +166,6 @@ describe Administrateurs::ReferentielsController, type: :controller do
         end
       end
     end
-
-    context 'cloning an existing referentiel whose auth fields were rendered disabled' do
-      let(:type_de_champ) { procedure.draft_revision.type_de_champs.first }
-      let(:original_authentication_data) { { 'header' => 'Authorization', 'value' => 'Bearer secret-token' } }
-      let!(:existing_referentiel) do
-        create(:api_referentiel, :exact_match,
-               type_de_champs: [type_de_champ],
-               authentication_method: 'header_token',
-               authentication_data: original_authentication_data)
-      end
-      let(:url_tiptap_json) do
-        {
-          type: "doc",
-          content: [
-            {
-              type: "paragraph",
-              content: [
-                { type: "text", text: "https://rnb-api.beta.gouv.fr/api/alpha/buildings/" },
-                { type: "mention", attrs: { id: "{query}", label: "Valeur saisie par l'usager" } },
-              ],
-            },
-          ],
-        }
-      end
-      let(:referentiel_params) do
-        {
-          type: 'Referentiels::APIReferentiel',
-          mode: 'exact_match',
-          url_tiptap: url_tiptap_json.to_json,
-          hint: 'Identifiant unique du bâtiment dans le RNB',
-          test_data_tiptap: { "{query}" => "PG46YY6YWCX8" },
-          authentication_method: 'header_token',
-          referentiel_id: existing_referentiel.id.to_s,
-        }
-      end
-
-      it 'carries over authentication_data from the source referentiel' do
-        post :create, params: { commit: 'Étape suivante', procedure_id: procedure.id, stable_id:, referentiel: referentiel_params }, format: :turbo_stream
-
-        new_referentiel = type_de_champ.reload.referentiel
-        expect(new_referentiel).to be_present
-        expect(new_referentiel.authentication_method).to eq('header_token')
-        expect(new_referentiel.authentication_data.with_indifferent_access).to eq(original_authentication_data.with_indifferent_access)
-      end
-    end
-
-    context 'cloning an existing referentiel having an autocomplete configuration' do
-      let(:type_de_champ) { procedure.draft_revision.type_de_champs.first }
-      let!(:existing_referentiel) do
-        create(:api_referentiel, :autocomplete, type_de_champs: [type_de_champ], datasource: '$.')
-      end
-      let(:referentiel_params) do
-        {
-          type: 'Referentiels::APIReferentiel',
-          mode: 'autocomplete',
-          url_tiptap: existing_referentiel.url_tiptap.to_json,
-          test_data_tiptap: existing_referentiel.test_data_tiptap,
-          referentiel_id: existing_referentiel.id.to_s,
-        }
-      end
-
-      it 'carries over the autocomplete configuration from the source referentiel' do
-        post :create, params: { commit: 'Étape suivante', procedure_id: procedure.id, stable_id:, referentiel: referentiel_params }, format: :turbo_stream
-
-        new_referentiel = type_de_champ.reload.referentiel
-        expect(new_referentiel.id).not_to eq(existing_referentiel.id)
-        expect(new_referentiel.autocomplete_configuration).to eq(existing_referentiel.autocomplete_configuration)
-      end
-    end
   end
 
   describe '#create with tiptap' do
@@ -334,36 +232,6 @@ describe Administrateurs::ReferentielsController, type: :controller do
         expect(referentiel.url_tiptap).to eq(url_tiptap_json.deep_stringify_keys)
         expect(referentiel.test_data_tiptap).to eq({ "{query}" => "0100026", "tdc#{stable_id}" => "ABC123" })
       end
-    end
-  end
-
-  describe '#clone with tiptap' do
-    let(:original_tiptap_data) do
-      {
-        url_tiptap: {
-          "type" => "doc", "content" => [
-            {
-              "type" => "paragraph", "content" => [
-                { "type" => "text", "text" => "https://api.gouv.fr/" },
-                { "type" => "mention", "attrs" => { "id" => "{query}", "label" => "Query" } },
-              ],
-            },
-          ],
-        },
-        test_data_tiptap: { "{query}" => "test" },
-        hint: 'clone me',
-        mode: 'exact_match',
-      }
-    end
-    let(:type_de_champ) { procedure.draft_revision.type_de_champs.first }
-    let(:referentiel) { create(:api_referentiel, type_de_champs: [type_de_champ], **original_tiptap_data) }
-
-    it 'clones tiptap columns' do
-      get :new, params: { procedure_id: procedure.id, referentiel_id: referentiel.id, stable_id: }
-      cloned = assigns(:referentiel)
-      expect(cloned.url_tiptap).to eq(original_tiptap_data[:url_tiptap])
-      expect(cloned.test_data_tiptap).to eq(original_tiptap_data[:test_data_tiptap])
-      expect(response).to have_http_status(:success)
     end
   end
 

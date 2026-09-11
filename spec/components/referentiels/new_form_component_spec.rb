@@ -24,7 +24,6 @@ RSpec.describe Referentiels::NewFormComponent, type: :component do
       context 'when mode was not selected' do
         it 'renders form with hidden fields and no legacy inputs' do
           inputs = {
-            referentiel_id: 1,
             hint: 1,
           }
           input[:type] = 2 if Referentiels::APIReferentiel.csv_available?

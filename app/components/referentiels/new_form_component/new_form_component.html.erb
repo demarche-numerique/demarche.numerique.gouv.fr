@@ -1,7 +1,5 @@
 <%= form_with model: @referentiel, scope: :referentiel, url: form_url, **form_options do |form| -%>
   <div class="<%= bordered_container_class_names %>">
-    <%= form.hidden_field :referentiel_id, value: params[:referentiel_id] %>
-
     <div>
       <% if Referentiels::APIReferentiel.csv_available? -%>
         <%= render Dsfr::RadioButtonListComponent.new(form:, target: :type,
