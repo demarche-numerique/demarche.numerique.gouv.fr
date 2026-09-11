@@ -33,6 +33,25 @@ demarche.numerique.gouv.fr (formerly demarches-simplifiees.fr) — French govern
 - **Revisions** — editing a published procedure creates a new `ProcedureRevision`; existing dossiers keep theirs until rebased (`DossierRebaseConcern`). Anything touching champs must still work for a dossier sitting on an older revision.
 - **Roles** — usager, instructeur, expert (invited on a single dossier), administrateur, gestionnaire (manages groups of administrateurs), super admin. One account can hold several roles, and controllers are namespaced per role.
 
+## Data volumes
+
+Production row counts, from the cleaned production dump of **2026-09-07** (update the date when refreshing). Every scan of `dossiers` or `active_storage_blobs` is a scan of tens of millions of rows: check the plan on a production-sized table before shipping a batch query.
+
+| Table | Rows |
+|---|---|
+| `active_storage_blobs` | 168 M (2.1 M soft-deleted) |
+| `active_storage_attachments` | 128 M |
+| `active_storage_variant_records` | 29 M |
+| `dossier_notifications` | 17 M |
+| `users` | 11.6 M |
+| `dossiers` | 11.5 M: accepte 6.7 M, en_instruction 2.2 M, sans_suite 0.85 M, refuse 0.68 M, en_construction 0.66 M, brouillon 0.54 M |
+| `deleted_dossiers` | 10.8 M |
+| `follows` | 9.1 M |
+| `individuals` | 6.6 M |
+| `procedures` / `procedure_revisions` / `groupe_instructeurs` / `instructeurs` | 101 k / 231 k / 214 k / 177 k |
+
+`champs` was not measured (it is the largest table).
+
 ## Conventions
 
 - Ruby 3.4: use `it` in one-line blocks (`ary.map { it.upcase }`) and hash shorthand when the key matches the variable (`locals: { user: }`).
