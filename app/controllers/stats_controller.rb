@@ -20,13 +20,6 @@ class StatsController < ApplicationController
       stat.dossiers_deposes_entre_60_et_30_jours
     )
 
-    @dossiers_states_for_pie = {
-      "Brouillon" => stat.dossiers_brouillon,
-      "En construction" => stat.dossiers_en_construction,
-      "En instruction" => stat.dossiers_en_instruction,
-      "Terminé" => stat.dossiers_termines,
-    }
-
     @procedures_cumulative = cumulative_month_serie(procedures, :published_at)
     @procedures_in_the_last_4_months = last_four_months_serie(procedures, :published_at)
 

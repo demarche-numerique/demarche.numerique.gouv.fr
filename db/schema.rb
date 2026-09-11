@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_07_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_11_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
@@ -1316,15 +1316,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_07_120000) do
   create_table "stats", force: :cascade do |t|
     t.bigint "administrations_partenaires", default: 0
     t.datetime "created_at", null: false
-    t.bigint "dossiers_brouillon", default: 0
     t.jsonb "dossiers_cumulative", default: "{}", null: false
     t.bigint "dossiers_depose_avant_30_jours", default: 0
     t.bigint "dossiers_deposes_entre_60_et_30_jours", default: 0
-    t.bigint "dossiers_en_construction", default: 0
-    t.bigint "dossiers_en_instruction", default: 0
     t.jsonb "dossiers_in_the_last_4_months", default: "{}", null: false
     t.bigint "dossiers_not_brouillon", default: 0
-    t.bigint "dossiers_termines", default: 0
     t.datetime "updated_at", null: false
   end
 

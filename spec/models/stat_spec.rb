@@ -16,10 +16,6 @@ describe Stat, type: :model do
       expect(subject["not_brouillon"]).to eq(8)
       expect(subject["dossiers_depose_avant_30_jours"]).to eq(1)
       expect(subject["dossiers_deposes_entre_60_et_30_jours"]).to eq(1)
-      expect(subject["brouillon"]).to eq(0)
-      expect(subject["en_construction"]).to eq(3)
-      expect(subject["en_instruction"]).to eq(1)
-      expect(subject["termines"]).to eq(4)
     end
   end
 
@@ -51,10 +47,6 @@ describe Stat, type: :model do
       expect(stats["not_brouillon"]).to eq(18)
       expect(stats["dossiers_depose_avant_30_jours"]).to eq(15)
       expect(stats["dossiers_deposes_entre_60_et_30_jours"]).to eq(3)
-      expect(stats["brouillon"]).to eq(1)
-      expect(stats["en_construction"]).to eq(5)
-      expect(stats["en_instruction"]).to eq(6)
-      expect(stats["termines"]).to eq(7)
     end
   end
 
@@ -64,10 +56,6 @@ describe Stat, type: :model do
         "not_brouillon" => 1,
         "dossiers_depose_avant_30_jours" => 2,
         "dossiers_deposes_entre_60_et_30_jours" => 3,
-        "brouillon" => 4,
-        "en_construction" => 5,
-        "en_instruction" => 6,
-        "termines" => 7,
       }
       allow(Stat).to receive(:dossiers_states).and_return(stats)
       allow(Stat).to receive(:deleted_dossiers_states).and_return(stats)
@@ -75,13 +63,9 @@ describe Stat, type: :model do
       Stat.update_stats
       computed_stats = Stat.first
 
-      expect(computed_stats.dossiers_not_brouillon).to eq(stats["not_brouillon"] * 2)
-      expect(computed_stats.dossiers_depose_avant_30_jours).to eq(stats["dossiers_depose_avant_30_jours"] * 2)
-      expect(computed_stats.dossiers_deposes_entre_60_et_30_jours).to eq(stats["dossiers_deposes_entre_60_et_30_jours"] * 2)
-      expect(computed_stats.dossiers_brouillon).to eq(stats["brouillon"] * 2)
-      expect(computed_stats.dossiers_en_construction).to eq(stats["en_construction"] * 2)
-      expect(computed_stats.dossiers_en_instruction).to eq(stats["en_instruction"] * 2)
-      expect(computed_stats.dossiers_termines).to eq(stats["termines"] * 2)
+      expect(computed_stats.dossiers_not_brouillon).to eq(2)
+      expect(computed_stats.dossiers_depose_avant_30_jours).to eq(4)
+      expect(computed_stats.dossiers_deposes_entre_60_et_30_jours).to eq(6)
     end
   end
 
