@@ -17,6 +17,7 @@ describe ProcedureCloneConcern, type: :model do
         public_type_de_champs:,
         private_type_de_champs:,
         api_particulier_token: '123456789012345',
+        web_hook_url: 'https://callback.exemple.fr/',
         estimated_dossiers_count: 4,
         template: true)
     end
@@ -73,6 +74,10 @@ describe ProcedureCloneConcern, type: :model do
       tag_source_pj_with_old_pj
       pj_tdc = subject.draft_revision.public_root_type_de_champs.find(&:piece_justificative?)
       expect(pj_tdc.reload.options[:old_pj]).to be_present
+    end
+
+    it 'keeps the web_hook_url when cloning for the same admin' do
+      expect(subject.web_hook_url).to eq('https://callback.exemple.fr/')
     end
 
     it 'the cloned procedure should not be a template anymore' do
@@ -282,6 +287,10 @@ describe ProcedureCloneConcern, type: :model do
 
       it "should discard the existing token" do
         expect(subject.api_particulier_token).to be_nil
+      end
+
+      it 'should discard the web_hook_url' do
+        expect(subject.web_hook_url).to be_nil
       end
 
       it 'should not route the procedure' do
