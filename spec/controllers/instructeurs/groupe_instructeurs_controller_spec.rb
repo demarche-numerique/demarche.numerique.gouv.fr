@@ -298,4 +298,52 @@ describe Instructeurs::GroupeInstructeursController, type: :controller do
       expect(gi_1_2.reload.signature).to be_attached
     end
   end
+
+  describe 'group membership scope within the same procedure' do
+    # The signed-in instructeur is a member of gi_1_2 only (top-level before),
+    # and targets gi_1_1, another group of the same procedure.
+    let(:instructeur) { create(:instructeur) }
+    let(:procedure) { create(:procedure, :published, instructeurs_self_management_enabled: true) }
+
+    describe '#show' do
+      it 'exposes the instructeurs of a group the instructeur has not joined' do
+        get :show, params: { procedure_id: procedure.id, id: gi_1_1.id }
+
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    describe '#add_instructeurs' do
+      it 'lets the instructeur join a group they are not a member of' do
+        post :add_instructeurs,
+          params: { procedure_id: procedure.id, id: gi_1_1.id, emails: [instructeur.email] }
+
+        expect(gi_1_1.reload.instructeurs).to include(instructeur)
+      end
+    end
+
+    describe '#remove_instructeur' do
+      let(:victim_instructeur) { create(:instructeur) }
+
+      before { gi_1_1.instructeurs << victim_instructeur << create(:instructeur) }
+
+      it 'lets the instructeur remove a member from a group they have not joined' do
+        delete :remove_instructeur,
+          params: { procedure_id: procedure.id, id: gi_1_1.id, instructeur: { id: victim_instructeur.id } }
+
+        expect(gi_1_1.reload.instructeurs).not_to include(victim_instructeur)
+      end
+    end
+
+    describe '#add_signature' do
+      let(:signature) { fixture_file_upload('spec/fixtures/files/black.png', 'image/png') }
+
+      it 'lets the instructeur replace the signature of a group they have not joined' do
+        post :add_signature,
+          params: { procedure_id: procedure.id, id: gi_1_1.id, groupe_instructeur: { signature: signature } }
+
+        expect(gi_1_1.reload.signature).to be_attached
+      end
+    end
+  end
 end
