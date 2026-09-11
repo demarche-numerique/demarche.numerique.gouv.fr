@@ -68,6 +68,6 @@ module Maintenance
       champ.dossier.en_instruction? || champ.dossier.en_construction?
     end
 
-    def notify(message, champ) = Sentry.capture_message(message, extra: { champ: })
+    def notify(message, champ) = Sentry.capture_message(message, tags: { champ: champ.id, dossier: champ.dossier_id })
   end
 end

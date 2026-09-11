@@ -207,26 +207,7 @@ class API::V2::Schema < GraphQL::Schema
     def handle_timeout(error, query)
       error.extensions = { code: :timeout }
 
-      Sentry.capture_exception(error, extra: {
-        procedure_id: query.variables["demarcheNumber"],
-        variables: query.variables&.to_h,
-        query_string: filter_sensitive_query_string(query.query_string),
-        operation_name: query.operation_name,
-      })
-    end
-
-    private
-
-    def filter_sensitive_query_string(query_string)
-      filter_patterns = Rails.application.config.filter_parameters
-
-      query_string_dup = query_string.dup
-
-      filter_patterns.each do |pattern|
-        query_string_dup.gsub!(pattern.to_s, "[FILTERED]")
-      end
-
-      query_string_dup
+      Sentry.capture_exception(error, extra: query.context.query_info.merge(procedure_id: query.variables["demarcheNumber"]))
     end
   end
 

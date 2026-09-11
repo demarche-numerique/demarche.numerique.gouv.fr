@@ -68,7 +68,6 @@ class APIParticulier::API
           "Invalid API schema response",
           extra: {
             url: url,
-            response: body,
             schema_errors: schema.validate(body).map { |e| e["error"] }.join("\n"),
           }
         )

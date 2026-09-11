@@ -13,15 +13,12 @@ class DirectUpload406Logger
     status, headers, response = @app.call(env)
 
     if status == 406 && original_path.include?("direct_uploads")
-      request = Rack::Request.new(env)
-
       Sentry.capture_message("[DirectUpload406] 406 on direct_uploads", extra: {
         path: env["PATH_INFO"],
         method: env["REQUEST_METHOD"],
         accept: env["HTTP_ACCEPT"],
         content_type: env["CONTENT_TYPE"],
         user_agent: env["HTTP_USER_AGENT"]&.truncate(200),
-        ip: request.ip,
         csrf_present: env["HTTP_X_CSRF_TOKEN"].present?,
         x_requested_with: env["HTTP_X_REQUESTED_WITH"],
         exception_class: env["action_dispatch.exception"]&.class&.name,

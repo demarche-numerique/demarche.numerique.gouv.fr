@@ -67,10 +67,14 @@ class API::V2::Context < GraphQL::Query::Context
     self[:authorized][demarche.id]
   end
 
+  # What logs and Sentry may carry about the query. The Rails parameter filter
+  # applies to both the query text and the variables: neither is a request
+  # parameter, so nothing filters them upstream.
   def query_info
     {
-      graphql_query: query.query_string,
-      graphql_variables: query.provided_variables&.to_json,
+      graphql_query: filtered_query_string,
+      graphql_variables: filtered_variables&.to_json,
+      graphql_operation_name: query.operation_name,
       graphql_mutation: mutation?,
       graphql_null_error: errors.any? { _1.is_a? GraphQL::InvalidNullError }.presence,
       graphql_timeout_error: errors.any? { _1.is_a? GraphQL::Schema::Timeout::TimeoutError }.presence,
@@ -79,6 +83,17 @@ class API::V2::Context < GraphQL::Query::Context
   end
 
   private
+
+  # filter_parameters holds symbols and strings until Rails compiles them into
+  # regexps on the first request; the text filter has to accept both forms.
+  def filtered_query_string
+    patterns = Rails.application.config.filter_parameters.map { it.is_a?(Regexp) ? it : /#{Regexp.escape(it.to_s)}/i }
+    query.query_string&.gsub(Regexp.union(patterns), "[FILTERED]")
+  end
+
+  def filtered_variables
+    ActiveSupport::ParameterFilter.new(Rails.application.config.filter_parameters).filter(query.provided_variables) if query.provided_variables
+  end
 
   def mutation?
     query.lookahead.selections.any? { _1.field.type.respond_to?(:mutation) }.presence
