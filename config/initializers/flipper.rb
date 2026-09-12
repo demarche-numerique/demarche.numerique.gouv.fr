@@ -37,6 +37,7 @@ features = [
   :ami_notifications,
   :ami_recipient_fc_hash_v2,
   :dossier_vide_weasyprint,
+  :attestation_depot_typst,
   :s3_storage,
   # Enable only once T20260728BackfillSearchTermsTsvectorTask has completed.
   :search_terms_tsvector,
