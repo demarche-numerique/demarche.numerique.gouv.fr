@@ -9,7 +9,7 @@ class API::V2::DossiersController < API::V2::BaseController
     @dossier = dossier.with_champs
 
     @acls = PiecesJustificativesService.new(user_profile: Administrateur.new, export_template: nil).acl_for_dossier_export(dossier.procedure)
-    render(template: 'dossiers/show', formats: [:pdf])
+    send_dossier_pdf(@dossier, acls: @acls)
   end
 
   def geojson

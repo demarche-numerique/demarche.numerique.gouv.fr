@@ -39,12 +39,7 @@ class PiecesJustificativesService
     dossiers.each do |dossier|
       dossier.association(:procedure).target = procedure
 
-      pdf = ApplicationController
-        .render(template: 'dossiers/show', formats: [:pdf],
-                assigns: {
-                  acls: acl_for_dossier_export(procedure),
-                  dossier: dossier,
-                })
+      pdf = DossierPdfService.render(dossier, acls: acl_for_dossier_export(procedure))
       a = ActiveStorage::FakeAttachment.new(
         file: StringIO.new(pdf),
         filename: ActiveStorage::Filename.new("export-#{dossier.id}.pdf"),
@@ -88,13 +83,17 @@ class PiecesJustificativesService
         include_infos_administration: false,
         include_avis_for_expert: true,
         only_for_expert: @user_profile,
+        include_hidden_submitted_champs: false,
       }
     when Instructeur, Administrateur
       {
         include_messagerie: true,
         include_infos_administration: true,
         include_avis_for_expert: true,
-        only_for_export: false,
+        only_for_expert: false,
+        # like the web view: a champ hidden by a condition stays visible when
+        # the usager had filled it in the revision they submitted
+        include_hidden_submitted_champs: true,
       }
     when User
       {
@@ -102,6 +101,7 @@ class PiecesJustificativesService
         include_infos_administration: false,
         include_avis_for_expert: false, # should be true, expert can use the messagerie, why not provide avis ?
         only_for_expert: false,
+        include_hidden_submitted_champs: false,
       }
     else
       raise 'not supported'
