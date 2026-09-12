@@ -4,6 +4,7 @@ class User < ApplicationRecord
   include DomainMigratableConcern
   include EmailSanitizableConcern
   include PasswordComplexityConcern
+  include SessionRegistrableConcern
 
   enum :loged_in_with_france_connect, {
     particulier: 'particulier',
