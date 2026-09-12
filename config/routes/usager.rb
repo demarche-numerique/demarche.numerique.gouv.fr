@@ -99,6 +99,8 @@ scope module: 'users', defaults: { nav_bar_profile: :user } do
   post 'accept_merge' => 'profil#accept_merge'
   post 'refuse_merge' => 'profil#refuse_merge'
   delete 'france_connect_information' => 'profil#destroy_fci'
+  delete 'profil/sessions/:id', to: 'profil#revoke_session', as: :revoke_session
+  delete 'profil/sessions', to: 'profil#revoke_all_sessions', as: :revoke_all_sessions
   patch 'preferred_domain', to: 'profil#preferred_domain'
   get 'fermeture/:path', to: 'commencer#closing_details', as: :closing_details
   get 'introuvable/:path', to: 'commencer#not_found', as: :not_found
