@@ -8,6 +8,11 @@
 
   - if local_assigns.has_key?(:dossier)
     - pj_input_id = dom_id(commentaire, :piece_jointe)
+    - pj_hint_id = "#{pj_input_id}-hint"
+    - pj_error_id = "#{pj_input_id}-error"
+    - pj_error = commentaire.errors.messages_for(:piece_jointe).first
+    - pj_describedby_id = [pj_hint_id, (pj_error_id if pj_error.present?)].compact.join(' ')
+    - pj_field = Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: commentaire.piece_jointe, parent_hint_id: pj_describedby_id), drop_zone: :none, hidden: true, id: pj_input_id)
     - drop_zone_attrs = Attachment::DropZoneDecorator.new(mode: :remote, input_selector: "##{pj_input_id}").data_attributes
 
   .fr-input-group{ class: class_names("fr-input-group--error" => commentaire.errors.include?(:body)) }
@@ -19,11 +24,14 @@
       %p#commentaire-body-error.fr-error-text= commentaire.errors.full_messages_for(:body).first
 
   - if local_assigns.has_key?(:dossier)
-    .fr-mt-3w.fr-input-group
+    .fr-mt-3w.fr-input-group{ class: class_names("fr-input-group--error" => pj_error.present?) }
       = f.label :piece_jointe, class: "fr-label", for: pj_input_id
+      = render Attachment::HintsComponent.new(champ: nil, attached_file: commentaire.piece_jointe, html_id: pj_hint_id, max: pj_field.max)
       %div{ data: { controller: "file-input-reset", delete_label: t('views.shared.messages.remove_file') } }
-        = render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: commentaire.piece_jointe), drop_zone: :none, hidden: true, id: pj_input_id)
+        = render pj_field
         %ul{ data: { 'file-input-reset-target': 'fileList' } }
+      - if pj_error.present?
+        %p.fr-error-text{ id: pj_error_id }= pj_error
 
   .fr-mt-3w
     %ul.fr-btns-group.fr-btns-group--inline-md

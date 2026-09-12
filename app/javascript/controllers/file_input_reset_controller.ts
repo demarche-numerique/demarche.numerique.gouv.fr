@@ -1,3 +1,4 @@
+import { fileSizeErrorMessage } from '../shared/attachment-error';
 import { ApplicationController } from './application_controller';
 export class FileInputResetController extends ApplicationController {
   static targets = ['fileList'];
@@ -17,7 +18,8 @@ export class FileInputResetController extends ApplicationController {
   }
 
   updateFileList() {
-    const files = this.fileInput?.files ?? [];
+    const fileInput = this.fileInput;
+    const files = fileInput?.files ?? [];
     this.fileListTarget.innerHTML = '';
 
     const deleteLabel =
@@ -25,18 +27,37 @@ export class FileInputResetController extends ApplicationController {
 
     Array.from(files).forEach((file, index) => {
       const container = document.createElement('li');
-      container.classList.add('flex', 'flex-gap-2', 'fr-mb-1w');
+      container.classList.add('fr-mb-1w');
+
+      const row = document.createElement('div');
+      row.classList.add('flex', 'flex-gap-2');
 
       const deleteButton = this.createDeleteButton(deleteLabel, index);
-      container.appendChild(deleteButton);
+      row.appendChild(deleteButton);
 
       const listItem = document.createElement('span');
       listItem.setAttribute('id', 'filename-' + index);
       listItem.textContent = file.name;
 
-      container.appendChild(listItem);
+      row.appendChild(listItem);
+      container.appendChild(row);
+
+      const sizeError = fileInput && fileSizeErrorMessage(fileInput, file);
+      if (sizeError) {
+        container.appendChild(this.createSizeError(sizeError));
+      }
+
       this.fileListTarget.appendChild(container);
     });
+  }
+
+  createSizeError(message: string) {
+    const error = document.createElement('p');
+    error.classList.add('fr-error-text');
+    error.setAttribute('role', 'alert');
+    error.innerHTML = message;
+
+    return error;
   }
 
   createDeleteButton(deleteLabel: string, index: number) {

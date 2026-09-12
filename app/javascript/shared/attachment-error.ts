@@ -1,3 +1,18 @@
+export function fileSizeErrorMessage(
+  input: HTMLInputElement,
+  file: File
+): string | null {
+  const maxSize = input.dataset.maxFileSize
+    ? parseInt(input.dataset.maxFileSize, 10)
+    : 0;
+
+  if (!maxSize || file.size <= maxSize) return null;
+
+  const maxSizeMB = (maxSize / (1024 * 1024)).toFixed(0);
+
+  return `La taille maximale du fichier autorisée est de&nbsp;<strong>${maxSizeMB} Mo</strong>.`;
+}
+
 /**
  * Trouve le container attachment field depuis un input
  */
