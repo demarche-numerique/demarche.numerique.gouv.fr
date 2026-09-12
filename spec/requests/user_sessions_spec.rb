@@ -191,12 +191,14 @@ describe 'the session registry', type: :request do
       end
     end
 
-    # Usagers have no deadline until step 8. Opening the registry to everyone
-    # must not expire anyone.
-    it 'gives that row no deadline' do
+    # A year is a housekeeping horizon, not a policy: it exists so the rows can
+    # be purged. What actually bounds an usager is the sliding remember-me
+    # window, which lives in the cookie.
+    it 'gives that row the housekeeping horizon, far enough not to bite' do
       sign_in_user
 
-      expect(user_sessions.sole.expires_at).to be_nil
+      expect(user_sessions.sole.expires_at)
+        .to be_within(1.minute).of(User::USAGER_SESSION_MAX_LIFETIME.from_now)
     end
 
     it 'adopts a session opened before the registry rather than reject it' do

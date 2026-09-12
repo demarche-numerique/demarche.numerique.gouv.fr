@@ -1456,18 +1456,21 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_180000) do
     t.string "loged_in_with_france_connect", default: "false"
     t.integer "preferred_domain"
     t.datetime "remember_created_at", precision: nil
+    t.string "remember_token"
     t.bigint "requested_merge_into_id"
     t.datetime "reset_password_sent_at", precision: nil
     t.string "reset_password_token"
     t.integer "sign_in_count", default: 0, null: false
     t.string "siret"
     t.boolean "team_account", default: false
+    t.integer "trusted_device_version", default: 0, null: false
     t.text "unconfirmed_email"
     t.string "unlock_token"
     t.datetime "updated_at", precision: nil
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["last_sign_in_at"], name: "index_users_on_last_sign_in_at"
+    t.index ["remember_token"], name: "index_users_on_remember_token", unique: true
     t.index ["requested_merge_into_id"], name: "index_users_on_requested_merge_into_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unconfirmed_email"], name: "index_users_on_unconfirmed_email"

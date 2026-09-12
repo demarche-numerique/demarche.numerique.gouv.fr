@@ -1,5 +1,13 @@
 fr:
   devise:
+    failure:
+      expired: Pour votre sécurité, votre session a expiré. Reconnectez-vous pour continuer.
+      password_change: Votre mot de passe a changé, vos autres sessions ont été fermées. Reconnectez-vous sur vos autres appareils.
+      logout_all: Vous avez déconnecté tous vos appareils. Reconnectez-vous pour continuer.
+      logout_device: Cet appareil a été déconnecté depuis votre profil. Reconnectez-vous pour continuer.
+      new_session: Vous avez été déconnecté(e) car une nouvelle connexion a eu lieu sur votre compte. Si ce n’était pas vous, changez votre mot de passe.
+      session_revoked: Votre session a été fermée. Reconnectez-vous pour continuer.
+      support: Par mesure de sécurité, nos équipes ont fermé toutes les sessions de votre compte. Contactez-nous si vous n’êtes pas à l’origine de cette demande.
     passwords:
       new:
         request_new_password: Demander un nouveau mot de passe
