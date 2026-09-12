@@ -1549,6 +1549,21 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
         expect(response).to have_http_status(:ok)
         expect(WeasyprintService).to have_received(:generate_pdf)
       end
+
+      context 'with the attestation_typst flag' do
+        before do
+          Flipper.enable(:attestation_typst, procedure)
+          allow(TypstService).to receive(:generate_pdf).and_return('TYPST_PDF_DATA')
+        end
+
+        it 'returns the Typst PDF' do
+          subject
+          expect(response).to have_http_status(:ok)
+          expect(response.body).to eq('TYPST_PDF_DATA')
+          expect(TypstService).to have_received(:generate_pdf).with('attestation', anything, assets: anything)
+          expect(WeasyprintService).not_to have_received(:generate_pdf)
+        end
+      end
     end
   end
 end
