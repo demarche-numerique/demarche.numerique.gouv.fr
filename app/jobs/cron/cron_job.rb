@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
 class Cron::CronJob < ApplicationJob
-  use_sidekiq_retry
+  # A cron job is scheduled again anyway: the next run is the retry. With the
+  # default budget of 25 retries, a nightly job that fails on a statement
+  # timeout is retried for about three weeks, so a dozen instances of the same
+  # job overlap and every failure yields a dozen Sentry events. A job whose run
+  # cannot be caught up by the next one opts back in with `use_sidekiq_retry`.
+  use_sidekiq_retry(retry: 2)
 
   queue_as :default
   class_attribute :schedule_expression

@@ -3,8 +3,6 @@
 class Cron::FixMissingAntivirusAnalysisJob < Cron::CronJob
   self.schedule_expression = "every day at 01:45"
 
-  use_sidekiq_retry
-
   def perform
     # Only process recent blobs (1 week → 1 day ago) to keep the query fast.
     # Older backlog is handled by Maintenance::BackfillVirusScanBlobsTask.
