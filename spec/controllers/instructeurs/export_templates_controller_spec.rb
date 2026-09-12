@@ -3,8 +3,8 @@
 describe Instructeurs::ExportTemplatesController, type: :controller do
   before { sign_in(instructeur.user) }
 
-  let(:instructeur) { create(:instructeur) }
-  let(:procedure) do
+  let_it_be(:instructeur) { create(:instructeur) }
+  let_it_be(:procedure) do
     create(
       :procedure, instructeurs: [instructeur],
       public_type_de_champs: [{ type: :piece_justificative, libelle: "pj1", stable_id: 3 }]

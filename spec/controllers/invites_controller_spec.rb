@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe InvitesController, type: :controller do
-  let(:dossier) { create(:dossier, :en_construction) }
+  let(:dossier) { dossiers.en_construction }
   let(:email) { 'plop@octo.com' }
 
   describe '#POST create' do
@@ -38,7 +38,7 @@ describe InvitesController, type: :controller do
         it_behaves_like "he can not create invitation"
 
         context 'when is a user who is loged' do
-          let(:user) { create(:user) }
+          let(:user) { users.usager }
           before do
             dossier.update(user: user)
             sign_in(user)
@@ -186,7 +186,7 @@ describe InvitesController, type: :controller do
   end
 
   describe '#GET show' do
-    let(:user) { create :user }
+    let(:user) { users.usager }
 
     context "when invite without email exists" do
       let(:invite) { create(:invite, dossier: dossier) }
@@ -259,12 +259,12 @@ describe InvitesController, type: :controller do
         let(:email) { user.email }
 
         context 'and dossier is a brouillon' do
-          let(:dossier) { create :dossier, state: Dossier.states.fetch(:brouillon) }
+          let(:dossier) { dossiers.brouillon }
           it { is_expected.to redirect_to brouillon_dossier_path(dossier) }
         end
 
         context 'and dossier is not a brouillon' do
-          let(:dossier) { create :dossier, :en_construction }
+          let(:dossier) { dossiers.en_construction }
           it { is_expected.to redirect_to(dossier_path(dossier)) }
         end
       end
