@@ -41,7 +41,7 @@ module Maintenance
       end
     rescue => e
       Rails.logger.error("T20260522BackfillPartialEtablissementsTask: #{etablissement.id}: #{e.message}")
-      Sentry.capture_exception(e, extra: { etablissement_id: etablissement.id })
+      Sentry.capture_exception(e, tags: { etablissement: etablissement.id })
     end
 
     def count

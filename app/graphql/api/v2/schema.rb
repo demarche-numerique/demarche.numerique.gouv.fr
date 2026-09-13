@@ -207,7 +207,7 @@ class API::V2::Schema < GraphQL::Schema
     def handle_timeout(error, query)
       error.extensions = { code: :timeout }
 
-      Sentry.capture_exception(error, extra: query.context.query_info.merge(procedure_id: query.variables["demarcheNumber"]))
+      Sentry.capture_exception(error, tags: { procedure: query.variables["demarcheNumber"] }.compact, extra: query.context.query_info)
     end
   end
 

@@ -94,8 +94,8 @@ ActiveSupport.on_load(:active_storage_blob) do
         Sentry.capture_message(
           "Suspicious attachment: declared variable content type not confirmed by magic bytes",
           level: :warning,
+          tags: { blob: id },
           extra: {
-            blob_id: id,
             filename: filename.to_s,
             declared_type: declared,
             magic_type: magic,

@@ -11,7 +11,7 @@ class AutoArchiveProcedureDossiersJob < ApplicationJob
         begin
           d.passer_automatiquement_en_instruction!
         rescue StandardError => e
-          Sentry.capture_exception(e, extra: { procedure_id: procedure.id })
+          Sentry.capture_exception(e, tags: { dossier: d.id })
         end
       end
   end

@@ -39,7 +39,7 @@ class Champs::DateChamp < ChampData
 
     Sentry.capture_message(
       "DateChamp: legacy value dropped on save",
-      extra: { champ: id, dossier: dossier_id }
+      tags: { champ: id, dossier: dossier_id }
     )
     # Reassigning routes the stored value through the normalizer.
     self.value = value

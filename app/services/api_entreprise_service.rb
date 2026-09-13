@@ -84,11 +84,12 @@ class APIEntrepriseService
       APIEntreprise::AttestationFiscaleJob.set(wait:).perform_later(etablissement.id, procedure_id, user_id)
     end
 
-    def report_error(failure, extra = {})
+    def report_error(failure, tags = {})
       Sentry.capture_message(
         "API Entreprise error: #{failure[:type]}",
         level: :error,
-        extra: extra.merge(code: failure[:code], raw_body: failure[:raw_response]&.body&.truncate(1000))
+        tags:,
+        extra: { code: failure[:code], raw_body: failure[:raw_response]&.body&.truncate(1000) }
       )
     end
   end

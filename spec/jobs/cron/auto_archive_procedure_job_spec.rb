@@ -70,7 +70,7 @@ RSpec.describe Cron::AutoArchiveProcedureJob, type: :job do
       error = StandardError.new('nop')
       expect(buggy_procedure).to receive(:close!).and_raise(error)
       expect(job).to receive(:procedures_to_close).and_return([buggy_procedure, procedure_hier])
-      expect(Sentry).to receive(:capture_exception).with(error, extra: { procedure_id: buggy_procedure.id })
+      expect(Sentry).to receive(:capture_exception).with(error, tags: { procedure: buggy_procedure.id })
 
       subject
     end

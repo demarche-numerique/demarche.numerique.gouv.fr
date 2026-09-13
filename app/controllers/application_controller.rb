@@ -283,10 +283,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_sentry_dossier(dossier)
-    Sentry.configure_scope do |scope|
-      scope.set_tags(procedure: dossier.procedure.id)
-      scope.set_tags(dossier: dossier.id)
-    end
+    Sentry.set_tags(procedure: dossier.procedure.id, dossier: dossier.id)
   end
 
   # private method called by rails fwk

@@ -679,7 +679,7 @@ class Procedure < ApplicationRecord
     discarded_expired.find_each do |p|
       p.purge_discarded
     rescue StandardError => e
-      Sentry.capture_exception(e, extra: { procedure_id: p.id })
+      Sentry.capture_exception(e, tags: { procedure: p.id })
     end
   end
 

@@ -507,7 +507,7 @@ module Instructeurs
     rescue ActiveRecord::RecordNotFound
       Sentry.capture_message(
         "Navigation through dossier failed => ActiveRecord::RecordNotFound",
-        extra: { dossier_id: params[:dossier_id] }
+        tags: { dossier: params[:dossier_id] }
       )
       redirect_to instructeur_procedure_path(procedure_id: procedure.id), alert: "Une erreur est survenue"
     end

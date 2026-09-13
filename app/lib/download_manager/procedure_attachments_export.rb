@@ -25,7 +25,7 @@ module DownloadManager
         # way, and we would otherwise emit one Sentry event per attachment for a
         # single root cause.
         if error.is_a?(Exception) && @reported_error_classes.add?(error.class)
-          Sentry.capture_exception(error, extra: { procedure_id: @procedure.id })
+          Sentry.capture_exception(error, tags: { procedure: @procedure.id })
         end
       end
     end

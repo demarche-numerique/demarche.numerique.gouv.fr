@@ -191,7 +191,7 @@ module Users
       end
     rescue StandardError => e
       # Any failure of the new WeasyPrint path falls back to the proven Prawn rendering.
-      Sentry.capture_exception(e, extra: { procedure_id: @procedure.id })
+      Sentry.capture_exception(e, tags: { procedure: @procedure.id })
       send_data(render_dossier_vide_prawn, filename:)
     end
 

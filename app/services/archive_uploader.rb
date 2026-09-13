@@ -83,8 +83,7 @@ class ArchiveUploader
         limit_to_retry = limit_to_retry - 1
         retry
       else
-        Sentry.set_tags(procedure:)
-        Sentry.capture_exception(e, extra: { filename: })
+        Sentry.capture_exception(e, tags: { procedure: procedure.id }, extra: { filename: })
       end
     end
   end

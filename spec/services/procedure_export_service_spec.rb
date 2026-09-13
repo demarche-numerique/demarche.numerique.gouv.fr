@@ -42,9 +42,7 @@ describe ProcedureExportService do
       end
 
       it 'enriches the Sentry scope with the export context before re-raising' do
-        expect(Sentry).to receive(:set_extras).with(
-          xlsx_streamer: hash_including(procedure: procedure.id)
-        )
+        expect(Sentry).to receive(:set_tags).with(hash_including(procedure: procedure.id))
         expect { subject }.to raise_error(Zip::Error)
       end
     end

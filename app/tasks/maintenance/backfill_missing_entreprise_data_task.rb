@@ -25,7 +25,7 @@ module Maintenance
     rescue StandardError => e
       # Log l'erreur mais continue avec les autres établissements
       Rails.logger.error("BackfillMissingEntrepriseDataTask: Error processing etablissement #{etablissement.id}: #{e.message}")
-      Sentry.capture_exception(e, extra: { etablissement_id: etablissement.id, siret: etablissement.siret })
+      Sentry.capture_exception(e, tags: { etablissement: etablissement.id, siret: etablissement.siret })
     end
 
     private

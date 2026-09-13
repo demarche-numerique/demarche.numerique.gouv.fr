@@ -29,7 +29,7 @@ def add_carte_static_map(pdf, champ)
   pdf.image StringIO.new(champ.static_map.download), width: carte_static_map_size, position: :center
   pdf.move_down default_margin
 rescue ActiveStorage::Error, Prawn::Errors::UnsupportedImageType => e
-  Sentry.capture_exception(e, extra: { dossier: champ.dossier_id, champ: champ.id })
+  Sentry.capture_exception(e, tags: { dossier: champ.dossier_id, champ: champ.id })
   nil
 end
 

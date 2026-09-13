@@ -12,7 +12,7 @@ class Cron::AutoArchiveProcedureJob < Cron::CronJob
         procedure.close!
         AutoArchiveProcedureDossiersJob.perform_later(procedure)
       rescue StandardError => e
-        Sentry.capture_exception(e, extra: { procedure_id: procedure.id })
+        Sentry.capture_exception(e, tags: { procedure: procedure.id })
       end
     end
   end

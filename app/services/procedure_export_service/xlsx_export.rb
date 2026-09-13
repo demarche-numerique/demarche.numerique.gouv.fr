@@ -41,13 +41,7 @@ class ProcedureExportService::XlsxExport
       flush_repetition_sheets(writer, buffers)
     end
   rescue StandardError
-    Sentry.set_extras(
-      xlsx_streamer: {
-        procedure: @procedure.id,
-        export_template: @export_template&.id,
-        current_dossier: @current_dossier_id,
-      }
-    )
+    Sentry.set_tags({ procedure: @procedure.id, export_template: @export_template&.id, dossier: @current_dossier_id }.compact)
     raise
   end
 

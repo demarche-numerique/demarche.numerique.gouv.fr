@@ -84,7 +84,7 @@ module Instructeurs
       @procedure = current_instructeur.procedures.find(params[:procedure_id])
       @groupe_instructeurs = current_instructeur.groupe_instructeurs.where(procedure: @procedure)
 
-      Sentry.configure_scope { |scope| scope.set_tags(procedure: @procedure.id) }
+      Sentry.set_tags(procedure: @procedure.id)
     end
 
     def set_export_template

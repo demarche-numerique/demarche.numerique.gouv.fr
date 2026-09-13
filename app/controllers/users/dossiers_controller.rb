@@ -227,7 +227,7 @@ module Users
       in Failure(type: (:not_found | :unavailable_for_legal_reasons) => type, **)
         render_siret_error(t("errors.messages.siret.#{type}"))
       in Failure => failure
-        APIEntrepriseService.report_error(failure.failure, dossier_id: @dossier.id, siret: sanitized_siret)
+        APIEntrepriseService.report_error(failure.failure, dossier: @dossier.id, siret: sanitized_siret)
         render_siret_error(t('errors.messages.siret.network_error'))
       end
     end

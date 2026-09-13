@@ -42,7 +42,7 @@ module Maintenance
         # API n'a pas retourné de données NAF 2025 — on laisse nil
       end
     rescue => e
-      Sentry.capture_exception(e, extra: { siret: })
+      Sentry.capture_exception(e, tags: { siret: })
     end
 
     private

@@ -18,9 +18,7 @@ module Administrateurs
 
       @procedure = current_administrateur.procedures.find(id)
 
-      Sentry.configure_scope do |scope|
-        scope.set_tags(procedure: @procedure.id)
-      end
+      Sentry.set_tags(procedure: @procedure.id)
 
       ensure_pro_connect_if_required!
     rescue ActiveRecord::RecordNotFound

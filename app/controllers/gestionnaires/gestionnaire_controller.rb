@@ -15,9 +15,7 @@ module Gestionnaires
         raise(ActiveRecord::RecordNotFound)
       end
 
-      Sentry.configure_scope do |scope|
-        scope.set_tags(groupe_gestionnaire: @groupe_gestionnaire.id)
-      end
+      Sentry.set_tags(groupe_gestionnaire: @groupe_gestionnaire.id)
     rescue ActiveRecord::RecordNotFound
       flash.alert = 'Groupe inexistant'
       redirect_to gestionnaire_groupe_gestionnaires_path, status: 404

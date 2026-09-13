@@ -1151,7 +1151,7 @@ class Dossier < ApplicationRecord
       champ_data.in_batches(of: 50).each(&:destroy_all)
       destroy
     rescue => e
-      Sentry.capture_exception(e, extra: { dossier: id })
+      Sentry.capture_exception(e, tags: { dossier: id })
       # Rollback explicite : sans cela, le rescue avale l'erreur et la transaction
       # commit un état partiel (champs deja batch-destroy, dossier intact).
       raise ActiveRecord::Rollback
@@ -1306,9 +1306,7 @@ class Dossier < ApplicationRecord
   def track_assigned_dossier_without_groupe_instructeur
     Sentry.capture_message(
       "Assigned dossier without groupe_instructeur",
-      extra: {
-        dossier_id: self.id,
-      }
+      tags: { dossier: id }
     )
   end
 

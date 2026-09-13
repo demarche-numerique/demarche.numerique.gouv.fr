@@ -71,6 +71,6 @@ class SerializerService
   # request or the job that fails on it, and still carries the record being
   # serialized. A capture in a with_scope block would report it a second time.
   def self.tag_scope(**tags)
-    Sentry.configure_scope { it.set_tags(**tags) }
+    Sentry.set_tags(tags)
   end
 end
