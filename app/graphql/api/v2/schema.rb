@@ -15,6 +15,10 @@ class API::V2::Schema < GraphQL::Schema
   DEFAULT_MAX_COMPLEXITY = 60_000
   MAX_COMPLEXITY = ENV['GRAPHQL_MAX_COMPLEXITY'].presence&.to_i || DEFAULT_MAX_COMPLEXITY
   max_complexity MAX_COMPLEXITY.nonzero?
+  # graphql-ruby 2.5.3 fixed how complexity merges across query branches, behind an opt-in
+  # until it becomes the default. Both modes score our stored queries identically
+  # (see the budget spec), so opt in now rather than log a deprecation on every analysis.
+  complexity_cost_calculation_mode(:future)
   max_depth 15
 
   query Types::QueryType
