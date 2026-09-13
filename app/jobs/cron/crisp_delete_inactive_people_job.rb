@@ -68,7 +68,7 @@ class Cron::CrispDeleteInactivePeopleJob < Cron::CronJob
 
       self.class.set(wait: people_ids.empty? ? 0.seconds : 10.seconds).perform_later(page_number + 1)
     in Failure(error:)
-      Sentry.capture_message(error.message, extra: { page_number: })
+      Sentry.capture_message("Crisp people listing failed", extra: { error: error.message, page_number: })
     end
   end
 

@@ -19,7 +19,7 @@ class DataSources::CommuneController < DataSources::BaseController
           error_message = "HTTP #{response.code}"
         end
 
-        Sentry.capture_message("Commune API failure: #{error_message}")
+        Sentry.capture_message("Commune API failure", extra: { code: response.code, message: error_message })
         return head :bad_gateway
       end
     else

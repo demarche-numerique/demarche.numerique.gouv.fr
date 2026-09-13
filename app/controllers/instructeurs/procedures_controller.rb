@@ -173,7 +173,7 @@ module Instructeurs
       # that would remove them on the very page that crashes.
       rescue StandardError => e
         Sentry.capture_message(
-          "Destroying invalid ProcedurePresentation",
+          "Destroying ProcedurePresentation filters that fail to apply",
           tags: { procedure_presentation: procedure_presentation.id },
           extra: {
             errors: e.message,

@@ -76,9 +76,8 @@ class RdvService
         rdv_plan_external_id: JSON.parse(response.body)["rdv_plan"]["id"]
       ))
     else
-      error_message = "RdvService#create_rdv_plan failed #{response.code} #{response.body}"
-      Rails.logger.error(error_message)
-      Sentry.capture_message(error_message)
+      Rails.logger.error("RdvService#create_rdv_plan failed #{response.code} #{response.body}")
+      Sentry.capture_message("RdvService#create_rdv_plan failed", extra: { code: response.code, body: response.body.truncate(500) })
       Failure("Une erreur est survenue")
     end
   end
@@ -179,9 +178,8 @@ class RdvService
     response = Typhoeus.get(url, headers:)
 
     if !response.success?
-      error_message = "#{error_name} #{response.code} #{response.body}"
-      Rails.logger.error(error_message)
-      Sentry.capture_message(error_message)
+      Rails.logger.error("#{error_name} #{response.code} #{response.body}")
+      Sentry.capture_message(error_name, extra: { code: response.code, body: response.body.truncate(500) })
       return {}
     end
 

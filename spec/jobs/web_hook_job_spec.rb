@@ -24,7 +24,7 @@ describe WebHookJob, type: :job do
         job.perform_now
 
         expect(Sentry).to have_received(:set_extras).with(web_hook_url: "https://domaine.fr/callback_url")
-        expect(Sentry).to have_received(:capture_message)
+        expect(Sentry).to have_received(:capture_message).with("Webhook call failed", extra: hash_including(code: 500, body: "error"))
       end
     end
 

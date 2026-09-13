@@ -24,7 +24,7 @@ class Scaleway::API
     in Success(body:)
       map_emails(body[:emails] || [])
     in Failure(code:, error:)
-      Sentry.capture_message("Scaleway API error: #{error}", extra: { code: })
+      Sentry.capture_message("Scaleway API error", extra: { code:, error: error.to_s })
       []
     end
   end
