@@ -11,15 +11,12 @@
           = "Nous préremplirons les informations de contact à partir de l’Annuaire Service Public correspondant."
 
   .fr-mb-2w
-    - if local_assigns[:prefilled] == :success
-      %p.fr-info-text Génial ! La plupart des informations du service ont été préremplies ci-dessous. Vérifiez-les et complétez-les le cas échéant.
-    - elsif local_assigns[:prefilled] == :partial
-      %p.fr-info-text
-        Nous avons prérempli certaines informations correspondant à ce SIRET. Complétez les autres manuellement.
-    - elsif local_assigns[:prefilled] == :failure
+    - if local_assigns[:prefilled] == true
+      %p.fr-info-text Des informations du service ont pu être préremplies ci-dessous. Vérifiez-les et complétez-les le cas échéant.
+    - elsif local_assigns[:prefilled] == false
       %p.fr-error-text
-        Une erreur a empêché le préremplissage des informations.
-        Vérifiez que le numéro de SIRET est correct et complétez les informations manuellement le cas échéant.
+        Nous n'avons pu procéder au préremplissage des informations.
+        Vérifiez que le numéro de SIRET soit correct ou complétez les informations manuellement le cas échéant.
 
   = render Dsfr::InputComponent.new(form: f, attribute: :nom, input_type: :text_field)
 

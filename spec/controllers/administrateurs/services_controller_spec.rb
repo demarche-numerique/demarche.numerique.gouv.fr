@@ -26,7 +26,7 @@ describe Administrateurs::ServicesController, type: :controller do
           expect(assigns[:service].siret).to eq(siret)
           expect(assigns[:service].nom).to eq("Communauté de communes - Lacs et Gorges du Verdon")
           expect(assigns[:service].adresse).to eq("242 avenue Albert-1er 83630 Aups")
-          expect(assigns[:prefilled]).to eq(:success)
+          expect(assigns[:prefilled]).to eq(true)
         end
       end
     end
