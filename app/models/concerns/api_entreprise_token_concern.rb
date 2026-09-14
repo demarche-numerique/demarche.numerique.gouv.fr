@@ -23,6 +23,10 @@ module APIEntrepriseTokenConcern
   # not leave the procedure blocked.
   TOKEN_REJECTION_HOLDS_FOR = 24.hours
 
+  def api_entreprise_token_rejected?
+    api_entreprise_token_rejected_at.present?
+  end
+
   def api_entreprise_token_recently_rejected?
     api_entreprise_token_rejected_at&.after?(TOKEN_REJECTION_HOLDS_FOR.ago)
   end
