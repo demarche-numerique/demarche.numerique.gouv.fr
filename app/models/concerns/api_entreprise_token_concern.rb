@@ -9,10 +9,15 @@ module APIEntrepriseTokenConcern
     before_save :clear_api_entreprise_token_rejection, if: :will_save_change_to_api_entreprise_token?
   end
 
-  def api_entreprise_token
-    t = self[:api_entreprise_token].presence || ENV['API_ENTREPRISE_KEY']
+  class_methods do
+    # Shared by every procedure that carries none of its own.
+    def instance_api_entreprise_token = APIEntrepriseToken.new(ENV['API_ENTREPRISE_KEY'])
+  end
 
-    APIEntrepriseToken.new(t)
+  def api_entreprise_token
+    return APIEntrepriseToken.new(self[:api_entreprise_token]) if specific_api_entreprise_token?
+
+    self.class.instance_api_entreprise_token
   end
 
   def specific_api_entreprise_token?
