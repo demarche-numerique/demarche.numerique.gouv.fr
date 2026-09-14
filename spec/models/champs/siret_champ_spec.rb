@@ -190,6 +190,23 @@ describe Champs::SiretChamp do
       it { is_expected.to be_degraded }
     end
 
+    context 'when the payload leaves the etablissement unusable' do
+      let(:api_etablissement_body) do
+        payload = JSON.parse(File.read('spec/fixtures/files/api_entreprise/etablissements.json'))
+        payload['data']['siret'] = 'Donnée indisponible'
+        payload.to_json
+      end
+
+      it 'degrades instead of saving a champ with no etablissement' do
+        expect(subject).to be_degraded
+        expect(subject.etablissement).to be_nil
+      end
+
+      it 'does not queue the complementary jobs on a missing etablissement' do
+        expect { champ.fetch! }.not_to have_enqueued_job(APIEntreprise::ExtraitKbisJob)
+      end
+    end
+
     context 'when the API answers 200 with a body we cannot read' do
       let(:api_etablissement_body) { '{"meta":{}}' }
 

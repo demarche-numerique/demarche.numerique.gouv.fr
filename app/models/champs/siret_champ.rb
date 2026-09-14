@@ -66,6 +66,7 @@ class Champs::SiretChamp < ChampData
     etablissement = hash[:etablissement]
     return super if etablissement.nil?
 
+    etablissement.save!
     super(hash.merge(value_json: etablissement.champ_value_json))
     APIEntrepriseService.perform_later_fetch_jobs(etablissement, procedure.id, dossier.user&.id)
   end

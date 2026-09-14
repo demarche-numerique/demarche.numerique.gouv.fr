@@ -78,4 +78,18 @@ RSpec.describe APIEntreprise::Sirene do
       expect(subject.value!.enseigne).to be_nil
     end
   end
+  context 'when the payload leaves the etablissement unusable' do
+    let(:body) do
+      payload = JSON.parse(File.read('spec/fixtures/files/api_entreprise/etablissements.json'))
+      payload['data']['siret'] = 'Donnée indisponible'
+      payload.to_json
+    end
+
+    before { stub_api(status: 200, body:) }
+
+    it 'fails rather than handing over a record that cannot be saved' do
+      expect(subject).to be_failure
+      expect(subject.failure[:code]).to eq(200)
+    end
+  end
 end
