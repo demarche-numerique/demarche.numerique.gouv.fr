@@ -34,13 +34,21 @@ class Champs::SiretChamp < ChampData
     Siret.new(siret:).valid?
   end
 
+  def ready_for_external_retry? = procedure.api_entreprise_token_usable?
+
   def fetch_external_data
+    return degraded_failure(:token_rejected, 401) if !procedure.api_entreprise_token_usable?
+
     case APIEntreprise::Sirene.fetch_etablissement(siret, procedure.id)
     in Success(etablissement)
+      procedure.forget_api_entreprise_token_rejection!
       Success(etablissement:, value: siret)
     in Failure(type:, code:, **) if code.in?(ExternalDataException::DEFINITIVE_CODES)
       Failure(retryable: false, error: StandardError.new("API Entreprise: #{type}"), code:)
     in Failure(type:, code:, **)
+      # Only a token of its own: nobody could renew the instance one from the interface.
+      procedure.mark_api_entreprise_token_as_rejected! if code.in?(ExternalDataException::CREDENTIALS_CODES) && procedure.specific_api_entreprise_token?
+
       degraded_failure(type, code)
     end
   end
