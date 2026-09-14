@@ -22,6 +22,8 @@ class Cron::RetryDegradedSiretChampJob < Cron::CronJob
 
   private
 
+  # The batch is taken in id order, so whatever the guard would reject has to be
+  # excluded here: otherwise one blocked procedure fills every run.
   def degraded_siret_champs
     Champs::SiretChamp
       .degraded
@@ -29,6 +31,8 @@ class Cron::RetryDegradedSiretChampJob < Cron::CronJob
       .merge(Procedure.kept)
       .where.not("champs.stream LIKE ?", "#{Dossier::HISTORY_STREAM}%")
       .where(dossiers: { hidden_by_user_at: nil, hidden_by_administration_at: nil, hidden_by_expired_at: nil })
+      .where(procedures: { api_entreprise_token_rejected_at: [nil, ...Procedure::TOKEN_REJECTION_HOLDS_FOR.ago] })
       .limit(BATCH_SIZE)
+      .includes(dossier: :procedure)
   end
 end
