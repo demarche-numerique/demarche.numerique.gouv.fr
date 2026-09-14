@@ -3,3 +3,4 @@ en:
   source: Business Directory
   dossier_blocked: It is not possible to accept or reject a file without this step.
   insee_down: "INSEE is unavailable, company information will arrive within a few hours."
+  token_rejected: "This procedure's API Entreprise token was rejected: company information will not arrive until it is renewed."

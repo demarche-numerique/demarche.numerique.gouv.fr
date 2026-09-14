@@ -115,5 +115,19 @@ RSpec.describe Dossiers::ChampsRowsShowComponent, type: :component do
       expect(page).to have_text("LʼINSEE est indisponible")
       expect(page).to have_text("306 138 900 01294")
     end
+
+    # The champ may have degraded on a plain INSEE outage; what decides the
+    # message is whether the procedure is now waiting on its token.
+    context "when the token of the procedure was rejected" do
+      let(:procedure) do
+        create(:procedure, :published, public_type_de_champs: [{ type: :siret }])
+          .tap { _1.update_column(:api_entreprise_token_rejected_at, 1.hour.ago) }
+      end
+
+      it "does not blame INSEE for a token that has to be renewed" do
+        expect(page).not_to have_text("LʼINSEE est indisponible")
+        expect(page).to have_text("jeton API Entreprise")
+      end
+    end
   end
 end
