@@ -42,6 +42,8 @@
           <%= link_to t('views.users.dossiers.merci.acces_dossier'), dossier ? dossier_path(dossier) : "#dossier", class: 'fr-btn fr-mx-2w' %>
         </p>
 
+        <%= render Dossiers::AmiFollowComponent.new(dossier:) %>
+
         <hr class="fr-hr">
 
         <p>
