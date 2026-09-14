@@ -283,6 +283,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_180000) do
     t.index ["dossier_id", "stream", "stable_id", "row_id"], name: "index_champs_on_stream_and_public_id", unique: true, nulls_not_distinct: true
     t.index ["dossier_id"], name: "index_champs_on_dossier_id"
     t.index ["etablissement_id"], name: "index_champs_on_etablissement_id"
+    t.index ["id"], name: "index_champs_on_degraded_external_state", where: "((external_state)::text = 'degraded'::text)"
     t.index ["row_id"], name: "index_champs_on_row_id"
     t.index ["stable_id", "dossier_id"], name: "index_champs_on_stable_id_and_dossier_id"
     t.index ["type"], name: "index_champs_on_type"
