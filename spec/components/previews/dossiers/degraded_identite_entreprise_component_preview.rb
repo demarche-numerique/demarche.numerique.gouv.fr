@@ -2,10 +2,9 @@
 
 class Dossiers::DegradedIdentiteEntrepriseComponentPreview < ViewComponent::Preview
   def default
-    etablissement = Etablissement.new(siret: '12345678901234')
     profile = 'instructeur'
 
-    component = Dossiers::DegradedIdentiteEntrepriseComponent.new(etablissement:, profile:)
+    component = Dossiers::DegradedIdentiteEntrepriseComponent.new(siret: '12345678901234', profile:)
 
     render_with_template(
       template: 'dossiers/external_champ_component_preview/default',
