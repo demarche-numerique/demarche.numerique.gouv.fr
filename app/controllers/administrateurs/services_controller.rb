@@ -64,7 +64,9 @@ module Administrateurs
 
     def prefill
       @procedure = procedure
-      @service = Service.new(siret: params[:siret])
+      @service = params[:id].present? ? service : Service.new
+      @service.siret = siret_params[:siret]
+
       prefilled = nil
 
       validate_siret_for_prefill
@@ -140,6 +142,10 @@ module Administrateurs
 
     def procedure
       current_administrateur.procedures.find(params[:procedure_id])
+    end
+
+    def siret_params
+      params.require(:service).permit(:siret)
     end
 
     def validate_siret_for_prefill
