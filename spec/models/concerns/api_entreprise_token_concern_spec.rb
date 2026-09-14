@@ -35,6 +35,19 @@ describe APIEntrepriseTokenConcern do
 
       expect(procedure).not_to be_api_entreprise_token_recently_rejected
     end
+
+    it 'keeps warning the administrateur past that delay: nothing says it is fixed' do
+      procedure.update_column(:api_entreprise_token_rejected_at, 2.days.ago)
+
+      expect(procedure).to be_api_entreprise_token_rejected
+    end
+
+    it 'stops warning once a call goes through' do
+      procedure.mark_api_entreprise_token_as_rejected!
+
+      expect { procedure.forget_api_entreprise_token_rejection! }
+        .to change { procedure.api_entreprise_token_rejected? }.from(true).to(false)
+    end
   end
 
   context 'api_entreprise_token validity' do
