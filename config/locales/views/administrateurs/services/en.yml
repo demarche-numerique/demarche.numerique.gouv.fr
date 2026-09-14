@@ -1,0 +1,13 @@
+en:
+  administrateurs:
+    services:
+      form:
+        siret_hint_html: "Enter the SIRET number of the organization this service belongs to. Search for the SIRET on"
+        siret_format: "Expected format: 14 digits. Example: 500 001 234 56789"
+        siret_prefill: "We will pre-fill the contact information using the corresponding Annuaire Service Public entry."
+        prefill_success: "Some service information could be pre-filled below. Please check it and complete it if necessary."
+        prefill_failure: "We were unable to pre-fill the information. Check that the SIRET number is correct or complete the information manually if necessary."
+        type_organisme: "Organization type"
+        contact_information_title: "Contact information"
+        contact_information_description_html: "Your procedure will be hosted by %{application_name}, but we cannot provide support for your procedures. Despite the digital process, users may sometimes have legitimate questions about the administrative process.<br><br><strong>It is therefore essential that users can contact you</strong> using the method of their choice if they have questions about your procedure.<br><br>This contact information will be visible to users of the procedure, displayed in the « Help » menu, as well as at the bottom of the page when submitting an application. If the contact information is invalid, %{application_name} reserves the right to suspend publication of the procedure."
+        contact_required: "Please provide at least one of the two contact options below"

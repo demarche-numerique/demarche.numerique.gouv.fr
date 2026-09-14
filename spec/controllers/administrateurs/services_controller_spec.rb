@@ -5,7 +5,6 @@ describe Administrateurs::ServicesController, type: :controller do
   let(:procedure) { create(:procedure, administrateur: admin) }
 
   describe '#new' do
-    let(:admin) { administrateurs.default }
     let(:procedure) { create(:procedure, administrateur: admin) }
 
     before do
@@ -18,16 +17,16 @@ describe Administrateurs::ServicesController, type: :controller do
       let(:siret) { "20004021000060" }
 
       before do
-        agi = create(:pro_connect_information, siret:, user: admin.instructeur.user)
+        create(:pro_connect_information, siret:, user: admin.instructeur.user)
       end
 
       it 'prefills the SIRET and fetches service information' do
         VCR.use_cassette("annuaire_service_public_success_#{siret}") do
           subject
           expect(assigns[:service].siret).to eq(siret)
-          expect(assigns[:service].nom).to eq("Communauté de communes - Lacs et Gorges du Verdon")
+          expect(assigns[:service].organisme).to eq("Communauté de communes - Lacs et Gorges du Verdon")
           expect(assigns[:service].adresse).to eq("242 avenue Albert-1er 83630 Aups")
-          expect(assigns[:prefilled]).to eq(:success)
+          expect(assigns[:prefilled]).to eq(true)
         end
       end
     end
@@ -46,13 +45,15 @@ describe Administrateurs::ServicesController, type: :controller do
       sign_in(admin.user)
     end
 
-    subject { get :prefill, params:, xhr: true }
+    subject { post :prefill, params:, xhr: true }
 
-    context 'when prefilling from a SIRET' do
+    context 'when prefilling a new service from a SIRET' do
       let(:params) do
         {
           procedure_id: procedure.id,
-          siret: "20004021000060",
+          service: {
+            siret: "20004021000060",
+          },
         }
       end
 
@@ -60,7 +61,34 @@ describe Administrateurs::ServicesController, type: :controller do
         VCR.use_cassette('annuaire_service_public_success_20004021000060') do
           subject
           expect(response.body).to include('turbo-stream')
-          expect(assigns[:service].nom).to eq("Communauté de communes - Lacs et Gorges du Verdon")
+          expect(assigns[:service].organisme).to eq("Communauté de communes - Lacs et Gorges du Verdon")
+          expect(assigns[:service].adresse).to eq("242 avenue Albert-1er 83630 Aups")
+        end
+      end
+    end
+
+    context 'when prefilling an existing service from a SIRET' do
+      let!(:service) { create(:service, siret: "35600082800018", administrateur: admin) }
+
+      let(:params) do
+        {
+          id: service.id,
+          procedure_id: procedure.id,
+          service: {
+            siret: "20004021000060",
+          },
+        }
+      end
+
+      it 'prefills the existing service' do
+        VCR.use_cassette('annuaire_service_public_success_20004021000060') do
+          subject
+
+          expect(response.body).to include('turbo-stream')
+          expect(assigns[:service]).to eq(service)
+          expect(assigns[:service]).not_to be_new_record
+          expect(assigns[:service].siret).to eq("20004021000060")
+          expect(assigns[:service].organisme).to eq("Communauté de communes - Lacs et Gorges du Verdon")
           expect(assigns[:service].adresse).to eq("242 avenue Albert-1er 83630 Aups")
         end
       end
@@ -70,14 +98,16 @@ describe Administrateurs::ServicesController, type: :controller do
       let(:params) do
         {
           procedure_id: procedure.id,
-          siret: "20004021000000",
+          service: {
+            siret: "20004021000000",
+          },
         }
       end
 
       it "render an error" do
         subject
         expect(response.body).to include('turbo-stream')
-        expect(assigns[:service].nom).to be_nil
+        expect(assigns[:service].organisme).to be_nil
         expect(assigns[:service].errors.key?(:siret)).to be_present
       end
     end
@@ -86,7 +116,9 @@ describe Administrateurs::ServicesController, type: :controller do
       let(:params) do
         {
           procedure_id: procedure.id,
-          siret: "41816609600051",
+          service: {
+            siret: "41816609600051",
+          },
         }
       end
 
@@ -94,7 +126,7 @@ describe Administrateurs::ServicesController, type: :controller do
         VCR.use_cassette('annuaire_service_public_success_41816609600051') do
           subject
           expect(response.body).to include('turbo-stream')
-          expect(assigns[:service].nom).to eq("OCTO-TECHNOLOGY")
+          expect(assigns[:service].organisme).to eq("OCTO-TECHNOLOGY")
           expect(assigns[:service].horaires).to be_nil
           expect(assigns[:service].errors.key?(:siret)).not_to be_present
         end
@@ -274,7 +306,7 @@ describe Administrateurs::ServicesController, type: :controller do
 
       it do
         expect(flash.alert).to be_nil
-        expect(flash.notice).to eq("service affecté : #{service.nom}")
+        expect(flash.notice).to eq("Service affecté : #{service.nom}")
         expect(procedure.service_id).to eq(service.id)
         expect(response).to redirect_to(admin_procedure_path(procedure.id))
       end
@@ -314,7 +346,7 @@ describe Administrateurs::ServicesController, type: :controller do
 
       it do
         expect(service.reload).not_to be_nil
-        expect(flash.alert).to eq("la démarche #{procedure.libelle} utilise encore le service #{service.nom}. Veuillez l’affecter à un autre service avant de pouvoir le supprimer")
+        expect(flash.alert).to eq("La démarche #{procedure.libelle} utilise encore le service #{service.nom}. Veuillez l’affecter à un autre service avant de pouvoir le supprimer")
         expect(flash.notice).to be_nil
         expect(response).to redirect_to(admin_services_path(procedure_id: procedure.id))
       end
@@ -367,7 +399,7 @@ describe Administrateurs::ServicesController, type: :controller do
         service.save(validate: false)
         get :index, params: { procedure_id: procedure.id }
         expect(flash.alert.first).to eq "Vous n’avez pas renseigné le siret du service pour certaines de vos démarches. Merci de les modifier."
-        expect(flash.alert.last).to include(service.nom)
+        expect(flash.alert.last).to include(procedure.libelle)
       end
     end
 
