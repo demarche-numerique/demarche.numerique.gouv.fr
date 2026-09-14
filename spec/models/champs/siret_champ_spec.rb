@@ -67,6 +67,22 @@ describe Champs::SiretChamp do
       it 'does not block the user on a SIRET we could not check' do
         expect(subject.errors[:external_id]).to be_empty
       end
+
+      context 'and another question of the form depends on it' do
+        include Logic
+
+        let(:procedure) do
+          create(:procedure, public_type_de_champs: [
+            { type: :siret, stable_id: 1 },
+            { type: :text, condition: ds_eq(champ_value(1), constant('x')) },
+          ])
+        end
+
+        it 'blocks: the form cannot be computed without the company data' do
+          expect(subject.errors[:external_id])
+            .to include(I18n.t('activerecord.errors.messages.api_response_degraded'))
+        end
+      end
     end
 
     context 'when the cron scheduled a retry' do

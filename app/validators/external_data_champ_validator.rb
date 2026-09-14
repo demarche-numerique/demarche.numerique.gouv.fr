@@ -6,6 +6,10 @@ class ExternalDataChampValidator < ActiveModel::Validator
     if record.pending?
       # User filled the field, but background job is still running.
       record.errors.add(:external_id, :api_response_pending)
+    elsif record.awaiting_fix? && record.dependent_conditions?
+      # Another question is shown or hidden based on this data: without it the
+      # form cannot be computed, so a degraded champ has to block after all.
+      record.errors.add(:external_id, :api_response_degraded)
     elsif record.external_error?
       # User filled the field, but background job failed.
       record.errors.add(:external_id, error_key_for_api_response_code(record))
