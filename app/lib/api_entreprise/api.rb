@@ -204,6 +204,6 @@ class APIEntreprise::API
     DEFAULT_POOL
   end
 
-  def token_missing? = token.nil? || token.jwt_token.blank?
+  def token_missing? = token.nil? || token.missing?
   def token_expired? = token.expired?
 end
