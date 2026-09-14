@@ -12,7 +12,7 @@ class APIEntreprise::Sirene
 
   def fetch_etablissement
     APIEntreprise::API.new(@procedure_id).etablissement(@siret)
-      .fmap { extract_etablissement(it[:data]) }
+      .bind { build_etablissement(it[:data]) }
   rescue StandardError => e
     # The API answered, we could not read it. Without this the exception escapes
     # through the state machine callback and strands the champ in fetching.
@@ -23,10 +23,14 @@ class APIEntreprise::Sirene
 
   private
 
-  def extract_etablissement(raw_data)
+  def build_etablissement(raw_data)
     params = APIEntreprise::EtablissementPayload.etablissement_params(raw_data)
       .merge(APIEntreprise::EtablissementPayload.enterprise_params(raw_data[:unite_legale]))
 
-    Etablissement.new(params.reject { |_, value| value == APIEntreprise::Adapter::UNAVAILABLE })
+    etablissement = Etablissement.new(params.reject { |_, value| value == APIEntreprise::Adapter::UNAVAILABLE })
+    # Saving it is left to the champ, where belongs_to would swallow the failure.
+    return Failure(type: :unreadable_payload, code: 200) if etablissement.invalid?
+
+    Success(etablissement)
   end
 end
