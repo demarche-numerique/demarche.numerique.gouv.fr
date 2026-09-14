@@ -57,6 +57,7 @@ class Administrateur < ApplicationRecord
 
   def pro_connect_required?
     return false if !ProConnectService.enabled?
+    return false if Flipper.enabled?(:administrateur_pro_connect_exempted, user)
 
     pro_connect_required_at? || Flipper.enabled?(:pro_connect_required_for_all_administrateurs, user)
   end
