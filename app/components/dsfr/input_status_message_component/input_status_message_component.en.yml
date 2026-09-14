@@ -13,6 +13,7 @@ en:
     fetched_with_capital: "%{raison_sociale_or_name} %{forme_juridique} with a share capital of %{capital_sociale}"
     fetched: "%{raison_sociale_or_name} %{forme_juridique}"
     error: "An error occurred while retrieving SIRET information."
+    degraded: "SIRET %{value} is saved. Company information will arrive later: you can carry on."
   referentiel:
     not_configured: "This field has not been configured by the administrator yet."
     fetching: "Search in progress."
