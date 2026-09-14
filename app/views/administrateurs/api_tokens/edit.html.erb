@@ -9,117 +9,123 @@
   <turbo-frame id="tokenUpdate">
     <h1><%= t('.title', name: @api_token.name) %></h1>
 
-    <%= form_with url: admin_api_token_path(@api_token), method: :patch, html: { class: 'fr-mt-2w' } do |f| -%>
-      <div class="fr-input-group">
-        <%= f.label :name, class: 'fr-label' do -%>
-          <%= t('name', scope: [:administrateurs, :api_tokens, :nom]) %>
+    <div class="fr-card fr-p-3w fr-mb-2w">
+      <%= form_with url: admin_api_token_path(@api_token), method: :patch do |f| -%>
+        <div class="fr-input-group">
+          <%= f.label :name, class: 'fr-label' do -%>
+            <%= t('name', scope: [:administrateurs, :api_tokens, :nom]) %>
 
-          <span class="fr-hint-text">
-            <%= t('name-hint', scope: [:administrateurs, :api_tokens, :nom]) %>
-          </span>
-        <%- end -%>
-
-        <div class="flex">
-          <%= f.text_field :name,
-            class: 'fr-input width-33',
-            autocomplete: 'off',
-            autocapitalize: 'off',
-            autocorrect: 'off',
-            spellcheck: false,
-            required: true,
-            value: @api_token.name %>
-
-          <button class="fr-btn fr-btn--secondary fr-ml-1w">
-            <%= t('.rename_button') %>
-          </button>
-        </div>
-      </div>
-    <%- end -%>
-
-    <%= form_with url: admin_api_token_path(@api_token), method: :patch, html: { class: 'fr-mt-2w' } do |f| -%>
-      <div class="fr-input-group fr-mb-4w <%= class_names('fr-input-group--error': @invalid_network_message.present?) %>">
-        <%= f.label :name, class: 'fr-label' do -%>
-          <%- if @api_token.eternal? -%>
-            <%= t('.enter_at_least_one_network') %>
-          <%- else -%>
-            <%= t('.enter_authorized_ips') %>
+            <span class="fr-hint-text">
+              <%= t('name-hint', scope: [:administrateurs, :api_tokens, :nom]) %>
+            </span>
           <%- end -%>
 
-          <span class="fr-hint-text"><%= t('.networks_hint') %></span>
+          <div class="flex">
+            <%= f.text_field :name,
+              class: 'fr-input width-33',
+              autocomplete: 'off',
+              autocapitalize: 'off',
+              autocorrect: 'off',
+              spellcheck: false,
+              required: true,
+              value: @api_token.name %>
+
+            <button class="fr-btn fr-btn--primary fr-ml-1w">
+              <%= t('.rename_button') %>
+            </button>
+          </div>
+        </div>
+      <%- end -%>
+    </div>
+
+    <div class="fr-card fr-p-3w fr-mb-2w">
+      <%= form_with url: admin_api_token_path(@api_token), method: :patch do |f| -%>
+        <div class="fr-input-group <%= class_names('fr-input-group--error': @invalid_network_message.present?) %>">
+          <%= f.label :name, class: 'fr-label' do -%>
+            <%- if @api_token.eternal? -%>
+              <%= t('.enter_at_least_one_network') %>
+            <%- else -%>
+              <%= t('.enter_authorized_ips') %>
+            <%- end -%>
+
+            <span class="fr-hint-text"><%= t('.networks_hint') %></span>
+          <%- end -%>
+
+          <div class="flex">
+            <%= f.text_field :networks,
+              class: class_names('fr-input': true, 'fr-input--error': @invalid_network_message.present?),
+              autocomplete: 'off',
+              autocapitalize: 'off',
+              autocorrect: 'off',
+              spellcheck: false,
+              value: @api_token.authorized_networks_for_ui.gsub(/,/, ' ') %>
+
+            <button class="fr-btn fr-btn--primary fr-ml-1w">
+              <%= t('.modify_button') %>
+            </button>
+          </div>
+        </div>
+
+        <%- if @invalid_network_message.present? -%>
+          <p class="fr-error-text"><%= @invalid_network_message %></p>
         <%- end -%>
 
-        <div class="flex">
-          <%= f.text_field :networks,
-            class: class_names('fr-input': true, 'fr-input--error': @invalid_network_message.present?),
-            autocomplete: 'off',
-            autocapitalize: 'off',
-            autocorrect: 'off',
-            spellcheck: false,
-            value: @api_token.authorized_networks_for_ui.gsub(/,/, ' ') %>
-
-          <button class="fr-btn fr-btn--secondary fr-ml-1w">
-            <%= t('.modify_button') %>
-          </button>
-        </div>
-      </div>
-
-      <%- if @invalid_network_message.present? -%>
-        <p class="fr-error-text"><%= @invalid_network_message %></p>
-      <%- end -%>
-
-      <%- if @api_token.pending_auto_ip? -%>
-        <div class="fr-messages-group" aria-live="polite">
-          <p class="fr-message fr-message--info">
-            <%= t('.pending_auto_ip_message') %>
-          </p>
-        </div>
-      <%- end -%>
-    <%- end -%>
-
-    <%= form_with url: admin_api_token_path(@api_token), method: :patch, html: { class: 'fr-mt-2w' } do |f| -%>
-      <div class="fr-mb-4w">
-        <%- if @api_token.full_access? -%>
-          <p><%= t('.full_access_message') %></p>
-          <%= hidden_field_tag :procedure_to_add, '[]' %>
-          <button class="fr-btn fr-btn--secondary fr-btn--sm">
-            <%= t('.restrict_access_button') %>
-          </button>
-        <%- else -%>
-          <div class="fr-select-group">
-            <label class="fr-label" for="procedure_to_add">
-              <%= t('.add_authorized_procedures') %>
-            </label>
-
-            <div class="flex">
-              <%= f.select :value,
-                options_for_select(@libelle_id_procedures),
-                { include_blank: true },
-                { class: 'fr-select width-33',
-                  name: 'procedure_to_add'} %>
-
-              <button class="fr-btn fr-btn--secondary fr-ml-1w">
-                <%= t('.add_button') %>
-              </button>
-            </div>
+        <%- if @api_token.pending_auto_ip? -%>
+          <div class="fr-messages-group" aria-live="polite">
+            <p class="fr-message fr-message--info">
+              <%= t('.pending_auto_ip_message') %>
+            </p>
           </div>
         <%- end -%>
-      </div>
-    <%- end -%>
-
-    <ul class="fr-mb-4w">
-      <%- @api_token.procedures.each do |procedure| -%>
-        <li id="<%= dom_id(procedure, :authorized) %>">
-          <%= procedure.libelle %>
-
-          <%= button_to t('.delete_button'),
-            remove_procedure_admin_api_token_path(@api_token, procedure_id: procedure.id),
-            class: 'fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-btn--icon-left fr-icon-delete-line',
-            form_class: 'inline',
-            method: :delete,
-            form: { data: { turbo: 'true' } } %>
-        </li>
       <%- end -%>
-    </ul>
+    </div>
+
+    <div class="fr-card fr-p-3w fr-mb-2w">
+      <%= form_with url: admin_api_token_path(@api_token), method: :patch do |f| -%>
+        <div class="fr-input-group">
+          <%- if @api_token.full_access? -%>
+            <p><%= t('.full_access_message') %></p>
+            <%= hidden_field_tag :procedure_to_add, '[]' %>
+            <button class="fr-btn fr-btn--primary fr-btn--sm">
+              <%= t('.restrict_access_button') %>
+            </button>
+          <%- else -%>
+            <div class="fr-select-group">
+              <label class="fr-label" for="procedure_to_add">
+                <%= t('.add_authorized_procedures') %>
+              </label>
+
+              <div class="flex">
+                <%= f.select :value,
+                  options_for_select(@libelle_id_procedures),
+                  { include_blank: true },
+                  { class: 'fr-select width-33',
+                    name: 'procedure_to_add'} %>
+
+                <button class="fr-btn fr-btn--primary fr-ml-1w">
+                  <%= t('.add_button') %>
+                </button>
+              </div>
+            </div>
+          <%- end -%>
+        </div>
+      <%- end -%>
+      <ul class="fr-mb-0">
+        <%- @api_token.procedures.each do |procedure| -%>
+          <li id="<%= dom_id(procedure, :authorized) %>">
+            <%= procedure.libelle %>
+
+            <%= button_to t('.delete_button'),
+              remove_procedure_admin_api_token_path(@api_token, procedure_id: procedure.id),
+              class: 'fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-btn--icon-left fr-icon-delete-line',
+              form_class: 'inline',
+              method: :delete,
+              form: { data: { turbo: 'true' } } %>
+          </li>
+        <%- end -%>
+      </ul>
+    </div>
+
   </turbo-frame>
 
   <ul class="fr-btns-group fr-btns-group--inline">
