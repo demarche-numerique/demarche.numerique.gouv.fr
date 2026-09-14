@@ -1,0 +1,13 @@
+fr:
+  administrateurs:
+    services:
+      form:
+        siret_hint_html: "Indiquez le numéro de SIRET de l’organisme dont ce service dépend. Rechercher le SIRET sur"
+        siret_format: "Format attendu : 14 chiffres. Exemple : 500 001 234 56789"
+        siret_prefill: "Nous préremplirons les informations de contact à partir de l’Annuaire Service Public correspondant."
+        prefill_success: "Des informations du service ont pu être préremplies ci-dessous. Vérifiez-les et complétez-les le cas échéant."
+        prefill_failure: "Nous n’avons pu procéder au préremplissage des informations. Vérifiez que le numéro de SIRET soit correct ou complétez les informations manuellement le cas échéant."
+        type_organisme: "Type d’organisme"
+        contact_information_title: "Informations de contact"
+        contact_information_description_html: "Votre démarche sera hébergée par %{application_name} – mais nous ne pouvons pas assurer le support des démarches. Malgré la dématérialisation, les usagers se poseront parfois des questions légitimes sur le processus administratif.<br><br><strong>Il est donc indispensable que les usagers puissent vous contacter</strong> par le moyen de leur choix s’ils ont des questions sur votre démarche.<br><br>Ces informations de contact seront visibles par les utilisateurs de la démarche, affichées dans le menu « Aide », ainsi qu’en pied de page lors du dépôt d’un dossier. En cas d’informations invalides, %{application_name} se réserve le droit de suspendre la publication de la démarche."
+        contact_required: "Veuillez renseigner au moins un des deux champs de contact ci-dessous"
