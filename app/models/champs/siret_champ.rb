@@ -37,7 +37,12 @@ class Champs::SiretChamp < ChampData
   def ready_for_external_retry? = procedure.api_entreprise_token_usable?
 
   def fetch_external_data
-    return degraded_failure(:token_rejected, 401) if !procedure.api_entreprise_token_usable?
+    if !procedure.api_entreprise_token_usable?
+      # No call goes out, so the failure branch below would never alert.
+      alert_global_token_refused(procedure.api_entreprise_token.unusable_reason, 401) if !procedure.specific_api_entreprise_token?
+
+      return degraded_failure(:token_rejected, 401)
+    end
 
     case APIEntreprise::Sirene.fetch_etablissement(siret, procedure.id)
     in Success(etablissement)
@@ -46,9 +51,7 @@ class Champs::SiretChamp < ChampData
     in Failure(retryable: true, type:, code:, **)
       degraded_failure(type, code)
     in Failure(retryable: false, type:, code:, **) if code.in?(ExternalDataException::CREDENTIALS_CODES)
-      # Only a token of its own: nobody could renew the instance one from the interface.
-      procedure.mark_api_entreprise_token_as_rejected! if procedure.specific_api_entreprise_token?
-
+      record_credentials_failure(type, code)
       degraded_failure(type, code)
     in Failure(retryable: false, type:, code:, **)
       Failure(retryable: false, error: StandardError.new("API Entreprise: #{type}"), code:)
@@ -66,6 +69,29 @@ class Champs::SiretChamp < ChampData
   end
 
   private
+
+  # The administrateur can act on a token of their own; on the instance one,
+  # only operations can — and only if we tell them.
+  def record_credentials_failure(type, code)
+    if procedure.specific_api_entreprise_token?
+      procedure.mark_api_entreprise_token_as_rejected!
+    else
+      alert_global_token_refused(type, code)
+    end
+  end
+
+  GLOBAL_TOKEN_ALERT_EVERY = 1.hour
+
+  # Every dossier of every procedure hits the same wall: one alert per hour is
+  # enough. The type says what to do — renew the key, fill the env var, or ask
+  # for the missing scope.
+  def alert_global_token_refused(type, code)
+    key = "api_entreprise:global_token_refused:#{type}"
+    return if !Rails.cache.write(key, true, expires_in: GLOBAL_TOKEN_ALERT_EVERY, unless_exist: true)
+
+    Sentry.capture_message("global API Entreprise token is refused ! DO SOMETHING ! TTU !",
+      level: :error, tags: { procedure: procedure.id }, extra: { type:, code: })
+  end
 
   def degraded_failure(type, code)
     Failure(degraded: true, value: siret, error: StandardError.new("API Entreprise: #{type}"), code:)
