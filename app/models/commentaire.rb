@@ -158,7 +158,9 @@ class Commentaire < ApplicationRecord
       DossierMailer.with(commentaire: self).notify_new_answer.deliver_later(job_options)
     end
 
-    Ami::CreateNotificationService.call(dossier:, trigger: :messagerie_message)
+    # Une demande de correction n'est pas un message ordinaire : elle attend une
+    # action de l'usager, et AMI la formule comme telle.
+    Ami::CreateNotificationService.call(dossier:, trigger: flagged_pending_correction? ? :pending_correction : :messagerie_message)
   end
 
   def notify_administration

@@ -154,6 +154,16 @@ describe Commentaire do
 
       commentaire.send(:notify_user, wait: 5.minutes)
     end
+
+    context "when the commentaire carries a correction request" do
+      before { commentaire.dossier_correction = build(:dossier_correction, dossier:, commentaire:) }
+
+      it "triggers AMI notification with the correction trigger" do
+        expect(Ami::CreateNotificationService).to receive(:call).with(dossier: dossier, trigger: :pending_correction)
+
+        commentaire.send(:notify_user, wait: 5.minutes)
+      end
+    end
   end
 
   describe 'body validation' do
