@@ -35,15 +35,13 @@ class Champs::SiretChamp < ChampData
   end
 
   def fetch_external_data
-    case APIEntrepriseService.create_etablissement_with_fallback(self, siret.delete(" "), dossier.user&.id)
-    in Success(etablissement) if etablissement.as_degraded_mode?
-      Failure(retryable: true, error: StandardError.new("API Entreprise: degraded mode"), code: 503)
+    case APIEntreprise::Sirene.fetch_etablissement(siret, procedure.id)
     in Success(etablissement)
       Success(etablissement:, value: siret)
-    in Failure(type: :not_found, **)
-      Failure(retryable: false, error: StandardError.new('NotFound'), code: 404)
-    in Failure(type:, code:, retryable:, **)
-      Failure(retryable:, error: StandardError.new("API Entreprise: #{type}"), code:)
+    in Failure(retryable: true, type:, code:, **)
+      degraded_failure(type, code)
+    in Failure(retryable: false, type:, code:, **)
+      Failure(retryable: false, error: StandardError.new("API Entreprise: #{type}"), code:)
     end
   end
 
@@ -59,14 +57,23 @@ class Champs::SiretChamp < ChampData
 
   private
 
-  # We want to validate if SIRET really exists
-  # It's valid when an etablissement have been created in turbo with SIRET controller
-  # When API Entreprise is down, user won't be stuck because
-  # SIRET controller creates an etablissement in degraded mode
+  def degraded_failure(type, code)
+    Failure(degraded: true, value: siret, error: StandardError.new("API Entreprise: #{type}"), code:)
+  end
+
+  # Only a fetch brings an etablissement: the degraded branch carries the siret alone.
+  def update_external_data!(hash)
+    etablissement = hash[:etablissement]
+    return super if etablissement.nil?
+
+    super(hash.merge(value_json: etablissement.champ_value_json))
+    APIEntrepriseService.perform_later_fetch_jobs(etablissement, procedure.id, dossier.user&.id)
+  end
+
   def validate_etablissement
     return if siret.blank?
     return if etablissement.present?
-    return if pending?
+    return if pending? || degraded?
 
     validator = ActiveModel::Validations::SiretValidator.new(attributes: { value: true })
 

@@ -101,4 +101,19 @@ RSpec.describe Dossiers::ChampsRowsShowComponent, type: :component do
       end
     end
   end
+
+  describe "a degraded siret champ" do
+    let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :siret }]) }
+    let(:dossier) { create(:dossier, procedure:) }
+    let(:champs) do
+      [dossier.champ_data.first.tap { _1.update_columns(external_id: '30613890001294', value: '30613890001294', external_state: 'degraded') }]
+    end
+    let(:component) { described_class.new(champs:, profile: "instructeur", seen_at: nil) }
+
+    it "warns instead of rendering nothing, although there is no etablissement" do
+      expect(champs.first.etablissement).to be_nil
+      expect(page).to have_text("LʼINSEE est indisponible")
+      expect(page).to have_text("306 138 900 01294")
+    end
+  end
 end
