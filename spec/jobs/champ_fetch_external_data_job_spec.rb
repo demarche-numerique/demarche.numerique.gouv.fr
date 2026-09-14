@@ -67,4 +67,33 @@ RSpec.describe ChampFetchExternalDataJob, type: :job do
       end
     end
   end
+
+  describe 'dossier timestamps' do
+    before do
+      champ.update_column(:external_state, 'waiting_for_job')
+      allow_any_instance_of(Champs::RNFChamp).to receive(:fetch_external_data).and_return(result)
+    end
+
+    context 'when the API did not answer' do
+      let(:result) { Dry::Monads::Failure(degraded: true, value: external_id, error: StandardError.new('boom'), code: 502) }
+
+      it 'does not make the dossier look freshly modified to its instructeur' do
+        expect { described_class.new.perform(champ, external_id) }
+          .not_to change { dossier.reload.updated_at }
+
+        expect(champ.reload).to be_degraded
+      end
+    end
+
+    context 'when the data arrives' do
+      let(:result) { Dry::Monads::Success(data: { 'title' => 'Fondation' }, value_json: { 'title' => 'Fondation' }) }
+
+      it 'dates the dossier, so the API updatedSince filter returns it again' do
+        expect { described_class.new.perform(champ, external_id) }
+          .to change { dossier.reload.updated_at }
+
+        expect(champ.reload).to be_fetched
+      end
+    end
+  end
 end
