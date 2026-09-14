@@ -11,6 +11,7 @@ class ProConnectController < ApplicationController
 
   STATE_COOKIE_NAME = :proConnect_state
   NONCE_COOKIE_NAME = :proConnect_nonce
+  MFA_FORCED_COOKIE_NAME = :proConnect_mfa_forced
 
   def index
   end
@@ -18,6 +19,10 @@ class ProConnectController < ApplicationController
   def required; end
 
   def login
+    # A forced MFA round trip abandoned on the ProConnect screen never reaches
+    # the callback, so its marker is still there.
+    cookies.delete MFA_FORCED_COOKIE_NAME
+
     uri, state, nonce = ProConnectService.authorization_uri
 
     cookies.encrypted[STATE_COOKIE_NAME] = { value: state, secure: Rails.env.production?, httponly: true }
@@ -52,8 +57,12 @@ class ProConnectController < ApplicationController
     )
 
     mfa = ProConnectService.mfa?(amr:, acr:)
+    mfa_already_forced = cookies.encrypted[MFA_FORCED_COOKIE_NAME] == email
+    cookies.delete MFA_FORCED_COOKIE_NAME
 
     if !mfa && must_force_mfa?(user, user_info)
+      return redirect_pro_connect_mfa_failed if mfa_already_forced
+
       return redirect_to_forced_mfa(email)
     end
 
@@ -78,7 +87,8 @@ class ProConnectController < ApplicationController
 
   # Mon Compte Pro is the one identity provider known to offer a second factor.
   def must_force_mfa?(user, user_info)
-    user.instructeur? && user_info['idp_id'] == MON_COMPTE_PRO_IDP_ID
+    user.administrateur&.pro_connect_required? ||
+      (user.instructeur? && user_info['idp_id'] == MON_COMPTE_PRO_IDP_ID)
   end
 
   def redirect_to_forced_mfa(email)
@@ -86,8 +96,16 @@ class ProConnectController < ApplicationController
 
     cookies.encrypted[STATE_COOKIE_NAME] = { value: state, secure: Rails.env.production?, httponly: true }
     cookies.encrypted[NONCE_COOKIE_NAME] = { value: nonce, secure: Rails.env.production?, httponly: true }
+    cookies.encrypted[MFA_FORCED_COOKIE_NAME] = { value: email, secure: Rails.env.production?, httponly: true }
 
     redirect_to uri, allow_other_host: true
+  end
+
+  # ProConnect leaves it to the service provider to reject an id_token whose
+  # acr does not meet the requested level.
+  def redirect_pro_connect_mfa_failed
+    flash.alert = t('errors.messages.pro_connect.mfa_failed')
+    redirect_to pro_connect_path
   end
 
   def redirect_to_login_if_fc_aborted
