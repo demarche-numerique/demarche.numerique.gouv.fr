@@ -22,6 +22,8 @@ class Champs::SiretChamp < ChampData
     idle? && etablissement_id.present? ? value : super
   end
 
+  def siret = external_id
+
   def after_reset_external_data(opts = {})
     old_etablissement = etablissement
     super(etablissement_id: nil, prefilled: false, value: nil)
@@ -29,15 +31,15 @@ class Champs::SiretChamp < ChampData
   end
 
   def ready_for_external_call?
-    Siret.new(siret: external_id).valid?
+    Siret.new(siret:).valid?
   end
 
   def fetch_external_data
-    case APIEntrepriseService.create_etablissement_with_fallback(self, external_id.delete(" "), dossier.user&.id)
+    case APIEntrepriseService.create_etablissement_with_fallback(self, siret.delete(" "), dossier.user&.id)
     in Success(etablissement) if etablissement.as_degraded_mode?
       Failure(retryable: true, error: StandardError.new("API Entreprise: degraded mode"), code: 503)
     in Success(etablissement)
-      Success(etablissement:, value: external_id)
+      Success(etablissement:, value: siret)
     in Failure(type: :not_found, **)
       Failure(retryable: false, error: StandardError.new('NotFound'), code: 404)
     in Failure(type:, code:, retryable:, **)
@@ -62,14 +64,14 @@ class Champs::SiretChamp < ChampData
   # When API Entreprise is down, user won't be stuck because
   # SIRET controller creates an etablissement in degraded mode
   def validate_etablissement
-    return if external_id.blank?
+    return if siret.blank?
     return if etablissement.present?
     return if pending?
 
     validator = ActiveModel::Validations::SiretValidator.new(attributes: { value: true })
 
     # siret may have been formatted with spaces
-    validator.validate_each(self, :external_id, external_id.gsub(/[[:space:]]/, ""))
+    validator.validate_each(self, :external_id, siret.gsub(/[[:space:]]/, ""))
 
     if errors.empty?
       errors.add(:external_id, :not_found)
