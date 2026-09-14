@@ -53,20 +53,11 @@ class ProConnectController < ApplicationController
 
     mfa = ProConnectService.mfa?(amr:, acr:)
 
-    if user.instructeur?
-      if user_info['idp_id'] == MON_COMPTE_PRO_IDP_ID && !mfa
-        # a new session is built to force MFA as we know MON COMPTE PRO allows it
-        # we also provide a login_hint to avoid the user having to retype its email / pwd
-        uri, state, nonce = ProConnectService.authorization_uri(force_mfa: true, login_hint: email)
-
-        cookies.encrypted[STATE_COOKIE_NAME] = { value: state, secure: Rails.env.production?, httponly: true }
-        cookies.encrypted[NONCE_COOKIE_NAME] = { value: nonce, secure: Rails.env.production?, httponly: true }
-
-        return redirect_to uri, allow_other_host: true
-      end
-
-      user.instructeur.update!(pro_connect_id_token: id_token)
+    if !mfa && must_force_mfa?(user, user_info)
+      return redirect_to_forced_mfa(email)
     end
+
+    user.instructeur&.update!(pro_connect_id_token: id_token)
 
     set_pro_connect_session_info_cookie(user.id, mfa:)
 
@@ -83,6 +74,20 @@ class ProConnectController < ApplicationController
 
   def santized_email(user_info)
     user_info['email'].strip.downcase
+  end
+
+  # Mon Compte Pro is the one identity provider known to offer a second factor.
+  def must_force_mfa?(user, user_info)
+    user.instructeur? && user_info['idp_id'] == MON_COMPTE_PRO_IDP_ID
+  end
+
+  def redirect_to_forced_mfa(email)
+    uri, state, nonce = ProConnectService.authorization_uri(force_mfa: true, login_hint: email)
+
+    cookies.encrypted[STATE_COOKIE_NAME] = { value: state, secure: Rails.env.production?, httponly: true }
+    cookies.encrypted[NONCE_COOKIE_NAME] = { value: nonce, secure: Rails.env.production?, httponly: true }
+
+    redirect_to uri, allow_other_host: true
   end
 
   def redirect_to_login_if_fc_aborted
