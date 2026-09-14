@@ -780,6 +780,7 @@ fr:
         invalid_email_format: 'est invalide. Saisissez une adresse électronique valide. Exemple : adresse@mail.com'
         api_response_pending: 'En attente de réponse... Réessayez dans quelques instants.'
         api_response_error: 'Aucun résultat ne correspond à votre recherche.'
+        api_response_degraded: 'Les informations sur lʼentreprise nʼont pas pu être récupérées, et une autre question du formulaire en dépend. Nous réessayons pour vous : revenez un peu plus tard pour déposer votre dossier.'
         code_429: 'Trop de demandes. Nous réessayons pour vous.'
         code_500: 'Erreur du serveur. Nous réessayons pour vous.'
         code_503: 'Service indisponible. Nous réessayons pour vous.'
