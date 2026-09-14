@@ -8,6 +8,7 @@ fr:
               invalid_format: "n’est pas au format d’une URL, saisissez une URL valide ex https://api_1.ext/"
               https_required: "doit commencer par https://"
               missing_query_params: "doit contenir au moins un paramètre dynamique (tag)"
+              tag_in_domain: "doit commencer par une adresse complète : un paramètre dynamique (tag) ne peut pas figurer dans le nom de domaine"
               not_allowed: "doit être autorisée par notre équipe. Veuillez nous contacter par mail (%{contact_email}) et nous indiquer l’URL et la documentation de l’API que vous souhaitez intégrer. Seuls les domaines se terminant par .gouv.fr sont automatiquement autorisés (à l’exception de .beta.gouv.fr)"
     models:
       referentiel: 'Type de champ'

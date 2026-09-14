@@ -6,6 +6,9 @@ en:
           attributes:
             url_tiptap:
               invalid_format: "The URL format is invalid, please enter a valid URL, e.g., https://api_1.ext/"
+              https_required: "must start with https://"
+              missing_query_params: "must contain at least one dynamic parameter (tag)"
+              tag_in_domain: "must start with a complete address: a dynamic parameter (tag) cannot appear in the domain name"
               not_allowed: "must be authorized by our team. Please contact us by email (%{contact_email}) and provide the URL and the API documentation you wish to integrate."
     models:
       referentiel: 'Field type'

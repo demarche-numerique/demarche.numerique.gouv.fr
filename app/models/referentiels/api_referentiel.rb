@@ -16,6 +16,10 @@ class Referentiels::APIReferentiel < Referentiel
     autocomplete: 'autocomplete',
   }
 
+  # Une URL dont le nom de domaine est clos : "://" puis au moins un "/", "?" ou "#".
+  # Au-delà de ce séparateur commence le path ou la query, où une mention est sans danger.
+  DOMAIN_CLOSED = %r{://[^/?#]*[/?#]}
+
   validates :mode, inclusion: { in: modes.values }
   validate :url_allowed?
   validates :url_tiptap, presence: true
@@ -164,6 +168,10 @@ class Referentiels::APIReferentiel < Referentiel
       errors.add(:url_tiptap, :missing_query_params)
     end
 
+    if domain_left_open?
+      errors.add(:url_tiptap, :tag_in_domain)
+    end
+
     if uri.tld != "gouv.fr" || uri.domain == "beta.gouv.fr"
       allowed_hosts = ENV.fetch('ALLOWED_API_DOMAINS_FROM_FRONTEND', '').split(',').filter_map { Addressable::URI.parse(_1).host rescue nil }
       if uri.host.blank? || allowed_hosts.none? { uri.host == _1 || uri.host.end_with?(".#{_1}") }
@@ -175,6 +183,20 @@ class Referentiels::APIReferentiel < Referentiel
   end
 
   private
+
+  # Le nom de domaine doit être entièrement porté par le premier nœud texte : sinon la
+  # valeur substituée à une mention le prolonge (https://api.gouv.fr + "example.com"
+  # donne https://api.gouv.frexample.com). Ne regarder que le premier nœud écarte aussi
+  # un document dont le domaine serait réparti sur deux nœuds texte consécutifs.
+  def domain_left_open?
+    # Sans schéma, https_required porte déjà l'erreur : ne pas en empiler une seconde.
+    return false if url_from_tiptap_for_validation.to_s.exclude?("://")
+
+    first = tiptap_paragraph_nodes.first
+    return true if first.nil? || first["type"] != "text"
+
+    !first["text"].to_s.match?(DOMAIN_CLOSED)
+  end
 
   def tiptap_test_data_complete?
     ids = tiptap_mention_ids

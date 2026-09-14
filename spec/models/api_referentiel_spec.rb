@@ -180,6 +180,50 @@ describe Referentiels::APIReferentiel, type: :model do
           expect(referentiel.errors.where(:url_tiptap, :missing_query_params)).to be_present
         end
       end
+
+      context 'with a bare domain followed by a query' do
+        let(:url_tiptap) { tiptap_url("https://data.gouv.fr?q=") }
+        it { expect(referentiel).to be_valid }
+      end
+
+      # L'URL requêtée est le texte augmenté des valeurs de mention substituées : une mention
+      # placée juste après l'hôte prolonge le nom de domaine. Le premier nœud doit donc
+      # porter un domaine déjà clos.
+      context 'with a mention appended to the host' do
+        let(:url_tiptap) { tiptap_url("https://api.gouv.fr") }
+        let(:referentiel) { build(:api_referentiel, :exact_match, url_tiptap:, test_data_tiptap: { "{query}" => "example.com" }) }
+
+        it 'resolves the substituted value into the host' do
+          resolved_host = Addressable::URI.parse(ReferentielService.new(referentiel:).test_url).host
+          expect(resolved_host).to eq("api.gouv.frexample.com")
+        end
+
+        it 'adds tag_in_domain error' do
+          referentiel.valid?
+          expect(referentiel.errors).to be_of_kind(:url_tiptap, :tag_in_domain)
+        end
+      end
+
+      context 'with the domain split across two text nodes' do
+        let(:url_tiptap) do
+          {
+            "type" => "doc", "content" => [
+              {
+                "type" => "paragraph", "content" => [
+                  { "type" => "text", "text" => "https://api" },
+                  { "type" => "text", "text" => ".gouv.fr/v1/" },
+                  { "type" => "mention", "attrs" => { "id" => "{query}", "label" => "Query" } },
+                ],
+              },
+            ],
+          }
+        end
+
+        it 'adds tag_in_domain error' do
+          referentiel.valid?
+          expect(referentiel.errors).to be_of_kind(:url_tiptap, :tag_in_domain)
+        end
+      end
     end
   end
 end
