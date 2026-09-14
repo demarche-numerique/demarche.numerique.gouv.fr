@@ -24,7 +24,7 @@ describe Administrateurs::ServicesController, type: :controller do
         VCR.use_cassette("annuaire_service_public_success_#{siret}") do
           subject
           expect(assigns[:service].siret).to eq(siret)
-          expect(assigns[:service].nom).to eq("Communauté de communes - Lacs et Gorges du Verdon")
+          expect(assigns[:service].organisme).to eq("Communauté de communes - Lacs et Gorges du Verdon")
           expect(assigns[:service].adresse).to eq("242 avenue Albert-1er 83630 Aups")
           expect(assigns[:prefilled]).to eq(true)
         end
@@ -61,7 +61,7 @@ describe Administrateurs::ServicesController, type: :controller do
         VCR.use_cassette('annuaire_service_public_success_20004021000060') do
           subject
           expect(response.body).to include('turbo-stream')
-          expect(assigns[:service].nom).to eq("Communauté de communes - Lacs et Gorges du Verdon")
+          expect(assigns[:service].organisme).to eq("Communauté de communes - Lacs et Gorges du Verdon")
           expect(assigns[:service].adresse).to eq("242 avenue Albert-1er 83630 Aups")
         end
       end
@@ -88,7 +88,7 @@ describe Administrateurs::ServicesController, type: :controller do
           expect(assigns[:service]).to eq(service)
           expect(assigns[:service]).not_to be_new_record
           expect(assigns[:service].siret).to eq("20004021000060")
-          expect(assigns[:service].nom).to eq("Communauté de communes - Lacs et Gorges du Verdon")
+          expect(assigns[:service].organisme).to eq("Communauté de communes - Lacs et Gorges du Verdon")
           expect(assigns[:service].adresse).to eq("242 avenue Albert-1er 83630 Aups")
         end
       end
@@ -107,7 +107,7 @@ describe Administrateurs::ServicesController, type: :controller do
       it "render an error" do
         subject
         expect(response.body).to include('turbo-stream')
-        expect(assigns[:service].nom).to be_nil
+        expect(assigns[:service].organisme).to be_nil
         expect(assigns[:service].errors.key?(:siret)).to be_present
       end
     end
@@ -126,7 +126,7 @@ describe Administrateurs::ServicesController, type: :controller do
         VCR.use_cassette('annuaire_service_public_success_41816609600051') do
           subject
           expect(response.body).to include('turbo-stream')
-          expect(assigns[:service].nom).to eq("OCTO-TECHNOLOGY")
+          expect(assigns[:service].organisme).to eq("OCTO-TECHNOLOGY")
           expect(assigns[:service].horaires).to be_nil
           expect(assigns[:service].errors.key?(:siret)).not_to be_present
         end

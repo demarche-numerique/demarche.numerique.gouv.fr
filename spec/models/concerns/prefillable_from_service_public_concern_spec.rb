@@ -15,7 +15,7 @@ RSpec.describe PrefillableFromServicePublicConcern, type: :model do
       it 'prefills service attributes' do
         VCR.use_cassette('annuaire_service_public_success_20004021000060') do
           expect(subject.all?(&:success?)).to be_truthy
-          expect(service.nom).to eq("Communauté de communes - Lacs et Gorges du Verdon")
+          expect(service.organisme).to eq("Communauté de communes - Lacs et Gorges du Verdon")
           expect(service).to be_collectivite_territoriale
           expect(service.email).to eq("redacted@email.fr")
           expect(service.telephone).to eq("04 94 70 00 00")
@@ -25,13 +25,13 @@ RSpec.describe PrefillableFromServicePublicConcern, type: :model do
       end
 
       it 'overwrites existing attributes for which data has been retrieved' do
-        service.nom = "Existing Name"
+        service.organisme = "Existing Name"
         service.email = "existing@email.com"
 
         VCR.use_cassette('annuaire_service_public_success_20004021000060') do
           service.prefill_from_siret
 
-          expect(service.nom).to eq("Communauté de communes - Lacs et Gorges du Verdon")
+          expect(service.organisme).to eq("Communauté de communes - Lacs et Gorges du Verdon")
           expect(service.email).to eq("redacted@email.fr")
         end
       end
@@ -51,7 +51,7 @@ RSpec.describe PrefillableFromServicePublicConcern, type: :model do
       it 'prefills for enseignement' do
         VCR.use_cassette('annuaire_service_public_success_19750664500013') do
           expect(subject.one?(&:success?)).to be_truthy
-          expect(service.nom).to eq("LYCEE GENERAL ET TECHNOLOGIQUE RACINE")
+          expect(service.organisme).to eq("LYCEE GENERAL ET TECHNOLOGIQUE RACINE")
           expect(service).to be_etablissement_enseignement
           expect(service.adresse).to eq("20 Rue du Rocher 75008 Paris")
           expect(service.horaires).to be_nil
@@ -64,7 +64,7 @@ RSpec.describe PrefillableFromServicePublicConcern, type: :model do
       it 'prefills for administration centrale' do
         VCR.use_cassette('annuaire_service_public_success_11004601800013') do
           expect(subject.one?(&:success?)).to be_truthy
-          expect(service.nom).to eq("MINISTERE DE LA CULTURE")
+          expect(service.organisme).to eq("MINISTERE DE LA CULTURE")
           expect(service).to be_administration_centrale
           expect(service.adresse).to eq("182 Rue Saint-Honoré 75001 Paris")
           expect(service.horaires).to be_nil
@@ -77,7 +77,7 @@ RSpec.describe PrefillableFromServicePublicConcern, type: :model do
       it 'prefills for autre' do
         VCR.use_cassette('annuaire_service_public_success_35600082800018') do
           expect(subject.one?(&:success?)).to be_truthy
-          expect(service.nom).to eq("LA POSTE (REGION RHONE ALPES)")
+          expect(service.organisme).to eq("LA POSTE (REGION RHONE ALPES)")
           expect(service).to be_autre
           expect(service.adresse).to eq("4 Quai du Point du Jour 92100 Boulogne-Billancourt")
           expect(service.horaires).to be_nil
