@@ -79,6 +79,7 @@ class TypesDeChamp::CarteTypeDeChamp < TypeDeChamp
   end
 
   def typed_champ_blank?(champ) = champ.geo_areas.blank?
+  def block_level_tag? = true
 
   def canonical_column(procedure_id:, displayable: true, prefix: nil)
     Columns::GeoJSONColumn.new(
