@@ -15,6 +15,17 @@ class APIEntrepriseToken
     @jwt_token = jwt_token
   end
 
+  def missing? = jwt_token.blank?
+
+  def usable? = !missing? && !expired?
+
+  def unusable_reason
+    return :token_missing if missing?
+    return :token_expired if expired?
+
+    nil
+  end
+
   def expired?
     return true if decoded_token.blank?
 
