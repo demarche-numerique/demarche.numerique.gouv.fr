@@ -104,6 +104,26 @@ describe Champs::DropDownListChamp do
     let(:item) { referentiel.items.first }
     let(:value) { item.id.to_s }
 
+    describe "validations" do
+      it "accepts the id of an item" do
+        champ.validate(:champ_value)
+        expect(champ.errors).to be_empty
+      end
+
+      it "rejects the id of no item" do
+        champ.value = (referentiel.items.last.id + 1).to_s
+        champ.validate(:champ_value)
+        expect(champ.errors).to be_of_kind(:value, :not_in_options)
+      end
+
+      it "accepts any text when the list accepts other" do
+        champ.type_de_champ.update!(drop_down_other: true)
+        champ.value = "something else"
+        champ.validate(:champ_value)
+        expect(champ.errors).to be_empty
+      end
+    end
+
     it '#referentiel_headers' do
       expect(champ.referentiel_headers).to eq([["option", "option"], ["calorie (kcal)", "calorie_kcal"], ["poids (g)", "poids_g"]])
     end

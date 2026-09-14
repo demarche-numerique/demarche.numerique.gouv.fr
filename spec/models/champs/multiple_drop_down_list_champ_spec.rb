@@ -62,6 +62,26 @@ describe Champs::MultipleDropDownListChamp do
     end
   end
 
+  describe "validations of an advanced list" do
+    let(:referentiel) { create(:csv_referentiel, :with_items) }
+    let(:public_type_de_champs) { [{ type: :multiple_drop_down_list, drop_down_mode: "advanced", referentiel: }] }
+    let(:item) { referentiel.items.first }
+    let(:champ) { dossier.root_champs_public.first }
+
+    it "accepts the ids of items before the champ is saved" do
+      champ.value = [item.id.to_s]
+      champ.validate(:champ_value)
+      expect(champ.errors).to be_empty
+    end
+
+    it "rejects a saved selection whose item was deleted since" do
+      champ.update!(value: [item.id.to_s])
+      item.destroy!
+      champ.validate(:champ_value)
+      expect(champ.errors).to be_of_kind(:value, :not_in_options)
+    end
+  end
+
   describe "#for_tag" do
     let(:value) { ["val1", "val2"] }
     it { expect(champ.type_de_champ.champ_value_for_tag(champ).to_s).to eq("val1, val2") }

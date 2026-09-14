@@ -28,12 +28,6 @@ class TypesDeChamp::PrefillDropDownListTypeDeChamp < TypesDeChamp::PrefillTypeDe
       return drop_down_other? ? value : nil
     end
 
-    return nil if screenable? && DropDownOptionsValidator.violations([value], self).any?
-
-    value
-  end
-
-  def screenable?
-    drop_down_simple? && !drop_down_other?
+    DropDownOptionsValidator.violations([value], self).any? ? nil : value
   end
 end
