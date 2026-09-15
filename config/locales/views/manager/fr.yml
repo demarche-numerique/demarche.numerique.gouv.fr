@@ -4,6 +4,13 @@ fr:
       invalid_code: "Code OTP invalide ou manquant. L’opération a été annulée."
     gestionnaires:
       manage_root_groupe_gestionnaire: Gestion du groupe racine
+    procedures:
+      add_administrateur_and_instructeur_edit:
+        title: "Devenir administrateur et instructeur de la démarche n° %{id}"
+        warning_html: "Vous allez vous attribuer l’accès administrateur et instructeur à <strong>%{libelle}</strong>. Cet accès ouvre tous les dossiers de la démarche, leurs pièces jointes, la messagerie et les annotations privées."
+        administrateurs: "Administrateurs actuels : %{emails}. Ils ne sont pas prévenus de cet accès."
+        duration: "L’accès est retiré automatiquement lors de la purge quotidienne de 2 h 45."
+        submit: "Devenir administrateur et instructeur"
     super_admins:
       self_otp_reset_forbidden: "Vous ne pouvez pas réinitialiser votre propre authentification double-facteur depuis cet écran."
       reset_otp_edit:

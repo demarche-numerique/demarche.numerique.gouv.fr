@@ -98,15 +98,12 @@
                 </p>
                 <%= button_to 'Me retirer de cette démarche', delete_administrateur_manager_procedure_path(procedure), method: :put, class: 'button' %>
               <% else %>
-                <%= form_tag(add_administrateur_and_instructeur_manager_procedure_path(procedure), style: 'margin-top: 1rem;') do %>
-                  <button>
-                    Devenir administrateur &amp; instructeur (pour la journée)
-                  </button>
-
-                  <p>
-                    J’utilise cette option temporairement à des fins de support.
-                  </p>
-                <% end %>
+                <%= link_to 'Devenir administrateur & instructeur (pour la journée)',
+                      add_administrateur_and_instructeur_edit_manager_procedure_path(procedure),
+                      class: 'button', style: 'margin-top: 1rem;' %>
+                <p>
+                  J’utilise cette option temporairement à des fins de support.
+                </p>
               <% end %>
             <% elsif attribute.name == 'tags' %>
               <%= form_for procedure, url: add_tags_manager_procedure_path(procedure), html: { class: 'form procedure-form__column--form fr-background-alt--blue-france fr-mt-2v' }  do %>

@@ -4,6 +4,9 @@ module Manager
   class ProceduresController < Manager::ApplicationController
     include ActiveSupport::NumberHelper
     include CsvParsingConcern
+    include RequiresFreshSuperAdminOtp
+
+    before_action :verify_fresh_super_admin_otp!, only: [:add_administrateur_and_instructeur]
 
     #
     # Administrate overrides
@@ -61,6 +64,10 @@ module Manager
       emails = dossiers.map { |dossier| dossier.user_email_for(:display) }.sort.uniq
       date = Time.zone.now.strftime('%d-%m-%Y')
       send_data(emails.join("\n"), :filename => "brouillons-#{procedure.id}-au-#{date}.csv")
+    end
+
+    def add_administrateur_and_instructeur_edit
+      @procedure = procedure
     end
 
     def add_administrateur_and_instructeur

@@ -12,3 +12,10 @@ en:
         success: "Two-factor authentication for %{email} has been reset."
     gestionnaires:
       manage_root_groupe_gestionnaire: Root group management
+    procedures:
+      add_administrateur_and_instructeur_edit:
+        title: "Become administrator and instructeur of procedure %{id}"
+        warning_html: "You are about to grant yourself administrator and instructeur access to <strong>%{libelle}</strong>. This access opens every dossier of the procedure, their attachments, the messaging and the private annotations."
+        administrateurs: "Current administrators: %{emails}. They are not notified of this access."
+        duration: "The access is removed automatically by the daily 2:45 am purge."
+        submit: "Become administrator and instructeur"
