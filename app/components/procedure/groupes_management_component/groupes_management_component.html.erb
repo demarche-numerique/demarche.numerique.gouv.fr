@@ -271,7 +271,7 @@
     <%= form_tag add_instructeur_to_all_groupes_admin_procedure_groupe_instructeurs_path(@procedure),
       method: :post,
       class: 'form',
-      data: { controller: 'enable-submit-if-filled' } do %>
+      data: { turbo: true, controller: 'enable-submit-if-filled' } do %>
       <div
         class="instructeur-wrapper"
         data-action="change->enable-submit-if-filled#fillCombobox"
@@ -298,7 +298,7 @@
           type: :submit,
           class: 'fr-btn fr-btn--primary fr-icon-add-line fr-btn--icon-left',
           disabled: true,
-          data: { 'enable-submit-if-filled-target': 'submit', confirm: t('.bulk_assignment.confirm_add_message') } %>
+          data: { 'enable-submit-if-filled-target': 'submit', turbo_confirm: t('.bulk_assignment.confirm_add_message') } %>
       </div>
     <% end %>
   </div>
@@ -314,7 +314,7 @@
     <%= form_tag remove_instructeur_from_all_groupes_admin_procedure_groupe_instructeurs_path(@procedure),
       method: :delete,
       class: 'form',
-      data: { controller: 'enable-submit-if-filled' } do %>
+      data: { turbo: true, controller: 'enable-submit-if-filled' } do %>
       <div
         class="instructeur-wrapper"
         data-action="change->enable-submit-if-filled#fillCombobox"
@@ -341,7 +341,7 @@
           type: :submit,
           class: 'fr-btn fr-btn--primary fr-icon-subtract-line fr-btn--icon-left',
           disabled: true,
-          data: { 'enable-submit-if-filled-target': 'submit', confirm: t('.bulk_assignment.confirm_remove_message') } %>
+          data: { 'enable-submit-if-filled-target': 'submit', turbo_confirm: t('.bulk_assignment.confirm_remove_message') } %>
       </div>
     <% end %>
   </div>

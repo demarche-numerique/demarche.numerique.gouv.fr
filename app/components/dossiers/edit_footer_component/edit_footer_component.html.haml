@@ -15,6 +15,6 @@
 
             - if !owner?
               %li= button_to t('.check_completude'), check_completude_dossier_path(@dossier), class: "fr-btn", method: :post, data: { controller: 'autosave-submit' }
-              %li= button_to t('.notify_owner_for_changes'), notify_owner_for_changes_dossier_path(@dossier), class: "fr-btn fr-btn--secondary", method: :post, data: { confirm: t('.notify_owner_for_changes_alert'), controller: 'autosave-submit' }
+              %li= button_to t('.notify_owner_for_changes'), notify_owner_for_changes_dossier_path(@dossier), class: "fr-btn fr-btn--secondary", method: :post, data: { turbo_confirm: t('.notify_owner_for_changes_alert'), controller: 'autosave-submit' }, form: { data: { turbo: true } }
 
       = render partial: "shared/dossiers/submit_is_over", locals: { dossier: @dossier }

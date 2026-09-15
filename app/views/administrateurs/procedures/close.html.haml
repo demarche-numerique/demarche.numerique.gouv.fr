@@ -13,7 +13,7 @@
         - c.with_body do
           = t('administrateurs.procedures.close.replacement_procedure_callout_content')
 
-      = form_for @procedure, url: admin_procedure_archive_path(@procedure), method: :put, html: { "data-controller" => "closing-reason" } do |f|
+      = form_for @procedure, url: admin_procedure_archive_path(@procedure), method: :put, html: { data: { turbo: true, controller: "closing-reason" } } do |f|
         .fr-select-group
           = f.label :closing_reason, class: 'fr-label'
           = f.select :closing_reason, options_for_select(@closing_reason_options), {}, { class: 'fr-select', "data-closing-reason-target" => "closingReason" }
@@ -26,4 +26,4 @@
           .fr-input-group#js_closing_details{ "data-closing-reason-target" => "closingDetails" }
             = render Dsfr::InputComponent.new(form: f, attribute: :closing_details, input_type: :text_area, opts: { rows: '10', placeholder: t('activerecord.attributes.procedure.hints.closing_details_placeholder')}, required: false)
 
-        = submit_tag  t('administrateurs.procedures.close.actions.close_procedure'), { class: "fr-btn", id: 'publish', data: { confirm:  "Voulez-vous vraiment clore la démarche ? \nLes dossiers en cours pourront être instruits, mais aucun nouveau dossier ne pourra plus être déposé.", disable_with: "Archivage..."} }
+        = submit_tag  t('administrateurs.procedures.close.actions.close_procedure'), { class: "fr-btn", id: 'publish', data: { turbo_confirm: "Voulez-vous vraiment clore la démarche ? \nLes dossiers en cours pourront être instruits, mais aucun nouveau dossier ne pourra plus être déposé.", turbo_submits_with: "Archivage..." } }

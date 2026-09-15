@@ -21,4 +21,4 @@
       .fr-grid-row
         .fr-col-12.fr-col-offset-md-2.fr-col-md-8
           = f.button 'Enregistrer', class: 'fr-btn fr-mr-2w'
-          = link_to 'Annuler', gestionnaire_groupe_gestionnaire_path(id: @groupe_gestionnaire), class: 'fr-btn fr-btn--secondary', data: { confirm: 'Êtes-vous sûr de vouloir annuler les modifications effectuées ?'}
+          = link_to 'Annuler', gestionnaire_groupe_gestionnaire_path(id: @groupe_gestionnaire), class: 'fr-btn fr-btn--secondary', data: { controller: 'confirm', confirm_message_value: 'Êtes-vous sûr de vouloir annuler les modifications effectuées ?', action: 'confirm#ask' }

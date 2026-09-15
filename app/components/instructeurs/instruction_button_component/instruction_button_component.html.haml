@@ -1,33 +1,18 @@
-- reset_url = batch ? batch_instruction_modal_instructeur_batch_operations_path(procedure, "reset") : instruction_modal_instructeur_dossier_path(dossier.procedure, dossier, "reset")
+- if @batch
+  %button.fr-btn.fr-btn--sm.fr-btn--icon-left.fr-icon-arrow-right-circle-line.fr-ml-1w{
+    type: "button",
+    data: {
+      operation: "instruction",
+      action: "batch-operation#openInstructionModal",
+      'fr-js-modal-button': "true",
+      'fr-opened': "false"
+    },
+    disabled: true,
+    aria: { controls: "modal-instruction-button" }
+  }
+    = t(".labels.instruction")
+- else
+  %button.fr-btn.fr-icon-arrow-right-circle-line{ aria: { controls: 'modal-instruction-button' }, data: { 'fr-opened': "false" } }
+    = t(".labels.instruction")
 
-.instruction-modal-wrapper{ data: { controller: "instruction-modal", reset_url: reset_url, action: "batch-operation:open@window->instruction-modal#openWithIds" } }
-  - if @batch
-    %button.fr-btn.fr-btn--sm.fr-btn--icon-left.fr-icon-arrow-right-circle-line.fr-ml-1w{
-      type: "button",
-      data: {
-        operation: "instruction",
-        action: "batch-operation#openInstructionModal",
-        'fr-js-modal-button': "true",
-        'fr-opened': "false"
-      },
-      disabled: true,
-      aria: { controls: "modal-instruction-button" }
-    }
-      = t(".labels.instruction")
-  - else
-    %button.fr-btn.fr-icon-arrow-right-circle-line{ aria: { controls: 'modal-instruction-button' }, data: { 'fr-opened': "false" } }
-
-      = t(".labels.instruction")
-
-  %dialog#modal-instruction-button.fr-modal{ "aria-labelledby" => "modal-instruction-title", role: "dialog", data: { "instruction-modal-target": "modal" } }
-    .fr-container.fr-container--fluid.fr-container-md
-      .fr-grid-row.fr-grid-row--center
-        .fr-col-12.fr-col-md-10.fr-col-lg-8
-          .fr-modal__body
-            .fr-modal__header
-              %button.fr-btn--close.fr-btn{ aria: { controls: 'modal-instruction-button' }, type: "button", title: t('utils.modal_close_alt') }= t('utils.modal_close')
-            .fr-modal__content
-              #instruction-modal-content
-                = render partial: "instructeurs/dossiers/instruction_modal_content", locals: { dossier: dossier, operation: nil, batch: batch, procedure: procedure, modal_title_data: helpers.instruction_modal_title_data(dossier: dossier, batch: batch) }
-
-            = render partial: 'instructeurs/dossiers/instruction_modal_footer', locals: { dossier:, batch: }
+  = render partial: 'instructeurs/dossiers/instruction_modal', locals: { dossier:, batch:, procedure: }

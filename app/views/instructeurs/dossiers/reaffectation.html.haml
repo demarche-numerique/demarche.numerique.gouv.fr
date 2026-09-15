@@ -6,7 +6,7 @@
   .tab-title.fr-mb-1w= t('instructeurs.dossiers.reaffectation.title', dossier_id: @dossier.id)
   %span.fr-hint-text= t('instructeurs.dossiers.reaffectation.hint', label: @groupe_instructeur.label, count: @groupes_instructeurs.count)
 
-  = form_with url: reaffecter_instructeur_dossier_path(procedure_id: @dossier.procedure.id, dossier_id: @dossier.id), method: :post, local: true, data: { controller: 'enable-submit-if-filled', action: 'change->enable-submit-if-filled#fillCombobox' } do |form|
+  = form_with url: reaffecter_instructeur_dossier_path(procedure_id: @dossier.procedure.id, dossier_id: @dossier.id), method: :post, local: true, data: { turbo: true, controller: 'enable-submit-if-filled', action: 'change->enable-submit-if-filled#fillCombobox' } do |form|
     .fr-grid-row.fr-grid-row--gutters.fr-grid-row--bottom
       .fr-col-8
         .fr-select-group
@@ -21,5 +21,5 @@
       .fr-col-4
         = form.submit t('instructeurs.dossiers.reaffectation.submit'),
           class: 'fr-btn',
-          data: { enable_submit_if_filled_target: 'submit', confirm: t('instructeurs.dossiers.reaffectation.confirm', dossier_id: @dossier.id, label: @groupe_instructeur.label) },
+          data: { enable_submit_if_filled_target: 'submit', turbo_confirm: t('instructeurs.dossiers.reaffectation.confirm', dossier_id: @dossier.id, label: @groupe_instructeur.label) },
           disabled: true

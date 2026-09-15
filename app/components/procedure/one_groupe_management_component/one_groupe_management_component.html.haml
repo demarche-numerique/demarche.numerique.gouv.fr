@@ -28,7 +28,8 @@
       = button_to admin_procedure_groupe_instructeur_path(@procedure, @groupe_instructeur),
       class: 'fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-delete-line fr-mt-3w',
       method: :delete,
-      data: { confirm: t('.delete_confirmation', group_name: @groupe_instructeur.label) } do
+      data: { turbo_confirm: t('.delete_confirmation', group_name: @groupe_instructeur.label) },
+      form: { data: { turbo: true } } do
         Supprimer ce groupe
     - elsif @groupe_instructeur.id == @procedure.defaut_groupe_instructeur.id
       .fr-mt-3w

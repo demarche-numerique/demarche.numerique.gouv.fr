@@ -25,4 +25,4 @@
               %li
                 = f.button 'Créer la démarche', class: 'fr-btn'
               %li
-                = link_to 'Annuler', admin_procedures_path, class: 'fr-btn fr-btn--secondary', data: { confirm: 'Êtes-vous sûr de vouloir annuler la création de cette démarche ?'}
+                = link_to 'Annuler', admin_procedures_path, class: 'fr-btn fr-btn--secondary', data: { controller: 'confirm', confirm_message_value: 'Êtes-vous sûr de vouloir annuler la création de cette démarche ?', action: 'confirm#ask' }

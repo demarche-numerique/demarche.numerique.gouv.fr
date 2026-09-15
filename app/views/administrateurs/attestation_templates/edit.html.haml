@@ -47,7 +47,7 @@
               %span.toggle-switch-label.off Attestation désactivée
 
           .actions-right
-            = link_to 'Annuler', edit_admin_procedure_attestation_template_path(id: @procedure), class: 'fr-btn fr-btn--secondary fr-mr-2w', data: { confirm: 'Êtes-vous sûr de vouloir annuler les modifications effectuées ?'}
+            = link_to 'Annuler', edit_admin_procedure_attestation_template_path(id: @procedure), class: 'fr-btn fr-btn--secondary fr-mr-2w', data: { controller: 'confirm', confirm_message_value: 'Êtes-vous sûr de vouloir annuler les modifications effectuées ?', action: 'confirm#ask' }
             = f.button 'Enregistrer', class: 'fr-btn'
 
       .procedure-form__column--preview

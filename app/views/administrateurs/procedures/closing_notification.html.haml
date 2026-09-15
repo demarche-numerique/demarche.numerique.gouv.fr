@@ -21,7 +21,7 @@
       = form_for @procedure,
         url: admin_procedure_notify_after_closing_path(@procedure),
         method: :post,
-        html: { "data-controller" => "closing-notification" } do |f|
+        html: { data: { turbo: true, controller: "closing-notification" } } do |f|
 
         %div{ data: { 'action': "click->closing-notification#enableSubmitOnClick" } }
           - if @users_brouillon_count != 0
@@ -48,6 +48,6 @@
 
           %ul.fr-btns-group.fr-btns-group--inline-md
             %li
-              = submit_tag  t('administrateurs.procedures.close.actions.notify_after_closing'), { class: "fr-btn", id: 'publish', disabled: true, data: { confirm:  "Vous allez informer les usagers de la clôture de la démarche. Souhaitez-vous continuer ?", disable_with: "Envoi des notifications…", 'closing-notification-target': 'submit'} }
+              = submit_tag  t('administrateurs.procedures.close.actions.notify_after_closing'), { class: "fr-btn", id: 'publish', disabled: true, data: { turbo_confirm: "Vous allez informer les usagers de la clôture de la démarche. Souhaitez-vous continuer ?", turbo_submits_with: "Envoi des notifications…", 'closing-notification-target': 'submit' } }
             %li
               = link_to t('administrateurs.procedures.close.actions.cancel'), admin_procedures_path, class: 'fr-btn fr-btn--secondary fr-ml-2w'

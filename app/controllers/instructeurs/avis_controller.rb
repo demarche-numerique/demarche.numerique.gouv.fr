@@ -21,8 +21,8 @@ module Instructeurs
       if avis.remind_by!(current_instructeur)
         avis.expert.user.invite_expert_and_send_avis!(avis)
         flash.notice = t('.reminded', email: avis.expert.email)
-        redirect_back_or_to(avis_instructeur_dossier_path(avis.procedure, params[:statut], avis.dossier))
       end
+      redirect_back_or_to(avis_instructeur_dossier_path(avis.procedure, params[:statut], avis.dossier))
     end
   end
 end

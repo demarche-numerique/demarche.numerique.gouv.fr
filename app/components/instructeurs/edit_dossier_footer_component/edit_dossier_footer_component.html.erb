@@ -5,7 +5,7 @@
         <%= link_to t('.cancel'),
           instructeur_dossier_path(@dossier.procedure, @dossier),
           class: 'fr-btn fr-btn--secondary fr-mb-2w',
-          data: { confirm: t('.confirm') } %>
+          data: { controller: 'confirm', confirm_message_value: t('.confirm'), action: 'confirm#ask' } %>
 
         <%= button_to t('.submit'),
           validate_edit_instructeur_dossier_path(@dossier.procedure, @dossier),

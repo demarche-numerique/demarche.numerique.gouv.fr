@@ -87,6 +87,10 @@
       </dialog>
     <% end -%>
 
+    <% if available_operations[:options].any? { it[:instruction] } -%>
+      <%= render partial: 'instructeurs/dossiers/instruction_modal', locals: { dossier: nil, batch: true, procedure: } %>
+    <% end -%>
+
     <dialog
       id="modal-commentaire-batch"
       class="fr-modal"

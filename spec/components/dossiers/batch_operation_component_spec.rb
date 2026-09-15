@@ -45,6 +45,13 @@ RSpec.describe Dossiers::BatchOperationComponent, type: :component do
         is_expected.to have_button('Envoyer un message aux usagers', disabled: true)
       end
 
+      it 'renders the instruction modal outside the batch form' do
+        is_expected.to have_selector('#modal-instruction-button')
+        is_expected.to have_selector('#modal-instruction-title', text: 'Rendre une décision sur les dossiers')
+        is_expected.to have_text('Accepter les dossiers')
+        is_expected.not_to have_selector('form #modal-instruction-button')
+      end
+
       context 'with expert review disallowed procedure' do
         before {
           procedure.update!(allow_expert_review: false)

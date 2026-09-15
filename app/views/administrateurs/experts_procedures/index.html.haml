@@ -113,7 +113,8 @@
                 %td.actions= button_to 'Retirer',
                   admin_procedure_expert_path(id: expert_procedure, procedure: @procedure),
                   method: :delete,
-                  data: { confirm: "Êtes-vous sûr de vouloir révoquer l’expert « #{expert_procedure.expert.email} » de la démarche #{expert_procedure.procedure.libelle} ? Les instructeurs ne pourront plus lui demander d’avis" },
+                  data: { turbo_confirm: "Êtes-vous sûr de vouloir révoquer l’expert « #{expert_procedure.expert.email} » de la démarche #{expert_procedure.procedure.libelle} ? Les instructeurs ne pourront plus lui demander d’avis" },
+                  form: { data: { turbo: true } },
                   class: 'fr-btn fr-btn--secondary'
   - else
     .blank-tab
