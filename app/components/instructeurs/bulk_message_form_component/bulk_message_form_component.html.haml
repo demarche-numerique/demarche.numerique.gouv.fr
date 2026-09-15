@@ -1,4 +1,4 @@
-= form_for(bulk_message, url: create_multiple_commentaire_for_brouillons_instructeur_procedure_path([procedure]), html: {  data: { controller: 'persisted-form bulk-message', persisted_form_key_value: dom_id(procedure, :bulk_message) } }) do |f|
+= form_for(bulk_message, url: create_multiple_commentaire_for_brouillons_instructeur_procedure_path([procedure]), html: { data: { turbo: true, controller: 'persisted-form bulk-message', persisted_form_key_value: dom_id(procedure, :bulk_message) } }) do |f|
   %p.mandatory-explanation= t('asterisk_html', scope: [:utils])
 
   - if procedure.routing_enabled?
@@ -48,4 +48,4 @@
     .fr-fieldset__element= render Dsfr::InputComponent.new(form: f, attribute: :body, input_type: :text_area, required: true, opts: { rows: 5, placeholder:  t('views.shared.dossiers.messages.form.write_message_placeholder'), title:  t('views.shared.dossiers.messages.form.write_message_placeholder'), class: 'fr-input message-textarea'}, label_opts: { class: 'fr-text--bold' })
 
   .fr-mt-3w
-    = f.submit t('views.shared.dossiers.messages.form.send_message'), class: 'fr-btn', data: { disable: true }
+    = f.submit t('views.shared.dossiers.messages.form.send_message'), class: 'fr-btn'

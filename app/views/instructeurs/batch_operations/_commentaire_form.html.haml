@@ -33,9 +33,9 @@
         %button.fr-btn.fr-btn--secondary{ aria: { controls: 'modal-commentaire-batch' }, "data-fr-js-modal-button" => "true" }
           = t('.cancel')
       %li.split-button-wrapper
-        = button_tag t('.submit'), type: 'submit', class: 'fr-btn fr-mr-0', data: { disable: true }, name: 'mark_as_pending_response', value: 'false'
+        = button_tag t('.submit'), type: 'submit', class: 'fr-btn fr-mr-0', name: 'mark_as_pending_response', value: 'false'
         = render Dropdown::MenuComponent.new(wrapper: :div, button_options: { class: "fr-ml-0 split-button-toggle" }, menu_options: { class: "split-button-dropdown fr-mb-1v" }) do |menu|
           - menu.with_item(class: "fr-px-0 fr-py-0") do
-            = button_tag type: 'submit', class: 'fr-btn fr-btn--tertiary-no-outline fr-mx-0 fr-my-0 fr-py-1w', data: { disable: true }, name: 'mark_as_pending_response', value: 'true' do
+            = button_tag type: 'submit', class: 'fr-btn fr-btn--tertiary-no-outline fr-mx-0 fr-my-0 fr-py-1w', name: 'mark_as_pending_response', value: 'true' do
               = t('.send_message_and_mark')
               %span.fr-badge.fr-badge--sm.fr-ml-1w= t('.pending_response_badge')

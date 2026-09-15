@@ -39,7 +39,7 @@ class ContactController < ApplicationController
       redirect_to root_path
     else
       flash.alert = @form.errors.full_messages
-      render @form.for_admin ? :admin : :index
+      render (@form.for_admin ? :admin : :index), status: :unprocessable_content
     end
   end
 

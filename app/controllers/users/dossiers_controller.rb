@@ -709,7 +709,7 @@ module Users
 
     def render_siret_error(error_message)
       flash.alert = error_message
-      render :siret
+      render :siret, status: :unprocessable_content
     end
 
     def dossier_params

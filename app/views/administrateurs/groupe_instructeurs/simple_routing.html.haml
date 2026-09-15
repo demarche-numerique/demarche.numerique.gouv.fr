@@ -32,7 +32,7 @@
 
       = form_for :create_simple_routing,
         method: :post,
-        data: { controller: 'enable-submit-if-checked' },
+        data: { turbo: true, controller: 'enable-submit-if-checked' },
         url: create_simple_routing_admin_procedure_groupe_instructeurs_path(@procedure) do |f|
 
         .card.fr-pb-0{ data: { 'action': "click->enable-submit-if-checked#click" } }
@@ -47,4 +47,4 @@
           %li
             = link_to 'Annuler', options_admin_procedure_groupe_instructeurs_path(@procedure, state: :choix), class: 'fr-btn fr-btn--secondary'
           %li
-            %button.fr-btn{ disabled: true,  data: { disable_with: 'Création des groupes…', 'enable-submit-if-checked-target': 'submit' } } Créer les groupes
+            %button.fr-btn{ disabled: true, data: { turbo_submits_with: 'Création des groupes…', 'enable-submit-if-checked-target': 'submit' } } Créer les groupes

@@ -1,4 +1,4 @@
-<%= form_for form, url: contact_path, method: :post, multipart: true, class: 'fr-form-group', data: { controller: :contact } do |f| %>
+<%= form_for form, url: contact_path, method: :post, multipart: true, class: 'fr-form-group', data: { turbo: true, controller: :contact } do |f| %>
   <p class="fr-hint-text"><%= t('asterisk_html', scope: [:utils]) %></p>
 
   <% if form.require_email? %>
@@ -82,6 +82,6 @@
   <%= invisible_captcha %>
 
   <div class="fr-input-group fr-my-3w">
-    <%= f.submit t('send_mail', scope: [:utils]), type: :submit, class: 'fr-btn', data: { disable: true } %>
+    <%= f.submit t('send_mail', scope: [:utils]), type: :submit, class: 'fr-btn' %>
   </div>
 <% end %>

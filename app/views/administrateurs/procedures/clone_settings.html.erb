@@ -10,7 +10,7 @@
     <%= "« #{@procedure.libelle} » (N° #{@procedure.id})" %>
   </h1>
 
-  <%= form_with(model: @procedure, url: admin_procedure_clone_path(@procedure, from_new_from_existing: params[:from_new_from_existing]), method: :post) do |f| %>
+  <%= form_with(model: @procedure, url: admin_procedure_clone_path(@procedure, from_new_from_existing: params[:from_new_from_existing]), method: :post, data: { turbo: true }) do |f| %>
     <h2 class="fr-h5 fr-mb-1w">
       <%= t('administrateurs.procedures.clone.rename_title') %>
     </h2>
@@ -313,7 +313,7 @@
           </li>
 
           <li>
-            <%= f.submit t('administrateurs.procedures.clone.actions.clone'), class: 'fr-btn', data: { disable_with: t('administrateurs.procedures.clone.actions.disable_with') } %>
+            <%= f.submit t('administrateurs.procedures.clone.actions.clone'), class: 'fr-btn', data: { turbo_submits_with: t('administrateurs.procedures.clone.actions.disable_with') } %>
           </li>
         </ul>
       </div>

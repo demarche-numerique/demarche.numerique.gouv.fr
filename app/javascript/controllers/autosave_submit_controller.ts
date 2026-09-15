@@ -12,6 +12,19 @@ export class AutosaveSubmitController extends ApplicationController {
     this.onGlobal('autosave:end', () => this.didSucceed());
     this.onGlobal('autosave:error', () => this.didFail());
     this.on('click', (event) => this.onClick(event));
+
+    // Guard against double submissions once this button really submits the
+    // form (autosaves submit it without a submitter): a native submission
+    // leaves the page, a Turbo one ends with submit-end.
+    const form = isButtonElement(this.element) ? this.element.form : null;
+    if (form) {
+      this.on(form, 'submit', (event: SubmitEvent) => {
+        if (event.submitter == this.element) {
+          this.disableButton();
+        }
+      });
+      this.on(form, 'turbo:submit-end', () => this.enableButton());
+    }
   }
 
   // Intercept form submit if autosave is still in progress

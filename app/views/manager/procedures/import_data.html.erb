@@ -1,8 +1,8 @@
 <div style="margin-top: 1rem; margin-left: 1rem;">
   <h1>Importer des tags sur des démarches</h1>
 
-  <%= form_tag(manager_import_tags_path, method: :post, multipart: true, style: 'margin-top: 1rem;') do |f| %>
+  <%= form_tag(manager_import_tags_path, method: :post, multipart: true, style: 'margin-top: 1rem;', data: { turbo: true }) do |f| %>
     <%= file_field_tag :tags_csv_file, required: true, accept: 'text/csv', size: "1" %>
-    <%= submit_tag "Importer", data: { disable_with: "Import en cours..." } , style: 'margin-top: 1rem;' %>
+    <%= submit_tag "Importer", data: { turbo_submits_with: "Import en cours..." }, style: 'margin-top: 1rem;' %>
   <% end %>
 </div>

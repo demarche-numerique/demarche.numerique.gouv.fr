@@ -8,7 +8,7 @@
     .fr-col-lg-6
       = devise_error_messages!
 
-      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :patch, class: '' }) do |f|
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :patch, class: '', data: { turbo: true } }) do |f|
         = f.hidden_field :reset_password_token
 
 
@@ -31,4 +31,4 @@
           .fr-fieldset__element
             = render Dsfr::InputComponent.new(form: f, attribute: :password_confirmation, input_type: :password_field)
 
-        = f.submit t('views.users.passwords.edit.submit'), id: 'submit-password', disabled: :disabled, class: "fr-btn fr-btn--lg fr-mt-2w", data: { disable_with: t('views.users.passwords.edit.submit_loading') }
+        = f.submit t('views.users.passwords.edit.submit'), id: 'submit-password', disabled: :disabled, class: "fr-btn fr-btn--lg fr-mt-2w", data: { turbo_submits_with: t('views.users.passwords.edit.submit_loading') }
