@@ -17,6 +17,47 @@ describe Logic do
       .to eq(ds_and([constant(true), constant(true), constant(false)]))
   end
 
+  describe 'expression format' do
+    let(:column) { Struct.new(:stable_id, :column_id).new(13, 'type_de_champ/value') }
+    let(:condition) do
+      ds_and([
+        ds_eq(champ_value(12), constant('oui')),
+        greater_than_eq(champ_column_value(column), constant(18)),
+        ds_in_departement(champ_value(14), constant('75')),
+        empty_operator(empty, empty),
+      ])
+    end
+
+    it 'serializes to prefix notation with typed champ ids' do
+      expect(condition.to_expr).to eq([
+        'and',
+        ['=', ['champ', Logic.champ_expr_id(12)], 'oui'],
+        ['>=', ['column', Logic.champ_expr_id(13), 'type_de_champ/value'], 18],
+        ['in-departement', ['champ', Logic.champ_expr_id(14)], '75'],
+        ['empty?', nil, nil],
+      ])
+    end
+
+    it 'round trips through JSON' do
+      expect(Logic.from_expr(JSON.parse(condition.to_expr.to_json))).to eq(condition)
+      expect(Logic.from_expr(constant(true).to_expr)).to eq(constant(true))
+      expect(Logic.from_expr(ds_or([constant(false)]).to_expr)).to eq(ds_or([constant(false)]))
+    end
+
+    it 'renders as an s-expression' do
+      expect(ds_and([ds_eq(champ_value(12), constant('oui')), greater_than(champ_value(13), constant(1.5))]).to_sexp)
+        .to eq(%{(and (= (champ "#{Logic.champ_expr_id(12)}") "oui") (> (champ "#{Logic.champ_expr_id(13)}") 1.5))})
+    end
+
+    it 'rejects malformed expressions' do
+      expect { Logic.from_expr(['xor', true, false]) }.to raise_error(ArgumentError, /unknown operator/)
+      expect { Logic.from_expr(['=', true]) }.to raise_error(ArgumentError, /expects 2 operands/)
+      expect { Logic.from_expr(['champ', 'not-a-typed-id']) }.to raise_error(ArgumentError, /invalid champ reference/)
+      expect { Logic.from_expr(['champ', Dossier.new(id: 1).to_typed_id]) }.to raise_error(ArgumentError, /invalid champ reference/)
+      expect { Logic.from_expr({ 'term' => 'Logic::Empty' }) }.to raise_error(ArgumentError, /invalid expression/)
+    end
+  end
+
   describe '.ensure_compatibility_from_left' do
     let(:type_de_champs) { [] }
     subject { Logic.ensure_compatibility_from_left(condition, type_de_champs) }

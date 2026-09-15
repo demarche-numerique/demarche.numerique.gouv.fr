@@ -8,6 +8,13 @@ module Types
 
     field :champ_descriptors, [Types::ChampDescriptorType], null: false
     field :annotation_descriptors, [Types::ChampDescriptorType], null: false
+    field :ineligibilite, Types::IneligibiliteType, "Règle d’inéligibilité de la révision (`null` si elle n’est pas activée).", null: true
+
+    def ineligibilite
+      if object.ineligibilite_enabled? && object.ineligibilite_rules.present?
+        object
+      end
+    end
 
     # Loading the types de champ of a revision is expensive, so callers hand
     # over bare revisions and the descriptors are loaded on demand, batched
