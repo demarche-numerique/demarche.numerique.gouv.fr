@@ -23,6 +23,15 @@ describe BlobProcessorJob, :external_deps, type: :job do
     allow(watermark_service).to receive(:apply) { |image, **| image }
   end
 
+  # ApplicationJob tags Sentry with what it was handed — a Dossier, a Procedure, a Blob —
+  # so that every failure of one upload can be found at once.
+  it "tags Sentry with the blob" do
+    allow(ClamavService).to receive(:safe_file?).and_return(true)
+    expect(Sentry).to receive(:set_tags).with(blob: blob.id)
+
+    described_class.perform_now(blob)
+  end
+
   describe 'virus scanning' do
     context 'when virus scan passes' do
       before do
@@ -207,6 +216,30 @@ describe BlobProcessorJob, :external_deps, type: :job do
 
         expect(watermark_service).to have_received(:apply).with(an_instance_of(Vips::Image), format: blob.content_type)
         expect(blob.watermarked_at).to be_present
+      end
+    end
+
+    # Refused as too large, the image is never watermarked, and the blob — processed all
+    # the same — stays pending: hidden from its owner, with nothing left to re-run it.
+    # Not a retry, which could not help, but a word to Sentry.
+    context 'when the image is too large to decode' do
+      before do
+        allow(blob).to receive(:watermark_pending?).and_return(true)
+        allow(Vips::Image).to receive(:new_from_file).and_raise(Vips::Error, "20000x20000, 3 bands of uchar: too large to decode")
+      end
+
+      it 'reports it to Sentry rather than retrying' do
+        expect(Sentry).to receive(:capture_exception).with(an_instance_of(Vips::Error))
+
+        expect { described_class.perform_now(blob) }.not_to raise_error
+        expect(blob.metadata["processed"]).to be true
+        expect(watermark_service).not_to have_received(:apply)
+      end
+
+      it 'logs the skip, so it is visible without Sentry' do
+        expect(Rails.logger).to receive(:warn).with(/too large to decode/)
+
+        described_class.perform_now(blob)
       end
     end
   end
