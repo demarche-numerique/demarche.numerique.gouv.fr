@@ -6,7 +6,7 @@ class Champs::DropDownListChamp < ChampData
   THRESHOLD_NB_OPTIONS_AS_AUTOCOMPLETE = 20
   OTHER = '__other__'
   delegate :options_without_empty_value_when_mandatory, to: :type_de_champ
-  validate :validate_value_is_in_options, if: -> { should_validate_in_current_context? && !(value.blank? || drop_down_other?) }
+  validates_with DropDownOptionsValidator, if: -> { value.present? && should_validate_in_current_context? }
   before_save :store_referentiel, if: :drop_down_advanced?
 
   def render_as_radios?
@@ -37,12 +37,14 @@ class Champs::DropDownListChamp < ChampData
     other? ? OTHER : value
   end
 
+  def selected_values = [value]
+
   def other?
     drop_down_other? && (other || value_from_user?)
   end
 
   def value_from_user?
-    value.present? && !value_is_in_options?(value)
+    value.present? && !DropDownOptionsValidator.allowed?([value], type_de_champ)
   end
 
   def value=(value)
@@ -113,10 +115,5 @@ class Champs::DropDownListChamp < ChampData
 
     headers = referentiel_item.referentiel.headers
     { data: referentiel_item.data.merge(headers:) }
-  end
-
-  def validate_value_is_in_options
-    return if value_is_in_options?(value)
-    errors.add(:value, :not_in_options)
   end
 end

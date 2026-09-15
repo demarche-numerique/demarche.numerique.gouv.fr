@@ -95,7 +95,6 @@ class ChampData < ApplicationRecord
     :pj_auto_purge?,
     :drop_down_options,
     :drop_down_other?,
-    :value_is_in_options?,
     :options_for_select,
     :options_for_select_with_other,
     :drop_down_secondary_libelle,

@@ -17,7 +17,6 @@ class TypesDeChamp::DropDownListTypeDeChamp < TypesDeChamp::DropDownBaseTypeDeCh
   def condition_value_type = :enum
   def condition_options = options_for_select_with_other
   boolean_options :drop_down_other
-  def value_is_in_options?(checked_value) = options_for_select.any? { _1.last == checked_value }
   def customizable? = true
 
   before_validation :set_default_drop_down_options, if: :type_champ_changed?
