@@ -121,7 +121,8 @@ describe ApplicationHelper do
     subject { human_date(date) }
 
     describe 'human_date for today' do
-      let(:date) { Date.today }
+      # the helper compares with Date.current (Paris): Date.today follows the system zone
+      let(:date) { Date.current }
       it { is_expected.to eq("Aujourd’hui") }
     end
     describe 'human_date for yesterday' do

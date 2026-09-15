@@ -115,7 +115,13 @@ describe APIToken, type: :model do
     # Pin the cap so every preset stays creatable whatever the configuration.
     before { stub_const('APIToken::MAX_LIFETIME', 365.days) }
 
-    let(:api_token) { APIToken.generate(administrateur, expires_at: duration.from_now.to_date).first }
+    # created_at is a timestamp while expires_at is a date: generate at noon so the
+    # lifetime comes out the same whatever the time of day the suite runs
+    let(:api_token) do
+      travel_to(Time.zone.local(2026, 9, 15, 12)) do
+        APIToken.generate(administrateur, expires_at: duration.from_now.to_date).first
+      end
+    end
 
     def notified_windows(token)
       [1.month, 1.week, 1.day].filter do |window|
@@ -409,6 +415,10 @@ describe APIToken, type: :model do
     let(:api_token) { APIToken.generate(administrateur).first }
 
     subject { APIToken.expiring_within(7.days) }
+
+    # the scope reads the system date while expires_at is cast in the Paris zone:
+    # pin the clock away from midnight, where the two dates differ
+    before { travel_to(Time.zone.local(2026, 9, 15, 12)) }
 
     context 'when the token is not expiring' do
       before { api_token.update_column(:expires_at, nil) }
