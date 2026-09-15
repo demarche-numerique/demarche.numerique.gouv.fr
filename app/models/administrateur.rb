@@ -117,7 +117,7 @@ class Administrateur < ApplicationRecord
 
     # v1/v2 tokens are deliberately left behind (and destroyed with the old
     # admin): we want their owners to migrate to v3 tokens.
-    old_admin.api_tokens.where(version: 3..).find_each do |token|
+    old_admin.api_tokens.authenticable.find_each do |token|
       self.api_tokens << token
     end
   end

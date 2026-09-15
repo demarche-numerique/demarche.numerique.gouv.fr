@@ -53,7 +53,11 @@ module Administrateurs
           return render :edit
         end
 
-        if @api_token.eternal? && networks.empty?
+        # Tokens predating automatic IP pinning have no safety net: assign_first_ip!
+        # skips them, so emptying their networks would leave them reachable from
+        # anywhere until they expire. The newer ones re-pin themselves on the next
+        # call, so they may be emptied.
+        if !@api_token.requires_ip_filtering? && networks.empty?
           @invalid_network_message = "Vous ne pouvez pas supprimer les restrictions d’accès à l’API d’un jeton permanent."
           @api_token.reload
           return render :edit

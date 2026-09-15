@@ -25,6 +25,15 @@ class APIToken < ApplicationRecord
             allow_nil: true,
             on: :create
 
+  # Version 1 and 2 tokens stopped authenticating when v1 was sunset; nothing
+  # promotes them back. Naming the rule here keeps it from living only inside
+  # authenticate, where the expiration notices could not reach it.
+  #
+  # Open-ended so a future version is authenticable by default: a whitelist
+  # pinned to 3 would silently reject the next format everywhere at once.
+  # Administrateur#merge already reasons this way when it moves tokens over.
+  scope :authenticable, -> { where(version: 3..) }
+
   scope :expiring_within, -> (duration) { where(expires_at: Date.today..duration.from_now) }
 
   scope :without_any_expiration_notice_sent_within, -> (duration) do
@@ -37,10 +46,12 @@ class APIToken < ApplicationRecord
 
   scope :with_expiration_notice_to_send_for, -> (duration) do
     # example for duration = 1.month
-    # take all tokens that expire in the next month
+    # take all tokens that can still authenticate
+    # that expire in the next month
     # with a lifetime bigger than 1 month
     # without any expiration notice sent for that period
-    expiring_within(duration)
+    authenticable
+      .expiring_within(duration)
       .with_a_bigger_lifetime_than(duration)
       .without_any_expiration_notice_sent_within(duration)
   end
@@ -121,11 +132,6 @@ class APIToken < ApplicationRecord
     expires_at&.past?
   end
 
-  # Only describes the tokens created before an expiration date was mandatory.
-  def eternal?
-    expires_at.nil?
-  end
-
   class << self
     def selectable_lifetimes
       LIFETIMES.filter { |_, lifetime| lifetime <= MAX_LIFETIME }
@@ -148,7 +154,7 @@ class APIToken < ApplicationRecord
 
       return if bearer.nil?
 
-      api_token = find_by(id: bearer.api_token_id, version: 3)
+      api_token = authenticable.find_by(id: bearer.api_token_id)
 
       return if api_token.nil?
 
