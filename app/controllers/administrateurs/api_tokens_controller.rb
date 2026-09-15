@@ -63,7 +63,9 @@ module Administrateurs
         h[:authorized_networks] = networks
       end
 
-      if procedure_to_add.present?
+      if params[:restore_full_access].present?
+        h[:allowed_procedure_ids] = nil
+      elsif procedure_to_add.present?
         to_add = current_administrateur
           .procedure_ids
           .intersection([procedure_to_add])
@@ -83,8 +85,8 @@ module Administrateurs
 
     def remove_procedure
       procedure_id = params[:procedure_id].to_i
-      @api_token.allowed_procedure_ids =
-        (@api_token.allowed_procedure_ids || @api_token.procedure_ids) - [procedure_id]
+      remaining_ids = (@api_token.allowed_procedure_ids || @api_token.procedure_ids) - [procedure_id]
+      @api_token.allowed_procedure_ids = remaining_ids.presence
       @api_token.save!
 
       render turbo_stream: turbo_stream.remove("authorized_procedure_#{procedure_id}")

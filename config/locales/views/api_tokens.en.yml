@@ -37,7 +37,9 @@ en:
         modify_button: Modify
         pending_auto_ip_message: 'If no network is configured, the IP address will be automatically locked on the first API call.'
         full_access_message: 'Your API token has access to all your procedures.'
+        restrict_access_message: 'Your API token has access to certain procedures.'
         restrict_access_button: 'Restrict access to certain procedures'
+        restore_full_access_button: 'Restore access to all procedures'
         add_authorized_procedures: 'Add authorized procedures'
         add_button: Add
         delete_button: Delete

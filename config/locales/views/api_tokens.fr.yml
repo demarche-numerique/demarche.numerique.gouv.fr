@@ -28,16 +28,18 @@ fr:
         cancel: Retour
         continue: Continuer
       edit:
-        title: 'Modification du jeton d''API « %{name} »'
-        breadcrumb_api_token: 'Jeton d''API : %{name}'
+        title: 'Modification du jeton dʼAPI « %{name} »'
+        breadcrumb_api_token: 'Jeton dʼAPI : %{name}'
         rename_button: Renommer
         enter_at_least_one_network: 'Entrez au moins 1 réseau autorisé'
         enter_authorized_ips: 'Entrez les adresses ip autorisées'
         networks_hint: 'adresses réseaux séparées par des espaces. ex: 176.31.79.200 192.168.33.0/24 2001:41d0:304:400::52f/128'
         modify_button: Modifier
-        pending_auto_ip_message: 'Si aucun réseau n''est configuré, l''adresse IP sera automatiquement verrouillée lors du premier appel API.'
-        full_access_message: 'Votre jeton d''API a accès à toutes vos démarches.'
-        restrict_access_button: 'Restreindre l''accès à certaines démarches'
+        pending_auto_ip_message: 'Si aucun réseau nʼest configuré, lʼadresse IP sera automatiquement verrouillée lors du premier appel API.'
+        full_access_message: 'Votre jeton dʼAPI a accès à toutes vos démarches.'
+        restrict_access_message: 'Votre jeton dʼAPI a accès à certaines démarches.'
+        restrict_access_button: 'Restreindre lʼaccès à certaines démarches'
+        restore_full_access_button: 'Restaurer lʼaccès à toutes les démarches'
         add_authorized_procedures: 'Ajouter des démarches autorisées'
         add_button: Ajouter
         delete_button: Supprimer
