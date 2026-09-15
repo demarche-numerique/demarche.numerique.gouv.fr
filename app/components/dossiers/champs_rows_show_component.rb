@@ -69,6 +69,12 @@ class Dossiers::ChampsRowsShowComponent < ApplicationComponent
     @champs.filter { visible?(_1) }.each(&block)
   end
 
+  def token_rejected?(champ)
+    procedure = champ.procedure
+
+    procedure.api_entreprise_token_rejected? || !procedure.api_entreprise_token.usable?
+  end
+
   def usager?
     @profile == 'usager'
   end
