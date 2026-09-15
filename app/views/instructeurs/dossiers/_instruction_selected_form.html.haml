@@ -5,7 +5,7 @@
   - attestation_context = instruction_attestation_context(operation: operation, batch: batch, procedure: procedure, dossier: dossier)
 
   - if batch
-    = form_for BatchOperation.new, url: instructeur_batch_operations_path(procedure_id: procedure.id), method: :post, html: { id: "batch-instruction-form", multipart: true, data: { dsfr_validation: true } } do |form|
+    = form_for BatchOperation.new, url: instructeur_batch_operations_path(procedure_id: procedure.id), method: :post, html: { id: "batch-instruction-form", multipart: true, data: { turbo: true, dsfr_validation: true } } do |form|
       = hidden_field_tag "batch_operation[operation]", opt[:action]
 
       - dossier_ids.each do |id|

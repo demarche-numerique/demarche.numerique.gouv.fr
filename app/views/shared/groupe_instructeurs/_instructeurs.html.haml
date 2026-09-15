@@ -51,7 +51,8 @@
                   %td.fr-col-1.fr-cell--center.actions{ scope: 'col' }= button_to t('views.shared.groupe_instructeurs.remove'),
                     { action: :remove_instructeur, id: groupe_instructeur.id },
                     { method: :delete,
-                      data: { confirm: confirmation_message },
+                      data: { turbo_confirm: confirmation_message },
+                      form: { data: { turbo: true } },
                       params: { instructeur: { id: instructeur.id }},
                       class: 'fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-subtract-line' }
 

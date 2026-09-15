@@ -9,7 +9,7 @@
           %div{ class: "fr-col-12 #{extra_class_names}" }
             %ul.fr-btns-group.fr-btns-group--inline-md
               %li
-                = link_to t('.cancel'), admin_procedure_path(id: @procedure), class: 'fr-btn fr-btn--secondary', data: { confirm: 'Si vous avez fait des modifications elles ne seront pas sauvegardées.'}
+                = link_to t('.cancel'), admin_procedure_path(id: @procedure), class: 'fr-btn fr-btn--secondary', data: { controller: 'confirm', confirm_message_value: 'Si vous avez fait des modifications elles ne seront pas sauvegardées.', action: 'confirm#ask' }
               %li
                 = form.submit t(".submit"), class: "fr-btn", disabled: is_form_disabled
 

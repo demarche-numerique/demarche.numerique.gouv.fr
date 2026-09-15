@@ -4,7 +4,7 @@
   <%= link_to t('instructeurs.dossiers.edit.back'),
     instructeur_dossier_path(statut: params[:statut]),
     class: 'fr-link fr-icon-arrow-left-line fr-link--icon-left',
-    data: { confirm: t('instructeurs.dossiers.edit.confirm') } %>
+    data: { controller: 'confirm', confirm_message_value: t('instructeurs.dossiers.edit.confirm'), action: 'confirm#ask' } %>
 
   <div class="fr-mt-4v fr-mb-8v">
     <h1 class="fr-h3 fr-my-2v">

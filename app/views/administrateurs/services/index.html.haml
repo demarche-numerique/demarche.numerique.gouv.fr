@@ -43,7 +43,8 @@
                         = button_to 'Supprimer',
                           admin_service_path(service, procedure_id: @procedure.id),
                           method: :delete,
-                          data: { confirm: "Confirmez vous la suppression de #{service.nom}" },
+                          data: { turbo_confirm: "Confirmez vous la suppression de #{service.nom}" },
+                          form: { data: { turbo: true } },
                           class: 'fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-delete-line',
                           disabled: (@procedure.service == service || service.administrateur_id != current_administrateur.id)
 

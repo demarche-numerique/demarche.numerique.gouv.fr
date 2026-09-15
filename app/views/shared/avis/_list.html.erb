@@ -63,7 +63,7 @@
 
           <%- if expert_or_instructeur.is_a?(Instructeur) -%>
             <%- if avis.answer.blank? && !avis.dossier.termine? -%>
-              <%= button_to(t('remind', scope: 'helpers.label'), remind_instructeur_avis_path(avis.procedure, params[:statut], avis), class: 'fr-btn fr-btn--sm fr-btn--tertiary-no-outline', method: :patch, data: { confirm: t('remind', scope: 'helpers.confirmation', email: avis.expert.email) }) %>
+              <%= button_to(t('remind', scope: 'helpers.label'), remind_instructeur_avis_path(avis.procedure, params[:statut], avis), class: 'fr-btn fr-btn--sm fr-btn--tertiary-no-outline', method: :patch, data: { turbo_confirm: t('remind', scope: 'helpers.confirmation', email: avis.expert.email) }, form: { data: { turbo: true } }) %>
               <%- if avis.revokable_by?(expert_or_instructeur) -%>
                 <%= button_to(t('revoke', scope: 'helpers.label'), revoquer_instructeur_avis_path(avis.procedure, params[:statut], avis), class: 'fr-btn fr-btn--sm fr-btn--tertiary-no-outline', data: { turbo_confirm: t('revoke', scope: 'helpers.confirmation', email: avis.expert.email) }, method: :patch, form: { data: { turbo: true } }) %>
               <%- end -%>

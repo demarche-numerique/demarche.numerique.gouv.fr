@@ -54,10 +54,10 @@
       - c.with_bottom do
         %ul.fr-mt-2w.fr-btns-group.fr-btns-group--inline
           - if @procedure.publiee?
-            %li= button_to 'Publier les modifications', admin_procedure_publish_revision_path(@procedure), class: 'fr-btn', id: 'publish-procedure-link', data: { disable_with: "Publication...", confirm: 'Êtes-vous sûr de vouloir publier les modifications ?' }, disabled: !@procedure.draft_revision.valid? || @procedure.errors.present?, method: :put
+            %li= button_to 'Publier les modifications', admin_procedure_publish_revision_path(@procedure), class: 'fr-btn', id: 'publish-procedure-link', data: { turbo_submits_with: "Publication...", turbo_confirm: 'Êtes-vous sûr de vouloir publier les modifications ?' }, disabled: !@procedure.draft_revision.valid? || @procedure.errors.present?, method: :put, form: { data: { turbo: true } }
           - else
             %li= button_to 'Publier les modifications', admin_procedure_publication_path(@procedure), class: 'fr-btn', id: 'publish-procedure-link', data: { disable_with: "Publication..." }, disabled: !@procedure.draft_revision.valid? || @procedure.errors.present?, method: :get
-          %li= button_to "Réinitialiser les modifications", admin_procedure_reset_draft_path(@procedure), class: 'fr-btn fr-btn--secondary fr-mr-2w', data: { confirm: 'Êtes-vous sûr de vouloir réinitialiser les modifications ?' }, method: :put
+          %li= button_to "Réinitialiser les modifications", admin_procedure_reset_draft_path(@procedure), class: 'fr-btn fr-btn--secondary fr-mr-2w', data: { turbo_confirm: 'Êtes-vous sûr de vouloir réinitialiser les modifications ?' }, method: :put, form: { data: { turbo: true } }
   - else
     = render Procedure::ErrorsSummary.new(procedure: @procedure, validation_context: :publication)
 

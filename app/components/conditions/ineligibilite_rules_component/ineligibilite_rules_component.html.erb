@@ -79,7 +79,7 @@
           <div class="fr-col-12">
             <ul class="fr-btns-group fr-btns-group--inline-md">
               <li>
-                <%= link_to t(".cancel"), admin_procedure_path(id: @draft_revision.procedure), class: 'fr-btn fr-btn--secondary', data: { confirm: t(".cancel_confirm") } %>
+                <%= link_to t(".cancel"), admin_procedure_path(id: @draft_revision.procedure), class: 'fr-btn fr-btn--secondary', data: { controller: 'confirm', confirm_message_value: t(".cancel_confirm"), action: 'confirm#ask' } %>
               </li>
 
               <li>

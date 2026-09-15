@@ -50,7 +50,7 @@
       .card-title= t('.transfer_title')
       = t('.transfer_explication_html')
 
-      = form_tag transfer_all_dossiers_path  do
+      = form_tag transfer_all_dossiers_path, data: { turbo: true } do
         .fr-input-group
           = label_tag 'next_owner', class: "fr-label"  do
             = t('.transfer_next_owner_label')
@@ -59,7 +59,7 @@
 
           = email_field_tag :next_owner, nil, required: true, id: 'next_owner', class: 'fr-input'
 
-        = submit_tag t('.transfer_my_files'), class: 'fr-btn fr-btn--secondary', data: { confirm: t('.transfer_confirmation') }
+        = submit_tag t('.transfer_my_files'), class: 'fr-btn fr-btn--secondary', data: { turbo_confirm: t('.transfer_confirmation') }
 
       - if @waiting_transfers.present?
         = render Dsfr::AlertComponent.new(title: t('.waiting_transfers'), state: :warning, heading_level: 'h2', extra_class_names: 'fr-mt-2w') do |c|
@@ -81,6 +81,5 @@
             = button_to t('.forbid_access'),
               france_connect_information_path(fci_id: fci.id),
               method: :delete,
-              data: { confirm: t('.unlink_confirmation', full_name: fci.full_name) },
-              form: { class: 'inline', data: { turbo: false } },
+              form: { class: 'inline', data: { turbo: false, controller: 'confirm', confirm_message_value: t('.unlink_confirmation', full_name: fci.full_name), action: 'submit->confirm#ask' } },
               class: 'fr-btn fr-btn--secondary fr-ml-2w'

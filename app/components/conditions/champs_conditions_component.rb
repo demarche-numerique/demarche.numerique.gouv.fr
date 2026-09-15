@@ -23,7 +23,7 @@ class Conditions::ChampsConditionsComponent < Conditions::ConditionsComponent
         t('.disable_conditionnel'),
         formmethod: 'delete',
         formnovalidate: true,
-        data: { confirm: t('.disable_conditionnel_alert') },
+        data: { turbo_confirm: t('.disable_conditionnel_alert') },
         class: html_class
       )
     end

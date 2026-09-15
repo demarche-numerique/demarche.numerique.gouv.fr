@@ -12,7 +12,7 @@
 
   %p= t('administrateurs.groupe_instructeurs.reaffectation.hint', label: @groupe_instructeur.label, count: @groupes_instructeurs.count)
 
-  = form_with url: reaffecter_admin_procedure_groupe_instructeur_path, method: :post, local: true, data: { controller: 'enable-submit-if-filled', action: 'change->enable-submit-if-filled#fillCombobox' } do |form|
+  = form_with url: reaffecter_admin_procedure_groupe_instructeur_path, method: :post, local: true, data: { turbo: true, controller: 'enable-submit-if-filled', action: 'change->enable-submit-if-filled#fillCombobox' } do |form|
     .fr-grid-row.fr-grid-row--gutters.fr-grid-row--bottom.fr-mt-3w
       .fr-col-8
         .fr-select-group
@@ -28,5 +28,5 @@
       .fr-col-4
         = form.submit t('administrateurs.groupe_instructeurs.reaffectation.submit'),
           class: 'fr-btn fr-btn-sm',
-          data: { enable_submit_if_filled_target: 'submit', confirm: t('administrateurs.groupe_instructeurs.reaffectation.confirm', label: @groupe_instructeur.label) },
+          data: { enable_submit_if_filled_target: 'submit', turbo_confirm: t('administrateurs.groupe_instructeurs.reaffectation.confirm', label: @groupe_instructeur.label) },
           disabled: true

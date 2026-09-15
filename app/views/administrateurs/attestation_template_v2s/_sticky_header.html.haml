@@ -14,7 +14,7 @@
             Réinitialiser les modifications
 
         %button.fr-btn.fr-ml-2w{ form: "attestation-template", name: field_name(:attestation_template, :state), value: "published",
-          data: { 'disable-with': "Publication en cours…", confirm: ('Êtes-vous sûr de vouloir publier les modifications ?' if attestation_templates_for_kind.many?), controller: 'autosave-submit' } }
+          data: { turbo: 'true', 'disable-with': "Publication en cours…", turbo_confirm: ('Êtes-vous sûr de vouloir publier les modifications ?' if attestation_templates_for_kind.many?), controller: 'autosave-submit' } }
           - if attestation_templates_for_kind.many?
             Publier les modifications
           - else

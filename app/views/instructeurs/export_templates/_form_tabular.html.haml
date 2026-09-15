@@ -6,7 +6,7 @@
 
 .fr-grid-row.fr-grid-row--gutters
   .fr-col-12.fr-col-md-8
-    = form_with model: [:instructeur, procedure, export_template], local: true do |f|
+    = form_with model: [:instructeur, procedure, export_template], local: true, data: { turbo: true } do |f|
 
       %h2 Paramètres de l’export
       = f.hidden_field "[dossier_folder][template]", value: export_template.dossier_folder.template_json
@@ -56,4 +56,4 @@
         .fr-container
           %ul.fr-btns-group.fr-btns-group--inline-md
             %li= link_to "Annuler", [:export_templates, :instructeur, procedure], class: "fr-btn fr-btn--secondary"
-            %li= f.button "Enregistrer", class: "fr-btn", data: export_template.persisted? ? { confirm: t('.warning') } : {}
+            %li= f.button "Enregistrer", class: "fr-btn", data: export_template.persisted? ? { turbo_confirm: t('.warning') } : {}

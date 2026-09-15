@@ -33,7 +33,7 @@
                   .fr-alert.fr-icon-mail-line.fr-mb-3w
                     %p= t(".groupes.alert_email_notifications_html")
 
-                  = form_tag import_admin_procedure_groupe_instructeurs_path(@procedure), method: :post, multipart: true, data: { controller: 'enable-submit-if-uploaded' } do
+                  = form_tag import_admin_procedure_groupe_instructeurs_path(@procedure), method: :post, multipart: true, data: { turbo: true, controller: 'enable-submit-if-uploaded' } do
                     %label.fr-label.fr-text--bold
                       = t('.file_to_import')
                     .fr-download
@@ -54,7 +54,7 @@
                       %li
                         %button.fr-btn.fr-btn--secondary{ type: 'button', aria: { controls: 'modal-import' } }= t('.cancel')
                       %li
-                        = submit_tag t('.import_file'), class: 'fr-btn', data: { disable_with: "Envoi...", confirm: t('.groupes.confirm'), 'enable-submit-if-uploaded-target': 'submit' }, disabled: true
+                        = submit_tag t('.import_file'), class: 'fr-btn', data: { turbo_submits_with: "Envoi...", turbo_confirm: t('.groupes.confirm'), 'enable-submit-if-uploaded-target': 'submit' }, disabled: true
 
                 #panel-import-contact.fr-tabs__panel{ role: 'tabpanel', 'aria-labelledby': 'tab-import-contact' }
                   %p.fr-mb-2w= t(".contact_informations.notice_html")
@@ -65,7 +65,7 @@
                     %p
                       = t(".contact_informations.info_2_html")
 
-                  = form_tag import_contact_informations_admin_procedure_groupe_instructeurs_path(@procedure), method: :post, multipart: true, data: { controller: 'enable-submit-if-uploaded' } do
+                  = form_tag import_contact_informations_admin_procedure_groupe_instructeurs_path(@procedure), method: :post, multipart: true, data: { turbo: true, controller: 'enable-submit-if-uploaded' } do
                     %label.fr-label.fr-text--bold
                       = t('.file_to_import')
                     .fr-download
@@ -81,7 +81,7 @@
                         %li
                           %button.fr-btn.fr-btn--secondary{ type: 'button', aria: { controls: 'modal-import' } }= t('.cancel')
                         %li
-                          = submit_tag t('.import_file'), class: 'fr-btn', data: { disable_with: "Envoi...", confirm: t('.contact_informations.confirm'), 'enable-submit-if-uploaded-target': 'submit' }, disabled: true
+                          = submit_tag t('.import_file'), class: 'fr-btn', data: { turbo_submits_with: "Envoi...", turbo_confirm: t('.contact_informations.confirm'), 'enable-submit-if-uploaded-target': 'submit' }, disabled: true
 
             - else
               %p.fr-mb-2w= t(".instructeurs.notice_html", csv_max_size: number_to_human_size(csv_max_size))
@@ -89,7 +89,7 @@
               .fr-alert.fr-icon-mail-line.fr-mb-3w
                 %p= t(".instructeurs.alert_email_notifications_html")
 
-              = form_tag import_admin_procedure_groupe_instructeurs_path(@procedure), method: :post, multipart: true, data: { controller: 'enable-submit-if-uploaded' } do
+              = form_tag import_admin_procedure_groupe_instructeurs_path(@procedure), method: :post, multipart: true, data: { turbo: true, controller: 'enable-submit-if-uploaded' } do
                 %label.fr-label.fr-text--bold
                   = t('.file_to_import')
                 .fr-download
@@ -110,4 +110,4 @@
                   %li
                     %button.fr-btn.fr-btn--secondary{ type: 'button', aria: { controls: 'modal-import' } }= t('.cancel')
                   %li
-                    = submit_tag t('.import_file'), class: 'fr-btn', data: { disable_with: "Envoi...", confirm: t('.instructeurs.confirm'), 'enable-submit-if-uploaded-target': 'submit' }, disabled: true
+                    = submit_tag t('.import_file'), class: 'fr-btn', data: { turbo_submits_with: "Envoi...", turbo_confirm: t('.instructeurs.confirm'), 'enable-submit-if-uploaded-target': 'submit' }, disabled: true

@@ -18,4 +18,4 @@
         = link_to 'Supprimer',
           admin_api_token_path(@api_token),
           class: 'fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-btn--icon-left fr-icon-delete-line',
-          data: { turbo_method: :delete, confirm: "Confirmez-vous la suppression du jeton « #{@api_token.name} » ?" }
+          data: { turbo_method: :delete, turbo_confirm: "Confirmez-vous la suppression du jeton « #{@api_token.name} » ?" }
