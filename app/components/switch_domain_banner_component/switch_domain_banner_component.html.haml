@@ -33,7 +33,7 @@
       %span#banner_auto_switch_error.hidden= t(".detected_error")
 
 - if user && !user.preferred_domain_demarche_numerique_gouv_fr? && requested_from_new_domain?
-  = form_tag(helpers.preferred_domain_path, method: :patch, remote: true, name: "update-preferred-domain") do
+  = form_tag(helpers.preferred_domain_path, method: :patch, name: "update-preferred-domain") do
     :javascript
       document.addEventListener('noticeClosed', function(e) {
         document.forms['update-preferred-domain'].submit();
