@@ -275,6 +275,38 @@ describe GroupeInstructeur, type: :model do
         end
       end
 
+      context 'with a placeholder rule' do
+        let(:gi) { create(:groupe_instructeur, procedure: routed_procedure, routing_rule: empty_operator(empty, empty)) }
+
+        it 'returns false' do
+          expect(gi.valid_rule?).to be false
+        end
+      end
+
+      context 'with a placeholder row' do
+        let(:gi) do
+          create(:groupe_instructeur,
+                 procedure: routed_procedure,
+                 routing_rule: ds_and([ds_eq(champ_value(stable_id), constant('Paris')), empty_operator(empty, empty)]))
+        end
+
+        it 'returns false' do
+          expect(gi.valid_rule?).to be false
+        end
+      end
+
+      context 'with a contradictory routing rule' do
+        let(:gi) do
+          create(:groupe_instructeur,
+                 procedure: routed_procedure,
+                 routing_rule: ds_and([ds_eq(champ_value(stable_id), constant('Paris')), ds_eq(champ_value(stable_id), constant('Lyon'))]))
+        end
+
+        it 'returns false: the rule can never match a dossier' do
+          expect(gi.valid_rule?).to be false
+        end
+      end
+
       context 'with nil routing rule' do
         let(:gi) do
           create(:groupe_instructeur,

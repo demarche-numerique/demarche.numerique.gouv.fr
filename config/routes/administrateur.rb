@@ -35,6 +35,7 @@ scope module: 'administrateurs', path: 'admin', as: 'admin', defaults: { nav_bar
       get 'zones'
       get 'annotations'
       get 'modifications'
+      get 'parcours'
       get 'monavis'
       patch 'update_monavis'
       get 'accuse_lecture'
