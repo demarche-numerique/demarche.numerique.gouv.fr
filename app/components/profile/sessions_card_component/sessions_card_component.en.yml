@@ -1,0 +1,12 @@
+en:
+  title: My active sessions
+  explication: These devices are currently signed in to your account. If you do not recognise one of them, sign it out and then change your password.
+  device: Device
+  signed_in_at: Signed in
+  actions: Action
+  current: Current session
+  revoke: Sign out
+  revoke_aria: Sign out the device %{device}
+  revoke_confirmation: This device will have to sign in again to reach your account.
+  revoke_all: Sign out every device
+  revoke_all_confirmation: Every device will have to sign in again, this one included.
