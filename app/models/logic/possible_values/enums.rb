@@ -1,0 +1,23 @@
+# frozen_string_literal: true
+
+# A multiple-choice champ holds a subset of its options, so listing the values
+# it can take would mean listing every subset — 2^n of them for n options. The
+# comparisons only ever require an option to be selected or not, so it keeps
+# just the pair of those requirements, contradictory as soon as one option is
+# in both, or as soon as every option is excluded: a filled champ has at least
+# one selected.
+class Logic::PossibleValues::Enums < Data.define(:options, :must_include, :must_exclude)
+  def initialize(options:, must_include: Set.new, must_exclude: Set.new) = super(options: options.to_set, must_include:, must_exclude:)
+
+  def empty? = must_include.intersect?(must_exclude) || (options.any? && options.subset?(must_exclude))
+
+  def limits = nil
+
+  def restrict(operator_class, value)
+    case operator_class.name
+    when Logic::IncludeOperator.name then with(must_include: must_include | [value], must_exclude: must_exclude)
+    when Logic::ExcludeOperator.name then with(must_include: must_include, must_exclude: must_exclude | [value])
+    else self
+    end
+  end
+end

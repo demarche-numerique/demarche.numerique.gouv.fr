@@ -91,6 +91,14 @@ describe Conditions::ChampsConditionsComponent, type: :component do
           end
         end
 
+        context 'when the conditions are contradictory' do
+          let(:condition) { ds_and([greater_than(target, constant(3)), less_than(target, constant(2))]) }
+
+          it 'names the field and the conflicting rows' do
+            expect(page).to have_selector('.errors-summary', text: "Le champ « #{upper_tdc.libelle} » ne peut pas être à la fois supérieur à « 3 » et inférieur à « 2 ».")
+          end
+        end
+
         context 'when there are 3 conditions' do
           let(:condition) do
             ds_or([
