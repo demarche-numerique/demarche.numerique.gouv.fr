@@ -41,7 +41,11 @@ describe 'Creating a new procedure', js: true do
       fill_in 'Libellé du champ', with: 'libelle de champ'
       blur
       expect(page).to have_content('Formulaire enregistré')
-      expect(page).to have_selector('select > optgroup', count: 8)
+      # the type menu opens on the categories of types
+      find_by_id(find('label', exact_text: 'Type de champ')['for']).click
+      expect(page).to have_css('.select-popover .dropdown-section-header', text: 'Structure du formulaire')
+      expect(page).to have_css('.select-popover [role="option"]', text: 'Titre de section')
+      find('.select-popover input').send_keys(:escape)
 
       within(find('.type-de-champ-add-button', match: :first)) {
         add_champ
@@ -55,7 +59,7 @@ describe 'Creating a new procedure', js: true do
       # Add an empty repetition type de champ
       add_champ
       hide_autonotice_message
-      select('Bloc répétable', from: 'Type de champ')
+      select_type_de_champ('Bloc répétable')
       fill_in 'Libellé du champ', with: 'libellé de champ'
       blur
       expect(page).to have_content('Formulaire enregistré')

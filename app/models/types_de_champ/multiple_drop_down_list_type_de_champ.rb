@@ -2,6 +2,7 @@
 
 class TypesDeChamp::MultipleDropDownListTypeDeChamp < TypesDeChamp::DropDownBaseTypeDeChamp
   def self.category = CHOICE
+  def self.icon = 'fr-icon-checkbox-multiple-line'
   def self.option_keys = [:drop_down_options, :drop_down_mode]
   def self.column_type = :enums
   def self.conditionable? = true

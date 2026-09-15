@@ -2,6 +2,7 @@
 
 class TypesDeChamp::CheckboxTypeDeChamp < TypeDeChamp
   def self.category = CHOICE
+  def self.icon = 'fr-icon-checkbox-blank-line'
   def self.column_type = :boolean
   def self.conditionable? = true
 

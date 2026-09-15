@@ -12,8 +12,7 @@
         <div class="flex justify-start flex-gap fr-mb-4w">
           <div class="flex justify-start width-33">
             <div class="cell flex justify-start column flex-grow">
-              <%= form.label :type_champ, t(".type_champ_label"), for: dom_id(type_de_champ, :type_champ) %>
-              <%= form.select :type_champ, grouped_options_for_select(types_of_type_de_champ, type_de_champ.type_champ), {}, class: 'fr-select small-margin small inline width-100', id: dom_id(type_de_champ, :type_champ), disabled: disabled_type_de_champ_select? %>
+              <%= render TypesDeChampEditor::TypeDeChampSelectorComponent.new(coordinate:, form:) %>
 
               <% if type_de_champ.siret? || type_de_champ.communes? || type_de_champ.departements? || type_de_champ.address? || type_de_champ.epci? %>
                 <div class="cell fr-mt-1w">
@@ -22,13 +21,6 @@
                     src: api_champ_columns_admin_procedure_path(id: procedure.id, stable_id: type_de_champ.stable_id),
                     "aria-controls" => "api-champ-columns-modal",
                     "aria-haspopup" => "dialog") %>
-                </div>
-              <% end %>
-
-              <% if disabled_type_de_champ_select? %>
-                <div class="cell fr-mt-1w">
-                  <span class="fr-icon-lock-fill fr-icon--sm"></span>
-                  <%= t(".no_allowed_type") %>
                 </div>
               <% end %>
 

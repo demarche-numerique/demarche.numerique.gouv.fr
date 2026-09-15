@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class TypesDeChamp::PieceJustificativeTypeDeChamp < TypeDeChamp
+  def self.icon = 'fr-icon-attachment-line'
   def self.option_keys = [:old_pj, :skip_pj_validation, :skip_content_type_pj_validation, :pj_limit_formats, :pj_format_families, :pj_auto_purge]
   def self.column_type = :attachments
 

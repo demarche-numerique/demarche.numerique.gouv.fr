@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class TypesDeChamp::FormattedTypeDeChamp < TypeDeChamp
+  def self.icon = 'fr-icon-input-field'
+
   def self.option_keys
     [
       :formatted_mode, :numbers_accepted, :letters_accepted, :special_characters_accepted,

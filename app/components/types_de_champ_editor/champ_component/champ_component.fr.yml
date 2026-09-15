@@ -1,7 +1,5 @@
 fr:
-  type_champ_label: "Type de champ"
   info_remontees_button: "Liste des informations remontées"
-  no_allowed_type: "Aucun type de champ autorisé pour transformer ce champ"
   communes_warning_title: "Attention :"
   communes_warning_desc_html: "ne pas utiliser ce champ pour les <strong>communes de naissance</strong>."
   communes_info_link: "Comment fonctionne ce champ ?"

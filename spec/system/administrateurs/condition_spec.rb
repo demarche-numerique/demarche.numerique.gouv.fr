@@ -102,7 +102,7 @@ describe 'As an administrateur I can edit types de champ condition', js: true do
         expect(page).to have_no_selector('.errors-summary')
 
         within '.type-de-champ:nth-child(1)' do
-          select('Département', from: 'Type de champ')
+          select_type_de_champ('Département')
         end
 
         within '.type-de-champ:nth-child(2)' do

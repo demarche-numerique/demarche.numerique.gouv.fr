@@ -2,6 +2,7 @@
 
 class TypesDeChamp::DropDownListTypeDeChamp < TypesDeChamp::DropDownBaseTypeDeChamp
   def self.category = CHOICE
+  def self.icon = 'fr-icon-radio-button-line'
   def self.option_keys = [:drop_down_other, :drop_down_options, :drop_down_mode]
   def self.column_type = :enum
   def self.simple_routable? = true

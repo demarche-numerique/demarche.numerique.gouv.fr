@@ -1,7 +1,5 @@
 en:
-  type_champ_label: "Field type"
   info_remontees_button: "List of retrieved information"
-  no_allowed_type: "No field type allowed to transform this field"
   communes_warning_title: "Warning:"
   communes_warning_desc_html: "do not use this field for <strong>birth municipalities</strong>."
   communes_info_link: "How does this field work?"

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TypesDeChamp::RepetitionTypeDeChamp < TypeDeChamp
-  def self.category = STRUCTURE
+  def self.icon = 'fr-icon-repeat-line'
   def self.option_keys = [:limit_repetitions, :min_repetitions, :max_repetitions]
   def self.allowed_in_repetition? = false
 

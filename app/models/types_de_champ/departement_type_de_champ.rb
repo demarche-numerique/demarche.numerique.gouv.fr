@@ -2,6 +2,7 @@
 
 class TypesDeChamp::DepartementTypeDeChamp < TypesDeChamp::TextTypeDeChamp
   def self.category = LOCALISATION
+  def self.icon = 'fr-icon-map-pin-line'
   def self.column_type = :enum
   def self.simple_routable? = true
   def self.conditionable? = true

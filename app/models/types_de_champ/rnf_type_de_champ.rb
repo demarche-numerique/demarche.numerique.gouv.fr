@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class TypesDeChamp::RNFTypeDeChamp < TypesDeChamp::TextTypeDeChamp
-  def self.category = REFERENTIEL_EXTERNE
+  def self.category = IDENTIFICATION
+  def self.icon = 'fr-icon-community-line'
 
   def prefillable? = false
 

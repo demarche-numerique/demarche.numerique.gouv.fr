@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class TypesDeChamp::CiviliteTypeDeChamp < TypeDeChamp
-  def self.category = ETAT_CIVIL
+  def self.category = IDENTIFICATION
+  def self.icon = 'fr-icon-user-line'
   def self.column_type = :enum
 
   def prefillable? = true

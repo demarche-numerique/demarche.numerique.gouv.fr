@@ -2,6 +2,7 @@
 
 class TypesDeChamp::FranceConnectTypeDeChamp < TypeDeChamp
   def self.category = FRANCE_CONNECT
+  def self.icon = 'fr-icon-money-euro-circle-line'
   def self.public_only? = true
   def self.allowed_in_repetition? = false
 

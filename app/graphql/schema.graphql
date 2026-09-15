@@ -5849,7 +5849,7 @@ enum TypeDeChamp {
   aeeh
 
   """
-  Annuaire de l’éducation
+  Établissement scolaire (Annuaire de l’éducation)
   """
   annuaire_education
 
@@ -5889,7 +5889,7 @@ enum TypeDeChamp {
   date
 
   """
-  Date et Heure
+  Date et heure
   """
   datetime
 
@@ -5949,7 +5949,7 @@ enum TypeDeChamp {
   header_section
 
   """
-  Numéro Iban
+  Numéro IBAN
   """
   iban
 
@@ -6024,7 +6024,7 @@ enum TypeDeChamp {
   rnf
 
   """
-  Numéro Siret
+  Numéro SIRET
   """
   siret
 

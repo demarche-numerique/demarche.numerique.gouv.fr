@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class TypesDeChamp::IntegerNumberTypeDeChamp < TypeDeChamp
+  def self.icon = 'fr-icon-hashtag'
   def self.option_keys = [:positive_number, :min_number, :max_number, :range_number]
   def self.column_type = :integer
   def self.conditionable? = true

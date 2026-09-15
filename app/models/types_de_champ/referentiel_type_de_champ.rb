@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class TypesDeChamp::ReferentielTypeDeChamp < TypeDeChamp
-  def self.category = REFERENTIEL_EXTERNE
+  def self.category = REFERENTIEL
+  def self.icon = 'fr-icon-equalizer-line'
   def self.option_keys = [:referentiel_mapping]
 
   store_accessor :options, :referentiel_mapping

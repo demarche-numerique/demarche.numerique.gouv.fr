@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class TypesDeChamp::DatetimeTypeDeChamp < TypeDeChamp
+  def self.icon = 'fr-icon-time-line'
   def self.option_keys = [:date_in_past, :start_date, :end_date, :range_date]
   def self.column_type = :datetime
 

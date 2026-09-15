@@ -2,6 +2,7 @@
 
 class TypesDeChamp::ExplicationTypeDeChamp < TypesDeChamp::TextTypeDeChamp
   def self.category = STRUCTURE
+  def self.icon = 'fr-icon-emphasis'
   def self.option_keys = [:collapsible_explanation_enabled, :collapsible_explanation_text]
 
   validates :notice_explicative, content_type: -> (_record) { AUTHORIZED_CONTENT_TYPES }, size: { less_than: 20.megabytes }, on: :update

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class TypesDeChamp::CarteTypeDeChamp < TypeDeChamp
+  def self.category = LOCALISATION
+  def self.icon = 'fr-icon-road-map-line'
   LAYERS = [
     :unesco,
     :arretes_protection,
@@ -23,7 +25,6 @@ class TypesDeChamp::CarteTypeDeChamp < TypeDeChamp
 
   store_accessor :options, :cadastres
 
-  def self.category = REFERENTIEL_EXTERNE
   def self.option_keys = LAYERS
   def self.column_type = :geojson
 

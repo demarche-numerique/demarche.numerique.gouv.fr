@@ -5,9 +5,9 @@ describe TypesDeChamp::ByCategoryListComponent, type: :component do
 
   it 'lists the types grouped by category, in the editor order' do
     expect(page.all('li').map(&:text)).to eq([
+      "« Nombre entier », « Nombre décimal »",
+      "« Choix simple », « Choix multiple », « Oui/Non », « Case à cocher seule »",
       "« Adresse », « Commune française actuelle », « Département », « Région », « Pays », « EPCI »",
-      "« Nombre décimal », « Nombre entier »",
-      "« Case à cocher seule », « Choix simple », « Choix multiple », « Oui/Non »",
       "« Champ pré-rempli »",
     ])
   end
