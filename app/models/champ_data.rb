@@ -225,6 +225,9 @@ class ChampData < ApplicationRecord
 
   def blank_for_condition? = blank?
 
+  # True when the value comes from the type rather than from the usager.
+  def implicit_value? = false
+
   def last_write_type_champ
     TypeDeChamp::CHAMP_TYPE_TO_TYPE_CHAMP.fetch(type)
   end

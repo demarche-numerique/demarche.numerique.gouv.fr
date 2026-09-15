@@ -183,6 +183,39 @@ describe 'Dossier Inéligibilité', js: true do
     end
   end
 
+  describe 'ineligibilite_rules on a single checkbox, which has no empty state' do
+    let(:public_type_de_champs) { [{ type: :checkbox, libelle: 'certifie', stable_id: 1 }] }
+    let(:ineligibilite_rules) { ds_eq(champ_value(1), constant(false)) }
+
+    scenario "n'alerte pas à l'arrivée, alerte une fois la case décochée" do
+      visit brouillon_dossier_path(dossier)
+      expect(page).to have_selector('label', text: 'certifie')
+      expect(page).to have_no_selector('#modal-eligibilite-rules-dialog', visible: true)
+      expect(page).to have_selector(:button, text: "Déposer le dossier", disabled: true)
+
+      find('label', text: 'certifie').click # coche
+      wait_for_autosave
+      expect(page).to have_no_selector('#modal-eligibilite-rules-dialog', visible: true)
+      expect(page).to have_selector(:button, text: "Déposer le dossier", disabled: false)
+
+      find('label', text: 'certifie').click # décoche
+      wait_for_autosave
+      expect(page).to have_selector('#modal-eligibilite-rules-dialog', visible: true)
+      expect(page).to have_content(ineligibilite_message)
+      expect(page).to have_selector(:button, text: "Déposer le dossier", disabled: true)
+    end
+
+    scenario "laisse ouvrir l'explication à la demande, et garde le dépôt bloqué" do
+      visit brouillon_dossier_path(dossier)
+      expect(page).to have_no_selector('#modal-eligibilite-rules-dialog', visible: true)
+
+      click_on "Pourquoi je ne peux pas déposer mon dossier ?"
+      expect(page).to have_selector('#modal-eligibilite-rules-dialog', visible: true)
+
+      expect(dossier.reload.can_passer_en_construction?).to be false
+    end
+  end
+
   describe 'ineligibilite_rules does not mess with champs.visible' do
     let(:public_type_de_champs) do
       [

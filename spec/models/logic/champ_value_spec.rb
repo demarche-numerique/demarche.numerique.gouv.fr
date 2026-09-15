@@ -92,6 +92,13 @@ describe Logic::ChampValue do
 
           it { is_expected.to eq(Champs::DropDownListChamp::OTHER) }
         end
+
+        context 'with other selected but no text, which is still an answer' do
+          let(:other) { true }
+          let(:value) { nil }
+
+          it { is_expected.to eq(Champs::DropDownListChamp::OTHER) }
+        end
       end
     end
 
@@ -133,6 +140,12 @@ describe Logic::ChampValue do
       it do
         expect(champ_value(champ.stable_id).type([champ.type_de_champ])).to eq(:boolean)
         is_expected.to eq(true)
+      end
+
+      context 'with false value' do
+        let(:value) { 'false' }
+
+        it { is_expected.to be(false) }
       end
     end
 

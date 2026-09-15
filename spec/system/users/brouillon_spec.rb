@@ -523,6 +523,32 @@ describe 'The user', js: true do
       end
     end
 
+    context 'with a condition on a single checkbox being unchecked' do
+      let(:stable_id) { 999 }
+      let(:condition) { ds_eq(champ_value(stable_id), constant(false)) }
+      let(:procedure) do
+        create(:procedure, :published, :for_individual,
+          public_type_de_champs: [
+            { type: :checkbox, libelle: 'champ_a', mandatory: false, stable_id: },
+            { type: :text, libelle: 'champ_b', mandatory: false, condition: },
+          ])
+      end
+
+      scenario 'the conditional champ shows from the start, the untouched box already reading « Non »' do
+        log_in_fast(user, procedure)
+
+        expect(page).to have_css('label', text: 'champ_b', visible: true)
+
+        find('label', text: 'champ_a').click # check
+        wait_for_autosave
+        expect(page).to have_no_css('label', text: 'champ_b', visible: true)
+
+        find('label', text: 'champ_a').click # uncheck
+        wait_for_autosave
+        expect(page).to have_css('label', text: 'champ_b', visible: true)
+      end
+    end
+
     context 'with a required conditionnal champ' do
       let(:stable_id) { 999 }
       let(:condition) { greater_than_eq(champ_value(stable_id), constant(18)) }

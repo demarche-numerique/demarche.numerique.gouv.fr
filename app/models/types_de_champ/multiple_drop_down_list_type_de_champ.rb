@@ -56,13 +56,16 @@ class TypesDeChamp::MultipleDropDownListTypeDeChamp < TypesDeChamp::DropDownBase
 
   def typed_champ_blank?(champ) = selected_options(champ).blank?
 
+  # JSON.parse('42') returns an Integer rather than raising: a champ last written
+  # under another type holds a scalar, which is no selection.
   def self.parse_selected_options(champ)
     return [] if champ.value.blank?
 
     if champ.is_type?(TypeDeChamp.type_champs.fetch(:drop_down_list))
       [champ.value]
     else
-      JSON.parse(champ.value)
+      parsed = JSON.parse(champ.value)
+      parsed.is_a?(Array) ? parsed : []
     end
   rescue JSON::ParserError
     []

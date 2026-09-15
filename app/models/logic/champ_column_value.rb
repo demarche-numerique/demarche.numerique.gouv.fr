@@ -18,10 +18,16 @@ class Logic::ChampColumnValue < Logic::Term
 
     column = targeted_column([targeted_champ.type_de_champ])
 
+    # the rule outlived the column it targets, #errors reports it as :not_available
+    return nil if column.nil?
+
     # if it s a dropdown champ and a dropdown tdc (no cast)
     # and the dropdown is other, return other
     if targeted_champ.is_type?(column.tdc_type) && targeted_champ.drop_down_list? && targeted_champ.other?
       Champs::DropDownListChamp::OTHER
+    # the column reads the raw value, nil on a checkbox nobody touched
+    elsif targeted_champ.is_type?(column.tdc_type) && targeted_champ.checkbox?
+      targeted_champ.condition_value
     else
       column.value(targeted_champ)
     end
