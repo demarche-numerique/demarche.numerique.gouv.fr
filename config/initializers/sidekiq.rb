@@ -32,6 +32,9 @@ Sidekiq.configure_server do |config|
   end
 
   if ENV['SKIP_RELIABLE_FETCH'].blank?
+    # Load-bearing: since 0.12.1 the fetcher falls back to capsule.mode when
+    # :strict is unset, and our weighted queues make that mode :weighted.
+    # Removing this line would silently swap strict priority for weighted order.
     config[:strict] = true
 
     Sidekiq::ReliableFetch.setup_reliable_fetch!(config)
