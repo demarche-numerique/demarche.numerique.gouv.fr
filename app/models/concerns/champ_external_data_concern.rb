@@ -62,6 +62,13 @@ module ChampExternalDataConcern
         transitions from: [:idle, :waiting_for_job, :fetching, :fetched, :external_error], to: :idle
       end
     end
+
+    # A state transition is machinery: it must not date the dossier, which the
+    # instructeur list and the public API both read on `updated_at`. A content
+    # write (`update_external_data!` on Success) still does.
+    def aasm_write_state(state, name = :default)
+      Dossier.no_touching { super(state, name) }
+    end
   end
 
   def pending? = waiting_for_job? || fetching?

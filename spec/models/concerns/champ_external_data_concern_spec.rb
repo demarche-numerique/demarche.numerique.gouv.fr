@@ -114,6 +114,25 @@ RSpec.describe ChampExternalDataConcern do
       end
     end
 
+    describe 'dossier timestamps' do
+      before do
+        allow(champ).to receive(:ready_for_external_call?).and_return(true)
+        champ.fetch_later!
+      end
+
+      it 'a state transition alone does not date the dossier' do
+        allow(champ).to receive(:fetch_and_handle_result)
+
+        expect { champ.fetch! }.not_to change { dossier.reload.updated_at }
+      end
+
+      it 'the data a fetch brings does' do
+        allow(champ).to receive(:fetch_external_data).and_return(Success(value_json: { 'title' => 'Fondation' }))
+
+        expect { champ.fetch! }.to change { dossier.reload.updated_at }
+      end
+    end
+
     describe 'fetch a success, now is fetched state' do
       before do
         allow(champ).to receive(:ready_for_external_call?).and_return(true)
