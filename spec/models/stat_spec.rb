@@ -3,6 +3,11 @@
 describe Stat, type: :model do
   describe '.deleted_dossiers_states' do
     subject { Stat.send(:deleted_dossiers_states) }
+
+    # depose_at is a date while the query bounds are timestamps: pin the clock away
+    # from midnight, where the Paris date is already ahead of the UTC bounds
+    before { travel_to(Time.zone.local(2026, 9, 15, 12)) }
+
     it 'find counts for columns' do
       create(:deleted_dossier, dossier_id: create(:dossier).id, state: :accepte, deleted_at: 1.minute.ago, depose_at: 1.minute.ago)
       create(:deleted_dossier, dossier_id: create(:dossier).id, state: :en_construction, deleted_at: 33.days.ago, depose_at: 33.days.ago)
