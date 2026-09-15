@@ -1,0 +1,20 @@
+<header class="main-content__header">
+  <h1 class="main-content__page-title"><%= title %></h1>
+</header>
+
+<section class="main-content__body">
+  <%= content %>
+
+  <%= form_tag url, method: form_method, class: "form" do %>
+    <% if SUPER_ADMIN_OTP_ENABLED %>
+      <div class="field-unit field-unit--string field-unit--required">
+        <%= render Manager::OtpAttemptInputComponent.new %>
+      </div>
+    <% end %>
+
+    <div class="form-actions">
+      <%= submit_tag submit, class: "button button--danger" %>
+      <%= link_to t(".cancel"), cancel_url, class: "button fr-ml-2w" %>
+    </div>
+  <% end %>
+</section>

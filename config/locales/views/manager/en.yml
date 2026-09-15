@@ -7,7 +7,6 @@ en:
       reset_otp_edit:
         title: "Reset two-factor authentication"
         warning_html: "You are about to reset the two-factor authentication of <strong>%{email}</strong>. They will have to sign in again with their password and then enroll their authenticator app anew."
-        otp_intro: "Confirm with your own OTP code."
         submit: "Reset OTP"
       reset_otp:
         success: "Two-factor authentication for %{email} has been reset."

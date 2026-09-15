@@ -9,7 +9,6 @@ fr:
       reset_otp_edit:
         title: "Réinitialiser l’authentification double-facteur"
         warning_html: "Vous allez réinitialiser l’authentification double-facteur de <strong>%{email}</strong>. Cette personne devra se reconnecter avec son mot de passe puis enrôler à nouveau son application d’authentification."
-        otp_intro: "Confirmez avec votre propre code OTP."
         submit: "Réinitialiser l’OTP"
       reset_otp:
         success: "L’authentification double-facteur de %{email} a été réinitialisée."
