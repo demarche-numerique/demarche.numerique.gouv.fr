@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class ExternalDataException
+  # The API answered about this identifier and will not answer differently later.
+  DEFINITIVE_CODES = [404, 422, 451].freeze
+
   attr_accessor :error, :code
 
   def initialize(error:, code:)

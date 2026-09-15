@@ -1608,6 +1608,23 @@ describe Dossier, type: :model do
         expect(dossier_ok.may_accepter?(instructeur:, motivation:)).to be_truthy
       end
     end
+
+    context "when a SIRET champ is degraded, without any etablissement" do
+      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :siret }]) }
+      let(:dossier_incomplete) { create(:dossier, :en_instruction, :with_populated_champs, procedure:) }
+      let(:dossier_ok) { create(:dossier, :en_instruction, :with_populated_champs, procedure:) }
+
+      before do
+        dossier_incomplete.champ_data.first
+          .update_columns(external_state: 'degraded', etablissement_id: nil, value: '30613890001294')
+        dossier_incomplete.reload
+      end
+
+      it "can't accepter: the SIRET was never resolved" do
+        expect(dossier_incomplete.may_accepter?(instructeur:, motivation:)).to be_falsey
+        expect(dossier_ok.may_accepter?(instructeur:, motivation:)).to be_truthy
+      end
+    end
   end
 
   describe "can't transition to terminer when annotations privees are not valid" do
