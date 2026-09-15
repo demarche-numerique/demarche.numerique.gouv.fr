@@ -57,6 +57,10 @@ describe Manager::ProceduresController, type: :controller do
       expect(response.body).to include('Robots Indexable')
     end
 
+    it 'links to the access grant confirmation page' do
+      expect(response.body).to include(add_administrateur_and_instructeur_edit_manager_procedure_path(procedure))
+    end
+
     context 'when sorting a has_many sub-table by an association column' do
       let(:procedure) { create(:procedure, administrateurs: [administrateur]) }
 
@@ -187,9 +191,46 @@ describe Manager::ProceduresController, type: :controller do
     end
   end
 
+  describe '#add_administrateur_and_instructeur_edit' do
+    render_views
+
+    let(:procedure) { procedures.individual }
+
+    it 'renders the confirmation page with the OTP input' do
+      get :add_administrateur_and_instructeur_edit, params: { id: procedure.id }
+
+      expect(response).to have_http_status(:ok)
+      expect(response.body).to include(procedure.libelle)
+      expect(response.body).to include(autre_administrateur.email)
+      expect(response.body).to include('name="otp_attempt"')
+    end
+
+    context 'when the procedure has no administrateur left' do
+      before { procedure.administrateurs_procedures.delete_all }
+
+      it 'does not claim administrateurs it cannot name' do
+        get :add_administrateur_and_instructeur_edit, params: { id: procedure.id }
+
+        expect(response.body).not_to include('Administrateurs actuels')
+      end
+    end
+  end
+
   describe '#add_administrateur_and_instructeur' do
-    let(:procedure) { create(:procedure, administrateurs: [autre_administrateur]) }
-    subject { post :add_administrateur_and_instructeur, params: { id: procedure.id } }
+    let(:super_admin) { create(:super_admin, :with_otp) }
+    let(:otp_attempt) { current_otp_for(super_admin) }
+    let(:procedure) { procedures.individual }
+
+    subject { post :add_administrateur_and_instructeur, params: { id: procedure.id, otp_attempt: } }
+
+    it_behaves_like "a manager action gated by a fresh super-admin OTP" do
+      let!(:administrateur) { create(:administrateur, email: super_admin.email) }
+      let(:other_procedure) { procedures.close }
+      let(:action_matcher) { change { AdministrateursProcedure.where(administrateur:, manager: true).count } }
+      let(:replay_subject) do
+        -> { post :add_administrateur_and_instructeur, params: { id: other_procedure.id, otp_attempt: } }
+      end
+    end
 
     context "when the current super admin is not an administrateur and not an instructeur of the procedure" do
       before { administrateur }

@@ -9,6 +9,7 @@ namespace :manager do
       post :discard
       post :restore
       put :delete_administrateur
+      get :add_administrateur_and_instructeur_edit
       post :add_administrateur_and_instructeur
       post :add_administrateur_with_confirmation
       post :change_piece_justificative_template

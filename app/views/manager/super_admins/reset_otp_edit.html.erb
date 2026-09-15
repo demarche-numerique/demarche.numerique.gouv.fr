@@ -1,22 +1,10 @@
 <% content_for(:title) { t('.title') } %>
 
-<header class="main-content__header">
-  <h1 class="main-content__page-title"><%= content_for(:title) %></h1>
-</header>
-
-<section class="main-content__body">
+<%= render Manager::OtpConfirmationComponent.new(
+      title: content_for(:title),
+      url: reset_otp_manager_super_admin_path(@super_admin),
+      submit: t('.submit'),
+      cancel_url: manager_super_admin_path(@super_admin)
+    ) do %>
   <p><%= t('.warning_html', email: @super_admin.email) %></p>
-
-  <%= form_tag reset_otp_manager_super_admin_path(@super_admin), method: :post, class: "form" do %>
-    <% if SUPER_ADMIN_OTP_ENABLED %>
-      <p><%= t('.otp_intro') %></p>
-      <div class="field-unit field-unit--string field-unit--required">
-        <%= render Manager::OtpAttemptInputComponent.new %>
-      </div>
-    <% end %>
-
-    <div class="form-actions">
-      <%= submit_tag t('.submit'), class: "button button--danger" %>
-    </div>
-  <% end %>
-</section>
+<% end %>

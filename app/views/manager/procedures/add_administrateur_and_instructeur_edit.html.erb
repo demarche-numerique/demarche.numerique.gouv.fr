@@ -1,0 +1,18 @@
+<% content_for(:title) { t('.title', id: @procedure.id) } %>
+
+<%= render Manager::OtpConfirmationComponent.new(
+      title: content_for(:title),
+      url: add_administrateur_and_instructeur_manager_procedure_path(@procedure),
+      submit: t('.submit'),
+      cancel_url: manager_procedure_path(@procedure)
+    ) do %>
+  <p><%= t('.warning_html', libelle: @procedure.libelle) %></p>
+
+  <% emails = @procedure.administrateurs.map(&:email) %>
+
+  <% if emails.any? %>
+    <p><%= t('.administrateurs', emails: emails.to_sentence) %></p>
+  <% end %>
+
+  <p><%= t('.duration') %></p>
+<% end %>
