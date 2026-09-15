@@ -2,6 +2,7 @@
 
 class TypesDeChamp::AddressTypeDeChamp < TypesDeChamp::TextTypeDeChamp
   def self.category = LOCALISATION
+  def self.icon = 'fr-icon-home-2-line'
   def self.simple_routable? = true
   def self.conditionable? = true
 

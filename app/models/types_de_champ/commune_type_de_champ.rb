@@ -2,6 +2,7 @@
 
 class TypesDeChamp::CommuneTypeDeChamp < TypeDeChamp
   def self.category = LOCALISATION
+  def self.icon = 'fr-icon-map-pin-line'
   def self.simple_routable? = true
   def self.conditionable? = true
 

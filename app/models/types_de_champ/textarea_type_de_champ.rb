@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class TypesDeChamp::TextareaTypeDeChamp < TypesDeChamp::TextTypeDeChamp
+  def self.icon = 'fr-icon-align-left'
   MINIMUM_TEXTAREA_CHARACTER_LIMIT_LENGTH = 400
 
   def self.option_keys = [:character_limit]

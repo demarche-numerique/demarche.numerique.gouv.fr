@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class TypesDeChamp::DateTypeDeChamp < TypeDeChamp
+  def self.icon = 'fr-icon-calendar-line'
   def self.option_keys = [:birthdate, :prefill_with_france_connect_information, :date_in_past, :start_date, :end_date, :range_date]
   def self.column_type = :date
 

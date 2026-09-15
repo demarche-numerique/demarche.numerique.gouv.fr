@@ -75,6 +75,19 @@ module SystemHelpers
     click_on 'Ajouter un champ'
   end
 
+  # Pick a type in the editor's "Type de champ" menu, a React Select with a
+  # search field. `from:` is the trigger id (dom_id(tdc, :type_champ)) when
+  # the page holds several fields and the first one is not the target.
+  def select_type_de_champ(libelle, from: nil)
+    trigger_id = from || find('label', exact_text: 'Type de champ', match: :first)['for']
+    find_by_id(trigger_id).click
+
+    # the menu is portaled to the body, out of any `within` scope
+    popover = page.document.find('.select-popover')
+    popover.find('input').set(libelle)
+    popover.find('[role="option"]', exact_text: libelle).click
+  end
+
   def hide_autonotice_message
     expect(page).to have_text('Formulaire enregistré')
     execute_script("document.querySelector('#autosave-notice').classList.add('hidden');")

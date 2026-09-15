@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class TypesDeChamp::PreRempliTypeDeChamp < TypeDeChamp
-  def self.category = REFERENTIEL_EXTERNE
+  def self.category = REFERENTIEL
+  def self.icon = 'fr-icon-draft-line'
   def self.option_keys = [:drop_down_options, :pre_rempli_hidden]
   def self.feature_flag = :pre_rempli_type_de_champ
   def self.column_type = :enum

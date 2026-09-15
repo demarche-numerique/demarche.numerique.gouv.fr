@@ -2,6 +2,7 @@
 
 class TypesDeChamp::HeaderSectionTypeDeChamp < TypeDeChamp
   def self.category = STRUCTURE
+  def self.icon = 'fr-icon-heading'
   def self.option_keys = [:header_section_level]
 
   store_accessor :options, :header_section_level

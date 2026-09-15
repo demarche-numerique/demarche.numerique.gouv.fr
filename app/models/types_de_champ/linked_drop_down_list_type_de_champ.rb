@@ -2,6 +2,7 @@
 
 class TypesDeChamp::LinkedDropDownListTypeDeChamp < TypesDeChamp::DropDownBaseTypeDeChamp
   def self.category = CHOICE
+  def self.icon = 'fr-icon-dropdown-list'
   def self.option_keys = [:drop_down_options, :drop_down_secondary_libelle, :drop_down_secondary_description]
 
   store_accessor :options, :drop_down_secondary_libelle, :drop_down_secondary_description

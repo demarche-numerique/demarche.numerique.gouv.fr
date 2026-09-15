@@ -7,8 +7,6 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
     let(:ineligibilite_rules_used?) { false }
 
     before do
-      Flipper.enable_actor(:engagement_juridique_type_de_champ, procedure)
-      Flipper.enable(:quotient_familial_type_de_champ, procedure)
       allow_any_instance_of(Procedure).to receive(:stable_ids_used_by_routing_rules).and_return(routing_rules_stable_ids)
       allow_any_instance_of(ProcedureRevisionTypeDeChamp).to receive(:used_by_ineligibilite_rules?).and_return(ineligibilite_rules_used?)
       render_inline(component)
@@ -20,20 +18,9 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       let(:tdc) { procedure.draft_revision.type_de_champs.first }
       let(:coordinate) { procedure.draft_revision.coordinate_for(tdc) }
 
-      context 'type behind a disabled feature flag' do
-        it { expect(page).not_to have_css('option[value="cojo"]') }
-      end
-
-      context 'type behind an enabled feature flag' do
-        let(:procedure) { create(:procedure, public_type_de_champs:).tap { Flipper.enable(:cojo_type_de_champ, _1) } }
-
-        it { expect(page).to have_css('option[value="cojo"]') }
-      end
-
       context 'drop down tdc not used for routing' do
         it do
           expect(page).not_to have_text(/utilisé pour\nle routage/)
-          expect(page).not_to have_css("select[disabled=\"disabled\"]")
         end
       end
 
@@ -41,7 +28,6 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
         let(:routing_rules_stable_ids) { [tdc.stable_id] }
 
         it do
-          expect(page).to have_css("select[disabled=\"disabled\"]")
           expect(page).to have_text(/utilisé pour\nle routage/)
         end
       end
@@ -50,7 +36,6 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
         let(:ineligibilite_rules_used?) { true }
 
         it do
-          expect(page).to have_css("select[disabled=\"disabled\"]")
           expect(page).to have_text(/l’éligibilité des dossiers/)
         end
       end
@@ -80,26 +65,6 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       end
     end
 
-    describe 'tdc ej' do
-      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text }], private_type_de_champs: [{ type: :text }]) }
-
-      context 'when coordinate public' do
-        let(:coordinate) { procedure.draft_revision.public_revision_type_de_champs.first }
-
-        it 'does not include Engagement Juridique' do
-          expect(page).not_to have_css('option', text: "Engagement Juridique")
-        end
-      end
-
-      context 'when coordinate private' do
-        let(:coordinate) { procedure.draft_revision.private_revision_type_de_champs.first }
-
-        it 'includes Engagement Juridique' do
-          expect(page).to have_css('option', text: "Engagement Juridique")
-        end
-      end
-    end
-
     describe 'tdc explication' do
       let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :explication }]) }
       let(:coordinate) { procedure.draft_revision.public_revision_type_de_champs.first }
@@ -117,26 +82,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
         let(:coordinate) { procedure.draft_revision.public_revision_type_de_champs.first }
 
         it 'does not have mandatory configuration' do
-          expect(page).to have_css('option[selected]', text: "Quotient familial")
           expect(page).not_to have_field('Champ obligatoire')
-        end
-      end
-
-      context "when coordinate private" do
-        let(:public_type_de_champs) { [] }
-        let(:coordinate) { procedure.draft_revision.private_revision_type_de_champs.first }
-
-        it 'does not include quotient familial tdc' do
-          expect(page).not_to have_css('option', text: "Quotient familial")
-        end
-      end
-
-      context "when coordinate is repetition" do
-        let(:public_type_de_champs) { [{ type: :repetition, children: [{ type: :text }] }] }
-        let(:coordinate) { procedure.draft_revision.public_revision_type_de_champs.first.children_revision_type_de_champs.first }
-
-        it "does not include quotient familial for child tdc" do
-          expect(page).not_to have_css('option', text: "Quotient familial")
         end
       end
     end
@@ -148,29 +94,6 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       it 'does not have select to move champs' do
         expect(page).to have_css("select##{ActionView::RecordIdentifier.dom_id(coordinate, :move_and_morph)}")
       end
-    end
-  end
-
-  describe 'ACCEPTED_TYPES' do
-    it 'contains expected conversions' do
-      expect(described_class::ACCEPTED_TYPES).to include(
-        "checkbox" => ["yes_no", "text", "textarea", "formatted"],
-        "civilite" => ["text", "textarea", "formatted"],
-        "communes" => ["text", "textarea", "formatted"],
-        "date" => ["datetime", "text", "textarea", "formatted"],
-        "datetime" => ["date", "text", "textarea", "formatted"],
-        "decimal_number" => ["integer_number", "text", "textarea", "formatted"],
-        "drop_down_list" => ["multiple_drop_down_list", "text", "textarea", "formatted", "pre_rempli"],
-        "email" => ["text", "textarea", "formatted"],
-        "formatted" => ["textarea", "text", "email", "phone", "pre_rempli"],
-        "integer_number" => ["decimal_number", "text", "textarea", "formatted"],
-        "multiple_drop_down_list" => ["drop_down_list", "text", "textarea", "formatted"],
-        "phone" => ["text", "textarea", "formatted"],
-        "pre_rempli" => ["text", "textarea", "formatted", "drop_down_list"],
-        "text" => ["textarea", "formatted", "email", "phone", "decimal_number", "integer_number", "pre_rempli"],
-        "textarea" => ["text", "formatted", "pre_rempli"],
-        "yes_no" => ["checkbox", "text", "textarea", "formatted"]
-      )
     end
   end
 
@@ -242,17 +165,6 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
         expect(page).to have_css('strong', text: '.pdf, .doc, .docx, .jpg, .jpeg, .png')
         expect(page).not_to have_text('document texte')
       end
-    end
-  end
-
-  describe 'hide old titre_identite in creation list' do
-    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text }]) }
-    let(:coordinate) { procedure.draft_revision.public_revision_type_de_champs.first }
-    let(:component) { described_class.new(coordinate:, upper_coordinates: []) }
-
-    it 'does not list Titre identité' do
-      render_inline(component)
-      expect(page).not_to have_css('option', text: 'Titre identité')
     end
   end
 end

@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class TypesDeChamp::PhoneTypeDeChamp < TypesDeChamp::TextTypeDeChamp
-  def self.category = ETAT_CIVIL
+  def self.category = IDENTIFICATION
+  def self.icon = 'fr-icon-phone-line'
 
   # We want to allow:
   # * international (e164) phone numbers

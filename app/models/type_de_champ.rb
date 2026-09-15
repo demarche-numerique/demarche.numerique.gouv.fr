@@ -9,18 +9,30 @@ class TypeDeChamp < ApplicationRecord
   include EstimatedDurationConcern
 
   STRUCTURE = :structure
-  ETAT_CIVIL = :etat_civil
-  LOCALISATION = :localisation
-  PAIEMENT_IDENTIFICATION = :paiement_identification
   STANDARD = :standard
-  PIECES_JOINTES = :pieces_jointes
   CHOICE = :choice
-  REFERENTIEL_EXTERNE = :referentiel_externe
+  IDENTIFICATION = :identification
+  LOCALISATION = :localisation
   FRANCE_CONNECT = :france_connect
+  REFERENTIEL = :referentiel
 
-  CATEGORIES = [STRUCTURE, ETAT_CIVIL, LOCALISATION, PAIEMENT_IDENTIFICATION, STANDARD, PIECES_JOINTES, CHOICE, REFERENTIEL_EXTERNE, FRANCE_CONNECT]
+  # Categories and types in the order the editor menu lists them (UX
+  # decision of 2026-03-19 on #12781). Every type must appear here.
+  CATEGORIES = [STRUCTURE, STANDARD, CHOICE, IDENTIFICATION, LOCALISATION, FRANCE_CONNECT, REFERENTIEL]
+  MENU_ORDER = [
+    'header_section', 'explication',
+    'text', 'textarea', 'integer_number', 'decimal_number', 'formatted', 'date', 'datetime', 'piece_justificative', 'repetition', 'dossier_link', 'number',
+    'drop_down_list', 'multiple_drop_down_list', 'linked_drop_down_list', 'yes_no', 'checkbox',
+    'civilite', 'email', 'phone', 'siret', 'rna', 'rnf', 'annuaire_education', 'iban',
+    'address', 'communes', 'departements', 'regions', 'pays', 'epci', 'carte',
+    'quotient_familial', 'etudiant_boursier', 'aah', 'aeeh', 'ars',
+    'referentiel', 'pre_rempli', 'engagement_juridique', 'cojo',
+  ].freeze
 
   def self.category = STANDARD
+  # DSFR icon class shown next to the type in the editor menu
+  def self.icon = nil
+  def self.menu_position = [CATEGORIES.index(category), MENU_ORDER.index(sti_name) || MENU_ORDER.size]
   def self.feature_flag = nil
   def self.private_only? = false
   def self.public_only? = false

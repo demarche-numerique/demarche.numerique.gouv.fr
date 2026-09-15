@@ -8,8 +8,8 @@ class TypesDeChamp::ByCategoryListComponent < ApplicationComponent
   private
 
   def humanized_types_by_category
-    @types.group_by(&:category)
-      .sort_by { |category, _| TypeDeChamp::CATEGORIES.find_index(category) }
+    @types.sort_by(&:menu_position)
+      .group_by(&:category)
       .map { |_, group| group.map { "« #{t(it.sti_name, scope: [:activerecord, :attributes, :type_de_champ, :type_champs])} »" } }
   end
 end

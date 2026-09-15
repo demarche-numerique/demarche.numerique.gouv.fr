@@ -743,4 +743,14 @@ describe TypeDeChamp do
       end
     end
   end
+
+  describe 'editor menu' do
+    it 'places and illustrates every type' do
+      expect(TypeDeChamp::MENU_ORDER).to match_array(TypeDeChamp.type_champs.values)
+      TypeDeChamp.type_champ_classes.each do |klass|
+        expect(TypeDeChamp::CATEGORIES).to include(klass.category), "#{klass} has no category"
+        expect(klass.icon).to be_present, "#{klass} has no icon"
+      end
+    end
+  end
 end

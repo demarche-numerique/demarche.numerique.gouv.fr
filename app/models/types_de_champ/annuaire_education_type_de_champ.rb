@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class TypesDeChamp::AnnuaireEducationTypeDeChamp < TypesDeChamp::TextTypeDeChamp
-  def self.category = REFERENTIEL_EXTERNE
+  def self.category = IDENTIFICATION
+  def self.icon = 'fr-icon-school-line'
 
   def prefillable? = false
 

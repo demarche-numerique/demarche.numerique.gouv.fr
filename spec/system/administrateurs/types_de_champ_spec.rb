@@ -32,7 +32,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
       within '.fr-callout' do
         click_button "Liste des informations remontées"
       end
-      expect(page).to have_content("Informations complémentaires au champ Numéro Siret")
+      expect(page).to have_content("Informations complémentaires au champ Numéro SIRET")
       expect(page).to have_content("Entreprise raison sociale")
     end
   end
@@ -46,7 +46,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
 
   scenario "adding a piece justificative template" do
     add_champ
-    select('Pièce à joindre', from: 'Type de champ')
+    select_type_de_champ('Pièce à joindre')
 
     find('.attachment-field input[type=file]').attach_file(Rails.root + 'spec/fixtures/files/file.pdf')
 
@@ -194,7 +194,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
     add_champ
     hide_autonotice_message
 
-    select('Bloc répétable', from: 'Type de champ')
+    select_type_de_champ('Bloc répétable')
     fill_in 'Libellé du champ', with: 'libellé de champ'
 
     expect(page).to have_content('Formulaire enregistré')
@@ -218,7 +218,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
     page.all('.fr-icon-add-line')[2].click
 
     within '.type-de-champ:nth-child(2)' do
-      select('Bloc répétable', from: 'Type de champ')
+      select_type_de_champ('Bloc répétable')
       fill_in 'Libellé du champ', with: 'libellé de champ 2'
     end
 
@@ -229,7 +229,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
     add_champ
     hide_autonotice_message
 
-    select('Carte', from: 'Type de champ')
+    select_type_de_champ('Carte')
     # Wait for the type-switch re-render to actually land in the DOM (a carte-only
     # field) before filling the shared "Libellé" input. A DB poll only proves the
     # server committed; the morph can still be in flight and rebuild the input we
@@ -261,7 +261,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
     add_champ
     hide_autonotice_message
 
-    select('Choix simple', from: 'Type de champ')
+    select_type_de_champ('Choix simple')
 
     # 'Options de la liste' only exists once the type-switch re-render has
     # landed, so fill_in also synchronizes on the morph.
@@ -288,7 +288,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
 
       # It displays the estimate when adding a new champ
       add_champ
-      select('Pièce à joindre', from: 'Type de champ')
+      select_type_de_champ('Pièce à joindre')
       expect(page).to have_content('Durée de remplissage estimée : 3 min')
 
       # It updates the estimate when updating the champ
@@ -312,7 +312,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
 
       # It displays the estimate when adding a new champ
       add_champ
-      select('Pièce à joindre', from: 'Type de champ')
+      select_type_de_champ('Pièce à joindre')
       expect(page).not_to have_content('Durée de remplissage estimée')
     end
   end
@@ -320,7 +320,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
   context 'header section' do
     scenario 'with public tdc, having invalid order, it pops up errors summary' do
       add_champ
-      select('Titre de section', from: 'Type de champ')
+      select_type_de_champ('Titre de section')
       wait_until { procedure.reload.active_revision.public_root_type_de_champs.first&.type_champ == TypeDeChamp.type_champs.fetch(:header_section) }
       first_header = procedure.active_revision.public_root_type_de_champs.first
       select('Titre de niveau 1', from: dom_id(first_header, :header_section_level))
@@ -331,7 +331,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
 
       wait_until { procedure.reload.active_revision.public_root_type_de_champs.count == 2 }
       second_header = procedure.active_revision.public_root_type_de_champs.last
-      select('Titre de section', from: dom_id(second_header, :type_champ))
+      select_type_de_champ('Titre de section', from: dom_id(second_header, :type_champ))
       wait_until { procedure.reload.active_revision.public_root_type_de_champs.last&.type_champ == TypeDeChamp.type_champs.fetch(:header_section) }
       select('Titre de niveau 2', from: dom_id(second_header, :header_section_level))
 
@@ -510,7 +510,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
 
       within all('.type-de-champ').last do
         fill_in 'Libellé du champ', with: 'Deuxième champ'
-        select 'Choix simple', from: 'Type de champ'
+        select_type_de_champ('Choix simple')
         fill_in "Options de la liste", with: "" # make tdc invalid
       end
 
@@ -549,13 +549,13 @@ describe 'As an administrateur I can edit types de champ', js: true do
     scenario "loads modal content only when clicked" do
       visit champs_admin_procedure_path(procedure)
 
-      expect(page).not_to have_content("Informations complémentaires au champ Numéro Siret")
+      expect(page).not_to have_content("Informations complémentaires au champ Numéro SIRET")
       within '.type-de-champ' do
         click_button "Liste des informations remontées"
       end
 
       within "#api-champ-columns-modal" do
-        expect(page).to have_content("Informations complémentaires au champ Numéro Siret")
+        expect(page).to have_content("Informations complémentaires au champ Numéro SIRET")
         expect(page).to have_content("Entreprise raison sociale")
         expect(page).not_to have_content("SIRET de test – Commune") # no champ libelle
 
@@ -566,7 +566,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
       within '.type-de-champ' do
         click_button "Liste des informations remontées"
       end
-      expect(page).to have_content("Informations complémentaires au champ Numéro Siret")
+      expect(page).to have_content("Informations complémentaires au champ Numéro SIRET")
     end
   end
 

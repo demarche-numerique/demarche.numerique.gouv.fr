@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class TypesDeChamp::SiretTypeDeChamp < TypeDeChamp
-  def self.category = PAIEMENT_IDENTIFICATION
+  def self.category = IDENTIFICATION
+  def self.icon = 'fr-icon-hotel-line'
 
   def prefillable? = true
   def customizable? = true

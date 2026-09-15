@@ -56,71 +56,12 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
     @focused ? { controller: 'autofocus' } : nil
   end
 
-  def types_of_type_de_champ
-    cat_scope = "activerecord.attributes.type_de_champ.categorie"
-    tdc_scope = "activerecord.attributes.type_de_champ.type_champs"
-    TypeDeChamp.type_champs.keys
-      .map { TypeDeChamp.find_sti_class(_1) }
-      .filter(&method(:filter_type_champ))
-      .filter(&method(:filter_featured_type_champ))
-      .filter(&method(:filter_block_type_champ))
-      .filter(&method(:filter_public_or_private_only_type_champ))
-      .group_by(&:category)
-      .sort_by { |k, _v| TypeDeChamp::CATEGORIES.find_index(k) }
-      .to_h do |cat, klasses|
-        [
-          t(cat, scope: cat_scope),
-          klasses.map { [t(_1.sti_name, scope: tdc_scope), _1.sti_name, { disabled: !accepted_type_champs.include?(_1.sti_name) }] },
-        ]
-      end
-  end
-
-  ACCEPTED_TYPES = Columns::ChampColumn::CAST.keys
-    .group_by { |(from)| from.to_s }
-    .transform_values { |pairs| pairs.map { |(_, to)| to.to_s } }
-
-  def accepted_type_champs
-    @accepted_type_champs ||= if published_type_champ.present?
-      ([published_type_champ] + ACCEPTED_TYPES.fetch(published_type_champ, [])).uniq
-    else
-      TypeDeChamp.type_champs.keys
-    end
-  end
-
-  def published_type_champ
-    @published_type_champ ||= procedure.published_revision&.type_de_champs&.find { _1.stable_id == type_de_champ.stable_id }&.type_champ
-  end
-
-  def disabled_type_de_champ_select?
-    coordinate.used_by_routing_rules? || coordinate.used_by_ineligibilite_rules? || accepted_type_champs.size == 1
-  end
-
   def notice_explicative_options
     {
       attached_file: type_de_champ.notice_explicative,
       auto_attach_url: helpers.auto_attach_url(type_de_champ, procedure_id: procedure.id),
       view_as: :download,
     }
-  end
-
-  def filter_block_type_champ(klass)
-    !coordinate.child? || klass.allowed_in_repetition?
-  end
-
-  def filter_public_or_private_only_type_champ(klass)
-    coordinate.private? ? !klass.public_only? : !klass.private_only?
-  end
-
-  def filter_featured_type_champ(klass)
-    klass.feature_flag.nil? || procedure.feature_enabled?(klass.feature_flag)
-  end
-
-  def filter_type_champ(klass)
-    klass != TypesDeChamp::NumberTypeDeChamp || has_legacy_number?
-  end
-
-  def has_legacy_number?
-    revision.type_de_champs.any?(&:number?)
   end
 
   def options_for_character_limit

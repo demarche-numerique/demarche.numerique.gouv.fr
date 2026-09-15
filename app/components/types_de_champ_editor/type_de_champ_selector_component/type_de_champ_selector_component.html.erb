@@ -1,0 +1,12 @@
+<%= form.label :type_champ, t(".type_champ_label"), for: trigger_id, id: label_id %>
+
+<react-fragment>
+  <%= render ReactComponent.new("Select/SingleSelect", **select_props) %>
+</react-fragment>
+
+<% if disabled? %>
+  <div class="cell fr-mt-1w">
+    <span class="fr-icon-lock-fill fr-icon--sm" aria-hidden="true"></span>
+    <%= t(".no_allowed_type") %>
+  </div>
+<% end %>

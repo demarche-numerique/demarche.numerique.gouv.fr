@@ -2,6 +2,7 @@
 
 class TypesDeChamp::EpciTypeDeChamp < TypesDeChamp::TextTypeDeChamp
   def self.category = LOCALISATION
+  def self.icon = 'fr-icon-pin-distance-line'
   def self.simple_routable? = true
   def self.conditionable? = true
 

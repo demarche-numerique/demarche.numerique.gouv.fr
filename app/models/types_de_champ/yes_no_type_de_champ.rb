@@ -2,6 +2,7 @@
 
 class TypesDeChamp::YesNoTypeDeChamp < TypeDeChamp
   def self.category = CHOICE
+  def self.icon = 'fr-icon-toggle-line'
   def self.column_type = :boolean
   def self.conditionable? = true
 
