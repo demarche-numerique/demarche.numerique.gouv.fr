@@ -481,6 +481,17 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
     end
   end
 
+  describe 'procedure restricted to ProConnect' do
+    before { procedure.enable_pro_connect_restriction!(:instructeurs) }
+
+    it 'redirects to ProConnect when the procedure requires it' do
+      post :add_instructeurs, params: { procedure_id: procedure.id, id: gi_1_2.id, emails: ['new_i1@gmail.com'] }
+
+      expect(response).to redirect_to(pro_connect_required_path)
+      expect(gi_1_2.instructeurs.pluck(:email)).not_to include('new_i1@gmail.com')
+    end
+  end
+
   describe '#remove_instructeur' do
     let!(:instructeur) { create(:instructeur) }
 

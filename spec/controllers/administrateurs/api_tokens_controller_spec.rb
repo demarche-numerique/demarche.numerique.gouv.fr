@@ -247,6 +247,15 @@ describe Administrateurs::APITokensController, type: :controller do
         token.reload
         expect(token.allowed_procedure_ids).to eq([procedure2.id])
       end
+
+      context 'when the procedure requires ProConnect' do
+        before { procedure1.enable_pro_connect_restriction!(:instructeurs) }
+
+        it 'still removes it from the token' do
+          subject
+          expect(token.reload.allowed_procedure_ids).to eq([procedure2.id])
+        end
+      end
     end
   end
 end

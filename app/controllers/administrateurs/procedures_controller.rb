@@ -633,6 +633,10 @@ module Administrateurs
       Procedure.find(params[:id])
     end
 
+    def pro_connect_procedure_id
+      params[:procedure_id] || params[:id]
+    end
+
     def procedure_params
       editable_params = [
         :libelle,

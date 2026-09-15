@@ -1963,6 +1963,35 @@ describe Administrateurs::ProceduresController, type: :controller do
     end
   end
 
+  describe 'procedure restricted to ProConnect' do
+    let(:procedure) { procedures.brouillon }
+
+    before { procedure.enable_pro_connect_restriction!(:instructeurs) }
+
+    [
+      [:destroy, :id],
+      [:archive, :procedure_id],
+      [:notify_after_closing, :procedure_id],
+      [:transfer, :procedure_id],
+      [:clone, :procedure_id],
+    ].each do |action, param|
+      it "redirects #{action} to ProConnect when the procedure requires it" do
+        process(action, params: { param => procedure.id })
+
+        expect(response).to redirect_to(pro_connect_required_path)
+      end
+    end
+
+    it 'redirects restore to ProConnect when the procedure requires it' do
+      procedure.discard_and_keep_track!(admin)
+
+      put :restore, params: { id: procedure.id }
+
+      expect(response).to redirect_to(pro_connect_required_path)
+      expect(procedure.reload).to be_discarded
+    end
+  end
+
   describe 'GET #show' do
     subject { get :show, params: { id: procedure.id } }
 

@@ -36,7 +36,7 @@
                           %p.fr-badge.fr-badge--success.fr-badge--sm
                             ASSIGNÉ
                         - else
-                          = button_to "Affecter", add_to_procedure_admin_services_path(procedure: { id: @procedure.id, service_id: service.id, }), method: :patch, class: 'fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-checkbox-circle-line'
+                          = button_to "Affecter", add_to_procedure_admin_services_path(procedure_id: @procedure.id, procedure: { service_id: service.id }), method: :patch, class: 'fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-checkbox-circle-line'
                       .fr-col-4
                         = link_to('Modifier', edit_admin_service_path(service, procedure_id: @procedure.id), class: 'fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-pencil-line')
                       .fr-col-4

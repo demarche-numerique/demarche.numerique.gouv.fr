@@ -253,6 +253,30 @@ describe Administrateurs::ServicesController, type: :controller do
     end
   end
 
+  describe 'procedure restricted to ProConnect' do
+    let(:procedure) { procedures.brouillon }
+
+    before do
+      sign_in(admin.user)
+      procedure.enable_pro_connect_restriction!(:instructeurs)
+    end
+
+    it 'redirects to ProConnect when the procedure requires it' do
+      get :index, params: { procedure_id: procedure.id }
+
+      expect(response).to redirect_to(pro_connect_required_path)
+    end
+
+    it 'redirects the service assignment to ProConnect when the procedure requires it' do
+      service = create(:service, administrateur: admin)
+
+      patch :add_to_procedure, params: { procedure_id: procedure.id, procedure: { service_id: service.id } }
+
+      expect(response).to redirect_to(pro_connect_required_path)
+      expect(procedure.reload.service).not_to eq(service)
+    end
+  end
+
   describe '#add_to_procedure' do
     let!(:procedure) { create(:procedure, administrateur: admin) }
     let!(:service) { create(:service, administrateur: admin) }
@@ -260,10 +284,8 @@ describe Administrateurs::ServicesController, type: :controller do
     def post_add_to_procedure
       sign_in(admin.user)
       params = {
-        procedure: {
-          id: procedure.id,
-          service_id: service.id,
-        },
+        procedure_id: procedure.id,
+        procedure: { service_id: service.id },
       }
       patch :add_to_procedure, params: params
       procedure.reload

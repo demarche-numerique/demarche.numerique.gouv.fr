@@ -5,6 +5,7 @@ module Administrateurs
     include ProConnectSessionConcern
 
     before_action :authenticate_administrateur!
+    before_action :ensure_pro_connect_if_required!
     before_action :alert_for_missing_siret_service
     before_action :alert_for_missing_service
     helper_method :administrateur_as_manager?
@@ -19,8 +20,6 @@ module Administrateurs
       @procedure = current_administrateur.procedures.find(id)
 
       Sentry.set_tags(procedure: @procedure.id)
-
-      ensure_pro_connect_if_required!
     rescue ActiveRecord::RecordNotFound
       flash.alert = 'Démarche inexistante'
       redirect_to admin_procedures_path, status: 404
@@ -41,16 +40,25 @@ module Administrateurs
       end
     end
 
+    private
+
     def ensure_pro_connect_if_required!
-      return if @procedure.pro_connect_restriction_none?
+      procedure_id = pro_connect_procedure_id
+      return if procedure_id.blank?
       return if logged_in_with_pro_connect?
+      return if !current_administrateur.procedures.with_discarded.not_pro_connect_restriction_none.exists?(id: procedure_id)
 
       store_location_for(:user, request.fullpath)
       flash.alert = "Vous devez vous connecter par ProConnect pour accéder à cette démarche"
       redirect_to pro_connect_required_path
     end
 
-    private
+    # Id of the procedure the action works on, whose ProConnect restriction
+    # applies to every action of the controller. Nested routes carry it as
+    # procedure_id; controllers using another param override this method.
+    def pro_connect_procedure_id
+      params[:procedure_id]
+    end
 
     def administrateur_as_manager?
       id = params[:procedure_id] || params[:id]

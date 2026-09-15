@@ -4,6 +4,8 @@ module Administrateurs
   class APITokensController < AdministrateurController
     include ActionView::RecordIdentifier
 
+    # Removing a procedure only narrows the token, it stays possible without ProConnect.
+    skip_before_action :ensure_pro_connect_if_required!, only: :remove_procedure
     before_action :set_api_token, only: [:edit, :update, :destroy, :remove_procedure]
 
     def nom

@@ -74,7 +74,7 @@ module Administrateurs
         end
 
     def add_to_procedure
-      procedure = current_administrateur.procedures.find(procedure_params[:id])
+      procedure = current_administrateur.procedures.find(params[:procedure_id])
       service = services.find(procedure_params[:service_id])
 
       procedure.update(service: service)
@@ -123,7 +123,7 @@ module Administrateurs
     end
 
     def procedure_params
-      params.require(:procedure).permit(:id, :service_id)
+      params.require(:procedure).permit(:service_id)
     end
 
     def maybe_procedure
