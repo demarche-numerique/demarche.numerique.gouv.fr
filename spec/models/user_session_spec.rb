@@ -57,4 +57,26 @@ describe UserSession, type: :model do
       expect(usable).not_to include(revoked, expired)
     end
   end
+
+  describe '.revoke_all!' do
+    # `.all`, `.where(nil)` and `.unscoped` all set a current_scope: its mere
+    # presence proved nothing, and the guard let the whole platform through.
+    it 'refuses an unfiltered relation' do
+      expect { UserSession.all.revoke_all!(:support) }
+        .to raise_error(ArgumentError, /scope the relation first/)
+    end
+  end
+
+  describe 'an unknown revocation reason' do
+    # It used to raise deep inside revoke_all!, after the caller had already
+    # rotated the remember token and broken the trusted device -- outside any
+    # transaction, so nothing rolled back.
+    it 'is refused before anything irreversible happens' do
+      user = create(:user)
+      user.update_column(:remember_token, 'a-token')
+
+      expect { user.revoke_sessions!(reason: :made_up) }.to raise_error(ArgumentError, /unknown revocation reason/)
+      expect(user.reload.remember_token).to eq('a-token')
+    end
+  end
 end
