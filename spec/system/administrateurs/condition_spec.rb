@@ -98,6 +98,28 @@ describe 'As an administrateur I can edit types de champ condition', js: true do
         end
       end
 
+      scenario "adding a contradictory row" do
+        expect(page).to have_no_selector('.errors-summary')
+
+        within '.type-de-champ:nth-child(2)' do
+          click_on 'Ajouter une condition'
+
+          within '.condition-table tbody tr:nth-child(2)' do
+            within('.target') { select('age') }
+            within('.operator') { select('Inférieur à') }
+            within('.value') { fill_in with: 10 }
+          end
+
+          expect(page).to have_selector('.errors-summary', text: 'Le champ « age » ne peut pas être à la fois supérieur ou égal à « 18 » et inférieur à « 10 ».')
+
+          within '.condition-table tbody tr:nth-child(2)' do
+            within('.value') { fill_in with: 65 }
+          end
+
+          expect(page).to have_no_selector('.errors-summary')
+        end
+      end
+
       scenario "changing target champ to a not managed type" do
         expect(page).to have_no_selector('.errors-summary')
 

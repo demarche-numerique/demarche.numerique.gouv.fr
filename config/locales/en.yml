@@ -73,6 +73,8 @@ en:
     modal_close: "Close"
     modal_close_alt: "Close this modal"
   helpers:
+    estimated_fill_duration:
+      range: "%{min} to %{max}"
     admin_procedures_back_label:
       publiee: 'Published procedures'
       brouillon: 'Procedures in test'
