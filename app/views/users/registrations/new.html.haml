@@ -3,7 +3,7 @@
 
 .auth-form
   = devise_error_messages!
-  = form_for resource, url: user_registration_path, html: { class: "fr-py-5w" } do |f|
+  = form_for resource, url: user_registration_path, html: { class: "fr-py-5w", data: { turbo: true } } do |f|
 
     %h1.fr-h2= t('views.registrations.new.title', name: Current.application_name)
 
@@ -37,4 +37,4 @@
           = render PasswordComplexityComponent.new
 
     .fr-btns-group
-      = f.submit t('views.shared.account.create', application_name: Current.application_name), id: 'submit-password', disabled: :disabled, class: "fr-btn fr-mt-2w", data: { disable_with: t('views.users.passwords.edit.submit_loading') }
+      = f.submit t('views.shared.account.create', application_name: Current.application_name), id: 'submit-password', disabled: :disabled, class: "fr-btn fr-mt-2w", data: { turbo_submits_with: t('views.users.passwords.edit.submit_loading') }

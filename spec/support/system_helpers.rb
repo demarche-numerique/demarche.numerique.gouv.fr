@@ -34,6 +34,8 @@ module SystemHelpers
 
     perform_enqueued_jobs do
       click_button 'Créer un compte'
+      # the form is submitted by Turbo: wait for the response before leaving the block
+      expect(page).to have_current_path(%r{/users/confirmation/new})
     end
   end
 

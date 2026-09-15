@@ -32,7 +32,7 @@ module Gestionnaires
         redirect_to gestionnaire_groupe_gestionnaire_commentaire_path(@groupe_gestionnaire, @commentaire)
       else
         flash.alert = @commentaire.errors.full_messages
-        render :show
+        render :show, status: :unprocessable_content
       end
     end
 
@@ -57,7 +57,7 @@ module Gestionnaires
         redirect_to parent_groupe_gestionnaire_gestionnaire_groupe_gestionnaire_commentaires_path(@groupe_gestionnaire)
       else
         flash.alert = @commentaire.errors.full_messages
-        render :parent_groupe_gestionnaire
+        render :parent_groupe_gestionnaire, status: :unprocessable_content
       end
     end
 

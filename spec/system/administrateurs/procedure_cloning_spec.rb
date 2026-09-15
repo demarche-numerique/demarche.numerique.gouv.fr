@@ -40,6 +40,7 @@ describe 'As an administrateur I wanna clone a procedure', js: true do
       within(find('tr', text: 'libellé de la procédure')) { click_on 'Cloner' }
       check 'Instructeurs', allow_label_click: true
       click_on 'Cloner la démarche'
+      expect(page).to have_current_path(%r{/admin/procedures/\d+\z})
       visit admin_procedures_path(statut: "brouillons")
       expect(page.find_by_id('procedures')['data-item-count']).to eq('1')
     end
@@ -52,6 +53,7 @@ describe 'As an administrateur I wanna clone a procedure', js: true do
       page.all('.clone-btn').first.click
       check 'Instructeurs', allow_label_click: true
       click_on 'Cloner la démarche'
+      expect(page).to have_current_path(%r{/admin/procedures/\d+\z})
       visit admin_procedures_path(statut: "brouillons")
       expect(page.find_by_id('procedures')['data-item-count']).to eq('1')
       click_on Procedure.last.libelle

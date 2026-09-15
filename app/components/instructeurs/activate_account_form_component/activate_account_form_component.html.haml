@@ -1,4 +1,4 @@
-= form_for user, url: { controller: 'users/activate', action: :create }, html: { class: "fr-py-5w" } do |f|
+= form_for user, url: { controller: 'users/activate', action: :create }, html: { class: "fr-py-5w", data: { turbo: true } } do |f|
 
   %h1.fr-h2.fr-mb-7w= t('.title', application_name: Current.application_name)
 
@@ -25,4 +25,4 @@
 
       = f.hidden_field :reset_password_token, value: params[:token]
 
-      = f.submit t('.submit'), id: 'submit-password', disabled: :disabled, class: "fr-btn fr-btn--lg fr-mt-2w", data: { disabled: :disabled, disable_with: t('views.users.passwords.edit.submit_loading') }
+      = f.submit t('.submit'), id: 'submit-password', disabled: :disabled, class: "fr-btn fr-btn--lg fr-mt-2w", data: { turbo_submits_with: t('views.users.passwords.edit.submit_loading') }
