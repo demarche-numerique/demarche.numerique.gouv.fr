@@ -216,6 +216,21 @@ describe Administrateurs::APITokensController, type: :controller do
 
       it { expect(token.allowed_procedure_ids).to eq([]) }
     end
+
+    context 'with restore_full_access' do
+      let(:params) { { restore_full_access: true } }
+
+      before do
+        token.update!(allowed_procedure_ids: [procedure.id])
+        subject
+        token.reload
+      end
+
+      it 'restores full access' do
+        expect(token.allowed_procedure_ids).to be_nil
+        expect(token.full_access?).to be true
+      end
+    end
   end
 
   describe 'nom' do
@@ -271,6 +286,19 @@ describe Administrateurs::APITokensController, type: :controller do
         subject
         token.reload
         expect(token.allowed_procedure_ids).to eq([procedure2.id])
+      end
+    end
+
+    context 'when removing the last allowed procedure' do
+      before do
+        token.update!(allowed_procedure_ids: [procedure1.id])
+      end
+
+      it 'restores full access instead of persisting an empty list' do
+        subject
+        token.reload
+        expect(token.allowed_procedure_ids).to be_nil
+        expect(token.full_access?).to be true
       end
     end
   end
