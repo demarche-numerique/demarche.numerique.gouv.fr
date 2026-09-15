@@ -121,6 +121,10 @@ class APIToken < ApplicationRecord
     expires_at&.past?
   end
 
+  def expiring_soon?
+    !!expires_at&.between?(Date.current, 1.month.from_now.to_date)
+  end
+
   # Only describes the tokens created before an expiration date was mandatory.
   def eternal?
     expires_at.nil?

@@ -13,15 +13,16 @@
     data: { controller: 'api-token-autorisation' } do |f| %>
     <%= render Dsfr::RadioButtonListComponent.new(form: f,
       target: :target,
-      buttons: [ { label: t('.custom_procedures'),
-        value: :custom,
-        checked: params[:target] == 'custom',
-        data: { 'action': 'click->api-token-autorisation#showProcedureSelectGroup' } },
+      buttons: [
         { label: t('.all_procedures'),
         value: :all,
         hint: t('.all_procedures_hint'),
         checked: params[:target] == 'all',
-        data: { 'action': 'click->api-token-autorisation#hideProcedureSelectGroup' } }]) do %>
+        data: { 'action': 'click->api-token-autorisation#hideProcedureSelectGroup' } },
+        { label: t('.custom_procedures'),
+        value: :custom,
+        checked: params[:target] == 'custom',
+        data: { 'action': 'click->api-token-autorisation#showProcedureSelectGroup' } },]) do %>
       <%= t('.token_access') %>
     <% end %>
 
@@ -75,7 +76,8 @@
       <% end %>
     </div>
 
-    <%= f.hidden_field :name, value: @name %>
+    <%= render APITokens::HiddenFieldsComponent.new(fields: @api_token_params.hidden_fields_for(%i[target targets access])) %>
+
 
     <ul class="fr-btns-group fr-btns-group--inline">
       <li>
@@ -88,7 +90,7 @@
       </li>
 
       <li>
-        <%= link_to t('.cancel'), nom_admin_api_tokens_path(name: @name), class: "fr-btn fr-btn--secondary" %>
+        <%= link_to t('.cancel'), nom_admin_api_tokens_path(@api_token_params.to_h), class: "fr-btn fr-btn--secondary" %>
       </li>
     </ul>
   <% end %>

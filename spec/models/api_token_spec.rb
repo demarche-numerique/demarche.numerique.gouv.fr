@@ -405,6 +405,48 @@ describe APIToken, type: :model do
     end
   end
 
+  describe '#expiring_soon?' do
+    let(:api_token) { APIToken.generate(administrateur).first }
+
+    subject { api_token.expiring_soon? }
+
+    context 'when expiring in 2 weeks' do
+      before { api_token.update!(expires_at: 2.weeks.from_now.to_date) }
+
+      it { is_expected.to be true }
+    end
+
+    context 'when expiring today' do
+      before { api_token.update_column(:expires_at, Date.current) }
+
+      it { is_expected.to be true }
+    end
+
+    context 'when expiring in exactly 1 month' do
+      before { api_token.update!(expires_at: 1.month.from_now.to_date) }
+
+      it { is_expected.to be true }
+    end
+
+    context 'when expiring in 2 months' do
+      before { api_token.update!(expires_at: 2.months.from_now.to_date) }
+
+      it { is_expected.to be false }
+    end
+
+    context 'when already expired' do
+      before { api_token.update_column(:expires_at, 1.day.ago.to_date) }
+
+      it { is_expected.to be false }
+    end
+
+    context 'when eternal (no expiration date)' do
+      before { api_token.update_column(:expires_at, nil) }
+
+      it { is_expected.to be false }
+    end
+  end
+
   describe '#expiring_within' do
     let(:api_token) { APIToken.generate(administrateur).first }
 

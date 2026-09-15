@@ -216,8 +216,48 @@ describe Administrateurs::APITokensController, type: :controller do
 
       it { expect(token.allowed_procedure_ids).to eq([]) }
     end
+
+    context 'with restore_full_access' do
+      let(:params) { { restore_full_access: true } }
+
+      before do
+        token.update!(allowed_procedure_ids: [procedure.id])
+        subject
+        token.reload
+      end
+
+      it 'restores full access' do
+        expect(token.allowed_procedure_ids).to be_nil
+        expect(token.full_access?).to be true
+      end
+    end
   end
 
+  describe 'nom' do
+    subject { get :nom, params: }
+
+    context 'when duplicating an existing token' do
+      let(:token) { APIToken.generate(admin).first }
+      let(:params) do
+        token.update!(name: 'Jeton à dupliquer', write_access: true, allowed_procedure_ids: [procedure.id])
+        APITokenParams.from_token(token).to_h
+      end
+
+      it 'pre-fills the name from the original token' do
+        subject
+        expect(assigns(:name)).to eq('Jeton à dupliquer')
+      end
+    end
+
+    context 'without duplication' do
+      let(:params) { {} }
+
+      it 'starts with a blank name' do
+        subject
+        expect(assigns(:name)).to be_nil
+      end
+    end
+  end
   describe 'remove_procedure' do
     # a full-access token materializes all the admin's procedures on removal:
     # use the seeded blank administrateur, who is guaranteed to own nothing
@@ -246,6 +286,19 @@ describe Administrateurs::APITokensController, type: :controller do
         subject
         token.reload
         expect(token.allowed_procedure_ids).to eq([procedure2.id])
+      end
+    end
+
+    context 'when removing the last allowed procedure' do
+      before do
+        token.update!(allowed_procedure_ids: [procedure1.id])
+      end
+
+      it 'restores full access instead of persisting an empty list' do
+        subject
+        token.reload
+        expect(token.allowed_procedure_ids).to be_nil
+        expect(token.full_access?).to be true
       end
     end
   end
