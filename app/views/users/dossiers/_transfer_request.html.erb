@@ -9,19 +9,21 @@
 
       <ul class="fr-links-group fr-links-group--inline">
         <li>
-          <%= link_to t('views.users.dossiers.transfer_requests.accept'),
+          <%= button_to t('views.users.dossiers.transfer_requests.accept'),
               transfer_path(dossier.transfer),
               class: 'fr-link',
-              method: :patch %>
+              method: :patch,
+              form: { class: 'inline', data: { turbo: true } } %>
         </li>
 
         <li>
-          <%= link_to t('views.users.dossiers.transfer_requests.refuse'),
+          <%= button_to t('views.users.dossiers.transfer_requests.refuse'),
               transfer_path(dossier.transfer),
               class: 'fr-link',
               method: :delete,
+              form: { class: 'inline', data: { turbo: true } },
               data: {
-                confirm: t('views.users.dossiers.transfer_requests.refuse_confirm')
+                turbo_confirm: t('views.users.dossiers.transfer_requests.refuse_confirm')
               } %>
         </li>
       </ul>

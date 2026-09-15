@@ -87,21 +87,21 @@
 
           - if !procedure.discarded?
             - menu.with_item do
-              = link_to(admin_procedure_clone_settings_path(procedure.id), role: 'menuitem', class: 'clone-btn', data: { method: :get }) do
+              = link_to(admin_procedure_clone_settings_path(procedure.id), role: 'menuitem', class: 'clone-btn') do
                 = dsfr_icon('fr-icon-file-copy-line')
                 .dropdown-description
                   %h4= t('administrateurs.dropdown_actions.to_clone')
 
           - if !procedure.discarded? && !procedure.publiee? && procedure.can_be_deleted_by_administrateur?
             - menu.with_item do
-              = link_to admin_procedure_path(procedure), role: 'menuitem', method: :delete, data: { confirm: "Voulez-vous vraiment supprimer la démarche ? \nToute suppression est définitive et s’appliquera aux éventuels autres administrateurs de cette démarche !" } do
+              = button_to admin_procedure_path(procedure), role: 'menuitem', method: :delete, class: 'dropdown-items-link', form: { role: 'none', data: { turbo: true } }, data: { turbo_confirm: "Voulez-vous vraiment supprimer la démarche ? \nToute suppression est définitive et s’appliquera aux éventuels autres administrateurs de cette démarche !" } do
                 = dsfr_icon('fr-icon-delete-line')
                 .dropdown-description
                   %h4= t('administrateurs.dropdown_actions.delete')
 
           - if procedure.discarded?
             - menu.with_item do
-              = link_to  restore_admin_procedure_path(procedure), role: 'menuitem',  method: :put do
+              = button_to restore_admin_procedure_path(procedure), role: 'menuitem', method: :put, class: 'dropdown-items-link', form: { role: 'none', data: { turbo: true } } do
                 %span.icon.unarchive
                 .dropdown-description
                   %h4= t('administrateurs.dropdown_actions.restore')

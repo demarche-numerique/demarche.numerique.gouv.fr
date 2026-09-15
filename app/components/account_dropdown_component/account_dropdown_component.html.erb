@@ -105,7 +105,7 @@
         </li>
 
         <li>
-          <%= link_to destroy_user_session_path, method: :delete, class: "fr-nav__link" do %>
+          <%= button_to destroy_user_session_path, method: :delete, class: "fr-nav__link", form: { data: { turbo: false } } do %>
             <span>
               <span class="fr-icon-logout-box-r-line fr-icon--sm"></span>
               <%= t('.logout') %>

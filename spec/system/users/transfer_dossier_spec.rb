@@ -15,12 +15,13 @@ describe 'Transfer dossier flow', js: true do
       visit dossiers_path
       expect(page).to have_content('Proposition de transfert en cours')
       expect(page).to have_content('Vous avez envoyé une proposition de transfert de ce dossier à destinataire@example.com.')
-      expect(page).to have_link('Annuler cette proposition')
+      expect(page).to have_button('Annuler cette proposition')
     end
 
     it 'allows revoking a sent transfer' do
       visit dossiers_path
-      click_link 'Annuler cette proposition'
+      click_on 'Annuler cette proposition'
+      expect(page).to have_no_button('Annuler cette proposition')
       expect(page).to have_current_path(dossiers_path)
       expect(dossier.reload.dossier_transfer_id).to be_nil
     end
@@ -69,14 +70,14 @@ describe 'Transfer dossier flow', js: true do
 
     it 'accepts a transfer' do
       visit transferts_path
-      find_link('Accepter').click
+      click_on 'Accepter'
       expect(page).to have_current_path(dossiers_path)
       expect(dossier.reload.user).to eq(destinataire)
     end
 
     it 'refuses a transfer' do
       visit transferts_path
-      accept_confirm { click_link 'Refuser' }
+      accept_confirm { click_on 'Refuser' }
       expect(page).to have_current_path(dossiers_path)
       expect(dossier.reload.dossier_transfer_id).to be_nil
     end

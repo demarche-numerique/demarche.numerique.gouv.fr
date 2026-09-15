@@ -145,7 +145,7 @@ describe Administrateurs::AttestationTemplateV2sController, type: :controller do
           expect(assigns(:attestation_template)).to be_draft
           expect(assigns(:attestation_template).kind).to eq('refus')
           expect(response.body).to have_button("Publier")
-          expect(response.body).not_to have_link("Réinitialiser les modifications")
+          expect(response.body).not_to have_button("Réinitialiser les modifications")
         end
       end
     end
@@ -158,7 +158,7 @@ describe Administrateurs::AttestationTemplateV2sController, type: :controller do
           expect(assigns(:attestation_template).version).to eq(2)
           expect(assigns(:attestation_template)).to be_draft
           expect(response.body).to have_button("Publier")
-          expect(response.body).not_to have_link("Réinitialiser les modifications")
+          expect(response.body).not_to have_button("Réinitialiser les modifications")
         end
 
         it 'renders the editor toolbar without an underline button' do
@@ -197,7 +197,7 @@ describe Administrateurs::AttestationTemplateV2sController, type: :controller do
         it 'mention publication' do
           subject
           expect(assigns(:attestation_template)).to eq(attestation_acceptation_template)
-          expect(response.body).not_to have_link("Réinitialiser les modifications")
+          expect(response.body).not_to have_button("Réinitialiser les modifications")
           expect(response.body).not_to have_button("Publier les modifications")
         end
       end
@@ -208,7 +208,7 @@ describe Administrateurs::AttestationTemplateV2sController, type: :controller do
         it 'assigns this draft' do
           subject
           expect(assigns(:attestation_template)).to eq(attestation_acceptation_template)
-          expect(response.body).not_to have_link("Réinitialiser les modifications")
+          expect(response.body).not_to have_button("Réinitialiser les modifications")
           expect(response.body).to have_button("Publier")
         end
 
@@ -218,7 +218,7 @@ describe Administrateurs::AttestationTemplateV2sController, type: :controller do
           it 'mention publication' do
             subject
             expect(assigns(:attestation_template)).to eq(attestation_acceptation_template)
-            expect(response.body).to have_link("Réinitialiser les modifications")
+            expect(response.body).to have_button("Réinitialiser les modifications")
             expect(response.body).to have_button("Publier les modifications")
           end
         end

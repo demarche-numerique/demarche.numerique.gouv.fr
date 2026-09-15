@@ -31,10 +31,9 @@ describe 'Creating a new procedure', js: true do
     expect(page).to have_content("Archives")
 
     # check archive
-    expect {
-      page.first(".fr-table .fr-btn").click
-    }.to have_enqueued_job(ArchiveCreationJob).with(procedure, an_instance_of(Archive), administrateur)
+    page.first(".fr-table .fr-btn").click
     expect(page).to have_content("Votre demande a été prise en compte. Selon le nombre de dossiers, cela peut prendre de quelques minutes à plusieurs heures. Vous recevrez un courriel lorsque le fichier sera disponible.")
+    expect(ArchiveCreationJob).to have_been_enqueued.with(procedure, an_instance_of(Archive), administrateur)
     expect(Archive.first.month).not_to be_nil
 
     # check exports

@@ -67,7 +67,7 @@
               </p>
             <% end %>
 
-            <%= link_to t('views.users.dossiers.transfers.revoke'), transfer_path(dossier.transfer), class: 'fr-link', method: :delete %>
+            <%= button_to t('views.users.dossiers.transfers.revoke'), transfer_path(dossier.transfer), class: 'fr-link', method: :delete, form: { data: { turbo: true } } %>
           <% end %>
         <% end %>
       <% end %>
@@ -91,7 +91,7 @@
       <% if @statut == "dossiers-supprimes" %>
         <div class="flex justify-end no-flex-xs fr-mt-1w">
           <% if dossier.hidden_by_reason != 'expired' %>
-            <%= link_to restore_dossier_path(dossier.id), method: :patch, class: "fr-btn fr-btn--sm" do %>
+            <%= button_to restore_dossier_path(dossier.id), method: :patch, class: "fr-btn fr-btn--sm", form: { data: { turbo: true } } do %>
               <%= t("views.users.dossiers.dossier_action.restore") %>
 
               <span class="fr-sr-only">

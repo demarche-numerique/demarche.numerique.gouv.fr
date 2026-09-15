@@ -1,6 +1,6 @@
 .sticky-header.sticky-header-warning
   .fr-container
-    %p.flex.justify-between.align-center.fr-text-default--warning
+    .flex.justify-between.align-center.fr-text-default--warning
       %span
         = dsfr_icon("fr-icon-warning-fill fr-mr-1v")
         - if attestation_templates_for_kind.many?
@@ -8,9 +8,9 @@
         - else
           L’attestation ne sera délivrée qu’après sa publication.
 
-      %span.no-wrap
+      .no-wrap
         - if attestation_templates_for_kind.many?
-          = link_to reset_admin_procedure_attestation_template_v2_path(procedure, attestation_kind:), class: "fr-btn fr-btn--secondary fr-ml-2w", data: { confirm: 'Êtes-vous sûr de vouloir réinitialiser les modifications ?' }, method: :post do
+          = button_to reset_admin_procedure_attestation_template_v2_path(procedure, attestation_kind:), class: "fr-btn fr-btn--secondary fr-ml-2w", data: { turbo_confirm: 'Êtes-vous sûr de vouloir réinitialiser les modifications ?' }, method: :post, form: { class: 'inline', data: { turbo: true } } do
             Réinitialiser les modifications
 
         %button.fr-btn.fr-ml-2w{ form: "attestation-template", name: field_name(:attestation_template, :state), value: "published",

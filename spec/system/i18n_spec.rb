@@ -10,7 +10,7 @@ describe 'Accessing the website in different languages:' do
       expect(page).to have_text("Connexion à #{APPLICATION_NAME}")
 
       find('.fr-translate__btn').click
-      find('.fr-nav__link[hreflang="en"]').click
+      find('.fr-nav__link[lang="en"]').click
 
       # The page is now in English
       expect(page).to have_text('Sign in')

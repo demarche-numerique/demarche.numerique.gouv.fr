@@ -287,7 +287,7 @@ describe 'The routing with rules', js: true do
     click_on procedure.libelle
     find('#publish-procedure-link').click
     fill_in 'procedure[lien_site_web]', with: 'http://some.website'
-    within('form') { click_on 'Publier' }
+    within("form[action='#{admin_procedure_publish_path(procedure)}']") { click_on 'Publier' }
 
     expect(page).to have_text('Votre démarche est désormais publiée !')
   end

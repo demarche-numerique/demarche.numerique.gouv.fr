@@ -41,7 +41,7 @@ describe 'Closing a procedure', js: true do
       select("#{other_procedure.libelle} (#{other_procedure.id})")
 
       accept_alert do
-        within('form') { click_on 'Clore la démarche' }
+        within("form[action='#{admin_procedure_archive_path(procedure)}']") { click_on 'Clore la démarche' }
       end
 
       procedure.reload
@@ -65,7 +65,7 @@ describe 'Closing a procedure', js: true do
       fill_in("Message d’information remplaçant la démarche", with: "Bonjour,\nLa démarche est maintenant sur www.autre-site.fr\nCordialement")
 
       accept_alert do
-        within('form') { click_on 'Clore la démarche' }
+        within("form[action='#{admin_procedure_archive_path(procedure)}']") { click_on 'Clore la démarche' }
       end
 
       procedure.reload
