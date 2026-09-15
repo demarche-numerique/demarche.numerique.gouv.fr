@@ -120,8 +120,6 @@ module TPS
     config.view_component.previews.default_layout = 'component_preview'
     config.view_component.previews.paths << "#{Rails.root}/spec/components/previews"
 
-    config.graphql.parser_cache = true
-
     # Neutralize the default wrapping in a <div class="field_with_errors">.
     # html_tag is already an ActiveSupport::SafeBuffer: ActionView only ever calls
     # field_error_proc with the output of its own tag / content_tag builders.
