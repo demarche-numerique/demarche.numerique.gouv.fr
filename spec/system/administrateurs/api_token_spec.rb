@@ -176,4 +176,27 @@ describe 'As an administrateur I create an API token', js: true do
     expect(page).to have_no_checked_field('lifetime_oneweek')
     expect(page).to have_no_checked_field('lifetime_custom')
   end
+
+  scenario 'restricting and restoring access to an api token' do
+    token = APIToken.generate(administrateur).first
+    visit edit_admin_api_token_path(token)
+
+    expect(page).to have_content('accès à toutes vos démarches')
+    click_on "Restreindre lʼaccès à certaines démarches"
+
+    select "#{procedure.id} - #{procedure.libelle}", from: 'procedure_to_add'
+    click_on 'Ajouter'
+
+    expect(page).to have_content(procedure.libelle)
+    expect(token.reload.allowed_procedure_ids).to eq([procedure.id])
+
+    click_on 'Supprimer'
+
+    expect(page).to have_no_css("li#authorized_procedure_#{procedure.id}")
+    expect(token.reload.allowed_procedure_ids).to be_nil
+
+    visit edit_admin_api_token_path(token)
+
+    expect(page).to have_content('accès à toutes vos démarches')
+  end
 end
