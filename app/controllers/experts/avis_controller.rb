@@ -136,8 +136,8 @@ module Experts
     end
 
     def sign_up
-      @email = params[:email]
-      @confirmation_token = params[:confirmation_token]
+      @email = email_param
+      @confirmation_token = confirmation_token_param
       @dossier = Avis.includes(:dossier).find(params[:id]).dossier
 
       render
@@ -146,8 +146,8 @@ module Experts
     def update_expert
       procedure_id = params[:procedure_id]
       avis_id = params[:id]
-      email = params[:email]
-      confirmation_token = params.dig(:user, :confirmation_token).presence
+      email = email_param
+      confirmation_token = confirmation_token_param
       if confirmation_token.nil?
         return redirect_to root_path, alert: "Vous n’avez pas accès à cet avis."
       end
@@ -244,14 +244,13 @@ module Experts
 
     def redirect_if_no_sign_up_needed
       avis = Avis.find(params[:id])
-      submitted_token = params[:confirmation_token] || params.dig(:user, :confirmation_token)
 
       if current_expert.present?
         # an expert is authenticated ... lets see if it can view the dossier
         redirect_to expert_avis_url(avis.procedure, avis)
-      elsif avis.expert&.email == params[:email] &&
+      elsif avis.expert&.email == email_param &&
             avis.expert.user.confirmation_token.present? &&
-            avis.expert.user.confirmation_token == submitted_token
+            avis.expert.user.confirmation_token == confirmation_token_param
         if avis.expert.user.administrateur&.pro_connect_required?
           redirect_to_pro_connect_required
         elsif avis.expert.user.active?
@@ -259,6 +258,18 @@ module Experts
           redirect_to new_user_session_url
         end
       end
+    end
+
+    # The invitation link puts the token in the query, the form posts it in
+    # user[confirmation_token]. Both are read here, as a String only: find_by
+    # matches an Array or an Integer that the guard's `==` does not.
+    def confirmation_token_param
+      String.try_convert(params[:confirmation_token]).presence ||
+        String.try_convert(params.dig(:user, :confirmation_token)).presence
+    end
+
+    def email_param
+      String.try_convert(params[:email])
     end
 
     def avis

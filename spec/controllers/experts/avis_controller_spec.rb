@@ -767,6 +767,61 @@ describe Experts::AvisController, type: :controller do
           expect(avis.expert.user.reload.valid_password?(password)).to be false
           expect(response).to redirect_to(pro_connect_path(force_pro_connect: true))
         end
+
+        # Sécurité: la garde compare en Ruby, l'action retrouve en SQL, et les
+        # deux doivent lire la même valeur. Requêtes envoyées comme le
+        # formulaire (form data), sauf celle qui passe en JSON.
+        context 'when the parameters are crafted' do
+          let(:other_token) { nil }
+          let(:posted_token) { valid_confirmation_token }
+          let(:posted_email) { email }
+          let(:request_format) { nil }
+
+          subject do
+            post :update_expert, params: {
+              id: avis_id,
+              procedure_id:,
+              email: posted_email,
+              confirmation_token: other_token,
+              user: { password:, confirmation_token: posted_token },
+            }, as: request_format
+          end
+
+          shared_examples 'a request that opens nothing' do
+            it 'keeps the password and does not open a session' do
+              subject
+
+              expect(controller.current_user).to be_nil
+              expect(avis.expert.user.reload.valid_password?(password)).to be false
+            end
+          end
+
+          context 'with the token wrapped in an array' do
+            let(:posted_token) { [valid_confirmation_token] }
+
+            it_behaves_like 'a request that opens nothing'
+          end
+
+          context 'with the token sent as a JSON number' do
+            let(:valid_confirmation_token) { '1234' }
+            let(:request_format) { :json }
+            let(:posted_token) { valid_confirmation_token.to_i }
+
+            it_behaves_like 'a request that opens nothing'
+          end
+
+          context 'with another token in the query' do
+            let(:other_token) { 'not-the-token' }
+
+            it_behaves_like 'a request that opens nothing'
+          end
+
+          context 'with the email wrapped in an array' do
+            let(:posted_email) { [email] }
+
+            it_behaves_like 'a request that opens nothing'
+          end
+        end
       end
 
       # Sécurité: un confirmation_token absent ou vide ne doit jamais matcher,

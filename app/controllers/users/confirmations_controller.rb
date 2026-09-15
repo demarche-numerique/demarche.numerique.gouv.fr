@@ -56,7 +56,12 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
 
   # The path used after confirmation.
   def after_confirmation_path_for(resource_name, resource)
-    if sign_in_after_confirmation?(resource)
+    if resource.administrateur&.pro_connect_required?
+      if current_user != resource
+        flash.alert = t('errors.messages.pro_connect.required')
+        return pro_connect_path(force_pro_connect: true)
+      end
+    elsif sign_in_after_confirmation?(resource)
       resource.remember_me = true
       sign_in(resource)
     end

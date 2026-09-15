@@ -32,6 +32,42 @@ describe Users::ConfirmationsController, type: :controller do
       end
     end
 
+    context 'when the user is an administrateur who must use ProConnect' do
+      before do
+        allow(ProConnectService).to receive(:enabled?).and_return(true)
+        user.create_administrateur!(pro_connect_required_at: Time.zone.now)
+
+        travel_to(1.hour.from_now) {
+          get :show, params: { confirmation_token: confirmation_token }
+        }
+      end
+
+      it 'confirms the account but sends to ProConnect instead of signing in' do
+        expect(user.reload).to be_confirmed
+        expect(controller.current_user).to be_nil
+        expect(response).to redirect_to(pro_connect_path(force_pro_connect: true))
+        expect(flash.alert).to eq('Vous devez utiliser ProConnect pour vous connecter.')
+      end
+    end
+
+    context 'when an administrateur confirms an email change while already signed in' do
+      let!(:user) { create(:user) }
+
+      before do
+        allow(ProConnectService).to receive(:enabled?).and_return(true)
+        user.create_administrateur!(pro_connect_required_at: Time.zone.now)
+        sign_in(user)
+        user.update!(email: 'nouvelle@example.com')
+
+        get :show, params: { confirmation_token: user.confirmation_token }
+      end
+
+      it 'applies the email change without sending to ProConnect' do
+        expect(user.reload.email).to eq('nouvelle@example.com')
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     context 'when the auto-sign-in delay has expired' do
       before do
         travel_to(3.hours.from_now) {
