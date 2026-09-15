@@ -53,5 +53,29 @@ class Cron::CronJob < ApplicationJob
     def cron_expression
       Fugit.do_parse(schedule_expression, multi: :fail).to_cron_s
     end
+
+    # Registers every schedulable job in Redis and drops the schedules left
+    # behind by a deleted or renamed class. Redis is the source of truth for
+    # sidekiq-cron, so it drifts from the code until this runs.
+    def schedule_all!
+      jobs = schedulable_jobs
+      jobs.each(&:schedule)
+      prune_orphaned_cron_jobs(jobs)
+    end
+
+    def schedulable_jobs
+      Rails.root.glob('app/jobs/**/*_job.rb').each { require it }
+      descendants.filter(&:schedulable?)
+    end
+
+    # sidekiq-cron's own `destroy_removed_jobs` only considers jobs with
+    # source == "schedule", but ours are created via `Sidekiq::Cron::Job.create`
+    # (source == "dynamic"), so we prune by comparing against the known classes.
+    def prune_orphaned_cron_jobs(jobs)
+      known_classes = jobs.map(&:name).to_set
+      Sidekiq::Cron::Job.all.each do |cron_job| # rubocop:disable Rails/FindEach -- not an ActiveRecord relation
+        cron_job.destroy unless known_classes.include?(cron_job.klass)
+      end
+    end
   end
 end

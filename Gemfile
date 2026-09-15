@@ -91,12 +91,11 @@ gem 'sentry-rails'
 gem 'sentry-ruby'
 gem 'sentry-sidekiq'
 gem 'sib-api-v3-sdk'
-# connection_pool 3.0 changed TimedStack#pop signature, which crashes the
-# Sidekiq::Scheduled::Poller thread (scheduled/retry jobs stop being enqueued).
-# Sidekiq must be >= 8.1 before bumping to connection_pool 3.x; keep < 3 until then.
-gem 'connection_pool', '< 3'
-gem 'sidekiq', '< 7.3' # 7.3 needs to migrate to sidekiq-cron 2.0
-gem 'sidekiq-cron', '< 2.0' # wait for a release without "keys command"
+gem 'sidekiq'
+# Leave Sidekiq::Cron.configuration.available_namespaces alone: set to :auto it
+# makes the poller issue a Redis KEYS every cron_poll_interval. The default
+# resolves the namespaces without touching Redis.
+gem 'sidekiq-cron'
 gem 'siret_validator'
 gem 'skylight'
 gem 'smarter_csv'
