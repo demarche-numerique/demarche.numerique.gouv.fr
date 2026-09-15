@@ -7,13 +7,9 @@ class Stat < ApplicationRecord
       stat = Stat.first || Stat.new
 
       stat.update(
-        dossiers_en_construction: states['en_construction'],
-        dossiers_en_instruction: states['en_instruction'],
-        dossiers_brouillon: states['brouillon'],
         dossiers_depose_avant_30_jours: states['dossiers_depose_avant_30_jours'],
         dossiers_deposes_entre_60_et_30_jours: states['dossiers_deposes_entre_60_et_30_jours'],
         dossiers_not_brouillon: states['not_brouillon'],
-        dossiers_termines: states['termines'],
         dossiers_cumulative: cumulative_month_serie([
           [Dossier.state_not_brouillon, :depose_at],
           [DeletedDossier.where.not(state: :brouillon), :depose_at],
@@ -33,11 +29,7 @@ class Stat < ApplicationRecord
         SELECT
           COUNT(*) FILTER ( WHERE state != 'brouillon' ) AS "not_brouillon",
           COUNT(*) FILTER ( WHERE state != 'brouillon' and depose_at BETWEEN :one_month_ago AND :now ) AS "dossiers_depose_avant_30_jours",
-          COUNT(*) FILTER ( WHERE state != 'brouillon' and depose_at BETWEEN :two_months_ago AND :one_month_ago ) AS "dossiers_deposes_entre_60_et_30_jours",
-          COUNT(*) FILTER ( WHERE state = 'brouillon' AND for_procedure_preview = false) AS "brouillon",
-          COUNT(*) FILTER ( WHERE state = 'en_construction' ) AS "en_construction",
-          COUNT(*) FILTER ( WHERE state = 'en_instruction' ) AS "en_instruction",
-          COUNT(*) FILTER ( WHERE state in ('accepte', 'refuse', 'sans_suite') ) AS "termines"
+          COUNT(*) FILTER ( WHERE state != 'brouillon' and depose_at BETWEEN :two_months_ago AND :one_month_ago ) AS "dossiers_deposes_entre_60_et_30_jours"
         FROM dossiers
           WHERE revision_id NOT IN (SELECT r.id FROM procedure_revisions r LEFT JOIN procedures p ON r.procedure_id=p.id WHERE p.aasm_state = 'brouillon')
       EOF
@@ -49,13 +41,10 @@ class Stat < ApplicationRecord
         SELECT
           COUNT(*) AS "not_brouillon",
           COUNT(*) FILTER ( WHERE depose_at BETWEEN :one_month_ago AND :now ) AS "dossiers_depose_avant_30_jours",
-          COUNT(*) FILTER ( WHERE depose_at BETWEEN :two_months_ago AND :one_month_ago ) AS "dossiers_deposes_entre_60_et_30_jours",
-          COUNT(*) FILTER ( WHERE state = 'en_construction' ) AS "en_construction",
-          COUNT(*) FILTER ( WHERE state = 'en_instruction' ) AS "en_instruction",
-          COUNT(*) FILTER ( WHERE state in ('accepte', 'refuse', 'sans_suite') ) AS "termines"
+          COUNT(*) FILTER ( WHERE depose_at BETWEEN :two_months_ago AND :one_month_ago ) AS "dossiers_deposes_entre_60_et_30_jours"
         FROM deleted_dossiers
       EOF
-      ).merge('brouillon' => 0)
+      )
     end
 
     def last_four_months_serie(associations_with_date_attribute)
