@@ -127,7 +127,7 @@
                     <% elsif instructeur_dossier %>
                       <% if hidden_by_administration %>
                         <td class="follow-col">
-                          <%= link_to restore_instructeur_dossier_path(procedure_id, dossier.id), method: :patch, class: "button primary" do %>
+                          <%= button_to restore_instructeur_dossier_path(procedure_id, dossier.id), method: :patch, class: "button primary", form: { data: { turbo: true } } do %>
                             <%= t('views.instructeurs.dossiers.restore') %>
                           <% end %>
                         </td>

@@ -13,8 +13,8 @@
         Acceptez-vous d’absorber le compte de
         %span.email-address= @waiting_merge_emails.join(', ')
 
-      = link_to 'Refuser la fusion', refuse_merge_path, method: :post, class: 'fr-btn fr-btn--secondary', data: { confirm: "Confirmez-vous le refus ?" }
-      = link_to 'Accepter la fusion', accept_merge_path, method: :post, class: 'fr-btn fr-btn--secondary', data: { confirm: "Confirmez-vous la fusion des comptes ?" }
+      = button_to 'Refuser la fusion', refuse_merge_path, method: :post, class: 'fr-btn fr-btn--secondary', data: { turbo_confirm: "Confirmez-vous le refus ?" }, form: { class: 'inline', data: { turbo: true } }
+      = button_to 'Accepter la fusion', accept_merge_path, method: :post, class: 'fr-btn fr-btn--secondary', data: { turbo_confirm: "Confirmez-vous la fusion des comptes ?" }, form: { class: 'inline', data: { turbo: true } }
 
   .card
     .card-title Choisissez un thème pour personnaliser l’apparence du site
@@ -78,8 +78,9 @@
         - @france_connect_informations.each do |fci|
           %li
             #{fci.given_name} #{fci.family_name} (#{fci.email_france_connect})
-            = link_to t('.forbid_access'),
+            = button_to t('.forbid_access'),
               france_connect_information_path(fci_id: fci.id),
               method: :delete,
               data: { confirm: t('.unlink_confirmation', full_name: fci.full_name) },
+              form: { class: 'inline', data: { turbo: false } },
               class: 'fr-btn fr-btn--secondary fr-ml-2w'

@@ -339,7 +339,8 @@ ul.dropdown-items {
         background-color: $medium-red;
 
         &,
-        a {
+        a,
+        .dropdown-items-link {
           color: $white;
         }
 
@@ -351,6 +352,12 @@ ul.dropdown-items {
 
     &:last-child {
       border-bottom: none;
+    }
+
+    // A button_to item: let its form fill the row so the button can too
+    > form {
+      display: flex;
+      flex-grow: 1;
     }
 
     // Make child links fill the whole clickable area

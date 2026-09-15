@@ -14,6 +14,6 @@
       Veuillez vous reconnecter avec la bonne adresse électronique
 
     .flex.column.align-center
-      = link_to "/users/sign_out", method: :delete, class: "button primary" do
+      = button_to destroy_user_session_path, method: :delete, class: "button primary", form: { data: { turbo: false } } do
         %span.fa.fa-sign-out
         Me déconnecter

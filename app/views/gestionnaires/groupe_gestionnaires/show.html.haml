@@ -6,10 +6,11 @@
 
 .fr-container.procedure-admin-container
   %ul.fr-btns-group.fr-btns-group--inline-sm.fr-btns-group--icon-left
-    = link_to 'Modifier', edit_gestionnaire_groupe_gestionnaire_path(@groupe_gestionnaire), class: 'fr-btn fr-btn--primary fr-btn--icon-left fr-icon-success-line'
+    %li= link_to 'Modifier', edit_gestionnaire_groupe_gestionnaire_path(@groupe_gestionnaire), class: 'fr-btn fr-btn--primary fr-btn--icon-left fr-icon-success-line'
     - if @groupe_gestionnaire.can_be_deleted?(current_gestionnaire)
-      = link_to gestionnaire_groupe_gestionnaire_path(@groupe_gestionnaire), class: "fr-btn fr-btn--tertiary fr-btn--icon-left fr-icon-delete-line", method: :delete, data: { confirm: "Voulez-vous vraiment supprimer ce groupe !" } do
-        = t('views.gestionnaires.groupe_gestionnaires.delete')
+      %li
+        = button_to gestionnaire_groupe_gestionnaire_path(@groupe_gestionnaire), class: "fr-btn fr-btn--tertiary fr-btn--icon-left fr-icon-delete-line", method: :delete, data: { turbo_confirm: "Voulez-vous vraiment supprimer ce groupe !" }, form: { data: { turbo: true } } do
+          = t('views.gestionnaires.groupe_gestionnaires.delete')
 
 .fr-container
   %h2= "Gestion du groupe \"#{@groupe_gestionnaire.name}\""

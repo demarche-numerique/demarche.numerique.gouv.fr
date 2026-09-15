@@ -14,7 +14,7 @@
         = link_to 'Cloner', admin_procedure_clone_settings_path(@procedure), class: 'fr-btn fr-btn--tertiary fr-btn--icon-left fr-icon-file-copy-line', id: "clone-procedure"
 
       - if @procedure.close? && @procedure.can_be_deleted_by_administrateur?
-        = link_to 'Supprimer', admin_procedure_path(@procedure), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette démarche ?' }, class: 'fr-btn fr-btn--tertiary fr-btn--icon-left fr-icon-delete-bin-line', id: 'delete-procedure'
+        = button_to 'Supprimer', admin_procedure_path(@procedure), method: :delete, data: { turbo_confirm: 'Êtes-vous sûr de vouloir supprimer cette démarche ?' }, form: { class: 'inline', data: { turbo: true } }, class: 'fr-btn fr-btn--tertiary fr-btn--icon-left fr-icon-delete-bin-line', id: 'delete-procedure'
 
       - if !@procedure.brouillon?
         = link_to 'Télécharger', admin_procedure_archives_path(@procedure), class: 'fr-btn fr-btn--tertiary fr-btn--icon-left fr-icon-download-line', id: "archive-procedure"
@@ -28,7 +28,7 @@
         = link_to 'Cloner', admin_procedure_clone_settings_path(@procedure), class: 'fr-btn fr-btn--tertiary fr-btn--icon-left fr-icon-file-copy-line', id: "clone-procedure"
 
       - if @procedure.brouillon? && @procedure.can_be_deleted_by_administrateur?
-        = link_to 'Supprimer', admin_procedure_path(@procedure), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette démarche ?' }, class: 'fr-btn fr-btn--tertiary fr-btn--icon-left fr-icon-delete-bin-line', id: 'delete-procedure'
+        = button_to 'Supprimer', admin_procedure_path(@procedure), method: :delete, data: { turbo_confirm: 'Êtes-vous sûr de vouloir supprimer cette démarche ?' }, form: { class: 'inline', data: { turbo: true } }, class: 'fr-btn fr-btn--tertiary fr-btn--icon-left fr-icon-delete-bin-line', id: 'delete-procedure'
 
       - if @procedure.publiee? || @procedure.brouillon?
         = link_to 'Envoyer une copie', admin_procedure_transfert_path(@procedure), class: 'fr-btn fr-btn--tertiary fr-btn--icon-left fr-icon-send-plane-line'

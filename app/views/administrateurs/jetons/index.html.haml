@@ -44,10 +44,11 @@
                       api_entreprise_admin_procedure_jetons_path(@procedure),
                       class: 'fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-pencil-line'
 
-                    = link_to 'Supprimer',
+                    = button_to 'Supprimer',
                       api_entreprise_admin_procedure_jetons_path(@procedure),
                       method: :delete,
-                      data: { confirm: "Êtes-vous sûr de vouloir supprimer le jeton API Entreprise ?"} ,
+                      data: { turbo_confirm: "Êtes-vous sûr de vouloir supprimer le jeton API Entreprise ?" },
+                      form: { class: 'inline', data: { turbo: true } },
                       class: 'fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-delete-line fr-ml-1w'
 
 
@@ -88,10 +89,11 @@
                       api_particulier_admin_procedure_jetons_path(@procedure),
                       class: 'fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-pencil-line'
 
-                    = link_to 'Supprimer',
+                    = button_to 'Supprimer',
                       api_particulier_admin_procedure_jetons_path(@procedure),
                       method: :delete,
-                      data: { confirm: "Êtes-vous sûr de vouloir supprimer le jeton API Particulier?"} ,
+                      data: { turbo_confirm: "Êtes-vous sûr de vouloir supprimer le jeton API Particulier?" },
+                      form: { class: 'inline', data: { turbo: true } },
                       class: 'fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-delete-line fr-ml-1w'
 
     = render Dsfr::AlertComponent.new(state: :info, size: :sm) do |c|

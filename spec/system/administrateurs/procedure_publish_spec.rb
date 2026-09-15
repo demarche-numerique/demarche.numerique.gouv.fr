@@ -52,7 +52,7 @@ describe 'Publishing a procedure', js: true do
 
       expect(find_field('procedure_path').value).to eq procedure.path
       fill_in 'procedure[lien_site_web]', with: 'http://some.website'
-      within('form') { click_on 'Publier' }
+      within("form[action='#{admin_procedure_publish_path(procedure)}']") { click_on 'Publier' }
 
       expect(page).to have_text('Votre démarche est désormais publiée !')
       expect(page).to have_button(title: 'Copiez le lien de la procédure')
@@ -100,7 +100,7 @@ describe 'Publishing a procedure', js: true do
         expect(page).to have_content 'vous devez la modifier afin de pouvoir publier votre démarche'
 
         fill_in 'procedure[lien_site_web]', with: 'http://some.website'
-        within('form') { click_on 'Publier' }
+        within("form[action='#{admin_procedure_publish_path(procedure)}']") { click_on 'Publier' }
 
         expect(page).to have_text('Le champ « Lien public » est déjà utilisé par une démarche.')
       end

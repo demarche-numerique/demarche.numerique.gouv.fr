@@ -23,12 +23,12 @@ module ApplicationHelper
   end
 
   def active_locale_link(locale)
-    link_to save_locale_path(locale:), {
+    button_to save_locale_path(locale:), {
       method: :post,
       class: "fr-translate__language fr-nav__link",
-      hreflang: locale,
       lang: locale,
       "aria-current": I18n.locale == locale ? "true" : nil,
+      form: { data: { turbo: false } },
     }.compact do
       yield
     end

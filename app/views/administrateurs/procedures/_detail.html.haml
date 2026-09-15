@@ -26,7 +26,7 @@
   %td= l(procedure.published_at.to_date, format: :short) if procedure.published_at
   %td
     = link_to('Consulter', apercu_admin_procedure_path(procedure.id), target: "_blank", class: 'fr-btn fr-btn--tertiary fr-btn--sm fr-mb-1w',  title: new_tab_suffix('Aperçu de la démarche'))
-    = link_to('Cloner', admin_procedure_clone_settings_path(procedure.id, from_new_from_existing: true), 'data-method' => :get, class: 'fr-btn fr-btn--tertiary fr-btn--sm')
+    = link_to('Cloner', admin_procedure_clone_settings_path(procedure.id, from_new_from_existing: true), class: 'fr-btn fr-btn--tertiary fr-btn--sm', data: { turbo: false })
 
 
 - if show_detail

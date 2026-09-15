@@ -499,7 +499,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
       fill_in 'Libellé du champ', with: 'Premier champ'
       expect(page).to have_selector('.sticky-header.sticky-header-warning')
       expect(page).to have_content("Les modifications effectuées ne seront visibles qu’à la prochaine publication")
-      expect(page).to have_link('Publier les modifications')
+      expect(page).to have_button('Publier les modifications')
 
       expect(page).to have_field('Libellé du champ', with: 'Premier champ')
 

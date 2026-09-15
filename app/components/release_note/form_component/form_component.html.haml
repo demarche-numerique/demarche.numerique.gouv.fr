@@ -48,6 +48,8 @@
 
         - if release_note.persisted?
           %li
-            = link_to t('.delete'), super_admins_release_note_path(release_note),
-              class: "fr-btn fr-btn--secondary fr-icon-delete-line",
-              data: { method: :delete, confirm: "Supprimer cette note ?" }
+            = render NestedForms::OwnedButtonComponent.new(formaction: super_admins_release_note_path(release_note), http_method: :delete, opt: { class: "fr-btn fr-btn--secondary fr-icon-delete-line", data: { turbo_confirm: "Supprimer cette note ?" } }) do
+              = t('.delete')
+
+- if release_note.persisted?
+  = render NestedForms::FormOwnerComponent.new

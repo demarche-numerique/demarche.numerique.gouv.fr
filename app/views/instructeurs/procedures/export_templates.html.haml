@@ -49,7 +49,7 @@
                           non partagé
                   %td
                     = link_to t('.modify_template'), [:edit, :instructeur, @procedure, export_template], class: "fr-btn fr-btn--icon-left fr-icon-edit-line fr-mr-1w"
-                    = link_to t('.delete_template'), [:instructeur, @procedure, export_template], method: :delete, data: { confirm: t('.delete_template_alert')}, class: "fr-btn fr-btn--secondary fr-icon-delete-line danger"
+                    = button_to t('.delete_template'), [:instructeur, @procedure, export_template], method: :delete, data: { turbo_confirm: t('.delete_template_alert') }, form: { class: 'inline', data: { turbo: true } }, class: "fr-btn fr-btn--secondary fr-icon-delete-line danger"
   - else
     .fr-alert.fr-alert--info.fr-mt-4w
       .fr-alert__body

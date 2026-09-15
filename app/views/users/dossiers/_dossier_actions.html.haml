@@ -51,7 +51,7 @@
 
       - if has_new_dossier_action
         - menu.with_item do
-          = link_to(clone_dossier_path(dossier), method: :post, role: 'menuitem') do
+          = button_to(clone_dossier_path(dossier), method: :post, role: 'menuitem', class: 'dropdown-items-link', form: { role: 'none', data: { turbo: true } }) do
             = dsfr_icon('fr-icon-file-copy-line', :sm)
             .dropdown-description
               = t('views.users.dossiers.dossier_action.clone')
@@ -62,7 +62,7 @@
       - if has_delete_action
         - menu.with_item(class: 'danger') do
           - confirm = dossier.transfer.present? ? t("views.users.dossiers.dossier_action.delete_dossier_with_transfer_confirm", email: dossier.transfer.email) : t("views.users.dossiers.dossier_action.delete_dossier_confirm")
-          = link_to(dossier_path(dossier), role: 'menuitem', method: :delete, data: { disable: true, confirm: }) do
+          = button_to(dossier_path(dossier), role: 'menuitem', method: :delete, class: 'dropdown-items-link', form: { role: 'none', data: { turbo: true } }, data: { turbo_confirm: confirm }) do
             = dsfr_icon('fr-icon-delete-fill', :sm)
             .dropdown-description
               = t('views.users.dossiers.dossier_action.delete_dossier')

@@ -22,7 +22,7 @@ describe Administrateurs::LabelsController, type: :controller do
       subject
       expect(response.body).to have_link("Nouveau label")
       expect(response.body).to have_link("Modifier", count: 3)
-      expect(response.body).to have_link("Supprimer", count: 3)
+      expect(response.body).to have_button("Supprimer", count: 3)
     end
   end
 

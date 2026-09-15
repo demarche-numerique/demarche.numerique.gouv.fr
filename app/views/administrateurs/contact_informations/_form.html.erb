@@ -12,14 +12,16 @@
 
         <% if ["edit", "update"].include?(params[:action]) %>
           <li>
-            <%= link_to 'Supprimer',
-              admin_procedure_groupe_instructeur_contact_information_path(@procedure, @groupe_instructeur),
-              method: :delete,
-              data: { confirm: "Confirmez vous la suppression de ces informations de contact ?" },
-              class: 'fr-btn fr-btn--secondary' %>
+            <%= render NestedForms::OwnedButtonComponent.new(formaction: admin_procedure_groupe_instructeur_contact_information_path(@procedure, @groupe_instructeur), http_method: :delete, opt: { class: 'fr-btn fr-btn--secondary', data: { turbo_confirm: "Confirmez vous la suppression de ces informations de contact ?" } }) do %>
+              Supprimer
+            <% end %>
           </li>
         <% end %>
       </ul>
     </div>
   </div>
+<% end %>
+
+<% if ["edit", "update"].include?(params[:action]) %>
+  <%= render NestedForms::FormOwnerComponent.new %>
 <% end %>

@@ -1,22 +1,24 @@
 <%- if procedure.draft_changed? %>
   <div class="sticky-header sticky-header-warning">
     <div class="fr-container">
-      <p class="flex justify-between align-center fr-text-default--warning">
+      <div class="flex justify-between align-center fr-text-default--warning">
         <span>
           <%= dsfr_icon("fr-icon-warning-fill fr-mr-1v") %>
           <%= t('.intro_html') %>
         </span>
 
-        <span class="no-wrap">
+        <div class="no-wrap">
           <%= link_to t('.see_changes'), admin_procedure_path(procedure), class: 'fr-btn fr-btn--secondary fr-mr-2w' %>
 
-          <%= link_to_if procedure.draft_revision.valid? && procedure.valid?(:publication), t('.publish_changes'), admin_procedure_publish_revision_path(procedure), class: 'fr-btn', method: :put, data: { disable_with: "Publication...", confirm: 'Êtes-vous sûr de vouloir publier les modifications ?' } do %>
+          <% if procedure.draft_revision.valid? && procedure.valid?(:publication) %>
+            <%= button_to t('.publish_changes'), admin_procedure_publish_revision_path(procedure), class: 'fr-btn', method: :put, form: { class: 'inline', data: { turbo: true } }, data: { turbo_submits_with: "Publication...", turbo_confirm: 'Êtes-vous sûr de vouloir publier les modifications ?' } %>
+          <% else %>
             <button class="fr-btn" disabled>
               <%= t('.publish_changes') %>
             </button>
           <% end %>
-        </span>
-      </p>
+        </div>
+      </div>
     </div>
   </div>
 <% end %>

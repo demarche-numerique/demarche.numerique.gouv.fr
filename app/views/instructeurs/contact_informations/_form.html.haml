@@ -14,8 +14,8 @@
 
         - if ["edit", "update"].include?(params[:action])
           %li
-            = link_to 'Supprimer',
-              instructeur_groupe_contact_information_path(procedure_id: @procedure.id, groupe_id: @groupe_instructeur.id),
-              method: :delete,
-              data: { confirm: "Confirmez vous la suppression de ces informations de contact ?" },
-              class: 'fr-btn fr-btn--secondary'
+            = render NestedForms::OwnedButtonComponent.new(formaction: instructeur_groupe_contact_information_path(procedure_id: @procedure.id, groupe_id: @groupe_instructeur.id), http_method: :delete, opt: { class: 'fr-btn fr-btn--secondary', data: { turbo_confirm: "Confirmez vous la suppression de ces informations de contact ?" } }) do
+              Supprimer
+
+- if ["edit", "update"].include?(params[:action])
+  = render NestedForms::FormOwnerComponent.new

@@ -9,9 +9,7 @@
         <%= t('.disconnect_info', application_name: Current.application_name) %>
       </p>
 
-      <p>
-        <%= link_to(t('.disconnect_button'), instructeur_rdv_connections_path(redirect_path: redirect_path), class: 'fr-btn fr-btn--sm fr-btn--secondary', method: :delete) %>
-      </p>
+      <%= button_to(t('.disconnect_button'), instructeur_rdv_connections_path(redirect_path: redirect_path), class: 'fr-btn fr-btn--sm fr-btn--secondary', method: :delete, form: { data: { turbo: false } }) %>
     <% end %>
   <% end %>
 <% end %>

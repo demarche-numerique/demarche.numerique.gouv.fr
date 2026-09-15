@@ -4,7 +4,7 @@
 
   - if dossier.may_repasser_en_construction?
     = menu.with_item do
-      = link_to(repasser_en_construction_instructeur_dossier_path(dossier.procedure.id, dossier.id, statut: params[:statut]), method: :post, role: 'menuitem') do
+      = button_to(repasser_en_construction_instructeur_dossier_path(dossier.procedure.id, dossier.id, statut: params[:statut]), method: :post, role: 'menuitem', class: 'dropdown-items-link', form: { role: 'none', data: { turbo: true } }) do
         %span.fr-icon.fr-icon-draft-line.fr-text-default--info.fr-mt-1v{ "aria-hidden": "true" }
         .dropdown-description
           %h4= t('.revert_en_construction')

@@ -42,10 +42,11 @@
                         [:edit, :admin, @procedure, label],
                         class: 'fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-pencil-line'
 
-                      = link_to 'Supprimer',
+                      = button_to 'Supprimer',
                         [:admin, @procedure, label],
                         method: :delete,
-                        data: { confirm: t("administrateurs.labels.delete_labels", count: label.dossier_labels.size, label_name: label.name) },
+                        data: { turbo_confirm: t("administrateurs.labels.delete_labels", count: label.dossier_labels.size, label_name: label.name) },
+                        form: { class: 'inline', data: { turbo: true } },
                         class: 'fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-delete-line fr-ml-1w'
 
 = render Procedure::FixedFooterComponent.new(procedure: @procedure)

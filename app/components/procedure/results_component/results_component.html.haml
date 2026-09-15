@@ -12,7 +12,7 @@
                 = procedure.libelle
               %td.flex
                 = link_to('Consulter', apercu_admin_procedure_path(id: procedure.id), target: "_blank", rel: "noopener", class: 'button small')
-                = link_to('Cloner', admin_procedure_clone_settings_path(procedure.id, from_new_from_existing: true), 'data-method' => :get, class: 'button small primary')
+                = link_to('Cloner', admin_procedure_clone_settings_path(procedure.id, from_new_from_existing: true), class: 'button small primary', data: { turbo: false })
                 = link_to('Contacter', "mailto:#{procedure.administrateurs.map(&:email) * ","}", class: 'button small')
     - else
       %p.fr-mt-4v aucun résultat

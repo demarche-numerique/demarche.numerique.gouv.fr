@@ -103,7 +103,7 @@
       = render Dsfr::NoticeComponent.new(closable: true, state: 'alert') do |c|
         - c.with_title do
           = t('views.shared.account.email_unverified', application_name: APPLICATION_NAME)
-          = link_to users_resend_confirmation_email_path, method: :post, class: 'fr-notice__link', form: { class: 'inline'} do
+          = link_to users_resend_confirmation_email_path, class: 'fr-notice__link', data: { turbo_method: :post, turbo: true } do
             = t('views.shared.account.cta_email_unverified')
 
     = yield(:notice_info)

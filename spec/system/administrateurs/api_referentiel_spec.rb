@@ -684,7 +684,7 @@ describe 'Referentiel API:' do
     # publish
     fill_in("procedure[path]", with: "htxbye")
     fill_in("procedure[lien_site_web]", with: "google.fr")
-    within("form") do
+    within("form[action='#{admin_procedure_publish_path(procedure)}']") do
       click_on("publish")
     end
     wait_until { procedure.reload.published_revision.present? }
