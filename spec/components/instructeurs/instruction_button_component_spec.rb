@@ -71,13 +71,8 @@ RSpec.describe Instructeurs::InstructionButtonComponent, type: :component do
       expect(rendered).to have_selector('button[data-action="batch-operation#openInstructionModal"]')
     end
 
-    it 'renders the batch modal content' do
-      expect(rendered).to have_selector('#modal-instruction-button')
-      expect(rendered).to have_selector('#modal-instruction-title', text: 'Rendre une décision sur les dossiers')
-
-      expect(rendered).to have_text('Accepter les dossiers')
-      expect(rendered).to have_text('Refuser les dossiers')
-      expect(rendered).to have_text('Classer sans suite les dossiers')
+    it 'leaves the modal to the batch operation component, outside its form' do
+      expect(rendered).not_to have_selector('#modal-instruction-button')
     end
 
     it 'does not render the annotation warning' do
