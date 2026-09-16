@@ -3,7 +3,7 @@
     "name": "Aghione",
     "code": "2B002",
     "epci_code": "200015162",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20270"
   },
@@ -11,7 +11,7 @@
     "name": "Aiti",
     "code": "2B003",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20244"
   },
@@ -19,7 +19,7 @@
     "name": "Alando",
     "code": "2B005",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20212"
   },
@@ -27,7 +27,7 @@
     "name": "Albertacce",
     "code": "2B007",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20224"
   },
@@ -35,7 +35,7 @@
     "name": "Aléria",
     "code": "2B009",
     "epci_code": "200015162",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20270"
   },
@@ -43,7 +43,7 @@
     "name": "Algajola",
     "code": "2B010",
     "epci_code": "242020105",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20220"
   },
@@ -51,7 +51,7 @@
     "name": "Altiani",
     "code": "2B012",
     "epci_code": "200015162",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20251"
   },
@@ -59,7 +59,7 @@
     "name": "Alzi",
     "code": "2B013",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20212"
   },
@@ -67,7 +67,7 @@
     "name": "Ampriani",
     "code": "2B015",
     "epci_code": "200015162",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20272"
   },
@@ -75,7 +75,7 @@
     "name": "Antisanti",
     "code": "2B016",
     "epci_code": "200015162",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20270"
   },
@@ -83,7 +83,7 @@
     "name": "Aregno",
     "code": "2B020",
     "epci_code": "242020105",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20220"
   },
@@ -91,7 +91,7 @@
     "name": "Asco",
     "code": "2B023",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20276"
   },
@@ -99,7 +99,7 @@
     "name": "Avapessa",
     "code": "2B025",
     "epci_code": "242020105",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20225"
   },
@@ -107,7 +107,7 @@
     "name": "Barbaggio",
     "code": "2B029",
     "epci_code": "200073120",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20253"
   },
@@ -115,7 +115,7 @@
     "name": "Barrettali",
     "code": "2B030",
     "epci_code": "200042943",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20228"
   },
@@ -123,7 +123,7 @@
     "name": "Bastia",
     "code": "2B033",
     "epci_code": "242000354",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20200"
   },
@@ -131,7 +131,7 @@
     "name": "Bastia",
     "code": "2B033",
     "epci_code": "242000354",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20600"
   },
@@ -139,7 +139,7 @@
     "name": "Belgodère",
     "code": "2B034",
     "epci_code": "200073104",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20226"
   },
@@ -147,7 +147,7 @@
     "name": "Bigorno",
     "code": "2B036",
     "epci_code": "200036499",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20252"
   },
@@ -155,7 +155,7 @@
     "name": "Biguglia",
     "code": "2B037",
     "epci_code": "200036499",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20620"
   },
@@ -163,7 +163,7 @@
     "name": "Bisinchi",
     "code": "2B039",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20235"
   },
@@ -171,7 +171,7 @@
     "name": "Borgo",
     "code": "2B042",
     "epci_code": "200036499",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20290"
   },
@@ -179,7 +179,7 @@
     "name": "Brando",
     "code": "2B043",
     "epci_code": "200042943",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20222"
   },
@@ -187,7 +187,7 @@
     "name": "Bustanico",
     "code": "2B045",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20212"
   },
@@ -195,7 +195,7 @@
     "name": "Cagnano",
     "code": "2B046",
     "epci_code": "200042943",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20228"
   },
@@ -203,7 +203,7 @@
     "name": "Calacuccia",
     "code": "2B047",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20224"
   },
@@ -211,7 +211,7 @@
     "name": "Calenzana",
     "code": "2B049",
     "epci_code": "242020105",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20214"
   },
@@ -219,7 +219,7 @@
     "name": "Calenzana",
     "code": "2B049",
     "epci_code": "242020105",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20260"
   },
@@ -227,7 +227,7 @@
     "name": "Calvi",
     "code": "2B050",
     "epci_code": "242020105",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20260"
   },
@@ -235,7 +235,7 @@
     "name": "Cambia",
     "code": "2B051",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20244"
   },
@@ -243,7 +243,7 @@
     "name": "Campana",
     "code": "2B052",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20229"
   },
@@ -251,7 +251,7 @@
     "name": "Campi",
     "code": "2B053",
     "epci_code": "200015162",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20270"
   },
@@ -259,7 +259,7 @@
     "name": "Campile",
     "code": "2B054",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20290"
   },
@@ -267,7 +267,7 @@
     "name": "Campitello",
     "code": "2B055",
     "epci_code": "200036499",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20252"
   },
@@ -275,7 +275,7 @@
     "name": "Canale-di-Verde",
     "code": "2B057",
     "epci_code": "200015162",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20230"
   },
@@ -283,7 +283,7 @@
     "name": "Canari",
     "code": "2B058",
     "epci_code": "200042943",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20217"
   },
@@ -291,7 +291,7 @@
     "name": "Canavaggia",
     "code": "2B059",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20235"
   },
@@ -299,7 +299,7 @@
     "name": "Carcheto-Brustico",
     "code": "2B063",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20229"
   },
@@ -307,7 +307,7 @@
     "name": "Carpineto",
     "code": "2B067",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20229"
   },
@@ -315,7 +315,7 @@
     "name": "Carticasi",
     "code": "2B068",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20244"
   },
@@ -323,7 +323,7 @@
     "name": "Casabianca",
     "code": "2B069",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20237"
   },
@@ -331,7 +331,7 @@
     "name": "Casalta",
     "code": "2B072",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20215"
   },
@@ -339,7 +339,7 @@
     "name": "Casamaccioli",
     "code": "2B073",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20224"
   },
@@ -347,7 +347,7 @@
     "name": "Casanova",
     "code": "2B074",
     "epci_code": "242020071",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20250"
   },
@@ -355,7 +355,7 @@
     "name": "Casevecchie",
     "code": "2B075",
     "epci_code": "200015162",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20270"
   },
@@ -363,7 +363,7 @@
     "name": "Castellare-di-Casinca",
     "code": "2B077",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20213"
   },
@@ -371,7 +371,7 @@
     "name": "Castellare-di-Mercurio",
     "code": "2B078",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20212"
   },
@@ -379,7 +379,7 @@
     "name": "Castello-di-Rostino",
     "code": "2B079",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20235"
   },
@@ -387,7 +387,7 @@
     "name": "Castifao",
     "code": "2B080",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20218"
   },
@@ -395,7 +395,7 @@
     "name": "Castiglione",
     "code": "2B081",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20218"
   },
@@ -403,7 +403,7 @@
     "name": "Castineta",
     "code": "2B082",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20218"
   },
@@ -411,7 +411,7 @@
     "name": "Castirla",
     "code": "2B083",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20236"
   },
@@ -419,7 +419,7 @@
     "name": "Cateri",
     "code": "2B084",
     "epci_code": "242020105",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20225"
   },
@@ -427,7 +427,7 @@
     "name": "Centuri",
     "code": "2B086",
     "epci_code": "200042943",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20238"
   },
@@ -435,7 +435,7 @@
     "name": "Cervione",
     "code": "2B087",
     "epci_code": "200034205",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20221"
   },
@@ -443,7 +443,7 @@
     "name": "Chiatra",
     "code": "2B088",
     "epci_code": "200015162",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20230"
   },
@@ -451,7 +451,7 @@
     "name": "Corbara",
     "code": "2B093",
     "epci_code": "200073104",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20220"
   },
@@ -459,7 +459,7 @@
     "name": "Corbara",
     "code": "2B093",
     "epci_code": "200073104",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20256"
   },
@@ -467,7 +467,7 @@
     "name": "Corscia",
     "code": "2B095",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20224"
   },
@@ -475,7 +475,7 @@
     "name": "Corte",
     "code": "2B096",
     "epci_code": "242020071",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20250"
   },
@@ -483,7 +483,7 @@
     "name": "Costa",
     "code": "2B097",
     "epci_code": "200073104",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20226"
   },
@@ -491,7 +491,7 @@
     "name": "Croce",
     "code": "2B101",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20237"
   },
@@ -499,7 +499,7 @@
     "name": "Crocicchia",
     "code": "2B102",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20290"
   },
@@ -507,7 +507,7 @@
     "name": "Erbajolo",
     "code": "2B105",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20212"
   },
@@ -515,7 +515,7 @@
     "name": "Érone",
     "code": "2B106",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20244"
   },
@@ -523,7 +523,7 @@
     "name": "Ersa",
     "code": "2B107",
     "epci_code": "200042943",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20275"
   },
@@ -531,7 +531,7 @@
     "name": "Farinole",
     "code": "2B109",
     "epci_code": "200073120",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20253"
   },
@@ -539,7 +539,7 @@
     "name": "Favalello",
     "code": "2B110",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20212"
   },
@@ -547,7 +547,7 @@
     "name": "Felce",
     "code": "2B111",
     "epci_code": "200034205",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20234"
   },
@@ -555,7 +555,7 @@
     "name": "Feliceto",
     "code": "2B112",
     "epci_code": "200073104",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20225"
   },
@@ -563,7 +563,7 @@
     "name": "Ficaja",
     "code": "2B113",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20237"
   },
@@ -571,7 +571,7 @@
     "name": "Focicchia",
     "code": "2B116",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20212"
   },
@@ -579,7 +579,7 @@
     "name": "Furiani",
     "code": "2B120",
     "epci_code": "242000354",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20600"
   },
@@ -587,7 +587,7 @@
     "name": "Galéria",
     "code": "2B121",
     "epci_code": "242020105",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20245"
   },
@@ -595,7 +595,7 @@
     "name": "Gavignano",
     "code": "2B122",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20218"
   },
@@ -603,7 +603,7 @@
     "name": "Ghisonaccia",
     "code": "2B123",
     "epci_code": "200033827",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20240"
   },
@@ -611,7 +611,7 @@
     "name": "Ghisoni",
     "code": "2B124",
     "epci_code": "200033827",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20227"
   },
@@ -619,7 +619,7 @@
     "name": "Giocatojo",
     "code": "2B125",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20237"
   },
@@ -627,7 +627,7 @@
     "name": "Giuncaggio",
     "code": "2B126",
     "epci_code": "200015162",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20251"
   },
@@ -635,7 +635,7 @@
     "name": "L’Île-Rousse",
     "code": "2B134",
     "epci_code": "200073104",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20220"
   },
@@ -643,7 +643,7 @@
     "name": "Isolaccio-di-Fiumorbo",
     "code": "2B135",
     "epci_code": "200033827",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20243"
   },
@@ -651,7 +651,7 @@
     "name": "Lama",
     "code": "2B136",
     "epci_code": "200073104",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20218"
   },
@@ -659,7 +659,7 @@
     "name": "Lano",
     "code": "2B137",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20244"
   },
@@ -667,7 +667,7 @@
     "name": "Lavatoggio",
     "code": "2B138",
     "epci_code": "242020105",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20225"
   },
@@ -675,7 +675,7 @@
     "name": "Lento",
     "code": "2B140",
     "epci_code": "200036499",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20252"
   },
@@ -683,7 +683,7 @@
     "name": "Linguizzetta",
     "code": "2B143",
     "epci_code": "200015162",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20230"
   },
@@ -691,7 +691,7 @@
     "name": "Loreto-di-Casinca",
     "code": "2B145",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20215"
   },
@@ -699,7 +699,7 @@
     "name": "Lozzi",
     "code": "2B147",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20224"
   },
@@ -707,7 +707,7 @@
     "name": "Lucciana",
     "code": "2B148",
     "epci_code": "200036499",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20290"
   },
@@ -715,7 +715,7 @@
     "name": "Lugo-di-Nazza",
     "code": "2B149",
     "epci_code": "200033827",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20240"
   },
@@ -723,7 +723,7 @@
     "name": "Lumio",
     "code": "2B150",
     "epci_code": "242020105",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20260"
   },
@@ -731,7 +731,7 @@
     "name": "Luri",
     "code": "2B152",
     "epci_code": "200042943",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20228"
   },
@@ -739,7 +739,7 @@
     "name": "Manso",
     "code": "2B153",
     "epci_code": "242020105",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20245"
   },
@@ -747,7 +747,7 @@
     "name": "Matra",
     "code": "2B155",
     "epci_code": "200015162",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20270"
   },
@@ -755,7 +755,7 @@
     "name": "Mausoléo",
     "code": "2B156",
     "epci_code": "200073104",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20259"
   },
@@ -763,7 +763,7 @@
     "name": "Mazzola",
     "code": "2B157",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20212"
   },
@@ -771,7 +771,7 @@
     "name": "Meria",
     "code": "2B159",
     "epci_code": "200042943",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20287"
   },
@@ -779,7 +779,7 @@
     "name": "Moïta",
     "code": "2B161",
     "epci_code": "200015162",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20270"
   },
@@ -787,7 +787,7 @@
     "name": "Moltifao",
     "code": "2B162",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20218"
   },
@@ -795,7 +795,7 @@
     "name": "Monacia-d’Orezza",
     "code": "2B164",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20229"
   },
@@ -803,7 +803,7 @@
     "name": "Moncale",
     "code": "2B165",
     "epci_code": "242020105",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20214"
   },
@@ -811,7 +811,7 @@
     "name": "Monte",
     "code": "2B166",
     "epci_code": "200036499",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20290"
   },
@@ -819,7 +819,7 @@
     "name": "Montegrosso",
     "code": "2B167",
     "epci_code": "242020105",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20214"
   },
@@ -827,7 +827,7 @@
     "name": "Monticello",
     "code": "2B168",
     "epci_code": "200073104",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20220"
   },
@@ -835,7 +835,7 @@
     "name": "Morosaglia",
     "code": "2B169",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20218"
   },
@@ -843,7 +843,7 @@
     "name": "Morsiglia",
     "code": "2B170",
     "epci_code": "200042943",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20238"
   },
@@ -851,7 +851,7 @@
     "name": "Muracciole",
     "code": "2B171",
     "epci_code": "242020071",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20219"
   },
@@ -859,7 +859,7 @@
     "name": "Murato",
     "code": "2B172",
     "epci_code": "200073120",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20239"
   },
@@ -867,7 +867,7 @@
     "name": "Muro",
     "code": "2B173",
     "epci_code": "200073104",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20225"
   },
@@ -875,7 +875,7 @@
     "name": "Nessa",
     "code": "2B175",
     "epci_code": "200073104",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20225"
   },
@@ -883,7 +883,7 @@
     "name": "Nocario",
     "code": "2B176",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20229"
   },
@@ -891,7 +891,7 @@
     "name": "Noceta",
     "code": "2B177",
     "epci_code": "242020071",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20242"
   },
@@ -899,7 +899,7 @@
     "name": "Nonza",
     "code": "2B178",
     "epci_code": "200042943",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20217"
   },
@@ -907,7 +907,7 @@
     "name": "Novale",
     "code": "2B179",
     "epci_code": "200034205",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20234"
   },
@@ -915,7 +915,7 @@
     "name": "Novella",
     "code": "2B180",
     "epci_code": "200073104",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20226"
   },
@@ -923,7 +923,7 @@
     "name": "Occhiatana",
     "code": "2B182",
     "epci_code": "200073104",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20226"
   },
@@ -931,7 +931,7 @@
     "name": "Ogliastro",
     "code": "2B183",
     "epci_code": "200042943",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20217"
   },
@@ -939,7 +939,7 @@
     "name": "Olcani",
     "code": "2B184",
     "epci_code": "200042943",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20217"
   },
@@ -947,7 +947,7 @@
     "name": "Oletta",
     "code": "2B185",
     "epci_code": "200073120",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20232"
   },
@@ -955,7 +955,7 @@
     "name": "Olmeta-di-Capocorso",
     "code": "2B187",
     "epci_code": "200042943",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20217"
   },
@@ -963,7 +963,7 @@
     "name": "Olmeta-di-Tuda",
     "code": "2B188",
     "epci_code": "200073120",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20232"
   },
@@ -971,7 +971,7 @@
     "name": "Olmi-Cappella",
     "code": "2B190",
     "epci_code": "200073104",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20259"
   },
@@ -979,7 +979,7 @@
     "name": "Olmo",
     "code": "2B192",
     "epci_code": "200036499",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20290"
   },
@@ -987,7 +987,7 @@
     "name": "Omessa",
     "code": "2B193",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20236"
   },
@@ -995,7 +995,7 @@
     "name": "Ortale",
     "code": "2B194",
     "epci_code": "200034205",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20234"
   },
@@ -1003,7 +1003,7 @@
     "name": "Ortiporio",
     "code": "2B195",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20290"
   },
@@ -1011,7 +1011,7 @@
     "name": "Palasca",
     "code": "2B199",
     "epci_code": "200073104",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20226"
   },
@@ -1019,7 +1019,7 @@
     "name": "Pancheraccia",
     "code": "2B201",
     "epci_code": "200015162",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20251"
   },
@@ -1027,7 +1027,7 @@
     "name": "Pancheraccia",
     "code": "2B201",
     "epci_code": "200015162",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20270"
   },
@@ -1035,7 +1035,7 @@
     "name": "Parata",
     "code": "2B202",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20229"
   },
@@ -1043,7 +1043,7 @@
     "name": "Patrimonio",
     "code": "2B205",
     "epci_code": "200073120",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20253"
   },
@@ -1051,7 +1051,7 @@
     "name": "Penta-Acquatella",
     "code": "2B206",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20290"
   },
@@ -1059,7 +1059,7 @@
     "name": "Penta-di-Casinca",
     "code": "2B207",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20213"
   },
@@ -1067,7 +1067,7 @@
     "name": "Perelli",
     "code": "2B208",
     "epci_code": "200034205",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20234"
   },
@@ -1075,7 +1075,7 @@
     "name": "Pero-Casevecchie",
     "code": "2B210",
     "epci_code": "200034205",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20230"
   },
@@ -1083,7 +1083,7 @@
     "name": "Pianello",
     "code": "2B213",
     "epci_code": "200015162",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20272"
   },
@@ -1091,7 +1091,7 @@
     "name": "Piano",
     "code": "2B214",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20215"
   },
@@ -1099,7 +1099,7 @@
     "name": "Piazzali",
     "code": "2B216",
     "epci_code": "200034205",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20234"
   },
@@ -1107,7 +1107,7 @@
     "name": "Piazzole",
     "code": "2B217",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20229"
   },
@@ -1115,7 +1115,7 @@
     "name": "Piedicorte-di-Gaggio",
     "code": "2B218",
     "epci_code": "200015162",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20251"
   },
@@ -1123,7 +1123,7 @@
     "name": "Piedicroce",
     "code": "2B219",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20229"
   },
@@ -1131,7 +1131,7 @@
     "name": "Piedigriggio",
     "code": "2B220",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20218"
   },
@@ -1139,7 +1139,7 @@
     "name": "Piedipartino",
     "code": "2B221",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20229"
   },
@@ -1147,7 +1147,7 @@
     "name": "Pie-d’Orezza",
     "code": "2B222",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20229"
   },
@@ -1155,7 +1155,7 @@
     "name": "Pietralba",
     "code": "2B223",
     "epci_code": "200073104",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20218"
   },
@@ -1163,7 +1163,7 @@
     "name": "Pietracorbara",
     "code": "2B224",
     "epci_code": "200042943",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20233"
   },
@@ -1171,7 +1171,7 @@
     "name": "Pietra-di-Verde",
     "code": "2B225",
     "epci_code": "200015162",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20230"
   },
@@ -1179,7 +1179,7 @@
     "name": "Pietraserena",
     "code": "2B226",
     "epci_code": "200015162",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20251"
   },
@@ -1187,7 +1187,7 @@
     "name": "Pietricaggio",
     "code": "2B227",
     "epci_code": "200034205",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20234"
   },
@@ -1195,7 +1195,7 @@
     "name": "Pietroso",
     "code": "2B229",
     "epci_code": "200033827",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20242"
   },
@@ -1203,7 +1203,7 @@
     "name": "Piève",
     "code": "2B230",
     "epci_code": "200073120",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20246"
   },
@@ -1211,7 +1211,7 @@
     "name": "Pigna",
     "code": "2B231",
     "epci_code": "200073104",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20220"
   },
@@ -1219,7 +1219,7 @@
     "name": "Pino",
     "code": "2B233",
     "epci_code": "200042943",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20228"
   },
@@ -1227,7 +1227,7 @@
     "name": "Piobetta",
     "code": "2B234",
     "epci_code": "200034205",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20234"
   },
@@ -1235,7 +1235,7 @@
     "name": "Pioggiola",
     "code": "2B235",
     "epci_code": "200073104",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20259"
   },
@@ -1243,7 +1243,7 @@
     "name": "Poggio-di-Nazza",
     "code": "2B236",
     "epci_code": "200033827",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20240"
   },
@@ -1251,7 +1251,7 @@
     "name": "Poggio-di-Venaco",
     "code": "2B238",
     "epci_code": "242020071",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20250"
   },
@@ -1259,7 +1259,7 @@
     "name": "Poggio-d’Oletta",
     "code": "2B239",
     "epci_code": "200073120",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20232"
   },
@@ -1267,7 +1267,7 @@
     "name": "Poggio-Marinaccio",
     "code": "2B241",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20237"
   },
@@ -1275,7 +1275,7 @@
     "name": "Poggio-Mezzana",
     "code": "2B242",
     "epci_code": "200034205",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20230"
   },
@@ -1283,7 +1283,7 @@
     "name": "Polveroso",
     "code": "2B243",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20229"
   },
@@ -1291,7 +1291,7 @@
     "name": "Popolasca",
     "code": "2B244",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20218"
   },
@@ -1299,7 +1299,7 @@
     "name": "Porri",
     "code": "2B245",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20215"
   },
@@ -1307,7 +1307,7 @@
     "name": "La Porta",
     "code": "2B246",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20237"
   },
@@ -1315,7 +1315,7 @@
     "name": "Prato-di-Giovellina",
     "code": "2B248",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20218"
   },
@@ -1323,7 +1323,7 @@
     "name": "Prunelli-di-Casacconi",
     "code": "2B250",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20290"
   },
@@ -1331,7 +1331,7 @@
     "name": "Prunelli-di-Fiumorbo",
     "code": "2B251",
     "epci_code": "200033827",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20243"
   },
@@ -1339,7 +1339,7 @@
     "name": "Pruno",
     "code": "2B252",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20213"
   },
@@ -1347,7 +1347,7 @@
     "name": "Quercitello",
     "code": "2B255",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20237"
   },
@@ -1355,7 +1355,7 @@
     "name": "Rapaggio",
     "code": "2B256",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20229"
   },
@@ -1363,7 +1363,7 @@
     "name": "Rapale",
     "code": "2B257",
     "epci_code": "200073120",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20246"
   },
@@ -1371,7 +1371,7 @@
     "name": "Riventosa",
     "code": "2B260",
     "epci_code": "242020071",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20250"
   },
@@ -1379,7 +1379,7 @@
     "name": "Rogliano",
     "code": "2B261",
     "epci_code": "200042943",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20247"
   },
@@ -1387,7 +1387,7 @@
     "name": "Rogliano",
     "code": "2B261",
     "epci_code": "200042943",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20248"
   },
@@ -1395,7 +1395,7 @@
     "name": "Rospigliani",
     "code": "2B263",
     "epci_code": "242020071",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20242"
   },
@@ -1403,7 +1403,7 @@
     "name": "Rusio",
     "code": "2B264",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20244"
   },
@@ -1411,7 +1411,7 @@
     "name": "Rutali",
     "code": "2B265",
     "epci_code": "200073120",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20239"
   },
@@ -1419,7 +1419,7 @@
     "name": "Saliceto",
     "code": "2B267",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20218"
   },
@@ -1427,7 +1427,7 @@
     "name": "Scata",
     "code": "2B273",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20213"
   },
@@ -1435,7 +1435,7 @@
     "name": "Scolca",
     "code": "2B274",
     "epci_code": "200036499",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20290"
   },
@@ -1443,7 +1443,7 @@
     "name": "Sermano",
     "code": "2B275",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20212"
   },
@@ -1451,7 +1451,7 @@
     "name": "Serra-di-Fiumorbo",
     "code": "2B277",
     "epci_code": "200033827",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20243"
   },
@@ -1459,7 +1459,7 @@
     "name": "Silvareccio",
     "code": "2B280",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20215"
   },
@@ -1467,7 +1467,7 @@
     "name": "Sisco",
     "code": "2B281",
     "epci_code": "200042943",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20233"
   },
@@ -1475,7 +1475,7 @@
     "name": "Solaro",
     "code": "2B283",
     "epci_code": "200033827",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20240"
   },
@@ -1483,7 +1483,7 @@
     "name": "Sorbo-Ocagnano",
     "code": "2B286",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20213"
   },
@@ -1491,7 +1491,7 @@
     "name": "Sorio",
     "code": "2B287",
     "epci_code": "200073120",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20246"
   },
@@ -1499,7 +1499,7 @@
     "name": "Soveria",
     "code": "2B289",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20250"
   },
@@ -1507,7 +1507,7 @@
     "name": "Speloncato",
     "code": "2B290",
     "epci_code": "200073104",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20226"
   },
@@ -1515,7 +1515,7 @@
     "name": "Stazzona",
     "code": "2B291",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20229"
   },
@@ -1523,7 +1523,7 @@
     "name": "Sant’Andréa-di-Bozio",
     "code": "2B292",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20212"
   },
@@ -1531,7 +1531,7 @@
     "name": "Sant’Andréa-di-Cotone",
     "code": "2B293",
     "epci_code": "200034205",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20221"
   },
@@ -1539,7 +1539,7 @@
     "name": "Sant’Antonino",
     "code": "2B296",
     "epci_code": "242020105",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20220"
   },
@@ -1547,7 +1547,7 @@
     "name": "San-Damiano",
     "code": "2B297",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20213"
   },
@@ -1555,7 +1555,7 @@
     "name": "Saint-Florent",
     "code": "2B298",
     "epci_code": "200073120",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20217"
   },
@@ -1563,7 +1563,7 @@
     "name": "San-Gavino-d’Ampugnani",
     "code": "2B299",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20213"
   },
@@ -1571,7 +1571,7 @@
     "name": "San-Gavino-di-Tenda",
     "code": "2B301",
     "epci_code": "200073120",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20246"
   },
@@ -1579,7 +1579,7 @@
     "name": "San-Giovanni-di-Moriani",
     "code": "2B302",
     "epci_code": "200034205",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20230"
   },
@@ -1587,7 +1587,7 @@
     "name": "San-Giuliano",
     "code": "2B303",
     "epci_code": "200034205",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20230"
   },
@@ -1595,7 +1595,7 @@
     "name": "San-Lorenzo",
     "code": "2B304",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20244"
   },
@@ -1603,7 +1603,7 @@
     "name": "San-Martino-di-Lota",
     "code": "2B305",
     "epci_code": "242000354",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20200"
   },
@@ -1611,7 +1611,7 @@
     "name": "Santa-Lucia-di-Mercurio",
     "code": "2B306",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20250"
   },
@@ -1619,7 +1619,7 @@
     "name": "Santa-Lucia-di-Moriani",
     "code": "2B307",
     "epci_code": "200034205",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20230"
   },
@@ -1627,7 +1627,7 @@
     "name": "Santa-Maria-di-Lota",
     "code": "2B309",
     "epci_code": "242000354",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20200"
   },
@@ -1635,7 +1635,7 @@
     "name": "Santa-Maria-Poggio",
     "code": "2B311",
     "epci_code": "200034205",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20221"
   },
@@ -1643,7 +1643,7 @@
     "name": "San-Nicolao",
     "code": "2B313",
     "epci_code": "200034205",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20230"
   },
@@ -1651,7 +1651,7 @@
     "name": "Santo-Pietro-di-Tenda",
     "code": "2B314",
     "epci_code": "200073120",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20217"
   },
@@ -1659,7 +1659,7 @@
     "name": "Santo-Pietro-di-Tenda",
     "code": "2B314",
     "epci_code": "200073120",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20246"
   },
@@ -1667,7 +1667,7 @@
     "name": "Santo-Pietro-di-Venaco",
     "code": "2B315",
     "epci_code": "242020071",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20250"
   },
@@ -1675,7 +1675,7 @@
     "name": "Santa-Reparata-di-Balagna",
     "code": "2B316",
     "epci_code": "200073104",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20220"
   },
@@ -1683,7 +1683,7 @@
     "name": "Santa-Reparata-di-Moriani",
     "code": "2B317",
     "epci_code": "200034205",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20230"
   },
@@ -1691,7 +1691,7 @@
     "name": "Taglio-Isolaccio",
     "code": "2B318",
     "epci_code": "200034205",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20230"
   },
@@ -1699,7 +1699,7 @@
     "name": "Talasani",
     "code": "2B319",
     "epci_code": "200034205",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20230"
   },
@@ -1707,7 +1707,7 @@
     "name": "Tallone",
     "code": "2B320",
     "epci_code": "200015162",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20270"
   },
@@ -1715,7 +1715,7 @@
     "name": "Tarrano",
     "code": "2B321",
     "epci_code": "200034205",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20234"
   },
@@ -1723,7 +1723,7 @@
     "name": "Tomino",
     "code": "2B327",
     "epci_code": "200042943",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20248"
   },
@@ -1731,7 +1731,7 @@
     "name": "Tox",
     "code": "2B328",
     "epci_code": "200015162",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20270"
   },
@@ -1739,7 +1739,7 @@
     "name": "Tralonca",
     "code": "2B329",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20250"
   },
@@ -1747,7 +1747,7 @@
     "name": "Urtaca",
     "code": "2B332",
     "epci_code": "200073104",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20218"
   },
@@ -1755,7 +1755,7 @@
     "name": "Vallecalle",
     "code": "2B333",
     "epci_code": "200073120",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20232"
   },
@@ -1763,7 +1763,7 @@
     "name": "Valle-d’Alesani",
     "code": "2B334",
     "epci_code": "200034205",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20234"
   },
@@ -1771,7 +1771,7 @@
     "name": "Valle-di-Campoloro",
     "code": "2B335",
     "epci_code": "200034205",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20221"
   },
@@ -1779,7 +1779,7 @@
     "name": "Valle-di-Rostino",
     "code": "2B337",
     "epci_code": "200073138",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20235"
   },
@@ -1787,7 +1787,7 @@
     "name": "Valle-d’Orezza",
     "code": "2B338",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20229"
   },
@@ -1795,7 +1795,7 @@
     "name": "Vallica",
     "code": "2B339",
     "epci_code": "200073104",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20259"
   },
@@ -1803,7 +1803,7 @@
     "name": "Velone-Orneto",
     "code": "2B340",
     "epci_code": "200034205",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20230"
   },
@@ -1811,7 +1811,7 @@
     "name": "Venaco",
     "code": "2B341",
     "epci_code": "242020071",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20231"
   },
@@ -1819,7 +1819,7 @@
     "name": "Ventiseri",
     "code": "2B342",
     "epci_code": "200033827",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20240"
   },
@@ -1827,7 +1827,7 @@
     "name": "Venzolasca",
     "code": "2B343",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20215"
   },
@@ -1835,7 +1835,7 @@
     "name": "Verdèse",
     "code": "2B344",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20229"
   },
@@ -1843,7 +1843,7 @@
     "name": "Vescovato",
     "code": "2B346",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20215"
   },
@@ -1851,7 +1851,7 @@
     "name": "Vezzani",
     "code": "2B347",
     "epci_code": "200033827",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20242"
   },
@@ -1859,7 +1859,7 @@
     "name": "Vignale",
     "code": "2B350",
     "epci_code": "200036499",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20290"
   },
@@ -1867,7 +1867,7 @@
     "name": "Ville-di-Paraso",
     "code": "2B352",
     "epci_code": "200073104",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20279"
   },
@@ -1875,7 +1875,7 @@
     "name": "Ville-di-Pietrabugno",
     "code": "2B353",
     "epci_code": "242000354",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20200"
   },
@@ -1883,7 +1883,7 @@
     "name": "Vivario",
     "code": "2B354",
     "epci_code": "242020071",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20219"
   },
@@ -1891,7 +1891,7 @@
     "name": "Volpajola",
     "code": "2B355",
     "epci_code": "200073252",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20290"
   },
@@ -1899,7 +1899,7 @@
     "name": "Zalana",
     "code": "2B356",
     "epci_code": "200015162",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20272"
   },
@@ -1907,7 +1907,7 @@
     "name": "Zilia",
     "code": "2B361",
     "epci_code": "242020105",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20214"
   },
@@ -1915,7 +1915,7 @@
     "name": "Zuani",
     "code": "2B364",
     "epci_code": "200015162",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20272"
   },
@@ -1923,7 +1923,7 @@
     "name": "San-Gavino-di-Fiumorbo",
     "code": "2B365",
     "epci_code": "200033827",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20243"
   },
@@ -1931,7 +1931,7 @@
     "name": "Chisa",
     "code": "2B366",
     "epci_code": "200033827",
-    "departement_code": "2B",
+    "department_code": "2B",
     "region_code": "94",
     "postal_code": "20240"
   }

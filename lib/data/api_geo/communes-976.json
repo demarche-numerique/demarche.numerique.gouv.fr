@@ -3,7 +3,7 @@
     "name": "Acoua",
     "code": "97601",
     "epci_code": "200060465",
-    "departement_code": "976",
+    "department_code": "976",
     "region_code": "06",
     "postal_code": "97630"
   },
@@ -11,7 +11,7 @@
     "name": "Bandraboua",
     "code": "97602",
     "epci_code": "200060465",
-    "departement_code": "976",
+    "department_code": "976",
     "region_code": "06",
     "postal_code": "97650"
   },
@@ -19,7 +19,7 @@
     "name": "Bandrele",
     "code": "97603",
     "epci_code": "200060473",
-    "departement_code": "976",
+    "department_code": "976",
     "region_code": "06",
     "postal_code": "97660"
   },
@@ -27,7 +27,7 @@
     "name": "Bouéni",
     "code": "97604",
     "epci_code": "200060473",
-    "departement_code": "976",
+    "department_code": "976",
     "region_code": "06",
     "postal_code": "97620"
   },
@@ -35,7 +35,7 @@
     "name": "Chiconi",
     "code": "97605",
     "epci_code": "200059871",
-    "departement_code": "976",
+    "department_code": "976",
     "region_code": "06",
     "postal_code": "97670"
   },
@@ -43,7 +43,7 @@
     "name": "Chirongui",
     "code": "97606",
     "epci_code": "200060473",
-    "departement_code": "976",
+    "department_code": "976",
     "region_code": "06",
     "postal_code": "97620"
   },
@@ -51,7 +51,7 @@
     "name": "Dembeni",
     "code": "97607",
     "epci_code": "200060457",
-    "departement_code": "976",
+    "department_code": "976",
     "region_code": "06",
     "postal_code": "97660"
   },
@@ -59,7 +59,7 @@
     "name": "Dzaoudzi",
     "code": "97608",
     "epci_code": "200050532",
-    "departement_code": "976",
+    "department_code": "976",
     "region_code": "06",
     "postal_code": "97615"
   },
@@ -67,7 +67,7 @@
     "name": "Kani-Kéli",
     "code": "97609",
     "epci_code": "200060473",
-    "departement_code": "976",
+    "department_code": "976",
     "region_code": "06",
     "postal_code": "97625"
   },
@@ -75,7 +75,7 @@
     "name": "Koungou",
     "code": "97610",
     "epci_code": "200060465",
-    "departement_code": "976",
+    "department_code": "976",
     "region_code": "06",
     "postal_code": "97600"
   },
@@ -83,7 +83,7 @@
     "name": "Mamoudzou",
     "code": "97611",
     "epci_code": "200060457",
-    "departement_code": "976",
+    "department_code": "976",
     "region_code": "06",
     "postal_code": "97600"
   },
@@ -91,7 +91,7 @@
     "name": "Mamoudzou",
     "code": "97611",
     "epci_code": "200060457",
-    "departement_code": "976",
+    "department_code": "976",
     "region_code": "06",
     "postal_code": "97605"
   },
@@ -99,7 +99,7 @@
     "name": "Mtsamboro",
     "code": "97612",
     "epci_code": "200060465",
-    "departement_code": "976",
+    "department_code": "976",
     "region_code": "06",
     "postal_code": "97630"
   },
@@ -107,7 +107,7 @@
     "name": "M’Tsangamouji",
     "code": "97613",
     "epci_code": "200059871",
-    "departement_code": "976",
+    "department_code": "976",
     "region_code": "06",
     "postal_code": "97650"
   },
@@ -115,7 +115,7 @@
     "name": "Ouangani",
     "code": "97614",
     "epci_code": "200059871",
-    "departement_code": "976",
+    "department_code": "976",
     "region_code": "06",
     "postal_code": "97670"
   },
@@ -123,7 +123,7 @@
     "name": "Pamandzi",
     "code": "97615",
     "epci_code": "200050532",
-    "departement_code": "976",
+    "department_code": "976",
     "region_code": "06",
     "postal_code": "97615"
   },
@@ -131,7 +131,7 @@
     "name": "Sada",
     "code": "97616",
     "epci_code": "200059871",
-    "departement_code": "976",
+    "department_code": "976",
     "region_code": "06",
     "postal_code": "97640"
   },
@@ -139,7 +139,7 @@
     "name": "Tsingoni",
     "code": "97617",
     "epci_code": "200059871",
-    "departement_code": "976",
+    "department_code": "976",
     "region_code": "06",
     "postal_code": "97680"
   }

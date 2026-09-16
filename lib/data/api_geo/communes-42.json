@@ -3,7 +3,7 @@
     "name": "Aboën",
     "code": "42001",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42380"
   },
@@ -11,7 +11,7 @@
     "name": "Ailleux",
     "code": "42002",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42130"
   },
@@ -19,7 +19,7 @@
     "name": "Ambierle",
     "code": "42003",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42820"
   },
@@ -27,7 +27,7 @@
     "name": "Andrézieux-Bouthéon",
     "code": "42005",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42160"
   },
@@ -35,7 +35,7 @@
     "name": "Apinac",
     "code": "42006",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42550"
   },
@@ -43,7 +43,7 @@
     "name": "Arcinges",
     "code": "42007",
     "epci_code": "200035202",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42460"
   },
@@ -51,7 +51,7 @@
     "name": "Arcon",
     "code": "42008",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42370"
   },
@@ -59,7 +59,7 @@
     "name": "Arthun",
     "code": "42009",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42130"
   },
@@ -67,7 +67,7 @@
     "name": "Aveizieux",
     "code": "42010",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42330"
   },
@@ -75,7 +75,7 @@
     "name": "Balbigny",
     "code": "42011",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42510"
   },
@@ -83,7 +83,7 @@
     "name": "Bard",
     "code": "42012",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42600"
   },
@@ -91,7 +91,7 @@
     "name": "Bellegarde-en-Forez",
     "code": "42013",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42210"
   },
@@ -99,7 +99,7 @@
     "name": "Belleroche",
     "code": "42014",
     "epci_code": "200035202",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42670"
   },
@@ -107,7 +107,7 @@
     "name": "Belmont-de-la-Loire",
     "code": "42015",
     "epci_code": "200035202",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42670"
   },
@@ -115,7 +115,7 @@
     "name": "La Bénisson-Dieu",
     "code": "42016",
     "epci_code": "200035202",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42720"
   },
@@ -123,7 +123,7 @@
     "name": "Le Bessat",
     "code": "42017",
     "epci_code": "244200622",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42660"
   },
@@ -131,7 +131,7 @@
     "name": "Bessey",
     "code": "42018",
     "epci_code": "244200895",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42520"
   },
@@ -139,7 +139,7 @@
     "name": "Boën-sur-Lignon",
     "code": "42019",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42130"
   },
@@ -147,7 +147,7 @@
     "name": "Boisset-lès-Montrond",
     "code": "42020",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42210"
   },
@@ -155,7 +155,7 @@
     "name": "Boisset-Saint-Priest",
     "code": "42021",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42560"
   },
@@ -163,7 +163,7 @@
     "name": "Bonson",
     "code": "42022",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42160"
   },
@@ -171,7 +171,7 @@
     "name": "Bourg-Argental",
     "code": "42023",
     "epci_code": "244200622",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42220"
   },
@@ -179,7 +179,7 @@
     "name": "Boyer",
     "code": "42025",
     "epci_code": "200035202",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42460"
   },
@@ -187,7 +187,7 @@
     "name": "Briennon",
     "code": "42026",
     "epci_code": "200035202",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42720"
   },
@@ -195,7 +195,7 @@
     "name": "Bully",
     "code": "42027",
     "epci_code": "244200614",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42260"
   },
@@ -203,7 +203,7 @@
     "name": "Burdignes",
     "code": "42028",
     "epci_code": "244200622",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42220"
   },
@@ -211,7 +211,7 @@
     "name": "Bussières",
     "code": "42029",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42510"
   },
@@ -219,7 +219,7 @@
     "name": "Bussy-Albieux",
     "code": "42030",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42260"
   },
@@ -227,7 +227,7 @@
     "name": "Caloire",
     "code": "42031",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42240"
   },
@@ -235,7 +235,7 @@
     "name": "Cellieu",
     "code": "42032",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42320"
   },
@@ -243,7 +243,7 @@
     "name": "Le Cergne",
     "code": "42033",
     "epci_code": "200035202",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42460"
   },
@@ -251,7 +251,7 @@
     "name": "Cervières",
     "code": "42034",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42440"
   },
@@ -259,7 +259,7 @@
     "name": "Cezay",
     "code": "42035",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42130"
   },
@@ -267,7 +267,7 @@
     "name": "Chagnon",
     "code": "42036",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42800"
   },
@@ -275,7 +275,7 @@
     "name": "Chalain-d’Uzore",
     "code": "42037",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42600"
   },
@@ -283,7 +283,7 @@
     "name": "Chalain-le-Comtal",
     "code": "42038",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42600"
   },
@@ -291,7 +291,7 @@
     "name": "Chalmazel-Jeansagnière",
     "code": "42039",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42920"
   },
@@ -299,7 +299,7 @@
     "name": "La Chamba",
     "code": "42040",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42440"
   },
@@ -307,7 +307,7 @@
     "name": "Chambéon",
     "code": "42041",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42110"
   },
@@ -315,7 +315,7 @@
     "name": "Chambles",
     "code": "42042",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42170"
   },
@@ -323,7 +323,7 @@
     "name": "Chambœuf",
     "code": "42043",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42330"
   },
@@ -331,7 +331,7 @@
     "name": "Le Chambon-Feugerolles",
     "code": "42044",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42500"
   },
@@ -339,7 +339,7 @@
     "name": "La Chambonie",
     "code": "42045",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42440"
   },
@@ -347,7 +347,7 @@
     "name": "Champdieu",
     "code": "42046",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42600"
   },
@@ -355,7 +355,7 @@
     "name": "Champoly",
     "code": "42047",
     "epci_code": "244200820",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42430"
   },
@@ -363,7 +363,7 @@
     "name": "Chandon",
     "code": "42048",
     "epci_code": "200035202",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42190"
   },
@@ -371,7 +371,7 @@
     "name": "Changy",
     "code": "42049",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42310"
   },
@@ -379,7 +379,7 @@
     "name": "La Chapelle-en-Lafaye",
     "code": "42050",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42380"
   },
@@ -387,7 +387,7 @@
     "name": "La Chapelle-Villars",
     "code": "42051",
     "epci_code": "244200895",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42410"
   },
@@ -395,7 +395,7 @@
     "name": "Charlieu",
     "code": "42052",
     "epci_code": "200035202",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42190"
   },
@@ -403,7 +403,7 @@
     "name": "Châteauneuf",
     "code": "42053",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42800"
   },
@@ -411,7 +411,7 @@
     "name": "Châtelneuf",
     "code": "42054",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42940"
   },
@@ -419,7 +419,7 @@
     "name": "Châtelus",
     "code": "42055",
     "epci_code": "200066587",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42140"
   },
@@ -427,7 +427,7 @@
     "name": "Chavanay",
     "code": "42056",
     "epci_code": "244200895",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42410"
   },
@@ -435,7 +435,7 @@
     "name": "Chazelles-sur-Lavieu",
     "code": "42058",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42560"
   },
@@ -443,7 +443,7 @@
     "name": "Chazelles-sur-Lyon",
     "code": "42059",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42140"
   },
@@ -451,7 +451,7 @@
     "name": "Chenereilles",
     "code": "42060",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42560"
   },
@@ -459,7 +459,7 @@
     "name": "Cherier",
     "code": "42061",
     "epci_code": "244200820",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42430"
   },
@@ -467,7 +467,7 @@
     "name": "Chevrières",
     "code": "42062",
     "epci_code": "200066587",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42140"
   },
@@ -475,7 +475,7 @@
     "name": "Chirassimont",
     "code": "42063",
     "epci_code": "244200630",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42114"
   },
@@ -483,7 +483,7 @@
     "name": "Chuyer",
     "code": "42064",
     "epci_code": "244200895",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42410"
   },
@@ -491,7 +491,7 @@
     "name": "Civens",
     "code": "42065",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42110"
   },
@@ -499,7 +499,7 @@
     "name": "Cleppé",
     "code": "42066",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42110"
   },
@@ -507,7 +507,7 @@
     "name": "Colombier",
     "code": "42067",
     "epci_code": "244200622",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42220"
   },
@@ -515,7 +515,7 @@
     "name": "Combre",
     "code": "42068",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42840"
   },
@@ -523,7 +523,7 @@
     "name": "Commelle-Vernay",
     "code": "42069",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42120"
   },
@@ -531,7 +531,7 @@
     "name": "Cordelle",
     "code": "42070",
     "epci_code": "244200630",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42123"
   },
@@ -539,7 +539,7 @@
     "name": "Le Coteau",
     "code": "42071",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42120"
   },
@@ -547,7 +547,7 @@
     "name": "Cottance",
     "code": "42073",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42360"
   },
@@ -555,7 +555,7 @@
     "name": "Coutouvre",
     "code": "42074",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42460"
   },
@@ -563,7 +563,7 @@
     "name": "Craintilleux",
     "code": "42075",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42210"
   },
@@ -571,7 +571,7 @@
     "name": "Cremeaux",
     "code": "42076",
     "epci_code": "244200820",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42260"
   },
@@ -579,7 +579,7 @@
     "name": "Croizet-sur-Gand",
     "code": "42077",
     "epci_code": "244200630",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42540"
   },
@@ -587,7 +587,7 @@
     "name": "Le Crozet",
     "code": "42078",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42310"
   },
@@ -595,7 +595,7 @@
     "name": "Cuinzier",
     "code": "42079",
     "epci_code": "200035202",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42460"
   },
@@ -603,7 +603,7 @@
     "name": "Cuzieu",
     "code": "42081",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42330"
   },
@@ -611,7 +611,7 @@
     "name": "Dargoire",
     "code": "42083",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42800"
   },
@@ -619,7 +619,7 @@
     "name": "Solore-en-Forez",
     "code": "42084",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42130"
   },
@@ -627,7 +627,7 @@
     "name": "Doizieux",
     "code": "42085",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42740"
   },
@@ -635,7 +635,7 @@
     "name": "Écoche",
     "code": "42086",
     "epci_code": "200035202",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42670"
   },
@@ -643,7 +643,7 @@
     "name": "Écotay-l’Olme",
     "code": "42087",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42600"
   },
@@ -651,7 +651,7 @@
     "name": "Épercieux-Saint-Paul",
     "code": "42088",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42110"
   },
@@ -659,7 +659,7 @@
     "name": "Essertines-en-Châtelneuf",
     "code": "42089",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42600"
   },
@@ -667,7 +667,7 @@
     "name": "Essertines-en-Donzy",
     "code": "42090",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42360"
   },
@@ -675,7 +675,7 @@
     "name": "Estivareilles",
     "code": "42091",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42380"
   },
@@ -683,7 +683,7 @@
     "name": "L’Étrat",
     "code": "42092",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42580"
   },
@@ -691,7 +691,7 @@
     "name": "Farnay",
     "code": "42093",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42320"
   },
@@ -699,7 +699,7 @@
     "name": "Feurs",
     "code": "42094",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42110"
   },
@@ -707,7 +707,7 @@
     "name": "Firminy",
     "code": "42095",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42700"
   },
@@ -715,7 +715,7 @@
     "name": "Fontanès",
     "code": "42096",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42140"
   },
@@ -723,7 +723,7 @@
     "name": "La Fouillouse",
     "code": "42097",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42480"
   },
@@ -731,7 +731,7 @@
     "name": "Fourneaux",
     "code": "42098",
     "epci_code": "244200630",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42470"
   },
@@ -739,7 +739,7 @@
     "name": "Fraisses",
     "code": "42099",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42490"
   },
@@ -747,7 +747,7 @@
     "name": "La Gimond",
     "code": "42100",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42140"
   },
@@ -755,7 +755,7 @@
     "name": "Graix",
     "code": "42101",
     "epci_code": "244200622",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42220"
   },
@@ -763,7 +763,7 @@
     "name": "Grammond",
     "code": "42102",
     "epci_code": "200066587",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42140"
   },
@@ -771,7 +771,7 @@
     "name": "La Grand-Croix",
     "code": "42103",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42320"
   },
@@ -779,7 +779,7 @@
     "name": "La Gresle",
     "code": "42104",
     "epci_code": "200035202",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42460"
   },
@@ -787,7 +787,7 @@
     "name": "Grézieux-le-Fromental",
     "code": "42105",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42600"
   },
@@ -795,7 +795,7 @@
     "name": "Grézolles",
     "code": "42106",
     "epci_code": "244200614",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42260"
   },
@@ -803,7 +803,7 @@
     "name": "Gumières",
     "code": "42107",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42560"
   },
@@ -811,7 +811,7 @@
     "name": "L’Hôpital-le-Grand",
     "code": "42108",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42210"
   },
@@ -819,7 +819,7 @@
     "name": "L’Horme",
     "code": "42110",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42152"
   },
@@ -827,7 +827,7 @@
     "name": "Jarnosse",
     "code": "42112",
     "epci_code": "200035202",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42460"
   },
@@ -835,7 +835,7 @@
     "name": "Jas",
     "code": "42113",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42110"
   },
@@ -843,7 +843,7 @@
     "name": "Jonzieux",
     "code": "42115",
     "epci_code": "244200622",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42660"
   },
@@ -851,7 +851,7 @@
     "name": "Juré",
     "code": "42116",
     "epci_code": "244200820",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42430"
   },
@@ -859,7 +859,7 @@
     "name": "Lavieu",
     "code": "42117",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42560"
   },
@@ -867,7 +867,7 @@
     "name": "Lay",
     "code": "42118",
     "epci_code": "244200630",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42470"
   },
@@ -875,7 +875,7 @@
     "name": "Leigneux",
     "code": "42119",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42130"
   },
@@ -883,7 +883,7 @@
     "name": "Lentigny",
     "code": "42120",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42155"
   },
@@ -891,7 +891,7 @@
     "name": "Lérigneux",
     "code": "42121",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42600"
   },
@@ -899,7 +899,7 @@
     "name": "Lézigneux",
     "code": "42122",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42600"
   },
@@ -907,7 +907,7 @@
     "name": "Lorette",
     "code": "42123",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42420"
   },
@@ -915,7 +915,7 @@
     "name": "Lupé",
     "code": "42124",
     "epci_code": "244200895",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42520"
   },
@@ -923,7 +923,7 @@
     "name": "Luré",
     "code": "42125",
     "epci_code": "244200614",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42260"
   },
@@ -931,7 +931,7 @@
     "name": "Luriecq",
     "code": "42126",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42380"
   },
@@ -939,7 +939,7 @@
     "name": "Mably",
     "code": "42127",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42300"
   },
@@ -947,7 +947,7 @@
     "name": "Machézal",
     "code": "42128",
     "epci_code": "244200630",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42114"
   },
@@ -955,7 +955,7 @@
     "name": "Maclas",
     "code": "42129",
     "epci_code": "244200895",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42520"
   },
@@ -963,7 +963,7 @@
     "name": "Magneux-Haute-Rive",
     "code": "42130",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42600"
   },
@@ -971,7 +971,7 @@
     "name": "Maizilly",
     "code": "42131",
     "epci_code": "200035202",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42750"
   },
@@ -979,7 +979,7 @@
     "name": "Malleval",
     "code": "42132",
     "epci_code": "244200895",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42520"
   },
@@ -987,7 +987,7 @@
     "name": "Marcenod",
     "code": "42133",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42140"
   },
@@ -995,7 +995,7 @@
     "name": "Marcilly-le-Châtel",
     "code": "42134",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42130"
   },
@@ -1003,7 +1003,7 @@
     "name": "Marclopt",
     "code": "42135",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42210"
   },
@@ -1011,7 +1011,7 @@
     "name": "Marcoux",
     "code": "42136",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42130"
   },
@@ -1019,7 +1019,7 @@
     "name": "Margerie-Chantagret",
     "code": "42137",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42560"
   },
@@ -1027,7 +1027,7 @@
     "name": "Maringes",
     "code": "42138",
     "epci_code": "200066587",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42140"
   },
@@ -1035,7 +1035,7 @@
     "name": "Marlhes",
     "code": "42139",
     "epci_code": "244200622",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42660"
   },
@@ -1043,7 +1043,7 @@
     "name": "Marols",
     "code": "42140",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42560"
   },
@@ -1051,7 +1051,7 @@
     "name": "Mars",
     "code": "42141",
     "epci_code": "200035202",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42750"
   },
@@ -1059,7 +1059,7 @@
     "name": "Merle-Leignec",
     "code": "42142",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42380"
   },
@@ -1067,7 +1067,7 @@
     "name": "Mizérieux",
     "code": "42143",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42110"
   },
@@ -1075,7 +1075,7 @@
     "name": "Montagny",
     "code": "42145",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42840"
   },
@@ -1083,7 +1083,7 @@
     "name": "Montarcher",
     "code": "42146",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42380"
   },
@@ -1091,7 +1091,7 @@
     "name": "Montbrison",
     "code": "42147",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42600"
   },
@@ -1099,7 +1099,7 @@
     "name": "Montchal",
     "code": "42148",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42360"
   },
@@ -1107,7 +1107,7 @@
     "name": "Montrond-les-Bains",
     "code": "42149",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42210"
   },
@@ -1115,7 +1115,7 @@
     "name": "Montverdun",
     "code": "42150",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42130"
   },
@@ -1123,7 +1123,7 @@
     "name": "Mornand-en-Forez",
     "code": "42151",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42600"
   },
@@ -1131,7 +1131,7 @@
     "name": "Nandax",
     "code": "42152",
     "epci_code": "200035202",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42720"
   },
@@ -1139,7 +1139,7 @@
     "name": "Neaux",
     "code": "42153",
     "epci_code": "244200630",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42470"
   },
@@ -1147,7 +1147,7 @@
     "name": "Néronde",
     "code": "42154",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42510"
   },
@@ -1155,7 +1155,7 @@
     "name": "Nervieux",
     "code": "42155",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42510"
   },
@@ -1163,7 +1163,7 @@
     "name": "Neulise",
     "code": "42156",
     "epci_code": "244200630",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42590"
   },
@@ -1171,7 +1171,7 @@
     "name": "Noailly",
     "code": "42157",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42640"
   },
@@ -1179,7 +1179,7 @@
     "name": "Les Noës",
     "code": "42158",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42370"
   },
@@ -1187,7 +1187,7 @@
     "name": "Noirétable",
     "code": "42159",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42440"
   },
@@ -1195,7 +1195,7 @@
     "name": "Nollieux",
     "code": "42160",
     "epci_code": "244200614",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42260"
   },
@@ -1203,7 +1203,7 @@
     "name": "Notre-Dame-de-Boisset",
     "code": "42161",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42120"
   },
@@ -1211,7 +1211,7 @@
     "name": "Ouches",
     "code": "42162",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42155"
   },
@@ -1219,7 +1219,7 @@
     "name": "La Pacaudière",
     "code": "42163",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42310"
   },
@@ -1227,7 +1227,7 @@
     "name": "Palogneux",
     "code": "42164",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42990"
   },
@@ -1235,7 +1235,7 @@
     "name": "Panissières",
     "code": "42165",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42360"
   },
@@ -1243,7 +1243,7 @@
     "name": "Parigny",
     "code": "42166",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42120"
   },
@@ -1251,7 +1251,7 @@
     "name": "Pavezin",
     "code": "42167",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42410"
   },
@@ -1259,7 +1259,7 @@
     "name": "Pélussin",
     "code": "42168",
     "epci_code": "244200895",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42410"
   },
@@ -1267,7 +1267,7 @@
     "name": "Périgneux",
     "code": "42169",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42380"
   },
@@ -1275,7 +1275,7 @@
     "name": "Perreux",
     "code": "42170",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42120"
   },
@@ -1283,7 +1283,7 @@
     "name": "Pinay",
     "code": "42171",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42590"
   },
@@ -1291,7 +1291,7 @@
     "name": "Planfoy",
     "code": "42172",
     "epci_code": "244200622",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42660"
   },
@@ -1299,7 +1299,7 @@
     "name": "Pommiers-en-Forez",
     "code": "42173",
     "epci_code": "244200614",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42260"
   },
@@ -1307,7 +1307,7 @@
     "name": "Poncins",
     "code": "42174",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42110"
   },
@@ -1315,7 +1315,7 @@
     "name": "Pouilly-lès-Feurs",
     "code": "42175",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42110"
   },
@@ -1323,7 +1323,7 @@
     "name": "Pouilly-les-Nonains",
     "code": "42176",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42155"
   },
@@ -1331,7 +1331,7 @@
     "name": "Pouilly-sous-Charlieu",
     "code": "42177",
     "epci_code": "200035202",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42720"
   },
@@ -1339,7 +1339,7 @@
     "name": "Pradines",
     "code": "42178",
     "epci_code": "244200630",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42630"
   },
@@ -1347,7 +1347,7 @@
     "name": "Pralong",
     "code": "42179",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42600"
   },
@@ -1355,7 +1355,7 @@
     "name": "Précieux",
     "code": "42180",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42600"
   },
@@ -1363,7 +1363,7 @@
     "name": "Régny",
     "code": "42181",
     "epci_code": "244200630",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42630"
   },
@@ -1371,7 +1371,7 @@
     "name": "Renaison",
     "code": "42182",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42370"
   },
@@ -1379,7 +1379,7 @@
     "name": "La Ricamarie",
     "code": "42183",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42150"
   },
@@ -1387,7 +1387,7 @@
     "name": "Riorges",
     "code": "42184",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42153"
   },
@@ -1395,7 +1395,7 @@
     "name": "Rivas",
     "code": "42185",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42340"
   },
@@ -1403,7 +1403,7 @@
     "name": "Rive-de-Gier",
     "code": "42186",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42800"
   },
@@ -1411,7 +1411,7 @@
     "name": "Roanne",
     "code": "42187",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42300"
   },
@@ -1419,7 +1419,7 @@
     "name": "Roche-en-Forez",
     "code": "42188",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42600"
   },
@@ -1427,7 +1427,7 @@
     "name": "Roche-la-Molière",
     "code": "42189",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42230"
   },
@@ -1435,7 +1435,7 @@
     "name": "Roisey",
     "code": "42191",
     "epci_code": "244200895",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42520"
   },
@@ -1443,7 +1443,7 @@
     "name": "Rozier-Côtes-d’Aurec",
     "code": "42192",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42380"
   },
@@ -1451,7 +1451,7 @@
     "name": "Rozier-en-Donzy",
     "code": "42193",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42810"
   },
@@ -1459,7 +1459,7 @@
     "name": "Sail-les-Bains",
     "code": "42194",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42310"
   },
@@ -1467,7 +1467,7 @@
     "name": "Sail-sous-Couzan",
     "code": "42195",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42890"
   },
@@ -1475,7 +1475,7 @@
     "name": "Sainte-Agathe-en-Donzy",
     "code": "42196",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42510"
   },
@@ -1483,7 +1483,7 @@
     "name": "Sainte-Agathe-la-Bouteresse",
     "code": "42197",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42130"
   },
@@ -1491,7 +1491,7 @@
     "name": "Saint-Alban-les-Eaux",
     "code": "42198",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42370"
   },
@@ -1499,7 +1499,7 @@
     "name": "Saint-André-d’Apchon",
     "code": "42199",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42370"
   },
@@ -1507,7 +1507,7 @@
     "name": "Saint-André-le-Puy",
     "code": "42200",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42210"
   },
@@ -1515,7 +1515,7 @@
     "name": "Saint-Appolinard",
     "code": "42201",
     "epci_code": "244200895",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42520"
   },
@@ -1523,7 +1523,7 @@
     "name": "Saint-Barthélemy-Lestra",
     "code": "42202",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42110"
   },
@@ -1531,7 +1531,7 @@
     "name": "Saint-Bonnet-des-Quarts",
     "code": "42203",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42310"
   },
@@ -1539,7 +1539,7 @@
     "name": "Saint-Bonnet-le-Château",
     "code": "42204",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42380"
   },
@@ -1547,7 +1547,7 @@
     "name": "Saint-Bonnet-le-Courreau",
     "code": "42205",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42940"
   },
@@ -1555,7 +1555,7 @@
     "name": "Saint-Bonnet-les-Oules",
     "code": "42206",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42330"
   },
@@ -1563,7 +1563,7 @@
     "name": "Saint-Chamond",
     "code": "42207",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42400"
   },
@@ -1571,7 +1571,7 @@
     "name": "Saint-Christo-en-Jarez",
     "code": "42208",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42320"
   },
@@ -1579,7 +1579,7 @@
     "name": "Sainte-Colombe-sur-Gand",
     "code": "42209",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42540"
   },
@@ -1587,7 +1587,7 @@
     "name": "Sainte-Croix-en-Jarez",
     "code": "42210",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42800"
   },
@@ -1595,7 +1595,7 @@
     "name": "Saint-Cyprien",
     "code": "42211",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42160"
   },
@@ -1603,7 +1603,7 @@
     "name": "Saint-Cyr-de-Favières",
     "code": "42212",
     "epci_code": "244200630",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42123"
   },
@@ -1611,7 +1611,7 @@
     "name": "Saint-Cyr-de-Valorges",
     "code": "42213",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42114"
   },
@@ -1619,7 +1619,7 @@
     "name": "Saint-Cyr-les-Vignes",
     "code": "42214",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42210"
   },
@@ -1627,7 +1627,7 @@
     "name": "Saint-Denis-de-Cabanne",
     "code": "42215",
     "epci_code": "200035202",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42750"
   },
@@ -1635,7 +1635,7 @@
     "name": "Saint-Denis-sur-Coise",
     "code": "42216",
     "epci_code": "200066587",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42140"
   },
@@ -1643,7 +1643,7 @@
     "name": "La Côte-Saint-Didier",
     "code": "42217",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42111"
   },
@@ -1651,7 +1651,7 @@
     "name": "Saint-Étienne",
     "code": "42218",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42000"
   },
@@ -1659,7 +1659,7 @@
     "name": "Saint-Étienne",
     "code": "42218",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42100"
   },
@@ -1667,7 +1667,7 @@
     "name": "Saint-Étienne",
     "code": "42218",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42230"
   },
@@ -1675,7 +1675,7 @@
     "name": "Saint-Étienne-le-Molard",
     "code": "42219",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42130"
   },
@@ -1683,7 +1683,7 @@
     "name": "Saint-Forgeux-Lespinasse",
     "code": "42220",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42640"
   },
@@ -1691,7 +1691,7 @@
     "name": "Sainte-Foy-Saint-Sulpice",
     "code": "42221",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42110"
   },
@@ -1699,7 +1699,7 @@
     "name": "Saint-Galmier",
     "code": "42222",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42330"
   },
@@ -1707,7 +1707,7 @@
     "name": "Saint-Genest-Lerpt",
     "code": "42223",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42530"
   },
@@ -1715,7 +1715,7 @@
     "name": "Saint-Genest-Malifaux",
     "code": "42224",
     "epci_code": "244200622",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42660"
   },
@@ -1723,7 +1723,7 @@
     "name": "Genilac",
     "code": "42225",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42800"
   },
@@ -1731,7 +1731,7 @@
     "name": "Saint-Georges-de-Baroille",
     "code": "42226",
     "epci_code": "244200614",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42510"
   },
@@ -1739,7 +1739,7 @@
     "name": "Saint-Georges-en-Couzan",
     "code": "42227",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42990"
   },
@@ -1747,7 +1747,7 @@
     "name": "Saint-Georges-Haute-Ville",
     "code": "42228",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42610"
   },
@@ -1755,7 +1755,7 @@
     "name": "Saint-Germain-la-Montagne",
     "code": "42229",
     "epci_code": "200035202",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42670"
   },
@@ -1763,7 +1763,7 @@
     "name": "Saint-Germain-Laval",
     "code": "42230",
     "epci_code": "244200614",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42260"
   },
@@ -1771,7 +1771,7 @@
     "name": "Saint-Germain-Lespinasse",
     "code": "42231",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42640"
   },
@@ -1779,7 +1779,7 @@
     "name": "Saint-Haon-le-Châtel",
     "code": "42232",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42370"
   },
@@ -1787,7 +1787,7 @@
     "name": "Saint-Haon-le-Vieux",
     "code": "42233",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42370"
   },
@@ -1795,7 +1795,7 @@
     "name": "Saint-Héand",
     "code": "42234",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42570"
   },
@@ -1803,7 +1803,7 @@
     "name": "Saint-Hilaire-Cusson-la-Valmitte",
     "code": "42235",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42380"
   },
@@ -1811,7 +1811,7 @@
     "name": "Saint-Hilaire-sous-Charlieu",
     "code": "42236",
     "epci_code": "200035202",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42190"
   },
@@ -1819,7 +1819,7 @@
     "name": "Saint-Jean-Bonnefonds",
     "code": "42237",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42650"
   },
@@ -1827,7 +1827,7 @@
     "name": "Saint-Jean-la-Vêtre",
     "code": "42238",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42440"
   },
@@ -1835,7 +1835,7 @@
     "name": "Saint-Jean-Saint-Maurice-sur-Loire",
     "code": "42239",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42155"
   },
@@ -1843,7 +1843,7 @@
     "name": "Saint-Jean-Soleymieux",
     "code": "42240",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42560"
   },
@@ -1851,7 +1851,7 @@
     "name": "Saint-Jodard",
     "code": "42241",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42590"
   },
@@ -1859,7 +1859,7 @@
     "name": "Saint-Joseph",
     "code": "42242",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42800"
   },
@@ -1867,7 +1867,7 @@
     "name": "Saint-Julien-d’Oddes",
     "code": "42243",
     "epci_code": "244200614",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42260"
   },
@@ -1875,7 +1875,7 @@
     "name": "Vêtre-sur-Anzon",
     "code": "42245",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42111"
   },
@@ -1883,7 +1883,7 @@
     "name": "Vêtre-sur-Anzon",
     "code": "42245",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42440"
   },
@@ -1891,7 +1891,7 @@
     "name": "Saint-Julien-Molin-Molette",
     "code": "42246",
     "epci_code": "244200622",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42220"
   },
@@ -1899,7 +1899,7 @@
     "name": "Saint-Just-en-Bas",
     "code": "42247",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42990"
   },
@@ -1907,7 +1907,7 @@
     "name": "Saint-Just-en-Chevalet",
     "code": "42248",
     "epci_code": "244200820",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42430"
   },
@@ -1915,7 +1915,7 @@
     "name": "Saint-Just-la-Pendue",
     "code": "42249",
     "epci_code": "244200630",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42540"
   },
@@ -1923,7 +1923,7 @@
     "name": "Saint-Laurent-la-Conche",
     "code": "42251",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42210"
   },
@@ -1931,7 +1931,7 @@
     "name": "Saint-Léger-sur-Roanne",
     "code": "42253",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42155"
   },
@@ -1939,7 +1939,7 @@
     "name": "Saint-Marcel-de-Félines",
     "code": "42254",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42122"
   },
@@ -1947,7 +1947,7 @@
     "name": "Saint-Marcel-d’Urfé",
     "code": "42255",
     "epci_code": "244200820",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42430"
   },
@@ -1955,7 +1955,7 @@
     "name": "Saint-Marcellin-en-Forez",
     "code": "42256",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42680"
   },
@@ -1963,7 +1963,7 @@
     "name": "Saint-Martin-d’Estréaux",
     "code": "42257",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42620"
   },
@@ -1971,7 +1971,7 @@
     "name": "Saint-Martin-la-Plaine",
     "code": "42259",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42800"
   },
@@ -1979,7 +1979,7 @@
     "name": "Saint-Martin-la-Sauveté",
     "code": "42260",
     "epci_code": "244200614",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42260"
   },
@@ -1987,7 +1987,7 @@
     "name": "Saint-Martin-Lestra",
     "code": "42261",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42110"
   },
@@ -1995,7 +1995,7 @@
     "name": "Saint-Maurice-en-Gourgois",
     "code": "42262",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42240"
   },
@@ -2003,7 +2003,7 @@
     "name": "Saint-Médard-en-Forez",
     "code": "42264",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42330"
   },
@@ -2011,7 +2011,7 @@
     "name": "Saint-Michel-sur-Rhône",
     "code": "42265",
     "epci_code": "244200895",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42410"
   },
@@ -2019,7 +2019,7 @@
     "name": "Saint-Nizier-de-Fornas",
     "code": "42266",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42380"
   },
@@ -2027,7 +2027,7 @@
     "name": "Saint-Nizier-sous-Charlieu",
     "code": "42267",
     "epci_code": "200035202",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42190"
   },
@@ -2035,7 +2035,7 @@
     "name": "Vézelin-sur-Loire",
     "code": "42268",
     "epci_code": "244200614",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42260"
   },
@@ -2043,7 +2043,7 @@
     "name": "Vézelin-sur-Loire",
     "code": "42268",
     "epci_code": "244200614",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42590"
   },
@@ -2051,7 +2051,7 @@
     "name": "Saint-Paul-d’Uzore",
     "code": "42269",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42600"
   },
@@ -2059,7 +2059,7 @@
     "name": "Saint-Paul-en-Cornillon",
     "code": "42270",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42240"
   },
@@ -2067,7 +2067,7 @@
     "name": "Saint-Paul-en-Jarez",
     "code": "42271",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42740"
   },
@@ -2075,7 +2075,7 @@
     "name": "Saint-Pierre-de-Bœuf",
     "code": "42272",
     "epci_code": "244200895",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42520"
   },
@@ -2083,7 +2083,7 @@
     "name": "Saint-Pierre-la-Noaille",
     "code": "42273",
     "epci_code": "200035202",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42190"
   },
@@ -2091,7 +2091,7 @@
     "name": "Saint-Polgues",
     "code": "42274",
     "epci_code": "244200614",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42260"
   },
@@ -2099,7 +2099,7 @@
     "name": "Saint-Priest-en-Jarez",
     "code": "42275",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42270"
   },
@@ -2107,7 +2107,7 @@
     "name": "Saint-Priest-la-Prugne",
     "code": "42276",
     "epci_code": "244200820",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42830"
   },
@@ -2115,7 +2115,7 @@
     "name": "Saint-Priest-la-Roche",
     "code": "42277",
     "epci_code": "244200630",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42590"
   },
@@ -2123,7 +2123,7 @@
     "name": "Saint-Priest-la-Vêtre",
     "code": "42278",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42440"
   },
@@ -2131,7 +2131,7 @@
     "name": "Saint-Just-Saint-Rambert",
     "code": "42279",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42170"
   },
@@ -2139,7 +2139,7 @@
     "name": "Saint-Régis-du-Coin",
     "code": "42280",
     "epci_code": "244200622",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42660"
   },
@@ -2147,7 +2147,7 @@
     "name": "Saint-Rirand",
     "code": "42281",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42370"
   },
@@ -2155,7 +2155,7 @@
     "name": "Saint-Romain-d’Urfé",
     "code": "42282",
     "epci_code": "244200820",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42430"
   },
@@ -2163,7 +2163,7 @@
     "name": "Saint-Romain-en-Jarez",
     "code": "42283",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42800"
   },
@@ -2171,7 +2171,7 @@
     "name": "Saint-Romain-la-Motte",
     "code": "42284",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42640"
   },
@@ -2179,7 +2179,7 @@
     "name": "Saint-Romain-le-Puy",
     "code": "42285",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42610"
   },
@@ -2187,7 +2187,7 @@
     "name": "Saint-Romain-les-Atheux",
     "code": "42286",
     "epci_code": "244200622",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42660"
   },
@@ -2195,7 +2195,7 @@
     "name": "Saint-Sauveur-en-Rue",
     "code": "42287",
     "epci_code": "244200622",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42220"
   },
@@ -2203,7 +2203,7 @@
     "name": "Saint-Sixte",
     "code": "42288",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42130"
   },
@@ -2211,7 +2211,7 @@
     "name": "Saint-Symphorien-de-Lay",
     "code": "42289",
     "epci_code": "244200630",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42470"
   },
@@ -2219,7 +2219,7 @@
     "name": "Saint-Thomas-la-Garde",
     "code": "42290",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42600"
   },
@@ -2227,7 +2227,7 @@
     "name": "Saint-Victor-sur-Rhins",
     "code": "42293",
     "epci_code": "244200630",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42630"
   },
@@ -2235,7 +2235,7 @@
     "name": "Saint-Vincent-de-Boisset",
     "code": "42294",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42120"
   },
@@ -2243,7 +2243,7 @@
     "name": "Les Salles",
     "code": "42295",
     "epci_code": "244200820",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42440"
   },
@@ -2251,7 +2251,7 @@
     "name": "Salt-en-Donzy",
     "code": "42296",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42110"
   },
@@ -2259,7 +2259,7 @@
     "name": "Salvizinet",
     "code": "42297",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42110"
   },
@@ -2267,7 +2267,7 @@
     "name": "Sauvain",
     "code": "42298",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42990"
   },
@@ -2275,7 +2275,7 @@
     "name": "Savigneux",
     "code": "42299",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42600"
   },
@@ -2283,7 +2283,7 @@
     "name": "Sevelinges",
     "code": "42300",
     "epci_code": "200035202",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42460"
   },
@@ -2291,7 +2291,7 @@
     "name": "Soleymieux",
     "code": "42301",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42560"
   },
@@ -2299,7 +2299,7 @@
     "name": "Sorbiers",
     "code": "42302",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42290"
   },
@@ -2307,7 +2307,7 @@
     "name": "Souternon",
     "code": "42303",
     "epci_code": "244200614",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42260"
   },
@@ -2315,7 +2315,7 @@
     "name": "Sury-le-Comtal",
     "code": "42304",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42450"
   },
@@ -2323,7 +2323,7 @@
     "name": "La Talaudière",
     "code": "42305",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42350"
   },
@@ -2331,7 +2331,7 @@
     "name": "Tarentaise",
     "code": "42306",
     "epci_code": "244200622",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42660"
   },
@@ -2339,7 +2339,7 @@
     "name": "Tartaras",
     "code": "42307",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42800"
   },
@@ -2347,7 +2347,7 @@
     "name": "La Terrasse-sur-Dorlay",
     "code": "42308",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42740"
   },
@@ -2355,7 +2355,7 @@
     "name": "Thélis-la-Combe",
     "code": "42310",
     "epci_code": "244200622",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42220"
   },
@@ -2363,7 +2363,7 @@
     "name": "La Tour-en-Jarez",
     "code": "42311",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42580"
   },
@@ -2371,7 +2371,7 @@
     "name": "La Tourette",
     "code": "42312",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42380"
   },
@@ -2379,7 +2379,7 @@
     "name": "Trelins",
     "code": "42313",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42130"
   },
@@ -2387,7 +2387,7 @@
     "name": "La Tuilière",
     "code": "42314",
     "epci_code": "244200820",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42830"
   },
@@ -2395,7 +2395,7 @@
     "name": "Unias",
     "code": "42315",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42210"
   },
@@ -2403,7 +2403,7 @@
     "name": "Unieux",
     "code": "42316",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42240"
   },
@@ -2411,7 +2411,7 @@
     "name": "Urbise",
     "code": "42317",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42310"
   },
@@ -2419,7 +2419,7 @@
     "name": "Usson-en-Forez",
     "code": "42318",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42550"
   },
@@ -2427,7 +2427,7 @@
     "name": "Valeille",
     "code": "42319",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42110"
   },
@@ -2435,7 +2435,7 @@
     "name": "Valfleury",
     "code": "42320",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42320"
   },
@@ -2443,7 +2443,7 @@
     "name": "La Valla-sur-Rochefort",
     "code": "42321",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42111"
   },
@@ -2451,7 +2451,7 @@
     "name": "La Valla-en-Gier",
     "code": "42322",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42131"
   },
@@ -2459,7 +2459,7 @@
     "name": "Veauche",
     "code": "42323",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42340"
   },
@@ -2467,7 +2467,7 @@
     "name": "Veauchette",
     "code": "42324",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42340"
   },
@@ -2475,7 +2475,7 @@
     "name": "Vendranges",
     "code": "42325",
     "epci_code": "244200630",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42590"
   },
@@ -2483,7 +2483,7 @@
     "name": "Véranne",
     "code": "42326",
     "epci_code": "244200895",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42520"
   },
@@ -2491,7 +2491,7 @@
     "name": "Vérin",
     "code": "42327",
     "epci_code": "244200895",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42410"
   },
@@ -2499,7 +2499,7 @@
     "name": "Verrières-en-Forez",
     "code": "42328",
     "epci_code": "200065886",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42600"
   },
@@ -2507,7 +2507,7 @@
     "name": "La Versanne",
     "code": "42329",
     "epci_code": "244200622",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42220"
   },
@@ -2515,7 +2515,7 @@
     "name": "Villars",
     "code": "42330",
     "epci_code": "244200770",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42390"
   },
@@ -2523,7 +2523,7 @@
     "name": "Villemontais",
     "code": "42331",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42155"
   },
@@ -2531,7 +2531,7 @@
     "name": "Villerest",
     "code": "42332",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42300"
   },
@@ -2539,7 +2539,7 @@
     "name": "Villers",
     "code": "42333",
     "epci_code": "200035202",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42460"
   },
@@ -2547,7 +2547,7 @@
     "name": "Violay",
     "code": "42334",
     "epci_code": "200065894",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42780"
   },
@@ -2555,7 +2555,7 @@
     "name": "Viricelles",
     "code": "42335",
     "epci_code": "200066587",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42140"
   },
@@ -2563,7 +2563,7 @@
     "name": "Virigneux",
     "code": "42336",
     "epci_code": "200066587",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42140"
   },
@@ -2571,7 +2571,7 @@
     "name": "Vivans",
     "code": "42337",
     "epci_code": "200035731",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42310"
   },
@@ -2579,7 +2579,7 @@
     "name": "Vougy",
     "code": "42338",
     "epci_code": "200035202",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42720"
   },
@@ -2587,7 +2587,7 @@
     "name": "Chausseterre",
     "code": "42339",
     "epci_code": "244200820",
-    "departement_code": "42",
+    "department_code": "42",
     "region_code": "84",
     "postal_code": "42430"
   }

@@ -3,7 +3,7 @@
     "name": "Albefeuille-Lagarde",
     "code": "82001",
     "epci_code": "248200099",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82290"
   },
@@ -11,7 +11,7 @@
     "name": "Albias",
     "code": "82002",
     "epci_code": "200066884",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82350"
   },
@@ -19,7 +19,7 @@
     "name": "Angeville",
     "code": "82003",
     "epci_code": "200066322",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82210"
   },
@@ -27,7 +27,7 @@
     "name": "Asques",
     "code": "82004",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82120"
   },
@@ -35,7 +35,7 @@
     "name": "Aucamville",
     "code": "82005",
     "epci_code": "200066652",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82600"
   },
@@ -43,7 +43,7 @@
     "name": "Auterive",
     "code": "82006",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82500"
   },
@@ -51,7 +51,7 @@
     "name": "Auty",
     "code": "82007",
     "epci_code": "248200057",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82220"
   },
@@ -59,7 +59,7 @@
     "name": "Auvillar",
     "code": "82008",
     "epci_code": "248200016",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82340"
   },
@@ -67,7 +67,7 @@
     "name": "Balignac",
     "code": "82009",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82120"
   },
@@ -75,7 +75,7 @@
     "name": "Bardigues",
     "code": "82010",
     "epci_code": "248200016",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82340"
   },
@@ -83,7 +83,7 @@
     "name": "Barry-d’Islemade",
     "code": "82011",
     "epci_code": "200067122",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82290"
   },
@@ -91,7 +91,7 @@
     "name": "Les Barthes",
     "code": "82012",
     "epci_code": "200067122",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82100"
   },
@@ -99,7 +99,7 @@
     "name": "Beaumont-de-Lomagne",
     "code": "82013",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82500"
   },
@@ -107,7 +107,7 @@
     "name": "Beaupuy",
     "code": "82014",
     "epci_code": "200066652",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82600"
   },
@@ -115,7 +115,7 @@
     "name": "Belbèze-en-Lomagne",
     "code": "82015",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82500"
   },
@@ -123,7 +123,7 @@
     "name": "Belvèze",
     "code": "82016",
     "epci_code": "200040418",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82150"
   },
@@ -131,7 +131,7 @@
     "name": "Bessens",
     "code": "82017",
     "epci_code": "200066652",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82170"
   },
@@ -139,7 +139,7 @@
     "name": "Bioule",
     "code": "82018",
     "epci_code": "200066884",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82800"
   },
@@ -147,7 +147,7 @@
     "name": "Boudou",
     "code": "82019",
     "epci_code": "200066322",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82200"
   },
@@ -155,7 +155,7 @@
     "name": "Bouillac",
     "code": "82020",
     "epci_code": "200066652",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82600"
   },
@@ -163,7 +163,7 @@
     "name": "Bouloc-en-Quercy",
     "code": "82021",
     "epci_code": "200040418",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82110"
   },
@@ -171,7 +171,7 @@
     "name": "Bourg-de-Visa",
     "code": "82022",
     "epci_code": "200040418",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82190"
   },
@@ -179,7 +179,7 @@
     "name": "Bourret",
     "code": "82023",
     "epci_code": "200066652",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82700"
   },
@@ -187,7 +187,7 @@
     "name": "Brassac",
     "code": "82024",
     "epci_code": "200040418",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82190"
   },
@@ -195,7 +195,7 @@
     "name": "Bressols",
     "code": "82025",
     "epci_code": "248200099",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82710"
   },
@@ -203,7 +203,7 @@
     "name": "Bruniquel",
     "code": "82026",
     "epci_code": "200066884",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82800"
   },
@@ -211,7 +211,7 @@
     "name": "Campsas",
     "code": "82027",
     "epci_code": "200066652",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82370"
   },
@@ -219,7 +219,7 @@
     "name": "Canals",
     "code": "82028",
     "epci_code": "200066652",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82170"
   },
@@ -227,7 +227,7 @@
     "name": "Castanet",
     "code": "82029",
     "epci_code": "248200107",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82160"
   },
@@ -235,7 +235,7 @@
     "name": "Castelferrus",
     "code": "82030",
     "epci_code": "200066322",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82100"
   },
@@ -243,7 +243,7 @@
     "name": "Castelmayran",
     "code": "82031",
     "epci_code": "200066322",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82210"
   },
@@ -251,7 +251,7 @@
     "name": "Castelsagrat",
     "code": "82032",
     "epci_code": "248200016",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82400"
   },
@@ -259,7 +259,7 @@
     "name": "Castelsarrasin",
     "code": "82033",
     "epci_code": "200066322",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82100"
   },
@@ -267,7 +267,7 @@
     "name": "Castéra-Bouzet",
     "code": "82034",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82120"
   },
@@ -275,7 +275,7 @@
     "name": "Caumont",
     "code": "82035",
     "epci_code": "200066322",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82210"
   },
@@ -283,7 +283,7 @@
     "name": "Le Causé",
     "code": "82036",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82500"
   },
@@ -291,7 +291,7 @@
     "name": "Caussade",
     "code": "82037",
     "epci_code": "248200057",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82300"
   },
@@ -299,7 +299,7 @@
     "name": "Caylus",
     "code": "82038",
     "epci_code": "248200107",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82160"
   },
@@ -307,7 +307,7 @@
     "name": "Cayrac",
     "code": "82039",
     "epci_code": "248200057",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82440"
   },
@@ -315,7 +315,7 @@
     "name": "Cayriech",
     "code": "82040",
     "epci_code": "248200057",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82240"
   },
@@ -323,7 +323,7 @@
     "name": "Cazals",
     "code": "82041",
     "epci_code": "248200107",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82140"
   },
@@ -331,7 +331,7 @@
     "name": "Cazes-Mondenard",
     "code": "82042",
     "epci_code": "200040418",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82110"
   },
@@ -339,7 +339,7 @@
     "name": "Comberouger",
     "code": "82043",
     "epci_code": "200066652",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82600"
   },
@@ -347,7 +347,7 @@
     "name": "Corbarieu",
     "code": "82044",
     "epci_code": "248200099",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82370"
   },
@@ -355,7 +355,7 @@
     "name": "Cordes-Tolosannes",
     "code": "82045",
     "epci_code": "200066322",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82700"
   },
@@ -363,7 +363,7 @@
     "name": "Coutures",
     "code": "82046",
     "epci_code": "200066322",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82210"
   },
@@ -371,7 +371,7 @@
     "name": "Cumont",
     "code": "82047",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82500"
   },
@@ -379,7 +379,7 @@
     "name": "Dieupentale",
     "code": "82048",
     "epci_code": "200066652",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82170"
   },
@@ -387,7 +387,7 @@
     "name": "Donzac",
     "code": "82049",
     "epci_code": "248200016",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82340"
   },
@@ -395,7 +395,7 @@
     "name": "Dunes",
     "code": "82050",
     "epci_code": "248200016",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82340"
   },
@@ -403,7 +403,7 @@
     "name": "Durfort-Lacapelette",
     "code": "82051",
     "epci_code": "200066322",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82390"
   },
@@ -411,7 +411,7 @@
     "name": "Escatalens",
     "code": "82052",
     "epci_code": "248200099",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82700"
   },
@@ -419,7 +419,7 @@
     "name": "Escazeaux",
     "code": "82053",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82500"
   },
@@ -427,7 +427,7 @@
     "name": "Espalais",
     "code": "82054",
     "epci_code": "248200016",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82400"
   },
@@ -435,7 +435,7 @@
     "name": "Esparsac",
     "code": "82055",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82500"
   },
@@ -443,7 +443,7 @@
     "name": "Espinas",
     "code": "82056",
     "epci_code": "248200107",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82160"
   },
@@ -451,7 +451,7 @@
     "name": "Fabas",
     "code": "82057",
     "epci_code": "200066652",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82170"
   },
@@ -459,7 +459,7 @@
     "name": "Fajolles",
     "code": "82058",
     "epci_code": "200066322",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82210"
   },
@@ -467,7 +467,7 @@
     "name": "Faudoas",
     "code": "82059",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82500"
   },
@@ -475,7 +475,7 @@
     "name": "Fauroux",
     "code": "82060",
     "epci_code": "200040418",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82190"
   },
@@ -483,7 +483,7 @@
     "name": "Féneyrols",
     "code": "82061",
     "epci_code": "248200107",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82140"
   },
@@ -491,7 +491,7 @@
     "name": "Finhan",
     "code": "82062",
     "epci_code": "200066652",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82700"
   },
@@ -499,7 +499,7 @@
     "name": "Garganvillar",
     "code": "82063",
     "epci_code": "200066322",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82100"
   },
@@ -507,7 +507,7 @@
     "name": "Gariès",
     "code": "82064",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82500"
   },
@@ -515,7 +515,7 @@
     "name": "Gasques",
     "code": "82065",
     "epci_code": "248200016",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82400"
   },
@@ -523,7 +523,7 @@
     "name": "Génébrières",
     "code": "82066",
     "epci_code": "200066884",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82230"
   },
@@ -531,7 +531,7 @@
     "name": "Gensac",
     "code": "82067",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82120"
   },
@@ -539,7 +539,7 @@
     "name": "Gimat",
     "code": "82068",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82500"
   },
@@ -547,7 +547,7 @@
     "name": "Ginals",
     "code": "82069",
     "epci_code": "248200107",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82330"
   },
@@ -555,7 +555,7 @@
     "name": "Glatens",
     "code": "82070",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82500"
   },
@@ -563,7 +563,7 @@
     "name": "Goas",
     "code": "82071",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82500"
   },
@@ -571,7 +571,7 @@
     "name": "Golfech",
     "code": "82072",
     "epci_code": "248200016",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82400"
   },
@@ -579,7 +579,7 @@
     "name": "Goudourville",
     "code": "82073",
     "epci_code": "248200016",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82400"
   },
@@ -587,7 +587,7 @@
     "name": "Gramont",
     "code": "82074",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82120"
   },
@@ -595,7 +595,7 @@
     "name": "Grisolles",
     "code": "82075",
     "epci_code": "200066652",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82170"
   },
@@ -603,7 +603,7 @@
     "name": "L’Honor-de-Cos",
     "code": "82076",
     "epci_code": "200067122",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82130"
   },
@@ -611,7 +611,7 @@
     "name": "Labarthe",
     "code": "82077",
     "epci_code": "200067122",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82220"
   },
@@ -619,7 +619,7 @@
     "name": "Labastide-de-Penne",
     "code": "82078",
     "epci_code": "248200057",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82240"
   },
@@ -627,7 +627,7 @@
     "name": "Labastide-Saint-Pierre",
     "code": "82079",
     "epci_code": "200066652",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82370"
   },
@@ -635,7 +635,7 @@
     "name": "Labastide-du-Temple",
     "code": "82080",
     "epci_code": "200067122",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82100"
   },
@@ -643,7 +643,7 @@
     "name": "Labourgade",
     "code": "82081",
     "epci_code": "200066322",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82100"
   },
@@ -651,7 +651,7 @@
     "name": "Lacapelle-Livron",
     "code": "82082",
     "epci_code": "248200107",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82160"
   },
@@ -659,7 +659,7 @@
     "name": "Lachapelle",
     "code": "82083",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82120"
   },
@@ -667,7 +667,7 @@
     "name": "Lacour",
     "code": "82084",
     "epci_code": "200040418",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82190"
   },
@@ -675,7 +675,7 @@
     "name": "Lacourt-Saint-Pierre",
     "code": "82085",
     "epci_code": "248200099",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82290"
   },
@@ -683,7 +683,7 @@
     "name": "Lafitte",
     "code": "82086",
     "epci_code": "200066322",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82100"
   },
@@ -691,7 +691,7 @@
     "name": "Lafrançaise",
     "code": "82087",
     "epci_code": "200067122",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82130"
   },
@@ -699,7 +699,7 @@
     "name": "Laguépie",
     "code": "82088",
     "epci_code": "248200107",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82250"
   },
@@ -707,7 +707,7 @@
     "name": "Lamagistère",
     "code": "82089",
     "epci_code": "248200016",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82360"
   },
@@ -715,7 +715,7 @@
     "name": "Lamothe-Capdeville",
     "code": "82090",
     "epci_code": "248200099",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82130"
   },
@@ -723,7 +723,7 @@
     "name": "Lamothe-Cumont",
     "code": "82091",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82500"
   },
@@ -731,7 +731,7 @@
     "name": "Lapenche",
     "code": "82092",
     "epci_code": "248200057",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82240"
   },
@@ -739,7 +739,7 @@
     "name": "Larrazet",
     "code": "82093",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82500"
   },
@@ -747,7 +747,7 @@
     "name": "Lauzerte",
     "code": "82094",
     "epci_code": "200040418",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82110"
   },
@@ -755,7 +755,7 @@
     "name": "Lavaurette",
     "code": "82095",
     "epci_code": "248200057",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82240"
   },
@@ -763,7 +763,7 @@
     "name": "La Ville-Dieu-du-Temple",
     "code": "82096",
     "epci_code": "200066322",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82290"
   },
@@ -771,7 +771,7 @@
     "name": "Lavit",
     "code": "82097",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82120"
   },
@@ -779,7 +779,7 @@
     "name": "Léojac",
     "code": "82098",
     "epci_code": "248200099",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82230"
   },
@@ -787,7 +787,7 @@
     "name": "Lizac",
     "code": "82099",
     "epci_code": "200066322",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82200"
   },
@@ -795,7 +795,7 @@
     "name": "Loze",
     "code": "82100",
     "epci_code": "248200107",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82160"
   },
@@ -803,7 +803,7 @@
     "name": "Malause",
     "code": "82101",
     "epci_code": "248200016",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82200"
   },
@@ -811,7 +811,7 @@
     "name": "Mansonville",
     "code": "82102",
     "epci_code": "248200016",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82120"
   },
@@ -819,7 +819,7 @@
     "name": "Marignac",
     "code": "82103",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82500"
   },
@@ -827,7 +827,7 @@
     "name": "Marsac",
     "code": "82104",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82120"
   },
@@ -835,7 +835,7 @@
     "name": "Mas-Grenier",
     "code": "82105",
     "epci_code": "200066652",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82600"
   },
@@ -843,7 +843,7 @@
     "name": "Maubec",
     "code": "82106",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82500"
   },
@@ -851,7 +851,7 @@
     "name": "Maumusson",
     "code": "82107",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82120"
   },
@@ -859,7 +859,7 @@
     "name": "Meauzac",
     "code": "82108",
     "epci_code": "200067122",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82290"
   },
@@ -867,7 +867,7 @@
     "name": "Merles",
     "code": "82109",
     "epci_code": "248200016",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82210"
   },
@@ -875,7 +875,7 @@
     "name": "Mirabel",
     "code": "82110",
     "epci_code": "248200057",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82440"
   },
@@ -883,7 +883,7 @@
     "name": "Miramont-de-Quercy",
     "code": "82111",
     "epci_code": "200040418",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82190"
   },
@@ -891,7 +891,7 @@
     "name": "Moissac",
     "code": "82112",
     "epci_code": "200066322",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82200"
   },
@@ -899,7 +899,7 @@
     "name": "Molières",
     "code": "82113",
     "epci_code": "248200057",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82220"
   },
@@ -907,7 +907,7 @@
     "name": "Monbéqui",
     "code": "82114",
     "epci_code": "200066652",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82170"
   },
@@ -915,7 +915,7 @@
     "name": "Monclar-de-Quercy",
     "code": "82115",
     "epci_code": "200066884",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82230"
   },
@@ -923,7 +923,7 @@
     "name": "Montagudet",
     "code": "82116",
     "epci_code": "200040418",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82110"
   },
@@ -931,7 +931,7 @@
     "name": "Montaigu-de-Quercy",
     "code": "82117",
     "epci_code": "200040418",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82150"
   },
@@ -939,7 +939,7 @@
     "name": "Montaïn",
     "code": "82118",
     "epci_code": "200066322",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82100"
   },
@@ -947,7 +947,7 @@
     "name": "Montalzat",
     "code": "82119",
     "epci_code": "248200057",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82270"
   },
@@ -955,7 +955,7 @@
     "name": "Montastruc",
     "code": "82120",
     "epci_code": "200067122",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82130"
   },
@@ -963,7 +963,7 @@
     "name": "Montauban",
     "code": "82121",
     "epci_code": "248200099",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82000"
   },
@@ -971,7 +971,7 @@
     "name": "Montbarla",
     "code": "82122",
     "epci_code": "200040418",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82110"
   },
@@ -979,7 +979,7 @@
     "name": "Montbartier",
     "code": "82123",
     "epci_code": "200066652",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82700"
   },
@@ -987,7 +987,7 @@
     "name": "Montbeton",
     "code": "82124",
     "epci_code": "248200099",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82290"
   },
@@ -995,7 +995,7 @@
     "name": "Montech",
     "code": "82125",
     "epci_code": "200066652",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82700"
   },
@@ -1003,7 +1003,7 @@
     "name": "Monteils",
     "code": "82126",
     "epci_code": "248200057",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82300"
   },
@@ -1011,7 +1011,7 @@
     "name": "Montesquieu",
     "code": "82127",
     "epci_code": "200066322",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82200"
   },
@@ -1019,7 +1019,7 @@
     "name": "Montfermier",
     "code": "82128",
     "epci_code": "248200057",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82270"
   },
@@ -1027,7 +1027,7 @@
     "name": "Montgaillard",
     "code": "82129",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82120"
   },
@@ -1035,7 +1035,7 @@
     "name": "Montjoi",
     "code": "82130",
     "epci_code": "248200016",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82400"
   },
@@ -1043,7 +1043,7 @@
     "name": "Montpezat-de-Quercy",
     "code": "82131",
     "epci_code": "248200057",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82270"
   },
@@ -1051,7 +1051,7 @@
     "name": "Montricoux",
     "code": "82132",
     "epci_code": "200066884",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82800"
   },
@@ -1059,7 +1059,7 @@
     "name": "Mouillac",
     "code": "82133",
     "epci_code": "248200107",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82160"
   },
@@ -1067,7 +1067,7 @@
     "name": "Nègrepelisse",
     "code": "82134",
     "epci_code": "200066884",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82800"
   },
@@ -1075,7 +1075,7 @@
     "name": "Nohic",
     "code": "82135",
     "epci_code": "200066652",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82370"
   },
@@ -1083,7 +1083,7 @@
     "name": "Orgueil",
     "code": "82136",
     "epci_code": "200066652",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82370"
   },
@@ -1091,7 +1091,7 @@
     "name": "Parisot",
     "code": "82137",
     "epci_code": "248200107",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82160"
   },
@@ -1099,7 +1099,7 @@
     "name": "Perville",
     "code": "82138",
     "epci_code": "248200016",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82400"
   },
@@ -1107,7 +1107,7 @@
     "name": "Le Pin",
     "code": "82139",
     "epci_code": "248200016",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82340"
   },
@@ -1115,7 +1115,7 @@
     "name": "Piquecos",
     "code": "82140",
     "epci_code": "200067122",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82130"
   },
@@ -1123,7 +1123,7 @@
     "name": "Pommevic",
     "code": "82141",
     "epci_code": "248200016",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82400"
   },
@@ -1131,7 +1131,7 @@
     "name": "Pompignan",
     "code": "82142",
     "epci_code": "200066652",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82170"
   },
@@ -1139,7 +1139,7 @@
     "name": "Poupas",
     "code": "82143",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82120"
   },
@@ -1147,7 +1147,7 @@
     "name": "Puycornet",
     "code": "82144",
     "epci_code": "200067122",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82220"
   },
@@ -1155,7 +1155,7 @@
     "name": "Puygaillard-de-Quercy",
     "code": "82145",
     "epci_code": "200066884",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82800"
   },
@@ -1163,7 +1163,7 @@
     "name": "Puygaillard-de-Lomagne",
     "code": "82146",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82120"
   },
@@ -1171,7 +1171,7 @@
     "name": "Puylagarde",
     "code": "82147",
     "epci_code": "248200107",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82160"
   },
@@ -1179,7 +1179,7 @@
     "name": "Puylaroque",
     "code": "82148",
     "epci_code": "248200057",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82240"
   },
@@ -1187,7 +1187,7 @@
     "name": "Réalville",
     "code": "82149",
     "epci_code": "248200057",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82440"
   },
@@ -1195,7 +1195,7 @@
     "name": "Reyniès",
     "code": "82150",
     "epci_code": "248200099",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82370"
   },
@@ -1203,7 +1203,7 @@
     "name": "Roquecor",
     "code": "82151",
     "epci_code": "200040418",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82150"
   },
@@ -1211,7 +1211,7 @@
     "name": "Saint-Aignan",
     "code": "82152",
     "epci_code": "200066322",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82100"
   },
@@ -1219,7 +1219,7 @@
     "name": "Saint-Amans-du-Pech",
     "code": "82153",
     "epci_code": "200040418",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82150"
   },
@@ -1227,7 +1227,7 @@
     "name": "Saint-Amans-de-Pellagal",
     "code": "82154",
     "epci_code": "200040418",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82110"
   },
@@ -1235,7 +1235,7 @@
     "name": "Saint-Antonin-Noble-Val",
     "code": "82155",
     "epci_code": "248200107",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82140"
   },
@@ -1243,7 +1243,7 @@
     "name": "Saint-Arroumex",
     "code": "82156",
     "epci_code": "200066322",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82210"
   },
@@ -1251,7 +1251,7 @@
     "name": "Saint-Beauzeil",
     "code": "82157",
     "epci_code": "200040418",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82150"
   },
@@ -1259,7 +1259,7 @@
     "name": "Saint-Cirice",
     "code": "82158",
     "epci_code": "248200016",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82340"
   },
@@ -1267,7 +1267,7 @@
     "name": "Saint-Cirq",
     "code": "82159",
     "epci_code": "248200057",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82300"
   },
@@ -1275,7 +1275,7 @@
     "name": "Saint-Clair",
     "code": "82160",
     "epci_code": "248200016",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82400"
   },
@@ -1283,7 +1283,7 @@
     "name": "Saint-Étienne-de-Tulmont",
     "code": "82161",
     "epci_code": "200066884",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82410"
   },
@@ -1291,7 +1291,7 @@
     "name": "Saint-Georges",
     "code": "82162",
     "epci_code": "248200057",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82240"
   },
@@ -1299,7 +1299,7 @@
     "name": "Saint-Jean-du-Bouzet",
     "code": "82163",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82120"
   },
@@ -1307,7 +1307,7 @@
     "name": "Sainte-Juliette",
     "code": "82164",
     "epci_code": "200040418",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82110"
   },
@@ -1315,7 +1315,7 @@
     "name": "Saint-Loup",
     "code": "82165",
     "epci_code": "248200016",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82340"
   },
@@ -1323,7 +1323,7 @@
     "name": "Saint-Michel",
     "code": "82166",
     "epci_code": "248200016",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82340"
   },
@@ -1331,7 +1331,7 @@
     "name": "Saint-Nauphary",
     "code": "82167",
     "epci_code": "248200099",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82370"
   },
@@ -1339,7 +1339,7 @@
     "name": "Saint-Nazaire-de-Valentane",
     "code": "82168",
     "epci_code": "200040418",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82190"
   },
@@ -1347,7 +1347,7 @@
     "name": "Saint-Nicolas-de-la-Grave",
     "code": "82169",
     "epci_code": "200066322",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82210"
   },
@@ -1355,7 +1355,7 @@
     "name": "Saint-Paul-d’Espis",
     "code": "82170",
     "epci_code": "248200016",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82400"
   },
@@ -1363,7 +1363,7 @@
     "name": "Saint-Porquier",
     "code": "82171",
     "epci_code": "200066322",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82700"
   },
@@ -1371,7 +1371,7 @@
     "name": "Saint-Projet",
     "code": "82172",
     "epci_code": "248200107",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82160"
   },
@@ -1379,7 +1379,7 @@
     "name": "Saint-Sardos",
     "code": "82173",
     "epci_code": "200066652",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82600"
   },
@@ -1387,7 +1387,7 @@
     "name": "Saint-Vincent-d’Autéjac",
     "code": "82174",
     "epci_code": "248200057",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82300"
   },
@@ -1395,7 +1395,7 @@
     "name": "Saint-Vincent-Lespinasse",
     "code": "82175",
     "epci_code": "248200016",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82400"
   },
@@ -1403,7 +1403,7 @@
     "name": "La Salvetat-Belmontet",
     "code": "82176",
     "epci_code": "200066884",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82230"
   },
@@ -1411,7 +1411,7 @@
     "name": "Sauveterre",
     "code": "82177",
     "epci_code": "200040418",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82110"
   },
@@ -1419,7 +1419,7 @@
     "name": "Savenès",
     "code": "82178",
     "epci_code": "200066652",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82600"
   },
@@ -1427,7 +1427,7 @@
     "name": "Septfonds",
     "code": "82179",
     "epci_code": "248200057",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82240"
   },
@@ -1435,7 +1435,7 @@
     "name": "Sérignac",
     "code": "82180",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82500"
   },
@@ -1443,7 +1443,7 @@
     "name": "Sistels",
     "code": "82181",
     "epci_code": "248200016",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82340"
   },
@@ -1451,7 +1451,7 @@
     "name": "Touffailles",
     "code": "82182",
     "epci_code": "200040418",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82190"
   },
@@ -1459,7 +1459,7 @@
     "name": "Tréjouls",
     "code": "82183",
     "epci_code": "200040418",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82110"
   },
@@ -1467,7 +1467,7 @@
     "name": "Vaïssac",
     "code": "82184",
     "epci_code": "200066884",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82800"
   },
@@ -1475,7 +1475,7 @@
     "name": "Valeilles",
     "code": "82185",
     "epci_code": "200040418",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82150"
   },
@@ -1483,7 +1483,7 @@
     "name": "Valence",
     "code": "82186",
     "epci_code": "248200016",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82400"
   },
@@ -1491,7 +1491,7 @@
     "name": "Varen",
     "code": "82187",
     "epci_code": "248200107",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82330"
   },
@@ -1499,7 +1499,7 @@
     "name": "Varennes",
     "code": "82188",
     "epci_code": "200066652",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82370"
   },
@@ -1507,7 +1507,7 @@
     "name": "Vazerac",
     "code": "82189",
     "epci_code": "200067122",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82220"
   },
@@ -1515,7 +1515,7 @@
     "name": "Verdun-sur-Garonne",
     "code": "82190",
     "epci_code": "200066652",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82600"
   },
@@ -1523,7 +1523,7 @@
     "name": "Verfeil",
     "code": "82191",
     "epci_code": "248200107",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82330"
   },
@@ -1531,7 +1531,7 @@
     "name": "Verlhac-Tescou",
     "code": "82192",
     "epci_code": "200066884",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82230"
   },
@@ -1539,7 +1539,7 @@
     "name": "Vigueron",
     "code": "82193",
     "epci_code": "248200065",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82500"
   },
@@ -1547,7 +1547,7 @@
     "name": "Villebrumier",
     "code": "82194",
     "epci_code": "200066652",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82370"
   },
@@ -1555,7 +1555,7 @@
     "name": "Villemade",
     "code": "82195",
     "epci_code": "248200099",
-    "departement_code": "82",
+    "department_code": "82",
     "region_code": "76",
     "postal_code": "82130"
   }

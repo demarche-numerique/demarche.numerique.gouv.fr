@@ -3,7 +3,7 @@
     "name": "Les Abymes",
     "code": "97101",
     "epci_code": "200018653",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97139"
   },
@@ -11,7 +11,7 @@
     "name": "Les Abymes",
     "code": "97101",
     "epci_code": "200018653",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97142"
   },
@@ -19,7 +19,7 @@
     "name": "Anse-Bertrand",
     "code": "97102",
     "epci_code": "200044691",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97121"
   },
@@ -27,7 +27,7 @@
     "name": "Baie-Mahault",
     "code": "97103",
     "epci_code": "200018653",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97122"
   },
@@ -35,7 +35,7 @@
     "name": "Baillif",
     "code": "97104",
     "epci_code": "249710070",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97123"
   },
@@ -43,7 +43,7 @@
     "name": "Basse-Terre",
     "code": "97105",
     "epci_code": "249710070",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97100"
   },
@@ -51,7 +51,7 @@
     "name": "Bouillante",
     "code": "97106",
     "epci_code": "249710070",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97125"
   },
@@ -59,7 +59,7 @@
     "name": "Capesterre-Belle-Eau",
     "code": "97107",
     "epci_code": "249710070",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97130"
   },
@@ -67,7 +67,7 @@
     "name": "Capesterre-de-Marie-Galante",
     "code": "97108",
     "epci_code": "249710047",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97140"
   },
@@ -75,7 +75,7 @@
     "name": "Gourbeyre",
     "code": "97109",
     "epci_code": "249710070",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97113"
   },
@@ -83,7 +83,7 @@
     "name": "La Désirade",
     "code": "97110",
     "epci_code": "200041507",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97127"
   },
@@ -91,7 +91,7 @@
     "name": "Deshaies",
     "code": "97111",
     "epci_code": "249710062",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97126"
   },
@@ -99,7 +99,7 @@
     "name": "Grand-Bourg",
     "code": "97112",
     "epci_code": "249710047",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97112"
   },
@@ -107,7 +107,7 @@
     "name": "Le Gosier",
     "code": "97113",
     "epci_code": "200041507",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97190"
   },
@@ -115,7 +115,7 @@
     "name": "Goyave",
     "code": "97114",
     "epci_code": "249710062",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97128"
   },
@@ -123,7 +123,7 @@
     "name": "Lamentin",
     "code": "97115",
     "epci_code": "249710062",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97129"
   },
@@ -131,7 +131,7 @@
     "name": "Morne-à-l’Eau",
     "code": "97116",
     "epci_code": "200044691",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97111"
   },
@@ -139,7 +139,7 @@
     "name": "Le Moule",
     "code": "97117",
     "epci_code": "200044691",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97160"
   },
@@ -147,7 +147,7 @@
     "name": "Petit-Bourg",
     "code": "97118",
     "epci_code": "249710062",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97170"
   },
@@ -155,7 +155,7 @@
     "name": "Petit-Canal",
     "code": "97119",
     "epci_code": "200044691",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97131"
   },
@@ -163,7 +163,7 @@
     "name": "Pointe-à-Pitre",
     "code": "97120",
     "epci_code": "200018653",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97110"
   },
@@ -171,7 +171,7 @@
     "name": "Pointe-Noire",
     "code": "97121",
     "epci_code": "249710062",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97116"
   },
@@ -179,7 +179,7 @@
     "name": "Port-Louis",
     "code": "97122",
     "epci_code": "200044691",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97117"
   },
@@ -187,7 +187,7 @@
     "name": "Saint-Claude",
     "code": "97124",
     "epci_code": "249710070",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97120"
   },
@@ -195,7 +195,7 @@
     "name": "Saint-François",
     "code": "97125",
     "epci_code": "200041507",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97118"
   },
@@ -203,7 +203,7 @@
     "name": "Saint-Louis",
     "code": "97126",
     "epci_code": "249710047",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97134"
   },
@@ -211,7 +211,7 @@
     "name": "Sainte-Anne",
     "code": "97128",
     "epci_code": "200041507",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97180"
   },
@@ -219,7 +219,7 @@
     "name": "Sainte-Rose",
     "code": "97129",
     "epci_code": "249710062",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97115"
   },
@@ -227,7 +227,7 @@
     "name": "Terre-de-Bas",
     "code": "97130",
     "epci_code": "249710070",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97136"
   },
@@ -235,7 +235,7 @@
     "name": "Terre-de-Haut",
     "code": "97131",
     "epci_code": "249710070",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97137"
   },
@@ -243,7 +243,7 @@
     "name": "Trois-Rivières",
     "code": "97132",
     "epci_code": "249710070",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97114"
   },
@@ -251,7 +251,7 @@
     "name": "Vieux-Fort",
     "code": "97133",
     "epci_code": "249710070",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97141"
   },
@@ -259,7 +259,7 @@
     "name": "Vieux-Habitants",
     "code": "97134",
     "epci_code": "249710070",
-    "departement_code": "971",
+    "department_code": "971",
     "region_code": "01",
     "postal_code": "97119"
   }

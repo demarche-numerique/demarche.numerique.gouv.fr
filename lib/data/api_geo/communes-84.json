@@ -3,7 +3,7 @@
     "name": "Althen-des-Paluds",
     "code": "84001",
     "epci_code": "248400293",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84210"
   },
@@ -11,7 +11,7 @@
     "name": "Ansouis",
     "code": "84002",
     "epci_code": "248400285",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84240"
   },
@@ -19,7 +19,7 @@
     "name": "Apt",
     "code": "84003",
     "epci_code": "200040624",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84400"
   },
@@ -27,7 +27,7 @@
     "name": "Aubignan",
     "code": "84004",
     "epci_code": "248400053",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84810"
   },
@@ -35,7 +35,7 @@
     "name": "Aurel",
     "code": "84005",
     "epci_code": "200035723",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84390"
   },
@@ -43,7 +43,7 @@
     "name": "Auribeau",
     "code": "84006",
     "epci_code": "200040624",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84400"
   },
@@ -51,7 +51,7 @@
     "name": "Avignon",
     "code": "84007",
     "epci_code": "248400251",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84000"
   },
@@ -59,7 +59,7 @@
     "name": "Avignon",
     "code": "84007",
     "epci_code": "248400251",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84140"
   },
@@ -67,7 +67,7 @@
     "name": "Le Barroux",
     "code": "84008",
     "epci_code": "248400053",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84330"
   },
@@ -75,7 +75,7 @@
     "name": "La Bastide-des-Jourdans",
     "code": "84009",
     "epci_code": "248400285",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84240"
   },
@@ -83,7 +83,7 @@
     "name": "La Bastidonne",
     "code": "84010",
     "epci_code": "248400285",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84120"
   },
@@ -91,7 +91,7 @@
     "name": "Le Beaucet",
     "code": "84011",
     "epci_code": "248400053",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84210"
   },
@@ -99,7 +99,7 @@
     "name": "Beaumes-de-Venise",
     "code": "84012",
     "epci_code": "248400053",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84190"
   },
@@ -107,7 +107,7 @@
     "name": "Beaumettes",
     "code": "84013",
     "epci_code": "200040442",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84220"
   },
@@ -115,7 +115,7 @@
     "name": "Beaumont-de-Pertuis",
     "code": "84014",
     "epci_code": "248400285",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84120"
   },
@@ -123,7 +123,7 @@
     "name": "Beaumont-du-Ventoux",
     "code": "84015",
     "epci_code": "248400053",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84340"
   },
@@ -131,7 +131,7 @@
     "name": "Bédarrides",
     "code": "84016",
     "epci_code": "248400293",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84370"
   },
@@ -139,7 +139,7 @@
     "name": "Bédoin",
     "code": "84017",
     "epci_code": "248400053",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84410"
   },
@@ -147,7 +147,7 @@
     "name": "Blauvac",
     "code": "84018",
     "epci_code": "200035723",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84570"
   },
@@ -155,7 +155,7 @@
     "name": "Bollène",
     "code": "84019",
     "epci_code": "200000628",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84500"
   },
@@ -163,7 +163,7 @@
     "name": "Bonnieux",
     "code": "84020",
     "epci_code": "200040624",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84480"
   },
@@ -171,7 +171,7 @@
     "name": "Brantes",
     "code": "84021",
     "epci_code": "248400335",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84390"
   },
@@ -179,7 +179,7 @@
     "name": "Buisson",
     "code": "84022",
     "epci_code": "248400335",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84110"
   },
@@ -187,7 +187,7 @@
     "name": "Buoux",
     "code": "84023",
     "epci_code": "200040624",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84480"
   },
@@ -195,7 +195,7 @@
     "name": "Cabrières-d’Aigues",
     "code": "84024",
     "epci_code": "248400285",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84240"
   },
@@ -203,7 +203,7 @@
     "name": "Cabrières-d’Avignon",
     "code": "84025",
     "epci_code": "200040442",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84220"
   },
@@ -211,7 +211,7 @@
     "name": "Cadenet",
     "code": "84026",
     "epci_code": "248400285",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84160"
   },
@@ -219,7 +219,7 @@
     "name": "Caderousse",
     "code": "84027",
     "epci_code": "248400236",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84860"
   },
@@ -227,7 +227,7 @@
     "name": "Cairanne",
     "code": "84028",
     "epci_code": "248400335",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84290"
   },
@@ -235,7 +235,7 @@
     "name": "Camaret-sur-Aigues",
     "code": "84029",
     "epci_code": "248400160",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84850"
   },
@@ -243,7 +243,7 @@
     "name": "Caromb",
     "code": "84030",
     "epci_code": "248400053",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84330"
   },
@@ -251,7 +251,7 @@
     "name": "Carpentras",
     "code": "84031",
     "epci_code": "248400053",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84200"
   },
@@ -259,7 +259,7 @@
     "name": "Caseneuve",
     "code": "84032",
     "epci_code": "200040624",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84750"
   },
@@ -267,7 +267,7 @@
     "name": "Castellet-en-Luberon",
     "code": "84033",
     "epci_code": "200040624",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84400"
   },
@@ -275,7 +275,7 @@
     "name": "Caumont-sur-Durance",
     "code": "84034",
     "epci_code": "248400251",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84510"
   },
@@ -283,7 +283,7 @@
     "name": "Cavaillon",
     "code": "84035",
     "epci_code": "200040442",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84300"
   },
@@ -291,7 +291,7 @@
     "name": "Châteauneuf-de-Gadagne",
     "code": "84036",
     "epci_code": "248400319",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84470"
   },
@@ -299,7 +299,7 @@
     "name": "Châteauneuf-du-Pape",
     "code": "84037",
     "epci_code": "248400236",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84230"
   },
@@ -307,7 +307,7 @@
     "name": "Cheval-Blanc",
     "code": "84038",
     "epci_code": "200040442",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84460"
   },
@@ -315,7 +315,7 @@
     "name": "Courthézon",
     "code": "84039",
     "epci_code": "248400236",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84350"
   },
@@ -323,7 +323,7 @@
     "name": "Crestet",
     "code": "84040",
     "epci_code": "248400335",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84110"
   },
@@ -331,7 +331,7 @@
     "name": "Crillon-le-Brave",
     "code": "84041",
     "epci_code": "248400053",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84410"
   },
@@ -339,7 +339,7 @@
     "name": "Cucuron",
     "code": "84042",
     "epci_code": "248400285",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84160"
   },
@@ -347,7 +347,7 @@
     "name": "Entraigues-sur-la-Sorgue",
     "code": "84043",
     "epci_code": "248400251",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84320"
   },
@@ -355,7 +355,7 @@
     "name": "Entrechaux",
     "code": "84044",
     "epci_code": "248400335",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84340"
   },
@@ -363,7 +363,7 @@
     "name": "Faucon",
     "code": "84045",
     "epci_code": "248400335",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84110"
   },
@@ -371,7 +371,7 @@
     "name": "Flassan",
     "code": "84046",
     "epci_code": "248400053",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84410"
   },
@@ -379,7 +379,7 @@
     "name": "Gargas",
     "code": "84047",
     "epci_code": "200040624",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84400"
   },
@@ -387,7 +387,7 @@
     "name": "Gignac",
     "code": "84048",
     "epci_code": "200040624",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84400"
   },
@@ -395,7 +395,7 @@
     "name": "Gigondas",
     "code": "84049",
     "epci_code": "248400053",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84190"
   },
@@ -403,7 +403,7 @@
     "name": "Gordes",
     "code": "84050",
     "epci_code": "200040442",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84220"
   },
@@ -411,7 +411,7 @@
     "name": "Goult",
     "code": "84051",
     "epci_code": "200040624",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84220"
   },
@@ -419,7 +419,7 @@
     "name": "Grambois",
     "code": "84052",
     "epci_code": "248400285",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84240"
   },
@@ -427,7 +427,7 @@
     "name": "Grillon",
     "code": "84053",
     "epci_code": "200040681",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84600"
   },
@@ -435,7 +435,7 @@
     "name": "L’Isle-sur-la-Sorgue",
     "code": "84054",
     "epci_code": "248400319",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84800"
   },
@@ -443,7 +443,7 @@
     "name": "Jonquerettes",
     "code": "84055",
     "epci_code": "248400251",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84450"
   },
@@ -451,7 +451,7 @@
     "name": "Jonquières",
     "code": "84056",
     "epci_code": "248400236",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84150"
   },
@@ -459,7 +459,7 @@
     "name": "Joucas",
     "code": "84057",
     "epci_code": "200040624",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84220"
   },
@@ -467,7 +467,7 @@
     "name": "Lacoste",
     "code": "84058",
     "epci_code": "200040624",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84480"
   },
@@ -475,7 +475,7 @@
     "name": "Lafare",
     "code": "84059",
     "epci_code": "248400053",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84190"
   },
@@ -483,7 +483,7 @@
     "name": "Lagarde-d’Apt",
     "code": "84060",
     "epci_code": "200040624",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84400"
   },
@@ -491,7 +491,7 @@
     "name": "Lagarde-Paréol",
     "code": "84061",
     "epci_code": "248400160",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84290"
   },
@@ -499,7 +499,7 @@
     "name": "Lagnes",
     "code": "84062",
     "epci_code": "200040442",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84800"
   },
@@ -507,7 +507,7 @@
     "name": "Lamotte-du-Rhône",
     "code": "84063",
     "epci_code": "200000628",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84840"
   },
@@ -515,7 +515,7 @@
     "name": "Lapalud",
     "code": "84064",
     "epci_code": "200000628",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84840"
   },
@@ -523,7 +523,7 @@
     "name": "Lauris",
     "code": "84065",
     "epci_code": "200040442",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84360"
   },
@@ -531,7 +531,7 @@
     "name": "Lioux",
     "code": "84066",
     "epci_code": "200040624",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84220"
   },
@@ -539,7 +539,7 @@
     "name": "Loriol-du-Comtat",
     "code": "84067",
     "epci_code": "248400053",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84870"
   },
@@ -547,7 +547,7 @@
     "name": "Lourmarin",
     "code": "84068",
     "epci_code": "200040442",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84160"
   },
@@ -555,7 +555,7 @@
     "name": "Malaucène",
     "code": "84069",
     "epci_code": "248400053",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84340"
   },
@@ -563,7 +563,7 @@
     "name": "Malemort-du-Comtat",
     "code": "84070",
     "epci_code": "200035723",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84570"
   },
@@ -571,7 +571,7 @@
     "name": "Maubec",
     "code": "84071",
     "epci_code": "200040442",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84660"
   },
@@ -579,7 +579,7 @@
     "name": "Mazan",
     "code": "84072",
     "epci_code": "248400053",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84380"
   },
@@ -587,7 +587,7 @@
     "name": "Ménerbes",
     "code": "84073",
     "epci_code": "200040624",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84560"
   },
@@ -595,7 +595,7 @@
     "name": "Mérindol",
     "code": "84074",
     "epci_code": "200040442",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84360"
   },
@@ -603,7 +603,7 @@
     "name": "Méthamis",
     "code": "84075",
     "epci_code": "200035723",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84570"
   },
@@ -611,7 +611,7 @@
     "name": "Mirabeau",
     "code": "84076",
     "epci_code": "248400285",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84120"
   },
@@ -619,7 +619,7 @@
     "name": "Modène",
     "code": "84077",
     "epci_code": "248400053",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84330"
   },
@@ -627,7 +627,7 @@
     "name": "Mondragon",
     "code": "84078",
     "epci_code": "200000628",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84430"
   },
@@ -635,7 +635,7 @@
     "name": "Monieux",
     "code": "84079",
     "epci_code": "200035723",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84390"
   },
@@ -643,7 +643,7 @@
     "name": "Monteux",
     "code": "84080",
     "epci_code": "248400293",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84170"
   },
@@ -651,7 +651,7 @@
     "name": "Morières-lès-Avignon",
     "code": "84081",
     "epci_code": "248400251",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84310"
   },
@@ -659,7 +659,7 @@
     "name": "Mormoiron",
     "code": "84082",
     "epci_code": "200035723",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84570"
   },
@@ -667,7 +667,7 @@
     "name": "Mornas",
     "code": "84083",
     "epci_code": "200000628",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84550"
   },
@@ -675,7 +675,7 @@
     "name": "La Motte-d’Aigues",
     "code": "84084",
     "epci_code": "248400285",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84240"
   },
@@ -683,7 +683,7 @@
     "name": "Murs",
     "code": "84085",
     "epci_code": "200040624",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84220"
   },
@@ -691,7 +691,7 @@
     "name": "Oppède",
     "code": "84086",
     "epci_code": "200040442",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84580"
   },
@@ -699,7 +699,7 @@
     "name": "Orange",
     "code": "84087",
     "epci_code": "248400236",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84100"
   },
@@ -707,7 +707,7 @@
     "name": "Pernes-les-Fontaines",
     "code": "84088",
     "epci_code": "248400293",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84210"
   },
@@ -715,7 +715,7 @@
     "name": "Pertuis",
     "code": "84089",
     "epci_code": "200054807",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84120"
   },
@@ -723,7 +723,7 @@
     "name": "Peypin-d’Aigues",
     "code": "84090",
     "epci_code": "248400285",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84240"
   },
@@ -731,7 +731,7 @@
     "name": "Piolenc",
     "code": "84091",
     "epci_code": "248400160",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84420"
   },
@@ -739,7 +739,7 @@
     "name": "Le Pontet",
     "code": "84092",
     "epci_code": "248400251",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84130"
   },
@@ -747,7 +747,7 @@
     "name": "Puget",
     "code": "84093",
     "epci_code": "200040442",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84360"
   },
@@ -755,7 +755,7 @@
     "name": "Puyméras",
     "code": "84094",
     "epci_code": "248400335",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84110"
   },
@@ -763,7 +763,7 @@
     "name": "Puyvert",
     "code": "84095",
     "epci_code": "200040442",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84160"
   },
@@ -771,7 +771,7 @@
     "name": "Rasteau",
     "code": "84096",
     "epci_code": "248400335",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84110"
   },
@@ -779,7 +779,7 @@
     "name": "Richerenches",
     "code": "84097",
     "epci_code": "200040681",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84600"
   },
@@ -787,7 +787,7 @@
     "name": "Roaix",
     "code": "84098",
     "epci_code": "248400335",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84110"
   },
@@ -795,7 +795,7 @@
     "name": "Robion",
     "code": "84099",
     "epci_code": "200040442",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84440"
   },
@@ -803,7 +803,7 @@
     "name": "La Roque-Alric",
     "code": "84100",
     "epci_code": "248400053",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84190"
   },
@@ -811,7 +811,7 @@
     "name": "La Roque-sur-Pernes",
     "code": "84101",
     "epci_code": "248400053",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84210"
   },
@@ -819,7 +819,7 @@
     "name": "Roussillon",
     "code": "84102",
     "epci_code": "200040624",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84220"
   },
@@ -827,7 +827,7 @@
     "name": "Rustrel",
     "code": "84103",
     "epci_code": "200040624",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84400"
   },
@@ -835,7 +835,7 @@
     "name": "Sablet",
     "code": "84104",
     "epci_code": "248400335",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84110"
   },
@@ -843,7 +843,7 @@
     "name": "Saignon",
     "code": "84105",
     "epci_code": "200040624",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84400"
   },
@@ -851,7 +851,7 @@
     "name": "Sainte-Cécile-les-Vignes",
     "code": "84106",
     "epci_code": "248400160",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84290"
   },
@@ -859,7 +859,7 @@
     "name": "Saint-Christol",
     "code": "84107",
     "epci_code": "200035723",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84390"
   },
@@ -867,7 +867,7 @@
     "name": "Saint-Didier",
     "code": "84108",
     "epci_code": "248400053",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84210"
   },
@@ -875,7 +875,7 @@
     "name": "Saint-Hippolyte-le-Graveyron",
     "code": "84109",
     "epci_code": "248400053",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84330"
   },
@@ -883,7 +883,7 @@
     "name": "Saint-Léger-du-Ventoux",
     "code": "84110",
     "epci_code": "248400335",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84390"
   },
@@ -891,7 +891,7 @@
     "name": "Saint-Marcellin-lès-Vaison",
     "code": "84111",
     "epci_code": "248400335",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84110"
   },
@@ -899,7 +899,7 @@
     "name": "Saint-Martin-de-Castillon",
     "code": "84112",
     "epci_code": "200040624",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84750"
   },
@@ -907,7 +907,7 @@
     "name": "Saint-Martin-de-la-Brasque",
     "code": "84113",
     "epci_code": "248400285",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84760"
   },
@@ -915,7 +915,7 @@
     "name": "Saint-Pantaléon",
     "code": "84114",
     "epci_code": "200040624",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84220"
   },
@@ -923,7 +923,7 @@
     "name": "Saint-Pierre-de-Vassols",
     "code": "84115",
     "epci_code": "248400053",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84330"
   },
@@ -931,7 +931,7 @@
     "name": "Saint-Romain-en-Viennois",
     "code": "84116",
     "epci_code": "248400335",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84110"
   },
@@ -939,7 +939,7 @@
     "name": "Saint-Roman-de-Malegarde",
     "code": "84117",
     "epci_code": "248400335",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84290"
   },
@@ -947,7 +947,7 @@
     "name": "Saint-Saturnin-lès-Apt",
     "code": "84118",
     "epci_code": "200040624",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84490"
   },
@@ -955,7 +955,7 @@
     "name": "Saint-Saturnin-lès-Avignon",
     "code": "84119",
     "epci_code": "248400251",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84450"
   },
@@ -963,7 +963,7 @@
     "name": "Saint-Trinit",
     "code": "84120",
     "epci_code": "200035723",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84390"
   },
@@ -971,7 +971,7 @@
     "name": "Sannes",
     "code": "84121",
     "epci_code": "248400285",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84240"
   },
@@ -979,7 +979,7 @@
     "name": "Sarrians",
     "code": "84122",
     "epci_code": "248400053",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84260"
   },
@@ -987,7 +987,7 @@
     "name": "Sault",
     "code": "84123",
     "epci_code": "200035723",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84390"
   },
@@ -995,7 +995,7 @@
     "name": "Saumane-de-Vaucluse",
     "code": "84124",
     "epci_code": "248400319",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84800"
   },
@@ -1003,7 +1003,7 @@
     "name": "Savoillan",
     "code": "84125",
     "epci_code": "248400335",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84390"
   },
@@ -1011,7 +1011,7 @@
     "name": "Séguret",
     "code": "84126",
     "epci_code": "248400335",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84110"
   },
@@ -1019,7 +1019,7 @@
     "name": "Sérignan-du-Comtat",
     "code": "84127",
     "epci_code": "248400160",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84830"
   },
@@ -1027,7 +1027,7 @@
     "name": "Sivergues",
     "code": "84128",
     "epci_code": "200040624",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84400"
   },
@@ -1035,7 +1035,7 @@
     "name": "Sorgues",
     "code": "84129",
     "epci_code": "248400293",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84700"
   },
@@ -1043,7 +1043,7 @@
     "name": "Suzette",
     "code": "84130",
     "epci_code": "248400053",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84190"
   },
@@ -1051,7 +1051,7 @@
     "name": "Taillades",
     "code": "84131",
     "epci_code": "200040442",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84300"
   },
@@ -1059,7 +1059,7 @@
     "name": "Le Thor",
     "code": "84132",
     "epci_code": "248400319",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84250"
   },
@@ -1067,7 +1067,7 @@
     "name": "La Tour-d’Aigues",
     "code": "84133",
     "epci_code": "248400285",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84240"
   },
@@ -1075,7 +1075,7 @@
     "name": "Travaillan",
     "code": "84134",
     "epci_code": "248400160",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84850"
   },
@@ -1083,7 +1083,7 @@
     "name": "Uchaux",
     "code": "84135",
     "epci_code": "248400160",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84100"
   },
@@ -1091,7 +1091,7 @@
     "name": "Vacqueyras",
     "code": "84136",
     "epci_code": "248400053",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84190"
   },
@@ -1099,7 +1099,7 @@
     "name": "Vaison-la-Romaine",
     "code": "84137",
     "epci_code": "248400335",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84110"
   },
@@ -1107,7 +1107,7 @@
     "name": "Valréas",
     "code": "84138",
     "epci_code": "200040681",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84600"
   },
@@ -1115,7 +1115,7 @@
     "name": "Fontaine-de-Vaucluse",
     "code": "84139",
     "epci_code": "248400319",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84800"
   },
@@ -1123,7 +1123,7 @@
     "name": "Vaugines",
     "code": "84140",
     "epci_code": "200040442",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84160"
   },
@@ -1131,7 +1131,7 @@
     "name": "Vedène",
     "code": "84141",
     "epci_code": "248400251",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84270"
   },
@@ -1139,7 +1139,7 @@
     "name": "Velleron",
     "code": "84142",
     "epci_code": "248400251",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84740"
   },
@@ -1147,7 +1147,7 @@
     "name": "Venasque",
     "code": "84143",
     "epci_code": "248400053",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84210"
   },
@@ -1155,7 +1155,7 @@
     "name": "Viens",
     "code": "84144",
     "epci_code": "200040624",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84750"
   },
@@ -1163,7 +1163,7 @@
     "name": "Villars",
     "code": "84145",
     "epci_code": "200040624",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84400"
   },
@@ -1171,7 +1171,7 @@
     "name": "Villedieu",
     "code": "84146",
     "epci_code": "248400335",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84110"
   },
@@ -1179,7 +1179,7 @@
     "name": "Villelaure",
     "code": "84147",
     "epci_code": "248400285",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84530"
   },
@@ -1187,7 +1187,7 @@
     "name": "Villes-sur-Auzon",
     "code": "84148",
     "epci_code": "200035723",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84570"
   },
@@ -1195,7 +1195,7 @@
     "name": "Violès",
     "code": "84149",
     "epci_code": "248400160",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84150"
   },
@@ -1203,7 +1203,7 @@
     "name": "Visan",
     "code": "84150",
     "epci_code": "200040681",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84820"
   },
@@ -1211,7 +1211,7 @@
     "name": "Vitrolles-en-Lubéron",
     "code": "84151",
     "epci_code": "248400285",
-    "departement_code": "84",
+    "department_code": "84",
     "region_code": "93",
     "postal_code": "84240"
   }

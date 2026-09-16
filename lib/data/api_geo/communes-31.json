@@ -3,7 +3,7 @@
     "name": "Agassac",
     "code": "31001",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31230"
   },
@@ -11,7 +11,7 @@
     "name": "Aignes",
     "code": "31002",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31550"
   },
@@ -19,7 +19,7 @@
     "name": "Aigrefeuille",
     "code": "31003",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31280"
   },
@@ -27,7 +27,7 @@
     "name": "Ayguesvives",
     "code": "31004",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31450"
   },
@@ -35,7 +35,7 @@
     "name": "Alan",
     "code": "31005",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31420"
   },
@@ -43,7 +43,7 @@
     "name": "Albiac",
     "code": "31006",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31460"
   },
@@ -51,7 +51,7 @@
     "name": "Ambax",
     "code": "31007",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31230"
   },
@@ -59,7 +59,7 @@
     "name": "Anan",
     "code": "31008",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31230"
   },
@@ -67,7 +67,7 @@
     "name": "Antichan-de-Frontignes",
     "code": "31009",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31510"
   },
@@ -75,7 +75,7 @@
     "name": "Antignac",
     "code": "31010",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -83,7 +83,7 @@
     "name": "Arbas",
     "code": "31011",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -91,7 +91,7 @@
     "name": "Arbon",
     "code": "31012",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -99,7 +99,7 @@
     "name": "Ardiège",
     "code": "31013",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31210"
   },
@@ -107,7 +107,7 @@
     "name": "Arguenos",
     "code": "31014",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -115,7 +115,7 @@
     "name": "Argut-Dessous",
     "code": "31015",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31440"
   },
@@ -123,7 +123,7 @@
     "name": "Arlos",
     "code": "31017",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31440"
   },
@@ -131,7 +131,7 @@
     "name": "Arnaud-Guilhem",
     "code": "31018",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31360"
   },
@@ -139,7 +139,7 @@
     "name": "Artigue",
     "code": "31019",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -147,7 +147,7 @@
     "name": "Aspet",
     "code": "31020",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -155,7 +155,7 @@
     "name": "Aspret-Sarrat",
     "code": "31021",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31800"
   },
@@ -163,7 +163,7 @@
     "name": "Aucamville",
     "code": "31022",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31140"
   },
@@ -171,7 +171,7 @@
     "name": "Aulon",
     "code": "31023",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31420"
   },
@@ -179,7 +179,7 @@
     "name": "Auragne",
     "code": "31024",
     "epci_code": "200068807",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31190"
   },
@@ -187,7 +187,7 @@
     "name": "Aureville",
     "code": "31025",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31320"
   },
@@ -195,7 +195,7 @@
     "name": "Auriac-sur-Vendinelle",
     "code": "31026",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31460"
   },
@@ -203,7 +203,7 @@
     "name": "Auribail",
     "code": "31027",
     "epci_code": "200068807",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31190"
   },
@@ -211,7 +211,7 @@
     "name": "Aurignac",
     "code": "31028",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31420"
   },
@@ -219,7 +219,7 @@
     "name": "Aurin",
     "code": "31029",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31570"
   },
@@ -227,7 +227,7 @@
     "name": "Ausseing",
     "code": "31030",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31260"
   },
@@ -235,7 +235,7 @@
     "name": "Ausson",
     "code": "31031",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31210"
   },
@@ -243,7 +243,7 @@
     "name": "Aussonne",
     "code": "31032",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31840"
   },
@@ -251,7 +251,7 @@
     "name": "Auterive",
     "code": "31033",
     "epci_code": "200068807",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31190"
   },
@@ -259,7 +259,7 @@
     "name": "Auzas",
     "code": "31034",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31360"
   },
@@ -267,7 +267,7 @@
     "name": "Auzeville-Tolosane",
     "code": "31035",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31320"
   },
@@ -275,7 +275,7 @@
     "name": "Auzielle",
     "code": "31036",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31650"
   },
@@ -283,7 +283,7 @@
     "name": "Avignonet-Lauragais",
     "code": "31037",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31290"
   },
@@ -291,7 +291,7 @@
     "name": "Azas",
     "code": "31038",
     "epci_code": "200034023",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31380"
   },
@@ -299,7 +299,7 @@
     "name": "Bachas",
     "code": "31039",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31420"
   },
@@ -307,7 +307,7 @@
     "name": "Bachos",
     "code": "31040",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31440"
   },
@@ -315,7 +315,7 @@
     "name": "Bagiry",
     "code": "31041",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31510"
   },
@@ -323,7 +323,7 @@
     "name": "Bagnères-de-Luchon",
     "code": "31042",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -331,7 +331,7 @@
     "name": "Balesta",
     "code": "31043",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31580"
   },
@@ -339,7 +339,7 @@
     "name": "Balma",
     "code": "31044",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31130"
   },
@@ -347,7 +347,7 @@
     "name": "Barbazan",
     "code": "31045",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31510"
   },
@@ -355,7 +355,7 @@
     "name": "Baren",
     "code": "31046",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31440"
   },
@@ -363,7 +363,7 @@
     "name": "Bax",
     "code": "31047",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31310"
   },
@@ -371,7 +371,7 @@
     "name": "Baziège",
     "code": "31048",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31450"
   },
@@ -379,7 +379,7 @@
     "name": "Bazus",
     "code": "31049",
     "epci_code": "243100732",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31380"
   },
@@ -387,7 +387,7 @@
     "name": "Beauchalot",
     "code": "31050",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31360"
   },
@@ -395,7 +395,7 @@
     "name": "Beaufort",
     "code": "31051",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31370"
   },
@@ -403,7 +403,7 @@
     "name": "Beaumont-sur-Lèze",
     "code": "31052",
     "epci_code": "200068807",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31870"
   },
@@ -411,7 +411,7 @@
     "name": "Beaupuy",
     "code": "31053",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31850"
   },
@@ -419,7 +419,7 @@
     "name": "Beauteville",
     "code": "31054",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31290"
   },
@@ -427,7 +427,7 @@
     "name": "Beauville",
     "code": "31055",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31460"
   },
@@ -435,7 +435,7 @@
     "name": "Beauzelle",
     "code": "31056",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31700"
   },
@@ -443,7 +443,7 @@
     "name": "Belberaud",
     "code": "31057",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31450"
   },
@@ -451,7 +451,7 @@
     "name": "Belbèze-de-Lauragais",
     "code": "31058",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31450"
   },
@@ -459,7 +459,7 @@
     "name": "Belbèze-en-Comminges",
     "code": "31059",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31260"
   },
@@ -467,7 +467,7 @@
     "name": "Bélesta-en-Lauragais",
     "code": "31060",
     "epci_code": "243100567",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31540"
   },
@@ -475,7 +475,7 @@
     "name": "Bellegarde-Sainte-Marie",
     "code": "31061",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31530"
   },
@@ -483,7 +483,7 @@
     "name": "Bellesserre",
     "code": "31062",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31480"
   },
@@ -491,7 +491,7 @@
     "name": "Benque",
     "code": "31063",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31420"
   },
@@ -499,7 +499,7 @@
     "name": "Benque-Dessous-et-Dessus",
     "code": "31064",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -507,7 +507,7 @@
     "name": "Bérat",
     "code": "31065",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31370"
   },
@@ -515,7 +515,7 @@
     "name": "Bessières",
     "code": "31066",
     "epci_code": "243100773",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31660"
   },
@@ -523,7 +523,7 @@
     "name": "Bezins-Garraux",
     "code": "31067",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31440"
   },
@@ -531,7 +531,7 @@
     "name": "Billière",
     "code": "31068",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -539,7 +539,7 @@
     "name": "Blagnac",
     "code": "31069",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31700"
   },
@@ -547,7 +547,7 @@
     "name": "Blajan",
     "code": "31070",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31350"
   },
@@ -555,7 +555,7 @@
     "name": "Bois-de-la-Pierre",
     "code": "31071",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31390"
   },
@@ -563,7 +563,7 @@
     "name": "Boissède",
     "code": "31072",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31230"
   },
@@ -571,7 +571,7 @@
     "name": "Bondigoux",
     "code": "31073",
     "epci_code": "243100773",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31340"
   },
@@ -579,7 +579,7 @@
     "name": "Bonrepos-Riquet",
     "code": "31074",
     "epci_code": "243100732",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31590"
   },
@@ -587,7 +587,7 @@
     "name": "Bonrepos-sur-Aussonnelle",
     "code": "31075",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31470"
   },
@@ -595,7 +595,7 @@
     "name": "Bordes-de-Rivière",
     "code": "31076",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31210"
   },
@@ -603,7 +603,7 @@
     "name": "Le Born",
     "code": "31077",
     "epci_code": "243100773",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31340"
   },
@@ -611,7 +611,7 @@
     "name": "Boudrac",
     "code": "31078",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31580"
   },
@@ -619,7 +619,7 @@
     "name": "Bouloc",
     "code": "31079",
     "epci_code": "200034957",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31620"
   },
@@ -627,7 +627,7 @@
     "name": "Boulogne-sur-Gesse",
     "code": "31080",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31350"
   },
@@ -635,7 +635,7 @@
     "name": "Bourg-d’Oueil",
     "code": "31081",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -643,7 +643,7 @@
     "name": "Bourg-Saint-Bernard",
     "code": "31082",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31570"
   },
@@ -651,7 +651,7 @@
     "name": "Boussan",
     "code": "31083",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31420"
   },
@@ -659,7 +659,7 @@
     "name": "Boussens",
     "code": "31084",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31360"
   },
@@ -667,7 +667,7 @@
     "name": "Boutx",
     "code": "31085",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -675,7 +675,7 @@
     "name": "Boutx",
     "code": "31085",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31440"
   },
@@ -683,7 +683,7 @@
     "name": "Bouzin",
     "code": "31086",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31420"
   },
@@ -691,7 +691,7 @@
     "name": "Bragayrac",
     "code": "31087",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31470"
   },
@@ -699,7 +699,7 @@
     "name": "Brax",
     "code": "31088",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31490"
   },
@@ -707,7 +707,7 @@
     "name": "Bretx",
     "code": "31089",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31530"
   },
@@ -715,7 +715,7 @@
     "name": "Brignemont",
     "code": "31090",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31480"
   },
@@ -723,7 +723,7 @@
     "name": "Bruguières",
     "code": "31091",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31150"
   },
@@ -731,7 +731,7 @@
     "name": "Burgalays",
     "code": "31092",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31440"
   },
@@ -739,7 +739,7 @@
     "name": "Le Burgaud",
     "code": "31093",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31330"
   },
@@ -747,7 +747,7 @@
     "name": "Buzet-sur-Tarn",
     "code": "31094",
     "epci_code": "243100773",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31660"
   },
@@ -755,7 +755,7 @@
     "name": "Cabanac-Cazaux",
     "code": "31095",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -763,7 +763,7 @@
     "name": "Cabanac-Séguenville",
     "code": "31096",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31480"
   },
@@ -771,7 +771,7 @@
     "name": "Le Cabanial",
     "code": "31097",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31460"
   },
@@ -779,7 +779,7 @@
     "name": "Cadours",
     "code": "31098",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31480"
   },
@@ -787,7 +787,7 @@
     "name": "Caignac",
     "code": "31099",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31560"
   },
@@ -795,7 +795,7 @@
     "name": "Calmont",
     "code": "31100",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31560"
   },
@@ -803,7 +803,7 @@
     "name": "Cambernard",
     "code": "31101",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31470"
   },
@@ -811,7 +811,7 @@
     "name": "Cambiac",
     "code": "31102",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31460"
   },
@@ -819,7 +819,7 @@
     "name": "Canens",
     "code": "31103",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31310"
   },
@@ -827,7 +827,7 @@
     "name": "Capens",
     "code": "31104",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31410"
   },
@@ -835,7 +835,7 @@
     "name": "Caragoudes",
     "code": "31105",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31460"
   },
@@ -843,7 +843,7 @@
     "name": "Caraman",
     "code": "31106",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31460"
   },
@@ -851,7 +851,7 @@
     "name": "Carbonne",
     "code": "31107",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31390"
   },
@@ -859,7 +859,7 @@
     "name": "Cardeilhac",
     "code": "31108",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31350"
   },
@@ -867,7 +867,7 @@
     "name": "Cassagnabère-Tournas",
     "code": "31109",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31420"
   },
@@ -875,7 +875,7 @@
     "name": "Cassagne",
     "code": "31110",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31260"
   },
@@ -883,7 +883,7 @@
     "name": "Castagnac",
     "code": "31111",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31310"
   },
@@ -891,7 +891,7 @@
     "name": "Castagnède",
     "code": "31112",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31260"
   },
@@ -899,7 +899,7 @@
     "name": "Castanet-Tolosan",
     "code": "31113",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31320"
   },
@@ -907,7 +907,7 @@
     "name": "Castelbiague",
     "code": "31114",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -915,7 +915,7 @@
     "name": "Castelgaillard",
     "code": "31115",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31230"
   },
@@ -923,7 +923,7 @@
     "name": "Castelginest",
     "code": "31116",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31780"
   },
@@ -931,7 +931,7 @@
     "name": "Castelmaurou",
     "code": "31117",
     "epci_code": "243100815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31180"
   },
@@ -939,7 +939,7 @@
     "name": "Castelnau-d’Estrétefonds",
     "code": "31118",
     "epci_code": "200034957",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31620"
   },
@@ -947,7 +947,7 @@
     "name": "Castelnau-Picampeau",
     "code": "31119",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31430"
   },
@@ -955,7 +955,7 @@
     "name": "Le Castéra",
     "code": "31120",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31530"
   },
@@ -963,7 +963,7 @@
     "name": "Castéra-Vignoles",
     "code": "31121",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31350"
   },
@@ -971,7 +971,7 @@
     "name": "Casties-Labrande",
     "code": "31122",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31430"
   },
@@ -979,7 +979,7 @@
     "name": "Castillon-de-Larboust",
     "code": "31123",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -987,7 +987,7 @@
     "name": "Castillon-de-Saint-Martory",
     "code": "31124",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31360"
   },
@@ -995,7 +995,7 @@
     "name": "Cathervielle",
     "code": "31125",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -1003,7 +1003,7 @@
     "name": "Caubiac",
     "code": "31126",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31480"
   },
@@ -1011,7 +1011,7 @@
     "name": "Caubous",
     "code": "31127",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -1019,7 +1019,7 @@
     "name": "Caujac",
     "code": "31128",
     "epci_code": "200068807",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31190"
   },
@@ -1027,7 +1027,7 @@
     "name": "Cazarilh-Laspènes",
     "code": "31129",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -1035,7 +1035,7 @@
     "name": "Cazaril-Tambourès",
     "code": "31130",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31580"
   },
@@ -1043,7 +1043,7 @@
     "name": "Cazaunous",
     "code": "31131",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -1051,7 +1051,7 @@
     "name": "Cazaux-Layrisse",
     "code": "31132",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31440"
   },
@@ -1059,7 +1059,7 @@
     "name": "Cazeaux-de-Larboust",
     "code": "31133",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -1067,7 +1067,7 @@
     "name": "Cazeneuve-Montaut",
     "code": "31134",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31420"
   },
@@ -1075,7 +1075,7 @@
     "name": "Cazères",
     "code": "31135",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31220"
   },
@@ -1083,7 +1083,7 @@
     "name": "Cépet",
     "code": "31136",
     "epci_code": "200034957",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31620"
   },
@@ -1091,7 +1091,7 @@
     "name": "Cessales",
     "code": "31137",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31290"
   },
@@ -1099,7 +1099,7 @@
     "name": "Charlas",
     "code": "31138",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31350"
   },
@@ -1107,7 +1107,7 @@
     "name": "Chaum",
     "code": "31139",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31440"
   },
@@ -1115,7 +1115,7 @@
     "name": "Chein-Dessus",
     "code": "31140",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -1123,7 +1123,7 @@
     "name": "Ciadoux",
     "code": "31141",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31350"
   },
@@ -1131,7 +1131,7 @@
     "name": "Cier-de-Luchon",
     "code": "31142",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -1139,7 +1139,7 @@
     "name": "Cier-de-Rivière",
     "code": "31143",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31510"
   },
@@ -1147,7 +1147,7 @@
     "name": "Cierp-Gaud",
     "code": "31144",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31440"
   },
@@ -1155,7 +1155,7 @@
     "name": "Cintegabelle",
     "code": "31145",
     "epci_code": "200068807",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31550"
   },
@@ -1163,7 +1163,7 @@
     "name": "Cirès",
     "code": "31146",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -1171,7 +1171,7 @@
     "name": "Clarac",
     "code": "31147",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31210"
   },
@@ -1179,7 +1179,7 @@
     "name": "Clermont-le-Fort",
     "code": "31148",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31810"
   },
@@ -1187,7 +1187,7 @@
     "name": "Colomiers",
     "code": "31149",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31770"
   },
@@ -1195,7 +1195,7 @@
     "name": "Cornebarrieu",
     "code": "31150",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31700"
   },
@@ -1203,7 +1203,7 @@
     "name": "Corronsac",
     "code": "31151",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31450"
   },
@@ -1211,7 +1211,7 @@
     "name": "Coueilles",
     "code": "31152",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31230"
   },
@@ -1219,7 +1219,7 @@
     "name": "Couladère",
     "code": "31153",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31220"
   },
@@ -1227,7 +1227,7 @@
     "name": "Couret",
     "code": "31155",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -1235,7 +1235,7 @@
     "name": "Cox",
     "code": "31156",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31480"
   },
@@ -1243,7 +1243,7 @@
     "name": "Cugnaux",
     "code": "31157",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31270"
   },
@@ -1251,7 +1251,7 @@
     "name": "Cuguron",
     "code": "31158",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31210"
   },
@@ -1259,7 +1259,7 @@
     "name": "Le Cuing",
     "code": "31159",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31210"
   },
@@ -1267,7 +1267,7 @@
     "name": "Daux",
     "code": "31160",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31700"
   },
@@ -1275,7 +1275,7 @@
     "name": "Deyme",
     "code": "31161",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31450"
   },
@@ -1283,7 +1283,7 @@
     "name": "Donneville",
     "code": "31162",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31450"
   },
@@ -1291,7 +1291,7 @@
     "name": "Drémil-Lafage",
     "code": "31163",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31280"
   },
@@ -1299,7 +1299,7 @@
     "name": "Drudas",
     "code": "31164",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31480"
   },
@@ -1307,7 +1307,7 @@
     "name": "Eaunes",
     "code": "31165",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31600"
   },
@@ -1315,7 +1315,7 @@
     "name": "Empeaux",
     "code": "31166",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31470"
   },
@@ -1323,7 +1323,7 @@
     "name": "Encausse-les-Thermes",
     "code": "31167",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -1331,7 +1331,7 @@
     "name": "Eoux",
     "code": "31168",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31420"
   },
@@ -1339,7 +1339,7 @@
     "name": "Escalquens",
     "code": "31169",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31750"
   },
@@ -1347,7 +1347,7 @@
     "name": "Escanecrabe",
     "code": "31170",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31350"
   },
@@ -1355,7 +1355,7 @@
     "name": "Espanès",
     "code": "31171",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31450"
   },
@@ -1363,7 +1363,7 @@
     "name": "Esparron",
     "code": "31172",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31420"
   },
@@ -1371,7 +1371,7 @@
     "name": "Esperce",
     "code": "31173",
     "epci_code": "200068807",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31190"
   },
@@ -1379,7 +1379,7 @@
     "name": "Estadens",
     "code": "31174",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -1387,7 +1387,7 @@
     "name": "Estancarbon",
     "code": "31175",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31800"
   },
@@ -1395,7 +1395,7 @@
     "name": "Esténos",
     "code": "31176",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31440"
   },
@@ -1403,7 +1403,7 @@
     "name": "Eup",
     "code": "31177",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31440"
   },
@@ -1411,7 +1411,7 @@
     "name": "Fabas",
     "code": "31178",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31230"
   },
@@ -1419,7 +1419,7 @@
     "name": "Le Faget",
     "code": "31179",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31460"
   },
@@ -1427,7 +1427,7 @@
     "name": "Falga",
     "code": "31180",
     "epci_code": "243100567",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31540"
   },
@@ -1435,7 +1435,7 @@
     "name": "Le Fauga",
     "code": "31181",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31410"
   },
@@ -1443,7 +1443,7 @@
     "name": "Fenouillet",
     "code": "31182",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31150"
   },
@@ -1451,7 +1451,7 @@
     "name": "Figarol",
     "code": "31183",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31260"
   },
@@ -1459,7 +1459,7 @@
     "name": "Flourens",
     "code": "31184",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31130"
   },
@@ -1467,7 +1467,7 @@
     "name": "Folcarde",
     "code": "31185",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31290"
   },
@@ -1475,7 +1475,7 @@
     "name": "Fonbeauzard",
     "code": "31186",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31140"
   },
@@ -1483,7 +1483,7 @@
     "name": "Fonsorbes",
     "code": "31187",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31470"
   },
@@ -1491,7 +1491,7 @@
     "name": "Fontenilles",
     "code": "31188",
     "epci_code": "243100781",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31470"
   },
@@ -1499,7 +1499,7 @@
     "name": "Forgues",
     "code": "31189",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31370"
   },
@@ -1507,7 +1507,7 @@
     "name": "Fos",
     "code": "31190",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31440"
   },
@@ -1515,7 +1515,7 @@
     "name": "Fougaron",
     "code": "31191",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -1523,7 +1523,7 @@
     "name": "Fourquevaux",
     "code": "31192",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31450"
   },
@@ -1531,7 +1531,7 @@
     "name": "Le Fousseret",
     "code": "31193",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31430"
   },
@@ -1539,7 +1539,7 @@
     "name": "Francarville",
     "code": "31194",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31460"
   },
@@ -1547,7 +1547,7 @@
     "name": "Francazal",
     "code": "31195",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31260"
   },
@@ -1555,7 +1555,7 @@
     "name": "Francon",
     "code": "31196",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31420"
   },
@@ -1563,7 +1563,7 @@
     "name": "Franquevielle",
     "code": "31197",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31210"
   },
@@ -1571,7 +1571,7 @@
     "name": "Le Fréchet",
     "code": "31198",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31360"
   },
@@ -1579,7 +1579,7 @@
     "name": "Fronsac",
     "code": "31199",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31440"
   },
@@ -1587,7 +1587,7 @@
     "name": "Frontignan-de-Comminges",
     "code": "31200",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31510"
   },
@@ -1595,7 +1595,7 @@
     "name": "Frontignan-Savès",
     "code": "31201",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31230"
   },
@@ -1603,7 +1603,7 @@
     "name": "Fronton",
     "code": "31202",
     "epci_code": "200034957",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31620"
   },
@@ -1611,7 +1611,7 @@
     "name": "Frouzins",
     "code": "31203",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31270"
   },
@@ -1619,7 +1619,7 @@
     "name": "Fustignac",
     "code": "31204",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31430"
   },
@@ -1627,7 +1627,7 @@
     "name": "Gagnac-sur-Garonne",
     "code": "31205",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31150"
   },
@@ -1635,7 +1635,7 @@
     "name": "Gaillac-Toulza",
     "code": "31206",
     "epci_code": "200068807",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31550"
   },
@@ -1643,7 +1643,7 @@
     "name": "Galié",
     "code": "31207",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31510"
   },
@@ -1651,7 +1651,7 @@
     "name": "Ganties",
     "code": "31208",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -1659,7 +1659,7 @@
     "name": "Garac",
     "code": "31209",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31480"
   },
@@ -1667,7 +1667,7 @@
     "name": "Gardouch",
     "code": "31210",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31290"
   },
@@ -1675,7 +1675,7 @@
     "name": "Gargas",
     "code": "31211",
     "epci_code": "200034957",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31620"
   },
@@ -1683,7 +1683,7 @@
     "name": "Garidech",
     "code": "31212",
     "epci_code": "243100732",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31380"
   },
@@ -1691,7 +1691,7 @@
     "name": "Garin",
     "code": "31213",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -1699,7 +1699,7 @@
     "name": "Gauré",
     "code": "31215",
     "epci_code": "243100732",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31590"
   },
@@ -1707,7 +1707,7 @@
     "name": "Gémil",
     "code": "31216",
     "epci_code": "243100732",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31380"
   },
@@ -1715,7 +1715,7 @@
     "name": "Génos",
     "code": "31217",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31510"
   },
@@ -1723,7 +1723,7 @@
     "name": "Gensac-de-Boulogne",
     "code": "31218",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31350"
   },
@@ -1731,7 +1731,7 @@
     "name": "Gensac-sur-Garonne",
     "code": "31219",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31310"
   },
@@ -1739,7 +1739,7 @@
     "name": "Gibel",
     "code": "31220",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31560"
   },
@@ -1747,7 +1747,7 @@
     "name": "Gouaux-de-Larboust",
     "code": "31221",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -1755,7 +1755,7 @@
     "name": "Gouaux-de-Luchon",
     "code": "31222",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -1763,7 +1763,7 @@
     "name": "Goudex",
     "code": "31223",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31230"
   },
@@ -1771,7 +1771,7 @@
     "name": "Gourdan-Polignan",
     "code": "31224",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31210"
   },
@@ -1779,7 +1779,7 @@
     "name": "Goutevernisse",
     "code": "31225",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31310"
   },
@@ -1787,7 +1787,7 @@
     "name": "Gouzens",
     "code": "31226",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31310"
   },
@@ -1795,7 +1795,7 @@
     "name": "Goyrans",
     "code": "31227",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31120"
   },
@@ -1803,7 +1803,7 @@
     "name": "Gragnague",
     "code": "31228",
     "epci_code": "243100732",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31380"
   },
@@ -1811,7 +1811,7 @@
     "name": "Gratens",
     "code": "31229",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31430"
   },
@@ -1819,7 +1819,7 @@
     "name": "Gratentour",
     "code": "31230",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31150"
   },
@@ -1827,7 +1827,7 @@
     "name": "Grazac",
     "code": "31231",
     "epci_code": "200068807",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31190"
   },
@@ -1835,7 +1835,7 @@
     "name": "Grenade",
     "code": "31232",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31330"
   },
@@ -1843,7 +1843,7 @@
     "name": "Grépiac",
     "code": "31233",
     "epci_code": "200068807",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31190"
   },
@@ -1851,7 +1851,7 @@
     "name": "Le Grès",
     "code": "31234",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31480"
   },
@@ -1859,7 +1859,7 @@
     "name": "Guran",
     "code": "31235",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31440"
   },
@@ -1867,7 +1867,7 @@
     "name": "Herran",
     "code": "31236",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -1875,7 +1875,7 @@
     "name": "His",
     "code": "31237",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31260"
   },
@@ -1883,7 +1883,7 @@
     "name": "Huos",
     "code": "31238",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31210"
   },
@@ -1891,7 +1891,7 @@
     "name": "L’Isle-en-Dodon",
     "code": "31239",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31230"
   },
@@ -1899,7 +1899,7 @@
     "name": "Issus",
     "code": "31240",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31450"
   },
@@ -1907,7 +1907,7 @@
     "name": "Izaut-de-l’Hôtel",
     "code": "31241",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -1915,7 +1915,7 @@
     "name": "Jurvielle",
     "code": "31242",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -1923,7 +1923,7 @@
     "name": "Juzes",
     "code": "31243",
     "epci_code": "243100567",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31540"
   },
@@ -1931,7 +1931,7 @@
     "name": "Juzet-de-Luchon",
     "code": "31244",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -1939,7 +1939,7 @@
     "name": "Juzet-d’Izaut",
     "code": "31245",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -1947,7 +1947,7 @@
     "name": "Labarthe-Inard",
     "code": "31246",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31800"
   },
@@ -1955,7 +1955,7 @@
     "name": "Labarthe-Rivière",
     "code": "31247",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31800"
   },
@@ -1963,7 +1963,7 @@
     "name": "Labarthe-sur-Lèze",
     "code": "31248",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31860"
   },
@@ -1971,7 +1971,7 @@
     "name": "Labastide-Beauvoir",
     "code": "31249",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31450"
   },
@@ -1979,7 +1979,7 @@
     "name": "Labastide-Clermont",
     "code": "31250",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31370"
   },
@@ -1987,7 +1987,7 @@
     "name": "Labastide-Paumès",
     "code": "31251",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31230"
   },
@@ -1995,7 +1995,7 @@
     "name": "Labastide-Saint-Sernin",
     "code": "31252",
     "epci_code": "243100815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31620"
   },
@@ -2003,7 +2003,7 @@
     "name": "Labastidette",
     "code": "31253",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31600"
   },
@@ -2011,7 +2011,7 @@
     "name": "Labège",
     "code": "31254",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31670"
   },
@@ -2019,7 +2019,7 @@
     "name": "Labroquère",
     "code": "31255",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31510"
   },
@@ -2027,7 +2027,7 @@
     "name": "Labruyère-Dorsa",
     "code": "31256",
     "epci_code": "200068807",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31190"
   },
@@ -2035,7 +2035,7 @@
     "name": "Lacaugne",
     "code": "31258",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31390"
   },
@@ -2043,7 +2043,7 @@
     "name": "Lacroix-Falgarde",
     "code": "31259",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31120"
   },
@@ -2051,7 +2051,7 @@
     "name": "Laffite-Toupière",
     "code": "31260",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31360"
   },
@@ -2059,7 +2059,7 @@
     "name": "Lafitte-Vigordane",
     "code": "31261",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31390"
   },
@@ -2067,7 +2067,7 @@
     "name": "Lagarde",
     "code": "31262",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31290"
   },
@@ -2075,7 +2075,7 @@
     "name": "Lagardelle-sur-Lèze",
     "code": "31263",
     "epci_code": "200068807",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31870"
   },
@@ -2083,7 +2083,7 @@
     "name": "Lagrâce-Dieu",
     "code": "31264",
     "epci_code": "200068807",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31190"
   },
@@ -2091,7 +2091,7 @@
     "name": "Lagraulet-Saint-Nicolas",
     "code": "31265",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31480"
   },
@@ -2099,7 +2099,7 @@
     "name": "Lahage",
     "code": "31266",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31370"
   },
@@ -2107,7 +2107,7 @@
     "name": "Lahitère",
     "code": "31267",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31310"
   },
@@ -2115,7 +2115,7 @@
     "name": "Lalouret-Laffiteau",
     "code": "31268",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31800"
   },
@@ -2123,7 +2123,7 @@
     "name": "Lamasquère",
     "code": "31269",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31600"
   },
@@ -2131,7 +2131,7 @@
     "name": "Landorthe",
     "code": "31270",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31800"
   },
@@ -2139,7 +2139,7 @@
     "name": "Lanta",
     "code": "31271",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31570"
   },
@@ -2147,7 +2147,7 @@
     "name": "Lapeyrère",
     "code": "31272",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31310"
   },
@@ -2155,7 +2155,7 @@
     "name": "Lapeyrouse-Fossat",
     "code": "31273",
     "epci_code": "243100732",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31180"
   },
@@ -2163,7 +2163,7 @@
     "name": "Larcan",
     "code": "31274",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31800"
   },
@@ -2171,7 +2171,7 @@
     "name": "Laréole",
     "code": "31275",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31480"
   },
@@ -2179,7 +2179,7 @@
     "name": "Larroque",
     "code": "31276",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31580"
   },
@@ -2187,7 +2187,7 @@
     "name": "Lasserre-Pradère",
     "code": "31277",
     "epci_code": "243100781",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31530"
   },
@@ -2195,7 +2195,7 @@
     "name": "Latoue",
     "code": "31278",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31800"
   },
@@ -2203,7 +2203,7 @@
     "name": "Latour",
     "code": "31279",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31310"
   },
@@ -2211,7 +2211,7 @@
     "name": "Latrape",
     "code": "31280",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31310"
   },
@@ -2219,7 +2219,7 @@
     "name": "Launac",
     "code": "31281",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31330"
   },
@@ -2227,7 +2227,7 @@
     "name": "Launaguet",
     "code": "31282",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31140"
   },
@@ -2235,7 +2235,7 @@
     "name": "Lautignac",
     "code": "31283",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31370"
   },
@@ -2243,7 +2243,7 @@
     "name": "Lauzerville",
     "code": "31284",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31650"
   },
@@ -2251,7 +2251,7 @@
     "name": "Lavalette",
     "code": "31285",
     "epci_code": "243100732",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31590"
   },
@@ -2259,7 +2259,7 @@
     "name": "Lavelanet-de-Comminges",
     "code": "31286",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31220"
   },
@@ -2267,7 +2267,7 @@
     "name": "Lavernose-Lacasse",
     "code": "31287",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31410"
   },
@@ -2275,7 +2275,7 @@
     "name": "Layrac-sur-Tarn",
     "code": "31288",
     "epci_code": "243100773",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31340"
   },
@@ -2283,7 +2283,7 @@
     "name": "Lécussan",
     "code": "31289",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31580"
   },
@@ -2291,7 +2291,7 @@
     "name": "Lège",
     "code": "31290",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31440"
   },
@@ -2299,7 +2299,7 @@
     "name": "Léguevin",
     "code": "31291",
     "epci_code": "243100781",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31490"
   },
@@ -2307,7 +2307,7 @@
     "name": "Lescuns",
     "code": "31292",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31220"
   },
@@ -2315,7 +2315,7 @@
     "name": "Lespinasse",
     "code": "31293",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31150"
   },
@@ -2323,7 +2323,7 @@
     "name": "Lespiteau",
     "code": "31294",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -2331,7 +2331,7 @@
     "name": "Lespugue",
     "code": "31295",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31350"
   },
@@ -2339,7 +2339,7 @@
     "name": "Lestelle-de-Saint-Martory",
     "code": "31296",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31360"
   },
@@ -2347,7 +2347,7 @@
     "name": "Lévignac",
     "code": "31297",
     "epci_code": "243100781",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31530"
   },
@@ -2355,7 +2355,7 @@
     "name": "Lherm",
     "code": "31299",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31600"
   },
@@ -2363,7 +2363,7 @@
     "name": "Lieoux",
     "code": "31300",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31800"
   },
@@ -2371,7 +2371,7 @@
     "name": "Lilhac",
     "code": "31301",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31230"
   },
@@ -2379,7 +2379,7 @@
     "name": "Lodes",
     "code": "31302",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31800"
   },
@@ -2387,7 +2387,7 @@
     "name": "Longages",
     "code": "31303",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31410"
   },
@@ -2395,7 +2395,7 @@
     "name": "Loubens-Lauragais",
     "code": "31304",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31460"
   },
@@ -2403,7 +2403,7 @@
     "name": "Loudet",
     "code": "31305",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31580"
   },
@@ -2411,7 +2411,7 @@
     "name": "Lourde",
     "code": "31306",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31510"
   },
@@ -2419,7 +2419,7 @@
     "name": "Luscan",
     "code": "31308",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31510"
   },
@@ -2427,7 +2427,7 @@
     "name": "Lussan-Adeilhac",
     "code": "31309",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31430"
   },
@@ -2435,7 +2435,7 @@
     "name": "Lux",
     "code": "31310",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31290"
   },
@@ -2443,7 +2443,7 @@
     "name": "La Magdelaine-sur-Tarn",
     "code": "31311",
     "epci_code": "243100773",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31340"
   },
@@ -2451,7 +2451,7 @@
     "name": "Mailholas",
     "code": "31312",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31310"
   },
@@ -2459,7 +2459,7 @@
     "name": "Malvezie",
     "code": "31313",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31510"
   },
@@ -2467,7 +2467,7 @@
     "name": "Mancioux",
     "code": "31314",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31360"
   },
@@ -2475,7 +2475,7 @@
     "name": "Mane",
     "code": "31315",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31260"
   },
@@ -2483,7 +2483,7 @@
     "name": "Marignac",
     "code": "31316",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31440"
   },
@@ -2491,7 +2491,7 @@
     "name": "Marignac-Lasclares",
     "code": "31317",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31430"
   },
@@ -2499,7 +2499,7 @@
     "name": "Marignac-Laspeyres",
     "code": "31318",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31220"
   },
@@ -2507,7 +2507,7 @@
     "name": "Marliac",
     "code": "31319",
     "epci_code": "200068807",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31550"
   },
@@ -2515,7 +2515,7 @@
     "name": "Marquefave",
     "code": "31320",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31390"
   },
@@ -2523,7 +2523,7 @@
     "name": "Marsoulas",
     "code": "31321",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31260"
   },
@@ -2531,7 +2531,7 @@
     "name": "Martisserre",
     "code": "31322",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31230"
   },
@@ -2539,7 +2539,7 @@
     "name": "Martres-de-Rivière",
     "code": "31323",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31210"
   },
@@ -2547,7 +2547,7 @@
     "name": "Martres-Tolosane",
     "code": "31324",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31220"
   },
@@ -2555,7 +2555,7 @@
     "name": "Mascarville",
     "code": "31325",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31460"
   },
@@ -2563,7 +2563,7 @@
     "name": "Massabrac",
     "code": "31326",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31310"
   },
@@ -2571,7 +2571,7 @@
     "name": "Mauran",
     "code": "31327",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31220"
   },
@@ -2579,7 +2579,7 @@
     "name": "Mauremont",
     "code": "31328",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31290"
   },
@@ -2587,7 +2587,7 @@
     "name": "Maurens",
     "code": "31329",
     "epci_code": "243100567",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31540"
   },
@@ -2595,7 +2595,7 @@
     "name": "Mauressac",
     "code": "31330",
     "epci_code": "200068807",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31190"
   },
@@ -2603,7 +2603,7 @@
     "name": "Maureville",
     "code": "31331",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31460"
   },
@@ -2611,7 +2611,7 @@
     "name": "Mauvaisin",
     "code": "31332",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31190"
   },
@@ -2619,7 +2619,7 @@
     "name": "Mauvezin",
     "code": "31333",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31230"
   },
@@ -2627,7 +2627,7 @@
     "name": "Mauzac",
     "code": "31334",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31410"
   },
@@ -2635,7 +2635,7 @@
     "name": "Mayrègne",
     "code": "31335",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -2643,7 +2643,7 @@
     "name": "Mazères-sur-Salat",
     "code": "31336",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31260"
   },
@@ -2651,7 +2651,7 @@
     "name": "Melles",
     "code": "31337",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31440"
   },
@@ -2659,7 +2659,7 @@
     "name": "Menville",
     "code": "31338",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31530"
   },
@@ -2667,7 +2667,7 @@
     "name": "Mérenvielle",
     "code": "31339",
     "epci_code": "243100781",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31530"
   },
@@ -2675,7 +2675,7 @@
     "name": "Mervilla",
     "code": "31340",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31320"
   },
@@ -2683,7 +2683,7 @@
     "name": "Merville",
     "code": "31341",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31330"
   },
@@ -2691,7 +2691,7 @@
     "name": "Milhas",
     "code": "31342",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -2699,7 +2699,7 @@
     "name": "Mirambeau",
     "code": "31343",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31230"
   },
@@ -2707,7 +2707,7 @@
     "name": "Miramont-de-Comminges",
     "code": "31344",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31800"
   },
@@ -2715,7 +2715,7 @@
     "name": "Miremont",
     "code": "31345",
     "epci_code": "200068807",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31190"
   },
@@ -2723,7 +2723,7 @@
     "name": "Mirepoix-sur-Tarn",
     "code": "31346",
     "epci_code": "243100773",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31340"
   },
@@ -2731,7 +2731,7 @@
     "name": "Molas",
     "code": "31347",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31230"
   },
@@ -2739,7 +2739,7 @@
     "name": "Moncaup",
     "code": "31348",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -2747,7 +2747,7 @@
     "name": "Mondavezan",
     "code": "31349",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31220"
   },
@@ -2755,7 +2755,7 @@
     "name": "Mondilhan",
     "code": "31350",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31350"
   },
@@ -2763,7 +2763,7 @@
     "name": "Mondonville",
     "code": "31351",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31700"
   },
@@ -2771,7 +2771,7 @@
     "name": "Mondouzil",
     "code": "31352",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31850"
   },
@@ -2779,7 +2779,7 @@
     "name": "Monès",
     "code": "31353",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31370"
   },
@@ -2787,7 +2787,7 @@
     "name": "Monestrol",
     "code": "31354",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31560"
   },
@@ -2795,7 +2795,7 @@
     "name": "Mons",
     "code": "31355",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31280"
   },
@@ -2803,7 +2803,7 @@
     "name": "Montaigut-sur-Save",
     "code": "31356",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31530"
   },
@@ -2811,7 +2811,7 @@
     "name": "Montastruc-de-Salies",
     "code": "31357",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -2819,7 +2819,7 @@
     "name": "Montastruc-la-Conseillère",
     "code": "31358",
     "epci_code": "243100732",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31380"
   },
@@ -2827,7 +2827,7 @@
     "name": "Montastruc-Savès",
     "code": "31359",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31370"
   },
@@ -2835,7 +2835,7 @@
     "name": "Montauban-de-Luchon",
     "code": "31360",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -2843,7 +2843,7 @@
     "name": "Montaut",
     "code": "31361",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31410"
   },
@@ -2851,7 +2851,7 @@
     "name": "Montberaud",
     "code": "31362",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31220"
   },
@@ -2859,7 +2859,7 @@
     "name": "Montbernard",
     "code": "31363",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31230"
   },
@@ -2867,7 +2867,7 @@
     "name": "Montberon",
     "code": "31364",
     "epci_code": "243100815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31140"
   },
@@ -2875,7 +2875,7 @@
     "name": "Montbrun-Bocage",
     "code": "31365",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31310"
   },
@@ -2883,7 +2883,7 @@
     "name": "Montbrun-Lauragais",
     "code": "31366",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31450"
   },
@@ -2891,7 +2891,7 @@
     "name": "Montclar-de-Comminges",
     "code": "31367",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31220"
   },
@@ -2899,7 +2899,7 @@
     "name": "Montclar-Lauragais",
     "code": "31368",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31290"
   },
@@ -2907,7 +2907,7 @@
     "name": "Mont-de-Galié",
     "code": "31369",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31510"
   },
@@ -2915,7 +2915,7 @@
     "name": "Montégut-Bourjac",
     "code": "31370",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31430"
   },
@@ -2923,7 +2923,7 @@
     "name": "Montégut-Lauragais",
     "code": "31371",
     "epci_code": "243100567",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31540"
   },
@@ -2931,7 +2931,7 @@
     "name": "Montespan",
     "code": "31372",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31260"
   },
@@ -2939,7 +2939,7 @@
     "name": "Montesquieu-Guittaut",
     "code": "31373",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31230"
   },
@@ -2947,7 +2947,7 @@
     "name": "Montesquieu-Lauragais",
     "code": "31374",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31450"
   },
@@ -2955,7 +2955,7 @@
     "name": "Montesquieu-Volvestre",
     "code": "31375",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31310"
   },
@@ -2963,7 +2963,7 @@
     "name": "Montgaillard-de-Salies",
     "code": "31376",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31260"
   },
@@ -2971,7 +2971,7 @@
     "name": "Montgaillard-Lauragais",
     "code": "31377",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31290"
   },
@@ -2979,7 +2979,7 @@
     "name": "Montgaillard-sur-Save",
     "code": "31378",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31350"
   },
@@ -2987,7 +2987,7 @@
     "name": "Montgazin",
     "code": "31379",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31410"
   },
@@ -2995,7 +2995,7 @@
     "name": "Montgeard",
     "code": "31380",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31560"
   },
@@ -3003,7 +3003,7 @@
     "name": "Montgiscard",
     "code": "31381",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31450"
   },
@@ -3011,7 +3011,7 @@
     "name": "Montgras",
     "code": "31382",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31370"
   },
@@ -3019,7 +3019,7 @@
     "name": "Montjoire",
     "code": "31383",
     "epci_code": "243100732",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31380"
   },
@@ -3027,7 +3027,7 @@
     "name": "Montlaur",
     "code": "31384",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31450"
   },
@@ -3035,7 +3035,7 @@
     "name": "Montmaurin",
     "code": "31385",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31350"
   },
@@ -3043,7 +3043,7 @@
     "name": "Montoulieu-Saint-Bernard",
     "code": "31386",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31420"
   },
@@ -3051,7 +3051,7 @@
     "name": "Montoussin",
     "code": "31387",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31430"
   },
@@ -3059,7 +3059,7 @@
     "name": "Montpitol",
     "code": "31388",
     "epci_code": "243100732",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31380"
   },
@@ -3067,7 +3067,7 @@
     "name": "Montrabé",
     "code": "31389",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31850"
   },
@@ -3075,7 +3075,7 @@
     "name": "Montréjeau",
     "code": "31390",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31210"
   },
@@ -3083,7 +3083,7 @@
     "name": "Montsaunès",
     "code": "31391",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31260"
   },
@@ -3091,7 +3091,7 @@
     "name": "Mourvilles-Basses",
     "code": "31392",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31460"
   },
@@ -3099,7 +3099,7 @@
     "name": "Mourvilles-Hautes",
     "code": "31393",
     "epci_code": "243100567",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31540"
   },
@@ -3107,7 +3107,7 @@
     "name": "Moustajon",
     "code": "31394",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -3115,7 +3115,7 @@
     "name": "Muret",
     "code": "31395",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31600"
   },
@@ -3123,7 +3123,7 @@
     "name": "Nailloux",
     "code": "31396",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31560"
   },
@@ -3131,7 +3131,7 @@
     "name": "Nénigan",
     "code": "31397",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31350"
   },
@@ -3139,7 +3139,7 @@
     "name": "Nizan-Gesse",
     "code": "31398",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31350"
   },
@@ -3147,7 +3147,7 @@
     "name": "Noé",
     "code": "31399",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31410"
   },
@@ -3155,7 +3155,7 @@
     "name": "Nogaret",
     "code": "31400",
     "epci_code": "243100567",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31540"
   },
@@ -3163,7 +3163,7 @@
     "name": "Noueilles",
     "code": "31401",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31450"
   },
@@ -3171,7 +3171,7 @@
     "name": "Odars",
     "code": "31402",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31450"
   },
@@ -3179,7 +3179,7 @@
     "name": "Ondes",
     "code": "31403",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31330"
   },
@@ -3187,7 +3187,7 @@
     "name": "Oô",
     "code": "31404",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -3195,7 +3195,7 @@
     "name": "Ore",
     "code": "31405",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31510"
   },
@@ -3203,7 +3203,7 @@
     "name": "Palaminy",
     "code": "31406",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31220"
   },
@@ -3211,7 +3211,7 @@
     "name": "Paulhac",
     "code": "31407",
     "epci_code": "243100732",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31380"
   },
@@ -3219,7 +3219,7 @@
     "name": "Payssous",
     "code": "31408",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31510"
   },
@@ -3227,7 +3227,7 @@
     "name": "Péchabou",
     "code": "31409",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31320"
   },
@@ -3235,7 +3235,7 @@
     "name": "Pechbonnieu",
     "code": "31410",
     "epci_code": "243100815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31140"
   },
@@ -3243,7 +3243,7 @@
     "name": "Pechbusque",
     "code": "31411",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31320"
   },
@@ -3251,7 +3251,7 @@
     "name": "Péguilhan",
     "code": "31412",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31350"
   },
@@ -3259,7 +3259,7 @@
     "name": "Pelleport",
     "code": "31413",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31480"
   },
@@ -3267,7 +3267,7 @@
     "name": "Peyrissas",
     "code": "31414",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31420"
   },
@@ -3275,7 +3275,7 @@
     "name": "Peyrouzet",
     "code": "31415",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31420"
   },
@@ -3283,7 +3283,7 @@
     "name": "Peyssies",
     "code": "31416",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31390"
   },
@@ -3291,7 +3291,7 @@
     "name": "Pibrac",
     "code": "31417",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31820"
   },
@@ -3299,7 +3299,7 @@
     "name": "Pin-Balma",
     "code": "31418",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31130"
   },
@@ -3307,7 +3307,7 @@
     "name": "Le Pin-Murelet",
     "code": "31419",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31370"
   },
@@ -3315,7 +3315,7 @@
     "name": "Pinsaguel",
     "code": "31420",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31120"
   },
@@ -3323,7 +3323,7 @@
     "name": "Pins-Justaret",
     "code": "31421",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31860"
   },
@@ -3331,7 +3331,7 @@
     "name": "Plagne",
     "code": "31422",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31220"
   },
@@ -3339,7 +3339,7 @@
     "name": "Plagnole",
     "code": "31423",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31370"
   },
@@ -3347,7 +3347,7 @@
     "name": "Plaisance-du-Touch",
     "code": "31424",
     "epci_code": "243100781",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31830"
   },
@@ -3355,7 +3355,7 @@
     "name": "Le Plan",
     "code": "31425",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31220"
   },
@@ -3363,7 +3363,7 @@
     "name": "Pointis-de-Rivière",
     "code": "31426",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31210"
   },
@@ -3371,7 +3371,7 @@
     "name": "Pointis-Inard",
     "code": "31427",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31800"
   },
@@ -3379,7 +3379,7 @@
     "name": "Polastron",
     "code": "31428",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31430"
   },
@@ -3387,7 +3387,7 @@
     "name": "Pompertuzat",
     "code": "31429",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31450"
   },
@@ -3395,7 +3395,7 @@
     "name": "Ponlat-Taillebourg",
     "code": "31430",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31210"
   },
@@ -3403,7 +3403,7 @@
     "name": "Portet-d’Aspet",
     "code": "31431",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -3411,7 +3411,7 @@
     "name": "Portet-de-Luchon",
     "code": "31432",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -3419,7 +3419,7 @@
     "name": "Portet-sur-Garonne",
     "code": "31433",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31120"
   },
@@ -3427,7 +3427,7 @@
     "name": "Poubeau",
     "code": "31434",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -3435,7 +3435,7 @@
     "name": "Poucharramet",
     "code": "31435",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31370"
   },
@@ -3443,7 +3443,7 @@
     "name": "Pouy-de-Touges",
     "code": "31436",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31430"
   },
@@ -3451,7 +3451,7 @@
     "name": "Pouze",
     "code": "31437",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31450"
   },
@@ -3459,7 +3459,7 @@
     "name": "Préserville",
     "code": "31439",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31570"
   },
@@ -3467,7 +3467,7 @@
     "name": "Proupiary",
     "code": "31440",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31360"
   },
@@ -3475,7 +3475,7 @@
     "name": "Prunet",
     "code": "31441",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31460"
   },
@@ -3483,7 +3483,7 @@
     "name": "Puydaniel",
     "code": "31442",
     "epci_code": "200068807",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31190"
   },
@@ -3491,7 +3491,7 @@
     "name": "Puymaurin",
     "code": "31443",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31230"
   },
@@ -3499,7 +3499,7 @@
     "name": "Puysségur",
     "code": "31444",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31480"
   },
@@ -3507,7 +3507,7 @@
     "name": "Quint-Fonsegrives",
     "code": "31445",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31130"
   },
@@ -3515,7 +3515,7 @@
     "name": "Ramonville-Saint-Agne",
     "code": "31446",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31520"
   },
@@ -3523,7 +3523,7 @@
     "name": "Razecueillé",
     "code": "31447",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -3531,7 +3531,7 @@
     "name": "Rebigue",
     "code": "31448",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31320"
   },
@@ -3539,7 +3539,7 @@
     "name": "Régades",
     "code": "31449",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31800"
   },
@@ -3547,7 +3547,7 @@
     "name": "Renneville",
     "code": "31450",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31290"
   },
@@ -3555,7 +3555,7 @@
     "name": "Revel",
     "code": "31451",
     "epci_code": "243100567",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31250"
   },
@@ -3563,7 +3563,7 @@
     "name": "Rieucazé",
     "code": "31452",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31800"
   },
@@ -3571,7 +3571,7 @@
     "name": "Rieumajou",
     "code": "31453",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31290"
   },
@@ -3579,7 +3579,7 @@
     "name": "Rieumes",
     "code": "31454",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31370"
   },
@@ -3587,7 +3587,7 @@
     "name": "Rieux-Volvestre",
     "code": "31455",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31310"
   },
@@ -3595,7 +3595,7 @@
     "name": "Riolas",
     "code": "31456",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31230"
   },
@@ -3603,7 +3603,7 @@
     "name": "Roquefort-sur-Garonne",
     "code": "31457",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31360"
   },
@@ -3611,7 +3611,7 @@
     "name": "Roques",
     "code": "31458",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31120"
   },
@@ -3619,7 +3619,7 @@
     "name": "Roquesérière",
     "code": "31459",
     "epci_code": "243100732",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31380"
   },
@@ -3627,7 +3627,7 @@
     "name": "Roquettes",
     "code": "31460",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31120"
   },
@@ -3635,7 +3635,7 @@
     "name": "Rouède",
     "code": "31461",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -3643,7 +3643,7 @@
     "name": "Rouffiac-Tolosan",
     "code": "31462",
     "epci_code": "243100815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31180"
   },
@@ -3651,7 +3651,7 @@
     "name": "Roumens",
     "code": "31463",
     "epci_code": "243100567",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31540"
   },
@@ -3659,7 +3659,7 @@
     "name": "Sabonnères",
     "code": "31464",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31370"
   },
@@ -3667,7 +3667,7 @@
     "name": "Saccourvielle",
     "code": "31465",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -3675,7 +3675,7 @@
     "name": "Saiguède",
     "code": "31466",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31470"
   },
@@ -3683,7 +3683,7 @@
     "name": "Saint-Alban",
     "code": "31467",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31140"
   },
@@ -3691,7 +3691,7 @@
     "name": "Saint-André",
     "code": "31468",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31420"
   },
@@ -3699,7 +3699,7 @@
     "name": "Saint-Araille",
     "code": "31469",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31430"
   },
@@ -3707,7 +3707,7 @@
     "name": "Saint-Aventin",
     "code": "31470",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -3715,7 +3715,7 @@
     "name": "Saint-Béat-Lez",
     "code": "31471",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31440"
   },
@@ -3723,7 +3723,7 @@
     "name": "Saint-Bertrand-de-Comminges",
     "code": "31472",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31510"
   },
@@ -3731,7 +3731,7 @@
     "name": "Saint-Cézert",
     "code": "31473",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31330"
   },
@@ -3739,7 +3739,7 @@
     "name": "Saint-Christaud",
     "code": "31474",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31310"
   },
@@ -3747,7 +3747,7 @@
     "name": "Saint-Clar-de-Rivière",
     "code": "31475",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31600"
   },
@@ -3755,7 +3755,7 @@
     "name": "Saint-Élix-le-Château",
     "code": "31476",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31430"
   },
@@ -3763,7 +3763,7 @@
     "name": "Saint-Élix-Séglan",
     "code": "31477",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31420"
   },
@@ -3771,7 +3771,7 @@
     "name": "Saint-Félix-Lauragais",
     "code": "31478",
     "epci_code": "243100567",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31540"
   },
@@ -3779,7 +3779,7 @@
     "name": "Saint-Ferréol-de-Comminges",
     "code": "31479",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31350"
   },
@@ -3787,7 +3787,7 @@
     "name": "Sainte-Foy-d’Aigrefeuille",
     "code": "31480",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31570"
   },
@@ -3795,7 +3795,7 @@
     "name": "Sainte-Foy-de-Peyrolières",
     "code": "31481",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31470"
   },
@@ -3803,7 +3803,7 @@
     "name": "Saint-Frajou",
     "code": "31482",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31230"
   },
@@ -3811,7 +3811,7 @@
     "name": "Saint-Gaudens",
     "code": "31483",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31800"
   },
@@ -3819,7 +3819,7 @@
     "name": "Saint-Geniès-Bellevue",
     "code": "31484",
     "epci_code": "243100815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31180"
   },
@@ -3827,7 +3827,7 @@
     "name": "Saint-Germier",
     "code": "31485",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31290"
   },
@@ -3835,7 +3835,7 @@
     "name": "Saint-Hilaire",
     "code": "31486",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31410"
   },
@@ -3843,7 +3843,7 @@
     "name": "Saint-Ignan",
     "code": "31487",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31800"
   },
@@ -3851,7 +3851,7 @@
     "name": "Saint-Jean",
     "code": "31488",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31240"
   },
@@ -3859,7 +3859,7 @@
     "name": "Saint-Jean-Lherm",
     "code": "31489",
     "epci_code": "243100732",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31380"
   },
@@ -3867,7 +3867,7 @@
     "name": "Saint-Jory",
     "code": "31490",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31790"
   },
@@ -3875,7 +3875,7 @@
     "name": "Saint-Julia",
     "code": "31491",
     "epci_code": "243100567",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31540"
   },
@@ -3883,7 +3883,7 @@
     "name": "Saint-Julien-sur-Garonne",
     "code": "31492",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31220"
   },
@@ -3891,7 +3891,7 @@
     "name": "Saint-Lary-Boujean",
     "code": "31493",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31350"
   },
@@ -3899,7 +3899,7 @@
     "name": "Saint-Laurent",
     "code": "31494",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31230"
   },
@@ -3907,7 +3907,7 @@
     "name": "Saint-Léon",
     "code": "31495",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31560"
   },
@@ -3915,7 +3915,7 @@
     "name": "Sainte-Livrade",
     "code": "31496",
     "epci_code": "243100781",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31530"
   },
@@ -3923,7 +3923,7 @@
     "name": "Saint-Loup-Cammas",
     "code": "31497",
     "epci_code": "243100815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31140"
   },
@@ -3931,7 +3931,7 @@
     "name": "Saint-Loup-en-Comminges",
     "code": "31498",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31350"
   },
@@ -3939,7 +3939,7 @@
     "name": "Saint-Lys",
     "code": "31499",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31470"
   },
@@ -3947,7 +3947,7 @@
     "name": "Saint-Mamet",
     "code": "31500",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -3955,7 +3955,7 @@
     "name": "Saint-Marcel-Paulel",
     "code": "31501",
     "epci_code": "243100732",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31590"
   },
@@ -3963,7 +3963,7 @@
     "name": "Saint-Marcet",
     "code": "31502",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31800"
   },
@@ -3971,7 +3971,7 @@
     "name": "Saint-Martory",
     "code": "31503",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31360"
   },
@@ -3979,7 +3979,7 @@
     "name": "Saint-Médard",
     "code": "31504",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31360"
   },
@@ -3987,7 +3987,7 @@
     "name": "Saint-Michel",
     "code": "31505",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31220"
   },
@@ -3995,7 +3995,7 @@
     "name": "Saint-Orens-de-Gameville",
     "code": "31506",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31650"
   },
@@ -4003,7 +4003,7 @@
     "name": "Saint-Paul-sur-Save",
     "code": "31507",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31530"
   },
@@ -4011,7 +4011,7 @@
     "name": "Saint-Paul-d’Oueil",
     "code": "31508",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -4019,7 +4019,7 @@
     "name": "Saint-Pé-d’Ardet",
     "code": "31509",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31510"
   },
@@ -4027,7 +4027,7 @@
     "name": "Saint-Pé-Delbosc",
     "code": "31510",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31350"
   },
@@ -4035,7 +4035,7 @@
     "name": "Saint-Pierre",
     "code": "31511",
     "epci_code": "243100732",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31590"
   },
@@ -4043,7 +4043,7 @@
     "name": "Saint-Pierre-de-Lages",
     "code": "31512",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31570"
   },
@@ -4051,7 +4051,7 @@
     "name": "Saint-Plancard",
     "code": "31513",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31580"
   },
@@ -4059,7 +4059,7 @@
     "name": "Saint-Rome",
     "code": "31514",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31290"
   },
@@ -4067,7 +4067,7 @@
     "name": "Saint-Rustice",
     "code": "31515",
     "epci_code": "200034957",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31620"
   },
@@ -4075,7 +4075,7 @@
     "name": "Saint-Sauveur",
     "code": "31516",
     "epci_code": "200034957",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31790"
   },
@@ -4083,7 +4083,7 @@
     "name": "Saint-Sulpice-sur-Lèze",
     "code": "31517",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31410"
   },
@@ -4091,7 +4091,7 @@
     "name": "Saint-Thomas",
     "code": "31518",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31470"
   },
@@ -4099,7 +4099,7 @@
     "name": "Saint-Vincent",
     "code": "31519",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31290"
   },
@@ -4107,7 +4107,7 @@
     "name": "Sajas",
     "code": "31520",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31370"
   },
@@ -4115,7 +4115,7 @@
     "name": "Saleich",
     "code": "31521",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31260"
   },
@@ -4123,7 +4123,7 @@
     "name": "Salherm",
     "code": "31522",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31230"
   },
@@ -4131,7 +4131,7 @@
     "name": "Salies-du-Salat",
     "code": "31523",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31260"
   },
@@ -4139,7 +4139,7 @@
     "name": "Salles-et-Pratviel",
     "code": "31524",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -4147,7 +4147,7 @@
     "name": "Salles-sur-Garonne",
     "code": "31525",
     "epci_code": "200066819",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31390"
   },
@@ -4155,7 +4155,7 @@
     "name": "La Salvetat-Saint-Gilles",
     "code": "31526",
     "epci_code": "243100781",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31880"
   },
@@ -4163,7 +4163,7 @@
     "name": "La Salvetat-Lauragais",
     "code": "31527",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31460"
   },
@@ -4171,7 +4171,7 @@
     "name": "Saman",
     "code": "31528",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31350"
   },
@@ -4179,7 +4179,7 @@
     "name": "Samouillan",
     "code": "31529",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31420"
   },
@@ -4187,7 +4187,7 @@
     "name": "Sana",
     "code": "31530",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31220"
   },
@@ -4195,7 +4195,7 @@
     "name": "Sarrecave",
     "code": "31531",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31350"
   },
@@ -4203,7 +4203,7 @@
     "name": "Sarremezan",
     "code": "31532",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31350"
   },
@@ -4211,7 +4211,7 @@
     "name": "Saubens",
     "code": "31533",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31600"
   },
@@ -4219,7 +4219,7 @@
     "name": "Saussens",
     "code": "31534",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31460"
   },
@@ -4227,7 +4227,7 @@
     "name": "Sauveterre-de-Comminges",
     "code": "31535",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31510"
   },
@@ -4235,7 +4235,7 @@
     "name": "Saux-et-Pomarède",
     "code": "31536",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31800"
   },
@@ -4243,7 +4243,7 @@
     "name": "Savarthès",
     "code": "31537",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31800"
   },
@@ -4251,7 +4251,7 @@
     "name": "Savères",
     "code": "31538",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31370"
   },
@@ -4259,7 +4259,7 @@
     "name": "Sédeilhac",
     "code": "31539",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31580"
   },
@@ -4267,7 +4267,7 @@
     "name": "Ségreville",
     "code": "31540",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31460"
   },
@@ -4275,7 +4275,7 @@
     "name": "Seilh",
     "code": "31541",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31840"
   },
@@ -4283,7 +4283,7 @@
     "name": "Seilhan",
     "code": "31542",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31510"
   },
@@ -4291,7 +4291,7 @@
     "name": "Sénarens",
     "code": "31543",
     "epci_code": "200068815",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31430"
   },
@@ -4299,7 +4299,7 @@
     "name": "Sengouagnet",
     "code": "31544",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -4307,7 +4307,7 @@
     "name": "Sepx",
     "code": "31545",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31360"
   },
@@ -4315,7 +4315,7 @@
     "name": "Seyre",
     "code": "31546",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31560"
   },
@@ -4323,7 +4323,7 @@
     "name": "Seysses",
     "code": "31547",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31600"
   },
@@ -4331,7 +4331,7 @@
     "name": "Signac",
     "code": "31548",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31440"
   },
@@ -4339,7 +4339,7 @@
     "name": "Sode",
     "code": "31549",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -4347,7 +4347,7 @@
     "name": "Soueich",
     "code": "31550",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31160"
   },
@@ -4355,7 +4355,7 @@
     "name": "Tarabel",
     "code": "31551",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31570"
   },
@@ -4363,7 +4363,7 @@
     "name": "Terrebasse",
     "code": "31552",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31420"
   },
@@ -4371,7 +4371,7 @@
     "name": "Thil",
     "code": "31553",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31530"
   },
@@ -4379,7 +4379,7 @@
     "name": "Touille",
     "code": "31554",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31260"
   },
@@ -4387,7 +4387,7 @@
     "name": "Toulouse",
     "code": "31555",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31000"
   },
@@ -4395,7 +4395,7 @@
     "name": "Toulouse",
     "code": "31555",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31100"
   },
@@ -4403,7 +4403,7 @@
     "name": "Toulouse",
     "code": "31555",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31200"
   },
@@ -4411,7 +4411,7 @@
     "name": "Toulouse",
     "code": "31555",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31300"
   },
@@ -4419,7 +4419,7 @@
     "name": "Toulouse",
     "code": "31555",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31400"
   },
@@ -4427,7 +4427,7 @@
     "name": "Toulouse",
     "code": "31555",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31500"
   },
@@ -4435,7 +4435,7 @@
     "name": "Les Tourreilles",
     "code": "31556",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31210"
   },
@@ -4443,7 +4443,7 @@
     "name": "Tournefeuille",
     "code": "31557",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31170"
   },
@@ -4451,7 +4451,7 @@
     "name": "Toutens",
     "code": "31558",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31460"
   },
@@ -4459,7 +4459,7 @@
     "name": "Trébons-de-Luchon",
     "code": "31559",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31110"
   },
@@ -4467,7 +4467,7 @@
     "name": "Trébons-sur-la-Grasse",
     "code": "31560",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31290"
   },
@@ -4475,7 +4475,7 @@
     "name": "L’Union",
     "code": "31561",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31240"
   },
@@ -4483,7 +4483,7 @@
     "name": "Urau",
     "code": "31562",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31260"
   },
@@ -4491,7 +4491,7 @@
     "name": "Vacquiers",
     "code": "31563",
     "epci_code": "200034957",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31340"
   },
@@ -4499,7 +4499,7 @@
     "name": "Valcabrère",
     "code": "31564",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31510"
   },
@@ -4507,7 +4507,7 @@
     "name": "Valentine",
     "code": "31565",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31800"
   },
@@ -4515,7 +4515,7 @@
     "name": "Vallègue",
     "code": "31566",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31290"
   },
@@ -4523,7 +4523,7 @@
     "name": "Vallesvilles",
     "code": "31567",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31570"
   },
@@ -4531,7 +4531,7 @@
     "name": "Varennes",
     "code": "31568",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31450"
   },
@@ -4539,7 +4539,7 @@
     "name": "Vaudreuille",
     "code": "31569",
     "epci_code": "243100567",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31250"
   },
@@ -4547,7 +4547,7 @@
     "name": "Vaux",
     "code": "31570",
     "epci_code": "243100567",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31540"
   },
@@ -4555,7 +4555,7 @@
     "name": "Vendine",
     "code": "31571",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31460"
   },
@@ -4563,7 +4563,7 @@
     "name": "Venerque",
     "code": "31572",
     "epci_code": "200068807",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31810"
   },
@@ -4571,7 +4571,7 @@
     "name": "Verfeil",
     "code": "31573",
     "epci_code": "243100732",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31590"
   },
@@ -4579,7 +4579,7 @@
     "name": "Vernet",
     "code": "31574",
     "epci_code": "200068807",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31810"
   },
@@ -4587,7 +4587,7 @@
     "name": "Vieille-Toulouse",
     "code": "31575",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31320"
   },
@@ -4595,7 +4595,7 @@
     "name": "Vieillevigne",
     "code": "31576",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31290"
   },
@@ -4603,7 +4603,7 @@
     "name": "Vignaux",
     "code": "31577",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31480"
   },
@@ -4611,7 +4611,7 @@
     "name": "Vigoulet-Auzil",
     "code": "31578",
     "epci_code": "243100633",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31320"
   },
@@ -4619,7 +4619,7 @@
     "name": "Villariès",
     "code": "31579",
     "epci_code": "243100732",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31380"
   },
@@ -4627,7 +4627,7 @@
     "name": "Villate",
     "code": "31580",
     "epci_code": "200068641",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31860"
   },
@@ -4635,7 +4635,7 @@
     "name": "Villaudric",
     "code": "31581",
     "epci_code": "200034957",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31620"
   },
@@ -4643,7 +4643,7 @@
     "name": "Villefranche-de-Lauragais",
     "code": "31582",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31290"
   },
@@ -4651,7 +4651,7 @@
     "name": "Villematier",
     "code": "31583",
     "epci_code": "243100773",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31340"
   },
@@ -4659,7 +4659,7 @@
     "name": "Villemur-sur-Tarn",
     "code": "31584",
     "epci_code": "243100773",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31340"
   },
@@ -4667,7 +4667,7 @@
     "name": "Villeneuve-de-Rivière",
     "code": "31585",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31800"
   },
@@ -4675,7 +4675,7 @@
     "name": "Villeneuve-Lécussan",
     "code": "31586",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31580"
   },
@@ -4683,7 +4683,7 @@
     "name": "Villeneuve-lès-Bouloc",
     "code": "31587",
     "epci_code": "200034957",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31620"
   },
@@ -4691,7 +4691,7 @@
     "name": "Villeneuve-Tolosane",
     "code": "31588",
     "epci_code": "243100518",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31270"
   },
@@ -4699,7 +4699,7 @@
     "name": "Villenouvelle",
     "code": "31589",
     "epci_code": "200071298",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31290"
   },
@@ -4707,7 +4707,7 @@
     "name": "Binos",
     "code": "31590",
     "epci_code": "200072635",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31440"
   },
@@ -4715,7 +4715,7 @@
     "name": "Escoulis",
     "code": "31591",
     "epci_code": "200073146",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31260"
   },
@@ -4723,7 +4723,7 @@
     "name": "Larra",
     "code": "31592",
     "epci_code": "200071314",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31330"
   },
@@ -4731,7 +4731,7 @@
     "name": "Cazac",
     "code": "31593",
     "epci_code": "200072643",
-    "departement_code": "31",
+    "department_code": "31",
     "region_code": "76",
     "postal_code": "31230"
   }

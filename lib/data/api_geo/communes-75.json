@@ -3,7 +3,7 @@
     "name": "Paris",
     "code": "75056",
     "epci_code": "200054781",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75001"
   },
@@ -11,7 +11,7 @@
     "name": "Paris",
     "code": "75056",
     "epci_code": "200054781",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75002"
   },
@@ -19,7 +19,7 @@
     "name": "Paris",
     "code": "75056",
     "epci_code": "200054781",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75003"
   },
@@ -27,7 +27,7 @@
     "name": "Paris",
     "code": "75056",
     "epci_code": "200054781",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75004"
   },
@@ -35,7 +35,7 @@
     "name": "Paris",
     "code": "75056",
     "epci_code": "200054781",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75005"
   },
@@ -43,7 +43,7 @@
     "name": "Paris",
     "code": "75056",
     "epci_code": "200054781",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75006"
   },
@@ -51,7 +51,7 @@
     "name": "Paris",
     "code": "75056",
     "epci_code": "200054781",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75007"
   },
@@ -59,7 +59,7 @@
     "name": "Paris",
     "code": "75056",
     "epci_code": "200054781",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75008"
   },
@@ -67,7 +67,7 @@
     "name": "Paris",
     "code": "75056",
     "epci_code": "200054781",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75009"
   },
@@ -75,7 +75,7 @@
     "name": "Paris",
     "code": "75056",
     "epci_code": "200054781",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75010"
   },
@@ -83,7 +83,7 @@
     "name": "Paris",
     "code": "75056",
     "epci_code": "200054781",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75011"
   },
@@ -91,7 +91,7 @@
     "name": "Paris",
     "code": "75056",
     "epci_code": "200054781",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75012"
   },
@@ -99,7 +99,7 @@
     "name": "Paris",
     "code": "75056",
     "epci_code": "200054781",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75013"
   },
@@ -107,7 +107,7 @@
     "name": "Paris",
     "code": "75056",
     "epci_code": "200054781",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75014"
   },
@@ -115,7 +115,7 @@
     "name": "Paris",
     "code": "75056",
     "epci_code": "200054781",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75015"
   },
@@ -123,7 +123,7 @@
     "name": "Paris",
     "code": "75056",
     "epci_code": "200054781",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75016"
   },
@@ -131,7 +131,7 @@
     "name": "Paris",
     "code": "75056",
     "epci_code": "200054781",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75017"
   },
@@ -139,7 +139,7 @@
     "name": "Paris",
     "code": "75056",
     "epci_code": "200054781",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75018"
   },
@@ -147,7 +147,7 @@
     "name": "Paris",
     "code": "75056",
     "epci_code": "200054781",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75019"
   },
@@ -155,7 +155,7 @@
     "name": "Paris",
     "code": "75056",
     "epci_code": "200054781",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75020"
   },
@@ -163,154 +163,154 @@
     "name": "Paris",
     "code": "75056",
     "epci_code": "200054781",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75116"
   },
   {
     "name": "Paris 1er Arrondissement",
     "code": "75101",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75001"
   },
   {
     "name": "Paris 2e Arrondissement",
     "code": "75102",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75002"
   },
   {
     "name": "Paris 3e Arrondissement",
     "code": "75103",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75003"
   },
   {
     "name": "Paris 4e Arrondissement",
     "code": "75104",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75004"
   },
   {
     "name": "Paris 5e Arrondissement",
     "code": "75105",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75005"
   },
   {
     "name": "Paris 6e Arrondissement",
     "code": "75106",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75006"
   },
   {
     "name": "Paris 7e Arrondissement",
     "code": "75107",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75007"
   },
   {
     "name": "Paris 8e Arrondissement",
     "code": "75108",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75008"
   },
   {
     "name": "Paris 9e Arrondissement",
     "code": "75109",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75009"
   },
   {
     "name": "Paris 10e Arrondissement",
     "code": "75110",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75010"
   },
   {
     "name": "Paris 11e Arrondissement",
     "code": "75111",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75011"
   },
   {
     "name": "Paris 12e Arrondissement",
     "code": "75112",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75012"
   },
   {
     "name": "Paris 13e Arrondissement",
     "code": "75113",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75013"
   },
   {
     "name": "Paris 14e Arrondissement",
     "code": "75114",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75014"
   },
   {
     "name": "Paris 15e Arrondissement",
     "code": "75115",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75015"
   },
   {
     "name": "Paris 16e Arrondissement",
     "code": "75116",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75016"
   },
   {
     "name": "Paris 16e Arrondissement",
     "code": "75116",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75116"
   },
   {
     "name": "Paris 17e Arrondissement",
     "code": "75117",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75017"
   },
   {
     "name": "Paris 18e Arrondissement",
     "code": "75118",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75018"
   },
   {
     "name": "Paris 19e Arrondissement",
     "code": "75119",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75019"
   },
   {
     "name": "Paris 20e Arrondissement",
     "code": "75120",
-    "departement_code": "75",
+    "department_code": "75",
     "region_code": "11",
     "postal_code": "75020"
   }

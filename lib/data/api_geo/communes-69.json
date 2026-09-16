@@ -3,7 +3,7 @@
     "name": "Affoux",
     "code": "69001",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69170"
   },
@@ -11,7 +11,7 @@
     "name": "Aigueperse",
     "code": "69002",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69790"
   },
@@ -19,7 +19,7 @@
     "name": "Albigny-sur-Saône",
     "code": "69003",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69250"
   },
@@ -27,7 +27,7 @@
     "name": "Alix",
     "code": "69004",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69380"
   },
@@ -35,7 +35,7 @@
     "name": "Ambérieux",
     "code": "69005",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69480"
   },
@@ -43,7 +43,7 @@
     "name": "Amplepuis",
     "code": "69006",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69550"
   },
@@ -51,7 +51,7 @@
     "name": "Ampuis",
     "code": "69007",
     "epci_code": "200077014",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69420"
   },
@@ -59,7 +59,7 @@
     "name": "Ancy",
     "code": "69008",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69490"
   },
@@ -67,7 +67,7 @@
     "name": "Anse",
     "code": "69009",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69480"
   },
@@ -75,7 +75,7 @@
     "name": "L’Arbresle",
     "code": "69010",
     "epci_code": "246900625",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69210"
   },
@@ -83,7 +83,7 @@
     "name": "Les Ardillats",
     "code": "69012",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69430"
   },
@@ -91,7 +91,7 @@
     "name": "Arnas",
     "code": "69013",
     "epci_code": "200040590",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69400"
   },
@@ -99,7 +99,7 @@
     "name": "Aveize",
     "code": "69014",
     "epci_code": "200066587",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69610"
   },
@@ -107,7 +107,7 @@
     "name": "Azolette",
     "code": "69016",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69790"
   },
@@ -115,7 +115,7 @@
     "name": "Bagnols",
     "code": "69017",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69620"
   },
@@ -123,7 +123,7 @@
     "name": "Beaujeu",
     "code": "69018",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69430"
   },
@@ -131,7 +131,7 @@
     "name": "Belleville-en-Beaujolais",
     "code": "69019",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69220"
   },
@@ -139,7 +139,7 @@
     "name": "Belmont-d’Azergues",
     "code": "69020",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69380"
   },
@@ -147,7 +147,7 @@
     "name": "Bessenay",
     "code": "69021",
     "epci_code": "246900625",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69690"
   },
@@ -155,7 +155,7 @@
     "name": "Bibost",
     "code": "69022",
     "epci_code": "246900625",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69690"
   },
@@ -163,7 +163,7 @@
     "name": "Blacé",
     "code": "69023",
     "epci_code": "200040590",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69460"
   },
@@ -171,7 +171,7 @@
     "name": "Val d’Oingt",
     "code": "69024",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69620"
   },
@@ -179,7 +179,7 @@
     "name": "Le Breuil",
     "code": "69026",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69620"
   },
@@ -187,7 +187,7 @@
     "name": "Brignais",
     "code": "69027",
     "epci_code": "246900757",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69530"
   },
@@ -195,7 +195,7 @@
     "name": "Brindas",
     "code": "69028",
     "epci_code": "246900724",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69126"
   },
@@ -203,7 +203,7 @@
     "name": "Bron",
     "code": "69029",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69500"
   },
@@ -211,7 +211,7 @@
     "name": "Brullioles",
     "code": "69030",
     "epci_code": "200066587",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69690"
   },
@@ -219,7 +219,7 @@
     "name": "Brussieu",
     "code": "69031",
     "epci_code": "200066587",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69690"
   },
@@ -227,7 +227,7 @@
     "name": "Bully",
     "code": "69032",
     "epci_code": "246900625",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69210"
   },
@@ -235,7 +235,7 @@
     "name": "Cailloux-sur-Fontaines",
     "code": "69033",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69270"
   },
@@ -243,7 +243,7 @@
     "name": "Caluire-et-Cuire",
     "code": "69034",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69300"
   },
@@ -251,7 +251,7 @@
     "name": "Cenves",
     "code": "69035",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69840"
   },
@@ -259,7 +259,7 @@
     "name": "Cercié",
     "code": "69036",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69220"
   },
@@ -267,7 +267,7 @@
     "name": "Chambost-Allières",
     "code": "69037",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69870"
   },
@@ -275,7 +275,7 @@
     "name": "Chambost-Longessaigne",
     "code": "69038",
     "epci_code": "200066587",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69770"
   },
@@ -283,7 +283,7 @@
     "name": "Chamelet",
     "code": "69039",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69620"
   },
@@ -291,7 +291,7 @@
     "name": "Champagne-au-Mont-d’Or",
     "code": "69040",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69410"
   },
@@ -299,7 +299,7 @@
     "name": "La Chapelle-sur-Coise",
     "code": "69042",
     "epci_code": "200066587",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69590"
   },
@@ -307,7 +307,7 @@
     "name": "Chaponost",
     "code": "69043",
     "epci_code": "246900757",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69630"
   },
@@ -315,7 +315,7 @@
     "name": "Charbonnières-les-Bains",
     "code": "69044",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69260"
   },
@@ -323,7 +323,7 @@
     "name": "Charentay",
     "code": "69045",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69220"
   },
@@ -331,7 +331,7 @@
     "name": "Charly",
     "code": "69046",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69390"
   },
@@ -339,7 +339,7 @@
     "name": "Charnay",
     "code": "69047",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69380"
   },
@@ -347,7 +347,7 @@
     "name": "Chasselay",
     "code": "69049",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69380"
   },
@@ -355,7 +355,7 @@
     "name": "Châtillon",
     "code": "69050",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69380"
   },
@@ -363,7 +363,7 @@
     "name": "Chaussan",
     "code": "69051",
     "epci_code": "246900740",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69440"
   },
@@ -371,7 +371,7 @@
     "name": "Chazay-d’Azergues",
     "code": "69052",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69380"
   },
@@ -379,7 +379,7 @@
     "name": "Chénas",
     "code": "69053",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69840"
   },
@@ -387,7 +387,7 @@
     "name": "Chénelette",
     "code": "69054",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69430"
   },
@@ -395,7 +395,7 @@
     "name": "Les Chères",
     "code": "69055",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69380"
   },
@@ -403,7 +403,7 @@
     "name": "Chessy",
     "code": "69056",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69380"
   },
@@ -411,7 +411,7 @@
     "name": "Chevinay",
     "code": "69057",
     "epci_code": "246900625",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69210"
   },
@@ -419,7 +419,7 @@
     "name": "Chiroubles",
     "code": "69058",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69115"
   },
@@ -427,7 +427,7 @@
     "name": "Civrieux-d’Azergues",
     "code": "69059",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69380"
   },
@@ -435,7 +435,7 @@
     "name": "Claveisolles",
     "code": "69060",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69870"
   },
@@ -443,7 +443,7 @@
     "name": "Cogny",
     "code": "69061",
     "epci_code": "200040590",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69640"
   },
@@ -451,7 +451,7 @@
     "name": "Coise",
     "code": "69062",
     "epci_code": "200066587",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69590"
   },
@@ -459,7 +459,7 @@
     "name": "Collonges-au-Mont-d’Or",
     "code": "69063",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69660"
   },
@@ -467,7 +467,7 @@
     "name": "Condrieu",
     "code": "69064",
     "epci_code": "200077014",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69420"
   },
@@ -475,7 +475,7 @@
     "name": "Corcelles-en-Beaujolais",
     "code": "69065",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69220"
   },
@@ -483,7 +483,7 @@
     "name": "Cours",
     "code": "69066",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69470"
   },
@@ -491,7 +491,7 @@
     "name": "Courzieu",
     "code": "69067",
     "epci_code": "246900625",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69690"
   },
@@ -499,7 +499,7 @@
     "name": "Couzon-au-Mont-d’Or",
     "code": "69068",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69270"
   },
@@ -507,7 +507,7 @@
     "name": "Craponne",
     "code": "69069",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69290"
   },
@@ -515,7 +515,7 @@
     "name": "Cublize",
     "code": "69070",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69550"
   },
@@ -523,7 +523,7 @@
     "name": "Curis-au-Mont-d’Or",
     "code": "69071",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69250"
   },
@@ -531,7 +531,7 @@
     "name": "Dardilly",
     "code": "69072",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69570"
   },
@@ -539,7 +539,7 @@
     "name": "Denicé",
     "code": "69074",
     "epci_code": "200040590",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69640"
   },
@@ -547,7 +547,7 @@
     "name": "Dième",
     "code": "69075",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69170"
   },
@@ -555,7 +555,7 @@
     "name": "Dommartin",
     "code": "69076",
     "epci_code": "246900625",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69380"
   },
@@ -563,7 +563,7 @@
     "name": "Dracé",
     "code": "69077",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69220"
   },
@@ -571,7 +571,7 @@
     "name": "Duerne",
     "code": "69078",
     "epci_code": "200066587",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69850"
   },
@@ -579,7 +579,7 @@
     "name": "Échalas",
     "code": "69080",
     "epci_code": "200077014",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69700"
   },
@@ -587,7 +587,7 @@
     "name": "Écully",
     "code": "69081",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69130"
   },
@@ -595,7 +595,7 @@
     "name": "Émeringes",
     "code": "69082",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69840"
   },
@@ -603,7 +603,7 @@
     "name": "Éveux",
     "code": "69083",
     "epci_code": "246900625",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69210"
   },
@@ -611,7 +611,7 @@
     "name": "Fleurie",
     "code": "69084",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69820"
   },
@@ -619,7 +619,7 @@
     "name": "Fleurieu-sur-Saône",
     "code": "69085",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69250"
   },
@@ -627,7 +627,7 @@
     "name": "Fleurieux-sur-l’Arbresle",
     "code": "69086",
     "epci_code": "246900625",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69210"
   },
@@ -635,7 +635,7 @@
     "name": "Fontaines-Saint-Martin",
     "code": "69087",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69270"
   },
@@ -643,7 +643,7 @@
     "name": "Fontaines-sur-Saône",
     "code": "69088",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69270"
   },
@@ -651,7 +651,7 @@
     "name": "Francheville",
     "code": "69089",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69340"
   },
@@ -659,7 +659,7 @@
     "name": "Frontenas",
     "code": "69090",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69620"
   },
@@ -667,7 +667,7 @@
     "name": "Givors",
     "code": "69091",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69700"
   },
@@ -675,7 +675,7 @@
     "name": "Gleizé",
     "code": "69092",
     "epci_code": "200040590",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69400"
   },
@@ -683,7 +683,7 @@
     "name": "Grandris",
     "code": "69093",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69870"
   },
@@ -691,7 +691,7 @@
     "name": "Grézieu-la-Varenne",
     "code": "69094",
     "epci_code": "246900724",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69290"
   },
@@ -699,7 +699,7 @@
     "name": "Grézieu-le-Marché",
     "code": "69095",
     "epci_code": "200066587",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69610"
   },
@@ -707,7 +707,7 @@
     "name": "Grigny-sur-Rhône",
     "code": "69096",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69520"
   },
@@ -715,7 +715,7 @@
     "name": "Les Haies",
     "code": "69097",
     "epci_code": "200077014",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69420"
   },
@@ -723,7 +723,7 @@
     "name": "Les Halles",
     "code": "69098",
     "epci_code": "200066587",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69610"
   },
@@ -731,7 +731,7 @@
     "name": "Haute-Rivoire",
     "code": "69099",
     "epci_code": "200066587",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69610"
   },
@@ -739,7 +739,7 @@
     "name": "Irigny",
     "code": "69100",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69540"
   },
@@ -747,7 +747,7 @@
     "name": "Joux",
     "code": "69102",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69170"
   },
@@ -755,7 +755,7 @@
     "name": "Juliénas",
     "code": "69103",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69840"
   },
@@ -763,7 +763,7 @@
     "name": "Jullié",
     "code": "69104",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69840"
   },
@@ -771,7 +771,7 @@
     "name": "Lacenas",
     "code": "69105",
     "epci_code": "200040590",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69640"
   },
@@ -779,7 +779,7 @@
     "name": "Lachassagne",
     "code": "69106",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69480"
   },
@@ -787,7 +787,7 @@
     "name": "Lamure-sur-Azergues",
     "code": "69107",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69870"
   },
@@ -795,7 +795,7 @@
     "name": "Lancié",
     "code": "69108",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69220"
   },
@@ -803,7 +803,7 @@
     "name": "Lantignié",
     "code": "69109",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69430"
   },
@@ -811,7 +811,7 @@
     "name": "Larajasse",
     "code": "69110",
     "epci_code": "200066587",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69590"
   },
@@ -819,7 +819,7 @@
     "name": "Légny",
     "code": "69111",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69620"
   },
@@ -827,7 +827,7 @@
     "name": "Lentilly",
     "code": "69112",
     "epci_code": "246900625",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69210"
   },
@@ -835,7 +835,7 @@
     "name": "Létra",
     "code": "69113",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69620"
   },
@@ -843,7 +843,7 @@
     "name": "Porte des Pierres Dorées",
     "code": "69114",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69400"
   },
@@ -851,7 +851,7 @@
     "name": "Porte des Pierres Dorées",
     "code": "69114",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69640"
   },
@@ -859,7 +859,7 @@
     "name": "Limas",
     "code": "69115",
     "epci_code": "200040590",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69400"
   },
@@ -867,7 +867,7 @@
     "name": "Limonest",
     "code": "69116",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69760"
   },
@@ -875,7 +875,7 @@
     "name": "Lissieu",
     "code": "69117",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69380"
   },
@@ -883,7 +883,7 @@
     "name": "Loire-sur-Rhône",
     "code": "69118",
     "epci_code": "200077014",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69700"
   },
@@ -891,7 +891,7 @@
     "name": "Longes",
     "code": "69119",
     "epci_code": "200077014",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69420"
   },
@@ -899,7 +899,7 @@
     "name": "Longessaigne",
     "code": "69120",
     "epci_code": "200066587",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69770"
   },
@@ -907,7 +907,7 @@
     "name": "Lozanne",
     "code": "69121",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69380"
   },
@@ -915,7 +915,7 @@
     "name": "Lucenay",
     "code": "69122",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69480"
   },
@@ -923,7 +923,7 @@
     "name": "Lyon",
     "code": "69123",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69001"
   },
@@ -931,7 +931,7 @@
     "name": "Lyon",
     "code": "69123",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69002"
   },
@@ -939,7 +939,7 @@
     "name": "Lyon",
     "code": "69123",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69003"
   },
@@ -947,7 +947,7 @@
     "name": "Lyon",
     "code": "69123",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69004"
   },
@@ -955,7 +955,7 @@
     "name": "Lyon",
     "code": "69123",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69005"
   },
@@ -963,7 +963,7 @@
     "name": "Lyon",
     "code": "69123",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69006"
   },
@@ -971,7 +971,7 @@
     "name": "Lyon",
     "code": "69123",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69007"
   },
@@ -979,7 +979,7 @@
     "name": "Lyon",
     "code": "69123",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69008"
   },
@@ -987,7 +987,7 @@
     "name": "Lyon",
     "code": "69123",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69009"
   },
@@ -995,7 +995,7 @@
     "name": "Marchampt",
     "code": "69124",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69430"
   },
@@ -1003,7 +1003,7 @@
     "name": "Marcilly-d’Azergues",
     "code": "69125",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69380"
   },
@@ -1011,7 +1011,7 @@
     "name": "Marcy",
     "code": "69126",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69480"
   },
@@ -1019,7 +1019,7 @@
     "name": "Marcy-l’Étoile",
     "code": "69127",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69280"
   },
@@ -1027,7 +1027,7 @@
     "name": "Meaux-la-Montagne",
     "code": "69130",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69550"
   },
@@ -1035,7 +1035,7 @@
     "name": "Messimy",
     "code": "69131",
     "epci_code": "246900724",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69510"
   },
@@ -1043,7 +1043,7 @@
     "name": "Meys",
     "code": "69132",
     "epci_code": "200066587",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69610"
   },
@@ -1051,7 +1051,7 @@
     "name": "Millery",
     "code": "69133",
     "epci_code": "246900757",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69390"
   },
@@ -1059,7 +1059,7 @@
     "name": "Moiré",
     "code": "69134",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69620"
   },
@@ -1067,7 +1067,7 @@
     "name": "Deux-Grosnes",
     "code": "69135",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69430"
   },
@@ -1075,7 +1075,7 @@
     "name": "Deux-Grosnes",
     "code": "69135",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69860"
   },
@@ -1083,7 +1083,7 @@
     "name": "Montagny",
     "code": "69136",
     "epci_code": "246900757",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69700"
   },
@@ -1091,7 +1091,7 @@
     "name": "Montmelas-Saint-Sorlin",
     "code": "69137",
     "epci_code": "200040590",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69640"
   },
@@ -1099,7 +1099,7 @@
     "name": "Montromant",
     "code": "69138",
     "epci_code": "200066587",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69610"
   },
@@ -1107,7 +1107,7 @@
     "name": "Montrottier",
     "code": "69139",
     "epci_code": "200066587",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69770"
   },
@@ -1115,7 +1115,7 @@
     "name": "Morancé",
     "code": "69140",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69480"
   },
@@ -1123,7 +1123,7 @@
     "name": "Mornant",
     "code": "69141",
     "epci_code": "246900740",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69440"
   },
@@ -1131,7 +1131,7 @@
     "name": "La Mulatière",
     "code": "69142",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69350"
   },
@@ -1139,7 +1139,7 @@
     "name": "Neuville-sur-Saône",
     "code": "69143",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69250"
   },
@@ -1147,7 +1147,7 @@
     "name": "Odenas",
     "code": "69145",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69460"
   },
@@ -1155,7 +1155,7 @@
     "name": "Orliénas",
     "code": "69148",
     "epci_code": "246900740",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69530"
   },
@@ -1163,7 +1163,7 @@
     "name": "Oullins-Pierre-Bénite",
     "code": "69149",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69310"
   },
@@ -1171,7 +1171,7 @@
     "name": "Oullins-Pierre-Bénite",
     "code": "69149",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69600"
   },
@@ -1179,7 +1179,7 @@
     "name": "Le Perréon",
     "code": "69151",
     "epci_code": "200040590",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69460"
   },
@@ -1187,7 +1187,7 @@
     "name": "Poleymieux-au-Mont-d’Or",
     "code": "69153",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69250"
   },
@@ -1195,7 +1195,7 @@
     "name": "Pollionnay",
     "code": "69154",
     "epci_code": "246900724",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69290"
   },
@@ -1203,7 +1203,7 @@
     "name": "Pomeys",
     "code": "69155",
     "epci_code": "200066587",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69590"
   },
@@ -1211,7 +1211,7 @@
     "name": "Pommiers",
     "code": "69156",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69480"
   },
@@ -1219,7 +1219,7 @@
     "name": "Vindry-sur-Turdine",
     "code": "69157",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69490"
   },
@@ -1227,7 +1227,7 @@
     "name": "Poule-les-Écharmeaux",
     "code": "69160",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69870"
   },
@@ -1235,7 +1235,7 @@
     "name": "Propières",
     "code": "69161",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69790"
   },
@@ -1243,7 +1243,7 @@
     "name": "Quincié-en-Beaujolais",
     "code": "69162",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69430"
   },
@@ -1251,7 +1251,7 @@
     "name": "Quincieux",
     "code": "69163",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69650"
   },
@@ -1259,7 +1259,7 @@
     "name": "Ranchal",
     "code": "69164",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69470"
   },
@@ -1267,7 +1267,7 @@
     "name": "Régnié-Durette",
     "code": "69165",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69430"
   },
@@ -1275,7 +1275,7 @@
     "name": "Riverie",
     "code": "69166",
     "epci_code": "246900740",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69440"
   },
@@ -1283,7 +1283,7 @@
     "name": "Rivolet",
     "code": "69167",
     "epci_code": "200040590",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69640"
   },
@@ -1291,7 +1291,7 @@
     "name": "Rochetaillée-sur-Saône",
     "code": "69168",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69270"
   },
@@ -1299,7 +1299,7 @@
     "name": "Ronno",
     "code": "69169",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69550"
   },
@@ -1307,7 +1307,7 @@
     "name": "Rontalon",
     "code": "69170",
     "epci_code": "246900740",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69510"
   },
@@ -1315,7 +1315,7 @@
     "name": "Sain-Bel",
     "code": "69171",
     "epci_code": "246900625",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69210"
   },
@@ -1323,7 +1323,7 @@
     "name": "Salles-Arbuissonnas-en-Beaujolais",
     "code": "69172",
     "epci_code": "200040590",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69460"
   },
@@ -1331,7 +1331,7 @@
     "name": "Sarcey",
     "code": "69173",
     "epci_code": "246900625",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69490"
   },
@@ -1339,7 +1339,7 @@
     "name": "Les Sauvages",
     "code": "69174",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69170"
   },
@@ -1347,7 +1347,7 @@
     "name": "Savigny",
     "code": "69175",
     "epci_code": "246900625",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69210"
   },
@@ -1355,7 +1355,7 @@
     "name": "Soucieu-en-Jarrest",
     "code": "69176",
     "epci_code": "246900740",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69510"
   },
@@ -1363,7 +1363,7 @@
     "name": "Sourcieux-les-Mines",
     "code": "69177",
     "epci_code": "246900625",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69210"
   },
@@ -1371,7 +1371,7 @@
     "name": "Souzy",
     "code": "69178",
     "epci_code": "200066587",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69610"
   },
@@ -1379,7 +1379,7 @@
     "name": "Beauvallon",
     "code": "69179",
     "epci_code": "246900740",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69700"
   },
@@ -1387,7 +1387,7 @@
     "name": "Saint-André-la-Côte",
     "code": "69180",
     "epci_code": "246900740",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69440"
   },
@@ -1395,7 +1395,7 @@
     "name": "Saint-Appolinaire",
     "code": "69181",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69170"
   },
@@ -1403,7 +1403,7 @@
     "name": "Saint-Bonnet-des-Bruyères",
     "code": "69182",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69790"
   },
@@ -1411,7 +1411,7 @@
     "name": "Saint-Bonnet-le-Troncy",
     "code": "69183",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69870"
   },
@@ -1419,7 +1419,7 @@
     "name": "Sainte-Catherine",
     "code": "69184",
     "epci_code": "200066587",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69440"
   },
@@ -1427,7 +1427,7 @@
     "name": "Saint-Clément-de-Vers",
     "code": "69186",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69790"
   },
@@ -1435,7 +1435,7 @@
     "name": "Saint-Clément-les-Places",
     "code": "69187",
     "epci_code": "200066587",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69930"
   },
@@ -1443,7 +1443,7 @@
     "name": "Saint-Clément-sur-Valsonne",
     "code": "69188",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69170"
   },
@@ -1451,7 +1451,7 @@
     "name": "Sainte-Colombe",
     "code": "69189",
     "epci_code": "200077014",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69560"
   },
@@ -1459,7 +1459,7 @@
     "name": "Sainte-Consorce",
     "code": "69190",
     "epci_code": "246900724",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69280"
   },
@@ -1467,7 +1467,7 @@
     "name": "Saint-Cyr-au-Mont-d’Or",
     "code": "69191",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69450"
   },
@@ -1475,7 +1475,7 @@
     "name": "Saint-Cyr-le-Chatoux",
     "code": "69192",
     "epci_code": "200040590",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69870"
   },
@@ -1483,7 +1483,7 @@
     "name": "Saint-Cyr-sur-le-Rhône",
     "code": "69193",
     "epci_code": "200077014",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69560"
   },
@@ -1491,7 +1491,7 @@
     "name": "Saint-Didier-au-Mont-d’Or",
     "code": "69194",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69370"
   },
@@ -1499,7 +1499,7 @@
     "name": "Saint-Didier-sur-Beaujeu",
     "code": "69196",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69430"
   },
@@ -1507,7 +1507,7 @@
     "name": "Saint-Étienne-des-Oullières",
     "code": "69197",
     "epci_code": "200040590",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69460"
   },
@@ -1515,7 +1515,7 @@
     "name": "Saint-Étienne-la-Varenne",
     "code": "69198",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69460"
   },
@@ -1523,7 +1523,7 @@
     "name": "Saint-Fons",
     "code": "69199",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69190"
   },
@@ -1531,7 +1531,7 @@
     "name": "Saint-Forgeux",
     "code": "69200",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69490"
   },
@@ -1539,7 +1539,7 @@
     "name": "Sainte-Foy-l’Argentière",
     "code": "69201",
     "epci_code": "200066587",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69610"
   },
@@ -1547,7 +1547,7 @@
     "name": "Sainte-Foy-lès-Lyon",
     "code": "69202",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69110"
   },
@@ -1555,7 +1555,7 @@
     "name": "Saint-Genis-l’Argentière",
     "code": "69203",
     "epci_code": "200066587",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69610"
   },
@@ -1563,7 +1563,7 @@
     "name": "Saint-Genis-Laval",
     "code": "69204",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69230"
   },
@@ -1571,7 +1571,7 @@
     "name": "Saint-Genis-les-Ollières",
     "code": "69205",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69290"
   },
@@ -1579,7 +1579,7 @@
     "name": "Saint-Georges-de-Reneins",
     "code": "69206",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69830"
   },
@@ -1587,7 +1587,7 @@
     "name": "Saint-Germain-au-Mont-d’Or",
     "code": "69207",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69650"
   },
@@ -1595,7 +1595,7 @@
     "name": "Saint-Germain-Nuelles",
     "code": "69208",
     "epci_code": "246900625",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69210"
   },
@@ -1603,7 +1603,7 @@
     "name": "Saint-Igny-de-Vers",
     "code": "69209",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69790"
   },
@@ -1611,7 +1611,7 @@
     "name": "Saint-Jean-des-Vignes",
     "code": "69212",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69380"
   },
@@ -1619,7 +1619,7 @@
     "name": "Saint-Jean-la-Bussière",
     "code": "69214",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69550"
   },
@@ -1627,7 +1627,7 @@
     "name": "Saint-Julien",
     "code": "69215",
     "epci_code": "200040590",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69640"
   },
@@ -1635,7 +1635,7 @@
     "name": "Saint-Julien-sur-Bibost",
     "code": "69216",
     "epci_code": "246900625",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69690"
   },
@@ -1643,7 +1643,7 @@
     "name": "Saint-Just-d’Avray",
     "code": "69217",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69870"
   },
@@ -1651,7 +1651,7 @@
     "name": "Saint-Lager",
     "code": "69218",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69220"
   },
@@ -1659,7 +1659,7 @@
     "name": "Saint-Laurent-d’Agny",
     "code": "69219",
     "epci_code": "246900740",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69440"
   },
@@ -1667,7 +1667,7 @@
     "name": "Saint-Laurent-de-Chamousset",
     "code": "69220",
     "epci_code": "200066587",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69930"
   },
@@ -1675,7 +1675,7 @@
     "name": "Saint-Marcel-l’Éclairé",
     "code": "69225",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69170"
   },
@@ -1683,7 +1683,7 @@
     "name": "Saint-Martin-en-Haut",
     "code": "69227",
     "epci_code": "200066587",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69850"
   },
@@ -1691,7 +1691,7 @@
     "name": "Chabanière",
     "code": "69228",
     "epci_code": "246900740",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69440"
   },
@@ -1699,7 +1699,7 @@
     "name": "Saint-Nizier-d’Azergues",
     "code": "69229",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69870"
   },
@@ -1707,7 +1707,7 @@
     "name": "Sainte-Paule",
     "code": "69230",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69620"
   },
@@ -1715,7 +1715,7 @@
     "name": "Saint-Pierre-la-Palud",
     "code": "69231",
     "epci_code": "246900625",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69210"
   },
@@ -1723,7 +1723,7 @@
     "name": "Saint-Romain-au-Mont-d’Or",
     "code": "69233",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69270"
   },
@@ -1731,7 +1731,7 @@
     "name": "Saint-Romain-de-Popey",
     "code": "69234",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69490"
   },
@@ -1739,7 +1739,7 @@
     "name": "Saint-Romain-en-Gal",
     "code": "69235",
     "epci_code": "200077014",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69560"
   },
@@ -1747,7 +1747,7 @@
     "name": "Saint-Romain-en-Gier",
     "code": "69236",
     "epci_code": "200077014",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69700"
   },
@@ -1755,7 +1755,7 @@
     "name": "Saint-Symphorien-sur-Coise",
     "code": "69238",
     "epci_code": "200066587",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69590"
   },
@@ -1763,7 +1763,7 @@
     "name": "Saint-Vérand",
     "code": "69239",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69620"
   },
@@ -1771,7 +1771,7 @@
     "name": "Saint-Vincent-de-Reins",
     "code": "69240",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69240"
   },
@@ -1779,7 +1779,7 @@
     "name": "Taluyers",
     "code": "69241",
     "epci_code": "246900740",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69440"
   },
@@ -1787,7 +1787,7 @@
     "name": "Taponas",
     "code": "69242",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69220"
   },
@@ -1795,7 +1795,7 @@
     "name": "Tarare",
     "code": "69243",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69170"
   },
@@ -1803,7 +1803,7 @@
     "name": "Tassin-la-Demi-Lune",
     "code": "69244",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69160"
   },
@@ -1811,7 +1811,7 @@
     "name": "Ternand",
     "code": "69245",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69620"
   },
@@ -1819,7 +1819,7 @@
     "name": "Theizé",
     "code": "69246",
     "epci_code": "200040574",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69620"
   },
@@ -1827,7 +1827,7 @@
     "name": "Thizy-les-Bourgs",
     "code": "69248",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69240"
   },
@@ -1835,7 +1835,7 @@
     "name": "Thurins",
     "code": "69249",
     "epci_code": "246900724",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69510"
   },
@@ -1843,7 +1843,7 @@
     "name": "La Tour-de-Salvagny",
     "code": "69250",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69890"
   },
@@ -1851,7 +1851,7 @@
     "name": "Trèves",
     "code": "69252",
     "epci_code": "200077014",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69420"
   },
@@ -1859,7 +1859,7 @@
     "name": "Tupin-et-Semons",
     "code": "69253",
     "epci_code": "200077014",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69420"
   },
@@ -1867,7 +1867,7 @@
     "name": "Valsonne",
     "code": "69254",
     "epci_code": "200040566",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69170"
   },
@@ -1875,7 +1875,7 @@
     "name": "Vaugneray",
     "code": "69255",
     "epci_code": "246900724",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69670"
   },
@@ -1883,7 +1883,7 @@
     "name": "Vaulx-en-Velin",
     "code": "69256",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69120"
   },
@@ -1891,7 +1891,7 @@
     "name": "Vaux-en-Beaujolais",
     "code": "69257",
     "epci_code": "200040590",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69460"
   },
@@ -1899,7 +1899,7 @@
     "name": "Vauxrenard",
     "code": "69258",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69820"
   },
@@ -1907,7 +1907,7 @@
     "name": "Vénissieux",
     "code": "69259",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69200"
   },
@@ -1915,7 +1915,7 @@
     "name": "Vernaison",
     "code": "69260",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69390"
   },
@@ -1923,7 +1923,7 @@
     "name": "Vernay",
     "code": "69261",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69430"
   },
@@ -1931,7 +1931,7 @@
     "name": "Villechenève",
     "code": "69263",
     "epci_code": "200066587",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69770"
   },
@@ -1939,7 +1939,7 @@
     "name": "Villefranche-sur-Saône",
     "code": "69264",
     "epci_code": "200040590",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69400"
   },
@@ -1947,7 +1947,7 @@
     "name": "Ville-sur-Jarnioux",
     "code": "69265",
     "epci_code": "200040590",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69640"
   },
@@ -1955,7 +1955,7 @@
     "name": "Villeurbanne",
     "code": "69266",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69100"
   },
@@ -1963,7 +1963,7 @@
     "name": "Villié-Morgon",
     "code": "69267",
     "epci_code": "200067817",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69910"
   },
@@ -1971,7 +1971,7 @@
     "name": "Vourles",
     "code": "69268",
     "epci_code": "246900757",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69390"
   },
@@ -1979,7 +1979,7 @@
     "name": "Yzeron",
     "code": "69269",
     "epci_code": "246900724",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69510"
   },
@@ -1987,7 +1987,7 @@
     "name": "Chaponnay",
     "code": "69270",
     "epci_code": "246900765",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69970"
   },
@@ -1995,7 +1995,7 @@
     "name": "Chassieu",
     "code": "69271",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69680"
   },
@@ -2003,7 +2003,7 @@
     "name": "Communay",
     "code": "69272",
     "epci_code": "246900765",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69360"
   },
@@ -2011,7 +2011,7 @@
     "name": "Corbas",
     "code": "69273",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69960"
   },
@@ -2019,7 +2019,7 @@
     "name": "Décines-Charpieu",
     "code": "69275",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69150"
   },
@@ -2027,7 +2027,7 @@
     "name": "Feyzin",
     "code": "69276",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69320"
   },
@@ -2035,7 +2035,7 @@
     "name": "Genas",
     "code": "69277",
     "epci_code": "246900575",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69740"
   },
@@ -2043,7 +2043,7 @@
     "name": "Genay",
     "code": "69278",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69730"
   },
@@ -2051,7 +2051,7 @@
     "name": "Jonage",
     "code": "69279",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69330"
   },
@@ -2059,7 +2059,7 @@
     "name": "Jons",
     "code": "69280",
     "epci_code": "246900575",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69330"
   },
@@ -2067,7 +2067,7 @@
     "name": "Marennes",
     "code": "69281",
     "epci_code": "246900765",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69970"
   },
@@ -2075,7 +2075,7 @@
     "name": "Meyzieu",
     "code": "69282",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69330"
   },
@@ -2083,7 +2083,7 @@
     "name": "Mions",
     "code": "69283",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69780"
   },
@@ -2091,7 +2091,7 @@
     "name": "Montanay",
     "code": "69284",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69250"
   },
@@ -2099,7 +2099,7 @@
     "name": "Pusignan",
     "code": "69285",
     "epci_code": "246900575",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69330"
   },
@@ -2107,7 +2107,7 @@
     "name": "Rillieux-la-Pape",
     "code": "69286",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69140"
   },
@@ -2115,7 +2115,7 @@
     "name": "Saint-Bonnet-de-Mure",
     "code": "69287",
     "epci_code": "246900575",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69720"
   },
@@ -2123,7 +2123,7 @@
     "name": "Saint-Laurent-de-Mure",
     "code": "69288",
     "epci_code": "246900575",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69720"
   },
@@ -2131,7 +2131,7 @@
     "name": "Saint-Pierre-de-Chandieu",
     "code": "69289",
     "epci_code": "246900575",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69780"
   },
@@ -2139,7 +2139,7 @@
     "name": "Saint-Priest",
     "code": "69290",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69800"
   },
@@ -2147,7 +2147,7 @@
     "name": "Saint-Symphorien-d’Ozon",
     "code": "69291",
     "epci_code": "246900765",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69360"
   },
@@ -2155,7 +2155,7 @@
     "name": "Sathonay-Camp",
     "code": "69292",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69580"
   },
@@ -2163,7 +2163,7 @@
     "name": "Sathonay-Village",
     "code": "69293",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69580"
   },
@@ -2171,7 +2171,7 @@
     "name": "Sérézin-du-Rhône",
     "code": "69294",
     "epci_code": "246900765",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69360"
   },
@@ -2179,7 +2179,7 @@
     "name": "Simandres",
     "code": "69295",
     "epci_code": "246900765",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69360"
   },
@@ -2187,7 +2187,7 @@
     "name": "Solaize",
     "code": "69296",
     "epci_code": "200046977",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69360"
   },
@@ -2195,7 +2195,7 @@
     "name": "Ternay",
     "code": "69297",
     "epci_code": "246900765",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69360"
   },
@@ -2203,7 +2203,7 @@
     "name": "Toussieu",
     "code": "69298",
     "epci_code": "246900575",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69780"
   },
@@ -2211,7 +2211,7 @@
     "name": "Colombier-Saugnieu",
     "code": "69299",
     "epci_code": "246900575",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69124"
   },
@@ -2219,70 +2219,70 @@
     "name": "Colombier-Saugnieu",
     "code": "69299",
     "epci_code": "246900575",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69125"
   },
   {
     "name": "Lyon 1er Arrondissement",
     "code": "69381",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69001"
   },
   {
     "name": "Lyon 2e Arrondissement",
     "code": "69382",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69002"
   },
   {
     "name": "Lyon 3e Arrondissement",
     "code": "69383",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69003"
   },
   {
     "name": "Lyon 4e Arrondissement",
     "code": "69384",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69004"
   },
   {
     "name": "Lyon 5e Arrondissement",
     "code": "69385",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69005"
   },
   {
     "name": "Lyon 6e Arrondissement",
     "code": "69386",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69006"
   },
   {
     "name": "Lyon 7e Arrondissement",
     "code": "69387",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69007"
   },
   {
     "name": "Lyon 8e Arrondissement",
     "code": "69388",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69008"
   },
   {
     "name": "Lyon 9e Arrondissement",
     "code": "69389",
-    "departement_code": "69",
+    "department_code": "69",
     "region_code": "84",
     "postal_code": "69009"
   }

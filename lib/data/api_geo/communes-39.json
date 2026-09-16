@@ -3,7 +3,7 @@
     "name": "Abergement-la-Ronce",
     "code": "39001",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39500"
   },
@@ -11,7 +11,7 @@
     "name": "Abergement-le-Grand",
     "code": "39002",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39600"
   },
@@ -19,7 +19,7 @@
     "name": "Abergement-le-Petit",
     "code": "39003",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -27,7 +27,7 @@
     "name": "Abergement-lès-Thésy",
     "code": "39004",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39110"
   },
@@ -35,7 +35,7 @@
     "name": "Aiglepierre",
     "code": "39006",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39110"
   },
@@ -43,7 +43,7 @@
     "name": "Alièze",
     "code": "39007",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39270"
   },
@@ -51,7 +51,7 @@
     "name": "Amange",
     "code": "39008",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -59,7 +59,7 @@
     "name": "Andelot-en-Montagne",
     "code": "39009",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39110"
   },
@@ -67,7 +67,7 @@
     "name": "Andelot-Morval",
     "code": "39010",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39320"
   },
@@ -75,7 +75,7 @@
     "name": "Annoire",
     "code": "39011",
     "epci_code": "243901089",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39120"
   },
@@ -83,7 +83,7 @@
     "name": "Arbois",
     "code": "39013",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39600"
   },
@@ -91,7 +91,7 @@
     "name": "Archelange",
     "code": "39014",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39290"
   },
@@ -99,7 +99,7 @@
     "name": "Ardon",
     "code": "39015",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -107,7 +107,7 @@
     "name": "Arinthod",
     "code": "39016",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39240"
   },
@@ -115,7 +115,7 @@
     "name": "Arlay",
     "code": "39017",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39140"
   },
@@ -123,7 +123,7 @@
     "name": "Arlay",
     "code": "39017",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39210"
   },
@@ -131,7 +131,7 @@
     "name": "Aromas",
     "code": "39018",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39240"
   },
@@ -139,7 +139,7 @@
     "name": "Les Arsures",
     "code": "39019",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39600"
   },
@@ -147,7 +147,7 @@
     "name": "Arsure-Arsurette",
     "code": "39020",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39250"
   },
@@ -155,7 +155,7 @@
     "name": "La Chailleuse",
     "code": "39021",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39270"
   },
@@ -163,7 +163,7 @@
     "name": "La Chailleuse",
     "code": "39021",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -171,7 +171,7 @@
     "name": "Asnans-Beauvoisin",
     "code": "39022",
     "epci_code": "243901089",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39120"
   },
@@ -179,7 +179,7 @@
     "name": "Audelange",
     "code": "39024",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -187,7 +187,7 @@
     "name": "Augea",
     "code": "39025",
     "epci_code": "200072056",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39190"
   },
@@ -195,7 +195,7 @@
     "name": "Augerans",
     "code": "39026",
     "epci_code": "243900420",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39380"
   },
@@ -203,7 +203,7 @@
     "name": "Augisey",
     "code": "39027",
     "epci_code": "200072056",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39270"
   },
@@ -211,7 +211,7 @@
     "name": "Aumont",
     "code": "39028",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -219,7 +219,7 @@
     "name": "Aumur",
     "code": "39029",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39410"
   },
@@ -227,7 +227,7 @@
     "name": "Authume",
     "code": "39030",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39100"
   },
@@ -235,7 +235,7 @@
     "name": "Auxange",
     "code": "39031",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -243,7 +243,7 @@
     "name": "Avignon-lès-Saint-Claude",
     "code": "39032",
     "epci_code": "200026573",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39200"
   },
@@ -251,7 +251,7 @@
     "name": "Balaiseaux",
     "code": "39034",
     "epci_code": "243901089",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39120"
   },
@@ -259,7 +259,7 @@
     "name": "Balanod",
     "code": "39035",
     "epci_code": "200072056",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39160"
   },
@@ -267,7 +267,7 @@
     "name": "Bans",
     "code": "39037",
     "epci_code": "243900420",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39380"
   },
@@ -275,7 +275,7 @@
     "name": "Barésia-sur-l’Ain",
     "code": "39038",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -283,7 +283,7 @@
     "name": "La Barre",
     "code": "39039",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -291,7 +291,7 @@
     "name": "Barretaine",
     "code": "39040",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -299,7 +299,7 @@
     "name": "Baume-les-Messieurs",
     "code": "39041",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39210"
   },
@@ -307,7 +307,7 @@
     "name": "Baume-les-Messieurs",
     "code": "39041",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -315,7 +315,7 @@
     "name": "Baverans",
     "code": "39042",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39100"
   },
@@ -323,7 +323,7 @@
     "name": "Beaufort-Orbagna",
     "code": "39043",
     "epci_code": "200072056",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39190"
   },
@@ -331,7 +331,7 @@
     "name": "Beffia",
     "code": "39045",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39270"
   },
@@ -339,7 +339,7 @@
     "name": "Bellecombe",
     "code": "39046",
     "epci_code": "200026573",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39310"
   },
@@ -347,7 +347,7 @@
     "name": "Bellefontaine",
     "code": "39047",
     "epci_code": "243900479",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39400"
   },
@@ -355,7 +355,7 @@
     "name": "Belmont",
     "code": "39048",
     "epci_code": "243900420",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39380"
   },
@@ -363,7 +363,7 @@
     "name": "Bersaillin",
     "code": "39049",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -371,7 +371,7 @@
     "name": "Besain",
     "code": "39050",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -379,7 +379,7 @@
     "name": "Biarne",
     "code": "39051",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39290"
   },
@@ -387,7 +387,7 @@
     "name": "Bief-des-Maisons",
     "code": "39052",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39150"
   },
@@ -395,7 +395,7 @@
     "name": "Bief-du-Fourg",
     "code": "39053",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39250"
   },
@@ -403,7 +403,7 @@
     "name": "Biefmorin",
     "code": "39054",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -411,7 +411,7 @@
     "name": "Billecul",
     "code": "39055",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39250"
   },
@@ -419,7 +419,7 @@
     "name": "Bletterans",
     "code": "39056",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39140"
   },
@@ -427,7 +427,7 @@
     "name": "Blois-sur-Seille",
     "code": "39057",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39210"
   },
@@ -435,7 +435,7 @@
     "name": "Blye",
     "code": "39058",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -443,7 +443,7 @@
     "name": "Bois-d’Amont",
     "code": "39059",
     "epci_code": "243900354",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39220"
   },
@@ -451,7 +451,7 @@
     "name": "Bois-de-Gand",
     "code": "39060",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -459,7 +459,7 @@
     "name": "Boissia",
     "code": "39061",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -467,7 +467,7 @@
     "name": "La Boissière",
     "code": "39062",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39240"
   },
@@ -475,7 +475,7 @@
     "name": "Bonlieu",
     "code": "39063",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -483,7 +483,7 @@
     "name": "Bonnefontaine",
     "code": "39065",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -491,7 +491,7 @@
     "name": "Bornay",
     "code": "39066",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -499,7 +499,7 @@
     "name": "Les Bouchoux",
     "code": "39068",
     "epci_code": "200026573",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39370"
   },
@@ -507,7 +507,7 @@
     "name": "Bourg-de-Sirod",
     "code": "39070",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -515,7 +515,7 @@
     "name": "Bracon",
     "code": "39072",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39110"
   },
@@ -523,7 +523,7 @@
     "name": "Brainans",
     "code": "39073",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -531,7 +531,7 @@
     "name": "Brans",
     "code": "39074",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39290"
   },
@@ -539,7 +539,7 @@
     "name": "La Bretenière",
     "code": "39076",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -547,7 +547,7 @@
     "name": "Bretenières",
     "code": "39077",
     "epci_code": "243901089",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39120"
   },
@@ -555,7 +555,7 @@
     "name": "Brevans",
     "code": "39078",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39100"
   },
@@ -563,7 +563,7 @@
     "name": "Briod",
     "code": "39079",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -571,7 +571,7 @@
     "name": "Broissia",
     "code": "39080",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39320"
   },
@@ -579,7 +579,7 @@
     "name": "Buvilly",
     "code": "39081",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -587,7 +587,7 @@
     "name": "Censeau",
     "code": "39083",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39250"
   },
@@ -595,7 +595,7 @@
     "name": "Cernans",
     "code": "39084",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39110"
   },
@@ -603,7 +603,7 @@
     "name": "Cerniébaud",
     "code": "39085",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39250"
   },
@@ -611,7 +611,7 @@
     "name": "Cernon",
     "code": "39086",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39240"
   },
@@ -619,7 +619,7 @@
     "name": "Cesancey",
     "code": "39088",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -627,7 +627,7 @@
     "name": "Chaînée-des-Coupis",
     "code": "39090",
     "epci_code": "243901089",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39120"
   },
@@ -635,7 +635,7 @@
     "name": "Les Chalesmes",
     "code": "39091",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39150"
   },
@@ -643,7 +643,7 @@
     "name": "Chambéria",
     "code": "39092",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39270"
   },
@@ -651,7 +651,7 @@
     "name": "Chamblay",
     "code": "39093",
     "epci_code": "243900420",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39380"
   },
@@ -659,7 +659,7 @@
     "name": "Chamole",
     "code": "39094",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -667,7 +667,7 @@
     "name": "Champagne-sur-Loue",
     "code": "39095",
     "epci_code": "243900420",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39600"
   },
@@ -675,7 +675,7 @@
     "name": "Champagney",
     "code": "39096",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39290"
   },
@@ -683,7 +683,7 @@
     "name": "Champagnole",
     "code": "39097",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -691,7 +691,7 @@
     "name": "Champdivers",
     "code": "39099",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39500"
   },
@@ -699,7 +699,7 @@
     "name": "Champrougier",
     "code": "39100",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -707,7 +707,7 @@
     "name": "Champvans",
     "code": "39101",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39100"
   },
@@ -715,7 +715,7 @@
     "name": "Chancia",
     "code": "39102",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "01590"
   },
@@ -723,7 +723,7 @@
     "name": "La Chapelle-sur-Furieuse",
     "code": "39103",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39110"
   },
@@ -731,7 +731,7 @@
     "name": "Chapelle-Voland",
     "code": "39104",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39140"
   },
@@ -739,7 +739,7 @@
     "name": "Chapois",
     "code": "39105",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -747,7 +747,7 @@
     "name": "Charchilla",
     "code": "39106",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39260"
   },
@@ -755,7 +755,7 @@
     "name": "Charcier",
     "code": "39107",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -763,7 +763,7 @@
     "name": "Charency",
     "code": "39108",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39250"
   },
@@ -771,7 +771,7 @@
     "name": "Charézier",
     "code": "39109",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -779,7 +779,7 @@
     "name": "La Charme",
     "code": "39110",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -787,7 +787,7 @@
     "name": "Charnod",
     "code": "39111",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39240"
   },
@@ -795,7 +795,7 @@
     "name": "La Chassagne",
     "code": "39112",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -803,7 +803,7 @@
     "name": "Château-Chalon",
     "code": "39114",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39210"
   },
@@ -811,7 +811,7 @@
     "name": "La Châtelaine",
     "code": "39116",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39600"
   },
@@ -819,7 +819,7 @@
     "name": "Chatelay",
     "code": "39117",
     "epci_code": "243900420",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39380"
   },
@@ -827,7 +827,7 @@
     "name": "Châtel-de-Joux",
     "code": "39118",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -835,7 +835,7 @@
     "name": "Le Chateley",
     "code": "39119",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -843,7 +843,7 @@
     "name": "Châtelneuf",
     "code": "39120",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -851,7 +851,7 @@
     "name": "Châtenois",
     "code": "39121",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -859,7 +859,7 @@
     "name": "Châtillon",
     "code": "39122",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -867,7 +867,7 @@
     "name": "Chaumergy",
     "code": "39124",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -875,7 +875,7 @@
     "name": "La Chaumusse",
     "code": "39126",
     "epci_code": "243900610",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39150"
   },
@@ -883,7 +883,7 @@
     "name": "Chaussenans",
     "code": "39127",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -891,7 +891,7 @@
     "name": "Chaussin",
     "code": "39128",
     "epci_code": "243901089",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39120"
   },
@@ -899,7 +899,7 @@
     "name": "Chaux-des-Crotenay",
     "code": "39129",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39150"
   },
@@ -907,7 +907,7 @@
     "name": "Nanchez",
     "code": "39130",
     "epci_code": "243900610",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39150"
   },
@@ -915,7 +915,7 @@
     "name": "Nanchez",
     "code": "39130",
     "epci_code": "243900610",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39200"
   },
@@ -923,7 +923,7 @@
     "name": "La Chaux-du-Dombief",
     "code": "39131",
     "epci_code": "243900610",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39150"
   },
@@ -931,7 +931,7 @@
     "name": "La Chaux-en-Bresse",
     "code": "39132",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -939,7 +939,7 @@
     "name": "Chaux-Champagny",
     "code": "39133",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39110"
   },
@@ -947,7 +947,7 @@
     "name": "Chavéria",
     "code": "39134",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39270"
   },
@@ -955,7 +955,7 @@
     "name": "Chemenot",
     "code": "39136",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -963,7 +963,7 @@
     "name": "Saint-Hymetière-sur-Valouse",
     "code": "39137",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39240"
   },
@@ -971,7 +971,7 @@
     "name": "Chemin",
     "code": "39138",
     "epci_code": "243901089",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39120"
   },
@@ -979,7 +979,7 @@
     "name": "Chêne-Bernard",
     "code": "39139",
     "epci_code": "243901089",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39120"
   },
@@ -987,7 +987,7 @@
     "name": "Chêne-Sec",
     "code": "39140",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -995,7 +995,7 @@
     "name": "Chevigny",
     "code": "39141",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39290"
   },
@@ -1003,7 +1003,7 @@
     "name": "Chevreaux",
     "code": "39142",
     "epci_code": "200072056",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39190"
   },
@@ -1011,7 +1011,7 @@
     "name": "Chevrotaine",
     "code": "39143",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -1019,7 +1019,7 @@
     "name": "Chille",
     "code": "39145",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -1027,7 +1027,7 @@
     "name": "Chilly-le-Vignoble",
     "code": "39146",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -1035,7 +1035,7 @@
     "name": "Chilly-sur-Salins",
     "code": "39147",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39110"
   },
@@ -1043,7 +1043,7 @@
     "name": "Chissey-sur-Loue",
     "code": "39149",
     "epci_code": "243900420",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39380"
   },
@@ -1051,7 +1051,7 @@
     "name": "Choisey",
     "code": "39150",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39100"
   },
@@ -1059,7 +1059,7 @@
     "name": "Choux",
     "code": "39151",
     "epci_code": "200026573",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39370"
   },
@@ -1067,7 +1067,7 @@
     "name": "Cize",
     "code": "39153",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -1075,7 +1075,7 @@
     "name": "Clairvaux-les-Lacs",
     "code": "39154",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -1083,7 +1083,7 @@
     "name": "Clucy",
     "code": "39155",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39110"
   },
@@ -1091,7 +1091,7 @@
     "name": "Cogna",
     "code": "39156",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -1099,7 +1099,7 @@
     "name": "Coiserette",
     "code": "39157",
     "epci_code": "200026573",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39200"
   },
@@ -1107,7 +1107,7 @@
     "name": "Colonne",
     "code": "39159",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -1115,7 +1115,7 @@
     "name": "Commenailles",
     "code": "39160",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39140"
   },
@@ -1123,7 +1123,7 @@
     "name": "Condamine",
     "code": "39162",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -1131,7 +1131,7 @@
     "name": "Condes",
     "code": "39163",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39240"
   },
@@ -1139,7 +1139,7 @@
     "name": "Conliège",
     "code": "39164",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -1147,7 +1147,7 @@
     "name": "Conte",
     "code": "39165",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -1155,7 +1155,7 @@
     "name": "Cornod",
     "code": "39166",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39240"
   },
@@ -1163,7 +1163,7 @@
     "name": "Cosges",
     "code": "39167",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39140"
   },
@@ -1171,7 +1171,7 @@
     "name": "Courbette",
     "code": "39168",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -1179,7 +1179,7 @@
     "name": "Courbouzon",
     "code": "39169",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -1187,7 +1187,7 @@
     "name": "Courlans",
     "code": "39170",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -1195,7 +1195,7 @@
     "name": "Courlaoux",
     "code": "39171",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -1203,7 +1203,7 @@
     "name": "Courtefontaine",
     "code": "39172",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -1211,7 +1211,7 @@
     "name": "Cousance",
     "code": "39173",
     "epci_code": "200072056",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39190"
   },
@@ -1219,7 +1219,7 @@
     "name": "Coyrière",
     "code": "39174",
     "epci_code": "200026573",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39200"
   },
@@ -1227,7 +1227,7 @@
     "name": "Coyron",
     "code": "39175",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39260"
   },
@@ -1235,7 +1235,7 @@
     "name": "Cramans",
     "code": "39176",
     "epci_code": "243900420",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39600"
   },
@@ -1243,7 +1243,7 @@
     "name": "Hauteroche",
     "code": "39177",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39210"
   },
@@ -1251,7 +1251,7 @@
     "name": "Hauteroche",
     "code": "39177",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -1259,7 +1259,7 @@
     "name": "Crans",
     "code": "39178",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -1267,7 +1267,7 @@
     "name": "Crenans",
     "code": "39179",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39260"
   },
@@ -1275,7 +1275,7 @@
     "name": "Cressia",
     "code": "39180",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39270"
   },
@@ -1283,7 +1283,7 @@
     "name": "Crissey",
     "code": "39182",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39100"
   },
@@ -1291,7 +1291,7 @@
     "name": "Crotenay",
     "code": "39183",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -1299,7 +1299,7 @@
     "name": "Les Crozets",
     "code": "39184",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39260"
   },
@@ -1307,7 +1307,7 @@
     "name": "Cuisia",
     "code": "39185",
     "epci_code": "200072056",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39190"
   },
@@ -1315,7 +1315,7 @@
     "name": "Cuvier",
     "code": "39187",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39250"
   },
@@ -1323,7 +1323,7 @@
     "name": "Dammartin-Marpain",
     "code": "39188",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39290"
   },
@@ -1331,7 +1331,7 @@
     "name": "Damparis",
     "code": "39189",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39500"
   },
@@ -1339,7 +1339,7 @@
     "name": "Dampierre",
     "code": "39190",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39350"
   },
@@ -1347,7 +1347,7 @@
     "name": "Dampierre",
     "code": "39190",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -1355,7 +1355,7 @@
     "name": "Darbonnay",
     "code": "39191",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -1363,7 +1363,7 @@
     "name": "Denezières",
     "code": "39192",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -1371,7 +1371,7 @@
     "name": "Le Deschaux",
     "code": "39193",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39120"
   },
@@ -1379,7 +1379,7 @@
     "name": "Desnes",
     "code": "39194",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39140"
   },
@@ -1387,7 +1387,7 @@
     "name": "Les Deux-Fays",
     "code": "39196",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -1395,7 +1395,7 @@
     "name": "Digna",
     "code": "39197",
     "epci_code": "200072056",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39190"
   },
@@ -1403,7 +1403,7 @@
     "name": "Dole",
     "code": "39198",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39100"
   },
@@ -1411,7 +1411,7 @@
     "name": "Domblans",
     "code": "39199",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39210"
   },
@@ -1419,7 +1419,7 @@
     "name": "Domblans",
     "code": "39199",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -1427,7 +1427,7 @@
     "name": "Dompierre-sur-Mont",
     "code": "39200",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39270"
   },
@@ -1435,7 +1435,7 @@
     "name": "Doucier",
     "code": "39201",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -1443,7 +1443,7 @@
     "name": "Dournon",
     "code": "39202",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39110"
   },
@@ -1451,7 +1451,7 @@
     "name": "Doye",
     "code": "39203",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39250"
   },
@@ -1459,7 +1459,7 @@
     "name": "Dramelay",
     "code": "39204",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39240"
   },
@@ -1467,7 +1467,7 @@
     "name": "Éclans-Nenon",
     "code": "39205",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -1475,7 +1475,7 @@
     "name": "Écleux",
     "code": "39206",
     "epci_code": "243900420",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39600"
   },
@@ -1483,7 +1483,7 @@
     "name": "Écrille",
     "code": "39207",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39270"
   },
@@ -1491,7 +1491,7 @@
     "name": "Entre-deux-Monts",
     "code": "39208",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39150"
   },
@@ -1499,7 +1499,7 @@
     "name": "Val-d’Épy",
     "code": "39209",
     "epci_code": "200072056",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39160"
   },
@@ -1507,7 +1507,7 @@
     "name": "Val-d’Épy",
     "code": "39209",
     "epci_code": "200072056",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39320"
   },
@@ -1515,7 +1515,7 @@
     "name": "Équevillon",
     "code": "39210",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -1523,7 +1523,7 @@
     "name": "Les Essards-Taignevaux",
     "code": "39211",
     "epci_code": "243901089",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39120"
   },
@@ -1531,7 +1531,7 @@
     "name": "Esserval-Tartre",
     "code": "39214",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39250"
   },
@@ -1539,7 +1539,7 @@
     "name": "Étival",
     "code": "39216",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -1547,7 +1547,7 @@
     "name": "L’Étoile",
     "code": "39217",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -1555,7 +1555,7 @@
     "name": "Étrepigney",
     "code": "39218",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -1563,7 +1563,7 @@
     "name": "Évans",
     "code": "39219",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -1571,7 +1571,7 @@
     "name": "Falletans",
     "code": "39220",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -1579,7 +1579,7 @@
     "name": "La Favière",
     "code": "39221",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39250"
   },
@@ -1587,7 +1587,7 @@
     "name": "Fay-en-Montagne",
     "code": "39222",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -1595,7 +1595,7 @@
     "name": "La Ferté",
     "code": "39223",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39600"
   },
@@ -1603,7 +1603,7 @@
     "name": "Le Fied",
     "code": "39225",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -1611,7 +1611,7 @@
     "name": "Foncine-le-Bas",
     "code": "39227",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39520"
   },
@@ -1619,7 +1619,7 @@
     "name": "Foncine-le-Haut",
     "code": "39228",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39460"
   },
@@ -1627,7 +1627,7 @@
     "name": "Fontainebrux",
     "code": "39229",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39140"
   },
@@ -1635,7 +1635,7 @@
     "name": "Fontenu",
     "code": "39230",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -1643,7 +1643,7 @@
     "name": "Fort-du-Plasne",
     "code": "39232",
     "epci_code": "243900610",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39150"
   },
@@ -1651,7 +1651,7 @@
     "name": "Foucherans",
     "code": "39233",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39100"
   },
@@ -1659,7 +1659,7 @@
     "name": "Foulenay",
     "code": "39234",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -1667,7 +1667,7 @@
     "name": "Fraisans",
     "code": "39235",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -1675,7 +1675,7 @@
     "name": "Francheville",
     "code": "39236",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -1683,7 +1683,7 @@
     "name": "Fraroz",
     "code": "39237",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39250"
   },
@@ -1691,7 +1691,7 @@
     "name": "Frasne-les-Meulières",
     "code": "39238",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39290"
   },
@@ -1699,7 +1699,7 @@
     "name": "La Frasnée",
     "code": "39239",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -1707,7 +1707,7 @@
     "name": "Le Frasnois",
     "code": "39240",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -1715,7 +1715,7 @@
     "name": "Frébuans",
     "code": "39241",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -1723,7 +1723,7 @@
     "name": "Frontenay",
     "code": "39244",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39210"
   },
@@ -1731,7 +1731,7 @@
     "name": "Gatey",
     "code": "39245",
     "epci_code": "243901089",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39120"
   },
@@ -1739,7 +1739,7 @@
     "name": "Gendrey",
     "code": "39246",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39350"
   },
@@ -1747,7 +1747,7 @@
     "name": "Genod",
     "code": "39247",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39240"
   },
@@ -1755,7 +1755,7 @@
     "name": "Geraise",
     "code": "39248",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39110"
   },
@@ -1763,7 +1763,7 @@
     "name": "Germigney",
     "code": "39249",
     "epci_code": "243900420",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39380"
   },
@@ -1771,7 +1771,7 @@
     "name": "Geruge",
     "code": "39250",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -1779,7 +1779,7 @@
     "name": "Gevingey",
     "code": "39251",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -1787,7 +1787,7 @@
     "name": "Gevry",
     "code": "39252",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39100"
   },
@@ -1795,7 +1795,7 @@
     "name": "Gigny",
     "code": "39253",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39320"
   },
@@ -1803,7 +1803,7 @@
     "name": "Gillois",
     "code": "39254",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39250"
   },
@@ -1811,7 +1811,7 @@
     "name": "Gizia",
     "code": "39255",
     "epci_code": "200072056",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39190"
   },
@@ -1819,7 +1819,7 @@
     "name": "Grande-Rivière Château",
     "code": "39258",
     "epci_code": "243900610",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39150"
   },
@@ -1827,7 +1827,7 @@
     "name": "Grange-de-Vaivre",
     "code": "39259",
     "epci_code": "243900420",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39600"
   },
@@ -1835,7 +1835,7 @@
     "name": "Graye-et-Charnay",
     "code": "39261",
     "epci_code": "200072056",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39320"
   },
@@ -1843,7 +1843,7 @@
     "name": "Gredisans",
     "code": "39262",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39290"
   },
@@ -1851,7 +1851,7 @@
     "name": "Grozon",
     "code": "39263",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -1859,7 +1859,7 @@
     "name": "Hautecour",
     "code": "39265",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -1867,7 +1867,7 @@
     "name": "Les Hays",
     "code": "39266",
     "epci_code": "243901089",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39120"
   },
@@ -1875,7 +1875,7 @@
     "name": "Ivory",
     "code": "39267",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39110"
   },
@@ -1883,7 +1883,7 @@
     "name": "Ivrey",
     "code": "39268",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39110"
   },
@@ -1891,7 +1891,7 @@
     "name": "Jeurre",
     "code": "39269",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39360"
   },
@@ -1899,7 +1899,7 @@
     "name": "Jouhe",
     "code": "39270",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39100"
   },
@@ -1907,7 +1907,7 @@
     "name": "Lac-des-Rouges-Truites",
     "code": "39271",
     "epci_code": "243900610",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39150"
   },
@@ -1915,7 +1915,7 @@
     "name": "Ladoye-sur-Seille",
     "code": "39272",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39210"
   },
@@ -1923,7 +1923,7 @@
     "name": "Montlainsia",
     "code": "39273",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39320"
   },
@@ -1931,7 +1931,7 @@
     "name": "Lajoux",
     "code": "39274",
     "epci_code": "200026573",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "01410"
   },
@@ -1939,7 +1939,7 @@
     "name": "Lajoux",
     "code": "39274",
     "epci_code": "200026573",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39310"
   },
@@ -1947,7 +1947,7 @@
     "name": "Lamoura",
     "code": "39275",
     "epci_code": "243900354",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39310"
   },
@@ -1955,7 +1955,7 @@
     "name": "Le Larderet",
     "code": "39277",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -1963,7 +1963,7 @@
     "name": "Largillay-Marsonnay",
     "code": "39278",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -1971,7 +1971,7 @@
     "name": "Larnaud",
     "code": "39279",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39140"
   },
@@ -1979,7 +1979,7 @@
     "name": "Larrivoire",
     "code": "39280",
     "epci_code": "200026573",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39360"
   },
@@ -1987,7 +1987,7 @@
     "name": "Le Latet",
     "code": "39281",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -1995,7 +1995,7 @@
     "name": "La Latette",
     "code": "39282",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39250"
   },
@@ -2003,7 +2003,7 @@
     "name": "Lavancia-Epercy",
     "code": "39283",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "01590"
   },
@@ -2011,7 +2011,7 @@
     "name": "Lavangeot",
     "code": "39284",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -2019,7 +2019,7 @@
     "name": "Lavans-lès-Dole",
     "code": "39285",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -2027,7 +2027,7 @@
     "name": "Lavans-lès-Saint-Claude",
     "code": "39286",
     "epci_code": "200026573",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39170"
   },
@@ -2035,7 +2035,7 @@
     "name": "Lavigny",
     "code": "39288",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39210"
   },
@@ -2043,7 +2043,7 @@
     "name": "Lect",
     "code": "39289",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39260"
   },
@@ -2051,7 +2051,7 @@
     "name": "Valzin en Petite Montagne",
     "code": "39290",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39240"
   },
@@ -2059,7 +2059,7 @@
     "name": "Lemuy",
     "code": "39291",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39110"
   },
@@ -2067,7 +2067,7 @@
     "name": "Lent",
     "code": "39292",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -2075,7 +2075,7 @@
     "name": "Leschères",
     "code": "39293",
     "epci_code": "200026573",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39170"
   },
@@ -2083,7 +2083,7 @@
     "name": "Loisia",
     "code": "39295",
     "epci_code": "200072056",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39320"
   },
@@ -2091,7 +2091,7 @@
     "name": "Lombard",
     "code": "39296",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -2099,7 +2099,7 @@
     "name": "Longchaumois",
     "code": "39297",
     "epci_code": "243900479",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39400"
   },
@@ -2107,7 +2107,7 @@
     "name": "Longcochon",
     "code": "39298",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39250"
   },
@@ -2115,7 +2115,7 @@
     "name": "Longwy-sur-le-Doubs",
     "code": "39299",
     "epci_code": "243901089",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39120"
   },
@@ -2123,7 +2123,7 @@
     "name": "Lons-le-Saunier",
     "code": "39300",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39000"
   },
@@ -2131,7 +2131,7 @@
     "name": "Loulle",
     "code": "39301",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -2139,7 +2139,7 @@
     "name": "Louvatange",
     "code": "39302",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39350"
   },
@@ -2147,7 +2147,7 @@
     "name": "Le Louverot",
     "code": "39304",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39210"
   },
@@ -2155,7 +2155,7 @@
     "name": "La Loye",
     "code": "39305",
     "epci_code": "243900420",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39380"
   },
@@ -2163,7 +2163,7 @@
     "name": "Macornay",
     "code": "39306",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -2171,7 +2171,7 @@
     "name": "Maisod",
     "code": "39307",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39260"
   },
@@ -2179,7 +2179,7 @@
     "name": "Malange",
     "code": "39308",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -2187,7 +2187,7 @@
     "name": "Mantry",
     "code": "39310",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -2195,7 +2195,7 @@
     "name": "Marigna-sur-Valouse",
     "code": "39312",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39240"
   },
@@ -2203,7 +2203,7 @@
     "name": "Marigny",
     "code": "39313",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -2211,7 +2211,7 @@
     "name": "Marnézia",
     "code": "39314",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39270"
   },
@@ -2219,7 +2219,7 @@
     "name": "Marnoz",
     "code": "39315",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39110"
   },
@@ -2227,7 +2227,7 @@
     "name": "La Marre",
     "code": "39317",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39210"
   },
@@ -2235,7 +2235,7 @@
     "name": "Martigna",
     "code": "39318",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39260"
   },
@@ -2243,7 +2243,7 @@
     "name": "Mathenay",
     "code": "39319",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39600"
   },
@@ -2251,7 +2251,7 @@
     "name": "Maynal",
     "code": "39320",
     "epci_code": "200072056",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39190"
   },
@@ -2259,7 +2259,7 @@
     "name": "Menétru-le-Vignoble",
     "code": "39321",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39210"
   },
@@ -2267,7 +2267,7 @@
     "name": "Menétrux-en-Joux",
     "code": "39322",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -2275,7 +2275,7 @@
     "name": "Menotey",
     "code": "39323",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39290"
   },
@@ -2283,7 +2283,7 @@
     "name": "Mérona",
     "code": "39324",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39270"
   },
@@ -2291,7 +2291,7 @@
     "name": "Mesnay",
     "code": "39325",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39600"
   },
@@ -2299,7 +2299,7 @@
     "name": "Mesnois",
     "code": "39326",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -2307,7 +2307,7 @@
     "name": "Messia-sur-Sorne",
     "code": "39327",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -2315,7 +2315,7 @@
     "name": "Meussia",
     "code": "39328",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39260"
   },
@@ -2323,7 +2323,7 @@
     "name": "Mièges",
     "code": "39329",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39250"
   },
@@ -2331,7 +2331,7 @@
     "name": "Miéry",
     "code": "39330",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -2339,7 +2339,7 @@
     "name": "Mignovillard",
     "code": "39331",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39250"
   },
@@ -2347,7 +2347,7 @@
     "name": "Moirans-en-Montagne",
     "code": "39333",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39260"
   },
@@ -2355,7 +2355,7 @@
     "name": "Moiron",
     "code": "39334",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -2363,7 +2363,7 @@
     "name": "Moissey",
     "code": "39335",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39290"
   },
@@ -2371,7 +2371,7 @@
     "name": "Molain",
     "code": "39336",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -2379,7 +2379,7 @@
     "name": "Molamboz",
     "code": "39337",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39600"
   },
@@ -2387,7 +2387,7 @@
     "name": "Molay",
     "code": "39338",
     "epci_code": "243901089",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39500"
   },
@@ -2395,7 +2395,7 @@
     "name": "Chassal-Molinges",
     "code": "39339",
     "epci_code": "200026573",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39360"
   },
@@ -2403,7 +2403,7 @@
     "name": "Monay",
     "code": "39342",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -2411,7 +2411,7 @@
     "name": "Monnetay",
     "code": "39343",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39320"
   },
@@ -2419,7 +2419,7 @@
     "name": "Monnet-la-Ville",
     "code": "39344",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -2427,7 +2427,7 @@
     "name": "Monnières",
     "code": "39345",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39100"
   },
@@ -2435,7 +2435,7 @@
     "name": "Montagna-le-Reconduit",
     "code": "39346",
     "epci_code": "200072056",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39160"
   },
@@ -2443,7 +2443,7 @@
     "name": "Montaigu",
     "code": "39348",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -2451,7 +2451,7 @@
     "name": "Montain",
     "code": "39349",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39210"
   },
@@ -2459,7 +2459,7 @@
     "name": "Montbarrey",
     "code": "39350",
     "epci_code": "243900420",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39380"
   },
@@ -2467,7 +2467,7 @@
     "name": "Montcusel",
     "code": "39351",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39260"
   },
@@ -2475,7 +2475,7 @@
     "name": "Monteplain",
     "code": "39352",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -2483,7 +2483,7 @@
     "name": "Montfleur",
     "code": "39353",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39320"
   },
@@ -2491,7 +2491,7 @@
     "name": "Montholier",
     "code": "39354",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -2499,7 +2499,7 @@
     "name": "Montigny-lès-Arsures",
     "code": "39355",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39600"
   },
@@ -2507,7 +2507,7 @@
     "name": "Montigny-sur-l’Ain",
     "code": "39356",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -2515,7 +2515,7 @@
     "name": "Montmarlon",
     "code": "39359",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39110"
   },
@@ -2523,7 +2523,7 @@
     "name": "Montmirey-la-Ville",
     "code": "39360",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39290"
   },
@@ -2531,7 +2531,7 @@
     "name": "Montmirey-le-Château",
     "code": "39361",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39290"
   },
@@ -2539,7 +2539,7 @@
     "name": "Montmorot",
     "code": "39362",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -2547,7 +2547,7 @@
     "name": "Montrevel",
     "code": "39363",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39320"
   },
@@ -2555,7 +2555,7 @@
     "name": "Montrond",
     "code": "39364",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -2563,7 +2563,7 @@
     "name": "Mont-sous-Vaudrey",
     "code": "39365",
     "epci_code": "243900420",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39380"
   },
@@ -2571,7 +2571,7 @@
     "name": "Mont-sur-Monnet",
     "code": "39366",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -2579,7 +2579,7 @@
     "name": "Morbier",
     "code": "39367",
     "epci_code": "243900479",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39400"
   },
@@ -2587,7 +2587,7 @@
     "name": "Hauts de Bienne",
     "code": "39368",
     "epci_code": "243900479",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39400"
   },
@@ -2595,7 +2595,7 @@
     "name": "Mouchard",
     "code": "39370",
     "epci_code": "243900420",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39330"
   },
@@ -2603,7 +2603,7 @@
     "name": "Mournans-Charbonny",
     "code": "39372",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39250"
   },
@@ -2611,7 +2611,7 @@
     "name": "Les Moussières",
     "code": "39373",
     "epci_code": "200026573",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39310"
   },
@@ -2619,7 +2619,7 @@
     "name": "Moutonne",
     "code": "39375",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39270"
   },
@@ -2627,7 +2627,7 @@
     "name": "Moutoux",
     "code": "39376",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -2635,7 +2635,7 @@
     "name": "Mutigney",
     "code": "39377",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39290"
   },
@@ -2643,7 +2643,7 @@
     "name": "Les Trois-Châteaux",
     "code": "39378",
     "epci_code": "200072056",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39160"
   },
@@ -2651,7 +2651,7 @@
     "name": "Nance",
     "code": "39379",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39140"
   },
@@ -2659,7 +2659,7 @@
     "name": "Nancuise",
     "code": "39380",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39270"
   },
@@ -2667,7 +2667,7 @@
     "name": "Les Nans",
     "code": "39381",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -2675,7 +2675,7 @@
     "name": "Neublans-Abergement",
     "code": "39385",
     "epci_code": "243901089",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39120"
   },
@@ -2683,7 +2683,7 @@
     "name": "Neuvilley",
     "code": "39386",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -2691,7 +2691,7 @@
     "name": "Nevy-lès-Dole",
     "code": "39387",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39380"
   },
@@ -2699,7 +2699,7 @@
     "name": "Nevy-sur-Seille",
     "code": "39388",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39210"
   },
@@ -2707,7 +2707,7 @@
     "name": "Ney",
     "code": "39389",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -2715,7 +2715,7 @@
     "name": "Nogna",
     "code": "39390",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -2723,7 +2723,7 @@
     "name": "Nozeroy",
     "code": "39391",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39250"
   },
@@ -2731,7 +2731,7 @@
     "name": "Offlanges",
     "code": "39392",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39290"
   },
@@ -2739,7 +2739,7 @@
     "name": "Onglières",
     "code": "39393",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39250"
   },
@@ -2747,7 +2747,7 @@
     "name": "Onoz",
     "code": "39394",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39270"
   },
@@ -2755,7 +2755,7 @@
     "name": "Orchamps",
     "code": "39396",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -2763,7 +2763,7 @@
     "name": "Orgelet",
     "code": "39397",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39270"
   },
@@ -2771,7 +2771,7 @@
     "name": "Ougney",
     "code": "39398",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39350"
   },
@@ -2779,7 +2779,7 @@
     "name": "Ounans",
     "code": "39399",
     "epci_code": "243900420",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39380"
   },
@@ -2787,7 +2787,7 @@
     "name": "Our",
     "code": "39400",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -2795,7 +2795,7 @@
     "name": "Oussières",
     "code": "39401",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -2803,7 +2803,7 @@
     "name": "Pagney",
     "code": "39402",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39350"
   },
@@ -2811,7 +2811,7 @@
     "name": "Pagnoz",
     "code": "39403",
     "epci_code": "243900420",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39330"
   },
@@ -2819,7 +2819,7 @@
     "name": "Pannessières",
     "code": "39404",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -2827,7 +2827,7 @@
     "name": "Parcey",
     "code": "39405",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39100"
   },
@@ -2835,7 +2835,7 @@
     "name": "Le Pasquier",
     "code": "39406",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -2843,7 +2843,7 @@
     "name": "Passenans",
     "code": "39407",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -2851,7 +2851,7 @@
     "name": "Patornay",
     "code": "39408",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -2859,7 +2859,7 @@
     "name": "Peintre",
     "code": "39409",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39290"
   },
@@ -2867,7 +2867,7 @@
     "name": "Perrigny",
     "code": "39411",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -2875,7 +2875,7 @@
     "name": "Peseux",
     "code": "39412",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39120"
   },
@@ -2883,7 +2883,7 @@
     "name": "La Pesse",
     "code": "39413",
     "epci_code": "200026573",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39370"
   },
@@ -2891,7 +2891,7 @@
     "name": "Petit-Noir",
     "code": "39415",
     "epci_code": "243901089",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39120"
   },
@@ -2899,7 +2899,7 @@
     "name": "Picarreau",
     "code": "39418",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -2907,7 +2907,7 @@
     "name": "Pillemoine",
     "code": "39419",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -2915,7 +2915,7 @@
     "name": "Pimorin",
     "code": "39420",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39270"
   },
@@ -2923,7 +2923,7 @@
     "name": "Le Pin",
     "code": "39421",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39210"
   },
@@ -2931,7 +2931,7 @@
     "name": "Plainoiseau",
     "code": "39422",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39210"
   },
@@ -2939,7 +2939,7 @@
     "name": "Plaisia",
     "code": "39423",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39270"
   },
@@ -2947,7 +2947,7 @@
     "name": "Les Planches-en-Montagne",
     "code": "39424",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39150"
   },
@@ -2955,7 +2955,7 @@
     "name": "Les Planches-près-Arbois",
     "code": "39425",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39600"
   },
@@ -2963,7 +2963,7 @@
     "name": "Plasne",
     "code": "39426",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39210"
   },
@@ -2971,7 +2971,7 @@
     "name": "Plasne",
     "code": "39426",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -2979,7 +2979,7 @@
     "name": "Plénise",
     "code": "39427",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39250"
   },
@@ -2987,7 +2987,7 @@
     "name": "Plénisette",
     "code": "39428",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39250"
   },
@@ -2995,7 +2995,7 @@
     "name": "Pleure",
     "code": "39429",
     "epci_code": "243901089",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39120"
   },
@@ -3003,7 +3003,7 @@
     "name": "Plumont",
     "code": "39430",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -3011,7 +3011,7 @@
     "name": "Poids-de-Fiole",
     "code": "39431",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -3019,7 +3019,7 @@
     "name": "Pointre",
     "code": "39432",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39290"
   },
@@ -3027,7 +3027,7 @@
     "name": "Poligny",
     "code": "39434",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -3035,7 +3035,7 @@
     "name": "Pont-de-Poitte",
     "code": "39435",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -3043,7 +3043,7 @@
     "name": "Pont-d’Héry",
     "code": "39436",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39110"
   },
@@ -3051,7 +3051,7 @@
     "name": "Pont-du-Navoy",
     "code": "39437",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -3059,7 +3059,7 @@
     "name": "Port-Lesney",
     "code": "39439",
     "epci_code": "243900420",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39330"
   },
@@ -3067,7 +3067,7 @@
     "name": "Port-Lesney",
     "code": "39439",
     "epci_code": "243900420",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39600"
   },
@@ -3075,7 +3075,7 @@
     "name": "Prémanon",
     "code": "39441",
     "epci_code": "243900354",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39220"
   },
@@ -3083,7 +3083,7 @@
     "name": "Prémanon",
     "code": "39441",
     "epci_code": "243900354",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39400"
   },
@@ -3091,7 +3091,7 @@
     "name": "Présilly",
     "code": "39443",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39270"
   },
@@ -3099,7 +3099,7 @@
     "name": "Pretin",
     "code": "39444",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39110"
   },
@@ -3107,7 +3107,7 @@
     "name": "Publy",
     "code": "39445",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -3115,7 +3115,7 @@
     "name": "Pupillin",
     "code": "39446",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39600"
   },
@@ -3123,7 +3123,7 @@
     "name": "Quintigny",
     "code": "39447",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -3131,7 +3131,7 @@
     "name": "Rahon",
     "code": "39448",
     "epci_code": "243901089",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39120"
   },
@@ -3139,7 +3139,7 @@
     "name": "Rainans",
     "code": "39449",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39290"
   },
@@ -3147,7 +3147,7 @@
     "name": "Ranchot",
     "code": "39451",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -3155,7 +3155,7 @@
     "name": "Rans",
     "code": "39452",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -3163,7 +3163,7 @@
     "name": "Ravilloles",
     "code": "39453",
     "epci_code": "200026573",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39170"
   },
@@ -3171,7 +3171,7 @@
     "name": "Recanoz",
     "code": "39454",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -3179,7 +3179,7 @@
     "name": "Reithouse",
     "code": "39455",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39270"
   },
@@ -3187,7 +3187,7 @@
     "name": "Relans",
     "code": "39456",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39140"
   },
@@ -3195,7 +3195,7 @@
     "name": "Les Repôts",
     "code": "39457",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39140"
   },
@@ -3203,7 +3203,7 @@
     "name": "Revigny",
     "code": "39458",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -3211,7 +3211,7 @@
     "name": "La Rixouse",
     "code": "39460",
     "epci_code": "200026573",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39200"
   },
@@ -3219,7 +3219,7 @@
     "name": "Rix",
     "code": "39461",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39250"
   },
@@ -3227,7 +3227,7 @@
     "name": "Rochefort-sur-Nenon",
     "code": "39462",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -3235,7 +3235,7 @@
     "name": "Rogna",
     "code": "39463",
     "epci_code": "200026573",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39360"
   },
@@ -3243,7 +3243,7 @@
     "name": "Romain",
     "code": "39464",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39350"
   },
@@ -3251,7 +3251,7 @@
     "name": "Romange",
     "code": "39465",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -3259,7 +3259,7 @@
     "name": "Rosay",
     "code": "39466",
     "epci_code": "200072056",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39190"
   },
@@ -3267,7 +3267,7 @@
     "name": "Rotalier",
     "code": "39467",
     "epci_code": "200072056",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39190"
   },
@@ -3275,7 +3275,7 @@
     "name": "Rothonay",
     "code": "39468",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39270"
   },
@@ -3283,7 +3283,7 @@
     "name": "Rouffange",
     "code": "39469",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39350"
   },
@@ -3291,7 +3291,7 @@
     "name": "Les Rousses",
     "code": "39470",
     "epci_code": "243900354",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39220"
   },
@@ -3299,7 +3299,7 @@
     "name": "Les Rousses",
     "code": "39470",
     "epci_code": "243900354",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39400"
   },
@@ -3307,7 +3307,7 @@
     "name": "Ruffey-sur-Seille",
     "code": "39471",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39140"
   },
@@ -3315,7 +3315,7 @@
     "name": "Rye",
     "code": "39472",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -3323,7 +3323,7 @@
     "name": "Saffloz",
     "code": "39473",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -3331,7 +3331,7 @@
     "name": "Saint-Amour",
     "code": "39475",
     "epci_code": "200072056",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39160"
   },
@@ -3339,7 +3339,7 @@
     "name": "Saint-Aubin",
     "code": "39476",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39410"
   },
@@ -3347,7 +3347,7 @@
     "name": "Saint-Baraing",
     "code": "39477",
     "epci_code": "243901089",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39120"
   },
@@ -3355,7 +3355,7 @@
     "name": "Saint-Claude",
     "code": "39478",
     "epci_code": "200026573",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39200"
   },
@@ -3363,7 +3363,7 @@
     "name": "Saint-Cyr-Montmalin",
     "code": "39479",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39600"
   },
@@ -3371,7 +3371,7 @@
     "name": "Saint-Didier",
     "code": "39480",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -3379,7 +3379,7 @@
     "name": "Saint-Germain-en-Montagne",
     "code": "39481",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -3387,7 +3387,7 @@
     "name": "Val Suran",
     "code": "39485",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39320"
   },
@@ -3395,7 +3395,7 @@
     "name": "Saint-Lamain",
     "code": "39486",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -3403,7 +3403,7 @@
     "name": "Saint-Laurent-en-Grandvaux",
     "code": "39487",
     "epci_code": "243900610",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39150"
   },
@@ -3411,7 +3411,7 @@
     "name": "Saint-Lothain",
     "code": "39489",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -3419,7 +3419,7 @@
     "name": "Saint-Loup",
     "code": "39490",
     "epci_code": "243901089",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39120"
   },
@@ -3427,7 +3427,7 @@
     "name": "Coteaux du Lizon",
     "code": "39491",
     "epci_code": "200026573",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39170"
   },
@@ -3435,7 +3435,7 @@
     "name": "Saint-Maur",
     "code": "39492",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -3443,7 +3443,7 @@
     "name": "Saint-Maurice-Crillat",
     "code": "39493",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -3451,7 +3451,7 @@
     "name": "Saint-Pierre",
     "code": "39494",
     "epci_code": "243900610",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39150"
   },
@@ -3459,7 +3459,7 @@
     "name": "Saint-Thiébaud",
     "code": "39495",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39110"
   },
@@ -3467,7 +3467,7 @@
     "name": "Saizenay",
     "code": "39497",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39110"
   },
@@ -3475,7 +3475,7 @@
     "name": "Salans",
     "code": "39498",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -3483,7 +3483,7 @@
     "name": "Saligney",
     "code": "39499",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39350"
   },
@@ -3491,7 +3491,7 @@
     "name": "Salins-les-Bains",
     "code": "39500",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39110"
   },
@@ -3499,7 +3499,7 @@
     "name": "Sampans",
     "code": "39501",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39100"
   },
@@ -3507,7 +3507,7 @@
     "name": "Santans",
     "code": "39502",
     "epci_code": "243900420",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39380"
   },
@@ -3515,7 +3515,7 @@
     "name": "Sapois",
     "code": "39503",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -3523,7 +3523,7 @@
     "name": "Sarrogna",
     "code": "39504",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39270"
   },
@@ -3531,7 +3531,7 @@
     "name": "Saugeot",
     "code": "39505",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -3539,7 +3539,7 @@
     "name": "Séligney",
     "code": "39507",
     "epci_code": "243901089",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39120"
   },
@@ -3547,7 +3547,7 @@
     "name": "Sellières",
     "code": "39508",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -3555,7 +3555,7 @@
     "name": "Septmoncel les Molunes",
     "code": "39510",
     "epci_code": "200026573",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39310"
   },
@@ -3563,7 +3563,7 @@
     "name": "Sergenaux",
     "code": "39511",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -3571,7 +3571,7 @@
     "name": "Sergenon",
     "code": "39512",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39120"
   },
@@ -3579,7 +3579,7 @@
     "name": "Sermange",
     "code": "39513",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -3587,7 +3587,7 @@
     "name": "Serre-les-Moulières",
     "code": "39514",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -3595,7 +3595,7 @@
     "name": "Sirod",
     "code": "39517",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -3603,7 +3603,7 @@
     "name": "Songeson",
     "code": "39518",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -3611,7 +3611,7 @@
     "name": "Soucia",
     "code": "39519",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -3619,7 +3619,7 @@
     "name": "Souvans",
     "code": "39520",
     "epci_code": "243900420",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39380"
   },
@@ -3627,7 +3627,7 @@
     "name": "Supt",
     "code": "39522",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -3635,7 +3635,7 @@
     "name": "Syam",
     "code": "39523",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -3643,7 +3643,7 @@
     "name": "Tassenières",
     "code": "39525",
     "epci_code": "243901089",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39120"
   },
@@ -3651,7 +3651,7 @@
     "name": "Tavaux",
     "code": "39526",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39500"
   },
@@ -3659,7 +3659,7 @@
     "name": "Taxenne",
     "code": "39527",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39350"
   },
@@ -3667,7 +3667,7 @@
     "name": "Thervay",
     "code": "39528",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39290"
   },
@@ -3675,7 +3675,7 @@
     "name": "Thésy",
     "code": "39529",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39110"
   },
@@ -3683,7 +3683,7 @@
     "name": "Thoirette-Coisia",
     "code": "39530",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39240"
   },
@@ -3691,7 +3691,7 @@
     "name": "Thoiria",
     "code": "39531",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -3699,7 +3699,7 @@
     "name": "Thoissia",
     "code": "39532",
     "epci_code": "200072056",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39160"
   },
@@ -3707,7 +3707,7 @@
     "name": "Toulouse-le-Château",
     "code": "39533",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -3715,7 +3715,7 @@
     "name": "La Tour-du-Meix",
     "code": "39534",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39270"
   },
@@ -3723,7 +3723,7 @@
     "name": "Tourmont",
     "code": "39535",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -3731,7 +3731,7 @@
     "name": "Trenal",
     "code": "39537",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39190"
   },
@@ -3739,7 +3739,7 @@
     "name": "Trenal",
     "code": "39537",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -3747,7 +3747,7 @@
     "name": "Uxelles",
     "code": "39538",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -3755,7 +3755,7 @@
     "name": "Vadans",
     "code": "39539",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39600"
   },
@@ -3763,7 +3763,7 @@
     "name": "Valempoulières",
     "code": "39540",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -3771,7 +3771,7 @@
     "name": "Vannoz",
     "code": "39543",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -3779,7 +3779,7 @@
     "name": "Le Vaudioux",
     "code": "39545",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -3787,7 +3787,7 @@
     "name": "Vaudrey",
     "code": "39546",
     "epci_code": "243900420",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39380"
   },
@@ -3795,7 +3795,7 @@
     "name": "Vaux-lès-Saint-Claude",
     "code": "39547",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39360"
   },
@@ -3803,7 +3803,7 @@
     "name": "Verges",
     "code": "39550",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -3811,7 +3811,7 @@
     "name": "Véria",
     "code": "39551",
     "epci_code": "200072056",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39160"
   },
@@ -3819,7 +3819,7 @@
     "name": "Vernantois",
     "code": "39552",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -3827,7 +3827,7 @@
     "name": "Le Vernois",
     "code": "39553",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39210"
   },
@@ -3835,7 +3835,7 @@
     "name": "Vers-en-Montagne",
     "code": "39554",
     "epci_code": "200069623",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39300"
   },
@@ -3843,7 +3843,7 @@
     "name": "Vers-sous-Sellières",
     "code": "39555",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -3851,7 +3851,7 @@
     "name": "Vertamboz",
     "code": "39556",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39130"
   },
@@ -3859,7 +3859,7 @@
     "name": "Vescles",
     "code": "39557",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39240"
   },
@@ -3867,7 +3867,7 @@
     "name": "Vevy",
     "code": "39558",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -3875,7 +3875,7 @@
     "name": "La Vieille-Loye",
     "code": "39559",
     "epci_code": "243900420",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39380"
   },
@@ -3883,7 +3883,7 @@
     "name": "Villard-Saint-Sauveur",
     "code": "39560",
     "epci_code": "200026573",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39200"
   },
@@ -3891,7 +3891,7 @@
     "name": "Villards-d’Héria",
     "code": "39561",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39260"
   },
@@ -3899,7 +3899,7 @@
     "name": "Villeneuve-d’Aval",
     "code": "39565",
     "epci_code": "243900420",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39600"
   },
@@ -3907,7 +3907,7 @@
     "name": "Villeneuve-sous-Pymont",
     "code": "39567",
     "epci_code": "200071116",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39570"
   },
@@ -3915,7 +3915,7 @@
     "name": "Villerserine",
     "code": "39568",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -3923,7 +3923,7 @@
     "name": "Villers-Farlay",
     "code": "39569",
     "epci_code": "243900420",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39600"
   },
@@ -3931,7 +3931,7 @@
     "name": "Villers-les-Bois",
     "code": "39570",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39120"
   },
@@ -3939,7 +3939,7 @@
     "name": "Villers-les-Bois",
     "code": "39570",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39800"
   },
@@ -3947,7 +3947,7 @@
     "name": "Villers-Robert",
     "code": "39571",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39120"
   },
@@ -3955,7 +3955,7 @@
     "name": "Villette-lès-Arbois",
     "code": "39572",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39600"
   },
@@ -3963,7 +3963,7 @@
     "name": "Villette-lès-Dole",
     "code": "39573",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39100"
   },
@@ -3971,7 +3971,7 @@
     "name": "Villevieux",
     "code": "39574",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39140"
   },
@@ -3979,7 +3979,7 @@
     "name": "Le Villey",
     "code": "39575",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -3987,7 +3987,7 @@
     "name": "Val-Sonnette",
     "code": "39576",
     "epci_code": "200072056",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39190"
   },
@@ -3995,7 +3995,7 @@
     "name": "Vincent-Froideville",
     "code": "39577",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39230"
   },
@@ -4003,7 +4003,7 @@
     "name": "Viry",
     "code": "39579",
     "epci_code": "200026573",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39360"
   },
@@ -4011,7 +4011,7 @@
     "name": "Vitreux",
     "code": "39581",
     "epci_code": "243900560",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39350"
   },
@@ -4019,7 +4019,7 @@
     "name": "Voiteur",
     "code": "39582",
     "epci_code": "200069615",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39210"
   },
@@ -4027,7 +4027,7 @@
     "name": "Vosbles-Valfin",
     "code": "39583",
     "epci_code": "200090579",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39240"
   },
@@ -4035,7 +4035,7 @@
     "name": "Vriange",
     "code": "39584",
     "epci_code": "200010650",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39700"
   },
@@ -4043,7 +4043,7 @@
     "name": "Vulvoz",
     "code": "39585",
     "epci_code": "200026573",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39360"
   },
@@ -4051,7 +4051,7 @@
     "name": "Aresches",
     "code": "39586",
     "epci_code": "200071595",
-    "departement_code": "39",
+    "department_code": "39",
     "region_code": "27",
     "postal_code": "39110"
   }

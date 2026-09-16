@@ -3,7 +3,7 @@
     "name": "L’Aiguillon-la-Presqu’île",
     "code": "85001",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85460"
   },
@@ -11,7 +11,7 @@
     "name": "L’Aiguillon-sur-Vie",
     "code": "85002",
     "epci_code": "200023778",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85220"
   },
@@ -19,7 +19,7 @@
     "name": "Aizenay",
     "code": "85003",
     "epci_code": "200072882",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85190"
   },
@@ -27,7 +27,7 @@
     "name": "Angles",
     "code": "85004",
     "epci_code": "200071900",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85750"
   },
@@ -35,7 +35,7 @@
     "name": "Antigny",
     "code": "85005",
     "epci_code": "248500415",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85120"
   },
@@ -43,7 +43,7 @@
     "name": "Apremont",
     "code": "85006",
     "epci_code": "200072882",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85220"
   },
@@ -51,7 +51,7 @@
     "name": "Aubigny-Les Clouzeaux",
     "code": "85008",
     "epci_code": "248500589",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85430"
   },
@@ -59,7 +59,7 @@
     "name": "Auchay-sur-Vendée",
     "code": "85009",
     "epci_code": "200071934",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85200"
   },
@@ -67,7 +67,7 @@
     "name": "Avrillé",
     "code": "85010",
     "epci_code": "200071900",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85440"
   },
@@ -75,7 +75,7 @@
     "name": "Barbâtre",
     "code": "85011",
     "epci_code": "248500191",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85630"
   },
@@ -83,7 +83,7 @@
     "name": "La Barre-de-Monts",
     "code": "85012",
     "epci_code": "248500258",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85550"
   },
@@ -91,7 +91,7 @@
     "name": "Bazoges-en-Paillers",
     "code": "85013",
     "epci_code": "200071918",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85130"
   },
@@ -99,7 +99,7 @@
     "name": "Bazoges-en-Pareds",
     "code": "85014",
     "epci_code": "248500415",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85390"
   },
@@ -107,7 +107,7 @@
     "name": "Beaufou",
     "code": "85015",
     "epci_code": "200072882",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85170"
   },
@@ -115,7 +115,7 @@
     "name": "Beaulieu-sous-la-Roche",
     "code": "85016",
     "epci_code": "248500530",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85190"
   },
@@ -123,7 +123,7 @@
     "name": "Beaurepaire",
     "code": "85017",
     "epci_code": "248500621",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85500"
   },
@@ -131,7 +131,7 @@
     "name": "Beauvoir-sur-Mer",
     "code": "85018",
     "epci_code": "200071629",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85230"
   },
@@ -139,7 +139,7 @@
     "name": "Bellevigny",
     "code": "85019",
     "epci_code": "200072882",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85170"
   },
@@ -147,7 +147,7 @@
     "name": "Benet",
     "code": "85020",
     "epci_code": "248500563",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85490"
   },
@@ -155,7 +155,7 @@
     "name": "Le Bernard",
     "code": "85022",
     "epci_code": "200071900",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85560"
   },
@@ -163,7 +163,7 @@
     "name": "Bessay",
     "code": "85023",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85320"
   },
@@ -171,7 +171,7 @@
     "name": "Bois-de-Céné",
     "code": "85024",
     "epci_code": "200071629",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85710"
   },
@@ -179,7 +179,7 @@
     "name": "La Boissière-de-Montaigu",
     "code": "85025",
     "epci_code": "200070233",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85600"
   },
@@ -187,7 +187,7 @@
     "name": "La Boissière-des-Landes",
     "code": "85026",
     "epci_code": "200071900",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85430"
   },
@@ -195,7 +195,7 @@
     "name": "Bouillé-Courdault",
     "code": "85028",
     "epci_code": "248500563",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85420"
   },
@@ -203,7 +203,7 @@
     "name": "Bouin",
     "code": "85029",
     "epci_code": "200071629",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85230"
   },
@@ -211,7 +211,7 @@
     "name": "Le Boupère",
     "code": "85031",
     "epci_code": "248500464",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85510"
   },
@@ -219,7 +219,7 @@
     "name": "Bourneau",
     "code": "85033",
     "epci_code": "200071934",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85200"
   },
@@ -227,7 +227,7 @@
     "name": "Bournezeau",
     "code": "85034",
     "epci_code": "248500340",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85480"
   },
@@ -235,7 +235,7 @@
     "name": "Bretignolles-sur-Mer",
     "code": "85035",
     "epci_code": "200023778",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85470"
   },
@@ -243,7 +243,7 @@
     "name": "La Bretonnière-la-Claye",
     "code": "85036",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85320"
   },
@@ -251,7 +251,7 @@
     "name": "Les Brouzils",
     "code": "85038",
     "epci_code": "200071918",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85260"
   },
@@ -259,7 +259,7 @@
     "name": "La Bruffière",
     "code": "85039",
     "epci_code": "200070233",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85530"
   },
@@ -267,7 +267,7 @@
     "name": "La Caillère-Saint-Hilaire",
     "code": "85040",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85410"
   },
@@ -275,7 +275,7 @@
     "name": "Chaillé-les-Marais",
     "code": "85042",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85450"
   },
@@ -283,7 +283,7 @@
     "name": "La Chaize-Giraud",
     "code": "85045",
     "epci_code": "200023778",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85220"
   },
@@ -291,7 +291,7 @@
     "name": "La Chaize-le-Vicomte",
     "code": "85046",
     "epci_code": "248500589",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85310"
   },
@@ -299,7 +299,7 @@
     "name": "Challans",
     "code": "85047",
     "epci_code": "200071629",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85300"
   },
@@ -307,7 +307,7 @@
     "name": "Champagné-les-Marais",
     "code": "85049",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85450"
   },
@@ -315,7 +315,7 @@
     "name": "Le Champ-Saint-Père",
     "code": "85050",
     "epci_code": "200071900",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85540"
   },
@@ -323,7 +323,7 @@
     "name": "Chantonnay",
     "code": "85051",
     "epci_code": "248500340",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85110"
   },
@@ -331,7 +331,7 @@
     "name": "La Chapelle-Hermier",
     "code": "85054",
     "epci_code": "248500530",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85220"
   },
@@ -339,7 +339,7 @@
     "name": "La Chapelle-Palluau",
     "code": "85055",
     "epci_code": "200072882",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85670"
   },
@@ -347,7 +347,7 @@
     "name": "La Chapelle-Thémer",
     "code": "85056",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85210"
   },
@@ -355,7 +355,7 @@
     "name": "Chasnais",
     "code": "85058",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85400"
   },
@@ -363,7 +363,7 @@
     "name": "La Châtaigneraie",
     "code": "85059",
     "epci_code": "248500415",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85120"
   },
@@ -371,7 +371,7 @@
     "name": "Château-Guibert",
     "code": "85061",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85320"
   },
@@ -379,7 +379,7 @@
     "name": "Châteauneuf",
     "code": "85062",
     "epci_code": "200071629",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85710"
   },
@@ -387,7 +387,7 @@
     "name": "Chauché",
     "code": "85064",
     "epci_code": "200071918",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85140"
   },
@@ -395,7 +395,7 @@
     "name": "Chavagnes-en-Paillers",
     "code": "85065",
     "epci_code": "200071918",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85250"
   },
@@ -403,7 +403,7 @@
     "name": "Chavagnes-les-Redoux",
     "code": "85066",
     "epci_code": "248500464",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85390"
   },
@@ -411,7 +411,7 @@
     "name": "Cheffois",
     "code": "85067",
     "epci_code": "248500415",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85390"
   },
@@ -419,7 +419,7 @@
     "name": "Coëx",
     "code": "85070",
     "epci_code": "200023778",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85220"
   },
@@ -427,7 +427,7 @@
     "name": "Commequiers",
     "code": "85071",
     "epci_code": "200023778",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85220"
   },
@@ -435,7 +435,7 @@
     "name": "La Copechagnière",
     "code": "85072",
     "epci_code": "200071918",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85260"
   },
@@ -443,7 +443,7 @@
     "name": "Corpe",
     "code": "85073",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85320"
   },
@@ -451,7 +451,7 @@
     "name": "La Couture",
     "code": "85074",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85320"
   },
@@ -459,7 +459,7 @@
     "name": "Cugand-la-Bernardière",
     "code": "85076",
     "epci_code": "200070233",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85610"
   },
@@ -467,7 +467,7 @@
     "name": "Curzon",
     "code": "85077",
     "epci_code": "200071900",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85540"
   },
@@ -475,7 +475,7 @@
     "name": "Damvix",
     "code": "85078",
     "epci_code": "248500563",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85420"
   },
@@ -483,7 +483,7 @@
     "name": "Doix lès Fontaines",
     "code": "85080",
     "epci_code": "200071934",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85200"
   },
@@ -491,7 +491,7 @@
     "name": "Dompierre-sur-Yon",
     "code": "85081",
     "epci_code": "248500589",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85170"
   },
@@ -499,7 +499,7 @@
     "name": "Les Epesses",
     "code": "85082",
     "epci_code": "248500621",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85590"
   },
@@ -507,7 +507,7 @@
     "name": "L’Épine",
     "code": "85083",
     "epci_code": "248500191",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85740"
   },
@@ -515,7 +515,7 @@
     "name": "Essarts-en-Bocage",
     "code": "85084",
     "epci_code": "200071918",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85140"
   },
@@ -523,7 +523,7 @@
     "name": "Falleron",
     "code": "85086",
     "epci_code": "200072882",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85670"
   },
@@ -531,7 +531,7 @@
     "name": "Faymoreau",
     "code": "85087",
     "epci_code": "248500563",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85240"
   },
@@ -539,7 +539,7 @@
     "name": "Le Fenouiller",
     "code": "85088",
     "epci_code": "200023778",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85800"
   },
@@ -547,7 +547,7 @@
     "name": "La Ferrière",
     "code": "85089",
     "epci_code": "248500589",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85280"
   },
@@ -555,7 +555,7 @@
     "name": "Sèvremont",
     "code": "85090",
     "epci_code": "248500464",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85700"
   },
@@ -563,7 +563,7 @@
     "name": "Fontenay-le-Comte",
     "code": "85092",
     "epci_code": "200071934",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85200"
   },
@@ -571,7 +571,7 @@
     "name": "Fougeré",
     "code": "85093",
     "epci_code": "248500589",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85480"
   },
@@ -579,7 +579,7 @@
     "name": "Foussais-Payré",
     "code": "85094",
     "epci_code": "200071934",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85240"
   },
@@ -587,7 +587,7 @@
     "name": "Froidfond",
     "code": "85095",
     "epci_code": "200071629",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85300"
   },
@@ -595,7 +595,7 @@
     "name": "La Garnache",
     "code": "85096",
     "epci_code": "200071629",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85710"
   },
@@ -603,7 +603,7 @@
     "name": "La Gaubretière",
     "code": "85097",
     "epci_code": "248500662",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85130"
   },
@@ -611,7 +611,7 @@
     "name": "La Genétouze",
     "code": "85098",
     "epci_code": "200072882",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85190"
   },
@@ -619,7 +619,7 @@
     "name": "Le Girouard",
     "code": "85099",
     "epci_code": "248500530",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85150"
   },
@@ -627,7 +627,7 @@
     "name": "Givrand",
     "code": "85100",
     "epci_code": "200023778",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85800"
   },
@@ -635,7 +635,7 @@
     "name": "Le Givre",
     "code": "85101",
     "epci_code": "200071900",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85540"
   },
@@ -643,7 +643,7 @@
     "name": "Grand’Landes",
     "code": "85102",
     "epci_code": "200072882",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85670"
   },
@@ -651,7 +651,7 @@
     "name": "Grosbreuil",
     "code": "85103",
     "epci_code": "200071900",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85440"
   },
@@ -659,7 +659,7 @@
     "name": "Grues",
     "code": "85104",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85580"
   },
@@ -667,7 +667,7 @@
     "name": "Le Gué-de-Velluire",
     "code": "85105",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85770"
   },
@@ -675,7 +675,7 @@
     "name": "La Guérinière",
     "code": "85106",
     "epci_code": "248500191",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85680"
   },
@@ -683,7 +683,7 @@
     "name": "L’Herbergement",
     "code": "85108",
     "epci_code": "200070233",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85260"
   },
@@ -691,7 +691,7 @@
     "name": "Les Herbiers",
     "code": "85109",
     "epci_code": "248500621",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85500"
   },
@@ -699,7 +699,7 @@
     "name": "L’Hermenault",
     "code": "85110",
     "epci_code": "200071934",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85570"
   },
@@ -707,7 +707,7 @@
     "name": "L’Île-d’Elle",
     "code": "85111",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85770"
   },
@@ -715,14 +715,14 @@
     "name": "L’Île-d’Olonne",
     "code": "85112",
     "epci_code": "200071165",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85340"
   },
   {
     "name": "L’Île-d’Yeu",
     "code": "85113",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85350"
   },
@@ -730,7 +730,7 @@
     "name": "Jard-sur-Mer",
     "code": "85114",
     "epci_code": "200071900",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85520"
   },
@@ -738,7 +738,7 @@
     "name": "La Jaudonnière",
     "code": "85115",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85110"
   },
@@ -746,7 +746,7 @@
     "name": "La Jonchère",
     "code": "85116",
     "epci_code": "200071900",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85540"
   },
@@ -754,7 +754,7 @@
     "name": "Lairoux",
     "code": "85117",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85400"
   },
@@ -762,7 +762,7 @@
     "name": "Landeronde",
     "code": "85118",
     "epci_code": "248500589",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85150"
   },
@@ -770,7 +770,7 @@
     "name": "Les Landes-Genusson",
     "code": "85119",
     "epci_code": "248500662",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85130"
   },
@@ -778,7 +778,7 @@
     "name": "Landevieille",
     "code": "85120",
     "epci_code": "200023778",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85220"
   },
@@ -786,7 +786,7 @@
     "name": "Le Langon",
     "code": "85121",
     "epci_code": "200071934",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85370"
   },
@@ -794,7 +794,7 @@
     "name": "Liez",
     "code": "85123",
     "epci_code": "248500563",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85420"
   },
@@ -802,7 +802,7 @@
     "name": "Loge-Fougereuse",
     "code": "85125",
     "epci_code": "248500415",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85120"
   },
@@ -810,7 +810,7 @@
     "name": "Longèves",
     "code": "85126",
     "epci_code": "200071934",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85200"
   },
@@ -818,7 +818,7 @@
     "name": "Longeville-sur-Mer",
     "code": "85127",
     "epci_code": "200071900",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85560"
   },
@@ -826,7 +826,7 @@
     "name": "Luçon",
     "code": "85128",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85400"
   },
@@ -834,7 +834,7 @@
     "name": "Les Lucs-sur-Boulogne",
     "code": "85129",
     "epci_code": "200072882",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85170"
   },
@@ -842,7 +842,7 @@
     "name": "Maché",
     "code": "85130",
     "epci_code": "200072882",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85190"
   },
@@ -850,7 +850,7 @@
     "name": "Les Magnils-Reigniers",
     "code": "85131",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85400"
   },
@@ -858,7 +858,7 @@
     "name": "Maillé",
     "code": "85132",
     "epci_code": "248500563",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85420"
   },
@@ -866,7 +866,7 @@
     "name": "Maillezais",
     "code": "85133",
     "epci_code": "248500563",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85420"
   },
@@ -874,7 +874,7 @@
     "name": "Mallièvre",
     "code": "85134",
     "epci_code": "248500662",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85590"
   },
@@ -882,7 +882,7 @@
     "name": "Mareuil-sur-Lay-Dissais",
     "code": "85135",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85320"
   },
@@ -890,7 +890,7 @@
     "name": "Marillet",
     "code": "85136",
     "epci_code": "248500415",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85240"
   },
@@ -898,7 +898,7 @@
     "name": "Marsais-Sainte-Radégonde",
     "code": "85137",
     "epci_code": "200071934",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85570"
   },
@@ -906,7 +906,7 @@
     "name": "Martinet",
     "code": "85138",
     "epci_code": "248500530",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85150"
   },
@@ -914,7 +914,7 @@
     "name": "Le Mazeau",
     "code": "85139",
     "epci_code": "248500563",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85420"
   },
@@ -922,7 +922,7 @@
     "name": "La Meilleraie-Tillay",
     "code": "85140",
     "epci_code": "248500464",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85700"
   },
@@ -930,7 +930,7 @@
     "name": "Menomblet",
     "code": "85141",
     "epci_code": "248500415",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85700"
   },
@@ -938,7 +938,7 @@
     "name": "La Merlatière",
     "code": "85142",
     "epci_code": "200071918",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85140"
   },
@@ -946,7 +946,7 @@
     "name": "Mervent",
     "code": "85143",
     "epci_code": "200071934",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85200"
   },
@@ -954,7 +954,7 @@
     "name": "Mesnard-la-Barotière",
     "code": "85144",
     "epci_code": "248500621",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85500"
   },
@@ -962,7 +962,7 @@
     "name": "Monsireigne",
     "code": "85145",
     "epci_code": "248500464",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85110"
   },
@@ -970,7 +970,7 @@
     "name": "Montaigu-Vendée",
     "code": "85146",
     "epci_code": "200070233",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85600"
   },
@@ -978,7 +978,7 @@
     "name": "Montournais",
     "code": "85147",
     "epci_code": "248500464",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85700"
   },
@@ -986,7 +986,7 @@
     "name": "Montreuil",
     "code": "85148",
     "epci_code": "200071934",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85200"
   },
@@ -994,7 +994,7 @@
     "name": "Moreilles",
     "code": "85149",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85450"
   },
@@ -1002,7 +1002,7 @@
     "name": "Mortagne-sur-Sèvre",
     "code": "85151",
     "epci_code": "248500662",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85290"
   },
@@ -1010,7 +1010,7 @@
     "name": "Les Achards",
     "code": "85152",
     "epci_code": "248500530",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85150"
   },
@@ -1018,7 +1018,7 @@
     "name": "Mouchamps",
     "code": "85153",
     "epci_code": "248500621",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85640"
   },
@@ -1026,7 +1026,7 @@
     "name": "Mouilleron-Saint-Germain",
     "code": "85154",
     "epci_code": "248500415",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85390"
   },
@@ -1034,7 +1034,7 @@
     "name": "Mouilleron-le-Captif",
     "code": "85155",
     "epci_code": "248500589",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85000"
   },
@@ -1042,7 +1042,7 @@
     "name": "Moutiers-les-Mauxfaits",
     "code": "85156",
     "epci_code": "200071900",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85540"
   },
@@ -1050,7 +1050,7 @@
     "name": "Moutiers-sur-le-Lay",
     "code": "85157",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85320"
   },
@@ -1058,7 +1058,7 @@
     "name": "Mouzeuil-Saint-Martin",
     "code": "85158",
     "epci_code": "200071934",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85370"
   },
@@ -1066,7 +1066,7 @@
     "name": "Nalliers",
     "code": "85159",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85370"
   },
@@ -1074,7 +1074,7 @@
     "name": "Nesmy",
     "code": "85160",
     "epci_code": "248500589",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85310"
   },
@@ -1082,7 +1082,7 @@
     "name": "Nieul-le-Dolent",
     "code": "85161",
     "epci_code": "248500530",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85430"
   },
@@ -1090,7 +1090,7 @@
     "name": "Rives-d’Autise",
     "code": "85162",
     "epci_code": "248500563",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85240"
   },
@@ -1098,7 +1098,7 @@
     "name": "Rives-d’Autise",
     "code": "85162",
     "epci_code": "248500563",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85420"
   },
@@ -1106,7 +1106,7 @@
     "name": "Noirmoutier-en-l’Île",
     "code": "85163",
     "epci_code": "248500191",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85330"
   },
@@ -1114,7 +1114,7 @@
     "name": "Notre-Dame-de-Monts",
     "code": "85164",
     "epci_code": "248500258",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85690"
   },
@@ -1122,7 +1122,7 @@
     "name": "L’Oie",
     "code": "85165",
     "epci_code": "200071918",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85140"
   },
@@ -1130,7 +1130,7 @@
     "name": "L’Orbrie",
     "code": "85167",
     "epci_code": "200071934",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85200"
   },
@@ -1138,7 +1138,7 @@
     "name": "Palluau",
     "code": "85169",
     "epci_code": "200072882",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85670"
   },
@@ -1146,7 +1146,7 @@
     "name": "Péault",
     "code": "85171",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85320"
   },
@@ -1154,7 +1154,7 @@
     "name": "Le Perrier",
     "code": "85172",
     "epci_code": "248500258",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85300"
   },
@@ -1162,7 +1162,7 @@
     "name": "Petosse",
     "code": "85174",
     "epci_code": "200071934",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85570"
   },
@@ -1170,7 +1170,7 @@
     "name": "Les Pineaux",
     "code": "85175",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85320"
   },
@@ -1178,7 +1178,7 @@
     "name": "Pissotte",
     "code": "85176",
     "epci_code": "200071934",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85200"
   },
@@ -1186,7 +1186,7 @@
     "name": "Les Velluire-sur-Vendée",
     "code": "85177",
     "epci_code": "200071934",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85770"
   },
@@ -1194,7 +1194,7 @@
     "name": "Le Poiré-sur-Vie",
     "code": "85178",
     "epci_code": "200072882",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85170"
   },
@@ -1202,7 +1202,7 @@
     "name": "Poiroux",
     "code": "85179",
     "epci_code": "200071900",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85440"
   },
@@ -1210,7 +1210,7 @@
     "name": "Pouillé",
     "code": "85181",
     "epci_code": "200071934",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85570"
   },
@@ -1218,7 +1218,7 @@
     "name": "Pouzauges",
     "code": "85182",
     "epci_code": "248500464",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85700"
   },
@@ -1226,7 +1226,7 @@
     "name": "Puy-de-Serre",
     "code": "85184",
     "epci_code": "248500563",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85240"
   },
@@ -1234,7 +1234,7 @@
     "name": "Puyravault",
     "code": "85185",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85450"
   },
@@ -1242,7 +1242,7 @@
     "name": "La Rabatelière",
     "code": "85186",
     "epci_code": "200071918",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85250"
   },
@@ -1250,7 +1250,7 @@
     "name": "Réaumur",
     "code": "85187",
     "epci_code": "248500464",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85700"
   },
@@ -1258,7 +1258,7 @@
     "name": "La Réorthe",
     "code": "85188",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85210"
   },
@@ -1266,7 +1266,7 @@
     "name": "Notre-Dame-de-Riez",
     "code": "85189",
     "epci_code": "200023778",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85270"
   },
@@ -1274,7 +1274,7 @@
     "name": "Rocheservière",
     "code": "85190",
     "epci_code": "200070233",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85620"
   },
@@ -1282,7 +1282,7 @@
     "name": "La Roche-sur-Yon",
     "code": "85191",
     "epci_code": "248500589",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85000"
   },
@@ -1290,7 +1290,7 @@
     "name": "Rochetrejoux",
     "code": "85192",
     "epci_code": "248500340",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85510"
   },
@@ -1298,7 +1298,7 @@
     "name": "Rosnay",
     "code": "85193",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85320"
   },
@@ -1306,7 +1306,7 @@
     "name": "Les Sables-d’Olonne",
     "code": "85194",
     "epci_code": "200071165",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85100"
   },
@@ -1314,7 +1314,7 @@
     "name": "Les Sables-d’Olonne",
     "code": "85194",
     "epci_code": "200071165",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85180"
   },
@@ -1322,7 +1322,7 @@
     "name": "Les Sables-d’Olonne",
     "code": "85194",
     "epci_code": "200071165",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85340"
   },
@@ -1330,7 +1330,7 @@
     "name": "Saint-André-Goule-d’Oie",
     "code": "85196",
     "epci_code": "200071918",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85250"
   },
@@ -1338,7 +1338,7 @@
     "name": "Montréverd",
     "code": "85197",
     "epci_code": "200070233",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85260"
   },
@@ -1346,7 +1346,7 @@
     "name": "Saint-Aubin-des-Ormeaux",
     "code": "85198",
     "epci_code": "248500662",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85130"
   },
@@ -1354,7 +1354,7 @@
     "name": "Saint-Aubin-la-Plaine",
     "code": "85199",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85210"
   },
@@ -1362,7 +1362,7 @@
     "name": "Saint-Avaugourd-des-Landes",
     "code": "85200",
     "epci_code": "200071900",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85540"
   },
@@ -1370,7 +1370,7 @@
     "name": "Saint-Benoist-sur-Mer",
     "code": "85201",
     "epci_code": "200071900",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85540"
   },
@@ -1378,7 +1378,7 @@
     "name": "Sainte-Cécile",
     "code": "85202",
     "epci_code": "248500340",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85110"
   },
@@ -1386,7 +1386,7 @@
     "name": "Saint-Christophe-du-Ligneron",
     "code": "85204",
     "epci_code": "200071629",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85670"
   },
@@ -1394,7 +1394,7 @@
     "name": "Saint-Cyr-des-Gâts",
     "code": "85205",
     "epci_code": "200071934",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85410"
   },
@@ -1402,7 +1402,7 @@
     "name": "Saint-Cyr-en-Talmondais",
     "code": "85206",
     "epci_code": "200071900",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85540"
   },
@@ -1410,7 +1410,7 @@
     "name": "Saint-Denis-du-Payré",
     "code": "85207",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85580"
   },
@@ -1418,7 +1418,7 @@
     "name": "Saint-Denis-la-Chevasse",
     "code": "85208",
     "epci_code": "200072882",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85170"
   },
@@ -1426,7 +1426,7 @@
     "name": "Saint-Étienne-de-Brillouet",
     "code": "85209",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85210"
   },
@@ -1434,7 +1434,7 @@
     "name": "Saint-Étienne-du-Bois",
     "code": "85210",
     "epci_code": "200072882",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85670"
   },
@@ -1442,7 +1442,7 @@
     "name": "Sainte-Flaive-des-Loups",
     "code": "85211",
     "epci_code": "248500530",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85150"
   },
@@ -1450,7 +1450,7 @@
     "name": "Sainte-Florence",
     "code": "85212",
     "epci_code": "200071918",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85140"
   },
@@ -1458,7 +1458,7 @@
     "name": "Rives de l’Yon",
     "code": "85213",
     "epci_code": "248500589",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85310"
   },
@@ -1466,7 +1466,7 @@
     "name": "Sainte-Foy",
     "code": "85214",
     "epci_code": "200071165",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85150"
   },
@@ -1474,7 +1474,7 @@
     "name": "Saint-Fulgent",
     "code": "85215",
     "epci_code": "200071918",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85250"
   },
@@ -1482,7 +1482,7 @@
     "name": "Sainte-Gemme-la-Plaine",
     "code": "85216",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85400"
   },
@@ -1490,7 +1490,7 @@
     "name": "Saint-Georges-de-Pointindoux",
     "code": "85218",
     "epci_code": "248500530",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85150"
   },
@@ -1498,7 +1498,7 @@
     "name": "Saint-Germain-de-Prinçay",
     "code": "85220",
     "epci_code": "248500340",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85110"
   },
@@ -1506,7 +1506,7 @@
     "name": "Saint-Gervais",
     "code": "85221",
     "epci_code": "200071629",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85230"
   },
@@ -1514,7 +1514,7 @@
     "name": "Saint-Gilles-Croix-de-Vie",
     "code": "85222",
     "epci_code": "200023778",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85800"
   },
@@ -1522,7 +1522,7 @@
     "name": "Saint-Jean-d’Hermine",
     "code": "85223",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85210"
   },
@@ -1530,7 +1530,7 @@
     "name": "Saint-Hilaire-de-Riez",
     "code": "85226",
     "epci_code": "200023778",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85270"
   },
@@ -1538,7 +1538,7 @@
     "name": "Saint-Hilaire-des-Loges",
     "code": "85227",
     "epci_code": "248500563",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85240"
   },
@@ -1546,7 +1546,7 @@
     "name": "Saint-Hilaire-de-Voust",
     "code": "85229",
     "epci_code": "248500415",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85120"
   },
@@ -1554,7 +1554,7 @@
     "name": "Saint-Hilaire-la-Forêt",
     "code": "85231",
     "epci_code": "200071900",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85440"
   },
@@ -1562,7 +1562,7 @@
     "name": "Saint-Hilaire-le-Vouhis",
     "code": "85232",
     "epci_code": "248500340",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85480"
   },
@@ -1570,7 +1570,7 @@
     "name": "Saint-Jean-de-Monts",
     "code": "85234",
     "epci_code": "248500258",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85160"
   },
@@ -1578,7 +1578,7 @@
     "name": "Saint-Juire-Champgillon",
     "code": "85235",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85210"
   },
@@ -1586,7 +1586,7 @@
     "name": "Saint-Julien-des-Landes",
     "code": "85236",
     "epci_code": "248500530",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85150"
   },
@@ -1594,7 +1594,7 @@
     "name": "Saint-Laurent-de-la-Salle",
     "code": "85237",
     "epci_code": "200071934",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85410"
   },
@@ -1602,7 +1602,7 @@
     "name": "Saint-Laurent-sur-Sèvre",
     "code": "85238",
     "epci_code": "248500662",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85290"
   },
@@ -1610,7 +1610,7 @@
     "name": "Saint-Maixent-sur-Vie",
     "code": "85239",
     "epci_code": "200023778",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85220"
   },
@@ -1618,7 +1618,7 @@
     "name": "Saint-Malô-du-Bois",
     "code": "85240",
     "epci_code": "248500662",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85590"
   },
@@ -1626,7 +1626,7 @@
     "name": "Saint-Mars-la-Réorthe",
     "code": "85242",
     "epci_code": "248500621",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85590"
   },
@@ -1634,7 +1634,7 @@
     "name": "Brem-sur-Mer",
     "code": "85243",
     "epci_code": "200023778",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85470"
   },
@@ -1642,7 +1642,7 @@
     "name": "Saint-Martin-de-Fraigneau",
     "code": "85244",
     "epci_code": "200071934",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85200"
   },
@@ -1650,7 +1650,7 @@
     "name": "Saint-Martin-des-Fontaines",
     "code": "85245",
     "epci_code": "200071934",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85570"
   },
@@ -1658,7 +1658,7 @@
     "name": "Saint-Martin-des-Noyers",
     "code": "85246",
     "epci_code": "248500340",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85140"
   },
@@ -1666,7 +1666,7 @@
     "name": "Saint-Martin-des-Tilleuls",
     "code": "85247",
     "epci_code": "248500662",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85130"
   },
@@ -1674,7 +1674,7 @@
     "name": "Saint-Martin-Lars-en-Sainte-Hermine",
     "code": "85248",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85210"
   },
@@ -1682,7 +1682,7 @@
     "name": "Saint-Mathurin",
     "code": "85250",
     "epci_code": "200071165",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85150"
   },
@@ -1690,7 +1690,7 @@
     "name": "Saint-Maurice-des-Noues",
     "code": "85251",
     "epci_code": "248500415",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85120"
   },
@@ -1698,7 +1698,7 @@
     "name": "Saint-Maurice-le-Girard",
     "code": "85252",
     "epci_code": "248500415",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85390"
   },
@@ -1706,7 +1706,7 @@
     "name": "Saint-Mesmin",
     "code": "85254",
     "epci_code": "248500464",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85700"
   },
@@ -1714,7 +1714,7 @@
     "name": "Saint-Michel-en-l’Herm",
     "code": "85255",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85580"
   },
@@ -1722,7 +1722,7 @@
     "name": "Saint-Michel-le-Cloucq",
     "code": "85256",
     "epci_code": "200071934",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85200"
   },
@@ -1730,7 +1730,7 @@
     "name": "Saint-Paul-en-Pareds",
     "code": "85259",
     "epci_code": "248500621",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85500"
   },
@@ -1738,7 +1738,7 @@
     "name": "Saint-Paul-Mont-Penit",
     "code": "85260",
     "epci_code": "200072882",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85670"
   },
@@ -1746,7 +1746,7 @@
     "name": "Sainte-Pexine",
     "code": "85261",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85320"
   },
@@ -1754,7 +1754,7 @@
     "name": "Saint-Philbert-de-Bouaine",
     "code": "85262",
     "epci_code": "200070233",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85660"
   },
@@ -1762,7 +1762,7 @@
     "name": "Saint-Pierre-du-Chemin",
     "code": "85264",
     "epci_code": "248500415",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85120"
   },
@@ -1770,7 +1770,7 @@
     "name": "Saint-Pierre-le-Vieux",
     "code": "85265",
     "epci_code": "248500563",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85420"
   },
@@ -1778,7 +1778,7 @@
     "name": "Saint-Prouant",
     "code": "85266",
     "epci_code": "248500340",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85110"
   },
@@ -1786,7 +1786,7 @@
     "name": "Sainte-Radégonde-des-Noyers",
     "code": "85267",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85450"
   },
@@ -1794,7 +1794,7 @@
     "name": "Saint-Révérend",
     "code": "85268",
     "epci_code": "200023778",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85220"
   },
@@ -1802,7 +1802,7 @@
     "name": "Saint-Sigismond",
     "code": "85269",
     "epci_code": "248500563",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85420"
   },
@@ -1810,7 +1810,7 @@
     "name": "Saint-Urbain",
     "code": "85273",
     "epci_code": "200071629",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85230"
   },
@@ -1818,7 +1818,7 @@
     "name": "Saint-Valérien",
     "code": "85274",
     "epci_code": "200071934",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85570"
   },
@@ -1826,7 +1826,7 @@
     "name": "Saint-Vincent-Sterlanges",
     "code": "85276",
     "epci_code": "248500340",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85110"
   },
@@ -1834,7 +1834,7 @@
     "name": "Saint-Vincent-sur-Graon",
     "code": "85277",
     "epci_code": "200071900",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85540"
   },
@@ -1842,7 +1842,7 @@
     "name": "Saint-Vincent-sur-Jard",
     "code": "85278",
     "epci_code": "200071900",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85520"
   },
@@ -1850,7 +1850,7 @@
     "name": "Sallertaine",
     "code": "85280",
     "epci_code": "200071629",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85300"
   },
@@ -1858,7 +1858,7 @@
     "name": "Sérigné",
     "code": "85281",
     "epci_code": "200071934",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85200"
   },
@@ -1866,7 +1866,7 @@
     "name": "Sigournais",
     "code": "85282",
     "epci_code": "248500340",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85110"
   },
@@ -1874,7 +1874,7 @@
     "name": "Soullans",
     "code": "85284",
     "epci_code": "248500258",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85300"
   },
@@ -1882,7 +1882,7 @@
     "name": "Le Tablier",
     "code": "85285",
     "epci_code": "248500589",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85310"
   },
@@ -1890,7 +1890,7 @@
     "name": "La Taillée",
     "code": "85286",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85450"
   },
@@ -1898,7 +1898,7 @@
     "name": "Tallud-Sainte-Gemme",
     "code": "85287",
     "epci_code": "248500464",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85390"
   },
@@ -1906,7 +1906,7 @@
     "name": "Talmont-Saint-Hilaire",
     "code": "85288",
     "epci_code": "200071900",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85440"
   },
@@ -1914,7 +1914,7 @@
     "name": "Terval",
     "code": "85289",
     "epci_code": "248500415",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85120"
   },
@@ -1922,7 +1922,7 @@
     "name": "Thiré",
     "code": "85290",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85210"
   },
@@ -1930,7 +1930,7 @@
     "name": "Thorigny",
     "code": "85291",
     "epci_code": "248500589",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85480"
   },
@@ -1938,7 +1938,7 @@
     "name": "Rives-du-Fougerais",
     "code": "85292",
     "epci_code": "248500415",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85410"
   },
@@ -1946,7 +1946,7 @@
     "name": "Tiffauges",
     "code": "85293",
     "epci_code": "248500662",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85130"
   },
@@ -1954,7 +1954,7 @@
     "name": "La Tranche-sur-Mer",
     "code": "85294",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85360"
   },
@@ -1962,7 +1962,7 @@
     "name": "Treize-Septiers",
     "code": "85295",
     "epci_code": "200070233",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85600"
   },
@@ -1970,7 +1970,7 @@
     "name": "Treize-Vents",
     "code": "85296",
     "epci_code": "248500662",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85590"
   },
@@ -1978,7 +1978,7 @@
     "name": "Triaize",
     "code": "85297",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85580"
   },
@@ -1986,7 +1986,7 @@
     "name": "Vairé",
     "code": "85298",
     "epci_code": "200071165",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85150"
   },
@@ -1994,7 +1994,7 @@
     "name": "Venansault",
     "code": "85300",
     "epci_code": "248500589",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85190"
   },
@@ -2002,7 +2002,7 @@
     "name": "Vendrennes",
     "code": "85301",
     "epci_code": "248500621",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85250"
   },
@@ -2010,7 +2010,7 @@
     "name": "Chanverrie",
     "code": "85302",
     "epci_code": "248500662",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85130"
   },
@@ -2018,7 +2018,7 @@
     "name": "Chanverrie",
     "code": "85302",
     "epci_code": "248500662",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85500"
   },
@@ -2026,7 +2026,7 @@
     "name": "Vix",
     "code": "85303",
     "epci_code": "248500563",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85770"
   },
@@ -2034,7 +2034,7 @@
     "name": "Vouillé-les-Marais",
     "code": "85304",
     "epci_code": "200073260",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85450"
   },
@@ -2042,7 +2042,7 @@
     "name": "Vouvant",
     "code": "85305",
     "epci_code": "200071934",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85120"
   },
@@ -2050,7 +2050,7 @@
     "name": "Xanton-Chassenon",
     "code": "85306",
     "epci_code": "248500563",
-    "departement_code": "85",
+    "department_code": "85",
     "region_code": "52",
     "postal_code": "85240"
   }
