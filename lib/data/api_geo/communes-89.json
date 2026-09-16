@@ -3,7 +3,7 @@
     "name": "Aigremont",
     "code": "89002",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89800"
   },
@@ -11,7 +11,7 @@
     "name": "Montholon",
     "code": "89003",
     "epci_code": "248900524",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89110"
   },
@@ -19,7 +19,7 @@
     "name": "Montholon",
     "code": "89003",
     "epci_code": "248900524",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89710"
   },
@@ -27,7 +27,7 @@
     "name": "Aisy-sur-Armançon",
     "code": "89004",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89390"
   },
@@ -35,7 +35,7 @@
     "name": "Ancy-le-Franc",
     "code": "89005",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89160"
   },
@@ -43,7 +43,7 @@
     "name": "Ancy-le-Libre",
     "code": "89006",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89160"
   },
@@ -51,7 +51,7 @@
     "name": "Andryes",
     "code": "89007",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89480"
   },
@@ -59,7 +59,7 @@
     "name": "Angely",
     "code": "89008",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89440"
   },
@@ -67,7 +67,7 @@
     "name": "Annay-la-Côte",
     "code": "89009",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89200"
   },
@@ -75,7 +75,7 @@
     "name": "Annay-sur-Serein",
     "code": "89010",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89310"
   },
@@ -83,7 +83,7 @@
     "name": "Annéot",
     "code": "89011",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89200"
   },
@@ -91,7 +91,7 @@
     "name": "Annoux",
     "code": "89012",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89440"
   },
@@ -99,7 +99,7 @@
     "name": "Appoigny",
     "code": "89013",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89380"
   },
@@ -107,7 +107,7 @@
     "name": "Arces-Dilo",
     "code": "89014",
     "epci_code": "248900664",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89320"
   },
@@ -115,7 +115,7 @@
     "name": "Arcy-sur-Cure",
     "code": "89015",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89270"
   },
@@ -123,7 +123,7 @@
     "name": "Argentenay",
     "code": "89016",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89160"
   },
@@ -131,7 +131,7 @@
     "name": "Argenteuil-sur-Armançon",
     "code": "89017",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89160"
   },
@@ -139,7 +139,7 @@
     "name": "Armeau",
     "code": "89018",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89500"
   },
@@ -147,7 +147,7 @@
     "name": "Arthonnay",
     "code": "89019",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89740"
   },
@@ -155,7 +155,7 @@
     "name": "Asnières-sous-Bois",
     "code": "89020",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89660"
   },
@@ -163,7 +163,7 @@
     "name": "Asquins",
     "code": "89021",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89450"
   },
@@ -171,7 +171,7 @@
     "name": "Athie",
     "code": "89022",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89440"
   },
@@ -179,7 +179,7 @@
     "name": "Augy",
     "code": "89023",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89290"
   },
@@ -187,7 +187,7 @@
     "name": "Auxerre",
     "code": "89024",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89000"
   },
@@ -195,7 +195,7 @@
     "name": "Auxerre",
     "code": "89024",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89290"
   },
@@ -203,7 +203,7 @@
     "name": "Avallon",
     "code": "89025",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89200"
   },
@@ -211,7 +211,7 @@
     "name": "Bagneaux",
     "code": "89027",
     "epci_code": "248900664",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89190"
   },
@@ -219,7 +219,7 @@
     "name": "Baon",
     "code": "89028",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89430"
   },
@@ -227,7 +227,7 @@
     "name": "Bassou",
     "code": "89029",
     "epci_code": "248900383",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89400"
   },
@@ -235,7 +235,7 @@
     "name": "Bazarnes",
     "code": "89030",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89460"
   },
@@ -243,7 +243,7 @@
     "name": "Beaumont",
     "code": "89031",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89250"
   },
@@ -251,7 +251,7 @@
     "name": "Beauvilliers",
     "code": "89032",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89630"
   },
@@ -259,7 +259,7 @@
     "name": "Beauvoir",
     "code": "89033",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89240"
   },
@@ -267,7 +267,7 @@
     "name": "Beine",
     "code": "89034",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89800"
   },
@@ -275,7 +275,7 @@
     "name": "Bellechaume",
     "code": "89035",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89210"
   },
@@ -283,7 +283,7 @@
     "name": "La Belliole",
     "code": "89036",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89150"
   },
@@ -291,7 +291,7 @@
     "name": "Béon",
     "code": "89037",
     "epci_code": "248900938",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89410"
   },
@@ -299,7 +299,7 @@
     "name": "Bernouil",
     "code": "89038",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89360"
   },
@@ -307,7 +307,7 @@
     "name": "Béru",
     "code": "89039",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89700"
   },
@@ -315,7 +315,7 @@
     "name": "Bessy-sur-Cure",
     "code": "89040",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89270"
   },
@@ -323,7 +323,7 @@
     "name": "Beugnon",
     "code": "89041",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89570"
   },
@@ -331,7 +331,7 @@
     "name": "Bierry-les-Belles-Fontaines",
     "code": "89042",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89420"
   },
@@ -339,7 +339,7 @@
     "name": "Blacy",
     "code": "89043",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89440"
   },
@@ -347,7 +347,7 @@
     "name": "Blannay",
     "code": "89044",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89200"
   },
@@ -355,7 +355,7 @@
     "name": "Bleigny-le-Carreau",
     "code": "89045",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89230"
   },
@@ -363,7 +363,7 @@
     "name": "Bléneau",
     "code": "89046",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89220"
   },
@@ -371,7 +371,7 @@
     "name": "Bœurs-en-Othe",
     "code": "89048",
     "epci_code": "248900664",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89770"
   },
@@ -379,7 +379,7 @@
     "name": "Bois-d’Arcy",
     "code": "89049",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89660"
   },
@@ -387,7 +387,7 @@
     "name": "Bonnard",
     "code": "89050",
     "epci_code": "248900383",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89400"
   },
@@ -395,7 +395,7 @@
     "name": "Les Bordes",
     "code": "89051",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89500"
   },
@@ -403,7 +403,7 @@
     "name": "Branches",
     "code": "89053",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89113"
   },
@@ -411,7 +411,7 @@
     "name": "Brannay",
     "code": "89054",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89150"
   },
@@ -419,7 +419,7 @@
     "name": "Brienon-sur-Armançon",
     "code": "89055",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89210"
   },
@@ -427,7 +427,7 @@
     "name": "Brion",
     "code": "89056",
     "epci_code": "248900938",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89400"
   },
@@ -435,7 +435,7 @@
     "name": "Brosses",
     "code": "89057",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89660"
   },
@@ -443,7 +443,7 @@
     "name": "Bussières",
     "code": "89058",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89630"
   },
@@ -451,7 +451,7 @@
     "name": "Bussy-en-Othe",
     "code": "89059",
     "epci_code": "248900938",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89400"
   },
@@ -459,7 +459,7 @@
     "name": "Bussy-le-Repos",
     "code": "89060",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89500"
   },
@@ -467,7 +467,7 @@
     "name": "Butteaux",
     "code": "89061",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89360"
   },
@@ -475,7 +475,7 @@
     "name": "Carisey",
     "code": "89062",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89360"
   },
@@ -483,7 +483,7 @@
     "name": "La Celle-Saint-Cyr",
     "code": "89063",
     "epci_code": "248900938",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89116"
   },
@@ -491,7 +491,7 @@
     "name": "Censy",
     "code": "89064",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89310"
   },
@@ -499,7 +499,7 @@
     "name": "Cérilly",
     "code": "89065",
     "epci_code": "248900664",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89320"
   },
@@ -507,7 +507,7 @@
     "name": "Cerisiers",
     "code": "89066",
     "epci_code": "248900664",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89320"
   },
@@ -515,7 +515,7 @@
     "name": "Cézy",
     "code": "89067",
     "epci_code": "248900938",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89410"
   },
@@ -523,7 +523,7 @@
     "name": "Chablis",
     "code": "89068",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89800"
   },
@@ -531,7 +531,7 @@
     "name": "Chailley",
     "code": "89069",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89770"
   },
@@ -539,7 +539,7 @@
     "name": "Chamoux",
     "code": "89071",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89660"
   },
@@ -547,7 +547,7 @@
     "name": "Champcevrais",
     "code": "89072",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89220"
   },
@@ -555,7 +555,7 @@
     "name": "Champignelles",
     "code": "89073",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89350"
   },
@@ -563,7 +563,7 @@
     "name": "Champigny",
     "code": "89074",
     "epci_code": "248900896",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89340"
   },
@@ -571,7 +571,7 @@
     "name": "Champlay",
     "code": "89075",
     "epci_code": "248900938",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89300"
   },
@@ -579,7 +579,7 @@
     "name": "Champlost",
     "code": "89076",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89210"
   },
@@ -587,7 +587,7 @@
     "name": "Champs-sur-Yonne",
     "code": "89077",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89290"
   },
@@ -595,7 +595,7 @@
     "name": "Chamvres",
     "code": "89079",
     "epci_code": "248900938",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89300"
   },
@@ -603,7 +603,7 @@
     "name": "La Chapelle-sur-Oreuse",
     "code": "89080",
     "epci_code": "248900896",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89260"
   },
@@ -611,7 +611,7 @@
     "name": "La Chapelle-Vaupelteigne",
     "code": "89081",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89800"
   },
@@ -619,7 +619,7 @@
     "name": "Charbuy",
     "code": "89083",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89113"
   },
@@ -627,7 +627,7 @@
     "name": "Charentenay",
     "code": "89084",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89580"
   },
@@ -635,7 +635,7 @@
     "name": "Charmoy",
     "code": "89085",
     "epci_code": "248900383",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89400"
   },
@@ -643,7 +643,7 @@
     "name": "Charny Orée de Puisaye",
     "code": "89086",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89120"
   },
@@ -651,7 +651,7 @@
     "name": "Chassignelles",
     "code": "89087",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89160"
   },
@@ -659,7 +659,7 @@
     "name": "Chassy",
     "code": "89088",
     "epci_code": "248900524",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89110"
   },
@@ -667,7 +667,7 @@
     "name": "Chastellux-sur-Cure",
     "code": "89089",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89630"
   },
@@ -675,7 +675,7 @@
     "name": "Châtel-Censoir",
     "code": "89091",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89660"
   },
@@ -683,7 +683,7 @@
     "name": "Châtel-Gérard",
     "code": "89092",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89310"
   },
@@ -691,7 +691,7 @@
     "name": "Chaumont",
     "code": "89093",
     "epci_code": "248900896",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89340"
   },
@@ -699,7 +699,7 @@
     "name": "Chaumot",
     "code": "89094",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89500"
   },
@@ -707,7 +707,7 @@
     "name": "Chemilly-sur-Serein",
     "code": "89095",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89800"
   },
@@ -715,7 +715,7 @@
     "name": "Chemilly-sur-Yonne",
     "code": "89096",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89250"
   },
@@ -723,7 +723,7 @@
     "name": "Cheney",
     "code": "89098",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89700"
   },
@@ -731,7 +731,7 @@
     "name": "Cheny",
     "code": "89099",
     "epci_code": "248900383",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89400"
   },
@@ -739,7 +739,7 @@
     "name": "Chéroy",
     "code": "89100",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89690"
   },
@@ -747,7 +747,7 @@
     "name": "Chéu",
     "code": "89101",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89600"
   },
@@ -755,7 +755,7 @@
     "name": "Chevannes",
     "code": "89102",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89240"
   },
@@ -763,7 +763,7 @@
     "name": "Chichée",
     "code": "89104",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89800"
   },
@@ -771,7 +771,7 @@
     "name": "Chichery",
     "code": "89105",
     "epci_code": "248900383",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89400"
   },
@@ -779,7 +779,7 @@
     "name": "Chitry",
     "code": "89108",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89530"
   },
@@ -787,7 +787,7 @@
     "name": "Les Clérimois",
     "code": "89111",
     "epci_code": "248900664",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89190"
   },
@@ -795,7 +795,7 @@
     "name": "Collan",
     "code": "89112",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89700"
   },
@@ -803,7 +803,7 @@
     "name": "Collemiers",
     "code": "89113",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89100"
   },
@@ -811,7 +811,7 @@
     "name": "Compigny",
     "code": "89115",
     "epci_code": "248900896",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89140"
   },
@@ -819,7 +819,7 @@
     "name": "Cornant",
     "code": "89116",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89500"
   },
@@ -827,7 +827,7 @@
     "name": "Coulangeron",
     "code": "89117",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89580"
   },
@@ -835,7 +835,7 @@
     "name": "Coulanges-la-Vineuse",
     "code": "89118",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89580"
   },
@@ -843,7 +843,7 @@
     "name": "Coulanges-sur-Yonne",
     "code": "89119",
     "epci_code": "200067429",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89480"
   },
@@ -851,7 +851,7 @@
     "name": "Coulours",
     "code": "89120",
     "epci_code": "248900664",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89320"
   },
@@ -859,7 +859,7 @@
     "name": "Courgenay",
     "code": "89122",
     "epci_code": "248900664",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89190"
   },
@@ -867,7 +867,7 @@
     "name": "Courgis",
     "code": "89123",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89800"
   },
@@ -875,7 +875,7 @@
     "name": "Courlon-sur-Yonne",
     "code": "89124",
     "epci_code": "248900896",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89140"
   },
@@ -883,7 +883,7 @@
     "name": "Courson-les-Carrières",
     "code": "89125",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89560"
   },
@@ -891,7 +891,7 @@
     "name": "Courtoin",
     "code": "89126",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89150"
   },
@@ -899,7 +899,7 @@
     "name": "Courtois-sur-Yonne",
     "code": "89127",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89100"
   },
@@ -907,7 +907,7 @@
     "name": "Coutarnoux",
     "code": "89128",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89440"
   },
@@ -915,7 +915,7 @@
     "name": "Crain",
     "code": "89129",
     "epci_code": "200067429",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89480"
   },
@@ -923,7 +923,7 @@
     "name": "Deux Rivières",
     "code": "89130",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89460"
   },
@@ -931,7 +931,7 @@
     "name": "Cruzy-le-Châtel",
     "code": "89131",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89740"
   },
@@ -939,7 +939,7 @@
     "name": "Cry",
     "code": "89132",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89390"
   },
@@ -947,7 +947,7 @@
     "name": "Cudot",
     "code": "89133",
     "epci_code": "248900938",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89116"
   },
@@ -955,7 +955,7 @@
     "name": "Cussy-les-Forges",
     "code": "89134",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89420"
   },
@@ -963,7 +963,7 @@
     "name": "Cuy",
     "code": "89136",
     "epci_code": "248900896",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89140"
   },
@@ -971,7 +971,7 @@
     "name": "Dannemoine",
     "code": "89137",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89700"
   },
@@ -979,7 +979,7 @@
     "name": "Diges",
     "code": "89139",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89240"
   },
@@ -987,7 +987,7 @@
     "name": "Dissangis",
     "code": "89141",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89440"
   },
@@ -995,7 +995,7 @@
     "name": "Dixmont",
     "code": "89142",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89500"
   },
@@ -1003,7 +1003,7 @@
     "name": "Dollot",
     "code": "89143",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89150"
   },
@@ -1011,7 +1011,7 @@
     "name": "Domats",
     "code": "89144",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89150"
   },
@@ -1019,7 +1019,7 @@
     "name": "Domecy-sur-Cure",
     "code": "89145",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89450"
   },
@@ -1027,7 +1027,7 @@
     "name": "Domecy-sur-le-Vault",
     "code": "89146",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89200"
   },
@@ -1035,7 +1035,7 @@
     "name": "Dracy",
     "code": "89147",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89130"
   },
@@ -1043,7 +1043,7 @@
     "name": "Druyes-les-Belles-Fontaines",
     "code": "89148",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89560"
   },
@@ -1051,7 +1051,7 @@
     "name": "Dyé",
     "code": "89149",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89360"
   },
@@ -1059,7 +1059,7 @@
     "name": "Égleny",
     "code": "89150",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89240"
   },
@@ -1067,7 +1067,7 @@
     "name": "Égriselles-le-Bocage",
     "code": "89151",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89500"
   },
@@ -1075,7 +1075,7 @@
     "name": "Épineau-les-Voves",
     "code": "89152",
     "epci_code": "248900383",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89400"
   },
@@ -1083,7 +1083,7 @@
     "name": "Épineuil",
     "code": "89153",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89700"
   },
@@ -1091,7 +1091,7 @@
     "name": "Escamps",
     "code": "89154",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89240"
   },
@@ -1099,7 +1099,7 @@
     "name": "Escolives-Sainte-Camille",
     "code": "89155",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89290"
   },
@@ -1107,7 +1107,7 @@
     "name": "Esnon",
     "code": "89156",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89210"
   },
@@ -1115,7 +1115,7 @@
     "name": "Étais-la-Sauvin",
     "code": "89158",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89480"
   },
@@ -1123,7 +1123,7 @@
     "name": "Étaule",
     "code": "89159",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89200"
   },
@@ -1131,7 +1131,7 @@
     "name": "Étigny",
     "code": "89160",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89510"
   },
@@ -1139,7 +1139,7 @@
     "name": "Étivey",
     "code": "89161",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89310"
   },
@@ -1147,7 +1147,7 @@
     "name": "Évry",
     "code": "89162",
     "epci_code": "248900896",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89140"
   },
@@ -1155,7 +1155,7 @@
     "name": "La Ferté-Loupière",
     "code": "89163",
     "epci_code": "248900524",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89110"
   },
@@ -1163,7 +1163,7 @@
     "name": "Festigny",
     "code": "89164",
     "epci_code": "200067429",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89480"
   },
@@ -1171,7 +1171,7 @@
     "name": "Flacy",
     "code": "89165",
     "epci_code": "248900664",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89190"
   },
@@ -1179,7 +1179,7 @@
     "name": "Fleury-la-Vallée",
     "code": "89167",
     "epci_code": "248900524",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89113"
   },
@@ -1187,7 +1187,7 @@
     "name": "Fleys",
     "code": "89168",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89800"
   },
@@ -1195,7 +1195,7 @@
     "name": "Flogny-la-Chapelle",
     "code": "89169",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89360"
   },
@@ -1203,7 +1203,7 @@
     "name": "Foissy-lès-Vézelay",
     "code": "89170",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89450"
   },
@@ -1211,7 +1211,7 @@
     "name": "Foissy-sur-Vanne",
     "code": "89171",
     "epci_code": "248900664",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89190"
   },
@@ -1219,7 +1219,7 @@
     "name": "Fontaine-la-Gaillarde",
     "code": "89172",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89100"
   },
@@ -1227,7 +1227,7 @@
     "name": "Fontaines",
     "code": "89173",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89130"
   },
@@ -1235,7 +1235,7 @@
     "name": "Fontenay-près-Chablis",
     "code": "89175",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89800"
   },
@@ -1243,7 +1243,7 @@
     "name": "Fontenay-près-Vézelay",
     "code": "89176",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89450"
   },
@@ -1251,7 +1251,7 @@
     "name": "Fontenay-sous-Fouronnes",
     "code": "89177",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89660"
   },
@@ -1259,7 +1259,7 @@
     "name": "Fontenoy",
     "code": "89179",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89520"
   },
@@ -1267,7 +1267,7 @@
     "name": "Fouchères",
     "code": "89180",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89150"
   },
@@ -1275,7 +1275,7 @@
     "name": "Fournaudin",
     "code": "89181",
     "epci_code": "248900664",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89320"
   },
@@ -1283,7 +1283,7 @@
     "name": "Fouronnes",
     "code": "89182",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89560"
   },
@@ -1291,7 +1291,7 @@
     "name": "Fresnes",
     "code": "89183",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89310"
   },
@@ -1299,7 +1299,7 @@
     "name": "Fulvy",
     "code": "89184",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89160"
   },
@@ -1307,7 +1307,7 @@
     "name": "Germigny",
     "code": "89186",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89600"
   },
@@ -1315,7 +1315,7 @@
     "name": "Gigny",
     "code": "89187",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89160"
   },
@@ -1323,7 +1323,7 @@
     "name": "Girolles",
     "code": "89188",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89200"
   },
@@ -1331,7 +1331,7 @@
     "name": "Gisy-les-Nobles",
     "code": "89189",
     "epci_code": "248900896",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89140"
   },
@@ -1339,7 +1339,7 @@
     "name": "Givry",
     "code": "89190",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89200"
   },
@@ -1347,7 +1347,7 @@
     "name": "Gland",
     "code": "89191",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89740"
   },
@@ -1355,7 +1355,7 @@
     "name": "Grimault",
     "code": "89194",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89310"
   },
@@ -1363,7 +1363,7 @@
     "name": "Gron",
     "code": "89195",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89100"
   },
@@ -1371,7 +1371,7 @@
     "name": "Valravillon",
     "code": "89196",
     "epci_code": "248900524",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89110"
   },
@@ -1379,7 +1379,7 @@
     "name": "Valravillon",
     "code": "89196",
     "epci_code": "248900524",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89113"
   },
@@ -1387,7 +1387,7 @@
     "name": "Guillon-Terre-Plaine",
     "code": "89197",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89420"
   },
@@ -1395,7 +1395,7 @@
     "name": "Gurgy",
     "code": "89198",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89250"
   },
@@ -1403,7 +1403,7 @@
     "name": "Gy-l’Évêque",
     "code": "89199",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89580"
   },
@@ -1411,7 +1411,7 @@
     "name": "Hauterive",
     "code": "89200",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89250"
   },
@@ -1419,7 +1419,7 @@
     "name": "Héry",
     "code": "89201",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89550"
   },
@@ -1427,7 +1427,7 @@
     "name": "Irancy",
     "code": "89202",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89290"
   },
@@ -1435,7 +1435,7 @@
     "name": "Island",
     "code": "89203",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89200"
   },
@@ -1443,7 +1443,7 @@
     "name": "L’Isle-sur-Serein",
     "code": "89204",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89440"
   },
@@ -1451,7 +1451,7 @@
     "name": "Jaulges",
     "code": "89205",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89360"
   },
@@ -1459,7 +1459,7 @@
     "name": "Joigny",
     "code": "89206",
     "epci_code": "248900938",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89300"
   },
@@ -1467,7 +1467,7 @@
     "name": "Jouancy",
     "code": "89207",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89310"
   },
@@ -1475,7 +1475,7 @@
     "name": "Joux-la-Ville",
     "code": "89208",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89440"
   },
@@ -1483,7 +1483,7 @@
     "name": "Jouy",
     "code": "89209",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89150"
   },
@@ -1491,7 +1491,7 @@
     "name": "Jully",
     "code": "89210",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89160"
   },
@@ -1499,7 +1499,7 @@
     "name": "Junay",
     "code": "89211",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89700"
   },
@@ -1507,7 +1507,7 @@
     "name": "Jussy",
     "code": "89212",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89290"
   },
@@ -1515,7 +1515,7 @@
     "name": "Lailly",
     "code": "89214",
     "epci_code": "248900664",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89190"
   },
@@ -1523,7 +1523,7 @@
     "name": "Lain",
     "code": "89215",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89560"
   },
@@ -1531,7 +1531,7 @@
     "name": "Lainsecq",
     "code": "89216",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89520"
   },
@@ -1539,7 +1539,7 @@
     "name": "Lalande",
     "code": "89217",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89130"
   },
@@ -1547,7 +1547,7 @@
     "name": "Laroche-Saint-Cydroine",
     "code": "89218",
     "epci_code": "248900383",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89400"
   },
@@ -1555,7 +1555,7 @@
     "name": "Lasson",
     "code": "89219",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89570"
   },
@@ -1563,7 +1563,7 @@
     "name": "Lavau",
     "code": "89220",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89170"
   },
@@ -1571,7 +1571,7 @@
     "name": "Leugny",
     "code": "89221",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89130"
   },
@@ -1579,7 +1579,7 @@
     "name": "Levis",
     "code": "89222",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89520"
   },
@@ -1587,7 +1587,7 @@
     "name": "Lézinnes",
     "code": "89223",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89160"
   },
@@ -1595,7 +1595,7 @@
     "name": "Lichères-près-Aigremont",
     "code": "89224",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89800"
   },
@@ -1603,7 +1603,7 @@
     "name": "Lichères-sur-Yonne",
     "code": "89225",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89660"
   },
@@ -1611,7 +1611,7 @@
     "name": "Lignorelles",
     "code": "89226",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89800"
   },
@@ -1619,7 +1619,7 @@
     "name": "Ligny-le-Châtel",
     "code": "89227",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89144"
   },
@@ -1627,7 +1627,7 @@
     "name": "Lindry",
     "code": "89228",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89240"
   },
@@ -1635,7 +1635,7 @@
     "name": "Lixy",
     "code": "89229",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89140"
   },
@@ -1643,7 +1643,7 @@
     "name": "Looze",
     "code": "89230",
     "epci_code": "248900938",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89300"
   },
@@ -1651,7 +1651,7 @@
     "name": "Lucy-le-Bois",
     "code": "89232",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89200"
   },
@@ -1659,7 +1659,7 @@
     "name": "Lucy-sur-Cure",
     "code": "89233",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89270"
   },
@@ -1667,7 +1667,7 @@
     "name": "Lucy-sur-Yonne",
     "code": "89234",
     "epci_code": "200067429",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89480"
   },
@@ -1675,7 +1675,7 @@
     "name": "Magny",
     "code": "89235",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89200"
   },
@@ -1683,7 +1683,7 @@
     "name": "Maillot",
     "code": "89236",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89100"
   },
@@ -1691,7 +1691,7 @@
     "name": "Mailly-la-Ville",
     "code": "89237",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89270"
   },
@@ -1699,7 +1699,7 @@
     "name": "Mailly-le-Château",
     "code": "89238",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89660"
   },
@@ -1707,7 +1707,7 @@
     "name": "Malay-le-Grand",
     "code": "89239",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89100"
   },
@@ -1715,7 +1715,7 @@
     "name": "Malay-le-Petit",
     "code": "89240",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89100"
   },
@@ -1723,7 +1723,7 @@
     "name": "Maligny",
     "code": "89242",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89800"
   },
@@ -1731,7 +1731,7 @@
     "name": "Marmeaux",
     "code": "89244",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89420"
   },
@@ -1739,7 +1739,7 @@
     "name": "Marsangy",
     "code": "89245",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89500"
   },
@@ -1747,7 +1747,7 @@
     "name": "Massangis",
     "code": "89246",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89440"
   },
@@ -1755,7 +1755,7 @@
     "name": "Mélisey",
     "code": "89247",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89430"
   },
@@ -1763,7 +1763,7 @@
     "name": "Menades",
     "code": "89248",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89450"
   },
@@ -1771,7 +1771,7 @@
     "name": "Mercy",
     "code": "89249",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89210"
   },
@@ -1779,7 +1779,7 @@
     "name": "Méré",
     "code": "89250",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89144"
   },
@@ -1787,7 +1787,7 @@
     "name": "Merry-la-Vallée",
     "code": "89251",
     "epci_code": "248900524",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89110"
   },
@@ -1795,7 +1795,7 @@
     "name": "Merry-Sec",
     "code": "89252",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89560"
   },
@@ -1803,7 +1803,7 @@
     "name": "Merry-sur-Yonne",
     "code": "89253",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89660"
   },
@@ -1811,7 +1811,7 @@
     "name": "Mézilles",
     "code": "89254",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89130"
   },
@@ -1819,7 +1819,7 @@
     "name": "Michery",
     "code": "89255",
     "epci_code": "248900896",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89140"
   },
@@ -1827,7 +1827,7 @@
     "name": "Migé",
     "code": "89256",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89580"
   },
@@ -1835,7 +1835,7 @@
     "name": "Migennes",
     "code": "89257",
     "epci_code": "248900383",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89400"
   },
@@ -1843,7 +1843,7 @@
     "name": "Môlay",
     "code": "89259",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89310"
   },
@@ -1851,7 +1851,7 @@
     "name": "Molinons",
     "code": "89261",
     "epci_code": "248900664",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89190"
   },
@@ -1859,7 +1859,7 @@
     "name": "Molosmes",
     "code": "89262",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89700"
   },
@@ -1867,7 +1867,7 @@
     "name": "Monéteau",
     "code": "89263",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89470"
   },
@@ -1875,7 +1875,7 @@
     "name": "Montacher-Villegardin",
     "code": "89264",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89150"
   },
@@ -1883,7 +1883,7 @@
     "name": "Montigny-la-Resle",
     "code": "89265",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89230"
   },
@@ -1891,7 +1891,7 @@
     "name": "Montillot",
     "code": "89266",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89660"
   },
@@ -1899,7 +1899,7 @@
     "name": "Montréal",
     "code": "89267",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89420"
   },
@@ -1907,7 +1907,7 @@
     "name": "Mont-Saint-Sulpice",
     "code": "89268",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89250"
   },
@@ -1915,7 +1915,7 @@
     "name": "Mouffy",
     "code": "89270",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89560"
   },
@@ -1923,7 +1923,7 @@
     "name": "Moulins-en-Tonnerrois",
     "code": "89271",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89310"
   },
@@ -1931,7 +1931,7 @@
     "name": "Moulins-sur-Ouanne",
     "code": "89272",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89130"
   },
@@ -1939,7 +1939,7 @@
     "name": "Moutiers-en-Puisaye",
     "code": "89273",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89520"
   },
@@ -1947,7 +1947,7 @@
     "name": "Nailly",
     "code": "89274",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89100"
   },
@@ -1955,7 +1955,7 @@
     "name": "Neuvy-Sautour",
     "code": "89276",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89570"
   },
@@ -1963,7 +1963,7 @@
     "name": "Nitry",
     "code": "89277",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89310"
   },
@@ -1971,7 +1971,7 @@
     "name": "Noé",
     "code": "89278",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89320"
   },
@@ -1979,7 +1979,7 @@
     "name": "Noyers",
     "code": "89279",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89310"
   },
@@ -1987,7 +1987,7 @@
     "name": "Nuits",
     "code": "89280",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89390"
   },
@@ -1995,7 +1995,7 @@
     "name": "Les Ormes",
     "code": "89281",
     "epci_code": "248900524",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89110"
   },
@@ -2003,7 +2003,7 @@
     "name": "Ormoy",
     "code": "89282",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89400"
   },
@@ -2011,7 +2011,7 @@
     "name": "Ouanne",
     "code": "89283",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89560"
   },
@@ -2019,7 +2019,7 @@
     "name": "Pacy-sur-Armançon",
     "code": "89284",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89160"
   },
@@ -2027,7 +2027,7 @@
     "name": "Pailly",
     "code": "89285",
     "epci_code": "248900896",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89140"
   },
@@ -2035,7 +2035,7 @@
     "name": "Parly",
     "code": "89286",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89240"
   },
@@ -2043,7 +2043,7 @@
     "name": "Paron",
     "code": "89287",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89100"
   },
@@ -2051,7 +2051,7 @@
     "name": "Paroy-en-Othe",
     "code": "89288",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89210"
   },
@@ -2059,7 +2059,7 @@
     "name": "Paroy-sur-Tholon",
     "code": "89289",
     "epci_code": "248900938",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89300"
   },
@@ -2067,7 +2067,7 @@
     "name": "Pasilly",
     "code": "89290",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89310"
   },
@@ -2075,7 +2075,7 @@
     "name": "Passy",
     "code": "89291",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89510"
   },
@@ -2083,7 +2083,7 @@
     "name": "Percey",
     "code": "89292",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89360"
   },
@@ -2091,7 +2091,7 @@
     "name": "Perrigny",
     "code": "89295",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89000"
   },
@@ -2099,7 +2099,7 @@
     "name": "Perrigny-sur-Armançon",
     "code": "89296",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89390"
   },
@@ -2107,7 +2107,7 @@
     "name": "Pierre-Perthuis",
     "code": "89297",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89450"
   },
@@ -2115,7 +2115,7 @@
     "name": "Piffonds",
     "code": "89298",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89330"
   },
@@ -2123,7 +2123,7 @@
     "name": "Pimelles",
     "code": "89299",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89740"
   },
@@ -2131,7 +2131,7 @@
     "name": "Pisy",
     "code": "89300",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89420"
   },
@@ -2139,7 +2139,7 @@
     "name": "Plessis-Saint-Jean",
     "code": "89302",
     "epci_code": "248900896",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89140"
   },
@@ -2147,7 +2147,7 @@
     "name": "Poilly-sur-Serein",
     "code": "89303",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89310"
   },
@@ -2155,7 +2155,7 @@
     "name": "Poilly-sur-Tholon",
     "code": "89304",
     "epci_code": "248900524",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89110"
   },
@@ -2163,7 +2163,7 @@
     "name": "Pontaubert",
     "code": "89306",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89200"
   },
@@ -2171,7 +2171,7 @@
     "name": "Pontigny",
     "code": "89307",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89230"
   },
@@ -2179,7 +2179,7 @@
     "name": "Pont-sur-Vanne",
     "code": "89308",
     "epci_code": "248900664",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89190"
   },
@@ -2187,7 +2187,7 @@
     "name": "Pont-sur-Yonne",
     "code": "89309",
     "epci_code": "248900896",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89140"
   },
@@ -2195,7 +2195,7 @@
     "name": "La Postolle",
     "code": "89310",
     "epci_code": "248900664",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89260"
   },
@@ -2203,7 +2203,7 @@
     "name": "Pourrain",
     "code": "89311",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89240"
   },
@@ -2211,7 +2211,7 @@
     "name": "Précy-le-Sec",
     "code": "89312",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89440"
   },
@@ -2219,7 +2219,7 @@
     "name": "Précy-sur-Vrin",
     "code": "89313",
     "epci_code": "248900938",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89116"
   },
@@ -2227,7 +2227,7 @@
     "name": "Prégilbert",
     "code": "89314",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89460"
   },
@@ -2235,7 +2235,7 @@
     "name": "Préhy",
     "code": "89315",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89800"
   },
@@ -2243,7 +2243,7 @@
     "name": "Provency",
     "code": "89316",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89200"
   },
@@ -2251,7 +2251,7 @@
     "name": "Quarré-les-Tombes",
     "code": "89318",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89630"
   },
@@ -2259,7 +2259,7 @@
     "name": "Quenne",
     "code": "89319",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89290"
   },
@@ -2267,7 +2267,7 @@
     "name": "Quincerot",
     "code": "89320",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89740"
   },
@@ -2275,7 +2275,7 @@
     "name": "Ravières",
     "code": "89321",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89390"
   },
@@ -2283,7 +2283,7 @@
     "name": "Roffey",
     "code": "89323",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89700"
   },
@@ -2291,7 +2291,7 @@
     "name": "Rogny-les-Sept-Écluses",
     "code": "89324",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89220"
   },
@@ -2299,7 +2299,7 @@
     "name": "Ronchères",
     "code": "89325",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89170"
   },
@@ -2307,7 +2307,7 @@
     "name": "Rosoy",
     "code": "89326",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89100"
   },
@@ -2315,7 +2315,7 @@
     "name": "Rousson",
     "code": "89327",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89500"
   },
@@ -2323,7 +2323,7 @@
     "name": "Rouvray",
     "code": "89328",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89230"
   },
@@ -2331,7 +2331,7 @@
     "name": "Rugny",
     "code": "89329",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89430"
   },
@@ -2339,7 +2339,7 @@
     "name": "Sainpuits",
     "code": "89331",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89520"
   },
@@ -2347,7 +2347,7 @@
     "name": "Saint-Agnan",
     "code": "89332",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89340"
   },
@@ -2355,7 +2355,7 @@
     "name": "Saint-André-en-Terre-Plaine",
     "code": "89333",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89420"
   },
@@ -2363,7 +2363,7 @@
     "name": "Le Val d’Ocre",
     "code": "89334",
     "epci_code": "248900524",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89110"
   },
@@ -2371,7 +2371,7 @@
     "name": "Saint-Aubin-sur-Yonne",
     "code": "89335",
     "epci_code": "248900938",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89300"
   },
@@ -2379,7 +2379,7 @@
     "name": "Saint-Brancher",
     "code": "89336",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89630"
   },
@@ -2387,7 +2387,7 @@
     "name": "Saint-Bris-le-Vineux",
     "code": "89337",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89530"
   },
@@ -2395,7 +2395,7 @@
     "name": "Saint-Clément",
     "code": "89338",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89100"
   },
@@ -2403,7 +2403,7 @@
     "name": "Sainte-Colombe",
     "code": "89339",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89440"
   },
@@ -2411,7 +2411,7 @@
     "name": "Saint-Cyr-les-Colons",
     "code": "89341",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89800"
   },
@@ -2419,7 +2419,7 @@
     "name": "Saint-Denis-lès-Sens",
     "code": "89342",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89100"
   },
@@ -2427,7 +2427,7 @@
     "name": "Saint-Fargeau",
     "code": "89344",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89170"
   },
@@ -2435,7 +2435,7 @@
     "name": "Saint-Florentin",
     "code": "89345",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89600"
   },
@@ -2443,7 +2443,7 @@
     "name": "Saint-Georges-sur-Baulche",
     "code": "89346",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89000"
   },
@@ -2451,7 +2451,7 @@
     "name": "Saint-Germain-des-Champs",
     "code": "89347",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89630"
   },
@@ -2459,7 +2459,7 @@
     "name": "Saint-Julien-du-Sault",
     "code": "89348",
     "epci_code": "248900938",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89330"
   },
@@ -2467,7 +2467,7 @@
     "name": "Saint-Léger-Vauban",
     "code": "89349",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89630"
   },
@@ -2475,7 +2475,7 @@
     "name": "Saint-Loup-d’Ordon",
     "code": "89350",
     "epci_code": "200067668",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89330"
   },
@@ -2483,7 +2483,7 @@
     "name": "Sainte-Magnance",
     "code": "89351",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89420"
   },
@@ -2491,7 +2491,7 @@
     "name": "Saint-Martin-des-Champs",
     "code": "89352",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89170"
   },
@@ -2499,7 +2499,7 @@
     "name": "Saint-Martin-d’Ordon",
     "code": "89353",
     "epci_code": "248900938",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89330"
   },
@@ -2507,7 +2507,7 @@
     "name": "Saint-Martin-du-Tertre",
     "code": "89354",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89100"
   },
@@ -2515,7 +2515,7 @@
     "name": "Saint-Martin-sur-Armançon",
     "code": "89355",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89700"
   },
@@ -2523,7 +2523,7 @@
     "name": "Saint-Maurice-aux-Riches-Hommes",
     "code": "89359",
     "epci_code": "248900664",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89190"
   },
@@ -2531,7 +2531,7 @@
     "name": "Saint-Maurice-le-Vieil",
     "code": "89360",
     "epci_code": "248900524",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89110"
   },
@@ -2539,7 +2539,7 @@
     "name": "Saint-Maurice-Thizouaille",
     "code": "89361",
     "epci_code": "248900524",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89110"
   },
@@ -2547,7 +2547,7 @@
     "name": "Saint-Moré",
     "code": "89362",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89270"
   },
@@ -2555,7 +2555,7 @@
     "name": "Sainte-Pallaye",
     "code": "89363",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89460"
   },
@@ -2563,7 +2563,7 @@
     "name": "Saint-Père",
     "code": "89364",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89450"
   },
@@ -2571,7 +2571,7 @@
     "name": "Saint-Privé",
     "code": "89365",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89220"
   },
@@ -2579,7 +2579,7 @@
     "name": "Saints-en-Puisaye",
     "code": "89367",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89520"
   },
@@ -2587,7 +2587,7 @@
     "name": "Saint-Sauveur-en-Puisaye",
     "code": "89368",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89520"
   },
@@ -2595,7 +2595,7 @@
     "name": "Saint-Sérotin",
     "code": "89369",
     "epci_code": "248900896",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89140"
   },
@@ -2603,7 +2603,7 @@
     "name": "Saint-Valérien",
     "code": "89370",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89150"
   },
@@ -2611,7 +2611,7 @@
     "name": "Sainte-Vertu",
     "code": "89371",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89310"
   },
@@ -2619,7 +2619,7 @@
     "name": "Saligny",
     "code": "89373",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89100"
   },
@@ -2627,7 +2627,7 @@
     "name": "Sambourg",
     "code": "89374",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89160"
   },
@@ -2635,7 +2635,7 @@
     "name": "Santigny",
     "code": "89375",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89420"
   },
@@ -2643,7 +2643,7 @@
     "name": "Sarry",
     "code": "89376",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89310"
   },
@@ -2651,7 +2651,7 @@
     "name": "Sauvigny-le-Beuréal",
     "code": "89377",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89420"
   },
@@ -2659,7 +2659,7 @@
     "name": "Sauvigny-le-Bois",
     "code": "89378",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89200"
   },
@@ -2667,7 +2667,7 @@
     "name": "Savigny-en-Terre-Plaine",
     "code": "89379",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89420"
   },
@@ -2675,7 +2675,7 @@
     "name": "Savigny-sur-Clairis",
     "code": "89380",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89150"
   },
@@ -2683,7 +2683,7 @@
     "name": "Seignelay",
     "code": "89382",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89250"
   },
@@ -2691,7 +2691,7 @@
     "name": "Sementron",
     "code": "89383",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89560"
   },
@@ -2699,7 +2699,7 @@
     "name": "Senan",
     "code": "89384",
     "epci_code": "248900524",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89710"
   },
@@ -2707,7 +2707,7 @@
     "name": "Sennevoy-le-Bas",
     "code": "89385",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89160"
   },
@@ -2715,7 +2715,7 @@
     "name": "Sennevoy-le-Haut",
     "code": "89386",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89160"
   },
@@ -2723,7 +2723,7 @@
     "name": "Sens",
     "code": "89387",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89100"
   },
@@ -2731,7 +2731,7 @@
     "name": "Sépeaux-Saint Romain",
     "code": "89388",
     "epci_code": "248900938",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89116"
   },
@@ -2739,7 +2739,7 @@
     "name": "Serbonnes",
     "code": "89390",
     "epci_code": "248900896",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89140"
   },
@@ -2747,7 +2747,7 @@
     "name": "Sergines",
     "code": "89391",
     "epci_code": "248900896",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89140"
   },
@@ -2755,7 +2755,7 @@
     "name": "Sermizelles",
     "code": "89392",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89200"
   },
@@ -2763,7 +2763,7 @@
     "name": "Serrigny",
     "code": "89393",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89700"
   },
@@ -2771,7 +2771,7 @@
     "name": "Sery",
     "code": "89394",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89270"
   },
@@ -2779,7 +2779,7 @@
     "name": "Les Sièges",
     "code": "89395",
     "epci_code": "248900664",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89190"
   },
@@ -2787,7 +2787,7 @@
     "name": "Sommecaise",
     "code": "89397",
     "epci_code": "248900524",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89110"
   },
@@ -2795,7 +2795,7 @@
     "name": "Sormery",
     "code": "89398",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89570"
   },
@@ -2803,7 +2803,7 @@
     "name": "Soucy",
     "code": "89399",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89100"
   },
@@ -2811,7 +2811,7 @@
     "name": "Sougères-en-Puisaye",
     "code": "89400",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89520"
   },
@@ -2819,7 +2819,7 @@
     "name": "Soumaintrain",
     "code": "89402",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89570"
   },
@@ -2827,7 +2827,7 @@
     "name": "Stigny",
     "code": "89403",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89160"
   },
@@ -2835,7 +2835,7 @@
     "name": "Subligny",
     "code": "89404",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89100"
   },
@@ -2843,7 +2843,7 @@
     "name": "Les Hauts de Forterre",
     "code": "89405",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89560"
   },
@@ -2851,7 +2851,7 @@
     "name": "Talcy",
     "code": "89406",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89420"
   },
@@ -2859,7 +2859,7 @@
     "name": "Tanlay",
     "code": "89407",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89430"
   },
@@ -2867,7 +2867,7 @@
     "name": "Tannerre-en-Puisaye",
     "code": "89408",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89350"
   },
@@ -2875,7 +2875,7 @@
     "name": "Tharoiseau",
     "code": "89409",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89450"
   },
@@ -2883,7 +2883,7 @@
     "name": "Tharot",
     "code": "89410",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89200"
   },
@@ -2891,7 +2891,7 @@
     "name": "Les Vallées de la Vanne",
     "code": "89411",
     "epci_code": "248900664",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89190"
   },
@@ -2899,7 +2899,7 @@
     "name": "Les Vallées de la Vanne",
     "code": "89411",
     "epci_code": "248900664",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89320"
   },
@@ -2907,7 +2907,7 @@
     "name": "Thizy",
     "code": "89412",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89420"
   },
@@ -2915,7 +2915,7 @@
     "name": "Thorey",
     "code": "89413",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89430"
   },
@@ -2923,7 +2923,7 @@
     "name": "Thorigny-sur-Oreuse",
     "code": "89414",
     "epci_code": "248900896",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89260"
   },
@@ -2931,7 +2931,7 @@
     "name": "Thory",
     "code": "89415",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89200"
   },
@@ -2939,7 +2939,7 @@
     "name": "Thury",
     "code": "89416",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89520"
   },
@@ -2947,7 +2947,7 @@
     "name": "Tissey",
     "code": "89417",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89700"
   },
@@ -2955,7 +2955,7 @@
     "name": "Tonnerre",
     "code": "89418",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89700"
   },
@@ -2963,7 +2963,7 @@
     "name": "Toucy",
     "code": "89419",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89130"
   },
@@ -2971,7 +2971,7 @@
     "name": "Treigny-Perreuse-Sainte-Colombe",
     "code": "89420",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89520"
   },
@@ -2979,7 +2979,7 @@
     "name": "Trichey",
     "code": "89422",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89430"
   },
@@ -2987,7 +2987,7 @@
     "name": "Tronchoy",
     "code": "89423",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89700"
   },
@@ -2995,7 +2995,7 @@
     "name": "Trucy-sur-Yonne",
     "code": "89424",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89460"
   },
@@ -3003,7 +3003,7 @@
     "name": "Turny",
     "code": "89425",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89570"
   },
@@ -3011,7 +3011,7 @@
     "name": "Val-de-Mercy",
     "code": "89426",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89580"
   },
@@ -3019,7 +3019,7 @@
     "name": "Vallan",
     "code": "89427",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89580"
   },
@@ -3027,7 +3027,7 @@
     "name": "Vallery",
     "code": "89428",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89150"
   },
@@ -3035,7 +3035,7 @@
     "name": "Varennes",
     "code": "89430",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89144"
   },
@@ -3043,7 +3043,7 @@
     "name": "Vassy-sous-Pisy",
     "code": "89431",
     "epci_code": "200039709",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89420"
   },
@@ -3051,7 +3051,7 @@
     "name": "Vaudeurs",
     "code": "89432",
     "epci_code": "248900664",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89320"
   },
@@ -3059,7 +3059,7 @@
     "name": "Vault-de-Lugny",
     "code": "89433",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89200"
   },
@@ -3067,7 +3067,7 @@
     "name": "Vaumort",
     "code": "89434",
     "epci_code": "248900664",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89320"
   },
@@ -3075,7 +3075,7 @@
     "name": "Venizy",
     "code": "89436",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89210"
   },
@@ -3083,7 +3083,7 @@
     "name": "Venouse",
     "code": "89437",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89230"
   },
@@ -3091,7 +3091,7 @@
     "name": "Venoy",
     "code": "89438",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89290"
   },
@@ -3099,7 +3099,7 @@
     "name": "Vergigny",
     "code": "89439",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89600"
   },
@@ -3107,7 +3107,7 @@
     "name": "Verlin",
     "code": "89440",
     "epci_code": "248900938",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89330"
   },
@@ -3115,7 +3115,7 @@
     "name": "Vermenton",
     "code": "89441",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89270"
   },
@@ -3123,7 +3123,7 @@
     "name": "Vernoy",
     "code": "89442",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89150"
   },
@@ -3131,7 +3131,7 @@
     "name": "Véron",
     "code": "89443",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89510"
   },
@@ -3139,7 +3139,7 @@
     "name": "Vézannes",
     "code": "89445",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89700"
   },
@@ -3147,7 +3147,7 @@
     "name": "Vézelay",
     "code": "89446",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89450"
   },
@@ -3155,7 +3155,7 @@
     "name": "Vézinnes",
     "code": "89447",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89700"
   },
@@ -3163,7 +3163,7 @@
     "name": "Villeblevin",
     "code": "89449",
     "epci_code": "248900896",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89340"
   },
@@ -3171,7 +3171,7 @@
     "name": "Villebougis",
     "code": "89450",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89150"
   },
@@ -3179,7 +3179,7 @@
     "name": "Villechétive",
     "code": "89451",
     "epci_code": "248900664",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89320"
   },
@@ -3187,7 +3187,7 @@
     "name": "Villecien",
     "code": "89452",
     "epci_code": "248900938",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89300"
   },
@@ -3195,7 +3195,7 @@
     "name": "Villefargeau",
     "code": "89453",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89240"
   },
@@ -3203,7 +3203,7 @@
     "name": "Villemanoche",
     "code": "89456",
     "epci_code": "248900896",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89140"
   },
@@ -3211,7 +3211,7 @@
     "name": "Villenavotte",
     "code": "89458",
     "epci_code": "248900896",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89140"
   },
@@ -3219,7 +3219,7 @@
     "name": "Villeneuve-la-Dondagre",
     "code": "89459",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89150"
   },
@@ -3227,7 +3227,7 @@
     "name": "Villeneuve-la-Guyard",
     "code": "89460",
     "epci_code": "248900896",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89340"
   },
@@ -3235,7 +3235,7 @@
     "name": "Villeneuve-l’Archevêque",
     "code": "89461",
     "epci_code": "248900664",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89190"
   },
@@ -3243,7 +3243,7 @@
     "name": "Villeneuve-les-Genêts",
     "code": "89462",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89350"
   },
@@ -3251,7 +3251,7 @@
     "name": "Villeneuve-Saint-Salves",
     "code": "89463",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89230"
   },
@@ -3259,7 +3259,7 @@
     "name": "Villeneuve-sur-Yonne",
     "code": "89464",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89500"
   },
@@ -3267,7 +3267,7 @@
     "name": "Villeperrot",
     "code": "89465",
     "epci_code": "248900896",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89140"
   },
@@ -3275,7 +3275,7 @@
     "name": "Villeroy",
     "code": "89466",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89100"
   },
@@ -3283,7 +3283,7 @@
     "name": "Villethierry",
     "code": "89467",
     "epci_code": "248900748",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89140"
   },
@@ -3291,7 +3291,7 @@
     "name": "Villevallier",
     "code": "89468",
     "epci_code": "248900938",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89330"
   },
@@ -3299,7 +3299,7 @@
     "name": "Perceneige",
     "code": "89469",
     "epci_code": "248900896",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89260"
   },
@@ -3307,7 +3307,7 @@
     "name": "Villiers-les-Hauts",
     "code": "89470",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89160"
   },
@@ -3315,7 +3315,7 @@
     "name": "Villiers-Louis",
     "code": "89471",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89320"
   },
@@ -3323,7 +3323,7 @@
     "name": "Villiers-Saint-Benoît",
     "code": "89472",
     "epci_code": "200067130",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89130"
   },
@@ -3331,7 +3331,7 @@
     "name": "Villiers-Vineux",
     "code": "89474",
     "epci_code": "200067304",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89360"
   },
@@ -3339,7 +3339,7 @@
     "name": "Villon",
     "code": "89475",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89740"
   },
@@ -3347,7 +3347,7 @@
     "name": "Villy",
     "code": "89477",
     "epci_code": "200067080",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89800"
   },
@@ -3355,7 +3355,7 @@
     "name": "Vincelles",
     "code": "89478",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89290"
   },
@@ -3363,7 +3363,7 @@
     "name": "Vincelottes",
     "code": "89479",
     "epci_code": "200067114",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89290"
   },
@@ -3371,7 +3371,7 @@
     "name": "Vinneuf",
     "code": "89480",
     "epci_code": "248900896",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89140"
   },
@@ -3379,7 +3379,7 @@
     "name": "Vireaux",
     "code": "89481",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89160"
   },
@@ -3387,7 +3387,7 @@
     "name": "Viviers",
     "code": "89482",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89700"
   },
@@ -3395,7 +3395,7 @@
     "name": "Voisines",
     "code": "89483",
     "epci_code": "248900334",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89260"
   },
@@ -3403,7 +3403,7 @@
     "name": "Voutenay-sur-Cure",
     "code": "89485",
     "epci_code": "200039758",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89270"
   },
@@ -3411,7 +3411,7 @@
     "name": "Yrouerre",
     "code": "89486",
     "epci_code": "200039642",
-    "departement_code": "89",
+    "department_code": "89",
     "region_code": "27",
     "postal_code": "89700"
   }

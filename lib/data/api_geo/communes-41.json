@@ -3,7 +3,7 @@
     "name": "Ambloy",
     "code": "41001",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41310"
   },
@@ -11,7 +11,7 @@
     "name": "Angé",
     "code": "41002",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41400"
   },
@@ -19,7 +19,7 @@
     "name": "Areines",
     "code": "41003",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -27,7 +27,7 @@
     "name": "Artins",
     "code": "41004",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41800"
   },
@@ -35,7 +35,7 @@
     "name": "Autainville",
     "code": "41006",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41240"
   },
@@ -43,7 +43,7 @@
     "name": "Authon",
     "code": "41007",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41310"
   },
@@ -51,7 +51,7 @@
     "name": "Avaray",
     "code": "41008",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41500"
   },
@@ -59,7 +59,7 @@
     "name": "Averdon",
     "code": "41009",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41330"
   },
@@ -67,7 +67,7 @@
     "name": "Azé",
     "code": "41010",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -75,7 +75,7 @@
     "name": "Baillou",
     "code": "41012",
     "epci_code": "244100293",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41170"
   },
@@ -83,7 +83,7 @@
     "name": "Bauzy",
     "code": "41013",
     "epci_code": "244100798",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41250"
   },
@@ -91,7 +91,7 @@
     "name": "Beauchêne",
     "code": "41014",
     "epci_code": "244100293",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41170"
   },
@@ -99,7 +99,7 @@
     "name": "Billy",
     "code": "41016",
     "epci_code": "200018406",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41130"
   },
@@ -107,7 +107,7 @@
     "name": "Binas",
     "code": "41017",
     "epci_code": "200070183",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41240"
   },
@@ -115,7 +115,7 @@
     "name": "Blois",
     "code": "41018",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41000"
   },
@@ -123,7 +123,7 @@
     "name": "Boisseau",
     "code": "41019",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41290"
   },
@@ -131,7 +131,7 @@
     "name": "Bonneveau",
     "code": "41020",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41800"
   },
@@ -139,7 +139,7 @@
     "name": "Bouffry",
     "code": "41022",
     "epci_code": "200040772",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41270"
   },
@@ -147,7 +147,7 @@
     "name": "Boursay",
     "code": "41024",
     "epci_code": "244100293",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41270"
   },
@@ -155,7 +155,7 @@
     "name": "Bracieux",
     "code": "41025",
     "epci_code": "244100798",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41250"
   },
@@ -163,7 +163,7 @@
     "name": "Brévainville",
     "code": "41026",
     "epci_code": "200040772",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41160"
   },
@@ -171,7 +171,7 @@
     "name": "Briou",
     "code": "41027",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41370"
   },
@@ -179,7 +179,7 @@
     "name": "Busloup",
     "code": "41028",
     "epci_code": "200040772",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41160"
   },
@@ -187,7 +187,7 @@
     "name": "Candé-sur-Beuvron",
     "code": "41029",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41120"
   },
@@ -195,7 +195,7 @@
     "name": "Cellé",
     "code": "41030",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41360"
   },
@@ -203,7 +203,7 @@
     "name": "Cellettes",
     "code": "41031",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41120"
   },
@@ -211,7 +211,7 @@
     "name": "Chailles",
     "code": "41032",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41120"
   },
@@ -219,7 +219,7 @@
     "name": "Chambord",
     "code": "41034",
     "epci_code": "244100798",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41250"
   },
@@ -227,7 +227,7 @@
     "name": "Champigny-en-Beauce",
     "code": "41035",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41330"
   },
@@ -235,7 +235,7 @@
     "name": "Chaon",
     "code": "41036",
     "epci_code": "200000800",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41600"
   },
@@ -243,7 +243,7 @@
     "name": "La Chapelle-Enchérie",
     "code": "41037",
     "epci_code": "200040772",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41290"
   },
@@ -251,7 +251,7 @@
     "name": "La Chapelle-Montmartin",
     "code": "41038",
     "epci_code": "200018406",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41320"
   },
@@ -259,7 +259,7 @@
     "name": "La Chapelle-Saint-Martin-en-Plaine",
     "code": "41039",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41500"
   },
@@ -267,7 +267,7 @@
     "name": "La Chapelle-Vendômoise",
     "code": "41040",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41330"
   },
@@ -275,7 +275,7 @@
     "name": "La Chapelle-Vicomtesse",
     "code": "41041",
     "epci_code": "200040772",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41270"
   },
@@ -283,7 +283,7 @@
     "name": "Châteauvieux",
     "code": "41042",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41110"
   },
@@ -291,7 +291,7 @@
     "name": "Châtillon-sur-Cher",
     "code": "41043",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41130"
   },
@@ -299,7 +299,7 @@
     "name": "Châtres-sur-Cher",
     "code": "41044",
     "epci_code": "200018406",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41320"
   },
@@ -307,7 +307,7 @@
     "name": "Chaumont-sur-Loire",
     "code": "41045",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41150"
   },
@@ -315,7 +315,7 @@
     "name": "Chaumont-sur-Tharonne",
     "code": "41046",
     "epci_code": "200000800",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41600"
   },
@@ -323,7 +323,7 @@
     "name": "La Chaussée-Saint-Victor",
     "code": "41047",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41260"
   },
@@ -331,7 +331,7 @@
     "name": "Chauvigny-du-Perche",
     "code": "41048",
     "epci_code": "200040772",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41270"
   },
@@ -339,7 +339,7 @@
     "name": "Chémery",
     "code": "41049",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41700"
   },
@@ -347,7 +347,7 @@
     "name": "Cheverny",
     "code": "41050",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41700"
   },
@@ -355,7 +355,7 @@
     "name": "Chissay-en-Touraine",
     "code": "41051",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41400"
   },
@@ -363,7 +363,7 @@
     "name": "Chitenay",
     "code": "41052",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41120"
   },
@@ -371,7 +371,7 @@
     "name": "Choue",
     "code": "41053",
     "epci_code": "244100293",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41170"
   },
@@ -379,7 +379,7 @@
     "name": "Choussy",
     "code": "41054",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41700"
   },
@@ -387,7 +387,7 @@
     "name": "Valloire-sur-Cisse",
     "code": "41055",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41150"
   },
@@ -395,7 +395,7 @@
     "name": "Conan",
     "code": "41057",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41290"
   },
@@ -403,7 +403,7 @@
     "name": "Concriers",
     "code": "41058",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41370"
   },
@@ -411,7 +411,7 @@
     "name": "Le Controis-en-Sologne",
     "code": "41059",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41120"
   },
@@ -419,7 +419,7 @@
     "name": "Le Controis-en-Sologne",
     "code": "41059",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41400"
   },
@@ -427,7 +427,7 @@
     "name": "Le Controis-en-Sologne",
     "code": "41059",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41700"
   },
@@ -435,7 +435,7 @@
     "name": "Cormenon",
     "code": "41060",
     "epci_code": "244100293",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41170"
   },
@@ -443,7 +443,7 @@
     "name": "Cormeray",
     "code": "41061",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41120"
   },
@@ -451,7 +451,7 @@
     "name": "Couddes",
     "code": "41062",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41700"
   },
@@ -459,7 +459,7 @@
     "name": "Couffy",
     "code": "41063",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41110"
   },
@@ -467,7 +467,7 @@
     "name": "Coulommiers-la-Tour",
     "code": "41065",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -475,7 +475,7 @@
     "name": "Courbouzon",
     "code": "41066",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41500"
   },
@@ -483,7 +483,7 @@
     "name": "Cour-Cheverny",
     "code": "41067",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41700"
   },
@@ -491,7 +491,7 @@
     "name": "Courmemin",
     "code": "41068",
     "epci_code": "200018406",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41230"
   },
@@ -499,7 +499,7 @@
     "name": "Cour-sur-Loire",
     "code": "41069",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41500"
   },
@@ -507,7 +507,7 @@
     "name": "Vallée-de-Ronsard",
     "code": "41070",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41800"
   },
@@ -515,7 +515,7 @@
     "name": "Crouy-sur-Cosson",
     "code": "41071",
     "epci_code": "244100798",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41220"
   },
@@ -523,7 +523,7 @@
     "name": "Crucheray",
     "code": "41072",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -531,7 +531,7 @@
     "name": "Danzé",
     "code": "41073",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41160"
   },
@@ -539,7 +539,7 @@
     "name": "Dhuizon",
     "code": "41074",
     "epci_code": "244100780",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41220"
   },
@@ -547,7 +547,7 @@
     "name": "Droué",
     "code": "41075",
     "epci_code": "200040772",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41270"
   },
@@ -555,7 +555,7 @@
     "name": "Épiais",
     "code": "41077",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41290"
   },
@@ -563,7 +563,7 @@
     "name": "Épuisay",
     "code": "41078",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41360"
   },
@@ -571,7 +571,7 @@
     "name": "Les Essarts",
     "code": "41079",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41800"
   },
@@ -579,7 +579,7 @@
     "name": "Faverolles-sur-Cher",
     "code": "41080",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41400"
   },
@@ -587,7 +587,7 @@
     "name": "Faye",
     "code": "41081",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -595,7 +595,7 @@
     "name": "La Ferté-Beauharnais",
     "code": "41083",
     "epci_code": "244100780",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41210"
   },
@@ -603,7 +603,7 @@
     "name": "La Ferté-Imbault",
     "code": "41084",
     "epci_code": "244100806",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41300"
   },
@@ -611,7 +611,7 @@
     "name": "La Ferté-Saint-Cyr",
     "code": "41085",
     "epci_code": "244100798",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41220"
   },
@@ -619,7 +619,7 @@
     "name": "Fontaines-en-Sologne",
     "code": "41086",
     "epci_code": "244100798",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41250"
   },
@@ -627,7 +627,7 @@
     "name": "Fontaine-les-Coteaux",
     "code": "41087",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41800"
   },
@@ -635,7 +635,7 @@
     "name": "Fontaine-Raoul",
     "code": "41088",
     "epci_code": "200040772",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41270"
   },
@@ -643,7 +643,7 @@
     "name": "La Fontenelle",
     "code": "41089",
     "epci_code": "200040772",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41270"
   },
@@ -651,7 +651,7 @@
     "name": "Fortan",
     "code": "41090",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41360"
   },
@@ -659,7 +659,7 @@
     "name": "Fossé",
     "code": "41091",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41330"
   },
@@ -667,7 +667,7 @@
     "name": "Françay",
     "code": "41093",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41190"
   },
@@ -675,7 +675,7 @@
     "name": "Fresnes",
     "code": "41094",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41700"
   },
@@ -683,7 +683,7 @@
     "name": "Fréteval",
     "code": "41095",
     "epci_code": "200040772",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41160"
   },
@@ -691,7 +691,7 @@
     "name": "Le Gault-du-Perche",
     "code": "41096",
     "epci_code": "244100293",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41270"
   },
@@ -699,7 +699,7 @@
     "name": "Gièvres",
     "code": "41097",
     "epci_code": "200018406",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41130"
   },
@@ -707,7 +707,7 @@
     "name": "Gombergean",
     "code": "41098",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41310"
   },
@@ -715,7 +715,7 @@
     "name": "Gy-en-Sologne",
     "code": "41099",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41230"
   },
@@ -723,7 +723,7 @@
     "name": "Les Hayes",
     "code": "41100",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41800"
   },
@@ -731,7 +731,7 @@
     "name": "Herbault",
     "code": "41101",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41190"
   },
@@ -739,7 +739,7 @@
     "name": "Houssay",
     "code": "41102",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41800"
   },
@@ -747,7 +747,7 @@
     "name": "Huisseau-en-Beauce",
     "code": "41103",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41310"
   },
@@ -755,7 +755,7 @@
     "name": "Huisseau-sur-Cosson",
     "code": "41104",
     "epci_code": "244100798",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41350"
   },
@@ -763,7 +763,7 @@
     "name": "Josnes",
     "code": "41105",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41370"
   },
@@ -771,7 +771,7 @@
     "name": "Lamotte-Beuvron",
     "code": "41106",
     "epci_code": "200000800",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41600"
   },
@@ -779,7 +779,7 @@
     "name": "Lancé",
     "code": "41107",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41310"
   },
@@ -787,7 +787,7 @@
     "name": "Lancôme",
     "code": "41108",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41190"
   },
@@ -795,7 +795,7 @@
     "name": "Landes-le-Gaulois",
     "code": "41109",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41190"
   },
@@ -803,7 +803,7 @@
     "name": "Langon-sur-Cher",
     "code": "41110",
     "epci_code": "200018406",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41320"
   },
@@ -811,7 +811,7 @@
     "name": "Lassay-sur-Croisne",
     "code": "41112",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41230"
   },
@@ -819,7 +819,7 @@
     "name": "Lavardin",
     "code": "41113",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41800"
   },
@@ -827,7 +827,7 @@
     "name": "Lestiou",
     "code": "41114",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41500"
   },
@@ -835,7 +835,7 @@
     "name": "Lignières",
     "code": "41115",
     "epci_code": "200040772",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41160"
   },
@@ -843,7 +843,7 @@
     "name": "Lisle",
     "code": "41116",
     "epci_code": "200040772",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -851,7 +851,7 @@
     "name": "Loreux",
     "code": "41118",
     "epci_code": "200018406",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41200"
   },
@@ -859,7 +859,7 @@
     "name": "Lorges",
     "code": "41119",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41370"
   },
@@ -867,7 +867,7 @@
     "name": "Lunay",
     "code": "41120",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41360"
   },
@@ -875,7 +875,7 @@
     "name": "La Madeleine-Villefrouin",
     "code": "41121",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41370"
   },
@@ -883,7 +883,7 @@
     "name": "Maray",
     "code": "41122",
     "epci_code": "200018406",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41320"
   },
@@ -891,7 +891,7 @@
     "name": "Marchenoir",
     "code": "41123",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41370"
   },
@@ -899,7 +899,7 @@
     "name": "Marcilly-en-Beauce",
     "code": "41124",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -907,7 +907,7 @@
     "name": "Marcilly-en-Gault",
     "code": "41125",
     "epci_code": "244100780",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41210"
   },
@@ -915,7 +915,7 @@
     "name": "Mareuil-sur-Cher",
     "code": "41126",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41110"
   },
@@ -923,7 +923,7 @@
     "name": "La Marolle-en-Sologne",
     "code": "41127",
     "epci_code": "244100780",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41210"
   },
@@ -931,7 +931,7 @@
     "name": "Marolles",
     "code": "41128",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41330"
   },
@@ -939,7 +939,7 @@
     "name": "Maslives",
     "code": "41129",
     "epci_code": "244100798",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41250"
   },
@@ -947,7 +947,7 @@
     "name": "Maves",
     "code": "41130",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41500"
   },
@@ -955,7 +955,7 @@
     "name": "Mazangé",
     "code": "41131",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -963,7 +963,7 @@
     "name": "Méhers",
     "code": "41132",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41140"
   },
@@ -971,7 +971,7 @@
     "name": "Menars",
     "code": "41134",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41500"
   },
@@ -979,7 +979,7 @@
     "name": "Mennetou-sur-Cher",
     "code": "41135",
     "epci_code": "200018406",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41320"
   },
@@ -987,7 +987,7 @@
     "name": "Mer",
     "code": "41136",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41500"
   },
@@ -995,7 +995,7 @@
     "name": "Mesland",
     "code": "41137",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41150"
   },
@@ -1003,7 +1003,7 @@
     "name": "Meslay",
     "code": "41138",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -1011,7 +1011,7 @@
     "name": "Meusnes",
     "code": "41139",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41130"
   },
@@ -1019,7 +1019,7 @@
     "name": "Millançay",
     "code": "41140",
     "epci_code": "244100780",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41200"
   },
@@ -1027,7 +1027,7 @@
     "name": "Moisy",
     "code": "41141",
     "epci_code": "200040772",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41160"
   },
@@ -1035,7 +1035,7 @@
     "name": "Valencisse",
     "code": "41142",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41190"
   },
@@ -1043,7 +1043,7 @@
     "name": "Mondoubleau",
     "code": "41143",
     "epci_code": "244100293",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41170"
   },
@@ -1051,7 +1051,7 @@
     "name": "Monteaux",
     "code": "41144",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41150"
   },
@@ -1059,7 +1059,7 @@
     "name": "Monthou-sur-Bièvre",
     "code": "41145",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41120"
   },
@@ -1067,7 +1067,7 @@
     "name": "Monthou-sur-Cher",
     "code": "41146",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41400"
   },
@@ -1075,7 +1075,7 @@
     "name": "Les Montils",
     "code": "41147",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41120"
   },
@@ -1083,7 +1083,7 @@
     "name": "Montlivault",
     "code": "41148",
     "epci_code": "244100798",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41350"
   },
@@ -1091,7 +1091,7 @@
     "name": "Montoire-sur-le-Loir",
     "code": "41149",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41800"
   },
@@ -1099,7 +1099,7 @@
     "name": "Mont-près-Chambord",
     "code": "41150",
     "epci_code": "244100798",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41250"
   },
@@ -1107,7 +1107,7 @@
     "name": "Montrichard Val de Cher",
     "code": "41151",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41400"
   },
@@ -1115,7 +1115,7 @@
     "name": "Montrieux-en-Sologne",
     "code": "41152",
     "epci_code": "244100780",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41210"
   },
@@ -1123,7 +1123,7 @@
     "name": "Montrouveau",
     "code": "41153",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41800"
   },
@@ -1131,7 +1131,7 @@
     "name": "Morée",
     "code": "41154",
     "epci_code": "200040772",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41160"
   },
@@ -1139,7 +1139,7 @@
     "name": "Muides-sur-Loire",
     "code": "41155",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41500"
   },
@@ -1147,7 +1147,7 @@
     "name": "Mulsans",
     "code": "41156",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41500"
   },
@@ -1155,7 +1155,7 @@
     "name": "Mur-de-Sologne",
     "code": "41157",
     "epci_code": "200018406",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41230"
   },
@@ -1163,7 +1163,7 @@
     "name": "Naveil",
     "code": "41158",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -1171,7 +1171,7 @@
     "name": "Neung-sur-Beuvron",
     "code": "41159",
     "epci_code": "244100780",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41210"
   },
@@ -1179,7 +1179,7 @@
     "name": "Neuvy",
     "code": "41160",
     "epci_code": "244100798",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41250"
   },
@@ -1187,7 +1187,7 @@
     "name": "Nouan-le-Fuzelier",
     "code": "41161",
     "epci_code": "200000800",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41600"
   },
@@ -1195,7 +1195,7 @@
     "name": "Nourray",
     "code": "41163",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41310"
   },
@@ -1203,7 +1203,7 @@
     "name": "Noyers-sur-Cher",
     "code": "41164",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41140"
   },
@@ -1211,7 +1211,7 @@
     "name": "Oisly",
     "code": "41166",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41700"
   },
@@ -1219,7 +1219,7 @@
     "name": "Veuzain-sur-Loire",
     "code": "41167",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41150"
   },
@@ -1227,7 +1227,7 @@
     "name": "Orçay",
     "code": "41168",
     "epci_code": "244100806",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41300"
   },
@@ -1235,7 +1235,7 @@
     "name": "Oucques La Nouvelle",
     "code": "41171",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41290"
   },
@@ -1243,7 +1243,7 @@
     "name": "Ouzouer-le-Doyen",
     "code": "41172",
     "epci_code": "200040772",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41160"
   },
@@ -1251,7 +1251,7 @@
     "name": "Beauce la Romaine",
     "code": "41173",
     "epci_code": "200070183",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41160"
   },
@@ -1259,7 +1259,7 @@
     "name": "Beauce la Romaine",
     "code": "41173",
     "epci_code": "200070183",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41240"
   },
@@ -1267,7 +1267,7 @@
     "name": "Périgny",
     "code": "41174",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -1275,7 +1275,7 @@
     "name": "Pezou",
     "code": "41175",
     "epci_code": "200040772",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -1283,7 +1283,7 @@
     "name": "Pierrefitte-sur-Sauldre",
     "code": "41176",
     "epci_code": "244100806",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41300"
   },
@@ -1291,7 +1291,7 @@
     "name": "Le Plessis-Dorin",
     "code": "41177",
     "epci_code": "244100293",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41170"
   },
@@ -1299,7 +1299,7 @@
     "name": "Le Plessis-l’Échelle",
     "code": "41178",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41370"
   },
@@ -1307,7 +1307,7 @@
     "name": "Le Poislay",
     "code": "41179",
     "epci_code": "200040772",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41270"
   },
@@ -1315,7 +1315,7 @@
     "name": "Pontlevoy",
     "code": "41180",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41400"
   },
@@ -1323,7 +1323,7 @@
     "name": "Pouillé",
     "code": "41181",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41110"
   },
@@ -1331,7 +1331,7 @@
     "name": "Pray",
     "code": "41182",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41190"
   },
@@ -1339,7 +1339,7 @@
     "name": "Prunay-Cassereau",
     "code": "41184",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41310"
   },
@@ -1347,7 +1347,7 @@
     "name": "Pruniers-en-Sologne",
     "code": "41185",
     "epci_code": "200018406",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41200"
   },
@@ -1355,7 +1355,7 @@
     "name": "Rahart",
     "code": "41186",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41160"
   },
@@ -1363,7 +1363,7 @@
     "name": "Renay",
     "code": "41187",
     "epci_code": "200040772",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -1371,7 +1371,7 @@
     "name": "Rhodon",
     "code": "41188",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41290"
   },
@@ -1379,7 +1379,7 @@
     "name": "Rilly-sur-Loire",
     "code": "41189",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41150"
   },
@@ -1387,7 +1387,7 @@
     "name": "Rocé",
     "code": "41190",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -1395,7 +1395,7 @@
     "name": "Roches",
     "code": "41191",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41370"
   },
@@ -1403,7 +1403,7 @@
     "name": "Les Roches-l’Évêque",
     "code": "41192",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41800"
   },
@@ -1411,7 +1411,7 @@
     "name": "Romilly",
     "code": "41193",
     "epci_code": "200040772",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41270"
   },
@@ -1419,7 +1419,7 @@
     "name": "Romorantin-Lanthenay",
     "code": "41194",
     "epci_code": "200018406",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41200"
   },
@@ -1427,7 +1427,7 @@
     "name": "Rougeou",
     "code": "41195",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41230"
   },
@@ -1435,7 +1435,7 @@
     "name": "Ruan-sur-Egvonne",
     "code": "41196",
     "epci_code": "200040772",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41270"
   },
@@ -1443,7 +1443,7 @@
     "name": "Saint-Aignan",
     "code": "41198",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41110"
   },
@@ -1451,7 +1451,7 @@
     "name": "Saint-Amand-Longpré",
     "code": "41199",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41310"
   },
@@ -1459,7 +1459,7 @@
     "name": "Sainte-Anne",
     "code": "41200",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -1467,7 +1467,7 @@
     "name": "Saint-Arnoult",
     "code": "41201",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41800"
   },
@@ -1475,7 +1475,7 @@
     "name": "Saint-Bohaire",
     "code": "41203",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41330"
   },
@@ -1483,7 +1483,7 @@
     "name": "Saint-Claude-de-Diray",
     "code": "41204",
     "epci_code": "244100798",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41350"
   },
@@ -1491,7 +1491,7 @@
     "name": "Saint-Cyr-du-Gault",
     "code": "41205",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41190"
   },
@@ -1499,7 +1499,7 @@
     "name": "Saint-Denis-sur-Loire",
     "code": "41206",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41000"
   },
@@ -1507,7 +1507,7 @@
     "name": "Saint-Dyé-sur-Loire",
     "code": "41207",
     "epci_code": "244100798",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41500"
   },
@@ -1515,7 +1515,7 @@
     "name": "Saint-Étienne-des-Guérets",
     "code": "41208",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41190"
   },
@@ -1523,7 +1523,7 @@
     "name": "Saint-Firmin-des-Prés",
     "code": "41209",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -1531,7 +1531,7 @@
     "name": "Saint-Georges-sur-Cher",
     "code": "41211",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41400"
   },
@@ -1539,7 +1539,7 @@
     "name": "Saint-Gervais-la-Forêt",
     "code": "41212",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41350"
   },
@@ -1547,7 +1547,7 @@
     "name": "Saint-Gourgon",
     "code": "41213",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41310"
   },
@@ -1555,7 +1555,7 @@
     "name": "Saint-Hilaire-la-Gravelle",
     "code": "41214",
     "epci_code": "200040772",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41160"
   },
@@ -1563,7 +1563,7 @@
     "name": "Saint-Jacques-des-Guérets",
     "code": "41215",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41800"
   },
@@ -1571,7 +1571,7 @@
     "name": "Saint-Jean-Froidmentel",
     "code": "41216",
     "epci_code": "200040772",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41160"
   },
@@ -1579,7 +1579,7 @@
     "name": "Saint-Julien-de-Chédon",
     "code": "41217",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41400"
   },
@@ -1587,7 +1587,7 @@
     "name": "Saint-Julien-sur-Cher",
     "code": "41218",
     "epci_code": "200018406",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41320"
   },
@@ -1595,7 +1595,7 @@
     "name": "Saint-Laurent-des-Bois",
     "code": "41219",
     "epci_code": "200070183",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41240"
   },
@@ -1603,7 +1603,7 @@
     "name": "Saint-Laurent-Nouan",
     "code": "41220",
     "epci_code": "244100798",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41220"
   },
@@ -1611,7 +1611,7 @@
     "name": "Saint-Léonard-en-Beauce",
     "code": "41221",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41370"
   },
@@ -1619,7 +1619,7 @@
     "name": "Saint-Loup",
     "code": "41222",
     "epci_code": "200018406",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41320"
   },
@@ -1627,7 +1627,7 @@
     "name": "Saint-Lubin-en-Vergonnois",
     "code": "41223",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41190"
   },
@@ -1635,7 +1635,7 @@
     "name": "Saint-Marc-du-Cor",
     "code": "41224",
     "epci_code": "244100293",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41170"
   },
@@ -1643,7 +1643,7 @@
     "name": "Saint-Martin-des-Bois",
     "code": "41225",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41800"
   },
@@ -1651,7 +1651,7 @@
     "name": "Saint-Ouen",
     "code": "41226",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -1659,7 +1659,7 @@
     "name": "Saint-Rimay",
     "code": "41228",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41800"
   },
@@ -1667,7 +1667,7 @@
     "name": "Saint-Romain-sur-Cher",
     "code": "41229",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41140"
   },
@@ -1675,7 +1675,7 @@
     "name": "Saint-Sulpice-de-Pommeray",
     "code": "41230",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41000"
   },
@@ -1683,7 +1683,7 @@
     "name": "Saint-Viâtre",
     "code": "41231",
     "epci_code": "244100780",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41210"
   },
@@ -1691,7 +1691,7 @@
     "name": "Salbris",
     "code": "41232",
     "epci_code": "244100806",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41300"
   },
@@ -1699,7 +1699,7 @@
     "name": "Sambin",
     "code": "41233",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41120"
   },
@@ -1707,7 +1707,7 @@
     "name": "Santenay",
     "code": "41234",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41190"
   },
@@ -1715,7 +1715,7 @@
     "name": "Sargé-sur-Braye",
     "code": "41235",
     "epci_code": "244100293",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41170"
   },
@@ -1723,7 +1723,7 @@
     "name": "Sasnières",
     "code": "41236",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41310"
   },
@@ -1731,7 +1731,7 @@
     "name": "Sassay",
     "code": "41237",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41700"
   },
@@ -1739,7 +1739,7 @@
     "name": "Savigny-sur-Braye",
     "code": "41238",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41360"
   },
@@ -1747,7 +1747,7 @@
     "name": "Seigy",
     "code": "41239",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41110"
   },
@@ -1755,7 +1755,7 @@
     "name": "Selles-Saint-Denis",
     "code": "41241",
     "epci_code": "244100806",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41300"
   },
@@ -1763,7 +1763,7 @@
     "name": "Selles-sur-Cher",
     "code": "41242",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41130"
   },
@@ -1771,7 +1771,7 @@
     "name": "Selommes",
     "code": "41243",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -1779,7 +1779,7 @@
     "name": "Séris",
     "code": "41245",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41500"
   },
@@ -1787,7 +1787,7 @@
     "name": "Seur",
     "code": "41246",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41120"
   },
@@ -1795,7 +1795,7 @@
     "name": "Soings-en-Sologne",
     "code": "41247",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41230"
   },
@@ -1803,7 +1803,7 @@
     "name": "Couëtron-au-Perche",
     "code": "41248",
     "epci_code": "244100293",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41170"
   },
@@ -1811,7 +1811,7 @@
     "name": "Souesmes",
     "code": "41249",
     "epci_code": "244100806",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41300"
   },
@@ -1819,7 +1819,7 @@
     "name": "Sougé",
     "code": "41250",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41800"
   },
@@ -1827,7 +1827,7 @@
     "name": "Souvigny-en-Sologne",
     "code": "41251",
     "epci_code": "200000800",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41600"
   },
@@ -1835,7 +1835,7 @@
     "name": "Suèvres",
     "code": "41252",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41500"
   },
@@ -1843,7 +1843,7 @@
     "name": "Talcy",
     "code": "41253",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41370"
   },
@@ -1851,7 +1851,7 @@
     "name": "Le Temple",
     "code": "41254",
     "epci_code": "244100293",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41170"
   },
@@ -1859,7 +1859,7 @@
     "name": "Ternay",
     "code": "41255",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41800"
   },
@@ -1867,7 +1867,7 @@
     "name": "Theillay",
     "code": "41256",
     "epci_code": "244100806",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41300"
   },
@@ -1875,7 +1875,7 @@
     "name": "Thésée",
     "code": "41258",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41140"
   },
@@ -1883,7 +1883,7 @@
     "name": "Thoré-la-Rochette",
     "code": "41259",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -1891,7 +1891,7 @@
     "name": "Thoury",
     "code": "41260",
     "epci_code": "244100798",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41220"
   },
@@ -1899,7 +1899,7 @@
     "name": "Tourailles",
     "code": "41261",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41190"
   },
@@ -1907,7 +1907,7 @@
     "name": "Tour-en-Sologne",
     "code": "41262",
     "epci_code": "244100798",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41250"
   },
@@ -1915,7 +1915,7 @@
     "name": "Troo",
     "code": "41265",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41800"
   },
@@ -1923,7 +1923,7 @@
     "name": "Valaire",
     "code": "41266",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41120"
   },
@@ -1931,7 +1931,7 @@
     "name": "Vallières-les-Grandes",
     "code": "41267",
     "epci_code": "200072064",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41400"
   },
@@ -1939,7 +1939,7 @@
     "name": "Veilleins",
     "code": "41268",
     "epci_code": "244100780",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41230"
   },
@@ -1947,7 +1947,7 @@
     "name": "Vendôme",
     "code": "41269",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -1955,7 +1955,7 @@
     "name": "Vernou-en-Sologne",
     "code": "41271",
     "epci_code": "244100780",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41230"
   },
@@ -1963,7 +1963,7 @@
     "name": "Vievy-le-Rayé",
     "code": "41273",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41290"
   },
@@ -1971,7 +1971,7 @@
     "name": "Villavard",
     "code": "41274",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41800"
   },
@@ -1979,7 +1979,7 @@
     "name": "La Ville-aux-Clercs",
     "code": "41275",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41160"
   },
@@ -1987,7 +1987,7 @@
     "name": "Villebarou",
     "code": "41276",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41000"
   },
@@ -1995,7 +1995,7 @@
     "name": "Villebout",
     "code": "41277",
     "epci_code": "200040772",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41270"
   },
@@ -2003,7 +2003,7 @@
     "name": "Villechauve",
     "code": "41278",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41310"
   },
@@ -2011,7 +2011,7 @@
     "name": "Villedieu-le-Château",
     "code": "41279",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41800"
   },
@@ -2019,7 +2019,7 @@
     "name": "Villefranche-sur-Cher",
     "code": "41280",
     "epci_code": "200018406",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41200"
   },
@@ -2027,7 +2027,7 @@
     "name": "Villefrancœur",
     "code": "41281",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41330"
   },
@@ -2035,7 +2035,7 @@
     "name": "Villeherviers",
     "code": "41282",
     "epci_code": "200018406",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41200"
   },
@@ -2043,7 +2043,7 @@
     "name": "Villemardy",
     "code": "41283",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -2051,7 +2051,7 @@
     "name": "Villeneuve-Frouville",
     "code": "41284",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41290"
   },
@@ -2059,7 +2059,7 @@
     "name": "Villeny",
     "code": "41285",
     "epci_code": "244100780",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41220"
   },
@@ -2067,7 +2067,7 @@
     "name": "Villeporcher",
     "code": "41286",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41310"
   },
@@ -2075,7 +2075,7 @@
     "name": "Villerable",
     "code": "41287",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -2083,7 +2083,7 @@
     "name": "Villerbon",
     "code": "41288",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41000"
   },
@@ -2091,7 +2091,7 @@
     "name": "Villermain",
     "code": "41289",
     "epci_code": "200070183",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41240"
   },
@@ -2099,7 +2099,7 @@
     "name": "Villeromain",
     "code": "41290",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -2107,7 +2107,7 @@
     "name": "Villetrun",
     "code": "41291",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -2115,7 +2115,7 @@
     "name": "Villexanton",
     "code": "41292",
     "epci_code": "200055481",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41500"
   },
@@ -2123,7 +2123,7 @@
     "name": "Villiersfaux",
     "code": "41293",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -2131,7 +2131,7 @@
     "name": "Villiers-sur-Loir",
     "code": "41294",
     "epci_code": "200072072",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41100"
   },
@@ -2139,7 +2139,7 @@
     "name": "Vineuil",
     "code": "41295",
     "epci_code": "200030385",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41350"
   },
@@ -2147,7 +2147,7 @@
     "name": "Vouzon",
     "code": "41296",
     "epci_code": "200000800",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41600"
   },
@@ -2155,7 +2155,7 @@
     "name": "Yvoy-le-Marron",
     "code": "41297",
     "epci_code": "244100780",
-    "departement_code": "41",
+    "department_code": "41",
     "region_code": "24",
     "postal_code": "41600"
   }

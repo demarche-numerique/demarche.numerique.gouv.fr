@@ -3,7 +3,7 @@
     "name": "Agnat",
     "code": "43001",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43100"
   },
@@ -11,7 +11,7 @@
     "name": "Aiguilhe",
     "code": "43002",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43000"
   },
@@ -19,7 +19,7 @@
     "name": "Allègre",
     "code": "43003",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43270"
   },
@@ -27,7 +27,7 @@
     "name": "Alleyrac",
     "code": "43004",
     "epci_code": "200073401",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43150"
   },
@@ -35,7 +35,7 @@
     "name": "Alleyras",
     "code": "43005",
     "epci_code": "244301123",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43580"
   },
@@ -43,7 +43,7 @@
     "name": "Ally",
     "code": "43006",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43380"
   },
@@ -51,7 +51,7 @@
     "name": "Araules",
     "code": "43007",
     "epci_code": "244301016",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43200"
   },
@@ -59,7 +59,7 @@
     "name": "Arlempdes",
     "code": "43008",
     "epci_code": "244301123",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43490"
   },
@@ -67,7 +67,7 @@
     "name": "Arlet",
     "code": "43009",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43380"
   },
@@ -75,7 +75,7 @@
     "name": "Arsac-en-Velay",
     "code": "43010",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43700"
   },
@@ -83,7 +83,7 @@
     "name": "Aubazat",
     "code": "43011",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43380"
   },
@@ -91,7 +91,7 @@
     "name": "Aurec-sur-Loire",
     "code": "43012",
     "epci_code": "244301131",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43110"
   },
@@ -99,7 +99,7 @@
     "name": "Vissac-Auteyrac",
     "code": "43013",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43300"
   },
@@ -107,7 +107,7 @@
     "name": "Autrac",
     "code": "43014",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43450"
   },
@@ -115,7 +115,7 @@
     "name": "Auvers",
     "code": "43015",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43300"
   },
@@ -123,7 +123,7 @@
     "name": "Auzon",
     "code": "43016",
     "epci_code": "244301099",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43390"
   },
@@ -131,7 +131,7 @@
     "name": "Azérat",
     "code": "43017",
     "epci_code": "244301099",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43390"
   },
@@ -139,7 +139,7 @@
     "name": "Bains",
     "code": "43018",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43370"
   },
@@ -147,7 +147,7 @@
     "name": "Barges",
     "code": "43019",
     "epci_code": "244301123",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43340"
   },
@@ -155,7 +155,7 @@
     "name": "Bas-en-Basset",
     "code": "43020",
     "epci_code": "200073427",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43210"
   },
@@ -163,7 +163,7 @@
     "name": "Beaulieu",
     "code": "43021",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43800"
   },
@@ -171,7 +171,7 @@
     "name": "Beaumont",
     "code": "43022",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43100"
   },
@@ -179,7 +179,7 @@
     "name": "Beaune-sur-Arzon",
     "code": "43023",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43500"
   },
@@ -187,7 +187,7 @@
     "name": "Beaux",
     "code": "43024",
     "epci_code": "244301016",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43200"
   },
@@ -195,7 +195,7 @@
     "name": "Beauzac",
     "code": "43025",
     "epci_code": "200073427",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43590"
   },
@@ -203,7 +203,7 @@
     "name": "Bellevue-la-Montagne",
     "code": "43026",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43350"
   },
@@ -211,7 +211,7 @@
     "name": "Berbezit",
     "code": "43027",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43160"
   },
@@ -219,7 +219,7 @@
     "name": "Bessamorel",
     "code": "43028",
     "epci_code": "244301016",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43200"
   },
@@ -227,7 +227,7 @@
     "name": "La Besseyre-Saint-Mary",
     "code": "43029",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43170"
   },
@@ -235,7 +235,7 @@
     "name": "Blanzac",
     "code": "43030",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43350"
   },
@@ -243,7 +243,7 @@
     "name": "Blassac",
     "code": "43031",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43380"
   },
@@ -251,7 +251,7 @@
     "name": "Blavozy",
     "code": "43032",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43700"
   },
@@ -259,7 +259,7 @@
     "name": "Blesle",
     "code": "43033",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43450"
   },
@@ -267,7 +267,7 @@
     "name": "Boisset",
     "code": "43034",
     "epci_code": "200073427",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43500"
   },
@@ -275,7 +275,7 @@
     "name": "Bonneval",
     "code": "43035",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43160"
   },
@@ -283,7 +283,7 @@
     "name": "Borne",
     "code": "43036",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43350"
   },
@@ -291,7 +291,7 @@
     "name": "Le Bouchet-Saint-Nicolas",
     "code": "43037",
     "epci_code": "244301123",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43510"
   },
@@ -299,7 +299,7 @@
     "name": "Bournoncle-Saint-Pierre",
     "code": "43038",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43360"
   },
@@ -307,7 +307,7 @@
     "name": "Le Brignon",
     "code": "43039",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43370"
   },
@@ -315,7 +315,7 @@
     "name": "Brioude",
     "code": "43040",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43100"
   },
@@ -323,7 +323,7 @@
     "name": "Brives-Charensac",
     "code": "43041",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43700"
   },
@@ -331,7 +331,7 @@
     "name": "Cayres",
     "code": "43042",
     "epci_code": "244301123",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43510"
   },
@@ -339,7 +339,7 @@
     "name": "Céaux-d’Allègre",
     "code": "43043",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43270"
   },
@@ -347,7 +347,7 @@
     "name": "Cerzat",
     "code": "43044",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43380"
   },
@@ -355,7 +355,7 @@
     "name": "Ceyssac",
     "code": "43045",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43000"
   },
@@ -363,7 +363,7 @@
     "name": "Chadrac",
     "code": "43046",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43770"
   },
@@ -371,7 +371,7 @@
     "name": "Chadron",
     "code": "43047",
     "epci_code": "200073401",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43150"
   },
@@ -379,7 +379,7 @@
     "name": "La Chaise-Dieu",
     "code": "43048",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43160"
   },
@@ -387,7 +387,7 @@
     "name": "Chamalières-sur-Loire",
     "code": "43049",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43800"
   },
@@ -395,7 +395,7 @@
     "name": "Chambezon",
     "code": "43050",
     "epci_code": "244301099",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43410"
   },
@@ -403,7 +403,7 @@
     "name": "Le Chambon-sur-Lignon",
     "code": "43051",
     "epci_code": "244301107",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43400"
   },
@@ -411,7 +411,7 @@
     "name": "Champagnac-le-Vieux",
     "code": "43052",
     "epci_code": "244301099",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43440"
   },
@@ -419,7 +419,7 @@
     "name": "Champclause",
     "code": "43053",
     "epci_code": "200073401",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43260"
   },
@@ -427,7 +427,7 @@
     "name": "Champclause",
     "code": "43053",
     "epci_code": "200073401",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43430"
   },
@@ -435,7 +435,7 @@
     "name": "Chanaleilles",
     "code": "43054",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43170"
   },
@@ -443,7 +443,7 @@
     "name": "Chaniat",
     "code": "43055",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43100"
   },
@@ -451,7 +451,7 @@
     "name": "Chanteuges",
     "code": "43056",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43300"
   },
@@ -459,7 +459,7 @@
     "name": "La Chapelle-Bertin",
     "code": "43057",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43270"
   },
@@ -467,7 +467,7 @@
     "name": "La Chapelle-d’Aurec",
     "code": "43058",
     "epci_code": "200073427",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43120"
   },
@@ -475,7 +475,7 @@
     "name": "La Chapelle-Geneste",
     "code": "43059",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43160"
   },
@@ -483,7 +483,7 @@
     "name": "Charraix",
     "code": "43060",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43300"
   },
@@ -491,7 +491,7 @@
     "name": "Chaspinhac",
     "code": "43061",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43700"
   },
@@ -499,7 +499,7 @@
     "name": "Chaspuzac",
     "code": "43062",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43320"
   },
@@ -507,7 +507,7 @@
     "name": "Chassagnes",
     "code": "43063",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43230"
   },
@@ -515,7 +515,7 @@
     "name": "Chassignolles",
     "code": "43064",
     "epci_code": "244301099",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43440"
   },
@@ -523,7 +523,7 @@
     "name": "Chastel",
     "code": "43065",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43300"
   },
@@ -531,7 +531,7 @@
     "name": "Chaudeyrolles",
     "code": "43066",
     "epci_code": "200073401",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43430"
   },
@@ -539,7 +539,7 @@
     "name": "Chavaniac-Lafayette",
     "code": "43067",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43230"
   },
@@ -547,7 +547,7 @@
     "name": "Chazelles",
     "code": "43068",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43300"
   },
@@ -555,7 +555,7 @@
     "name": "Chenereilles",
     "code": "43069",
     "epci_code": "244301107",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43190"
   },
@@ -563,7 +563,7 @@
     "name": "Chilhac",
     "code": "43070",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43380"
   },
@@ -571,7 +571,7 @@
     "name": "Chomelix",
     "code": "43071",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43500"
   },
@@ -579,7 +579,7 @@
     "name": "La Chomette",
     "code": "43072",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43230"
   },
@@ -587,7 +587,7 @@
     "name": "Cistrières",
     "code": "43073",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43160"
   },
@@ -595,7 +595,7 @@
     "name": "Cohade",
     "code": "43074",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43100"
   },
@@ -603,7 +603,7 @@
     "name": "Collat",
     "code": "43075",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43230"
   },
@@ -611,7 +611,7 @@
     "name": "Connangles",
     "code": "43076",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43160"
   },
@@ -619,7 +619,7 @@
     "name": "Costaros",
     "code": "43077",
     "epci_code": "244301123",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43490"
   },
@@ -627,7 +627,7 @@
     "name": "Coubon",
     "code": "43078",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43700"
   },
@@ -635,7 +635,7 @@
     "name": "Couteuges",
     "code": "43079",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43230"
   },
@@ -643,7 +643,7 @@
     "name": "Craponne-sur-Arzon",
     "code": "43080",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43500"
   },
@@ -651,7 +651,7 @@
     "name": "Cronce",
     "code": "43082",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43300"
   },
@@ -659,7 +659,7 @@
     "name": "Cubelles",
     "code": "43083",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43170"
   },
@@ -667,7 +667,7 @@
     "name": "Cussac-sur-Loire",
     "code": "43084",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43370"
   },
@@ -675,7 +675,7 @@
     "name": "Desges",
     "code": "43085",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43300"
   },
@@ -683,7 +683,7 @@
     "name": "Domeyrat",
     "code": "43086",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43230"
   },
@@ -691,7 +691,7 @@
     "name": "Dunières",
     "code": "43087",
     "epci_code": "244300307",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43220"
   },
@@ -699,7 +699,7 @@
     "name": "Espalem",
     "code": "43088",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43450"
   },
@@ -707,7 +707,7 @@
     "name": "Espaly-Saint-Marcel",
     "code": "43089",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43000"
   },
@@ -715,7 +715,7 @@
     "name": "Esplantas-Vazeilles",
     "code": "43090",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43170"
   },
@@ -723,7 +723,7 @@
     "name": "Esplantas-Vazeilles",
     "code": "43090",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43580"
   },
@@ -731,7 +731,7 @@
     "name": "Les Estables",
     "code": "43091",
     "epci_code": "200073401",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43150"
   },
@@ -739,7 +739,7 @@
     "name": "Fay-sur-Lignon",
     "code": "43092",
     "epci_code": "200073401",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43430"
   },
@@ -747,7 +747,7 @@
     "name": "Félines",
     "code": "43093",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43160"
   },
@@ -755,7 +755,7 @@
     "name": "Ferrussac",
     "code": "43094",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43300"
   },
@@ -763,7 +763,7 @@
     "name": "Fix-Saint-Geneys",
     "code": "43095",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43320"
   },
@@ -771,7 +771,7 @@
     "name": "Fontannes",
     "code": "43096",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43100"
   },
@@ -779,7 +779,7 @@
     "name": "Freycenet-la-Cuche",
     "code": "43097",
     "epci_code": "200073401",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43150"
   },
@@ -787,7 +787,7 @@
     "name": "Freycenet-la-Tour",
     "code": "43098",
     "epci_code": "200073401",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43150"
   },
@@ -795,7 +795,7 @@
     "name": "Frugerès-les-Mines",
     "code": "43099",
     "epci_code": "244301099",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43250"
   },
@@ -803,7 +803,7 @@
     "name": "Frugières-le-Pin",
     "code": "43100",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43230"
   },
@@ -811,7 +811,7 @@
     "name": "Goudet",
     "code": "43101",
     "epci_code": "200073401",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43150"
   },
@@ -819,7 +819,7 @@
     "name": "Grazac",
     "code": "43102",
     "epci_code": "244301016",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43200"
   },
@@ -827,7 +827,7 @@
     "name": "Grenier-Montgon",
     "code": "43103",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43450"
   },
@@ -835,7 +835,7 @@
     "name": "Grèzes",
     "code": "43104",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43170"
   },
@@ -843,7 +843,7 @@
     "name": "Javaugues",
     "code": "43105",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43100"
   },
@@ -851,7 +851,7 @@
     "name": "Jax",
     "code": "43106",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43230"
   },
@@ -859,7 +859,7 @@
     "name": "Josat",
     "code": "43107",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43230"
   },
@@ -867,7 +867,7 @@
     "name": "Jullianges",
     "code": "43108",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43500"
   },
@@ -875,7 +875,7 @@
     "name": "Lafarre",
     "code": "43109",
     "epci_code": "244301123",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43490"
   },
@@ -883,7 +883,7 @@
     "name": "Lamothe",
     "code": "43110",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43100"
   },
@@ -891,7 +891,7 @@
     "name": "Landos",
     "code": "43111",
     "epci_code": "244301123",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43340"
   },
@@ -899,7 +899,7 @@
     "name": "Langeac",
     "code": "43112",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43300"
   },
@@ -907,7 +907,7 @@
     "name": "Lantriac",
     "code": "43113",
     "epci_code": "200073401",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43260"
   },
@@ -915,7 +915,7 @@
     "name": "Lapte",
     "code": "43114",
     "epci_code": "244301016",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43200"
   },
@@ -923,7 +923,7 @@
     "name": "Laussonne",
     "code": "43115",
     "epci_code": "200073401",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43150"
   },
@@ -931,7 +931,7 @@
     "name": "Laval-sur-Doulon",
     "code": "43116",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43440"
   },
@@ -939,7 +939,7 @@
     "name": "Lavaudieu",
     "code": "43117",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43100"
   },
@@ -947,7 +947,7 @@
     "name": "Lavoûte-Chilhac",
     "code": "43118",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43380"
   },
@@ -955,7 +955,7 @@
     "name": "Lavoûte-sur-Loire",
     "code": "43119",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43800"
   },
@@ -963,7 +963,7 @@
     "name": "Lempdes-sur-Allagnon",
     "code": "43120",
     "epci_code": "244301099",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43410"
   },
@@ -971,7 +971,7 @@
     "name": "Léotoing",
     "code": "43121",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43410"
   },
@@ -979,7 +979,7 @@
     "name": "Lissac",
     "code": "43122",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43350"
   },
@@ -987,7 +987,7 @@
     "name": "Lorlanges",
     "code": "43123",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43360"
   },
@@ -995,7 +995,7 @@
     "name": "Loudes",
     "code": "43124",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43320"
   },
@@ -1003,7 +1003,7 @@
     "name": "Lubilhac",
     "code": "43125",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43100"
   },
@@ -1011,7 +1011,7 @@
     "name": "Malrevers",
     "code": "43126",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43800"
   },
@@ -1019,7 +1019,7 @@
     "name": "Malvalette",
     "code": "43127",
     "epci_code": "200073427",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43210"
   },
@@ -1027,7 +1027,7 @@
     "name": "Malvières",
     "code": "43128",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43160"
   },
@@ -1035,7 +1035,7 @@
     "name": "Le Mas-de-Tence",
     "code": "43129",
     "epci_code": "244301107",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43190"
   },
@@ -1043,7 +1043,7 @@
     "name": "Mazet-Saint-Voy",
     "code": "43130",
     "epci_code": "244301107",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43520"
   },
@@ -1051,7 +1051,7 @@
     "name": "Mazerat-Aurouze",
     "code": "43131",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43230"
   },
@@ -1059,7 +1059,7 @@
     "name": "Mazeyrat-d’Allier",
     "code": "43132",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43300"
   },
@@ -1067,7 +1067,7 @@
     "name": "Mercœur",
     "code": "43133",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43100"
   },
@@ -1075,7 +1075,7 @@
     "name": "Mézères",
     "code": "43134",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43800"
   },
@@ -1083,7 +1083,7 @@
     "name": "Le Monastier-sur-Gazeille",
     "code": "43135",
     "epci_code": "200073401",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43150"
   },
@@ -1091,7 +1091,7 @@
     "name": "Monistrol-d’Allier",
     "code": "43136",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43580"
   },
@@ -1099,7 +1099,7 @@
     "name": "Monistrol-sur-Loire",
     "code": "43137",
     "epci_code": "200073427",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43120"
   },
@@ -1107,7 +1107,7 @@
     "name": "Monlet",
     "code": "43138",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43270"
   },
@@ -1115,7 +1115,7 @@
     "name": "Montclard",
     "code": "43139",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43230"
   },
@@ -1123,7 +1123,7 @@
     "name": "Le Monteil",
     "code": "43140",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43700"
   },
@@ -1131,7 +1131,7 @@
     "name": "Montfaucon-en-Velay",
     "code": "43141",
     "epci_code": "244300307",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43290"
   },
@@ -1139,7 +1139,7 @@
     "name": "Montregard",
     "code": "43142",
     "epci_code": "244300307",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43290"
   },
@@ -1147,7 +1147,7 @@
     "name": "Montusclat",
     "code": "43143",
     "epci_code": "200073401",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43260"
   },
@@ -1155,7 +1155,7 @@
     "name": "Moudeyres",
     "code": "43144",
     "epci_code": "200073401",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43150"
   },
@@ -1163,7 +1163,7 @@
     "name": "Ouides",
     "code": "43145",
     "epci_code": "244301123",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43510"
   },
@@ -1171,7 +1171,7 @@
     "name": "Paulhac",
     "code": "43147",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43100"
   },
@@ -1179,7 +1179,7 @@
     "name": "Paulhaguet",
     "code": "43148",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43230"
   },
@@ -1187,7 +1187,7 @@
     "name": "Pébrac",
     "code": "43149",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43300"
   },
@@ -1195,7 +1195,7 @@
     "name": "Le Pertuis",
     "code": "43150",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43200"
   },
@@ -1203,7 +1203,7 @@
     "name": "Pinols",
     "code": "43151",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43300"
   },
@@ -1211,7 +1211,7 @@
     "name": "Polignac",
     "code": "43152",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43000"
   },
@@ -1219,7 +1219,7 @@
     "name": "Pont-Salomon",
     "code": "43153",
     "epci_code": "244301131",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43330"
   },
@@ -1227,7 +1227,7 @@
     "name": "Pradelles",
     "code": "43154",
     "epci_code": "244301123",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43420"
   },
@@ -1235,7 +1235,7 @@
     "name": "Prades",
     "code": "43155",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43300"
   },
@@ -1243,7 +1243,7 @@
     "name": "Présailles",
     "code": "43156",
     "epci_code": "200073401",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43150"
   },
@@ -1251,7 +1251,7 @@
     "name": "Le Puy-en-Velay",
     "code": "43157",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43000"
   },
@@ -1259,7 +1259,7 @@
     "name": "Queyrières",
     "code": "43158",
     "epci_code": "200073401",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43260"
   },
@@ -1267,7 +1267,7 @@
     "name": "Raucoules",
     "code": "43159",
     "epci_code": "244300307",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43290"
   },
@@ -1275,7 +1275,7 @@
     "name": "Rauret",
     "code": "43160",
     "epci_code": "244301123",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43340"
   },
@@ -1283,7 +1283,7 @@
     "name": "Retournac",
     "code": "43162",
     "epci_code": "244301016",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43130"
   },
@@ -1291,7 +1291,7 @@
     "name": "Riotord",
     "code": "43163",
     "epci_code": "244300307",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43220"
   },
@@ -1299,7 +1299,7 @@
     "name": "Roche-en-Régnier",
     "code": "43164",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43810"
   },
@@ -1307,7 +1307,7 @@
     "name": "Rosières",
     "code": "43165",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43800"
   },
@@ -1315,7 +1315,7 @@
     "name": "Saint-André-de-Chalencon",
     "code": "43166",
     "epci_code": "200073427",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43130"
   },
@@ -1323,7 +1323,7 @@
     "name": "Saint-Arcons-d’Allier",
     "code": "43167",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43300"
   },
@@ -1331,7 +1331,7 @@
     "name": "Saint-Arcons-de-Barges",
     "code": "43168",
     "epci_code": "244301123",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43420"
   },
@@ -1339,7 +1339,7 @@
     "name": "Saint-Austremoine",
     "code": "43169",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43380"
   },
@@ -1347,7 +1347,7 @@
     "name": "Saint-Beauzire",
     "code": "43170",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43100"
   },
@@ -1355,7 +1355,7 @@
     "name": "Saint-Bérain",
     "code": "43171",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43300"
   },
@@ -1363,7 +1363,7 @@
     "name": "Saint-Bonnet-le-Froid",
     "code": "43172",
     "epci_code": "244300307",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43290"
   },
@@ -1371,7 +1371,7 @@
     "name": "Saint-Christophe-d’Allier",
     "code": "43173",
     "epci_code": "244301123",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43340"
   },
@@ -1379,7 +1379,7 @@
     "name": "Saint-Christophe-sur-Dolaizon",
     "code": "43174",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43370"
   },
@@ -1387,7 +1387,7 @@
     "name": "Saint-Cirgues",
     "code": "43175",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43380"
   },
@@ -1395,7 +1395,7 @@
     "name": "Saint-Didier-en-Velay",
     "code": "43177",
     "epci_code": "244301131",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43140"
   },
@@ -1403,7 +1403,7 @@
     "name": "Saint-Didier-sur-Doulon",
     "code": "43178",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43440"
   },
@@ -1411,7 +1411,7 @@
     "name": "Saint-Étienne-du-Vigan",
     "code": "43180",
     "epci_code": "244301123",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43420"
   },
@@ -1419,7 +1419,7 @@
     "name": "Saint-Étienne-Lardeyrol",
     "code": "43181",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43260"
   },
@@ -1427,7 +1427,7 @@
     "name": "Saint-Étienne-sur-Blesle",
     "code": "43182",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43450"
   },
@@ -1435,7 +1435,7 @@
     "name": "Sainte-Eugénie-de-Villeneuve",
     "code": "43183",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43230"
   },
@@ -1443,7 +1443,7 @@
     "name": "Saint-Ferréol-d’Auroure",
     "code": "43184",
     "epci_code": "244301131",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43330"
   },
@@ -1451,7 +1451,7 @@
     "name": "Sainte-Florine",
     "code": "43185",
     "epci_code": "244301099",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43250"
   },
@@ -1459,7 +1459,7 @@
     "name": "Saint-Front",
     "code": "43186",
     "epci_code": "200073401",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43550"
   },
@@ -1467,7 +1467,7 @@
     "name": "Saint-Geneys-près-Saint-Paulien",
     "code": "43187",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43350"
   },
@@ -1475,7 +1475,7 @@
     "name": "Saint-Georges-d’Aurac",
     "code": "43188",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43230"
   },
@@ -1483,7 +1483,7 @@
     "name": "Saint-Georges-Lagricol",
     "code": "43189",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43500"
   },
@@ -1491,7 +1491,7 @@
     "name": "Saint-Germain-Laprade",
     "code": "43190",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43700"
   },
@@ -1499,7 +1499,7 @@
     "name": "Saint-Géron",
     "code": "43191",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43360"
   },
@@ -1507,7 +1507,7 @@
     "name": "Saint-Haon",
     "code": "43192",
     "epci_code": "244301123",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43340"
   },
@@ -1515,7 +1515,7 @@
     "name": "Saint-Hilaire",
     "code": "43193",
     "epci_code": "244301099",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43390"
   },
@@ -1523,7 +1523,7 @@
     "name": "Saint-Hostien",
     "code": "43194",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43260"
   },
@@ -1531,7 +1531,7 @@
     "name": "Saint-Ilpize",
     "code": "43195",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43380"
   },
@@ -1539,7 +1539,7 @@
     "name": "Saint-Jean-d’Aubrigoux",
     "code": "43196",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43500"
   },
@@ -1547,7 +1547,7 @@
     "name": "Saint-Jean-de-Nay",
     "code": "43197",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43320"
   },
@@ -1555,7 +1555,7 @@
     "name": "Saint-Jean-Lachalm",
     "code": "43198",
     "epci_code": "244301123",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43510"
   },
@@ -1563,7 +1563,7 @@
     "name": "Saint-Jeures",
     "code": "43199",
     "epci_code": "244301107",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43200"
   },
@@ -1571,7 +1571,7 @@
     "name": "Saint-Julien-Chapteuil",
     "code": "43200",
     "epci_code": "200073401",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43260"
   },
@@ -1579,7 +1579,7 @@
     "name": "Saint-Julien-d’Ance",
     "code": "43201",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43500"
   },
@@ -1587,7 +1587,7 @@
     "name": "Saint-Julien-des-Chazes",
     "code": "43202",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43300"
   },
@@ -1595,7 +1595,7 @@
     "name": "Saint-Julien-du-Pinet",
     "code": "43203",
     "epci_code": "244301016",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43200"
   },
@@ -1603,7 +1603,7 @@
     "name": "Saint-Julien-Molhesabate",
     "code": "43204",
     "epci_code": "244300307",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43220"
   },
@@ -1611,7 +1611,7 @@
     "name": "Saint-Just-Malmont",
     "code": "43205",
     "epci_code": "244301131",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43240"
   },
@@ -1619,7 +1619,7 @@
     "name": "Saint-Just-près-Brioude",
     "code": "43206",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43100"
   },
@@ -1627,7 +1627,7 @@
     "name": "Saint-Laurent-Chabreuges",
     "code": "43207",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43100"
   },
@@ -1635,7 +1635,7 @@
     "name": "Sainte-Marguerite",
     "code": "43208",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43230"
   },
@@ -1643,7 +1643,7 @@
     "name": "Saint-Martin-de-Fugères",
     "code": "43210",
     "epci_code": "200073401",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43150"
   },
@@ -1651,7 +1651,7 @@
     "name": "Saint-Maurice-de-Lignon",
     "code": "43211",
     "epci_code": "244301016",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43200"
   },
@@ -1659,7 +1659,7 @@
     "name": "Saint-Pal-de-Chalencon",
     "code": "43212",
     "epci_code": "200073427",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43500"
   },
@@ -1667,7 +1667,7 @@
     "name": "Saint-Pal-de-Mons",
     "code": "43213",
     "epci_code": "200073427",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43620"
   },
@@ -1675,7 +1675,7 @@
     "name": "Saint-Pal-de-Senouire",
     "code": "43214",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43160"
   },
@@ -1683,7 +1683,7 @@
     "name": "Saint-Paul-de-Tartas",
     "code": "43215",
     "epci_code": "244301123",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43420"
   },
@@ -1691,7 +1691,7 @@
     "name": "Saint-Paulien",
     "code": "43216",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43350"
   },
@@ -1699,7 +1699,7 @@
     "name": "Saint-Pierre-du-Champ",
     "code": "43217",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43810"
   },
@@ -1707,7 +1707,7 @@
     "name": "Saint-Pierre-Eynac",
     "code": "43218",
     "epci_code": "200073401",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43260"
   },
@@ -1715,7 +1715,7 @@
     "name": "Saint-Préjet-Armandon",
     "code": "43219",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43230"
   },
@@ -1723,7 +1723,7 @@
     "name": "Saint-Préjet-d’Allier",
     "code": "43220",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43580"
   },
@@ -1731,7 +1731,7 @@
     "name": "Saint-Privat-d’Allier",
     "code": "43221",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43580"
   },
@@ -1739,7 +1739,7 @@
     "name": "Saint-Privat-du-Dragon",
     "code": "43222",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43380"
   },
@@ -1747,7 +1747,7 @@
     "name": "Saint-Romain-Lachalm",
     "code": "43223",
     "epci_code": "244300307",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43620"
   },
@@ -1755,7 +1755,7 @@
     "name": "Sainte-Sigolène",
     "code": "43224",
     "epci_code": "200073427",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43600"
   },
@@ -1763,7 +1763,7 @@
     "name": "Saint-Vénérand",
     "code": "43225",
     "epci_code": "244301123",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43580"
   },
@@ -1771,7 +1771,7 @@
     "name": "Saint-Vert",
     "code": "43226",
     "epci_code": "244301099",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43440"
   },
@@ -1779,7 +1779,7 @@
     "name": "Saint-Victor-Malescours",
     "code": "43227",
     "epci_code": "244301131",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43140"
   },
@@ -1787,7 +1787,7 @@
     "name": "Saint-Victor-sur-Arlanc",
     "code": "43228",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43500"
   },
@@ -1795,7 +1795,7 @@
     "name": "Saint-Vidal",
     "code": "43229",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43320"
   },
@@ -1803,7 +1803,7 @@
     "name": "Saint-Vincent",
     "code": "43230",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43800"
   },
@@ -1811,7 +1811,7 @@
     "name": "Salettes",
     "code": "43231",
     "epci_code": "200073401",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43150"
   },
@@ -1819,7 +1819,7 @@
     "name": "Salzuit",
     "code": "43232",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43230"
   },
@@ -1827,7 +1827,7 @@
     "name": "Sanssac-l’Église",
     "code": "43233",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43320"
   },
@@ -1835,7 +1835,7 @@
     "name": "Saugues",
     "code": "43234",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43170"
   },
@@ -1843,7 +1843,7 @@
     "name": "La Séauve-sur-Semène",
     "code": "43236",
     "epci_code": "244301131",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43140"
   },
@@ -1851,7 +1851,7 @@
     "name": "Sembadel",
     "code": "43237",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43160"
   },
@@ -1859,7 +1859,7 @@
     "name": "Séneujols",
     "code": "43238",
     "epci_code": "244301123",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43510"
   },
@@ -1867,7 +1867,7 @@
     "name": "Siaugues-Sainte-Marie",
     "code": "43239",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43300"
   },
@@ -1875,7 +1875,7 @@
     "name": "Solignac-sous-Roche",
     "code": "43240",
     "epci_code": "200073427",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43130"
   },
@@ -1883,7 +1883,7 @@
     "name": "Solignac-sur-Loire",
     "code": "43241",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43370"
   },
@@ -1891,7 +1891,7 @@
     "name": "Tailhac",
     "code": "43242",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43300"
   },
@@ -1899,7 +1899,7 @@
     "name": "Tence",
     "code": "43244",
     "epci_code": "244301107",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43190"
   },
@@ -1907,7 +1907,7 @@
     "name": "Thoras",
     "code": "43245",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43170"
   },
@@ -1915,7 +1915,7 @@
     "name": "Thoras",
     "code": "43245",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43580"
   },
@@ -1923,7 +1923,7 @@
     "name": "Tiranges",
     "code": "43246",
     "epci_code": "200073427",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43530"
   },
@@ -1931,7 +1931,7 @@
     "name": "Torsiac",
     "code": "43247",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43450"
   },
@@ -1939,7 +1939,7 @@
     "name": "Valprivas",
     "code": "43249",
     "epci_code": "200073427",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43210"
   },
@@ -1947,7 +1947,7 @@
     "name": "Vals-le-Chastel",
     "code": "43250",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43230"
   },
@@ -1955,7 +1955,7 @@
     "name": "Vals-près-le-Puy",
     "code": "43251",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43750"
   },
@@ -1963,7 +1963,7 @@
     "name": "Varennes-Saint-Honorat",
     "code": "43252",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43270"
   },
@@ -1971,7 +1971,7 @@
     "name": "Les Vastres",
     "code": "43253",
     "epci_code": "200073401",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43430"
   },
@@ -1979,7 +1979,7 @@
     "name": "Vazeilles-Limandre",
     "code": "43254",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43320"
   },
@@ -1987,7 +1987,7 @@
     "name": "Venteuges",
     "code": "43256",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43170"
   },
@@ -1995,7 +1995,7 @@
     "name": "Vergezac",
     "code": "43257",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43320"
   },
@@ -2003,7 +2003,7 @@
     "name": "Vergongheon",
     "code": "43258",
     "epci_code": "244301099",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43360"
   },
@@ -2011,7 +2011,7 @@
     "name": "Vernassal",
     "code": "43259",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43270"
   },
@@ -2019,7 +2019,7 @@
     "name": "Le Vernet",
     "code": "43260",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43320"
   },
@@ -2027,7 +2027,7 @@
     "name": "Vézézoux",
     "code": "43261",
     "epci_code": "244301099",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43390"
   },
@@ -2035,7 +2035,7 @@
     "name": "Vieille-Brioude",
     "code": "43262",
     "epci_code": "200085728",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43100"
   },
@@ -2043,7 +2043,7 @@
     "name": "Vielprat",
     "code": "43263",
     "epci_code": "244301123",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43490"
   },
@@ -2051,7 +2051,7 @@
     "name": "Villeneuve-d’Allier",
     "code": "43264",
     "epci_code": "200073393",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43380"
   },
@@ -2059,7 +2059,7 @@
     "name": "Les Villettes",
     "code": "43265",
     "epci_code": "200073427",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43600"
   },
@@ -2067,7 +2067,7 @@
     "name": "Vorey",
     "code": "43267",
     "epci_code": "200073419",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43800"
   },
@@ -2075,7 +2075,7 @@
     "name": "Yssingeaux",
     "code": "43268",
     "epci_code": "244301016",
-    "departement_code": "43",
+    "department_code": "43",
     "region_code": "84",
     "postal_code": "43200"
   }

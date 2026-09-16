@@ -3,7 +3,7 @@
     "name": "Abbéville-la-Rivière",
     "code": "91001",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91150"
   },
@@ -11,7 +11,7 @@
     "name": "Angerville",
     "code": "91016",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91670"
   },
@@ -19,7 +19,7 @@
     "name": "Angervilliers",
     "code": "91017",
     "epci_code": "249100074",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91470"
   },
@@ -27,7 +27,7 @@
     "name": "Arpajon",
     "code": "91021",
     "epci_code": "200057859",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91290"
   },
@@ -35,7 +35,7 @@
     "name": "Arrancourt",
     "code": "91022",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91690"
   },
@@ -43,7 +43,7 @@
     "name": "Athis-Mons",
     "code": "91027",
     "epci_code": "200054781",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91200"
   },
@@ -51,7 +51,7 @@
     "name": "Authon-la-Plaine",
     "code": "91035",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91410"
   },
@@ -59,7 +59,7 @@
     "name": "Auvernaux",
     "code": "91037",
     "epci_code": "249100546",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91830"
   },
@@ -67,7 +67,7 @@
     "name": "Auvers-Saint-Georges",
     "code": "91038",
     "epci_code": "249100553",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91580"
   },
@@ -75,7 +75,7 @@
     "name": "Avrainville",
     "code": "91041",
     "epci_code": "200057859",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91630"
   },
@@ -83,7 +83,7 @@
     "name": "Ballainvilliers",
     "code": "91044",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91160"
   },
@@ -91,7 +91,7 @@
     "name": "Ballancourt-sur-Essonne",
     "code": "91045",
     "epci_code": "249100546",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91610"
   },
@@ -99,7 +99,7 @@
     "name": "Baulne",
     "code": "91047",
     "epci_code": "249100546",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91590"
   },
@@ -107,7 +107,7 @@
     "name": "Bièvres",
     "code": "91064",
     "epci_code": "247800584",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91570"
   },
@@ -115,7 +115,7 @@
     "name": "Blandy",
     "code": "91067",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91150"
   },
@@ -123,7 +123,7 @@
     "name": "Boigneville",
     "code": "91069",
     "epci_code": "249100157",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91720"
   },
@@ -131,7 +131,7 @@
     "name": "Bois-Herpin",
     "code": "91075",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91150"
   },
@@ -139,7 +139,7 @@
     "name": "Boissy-la-Rivière",
     "code": "91079",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91690"
   },
@@ -147,7 +147,7 @@
     "name": "Boissy-le-Cutté",
     "code": "91080",
     "epci_code": "249100553",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91590"
   },
@@ -155,7 +155,7 @@
     "name": "Boissy-le-Sec",
     "code": "91081",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91870"
   },
@@ -163,7 +163,7 @@
     "name": "Boissy-sous-Saint-Yon",
     "code": "91085",
     "epci_code": "249100553",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91790"
   },
@@ -171,7 +171,7 @@
     "name": "Bondoufle",
     "code": "91086",
     "epci_code": "200059228",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91070"
   },
@@ -179,7 +179,7 @@
     "name": "Boullay-les-Troux",
     "code": "91093",
     "epci_code": "249100074",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91470"
   },
@@ -187,7 +187,7 @@
     "name": "Bouray-sur-Juine",
     "code": "91095",
     "epci_code": "249100553",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91850"
   },
@@ -195,7 +195,7 @@
     "name": "Boussy-Saint-Antoine",
     "code": "91097",
     "epci_code": "200058477",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91800"
   },
@@ -203,7 +203,7 @@
     "name": "Boutervilliers",
     "code": "91098",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91150"
   },
@@ -211,7 +211,7 @@
     "name": "Boutigny-sur-Essonne",
     "code": "91099",
     "epci_code": "249100157",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91820"
   },
@@ -219,7 +219,7 @@
     "name": "Bouville",
     "code": "91100",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91880"
   },
@@ -227,7 +227,7 @@
     "name": "Brétigny-sur-Orge",
     "code": "91103",
     "epci_code": "200057859",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91220"
   },
@@ -235,7 +235,7 @@
     "name": "Breuillet",
     "code": "91105",
     "epci_code": "200057859",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91650"
   },
@@ -243,7 +243,7 @@
     "name": "Breux-Jouy",
     "code": "91106",
     "epci_code": "249100595",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91650"
   },
@@ -251,7 +251,7 @@
     "name": "Brières-les-Scellés",
     "code": "91109",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91150"
   },
@@ -259,7 +259,7 @@
     "name": "Briis-sous-Forges",
     "code": "91111",
     "epci_code": "249100074",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91640"
   },
@@ -267,7 +267,7 @@
     "name": "Brouy",
     "code": "91112",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91150"
   },
@@ -275,7 +275,7 @@
     "name": "Brunoy",
     "code": "91114",
     "epci_code": "200058477",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91800"
   },
@@ -283,7 +283,7 @@
     "name": "Bruyères-le-Châtel",
     "code": "91115",
     "epci_code": "200057859",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91680"
   },
@@ -291,7 +291,7 @@
     "name": "Buno-Bonnevaux",
     "code": "91121",
     "epci_code": "249100157",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91720"
   },
@@ -299,7 +299,7 @@
     "name": "Bures-sur-Yvette",
     "code": "91122",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91440"
   },
@@ -307,7 +307,7 @@
     "name": "Cerny",
     "code": "91129",
     "epci_code": "249100546",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91590"
   },
@@ -315,7 +315,7 @@
     "name": "Chalo-Saint-Mars",
     "code": "91130",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91780"
   },
@@ -323,7 +323,7 @@
     "name": "Chalou-Moulineux",
     "code": "91131",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91740"
   },
@@ -331,7 +331,7 @@
     "name": "Chamarande",
     "code": "91132",
     "epci_code": "249100553",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91730"
   },
@@ -339,7 +339,7 @@
     "name": "Champcueil",
     "code": "91135",
     "epci_code": "249100546",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91750"
   },
@@ -347,7 +347,7 @@
     "name": "Champlan",
     "code": "91136",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91160"
   },
@@ -355,7 +355,7 @@
     "name": "Champmotteux",
     "code": "91137",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91150"
   },
@@ -363,7 +363,7 @@
     "name": "Chatignonville",
     "code": "91145",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91410"
   },
@@ -371,7 +371,7 @@
     "name": "Chauffour-lès-Étréchy",
     "code": "91148",
     "epci_code": "249100553",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91580"
   },
@@ -379,7 +379,7 @@
     "name": "Cheptainville",
     "code": "91156",
     "epci_code": "200057859",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91630"
   },
@@ -387,7 +387,7 @@
     "name": "Chevannes",
     "code": "91159",
     "epci_code": "249100546",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91750"
   },
@@ -395,7 +395,7 @@
     "name": "Chilly-Mazarin",
     "code": "91161",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91380"
   },
@@ -403,7 +403,7 @@
     "name": "Corbeil-Essonnes",
     "code": "91174",
     "epci_code": "200059228",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91100"
   },
@@ -411,7 +411,7 @@
     "name": "Corbreuse",
     "code": "91175",
     "epci_code": "249100595",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91410"
   },
@@ -419,7 +419,7 @@
     "name": "Le Coudray-Montceaux",
     "code": "91179",
     "epci_code": "200059228",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91830"
   },
@@ -427,7 +427,7 @@
     "name": "Courances",
     "code": "91180",
     "epci_code": "249100157",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91490"
   },
@@ -435,7 +435,7 @@
     "name": "Courdimanche-sur-Essonne",
     "code": "91184",
     "epci_code": "249100157",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91720"
   },
@@ -443,7 +443,7 @@
     "name": "Courson-Monteloup",
     "code": "91186",
     "epci_code": "249100074",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91680"
   },
@@ -451,7 +451,7 @@
     "name": "Crosne",
     "code": "91191",
     "epci_code": "200058477",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91560"
   },
@@ -459,7 +459,7 @@
     "name": "Dannemois",
     "code": "91195",
     "epci_code": "249100157",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91490"
   },
@@ -467,7 +467,7 @@
     "name": "D’Huison-Longueville",
     "code": "91198",
     "epci_code": "249100546",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91590"
   },
@@ -475,7 +475,7 @@
     "name": "Dourdan",
     "code": "91200",
     "epci_code": "249100595",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91410"
   },
@@ -483,7 +483,7 @@
     "name": "Draveil",
     "code": "91201",
     "epci_code": "200058477",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91210"
   },
@@ -491,7 +491,7 @@
     "name": "Écharcon",
     "code": "91204",
     "epci_code": "249100546",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91540"
   },
@@ -499,7 +499,7 @@
     "name": "Égly",
     "code": "91207",
     "epci_code": "200057859",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91520"
   },
@@ -507,7 +507,7 @@
     "name": "Épinay-sous-Sénart",
     "code": "91215",
     "epci_code": "200058477",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91860"
   },
@@ -515,7 +515,7 @@
     "name": "Épinay-sur-Orge",
     "code": "91216",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91360"
   },
@@ -523,7 +523,7 @@
     "name": "Étampes",
     "code": "91223",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91150"
   },
@@ -531,7 +531,7 @@
     "name": "Étiolles",
     "code": "91225",
     "epci_code": "200059228",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91450"
   },
@@ -539,7 +539,7 @@
     "name": "Étréchy",
     "code": "91226",
     "epci_code": "249100553",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91580"
   },
@@ -547,7 +547,7 @@
     "name": "Évry-Courcouronnes",
     "code": "91228",
     "epci_code": "200059228",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91000"
   },
@@ -555,7 +555,7 @@
     "name": "Évry-Courcouronnes",
     "code": "91228",
     "epci_code": "200059228",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91080"
   },
@@ -563,7 +563,7 @@
     "name": "La Ferté-Alais",
     "code": "91232",
     "epci_code": "249100546",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91590"
   },
@@ -571,7 +571,7 @@
     "name": "Fleury-Mérogis",
     "code": "91235",
     "epci_code": "200057859",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91700"
   },
@@ -579,7 +579,7 @@
     "name": "Fontaine-la-Rivière",
     "code": "91240",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91690"
   },
@@ -587,7 +587,7 @@
     "name": "Fontenay-lès-Briis",
     "code": "91243",
     "epci_code": "249100074",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91640"
   },
@@ -595,7 +595,7 @@
     "name": "Fontenay-le-Vicomte",
     "code": "91244",
     "epci_code": "249100546",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91540"
   },
@@ -603,7 +603,7 @@
     "name": "La Forêt-le-Roi",
     "code": "91247",
     "epci_code": "249100595",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91410"
   },
@@ -611,7 +611,7 @@
     "name": "La Forêt-Sainte-Croix",
     "code": "91248",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91150"
   },
@@ -619,7 +619,7 @@
     "name": "Forges-les-Bains",
     "code": "91249",
     "epci_code": "249100074",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91470"
   },
@@ -627,7 +627,7 @@
     "name": "Gif-sur-Yvette",
     "code": "91272",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91190"
   },
@@ -635,7 +635,7 @@
     "name": "Gironville-sur-Essonne",
     "code": "91273",
     "epci_code": "249100157",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91720"
   },
@@ -643,7 +643,7 @@
     "name": "Gometz-la-Ville",
     "code": "91274",
     "epci_code": "249100074",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91400"
   },
@@ -651,7 +651,7 @@
     "name": "Gometz-le-Châtel",
     "code": "91275",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91940"
   },
@@ -659,7 +659,7 @@
     "name": "Les Granges-le-Roi",
     "code": "91284",
     "epci_code": "249100595",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91410"
   },
@@ -667,7 +667,7 @@
     "name": "Grigny",
     "code": "91286",
     "epci_code": "200059228",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91350"
   },
@@ -675,7 +675,7 @@
     "name": "Guibeville",
     "code": "91292",
     "epci_code": "200057859",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91630"
   },
@@ -683,7 +683,7 @@
     "name": "Guigneville-sur-Essonne",
     "code": "91293",
     "epci_code": "249100546",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91590"
   },
@@ -691,7 +691,7 @@
     "name": "Guillerval",
     "code": "91294",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91690"
   },
@@ -699,7 +699,7 @@
     "name": "Igny",
     "code": "91312",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91430"
   },
@@ -707,7 +707,7 @@
     "name": "Itteville",
     "code": "91315",
     "epci_code": "249100546",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91760"
   },
@@ -715,7 +715,7 @@
     "name": "Janville-sur-Juine",
     "code": "91318",
     "epci_code": "249100553",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91510"
   },
@@ -723,7 +723,7 @@
     "name": "Janvry",
     "code": "91319",
     "epci_code": "249100074",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91640"
   },
@@ -731,7 +731,7 @@
     "name": "Juvisy-sur-Orge",
     "code": "91326",
     "epci_code": "200054781",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91260"
   },
@@ -739,7 +739,7 @@
     "name": "Lardy",
     "code": "91330",
     "epci_code": "249100553",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91510"
   },
@@ -747,7 +747,7 @@
     "name": "Leudeville",
     "code": "91332",
     "epci_code": "249100546",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91630"
   },
@@ -755,7 +755,7 @@
     "name": "Leuville-sur-Orge",
     "code": "91333",
     "epci_code": "200057859",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91310"
   },
@@ -763,7 +763,7 @@
     "name": "Limours",
     "code": "91338",
     "epci_code": "249100074",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91470"
   },
@@ -771,7 +771,7 @@
     "name": "Linas",
     "code": "91339",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91310"
   },
@@ -779,7 +779,7 @@
     "name": "Lisses",
     "code": "91340",
     "epci_code": "200059228",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91090"
   },
@@ -787,7 +787,7 @@
     "name": "Longjumeau",
     "code": "91345",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91160"
   },
@@ -795,7 +795,7 @@
     "name": "Longpont-sur-Orge",
     "code": "91347",
     "epci_code": "200057859",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91310"
   },
@@ -803,7 +803,7 @@
     "name": "Maisse",
     "code": "91359",
     "epci_code": "249100157",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91720"
   },
@@ -811,7 +811,7 @@
     "name": "Marcoussis",
     "code": "91363",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91460"
   },
@@ -819,7 +819,7 @@
     "name": "Marolles-en-Beauce",
     "code": "91374",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91150"
   },
@@ -827,7 +827,7 @@
     "name": "Marolles-en-Hurepoix",
     "code": "91376",
     "epci_code": "200057859",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91630"
   },
@@ -835,7 +835,7 @@
     "name": "Massy",
     "code": "91377",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91300"
   },
@@ -843,7 +843,7 @@
     "name": "Mauchamps",
     "code": "91378",
     "epci_code": "249100553",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91730"
   },
@@ -851,7 +851,7 @@
     "name": "Mennecy",
     "code": "91386",
     "epci_code": "249100546",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91540"
   },
@@ -859,7 +859,7 @@
     "name": "Le Mérévillois",
     "code": "91390",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91660"
   },
@@ -867,7 +867,7 @@
     "name": "Mérobert",
     "code": "91393",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91780"
   },
@@ -875,7 +875,7 @@
     "name": "Mespuits",
     "code": "91399",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91150"
   },
@@ -883,7 +883,7 @@
     "name": "Milly-la-Forêt",
     "code": "91405",
     "epci_code": "249100157",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91490"
   },
@@ -891,7 +891,7 @@
     "name": "Moigny-sur-École",
     "code": "91408",
     "epci_code": "249100157",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91490"
   },
@@ -899,7 +899,7 @@
     "name": "Les Molières",
     "code": "91411",
     "epci_code": "249100074",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91470"
   },
@@ -907,7 +907,7 @@
     "name": "Mondeville",
     "code": "91412",
     "epci_code": "249100157",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91590"
   },
@@ -915,7 +915,7 @@
     "name": "Monnerville",
     "code": "91414",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91930"
   },
@@ -923,7 +923,7 @@
     "name": "Montgeron",
     "code": "91421",
     "epci_code": "200058477",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91230"
   },
@@ -931,7 +931,7 @@
     "name": "Montlhéry",
     "code": "91425",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91310"
   },
@@ -939,7 +939,7 @@
     "name": "Morangis",
     "code": "91432",
     "epci_code": "200054781",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91420"
   },
@@ -947,7 +947,7 @@
     "name": "Morigny-Champigny",
     "code": "91433",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91150"
   },
@@ -955,7 +955,7 @@
     "name": "Morsang-sur-Orge",
     "code": "91434",
     "epci_code": "200057859",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91390"
   },
@@ -963,7 +963,7 @@
     "name": "Morsang-sur-Seine",
     "code": "91435",
     "epci_code": "200059228",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91250"
   },
@@ -971,7 +971,7 @@
     "name": "Nainville-les-Roches",
     "code": "91441",
     "epci_code": "249100546",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91750"
   },
@@ -979,7 +979,7 @@
     "name": "La Norville",
     "code": "91457",
     "epci_code": "200057859",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91290"
   },
@@ -987,7 +987,7 @@
     "name": "Nozay",
     "code": "91458",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91620"
   },
@@ -995,7 +995,7 @@
     "name": "Ollainville",
     "code": "91461",
     "epci_code": "200057859",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91340"
   },
@@ -1003,7 +1003,7 @@
     "name": "Oncy-sur-École",
     "code": "91463",
     "epci_code": "249100157",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91490"
   },
@@ -1011,7 +1011,7 @@
     "name": "Ormoy",
     "code": "91468",
     "epci_code": "249100546",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91540"
   },
@@ -1019,7 +1019,7 @@
     "name": "Ormoy-la-Rivière",
     "code": "91469",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91150"
   },
@@ -1027,7 +1027,7 @@
     "name": "Orsay",
     "code": "91471",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91400"
   },
@@ -1035,7 +1035,7 @@
     "name": "Orveau",
     "code": "91473",
     "epci_code": "249100546",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91590"
   },
@@ -1043,7 +1043,7 @@
     "name": "Palaiseau",
     "code": "91477",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91120"
   },
@@ -1051,7 +1051,7 @@
     "name": "Paray-Vieille-Poste",
     "code": "91479",
     "epci_code": "200054781",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91550"
   },
@@ -1059,7 +1059,7 @@
     "name": "Paray-Vieille-Poste",
     "code": "91479",
     "epci_code": "200054781",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "94390"
   },
@@ -1067,7 +1067,7 @@
     "name": "Pecqueuse",
     "code": "91482",
     "epci_code": "249100074",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91470"
   },
@@ -1075,7 +1075,7 @@
     "name": "Le Plessis-Pâté",
     "code": "91494",
     "epci_code": "200057859",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91220"
   },
@@ -1083,7 +1083,7 @@
     "name": "Plessis-Saint-Benoist",
     "code": "91495",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91410"
   },
@@ -1091,7 +1091,7 @@
     "name": "Prunay-sur-Essonne",
     "code": "91507",
     "epci_code": "249100157",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91720"
   },
@@ -1099,7 +1099,7 @@
     "name": "Puiselet-le-Marais",
     "code": "91508",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91150"
   },
@@ -1107,7 +1107,7 @@
     "name": "Pussay",
     "code": "91511",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91740"
   },
@@ -1115,7 +1115,7 @@
     "name": "Quincy-sous-Sénart",
     "code": "91514",
     "epci_code": "200058477",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91480"
   },
@@ -1123,7 +1123,7 @@
     "name": "Richarville",
     "code": "91519",
     "epci_code": "249100595",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91410"
   },
@@ -1131,7 +1131,7 @@
     "name": "Ris-Orangis",
     "code": "91521",
     "epci_code": "200059228",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91130"
   },
@@ -1139,7 +1139,7 @@
     "name": "Roinville",
     "code": "91525",
     "epci_code": "249100595",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91410"
   },
@@ -1147,7 +1147,7 @@
     "name": "Roinvilliers",
     "code": "91526",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91150"
   },
@@ -1155,7 +1155,7 @@
     "name": "Saclas",
     "code": "91533",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91690"
   },
@@ -1163,7 +1163,7 @@
     "name": "Saclay",
     "code": "91534",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91400"
   },
@@ -1171,7 +1171,7 @@
     "name": "Saint-Aubin",
     "code": "91538",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91190"
   },
@@ -1179,7 +1179,7 @@
     "name": "Saint-Chéron",
     "code": "91540",
     "epci_code": "249100595",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91530"
   },
@@ -1187,7 +1187,7 @@
     "name": "Saint-Cyr-la-Rivière",
     "code": "91544",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91690"
   },
@@ -1195,7 +1195,7 @@
     "name": "Saint-Cyr-sous-Dourdan",
     "code": "91546",
     "epci_code": "249100595",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91410"
   },
@@ -1203,7 +1203,7 @@
     "name": "Saint-Escobille",
     "code": "91547",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91410"
   },
@@ -1211,7 +1211,7 @@
     "name": "Sainte-Geneviève-des-Bois",
     "code": "91549",
     "epci_code": "200057859",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91700"
   },
@@ -1219,7 +1219,7 @@
     "name": "Saint-Germain-lès-Arpajon",
     "code": "91552",
     "epci_code": "200057859",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91180"
   },
@@ -1227,7 +1227,7 @@
     "name": "Saint-Germain-lès-Corbeil",
     "code": "91553",
     "epci_code": "200059228",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91250"
   },
@@ -1235,7 +1235,7 @@
     "name": "Saint-Hilaire",
     "code": "91556",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91780"
   },
@@ -1243,7 +1243,7 @@
     "name": "Saint-Jean-de-Beauregard",
     "code": "91560",
     "epci_code": "249100074",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91940"
   },
@@ -1251,7 +1251,7 @@
     "name": "Saint-Maurice-Montcouronne",
     "code": "91568",
     "epci_code": "249100074",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91530"
   },
@@ -1259,7 +1259,7 @@
     "name": "Saint-Michel-sur-Orge",
     "code": "91570",
     "epci_code": "200057859",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91240"
   },
@@ -1267,7 +1267,7 @@
     "name": "Saint-Pierre-du-Perray",
     "code": "91573",
     "epci_code": "200059228",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91280"
   },
@@ -1275,7 +1275,7 @@
     "name": "Saintry-sur-Seine",
     "code": "91577",
     "epci_code": "200059228",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91250"
   },
@@ -1283,7 +1283,7 @@
     "name": "Saint-Sulpice-de-Favières",
     "code": "91578",
     "epci_code": "249100553",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91910"
   },
@@ -1291,7 +1291,7 @@
     "name": "Saint-Vrain",
     "code": "91579",
     "epci_code": "249100546",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91770"
   },
@@ -1299,7 +1299,7 @@
     "name": "Saint-Yon",
     "code": "91581",
     "epci_code": "249100553",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91650"
   },
@@ -1307,7 +1307,7 @@
     "name": "Saulx-les-Chartreux",
     "code": "91587",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91160"
   },
@@ -1315,7 +1315,7 @@
     "name": "Savigny-sur-Orge",
     "code": "91589",
     "epci_code": "200054781",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91600"
   },
@@ -1323,7 +1323,7 @@
     "name": "Sermaise",
     "code": "91593",
     "epci_code": "249100595",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91530"
   },
@@ -1331,7 +1331,7 @@
     "name": "Soisy-sur-École",
     "code": "91599",
     "epci_code": "249100157",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91840"
   },
@@ -1339,7 +1339,7 @@
     "name": "Soisy-sur-Seine",
     "code": "91600",
     "epci_code": "200059228",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91450"
   },
@@ -1347,7 +1347,7 @@
     "name": "Souzy-la-Briche",
     "code": "91602",
     "epci_code": "249100553",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91580"
   },
@@ -1355,7 +1355,7 @@
     "name": "Congerville-Thionville",
     "code": "91613",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91740"
   },
@@ -1363,7 +1363,7 @@
     "name": "Tigery",
     "code": "91617",
     "epci_code": "200059228",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91250"
   },
@@ -1371,7 +1371,7 @@
     "name": "Torfou",
     "code": "91619",
     "epci_code": "249100553",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91730"
   },
@@ -1379,7 +1379,7 @@
     "name": "Valpuiseaux",
     "code": "91629",
     "epci_code": "200017846",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91720"
   },
@@ -1387,7 +1387,7 @@
     "name": "Le Val-Saint-Germain",
     "code": "91630",
     "epci_code": "249100595",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91530"
   },
@@ -1395,7 +1395,7 @@
     "name": "Varennes-Jarcy",
     "code": "91631",
     "epci_code": "247700644",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91480"
   },
@@ -1403,7 +1403,7 @@
     "name": "Vaugrigneuse",
     "code": "91634",
     "epci_code": "249100074",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91640"
   },
@@ -1411,7 +1411,7 @@
     "name": "Vauhallan",
     "code": "91635",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91430"
   },
@@ -1419,7 +1419,7 @@
     "name": "Vayres-sur-Essonne",
     "code": "91639",
     "epci_code": "249100546",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91820"
   },
@@ -1427,7 +1427,7 @@
     "name": "Verrières-le-Buisson",
     "code": "91645",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91370"
   },
@@ -1435,7 +1435,7 @@
     "name": "Vert-le-Grand",
     "code": "91648",
     "epci_code": "249100546",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91810"
   },
@@ -1443,7 +1443,7 @@
     "name": "Vert-le-Petit",
     "code": "91649",
     "epci_code": "249100546",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91710"
   },
@@ -1451,7 +1451,7 @@
     "name": "Videlles",
     "code": "91654",
     "epci_code": "249100157",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91890"
   },
@@ -1459,7 +1459,7 @@
     "name": "Vigneux-sur-Seine",
     "code": "91657",
     "epci_code": "200058477",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91270"
   },
@@ -1467,7 +1467,7 @@
     "name": "Villabé",
     "code": "91659",
     "epci_code": "200059228",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91100"
   },
@@ -1475,7 +1475,7 @@
     "name": "Villebon-sur-Yvette",
     "code": "91661",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91140"
   },
@@ -1483,7 +1483,7 @@
     "name": "Villeconin",
     "code": "91662",
     "epci_code": "249100553",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91580"
   },
@@ -1491,7 +1491,7 @@
     "name": "La Ville-du-Bois",
     "code": "91665",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91620"
   },
@@ -1499,7 +1499,7 @@
     "name": "Villejust",
     "code": "91666",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91140"
   },
@@ -1507,7 +1507,7 @@
     "name": "Villemoisson-sur-Orge",
     "code": "91667",
     "epci_code": "200057859",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91360"
   },
@@ -1515,7 +1515,7 @@
     "name": "Villeneuve-sur-Auvers",
     "code": "91671",
     "epci_code": "249100553",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91580"
   },
@@ -1523,7 +1523,7 @@
     "name": "Villiers-le-Bâcle",
     "code": "91679",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91190"
   },
@@ -1531,7 +1531,7 @@
     "name": "Villiers-sur-Orge",
     "code": "91685",
     "epci_code": "200057859",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91700"
   },
@@ -1539,7 +1539,7 @@
     "name": "Viry-Châtillon",
     "code": "91687",
     "epci_code": "200054781",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91170"
   },
@@ -1547,7 +1547,7 @@
     "name": "Wissous",
     "code": "91689",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91320"
   },
@@ -1555,7 +1555,7 @@
     "name": "Yerres",
     "code": "91691",
     "epci_code": "200058477",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91330"
   },
@@ -1563,7 +1563,7 @@
     "name": "Les Ulis",
     "code": "91692",
     "epci_code": "200056232",
-    "departement_code": "91",
+    "department_code": "91",
     "region_code": "11",
     "postal_code": "91940"
   }

@@ -3,7 +3,7 @@
     "name": "Abbaretz",
     "code": "44001",
     "epci_code": "244400537",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44170"
   },
@@ -11,7 +11,7 @@
     "name": "Aigrefeuille-sur-Maine",
     "code": "44002",
     "epci_code": "200067635",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44140"
   },
@@ -19,7 +19,7 @@
     "name": "Ancenis-Saint-Géréon",
     "code": "44003",
     "epci_code": "244400552",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44150"
   },
@@ -27,7 +27,7 @@
     "name": "Chaumes-en-Retz",
     "code": "44005",
     "epci_code": "200067346",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44320"
   },
@@ -35,7 +35,7 @@
     "name": "Chaumes-en-Retz",
     "code": "44005",
     "epci_code": "200067346",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44680"
   },
@@ -43,7 +43,7 @@
     "name": "Assérac",
     "code": "44006",
     "epci_code": "244400610",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44410"
   },
@@ -51,7 +51,7 @@
     "name": "Avessac",
     "code": "44007",
     "epci_code": "243500741",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44460"
   },
@@ -59,7 +59,7 @@
     "name": "Basse-Goulaine",
     "code": "44009",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44115"
   },
@@ -67,7 +67,7 @@
     "name": "Batz-sur-Mer",
     "code": "44010",
     "epci_code": "244400610",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44740"
   },
@@ -75,7 +75,7 @@
     "name": "La Bernerie-en-Retz",
     "code": "44012",
     "epci_code": "200067346",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44760"
   },
@@ -83,7 +83,7 @@
     "name": "Besné",
     "code": "44013",
     "epci_code": "244400644",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44160"
   },
@@ -91,7 +91,7 @@
     "name": "Le Bignon",
     "code": "44014",
     "epci_code": "244400438",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44140"
   },
@@ -99,7 +99,7 @@
     "name": "Blain",
     "code": "44015",
     "epci_code": "244400453",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44130"
   },
@@ -107,7 +107,7 @@
     "name": "La Boissière-du-Doré",
     "code": "44016",
     "epci_code": "200067866",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44430"
   },
@@ -115,7 +115,7 @@
     "name": "Bouaye",
     "code": "44018",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44830"
   },
@@ -123,7 +123,7 @@
     "name": "Bouée",
     "code": "44019",
     "epci_code": "200072734",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44260"
   },
@@ -131,7 +131,7 @@
     "name": "Bouguenais",
     "code": "44020",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44340"
   },
@@ -139,7 +139,7 @@
     "name": "Villeneuve-en-Retz",
     "code": "44021",
     "epci_code": "200067346",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44580"
   },
@@ -147,7 +147,7 @@
     "name": "Boussay",
     "code": "44022",
     "epci_code": "200067635",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44190"
   },
@@ -155,7 +155,7 @@
     "name": "Bouvron",
     "code": "44023",
     "epci_code": "244400453",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44130"
   },
@@ -163,7 +163,7 @@
     "name": "Brains",
     "code": "44024",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44830"
   },
@@ -171,7 +171,7 @@
     "name": "Campbon",
     "code": "44025",
     "epci_code": "200072734",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44750"
   },
@@ -179,7 +179,7 @@
     "name": "Carquefou",
     "code": "44026",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44470"
   },
@@ -187,7 +187,7 @@
     "name": "Casson",
     "code": "44027",
     "epci_code": "244400503",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44390"
   },
@@ -195,7 +195,7 @@
     "name": "Le Cellier",
     "code": "44028",
     "epci_code": "244400552",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44850"
   },
@@ -203,7 +203,7 @@
     "name": "Divatte-sur-Loire",
     "code": "44029",
     "epci_code": "200067866",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44450"
   },
@@ -211,7 +211,7 @@
     "name": "La Chapelle-des-Marais",
     "code": "44030",
     "epci_code": "244400644",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44410"
   },
@@ -219,7 +219,7 @@
     "name": "La Chapelle-Glain",
     "code": "44031",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44670"
   },
@@ -227,7 +227,7 @@
     "name": "La Chapelle-Heulin",
     "code": "44032",
     "epci_code": "200067866",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44330"
   },
@@ -235,7 +235,7 @@
     "name": "La Chapelle-Launay",
     "code": "44033",
     "epci_code": "200072734",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44260"
   },
@@ -243,7 +243,7 @@
     "name": "La Chapelle-sur-Erdre",
     "code": "44035",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44240"
   },
@@ -251,7 +251,7 @@
     "name": "Châteaubriant",
     "code": "44036",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44110"
   },
@@ -259,7 +259,7 @@
     "name": "Château-Thébaud",
     "code": "44037",
     "epci_code": "200067635",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44690"
   },
@@ -267,7 +267,7 @@
     "name": "Chauvé",
     "code": "44038",
     "epci_code": "200067346",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44320"
   },
@@ -275,7 +275,7 @@
     "name": "Cheix-en-Retz",
     "code": "44039",
     "epci_code": "200067346",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44640"
   },
@@ -283,7 +283,7 @@
     "name": "La Chevrolière",
     "code": "44041",
     "epci_code": "244400438",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44118"
   },
@@ -291,7 +291,7 @@
     "name": "Clisson",
     "code": "44043",
     "epci_code": "200067635",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44190"
   },
@@ -299,7 +299,7 @@
     "name": "Conquereuil",
     "code": "44044",
     "epci_code": "243500741",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44290"
   },
@@ -307,7 +307,7 @@
     "name": "Cordemais",
     "code": "44045",
     "epci_code": "200072734",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44360"
   },
@@ -315,7 +315,7 @@
     "name": "Corsept",
     "code": "44046",
     "epci_code": "244400586",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44560"
   },
@@ -323,7 +323,7 @@
     "name": "Couëron",
     "code": "44047",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44220"
   },
@@ -331,7 +331,7 @@
     "name": "Couffé",
     "code": "44048",
     "epci_code": "244400552",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44521"
   },
@@ -339,7 +339,7 @@
     "name": "Le Croisic",
     "code": "44049",
     "epci_code": "244400610",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44490"
   },
@@ -347,7 +347,7 @@
     "name": "Crossac",
     "code": "44050",
     "epci_code": "200000438",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44160"
   },
@@ -355,7 +355,7 @@
     "name": "Derval",
     "code": "44051",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44590"
   },
@@ -363,7 +363,7 @@
     "name": "Donges",
     "code": "44052",
     "epci_code": "244400644",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44480"
   },
@@ -371,7 +371,7 @@
     "name": "Drefféac",
     "code": "44053",
     "epci_code": "200000438",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44530"
   },
@@ -379,7 +379,7 @@
     "name": "Erbray",
     "code": "44054",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44110"
   },
@@ -387,7 +387,7 @@
     "name": "La Baule-Escoublac",
     "code": "44055",
     "epci_code": "244400610",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44500"
   },
@@ -395,7 +395,7 @@
     "name": "Fay-de-Bretagne",
     "code": "44056",
     "epci_code": "244400503",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44130"
   },
@@ -403,7 +403,7 @@
     "name": "Fégréac",
     "code": "44057",
     "epci_code": "243500741",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44460"
   },
@@ -411,7 +411,7 @@
     "name": "Fercé",
     "code": "44058",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44660"
   },
@@ -419,7 +419,7 @@
     "name": "Frossay",
     "code": "44061",
     "epci_code": "244400586",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44320"
   },
@@ -427,7 +427,7 @@
     "name": "Le Gâvre",
     "code": "44062",
     "epci_code": "244400453",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44130"
   },
@@ -435,7 +435,7 @@
     "name": "Gétigné",
     "code": "44063",
     "epci_code": "200067635",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44190"
   },
@@ -443,7 +443,7 @@
     "name": "Gorges",
     "code": "44064",
     "epci_code": "200067635",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44190"
   },
@@ -451,7 +451,7 @@
     "name": "Grand-Auverné",
     "code": "44065",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44520"
   },
@@ -459,7 +459,7 @@
     "name": "Grandchamp-des-Fontaines",
     "code": "44066",
     "epci_code": "244400503",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44119"
   },
@@ -467,7 +467,7 @@
     "name": "Guémené-Penfao",
     "code": "44067",
     "epci_code": "243500741",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44290"
   },
@@ -475,7 +475,7 @@
     "name": "Guenrouet",
     "code": "44068",
     "epci_code": "200000438",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44530"
   },
@@ -483,7 +483,7 @@
     "name": "Guérande",
     "code": "44069",
     "epci_code": "244400610",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44350"
   },
@@ -491,7 +491,7 @@
     "name": "La Haie-Fouassière",
     "code": "44070",
     "epci_code": "200067635",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44690"
   },
@@ -499,7 +499,7 @@
     "name": "Haute-Goulaine",
     "code": "44071",
     "epci_code": "200067635",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44115"
   },
@@ -507,7 +507,7 @@
     "name": "Herbignac",
     "code": "44072",
     "epci_code": "244400610",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44410"
   },
@@ -515,7 +515,7 @@
     "name": "Héric",
     "code": "44073",
     "epci_code": "244400503",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44810"
   },
@@ -523,7 +523,7 @@
     "name": "Indre",
     "code": "44074",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44610"
   },
@@ -531,7 +531,7 @@
     "name": "Issé",
     "code": "44075",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44520"
   },
@@ -539,7 +539,7 @@
     "name": "Jans",
     "code": "44076",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44170"
   },
@@ -547,7 +547,7 @@
     "name": "Joué-sur-Erdre",
     "code": "44077",
     "epci_code": "244400552",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44440"
   },
@@ -555,7 +555,7 @@
     "name": "Juigné-des-Moutiers",
     "code": "44078",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44670"
   },
@@ -563,7 +563,7 @@
     "name": "Le Landreau",
     "code": "44079",
     "epci_code": "200067866",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44430"
   },
@@ -571,7 +571,7 @@
     "name": "Lavau-sur-Loire",
     "code": "44080",
     "epci_code": "200072734",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44260"
   },
@@ -579,7 +579,7 @@
     "name": "Legé",
     "code": "44081",
     "epci_code": "200071546",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44650"
   },
@@ -587,7 +587,7 @@
     "name": "Ligné",
     "code": "44082",
     "epci_code": "244400552",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44850"
   },
@@ -595,7 +595,7 @@
     "name": "La Limouzinière",
     "code": "44083",
     "epci_code": "244400438",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44310"
   },
@@ -603,7 +603,7 @@
     "name": "Le Loroux-Bottereau",
     "code": "44084",
     "epci_code": "200067866",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44430"
   },
@@ -611,7 +611,7 @@
     "name": "Louisfert",
     "code": "44085",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44110"
   },
@@ -619,7 +619,7 @@
     "name": "Lusanger",
     "code": "44086",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44590"
   },
@@ -627,7 +627,7 @@
     "name": "Machecoul-Saint-Même",
     "code": "44087",
     "epci_code": "200071546",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44270"
   },
@@ -635,7 +635,7 @@
     "name": "Maisdon-sur-Sèvre",
     "code": "44088",
     "epci_code": "200067635",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44690"
   },
@@ -643,7 +643,7 @@
     "name": "Malville",
     "code": "44089",
     "epci_code": "200072734",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44260"
   },
@@ -651,7 +651,7 @@
     "name": "La Marne",
     "code": "44090",
     "epci_code": "200071546",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44270"
   },
@@ -659,7 +659,7 @@
     "name": "Marsac-sur-Don",
     "code": "44091",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44170"
   },
@@ -667,7 +667,7 @@
     "name": "Massérac",
     "code": "44092",
     "epci_code": "243500741",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44290"
   },
@@ -675,7 +675,7 @@
     "name": "Mauves-sur-Loire",
     "code": "44094",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44470"
   },
@@ -683,7 +683,7 @@
     "name": "La Meilleraye-de-Bretagne",
     "code": "44095",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44520"
   },
@@ -691,7 +691,7 @@
     "name": "Mésanger",
     "code": "44096",
     "epci_code": "244400552",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44522"
   },
@@ -699,7 +699,7 @@
     "name": "Mesquer",
     "code": "44097",
     "epci_code": "244400610",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44420"
   },
@@ -707,7 +707,7 @@
     "name": "Missillac",
     "code": "44098",
     "epci_code": "200000438",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44780"
   },
@@ -715,7 +715,7 @@
     "name": "Moisdon-la-Rivière",
     "code": "44099",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44520"
   },
@@ -723,7 +723,7 @@
     "name": "Monnières",
     "code": "44100",
     "epci_code": "200067635",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44690"
   },
@@ -731,7 +731,7 @@
     "name": "La Montagne",
     "code": "44101",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44620"
   },
@@ -739,7 +739,7 @@
     "name": "Montbert",
     "code": "44102",
     "epci_code": "244400438",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44140"
   },
@@ -747,7 +747,7 @@
     "name": "Montoir-de-Bretagne",
     "code": "44103",
     "epci_code": "244400644",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44550"
   },
@@ -755,7 +755,7 @@
     "name": "Montrelais",
     "code": "44104",
     "epci_code": "244400552",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44370"
   },
@@ -763,7 +763,7 @@
     "name": "Mouais",
     "code": "44105",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44590"
   },
@@ -771,7 +771,7 @@
     "name": "Les Moutiers-en-Retz",
     "code": "44106",
     "epci_code": "200067346",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44760"
   },
@@ -779,7 +779,7 @@
     "name": "Mouzeil",
     "code": "44107",
     "epci_code": "244400552",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44850"
   },
@@ -787,7 +787,7 @@
     "name": "Mouzillon",
     "code": "44108",
     "epci_code": "200067866",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44330"
   },
@@ -795,7 +795,7 @@
     "name": "Nantes",
     "code": "44109",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44000"
   },
@@ -803,7 +803,7 @@
     "name": "Nantes",
     "code": "44109",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44100"
   },
@@ -811,7 +811,7 @@
     "name": "Nantes",
     "code": "44109",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44200"
   },
@@ -819,7 +819,7 @@
     "name": "Nantes",
     "code": "44109",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44300"
   },
@@ -827,7 +827,7 @@
     "name": "Nort-sur-Erdre",
     "code": "44110",
     "epci_code": "244400503",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44390"
   },
@@ -835,7 +835,7 @@
     "name": "Notre-Dame-des-Landes",
     "code": "44111",
     "epci_code": "244400503",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44130"
   },
@@ -843,7 +843,7 @@
     "name": "Noyal-sur-Brutz",
     "code": "44112",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44110"
   },
@@ -851,7 +851,7 @@
     "name": "Nozay",
     "code": "44113",
     "epci_code": "244400537",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44170"
   },
@@ -859,7 +859,7 @@
     "name": "Orvault",
     "code": "44114",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44700"
   },
@@ -867,7 +867,7 @@
     "name": "Oudon",
     "code": "44115",
     "epci_code": "244400552",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44521"
   },
@@ -875,7 +875,7 @@
     "name": "Paimbœuf",
     "code": "44116",
     "epci_code": "244400586",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44560"
   },
@@ -883,7 +883,7 @@
     "name": "Le Pallet",
     "code": "44117",
     "epci_code": "200067866",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44330"
   },
@@ -891,7 +891,7 @@
     "name": "Pannecé",
     "code": "44118",
     "epci_code": "244400552",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44440"
   },
@@ -899,7 +899,7 @@
     "name": "Paulx",
     "code": "44119",
     "epci_code": "200071546",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44270"
   },
@@ -907,7 +907,7 @@
     "name": "Le Pellerin",
     "code": "44120",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44640"
   },
@@ -915,7 +915,7 @@
     "name": "Petit-Auverné",
     "code": "44121",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44670"
   },
@@ -923,7 +923,7 @@
     "name": "Petit-Mars",
     "code": "44122",
     "epci_code": "244400503",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44390"
   },
@@ -931,7 +931,7 @@
     "name": "Pierric",
     "code": "44123",
     "epci_code": "243500741",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44290"
   },
@@ -939,7 +939,7 @@
     "name": "Le Pin",
     "code": "44124",
     "epci_code": "244400552",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44540"
   },
@@ -947,7 +947,7 @@
     "name": "Piriac-sur-Mer",
     "code": "44125",
     "epci_code": "244400610",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44420"
   },
@@ -955,7 +955,7 @@
     "name": "La Plaine-sur-Mer",
     "code": "44126",
     "epci_code": "200067346",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44770"
   },
@@ -963,7 +963,7 @@
     "name": "La Planche",
     "code": "44127",
     "epci_code": "200067635",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44140"
   },
@@ -971,7 +971,7 @@
     "name": "Plessé",
     "code": "44128",
     "epci_code": "243500741",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44630"
   },
@@ -979,7 +979,7 @@
     "name": "Pontchâteau",
     "code": "44129",
     "epci_code": "200000438",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44160"
   },
@@ -987,7 +987,7 @@
     "name": "Pont-Saint-Martin",
     "code": "44130",
     "epci_code": "244400438",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44860"
   },
@@ -995,7 +995,7 @@
     "name": "Pornic",
     "code": "44131",
     "epci_code": "200067346",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44210"
   },
@@ -1003,7 +1003,7 @@
     "name": "Pornichet",
     "code": "44132",
     "epci_code": "244400644",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44380"
   },
@@ -1011,7 +1011,7 @@
     "name": "Port-Saint-Père",
     "code": "44133",
     "epci_code": "200067346",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44710"
   },
@@ -1019,7 +1019,7 @@
     "name": "Pouillé-les-Côteaux",
     "code": "44134",
     "epci_code": "244400552",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44522"
   },
@@ -1027,7 +1027,7 @@
     "name": "Le Pouliguen",
     "code": "44135",
     "epci_code": "244400610",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44510"
   },
@@ -1035,7 +1035,7 @@
     "name": "Préfailles",
     "code": "44136",
     "epci_code": "200067346",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44770"
   },
@@ -1043,7 +1043,7 @@
     "name": "Prinquiau",
     "code": "44137",
     "epci_code": "200072734",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44260"
   },
@@ -1051,7 +1051,7 @@
     "name": "Puceul",
     "code": "44138",
     "epci_code": "244400537",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44390"
   },
@@ -1059,7 +1059,7 @@
     "name": "Quilly",
     "code": "44139",
     "epci_code": "200072734",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44750"
   },
@@ -1067,7 +1067,7 @@
     "name": "La Regrippière",
     "code": "44140",
     "epci_code": "200067866",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44330"
   },
@@ -1075,7 +1075,7 @@
     "name": "La Remaudière",
     "code": "44141",
     "epci_code": "200067866",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44430"
   },
@@ -1083,7 +1083,7 @@
     "name": "Remouillé",
     "code": "44142",
     "epci_code": "200067635",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44140"
   },
@@ -1091,7 +1091,7 @@
     "name": "Rezé",
     "code": "44143",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44400"
   },
@@ -1099,7 +1099,7 @@
     "name": "Riaillé",
     "code": "44144",
     "epci_code": "244400552",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44440"
   },
@@ -1107,7 +1107,7 @@
     "name": "Rouans",
     "code": "44145",
     "epci_code": "200067346",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44640"
   },
@@ -1115,7 +1115,7 @@
     "name": "Rougé",
     "code": "44146",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44660"
   },
@@ -1123,7 +1123,7 @@
     "name": "Ruffigné",
     "code": "44148",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44660"
   },
@@ -1131,7 +1131,7 @@
     "name": "Saffré",
     "code": "44149",
     "epci_code": "244400537",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44390"
   },
@@ -1139,7 +1139,7 @@
     "name": "Saint-Aignan-Grandlieu",
     "code": "44150",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44860"
   },
@@ -1147,7 +1147,7 @@
     "name": "Saint-André-des-Eaux",
     "code": "44151",
     "epci_code": "244400644",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44117"
   },
@@ -1155,7 +1155,7 @@
     "name": "Sainte-Anne-sur-Brivet",
     "code": "44152",
     "epci_code": "200000438",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44160"
   },
@@ -1163,7 +1163,7 @@
     "name": "Saint-Aubin-des-Châteaux",
     "code": "44153",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44110"
   },
@@ -1171,7 +1171,7 @@
     "name": "Saint-Brevin-les-Pins",
     "code": "44154",
     "epci_code": "244400586",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44250"
   },
@@ -1179,7 +1179,7 @@
     "name": "Saint-Colomban",
     "code": "44155",
     "epci_code": "244400438",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44310"
   },
@@ -1187,7 +1187,7 @@
     "name": "Corcoué-sur-Logne",
     "code": "44156",
     "epci_code": "200071546",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44650"
   },
@@ -1195,7 +1195,7 @@
     "name": "Saint-Étienne-de-Mer-Morte",
     "code": "44157",
     "epci_code": "200071546",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44270"
   },
@@ -1203,7 +1203,7 @@
     "name": "Saint-Étienne-de-Montluc",
     "code": "44158",
     "epci_code": "200072734",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44360"
   },
@@ -1211,7 +1211,7 @@
     "name": "Saint-Fiacre-sur-Maine",
     "code": "44159",
     "epci_code": "200067635",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44690"
   },
@@ -1219,7 +1219,7 @@
     "name": "Saint-Gildas-des-Bois",
     "code": "44161",
     "epci_code": "200000438",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44530"
   },
@@ -1227,7 +1227,7 @@
     "name": "Saint-Herblain",
     "code": "44162",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44800"
   },
@@ -1235,7 +1235,7 @@
     "name": "Vair-sur-Loire",
     "code": "44163",
     "epci_code": "244400552",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44150"
   },
@@ -1243,7 +1243,7 @@
     "name": "Saint-Hilaire-de-Chaléons",
     "code": "44164",
     "epci_code": "200067346",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44680"
   },
@@ -1251,7 +1251,7 @@
     "name": "Saint-Hilaire-de-Clisson",
     "code": "44165",
     "epci_code": "200067635",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44190"
   },
@@ -1259,7 +1259,7 @@
     "name": "Saint-Jean-de-Boiseau",
     "code": "44166",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44640"
   },
@@ -1267,7 +1267,7 @@
     "name": "Saint-Joachim",
     "code": "44168",
     "epci_code": "244400644",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44720"
   },
@@ -1275,7 +1275,7 @@
     "name": "Saint-Julien-de-Concelles",
     "code": "44169",
     "epci_code": "200067866",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44450"
   },
@@ -1283,7 +1283,7 @@
     "name": "Saint-Julien-de-Vouvantes",
     "code": "44170",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44670"
   },
@@ -1291,7 +1291,7 @@
     "name": "Saint-Léger-les-Vignes",
     "code": "44171",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44710"
   },
@@ -1299,7 +1299,7 @@
     "name": "Sainte-Luce-sur-Loire",
     "code": "44172",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44980"
   },
@@ -1307,7 +1307,7 @@
     "name": "Saint-Lumine-de-Clisson",
     "code": "44173",
     "epci_code": "200067635",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44190"
   },
@@ -1315,7 +1315,7 @@
     "name": "Saint-Lumine-de-Coutais",
     "code": "44174",
     "epci_code": "244400438",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44310"
   },
@@ -1323,7 +1323,7 @@
     "name": "Saint-Lyphard",
     "code": "44175",
     "epci_code": "244400610",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44410"
   },
@@ -1331,7 +1331,7 @@
     "name": "Saint-Malo-de-Guersac",
     "code": "44176",
     "epci_code": "244400644",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44550"
   },
@@ -1339,7 +1339,7 @@
     "name": "Saint-Mars-de-Coutais",
     "code": "44178",
     "epci_code": "200071546",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44680"
   },
@@ -1347,7 +1347,7 @@
     "name": "Saint-Mars-du-Désert",
     "code": "44179",
     "epci_code": "244400503",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44850"
   },
@@ -1355,7 +1355,7 @@
     "name": "Vallons-de-l’Erdre",
     "code": "44180",
     "epci_code": "244400552",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44540"
   },
@@ -1363,7 +1363,7 @@
     "name": "Saint-Michel-Chef-Chef",
     "code": "44182",
     "epci_code": "200067346",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44730"
   },
@@ -1371,7 +1371,7 @@
     "name": "Saint-Molf",
     "code": "44183",
     "epci_code": "244400610",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44350"
   },
@@ -1379,7 +1379,7 @@
     "name": "Saint-Nazaire",
     "code": "44184",
     "epci_code": "244400644",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44600"
   },
@@ -1387,7 +1387,7 @@
     "name": "Saint-Nicolas-de-Redon",
     "code": "44185",
     "epci_code": "243500741",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44460"
   },
@@ -1395,7 +1395,7 @@
     "name": "Sainte-Pazanne",
     "code": "44186",
     "epci_code": "200067346",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44680"
   },
@@ -1403,7 +1403,7 @@
     "name": "Saint-Père-en-Retz",
     "code": "44187",
     "epci_code": "244400586",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44320"
   },
@@ -1411,7 +1411,7 @@
     "name": "Saint-Philbert-de-Grand-Lieu",
     "code": "44188",
     "epci_code": "244400438",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44310"
   },
@@ -1419,7 +1419,7 @@
     "name": "Sainte-Reine-de-Bretagne",
     "code": "44189",
     "epci_code": "200000438",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44160"
   },
@@ -1427,7 +1427,7 @@
     "name": "Saint-Sébastien-sur-Loire",
     "code": "44190",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44230"
   },
@@ -1435,7 +1435,7 @@
     "name": "Saint-Viaud",
     "code": "44192",
     "epci_code": "244400586",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44320"
   },
@@ -1443,7 +1443,7 @@
     "name": "Saint-Vincent-des-Landes",
     "code": "44193",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44590"
   },
@@ -1451,7 +1451,7 @@
     "name": "Sautron",
     "code": "44194",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44880"
   },
@@ -1459,7 +1459,7 @@
     "name": "Savenay",
     "code": "44195",
     "epci_code": "200072734",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44260"
   },
@@ -1467,7 +1467,7 @@
     "name": "Sévérac",
     "code": "44196",
     "epci_code": "200000438",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44530"
   },
@@ -1475,7 +1475,7 @@
     "name": "Sion-les-Mines",
     "code": "44197",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44590"
   },
@@ -1483,7 +1483,7 @@
     "name": "Les Sorinières",
     "code": "44198",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44840"
   },
@@ -1491,7 +1491,7 @@
     "name": "Soudan",
     "code": "44199",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44110"
   },
@@ -1499,7 +1499,7 @@
     "name": "Soulvache",
     "code": "44200",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44660"
   },
@@ -1507,7 +1507,7 @@
     "name": "Sucé-sur-Erdre",
     "code": "44201",
     "epci_code": "244400503",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44240"
   },
@@ -1515,7 +1515,7 @@
     "name": "Teillé",
     "code": "44202",
     "epci_code": "244400552",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44440"
   },
@@ -1523,7 +1523,7 @@
     "name": "Le Temple-de-Bretagne",
     "code": "44203",
     "epci_code": "200072734",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44360"
   },
@@ -1531,7 +1531,7 @@
     "name": "Thouaré-sur-Loire",
     "code": "44204",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44470"
   },
@@ -1539,7 +1539,7 @@
     "name": "Les Touches",
     "code": "44205",
     "epci_code": "244400503",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44390"
   },
@@ -1547,7 +1547,7 @@
     "name": "Touvois",
     "code": "44206",
     "epci_code": "200071546",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44650"
   },
@@ -1555,7 +1555,7 @@
     "name": "Trans-sur-Erdre",
     "code": "44207",
     "epci_code": "244400552",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44440"
   },
@@ -1563,7 +1563,7 @@
     "name": "Treffieux",
     "code": "44208",
     "epci_code": "244400537",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44170"
   },
@@ -1571,7 +1571,7 @@
     "name": "Treillières",
     "code": "44209",
     "epci_code": "244400503",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44119"
   },
@@ -1579,7 +1579,7 @@
     "name": "Trignac",
     "code": "44210",
     "epci_code": "244400644",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44570"
   },
@@ -1587,7 +1587,7 @@
     "name": "La Turballe",
     "code": "44211",
     "epci_code": "244400610",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44420"
   },
@@ -1595,7 +1595,7 @@
     "name": "Vallet",
     "code": "44212",
     "epci_code": "200067866",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44330"
   },
@@ -1603,7 +1603,7 @@
     "name": "Loireauxence",
     "code": "44213",
     "epci_code": "244400552",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44370"
   },
@@ -1611,7 +1611,7 @@
     "name": "Vay",
     "code": "44214",
     "epci_code": "244400537",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44170"
   },
@@ -1619,7 +1619,7 @@
     "name": "Vertou",
     "code": "44215",
     "epci_code": "244400404",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44120"
   },
@@ -1627,7 +1627,7 @@
     "name": "Vieillevigne",
     "code": "44216",
     "epci_code": "200067635",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44116"
   },
@@ -1635,7 +1635,7 @@
     "name": "Vigneux-de-Bretagne",
     "code": "44217",
     "epci_code": "244400503",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44360"
   },
@@ -1643,7 +1643,7 @@
     "name": "Villepot",
     "code": "44218",
     "epci_code": "200072726",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44110"
   },
@@ -1651,7 +1651,7 @@
     "name": "Vue",
     "code": "44220",
     "epci_code": "200067346",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44640"
   },
@@ -1659,7 +1659,7 @@
     "name": "La Chevallerais",
     "code": "44221",
     "epci_code": "244400453",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44810"
   },
@@ -1667,7 +1667,7 @@
     "name": "La Roche-Blanche",
     "code": "44222",
     "epci_code": "244400552",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44522"
   },
@@ -1675,7 +1675,7 @@
     "name": "Geneston",
     "code": "44223",
     "epci_code": "244400438",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44140"
   },
@@ -1683,7 +1683,7 @@
     "name": "La Grigonnais",
     "code": "44224",
     "epci_code": "244400537",
-    "departement_code": "44",
+    "department_code": "44",
     "region_code": "52",
     "postal_code": "44170"
   }

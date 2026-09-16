@@ -3,7 +3,7 @@
     "name": "Abaucourt",
     "code": "54001",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54610"
   },
@@ -11,7 +11,7 @@
     "name": "Abbéville-lès-Conflans",
     "code": "54002",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -19,7 +19,7 @@
     "name": "Aboncourt",
     "code": "54003",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54115"
   },
@@ -27,7 +27,7 @@
     "name": "Affléville",
     "code": "54004",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -35,7 +35,7 @@
     "name": "Affracourt",
     "code": "54005",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54740"
   },
@@ -43,7 +43,7 @@
     "name": "Agincourt",
     "code": "54006",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54770"
   },
@@ -51,7 +51,7 @@
     "name": "Aingeray",
     "code": "54007",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54460"
   },
@@ -59,7 +59,7 @@
     "name": "Allain",
     "code": "54008",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54170"
   },
@@ -67,7 +67,7 @@
     "name": "Allamont",
     "code": "54009",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -75,7 +75,7 @@
     "name": "Allamps",
     "code": "54010",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54112"
   },
@@ -83,7 +83,7 @@
     "name": "Allondrelle-la-Malmaison",
     "code": "54011",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54260"
   },
@@ -91,7 +91,7 @@
     "name": "Amance",
     "code": "54012",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54770"
   },
@@ -99,7 +99,7 @@
     "name": "Amenoncourt",
     "code": "54013",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -107,7 +107,7 @@
     "name": "Ancerviller",
     "code": "54014",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -115,7 +115,7 @@
     "name": "Anderny",
     "code": "54015",
     "epci_code": "200070290",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54560"
   },
@@ -123,7 +123,7 @@
     "name": "Andilly",
     "code": "54016",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54200"
   },
@@ -131,7 +131,7 @@
     "name": "Angomont",
     "code": "54017",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54540"
   },
@@ -139,7 +139,7 @@
     "name": "Anoux",
     "code": "54018",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54150"
   },
@@ -147,7 +147,7 @@
     "name": "Ansauville",
     "code": "54019",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -155,7 +155,7 @@
     "name": "Anthelupt",
     "code": "54020",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54110"
   },
@@ -163,7 +163,7 @@
     "name": "Armaucourt",
     "code": "54021",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54760"
   },
@@ -171,7 +171,7 @@
     "name": "Arnaville",
     "code": "54022",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54530"
   },
@@ -179,7 +179,7 @@
     "name": "Arracourt",
     "code": "54023",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -187,7 +187,7 @@
     "name": "Arraye-et-Han",
     "code": "54024",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54760"
   },
@@ -195,7 +195,7 @@
     "name": "Art-sur-Meurthe",
     "code": "54025",
     "epci_code": "245400676",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54510"
   },
@@ -203,7 +203,7 @@
     "name": "Athienville",
     "code": "54026",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -211,7 +211,7 @@
     "name": "Atton",
     "code": "54027",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54700"
   },
@@ -219,7 +219,7 @@
     "name": "Auboué",
     "code": "54028",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54580"
   },
@@ -227,7 +227,7 @@
     "name": "Audun-le-Roman",
     "code": "54029",
     "epci_code": "200070290",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54560"
   },
@@ -235,7 +235,7 @@
     "name": "Autrepierre",
     "code": "54030",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -243,7 +243,7 @@
     "name": "Autreville-sur-Moselle",
     "code": "54031",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54380"
   },
@@ -251,7 +251,7 @@
     "name": "Autrey",
     "code": "54032",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54160"
   },
@@ -259,7 +259,7 @@
     "name": "Avillers",
     "code": "54033",
     "epci_code": "200070290",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54490"
   },
@@ -267,7 +267,7 @@
     "name": "Avrainville",
     "code": "54034",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54385"
   },
@@ -275,7 +275,7 @@
     "name": "Avricourt",
     "code": "54035",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -283,7 +283,7 @@
     "name": "Avril",
     "code": "54036",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54150"
   },
@@ -291,7 +291,7 @@
     "name": "Azelot",
     "code": "54037",
     "epci_code": "245400189",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54210"
   },
@@ -299,7 +299,7 @@
     "name": "Azerailles",
     "code": "54038",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54122"
   },
@@ -307,7 +307,7 @@
     "name": "Baccarat",
     "code": "54039",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54120"
   },
@@ -315,7 +315,7 @@
     "name": "Badonviller",
     "code": "54040",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54540"
   },
@@ -323,7 +323,7 @@
     "name": "Bagneux",
     "code": "54041",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54170"
   },
@@ -331,7 +331,7 @@
     "name": "Bainville-aux-Miroirs",
     "code": "54042",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54290"
   },
@@ -339,7 +339,7 @@
     "name": "Bainville-sur-Madon",
     "code": "54043",
     "epci_code": "245400171",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54550"
   },
@@ -347,7 +347,7 @@
     "name": "Barbas",
     "code": "54044",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -355,7 +355,7 @@
     "name": "Barbonville",
     "code": "54045",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54360"
   },
@@ -363,7 +363,7 @@
     "name": "Barisey-au-Plain",
     "code": "54046",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54170"
   },
@@ -371,7 +371,7 @@
     "name": "Barisey-la-Côte",
     "code": "54047",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54170"
   },
@@ -379,7 +379,7 @@
     "name": "Les Baroches",
     "code": "54048",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54150"
   },
@@ -387,7 +387,7 @@
     "name": "Baslieux",
     "code": "54049",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54620"
   },
@@ -395,7 +395,7 @@
     "name": "Bathelémont",
     "code": "54050",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -403,7 +403,7 @@
     "name": "Batilly",
     "code": "54051",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54980"
   },
@@ -411,7 +411,7 @@
     "name": "Battigny",
     "code": "54052",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54115"
   },
@@ -419,7 +419,7 @@
     "name": "Bauzemont",
     "code": "54053",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -427,7 +427,7 @@
     "name": "Bayon",
     "code": "54054",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54290"
   },
@@ -435,7 +435,7 @@
     "name": "Bayonville-sur-Mad",
     "code": "54055",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54890"
   },
@@ -443,7 +443,7 @@
     "name": "Bazailles",
     "code": "54056",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54620"
   },
@@ -451,7 +451,7 @@
     "name": "Beaumont",
     "code": "54057",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -459,7 +459,7 @@
     "name": "Béchamps",
     "code": "54058",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -467,7 +467,7 @@
     "name": "Belleau",
     "code": "54059",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54610"
   },
@@ -475,7 +475,7 @@
     "name": "Belleville",
     "code": "54060",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54940"
   },
@@ -483,7 +483,7 @@
     "name": "Bénaménil",
     "code": "54061",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -491,7 +491,7 @@
     "name": "Benney",
     "code": "54062",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54740"
   },
@@ -499,7 +499,7 @@
     "name": "Bernécourt",
     "code": "54063",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -507,7 +507,7 @@
     "name": "Bertrambois",
     "code": "54064",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54480"
   },
@@ -515,7 +515,7 @@
     "name": "Bertrichamps",
     "code": "54065",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54120"
   },
@@ -523,7 +523,7 @@
     "name": "Bettainvillers",
     "code": "54066",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54640"
   },
@@ -531,7 +531,7 @@
     "name": "Beuveille",
     "code": "54067",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54620"
   },
@@ -539,7 +539,7 @@
     "name": "Beuvezin",
     "code": "54068",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54115"
   },
@@ -547,7 +547,7 @@
     "name": "Beuvillers",
     "code": "54069",
     "epci_code": "200070290",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54560"
   },
@@ -555,7 +555,7 @@
     "name": "Bey-sur-Seille",
     "code": "54070",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54760"
   },
@@ -563,7 +563,7 @@
     "name": "Bezange-la-Grande",
     "code": "54071",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -571,7 +571,7 @@
     "name": "Bezaumont",
     "code": "54072",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54380"
   },
@@ -579,7 +579,7 @@
     "name": "Bicqueley",
     "code": "54073",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54200"
   },
@@ -587,7 +587,7 @@
     "name": "Bienville-la-Petite",
     "code": "54074",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54300"
   },
@@ -595,7 +595,7 @@
     "name": "Bionville",
     "code": "54075",
     "epci_code": "200071066",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54540"
   },
@@ -603,7 +603,7 @@
     "name": "Blainville-sur-l’Eau",
     "code": "54076",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54360"
   },
@@ -611,7 +611,7 @@
     "name": "Blâmont",
     "code": "54077",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -619,7 +619,7 @@
     "name": "Blémerey",
     "code": "54078",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -627,7 +627,7 @@
     "name": "Blénod-lès-Pont-à-Mousson",
     "code": "54079",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54700"
   },
@@ -635,7 +635,7 @@
     "name": "Blénod-lès-Toul",
     "code": "54080",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54113"
   },
@@ -643,7 +643,7 @@
     "name": "Boismont",
     "code": "54081",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54620"
   },
@@ -651,7 +651,7 @@
     "name": "Boncourt",
     "code": "54082",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -659,7 +659,7 @@
     "name": "Bonviller",
     "code": "54083",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54300"
   },
@@ -667,7 +667,7 @@
     "name": "Mont-Bonvillers",
     "code": "54084",
     "epci_code": "200070290",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54111"
   },
@@ -675,7 +675,7 @@
     "name": "Borville",
     "code": "54085",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54290"
   },
@@ -683,7 +683,7 @@
     "name": "Boucq",
     "code": "54086",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54200"
   },
@@ -691,7 +691,7 @@
     "name": "Bouillonville",
     "code": "54087",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -699,7 +699,7 @@
     "name": "Bouvron",
     "code": "54088",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54200"
   },
@@ -707,7 +707,7 @@
     "name": "Bouxières-aux-Chênes",
     "code": "54089",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54770"
   },
@@ -715,7 +715,7 @@
     "name": "Bouxières-aux-Dames",
     "code": "54090",
     "epci_code": "245400601",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54136"
   },
@@ -723,7 +723,7 @@
     "name": "Bouxières-sous-Froidmont",
     "code": "54091",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54700"
   },
@@ -731,7 +731,7 @@
     "name": "Bouzanville",
     "code": "54092",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54930"
   },
@@ -739,7 +739,7 @@
     "name": "Brainville",
     "code": "54093",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -747,7 +747,7 @@
     "name": "Bralleville",
     "code": "54094",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54740"
   },
@@ -755,7 +755,7 @@
     "name": "Bratte",
     "code": "54095",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54610"
   },
@@ -763,7 +763,7 @@
     "name": "Bréhain-la-Ville",
     "code": "54096",
     "epci_code": "200070290",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54190"
   },
@@ -771,7 +771,7 @@
     "name": "Bréménil",
     "code": "54097",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54540"
   },
@@ -779,7 +779,7 @@
     "name": "Brémoncourt",
     "code": "54098",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54290"
   },
@@ -787,7 +787,7 @@
     "name": "Val de Briey",
     "code": "54099",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54150"
   },
@@ -795,7 +795,7 @@
     "name": "Val de Briey",
     "code": "54099",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54790"
   },
@@ -803,7 +803,7 @@
     "name": "Brin-sur-Seille",
     "code": "54100",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54280"
   },
@@ -811,7 +811,7 @@
     "name": "Brouville",
     "code": "54101",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54120"
   },
@@ -819,7 +819,7 @@
     "name": "Bruley",
     "code": "54102",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54200"
   },
@@ -827,7 +827,7 @@
     "name": "Bruville",
     "code": "54103",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -835,7 +835,7 @@
     "name": "Buissoncourt",
     "code": "54104",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54110"
   },
@@ -843,7 +843,7 @@
     "name": "Bulligny",
     "code": "54105",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54113"
   },
@@ -851,7 +851,7 @@
     "name": "Bures",
     "code": "54106",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -859,7 +859,7 @@
     "name": "Buriville",
     "code": "54107",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -867,7 +867,7 @@
     "name": "Burthecourt-aux-Chênes",
     "code": "54108",
     "epci_code": "245400189",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54210"
   },
@@ -875,7 +875,7 @@
     "name": "Ceintrey",
     "code": "54109",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54134"
   },
@@ -883,7 +883,7 @@
     "name": "Cerville",
     "code": "54110",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54420"
   },
@@ -891,7 +891,7 @@
     "name": "Chaligny",
     "code": "54111",
     "epci_code": "245400171",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54230"
   },
@@ -899,7 +899,7 @@
     "name": "Chambley-Bussières",
     "code": "54112",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54890"
   },
@@ -907,7 +907,7 @@
     "name": "Champenoux",
     "code": "54113",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54280"
   },
@@ -915,7 +915,7 @@
     "name": "Champey-sur-Moselle",
     "code": "54114",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54700"
   },
@@ -923,7 +923,7 @@
     "name": "Champigneulles",
     "code": "54115",
     "epci_code": "245400601",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54250"
   },
@@ -931,7 +931,7 @@
     "name": "Chanteheux",
     "code": "54116",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54300"
   },
@@ -939,7 +939,7 @@
     "name": "Chaouilley",
     "code": "54117",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54330"
   },
@@ -947,7 +947,7 @@
     "name": "Charency-Vezin",
     "code": "54118",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54260"
   },
@@ -955,7 +955,7 @@
     "name": "Charey",
     "code": "54119",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -963,7 +963,7 @@
     "name": "Charmes-la-Côte",
     "code": "54120",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54113"
   },
@@ -971,7 +971,7 @@
     "name": "Charmois",
     "code": "54121",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54360"
   },
@@ -979,7 +979,7 @@
     "name": "Chaudeney-sur-Moselle",
     "code": "54122",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54200"
   },
@@ -987,7 +987,7 @@
     "name": "Chavigny",
     "code": "54123",
     "epci_code": "245400171",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54230"
   },
@@ -995,7 +995,7 @@
     "name": "Chazelles-sur-Albe",
     "code": "54124",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -1003,7 +1003,7 @@
     "name": "Chenevières",
     "code": "54125",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54122"
   },
@@ -1011,7 +1011,7 @@
     "name": "Chenicourt",
     "code": "54126",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54610"
   },
@@ -1019,7 +1019,7 @@
     "name": "Chenières",
     "code": "54127",
     "epci_code": "245400262",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54720"
   },
@@ -1027,7 +1027,7 @@
     "name": "Choloy-Ménillot",
     "code": "54128",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54200"
   },
@@ -1035,7 +1035,7 @@
     "name": "Cirey-sur-Vezouze",
     "code": "54129",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54480"
   },
@@ -1043,7 +1043,7 @@
     "name": "Clayeures",
     "code": "54130",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54290"
   },
@@ -1051,7 +1051,7 @@
     "name": "Clémery",
     "code": "54131",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54610"
   },
@@ -1059,7 +1059,7 @@
     "name": "Clérey-sur-Brenon",
     "code": "54132",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54330"
   },
@@ -1067,7 +1067,7 @@
     "name": "Coincourt",
     "code": "54133",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -1075,7 +1075,7 @@
     "name": "Colmey",
     "code": "54134",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54260"
   },
@@ -1083,7 +1083,7 @@
     "name": "Colombey-les-Belles",
     "code": "54135",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54170"
   },
@@ -1091,7 +1091,7 @@
     "name": "Conflans-en-Jarnisy",
     "code": "54136",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -1099,7 +1099,7 @@
     "name": "Cons-la-Grandville",
     "code": "54137",
     "epci_code": "245400262",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54870"
   },
@@ -1107,7 +1107,7 @@
     "name": "Cosnes-et-Romain",
     "code": "54138",
     "epci_code": "245400262",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54400"
   },
@@ -1115,7 +1115,7 @@
     "name": "Courbesseaux",
     "code": "54139",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54110"
   },
@@ -1123,7 +1123,7 @@
     "name": "Courcelles",
     "code": "54140",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54930"
   },
@@ -1131,7 +1131,7 @@
     "name": "Coyviller",
     "code": "54141",
     "epci_code": "245400189",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54210"
   },
@@ -1139,7 +1139,7 @@
     "name": "Crantenoy",
     "code": "54142",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54740"
   },
@@ -1147,7 +1147,7 @@
     "name": "Crépey",
     "code": "54143",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54170"
   },
@@ -1155,7 +1155,7 @@
     "name": "Crévéchamps",
     "code": "54144",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54290"
   },
@@ -1163,7 +1163,7 @@
     "name": "Crévic",
     "code": "54145",
     "epci_code": "245400189",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54110"
   },
@@ -1171,7 +1171,7 @@
     "name": "Crézilles",
     "code": "54146",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54113"
   },
@@ -1179,7 +1179,7 @@
     "name": "Crion",
     "code": "54147",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54300"
   },
@@ -1187,7 +1187,7 @@
     "name": "Croismare",
     "code": "54148",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54300"
   },
@@ -1195,7 +1195,7 @@
     "name": "Crusnes",
     "code": "54149",
     "epci_code": "200070290",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54680"
   },
@@ -1203,7 +1203,7 @@
     "name": "Custines",
     "code": "54150",
     "epci_code": "245400601",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54670"
   },
@@ -1211,7 +1211,7 @@
     "name": "Cutry",
     "code": "54151",
     "epci_code": "245400262",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54720"
   },
@@ -1219,7 +1219,7 @@
     "name": "Damelevières",
     "code": "54152",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54360"
   },
@@ -1227,7 +1227,7 @@
     "name": "Dampvitoux",
     "code": "54153",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -1235,7 +1235,7 @@
     "name": "Deneuvre",
     "code": "54154",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54120"
   },
@@ -1243,7 +1243,7 @@
     "name": "Deuxville",
     "code": "54155",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -1251,7 +1251,7 @@
     "name": "Diarville",
     "code": "54156",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54930"
   },
@@ -1259,7 +1259,7 @@
     "name": "Dieulouard",
     "code": "54157",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54380"
   },
@@ -1267,7 +1267,7 @@
     "name": "Dolcourt",
     "code": "54158",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54170"
   },
@@ -1275,7 +1275,7 @@
     "name": "Dombasle-sur-Meurthe",
     "code": "54159",
     "epci_code": "245400189",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54110"
   },
@@ -1283,7 +1283,7 @@
     "name": "Domèvre-en-Haye",
     "code": "54160",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54385"
   },
@@ -1291,7 +1291,7 @@
     "name": "Domèvre-sur-Vezouze",
     "code": "54161",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -1299,7 +1299,7 @@
     "name": "Domgermain",
     "code": "54162",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54119"
   },
@@ -1307,7 +1307,7 @@
     "name": "Domjevin",
     "code": "54163",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -1315,7 +1315,7 @@
     "name": "Dommarie-Eulmont",
     "code": "54164",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54115"
   },
@@ -1323,7 +1323,7 @@
     "name": "Dommartemont",
     "code": "54165",
     "epci_code": "245400676",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54130"
   },
@@ -1331,7 +1331,7 @@
     "name": "Dommartin-la-Chaussée",
     "code": "54166",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -1339,7 +1339,7 @@
     "name": "Dommartin-lès-Toul",
     "code": "54167",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54200"
   },
@@ -1347,7 +1347,7 @@
     "name": "Dommartin-sous-Amance",
     "code": "54168",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54770"
   },
@@ -1355,7 +1355,7 @@
     "name": "Domprix",
     "code": "54169",
     "epci_code": "200070290",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54490"
   },
@@ -1363,7 +1363,7 @@
     "name": "Domptail-en-l’Air",
     "code": "54170",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54290"
   },
@@ -1371,7 +1371,7 @@
     "name": "Doncourt-lès-Conflans",
     "code": "54171",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -1379,7 +1379,7 @@
     "name": "Doncourt-lès-Longuyon",
     "code": "54172",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54620"
   },
@@ -1387,7 +1387,7 @@
     "name": "Drouville",
     "code": "54173",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -1395,7 +1395,7 @@
     "name": "Écrouves",
     "code": "54174",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54200"
   },
@@ -1403,7 +1403,7 @@
     "name": "Einvaux",
     "code": "54175",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54360"
   },
@@ -1411,7 +1411,7 @@
     "name": "Einville-au-Jard",
     "code": "54176",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -1419,7 +1419,7 @@
     "name": "Emberménil",
     "code": "54177",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -1427,7 +1427,7 @@
     "name": "Épiez-sur-Chiers",
     "code": "54178",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54260"
   },
@@ -1435,7 +1435,7 @@
     "name": "Éply",
     "code": "54179",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54610"
   },
@@ -1443,7 +1443,7 @@
     "name": "Erbéviller-sur-Amezule",
     "code": "54180",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54280"
   },
@@ -1451,7 +1451,7 @@
     "name": "Errouville",
     "code": "54181",
     "epci_code": "200070290",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54680"
   },
@@ -1459,7 +1459,7 @@
     "name": "Essey-et-Maizerais",
     "code": "54182",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -1467,7 +1467,7 @@
     "name": "Essey-la-Côte",
     "code": "54183",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54830"
   },
@@ -1475,7 +1475,7 @@
     "name": "Essey-lès-Nancy",
     "code": "54184",
     "epci_code": "245400676",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54270"
   },
@@ -1483,7 +1483,7 @@
     "name": "Étreval",
     "code": "54185",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54330"
   },
@@ -1491,7 +1491,7 @@
     "name": "Eulmont",
     "code": "54186",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54690"
   },
@@ -1499,7 +1499,7 @@
     "name": "Euvezin",
     "code": "54187",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -1507,7 +1507,7 @@
     "name": "Faulx",
     "code": "54188",
     "epci_code": "245400601",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54760"
   },
@@ -1515,7 +1515,7 @@
     "name": "Favières",
     "code": "54189",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54115"
   },
@@ -1523,7 +1523,7 @@
     "name": "Fécocourt",
     "code": "54190",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54115"
   },
@@ -1531,7 +1531,7 @@
     "name": "Fenneviller",
     "code": "54191",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54540"
   },
@@ -1539,7 +1539,7 @@
     "name": "Ferrières",
     "code": "54192",
     "epci_code": "245400189",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54210"
   },
@@ -1547,7 +1547,7 @@
     "name": "Fey-en-Haye",
     "code": "54193",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -1555,7 +1555,7 @@
     "name": "Fillières",
     "code": "54194",
     "epci_code": "245400262",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54560"
   },
@@ -1563,7 +1563,7 @@
     "name": "Flainval",
     "code": "54195",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54110"
   },
@@ -1571,7 +1571,7 @@
     "name": "Flavigny-sur-Moselle",
     "code": "54196",
     "epci_code": "245400171",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54630"
   },
@@ -1579,7 +1579,7 @@
     "name": "Fléville-devant-Nancy",
     "code": "54197",
     "epci_code": "245400676",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54710"
   },
@@ -1587,7 +1587,7 @@
     "name": "Fléville-Lixières",
     "code": "54198",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54150"
   },
@@ -1595,7 +1595,7 @@
     "name": "Flin",
     "code": "54199",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54122"
   },
@@ -1603,7 +1603,7 @@
     "name": "Flirey",
     "code": "54200",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -1611,7 +1611,7 @@
     "name": "Fontenoy-la-Joûte",
     "code": "54201",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54122"
   },
@@ -1619,7 +1619,7 @@
     "name": "Fontenoy-sur-Moselle",
     "code": "54202",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54840"
   },
@@ -1627,7 +1627,7 @@
     "name": "Forcelles-Saint-Gorgon",
     "code": "54203",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54330"
   },
@@ -1635,7 +1635,7 @@
     "name": "Forcelles-sous-Gugney",
     "code": "54204",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54930"
   },
@@ -1643,7 +1643,7 @@
     "name": "Foug",
     "code": "54205",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54570"
   },
@@ -1651,7 +1651,7 @@
     "name": "Fraimbois",
     "code": "54206",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54300"
   },
@@ -1659,7 +1659,7 @@
     "name": "Fraisnes-en-Saintois",
     "code": "54207",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54930"
   },
@@ -1667,7 +1667,7 @@
     "name": "Francheville",
     "code": "54208",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54200"
   },
@@ -1675,7 +1675,7 @@
     "name": "Franconville",
     "code": "54209",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54830"
   },
@@ -1683,7 +1683,7 @@
     "name": "Fréménil",
     "code": "54210",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -1691,7 +1691,7 @@
     "name": "Frémonville",
     "code": "54211",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -1699,7 +1699,7 @@
     "name": "Fresnois-la-Montagne",
     "code": "54212",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54260"
   },
@@ -1707,7 +1707,7 @@
     "name": "Friauville",
     "code": "54213",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -1715,7 +1715,7 @@
     "name": "Frolois",
     "code": "54214",
     "epci_code": "245400171",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54160"
   },
@@ -1723,7 +1723,7 @@
     "name": "Frouard",
     "code": "54215",
     "epci_code": "245400601",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54390"
   },
@@ -1731,7 +1731,7 @@
     "name": "Froville",
     "code": "54216",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54290"
   },
@@ -1739,7 +1739,7 @@
     "name": "Gélacourt",
     "code": "54217",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54120"
   },
@@ -1747,7 +1747,7 @@
     "name": "Gélaucourt",
     "code": "54218",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54115"
   },
@@ -1755,7 +1755,7 @@
     "name": "Gellenoncourt",
     "code": "54219",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54110"
   },
@@ -1763,7 +1763,7 @@
     "name": "Gémonville",
     "code": "54220",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54115"
   },
@@ -1771,7 +1771,7 @@
     "name": "Gerbécourt-et-Haplemont",
     "code": "54221",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54740"
   },
@@ -1779,7 +1779,7 @@
     "name": "Gerbéviller",
     "code": "54222",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54830"
   },
@@ -1787,7 +1787,7 @@
     "name": "Germiny",
     "code": "54223",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54170"
   },
@@ -1795,7 +1795,7 @@
     "name": "Germonville",
     "code": "54224",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54740"
   },
@@ -1803,7 +1803,7 @@
     "name": "Gézoncourt",
     "code": "54225",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54380"
   },
@@ -1811,7 +1811,7 @@
     "name": "Gibeaumeix",
     "code": "54226",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54112"
   },
@@ -1819,7 +1819,7 @@
     "name": "Giraumont",
     "code": "54227",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54780"
   },
@@ -1827,7 +1827,7 @@
     "name": "Giriviller",
     "code": "54228",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54830"
   },
@@ -1835,7 +1835,7 @@
     "name": "Glonville",
     "code": "54229",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54122"
   },
@@ -1843,7 +1843,7 @@
     "name": "Gogney",
     "code": "54230",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -1851,7 +1851,7 @@
     "name": "Gondrecourt-Aix",
     "code": "54231",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -1859,7 +1859,7 @@
     "name": "Gondreville",
     "code": "54232",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54840"
   },
@@ -1867,7 +1867,7 @@
     "name": "Gondrexon",
     "code": "54233",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -1875,7 +1875,7 @@
     "name": "Gorcy",
     "code": "54234",
     "epci_code": "245400262",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54730"
   },
@@ -1883,7 +1883,7 @@
     "name": "Goviller",
     "code": "54235",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54330"
   },
@@ -1891,7 +1891,7 @@
     "name": "Grand-Failly",
     "code": "54236",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54260"
   },
@@ -1899,7 +1899,7 @@
     "name": "Grimonviller",
     "code": "54237",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54115"
   },
@@ -1907,7 +1907,7 @@
     "name": "Gripport",
     "code": "54238",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54290"
   },
@@ -1915,7 +1915,7 @@
     "name": "Griscourt",
     "code": "54239",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54380"
   },
@@ -1923,7 +1923,7 @@
     "name": "Grosrouvres",
     "code": "54240",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -1931,7 +1931,7 @@
     "name": "Gugney",
     "code": "54241",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54930"
   },
@@ -1939,7 +1939,7 @@
     "name": "Gye",
     "code": "54242",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54113"
   },
@@ -1947,7 +1947,7 @@
     "name": "Hablainville",
     "code": "54243",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54120"
   },
@@ -1955,7 +1955,7 @@
     "name": "Hagéville",
     "code": "54244",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -1963,7 +1963,7 @@
     "name": "Haigneville",
     "code": "54245",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54290"
   },
@@ -1971,7 +1971,7 @@
     "name": "Halloville",
     "code": "54246",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -1979,7 +1979,7 @@
     "name": "Hammeville",
     "code": "54247",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54330"
   },
@@ -1987,7 +1987,7 @@
     "name": "Hamonville",
     "code": "54248",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -1995,7 +1995,7 @@
     "name": "Hannonville-Suzémont",
     "code": "54249",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -2003,7 +2003,7 @@
     "name": "Haraucourt",
     "code": "54250",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54110"
   },
@@ -2011,7 +2011,7 @@
     "name": "Harbouey",
     "code": "54251",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -2019,7 +2019,7 @@
     "name": "Haroué",
     "code": "54252",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54740"
   },
@@ -2027,7 +2027,7 @@
     "name": "Hatrize",
     "code": "54253",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -2035,7 +2035,7 @@
     "name": "Haucourt-Moulaine",
     "code": "54254",
     "epci_code": "245400262",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54860"
   },
@@ -2043,7 +2043,7 @@
     "name": "Haudonville",
     "code": "54255",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54830"
   },
@@ -2051,7 +2051,7 @@
     "name": "Haussonville",
     "code": "54256",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54290"
   },
@@ -2059,7 +2059,7 @@
     "name": "Heillecourt",
     "code": "54257",
     "epci_code": "245400676",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54180"
   },
@@ -2067,7 +2067,7 @@
     "name": "Hénaménil",
     "code": "54258",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -2075,7 +2075,7 @@
     "name": "Herbéviller",
     "code": "54259",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -2083,7 +2083,7 @@
     "name": "Hériménil",
     "code": "54260",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54300"
   },
@@ -2091,7 +2091,7 @@
     "name": "Herserange",
     "code": "54261",
     "epci_code": "245400262",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54440"
   },
@@ -2099,7 +2099,7 @@
     "name": "Hoéville",
     "code": "54262",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -2107,7 +2107,7 @@
     "name": "Homécourt",
     "code": "54263",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54310"
   },
@@ -2115,7 +2115,7 @@
     "name": "Houdelmont",
     "code": "54264",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54330"
   },
@@ -2123,7 +2123,7 @@
     "name": "Houdemont",
     "code": "54265",
     "epci_code": "245400676",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54180"
   },
@@ -2131,7 +2131,7 @@
     "name": "Houdreville",
     "code": "54266",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54330"
   },
@@ -2139,7 +2139,7 @@
     "name": "Housséville",
     "code": "54268",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54930"
   },
@@ -2147,7 +2147,7 @@
     "name": "Hudiviller",
     "code": "54269",
     "epci_code": "245400189",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54110"
   },
@@ -2155,7 +2155,7 @@
     "name": "Hussigny-Godbrange",
     "code": "54270",
     "epci_code": "245400262",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54590"
   },
@@ -2163,7 +2163,7 @@
     "name": "Igney",
     "code": "54271",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -2171,7 +2171,7 @@
     "name": "Jaillon",
     "code": "54272",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54200"
   },
@@ -2179,7 +2179,7 @@
     "name": "Jarny",
     "code": "54273",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -2187,7 +2187,7 @@
     "name": "Jarville-la-Malgrange",
     "code": "54274",
     "epci_code": "245400676",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54140"
   },
@@ -2195,7 +2195,7 @@
     "name": "Jaulny",
     "code": "54275",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -2203,7 +2203,7 @@
     "name": "Jeandelaincourt",
     "code": "54276",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54114"
   },
@@ -2211,7 +2211,7 @@
     "name": "Jeandelize",
     "code": "54277",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -2219,7 +2219,7 @@
     "name": "Jevoncourt",
     "code": "54278",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54740"
   },
@@ -2227,7 +2227,7 @@
     "name": "Jezainville",
     "code": "54279",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54700"
   },
@@ -2235,7 +2235,7 @@
     "name": "Jœuf",
     "code": "54280",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54240"
   },
@@ -2243,7 +2243,7 @@
     "name": "Jolivet",
     "code": "54281",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54300"
   },
@@ -2251,7 +2251,7 @@
     "name": "Joppécourt",
     "code": "54282",
     "epci_code": "200070290",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54620"
   },
@@ -2259,7 +2259,7 @@
     "name": "Jouaville",
     "code": "54283",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -2267,7 +2267,7 @@
     "name": "Joudreville",
     "code": "54284",
     "epci_code": "200070290",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54490"
   },
@@ -2275,7 +2275,7 @@
     "name": "Juvrecourt",
     "code": "54285",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -2283,7 +2283,7 @@
     "name": "Labry",
     "code": "54286",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -2291,7 +2291,7 @@
     "name": "Lachapelle",
     "code": "54287",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54120"
   },
@@ -2299,7 +2299,7 @@
     "name": "Lagney",
     "code": "54288",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54200"
   },
@@ -2307,7 +2307,7 @@
     "name": "Laître-sous-Amance",
     "code": "54289",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54770"
   },
@@ -2315,7 +2315,7 @@
     "name": "Laix",
     "code": "54290",
     "epci_code": "245400262",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54720"
   },
@@ -2323,7 +2323,7 @@
     "name": "Lalœuf",
     "code": "54291",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54115"
   },
@@ -2331,7 +2331,7 @@
     "name": "Lamath",
     "code": "54292",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54300"
   },
@@ -2339,7 +2339,7 @@
     "name": "Landécourt",
     "code": "54293",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54360"
   },
@@ -2347,7 +2347,7 @@
     "name": "Landremont",
     "code": "54294",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54380"
   },
@@ -2355,7 +2355,7 @@
     "name": "Landres",
     "code": "54295",
     "epci_code": "200070290",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54970"
   },
@@ -2363,7 +2363,7 @@
     "name": "Laneuvelotte",
     "code": "54296",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54280"
   },
@@ -2371,7 +2371,7 @@
     "name": "Laneuveville-aux-Bois",
     "code": "54297",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -2379,7 +2379,7 @@
     "name": "Laneuveville-derrière-Foug",
     "code": "54298",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54570"
   },
@@ -2387,7 +2387,7 @@
     "name": "Laneuveville-devant-Bayon",
     "code": "54299",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54740"
   },
@@ -2395,7 +2395,7 @@
     "name": "Laneuveville-devant-Nancy",
     "code": "54300",
     "epci_code": "245400676",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54410"
   },
@@ -2403,7 +2403,7 @@
     "name": "Lanfroicourt",
     "code": "54301",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54760"
   },
@@ -2411,7 +2411,7 @@
     "name": "Lantéfontaine",
     "code": "54302",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54150"
   },
@@ -2419,7 +2419,7 @@
     "name": "Laronxe",
     "code": "54303",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54950"
   },
@@ -2427,7 +2427,7 @@
     "name": "Laxou",
     "code": "54304",
     "epci_code": "245400676",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54520"
   },
@@ -2435,7 +2435,7 @@
     "name": "Lay-Saint-Christophe",
     "code": "54305",
     "epci_code": "245400601",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54690"
   },
@@ -2443,7 +2443,7 @@
     "name": "Lay-Saint-Remy",
     "code": "54306",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54570"
   },
@@ -2451,7 +2451,7 @@
     "name": "Lebeuville",
     "code": "54307",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54740"
   },
@@ -2459,7 +2459,7 @@
     "name": "Leintrey",
     "code": "54308",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -2467,7 +2467,7 @@
     "name": "Lemainville",
     "code": "54309",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54740"
   },
@@ -2475,7 +2475,7 @@
     "name": "Leménil-Mitry",
     "code": "54310",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54740"
   },
@@ -2483,7 +2483,7 @@
     "name": "Lenoncourt",
     "code": "54311",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54110"
   },
@@ -2491,7 +2491,7 @@
     "name": "Lesménils",
     "code": "54312",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54700"
   },
@@ -2499,7 +2499,7 @@
     "name": "Létricourt",
     "code": "54313",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54610"
   },
@@ -2507,7 +2507,7 @@
     "name": "Lexy",
     "code": "54314",
     "epci_code": "245400262",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54720"
   },
@@ -2515,7 +2515,7 @@
     "name": "Leyr",
     "code": "54315",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54760"
   },
@@ -2523,7 +2523,7 @@
     "name": "Limey-Remenauville",
     "code": "54316",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -2531,7 +2531,7 @@
     "name": "Lironville",
     "code": "54317",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -2539,7 +2539,7 @@
     "name": "Liverdun",
     "code": "54318",
     "epci_code": "245400601",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54460"
   },
@@ -2547,7 +2547,7 @@
     "name": "Loisy",
     "code": "54320",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54700"
   },
@@ -2555,7 +2555,7 @@
     "name": "Longlaville",
     "code": "54321",
     "epci_code": "245400262",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54810"
   },
@@ -2563,7 +2563,7 @@
     "name": "Longuyon",
     "code": "54322",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54260"
   },
@@ -2571,7 +2571,7 @@
     "name": "Longwy",
     "code": "54323",
     "epci_code": "245400262",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54400"
   },
@@ -2579,7 +2579,7 @@
     "name": "Lorey",
     "code": "54324",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54290"
   },
@@ -2587,7 +2587,7 @@
     "name": "Loromontzey",
     "code": "54325",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54290"
   },
@@ -2595,7 +2595,7 @@
     "name": "Lubey",
     "code": "54326",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54150"
   },
@@ -2603,7 +2603,7 @@
     "name": "Lucey",
     "code": "54327",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54200"
   },
@@ -2611,7 +2611,7 @@
     "name": "Ludres",
     "code": "54328",
     "epci_code": "245400676",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54710"
   },
@@ -2619,7 +2619,7 @@
     "name": "Lunéville",
     "code": "54329",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54300"
   },
@@ -2627,7 +2627,7 @@
     "name": "Lupcourt",
     "code": "54330",
     "epci_code": "245400189",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54210"
   },
@@ -2635,7 +2635,7 @@
     "name": "Magnières",
     "code": "54331",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54129"
   },
@@ -2643,7 +2643,7 @@
     "name": "Maidières",
     "code": "54332",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54700"
   },
@@ -2651,7 +2651,7 @@
     "name": "Mailly-sur-Seille",
     "code": "54333",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54610"
   },
@@ -2659,7 +2659,7 @@
     "name": "Mairy-Mainville",
     "code": "54334",
     "epci_code": "200070290",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54150"
   },
@@ -2667,7 +2667,7 @@
     "name": "Maixe",
     "code": "54335",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -2675,7 +2675,7 @@
     "name": "Maizières",
     "code": "54336",
     "epci_code": "245400171",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54550"
   },
@@ -2683,7 +2683,7 @@
     "name": "Malavillers",
     "code": "54337",
     "epci_code": "200070290",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54560"
   },
@@ -2691,7 +2691,7 @@
     "name": "Malleloy",
     "code": "54338",
     "epci_code": "245400601",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54670"
   },
@@ -2699,7 +2699,7 @@
     "name": "Malzéville",
     "code": "54339",
     "epci_code": "245400676",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54220"
   },
@@ -2707,7 +2707,7 @@
     "name": "Mamey",
     "code": "54340",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -2715,7 +2715,7 @@
     "name": "Mandres-aux-Quatre-Tours",
     "code": "54343",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -2723,7 +2723,7 @@
     "name": "Mangonville",
     "code": "54344",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54290"
   },
@@ -2731,7 +2731,7 @@
     "name": "Manoncourt-en-Vermois",
     "code": "54345",
     "epci_code": "245400189",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54210"
   },
@@ -2739,7 +2739,7 @@
     "name": "Manoncourt-en-Woëvre",
     "code": "54346",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54385"
   },
@@ -2747,7 +2747,7 @@
     "name": "Manonville",
     "code": "54348",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54385"
   },
@@ -2755,7 +2755,7 @@
     "name": "Manonviller",
     "code": "54349",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54300"
   },
@@ -2763,7 +2763,7 @@
     "name": "Marainviller",
     "code": "54350",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54300"
   },
@@ -2771,7 +2771,7 @@
     "name": "Marbache",
     "code": "54351",
     "epci_code": "245400601",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54820"
   },
@@ -2779,7 +2779,7 @@
     "name": "Maron",
     "code": "54352",
     "epci_code": "245400171",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54230"
   },
@@ -2787,7 +2787,7 @@
     "name": "Mars-la-Tour",
     "code": "54353",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -2795,7 +2795,7 @@
     "name": "Marthemont",
     "code": "54354",
     "epci_code": "245400171",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54330"
   },
@@ -2803,7 +2803,7 @@
     "name": "Martincourt",
     "code": "54355",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54380"
   },
@@ -2811,7 +2811,7 @@
     "name": "Mattexey",
     "code": "54356",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54830"
   },
@@ -2819,7 +2819,7 @@
     "name": "Maxéville",
     "code": "54357",
     "epci_code": "245400676",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54320"
   },
@@ -2827,7 +2827,7 @@
     "name": "Mazerulles",
     "code": "54358",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54280"
   },
@@ -2835,7 +2835,7 @@
     "name": "Méhoncourt",
     "code": "54359",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54360"
   },
@@ -2843,7 +2843,7 @@
     "name": "Ménil-la-Tour",
     "code": "54360",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54200"
   },
@@ -2851,7 +2851,7 @@
     "name": "Mercy-le-Bas",
     "code": "54362",
     "epci_code": "200070290",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54960"
   },
@@ -2859,7 +2859,7 @@
     "name": "Mercy-le-Haut",
     "code": "54363",
     "epci_code": "200070290",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54560"
   },
@@ -2867,7 +2867,7 @@
     "name": "Méréville",
     "code": "54364",
     "epci_code": "245400171",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54850"
   },
@@ -2875,7 +2875,7 @@
     "name": "Merviller",
     "code": "54365",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54120"
   },
@@ -2883,7 +2883,7 @@
     "name": "Messein",
     "code": "54366",
     "epci_code": "245400171",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54850"
   },
@@ -2891,7 +2891,7 @@
     "name": "Mexy",
     "code": "54367",
     "epci_code": "245400262",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54135"
   },
@@ -2899,7 +2899,7 @@
     "name": "Mignéville",
     "code": "54368",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54540"
   },
@@ -2907,7 +2907,7 @@
     "name": "Millery",
     "code": "54369",
     "epci_code": "245400601",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54670"
   },
@@ -2915,7 +2915,7 @@
     "name": "Minorville",
     "code": "54370",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54385"
   },
@@ -2923,7 +2923,7 @@
     "name": "Moineville",
     "code": "54371",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54580"
   },
@@ -2931,7 +2931,7 @@
     "name": "Moivrons",
     "code": "54372",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54760"
   },
@@ -2939,7 +2939,7 @@
     "name": "Moncel-lès-Lunéville",
     "code": "54373",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54300"
   },
@@ -2947,7 +2947,7 @@
     "name": "Moncel-sur-Seille",
     "code": "54374",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54280"
   },
@@ -2955,7 +2955,7 @@
     "name": "Montauville",
     "code": "54375",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54700"
   },
@@ -2963,7 +2963,7 @@
     "name": "Montenoy",
     "code": "54376",
     "epci_code": "245400601",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54760"
   },
@@ -2971,7 +2971,7 @@
     "name": "Montigny",
     "code": "54377",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54540"
   },
@@ -2979,7 +2979,7 @@
     "name": "Montigny-sur-Chiers",
     "code": "54378",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54870"
   },
@@ -2987,7 +2987,7 @@
     "name": "Mont-l’Étroit",
     "code": "54379",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54170"
   },
@@ -2995,7 +2995,7 @@
     "name": "Mont-le-Vignoble",
     "code": "54380",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54113"
   },
@@ -3003,7 +3003,7 @@
     "name": "Montreux",
     "code": "54381",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -3011,7 +3011,7 @@
     "name": "Mont-Saint-Martin",
     "code": "54382",
     "epci_code": "245400262",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54350"
   },
@@ -3019,7 +3019,7 @@
     "name": "Mont-sur-Meurthe",
     "code": "54383",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54360"
   },
@@ -3027,7 +3027,7 @@
     "name": "Morfontaine",
     "code": "54385",
     "epci_code": "245400262",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54920"
   },
@@ -3035,7 +3035,7 @@
     "name": "Moriviller",
     "code": "54386",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54830"
   },
@@ -3043,7 +3043,7 @@
     "name": "Morville-sur-Seille",
     "code": "54387",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54700"
   },
@@ -3051,7 +3051,7 @@
     "name": "Mouacourt",
     "code": "54388",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -3059,7 +3059,7 @@
     "name": "Mouaville",
     "code": "54389",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -3067,7 +3067,7 @@
     "name": "Mousson",
     "code": "54390",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54700"
   },
@@ -3075,7 +3075,7 @@
     "name": "Moutiers",
     "code": "54391",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54660"
   },
@@ -3083,7 +3083,7 @@
     "name": "Moutrot",
     "code": "54392",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54113"
   },
@@ -3091,7 +3091,7 @@
     "name": "Moyen",
     "code": "54393",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54118"
   },
@@ -3099,7 +3099,7 @@
     "name": "Murville",
     "code": "54394",
     "epci_code": "200070290",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54490"
   },
@@ -3107,7 +3107,7 @@
     "name": "Nancy",
     "code": "54395",
     "epci_code": "245400676",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54000"
   },
@@ -3115,7 +3115,7 @@
     "name": "Nancy",
     "code": "54395",
     "epci_code": "245400676",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54100"
   },
@@ -3123,7 +3123,7 @@
     "name": "Neufmaisons",
     "code": "54396",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54540"
   },
@@ -3131,7 +3131,7 @@
     "name": "Neuves-Maisons",
     "code": "54397",
     "epci_code": "245400171",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54230"
   },
@@ -3139,7 +3139,7 @@
     "name": "Neuviller-lès-Badonviller",
     "code": "54398",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54540"
   },
@@ -3147,7 +3147,7 @@
     "name": "Neuviller-sur-Moselle",
     "code": "54399",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54290"
   },
@@ -3155,7 +3155,7 @@
     "name": "Nomeny",
     "code": "54400",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54610"
   },
@@ -3163,7 +3163,7 @@
     "name": "Nonhigny",
     "code": "54401",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -3171,7 +3171,7 @@
     "name": "Norroy-le-Sec",
     "code": "54402",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54150"
   },
@@ -3179,7 +3179,7 @@
     "name": "Norroy-lès-Pont-à-Mousson",
     "code": "54403",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54700"
   },
@@ -3187,7 +3187,7 @@
     "name": "Noviant-aux-Prés",
     "code": "54404",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54385"
   },
@@ -3195,7 +3195,7 @@
     "name": "Ochey",
     "code": "54405",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54170"
   },
@@ -3203,7 +3203,7 @@
     "name": "Ogéviller",
     "code": "54406",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -3211,7 +3211,7 @@
     "name": "Ognéville",
     "code": "54407",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54330"
   },
@@ -3219,7 +3219,7 @@
     "name": "Olley",
     "code": "54408",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -3227,7 +3227,7 @@
     "name": "Omelmont",
     "code": "54409",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54330"
   },
@@ -3235,7 +3235,7 @@
     "name": "Onville",
     "code": "54410",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54890"
   },
@@ -3243,7 +3243,7 @@
     "name": "Ormes-et-Ville",
     "code": "54411",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54740"
   },
@@ -3251,7 +3251,7 @@
     "name": "Othe",
     "code": "54412",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54260"
   },
@@ -3259,7 +3259,7 @@
     "name": "Ozerailles",
     "code": "54413",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54150"
   },
@@ -3267,7 +3267,7 @@
     "name": "Pagney-derrière-Barine",
     "code": "54414",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54200"
   },
@@ -3275,7 +3275,7 @@
     "name": "Pagny-sur-Moselle",
     "code": "54415",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54530"
   },
@@ -3283,7 +3283,7 @@
     "name": "Pannes",
     "code": "54416",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -3291,7 +3291,7 @@
     "name": "Parey-Saint-Césaire",
     "code": "54417",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54330"
   },
@@ -3299,7 +3299,7 @@
     "name": "Parroy",
     "code": "54418",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -3307,7 +3307,7 @@
     "name": "Parux",
     "code": "54419",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54480"
   },
@@ -3315,7 +3315,7 @@
     "name": "Petit-Failly",
     "code": "54420",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54260"
   },
@@ -3323,7 +3323,7 @@
     "name": "Petitmont",
     "code": "54421",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54480"
   },
@@ -3331,7 +3331,7 @@
     "name": "Pettonville",
     "code": "54422",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54120"
   },
@@ -3339,7 +3339,7 @@
     "name": "Pexonne",
     "code": "54423",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54540"
   },
@@ -3347,7 +3347,7 @@
     "name": "Phlin",
     "code": "54424",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54610"
   },
@@ -3355,7 +3355,7 @@
     "name": "Piennes",
     "code": "54425",
     "epci_code": "200070290",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54490"
   },
@@ -3363,7 +3363,7 @@
     "name": "Pierre-la-Treiche",
     "code": "54426",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54200"
   },
@@ -3371,7 +3371,7 @@
     "name": "Pierre-Percée",
     "code": "54427",
     "epci_code": "200071066",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54540"
   },
@@ -3379,7 +3379,7 @@
     "name": "Pierrepont",
     "code": "54428",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54620"
   },
@@ -3387,7 +3387,7 @@
     "name": "Pierreville",
     "code": "54429",
     "epci_code": "245400171",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54160"
   },
@@ -3395,7 +3395,7 @@
     "name": "Pompey",
     "code": "54430",
     "epci_code": "245400601",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54340"
   },
@@ -3403,7 +3403,7 @@
     "name": "Pont-à-Mousson",
     "code": "54431",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54700"
   },
@@ -3411,7 +3411,7 @@
     "name": "Pont-Saint-Vincent",
     "code": "54432",
     "epci_code": "245400171",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54550"
   },
@@ -3419,7 +3419,7 @@
     "name": "Port-sur-Seille",
     "code": "54433",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54700"
   },
@@ -3427,7 +3427,7 @@
     "name": "Praye",
     "code": "54434",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54116"
   },
@@ -3435,7 +3435,7 @@
     "name": "Prény",
     "code": "54435",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54530"
   },
@@ -3443,7 +3443,7 @@
     "name": "Preutin-Higny",
     "code": "54436",
     "epci_code": "200070290",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54490"
   },
@@ -3451,7 +3451,7 @@
     "name": "Pulligny",
     "code": "54437",
     "epci_code": "245400171",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54160"
   },
@@ -3459,7 +3459,7 @@
     "name": "Pulney",
     "code": "54438",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54115"
   },
@@ -3467,7 +3467,7 @@
     "name": "Pulnoy",
     "code": "54439",
     "epci_code": "245400676",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54425"
   },
@@ -3475,7 +3475,7 @@
     "name": "Puxe",
     "code": "54440",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -3483,7 +3483,7 @@
     "name": "Puxieux",
     "code": "54441",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -3491,7 +3491,7 @@
     "name": "Quevilloncourt",
     "code": "54442",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54330"
   },
@@ -3499,7 +3499,7 @@
     "name": "Raon-lès-Leau",
     "code": "54443",
     "epci_code": "200071066",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54540"
   },
@@ -3507,7 +3507,7 @@
     "name": "Raucourt",
     "code": "54444",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54610"
   },
@@ -3515,7 +3515,7 @@
     "name": "Raville-sur-Sânon",
     "code": "54445",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -3523,7 +3523,7 @@
     "name": "Réchicourt-la-Petite",
     "code": "54446",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -3531,7 +3531,7 @@
     "name": "Réclonville",
     "code": "54447",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -3539,7 +3539,7 @@
     "name": "Rehainviller",
     "code": "54449",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54300"
   },
@@ -3547,7 +3547,7 @@
     "name": "Reherrey",
     "code": "54450",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54120"
   },
@@ -3555,7 +3555,7 @@
     "name": "Réhon",
     "code": "54451",
     "epci_code": "245400262",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54430"
   },
@@ -3563,7 +3563,7 @@
     "name": "Reillon",
     "code": "54452",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -3571,7 +3571,7 @@
     "name": "Rembercourt-sur-Mad",
     "code": "54453",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -3579,7 +3579,7 @@
     "name": "Remenoville",
     "code": "54455",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54830"
   },
@@ -3587,7 +3587,7 @@
     "name": "Réméréville",
     "code": "54456",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54110"
   },
@@ -3595,7 +3595,7 @@
     "name": "Remoncourt",
     "code": "54457",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -3603,7 +3603,7 @@
     "name": "Repaix",
     "code": "54458",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -3611,7 +3611,7 @@
     "name": "Richardménil",
     "code": "54459",
     "epci_code": "245400171",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54630"
   },
@@ -3619,7 +3619,7 @@
     "name": "Rogéville",
     "code": "54460",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54380"
   },
@@ -3627,7 +3627,7 @@
     "name": "Romain",
     "code": "54461",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54360"
   },
@@ -3635,7 +3635,7 @@
     "name": "Rosières-aux-Salines",
     "code": "54462",
     "epci_code": "245400189",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54110"
   },
@@ -3643,7 +3643,7 @@
     "name": "Rosières-en-Haye",
     "code": "54463",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54385"
   },
@@ -3651,7 +3651,7 @@
     "name": "Rouves",
     "code": "54464",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54610"
   },
@@ -3659,7 +3659,7 @@
     "name": "Roville-devant-Bayon",
     "code": "54465",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54290"
   },
@@ -3667,7 +3667,7 @@
     "name": "Royaumeix",
     "code": "54466",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54200"
   },
@@ -3675,7 +3675,7 @@
     "name": "Rozelieures",
     "code": "54467",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54290"
   },
@@ -3683,7 +3683,7 @@
     "name": "Saffais",
     "code": "54468",
     "epci_code": "245400189",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54210"
   },
@@ -3691,7 +3691,7 @@
     "name": "Saint-Ail",
     "code": "54469",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54580"
   },
@@ -3699,7 +3699,7 @@
     "name": "Saint-Baussant",
     "code": "54470",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -3707,7 +3707,7 @@
     "name": "Saint-Boingt",
     "code": "54471",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54290"
   },
@@ -3715,7 +3715,7 @@
     "name": "Saint-Clément",
     "code": "54472",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54950"
   },
@@ -3723,7 +3723,7 @@
     "name": "Saint-Firmin",
     "code": "54473",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54930"
   },
@@ -3731,7 +3731,7 @@
     "name": "Sainte-Geneviève",
     "code": "54474",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54700"
   },
@@ -3739,7 +3739,7 @@
     "name": "Saint-Germain",
     "code": "54475",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54290"
   },
@@ -3747,7 +3747,7 @@
     "name": "Saint-Jean-lès-Longuyon",
     "code": "54476",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54260"
   },
@@ -3755,7 +3755,7 @@
     "name": "Saint-Julien-lès-Gorze",
     "code": "54477",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -3763,7 +3763,7 @@
     "name": "Saint-Marcel",
     "code": "54478",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -3771,7 +3771,7 @@
     "name": "Saint-Mard",
     "code": "54479",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54290"
   },
@@ -3779,7 +3779,7 @@
     "name": "Saint-Martin",
     "code": "54480",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -3787,7 +3787,7 @@
     "name": "Saint-Maurice-aux-Forges",
     "code": "54481",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54540"
   },
@@ -3795,7 +3795,7 @@
     "name": "Saint-Max",
     "code": "54482",
     "epci_code": "245400676",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54130"
   },
@@ -3803,7 +3803,7 @@
     "name": "Saint-Nicolas-de-Port",
     "code": "54483",
     "epci_code": "245400189",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54210"
   },
@@ -3811,7 +3811,7 @@
     "name": "Sainte-Pôle",
     "code": "54484",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54540"
   },
@@ -3819,7 +3819,7 @@
     "name": "Saint-Pancré",
     "code": "54485",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54730"
   },
@@ -3827,7 +3827,7 @@
     "name": "Saint-Remimont",
     "code": "54486",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54740"
   },
@@ -3835,7 +3835,7 @@
     "name": "Saint-Rémy-aux-Bois",
     "code": "54487",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54290"
   },
@@ -3843,7 +3843,7 @@
     "name": "Saint-Sauveur",
     "code": "54488",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54480"
   },
@@ -3851,7 +3851,7 @@
     "name": "Saint-Supplet",
     "code": "54489",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54620"
   },
@@ -3859,7 +3859,7 @@
     "name": "Saizerais",
     "code": "54490",
     "epci_code": "245400601",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54380"
   },
@@ -3867,7 +3867,7 @@
     "name": "Sancy",
     "code": "54491",
     "epci_code": "200070290",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54560"
   },
@@ -3875,7 +3875,7 @@
     "name": "Sanzey",
     "code": "54492",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54200"
   },
@@ -3883,7 +3883,7 @@
     "name": "Saulnes",
     "code": "54493",
     "epci_code": "245400262",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54650"
   },
@@ -3891,7 +3891,7 @@
     "name": "Saulxerotte",
     "code": "54494",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54115"
   },
@@ -3899,7 +3899,7 @@
     "name": "Saulxures-lès-Nancy",
     "code": "54495",
     "epci_code": "245400676",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54420"
   },
@@ -3907,7 +3907,7 @@
     "name": "Saulxures-lès-Vannes",
     "code": "54496",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54170"
   },
@@ -3915,7 +3915,7 @@
     "name": "Saxon-Sion",
     "code": "54497",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54330"
   },
@@ -3923,7 +3923,7 @@
     "name": "Seichamps",
     "code": "54498",
     "epci_code": "245400676",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54280"
   },
@@ -3931,7 +3931,7 @@
     "name": "Seicheprey",
     "code": "54499",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -3939,7 +3939,7 @@
     "name": "Selaincourt",
     "code": "54500",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54170"
   },
@@ -3947,7 +3947,7 @@
     "name": "Seranville",
     "code": "54501",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54830"
   },
@@ -3955,7 +3955,7 @@
     "name": "Serres",
     "code": "54502",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -3963,7 +3963,7 @@
     "name": "Serrouville",
     "code": "54504",
     "epci_code": "200070290",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54560"
   },
@@ -3971,7 +3971,7 @@
     "name": "Sexey-aux-Forges",
     "code": "54505",
     "epci_code": "245400171",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54550"
   },
@@ -3979,7 +3979,7 @@
     "name": "Sionviller",
     "code": "54507",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54300"
   },
@@ -3987,7 +3987,7 @@
     "name": "Sivry",
     "code": "54508",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54610"
   },
@@ -3995,7 +3995,7 @@
     "name": "Sommerviller",
     "code": "54509",
     "epci_code": "245400189",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54110"
   },
@@ -4003,7 +4003,7 @@
     "name": "Sornéville",
     "code": "54510",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54280"
   },
@@ -4011,7 +4011,7 @@
     "name": "Sponville",
     "code": "54511",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -4019,7 +4019,7 @@
     "name": "Tanconville",
     "code": "54512",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54480"
   },
@@ -4027,7 +4027,7 @@
     "name": "Tantonville",
     "code": "54513",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54116"
   },
@@ -4035,7 +4035,7 @@
     "name": "Tellancourt",
     "code": "54514",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54260"
   },
@@ -4043,7 +4043,7 @@
     "name": "Thélod",
     "code": "54515",
     "epci_code": "245400171",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54330"
   },
@@ -4051,7 +4051,7 @@
     "name": "They-sous-Vaudemont",
     "code": "54516",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54930"
   },
@@ -4059,7 +4059,7 @@
     "name": "Thézey-Saint-Martin",
     "code": "54517",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54610"
   },
@@ -4067,7 +4067,7 @@
     "name": "Thiaucourt-Regniéville",
     "code": "54518",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -4075,7 +4075,7 @@
     "name": "Thiaville-sur-Meurthe",
     "code": "54519",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54120"
   },
@@ -4083,7 +4083,7 @@
     "name": "Thiébauménil",
     "code": "54520",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54300"
   },
@@ -4091,7 +4091,7 @@
     "name": "Thil",
     "code": "54521",
     "epci_code": "245701404",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54880"
   },
@@ -4099,7 +4099,7 @@
     "name": "Thorey-Lyautey",
     "code": "54522",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54115"
   },
@@ -4107,7 +4107,7 @@
     "name": "Thuilley-aux-Groseilles",
     "code": "54523",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54170"
   },
@@ -4115,7 +4115,7 @@
     "name": "Thumeréville",
     "code": "54524",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -4123,7 +4123,7 @@
     "name": "Tiercelet",
     "code": "54525",
     "epci_code": "245400262",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54190"
   },
@@ -4131,7 +4131,7 @@
     "name": "Tomblaine",
     "code": "54526",
     "epci_code": "245400676",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54510"
   },
@@ -4139,7 +4139,7 @@
     "name": "Tonnoy",
     "code": "54527",
     "epci_code": "245400189",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54210"
   },
@@ -4147,7 +4147,7 @@
     "name": "Toul",
     "code": "54528",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54200"
   },
@@ -4155,7 +4155,7 @@
     "name": "Tramont-Émy",
     "code": "54529",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54115"
   },
@@ -4163,7 +4163,7 @@
     "name": "Tramont-Lassus",
     "code": "54530",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54115"
   },
@@ -4171,7 +4171,7 @@
     "name": "Tramont-Saint-André",
     "code": "54531",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54115"
   },
@@ -4179,7 +4179,7 @@
     "name": "Tremblecourt",
     "code": "54532",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54385"
   },
@@ -4187,7 +4187,7 @@
     "name": "Trieux",
     "code": "54533",
     "epci_code": "200070290",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54750"
   },
@@ -4195,7 +4195,7 @@
     "name": "Trondes",
     "code": "54534",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54570"
   },
@@ -4203,7 +4203,7 @@
     "name": "Tronville",
     "code": "54535",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -4211,7 +4211,7 @@
     "name": "Tucquegnieux",
     "code": "54536",
     "epci_code": "200070290",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54640"
   },
@@ -4219,7 +4219,7 @@
     "name": "Ugny",
     "code": "54537",
     "epci_code": "245400262",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54870"
   },
@@ -4227,7 +4227,7 @@
     "name": "Uruffe",
     "code": "54538",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54112"
   },
@@ -4235,7 +4235,7 @@
     "name": "Vacqueville",
     "code": "54539",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54540"
   },
@@ -4243,7 +4243,7 @@
     "name": "Val-et-Châtillon",
     "code": "54540",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54480"
   },
@@ -4251,7 +4251,7 @@
     "name": "Valhey",
     "code": "54541",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -4259,7 +4259,7 @@
     "name": "Valleroy",
     "code": "54542",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54910"
   },
@@ -4267,7 +4267,7 @@
     "name": "Vallois",
     "code": "54543",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54830"
   },
@@ -4275,7 +4275,7 @@
     "name": "Vandelainville",
     "code": "54544",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54890"
   },
@@ -4283,7 +4283,7 @@
     "name": "Vandeléville",
     "code": "54545",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54115"
   },
@@ -4291,7 +4291,7 @@
     "name": "Vandières",
     "code": "54546",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54121"
   },
@@ -4299,7 +4299,7 @@
     "name": "Vandœuvre-lès-Nancy",
     "code": "54547",
     "epci_code": "245400676",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54500"
   },
@@ -4307,7 +4307,7 @@
     "name": "Vannes-le-Châtel",
     "code": "54548",
     "epci_code": "245400510",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54112"
   },
@@ -4315,7 +4315,7 @@
     "name": "Varangéville",
     "code": "54549",
     "epci_code": "245400189",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54110"
   },
@@ -4323,7 +4323,7 @@
     "name": "Vathiménil",
     "code": "54550",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54122"
   },
@@ -4331,7 +4331,7 @@
     "name": "Vaucourt",
     "code": "54551",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -4339,7 +4339,7 @@
     "name": "Vaudémont",
     "code": "54552",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54330"
   },
@@ -4347,7 +4347,7 @@
     "name": "Vaudeville",
     "code": "54553",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54740"
   },
@@ -4355,7 +4355,7 @@
     "name": "Vaudigny",
     "code": "54554",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54740"
   },
@@ -4363,7 +4363,7 @@
     "name": "Vaxainville",
     "code": "54555",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54120"
   },
@@ -4371,7 +4371,7 @@
     "name": "Vého",
     "code": "54556",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -4379,7 +4379,7 @@
     "name": "Bois-de-Haye",
     "code": "54557",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54840"
   },
@@ -4387,7 +4387,7 @@
     "name": "Velaine-sous-Amance",
     "code": "54558",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54280"
   },
@@ -4395,7 +4395,7 @@
     "name": "Velle-sur-Moselle",
     "code": "54559",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54290"
   },
@@ -4403,7 +4403,7 @@
     "name": "Veney",
     "code": "54560",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54540"
   },
@@ -4411,7 +4411,7 @@
     "name": "Vennezey",
     "code": "54561",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54830"
   },
@@ -4419,7 +4419,7 @@
     "name": "Verdenal",
     "code": "54562",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54450"
   },
@@ -4427,7 +4427,7 @@
     "name": "Vézelise",
     "code": "54563",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54330"
   },
@@ -4435,7 +4435,7 @@
     "name": "Viéville-en-Haye",
     "code": "54564",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -4443,7 +4443,7 @@
     "name": "Vigneulles",
     "code": "54565",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54360"
   },
@@ -4451,7 +4451,7 @@
     "name": "Vilcey-sur-Trey",
     "code": "54566",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54700"
   },
@@ -4459,7 +4459,7 @@
     "name": "Villacourt",
     "code": "54567",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54290"
   },
@@ -4467,7 +4467,7 @@
     "name": "Ville-au-Montois",
     "code": "54568",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54620"
   },
@@ -4475,7 +4475,7 @@
     "name": "Ville-au-Val",
     "code": "54569",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54380"
   },
@@ -4483,7 +4483,7 @@
     "name": "Villecey-sur-Mad",
     "code": "54570",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54890"
   },
@@ -4491,7 +4491,7 @@
     "name": "Ville-en-Vermois",
     "code": "54571",
     "epci_code": "245400189",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54210"
   },
@@ -4499,7 +4499,7 @@
     "name": "Ville-Houdlémont",
     "code": "54572",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54730"
   },
@@ -4507,7 +4507,7 @@
     "name": "Villers-en-Haye",
     "code": "54573",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54380"
   },
@@ -4515,7 +4515,7 @@
     "name": "Villers-la-Chèvre",
     "code": "54574",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54870"
   },
@@ -4523,7 +4523,7 @@
     "name": "Villers-la-Montagne",
     "code": "54575",
     "epci_code": "245400262",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54920"
   },
@@ -4531,7 +4531,7 @@
     "name": "Villers-le-Rond",
     "code": "54576",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54260"
   },
@@ -4539,7 +4539,7 @@
     "name": "Villers-lès-Moivrons",
     "code": "54577",
     "epci_code": "200070589",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54760"
   },
@@ -4547,7 +4547,7 @@
     "name": "Villers-lès-Nancy",
     "code": "54578",
     "epci_code": "245400676",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54600"
   },
@@ -4555,7 +4555,7 @@
     "name": "Villers-sous-Prény",
     "code": "54579",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54700"
   },
@@ -4563,7 +4563,7 @@
     "name": "Villerupt",
     "code": "54580",
     "epci_code": "245701404",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54190"
   },
@@ -4571,7 +4571,7 @@
     "name": "Ville-sur-Yron",
     "code": "54581",
     "epci_code": "200070845",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -4579,7 +4579,7 @@
     "name": "Villette",
     "code": "54582",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54260"
   },
@@ -4587,7 +4587,7 @@
     "name": "Villey-le-Sec",
     "code": "54583",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54840"
   },
@@ -4595,7 +4595,7 @@
     "name": "Villey-Saint-Étienne",
     "code": "54584",
     "epci_code": "200070563",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54200"
   },
@@ -4603,7 +4603,7 @@
     "name": "Virecourt",
     "code": "54585",
     "epci_code": "200067643",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54290"
   },
@@ -4611,7 +4611,7 @@
     "name": "Viterne",
     "code": "54586",
     "epci_code": "245400171",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54123"
   },
@@ -4619,7 +4619,7 @@
     "name": "Vitrey",
     "code": "54587",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54330"
   },
@@ -4627,7 +4627,7 @@
     "name": "Vitrimont",
     "code": "54588",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54300"
   },
@@ -4635,7 +4635,7 @@
     "name": "Vittonville",
     "code": "54589",
     "epci_code": "200041515",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54700"
   },
@@ -4643,7 +4643,7 @@
     "name": "Viviers-sur-Chiers",
     "code": "54590",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54260"
   },
@@ -4651,7 +4651,7 @@
     "name": "Voinémont",
     "code": "54591",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54134"
   },
@@ -4659,7 +4659,7 @@
     "name": "Vroncourt",
     "code": "54592",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54330"
   },
@@ -4667,7 +4667,7 @@
     "name": "Waville",
     "code": "54593",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54890"
   },
@@ -4675,7 +4675,7 @@
     "name": "Xammes",
     "code": "54594",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54470"
   },
@@ -4683,7 +4683,7 @@
     "name": "Xermaménil",
     "code": "54595",
     "epci_code": "200070324",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54300"
   },
@@ -4691,7 +4691,7 @@
     "name": "Xeuilley",
     "code": "54596",
     "epci_code": "245400171",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54990"
   },
@@ -4699,7 +4699,7 @@
     "name": "Xirocourt",
     "code": "54597",
     "epci_code": "200035772",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54740"
   },
@@ -4707,7 +4707,7 @@
     "name": "Xivry-Circourt",
     "code": "54598",
     "epci_code": "200070290",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54490"
   },
@@ -4715,7 +4715,7 @@
     "name": "Xonville",
     "code": "54599",
     "epci_code": "200070738",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54800"
   },
@@ -4723,7 +4723,7 @@
     "name": "Xousse",
     "code": "54600",
     "epci_code": "200069433",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -4731,7 +4731,7 @@
     "name": "Xures",
     "code": "54601",
     "epci_code": "245400759",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54370"
   },
@@ -4739,7 +4739,7 @@
     "name": "Han-devant-Pierrepont",
     "code": "54602",
     "epci_code": "200043693",
-    "departement_code": "54",
+    "department_code": "54",
     "region_code": "44",
     "postal_code": "54620"
   }
