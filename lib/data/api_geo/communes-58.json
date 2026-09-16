@@ -3,7 +3,7 @@
     "name": "Achun",
     "code": "58001",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58110"
   },
@@ -11,7 +11,7 @@
     "name": "Alligny-Cosne",
     "code": "58002",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58200"
   },
@@ -19,7 +19,7 @@
     "name": "Alligny-en-Morvan",
     "code": "58003",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58230"
   },
@@ -27,7 +27,7 @@
     "name": "Alluy",
     "code": "58004",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58110"
   },
@@ -35,7 +35,7 @@
     "name": "Amazy",
     "code": "58005",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58190"
   },
@@ -43,7 +43,7 @@
     "name": "Anlezy",
     "code": "58006",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58270"
   },
@@ -51,7 +51,7 @@
     "name": "Annay",
     "code": "58007",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58450"
   },
@@ -59,7 +59,7 @@
     "name": "Anthien",
     "code": "58008",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58800"
   },
@@ -67,7 +67,7 @@
     "name": "Arbourse",
     "code": "58009",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58350"
   },
@@ -75,7 +75,7 @@
     "name": "Arleuf",
     "code": "58010",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58430"
   },
@@ -83,7 +83,7 @@
     "name": "Armes",
     "code": "58011",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58500"
   },
@@ -91,7 +91,7 @@
     "name": "Arquian",
     "code": "58012",
     "epci_code": "200067130",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58310"
   },
@@ -99,7 +99,7 @@
     "name": "Arthel",
     "code": "58013",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58700"
   },
@@ -107,7 +107,7 @@
     "name": "Arzembouy",
     "code": "58014",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58700"
   },
@@ -115,7 +115,7 @@
     "name": "Asnan",
     "code": "58015",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58420"
   },
@@ -123,7 +123,7 @@
     "name": "Asnois",
     "code": "58016",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58190"
   },
@@ -131,7 +131,7 @@
     "name": "Aunay-en-Bazois",
     "code": "58017",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58110"
   },
@@ -139,7 +139,7 @@
     "name": "Authiou",
     "code": "58018",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58700"
   },
@@ -147,7 +147,7 @@
     "name": "Avrée",
     "code": "58019",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58170"
   },
@@ -155,7 +155,7 @@
     "name": "Avril-sur-Loire",
     "code": "58020",
     "epci_code": "200067700",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58300"
   },
@@ -163,7 +163,7 @@
     "name": "Azy-le-Vif",
     "code": "58021",
     "epci_code": "245804497",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58240"
   },
@@ -171,7 +171,7 @@
     "name": "Bazoches",
     "code": "58023",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58190"
   },
@@ -179,7 +179,7 @@
     "name": "Bazolles",
     "code": "58024",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58110"
   },
@@ -187,7 +187,7 @@
     "name": "Béard",
     "code": "58025",
     "epci_code": "200067700",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58160"
   },
@@ -195,7 +195,7 @@
     "name": "Beaulieu",
     "code": "58026",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58420"
   },
@@ -203,7 +203,7 @@
     "name": "Beaumont-la-Ferrière",
     "code": "58027",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58700"
   },
@@ -211,7 +211,7 @@
     "name": "Beaumont-Sardolles",
     "code": "58028",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58270"
   },
@@ -219,7 +219,7 @@
     "name": "Beuvron",
     "code": "58029",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58210"
   },
@@ -227,7 +227,7 @@
     "name": "Biches",
     "code": "58030",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58110"
   },
@@ -235,7 +235,7 @@
     "name": "Billy-Chevannes",
     "code": "58031",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58270"
   },
@@ -243,7 +243,7 @@
     "name": "Billy-sur-Oisy",
     "code": "58032",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58500"
   },
@@ -251,7 +251,7 @@
     "name": "Bitry",
     "code": "58033",
     "epci_code": "200067130",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58310"
   },
@@ -259,7 +259,7 @@
     "name": "Blismes",
     "code": "58034",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58120"
   },
@@ -267,7 +267,7 @@
     "name": "Bona",
     "code": "58035",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58330"
   },
@@ -275,7 +275,7 @@
     "name": "Bouhy",
     "code": "58036",
     "epci_code": "200067130",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58310"
   },
@@ -283,7 +283,7 @@
     "name": "Brassy",
     "code": "58037",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58140"
   },
@@ -291,7 +291,7 @@
     "name": "Breugnon",
     "code": "58038",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58460"
   },
@@ -299,7 +299,7 @@
     "name": "Brèves",
     "code": "58039",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58530"
   },
@@ -307,7 +307,7 @@
     "name": "Brinay",
     "code": "58040",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58110"
   },
@@ -315,7 +315,7 @@
     "name": "Brinon-sur-Beuvron",
     "code": "58041",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58420"
   },
@@ -323,7 +323,7 @@
     "name": "Bulcy",
     "code": "58042",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58400"
   },
@@ -331,7 +331,7 @@
     "name": "Bussy-la-Pesle",
     "code": "58043",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58420"
   },
@@ -339,7 +339,7 @@
     "name": "La Celle-sur-Loire",
     "code": "58044",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58440"
   },
@@ -347,7 +347,7 @@
     "name": "La Celle-sur-Nièvre",
     "code": "58045",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58700"
   },
@@ -355,7 +355,7 @@
     "name": "Cercy-la-Tour",
     "code": "58046",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58340"
   },
@@ -363,7 +363,7 @@
     "name": "Cervon",
     "code": "58047",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58800"
   },
@@ -371,7 +371,7 @@
     "name": "Cessy-les-Bois",
     "code": "58048",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58220"
   },
@@ -379,7 +379,7 @@
     "name": "Chalaux",
     "code": "58049",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58140"
   },
@@ -387,7 +387,7 @@
     "name": "Challement",
     "code": "58050",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58420"
   },
@@ -395,7 +395,7 @@
     "name": "Challuy",
     "code": "58051",
     "epci_code": "245804406",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58000"
   },
@@ -403,7 +403,7 @@
     "name": "Champallement",
     "code": "58052",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58420"
   },
@@ -411,7 +411,7 @@
     "name": "Champlemy",
     "code": "58053",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58210"
   },
@@ -419,7 +419,7 @@
     "name": "Champlin",
     "code": "58054",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58700"
   },
@@ -427,7 +427,7 @@
     "name": "Champvert",
     "code": "58055",
     "epci_code": "200067700",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58300"
   },
@@ -435,7 +435,7 @@
     "name": "Champvoux",
     "code": "58056",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58400"
   },
@@ -443,7 +443,7 @@
     "name": "Chantenay-Saint-Imbert",
     "code": "58057",
     "epci_code": "245804497",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58240"
   },
@@ -451,7 +451,7 @@
     "name": "La Chapelle-Saint-André",
     "code": "58058",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58210"
   },
@@ -459,7 +459,7 @@
     "name": "La Charité-sur-Loire",
     "code": "58059",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58400"
   },
@@ -467,7 +467,7 @@
     "name": "Charrin",
     "code": "58060",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58300"
   },
@@ -475,7 +475,7 @@
     "name": "Chasnay",
     "code": "58061",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58350"
   },
@@ -483,7 +483,7 @@
     "name": "Château-Chinon (Ville)",
     "code": "58062",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58120"
   },
@@ -491,7 +491,7 @@
     "name": "Château-Chinon (Campagne)",
     "code": "58063",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58120"
   },
@@ -499,7 +499,7 @@
     "name": "Châteauneuf-Val-de-Bargis",
     "code": "58064",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58350"
   },
@@ -507,7 +507,7 @@
     "name": "Châtillon-en-Bazois",
     "code": "58065",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58110"
   },
@@ -515,7 +515,7 @@
     "name": "Châtin",
     "code": "58066",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58120"
   },
@@ -523,7 +523,7 @@
     "name": "Chaulgnes",
     "code": "58067",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58400"
   },
@@ -531,7 +531,7 @@
     "name": "Chaumard",
     "code": "58068",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58120"
   },
@@ -539,7 +539,7 @@
     "name": "Chaumot",
     "code": "58069",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58800"
   },
@@ -547,7 +547,7 @@
     "name": "Chazeuil",
     "code": "58070",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58700"
   },
@@ -555,7 +555,7 @@
     "name": "Chevannes-Changy",
     "code": "58071",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58420"
   },
@@ -563,7 +563,7 @@
     "name": "Chevenon",
     "code": "58072",
     "epci_code": "245801063",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58160"
   },
@@ -571,7 +571,7 @@
     "name": "Chevroches",
     "code": "58073",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58500"
   },
@@ -579,7 +579,7 @@
     "name": "Chiddes",
     "code": "58074",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58170"
   },
@@ -587,7 +587,7 @@
     "name": "Chitry-les-Mines",
     "code": "58075",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58800"
   },
@@ -595,7 +595,7 @@
     "name": "Chougny",
     "code": "58076",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58110"
   },
@@ -603,7 +603,7 @@
     "name": "Ciez",
     "code": "58077",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58220"
   },
@@ -611,7 +611,7 @@
     "name": "Cizely",
     "code": "58078",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58270"
   },
@@ -619,7 +619,7 @@
     "name": "Clamecy",
     "code": "58079",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58500"
   },
@@ -627,7 +627,7 @@
     "name": "La Collancelle",
     "code": "58080",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58800"
   },
@@ -635,7 +635,7 @@
     "name": "Colméry",
     "code": "58081",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58350"
   },
@@ -643,7 +643,7 @@
     "name": "Corancy",
     "code": "58082",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58120"
   },
@@ -651,7 +651,7 @@
     "name": "Corbigny",
     "code": "58083",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58800"
   },
@@ -659,7 +659,7 @@
     "name": "Corvol-d’Embernard",
     "code": "58084",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58210"
   },
@@ -667,7 +667,7 @@
     "name": "Corvol-l’Orgueilleux",
     "code": "58085",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58460"
   },
@@ -675,7 +675,7 @@
     "name": "Cosne-Cours-sur-Loire",
     "code": "58086",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58200"
   },
@@ -683,7 +683,7 @@
     "name": "Cossaye",
     "code": "58087",
     "epci_code": "200067700",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58300"
   },
@@ -691,7 +691,7 @@
     "name": "Coulanges-lès-Nevers",
     "code": "58088",
     "epci_code": "245804406",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58660"
   },
@@ -699,7 +699,7 @@
     "name": "Couloutre",
     "code": "58089",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58220"
   },
@@ -707,7 +707,7 @@
     "name": "Courcelles",
     "code": "58090",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58210"
   },
@@ -715,7 +715,7 @@
     "name": "Crux-la-Ville",
     "code": "58092",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58330"
   },
@@ -723,7 +723,7 @@
     "name": "Cuncy-lès-Varzy",
     "code": "58093",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58210"
   },
@@ -731,7 +731,7 @@
     "name": "Dampierre-sous-Bouhy",
     "code": "58094",
     "epci_code": "200067130",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58310"
   },
@@ -739,7 +739,7 @@
     "name": "Decize",
     "code": "58095",
     "epci_code": "200067700",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58300"
   },
@@ -747,7 +747,7 @@
     "name": "Devay",
     "code": "58096",
     "epci_code": "200067700",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58300"
   },
@@ -755,7 +755,7 @@
     "name": "Diennes-Aubigny",
     "code": "58097",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58340"
   },
@@ -763,7 +763,7 @@
     "name": "Dirol",
     "code": "58098",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58190"
   },
@@ -771,7 +771,7 @@
     "name": "Dommartin",
     "code": "58099",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58120"
   },
@@ -779,7 +779,7 @@
     "name": "Dompierre-sur-Nièvre",
     "code": "58101",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58350"
   },
@@ -787,7 +787,7 @@
     "name": "Donzy",
     "code": "58102",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58220"
   },
@@ -795,7 +795,7 @@
     "name": "Dornecy",
     "code": "58103",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58530"
   },
@@ -803,7 +803,7 @@
     "name": "Dornes",
     "code": "58104",
     "epci_code": "200071140",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58390"
   },
@@ -811,7 +811,7 @@
     "name": "Druy-Parigny",
     "code": "58105",
     "epci_code": "200067700",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58160"
   },
@@ -819,7 +819,7 @@
     "name": "Dun-les-Places",
     "code": "58106",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58230"
   },
@@ -827,7 +827,7 @@
     "name": "Dun-sur-Grandry",
     "code": "58107",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58110"
   },
@@ -835,7 +835,7 @@
     "name": "Empury",
     "code": "58108",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58140"
   },
@@ -843,7 +843,7 @@
     "name": "Entrains-sur-Nohain",
     "code": "58109",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58410"
   },
@@ -851,7 +851,7 @@
     "name": "Epiry",
     "code": "58110",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58800"
   },
@@ -859,7 +859,7 @@
     "name": "Fâchin",
     "code": "58111",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58430"
   },
@@ -867,7 +867,7 @@
     "name": "La Fermeté",
     "code": "58112",
     "epci_code": "200067700",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58160"
   },
@@ -875,7 +875,7 @@
     "name": "Fertrève",
     "code": "58113",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58270"
   },
@@ -883,7 +883,7 @@
     "name": "Fléty",
     "code": "58114",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58170"
   },
@@ -891,7 +891,7 @@
     "name": "Fleury-sur-Loire",
     "code": "58115",
     "epci_code": "200067700",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58240"
   },
@@ -899,7 +899,7 @@
     "name": "Flez-Cuzy",
     "code": "58116",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58190"
   },
@@ -907,7 +907,7 @@
     "name": "Fourchambault",
     "code": "58117",
     "epci_code": "245804406",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58600"
   },
@@ -915,7 +915,7 @@
     "name": "Fours",
     "code": "58118",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58250"
   },
@@ -923,7 +923,7 @@
     "name": "Frasnay-Reugny",
     "code": "58119",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58270"
   },
@@ -931,7 +931,7 @@
     "name": "Gâcogne",
     "code": "58120",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58140"
   },
@@ -939,7 +939,7 @@
     "name": "Garchizy",
     "code": "58121",
     "epci_code": "245804406",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58600"
   },
@@ -947,7 +947,7 @@
     "name": "Garchy",
     "code": "58122",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58150"
   },
@@ -955,7 +955,7 @@
     "name": "Germenay",
     "code": "58123",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58800"
   },
@@ -963,7 +963,7 @@
     "name": "Germigny-sur-Loire",
     "code": "58124",
     "epci_code": "245804406",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58320"
   },
@@ -971,7 +971,7 @@
     "name": "Gien-sur-Cure",
     "code": "58125",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58230"
   },
@@ -979,7 +979,7 @@
     "name": "Gimouille",
     "code": "58126",
     "epci_code": "245804406",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58470"
   },
@@ -987,7 +987,7 @@
     "name": "Giry",
     "code": "58127",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58700"
   },
@@ -995,7 +995,7 @@
     "name": "Glux-en-Glenne",
     "code": "58128",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58370"
   },
@@ -1003,7 +1003,7 @@
     "name": "Gouloux",
     "code": "58129",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58230"
   },
@@ -1011,7 +1011,7 @@
     "name": "Grenois",
     "code": "58130",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58420"
   },
@@ -1019,7 +1019,7 @@
     "name": "Guérigny",
     "code": "58131",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58130"
   },
@@ -1027,7 +1027,7 @@
     "name": "Guipy",
     "code": "58132",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58420"
   },
@@ -1035,7 +1035,7 @@
     "name": "Héry",
     "code": "58133",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58800"
   },
@@ -1043,7 +1043,7 @@
     "name": "Imphy",
     "code": "58134",
     "epci_code": "200067700",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58160"
   },
@@ -1051,7 +1051,7 @@
     "name": "Isenay",
     "code": "58135",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58290"
   },
@@ -1059,7 +1059,7 @@
     "name": "Jailly",
     "code": "58136",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58330"
   },
@@ -1067,7 +1067,7 @@
     "name": "Lamenay-sur-Loire",
     "code": "58137",
     "epci_code": "200067700",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58300"
   },
@@ -1075,7 +1075,7 @@
     "name": "Langeron",
     "code": "58138",
     "epci_code": "245804497",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58240"
   },
@@ -1083,7 +1083,7 @@
     "name": "Lanty",
     "code": "58139",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58250"
   },
@@ -1091,7 +1091,7 @@
     "name": "Larochemillay",
     "code": "58140",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58370"
   },
@@ -1099,7 +1099,7 @@
     "name": "Lavault-de-Frétoy",
     "code": "58141",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58230"
   },
@@ -1107,7 +1107,7 @@
     "name": "Limanton",
     "code": "58142",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58290"
   },
@@ -1115,7 +1115,7 @@
     "name": "Limon",
     "code": "58143",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58270"
   },
@@ -1123,7 +1123,7 @@
     "name": "Livry",
     "code": "58144",
     "epci_code": "245804497",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58240"
   },
@@ -1131,7 +1131,7 @@
     "name": "Lormes",
     "code": "58145",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58140"
   },
@@ -1139,7 +1139,7 @@
     "name": "Lucenay-lès-Aix",
     "code": "58146",
     "epci_code": "200067700",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58380"
   },
@@ -1147,7 +1147,7 @@
     "name": "Lurcy-le-Bourg",
     "code": "58147",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58700"
   },
@@ -1155,7 +1155,7 @@
     "name": "Luthenay-Uxeloup",
     "code": "58148",
     "epci_code": "245804497",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58240"
   },
@@ -1163,7 +1163,7 @@
     "name": "Luzy",
     "code": "58149",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58170"
   },
@@ -1171,7 +1171,7 @@
     "name": "Lys",
     "code": "58150",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58190"
   },
@@ -1179,7 +1179,7 @@
     "name": "La Machine",
     "code": "58151",
     "epci_code": "200067700",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58260"
   },
@@ -1187,7 +1187,7 @@
     "name": "Magny-Cours",
     "code": "58152",
     "epci_code": "245801063",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58470"
   },
@@ -1195,7 +1195,7 @@
     "name": "Magny-Lormes",
     "code": "58153",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58800"
   },
@@ -1203,7 +1203,7 @@
     "name": "La Maison-Dieu",
     "code": "58154",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58190"
   },
@@ -1211,7 +1211,7 @@
     "name": "La Marche",
     "code": "58155",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58400"
   },
@@ -1219,7 +1219,7 @@
     "name": "Marcy",
     "code": "58156",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58210"
   },
@@ -1227,7 +1227,7 @@
     "name": "Marigny-l’Église",
     "code": "58157",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58140"
   },
@@ -1235,7 +1235,7 @@
     "name": "Mars-sur-Allier",
     "code": "58158",
     "epci_code": "245801063",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58240"
   },
@@ -1243,7 +1243,7 @@
     "name": "Marigny-sur-Yonne",
     "code": "58159",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58800"
   },
@@ -1251,7 +1251,7 @@
     "name": "Marzy",
     "code": "58160",
     "epci_code": "245804406",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58180"
   },
@@ -1259,7 +1259,7 @@
     "name": "Maux",
     "code": "58161",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58290"
   },
@@ -1267,7 +1267,7 @@
     "name": "Menestreau",
     "code": "58162",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58410"
   },
@@ -1275,7 +1275,7 @@
     "name": "Menou",
     "code": "58163",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58210"
   },
@@ -1283,7 +1283,7 @@
     "name": "Mesves-sur-Loire",
     "code": "58164",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58400"
   },
@@ -1291,7 +1291,7 @@
     "name": "Metz-le-Comte",
     "code": "58165",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58190"
   },
@@ -1299,7 +1299,7 @@
     "name": "Mhère",
     "code": "58166",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58140"
   },
@@ -1307,7 +1307,7 @@
     "name": "Millay",
     "code": "58168",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58170"
   },
@@ -1315,7 +1315,7 @@
     "name": "Moissy-Moulinot",
     "code": "58169",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58190"
   },
@@ -1323,7 +1323,7 @@
     "name": "Monceaux-le-Comte",
     "code": "58170",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58190"
   },
@@ -1331,7 +1331,7 @@
     "name": "Montapas",
     "code": "58171",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58110"
   },
@@ -1339,7 +1339,7 @@
     "name": "Montambert",
     "code": "58172",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58250"
   },
@@ -1347,7 +1347,7 @@
     "name": "Montaron",
     "code": "58173",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58250"
   },
@@ -1355,7 +1355,7 @@
     "name": "Montenoison",
     "code": "58174",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58700"
   },
@@ -1363,7 +1363,7 @@
     "name": "Mont-et-Marré",
     "code": "58175",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58110"
   },
@@ -1371,7 +1371,7 @@
     "name": "Montigny-aux-Amognes",
     "code": "58176",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58130"
   },
@@ -1379,7 +1379,7 @@
     "name": "Montigny-en-Morvan",
     "code": "58177",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58120"
   },
@@ -1387,7 +1387,7 @@
     "name": "Montigny-sur-Canne",
     "code": "58178",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58340"
   },
@@ -1395,7 +1395,7 @@
     "name": "Montreuillon",
     "code": "58179",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58800"
   },
@@ -1403,7 +1403,7 @@
     "name": "Montsauche-les-Settons",
     "code": "58180",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58230"
   },
@@ -1411,7 +1411,7 @@
     "name": "Moraches",
     "code": "58181",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58420"
   },
@@ -1419,7 +1419,7 @@
     "name": "Moulins-Engilbert",
     "code": "58182",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58290"
   },
@@ -1427,7 +1427,7 @@
     "name": "Mouron-sur-Yonne",
     "code": "58183",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58800"
   },
@@ -1435,7 +1435,7 @@
     "name": "Moussy",
     "code": "58184",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58700"
   },
@@ -1443,7 +1443,7 @@
     "name": "Moux-en-Morvan",
     "code": "58185",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58230"
   },
@@ -1451,7 +1451,7 @@
     "name": "Murlin",
     "code": "58186",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58700"
   },
@@ -1459,7 +1459,7 @@
     "name": "Myennes",
     "code": "58187",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58440"
   },
@@ -1467,7 +1467,7 @@
     "name": "Nannay",
     "code": "58188",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58350"
   },
@@ -1475,7 +1475,7 @@
     "name": "Narcy",
     "code": "58189",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58400"
   },
@@ -1483,7 +1483,7 @@
     "name": "Neuffontaines",
     "code": "58190",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58190"
   },
@@ -1491,7 +1491,7 @@
     "name": "Neuilly",
     "code": "58191",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58420"
   },
@@ -1499,7 +1499,7 @@
     "name": "Neuville-lès-Decize",
     "code": "58192",
     "epci_code": "245804497",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58300"
   },
@@ -1507,7 +1507,7 @@
     "name": "Neuvy-sur-Loire",
     "code": "58193",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58450"
   },
@@ -1515,7 +1515,7 @@
     "name": "Nevers",
     "code": "58194",
     "epci_code": "245804406",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58000"
   },
@@ -1523,7 +1523,7 @@
     "name": "La Nocle-Maulaix",
     "code": "58195",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58250"
   },
@@ -1531,7 +1531,7 @@
     "name": "Nolay",
     "code": "58196",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58700"
   },
@@ -1539,7 +1539,7 @@
     "name": "Nuars",
     "code": "58197",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58190"
   },
@@ -1547,7 +1547,7 @@
     "name": "Oisy",
     "code": "58198",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58500"
   },
@@ -1555,7 +1555,7 @@
     "name": "Onlay",
     "code": "58199",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58370"
   },
@@ -1563,7 +1563,7 @@
     "name": "Ouagne",
     "code": "58200",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58500"
   },
@@ -1571,7 +1571,7 @@
     "name": "Oudan",
     "code": "58201",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58210"
   },
@@ -1579,7 +1579,7 @@
     "name": "Ougny",
     "code": "58202",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58110"
   },
@@ -1587,7 +1587,7 @@
     "name": "Oulon",
     "code": "58203",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58700"
   },
@@ -1595,7 +1595,7 @@
     "name": "Vaux d’Amognes",
     "code": "58204",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58130"
   },
@@ -1603,7 +1603,7 @@
     "name": "Ouroux-en-Morvan",
     "code": "58205",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58230"
   },
@@ -1611,7 +1611,7 @@
     "name": "Parigny-la-Rose",
     "code": "58206",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58210"
   },
@@ -1619,7 +1619,7 @@
     "name": "Parigny-les-Vaux",
     "code": "58207",
     "epci_code": "245804406",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58320"
   },
@@ -1627,7 +1627,7 @@
     "name": "Pazy",
     "code": "58208",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58800"
   },
@@ -1635,7 +1635,7 @@
     "name": "Perroy",
     "code": "58209",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58220"
   },
@@ -1643,7 +1643,7 @@
     "name": "Planchez",
     "code": "58210",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58230"
   },
@@ -1651,7 +1651,7 @@
     "name": "Poil",
     "code": "58211",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58170"
   },
@@ -1659,7 +1659,7 @@
     "name": "Poiseux",
     "code": "58212",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58130"
   },
@@ -1667,7 +1667,7 @@
     "name": "Pougny",
     "code": "58213",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58200"
   },
@@ -1675,7 +1675,7 @@
     "name": "Pougues-les-Eaux",
     "code": "58214",
     "epci_code": "245804406",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58320"
   },
@@ -1683,7 +1683,7 @@
     "name": "Pouilly-sur-Loire",
     "code": "58215",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58150"
   },
@@ -1691,7 +1691,7 @@
     "name": "Pouques-Lormes",
     "code": "58216",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58140"
   },
@@ -1699,7 +1699,7 @@
     "name": "Pousseaux",
     "code": "58217",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58500"
   },
@@ -1707,7 +1707,7 @@
     "name": "Prémery",
     "code": "58218",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58700"
   },
@@ -1715,7 +1715,7 @@
     "name": "Préporché",
     "code": "58219",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58360"
   },
@@ -1723,7 +1723,7 @@
     "name": "Raveau",
     "code": "58220",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58400"
   },
@@ -1731,7 +1731,7 @@
     "name": "Rémilly",
     "code": "58221",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58250"
   },
@@ -1739,7 +1739,7 @@
     "name": "Rix",
     "code": "58222",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58500"
   },
@@ -1747,7 +1747,7 @@
     "name": "Rouy",
     "code": "58223",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58110"
   },
@@ -1755,7 +1755,7 @@
     "name": "Ruages",
     "code": "58224",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58190"
   },
@@ -1763,7 +1763,7 @@
     "name": "Saincaize-Meauce",
     "code": "58225",
     "epci_code": "245804406",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58470"
   },
@@ -1771,7 +1771,7 @@
     "name": "Saint-Agnan-en-Morvan",
     "code": "58226",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58230"
   },
@@ -1779,7 +1779,7 @@
     "name": "Saint-Amand-en-Puisaye",
     "code": "58227",
     "epci_code": "200067130",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58310"
   },
@@ -1787,7 +1787,7 @@
     "name": "Saint-Andelain",
     "code": "58228",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58150"
   },
@@ -1795,7 +1795,7 @@
     "name": "Saint-André-en-Morvan",
     "code": "58229",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58140"
   },
@@ -1803,7 +1803,7 @@
     "name": "Saint-Aubin-des-Chaumes",
     "code": "58230",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58190"
   },
@@ -1811,7 +1811,7 @@
     "name": "Saint-Aubin-les-Forges",
     "code": "58231",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58130"
   },
@@ -1819,7 +1819,7 @@
     "name": "Saint-Benin-d’Azy",
     "code": "58232",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58270"
   },
@@ -1827,7 +1827,7 @@
     "name": "Saint-Benin-des-Bois",
     "code": "58233",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58330"
   },
@@ -1835,7 +1835,7 @@
     "name": "Saint-Bonnot",
     "code": "58234",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58700"
   },
@@ -1843,7 +1843,7 @@
     "name": "Saint-Brisson",
     "code": "58235",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58230"
   },
@@ -1851,7 +1851,7 @@
     "name": "Sainte-Colombe-des-Bois",
     "code": "58236",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58220"
   },
@@ -1859,7 +1859,7 @@
     "name": "Saint-Didier",
     "code": "58237",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58190"
   },
@@ -1867,7 +1867,7 @@
     "name": "Saint-Éloi",
     "code": "58238",
     "epci_code": "245804406",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58000"
   },
@@ -1875,7 +1875,7 @@
     "name": "Saint-Firmin",
     "code": "58239",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58270"
   },
@@ -1883,7 +1883,7 @@
     "name": "Saint-Franchy",
     "code": "58240",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58330"
   },
@@ -1891,7 +1891,7 @@
     "name": "Saint-Germain-Chassenay",
     "code": "58241",
     "epci_code": "200067700",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58300"
   },
@@ -1899,7 +1899,7 @@
     "name": "Saint-Germain-des-Bois",
     "code": "58242",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58210"
   },
@@ -1907,7 +1907,7 @@
     "name": "Saint-Gratien-Savigny",
     "code": "58243",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58340"
   },
@@ -1915,7 +1915,7 @@
     "name": "Saint-Hilaire-en-Morvan",
     "code": "58244",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58120"
   },
@@ -1923,7 +1923,7 @@
     "name": "Saint-Hilaire-Fontaine",
     "code": "58245",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58300"
   },
@@ -1931,7 +1931,7 @@
     "name": "Saint-Honoré-les-Bains",
     "code": "58246",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58360"
   },
@@ -1939,7 +1939,7 @@
     "name": "Saint-Jean-aux-Amognes",
     "code": "58247",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58270"
   },
@@ -1947,7 +1947,7 @@
     "name": "Saint-Laurent-l’Abbaye",
     "code": "58248",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58150"
   },
@@ -1955,7 +1955,7 @@
     "name": "Saint-Léger-de-Fougeret",
     "code": "58249",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58120"
   },
@@ -1963,7 +1963,7 @@
     "name": "Saint-Léger-des-Vignes",
     "code": "58250",
     "epci_code": "200067700",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58300"
   },
@@ -1971,7 +1971,7 @@
     "name": "Saint-Loup-des-Bois",
     "code": "58251",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58200"
   },
@@ -1979,7 +1979,7 @@
     "name": "Saint-Malo-en-Donziois",
     "code": "58252",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58350"
   },
@@ -1987,7 +1987,7 @@
     "name": "Sainte-Marie",
     "code": "58253",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58330"
   },
@@ -1995,7 +1995,7 @@
     "name": "Saint-Martin-d’Heuille",
     "code": "58254",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58130"
   },
@@ -2003,7 +2003,7 @@
     "name": "Saint-Martin-du-Puy",
     "code": "58255",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58140"
   },
@@ -2011,7 +2011,7 @@
     "name": "Saint-Martin-sur-Nohain",
     "code": "58256",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58150"
   },
@@ -2019,7 +2019,7 @@
     "name": "Saint-Maurice",
     "code": "58257",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58330"
   },
@@ -2027,7 +2027,7 @@
     "name": "Saint-Ouen-sur-Loire",
     "code": "58258",
     "epci_code": "200067700",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58160"
   },
@@ -2035,7 +2035,7 @@
     "name": "Saint-Parize-en-Viry",
     "code": "58259",
     "epci_code": "200071140",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58300"
   },
@@ -2043,7 +2043,7 @@
     "name": "Saint-Parize-le-Châtel",
     "code": "58260",
     "epci_code": "245801063",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58490"
   },
@@ -2051,7 +2051,7 @@
     "name": "Saint-Père",
     "code": "58261",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58200"
   },
@@ -2059,7 +2059,7 @@
     "name": "Saint-Péreuse",
     "code": "58262",
     "epci_code": "200067890",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58110"
   },
@@ -2067,7 +2067,7 @@
     "name": "Saint-Pierre-du-Mont",
     "code": "58263",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58210"
   },
@@ -2075,7 +2075,7 @@
     "name": "Saint-Pierre-le-Moûtier",
     "code": "58264",
     "epci_code": "245804497",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58240"
   },
@@ -2083,7 +2083,7 @@
     "name": "Saint-Quentin-sur-Nohain",
     "code": "58265",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58150"
   },
@@ -2091,7 +2091,7 @@
     "name": "Saint-Révérien",
     "code": "58266",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58420"
   },
@@ -2099,7 +2099,7 @@
     "name": "Saint-Saulge",
     "code": "58267",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58330"
   },
@@ -2107,7 +2107,7 @@
     "name": "Saint-Seine",
     "code": "58268",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58250"
   },
@@ -2115,7 +2115,7 @@
     "name": "Saint-Sulpice",
     "code": "58269",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58270"
   },
@@ -2123,7 +2123,7 @@
     "name": "Saint-Vérain",
     "code": "58270",
     "epci_code": "200067130",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58310"
   },
@@ -2131,7 +2131,7 @@
     "name": "Saizy",
     "code": "58271",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58190"
   },
@@ -2139,7 +2139,7 @@
     "name": "Sardy-lès-Épiry",
     "code": "58272",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58800"
   },
@@ -2147,7 +2147,7 @@
     "name": "Sauvigny-les-Bois",
     "code": "58273",
     "epci_code": "245801063",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58160"
   },
@@ -2155,7 +2155,7 @@
     "name": "Savigny-Poil-Fol",
     "code": "58274",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58170"
   },
@@ -2163,7 +2163,7 @@
     "name": "Saxi-Bourdon",
     "code": "58275",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58330"
   },
@@ -2171,7 +2171,7 @@
     "name": "Sémelay",
     "code": "58276",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58360"
   },
@@ -2179,7 +2179,7 @@
     "name": "Sermages",
     "code": "58277",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58290"
   },
@@ -2187,7 +2187,7 @@
     "name": "Sermoise-sur-Loire",
     "code": "58278",
     "epci_code": "245804406",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58000"
   },
@@ -2195,7 +2195,7 @@
     "name": "Sichamps",
     "code": "58279",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58700"
   },
@@ -2203,7 +2203,7 @@
     "name": "Sougy-sur-Loire",
     "code": "58280",
     "epci_code": "200067700",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58300"
   },
@@ -2211,7 +2211,7 @@
     "name": "Suilly-la-Tour",
     "code": "58281",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58150"
   },
@@ -2219,7 +2219,7 @@
     "name": "Surgy",
     "code": "58282",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58500"
   },
@@ -2227,7 +2227,7 @@
     "name": "Taconnay",
     "code": "58283",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58420"
   },
@@ -2235,7 +2235,7 @@
     "name": "Talon",
     "code": "58284",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58190"
   },
@@ -2243,7 +2243,7 @@
     "name": "Tamnay-en-Bazois",
     "code": "58285",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58110"
   },
@@ -2251,7 +2251,7 @@
     "name": "Tannay",
     "code": "58286",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58190"
   },
@@ -2259,7 +2259,7 @@
     "name": "Tazilly",
     "code": "58287",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58170"
   },
@@ -2267,7 +2267,7 @@
     "name": "Teigny",
     "code": "58288",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58190"
   },
@@ -2275,7 +2275,7 @@
     "name": "Ternant",
     "code": "58289",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58250"
   },
@@ -2283,7 +2283,7 @@
     "name": "Thaix",
     "code": "58290",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58250"
   },
@@ -2291,7 +2291,7 @@
     "name": "Thianges",
     "code": "58291",
     "epci_code": "200067700",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58260"
   },
@@ -2299,7 +2299,7 @@
     "name": "Tintury",
     "code": "58292",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58110"
   },
@@ -2307,7 +2307,7 @@
     "name": "Toury-Lurcy",
     "code": "58293",
     "epci_code": "200067700",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58300"
   },
@@ -2315,7 +2315,7 @@
     "name": "Toury-sur-Jour",
     "code": "58294",
     "epci_code": "245804497",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58240"
   },
@@ -2323,7 +2323,7 @@
     "name": "Tracy-sur-Loire",
     "code": "58295",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58150"
   },
@@ -2331,7 +2331,7 @@
     "name": "Tresnay",
     "code": "58296",
     "epci_code": "245804497",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58240"
   },
@@ -2339,7 +2339,7 @@
     "name": "Trois-Vèvres",
     "code": "58297",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58260"
   },
@@ -2347,7 +2347,7 @@
     "name": "Tronsanges",
     "code": "58298",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58400"
   },
@@ -2355,7 +2355,7 @@
     "name": "Trucy-l’Orgueilleux",
     "code": "58299",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58460"
   },
@@ -2363,7 +2363,7 @@
     "name": "Urzy",
     "code": "58300",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58130"
   },
@@ -2371,7 +2371,7 @@
     "name": "Vandenesse",
     "code": "58301",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58290"
   },
@@ -2379,7 +2379,7 @@
     "name": "Varennes-lès-Narcy",
     "code": "58302",
     "epci_code": "200068088",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58400"
   },
@@ -2387,7 +2387,7 @@
     "name": "Varennes-Vauzelles",
     "code": "58303",
     "epci_code": "245804406",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58640"
   },
@@ -2395,7 +2395,7 @@
     "name": "Varzy",
     "code": "58304",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58210"
   },
@@ -2403,7 +2403,7 @@
     "name": "Vauclaix",
     "code": "58305",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58140"
   },
@@ -2411,7 +2411,7 @@
     "name": "Verneuil",
     "code": "58306",
     "epci_code": "200067700",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58300"
   },
@@ -2419,7 +2419,7 @@
     "name": "Vielmanay",
     "code": "58307",
     "epci_code": "200067916",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58150"
   },
@@ -2427,7 +2427,7 @@
     "name": "Vignol",
     "code": "58308",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58190"
   },
@@ -2435,7 +2435,7 @@
     "name": "Villapourçon",
     "code": "58309",
     "epci_code": "200067882",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58370"
   },
@@ -2443,7 +2443,7 @@
     "name": "Villiers-le-Sec",
     "code": "58310",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58210"
   },
@@ -2451,7 +2451,7 @@
     "name": "Ville-Langy",
     "code": "58311",
     "epci_code": "200067908",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58270"
   },
@@ -2459,7 +2459,7 @@
     "name": "Villiers-sur-Yonne",
     "code": "58312",
     "epci_code": "200067429",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58500"
   },
@@ -2467,7 +2467,7 @@
     "name": "Vitry-Laché",
     "code": "58313",
     "epci_code": "200067692",
-    "departement_code": "58",
+    "department_code": "58",
     "region_code": "27",
     "postal_code": "58420"
   }

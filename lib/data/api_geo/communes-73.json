@@ -3,7 +3,7 @@
     "name": "Aiguebelette-le-Lac",
     "code": "73001",
     "epci_code": "247300668",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73610"
   },
@@ -11,7 +11,7 @@
     "name": "Grand-Aigueblanche",
     "code": "73003",
     "epci_code": "247300015",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73260"
   },
@@ -19,7 +19,7 @@
     "name": "Aillon-le-Jeune",
     "code": "73004",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73340"
   },
@@ -27,7 +27,7 @@
     "name": "Aillon-le-Vieux",
     "code": "73005",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73340"
   },
@@ -35,7 +35,7 @@
     "name": "Aime-la-Plagne",
     "code": "73006",
     "epci_code": "247300817",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73210"
   },
@@ -43,7 +43,7 @@
     "name": "Aiton",
     "code": "73007",
     "epci_code": "247300676",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73220"
   },
@@ -51,7 +51,7 @@
     "name": "Aix-les-Bains",
     "code": "73008",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73100"
   },
@@ -59,7 +59,7 @@
     "name": "Entrelacs",
     "code": "73010",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73410"
   },
@@ -67,7 +67,7 @@
     "name": "Albertville",
     "code": "73011",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73200"
   },
@@ -75,7 +75,7 @@
     "name": "Albiez-le-Jeune",
     "code": "73012",
     "epci_code": "200070464",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73300"
   },
@@ -83,7 +83,7 @@
     "name": "Albiez-Montrond",
     "code": "73013",
     "epci_code": "200070464",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73300"
   },
@@ -91,7 +91,7 @@
     "name": "Allondaz",
     "code": "73014",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73200"
   },
@@ -99,7 +99,7 @@
     "name": "Les Allues",
     "code": "73015",
     "epci_code": "200040798",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73550"
   },
@@ -107,7 +107,7 @@
     "name": "Apremont",
     "code": "73017",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73190"
   },
@@ -115,7 +115,7 @@
     "name": "Arbin",
     "code": "73018",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73800"
   },
@@ -123,7 +123,7 @@
     "name": "Argentine",
     "code": "73019",
     "epci_code": "247300676",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73220"
   },
@@ -131,7 +131,7 @@
     "name": "Arith",
     "code": "73020",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73340"
   },
@@ -139,7 +139,7 @@
     "name": "Arvillard",
     "code": "73021",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73110"
   },
@@ -147,7 +147,7 @@
     "name": "Attignat-Oncin",
     "code": "73022",
     "epci_code": "247300668",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73610"
   },
@@ -155,7 +155,7 @@
     "name": "Aussois",
     "code": "73023",
     "epci_code": "200070340",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73500"
   },
@@ -163,7 +163,7 @@
     "name": "Les Avanchers-Valmorel",
     "code": "73024",
     "epci_code": "247300015",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73260"
   },
@@ -171,7 +171,7 @@
     "name": "Avressieux",
     "code": "73025",
     "epci_code": "247300528",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73240"
   },
@@ -179,7 +179,7 @@
     "name": "Avrieux",
     "code": "73026",
     "epci_code": "200070340",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73500"
   },
@@ -187,7 +187,7 @@
     "name": "Ayn",
     "code": "73027",
     "epci_code": "247300668",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73470"
   },
@@ -195,7 +195,7 @@
     "name": "La Balme",
     "code": "73028",
     "epci_code": "247300262",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73170"
   },
@@ -203,7 +203,7 @@
     "name": "Barberaz",
     "code": "73029",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73000"
   },
@@ -211,7 +211,7 @@
     "name": "Barby",
     "code": "73030",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73230"
   },
@@ -219,7 +219,7 @@
     "name": "Bassens",
     "code": "73031",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73000"
   },
@@ -227,7 +227,7 @@
     "name": "La Bâthie",
     "code": "73032",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73540"
   },
@@ -235,7 +235,7 @@
     "name": "La Bauche",
     "code": "73033",
     "epci_code": "200040111",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73360"
   },
@@ -243,7 +243,7 @@
     "name": "Beaufort",
     "code": "73034",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73270"
   },
@@ -251,7 +251,7 @@
     "name": "Bellecombe-en-Bauges",
     "code": "73036",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73340"
   },
@@ -259,7 +259,7 @@
     "name": "Belmont-Tramonet",
     "code": "73039",
     "epci_code": "247300528",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73330"
   },
@@ -267,7 +267,7 @@
     "name": "Bessans",
     "code": "73040",
     "epci_code": "200070340",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73480"
   },
@@ -275,7 +275,7 @@
     "name": "Betton-Bettonet",
     "code": "73041",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73390"
   },
@@ -283,7 +283,7 @@
     "name": "Billième",
     "code": "73042",
     "epci_code": "247300262",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73170"
   },
@@ -291,7 +291,7 @@
     "name": "La Biolle",
     "code": "73043",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73410"
   },
@@ -299,7 +299,7 @@
     "name": "Bonneval-sur-Arc",
     "code": "73047",
     "epci_code": "200070340",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73480"
   },
@@ -307,7 +307,7 @@
     "name": "Bonvillard",
     "code": "73048",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73460"
   },
@@ -315,7 +315,7 @@
     "name": "Bonvillaret",
     "code": "73049",
     "epci_code": "247300676",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73220"
   },
@@ -323,7 +323,7 @@
     "name": "Bourdeau",
     "code": "73050",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73370"
   },
@@ -331,7 +331,7 @@
     "name": "Le Bourget-du-Lac",
     "code": "73051",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73370"
   },
@@ -339,7 +339,7 @@
     "name": "Bourget-en-Huile",
     "code": "73052",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73110"
   },
@@ -347,7 +347,7 @@
     "name": "Bourgneuf",
     "code": "73053",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73390"
   },
@@ -355,7 +355,7 @@
     "name": "Bourg-Saint-Maurice",
     "code": "73054",
     "epci_code": "247300254",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73700"
   },
@@ -363,7 +363,7 @@
     "name": "Bozel",
     "code": "73055",
     "epci_code": "200040798",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73350"
   },
@@ -371,7 +371,7 @@
     "name": "Brides-les-Bains",
     "code": "73057",
     "epci_code": "200040798",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73570"
   },
@@ -379,7 +379,7 @@
     "name": "La Bridoire",
     "code": "73058",
     "epci_code": "247300528",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73520"
   },
@@ -387,7 +387,7 @@
     "name": "Brison-Saint-Innocent",
     "code": "73059",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73100"
   },
@@ -395,7 +395,7 @@
     "name": "Césarches",
     "code": "73061",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73200"
   },
@@ -403,7 +403,7 @@
     "name": "Cevins",
     "code": "73063",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73730"
   },
@@ -411,7 +411,7 @@
     "name": "Challes-les-Eaux",
     "code": "73064",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73190"
   },
@@ -419,7 +419,7 @@
     "name": "Chambéry",
     "code": "73065",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73000"
   },
@@ -427,7 +427,7 @@
     "name": "La Chambre",
     "code": "73067",
     "epci_code": "247300361",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73130"
   },
@@ -435,7 +435,7 @@
     "name": "Chamousset",
     "code": "73068",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73390"
   },
@@ -443,7 +443,7 @@
     "name": "Chamoux-sur-Gelon",
     "code": "73069",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73390"
   },
@@ -451,7 +451,7 @@
     "name": "Champagneux",
     "code": "73070",
     "epci_code": "247300528",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73240"
   },
@@ -459,7 +459,7 @@
     "name": "Champagny-en-Vanoise",
     "code": "73071",
     "epci_code": "200040798",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73350"
   },
@@ -467,7 +467,7 @@
     "name": "Champ-Laurent",
     "code": "73072",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73390"
   },
@@ -475,7 +475,7 @@
     "name": "Chanaz",
     "code": "73073",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73310"
   },
@@ -483,7 +483,7 @@
     "name": "La Chapelle",
     "code": "73074",
     "epci_code": "247300361",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73660"
   },
@@ -491,7 +491,7 @@
     "name": "La Chapelle-Blanche",
     "code": "73075",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73110"
   },
@@ -499,7 +499,7 @@
     "name": "La Chapelle-du-Mont-du-Chat",
     "code": "73076",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73370"
   },
@@ -507,7 +507,7 @@
     "name": "Les Chapelles",
     "code": "73077",
     "epci_code": "247300254",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73700"
   },
@@ -515,7 +515,7 @@
     "name": "La Chapelle-Saint-Martin",
     "code": "73078",
     "epci_code": "247300262",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73170"
   },
@@ -523,7 +523,7 @@
     "name": "Châteauneuf",
     "code": "73079",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73390"
   },
@@ -531,7 +531,7 @@
     "name": "Le Châtelard",
     "code": "73081",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73630"
   },
@@ -539,7 +539,7 @@
     "name": "La Chavanne",
     "code": "73082",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73800"
   },
@@ -547,7 +547,7 @@
     "name": "Les Chavannes-en-Maurienne",
     "code": "73083",
     "epci_code": "247300361",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73660"
   },
@@ -555,7 +555,7 @@
     "name": "Chignin",
     "code": "73084",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73800"
   },
@@ -563,7 +563,7 @@
     "name": "Chindrieux",
     "code": "73085",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73310"
   },
@@ -571,7 +571,7 @@
     "name": "Cléry",
     "code": "73086",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73460"
   },
@@ -579,7 +579,7 @@
     "name": "Cognin",
     "code": "73087",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73160"
   },
@@ -587,7 +587,7 @@
     "name": "Cohennoz",
     "code": "73088",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73400"
   },
@@ -595,7 +595,7 @@
     "name": "Cohennoz",
     "code": "73088",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73590"
   },
@@ -603,7 +603,7 @@
     "name": "Coise-Saint-Jean-Pied-Gauthier",
     "code": "73089",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73800"
   },
@@ -611,7 +611,7 @@
     "name": "La Compôte",
     "code": "73090",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73630"
   },
@@ -619,7 +619,7 @@
     "name": "Conjux",
     "code": "73091",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73310"
   },
@@ -627,7 +627,7 @@
     "name": "Corbel",
     "code": "73092",
     "epci_code": "200040111",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73160"
   },
@@ -635,7 +635,7 @@
     "name": "Crest-Voland",
     "code": "73094",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73590"
   },
@@ -643,7 +643,7 @@
     "name": "La Croix-de-la-Rochette",
     "code": "73095",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73110"
   },
@@ -651,7 +651,7 @@
     "name": "Cruet",
     "code": "73096",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73800"
   },
@@ -659,7 +659,7 @@
     "name": "Curienne",
     "code": "73097",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73190"
   },
@@ -667,7 +667,7 @@
     "name": "Les Déserts",
     "code": "73098",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73230"
   },
@@ -675,7 +675,7 @@
     "name": "Détrier",
     "code": "73099",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73110"
   },
@@ -683,7 +683,7 @@
     "name": "Domessin",
     "code": "73100",
     "epci_code": "247300528",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73330"
   },
@@ -691,7 +691,7 @@
     "name": "Doucy-en-Bauges",
     "code": "73101",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73630"
   },
@@ -699,7 +699,7 @@
     "name": "Drumettaz-Clarafond",
     "code": "73103",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73420"
   },
@@ -707,7 +707,7 @@
     "name": "Dullin",
     "code": "73104",
     "epci_code": "247300668",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73610"
   },
@@ -715,7 +715,7 @@
     "name": "Les Échelles",
     "code": "73105",
     "epci_code": "200040111",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73360"
   },
@@ -723,7 +723,7 @@
     "name": "École",
     "code": "73106",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73630"
   },
@@ -731,7 +731,7 @@
     "name": "Entremont-le-Vieux",
     "code": "73107",
     "epci_code": "200040111",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73670"
   },
@@ -739,7 +739,7 @@
     "name": "Épierre",
     "code": "73109",
     "epci_code": "247300676",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73220"
   },
@@ -747,7 +747,7 @@
     "name": "Esserts-Blay",
     "code": "73110",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73540"
   },
@@ -755,7 +755,7 @@
     "name": "Feissons-sur-Salins",
     "code": "73113",
     "epci_code": "200040798",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73350"
   },
@@ -763,7 +763,7 @@
     "name": "Flumet",
     "code": "73114",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73590"
   },
@@ -771,7 +771,7 @@
     "name": "Fontcouverte-la-Toussuire",
     "code": "73116",
     "epci_code": "200070464",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73300"
   },
@@ -779,7 +779,7 @@
     "name": "Fourneaux",
     "code": "73117",
     "epci_code": "200070340",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73500"
   },
@@ -787,7 +787,7 @@
     "name": "Freney",
     "code": "73119",
     "epci_code": "200070340",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73500"
   },
@@ -795,7 +795,7 @@
     "name": "Fréterive",
     "code": "73120",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73250"
   },
@@ -803,7 +803,7 @@
     "name": "Frontenex",
     "code": "73121",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73460"
   },
@@ -811,7 +811,7 @@
     "name": "Gerbaix",
     "code": "73122",
     "epci_code": "247300668",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73470"
   },
@@ -819,7 +819,7 @@
     "name": "La Giettaz",
     "code": "73123",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73590"
   },
@@ -827,7 +827,7 @@
     "name": "Gilly-sur-Isère",
     "code": "73124",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73200"
   },
@@ -835,7 +835,7 @@
     "name": "Grésy-sur-Aix",
     "code": "73128",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73100"
   },
@@ -843,7 +843,7 @@
     "name": "Grésy-sur-Isère",
     "code": "73129",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73460"
   },
@@ -851,7 +851,7 @@
     "name": "Grignon",
     "code": "73130",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73200"
   },
@@ -859,7 +859,7 @@
     "name": "Hautecour",
     "code": "73131",
     "epci_code": "200023299",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73600"
   },
@@ -867,7 +867,7 @@
     "name": "Hauteluce",
     "code": "73132",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73620"
   },
@@ -875,7 +875,7 @@
     "name": "Hauteville",
     "code": "73133",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73390"
   },
@@ -883,7 +883,7 @@
     "name": "La Tour-en-Maurienne",
     "code": "73135",
     "epci_code": "200070464",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73300"
   },
@@ -891,7 +891,7 @@
     "name": "Jacob-Bellecombette",
     "code": "73137",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73000"
   },
@@ -899,7 +899,7 @@
     "name": "Jarrier",
     "code": "73138",
     "epci_code": "200070464",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73300"
   },
@@ -907,7 +907,7 @@
     "name": "Jarsy",
     "code": "73139",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73630"
   },
@@ -915,7 +915,7 @@
     "name": "Jongieux",
     "code": "73140",
     "epci_code": "247300262",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73170"
   },
@@ -923,7 +923,7 @@
     "name": "Laissaud",
     "code": "73141",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73800"
   },
@@ -931,7 +931,7 @@
     "name": "Landry",
     "code": "73142",
     "epci_code": "247300817",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73210"
   },
@@ -939,7 +939,7 @@
     "name": "Lépin-le-Lac",
     "code": "73145",
     "epci_code": "247300668",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73610"
   },
@@ -947,7 +947,7 @@
     "name": "Lescheraines",
     "code": "73146",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73340"
   },
@@ -955,7 +955,7 @@
     "name": "Loisieux",
     "code": "73147",
     "epci_code": "247300262",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73170"
   },
@@ -963,7 +963,7 @@
     "name": "Lucey",
     "code": "73149",
     "epci_code": "247300262",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73170"
   },
@@ -971,7 +971,7 @@
     "name": "La Plagne Tarentaise",
     "code": "73150",
     "epci_code": "247300817",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73210"
   },
@@ -979,7 +979,7 @@
     "name": "Porte-de-Savoie",
     "code": "73151",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73800"
   },
@@ -987,7 +987,7 @@
     "name": "Marcieux",
     "code": "73152",
     "epci_code": "247300668",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73470"
   },
@@ -995,7 +995,7 @@
     "name": "Marthod",
     "code": "73153",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73400"
   },
@@ -1003,7 +1003,7 @@
     "name": "Mercury",
     "code": "73154",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73200"
   },
@@ -1011,7 +1011,7 @@
     "name": "Méry",
     "code": "73155",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73420"
   },
@@ -1019,7 +1019,7 @@
     "name": "Meyrieux-Trouet",
     "code": "73156",
     "epci_code": "247300262",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73170"
   },
@@ -1027,7 +1027,7 @@
     "name": "Modane",
     "code": "73157",
     "epci_code": "200070340",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73500"
   },
@@ -1035,7 +1035,7 @@
     "name": "Les Mollettes",
     "code": "73159",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73800"
   },
@@ -1043,7 +1043,7 @@
     "name": "Montagnole",
     "code": "73160",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73000"
   },
@@ -1051,7 +1051,7 @@
     "name": "Montagny",
     "code": "73161",
     "epci_code": "200040798",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73350"
   },
@@ -1059,7 +1059,7 @@
     "name": "Montailleur",
     "code": "73162",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73460"
   },
@@ -1067,7 +1067,7 @@
     "name": "Montcel",
     "code": "73164",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73100"
   },
@@ -1075,7 +1075,7 @@
     "name": "Montendry",
     "code": "73166",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73390"
   },
@@ -1083,7 +1083,7 @@
     "name": "Montgilbert",
     "code": "73168",
     "epci_code": "247300676",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73220"
   },
@@ -1091,7 +1091,7 @@
     "name": "Monthion",
     "code": "73170",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73200"
   },
@@ -1099,7 +1099,7 @@
     "name": "Montmélian",
     "code": "73171",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73800"
   },
@@ -1107,7 +1107,7 @@
     "name": "Montricher-Albanne",
     "code": "73173",
     "epci_code": "200070464",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73870"
   },
@@ -1115,7 +1115,7 @@
     "name": "Montsapey",
     "code": "73175",
     "epci_code": "247300676",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73220"
   },
@@ -1123,7 +1123,7 @@
     "name": "Montvalezan",
     "code": "73176",
     "epci_code": "247300254",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73700"
   },
@@ -1131,7 +1131,7 @@
     "name": "Montvernier",
     "code": "73177",
     "epci_code": "200070464",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73300"
   },
@@ -1139,7 +1139,7 @@
     "name": "La Motte-en-Bauges",
     "code": "73178",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73340"
   },
@@ -1147,7 +1147,7 @@
     "name": "La Motte-Servolex",
     "code": "73179",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73290"
   },
@@ -1155,7 +1155,7 @@
     "name": "Motz",
     "code": "73180",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73310"
   },
@@ -1163,7 +1163,7 @@
     "name": "Moûtiers",
     "code": "73181",
     "epci_code": "200023299",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73600"
   },
@@ -1171,7 +1171,7 @@
     "name": "Mouxy",
     "code": "73182",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73100"
   },
@@ -1179,7 +1179,7 @@
     "name": "Myans",
     "code": "73183",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73800"
   },
@@ -1187,7 +1187,7 @@
     "name": "Nances",
     "code": "73184",
     "epci_code": "247300668",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73470"
   },
@@ -1195,7 +1195,7 @@
     "name": "Notre-Dame-de-Bellecombe",
     "code": "73186",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73590"
   },
@@ -1203,7 +1203,7 @@
     "name": "La Léchère",
     "code": "73187",
     "epci_code": "247300015",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73260"
   },
@@ -1211,7 +1211,7 @@
     "name": "Notre-Dame-des-Millières",
     "code": "73188",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73460"
   },
@@ -1219,7 +1219,7 @@
     "name": "Notre-Dame-du-Cruet",
     "code": "73189",
     "epci_code": "247300361",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73130"
   },
@@ -1227,7 +1227,7 @@
     "name": "Notre-Dame-du-Pré",
     "code": "73190",
     "epci_code": "200023299",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73600"
   },
@@ -1235,7 +1235,7 @@
     "name": "Novalaise",
     "code": "73191",
     "epci_code": "247300668",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73470"
   },
@@ -1243,7 +1243,7 @@
     "name": "Le Noyer",
     "code": "73192",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73340"
   },
@@ -1251,7 +1251,7 @@
     "name": "Ontex",
     "code": "73193",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73310"
   },
@@ -1259,7 +1259,7 @@
     "name": "Orelle",
     "code": "73194",
     "epci_code": "247300452",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73140"
   },
@@ -1267,7 +1267,7 @@
     "name": "Pallud",
     "code": "73196",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73200"
   },
@@ -1275,7 +1275,7 @@
     "name": "Peisey-Nancroix",
     "code": "73197",
     "epci_code": "247300817",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73210"
   },
@@ -1283,7 +1283,7 @@
     "name": "Planaise",
     "code": "73200",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73800"
   },
@@ -1291,7 +1291,7 @@
     "name": "Planay",
     "code": "73201",
     "epci_code": "200040798",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73350"
   },
@@ -1299,7 +1299,7 @@
     "name": "Plancherine",
     "code": "73202",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73200"
   },
@@ -1307,7 +1307,7 @@
     "name": "Le Pont-de-Beauvoisin",
     "code": "73204",
     "epci_code": "247300528",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73330"
   },
@@ -1315,7 +1315,7 @@
     "name": "Le Pontet",
     "code": "73205",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73110"
   },
@@ -1323,7 +1323,7 @@
     "name": "Pralognan-la-Vanoise",
     "code": "73206",
     "epci_code": "200040798",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73710"
   },
@@ -1331,7 +1331,7 @@
     "name": "Presle",
     "code": "73207",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73110"
   },
@@ -1339,7 +1339,7 @@
     "name": "Pugny-Chatenod",
     "code": "73208",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73100"
   },
@@ -1347,7 +1347,7 @@
     "name": "Puygros",
     "code": "73210",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73190"
   },
@@ -1355,7 +1355,7 @@
     "name": "Queige",
     "code": "73211",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73720"
   },
@@ -1363,7 +1363,7 @@
     "name": "Val-d’Arc",
     "code": "73212",
     "epci_code": "247300676",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73220"
   },
@@ -1371,7 +1371,7 @@
     "name": "La Ravoire",
     "code": "73213",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73490"
   },
@@ -1379,7 +1379,7 @@
     "name": "Rochefort",
     "code": "73214",
     "epci_code": "247300528",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73240"
   },
@@ -1387,7 +1387,7 @@
     "name": "Valgelon-La Rochette",
     "code": "73215",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73110"
   },
@@ -1395,7 +1395,7 @@
     "name": "Rognaix",
     "code": "73216",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73730"
   },
@@ -1403,7 +1403,7 @@
     "name": "Rotherens",
     "code": "73217",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73110"
   },
@@ -1411,7 +1411,7 @@
     "name": "Ruffieux",
     "code": "73218",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73310"
   },
@@ -1419,7 +1419,7 @@
     "name": "Saint-Alban-de-Montbel",
     "code": "73219",
     "epci_code": "247300668",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73610"
   },
@@ -1427,7 +1427,7 @@
     "name": "Saint-Alban-d’Hurtières",
     "code": "73220",
     "epci_code": "247300676",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73220"
   },
@@ -1435,7 +1435,7 @@
     "name": "Saint-Alban-des-Villards",
     "code": "73221",
     "epci_code": "247300361",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73130"
   },
@@ -1443,7 +1443,7 @@
     "name": "Saint-Alban-Leysse",
     "code": "73222",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73230"
   },
@@ -1451,7 +1451,7 @@
     "name": "Saint-André",
     "code": "73223",
     "epci_code": "200070340",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73500"
   },
@@ -1459,7 +1459,7 @@
     "name": "Saint-Avre",
     "code": "73224",
     "epci_code": "247300361",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73130"
   },
@@ -1467,7 +1467,7 @@
     "name": "Saint-Baldoph",
     "code": "73225",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73190"
   },
@@ -1475,7 +1475,7 @@
     "name": "Saint-Béron",
     "code": "73226",
     "epci_code": "247300528",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73520"
   },
@@ -1483,7 +1483,7 @@
     "name": "Courchevel",
     "code": "73227",
     "epci_code": "200040798",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73120"
   },
@@ -1491,7 +1491,7 @@
     "name": "Saint-Cassin",
     "code": "73228",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73160"
   },
@@ -1499,7 +1499,7 @@
     "name": "Saint-Christophe",
     "code": "73229",
     "epci_code": "200040111",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73360"
   },
@@ -1507,7 +1507,7 @@
     "name": "Saint-Colomban-des-Villards",
     "code": "73230",
     "epci_code": "247300361",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73130"
   },
@@ -1515,7 +1515,7 @@
     "name": "Saint-Étienne-de-Cuines",
     "code": "73231",
     "epci_code": "247300361",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73130"
   },
@@ -1523,7 +1523,7 @@
     "name": "Sainte-Foy-Tarentaise",
     "code": "73232",
     "epci_code": "247300254",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73640"
   },
@@ -1531,7 +1531,7 @@
     "name": "Saint-Franc",
     "code": "73233",
     "epci_code": "200040111",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73360"
   },
@@ -1539,7 +1539,7 @@
     "name": "Saint-François-de-Sales",
     "code": "73234",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73340"
   },
@@ -1547,7 +1547,7 @@
     "name": "Saint François Longchamp",
     "code": "73235",
     "epci_code": "247300361",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73130"
   },
@@ -1555,7 +1555,7 @@
     "name": "Saint-Genix-les-Villages",
     "code": "73236",
     "epci_code": "247300528",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73240"
   },
@@ -1563,7 +1563,7 @@
     "name": "Saint-Georges-d’Hurtières",
     "code": "73237",
     "epci_code": "247300676",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73220"
   },
@@ -1571,7 +1571,7 @@
     "name": "Sainte-Hélène-du-Lac",
     "code": "73240",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73800"
   },
@@ -1579,7 +1579,7 @@
     "name": "Sainte-Hélène-sur-Isère",
     "code": "73241",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73460"
   },
@@ -1587,7 +1587,7 @@
     "name": "Saint-Jean-d’Arves",
     "code": "73242",
     "epci_code": "200070464",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73530"
   },
@@ -1595,7 +1595,7 @@
     "name": "Saint-Jean-d’Arvey",
     "code": "73243",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73230"
   },
@@ -1603,7 +1603,7 @@
     "name": "Saint-Jean-de-Chevelu",
     "code": "73245",
     "epci_code": "247300262",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73170"
   },
@@ -1611,7 +1611,7 @@
     "name": "Saint-Jean-de-Couz",
     "code": "73246",
     "epci_code": "200040111",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73160"
   },
@@ -1619,7 +1619,7 @@
     "name": "Saint-Jean-de-la-Porte",
     "code": "73247",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73250"
   },
@@ -1627,7 +1627,7 @@
     "name": "Saint-Jean-de-Maurienne",
     "code": "73248",
     "epci_code": "200070464",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73300"
   },
@@ -1635,7 +1635,7 @@
     "name": "Saint-Jeoire-Prieuré",
     "code": "73249",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73190"
   },
@@ -1643,7 +1643,7 @@
     "name": "Saint-Julien-Mont-Denis",
     "code": "73250",
     "epci_code": "200070464",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73870"
   },
@@ -1651,7 +1651,7 @@
     "name": "Saint-Léger",
     "code": "73252",
     "epci_code": "247300676",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73220"
   },
@@ -1659,7 +1659,7 @@
     "name": "Saint-Marcel",
     "code": "73253",
     "epci_code": "200023299",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73600"
   },
@@ -1667,7 +1667,7 @@
     "name": "Sainte-Marie-d’Alvey",
     "code": "73254",
     "epci_code": "247300528",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73240"
   },
@@ -1675,7 +1675,7 @@
     "name": "Sainte-Marie-de-Cuines",
     "code": "73255",
     "epci_code": "247300361",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73130"
   },
@@ -1683,7 +1683,7 @@
     "name": "Saint-Martin-d’Arc",
     "code": "73256",
     "epci_code": "247300452",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73140"
   },
@@ -1691,7 +1691,7 @@
     "name": "Les Belleville",
     "code": "73257",
     "epci_code": "200023299",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73440"
   },
@@ -1699,7 +1699,7 @@
     "name": "Les Belleville",
     "code": "73257",
     "epci_code": "200023299",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73600"
   },
@@ -1707,7 +1707,7 @@
     "name": "Saint-Martin-de-la-Porte",
     "code": "73258",
     "epci_code": "247300452",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73140"
   },
@@ -1715,7 +1715,7 @@
     "name": "Saint-Martin-sur-la-Chambre",
     "code": "73259",
     "epci_code": "247300361",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73130"
   },
@@ -1723,7 +1723,7 @@
     "name": "Saint-Michel-de-Maurienne",
     "code": "73261",
     "epci_code": "247300452",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73140"
   },
@@ -1731,7 +1731,7 @@
     "name": "Saint-Nicolas-la-Chapelle",
     "code": "73262",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73590"
   },
@@ -1739,7 +1739,7 @@
     "name": "Saint-Offenge",
     "code": "73263",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73100"
   },
@@ -1747,7 +1747,7 @@
     "name": "Saint-Ours",
     "code": "73265",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73410"
   },
@@ -1755,7 +1755,7 @@
     "name": "Saint-Pancrace",
     "code": "73267",
     "epci_code": "200070464",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73300"
   },
@@ -1763,7 +1763,7 @@
     "name": "Saint-Paul-sur-Isère",
     "code": "73268",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73730"
   },
@@ -1771,7 +1771,7 @@
     "name": "Saint-Paul-sur-Yenne",
     "code": "73269",
     "epci_code": "247300262",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73170"
   },
@@ -1779,7 +1779,7 @@
     "name": "Saint-Pierre-d’Albigny",
     "code": "73270",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73250"
   },
@@ -1787,7 +1787,7 @@
     "name": "Saint-Pierre-d’Alvey",
     "code": "73271",
     "epci_code": "247300262",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73170"
   },
@@ -1795,7 +1795,7 @@
     "name": "Saint-Pierre-de-Belleville",
     "code": "73272",
     "epci_code": "247300676",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73220"
   },
@@ -1803,7 +1803,7 @@
     "name": "Saint-Pierre-de-Curtille",
     "code": "73273",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73310"
   },
@@ -1811,7 +1811,7 @@
     "name": "Saint-Pierre-d’Entremont",
     "code": "73274",
     "epci_code": "200040111",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73670"
   },
@@ -1819,7 +1819,7 @@
     "name": "Saint-Pierre-de-Genebroz",
     "code": "73275",
     "epci_code": "200040111",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73360"
   },
@@ -1827,7 +1827,7 @@
     "name": "Saint-Pierre-de-Soucy",
     "code": "73276",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73800"
   },
@@ -1835,7 +1835,7 @@
     "name": "Sainte-Reine",
     "code": "73277",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73630"
   },
@@ -1843,7 +1843,7 @@
     "name": "Saint-Rémy-de-Maurienne",
     "code": "73278",
     "epci_code": "247300361",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73660"
   },
@@ -1851,7 +1851,7 @@
     "name": "Saint-Sorlin-d’Arves",
     "code": "73280",
     "epci_code": "200070464",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73530"
   },
@@ -1859,7 +1859,7 @@
     "name": "Saint-Sulpice",
     "code": "73281",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73160"
   },
@@ -1867,7 +1867,7 @@
     "name": "Saint-Thibaud-de-Couz",
     "code": "73282",
     "epci_code": "200040111",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73160"
   },
@@ -1875,7 +1875,7 @@
     "name": "Saint-Vital",
     "code": "73283",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73460"
   },
@@ -1883,7 +1883,7 @@
     "name": "Salins-Fontaine",
     "code": "73284",
     "epci_code": "200023299",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73600"
   },
@@ -1891,7 +1891,7 @@
     "name": "Séez",
     "code": "73285",
     "epci_code": "247300254",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73700"
   },
@@ -1899,7 +1899,7 @@
     "name": "Serrières-en-Chautagne",
     "code": "73286",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73310"
   },
@@ -1907,7 +1907,7 @@
     "name": "Sonnaz",
     "code": "73288",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73000"
   },
@@ -1915,7 +1915,7 @@
     "name": "La Table",
     "code": "73289",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73110"
   },
@@ -1923,7 +1923,7 @@
     "name": "Val-Cenis",
     "code": "73290",
     "epci_code": "200070340",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73480"
   },
@@ -1931,7 +1931,7 @@
     "name": "Val-Cenis",
     "code": "73290",
     "epci_code": "200070340",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73500"
   },
@@ -1939,7 +1939,7 @@
     "name": "Thénésol",
     "code": "73292",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73200"
   },
@@ -1947,7 +1947,7 @@
     "name": "Thoiry",
     "code": "73293",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73230"
   },
@@ -1955,7 +1955,7 @@
     "name": "La Thuile",
     "code": "73294",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73190"
   },
@@ -1963,7 +1963,7 @@
     "name": "Tignes",
     "code": "73296",
     "epci_code": "247300254",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73320"
   },
@@ -1971,7 +1971,7 @@
     "name": "Tournon",
     "code": "73297",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73460"
   },
@@ -1979,7 +1979,7 @@
     "name": "Tours-en-Savoie",
     "code": "73298",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73790"
   },
@@ -1987,7 +1987,7 @@
     "name": "Traize",
     "code": "73299",
     "epci_code": "247300262",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73170"
   },
@@ -1995,7 +1995,7 @@
     "name": "Tresserve",
     "code": "73300",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73100"
   },
@@ -2003,7 +2003,7 @@
     "name": "Trévignin",
     "code": "73301",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73100"
   },
@@ -2011,7 +2011,7 @@
     "name": "La Trinité",
     "code": "73302",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73110"
   },
@@ -2019,7 +2019,7 @@
     "name": "Ugine",
     "code": "73303",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73400"
   },
@@ -2027,7 +2027,7 @@
     "name": "Val-d’Isère",
     "code": "73304",
     "epci_code": "247300254",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73150"
   },
@@ -2035,7 +2035,7 @@
     "name": "Valloire",
     "code": "73306",
     "epci_code": "247300452",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73450"
   },
@@ -2043,7 +2043,7 @@
     "name": "Valmeinier",
     "code": "73307",
     "epci_code": "247300452",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73450"
   },
@@ -2051,7 +2051,7 @@
     "name": "Venthon",
     "code": "73308",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73200"
   },
@@ -2059,7 +2059,7 @@
     "name": "Verel-de-Montbel",
     "code": "73309",
     "epci_code": "247300528",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73330"
   },
@@ -2067,7 +2067,7 @@
     "name": "Verel-Pragondran",
     "code": "73310",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73230"
   },
@@ -2075,7 +2075,7 @@
     "name": "Le Verneil",
     "code": "73311",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73110"
   },
@@ -2083,7 +2083,7 @@
     "name": "Verrens-Arvey",
     "code": "73312",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73460"
   },
@@ -2091,7 +2091,7 @@
     "name": "Verthemex",
     "code": "73313",
     "epci_code": "247300262",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73170"
   },
@@ -2099,7 +2099,7 @@
     "name": "Villard-d’Héry",
     "code": "73314",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73800"
   },
@@ -2107,7 +2107,7 @@
     "name": "Villard-Léger",
     "code": "73315",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73390"
   },
@@ -2115,7 +2115,7 @@
     "name": "Villard-Sallet",
     "code": "73316",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73110"
   },
@@ -2123,7 +2123,7 @@
     "name": "Villard-sur-Doron",
     "code": "73317",
     "epci_code": "200068997",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73270"
   },
@@ -2131,7 +2131,7 @@
     "name": "Villarembert",
     "code": "73318",
     "epci_code": "200070464",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73300"
   },
@@ -2139,7 +2139,7 @@
     "name": "Villargondran",
     "code": "73320",
     "epci_code": "200070464",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73300"
   },
@@ -2147,7 +2147,7 @@
     "name": "Villarodin-Bourget",
     "code": "73322",
     "epci_code": "200070340",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73500"
   },
@@ -2155,7 +2155,7 @@
     "name": "Villaroger",
     "code": "73323",
     "epci_code": "247300254",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73640"
   },
@@ -2163,7 +2163,7 @@
     "name": "Villaroux",
     "code": "73324",
     "epci_code": "200041010",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73110"
   },
@@ -2171,7 +2171,7 @@
     "name": "Vimines",
     "code": "73326",
     "epci_code": "200069110",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73160"
   },
@@ -2179,7 +2179,7 @@
     "name": "Vions",
     "code": "73327",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73310"
   },
@@ -2187,7 +2187,7 @@
     "name": "Viviers-du-Lac",
     "code": "73328",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73420"
   },
@@ -2195,7 +2195,7 @@
     "name": "Voglans",
     "code": "73329",
     "epci_code": "200068674",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73420"
   },
@@ -2203,7 +2203,7 @@
     "name": "Yenne",
     "code": "73330",
     "epci_code": "247300262",
-    "departement_code": "73",
+    "department_code": "73",
     "region_code": "84",
     "postal_code": "73170"
   }

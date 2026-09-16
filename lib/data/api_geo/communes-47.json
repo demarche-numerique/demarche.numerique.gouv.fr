@@ -3,7 +3,7 @@
     "name": "Agen",
     "code": "47001",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47000"
   },
@@ -11,7 +11,7 @@
     "name": "Agmé",
     "code": "47002",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47350"
   },
@@ -19,7 +19,7 @@
     "name": "Agnac",
     "code": "47003",
     "epci_code": "244700464",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47800"
   },
@@ -27,7 +27,7 @@
     "name": "Aiguillon",
     "code": "47004",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47190"
   },
@@ -35,7 +35,7 @@
     "name": "Allemans-du-Dropt",
     "code": "47005",
     "epci_code": "244700464",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47800"
   },
@@ -43,7 +43,7 @@
     "name": "Allez-et-Cazeneuve",
     "code": "47006",
     "epci_code": "200023307",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47110"
   },
@@ -51,7 +51,7 @@
     "name": "Allons",
     "code": "47007",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47420"
   },
@@ -59,7 +59,7 @@
     "name": "Ambrus",
     "code": "47008",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47160"
   },
@@ -67,7 +67,7 @@
     "name": "Andiran",
     "code": "47009",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47170"
   },
@@ -75,7 +75,7 @@
     "name": "Antagnac",
     "code": "47010",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47700"
   },
@@ -83,7 +83,7 @@
     "name": "Anthé",
     "code": "47011",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47370"
   },
@@ -91,7 +91,7 @@
     "name": "Anzex",
     "code": "47012",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47700"
   },
@@ -99,7 +99,7 @@
     "name": "Argenton",
     "code": "47013",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47250"
   },
@@ -107,7 +107,7 @@
     "name": "Armillac",
     "code": "47014",
     "epci_code": "244700464",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47800"
   },
@@ -115,7 +115,7 @@
     "name": "Astaffort",
     "code": "47015",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47220"
   },
@@ -123,7 +123,7 @@
     "name": "Aubiac",
     "code": "47016",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47310"
   },
@@ -131,7 +131,7 @@
     "name": "Auradou",
     "code": "47017",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47140"
   },
@@ -139,7 +139,7 @@
     "name": "Auriac-sur-Dropt",
     "code": "47018",
     "epci_code": "244700449",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47120"
   },
@@ -147,7 +147,7 @@
     "name": "Bajamont",
     "code": "47019",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47480"
   },
@@ -155,7 +155,7 @@
     "name": "Baleyssagues",
     "code": "47020",
     "epci_code": "244700449",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47120"
   },
@@ -163,7 +163,7 @@
     "name": "Barbaste",
     "code": "47021",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47230"
   },
@@ -171,7 +171,7 @@
     "name": "Bazens",
     "code": "47022",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47130"
   },
@@ -179,7 +179,7 @@
     "name": "Beaugas",
     "code": "47023",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47290"
   },
@@ -187,7 +187,7 @@
     "name": "Beaupuy",
     "code": "47024",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47200"
   },
@@ -195,7 +195,7 @@
     "name": "Beauville",
     "code": "47025",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47470"
   },
@@ -203,7 +203,7 @@
     "name": "Beauziac",
     "code": "47026",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47700"
   },
@@ -211,7 +211,7 @@
     "name": "Bias",
     "code": "47027",
     "epci_code": "200023307",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47300"
   },
@@ -219,7 +219,7 @@
     "name": "Birac-sur-Trec",
     "code": "47028",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47200"
   },
@@ -227,7 +227,7 @@
     "name": "Blanquefort-sur-Briolance",
     "code": "47029",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47500"
   },
@@ -235,7 +235,7 @@
     "name": "Blaymont",
     "code": "47030",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47470"
   },
@@ -243,7 +243,7 @@
     "name": "Boé",
     "code": "47031",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47550"
   },
@@ -251,7 +251,7 @@
     "name": "Bon-Encontre",
     "code": "47032",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47240"
   },
@@ -259,7 +259,7 @@
     "name": "Boudy-de-Beauregard",
     "code": "47033",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47290"
   },
@@ -267,7 +267,7 @@
     "name": "Bouglon",
     "code": "47034",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47250"
   },
@@ -275,7 +275,7 @@
     "name": "Bourgougnague",
     "code": "47035",
     "epci_code": "244700464",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47410"
   },
@@ -283,7 +283,7 @@
     "name": "Bourlens",
     "code": "47036",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47370"
   },
@@ -291,7 +291,7 @@
     "name": "Bournel",
     "code": "47037",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47210"
   },
@@ -299,7 +299,7 @@
     "name": "Bourran",
     "code": "47038",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47320"
   },
@@ -307,7 +307,7 @@
     "name": "Boussès",
     "code": "47039",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47420"
   },
@@ -315,7 +315,7 @@
     "name": "Brax",
     "code": "47040",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47310"
   },
@@ -323,7 +323,7 @@
     "name": "Bruch",
     "code": "47041",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47130"
   },
@@ -331,7 +331,7 @@
     "name": "Brugnac",
     "code": "47042",
     "epci_code": "244701405",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47260"
   },
@@ -339,7 +339,7 @@
     "name": "Buzet-sur-Baïse",
     "code": "47043",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47160"
   },
@@ -347,7 +347,7 @@
     "name": "Cahuzac",
     "code": "47044",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47330"
   },
@@ -355,7 +355,7 @@
     "name": "Calignac",
     "code": "47045",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47600"
   },
@@ -363,7 +363,7 @@
     "name": "Calonges",
     "code": "47046",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47430"
   },
@@ -371,7 +371,7 @@
     "name": "Cambes",
     "code": "47047",
     "epci_code": "244700464",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47350"
   },
@@ -379,7 +379,7 @@
     "name": "Cancon",
     "code": "47048",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47290"
   },
@@ -387,7 +387,7 @@
     "name": "Casseneuil",
     "code": "47049",
     "epci_code": "200023307",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47440"
   },
@@ -395,7 +395,7 @@
     "name": "Cassignas",
     "code": "47050",
     "epci_code": "200023307",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47340"
   },
@@ -403,7 +403,7 @@
     "name": "Castelculier",
     "code": "47051",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47240"
   },
@@ -411,7 +411,7 @@
     "name": "Casteljaloux",
     "code": "47052",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47700"
   },
@@ -419,7 +419,7 @@
     "name": "Castella",
     "code": "47053",
     "epci_code": "200023307",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47340"
   },
@@ -427,7 +427,7 @@
     "name": "Castelmoron-sur-Lot",
     "code": "47054",
     "epci_code": "244701405",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47260"
   },
@@ -435,7 +435,7 @@
     "name": "Castelnaud-de-Gratecambe",
     "code": "47055",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47290"
   },
@@ -443,7 +443,7 @@
     "name": "Castelnau-sur-Gupie",
     "code": "47056",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47180"
   },
@@ -451,7 +451,7 @@
     "name": "Castillonnès",
     "code": "47057",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47330"
   },
@@ -459,7 +459,7 @@
     "name": "Caubeyres",
     "code": "47058",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47160"
   },
@@ -467,7 +467,7 @@
     "name": "Caubon-Saint-Sauveur",
     "code": "47059",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47120"
   },
@@ -475,7 +475,7 @@
     "name": "Caudecoste",
     "code": "47060",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47220"
   },
@@ -483,7 +483,7 @@
     "name": "Caumont-sur-Garonne",
     "code": "47061",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47430"
   },
@@ -491,7 +491,7 @@
     "name": "Cauzac",
     "code": "47062",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47470"
   },
@@ -499,7 +499,7 @@
     "name": "Cavarc",
     "code": "47063",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47330"
   },
@@ -507,7 +507,7 @@
     "name": "Cazideroque",
     "code": "47064",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47370"
   },
@@ -515,7 +515,7 @@
     "name": "Clairac",
     "code": "47065",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47320"
   },
@@ -523,7 +523,7 @@
     "name": "Clermont-Dessous",
     "code": "47066",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47130"
   },
@@ -531,7 +531,7 @@
     "name": "Clermont-Soubiran",
     "code": "47067",
     "epci_code": "248200016",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47270"
   },
@@ -539,7 +539,7 @@
     "name": "Cocumont",
     "code": "47068",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47250"
   },
@@ -547,7 +547,7 @@
     "name": "Colayrac-Saint-Cirq",
     "code": "47069",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47450"
   },
@@ -555,7 +555,7 @@
     "name": "Condezaygues",
     "code": "47070",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47500"
   },
@@ -563,7 +563,7 @@
     "name": "Coulx",
     "code": "47071",
     "epci_code": "244701405",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47260"
   },
@@ -571,7 +571,7 @@
     "name": "Courbiac",
     "code": "47072",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47370"
   },
@@ -579,7 +579,7 @@
     "name": "Cours",
     "code": "47073",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47360"
   },
@@ -587,7 +587,7 @@
     "name": "Couthures-sur-Garonne",
     "code": "47074",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47180"
   },
@@ -595,7 +595,7 @@
     "name": "La Croix-Blanche",
     "code": "47075",
     "epci_code": "200023307",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47340"
   },
@@ -603,7 +603,7 @@
     "name": "Cuq",
     "code": "47076",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47220"
   },
@@ -611,7 +611,7 @@
     "name": "Cuzorn",
     "code": "47077",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47500"
   },
@@ -619,7 +619,7 @@
     "name": "Damazan",
     "code": "47078",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47160"
   },
@@ -627,7 +627,7 @@
     "name": "Dausse",
     "code": "47079",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47140"
   },
@@ -635,7 +635,7 @@
     "name": "Dévillac",
     "code": "47080",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47210"
   },
@@ -643,7 +643,7 @@
     "name": "Dolmayrac",
     "code": "47081",
     "epci_code": "200023307",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47110"
   },
@@ -651,7 +651,7 @@
     "name": "Dondas",
     "code": "47082",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47470"
   },
@@ -659,7 +659,7 @@
     "name": "Doudrac",
     "code": "47083",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47210"
   },
@@ -667,7 +667,7 @@
     "name": "Douzains",
     "code": "47084",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47330"
   },
@@ -675,7 +675,7 @@
     "name": "Durance",
     "code": "47085",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47420"
   },
@@ -683,7 +683,7 @@
     "name": "Duras",
     "code": "47086",
     "epci_code": "244700449",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47120"
   },
@@ -691,7 +691,7 @@
     "name": "Engayrac",
     "code": "47087",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47470"
   },
@@ -699,7 +699,7 @@
     "name": "Escassefort",
     "code": "47088",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47350"
   },
@@ -707,7 +707,7 @@
     "name": "Esclottes",
     "code": "47089",
     "epci_code": "244700449",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47120"
   },
@@ -715,7 +715,7 @@
     "name": "Espiens",
     "code": "47090",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47600"
   },
@@ -723,7 +723,7 @@
     "name": "Estillac",
     "code": "47091",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47310"
   },
@@ -731,7 +731,7 @@
     "name": "Fals",
     "code": "47092",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47220"
   },
@@ -739,7 +739,7 @@
     "name": "Fargues-sur-Ourbise",
     "code": "47093",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47700"
   },
@@ -747,7 +747,7 @@
     "name": "Fauguerolles",
     "code": "47094",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47400"
   },
@@ -755,7 +755,7 @@
     "name": "Fauillet",
     "code": "47095",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47400"
   },
@@ -763,7 +763,7 @@
     "name": "Ferrensac",
     "code": "47096",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47330"
   },
@@ -771,7 +771,7 @@
     "name": "Feugarolles",
     "code": "47097",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47230"
   },
@@ -779,7 +779,7 @@
     "name": "Fieux",
     "code": "47098",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47600"
   },
@@ -787,7 +787,7 @@
     "name": "Fongrave",
     "code": "47099",
     "epci_code": "200023307",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47260"
   },
@@ -795,7 +795,7 @@
     "name": "Foulayronnes",
     "code": "47100",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47510"
   },
@@ -803,7 +803,7 @@
     "name": "Fourques-sur-Garonne",
     "code": "47101",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47200"
   },
@@ -811,7 +811,7 @@
     "name": "Francescas",
     "code": "47102",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47600"
   },
@@ -819,7 +819,7 @@
     "name": "Fréchou",
     "code": "47103",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47600"
   },
@@ -827,7 +827,7 @@
     "name": "Frégimont",
     "code": "47104",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47360"
   },
@@ -835,7 +835,7 @@
     "name": "Frespech",
     "code": "47105",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47140"
   },
@@ -843,7 +843,7 @@
     "name": "Fumel",
     "code": "47106",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47500"
   },
@@ -851,7 +851,7 @@
     "name": "Galapian",
     "code": "47107",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47190"
   },
@@ -859,7 +859,7 @@
     "name": "Gaujac",
     "code": "47108",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47200"
   },
@@ -867,7 +867,7 @@
     "name": "Gavaudun",
     "code": "47109",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47150"
   },
@@ -875,7 +875,7 @@
     "name": "Gontaud-de-Nogaret",
     "code": "47110",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47400"
   },
@@ -883,7 +883,7 @@
     "name": "Granges-sur-Lot",
     "code": "47111",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47260"
   },
@@ -891,7 +891,7 @@
     "name": "Grateloup-Saint-Gayrand",
     "code": "47112",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47400"
   },
@@ -899,7 +899,7 @@
     "name": "Grayssas",
     "code": "47113",
     "epci_code": "248200016",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47270"
   },
@@ -907,7 +907,7 @@
     "name": "Grézet-Cavagnan",
     "code": "47114",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47250"
   },
@@ -915,7 +915,7 @@
     "name": "Guérin",
     "code": "47115",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47250"
   },
@@ -923,7 +923,7 @@
     "name": "Hautefage-la-Tour",
     "code": "47117",
     "epci_code": "200023307",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47340"
   },
@@ -931,7 +931,7 @@
     "name": "Hautesvignes",
     "code": "47118",
     "epci_code": "244701405",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47400"
   },
@@ -939,7 +939,7 @@
     "name": "Houeillès",
     "code": "47119",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47420"
   },
@@ -947,7 +947,7 @@
     "name": "Jusix",
     "code": "47120",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47180"
   },
@@ -955,7 +955,7 @@
     "name": "Labastide-Castel-Amouroux",
     "code": "47121",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47250"
   },
@@ -963,7 +963,7 @@
     "name": "Labretonie",
     "code": "47122",
     "epci_code": "244701405",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47350"
   },
@@ -971,7 +971,7 @@
     "name": "Lacapelle-Biron",
     "code": "47123",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47150"
   },
@@ -979,7 +979,7 @@
     "name": "Lacaussade",
     "code": "47124",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47150"
   },
@@ -987,7 +987,7 @@
     "name": "Lacépède",
     "code": "47125",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47360"
   },
@@ -995,7 +995,7 @@
     "name": "Lachapelle",
     "code": "47126",
     "epci_code": "244700464",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47350"
   },
@@ -1003,7 +1003,7 @@
     "name": "Lafitte-sur-Lot",
     "code": "47127",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47320"
   },
@@ -1011,7 +1011,7 @@
     "name": "Lafox",
     "code": "47128",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47240"
   },
@@ -1019,7 +1019,7 @@
     "name": "Lagarrigue",
     "code": "47129",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47190"
   },
@@ -1027,7 +1027,7 @@
     "name": "Lagruère",
     "code": "47130",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47400"
   },
@@ -1035,7 +1035,7 @@
     "name": "Lagupie",
     "code": "47131",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47180"
   },
@@ -1043,7 +1043,7 @@
     "name": "Lalandusse",
     "code": "47132",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47330"
   },
@@ -1051,7 +1051,7 @@
     "name": "Lamontjoie",
     "code": "47133",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47310"
   },
@@ -1059,7 +1059,7 @@
     "name": "Lannes",
     "code": "47134",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47170"
   },
@@ -1067,7 +1067,7 @@
     "name": "Laparade",
     "code": "47135",
     "epci_code": "244701405",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47260"
   },
@@ -1075,7 +1075,7 @@
     "name": "Laperche",
     "code": "47136",
     "epci_code": "244700464",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47800"
   },
@@ -1083,7 +1083,7 @@
     "name": "Laplume",
     "code": "47137",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47310"
   },
@@ -1091,7 +1091,7 @@
     "name": "Laroque-Timbaut",
     "code": "47138",
     "epci_code": "200023307",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47340"
   },
@@ -1099,7 +1099,7 @@
     "name": "Lasserre",
     "code": "47139",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47600"
   },
@@ -1107,7 +1107,7 @@
     "name": "Laugnac",
     "code": "47140",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47360"
   },
@@ -1115,7 +1115,7 @@
     "name": "Laussou",
     "code": "47141",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47150"
   },
@@ -1123,7 +1123,7 @@
     "name": "Lauzun",
     "code": "47142",
     "epci_code": "244700464",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47410"
   },
@@ -1131,7 +1131,7 @@
     "name": "Lavardac",
     "code": "47143",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47230"
   },
@@ -1139,7 +1139,7 @@
     "name": "Lavergne",
     "code": "47144",
     "epci_code": "244700464",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47800"
   },
@@ -1147,7 +1147,7 @@
     "name": "Layrac",
     "code": "47145",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47390"
   },
@@ -1155,7 +1155,7 @@
     "name": "Lédat",
     "code": "47146",
     "epci_code": "200023307",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47300"
   },
@@ -1163,7 +1163,7 @@
     "name": "Lévignac-de-Guyenne",
     "code": "47147",
     "epci_code": "244700449",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47120"
   },
@@ -1171,7 +1171,7 @@
     "name": "Leyritz-Moncassin",
     "code": "47148",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47700"
   },
@@ -1179,7 +1179,7 @@
     "name": "Longueville",
     "code": "47150",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47200"
   },
@@ -1187,7 +1187,7 @@
     "name": "Loubès-Bernac",
     "code": "47151",
     "epci_code": "244700449",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47120"
   },
@@ -1195,7 +1195,7 @@
     "name": "Lougratte",
     "code": "47152",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47290"
   },
@@ -1203,7 +1203,7 @@
     "name": "Lusignan-Petit",
     "code": "47154",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47360"
   },
@@ -1211,7 +1211,7 @@
     "name": "Madaillan",
     "code": "47155",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47360"
   },
@@ -1219,7 +1219,7 @@
     "name": "Marcellus",
     "code": "47156",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47200"
   },
@@ -1227,7 +1227,7 @@
     "name": "Marmande",
     "code": "47157",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47200"
   },
@@ -1235,7 +1235,7 @@
     "name": "Marmont-Pachas",
     "code": "47158",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47220"
   },
@@ -1243,7 +1243,7 @@
     "name": "Le Mas-d’Agenais",
     "code": "47159",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47430"
   },
@@ -1251,7 +1251,7 @@
     "name": "Masquières",
     "code": "47160",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47370"
   },
@@ -1259,7 +1259,7 @@
     "name": "Massels",
     "code": "47161",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47140"
   },
@@ -1267,7 +1267,7 @@
     "name": "Massoulès",
     "code": "47162",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47140"
   },
@@ -1275,7 +1275,7 @@
     "name": "Mauvezin-sur-Gupie",
     "code": "47163",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47200"
   },
@@ -1283,7 +1283,7 @@
     "name": "Mazières-Naresse",
     "code": "47164",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47210"
   },
@@ -1291,7 +1291,7 @@
     "name": "Meilhan-sur-Garonne",
     "code": "47165",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47180"
   },
@@ -1299,7 +1299,7 @@
     "name": "Mézin",
     "code": "47167",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47170"
   },
@@ -1307,7 +1307,7 @@
     "name": "Miramont-de-Guyenne",
     "code": "47168",
     "epci_code": "244700464",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47800"
   },
@@ -1315,7 +1315,7 @@
     "name": "Moirax",
     "code": "47169",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47310"
   },
@@ -1323,7 +1323,7 @@
     "name": "Monbahus",
     "code": "47170",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47290"
   },
@@ -1331,7 +1331,7 @@
     "name": "Monbalen",
     "code": "47171",
     "epci_code": "200023307",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47340"
   },
@@ -1339,7 +1339,7 @@
     "name": "Moncaut",
     "code": "47172",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47310"
   },
@@ -1347,7 +1347,7 @@
     "name": "Monclar",
     "code": "47173",
     "epci_code": "244701405",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47380"
   },
@@ -1355,7 +1355,7 @@
     "name": "Moncrabeau",
     "code": "47174",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47600"
   },
@@ -1363,7 +1363,7 @@
     "name": "Monflanquin",
     "code": "47175",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47150"
   },
@@ -1371,7 +1371,7 @@
     "name": "Montgaillard-en-Albret",
     "code": "47176",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47230"
   },
@@ -1379,7 +1379,7 @@
     "name": "Monheurt",
     "code": "47177",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47160"
   },
@@ -1387,7 +1387,7 @@
     "name": "Monségur",
     "code": "47178",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47150"
   },
@@ -1395,7 +1395,7 @@
     "name": "Monsempron-Libos",
     "code": "47179",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47500"
   },
@@ -1403,7 +1403,7 @@
     "name": "Montagnac-sur-Auvignon",
     "code": "47180",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47600"
   },
@@ -1411,7 +1411,7 @@
     "name": "Montagnac-sur-Lède",
     "code": "47181",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47150"
   },
@@ -1419,7 +1419,7 @@
     "name": "Montastruc",
     "code": "47182",
     "epci_code": "244701405",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47380"
   },
@@ -1427,7 +1427,7 @@
     "name": "Montauriol",
     "code": "47183",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47330"
   },
@@ -1435,7 +1435,7 @@
     "name": "Montaut",
     "code": "47184",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47210"
   },
@@ -1443,7 +1443,7 @@
     "name": "Montayral",
     "code": "47185",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47500"
   },
@@ -1451,7 +1451,7 @@
     "name": "Montesquieu",
     "code": "47186",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47130"
   },
@@ -1459,7 +1459,7 @@
     "name": "Monteton",
     "code": "47187",
     "epci_code": "244700449",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47120"
   },
@@ -1467,7 +1467,7 @@
     "name": "Montignac-de-Lauzun",
     "code": "47188",
     "epci_code": "244700464",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47800"
   },
@@ -1475,7 +1475,7 @@
     "name": "Montignac-Toupinerie",
     "code": "47189",
     "epci_code": "244700464",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47350"
   },
@@ -1483,7 +1483,7 @@
     "name": "Montpezat",
     "code": "47190",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47360"
   },
@@ -1491,7 +1491,7 @@
     "name": "Montpouillan",
     "code": "47191",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47200"
   },
@@ -1499,7 +1499,7 @@
     "name": "Monviel",
     "code": "47192",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47290"
   },
@@ -1507,7 +1507,7 @@
     "name": "Moulinet",
     "code": "47193",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47290"
   },
@@ -1515,7 +1515,7 @@
     "name": "Moustier",
     "code": "47194",
     "epci_code": "244700464",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47800"
   },
@@ -1523,7 +1523,7 @@
     "name": "Nérac",
     "code": "47195",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47600"
   },
@@ -1531,7 +1531,7 @@
     "name": "Nicole",
     "code": "47196",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47190"
   },
@@ -1539,7 +1539,7 @@
     "name": "Nomdieu",
     "code": "47197",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47600"
   },
@@ -1547,7 +1547,7 @@
     "name": "Pailloles",
     "code": "47198",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47440"
   },
@@ -1555,7 +1555,7 @@
     "name": "Pardaillan",
     "code": "47199",
     "epci_code": "244700449",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47120"
   },
@@ -1563,7 +1563,7 @@
     "name": "Parranquet",
     "code": "47200",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47210"
   },
@@ -1571,7 +1571,7 @@
     "name": "Le Passage",
     "code": "47201",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47520"
   },
@@ -1579,7 +1579,7 @@
     "name": "Paulhiac",
     "code": "47202",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47150"
   },
@@ -1587,7 +1587,7 @@
     "name": "Penne-d’Agenais",
     "code": "47203",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47140"
   },
@@ -1595,7 +1595,7 @@
     "name": "Peyrière",
     "code": "47204",
     "epci_code": "244700464",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47350"
   },
@@ -1603,7 +1603,7 @@
     "name": "Pindères",
     "code": "47205",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47700"
   },
@@ -1611,7 +1611,7 @@
     "name": "Pinel-Hauterive",
     "code": "47206",
     "epci_code": "244701405",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47380"
   },
@@ -1619,7 +1619,7 @@
     "name": "Pompiey",
     "code": "47207",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47230"
   },
@@ -1627,7 +1627,7 @@
     "name": "Pompogne",
     "code": "47208",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47420"
   },
@@ -1635,7 +1635,7 @@
     "name": "Pont-du-Casse",
     "code": "47209",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47480"
   },
@@ -1643,7 +1643,7 @@
     "name": "Port-Sainte-Marie",
     "code": "47210",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47130"
   },
@@ -1651,7 +1651,7 @@
     "name": "Poudenas",
     "code": "47211",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47170"
   },
@@ -1659,7 +1659,7 @@
     "name": "Poussignac",
     "code": "47212",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47700"
   },
@@ -1667,7 +1667,7 @@
     "name": "Prayssas",
     "code": "47213",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47360"
   },
@@ -1675,7 +1675,7 @@
     "name": "Puch-d’Agenais",
     "code": "47214",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47160"
   },
@@ -1683,7 +1683,7 @@
     "name": "Pujols",
     "code": "47215",
     "epci_code": "200023307",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47300"
   },
@@ -1691,7 +1691,7 @@
     "name": "Puymiclan",
     "code": "47216",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47350"
   },
@@ -1699,7 +1699,7 @@
     "name": "Puymirol",
     "code": "47217",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47270"
   },
@@ -1707,7 +1707,7 @@
     "name": "Puysserampion",
     "code": "47218",
     "epci_code": "244700464",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47800"
   },
@@ -1715,7 +1715,7 @@
     "name": "Rayet",
     "code": "47219",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47210"
   },
@@ -1723,7 +1723,7 @@
     "name": "Razimet",
     "code": "47220",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47160"
   },
@@ -1731,7 +1731,7 @@
     "name": "Réaup-Lisse",
     "code": "47221",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47170"
   },
@@ -1739,7 +1739,7 @@
     "name": "La Réunion",
     "code": "47222",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47700"
   },
@@ -1747,7 +1747,7 @@
     "name": "Rives",
     "code": "47223",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47210"
   },
@@ -1755,7 +1755,7 @@
     "name": "Romestaing",
     "code": "47224",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47250"
   },
@@ -1763,7 +1763,7 @@
     "name": "Roquefort",
     "code": "47225",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47310"
   },
@@ -1771,7 +1771,7 @@
     "name": "Roumagne",
     "code": "47226",
     "epci_code": "244700464",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47800"
   },
@@ -1779,7 +1779,7 @@
     "name": "Ruffiac",
     "code": "47227",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47700"
   },
@@ -1787,7 +1787,7 @@
     "name": "Saint-Antoine-de-Ficalba",
     "code": "47228",
     "epci_code": "200023307",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47340"
   },
@@ -1795,7 +1795,7 @@
     "name": "Saint-Astier",
     "code": "47229",
     "epci_code": "244700449",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47120"
   },
@@ -1803,7 +1803,7 @@
     "name": "Saint-Aubin",
     "code": "47230",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47150"
   },
@@ -1811,7 +1811,7 @@
     "name": "Saint-Avit",
     "code": "47231",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47350"
   },
@@ -1819,7 +1819,7 @@
     "name": "Saint-Barthélemy-d’Agenais",
     "code": "47232",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47350"
   },
@@ -1827,7 +1827,7 @@
     "name": "Sainte-Bazeille",
     "code": "47233",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47180"
   },
@@ -1835,7 +1835,7 @@
     "name": "Saint-Caprais-de-Lerm",
     "code": "47234",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47270"
   },
@@ -1843,7 +1843,7 @@
     "name": "Saint-Colomb-de-Lauzun",
     "code": "47235",
     "epci_code": "244700464",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47410"
   },
@@ -1851,7 +1851,7 @@
     "name": "Sainte-Colombe-de-Duras",
     "code": "47236",
     "epci_code": "244700449",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47120"
   },
@@ -1859,7 +1859,7 @@
     "name": "Sainte-Colombe-de-Villeneuve",
     "code": "47237",
     "epci_code": "200023307",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47300"
   },
@@ -1867,7 +1867,7 @@
     "name": "Sainte-Colombe-en-Bruilhois",
     "code": "47238",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47310"
   },
@@ -1875,7 +1875,7 @@
     "name": "Saint-Étienne-de-Fougères",
     "code": "47239",
     "epci_code": "200023307",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47380"
   },
@@ -1883,7 +1883,7 @@
     "name": "Saint-Étienne-de-Villeréal",
     "code": "47240",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47210"
   },
@@ -1891,7 +1891,7 @@
     "name": "Saint-Eutrope-de-Born",
     "code": "47241",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47210"
   },
@@ -1899,7 +1899,7 @@
     "name": "Saint-Front-sur-Lémance",
     "code": "47242",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47500"
   },
@@ -1907,7 +1907,7 @@
     "name": "Sainte-Gemme-Martaillac",
     "code": "47244",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47250"
   },
@@ -1915,7 +1915,7 @@
     "name": "Saint-Géraud",
     "code": "47245",
     "epci_code": "244700449",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47120"
   },
@@ -1923,7 +1923,7 @@
     "name": "Saint-Hilaire-de-Lusignan",
     "code": "47246",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47450"
   },
@@ -1931,7 +1931,7 @@
     "name": "Saint-Jean-de-Duras",
     "code": "47247",
     "epci_code": "244700449",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47120"
   },
@@ -1939,7 +1939,7 @@
     "name": "Saint-Jean-de-Thurac",
     "code": "47248",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47270"
   },
@@ -1947,7 +1947,7 @@
     "name": "Saint-Laurent",
     "code": "47249",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47130"
   },
@@ -1955,7 +1955,7 @@
     "name": "Saint-Léger",
     "code": "47250",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47160"
   },
@@ -1963,7 +1963,7 @@
     "name": "Saint-Léon",
     "code": "47251",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47160"
   },
@@ -1971,7 +1971,7 @@
     "name": "Sainte-Livrade-sur-Lot",
     "code": "47252",
     "epci_code": "200023307",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47110"
   },
@@ -1979,7 +1979,7 @@
     "name": "Sainte-Marthe",
     "code": "47253",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47430"
   },
@@ -1987,7 +1987,7 @@
     "name": "Saint-Martin-Curton",
     "code": "47254",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47700"
   },
@@ -1995,7 +1995,7 @@
     "name": "Saint-Martin-de-Beauville",
     "code": "47255",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47270"
   },
@@ -2003,7 +2003,7 @@
     "name": "Saint-Martin-de-Villeréal",
     "code": "47256",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47210"
   },
@@ -2011,7 +2011,7 @@
     "name": "Saint-Martin-Petit",
     "code": "47257",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47180"
   },
@@ -2019,7 +2019,7 @@
     "name": "Sainte-Maure-de-Peyriac",
     "code": "47258",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47170"
   },
@@ -2027,7 +2027,7 @@
     "name": "Saint-Maurice-de-Lestapel",
     "code": "47259",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47290"
   },
@@ -2035,7 +2035,7 @@
     "name": "Saint-Maurin",
     "code": "47260",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47270"
   },
@@ -2043,7 +2043,7 @@
     "name": "Saint-Nicolas-de-la-Balerme",
     "code": "47262",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47220"
   },
@@ -2051,7 +2051,7 @@
     "name": "Saint-Pardoux-du-Breuil",
     "code": "47263",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47200"
   },
@@ -2059,7 +2059,7 @@
     "name": "Saint-Pardoux-Isaac",
     "code": "47264",
     "epci_code": "244700464",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47800"
   },
@@ -2067,7 +2067,7 @@
     "name": "Saint-Pastour",
     "code": "47265",
     "epci_code": "244701405",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47290"
   },
@@ -2075,7 +2075,7 @@
     "name": "Saint-Pé-Saint-Simon",
     "code": "47266",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47170"
   },
@@ -2083,7 +2083,7 @@
     "name": "Saint-Pierre-de-Buzet",
     "code": "47267",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47160"
   },
@@ -2091,7 +2091,7 @@
     "name": "Saint-Pierre-de-Clairac",
     "code": "47269",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47270"
   },
@@ -2099,7 +2099,7 @@
     "name": "Saint-Pierre-sur-Dropt",
     "code": "47271",
     "epci_code": "244700449",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47120"
   },
@@ -2107,7 +2107,7 @@
     "name": "Saint-Quentin-du-Dropt",
     "code": "47272",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47330"
   },
@@ -2115,7 +2115,7 @@
     "name": "Saint-Robert",
     "code": "47273",
     "epci_code": "200023307",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47340"
   },
@@ -2123,7 +2123,7 @@
     "name": "Saint-Romain-le-Noble",
     "code": "47274",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47270"
   },
@@ -2131,7 +2131,7 @@
     "name": "Saint-Salvy",
     "code": "47275",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47360"
   },
@@ -2139,7 +2139,7 @@
     "name": "Saint-Sardos",
     "code": "47276",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47360"
   },
@@ -2147,7 +2147,7 @@
     "name": "Saint-Sauveur-de-Meilhan",
     "code": "47277",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47180"
   },
@@ -2155,7 +2155,7 @@
     "name": "Saint-Sernin",
     "code": "47278",
     "epci_code": "244700449",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47120"
   },
@@ -2163,7 +2163,7 @@
     "name": "Saint-Sixte",
     "code": "47279",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47220"
   },
@@ -2171,7 +2171,7 @@
     "name": "Saint-Sylvestre-sur-Lot",
     "code": "47280",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47140"
   },
@@ -2179,7 +2179,7 @@
     "name": "Saint-Urcisse",
     "code": "47281",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47270"
   },
@@ -2187,7 +2187,7 @@
     "name": "Saint-Vincent-de-Lamontjoie",
     "code": "47282",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47310"
   },
@@ -2195,7 +2195,7 @@
     "name": "Saint-Vite",
     "code": "47283",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47500"
   },
@@ -2203,7 +2203,7 @@
     "name": "Salles",
     "code": "47284",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47150"
   },
@@ -2211,7 +2211,7 @@
     "name": "Samazan",
     "code": "47285",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47250"
   },
@@ -2219,7 +2219,7 @@
     "name": "Sauméjan",
     "code": "47286",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47420"
   },
@@ -2227,7 +2227,7 @@
     "name": "Saumont",
     "code": "47287",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47600"
   },
@@ -2235,7 +2235,7 @@
     "name": "Sauvagnas",
     "code": "47288",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47340"
   },
@@ -2243,7 +2243,7 @@
     "name": "La Sauvetat-de-Savères",
     "code": "47289",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47270"
   },
@@ -2251,7 +2251,7 @@
     "name": "La Sauvetat-du-Dropt",
     "code": "47290",
     "epci_code": "244700464",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47800"
   },
@@ -2259,7 +2259,7 @@
     "name": "La Sauvetat-sur-Lède",
     "code": "47291",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47150"
   },
@@ -2267,7 +2267,7 @@
     "name": "Sauveterre-la-Lémance",
     "code": "47292",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47500"
   },
@@ -2275,7 +2275,7 @@
     "name": "Sauveterre-Saint-Denis",
     "code": "47293",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47220"
   },
@@ -2283,7 +2283,7 @@
     "name": "Savignac-de-Duras",
     "code": "47294",
     "epci_code": "244700449",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47120"
   },
@@ -2291,7 +2291,7 @@
     "name": "Savignac-sur-Leyze",
     "code": "47295",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47150"
   },
@@ -2299,7 +2299,7 @@
     "name": "Ségalas",
     "code": "47296",
     "epci_code": "244700464",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47410"
   },
@@ -2307,7 +2307,7 @@
     "name": "Sembas",
     "code": "47297",
     "epci_code": "200068922",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47360"
   },
@@ -2315,7 +2315,7 @@
     "name": "Sénestis",
     "code": "47298",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47430"
   },
@@ -2323,7 +2323,7 @@
     "name": "Sérignac-Péboudou",
     "code": "47299",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47410"
   },
@@ -2331,7 +2331,7 @@
     "name": "Sérignac-sur-Garonne",
     "code": "47300",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47310"
   },
@@ -2339,7 +2339,7 @@
     "name": "Seyches",
     "code": "47301",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47350"
   },
@@ -2347,7 +2347,7 @@
     "name": "Sos",
     "code": "47302",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47170"
   },
@@ -2355,7 +2355,7 @@
     "name": "Soumensac",
     "code": "47303",
     "epci_code": "244700449",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47120"
   },
@@ -2363,7 +2363,7 @@
     "name": "Taillebourg",
     "code": "47304",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47200"
   },
@@ -2371,7 +2371,7 @@
     "name": "Tayrac",
     "code": "47305",
     "epci_code": "200096956",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47270"
   },
@@ -2379,7 +2379,7 @@
     "name": "Le Temple-sur-Lot",
     "code": "47306",
     "epci_code": "244701405",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47110"
   },
@@ -2387,7 +2387,7 @@
     "name": "Thézac",
     "code": "47307",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47370"
   },
@@ -2395,7 +2395,7 @@
     "name": "Thouars-sur-Garonne",
     "code": "47308",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47230"
   },
@@ -2403,7 +2403,7 @@
     "name": "Tombebœuf",
     "code": "47309",
     "epci_code": "244701405",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47380"
   },
@@ -2411,7 +2411,7 @@
     "name": "Tonneins",
     "code": "47310",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47400"
   },
@@ -2419,7 +2419,7 @@
     "name": "Tourliac",
     "code": "47311",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47210"
   },
@@ -2427,7 +2427,7 @@
     "name": "Tournon-d’Agenais",
     "code": "47312",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47370"
   },
@@ -2435,7 +2435,7 @@
     "name": "Tourtrès",
     "code": "47313",
     "epci_code": "244701405",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47380"
   },
@@ -2443,7 +2443,7 @@
     "name": "Trémons",
     "code": "47314",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47140"
   },
@@ -2451,7 +2451,7 @@
     "name": "Trentels",
     "code": "47315",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47140"
   },
@@ -2459,7 +2459,7 @@
     "name": "Varès",
     "code": "47316",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47400"
   },
@@ -2467,7 +2467,7 @@
     "name": "Verteuil-d’Agenais",
     "code": "47317",
     "epci_code": "244701405",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47260"
   },
@@ -2475,7 +2475,7 @@
     "name": "Vianne",
     "code": "47318",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47230"
   },
@@ -2483,7 +2483,7 @@
     "name": "Villebramar",
     "code": "47319",
     "epci_code": "244701405",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47380"
   },
@@ -2491,7 +2491,7 @@
     "name": "Villefranche-du-Queyran",
     "code": "47320",
     "epci_code": "244701355",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47160"
   },
@@ -2499,7 +2499,7 @@
     "name": "Villeneuve-de-Duras",
     "code": "47321",
     "epci_code": "244700449",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47120"
   },
@@ -2507,7 +2507,7 @@
     "name": "Villeneuve-sur-Lot",
     "code": "47323",
     "epci_code": "200023307",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47300"
   },
@@ -2515,7 +2515,7 @@
     "name": "Villeréal",
     "code": "47324",
     "epci_code": "200036523",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47210"
   },
@@ -2523,7 +2523,7 @@
     "name": "Villeton",
     "code": "47325",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47400"
   },
@@ -2531,7 +2531,7 @@
     "name": "Virazeil",
     "code": "47326",
     "epci_code": "200030674",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47200"
   },
@@ -2539,7 +2539,7 @@
     "name": "Xaintrailles",
     "code": "47327",
     "epci_code": "200068948",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47230"
   },
@@ -2547,7 +2547,7 @@
     "name": "Saint-Georges",
     "code": "47328",
     "epci_code": "200068930",
-    "departement_code": "47",
+    "department_code": "47",
     "region_code": "75",
     "postal_code": "47370"
   }

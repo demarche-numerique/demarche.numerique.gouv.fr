@@ -3,7 +3,7 @@
     "name": "Allaire",
     "code": "56001",
     "epci_code": "243500741",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56350"
   },
@@ -11,7 +11,7 @@
     "name": "Ambon",
     "code": "56002",
     "epci_code": "200027027",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56190"
   },
@@ -19,7 +19,7 @@
     "name": "Arradon",
     "code": "56003",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56610"
   },
@@ -27,7 +27,7 @@
     "name": "Arzal",
     "code": "56004",
     "epci_code": "200027027",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56190"
   },
@@ -35,7 +35,7 @@
     "name": "Arzon",
     "code": "56005",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56640"
   },
@@ -43,7 +43,7 @@
     "name": "Augan",
     "code": "56006",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56800"
   },
@@ -51,7 +51,7 @@
     "name": "Auray",
     "code": "56007",
     "epci_code": "200043123",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56400"
   },
@@ -59,7 +59,7 @@
     "name": "Baden",
     "code": "56008",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56870"
   },
@@ -67,7 +67,7 @@
     "name": "Bangor",
     "code": "56009",
     "epci_code": "245600465",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56360"
   },
@@ -75,7 +75,7 @@
     "name": "Baud",
     "code": "56010",
     "epci_code": "200096675",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56150"
   },
@@ -83,7 +83,7 @@
     "name": "Béganne",
     "code": "56011",
     "epci_code": "243500741",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56350"
   },
@@ -91,7 +91,7 @@
     "name": "Beignon",
     "code": "56012",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56380"
   },
@@ -99,7 +99,7 @@
     "name": "Belz",
     "code": "56013",
     "epci_code": "200043123",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56550"
   },
@@ -107,7 +107,7 @@
     "name": "Berné",
     "code": "56014",
     "epci_code": "245614417",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56240"
   },
@@ -115,7 +115,7 @@
     "name": "Berric",
     "code": "56015",
     "epci_code": "245614383",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56230"
   },
@@ -123,7 +123,7 @@
     "name": "Bignan",
     "code": "56017",
     "epci_code": "200096683",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56500"
   },
@@ -131,7 +131,7 @@
     "name": "Billiers",
     "code": "56018",
     "epci_code": "200027027",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56190"
   },
@@ -139,7 +139,7 @@
     "name": "Billio",
     "code": "56019",
     "epci_code": "200096683",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56420"
   },
@@ -147,7 +147,7 @@
     "name": "Bohal",
     "code": "56020",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56140"
   },
@@ -155,7 +155,7 @@
     "name": "Brandérion",
     "code": "56021",
     "epci_code": "200042174",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56700"
   },
@@ -163,7 +163,7 @@
     "name": "Brandivy",
     "code": "56022",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56390"
   },
@@ -171,7 +171,7 @@
     "name": "Brech",
     "code": "56023",
     "epci_code": "200043123",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56400"
   },
@@ -179,7 +179,7 @@
     "name": "Bréhan",
     "code": "56024",
     "epci_code": "245614433",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56580"
   },
@@ -187,7 +187,7 @@
     "name": "Brignac",
     "code": "56025",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56430"
   },
@@ -195,7 +195,7 @@
     "name": "Bubry",
     "code": "56026",
     "epci_code": "200042174",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56310"
   },
@@ -203,7 +203,7 @@
     "name": "Buléon",
     "code": "56027",
     "epci_code": "200096683",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56420"
   },
@@ -211,7 +211,7 @@
     "name": "Caden",
     "code": "56028",
     "epci_code": "245614383",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56220"
   },
@@ -219,7 +219,7 @@
     "name": "Calan",
     "code": "56029",
     "epci_code": "200042174",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56240"
   },
@@ -227,7 +227,7 @@
     "name": "Camoël",
     "code": "56030",
     "epci_code": "244400610",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56130"
   },
@@ -235,7 +235,7 @@
     "name": "Camors",
     "code": "56031",
     "epci_code": "200043123",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56330"
   },
@@ -243,7 +243,7 @@
     "name": "Campénéac",
     "code": "56032",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56800"
   },
@@ -251,7 +251,7 @@
     "name": "Carentoir",
     "code": "56033",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56910"
   },
@@ -259,7 +259,7 @@
     "name": "Carnac",
     "code": "56034",
     "epci_code": "200043123",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56340"
   },
@@ -267,7 +267,7 @@
     "name": "Caro",
     "code": "56035",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56140"
   },
@@ -275,7 +275,7 @@
     "name": "Caudan",
     "code": "56036",
     "epci_code": "200042174",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56850"
   },
@@ -283,7 +283,7 @@
     "name": "La Chapelle-Neuve",
     "code": "56039",
     "epci_code": "200096675",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56500"
   },
@@ -291,7 +291,7 @@
     "name": "Cléguer",
     "code": "56040",
     "epci_code": "200042174",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56620"
   },
@@ -299,7 +299,7 @@
     "name": "Cléguérec",
     "code": "56041",
     "epci_code": "245614433",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56480"
   },
@@ -307,7 +307,7 @@
     "name": "Colpo",
     "code": "56042",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56390"
   },
@@ -315,7 +315,7 @@
     "name": "Concoret",
     "code": "56043",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56430"
   },
@@ -323,7 +323,7 @@
     "name": "Cournon",
     "code": "56044",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56200"
   },
@@ -331,7 +331,7 @@
     "name": "Le Cours",
     "code": "56045",
     "epci_code": "245614383",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56230"
   },
@@ -339,7 +339,7 @@
     "name": "Crach",
     "code": "56046",
     "epci_code": "200043123",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56950"
   },
@@ -347,7 +347,7 @@
     "name": "Crédin",
     "code": "56047",
     "epci_code": "245614433",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56580"
   },
@@ -355,7 +355,7 @@
     "name": "Le Croisty",
     "code": "56048",
     "epci_code": "245614417",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56540"
   },
@@ -363,7 +363,7 @@
     "name": "La Croix-Helléan",
     "code": "56050",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56120"
   },
@@ -371,7 +371,7 @@
     "name": "Cruguel",
     "code": "56051",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56420"
   },
@@ -379,7 +379,7 @@
     "name": "Damgan",
     "code": "56052",
     "epci_code": "200027027",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56750"
   },
@@ -387,7 +387,7 @@
     "name": "Elven",
     "code": "56053",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56250"
   },
@@ -395,7 +395,7 @@
     "name": "Erdeven",
     "code": "56054",
     "epci_code": "200043123",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56410"
   },
@@ -403,7 +403,7 @@
     "name": "Étel",
     "code": "56055",
     "epci_code": "200043123",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56410"
   },
@@ -411,7 +411,7 @@
     "name": "Évriguet",
     "code": "56056",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56490"
   },
@@ -419,7 +419,7 @@
     "name": "Le Faouët",
     "code": "56057",
     "epci_code": "245614417",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56320"
   },
@@ -427,7 +427,7 @@
     "name": "Férel",
     "code": "56058",
     "epci_code": "244400610",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56130"
   },
@@ -435,7 +435,7 @@
     "name": "Les Fougerêts",
     "code": "56060",
     "epci_code": "243500741",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56200"
   },
@@ -443,7 +443,7 @@
     "name": "La Gacilly",
     "code": "56061",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56200"
   },
@@ -451,7 +451,7 @@
     "name": "Gâvres",
     "code": "56062",
     "epci_code": "200042174",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56680"
   },
@@ -459,7 +459,7 @@
     "name": "Gestel",
     "code": "56063",
     "epci_code": "200042174",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56530"
   },
@@ -467,7 +467,7 @@
     "name": "Gourhel",
     "code": "56065",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56800"
   },
@@ -475,7 +475,7 @@
     "name": "Gourin",
     "code": "56066",
     "epci_code": "245614417",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56110"
   },
@@ -483,7 +483,7 @@
     "name": "Grand-Champ",
     "code": "56067",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56390"
   },
@@ -491,7 +491,7 @@
     "name": "La Grée-Saint-Laurent",
     "code": "56068",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56120"
   },
@@ -499,7 +499,7 @@
     "name": "Groix",
     "code": "56069",
     "epci_code": "200042174",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56590"
   },
@@ -507,7 +507,7 @@
     "name": "Guégon",
     "code": "56070",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56120"
   },
@@ -515,7 +515,7 @@
     "name": "Guéhenno",
     "code": "56071",
     "epci_code": "200096683",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56420"
   },
@@ -523,7 +523,7 @@
     "name": "Gueltas",
     "code": "56072",
     "epci_code": "245614433",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56920"
   },
@@ -531,7 +531,7 @@
     "name": "Guémené-sur-Scorff",
     "code": "56073",
     "epci_code": "245614417",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56160"
   },
@@ -539,7 +539,7 @@
     "name": "Guénin",
     "code": "56074",
     "epci_code": "200096675",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56150"
   },
@@ -547,7 +547,7 @@
     "name": "Guer",
     "code": "56075",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56380"
   },
@@ -555,7 +555,7 @@
     "name": "Guern",
     "code": "56076",
     "epci_code": "245614433",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56310"
   },
@@ -563,7 +563,7 @@
     "name": "Le Guerno",
     "code": "56077",
     "epci_code": "200027027",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56190"
   },
@@ -571,7 +571,7 @@
     "name": "Guidel",
     "code": "56078",
     "epci_code": "200042174",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56520"
   },
@@ -579,7 +579,7 @@
     "name": "Guillac",
     "code": "56079",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56800"
   },
@@ -587,7 +587,7 @@
     "name": "Guilliers",
     "code": "56080",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56490"
   },
@@ -595,7 +595,7 @@
     "name": "Guiscriff",
     "code": "56081",
     "epci_code": "245614417",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56560"
   },
@@ -603,7 +603,7 @@
     "name": "Helléan",
     "code": "56082",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56120"
   },
@@ -611,7 +611,7 @@
     "name": "Hennebont",
     "code": "56083",
     "epci_code": "200042174",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56700"
   },
@@ -619,7 +619,7 @@
     "name": "Le Hézo",
     "code": "56084",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56450"
   },
@@ -627,7 +627,7 @@
     "name": "Hœdic",
     "code": "56085",
     "epci_code": "200043123",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56170"
   },
@@ -635,7 +635,7 @@
     "name": "Île-d’Houat",
     "code": "56086",
     "epci_code": "200043123",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56170"
   },
@@ -643,7 +643,7 @@
     "name": "Île-aux-Moines",
     "code": "56087",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56780"
   },
@@ -651,7 +651,7 @@
     "name": "Île-d’Arz",
     "code": "56088",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56840"
   },
@@ -659,7 +659,7 @@
     "name": "Inguiniel",
     "code": "56089",
     "epci_code": "200042174",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56240"
   },
@@ -667,7 +667,7 @@
     "name": "Inzinzac-Lochrist",
     "code": "56090",
     "epci_code": "200042174",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56650"
   },
@@ -675,7 +675,7 @@
     "name": "Josselin",
     "code": "56091",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56120"
   },
@@ -683,7 +683,7 @@
     "name": "Kerfourn",
     "code": "56092",
     "epci_code": "245614433",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56920"
   },
@@ -691,7 +691,7 @@
     "name": "Kergrist",
     "code": "56093",
     "epci_code": "245614433",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56300"
   },
@@ -699,7 +699,7 @@
     "name": "Kervignac",
     "code": "56094",
     "epci_code": "245600440",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56700"
   },
@@ -707,7 +707,7 @@
     "name": "Landaul",
     "code": "56096",
     "epci_code": "200043123",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56690"
   },
@@ -715,7 +715,7 @@
     "name": "Landévant",
     "code": "56097",
     "epci_code": "200043123",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56690"
   },
@@ -723,7 +723,7 @@
     "name": "Lanester",
     "code": "56098",
     "epci_code": "200042174",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56600"
   },
@@ -731,7 +731,7 @@
     "name": "Langoëlan",
     "code": "56099",
     "epci_code": "245614417",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56160"
   },
@@ -739,7 +739,7 @@
     "name": "Langonnet",
     "code": "56100",
     "epci_code": "245614417",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56630"
   },
@@ -747,7 +747,7 @@
     "name": "Languidic",
     "code": "56101",
     "epci_code": "200042174",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56440"
   },
@@ -755,7 +755,7 @@
     "name": "Forges de Lanouée",
     "code": "56102",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56120"
   },
@@ -763,7 +763,7 @@
     "name": "Lantillac",
     "code": "56103",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56120"
   },
@@ -771,7 +771,7 @@
     "name": "Lanvaudan",
     "code": "56104",
     "epci_code": "200042174",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56240"
   },
@@ -779,7 +779,7 @@
     "name": "Lanvénégen",
     "code": "56105",
     "epci_code": "245614417",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56320"
   },
@@ -787,7 +787,7 @@
     "name": "Larmor-Baden",
     "code": "56106",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56870"
   },
@@ -795,7 +795,7 @@
     "name": "Larmor-Plage",
     "code": "56107",
     "epci_code": "200042174",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56260"
   },
@@ -803,7 +803,7 @@
     "name": "Larré",
     "code": "56108",
     "epci_code": "245614383",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56230"
   },
@@ -811,7 +811,7 @@
     "name": "Lauzach",
     "code": "56109",
     "epci_code": "245614383",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56190"
   },
@@ -819,7 +819,7 @@
     "name": "Lignol",
     "code": "56110",
     "epci_code": "245614417",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56160"
   },
@@ -827,7 +827,7 @@
     "name": "Limerzel",
     "code": "56111",
     "epci_code": "245614383",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56220"
   },
@@ -835,7 +835,7 @@
     "name": "Lizio",
     "code": "56112",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56460"
   },
@@ -843,7 +843,7 @@
     "name": "Locmalo",
     "code": "56113",
     "epci_code": "245614417",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56160"
   },
@@ -851,7 +851,7 @@
     "name": "Locmaria",
     "code": "56114",
     "epci_code": "245600465",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56360"
   },
@@ -859,7 +859,7 @@
     "name": "Locmaria-Grand-Champ",
     "code": "56115",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56390"
   },
@@ -867,7 +867,7 @@
     "name": "Locmariaquer",
     "code": "56116",
     "epci_code": "200043123",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56740"
   },
@@ -875,7 +875,7 @@
     "name": "Locminé",
     "code": "56117",
     "epci_code": "200096683",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56500"
   },
@@ -883,7 +883,7 @@
     "name": "Locmiquélic",
     "code": "56118",
     "epci_code": "200042174",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56570"
   },
@@ -891,7 +891,7 @@
     "name": "Locoal-Mendon",
     "code": "56119",
     "epci_code": "200043123",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56550"
   },
@@ -899,7 +899,7 @@
     "name": "Locqueltas",
     "code": "56120",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56390"
   },
@@ -907,7 +907,7 @@
     "name": "Lorient",
     "code": "56121",
     "epci_code": "200042174",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56100"
   },
@@ -915,7 +915,7 @@
     "name": "Loyat",
     "code": "56122",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56800"
   },
@@ -923,7 +923,7 @@
     "name": "Malansac",
     "code": "56123",
     "epci_code": "245614383",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56220"
   },
@@ -931,7 +931,7 @@
     "name": "Malestroit",
     "code": "56124",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56140"
   },
@@ -939,7 +939,7 @@
     "name": "Malguénac",
     "code": "56125",
     "epci_code": "245614433",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56300"
   },
@@ -947,7 +947,7 @@
     "name": "Marzan",
     "code": "56126",
     "epci_code": "200027027",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56130"
   },
@@ -955,7 +955,7 @@
     "name": "Mauron",
     "code": "56127",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56430"
   },
@@ -963,7 +963,7 @@
     "name": "Melrand",
     "code": "56128",
     "epci_code": "200096675",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56310"
   },
@@ -971,7 +971,7 @@
     "name": "Ménéac",
     "code": "56129",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56490"
   },
@@ -979,7 +979,7 @@
     "name": "Merlevenez",
     "code": "56130",
     "epci_code": "245600440",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56700"
   },
@@ -987,7 +987,7 @@
     "name": "Meslan",
     "code": "56131",
     "epci_code": "245614417",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56320"
   },
@@ -995,7 +995,7 @@
     "name": "Meucon",
     "code": "56132",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56890"
   },
@@ -1003,7 +1003,7 @@
     "name": "Missiriac",
     "code": "56133",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56140"
   },
@@ -1011,7 +1011,7 @@
     "name": "Mohon",
     "code": "56134",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56490"
   },
@@ -1019,7 +1019,7 @@
     "name": "Molac",
     "code": "56135",
     "epci_code": "245614383",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56230"
   },
@@ -1027,7 +1027,7 @@
     "name": "Monteneuf",
     "code": "56136",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56380"
   },
@@ -1035,7 +1035,7 @@
     "name": "Monterblanc",
     "code": "56137",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56250"
   },
@@ -1043,7 +1043,7 @@
     "name": "Montertelot",
     "code": "56139",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56800"
   },
@@ -1051,7 +1051,7 @@
     "name": "Moréac",
     "code": "56140",
     "epci_code": "200096683",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56500"
   },
@@ -1059,7 +1059,7 @@
     "name": "Moustoir-Ac",
     "code": "56141",
     "epci_code": "200096683",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56500"
   },
@@ -1067,7 +1067,7 @@
     "name": "Muzillac",
     "code": "56143",
     "epci_code": "200027027",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56190"
   },
@@ -1075,7 +1075,7 @@
     "name": "Évellys",
     "code": "56144",
     "epci_code": "200096683",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56500"
   },
@@ -1083,7 +1083,7 @@
     "name": "Néant-sur-Yvel",
     "code": "56145",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56430"
   },
@@ -1091,7 +1091,7 @@
     "name": "Neulliac",
     "code": "56146",
     "epci_code": "245614433",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56300"
   },
@@ -1099,7 +1099,7 @@
     "name": "Nivillac",
     "code": "56147",
     "epci_code": "200027027",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56130"
   },
@@ -1107,7 +1107,7 @@
     "name": "Nostang",
     "code": "56148",
     "epci_code": "245600440",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56690"
   },
@@ -1115,7 +1115,7 @@
     "name": "Noyal-Muzillac",
     "code": "56149",
     "epci_code": "200027027",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56190"
   },
@@ -1123,7 +1123,7 @@
     "name": "Noyal-Pontivy",
     "code": "56151",
     "epci_code": "245614433",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56920"
   },
@@ -1131,7 +1131,7 @@
     "name": "Le Palais",
     "code": "56152",
     "epci_code": "245600465",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56360"
   },
@@ -1139,7 +1139,7 @@
     "name": "Péaule",
     "code": "56153",
     "epci_code": "200027027",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56130"
   },
@@ -1147,7 +1147,7 @@
     "name": "Peillac",
     "code": "56154",
     "epci_code": "243500741",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56220"
   },
@@ -1155,7 +1155,7 @@
     "name": "Pénestin",
     "code": "56155",
     "epci_code": "244400610",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56760"
   },
@@ -1163,7 +1163,7 @@
     "name": "Persquen",
     "code": "56156",
     "epci_code": "245614417",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56160"
   },
@@ -1171,7 +1171,7 @@
     "name": "Plaudren",
     "code": "56157",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56420"
   },
@@ -1179,7 +1179,7 @@
     "name": "Plescop",
     "code": "56158",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56890"
   },
@@ -1187,7 +1187,7 @@
     "name": "Pleucadeuc",
     "code": "56159",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56140"
   },
@@ -1195,7 +1195,7 @@
     "name": "Pleugriffet",
     "code": "56160",
     "epci_code": "245614433",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56120"
   },
@@ -1203,7 +1203,7 @@
     "name": "Ploemel",
     "code": "56161",
     "epci_code": "200043123",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56400"
   },
@@ -1211,7 +1211,7 @@
     "name": "Ploemeur",
     "code": "56162",
     "epci_code": "200042174",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56270"
   },
@@ -1219,7 +1219,7 @@
     "name": "Ploërdut",
     "code": "56163",
     "epci_code": "245614417",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56160"
   },
@@ -1227,7 +1227,7 @@
     "name": "Ploeren",
     "code": "56164",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56880"
   },
@@ -1235,7 +1235,7 @@
     "name": "Ploërmel",
     "code": "56165",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56800"
   },
@@ -1243,7 +1243,7 @@
     "name": "Plouay",
     "code": "56166",
     "epci_code": "200042174",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56240"
   },
@@ -1251,7 +1251,7 @@
     "name": "Plougoumelen",
     "code": "56167",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56400"
   },
@@ -1259,7 +1259,7 @@
     "name": "Plouharnel",
     "code": "56168",
     "epci_code": "200043123",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56340"
   },
@@ -1267,7 +1267,7 @@
     "name": "Plouhinec",
     "code": "56169",
     "epci_code": "245600440",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56680"
   },
@@ -1275,7 +1275,7 @@
     "name": "Plouray",
     "code": "56170",
     "epci_code": "245614417",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56770"
   },
@@ -1283,7 +1283,7 @@
     "name": "Pluherlin",
     "code": "56171",
     "epci_code": "245614383",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56220"
   },
@@ -1291,7 +1291,7 @@
     "name": "Plumelec",
     "code": "56172",
     "epci_code": "200096683",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56420"
   },
@@ -1299,7 +1299,7 @@
     "name": "Pluméliau-Bieuzy",
     "code": "56173",
     "epci_code": "200096675",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56310"
   },
@@ -1307,7 +1307,7 @@
     "name": "Pluméliau-Bieuzy",
     "code": "56173",
     "epci_code": "200096675",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56930"
   },
@@ -1315,7 +1315,7 @@
     "name": "Plumelin",
     "code": "56174",
     "epci_code": "200096683",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56500"
   },
@@ -1323,7 +1323,7 @@
     "name": "Plumergat",
     "code": "56175",
     "epci_code": "200043123",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56400"
   },
@@ -1331,7 +1331,7 @@
     "name": "Pluneret",
     "code": "56176",
     "epci_code": "200043123",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56400"
   },
@@ -1339,7 +1339,7 @@
     "name": "Pluvigner",
     "code": "56177",
     "epci_code": "200043123",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56330"
   },
@@ -1347,7 +1347,7 @@
     "name": "Pontivy",
     "code": "56178",
     "epci_code": "245614433",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56300"
   },
@@ -1355,7 +1355,7 @@
     "name": "Pont-Scorff",
     "code": "56179",
     "epci_code": "200042174",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56620"
   },
@@ -1363,7 +1363,7 @@
     "name": "Porcaro",
     "code": "56180",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56380"
   },
@@ -1371,7 +1371,7 @@
     "name": "Port-Louis",
     "code": "56181",
     "epci_code": "200042174",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56290"
   },
@@ -1379,7 +1379,7 @@
     "name": "Priziac",
     "code": "56182",
     "epci_code": "245614417",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56320"
   },
@@ -1387,7 +1387,7 @@
     "name": "Questembert",
     "code": "56184",
     "epci_code": "245614383",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56230"
   },
@@ -1395,7 +1395,7 @@
     "name": "Quéven",
     "code": "56185",
     "epci_code": "200042174",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56530"
   },
@@ -1403,7 +1403,7 @@
     "name": "Quiberon",
     "code": "56186",
     "epci_code": "200043123",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56170"
   },
@@ -1411,7 +1411,7 @@
     "name": "Quistinic",
     "code": "56188",
     "epci_code": "200042174",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56310"
   },
@@ -1419,7 +1419,7 @@
     "name": "Radenac",
     "code": "56189",
     "epci_code": "245614433",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56500"
   },
@@ -1427,7 +1427,7 @@
     "name": "Réguiny",
     "code": "56190",
     "epci_code": "245614433",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56500"
   },
@@ -1435,7 +1435,7 @@
     "name": "Réminiac",
     "code": "56191",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56140"
   },
@@ -1443,7 +1443,7 @@
     "name": "Riantec",
     "code": "56193",
     "epci_code": "200042174",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56670"
   },
@@ -1451,7 +1451,7 @@
     "name": "Rieux",
     "code": "56194",
     "epci_code": "243500741",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56350"
   },
@@ -1459,7 +1459,7 @@
     "name": "La Roche-Bernard",
     "code": "56195",
     "epci_code": "200027027",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56130"
   },
@@ -1467,7 +1467,7 @@
     "name": "Rochefort-en-Terre",
     "code": "56196",
     "epci_code": "245614383",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56220"
   },
@@ -1475,7 +1475,7 @@
     "name": "Val d’Oust",
     "code": "56197",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56460"
   },
@@ -1483,7 +1483,7 @@
     "name": "Val d’Oust",
     "code": "56197",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56800"
   },
@@ -1491,7 +1491,7 @@
     "name": "Rohan",
     "code": "56198",
     "epci_code": "245614433",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56580"
   },
@@ -1499,7 +1499,7 @@
     "name": "Roudouallec",
     "code": "56199",
     "epci_code": "245614417",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56110"
   },
@@ -1507,7 +1507,7 @@
     "name": "Ruffiac",
     "code": "56200",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56140"
   },
@@ -1515,7 +1515,7 @@
     "name": "Le Saint",
     "code": "56201",
     "epci_code": "245614417",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56110"
   },
@@ -1523,7 +1523,7 @@
     "name": "Saint-Abraham",
     "code": "56202",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56140"
   },
@@ -1531,7 +1531,7 @@
     "name": "Saint-Aignan",
     "code": "56203",
     "epci_code": "245614433",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56480"
   },
@@ -1539,7 +1539,7 @@
     "name": "Saint-Allouestre",
     "code": "56204",
     "epci_code": "200096683",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56500"
   },
@@ -1547,7 +1547,7 @@
     "name": "Saint-Armel",
     "code": "56205",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56450"
   },
@@ -1555,7 +1555,7 @@
     "name": "Saint-Avé",
     "code": "56206",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56890"
   },
@@ -1563,7 +1563,7 @@
     "name": "Saint-Barthélemy",
     "code": "56207",
     "epci_code": "200096675",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56150"
   },
@@ -1571,7 +1571,7 @@
     "name": "Saint-Brieuc-de-Mauron",
     "code": "56208",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56430"
   },
@@ -1579,7 +1579,7 @@
     "name": "Sainte-Brigitte",
     "code": "56209",
     "epci_code": "245614433",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56480"
   },
@@ -1587,7 +1587,7 @@
     "name": "Saint-Caradec-Trégomel",
     "code": "56210",
     "epci_code": "245614417",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56540"
   },
@@ -1595,7 +1595,7 @@
     "name": "Saint-Congard",
     "code": "56211",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56140"
   },
@@ -1603,7 +1603,7 @@
     "name": "Saint-Dolay",
     "code": "56212",
     "epci_code": "200027027",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56130"
   },
@@ -1611,7 +1611,7 @@
     "name": "Saint-Gérand-Croixanvec",
     "code": "56213",
     "epci_code": "245614433",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56920"
   },
@@ -1619,7 +1619,7 @@
     "name": "Saint-Gildas-de-Rhuys",
     "code": "56214",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56730"
   },
@@ -1627,7 +1627,7 @@
     "name": "Saint-Gonnery",
     "code": "56215",
     "epci_code": "245614433",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56920"
   },
@@ -1635,7 +1635,7 @@
     "name": "Saint-Gorgon",
     "code": "56216",
     "epci_code": "243500741",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56350"
   },
@@ -1643,7 +1643,7 @@
     "name": "Saint-Gravé",
     "code": "56218",
     "epci_code": "245614383",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56220"
   },
@@ -1651,7 +1651,7 @@
     "name": "Saint-Guyomard",
     "code": "56219",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56460"
   },
@@ -1659,7 +1659,7 @@
     "name": "Sainte-Hélène",
     "code": "56220",
     "epci_code": "245600440",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56700"
   },
@@ -1667,7 +1667,7 @@
     "name": "Saint-Jacut-les-Pins",
     "code": "56221",
     "epci_code": "243500741",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56220"
   },
@@ -1675,7 +1675,7 @@
     "name": "Saint-Jean-Brévelay",
     "code": "56222",
     "epci_code": "200096683",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56660"
   },
@@ -1683,7 +1683,7 @@
     "name": "Saint-Jean-la-Poterie",
     "code": "56223",
     "epci_code": "243500741",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56350"
   },
@@ -1691,7 +1691,7 @@
     "name": "Saint-Laurent-sur-Oust",
     "code": "56224",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56140"
   },
@@ -1699,7 +1699,7 @@
     "name": "Saint-Léry",
     "code": "56225",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56430"
   },
@@ -1707,7 +1707,7 @@
     "name": "Saint-Malo-de-Beignon",
     "code": "56226",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56380"
   },
@@ -1715,7 +1715,7 @@
     "name": "Saint-Malo-des-Trois-Fontaines",
     "code": "56227",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56490"
   },
@@ -1723,7 +1723,7 @@
     "name": "Saint-Marcel",
     "code": "56228",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56140"
   },
@@ -1731,7 +1731,7 @@
     "name": "Saint-Martin-sur-Oust",
     "code": "56229",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56200"
   },
@@ -1739,7 +1739,7 @@
     "name": "Saint-Nicolas-du-Tertre",
     "code": "56230",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56910"
   },
@@ -1747,7 +1747,7 @@
     "name": "Saint-Nolff",
     "code": "56231",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56250"
   },
@@ -1755,7 +1755,7 @@
     "name": "Saint-Perreux",
     "code": "56232",
     "epci_code": "243500741",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56350"
   },
@@ -1763,7 +1763,7 @@
     "name": "Saint-Philibert",
     "code": "56233",
     "epci_code": "200043123",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56470"
   },
@@ -1771,7 +1771,7 @@
     "name": "Saint-Pierre-Quiberon",
     "code": "56234",
     "epci_code": "200043123",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56510"
   },
@@ -1779,7 +1779,7 @@
     "name": "Saint-Servant",
     "code": "56236",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56120"
   },
@@ -1787,7 +1787,7 @@
     "name": "Saint-Thuriau",
     "code": "56237",
     "epci_code": "245614433",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56300"
   },
@@ -1795,7 +1795,7 @@
     "name": "Saint-Tugdual",
     "code": "56238",
     "epci_code": "245614417",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56540"
   },
@@ -1803,7 +1803,7 @@
     "name": "Saint-Vincent-sur-Oust",
     "code": "56239",
     "epci_code": "243500741",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56350"
   },
@@ -1811,7 +1811,7 @@
     "name": "Sarzeau",
     "code": "56240",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56370"
   },
@@ -1819,7 +1819,7 @@
     "name": "Sauzon",
     "code": "56241",
     "epci_code": "245600465",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56360"
   },
@@ -1827,7 +1827,7 @@
     "name": "Séglien",
     "code": "56242",
     "epci_code": "245614433",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56160"
   },
@@ -1835,7 +1835,7 @@
     "name": "Séné",
     "code": "56243",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56860"
   },
@@ -1843,7 +1843,7 @@
     "name": "Sérent",
     "code": "56244",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56460"
   },
@@ -1851,7 +1851,7 @@
     "name": "Silfiac",
     "code": "56245",
     "epci_code": "245614433",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56480"
   },
@@ -1859,7 +1859,7 @@
     "name": "Le Sourn",
     "code": "56246",
     "epci_code": "245614433",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56300"
   },
@@ -1867,7 +1867,7 @@
     "name": "Sulniac",
     "code": "56247",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56250"
   },
@@ -1875,7 +1875,7 @@
     "name": "Surzur",
     "code": "56248",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56450"
   },
@@ -1883,7 +1883,7 @@
     "name": "Taupont",
     "code": "56249",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56800"
   },
@@ -1891,7 +1891,7 @@
     "name": "Théhillac",
     "code": "56250",
     "epci_code": "243500741",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56130"
   },
@@ -1899,7 +1899,7 @@
     "name": "Theix-Noyalo",
     "code": "56251",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56450"
   },
@@ -1907,7 +1907,7 @@
     "name": "Le Tour-du-Parc",
     "code": "56252",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56370"
   },
@@ -1915,7 +1915,7 @@
     "name": "Tréal",
     "code": "56253",
     "epci_code": "200066785",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56140"
   },
@@ -1923,7 +1923,7 @@
     "name": "Trédion",
     "code": "56254",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56250"
   },
@@ -1931,7 +1931,7 @@
     "name": "Treffléan",
     "code": "56255",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56250"
   },
@@ -1939,7 +1939,7 @@
     "name": "Tréhorenteuc",
     "code": "56256",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56430"
   },
@@ -1947,7 +1947,7 @@
     "name": "La Trinité-Porhoët",
     "code": "56257",
     "epci_code": "200066777",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56490"
   },
@@ -1955,7 +1955,7 @@
     "name": "La Trinité-sur-Mer",
     "code": "56258",
     "epci_code": "200043123",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56470"
   },
@@ -1963,7 +1963,7 @@
     "name": "La Trinité-Surzur",
     "code": "56259",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56190"
   },
@@ -1971,7 +1971,7 @@
     "name": "Vannes",
     "code": "56260",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56000"
   },
@@ -1979,7 +1979,7 @@
     "name": "La Vraie-Croix",
     "code": "56261",
     "epci_code": "245614383",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56250"
   },
@@ -1987,7 +1987,7 @@
     "name": "Le Bono",
     "code": "56262",
     "epci_code": "200067932",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56400"
   },
@@ -1995,7 +1995,7 @@
     "name": "Sainte-Anne-d’Auray",
     "code": "56263",
     "epci_code": "200043123",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56400"
   },
@@ -2003,7 +2003,7 @@
     "name": "Kernascléden",
     "code": "56264",
     "epci_code": "245614417",
-    "departement_code": "56",
+    "department_code": "56",
     "region_code": "53",
     "postal_code": "56540"
   }

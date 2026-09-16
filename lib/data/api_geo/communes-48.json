@@ -3,7 +3,7 @@
     "name": "Albaret-le-Comtal",
     "code": "48001",
     "epci_code": "200069144",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48310"
   },
@@ -11,7 +11,7 @@
     "name": "Albaret-Sainte-Marie",
     "code": "48002",
     "epci_code": "200069185",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48200"
   },
@@ -19,7 +19,7 @@
     "name": "Allenc",
     "code": "48003",
     "epci_code": "200069128",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48190"
   },
@@ -27,7 +27,7 @@
     "name": "Altier",
     "code": "48004",
     "epci_code": "200069128",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48800"
   },
@@ -35,7 +35,7 @@
     "name": "Antrenas",
     "code": "48005",
     "epci_code": "244800470",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48100"
   },
@@ -43,7 +43,7 @@
     "name": "Arzenc-d’Apcher",
     "code": "48007",
     "epci_code": "200069144",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48310"
   },
@@ -51,7 +51,7 @@
     "name": "Arzenc-de-Randon",
     "code": "48008",
     "epci_code": "200069102",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48170"
   },
@@ -59,7 +59,7 @@
     "name": "Peyre en Aubrac",
     "code": "48009",
     "epci_code": "200069144",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48130"
   },
@@ -67,7 +67,7 @@
     "name": "Auroux",
     "code": "48010",
     "epci_code": "200006930",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48600"
   },
@@ -75,7 +75,7 @@
     "name": "Les Monts-Verts",
     "code": "48012",
     "epci_code": "200069144",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48200"
   },
@@ -83,7 +83,7 @@
     "name": "Badaroux",
     "code": "48013",
     "epci_code": "244800405",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48000"
   },
@@ -91,7 +91,7 @@
     "name": "Pied-de-Borne",
     "code": "48015",
     "epci_code": "200069128",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48800"
   },
@@ -99,7 +99,7 @@
     "name": "Balsièges",
     "code": "48016",
     "epci_code": "244800405",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48000"
   },
@@ -107,7 +107,7 @@
     "name": "Banassac-Canilhac",
     "code": "48017",
     "epci_code": "200069268",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48500"
   },
@@ -115,7 +115,7 @@
     "name": "Barjac",
     "code": "48018",
     "epci_code": "244800405",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48000"
   },
@@ -123,7 +123,7 @@
     "name": "Barre-des-Cévennes",
     "code": "48019",
     "epci_code": "200069151",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48400"
   },
@@ -131,7 +131,7 @@
     "name": "Bassurels",
     "code": "48020",
     "epci_code": "200069136",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48400"
   },
@@ -139,7 +139,7 @@
     "name": "La Bastide-Puylaurent",
     "code": "48021",
     "epci_code": "200069128",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48250"
   },
@@ -147,7 +147,7 @@
     "name": "Les Bessons",
     "code": "48025",
     "epci_code": "200069185",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48200"
   },
@@ -155,7 +155,7 @@
     "name": "Blavignac",
     "code": "48026",
     "epci_code": "200069185",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48200"
   },
@@ -163,7 +163,7 @@
     "name": "Mont Lozère et Goulet",
     "code": "48027",
     "epci_code": "200069128",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48170"
   },
@@ -171,7 +171,7 @@
     "name": "Mont Lozère et Goulet",
     "code": "48027",
     "epci_code": "200069128",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48190"
   },
@@ -179,7 +179,7 @@
     "name": "Mont Lozère et Goulet",
     "code": "48027",
     "epci_code": "200069128",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48250"
   },
@@ -187,7 +187,7 @@
     "name": "Les Bondons",
     "code": "48028",
     "epci_code": "200069151",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48400"
   },
@@ -195,7 +195,7 @@
     "name": "Le Born",
     "code": "48029",
     "epci_code": "244800405",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48000"
   },
@@ -203,7 +203,7 @@
     "name": "Brenoux",
     "code": "48030",
     "epci_code": "200069128",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48000"
   },
@@ -211,7 +211,7 @@
     "name": "Brion",
     "code": "48031",
     "epci_code": "200069144",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48310"
   },
@@ -219,7 +219,7 @@
     "name": "Le Buisson",
     "code": "48032",
     "epci_code": "244800470",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48100"
   },
@@ -227,7 +227,7 @@
     "name": "La Canourgue",
     "code": "48034",
     "epci_code": "200069268",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48500"
   },
@@ -235,7 +235,7 @@
     "name": "Cassagnas",
     "code": "48036",
     "epci_code": "200069151",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48400"
   },
@@ -243,7 +243,7 @@
     "name": "Chadenet",
     "code": "48037",
     "epci_code": "200069128",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48190"
   },
@@ -251,7 +251,7 @@
     "name": "Bel-Air-Val-d’Ance",
     "code": "48038",
     "epci_code": "200006930",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48600"
   },
@@ -259,7 +259,7 @@
     "name": "Chanac",
     "code": "48039",
     "epci_code": "200069268",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48230"
   },
@@ -267,7 +267,7 @@
     "name": "Chastanier",
     "code": "48041",
     "epci_code": "200006930",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48300"
   },
@@ -275,7 +275,7 @@
     "name": "Chastel-Nouvel",
     "code": "48042",
     "epci_code": "200069102",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48000"
   },
@@ -283,7 +283,7 @@
     "name": "Châteauneuf-de-Randon",
     "code": "48043",
     "epci_code": "200069102",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48170"
   },
@@ -291,7 +291,7 @@
     "name": "Chauchailles",
     "code": "48044",
     "epci_code": "200069144",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48310"
   },
@@ -299,7 +299,7 @@
     "name": "Chaudeyrac",
     "code": "48045",
     "epci_code": "200069102",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48170"
   },
@@ -307,7 +307,7 @@
     "name": "Chaulhac",
     "code": "48046",
     "epci_code": "200069185",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48140"
   },
@@ -315,7 +315,7 @@
     "name": "Cheylard-l’Évêque",
     "code": "48048",
     "epci_code": "200006930",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48300"
   },
@@ -323,7 +323,7 @@
     "name": "Bédouès-Cocurès",
     "code": "48050",
     "epci_code": "200069151",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48400"
   },
@@ -331,7 +331,7 @@
     "name": "Le Collet-de-Dèze",
     "code": "48051",
     "epci_code": "200069136",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48160"
   },
@@ -339,7 +339,7 @@
     "name": "Cubières",
     "code": "48053",
     "epci_code": "200069128",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48190"
   },
@@ -347,7 +347,7 @@
     "name": "Cubiérettes",
     "code": "48054",
     "epci_code": "200069128",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48190"
   },
@@ -355,7 +355,7 @@
     "name": "Cultures",
     "code": "48055",
     "epci_code": "200069268",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48230"
   },
@@ -363,7 +363,7 @@
     "name": "Esclanèdes",
     "code": "48056",
     "epci_code": "200069268",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48230"
   },
@@ -371,7 +371,7 @@
     "name": "La Fage-Montivernoux",
     "code": "48058",
     "epci_code": "200069144",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48310"
   },
@@ -379,7 +379,7 @@
     "name": "La Fage-Saint-Julien",
     "code": "48059",
     "epci_code": "200069185",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48200"
   },
@@ -387,7 +387,7 @@
     "name": "Florac Trois Rivières",
     "code": "48061",
     "epci_code": "200069151",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48400"
   },
@@ -395,7 +395,7 @@
     "name": "Fontans",
     "code": "48063",
     "epci_code": "200069185",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48700"
   },
@@ -403,7 +403,7 @@
     "name": "Fournels",
     "code": "48064",
     "epci_code": "200069144",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48310"
   },
@@ -411,7 +411,7 @@
     "name": "Fraissinet-de-Fourques",
     "code": "48065",
     "epci_code": "200069151",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48400"
   },
@@ -419,7 +419,7 @@
     "name": "Gabriac",
     "code": "48067",
     "epci_code": "200069136",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48110"
   },
@@ -427,7 +427,7 @@
     "name": "Gabrias",
     "code": "48068",
     "epci_code": "244800470",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48100"
   },
@@ -435,7 +435,7 @@
     "name": "Gatuzières",
     "code": "48069",
     "epci_code": "200069151",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48150"
   },
@@ -443,7 +443,7 @@
     "name": "Grandrieu",
     "code": "48070",
     "epci_code": "200069102",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48600"
   },
@@ -451,7 +451,7 @@
     "name": "Grandvals",
     "code": "48071",
     "epci_code": "200069144",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48260"
   },
@@ -459,7 +459,7 @@
     "name": "Grèzes",
     "code": "48072",
     "epci_code": "244800470",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48100"
   },
@@ -467,7 +467,7 @@
     "name": "Les Hermaux",
     "code": "48073",
     "epci_code": "200069268",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48340"
   },
@@ -475,7 +475,7 @@
     "name": "Hures-la-Parade",
     "code": "48074",
     "epci_code": "200069151",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48150"
   },
@@ -483,7 +483,7 @@
     "name": "Ispagnac",
     "code": "48075",
     "epci_code": "200069151",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48320"
   },
@@ -491,7 +491,7 @@
     "name": "Julianges",
     "code": "48077",
     "epci_code": "200069185",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48140"
   },
@@ -499,7 +499,7 @@
     "name": "Lajo",
     "code": "48079",
     "epci_code": "200069185",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48120"
   },
@@ -507,7 +507,7 @@
     "name": "Langogne",
     "code": "48080",
     "epci_code": "200006930",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48300"
   },
@@ -515,7 +515,7 @@
     "name": "Lanuéjols",
     "code": "48081",
     "epci_code": "200069128",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48000"
   },
@@ -523,7 +523,7 @@
     "name": "Laubert",
     "code": "48082",
     "epci_code": "200069128",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48170"
   },
@@ -531,7 +531,7 @@
     "name": "Les Laubies",
     "code": "48083",
     "epci_code": "200069102",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48700"
   },
@@ -539,7 +539,7 @@
     "name": "Laval-du-Tarn",
     "code": "48085",
     "epci_code": "200069268",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48500"
   },
@@ -547,7 +547,7 @@
     "name": "Luc",
     "code": "48086",
     "epci_code": "200006930",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48250"
   },
@@ -555,7 +555,7 @@
     "name": "Prinsuéjols-Malbouzon",
     "code": "48087",
     "epci_code": "200069144",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48100"
   },
@@ -563,7 +563,7 @@
     "name": "Prinsuéjols-Malbouzon",
     "code": "48087",
     "epci_code": "200069144",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48270"
   },
@@ -571,7 +571,7 @@
     "name": "La Malène",
     "code": "48088",
     "epci_code": "200069151",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48210"
   },
@@ -579,7 +579,7 @@
     "name": "Le Malzieu-Forain",
     "code": "48089",
     "epci_code": "200069185",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48140"
   },
@@ -587,7 +587,7 @@
     "name": "Le Malzieu-Ville",
     "code": "48090",
     "epci_code": "200069185",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48140"
   },
@@ -595,7 +595,7 @@
     "name": "Marchastel",
     "code": "48091",
     "epci_code": "200069144",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48260"
   },
@@ -603,7 +603,7 @@
     "name": "Marvejols",
     "code": "48092",
     "epci_code": "244800470",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48100"
   },
@@ -611,7 +611,7 @@
     "name": "Massegros Causses Gorges",
     "code": "48094",
     "epci_code": "200069268",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48210"
   },
@@ -619,7 +619,7 @@
     "name": "Massegros Causses Gorges",
     "code": "48094",
     "epci_code": "200069268",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48500"
   },
@@ -627,7 +627,7 @@
     "name": "Mende",
     "code": "48095",
     "epci_code": "244800405",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48000"
   },
@@ -635,7 +635,7 @@
     "name": "Meyrueis",
     "code": "48096",
     "epci_code": "200069151",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48150"
   },
@@ -643,7 +643,7 @@
     "name": "Moissac-Vallée-Française",
     "code": "48097",
     "epci_code": "200069136",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48110"
   },
@@ -651,7 +651,7 @@
     "name": "Molezon",
     "code": "48098",
     "epci_code": "200069136",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48110"
   },
@@ -659,7 +659,7 @@
     "name": "Bourgs sur Colagne",
     "code": "48099",
     "epci_code": "244800470",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48100"
   },
@@ -667,7 +667,7 @@
     "name": "Montbel",
     "code": "48100",
     "epci_code": "200069128",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48170"
   },
@@ -675,7 +675,7 @@
     "name": "Montrodat",
     "code": "48103",
     "epci_code": "244800470",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48100"
   },
@@ -683,7 +683,7 @@
     "name": "Nasbinals",
     "code": "48104",
     "epci_code": "200069144",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48260"
   },
@@ -691,7 +691,7 @@
     "name": "Naussac-Fontanes",
     "code": "48105",
     "epci_code": "200006930",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48300"
   },
@@ -699,7 +699,7 @@
     "name": "Noalhac",
     "code": "48106",
     "epci_code": "200069144",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48310"
   },
@@ -707,7 +707,7 @@
     "name": "Palhers",
     "code": "48107",
     "epci_code": "244800470",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48100"
   },
@@ -715,7 +715,7 @@
     "name": "La Panouse",
     "code": "48108",
     "epci_code": "200069102",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48600"
   },
@@ -723,7 +723,7 @@
     "name": "Paulhac-en-Margeride",
     "code": "48110",
     "epci_code": "200069185",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48140"
   },
@@ -731,7 +731,7 @@
     "name": "Pelouse",
     "code": "48111",
     "epci_code": "244800405",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48000"
   },
@@ -739,7 +739,7 @@
     "name": "Pierrefiche",
     "code": "48112",
     "epci_code": "200069102",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48300"
   },
@@ -747,7 +747,7 @@
     "name": "Le Pompidou",
     "code": "48115",
     "epci_code": "200069136",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48110"
   },
@@ -755,7 +755,7 @@
     "name": "Pont de Montvert - Sud Mont Lozère",
     "code": "48116",
     "epci_code": "200069136",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48220"
   },
@@ -763,7 +763,7 @@
     "name": "Pourcharesses",
     "code": "48117",
     "epci_code": "200069128",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48800"
   },
@@ -771,7 +771,7 @@
     "name": "Prévenchères",
     "code": "48119",
     "epci_code": "200069128",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48800"
   },
@@ -779,7 +779,7 @@
     "name": "Prunières",
     "code": "48121",
     "epci_code": "200069185",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48200"
   },
@@ -787,7 +787,7 @@
     "name": "Recoules-d’Aubrac",
     "code": "48123",
     "epci_code": "200069144",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48260"
   },
@@ -795,7 +795,7 @@
     "name": "Recoules-de-Fumas",
     "code": "48124",
     "epci_code": "244800470",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48100"
   },
@@ -803,7 +803,7 @@
     "name": "Lachamp-Ribennes",
     "code": "48126",
     "epci_code": "200069102",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48100"
   },
@@ -811,7 +811,7 @@
     "name": "Lachamp-Ribennes",
     "code": "48126",
     "epci_code": "200069102",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48700"
   },
@@ -819,7 +819,7 @@
     "name": "Monts-de-Randon",
     "code": "48127",
     "epci_code": "200069102",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48000"
   },
@@ -827,7 +827,7 @@
     "name": "Monts-de-Randon",
     "code": "48127",
     "epci_code": "200069102",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48700"
   },
@@ -835,7 +835,7 @@
     "name": "Rimeize",
     "code": "48128",
     "epci_code": "200069185",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48200"
   },
@@ -843,7 +843,7 @@
     "name": "Rocles",
     "code": "48129",
     "epci_code": "200006930",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48300"
   },
@@ -851,7 +851,7 @@
     "name": "Rousses",
     "code": "48130",
     "epci_code": "200069151",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48400"
   },
@@ -859,7 +859,7 @@
     "name": "Le Rozier",
     "code": "48131",
     "epci_code": "241200567",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48150"
   },
@@ -867,7 +867,7 @@
     "name": "Saint-Alban-sur-Limagnole",
     "code": "48132",
     "epci_code": "200069185",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48120"
   },
@@ -875,7 +875,7 @@
     "name": "Saint-André-Capcèze",
     "code": "48135",
     "epci_code": "200069128",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48800"
   },
@@ -883,7 +883,7 @@
     "name": "Saint-André-de-Lancize",
     "code": "48136",
     "epci_code": "200069136",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48240"
   },
@@ -891,7 +891,7 @@
     "name": "Saint-Bauzile",
     "code": "48137",
     "epci_code": "244800405",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48000"
   },
@@ -899,7 +899,7 @@
     "name": "Saint-Bonnet-de-Chirac",
     "code": "48138",
     "epci_code": "244800470",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48100"
   },
@@ -907,7 +907,7 @@
     "name": "Saint Bonnet-Laval",
     "code": "48139",
     "epci_code": "200006930",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48600"
   },
@@ -915,7 +915,7 @@
     "name": "Saint-Chély-d’Apcher",
     "code": "48140",
     "epci_code": "200069185",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48200"
   },
@@ -923,7 +923,7 @@
     "name": "Mas-Saint-Chély",
     "code": "48141",
     "epci_code": "200069151",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48210"
   },
@@ -931,7 +931,7 @@
     "name": "Sainte-Croix-Vallée-Française",
     "code": "48144",
     "epci_code": "200069136",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48110"
   },
@@ -939,7 +939,7 @@
     "name": "Saint-Denis-en-Margeride",
     "code": "48145",
     "epci_code": "200069102",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48700"
   },
@@ -947,7 +947,7 @@
     "name": "Gorges du Tarn Causses",
     "code": "48146",
     "epci_code": "200069151",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48210"
   },
@@ -955,7 +955,7 @@
     "name": "Gorges du Tarn Causses",
     "code": "48146",
     "epci_code": "200069151",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48320"
   },
@@ -963,7 +963,7 @@
     "name": "Saint-Étienne-du-Valdonnez",
     "code": "48147",
     "epci_code": "200069128",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48000"
   },
@@ -971,7 +971,7 @@
     "name": "Saint-Étienne-Vallée-Française",
     "code": "48148",
     "epci_code": "200069136",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48330"
   },
@@ -979,7 +979,7 @@
     "name": "Sainte-Eulalie",
     "code": "48149",
     "epci_code": "200069185",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48120"
   },
@@ -987,7 +987,7 @@
     "name": "Saint-Flour-de-Mercoire",
     "code": "48150",
     "epci_code": "200006930",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48300"
   },
@@ -995,7 +995,7 @@
     "name": "Saint-Frézal-d’Albuges",
     "code": "48151",
     "epci_code": "200069128",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48170"
   },
@@ -1003,7 +1003,7 @@
     "name": "Ventalon en Cévennes",
     "code": "48152",
     "epci_code": "200069136",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48160"
   },
@@ -1011,7 +1011,7 @@
     "name": "Ventalon en Cévennes",
     "code": "48152",
     "epci_code": "200069136",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48240"
   },
@@ -1019,7 +1019,7 @@
     "name": "Saint-Gal",
     "code": "48153",
     "epci_code": "200069102",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48700"
   },
@@ -1027,7 +1027,7 @@
     "name": "Saint-Germain-de-Calberte",
     "code": "48155",
     "epci_code": "200069136",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48370"
   },
@@ -1035,7 +1035,7 @@
     "name": "Saint-Germain-du-Teil",
     "code": "48156",
     "epci_code": "200069268",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48340"
   },
@@ -1043,7 +1043,7 @@
     "name": "Sainte-Hélène",
     "code": "48157",
     "epci_code": "200069128",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48190"
   },
@@ -1051,7 +1051,7 @@
     "name": "Saint-Hilaire-de-Lavit",
     "code": "48158",
     "epci_code": "200069136",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48160"
   },
@@ -1059,7 +1059,7 @@
     "name": "Saint-Jean-la-Fouillouse",
     "code": "48160",
     "epci_code": "200069102",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48170"
   },
@@ -1067,7 +1067,7 @@
     "name": "Saint-Juéry",
     "code": "48161",
     "epci_code": "200069144",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48310"
   },
@@ -1075,7 +1075,7 @@
     "name": "Saint-Julien-des-Points",
     "code": "48163",
     "epci_code": "200069136",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48160"
   },
@@ -1083,7 +1083,7 @@
     "name": "Saint-Laurent-de-Muret",
     "code": "48165",
     "epci_code": "244800470",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48100"
   },
@@ -1091,7 +1091,7 @@
     "name": "Cans et Cévennes",
     "code": "48166",
     "epci_code": "200069151",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48400"
   },
@@ -1099,7 +1099,7 @@
     "name": "Saint-Laurent-de-Veyrès",
     "code": "48167",
     "epci_code": "200069144",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48310"
   },
@@ -1107,7 +1107,7 @@
     "name": "Saint-Léger-de-Peyre",
     "code": "48168",
     "epci_code": "244800470",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48100"
   },
@@ -1115,7 +1115,7 @@
     "name": "Saint-Léger-du-Malzieu",
     "code": "48169",
     "epci_code": "200069185",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48140"
   },
@@ -1123,7 +1123,7 @@
     "name": "Saint-Martin-de-Boubaux",
     "code": "48170",
     "epci_code": "200069136",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48160"
   },
@@ -1131,7 +1131,7 @@
     "name": "Saint-Martin-de-Lansuscle",
     "code": "48171",
     "epci_code": "200069136",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48110"
   },
@@ -1139,7 +1139,7 @@
     "name": "Saint-Michel-de-Dèze",
     "code": "48173",
     "epci_code": "200069136",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48160"
   },
@@ -1147,7 +1147,7 @@
     "name": "Saint-Paul-le-Froid",
     "code": "48174",
     "epci_code": "200069102",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48600"
   },
@@ -1155,7 +1155,7 @@
     "name": "Saint-Pierre-de-Nogaret",
     "code": "48175",
     "epci_code": "200069268",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48340"
   },
@@ -1163,7 +1163,7 @@
     "name": "Saint-Pierre-des-Tripiers",
     "code": "48176",
     "epci_code": "200069151",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48150"
   },
@@ -1171,7 +1171,7 @@
     "name": "Saint-Pierre-le-Vieux",
     "code": "48177",
     "epci_code": "200069185",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48200"
   },
@@ -1179,7 +1179,7 @@
     "name": "Saint-Privat-de-Vallongue",
     "code": "48178",
     "epci_code": "200069136",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48240"
   },
@@ -1187,7 +1187,7 @@
     "name": "Saint-Privat-du-Fau",
     "code": "48179",
     "epci_code": "200069185",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48140"
   },
@@ -1195,7 +1195,7 @@
     "name": "Saint-Saturnin",
     "code": "48181",
     "epci_code": "200069268",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48500"
   },
@@ -1203,7 +1203,7 @@
     "name": "Saint-Sauveur-de-Ginestoux",
     "code": "48182",
     "epci_code": "200069102",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48170"
   },
@@ -1211,7 +1211,7 @@
     "name": "Les Salelles",
     "code": "48185",
     "epci_code": "200069268",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48230"
   },
@@ -1219,7 +1219,7 @@
     "name": "Les Salces",
     "code": "48187",
     "epci_code": "200069268",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48100"
   },
@@ -1227,7 +1227,7 @@
     "name": "Serverette",
     "code": "48188",
     "epci_code": "200069185",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48700"
   },
@@ -1235,7 +1235,7 @@
     "name": "Termes",
     "code": "48190",
     "epci_code": "200069144",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48310"
   },
@@ -1243,7 +1243,7 @@
     "name": "La Tieule",
     "code": "48191",
     "epci_code": "200069268",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48500"
   },
@@ -1251,7 +1251,7 @@
     "name": "Trélans",
     "code": "48192",
     "epci_code": "200069268",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48340"
   },
@@ -1259,7 +1259,7 @@
     "name": "Vebron",
     "code": "48193",
     "epci_code": "200069151",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48400"
   },
@@ -1267,7 +1267,7 @@
     "name": "Vialas",
     "code": "48194",
     "epci_code": "200069136",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48220"
   },
@@ -1275,7 +1275,7 @@
     "name": "Villefort",
     "code": "48198",
     "epci_code": "200069128",
-    "departement_code": "48",
+    "department_code": "48",
     "region_code": "76",
     "postal_code": "48800"
   }

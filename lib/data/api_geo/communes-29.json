@@ -3,7 +3,7 @@
     "name": "Argol",
     "code": "29001",
     "epci_code": "200066868",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29560"
   },
@@ -11,7 +11,7 @@
     "name": "Arzano",
     "code": "29002",
     "epci_code": "242900694",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29300"
   },
@@ -19,7 +19,7 @@
     "name": "Audierne",
     "code": "29003",
     "epci_code": "242900629",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29770"
   },
@@ -27,7 +27,7 @@
     "name": "Bannalec",
     "code": "29004",
     "epci_code": "242900694",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29380"
   },
@@ -35,7 +35,7 @@
     "name": "Baye",
     "code": "29005",
     "epci_code": "242900694",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29300"
   },
@@ -43,7 +43,7 @@
     "name": "Bénodet",
     "code": "29006",
     "epci_code": "242900660",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29950"
   },
@@ -51,7 +51,7 @@
     "name": "Berrien",
     "code": "29007",
     "epci_code": "200067197",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29690"
   },
@@ -59,7 +59,7 @@
     "name": "Beuzec-Cap-Sizun",
     "code": "29008",
     "epci_code": "242900629",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29790"
   },
@@ -67,7 +67,7 @@
     "name": "Bodilis",
     "code": "29010",
     "epci_code": "242900751",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29400"
   },
@@ -75,7 +75,7 @@
     "name": "Bohars",
     "code": "29011",
     "epci_code": "242900314",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29820"
   },
@@ -83,7 +83,7 @@
     "name": "Bolazec",
     "code": "29012",
     "epci_code": "200067197",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29640"
   },
@@ -91,7 +91,7 @@
     "name": "Botmeur",
     "code": "29013",
     "epci_code": "200067197",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29690"
   },
@@ -99,7 +99,7 @@
     "name": "Botsorhel",
     "code": "29014",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29650"
   },
@@ -107,7 +107,7 @@
     "name": "Bourg-Blanc",
     "code": "29015",
     "epci_code": "242900553",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29860"
   },
@@ -115,7 +115,7 @@
     "name": "Brasparts",
     "code": "29016",
     "epci_code": "200067197",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29190"
   },
@@ -123,7 +123,7 @@
     "name": "Brélès",
     "code": "29017",
     "epci_code": "242900074",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29810"
   },
@@ -131,7 +131,7 @@
     "name": "Brennilis",
     "code": "29018",
     "epci_code": "200067197",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29690"
   },
@@ -139,7 +139,7 @@
     "name": "Brest",
     "code": "29019",
     "epci_code": "242900314",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29200"
   },
@@ -147,7 +147,7 @@
     "name": "Briec",
     "code": "29020",
     "epci_code": "200068120",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29510"
   },
@@ -155,7 +155,7 @@
     "name": "Plounéour-Brignogan-plages",
     "code": "29021",
     "epci_code": "242900793",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29890"
   },
@@ -163,7 +163,7 @@
     "name": "Camaret-sur-Mer",
     "code": "29022",
     "epci_code": "200066868",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29570"
   },
@@ -171,7 +171,7 @@
     "name": "Carantec",
     "code": "29023",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29660"
   },
@@ -179,7 +179,7 @@
     "name": "Carhaix-Plouguer",
     "code": "29024",
     "epci_code": "242900744",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29270"
   },
@@ -187,7 +187,7 @@
     "name": "Cast",
     "code": "29025",
     "epci_code": "200067247",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29150"
   },
@@ -195,7 +195,7 @@
     "name": "Châteaulin",
     "code": "29026",
     "epci_code": "200067247",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29150"
   },
@@ -203,7 +203,7 @@
     "name": "Châteauneuf-du-Faou",
     "code": "29027",
     "epci_code": "242900561",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29520"
   },
@@ -211,7 +211,7 @@
     "name": "Cléden-Cap-Sizun",
     "code": "29028",
     "epci_code": "242900629",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29770"
   },
@@ -219,7 +219,7 @@
     "name": "Cléden-Poher",
     "code": "29029",
     "epci_code": "242900744",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29270"
   },
@@ -227,7 +227,7 @@
     "name": "Cléder",
     "code": "29030",
     "epci_code": "200067072",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29233"
   },
@@ -235,7 +235,7 @@
     "name": "Clohars-Carnoët",
     "code": "29031",
     "epci_code": "242900694",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29360"
   },
@@ -243,7 +243,7 @@
     "name": "Clohars-Fouesnant",
     "code": "29032",
     "epci_code": "242900660",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29950"
   },
@@ -251,7 +251,7 @@
     "name": "Le Cloître-Pleyben",
     "code": "29033",
     "epci_code": "200067247",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29190"
   },
@@ -259,7 +259,7 @@
     "name": "Le Cloître-Saint-Thégonnec",
     "code": "29034",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29410"
   },
@@ -267,7 +267,7 @@
     "name": "Coat-Méal",
     "code": "29035",
     "epci_code": "242900553",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29870"
   },
@@ -275,7 +275,7 @@
     "name": "Collorec",
     "code": "29036",
     "epci_code": "242900561",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29530"
   },
@@ -283,7 +283,7 @@
     "name": "Combrit",
     "code": "29037",
     "epci_code": "242900702",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29120"
   },
@@ -291,7 +291,7 @@
     "name": "Commana",
     "code": "29038",
     "epci_code": "242900751",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29450"
   },
@@ -299,7 +299,7 @@
     "name": "Concarneau",
     "code": "29039",
     "epci_code": "242900769",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29900"
   },
@@ -307,7 +307,7 @@
     "name": "Le Conquet",
     "code": "29040",
     "epci_code": "242900074",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29217"
   },
@@ -315,7 +315,7 @@
     "name": "Coray",
     "code": "29041",
     "epci_code": "242900561",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29370"
   },
@@ -323,7 +323,7 @@
     "name": "Crozon",
     "code": "29042",
     "epci_code": "200066868",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29160"
   },
@@ -331,7 +331,7 @@
     "name": "Daoulas",
     "code": "29043",
     "epci_code": "242900801",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29460"
   },
@@ -339,7 +339,7 @@
     "name": "Dinéault",
     "code": "29044",
     "epci_code": "200067247",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29150"
   },
@@ -347,7 +347,7 @@
     "name": "Dirinon",
     "code": "29045",
     "epci_code": "242900801",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29460"
   },
@@ -355,7 +355,7 @@
     "name": "Douarnenez",
     "code": "29046",
     "epci_code": "242900645",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29100"
   },
@@ -363,7 +363,7 @@
     "name": "Le Drennec",
     "code": "29047",
     "epci_code": "242900553",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29860"
   },
@@ -371,7 +371,7 @@
     "name": "Edern",
     "code": "29048",
     "epci_code": "200068120",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29510"
   },
@@ -379,7 +379,7 @@
     "name": "Elliant",
     "code": "29049",
     "epci_code": "242900769",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29370"
   },
@@ -387,7 +387,7 @@
     "name": "Ergué-Gabéric",
     "code": "29051",
     "epci_code": "200068120",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29500"
   },
@@ -395,7 +395,7 @@
     "name": "Le Faou",
     "code": "29053",
     "epci_code": "200066868",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29590"
   },
@@ -403,7 +403,7 @@
     "name": "La Feuillée",
     "code": "29054",
     "epci_code": "200067197",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29690"
   },
@@ -411,7 +411,7 @@
     "name": "Le Folgoët",
     "code": "29055",
     "epci_code": "242900793",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29260"
   },
@@ -419,7 +419,7 @@
     "name": "La Forest-Landerneau",
     "code": "29056",
     "epci_code": "242900801",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29800"
   },
@@ -427,7 +427,7 @@
     "name": "La Forêt-Fouesnant",
     "code": "29057",
     "epci_code": "242900660",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29940"
   },
@@ -435,7 +435,7 @@
     "name": "Fouesnant",
     "code": "29058",
     "epci_code": "242900660",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29170"
   },
@@ -443,7 +443,7 @@
     "name": "Garlan",
     "code": "29059",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29610"
   },
@@ -451,7 +451,7 @@
     "name": "Gouesnach",
     "code": "29060",
     "epci_code": "242900660",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29950"
   },
@@ -459,7 +459,7 @@
     "name": "Gouesnou",
     "code": "29061",
     "epci_code": "242900314",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29850"
   },
@@ -467,7 +467,7 @@
     "name": "Gouézec",
     "code": "29062",
     "epci_code": "200067247",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29190"
   },
@@ -475,7 +475,7 @@
     "name": "Goulien",
     "code": "29063",
     "epci_code": "242900629",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29770"
   },
@@ -483,7 +483,7 @@
     "name": "Goulven",
     "code": "29064",
     "epci_code": "242900793",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29890"
   },
@@ -491,7 +491,7 @@
     "name": "Gourlizon",
     "code": "29065",
     "epci_code": "242900710",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29710"
   },
@@ -499,7 +499,7 @@
     "name": "Guengat",
     "code": "29066",
     "epci_code": "200068120",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29180"
   },
@@ -507,7 +507,7 @@
     "name": "Guerlesquin",
     "code": "29067",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29650"
   },
@@ -515,7 +515,7 @@
     "name": "Guiclan",
     "code": "29068",
     "epci_code": "242900751",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29410"
   },
@@ -523,7 +523,7 @@
     "name": "Guilers",
     "code": "29069",
     "epci_code": "242900314",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29820"
   },
@@ -531,7 +531,7 @@
     "name": "Guiler-sur-Goyen",
     "code": "29070",
     "epci_code": "242900710",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29710"
   },
@@ -539,7 +539,7 @@
     "name": "Guilligomarc’h",
     "code": "29071",
     "epci_code": "242900694",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29300"
   },
@@ -547,7 +547,7 @@
     "name": "Guilvinec",
     "code": "29072",
     "epci_code": "242900702",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29730"
   },
@@ -555,7 +555,7 @@
     "name": "Guimaëc",
     "code": "29073",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29620"
   },
@@ -563,7 +563,7 @@
     "name": "Guimiliau",
     "code": "29074",
     "epci_code": "242900751",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29400"
   },
@@ -571,7 +571,7 @@
     "name": "Guipavas",
     "code": "29075",
     "epci_code": "242900314",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29490"
   },
@@ -579,7 +579,7 @@
     "name": "Milizac-Guipronvel",
     "code": "29076",
     "epci_code": "242900074",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29290"
   },
@@ -587,7 +587,7 @@
     "name": "Guissény",
     "code": "29077",
     "epci_code": "242900793",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29880"
   },
@@ -595,7 +595,7 @@
     "name": "Hanvec",
     "code": "29078",
     "epci_code": "242900801",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29460"
   },
@@ -603,7 +603,7 @@
     "name": "Henvic",
     "code": "29079",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29670"
   },
@@ -611,7 +611,7 @@
     "name": "Hôpital-Camfrout",
     "code": "29080",
     "epci_code": "242900801",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29460"
   },
@@ -619,7 +619,7 @@
     "name": "Huelgoat",
     "code": "29081",
     "epci_code": "200067197",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29690"
   },
@@ -627,14 +627,14 @@
     "name": "Île-de-Batz",
     "code": "29082",
     "epci_code": "200067072",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29253"
   },
   {
     "name": "Île-de-Sein",
     "code": "29083",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29990"
   },
@@ -642,7 +642,7 @@
     "name": "Île-Molène",
     "code": "29084",
     "epci_code": "242900074",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29259"
   },
@@ -650,7 +650,7 @@
     "name": "Île-Tudy",
     "code": "29085",
     "epci_code": "242900702",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29980"
   },
@@ -658,7 +658,7 @@
     "name": "Irvillac",
     "code": "29086",
     "epci_code": "242900801",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29460"
   },
@@ -666,7 +666,7 @@
     "name": "Le Juch",
     "code": "29087",
     "epci_code": "242900645",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29100"
   },
@@ -674,7 +674,7 @@
     "name": "Kergloff",
     "code": "29089",
     "epci_code": "242900744",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29270"
   },
@@ -682,7 +682,7 @@
     "name": "Kerlaz",
     "code": "29090",
     "epci_code": "242900645",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29100"
   },
@@ -690,7 +690,7 @@
     "name": "Kerlouan",
     "code": "29091",
     "epci_code": "242900793",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29890"
   },
@@ -698,7 +698,7 @@
     "name": "Kernilis",
     "code": "29093",
     "epci_code": "242900793",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29260"
   },
@@ -706,7 +706,7 @@
     "name": "Kernouës",
     "code": "29094",
     "epci_code": "242900793",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29260"
   },
@@ -714,7 +714,7 @@
     "name": "Kersaint-Plabennec",
     "code": "29095",
     "epci_code": "242900553",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29860"
   },
@@ -722,7 +722,7 @@
     "name": "Lampaul-Guimiliau",
     "code": "29097",
     "epci_code": "242900751",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29400"
   },
@@ -730,7 +730,7 @@
     "name": "Lampaul-Plouarzel",
     "code": "29098",
     "epci_code": "242900074",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29810"
   },
@@ -738,7 +738,7 @@
     "name": "Lampaul-Ploudalmézeau",
     "code": "29099",
     "epci_code": "242900074",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29830"
   },
@@ -746,7 +746,7 @@
     "name": "Lanarvily",
     "code": "29100",
     "epci_code": "242900793",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29260"
   },
@@ -754,7 +754,7 @@
     "name": "Landéda",
     "code": "29101",
     "epci_code": "242900553",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29870"
   },
@@ -762,7 +762,7 @@
     "name": "Landeleau",
     "code": "29102",
     "epci_code": "242900561",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29530"
   },
@@ -770,7 +770,7 @@
     "name": "Landerneau",
     "code": "29103",
     "epci_code": "242900801",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29800"
   },
@@ -778,7 +778,7 @@
     "name": "Landévennec",
     "code": "29104",
     "epci_code": "200066868",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29560"
   },
@@ -786,7 +786,7 @@
     "name": "Landivisiau",
     "code": "29105",
     "epci_code": "242900751",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29400"
   },
@@ -794,7 +794,7 @@
     "name": "Landrévarzec",
     "code": "29106",
     "epci_code": "200068120",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29510"
   },
@@ -802,7 +802,7 @@
     "name": "Landudal",
     "code": "29107",
     "epci_code": "200068120",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29510"
   },
@@ -810,7 +810,7 @@
     "name": "Landudec",
     "code": "29108",
     "epci_code": "242900710",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29710"
   },
@@ -818,7 +818,7 @@
     "name": "Landunvez",
     "code": "29109",
     "epci_code": "242900074",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29840"
   },
@@ -826,7 +826,7 @@
     "name": "Langolen",
     "code": "29110",
     "epci_code": "200068120",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29510"
   },
@@ -834,7 +834,7 @@
     "name": "Lanhouarneau",
     "code": "29111",
     "epci_code": "200067072",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29430"
   },
@@ -842,7 +842,7 @@
     "name": "Lanildut",
     "code": "29112",
     "epci_code": "242900074",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29840"
   },
@@ -850,7 +850,7 @@
     "name": "Lanmeur",
     "code": "29113",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29620"
   },
@@ -858,7 +858,7 @@
     "name": "Lannéanou",
     "code": "29114",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29640"
   },
@@ -866,7 +866,7 @@
     "name": "Lannédern",
     "code": "29115",
     "epci_code": "200067247",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29190"
   },
@@ -874,7 +874,7 @@
     "name": "Lanneuffret",
     "code": "29116",
     "epci_code": "242900801",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29400"
   },
@@ -882,7 +882,7 @@
     "name": "Lannilis",
     "code": "29117",
     "epci_code": "242900553",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29870"
   },
@@ -890,7 +890,7 @@
     "name": "Lanrivoaré",
     "code": "29119",
     "epci_code": "242900074",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29290"
   },
@@ -898,7 +898,7 @@
     "name": "Lanvéoc",
     "code": "29120",
     "epci_code": "200066868",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29160"
   },
@@ -906,7 +906,7 @@
     "name": "Laz",
     "code": "29122",
     "epci_code": "242900561",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29520"
   },
@@ -914,7 +914,7 @@
     "name": "Lennon",
     "code": "29123",
     "epci_code": "200067247",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29190"
   },
@@ -922,7 +922,7 @@
     "name": "Lesneven",
     "code": "29124",
     "epci_code": "242900793",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29260"
   },
@@ -930,7 +930,7 @@
     "name": "Leuhan",
     "code": "29125",
     "epci_code": "242900561",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29390"
   },
@@ -938,7 +938,7 @@
     "name": "Loc-Brévalaire",
     "code": "29126",
     "epci_code": "242900553",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29260"
   },
@@ -946,7 +946,7 @@
     "name": "Loc-Eguiner",
     "code": "29128",
     "epci_code": "242900751",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29400"
   },
@@ -954,7 +954,7 @@
     "name": "Locmaria-Plouzané",
     "code": "29130",
     "epci_code": "242900074",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29280"
   },
@@ -962,7 +962,7 @@
     "name": "Locmélar",
     "code": "29131",
     "epci_code": "242900751",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29400"
   },
@@ -970,7 +970,7 @@
     "name": "Locquénolé",
     "code": "29132",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29670"
   },
@@ -978,7 +978,7 @@
     "name": "Locquirec",
     "code": "29133",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29241"
   },
@@ -986,7 +986,7 @@
     "name": "Locronan",
     "code": "29134",
     "epci_code": "200068120",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29180"
   },
@@ -994,7 +994,7 @@
     "name": "Loctudy",
     "code": "29135",
     "epci_code": "242900702",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29750"
   },
@@ -1002,7 +1002,7 @@
     "name": "Locunolé",
     "code": "29136",
     "epci_code": "242900694",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29310"
   },
@@ -1010,7 +1010,7 @@
     "name": "Logonna-Daoulas",
     "code": "29137",
     "epci_code": "242900801",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29460"
   },
@@ -1018,7 +1018,7 @@
     "name": "Lopérec",
     "code": "29139",
     "epci_code": "200067197",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29590"
   },
@@ -1026,7 +1026,7 @@
     "name": "Loperhet",
     "code": "29140",
     "epci_code": "242900801",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29470"
   },
@@ -1034,7 +1034,7 @@
     "name": "Loqueffret",
     "code": "29141",
     "epci_code": "200067197",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29530"
   },
@@ -1042,7 +1042,7 @@
     "name": "Lothey",
     "code": "29142",
     "epci_code": "200067247",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29190"
   },
@@ -1050,7 +1050,7 @@
     "name": "Mahalon",
     "code": "29143",
     "epci_code": "242900629",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29790"
   },
@@ -1058,7 +1058,7 @@
     "name": "La Martyre",
     "code": "29144",
     "epci_code": "242900801",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29800"
   },
@@ -1066,7 +1066,7 @@
     "name": "Confort-Meilars",
     "code": "29145",
     "epci_code": "242900629",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29790"
   },
@@ -1074,7 +1074,7 @@
     "name": "Melgven",
     "code": "29146",
     "epci_code": "242900769",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29140"
   },
@@ -1082,7 +1082,7 @@
     "name": "Mellac",
     "code": "29147",
     "epci_code": "242900694",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29300"
   },
@@ -1090,7 +1090,7 @@
     "name": "Mespaul",
     "code": "29148",
     "epci_code": "200067072",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29420"
   },
@@ -1098,7 +1098,7 @@
     "name": "Moëlan-sur-Mer",
     "code": "29150",
     "epci_code": "242900694",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29350"
   },
@@ -1106,7 +1106,7 @@
     "name": "Morlaix",
     "code": "29151",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29600"
   },
@@ -1114,7 +1114,7 @@
     "name": "Motreff",
     "code": "29152",
     "epci_code": "242900744",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29270"
   },
@@ -1122,14 +1122,14 @@
     "name": "Névez",
     "code": "29153",
     "epci_code": "242900769",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29920"
   },
   {
     "name": "Ouessant",
     "code": "29155",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29242"
   },
@@ -1137,7 +1137,7 @@
     "name": "Pencran",
     "code": "29156",
     "epci_code": "242900801",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29800"
   },
@@ -1145,7 +1145,7 @@
     "name": "Penmarch",
     "code": "29158",
     "epci_code": "242900702",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29760"
   },
@@ -1153,7 +1153,7 @@
     "name": "Peumerit",
     "code": "29159",
     "epci_code": "242900710",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29710"
   },
@@ -1161,7 +1161,7 @@
     "name": "Plabennec",
     "code": "29160",
     "epci_code": "242900553",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29860"
   },
@@ -1169,7 +1169,7 @@
     "name": "Pleuven",
     "code": "29161",
     "epci_code": "242900660",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29170"
   },
@@ -1177,7 +1177,7 @@
     "name": "Pleyben",
     "code": "29162",
     "epci_code": "200067247",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29190"
   },
@@ -1185,7 +1185,7 @@
     "name": "Pleyber-Christ",
     "code": "29163",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29410"
   },
@@ -1193,7 +1193,7 @@
     "name": "Plobannalec-Lesconil",
     "code": "29165",
     "epci_code": "242900702",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29740"
   },
@@ -1201,7 +1201,7 @@
     "name": "Ploéven",
     "code": "29166",
     "epci_code": "200067247",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29550"
   },
@@ -1209,7 +1209,7 @@
     "name": "Plogastel-Saint-Germain",
     "code": "29167",
     "epci_code": "242900710",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29710"
   },
@@ -1217,7 +1217,7 @@
     "name": "Plogoff",
     "code": "29168",
     "epci_code": "242900629",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29770"
   },
@@ -1225,7 +1225,7 @@
     "name": "Plogonnec",
     "code": "29169",
     "epci_code": "200068120",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29180"
   },
@@ -1233,7 +1233,7 @@
     "name": "Plomelin",
     "code": "29170",
     "epci_code": "200068120",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29700"
   },
@@ -1241,7 +1241,7 @@
     "name": "Plomeur",
     "code": "29171",
     "epci_code": "242900702",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29120"
   },
@@ -1249,7 +1249,7 @@
     "name": "Plomodiern",
     "code": "29172",
     "epci_code": "200067247",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29550"
   },
@@ -1257,7 +1257,7 @@
     "name": "Plonéis",
     "code": "29173",
     "epci_code": "200068120",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29710"
   },
@@ -1265,7 +1265,7 @@
     "name": "Plonéour-Lanvern",
     "code": "29174",
     "epci_code": "242900710",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29720"
   },
@@ -1273,7 +1273,7 @@
     "name": "Plonévez-du-Faou",
     "code": "29175",
     "epci_code": "242900561",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29530"
   },
@@ -1281,7 +1281,7 @@
     "name": "Plonévez-Porzay",
     "code": "29176",
     "epci_code": "200067247",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29550"
   },
@@ -1289,7 +1289,7 @@
     "name": "Plouarzel",
     "code": "29177",
     "epci_code": "242900074",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29810"
   },
@@ -1297,7 +1297,7 @@
     "name": "Ploudalmézeau",
     "code": "29178",
     "epci_code": "242900074",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29830"
   },
@@ -1305,7 +1305,7 @@
     "name": "Ploudaniel",
     "code": "29179",
     "epci_code": "242900793",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29260"
   },
@@ -1313,7 +1313,7 @@
     "name": "Ploudiry",
     "code": "29180",
     "epci_code": "242900801",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29800"
   },
@@ -1321,7 +1321,7 @@
     "name": "Plouédern",
     "code": "29181",
     "epci_code": "242900801",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29800"
   },
@@ -1329,7 +1329,7 @@
     "name": "Plouégat-Guérand",
     "code": "29182",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29620"
   },
@@ -1337,7 +1337,7 @@
     "name": "Plouégat-Moysan",
     "code": "29183",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29650"
   },
@@ -1345,7 +1345,7 @@
     "name": "Plouénan",
     "code": "29184",
     "epci_code": "200067072",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29420"
   },
@@ -1353,7 +1353,7 @@
     "name": "Plouescat",
     "code": "29185",
     "epci_code": "200067072",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29430"
   },
@@ -1361,7 +1361,7 @@
     "name": "Plouezoc’h",
     "code": "29186",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29252"
   },
@@ -1369,7 +1369,7 @@
     "name": "Plougar",
     "code": "29187",
     "epci_code": "242900751",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29440"
   },
@@ -1377,7 +1377,7 @@
     "name": "Plougasnou",
     "code": "29188",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29630"
   },
@@ -1385,7 +1385,7 @@
     "name": "Plougastel-Daoulas",
     "code": "29189",
     "epci_code": "242900314",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29470"
   },
@@ -1393,7 +1393,7 @@
     "name": "Plougonvelin",
     "code": "29190",
     "epci_code": "242900074",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29217"
   },
@@ -1401,7 +1401,7 @@
     "name": "Plougonven",
     "code": "29191",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29640"
   },
@@ -1409,7 +1409,7 @@
     "name": "Plougoulm",
     "code": "29192",
     "epci_code": "200067072",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29250"
   },
@@ -1417,7 +1417,7 @@
     "name": "Plougourvest",
     "code": "29193",
     "epci_code": "242900751",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29400"
   },
@@ -1425,7 +1425,7 @@
     "name": "Plouguerneau",
     "code": "29195",
     "epci_code": "242900553",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29880"
   },
@@ -1433,7 +1433,7 @@
     "name": "Plouguin",
     "code": "29196",
     "epci_code": "242900553",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29830"
   },
@@ -1441,7 +1441,7 @@
     "name": "Plouhinec",
     "code": "29197",
     "epci_code": "242900629",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29780"
   },
@@ -1449,7 +1449,7 @@
     "name": "Plouider",
     "code": "29198",
     "epci_code": "242900793",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29260"
   },
@@ -1457,7 +1457,7 @@
     "name": "Plouigneau",
     "code": "29199",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29610"
   },
@@ -1465,7 +1465,7 @@
     "name": "Plouigneau",
     "code": "29199",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29650"
   },
@@ -1473,7 +1473,7 @@
     "name": "Ploumoguer",
     "code": "29201",
     "epci_code": "242900074",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29810"
   },
@@ -1481,7 +1481,7 @@
     "name": "Plounéour-Ménez",
     "code": "29202",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29410"
   },
@@ -1489,7 +1489,7 @@
     "name": "Plounéventer",
     "code": "29204",
     "epci_code": "242900751",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29400"
   },
@@ -1497,7 +1497,7 @@
     "name": "Plounévézel",
     "code": "29205",
     "epci_code": "242900744",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29270"
   },
@@ -1505,7 +1505,7 @@
     "name": "Plounévez-Lochrist",
     "code": "29206",
     "epci_code": "200067072",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29430"
   },
@@ -1513,7 +1513,7 @@
     "name": "Plourin-lès-Morlaix",
     "code": "29207",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29600"
   },
@@ -1521,7 +1521,7 @@
     "name": "Plourin",
     "code": "29208",
     "epci_code": "242900074",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29830"
   },
@@ -1529,7 +1529,7 @@
     "name": "Plouvien",
     "code": "29209",
     "epci_code": "242900553",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29860"
   },
@@ -1537,7 +1537,7 @@
     "name": "Plouvorn",
     "code": "29210",
     "epci_code": "242900751",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29420"
   },
@@ -1545,7 +1545,7 @@
     "name": "Plouyé",
     "code": "29211",
     "epci_code": "200067197",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29690"
   },
@@ -1553,7 +1553,7 @@
     "name": "Plouzané",
     "code": "29212",
     "epci_code": "242900314",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29280"
   },
@@ -1561,7 +1561,7 @@
     "name": "Plouzévédé",
     "code": "29213",
     "epci_code": "242900751",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29440"
   },
@@ -1569,7 +1569,7 @@
     "name": "Plovan",
     "code": "29214",
     "epci_code": "242900710",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29720"
   },
@@ -1577,7 +1577,7 @@
     "name": "Plozévet",
     "code": "29215",
     "epci_code": "242900710",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29710"
   },
@@ -1585,7 +1585,7 @@
     "name": "Pluguffan",
     "code": "29216",
     "epci_code": "200068120",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29700"
   },
@@ -1593,7 +1593,7 @@
     "name": "Pont-Aven",
     "code": "29217",
     "epci_code": "242900769",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29930"
   },
@@ -1601,7 +1601,7 @@
     "name": "Pont-Croix",
     "code": "29218",
     "epci_code": "242900629",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29790"
   },
@@ -1609,7 +1609,7 @@
     "name": "Pont-l’Abbé",
     "code": "29220",
     "epci_code": "242900702",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29120"
   },
@@ -1617,7 +1617,7 @@
     "name": "Porspoder",
     "code": "29221",
     "epci_code": "242900074",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29840"
   },
@@ -1625,7 +1625,7 @@
     "name": "Port-Launay",
     "code": "29222",
     "epci_code": "200067247",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29150"
   },
@@ -1633,7 +1633,7 @@
     "name": "Pouldergat",
     "code": "29224",
     "epci_code": "242900645",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29100"
   },
@@ -1641,7 +1641,7 @@
     "name": "Pouldreuzic",
     "code": "29225",
     "epci_code": "242900710",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29710"
   },
@@ -1649,7 +1649,7 @@
     "name": "Poullan-sur-Mer",
     "code": "29226",
     "epci_code": "242900645",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29100"
   },
@@ -1657,7 +1657,7 @@
     "name": "Poullaouen",
     "code": "29227",
     "epci_code": "242900744",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29246"
   },
@@ -1665,7 +1665,7 @@
     "name": "Poullaouen",
     "code": "29227",
     "epci_code": "242900744",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29690"
   },
@@ -1673,7 +1673,7 @@
     "name": "Primelin",
     "code": "29228",
     "epci_code": "242900629",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29770"
   },
@@ -1681,7 +1681,7 @@
     "name": "Quéménéven",
     "code": "29229",
     "epci_code": "200068120",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29180"
   },
@@ -1689,7 +1689,7 @@
     "name": "Querrien",
     "code": "29230",
     "epci_code": "242900694",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29310"
   },
@@ -1697,7 +1697,7 @@
     "name": "Quimper",
     "code": "29232",
     "epci_code": "200068120",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29000"
   },
@@ -1705,7 +1705,7 @@
     "name": "Quimperlé",
     "code": "29233",
     "epci_code": "242900694",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29300"
   },
@@ -1713,7 +1713,7 @@
     "name": "Rédené",
     "code": "29234",
     "epci_code": "242900694",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29300"
   },
@@ -1721,7 +1721,7 @@
     "name": "Le Relecq-Kerhuon",
     "code": "29235",
     "epci_code": "242900314",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29480"
   },
@@ -1729,7 +1729,7 @@
     "name": "Riec-sur-Bélon",
     "code": "29236",
     "epci_code": "242900694",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29340"
   },
@@ -1737,7 +1737,7 @@
     "name": "La Roche-Maurice",
     "code": "29237",
     "epci_code": "242900801",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29800"
   },
@@ -1745,7 +1745,7 @@
     "name": "Roscanvel",
     "code": "29238",
     "epci_code": "200066868",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29570"
   },
@@ -1753,7 +1753,7 @@
     "name": "Roscoff",
     "code": "29239",
     "epci_code": "200067072",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29680"
   },
@@ -1761,7 +1761,7 @@
     "name": "Rosnoën",
     "code": "29240",
     "epci_code": "200066868",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29590"
   },
@@ -1769,7 +1769,7 @@
     "name": "Rosporden",
     "code": "29241",
     "epci_code": "242900769",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29140"
   },
@@ -1777,7 +1777,7 @@
     "name": "Saint-Coulitz",
     "code": "29243",
     "epci_code": "200067247",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29150"
   },
@@ -1785,7 +1785,7 @@
     "name": "Saint-Derrien",
     "code": "29244",
     "epci_code": "242900751",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29440"
   },
@@ -1793,7 +1793,7 @@
     "name": "Saint-Divy",
     "code": "29245",
     "epci_code": "242900801",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29800"
   },
@@ -1801,7 +1801,7 @@
     "name": "Saint-Eloy",
     "code": "29246",
     "epci_code": "242900801",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29460"
   },
@@ -1809,7 +1809,7 @@
     "name": "Saint-Évarzec",
     "code": "29247",
     "epci_code": "242900660",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29170"
   },
@@ -1817,7 +1817,7 @@
     "name": "Saint-Frégant",
     "code": "29248",
     "epci_code": "242900793",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29260"
   },
@@ -1825,7 +1825,7 @@
     "name": "Saint-Goazec",
     "code": "29249",
     "epci_code": "242900561",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29520"
   },
@@ -1833,7 +1833,7 @@
     "name": "Saint-Hernin",
     "code": "29250",
     "epci_code": "242900744",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29270"
   },
@@ -1841,7 +1841,7 @@
     "name": "Saint-Jean-du-Doigt",
     "code": "29251",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29630"
   },
@@ -1849,7 +1849,7 @@
     "name": "Saint-Jean-Trolimon",
     "code": "29252",
     "epci_code": "242900702",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29120"
   },
@@ -1857,7 +1857,7 @@
     "name": "Saint-Martin-des-Champs",
     "code": "29254",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29600"
   },
@@ -1865,7 +1865,7 @@
     "name": "Saint-Méen",
     "code": "29255",
     "epci_code": "242900793",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29260"
   },
@@ -1873,7 +1873,7 @@
     "name": "Saint-Nic",
     "code": "29256",
     "epci_code": "200067247",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29550"
   },
@@ -1881,7 +1881,7 @@
     "name": "Saint-Pabu",
     "code": "29257",
     "epci_code": "242900553",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29830"
   },
@@ -1889,7 +1889,7 @@
     "name": "Saint-Pol-de-Léon",
     "code": "29259",
     "epci_code": "200067072",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29250"
   },
@@ -1897,7 +1897,7 @@
     "name": "Saint-Renan",
     "code": "29260",
     "epci_code": "242900074",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29290"
   },
@@ -1905,7 +1905,7 @@
     "name": "Saint-Rivoal",
     "code": "29261",
     "epci_code": "200067197",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29190"
   },
@@ -1913,7 +1913,7 @@
     "name": "Saint-Sauveur",
     "code": "29262",
     "epci_code": "242900751",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29400"
   },
@@ -1921,7 +1921,7 @@
     "name": "Saint-Ségal",
     "code": "29263",
     "epci_code": "200067247",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29590"
   },
@@ -1929,7 +1929,7 @@
     "name": "Saint-Servais",
     "code": "29264",
     "epci_code": "242900751",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29400"
   },
@@ -1937,7 +1937,7 @@
     "name": "Sainte-Sève",
     "code": "29265",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29600"
   },
@@ -1945,7 +1945,7 @@
     "name": "Saint-Thégonnec Loc-Eguiner",
     "code": "29266",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29410"
   },
@@ -1953,7 +1953,7 @@
     "name": "Saint-Thois",
     "code": "29267",
     "epci_code": "242900561",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29520"
   },
@@ -1961,7 +1961,7 @@
     "name": "Saint-Thonan",
     "code": "29268",
     "epci_code": "242900801",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29800"
   },
@@ -1969,7 +1969,7 @@
     "name": "Saint-Thurien",
     "code": "29269",
     "epci_code": "242900694",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29380"
   },
@@ -1977,7 +1977,7 @@
     "name": "Saint-Urbain",
     "code": "29270",
     "epci_code": "242900801",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29800"
   },
@@ -1985,7 +1985,7 @@
     "name": "Saint-Vougay",
     "code": "29271",
     "epci_code": "242900751",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29440"
   },
@@ -1993,7 +1993,7 @@
     "name": "Saint-Yvi",
     "code": "29272",
     "epci_code": "242900769",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29140"
   },
@@ -2001,7 +2001,7 @@
     "name": "Santec",
     "code": "29273",
     "epci_code": "200067072",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29250"
   },
@@ -2009,7 +2009,7 @@
     "name": "Scaër",
     "code": "29274",
     "epci_code": "242900694",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29390"
   },
@@ -2017,7 +2017,7 @@
     "name": "Scrignac",
     "code": "29275",
     "epci_code": "200067197",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29640"
   },
@@ -2025,7 +2025,7 @@
     "name": "Sibiril",
     "code": "29276",
     "epci_code": "200067072",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29250"
   },
@@ -2033,7 +2033,7 @@
     "name": "Sizun",
     "code": "29277",
     "epci_code": "242900751",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29450"
   },
@@ -2041,7 +2041,7 @@
     "name": "Spézet",
     "code": "29278",
     "epci_code": "242900561",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29540"
   },
@@ -2049,7 +2049,7 @@
     "name": "Taulé",
     "code": "29279",
     "epci_code": "242900835",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29670"
   },
@@ -2057,7 +2057,7 @@
     "name": "Telgruc-sur-Mer",
     "code": "29280",
     "epci_code": "200066868",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29560"
   },
@@ -2065,7 +2065,7 @@
     "name": "Tourch",
     "code": "29281",
     "epci_code": "242900769",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29140"
   },
@@ -2073,7 +2073,7 @@
     "name": "Trébabu",
     "code": "29282",
     "epci_code": "242900074",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29217"
   },
@@ -2081,7 +2081,7 @@
     "name": "Treffiagat",
     "code": "29284",
     "epci_code": "242900702",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29730"
   },
@@ -2089,7 +2089,7 @@
     "name": "Tréflaouénan",
     "code": "29285",
     "epci_code": "200067072",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29440"
   },
@@ -2097,7 +2097,7 @@
     "name": "Tréflévénez",
     "code": "29286",
     "epci_code": "242900801",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29800"
   },
@@ -2105,7 +2105,7 @@
     "name": "Tréflez",
     "code": "29287",
     "epci_code": "200067072",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29430"
   },
@@ -2113,7 +2113,7 @@
     "name": "Trégarantec",
     "code": "29288",
     "epci_code": "242900793",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29260"
   },
@@ -2121,7 +2121,7 @@
     "name": "Trégarvan",
     "code": "29289",
     "epci_code": "200067247",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29560"
   },
@@ -2129,7 +2129,7 @@
     "name": "Tréglonou",
     "code": "29290",
     "epci_code": "242900553",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29870"
   },
@@ -2137,7 +2137,7 @@
     "name": "Trégourez",
     "code": "29291",
     "epci_code": "242900561",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29970"
   },
@@ -2145,7 +2145,7 @@
     "name": "Tréguennec",
     "code": "29292",
     "epci_code": "242900702",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29720"
   },
@@ -2153,7 +2153,7 @@
     "name": "Trégunc",
     "code": "29293",
     "epci_code": "242900769",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29910"
   },
@@ -2161,7 +2161,7 @@
     "name": "Le Tréhou",
     "code": "29294",
     "epci_code": "242900801",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29450"
   },
@@ -2169,7 +2169,7 @@
     "name": "Trémaouézan",
     "code": "29295",
     "epci_code": "242900801",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29800"
   },
@@ -2177,7 +2177,7 @@
     "name": "Tréméoc",
     "code": "29296",
     "epci_code": "242900702",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29120"
   },
@@ -2185,7 +2185,7 @@
     "name": "Tréméven",
     "code": "29297",
     "epci_code": "242900694",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29300"
   },
@@ -2193,7 +2193,7 @@
     "name": "Tréogat",
     "code": "29298",
     "epci_code": "242900710",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29720"
   },
@@ -2201,7 +2201,7 @@
     "name": "Tréouergat",
     "code": "29299",
     "epci_code": "242900074",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29290"
   },
@@ -2209,7 +2209,7 @@
     "name": "Le Trévoux",
     "code": "29300",
     "epci_code": "242900694",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29380"
   },
@@ -2217,7 +2217,7 @@
     "name": "Trézilidé",
     "code": "29301",
     "epci_code": "242900751",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29440"
   },
@@ -2225,7 +2225,7 @@
     "name": "Pont-de-Buis-lès-Quimerch",
     "code": "29302",
     "epci_code": "200066868",
-    "departement_code": "29",
+    "department_code": "29",
     "region_code": "53",
     "postal_code": "29590"
   }

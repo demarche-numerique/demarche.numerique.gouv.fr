@@ -3,7 +3,7 @@
     "name": "Abondant",
     "code": "28001",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28410"
   },
@@ -11,7 +11,7 @@
     "name": "Allainville",
     "code": "28003",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28500"
   },
@@ -19,7 +19,7 @@
     "name": "Allonnes",
     "code": "28004",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28150"
   },
@@ -27,7 +27,7 @@
     "name": "Alluyes",
     "code": "28005",
     "epci_code": "242852465",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28800"
   },
@@ -35,7 +35,7 @@
     "name": "Amilly",
     "code": "28006",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28300"
   },
@@ -43,7 +43,7 @@
     "name": "Anet",
     "code": "28007",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28260"
   },
@@ -51,7 +51,7 @@
     "name": "Ardelles",
     "code": "28008",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28170"
   },
@@ -59,7 +59,7 @@
     "name": "Ardelu",
     "code": "28009",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -67,7 +67,7 @@
     "name": "Argenvilliers",
     "code": "28010",
     "epci_code": "200006971",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28480"
   },
@@ -75,7 +75,7 @@
     "name": "Vald’Yerre",
     "code": "28012",
     "epci_code": "200069961",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28290"
   },
@@ -83,7 +83,7 @@
     "name": "Aunay-sous-Auneau",
     "code": "28013",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -91,7 +91,7 @@
     "name": "Aunay-sous-Crécy",
     "code": "28014",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28500"
   },
@@ -99,7 +99,7 @@
     "name": "Auneau-Bleury-Saint-Symphorien",
     "code": "28015",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -107,7 +107,7 @@
     "name": "Les Autels-Villevillon",
     "code": "28016",
     "epci_code": "200006971",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28330"
   },
@@ -115,7 +115,7 @@
     "name": "Authon-du-Perche",
     "code": "28018",
     "epci_code": "200006971",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28330"
   },
@@ -123,7 +123,7 @@
     "name": "Baigneaux",
     "code": "28019",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28140"
   },
@@ -131,7 +131,7 @@
     "name": "Bailleau-le-Pin",
     "code": "28021",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28120"
   },
@@ -139,7 +139,7 @@
     "name": "Bailleau-l’Évêque",
     "code": "28022",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28300"
   },
@@ -147,7 +147,7 @@
     "name": "Bailleau-Armenonville",
     "code": "28023",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28320"
   },
@@ -155,7 +155,7 @@
     "name": "Barjouville",
     "code": "28024",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28630"
   },
@@ -163,7 +163,7 @@
     "name": "Baudreville",
     "code": "28026",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28310"
   },
@@ -171,7 +171,7 @@
     "name": "La Bazoche-Gouet",
     "code": "28027",
     "epci_code": "200069961",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28330"
   },
@@ -179,7 +179,7 @@
     "name": "Bazoches-en-Dunois",
     "code": "28028",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28140"
   },
@@ -187,7 +187,7 @@
     "name": "Bazoches-les-Hautes",
     "code": "28029",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28140"
   },
@@ -195,7 +195,7 @@
     "name": "Beauche",
     "code": "28030",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28270"
   },
@@ -203,7 +203,7 @@
     "name": "Beaumont-les-Autels",
     "code": "28031",
     "epci_code": "200006971",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28480"
   },
@@ -211,7 +211,7 @@
     "name": "Beauvilliers",
     "code": "28032",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28150"
   },
@@ -219,7 +219,7 @@
     "name": "Belhomert-Guéhouville",
     "code": "28033",
     "epci_code": "200070167",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28240"
   },
@@ -227,7 +227,7 @@
     "name": "Berchères-Saint-Germain",
     "code": "28034",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28300"
   },
@@ -235,7 +235,7 @@
     "name": "Berchères-les-Pierres",
     "code": "28035",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28630"
   },
@@ -243,7 +243,7 @@
     "name": "Berchères-sur-Vesgre",
     "code": "28036",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28260"
   },
@@ -251,7 +251,7 @@
     "name": "Bérou-la-Mulotière",
     "code": "28037",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28270"
   },
@@ -259,7 +259,7 @@
     "name": "Béthonvilliers",
     "code": "28038",
     "epci_code": "200006971",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28330"
   },
@@ -267,7 +267,7 @@
     "name": "Béville-le-Comte",
     "code": "28039",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -275,7 +275,7 @@
     "name": "Billancelles",
     "code": "28040",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28190"
   },
@@ -283,7 +283,7 @@
     "name": "Blandainville",
     "code": "28041",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28120"
   },
@@ -291,7 +291,7 @@
     "name": "Boissy-en-Drouais",
     "code": "28045",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28500"
   },
@@ -299,7 +299,7 @@
     "name": "Boissy-lès-Perche",
     "code": "28046",
     "epci_code": "200069912",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28340"
   },
@@ -307,7 +307,7 @@
     "name": "Boisville-la-Saint-Père",
     "code": "28047",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28150"
   },
@@ -315,7 +315,7 @@
     "name": "La Bourdinière-Saint-Loup",
     "code": "28048",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28360"
   },
@@ -323,7 +323,7 @@
     "name": "Boncé",
     "code": "28049",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28150"
   },
@@ -331,7 +331,7 @@
     "name": "Boncourt",
     "code": "28050",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28260"
   },
@@ -339,7 +339,7 @@
     "name": "Bonneval",
     "code": "28051",
     "epci_code": "242852465",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28800"
   },
@@ -347,7 +347,7 @@
     "name": "Bouglainval",
     "code": "28052",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28130"
   },
@@ -355,7 +355,7 @@
     "name": "Le Boullay-les-Deux-Églises",
     "code": "28053",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28170"
   },
@@ -363,7 +363,7 @@
     "name": "Le Boullay-Mivoye",
     "code": "28054",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28210"
   },
@@ -371,7 +371,7 @@
     "name": "Le Boullay-Thierry",
     "code": "28055",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28210"
   },
@@ -379,7 +379,7 @@
     "name": "Boutigny-Prouais",
     "code": "28056",
     "epci_code": "247800550",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28410"
   },
@@ -387,7 +387,7 @@
     "name": "Bouville",
     "code": "28057",
     "epci_code": "242852465",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28800"
   },
@@ -395,7 +395,7 @@
     "name": "Bréchamps",
     "code": "28058",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28210"
   },
@@ -403,7 +403,7 @@
     "name": "Brezolles",
     "code": "28059",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28270"
   },
@@ -411,7 +411,7 @@
     "name": "Briconville",
     "code": "28060",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28300"
   },
@@ -419,7 +419,7 @@
     "name": "Brou",
     "code": "28061",
     "epci_code": "200069961",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28160"
   },
@@ -427,7 +427,7 @@
     "name": "Broué",
     "code": "28062",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28410"
   },
@@ -435,7 +435,7 @@
     "name": "Bû",
     "code": "28064",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28410"
   },
@@ -443,7 +443,7 @@
     "name": "Bullainville",
     "code": "28065",
     "epci_code": "242852465",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28800"
   },
@@ -451,7 +451,7 @@
     "name": "Cernay",
     "code": "28067",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28120"
   },
@@ -459,7 +459,7 @@
     "name": "Challet",
     "code": "28068",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28300"
   },
@@ -467,7 +467,7 @@
     "name": "Champhol",
     "code": "28070",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28300"
   },
@@ -475,7 +475,7 @@
     "name": "Champrond-en-Gâtine",
     "code": "28071",
     "epci_code": "200070167",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28240"
   },
@@ -483,7 +483,7 @@
     "name": "Champrond-en-Perchet",
     "code": "28072",
     "epci_code": "200006971",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28400"
   },
@@ -491,7 +491,7 @@
     "name": "Champseru",
     "code": "28073",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -499,7 +499,7 @@
     "name": "La Chapelle-d’Aunainville",
     "code": "28074",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -507,7 +507,7 @@
     "name": "La Chapelle-du-Noyer",
     "code": "28075",
     "epci_code": "200069961",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28200"
   },
@@ -515,7 +515,7 @@
     "name": "La Chapelle-Forainvilliers",
     "code": "28076",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28500"
   },
@@ -523,7 +523,7 @@
     "name": "La Chapelle-Fortin",
     "code": "28077",
     "epci_code": "200069912",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28340"
   },
@@ -531,7 +531,7 @@
     "name": "Chapelle-Guillaume",
     "code": "28078",
     "epci_code": "200069961",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28330"
   },
@@ -539,7 +539,7 @@
     "name": "Chapelle-Royale",
     "code": "28079",
     "epci_code": "200006971",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28290"
   },
@@ -547,7 +547,7 @@
     "name": "Charbonnières",
     "code": "28080",
     "epci_code": "200006971",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28330"
   },
@@ -555,7 +555,7 @@
     "name": "Charonville",
     "code": "28081",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28120"
   },
@@ -563,7 +563,7 @@
     "name": "Charpont",
     "code": "28082",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28500"
   },
@@ -571,7 +571,7 @@
     "name": "Chartainvilliers",
     "code": "28084",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28130"
   },
@@ -579,7 +579,7 @@
     "name": "Chartres",
     "code": "28085",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28000"
   },
@@ -587,7 +587,7 @@
     "name": "Chassant",
     "code": "28086",
     "epci_code": "200070167",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28480"
   },
@@ -595,7 +595,7 @@
     "name": "Châtaincourt",
     "code": "28087",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28270"
   },
@@ -603,7 +603,7 @@
     "name": "Châteaudun",
     "code": "28088",
     "epci_code": "200069961",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28200"
   },
@@ -611,7 +611,7 @@
     "name": "Châteauneuf-en-Thymerais",
     "code": "28089",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28170"
   },
@@ -619,7 +619,7 @@
     "name": "Les Châtelets",
     "code": "28090",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28270"
   },
@@ -627,7 +627,7 @@
     "name": "Les Châtelliers-Notre-Dame",
     "code": "28091",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28120"
   },
@@ -635,7 +635,7 @@
     "name": "Châtenay",
     "code": "28092",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -643,7 +643,7 @@
     "name": "Chaudon",
     "code": "28094",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28210"
   },
@@ -651,7 +651,7 @@
     "name": "Chauffours",
     "code": "28095",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28120"
   },
@@ -659,7 +659,7 @@
     "name": "La Chaussée-d’Ivry",
     "code": "28096",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28260"
   },
@@ -667,7 +667,7 @@
     "name": "Cherisy",
     "code": "28098",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28500"
   },
@@ -675,7 +675,7 @@
     "name": "Chuisnes",
     "code": "28099",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28190"
   },
@@ -683,7 +683,7 @@
     "name": "Cintray",
     "code": "28100",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28300"
   },
@@ -691,7 +691,7 @@
     "name": "Clévilliers",
     "code": "28102",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28300"
   },
@@ -699,7 +699,7 @@
     "name": "Cloyes-les-Trois-Rivières",
     "code": "28103",
     "epci_code": "200069961",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28220"
   },
@@ -707,7 +707,7 @@
     "name": "Coltainville",
     "code": "28104",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28300"
   },
@@ -715,7 +715,7 @@
     "name": "Combres",
     "code": "28105",
     "epci_code": "200070167",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28480"
   },
@@ -723,7 +723,7 @@
     "name": "Conie-Molitard",
     "code": "28106",
     "epci_code": "200069961",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28200"
   },
@@ -731,7 +731,7 @@
     "name": "Corancez",
     "code": "28107",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28630"
   },
@@ -739,7 +739,7 @@
     "name": "Cormainville",
     "code": "28108",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28140"
   },
@@ -747,7 +747,7 @@
     "name": "Les Corvées-les-Yys",
     "code": "28109",
     "epci_code": "200070167",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28240"
   },
@@ -755,7 +755,7 @@
     "name": "Le Coudray",
     "code": "28110",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28630"
   },
@@ -763,7 +763,7 @@
     "name": "Coudray-au-Perche",
     "code": "28111",
     "epci_code": "200006971",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28330"
   },
@@ -771,7 +771,7 @@
     "name": "Coulombs",
     "code": "28113",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28210"
   },
@@ -779,7 +779,7 @@
     "name": "Courbehaye",
     "code": "28114",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28140"
   },
@@ -787,7 +787,7 @@
     "name": "Courville-sur-Eure",
     "code": "28116",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28190"
   },
@@ -795,7 +795,7 @@
     "name": "Crécy-Couvé",
     "code": "28117",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28500"
   },
@@ -803,7 +803,7 @@
     "name": "Croisilles",
     "code": "28118",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28210"
   },
@@ -811,7 +811,7 @@
     "name": "La Croix-du-Perche",
     "code": "28119",
     "epci_code": "200070167",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28480"
   },
@@ -819,7 +819,7 @@
     "name": "Crucey-Villages",
     "code": "28120",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28270"
   },
@@ -827,7 +827,7 @@
     "name": "Dambron",
     "code": "28121",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28140"
   },
@@ -835,7 +835,7 @@
     "name": "Dammarie",
     "code": "28122",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28360"
   },
@@ -843,7 +843,7 @@
     "name": "Dampierre-sous-Brou",
     "code": "28123",
     "epci_code": "200069961",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28160"
   },
@@ -851,7 +851,7 @@
     "name": "Dampierre-sur-Avre",
     "code": "28124",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28350"
   },
@@ -859,7 +859,7 @@
     "name": "Dancy",
     "code": "28126",
     "epci_code": "242852465",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28800"
   },
@@ -867,7 +867,7 @@
     "name": "Dangeau",
     "code": "28127",
     "epci_code": "242852465",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28160"
   },
@@ -875,7 +875,7 @@
     "name": "Dangers",
     "code": "28128",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28190"
   },
@@ -883,7 +883,7 @@
     "name": "Denonville",
     "code": "28129",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -891,7 +891,7 @@
     "name": "Digny",
     "code": "28130",
     "epci_code": "200069912",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28250"
   },
@@ -899,7 +899,7 @@
     "name": "Donnemain-Saint-Mamès",
     "code": "28132",
     "epci_code": "200069961",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28200"
   },
@@ -907,7 +907,7 @@
     "name": "Dreux",
     "code": "28134",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28100"
   },
@@ -915,7 +915,7 @@
     "name": "Droue-sur-Drouette",
     "code": "28135",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28230"
   },
@@ -923,7 +923,7 @@
     "name": "Écluzelles",
     "code": "28136",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28500"
   },
@@ -931,7 +931,7 @@
     "name": "Écrosnes",
     "code": "28137",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28320"
   },
@@ -939,7 +939,7 @@
     "name": "Épeautrolles",
     "code": "28139",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28120"
   },
@@ -947,7 +947,7 @@
     "name": "Épernon",
     "code": "28140",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28230"
   },
@@ -955,7 +955,7 @@
     "name": "Ermenonville-la-Grande",
     "code": "28141",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28120"
   },
@@ -963,7 +963,7 @@
     "name": "Ermenonville-la-Petite",
     "code": "28142",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28120"
   },
@@ -971,7 +971,7 @@
     "name": "Escorpain",
     "code": "28143",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28270"
   },
@@ -979,7 +979,7 @@
     "name": "Les Étilleux",
     "code": "28144",
     "epci_code": "200006971",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28330"
   },
@@ -987,7 +987,7 @@
     "name": "Faverolles",
     "code": "28146",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28210"
   },
@@ -995,7 +995,7 @@
     "name": "Favières",
     "code": "28147",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28170"
   },
@@ -1003,7 +1003,7 @@
     "name": "Le Favril",
     "code": "28148",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28190"
   },
@@ -1011,7 +1011,7 @@
     "name": "La Ferté-Vidame",
     "code": "28149",
     "epci_code": "200069912",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28340"
   },
@@ -1019,7 +1019,7 @@
     "name": "Fessanvilliers-Mattanvilliers",
     "code": "28151",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28270"
   },
@@ -1027,7 +1027,7 @@
     "name": "Flacey",
     "code": "28153",
     "epci_code": "242852465",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28800"
   },
@@ -1035,7 +1035,7 @@
     "name": "Fontaine-la-Guyon",
     "code": "28154",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28190"
   },
@@ -1043,7 +1043,7 @@
     "name": "Fontaine-les-Ribouts",
     "code": "28155",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28170"
   },
@@ -1051,7 +1051,7 @@
     "name": "Fontaine-Simon",
     "code": "28156",
     "epci_code": "200070167",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28240"
   },
@@ -1059,7 +1059,7 @@
     "name": "Fontenay-sur-Conie",
     "code": "28157",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28140"
   },
@@ -1067,7 +1067,7 @@
     "name": "Fontenay-sur-Eure",
     "code": "28158",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28630"
   },
@@ -1075,7 +1075,7 @@
     "name": "La Framboisière",
     "code": "28159",
     "epci_code": "200069912",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28250"
   },
@@ -1083,7 +1083,7 @@
     "name": "Francourville",
     "code": "28160",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -1091,7 +1091,7 @@
     "name": "Frazé",
     "code": "28161",
     "epci_code": "200070167",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28160"
   },
@@ -1099,7 +1099,7 @@
     "name": "Fresnay-le-Comte",
     "code": "28162",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28360"
   },
@@ -1107,7 +1107,7 @@
     "name": "Fresnay-le-Gilmert",
     "code": "28163",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28300"
   },
@@ -1115,7 +1115,7 @@
     "name": "Fresnay-l’Évêque",
     "code": "28164",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28310"
   },
@@ -1123,7 +1123,7 @@
     "name": "Friaize",
     "code": "28166",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28240"
   },
@@ -1131,7 +1131,7 @@
     "name": "Fruncé",
     "code": "28167",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28190"
   },
@@ -1139,7 +1139,7 @@
     "name": "Gallardon",
     "code": "28168",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28320"
   },
@@ -1147,7 +1147,7 @@
     "name": "Garancières-en-Beauce",
     "code": "28169",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -1155,7 +1155,7 @@
     "name": "Garancières-en-Drouais",
     "code": "28170",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28500"
   },
@@ -1163,7 +1163,7 @@
     "name": "Garnay",
     "code": "28171",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28500"
   },
@@ -1171,7 +1171,7 @@
     "name": "Gas",
     "code": "28172",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28320"
   },
@@ -1179,7 +1179,7 @@
     "name": "Gasville-Oisème",
     "code": "28173",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28300"
   },
@@ -1187,7 +1187,7 @@
     "name": "La Gaudaine",
     "code": "28175",
     "epci_code": "200006971",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28400"
   },
@@ -1195,7 +1195,7 @@
     "name": "Le Gault-Saint-Denis",
     "code": "28176",
     "epci_code": "242852465",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28800"
   },
@@ -1203,7 +1203,7 @@
     "name": "Gellainville",
     "code": "28177",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28630"
   },
@@ -1211,7 +1211,7 @@
     "name": "Germainville",
     "code": "28178",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28500"
   },
@@ -1219,7 +1219,7 @@
     "name": "Gilles",
     "code": "28180",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28260"
   },
@@ -1227,7 +1227,7 @@
     "name": "Gohory",
     "code": "28182",
     "epci_code": "200069961",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28160"
   },
@@ -1235,7 +1235,7 @@
     "name": "Gommerville",
     "code": "28183",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28310"
   },
@@ -1243,7 +1243,7 @@
     "name": "Gommerville",
     "code": "28183",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -1251,7 +1251,7 @@
     "name": "Gouillons",
     "code": "28184",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28310"
   },
@@ -1259,7 +1259,7 @@
     "name": "Goussainville",
     "code": "28185",
     "epci_code": "247800550",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28410"
   },
@@ -1267,7 +1267,7 @@
     "name": "Guainville",
     "code": "28187",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28260"
   },
@@ -1275,7 +1275,7 @@
     "name": "Le Gué-de-Longroi",
     "code": "28188",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -1283,7 +1283,7 @@
     "name": "Guilleville",
     "code": "28189",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28310"
   },
@@ -1291,7 +1291,7 @@
     "name": "Guillonville",
     "code": "28190",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28140"
   },
@@ -1299,7 +1299,7 @@
     "name": "Hanches",
     "code": "28191",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28130"
   },
@@ -1307,7 +1307,7 @@
     "name": "Happonvilliers",
     "code": "28192",
     "epci_code": "200070167",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28480"
   },
@@ -1315,7 +1315,7 @@
     "name": "Havelu",
     "code": "28193",
     "epci_code": "247800550",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28410"
   },
@@ -1323,7 +1323,7 @@
     "name": "Houville-la-Branche",
     "code": "28194",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -1331,7 +1331,7 @@
     "name": "Houx",
     "code": "28195",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28130"
   },
@@ -1339,7 +1339,7 @@
     "name": "Illiers-Combray",
     "code": "28196",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28120"
   },
@@ -1347,7 +1347,7 @@
     "name": "Intréville",
     "code": "28197",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28310"
   },
@@ -1355,7 +1355,7 @@
     "name": "Jallans",
     "code": "28198",
     "epci_code": "200069961",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28200"
   },
@@ -1363,7 +1363,7 @@
     "name": "Janville-en-Beauce",
     "code": "28199",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28310"
   },
@@ -1371,7 +1371,7 @@
     "name": "Jaudrais",
     "code": "28200",
     "epci_code": "200069912",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28250"
   },
@@ -1379,7 +1379,7 @@
     "name": "Jouy",
     "code": "28201",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28300"
   },
@@ -1387,7 +1387,7 @@
     "name": "Lamblore",
     "code": "28202",
     "epci_code": "200069912",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28340"
   },
@@ -1395,7 +1395,7 @@
     "name": "Landelles",
     "code": "28203",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28190"
   },
@@ -1403,7 +1403,7 @@
     "name": "Laons",
     "code": "28206",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28270"
   },
@@ -1411,7 +1411,7 @@
     "name": "Léthuin",
     "code": "28207",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -1419,7 +1419,7 @@
     "name": "Levainville",
     "code": "28208",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -1427,7 +1427,7 @@
     "name": "Lèves",
     "code": "28209",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28300"
   },
@@ -1435,7 +1435,7 @@
     "name": "Levesville-la-Chenard",
     "code": "28210",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28310"
   },
@@ -1443,7 +1443,7 @@
     "name": "Logron",
     "code": "28211",
     "epci_code": "200069961",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28200"
   },
@@ -1451,7 +1451,7 @@
     "name": "Loigny-la-Bataille",
     "code": "28212",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28140"
   },
@@ -1459,7 +1459,7 @@
     "name": "Lormaye",
     "code": "28213",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28210"
   },
@@ -1467,7 +1467,7 @@
     "name": "La Loupe",
     "code": "28214",
     "epci_code": "200070167",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28240"
   },
@@ -1475,7 +1475,7 @@
     "name": "Louville-la-Chenard",
     "code": "28215",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28150"
   },
@@ -1483,7 +1483,7 @@
     "name": "Louvilliers-en-Drouais",
     "code": "28216",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28500"
   },
@@ -1491,7 +1491,7 @@
     "name": "Louvilliers-lès-Perche",
     "code": "28217",
     "epci_code": "200069912",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28250"
   },
@@ -1499,7 +1499,7 @@
     "name": "Lucé",
     "code": "28218",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28110"
   },
@@ -1507,7 +1507,7 @@
     "name": "Luigny",
     "code": "28219",
     "epci_code": "200006971",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28480"
   },
@@ -1515,7 +1515,7 @@
     "name": "Luisant",
     "code": "28220",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28600"
   },
@@ -1523,7 +1523,7 @@
     "name": "Lumeau",
     "code": "28221",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28140"
   },
@@ -1531,7 +1531,7 @@
     "name": "Luplanté",
     "code": "28222",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28360"
   },
@@ -1539,7 +1539,7 @@
     "name": "Luray",
     "code": "28223",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28500"
   },
@@ -1547,7 +1547,7 @@
     "name": "Magny",
     "code": "28225",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28120"
   },
@@ -1555,7 +1555,7 @@
     "name": "Maillebois",
     "code": "28226",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28170"
   },
@@ -1563,7 +1563,7 @@
     "name": "Maintenon",
     "code": "28227",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28130"
   },
@@ -1571,7 +1571,7 @@
     "name": "Mainvilliers",
     "code": "28229",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28300"
   },
@@ -1579,7 +1579,7 @@
     "name": "Maisons",
     "code": "28230",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -1587,7 +1587,7 @@
     "name": "La Mancelière",
     "code": "28231",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28270"
   },
@@ -1595,7 +1595,7 @@
     "name": "Manou",
     "code": "28232",
     "epci_code": "200070167",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28240"
   },
@@ -1603,7 +1603,7 @@
     "name": "Marboué",
     "code": "28233",
     "epci_code": "200069961",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28200"
   },
@@ -1611,7 +1611,7 @@
     "name": "Marchéville",
     "code": "28234",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28120"
   },
@@ -1619,7 +1619,7 @@
     "name": "Marchezais",
     "code": "28235",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28410"
   },
@@ -1627,7 +1627,7 @@
     "name": "Arcisses",
     "code": "28236",
     "epci_code": "200006971",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28400"
   },
@@ -1635,7 +1635,7 @@
     "name": "Marolles-les-Buis",
     "code": "28237",
     "epci_code": "200070167",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28400"
   },
@@ -1643,7 +1643,7 @@
     "name": "Marville-Moutiers-Brûlé",
     "code": "28239",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28500"
   },
@@ -1651,7 +1651,7 @@
     "name": "Meaucé",
     "code": "28240",
     "epci_code": "200070167",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28240"
   },
@@ -1659,7 +1659,7 @@
     "name": "Méréglise",
     "code": "28242",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28120"
   },
@@ -1667,7 +1667,7 @@
     "name": "Mérouville",
     "code": "28243",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28310"
   },
@@ -1675,7 +1675,7 @@
     "name": "Meslay-le-Grenet",
     "code": "28245",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28120"
   },
@@ -1683,7 +1683,7 @@
     "name": "Meslay-le-Vidame",
     "code": "28246",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28360"
   },
@@ -1691,7 +1691,7 @@
     "name": "Le Mesnil-Simon",
     "code": "28247",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28260"
   },
@@ -1699,7 +1699,7 @@
     "name": "Le Mesnil-Thomas",
     "code": "28248",
     "epci_code": "200069912",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28250"
   },
@@ -1707,7 +1707,7 @@
     "name": "Mévoisins",
     "code": "28249",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28130"
   },
@@ -1715,7 +1715,7 @@
     "name": "Mézières-en-Drouais",
     "code": "28251",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28500"
   },
@@ -1723,7 +1723,7 @@
     "name": "Miermaigne",
     "code": "28252",
     "epci_code": "200006971",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28480"
   },
@@ -1731,7 +1731,7 @@
     "name": "Mignières",
     "code": "28253",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28630"
   },
@@ -1739,7 +1739,7 @@
     "name": "Mittainvilliers-Vérigny",
     "code": "28254",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28190"
   },
@@ -1747,7 +1747,7 @@
     "name": "Moinville-la-Jeulin",
     "code": "28255",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -1755,7 +1755,7 @@
     "name": "Moléans",
     "code": "28256",
     "epci_code": "200069961",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28200"
   },
@@ -1763,7 +1763,7 @@
     "name": "Mondonville-Saint-Jean",
     "code": "28257",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -1771,7 +1771,7 @@
     "name": "Montboissier",
     "code": "28259",
     "epci_code": "242852465",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28800"
   },
@@ -1779,7 +1779,7 @@
     "name": "Montharville",
     "code": "28260",
     "epci_code": "242852465",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28800"
   },
@@ -1787,7 +1787,7 @@
     "name": "Montigny-le-Chartif",
     "code": "28261",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28120"
   },
@@ -1795,7 +1795,7 @@
     "name": "Montigny-sur-Avre",
     "code": "28263",
     "epci_code": "200066462",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28270"
   },
@@ -1803,7 +1803,7 @@
     "name": "Montireau",
     "code": "28264",
     "epci_code": "200070167",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28240"
   },
@@ -1811,7 +1811,7 @@
     "name": "Montlandon",
     "code": "28265",
     "epci_code": "200070167",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28240"
   },
@@ -1819,7 +1819,7 @@
     "name": "Montreuil",
     "code": "28267",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28500"
   },
@@ -1827,7 +1827,7 @@
     "name": "Morainville",
     "code": "28268",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -1835,7 +1835,7 @@
     "name": "Morancez",
     "code": "28269",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28630"
   },
@@ -1843,7 +1843,7 @@
     "name": "Moriers",
     "code": "28270",
     "epci_code": "242852465",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28800"
   },
@@ -1851,7 +1851,7 @@
     "name": "Morvilliers",
     "code": "28271",
     "epci_code": "200069912",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28340"
   },
@@ -1859,7 +1859,7 @@
     "name": "Mottereau",
     "code": "28272",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28160"
   },
@@ -1867,7 +1867,7 @@
     "name": "Moulhard",
     "code": "28273",
     "epci_code": "200069961",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28160"
   },
@@ -1875,7 +1875,7 @@
     "name": "Moutiers-en-Beauce",
     "code": "28274",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28150"
   },
@@ -1883,7 +1883,7 @@
     "name": "Néron",
     "code": "28275",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28210"
   },
@@ -1891,7 +1891,7 @@
     "name": "Neuvy-en-Dunois",
     "code": "28277",
     "epci_code": "242852465",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28800"
   },
@@ -1899,7 +1899,7 @@
     "name": "Nogent-le-Phaye",
     "code": "28278",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28630"
   },
@@ -1907,7 +1907,7 @@
     "name": "Nogent-le-Roi",
     "code": "28279",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28210"
   },
@@ -1915,7 +1915,7 @@
     "name": "Nogent-le-Rotrou",
     "code": "28280",
     "epci_code": "200006971",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28400"
   },
@@ -1923,7 +1923,7 @@
     "name": "Nogent-sur-Eure",
     "code": "28281",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28120"
   },
@@ -1931,7 +1931,7 @@
     "name": "Nonvilliers-Grandhoux",
     "code": "28282",
     "epci_code": "200070167",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28120"
   },
@@ -1939,7 +1939,7 @@
     "name": "Nottonville",
     "code": "28283",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28140"
   },
@@ -1947,7 +1947,7 @@
     "name": "Oinville-Saint-Liphard",
     "code": "28284",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28310"
   },
@@ -1955,7 +1955,7 @@
     "name": "Oinville-sous-Auneau",
     "code": "28285",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -1963,7 +1963,7 @@
     "name": "Ollé",
     "code": "28286",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28120"
   },
@@ -1971,7 +1971,7 @@
     "name": "Orgères-en-Beauce",
     "code": "28287",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28140"
   },
@@ -1979,7 +1979,7 @@
     "name": "Ormoy",
     "code": "28289",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28210"
   },
@@ -1987,7 +1987,7 @@
     "name": "Orrouer",
     "code": "28290",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28190"
   },
@@ -1995,7 +1995,7 @@
     "name": "Ouarville",
     "code": "28291",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28150"
   },
@@ -2003,7 +2003,7 @@
     "name": "Ouerre",
     "code": "28292",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28500"
   },
@@ -2011,7 +2011,7 @@
     "name": "Oulins",
     "code": "28293",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28260"
   },
@@ -2019,7 +2019,7 @@
     "name": "Oysonville",
     "code": "28294",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -2027,7 +2027,7 @@
     "name": "Péronville",
     "code": "28296",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28140"
   },
@@ -2035,7 +2035,7 @@
     "name": "Pierres",
     "code": "28298",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28130"
   },
@@ -2043,7 +2043,7 @@
     "name": "Les Pinthières",
     "code": "28299",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28210"
   },
@@ -2051,7 +2051,7 @@
     "name": "Poinville",
     "code": "28300",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28310"
   },
@@ -2059,7 +2059,7 @@
     "name": "Poisvilliers",
     "code": "28301",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28300"
   },
@@ -2067,7 +2067,7 @@
     "name": "Pontgouin",
     "code": "28302",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28190"
   },
@@ -2075,7 +2075,7 @@
     "name": "Poupry",
     "code": "28303",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28140"
   },
@@ -2083,7 +2083,7 @@
     "name": "Prasville",
     "code": "28304",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28150"
   },
@@ -2091,7 +2091,7 @@
     "name": "Pré-Saint-Évroult",
     "code": "28305",
     "epci_code": "242852465",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28800"
   },
@@ -2099,7 +2099,7 @@
     "name": "Pré-Saint-Martin",
     "code": "28306",
     "epci_code": "242852465",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28800"
   },
@@ -2107,7 +2107,7 @@
     "name": "Prudemanche",
     "code": "28308",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28270"
   },
@@ -2115,7 +2115,7 @@
     "name": "Prunay-le-Gillon",
     "code": "28309",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28360"
   },
@@ -2123,7 +2123,7 @@
     "name": "La Puisaye",
     "code": "28310",
     "epci_code": "200069912",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28250"
   },
@@ -2131,7 +2131,7 @@
     "name": "Puiseux",
     "code": "28312",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28170"
   },
@@ -2139,7 +2139,7 @@
     "name": "Réclainville",
     "code": "28313",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28150"
   },
@@ -2147,7 +2147,7 @@
     "name": "Les Ressuintes",
     "code": "28314",
     "epci_code": "200069912",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28340"
   },
@@ -2155,7 +2155,7 @@
     "name": "Revercourt",
     "code": "28315",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28270"
   },
@@ -2163,7 +2163,7 @@
     "name": "Rohaire",
     "code": "28316",
     "epci_code": "200069912",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28340"
   },
@@ -2171,7 +2171,7 @@
     "name": "Roinville",
     "code": "28317",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -2179,7 +2179,7 @@
     "name": "Neuville Saint Denis",
     "code": "28319",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28310"
   },
@@ -2187,7 +2187,7 @@
     "name": "Rouvres",
     "code": "28321",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28260"
   },
@@ -2195,7 +2195,7 @@
     "name": "Rueil-la-Gadelière",
     "code": "28322",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28270"
   },
@@ -2203,7 +2203,7 @@
     "name": "Saint-Ange-et-Torçay",
     "code": "28323",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28170"
   },
@@ -2211,7 +2211,7 @@
     "name": "Saint-Arnoult-des-Bois",
     "code": "28324",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28190"
   },
@@ -2219,7 +2219,7 @@
     "name": "Saint-Aubin-des-Bois",
     "code": "28325",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28300"
   },
@@ -2227,7 +2227,7 @@
     "name": "Saint-Avit-les-Guespières",
     "code": "28326",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28120"
   },
@@ -2235,7 +2235,7 @@
     "name": "Saint-Bomer",
     "code": "28327",
     "epci_code": "200006971",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28330"
   },
@@ -2243,7 +2243,7 @@
     "name": "Saint-Christophe",
     "code": "28329",
     "epci_code": "200069961",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28200"
   },
@@ -2251,7 +2251,7 @@
     "name": "Villemaury",
     "code": "28330",
     "epci_code": "200069961",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28200"
   },
@@ -2259,7 +2259,7 @@
     "name": "Saintigny",
     "code": "28331",
     "epci_code": "200070167",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28480"
   },
@@ -2267,7 +2267,7 @@
     "name": "Sainte-Gemme-Moronval",
     "code": "28332",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28500"
   },
@@ -2275,7 +2275,7 @@
     "name": "Saint-Denis-des-Puits",
     "code": "28333",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28240"
   },
@@ -2283,7 +2283,7 @@
     "name": "Saint-Denis-Lanneray",
     "code": "28334",
     "epci_code": "200069961",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28200"
   },
@@ -2291,7 +2291,7 @@
     "name": "Saint-Éliph",
     "code": "28335",
     "epci_code": "200070167",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28240"
   },
@@ -2299,7 +2299,7 @@
     "name": "Saint-Éman",
     "code": "28336",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28120"
   },
@@ -2307,7 +2307,7 @@
     "name": "Saint-Georges-sur-Eure",
     "code": "28337",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28190"
   },
@@ -2315,7 +2315,7 @@
     "name": "Saint-Germain-le-Gaillard",
     "code": "28339",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28190"
   },
@@ -2323,7 +2323,7 @@
     "name": "Saint-Jean-de-Rebervilliers",
     "code": "28341",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28170"
   },
@@ -2331,7 +2331,7 @@
     "name": "Saint-Jean-Pierre-Fixte",
     "code": "28342",
     "epci_code": "200006971",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28400"
   },
@@ -2339,7 +2339,7 @@
     "name": "Saint-Laurent-la-Gâtine",
     "code": "28343",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28210"
   },
@@ -2347,7 +2347,7 @@
     "name": "Saint-Léger-des-Aubées",
     "code": "28344",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -2355,7 +2355,7 @@
     "name": "Saint-Lubin-de-Cravant",
     "code": "28346",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28270"
   },
@@ -2363,7 +2363,7 @@
     "name": "Saint-Lubin-de-la-Haye",
     "code": "28347",
     "epci_code": "247800550",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28410"
   },
@@ -2371,7 +2371,7 @@
     "name": "Saint-Lubin-des-Joncherets",
     "code": "28348",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28350"
   },
@@ -2379,7 +2379,7 @@
     "name": "Saint-Lucien",
     "code": "28349",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28210"
   },
@@ -2387,7 +2387,7 @@
     "name": "Saint-Luperce",
     "code": "28350",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28190"
   },
@@ -2395,7 +2395,7 @@
     "name": "Saint-Maixme-Hauterive",
     "code": "28351",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28170"
   },
@@ -2403,7 +2403,7 @@
     "name": "Saint-Martin-de-Nigelles",
     "code": "28352",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28130"
   },
@@ -2411,7 +2411,7 @@
     "name": "Saint-Maur-sur-le-Loir",
     "code": "28353",
     "epci_code": "242852465",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28800"
   },
@@ -2419,7 +2419,7 @@
     "name": "Saint-Maurice-Saint-Germain",
     "code": "28354",
     "epci_code": "200070167",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28240"
   },
@@ -2427,7 +2427,7 @@
     "name": "Saint-Ouen-Marchefroy",
     "code": "28355",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28260"
   },
@@ -2435,7 +2435,7 @@
     "name": "Saint-Piat",
     "code": "28357",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28130"
   },
@@ -2443,7 +2443,7 @@
     "name": "Saint-Prest",
     "code": "28358",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28300"
   },
@@ -2451,7 +2451,7 @@
     "name": "Saint-Rémy-sur-Avre",
     "code": "28359",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28380"
   },
@@ -2459,7 +2459,7 @@
     "name": "Saint-Sauveur-Marville",
     "code": "28360",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28170"
   },
@@ -2467,7 +2467,7 @@
     "name": "Saint-Victor-de-Buthon",
     "code": "28362",
     "epci_code": "200070167",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28240"
   },
@@ -2475,7 +2475,7 @@
     "name": "Sainville",
     "code": "28363",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -2483,7 +2483,7 @@
     "name": "Sancheville",
     "code": "28364",
     "epci_code": "242852465",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28800"
   },
@@ -2491,7 +2491,7 @@
     "name": "Sandarville",
     "code": "28365",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28120"
   },
@@ -2499,7 +2499,7 @@
     "name": "Santeuil",
     "code": "28366",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -2507,7 +2507,7 @@
     "name": "Santilly",
     "code": "28367",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28310"
   },
@@ -2515,7 +2515,7 @@
     "name": "La Saucelle",
     "code": "28368",
     "epci_code": "200069912",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28250"
   },
@@ -2523,7 +2523,7 @@
     "name": "Saulnières",
     "code": "28369",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28500"
   },
@@ -2531,7 +2531,7 @@
     "name": "Saumeray",
     "code": "28370",
     "epci_code": "242852465",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28800"
   },
@@ -2539,7 +2539,7 @@
     "name": "Saussay",
     "code": "28371",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28260"
   },
@@ -2547,7 +2547,7 @@
     "name": "Senantes",
     "code": "28372",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28210"
   },
@@ -2555,7 +2555,7 @@
     "name": "Senonches",
     "code": "28373",
     "epci_code": "200069912",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28250"
   },
@@ -2563,7 +2563,7 @@
     "name": "Serazereux",
     "code": "28374",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28170"
   },
@@ -2571,7 +2571,7 @@
     "name": "Serville",
     "code": "28375",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28410"
   },
@@ -2579,7 +2579,7 @@
     "name": "Sorel-Moussel",
     "code": "28377",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28260"
   },
@@ -2587,7 +2587,7 @@
     "name": "Souancé-au-Perche",
     "code": "28378",
     "epci_code": "200006971",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28400"
   },
@@ -2595,7 +2595,7 @@
     "name": "Soulaires",
     "code": "28379",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28130"
   },
@@ -2603,7 +2603,7 @@
     "name": "Sours",
     "code": "28380",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28630"
   },
@@ -2611,7 +2611,7 @@
     "name": "Terminiers",
     "code": "28382",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28140"
   },
@@ -2619,7 +2619,7 @@
     "name": "Theuville",
     "code": "28383",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28150"
   },
@@ -2627,7 +2627,7 @@
     "name": "Theuville",
     "code": "28383",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28360"
   },
@@ -2635,7 +2635,7 @@
     "name": "Le Thieulin",
     "code": "28385",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28240"
   },
@@ -2643,7 +2643,7 @@
     "name": "Thimert-Gâtelles",
     "code": "28386",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28170"
   },
@@ -2651,7 +2651,7 @@
     "name": "Thiron-Gardais",
     "code": "28387",
     "epci_code": "200070167",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28480"
   },
@@ -2659,7 +2659,7 @@
     "name": "Thivars",
     "code": "28388",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28630"
   },
@@ -2667,7 +2667,7 @@
     "name": "Thiville",
     "code": "28389",
     "epci_code": "200069961",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28200"
   },
@@ -2675,7 +2675,7 @@
     "name": "Tillay-le-Péneux",
     "code": "28390",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28140"
   },
@@ -2683,7 +2683,7 @@
     "name": "Toury",
     "code": "28391",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28310"
   },
@@ -2691,7 +2691,7 @@
     "name": "Trancrainville",
     "code": "28392",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28310"
   },
@@ -2699,7 +2699,7 @@
     "name": "Tremblay-les-Villages",
     "code": "28393",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28170"
   },
@@ -2707,7 +2707,7 @@
     "name": "Tréon",
     "code": "28394",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28500"
   },
@@ -2715,7 +2715,7 @@
     "name": "Trizay-Coutretot-Saint-Serge",
     "code": "28395",
     "epci_code": "200006971",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28400"
   },
@@ -2723,7 +2723,7 @@
     "name": "Trizay-lès-Bonneval",
     "code": "28396",
     "epci_code": "242852465",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28800"
   },
@@ -2731,7 +2731,7 @@
     "name": "Umpeau",
     "code": "28397",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -2739,7 +2739,7 @@
     "name": "Unverre",
     "code": "28398",
     "epci_code": "200069961",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28160"
   },
@@ -2747,7 +2747,7 @@
     "name": "Varize",
     "code": "28400",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28140"
   },
@@ -2755,7 +2755,7 @@
     "name": "Vaupillon",
     "code": "28401",
     "epci_code": "200070167",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28240"
   },
@@ -2763,7 +2763,7 @@
     "name": "Ver-lès-Chartres",
     "code": "28403",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28630"
   },
@@ -2771,7 +2771,7 @@
     "name": "Vernouillet",
     "code": "28404",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28500"
   },
@@ -2779,7 +2779,7 @@
     "name": "Vert-en-Drouais",
     "code": "28405",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28500"
   },
@@ -2787,7 +2787,7 @@
     "name": "Éole-en-Beauce",
     "code": "28406",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28150"
   },
@@ -2795,7 +2795,7 @@
     "name": "Vichères",
     "code": "28407",
     "epci_code": "200006971",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28480"
   },
@@ -2803,7 +2803,7 @@
     "name": "Vierville",
     "code": "28408",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -2811,7 +2811,7 @@
     "name": "Vieuvicq",
     "code": "28409",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28120"
   },
@@ -2819,7 +2819,7 @@
     "name": "Villampuy",
     "code": "28410",
     "epci_code": "200069961",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28200"
   },
@@ -2827,7 +2827,7 @@
     "name": "Villars",
     "code": "28411",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28150"
   },
@@ -2835,7 +2835,7 @@
     "name": "Villebon",
     "code": "28414",
     "epci_code": "200058360",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28190"
   },
@@ -2843,7 +2843,7 @@
     "name": "Villemeux-sur-Eure",
     "code": "28415",
     "epci_code": "200040277",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28210"
   },
@@ -2851,7 +2851,7 @@
     "name": "Villiers-le-Morhier",
     "code": "28417",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28130"
   },
@@ -2859,7 +2859,7 @@
     "name": "Villiers-Saint-Orien",
     "code": "28418",
     "epci_code": "242852465",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28800"
   },
@@ -2867,7 +2867,7 @@
     "name": "Vitray-en-Beauce",
     "code": "28419",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28360"
   },
@@ -2875,7 +2875,7 @@
     "name": "Voise",
     "code": "28421",
     "epci_code": "200033181",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28700"
   },
@@ -2883,7 +2883,7 @@
     "name": "Les Villages Vovéens",
     "code": "28422",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28150"
   },
@@ -2891,7 +2891,7 @@
     "name": "Yermenonville",
     "code": "28423",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28130"
   },
@@ -2899,7 +2899,7 @@
     "name": "Yèvres",
     "code": "28424",
     "epci_code": "200069961",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28160"
   },
@@ -2907,7 +2907,7 @@
     "name": "Ymeray",
     "code": "28425",
     "epci_code": "200069953",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28320"
   },
@@ -2915,7 +2915,7 @@
     "name": "Ymonville",
     "code": "28426",
     "epci_code": "200070159",
-    "departement_code": "28",
+    "department_code": "28",
     "region_code": "24",
     "postal_code": "28150"
   }

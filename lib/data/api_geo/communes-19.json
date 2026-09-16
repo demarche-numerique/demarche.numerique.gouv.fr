@@ -3,7 +3,7 @@
     "name": "Affieux",
     "code": "19001",
     "epci_code": "200066645",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19260"
   },
@@ -11,7 +11,7 @@
     "name": "Aix",
     "code": "19002",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19200"
   },
@@ -19,7 +19,7 @@
     "name": "Albignac",
     "code": "19003",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19190"
   },
@@ -27,7 +27,7 @@
     "name": "Albussac",
     "code": "19004",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19380"
   },
@@ -35,7 +35,7 @@
     "name": "Allassac",
     "code": "19005",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19240"
   },
@@ -43,7 +43,7 @@
     "name": "Alleyrat",
     "code": "19006",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19200"
   },
@@ -51,7 +51,7 @@
     "name": "Altillac",
     "code": "19007",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19120"
   },
@@ -59,7 +59,7 @@
     "name": "Ambrugeat",
     "code": "19008",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19250"
   },
@@ -67,7 +67,7 @@
     "name": "Les Angles-sur-Corrèze",
     "code": "19009",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19000"
   },
@@ -75,7 +75,7 @@
     "name": "Argentat-sur-Dordogne",
     "code": "19010",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19320"
   },
@@ -83,7 +83,7 @@
     "name": "Argentat-sur-Dordogne",
     "code": "19010",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19400"
   },
@@ -91,7 +91,7 @@
     "name": "Arnac-Pompadour",
     "code": "19011",
     "epci_code": "200066603",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19230"
   },
@@ -99,7 +99,7 @@
     "name": "Astaillac",
     "code": "19012",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19120"
   },
@@ -107,7 +107,7 @@
     "name": "Aubazines",
     "code": "19013",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19190"
   },
@@ -115,7 +115,7 @@
     "name": "Auriac",
     "code": "19014",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19220"
   },
@@ -123,7 +123,7 @@
     "name": "Ayen",
     "code": "19015",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19310"
   },
@@ -131,7 +131,7 @@
     "name": "Bar",
     "code": "19016",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19800"
   },
@@ -139,7 +139,7 @@
     "name": "Bassignac-le-Bas",
     "code": "19017",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19430"
   },
@@ -147,7 +147,7 @@
     "name": "Bassignac-le-Haut",
     "code": "19018",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19220"
   },
@@ -155,7 +155,7 @@
     "name": "Beaulieu-sur-Dordogne",
     "code": "19019",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19120"
   },
@@ -163,7 +163,7 @@
     "name": "Beaumont",
     "code": "19020",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19390"
   },
@@ -171,7 +171,7 @@
     "name": "Bellechassagne",
     "code": "19021",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19290"
   },
@@ -179,7 +179,7 @@
     "name": "Benayes",
     "code": "19022",
     "epci_code": "200066603",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19510"
   },
@@ -187,7 +187,7 @@
     "name": "Beynat",
     "code": "19023",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19190"
   },
@@ -195,7 +195,7 @@
     "name": "Beyssac",
     "code": "19024",
     "epci_code": "200066603",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19230"
   },
@@ -203,7 +203,7 @@
     "name": "Beyssenac",
     "code": "19025",
     "epci_code": "200066603",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19230"
   },
@@ -211,7 +211,7 @@
     "name": "Bilhac",
     "code": "19026",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19120"
   },
@@ -219,7 +219,7 @@
     "name": "Bonnefond",
     "code": "19027",
     "epci_code": "200066645",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19170"
   },
@@ -227,7 +227,7 @@
     "name": "Bort-les-Orgues",
     "code": "19028",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19110"
   },
@@ -235,7 +235,7 @@
     "name": "Branceilles",
     "code": "19029",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19500"
   },
@@ -243,7 +243,7 @@
     "name": "Brignac-la-Plaine",
     "code": "19030",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19310"
   },
@@ -251,7 +251,7 @@
     "name": "Brive-la-Gaillarde",
     "code": "19031",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19100"
   },
@@ -259,7 +259,7 @@
     "name": "Bugeat",
     "code": "19033",
     "epci_code": "200066645",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19170"
   },
@@ -267,7 +267,7 @@
     "name": "Camps-Saint-Mathurin-Léobazel",
     "code": "19034",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19430"
   },
@@ -275,7 +275,7 @@
     "name": "Chabrignac",
     "code": "19035",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19350"
   },
@@ -283,7 +283,7 @@
     "name": "Chamberet",
     "code": "19036",
     "epci_code": "200066645",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19370"
   },
@@ -291,7 +291,7 @@
     "name": "Chamboulive",
     "code": "19037",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19450"
   },
@@ -299,7 +299,7 @@
     "name": "Chameyrat",
     "code": "19038",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19330"
   },
@@ -307,7 +307,7 @@
     "name": "Champagnac-la-Noaille",
     "code": "19039",
     "epci_code": "241900133",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19320"
   },
@@ -315,7 +315,7 @@
     "name": "Champagnac-la-Prune",
     "code": "19040",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19320"
   },
@@ -323,7 +323,7 @@
     "name": "Chanac-les-Mines",
     "code": "19041",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19150"
   },
@@ -331,7 +331,7 @@
     "name": "Chanteix",
     "code": "19042",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19330"
   },
@@ -339,7 +339,7 @@
     "name": "La Chapelle-aux-Brocs",
     "code": "19043",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19360"
   },
@@ -347,7 +347,7 @@
     "name": "La Chapelle-aux-Saints",
     "code": "19044",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19120"
   },
@@ -355,7 +355,7 @@
     "name": "La Chapelle-Saint-Géraud",
     "code": "19045",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19430"
   },
@@ -363,7 +363,7 @@
     "name": "Chapelle-Spinasse",
     "code": "19046",
     "epci_code": "241900133",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19300"
   },
@@ -371,7 +371,7 @@
     "name": "Chartrier-Ferrière",
     "code": "19047",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19600"
   },
@@ -379,7 +379,7 @@
     "name": "Le Chastang",
     "code": "19048",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19190"
   },
@@ -387,7 +387,7 @@
     "name": "Chasteaux",
     "code": "19049",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19600"
   },
@@ -395,7 +395,7 @@
     "name": "Chauffour-sur-Vell",
     "code": "19050",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19500"
   },
@@ -403,7 +403,7 @@
     "name": "Chaumeil",
     "code": "19051",
     "epci_code": "241900133",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19390"
   },
@@ -411,7 +411,7 @@
     "name": "Chavanac",
     "code": "19052",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19290"
   },
@@ -419,7 +419,7 @@
     "name": "Chaveroche",
     "code": "19053",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19200"
   },
@@ -427,7 +427,7 @@
     "name": "Chenailler-Mascheix",
     "code": "19054",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19120"
   },
@@ -435,7 +435,7 @@
     "name": "Chirac-Bellevue",
     "code": "19055",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19160"
   },
@@ -443,7 +443,7 @@
     "name": "Clergoux",
     "code": "19056",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19320"
   },
@@ -451,7 +451,7 @@
     "name": "Collonges-la-Rouge",
     "code": "19057",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19500"
   },
@@ -459,7 +459,7 @@
     "name": "Combressol",
     "code": "19058",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19250"
   },
@@ -467,7 +467,7 @@
     "name": "Concèze",
     "code": "19059",
     "epci_code": "200066603",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19350"
   },
@@ -475,7 +475,7 @@
     "name": "Condat-sur-Ganaveix",
     "code": "19060",
     "epci_code": "241927243",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19140"
   },
@@ -483,7 +483,7 @@
     "name": "Cornil",
     "code": "19061",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19150"
   },
@@ -491,7 +491,7 @@
     "name": "Corrèze",
     "code": "19062",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19800"
   },
@@ -499,7 +499,7 @@
     "name": "Cosnac",
     "code": "19063",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19360"
   },
@@ -507,7 +507,7 @@
     "name": "Couffy-sur-Sarsonne",
     "code": "19064",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19340"
   },
@@ -515,7 +515,7 @@
     "name": "Courteix",
     "code": "19065",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19340"
   },
@@ -523,7 +523,7 @@
     "name": "Cublac",
     "code": "19066",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19520"
   },
@@ -531,7 +531,7 @@
     "name": "Curemonte",
     "code": "19067",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19500"
   },
@@ -539,7 +539,7 @@
     "name": "Dampniat",
     "code": "19068",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19360"
   },
@@ -547,7 +547,7 @@
     "name": "Darazac",
     "code": "19069",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19220"
   },
@@ -555,7 +555,7 @@
     "name": "Darnets",
     "code": "19070",
     "epci_code": "241900133",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19300"
   },
@@ -563,7 +563,7 @@
     "name": "Davignac",
     "code": "19071",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19250"
   },
@@ -571,7 +571,7 @@
     "name": "Donzenac",
     "code": "19072",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19270"
   },
@@ -579,7 +579,7 @@
     "name": "Égletons",
     "code": "19073",
     "epci_code": "241900133",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19300"
   },
@@ -587,7 +587,7 @@
     "name": "L’Église-aux-Bois",
     "code": "19074",
     "epci_code": "200066645",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19170"
   },
@@ -595,7 +595,7 @@
     "name": "Espagnac",
     "code": "19075",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19150"
   },
@@ -603,7 +603,7 @@
     "name": "Espartignac",
     "code": "19076",
     "epci_code": "241927243",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19140"
   },
@@ -611,7 +611,7 @@
     "name": "Estivals",
     "code": "19077",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19600"
   },
@@ -619,7 +619,7 @@
     "name": "Estivaux",
     "code": "19078",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19410"
   },
@@ -627,7 +627,7 @@
     "name": "Eyburie",
     "code": "19079",
     "epci_code": "241927243",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19140"
   },
@@ -635,7 +635,7 @@
     "name": "Eygurande",
     "code": "19080",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19340"
   },
@@ -643,7 +643,7 @@
     "name": "Eyrein",
     "code": "19081",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19800"
   },
@@ -651,7 +651,7 @@
     "name": "Favars",
     "code": "19082",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19330"
   },
@@ -659,7 +659,7 @@
     "name": "Feyt",
     "code": "19083",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19340"
   },
@@ -667,7 +667,7 @@
     "name": "Forgès",
     "code": "19084",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19380"
   },
@@ -675,7 +675,7 @@
     "name": "Gimel-les-Cascades",
     "code": "19085",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19800"
   },
@@ -683,7 +683,7 @@
     "name": "Goulles",
     "code": "19086",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19430"
   },
@@ -691,7 +691,7 @@
     "name": "Gourdon-Murat",
     "code": "19087",
     "epci_code": "200066645",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19170"
   },
@@ -699,7 +699,7 @@
     "name": "Grandsaigne",
     "code": "19088",
     "epci_code": "200066645",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19300"
   },
@@ -707,7 +707,7 @@
     "name": "Gros-Chastang",
     "code": "19089",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19320"
   },
@@ -715,7 +715,7 @@
     "name": "Gumond",
     "code": "19090",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19320"
   },
@@ -723,7 +723,7 @@
     "name": "Hautefage",
     "code": "19091",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19400"
   },
@@ -731,7 +731,7 @@
     "name": "Jugeals-Nazareth",
     "code": "19093",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19500"
   },
@@ -739,7 +739,7 @@
     "name": "Juillac",
     "code": "19094",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19350"
   },
@@ -747,7 +747,7 @@
     "name": "Lacelle",
     "code": "19095",
     "epci_code": "200066645",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19170"
   },
@@ -755,7 +755,7 @@
     "name": "Ladignac-sur-Rondelles",
     "code": "19096",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19150"
   },
@@ -763,7 +763,7 @@
     "name": "Lafage-sur-Sombre",
     "code": "19097",
     "epci_code": "241900133",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19320"
   },
@@ -771,7 +771,7 @@
     "name": "Lagarde-Marc-la-Tour",
     "code": "19098",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19150"
   },
@@ -779,7 +779,7 @@
     "name": "Lagleygeolle",
     "code": "19099",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19500"
   },
@@ -787,7 +787,7 @@
     "name": "Lagraulière",
     "code": "19100",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19700"
   },
@@ -795,7 +795,7 @@
     "name": "Laguenne-sur-Avalouze",
     "code": "19101",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19150"
   },
@@ -803,7 +803,7 @@
     "name": "Lamazière-Basse",
     "code": "19102",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19160"
   },
@@ -811,7 +811,7 @@
     "name": "Lamazière-Haute",
     "code": "19103",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19340"
   },
@@ -819,7 +819,7 @@
     "name": "Lamongerie",
     "code": "19104",
     "epci_code": "241927243",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19510"
   },
@@ -827,7 +827,7 @@
     "name": "Lanteuil",
     "code": "19105",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19190"
   },
@@ -835,7 +835,7 @@
     "name": "Lapleau",
     "code": "19106",
     "epci_code": "241900133",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19550"
   },
@@ -843,7 +843,7 @@
     "name": "Larche",
     "code": "19107",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19600"
   },
@@ -851,7 +851,7 @@
     "name": "Laroche-près-Feyt",
     "code": "19108",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19340"
   },
@@ -859,7 +859,7 @@
     "name": "Lascaux",
     "code": "19109",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19130"
   },
@@ -867,7 +867,7 @@
     "name": "Latronche",
     "code": "19110",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19160"
   },
@@ -875,7 +875,7 @@
     "name": "Laval-sur-Luzège",
     "code": "19111",
     "epci_code": "241900133",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19550"
   },
@@ -883,7 +883,7 @@
     "name": "Lestards",
     "code": "19112",
     "epci_code": "200066645",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19170"
   },
@@ -891,7 +891,7 @@
     "name": "Liginiac",
     "code": "19113",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19160"
   },
@@ -899,7 +899,7 @@
     "name": "Lignareix",
     "code": "19114",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19200"
   },
@@ -907,7 +907,7 @@
     "name": "Ligneyrac",
     "code": "19115",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19500"
   },
@@ -915,7 +915,7 @@
     "name": "Liourdres",
     "code": "19116",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19120"
   },
@@ -923,7 +923,7 @@
     "name": "Lissac-sur-Couze",
     "code": "19117",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19600"
   },
@@ -931,7 +931,7 @@
     "name": "Le Lonzac",
     "code": "19118",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19470"
   },
@@ -939,7 +939,7 @@
     "name": "Lostanges",
     "code": "19119",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19500"
   },
@@ -947,7 +947,7 @@
     "name": "Louignac",
     "code": "19120",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19310"
   },
@@ -955,7 +955,7 @@
     "name": "Lubersac",
     "code": "19121",
     "epci_code": "200066603",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19210"
   },
@@ -963,7 +963,7 @@
     "name": "Madranges",
     "code": "19122",
     "epci_code": "200066645",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19470"
   },
@@ -971,7 +971,7 @@
     "name": "Malemort",
     "code": "19123",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19360"
   },
@@ -979,7 +979,7 @@
     "name": "Mansac",
     "code": "19124",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19520"
   },
@@ -987,7 +987,7 @@
     "name": "Marcillac-la-Croisille",
     "code": "19125",
     "epci_code": "241900133",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19320"
   },
@@ -995,7 +995,7 @@
     "name": "Marcillac-la-Croze",
     "code": "19126",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19500"
   },
@@ -1003,7 +1003,7 @@
     "name": "Margerides",
     "code": "19128",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19200"
   },
@@ -1011,7 +1011,7 @@
     "name": "Masseret",
     "code": "19129",
     "epci_code": "241927243",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19510"
   },
@@ -1019,7 +1019,7 @@
     "name": "Maussac",
     "code": "19130",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19250"
   },
@@ -1027,7 +1027,7 @@
     "name": "Meilhards",
     "code": "19131",
     "epci_code": "241927243",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19510"
   },
@@ -1035,7 +1035,7 @@
     "name": "Ménoire",
     "code": "19132",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19190"
   },
@@ -1043,7 +1043,7 @@
     "name": "Mercœur",
     "code": "19133",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19430"
   },
@@ -1051,7 +1051,7 @@
     "name": "Merlines",
     "code": "19134",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19340"
   },
@@ -1059,7 +1059,7 @@
     "name": "Mestes",
     "code": "19135",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19200"
   },
@@ -1067,7 +1067,7 @@
     "name": "Meymac",
     "code": "19136",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19250"
   },
@@ -1075,7 +1075,7 @@
     "name": "Meyrignac-l’Église",
     "code": "19137",
     "epci_code": "241900133",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19800"
   },
@@ -1083,7 +1083,7 @@
     "name": "Meyssac",
     "code": "19138",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19500"
   },
@@ -1091,7 +1091,7 @@
     "name": "Millevaches",
     "code": "19139",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19290"
   },
@@ -1099,7 +1099,7 @@
     "name": "Monceaux-sur-Dordogne",
     "code": "19140",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19400"
   },
@@ -1107,7 +1107,7 @@
     "name": "Monestier-Merlines",
     "code": "19141",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19340"
   },
@@ -1115,7 +1115,7 @@
     "name": "Monestier-Port-Dieu",
     "code": "19142",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19110"
   },
@@ -1123,7 +1123,7 @@
     "name": "Montaignac-sur-Doustre",
     "code": "19143",
     "epci_code": "241900133",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19300"
   },
@@ -1131,7 +1131,7 @@
     "name": "Montgibaud",
     "code": "19144",
     "epci_code": "200066603",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19210"
   },
@@ -1139,7 +1139,7 @@
     "name": "Moustier-Ventadour",
     "code": "19145",
     "epci_code": "241900133",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19300"
   },
@@ -1147,7 +1147,7 @@
     "name": "Naves",
     "code": "19146",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19460"
   },
@@ -1155,7 +1155,7 @@
     "name": "Nespouls",
     "code": "19147",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19600"
   },
@@ -1163,7 +1163,7 @@
     "name": "Neuvic",
     "code": "19148",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19160"
   },
@@ -1171,7 +1171,7 @@
     "name": "Neuville",
     "code": "19149",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19380"
   },
@@ -1179,7 +1179,7 @@
     "name": "Noailhac",
     "code": "19150",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19500"
   },
@@ -1187,7 +1187,7 @@
     "name": "Noailles",
     "code": "19151",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19600"
   },
@@ -1195,7 +1195,7 @@
     "name": "Nonards",
     "code": "19152",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19120"
   },
@@ -1203,7 +1203,7 @@
     "name": "Objat",
     "code": "19153",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19130"
   },
@@ -1211,7 +1211,7 @@
     "name": "Orgnac-sur-Vézère",
     "code": "19154",
     "epci_code": "241927243",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19410"
   },
@@ -1219,7 +1219,7 @@
     "name": "Orliac-de-Bar",
     "code": "19155",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19390"
   },
@@ -1227,7 +1227,7 @@
     "name": "Palazinges",
     "code": "19156",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19190"
   },
@@ -1235,7 +1235,7 @@
     "name": "Palisse",
     "code": "19157",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19160"
   },
@@ -1243,7 +1243,7 @@
     "name": "Pandrignes",
     "code": "19158",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19150"
   },
@@ -1251,7 +1251,7 @@
     "name": "Péret-Bel-Air",
     "code": "19159",
     "epci_code": "241900133",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19300"
   },
@@ -1259,7 +1259,7 @@
     "name": "Pérols-sur-Vézère",
     "code": "19160",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19170"
   },
@@ -1267,7 +1267,7 @@
     "name": "Perpezac-le-Blanc",
     "code": "19161",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19310"
   },
@@ -1275,7 +1275,7 @@
     "name": "Perpezac-le-Noir",
     "code": "19162",
     "epci_code": "241927243",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19410"
   },
@@ -1283,7 +1283,7 @@
     "name": "Le Pescher",
     "code": "19163",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19190"
   },
@@ -1291,7 +1291,7 @@
     "name": "Peyrelevade",
     "code": "19164",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19290"
   },
@@ -1299,7 +1299,7 @@
     "name": "Peyrissac",
     "code": "19165",
     "epci_code": "200066645",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19260"
   },
@@ -1307,7 +1307,7 @@
     "name": "Pierrefitte",
     "code": "19166",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19450"
   },
@@ -1315,7 +1315,7 @@
     "name": "Confolent-Port-Dieu",
     "code": "19167",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19200"
   },
@@ -1323,7 +1323,7 @@
     "name": "Pradines",
     "code": "19168",
     "epci_code": "200066645",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19170"
   },
@@ -1331,7 +1331,7 @@
     "name": "Puy-d’Arnac",
     "code": "19169",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19120"
   },
@@ -1339,7 +1339,7 @@
     "name": "Queyssac-les-Vignes",
     "code": "19170",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19120"
   },
@@ -1347,7 +1347,7 @@
     "name": "Reygade",
     "code": "19171",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19430"
   },
@@ -1355,7 +1355,7 @@
     "name": "Rilhac-Treignac",
     "code": "19172",
     "epci_code": "200066645",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19260"
   },
@@ -1363,7 +1363,7 @@
     "name": "Rilhac-Xaintrie",
     "code": "19173",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19220"
   },
@@ -1371,7 +1371,7 @@
     "name": "La Roche-Canillac",
     "code": "19174",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19320"
   },
@@ -1379,7 +1379,7 @@
     "name": "Roche-le-Peyroux",
     "code": "19175",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19160"
   },
@@ -1387,7 +1387,7 @@
     "name": "Rosiers-d’Égletons",
     "code": "19176",
     "epci_code": "241900133",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19300"
   },
@@ -1395,7 +1395,7 @@
     "name": "Rosiers-de-Juillac",
     "code": "19177",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19350"
   },
@@ -1403,7 +1403,7 @@
     "name": "Sadroc",
     "code": "19178",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19270"
   },
@@ -1411,7 +1411,7 @@
     "name": "Saillac",
     "code": "19179",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19500"
   },
@@ -1419,7 +1419,7 @@
     "name": "Saint-Angel",
     "code": "19180",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19200"
   },
@@ -1427,7 +1427,7 @@
     "name": "Saint-Augustin",
     "code": "19181",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19390"
   },
@@ -1435,7 +1435,7 @@
     "name": "Saint-Aulaire",
     "code": "19182",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19130"
   },
@@ -1443,7 +1443,7 @@
     "name": "Saint-Bazile-de-Meyssac",
     "code": "19184",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19500"
   },
@@ -1451,7 +1451,7 @@
     "name": "Saint-Bonnet-Elvert",
     "code": "19186",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19380"
   },
@@ -1459,7 +1459,7 @@
     "name": "Saint-Bonnet-la-Rivière",
     "code": "19187",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19130"
   },
@@ -1467,7 +1467,7 @@
     "name": "Saint-Bonnet-l’Enfantier",
     "code": "19188",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19410"
   },
@@ -1475,7 +1475,7 @@
     "name": "Saint-Bonnet-les-Tours-de-Merle",
     "code": "19189",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19430"
   },
@@ -1483,7 +1483,7 @@
     "name": "Saint-Bonnet-près-Bort",
     "code": "19190",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19200"
   },
@@ -1491,7 +1491,7 @@
     "name": "Saint-Cernin-de-Larche",
     "code": "19191",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19600"
   },
@@ -1499,7 +1499,7 @@
     "name": "Saint-Chamant",
     "code": "19192",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19380"
   },
@@ -1507,7 +1507,7 @@
     "name": "Saint-Cirgues-la-Loutre",
     "code": "19193",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19220"
   },
@@ -1515,7 +1515,7 @@
     "name": "Saint-Clément",
     "code": "19194",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19700"
   },
@@ -1523,7 +1523,7 @@
     "name": "Saint-Cyprien",
     "code": "19195",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19130"
   },
@@ -1531,7 +1531,7 @@
     "name": "Saint-Cyr-la-Roche",
     "code": "19196",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19130"
   },
@@ -1539,7 +1539,7 @@
     "name": "Saint-Éloy-les-Tuileries",
     "code": "19198",
     "epci_code": "248700189",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19210"
   },
@@ -1547,7 +1547,7 @@
     "name": "Saint-Étienne-aux-Clos",
     "code": "19199",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19200"
   },
@@ -1555,7 +1555,7 @@
     "name": "Saint-Étienne-la-Geneste",
     "code": "19200",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19160"
   },
@@ -1563,7 +1563,7 @@
     "name": "Saint-Exupéry-les-Roches",
     "code": "19201",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19200"
   },
@@ -1571,7 +1571,7 @@
     "name": "Sainte-Féréole",
     "code": "19202",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19270"
   },
@@ -1579,7 +1579,7 @@
     "name": "Sainte-Fortunade",
     "code": "19203",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19490"
   },
@@ -1587,7 +1587,7 @@
     "name": "Saint-Fréjoux",
     "code": "19204",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19200"
   },
@@ -1595,7 +1595,7 @@
     "name": "Saint-Geniez-ô-Merle",
     "code": "19205",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19220"
   },
@@ -1603,7 +1603,7 @@
     "name": "Saint-Germain-Lavolps",
     "code": "19206",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19290"
   },
@@ -1611,7 +1611,7 @@
     "name": "Saint-Germain-les-Vergnes",
     "code": "19207",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19330"
   },
@@ -1619,7 +1619,7 @@
     "name": "Saint-Hilaire-Foissac",
     "code": "19208",
     "epci_code": "241900133",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19550"
   },
@@ -1627,7 +1627,7 @@
     "name": "Saint-Hilaire-les-Courbes",
     "code": "19209",
     "epci_code": "200066645",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19170"
   },
@@ -1635,7 +1635,7 @@
     "name": "Saint-Hilaire-Luc",
     "code": "19210",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19160"
   },
@@ -1643,7 +1643,7 @@
     "name": "Saint-Hilaire-Peyroux",
     "code": "19211",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19560"
   },
@@ -1651,7 +1651,7 @@
     "name": "Saint-Hilaire-Taurieux",
     "code": "19212",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19400"
   },
@@ -1659,7 +1659,7 @@
     "name": "Saint-Jal",
     "code": "19213",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19700"
   },
@@ -1667,7 +1667,7 @@
     "name": "Saint-Julien-aux-Bois",
     "code": "19214",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19220"
   },
@@ -1675,7 +1675,7 @@
     "name": "Saint-Julien-le-Pèlerin",
     "code": "19215",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19430"
   },
@@ -1683,7 +1683,7 @@
     "name": "Saint-Julien-le-Vendômois",
     "code": "19216",
     "epci_code": "200066603",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19210"
   },
@@ -1691,7 +1691,7 @@
     "name": "Saint-Julien-Maumont",
     "code": "19217",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19500"
   },
@@ -1699,7 +1699,7 @@
     "name": "Sainte-Marie-Lapanouze",
     "code": "19219",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19160"
   },
@@ -1707,7 +1707,7 @@
     "name": "Saint-Martial-de-Gimel",
     "code": "19220",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19150"
   },
@@ -1715,7 +1715,7 @@
     "name": "Saint-Martial-Entraygues",
     "code": "19221",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19400"
   },
@@ -1723,7 +1723,7 @@
     "name": "Saint-Martin-la-Méanne",
     "code": "19222",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19320"
   },
@@ -1731,7 +1731,7 @@
     "name": "Saint-Merd-de-Lapleau",
     "code": "19225",
     "epci_code": "241900133",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19320"
   },
@@ -1739,7 +1739,7 @@
     "name": "Saint-Merd-les-Oussines",
     "code": "19226",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19170"
   },
@@ -1747,7 +1747,7 @@
     "name": "Saint-Mexant",
     "code": "19227",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19330"
   },
@@ -1755,7 +1755,7 @@
     "name": "Saint-Pantaléon-de-Lapleau",
     "code": "19228",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19160"
   },
@@ -1763,7 +1763,7 @@
     "name": "Saint-Pantaléon-de-Larche",
     "code": "19229",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19600"
   },
@@ -1771,7 +1771,7 @@
     "name": "Saint-Pardoux-la-Croisille",
     "code": "19231",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19320"
   },
@@ -1779,7 +1779,7 @@
     "name": "Saint-Pardoux-le-Neuf",
     "code": "19232",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19200"
   },
@@ -1787,7 +1787,7 @@
     "name": "Saint-Pardoux-le-Vieux",
     "code": "19233",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19200"
   },
@@ -1795,7 +1795,7 @@
     "name": "Saint-Pardoux-l’Ortigier",
     "code": "19234",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19270"
   },
@@ -1803,7 +1803,7 @@
     "name": "Saint-Paul",
     "code": "19235",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19150"
   },
@@ -1811,7 +1811,7 @@
     "name": "Saint-Priest-de-Gimel",
     "code": "19236",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19800"
   },
@@ -1819,7 +1819,7 @@
     "name": "Saint-Privat",
     "code": "19237",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19220"
   },
@@ -1827,7 +1827,7 @@
     "name": "Saint-Rémy",
     "code": "19238",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19290"
   },
@@ -1835,7 +1835,7 @@
     "name": "Saint-Robert",
     "code": "19239",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19310"
   },
@@ -1843,7 +1843,7 @@
     "name": "Saint-Salvadour",
     "code": "19240",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19700"
   },
@@ -1851,7 +1851,7 @@
     "name": "Saint-Setiers",
     "code": "19241",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19290"
   },
@@ -1859,7 +1859,7 @@
     "name": "Saint-Solve",
     "code": "19242",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19130"
   },
@@ -1867,7 +1867,7 @@
     "name": "Saint-Sornin-Lavolps",
     "code": "19243",
     "epci_code": "200066603",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19230"
   },
@@ -1875,7 +1875,7 @@
     "name": "Saint-Sulpice-les-Bois",
     "code": "19244",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19250"
   },
@@ -1883,7 +1883,7 @@
     "name": "Saint-Sylvain",
     "code": "19245",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19380"
   },
@@ -1891,7 +1891,7 @@
     "name": "Saint-Viance",
     "code": "19246",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19240"
   },
@@ -1899,7 +1899,7 @@
     "name": "Saint-Victour",
     "code": "19247",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19200"
   },
@@ -1907,7 +1907,7 @@
     "name": "Les Trois-Saints",
     "code": "19248",
     "epci_code": "241927243",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19140"
   },
@@ -1915,7 +1915,7 @@
     "name": "Les Trois-Saints",
     "code": "19248",
     "epci_code": "241927243",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19210"
   },
@@ -1923,7 +1923,7 @@
     "name": "Saint-Yrieix-le-Déjalat",
     "code": "19249",
     "epci_code": "241900133",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19300"
   },
@@ -1931,7 +1931,7 @@
     "name": "Salon-la-Tour",
     "code": "19250",
     "epci_code": "241927243",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19510"
   },
@@ -1939,7 +1939,7 @@
     "name": "Sarran",
     "code": "19251",
     "epci_code": "241900133",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19800"
   },
@@ -1947,7 +1947,7 @@
     "name": "Sarroux - Saint Julien",
     "code": "19252",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19110"
   },
@@ -1955,7 +1955,7 @@
     "name": "Segonzac",
     "code": "19253",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19310"
   },
@@ -1963,7 +1963,7 @@
     "name": "Ségur-le-Château",
     "code": "19254",
     "epci_code": "248700189",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19230"
   },
@@ -1971,7 +1971,7 @@
     "name": "Seilhac",
     "code": "19255",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19700"
   },
@@ -1979,7 +1979,7 @@
     "name": "Sérandon",
     "code": "19256",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19160"
   },
@@ -1987,7 +1987,7 @@
     "name": "Sérilhac",
     "code": "19257",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19190"
   },
@@ -1995,7 +1995,7 @@
     "name": "Servières-le-Château",
     "code": "19258",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19220"
   },
@@ -2003,7 +2003,7 @@
     "name": "Sexcles",
     "code": "19259",
     "epci_code": "200066751",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19430"
   },
@@ -2011,7 +2011,7 @@
     "name": "Sioniac",
     "code": "19260",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19120"
   },
@@ -2019,7 +2019,7 @@
     "name": "Sornac",
     "code": "19261",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19290"
   },
@@ -2027,7 +2027,7 @@
     "name": "Soudaine-Lavinadière",
     "code": "19262",
     "epci_code": "200066645",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19370"
   },
@@ -2035,7 +2035,7 @@
     "name": "Soudeilles",
     "code": "19263",
     "epci_code": "241900133",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19300"
   },
@@ -2043,7 +2043,7 @@
     "name": "Soursac",
     "code": "19264",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19550"
   },
@@ -2051,7 +2051,7 @@
     "name": "Tarnac",
     "code": "19265",
     "epci_code": "200066645",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19170"
   },
@@ -2059,7 +2059,7 @@
     "name": "Thalamy",
     "code": "19266",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19200"
   },
@@ -2067,7 +2067,7 @@
     "name": "Toy-Viam",
     "code": "19268",
     "epci_code": "200066645",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19170"
   },
@@ -2075,7 +2075,7 @@
     "name": "Treignac",
     "code": "19269",
     "epci_code": "200066645",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19260"
   },
@@ -2083,7 +2083,7 @@
     "name": "Troche",
     "code": "19270",
     "epci_code": "200066603",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19230"
   },
@@ -2091,7 +2091,7 @@
     "name": "Tudeils",
     "code": "19271",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19120"
   },
@@ -2099,7 +2099,7 @@
     "name": "Tulle",
     "code": "19272",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19000"
   },
@@ -2107,7 +2107,7 @@
     "name": "Turenne",
     "code": "19273",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19500"
   },
@@ -2115,7 +2115,7 @@
     "name": "Ussac",
     "code": "19274",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19270"
   },
@@ -2123,7 +2123,7 @@
     "name": "Ussel",
     "code": "19275",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19200"
   },
@@ -2131,7 +2131,7 @@
     "name": "Uzerche",
     "code": "19276",
     "epci_code": "241927243",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19140"
   },
@@ -2139,7 +2139,7 @@
     "name": "Valiergues",
     "code": "19277",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19200"
   },
@@ -2147,7 +2147,7 @@
     "name": "Varetz",
     "code": "19278",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19240"
   },
@@ -2155,7 +2155,7 @@
     "name": "Vars-sur-Roseix",
     "code": "19279",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19130"
   },
@@ -2163,7 +2163,7 @@
     "name": "Végennes",
     "code": "19280",
     "epci_code": "200066769",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19120"
   },
@@ -2171,7 +2171,7 @@
     "name": "Veix",
     "code": "19281",
     "epci_code": "200066645",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19260"
   },
@@ -2179,7 +2179,7 @@
     "name": "Veyrières",
     "code": "19283",
     "epci_code": "200066744",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19200"
   },
@@ -2187,7 +2187,7 @@
     "name": "Viam",
     "code": "19284",
     "epci_code": "200066645",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19170"
   },
@@ -2195,7 +2195,7 @@
     "name": "Vigeois",
     "code": "19285",
     "epci_code": "241927243",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19410"
   },
@@ -2203,7 +2203,7 @@
     "name": "Vignols",
     "code": "19286",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19130"
   },
@@ -2211,7 +2211,7 @@
     "name": "Vitrac-sur-Montane",
     "code": "19287",
     "epci_code": "241927201",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19800"
   },
@@ -2219,7 +2219,7 @@
     "name": "Voutezac",
     "code": "19288",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19130"
   },
@@ -2227,7 +2227,7 @@
     "name": "Yssandon",
     "code": "19289",
     "epci_code": "200043172",
-    "departement_code": "19",
+    "department_code": "19",
     "region_code": "75",
     "postal_code": "19310"
   }

@@ -3,7 +3,7 @@
     "name": "Aixe-sur-Vienne",
     "code": "87001",
     "epci_code": "248719288",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87700"
   },
@@ -11,7 +11,7 @@
     "name": "Ambazac",
     "code": "87002",
     "epci_code": "200066512",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87240"
   },
@@ -19,7 +19,7 @@
     "name": "Arnac-la-Poste",
     "code": "87003",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87160"
   },
@@ -27,7 +27,7 @@
     "name": "Augne",
     "code": "87004",
     "epci_code": "248719353",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87120"
   },
@@ -35,7 +35,7 @@
     "name": "Aureil",
     "code": "87005",
     "epci_code": "248719312",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87220"
   },
@@ -43,7 +43,7 @@
     "name": "Azat-le-Ris",
     "code": "87006",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87360"
   },
@@ -51,7 +51,7 @@
     "name": "Balledent",
     "code": "87007",
     "epci_code": "248719262",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87290"
   },
@@ -59,7 +59,7 @@
     "name": "La Bazeuge",
     "code": "87008",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87210"
   },
@@ -67,7 +67,7 @@
     "name": "Beaumont-du-Lac",
     "code": "87009",
     "epci_code": "248719353",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87120"
   },
@@ -75,7 +75,7 @@
     "name": "Bellac",
     "code": "87011",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87300"
   },
@@ -83,7 +83,7 @@
     "name": "Berneuil",
     "code": "87012",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87300"
   },
@@ -91,7 +91,7 @@
     "name": "Bersac-sur-Rivalier",
     "code": "87013",
     "epci_code": "200066512",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87370"
   },
@@ -99,7 +99,7 @@
     "name": "Bessines-sur-Gartempe",
     "code": "87014",
     "epci_code": "200066512",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87250"
   },
@@ -107,7 +107,7 @@
     "name": "Beynac",
     "code": "87015",
     "epci_code": "248719288",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87700"
   },
@@ -115,7 +115,7 @@
     "name": "Les Billanges",
     "code": "87016",
     "epci_code": "200066512",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87340"
   },
@@ -123,7 +123,7 @@
     "name": "Blanzac",
     "code": "87017",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87300"
   },
@@ -131,7 +131,7 @@
     "name": "Blond",
     "code": "87018",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87300"
   },
@@ -139,7 +139,7 @@
     "name": "Boisseuil",
     "code": "87019",
     "epci_code": "248719312",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87220"
   },
@@ -147,7 +147,7 @@
     "name": "Bonnac-la-Côte",
     "code": "87020",
     "epci_code": "248719312",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87270"
   },
@@ -155,7 +155,7 @@
     "name": "Bosmie-l’Aiguille",
     "code": "87021",
     "epci_code": "248719288",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87110"
   },
@@ -163,7 +163,7 @@
     "name": "Breuilaufa",
     "code": "87022",
     "epci_code": "200066512",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87300"
   },
@@ -171,7 +171,7 @@
     "name": "Le Buis",
     "code": "87023",
     "epci_code": "200066512",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87140"
   },
@@ -179,7 +179,7 @@
     "name": "Bujaleuf",
     "code": "87024",
     "epci_code": "248719353",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87460"
   },
@@ -187,7 +187,7 @@
     "name": "Burgnac",
     "code": "87025",
     "epci_code": "248719288",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87800"
   },
@@ -195,7 +195,7 @@
     "name": "Bussière-Galant",
     "code": "87027",
     "epci_code": "200070506",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87230"
   },
@@ -203,7 +203,7 @@
     "name": "Val-d’Oire-et-Gartempe",
     "code": "87028",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87320"
   },
@@ -211,7 +211,7 @@
     "name": "Val-d’Oire-et-Gartempe",
     "code": "87028",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87330"
   },
@@ -219,7 +219,7 @@
     "name": "Les Cars",
     "code": "87029",
     "epci_code": "200070506",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87230"
   },
@@ -227,7 +227,7 @@
     "name": "Chaillac-sur-Vienne",
     "code": "87030",
     "epci_code": "200059400",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87200"
   },
@@ -235,7 +235,7 @@
     "name": "Le Chalard",
     "code": "87031",
     "epci_code": "248700189",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87500"
   },
@@ -243,7 +243,7 @@
     "name": "Châlus",
     "code": "87032",
     "epci_code": "200070506",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87230"
   },
@@ -251,7 +251,7 @@
     "name": "Chamboret",
     "code": "87033",
     "epci_code": "200066512",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87140"
   },
@@ -259,7 +259,7 @@
     "name": "Champagnac-la-Rivière",
     "code": "87034",
     "epci_code": "200066520",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87150"
   },
@@ -267,7 +267,7 @@
     "name": "Champnétery",
     "code": "87035",
     "epci_code": "248719361",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87400"
   },
@@ -275,7 +275,7 @@
     "name": "Champsac",
     "code": "87036",
     "epci_code": "200066520",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87230"
   },
@@ -283,7 +283,7 @@
     "name": "La Chapelle-Montbrandeix",
     "code": "87037",
     "epci_code": "200066520",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87440"
   },
@@ -291,7 +291,7 @@
     "name": "Chaptelat",
     "code": "87038",
     "epci_code": "248719312",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87270"
   },
@@ -299,7 +299,7 @@
     "name": "Château-Chervix",
     "code": "87039",
     "epci_code": "200040814",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87380"
   },
@@ -307,7 +307,7 @@
     "name": "Châteauneuf-la-Forêt",
     "code": "87040",
     "epci_code": "248719338",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87130"
   },
@@ -315,7 +315,7 @@
     "name": "Châteauponsac",
     "code": "87041",
     "epci_code": "248719262",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87290"
   },
@@ -323,7 +323,7 @@
     "name": "Le Châtenet-en-Dognon",
     "code": "87042",
     "epci_code": "248719361",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87400"
   },
@@ -331,7 +331,7 @@
     "name": "Cheissoux",
     "code": "87043",
     "epci_code": "248719353",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87460"
   },
@@ -339,7 +339,7 @@
     "name": "Chéronnac",
     "code": "87044",
     "epci_code": "200059400",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87600"
   },
@@ -347,7 +347,7 @@
     "name": "Cieux",
     "code": "87045",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87520"
   },
@@ -355,7 +355,7 @@
     "name": "Cognac-la-Forêt",
     "code": "87046",
     "epci_code": "200066520",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87310"
   },
@@ -363,7 +363,7 @@
     "name": "Compreignac",
     "code": "87047",
     "epci_code": "200066512",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87140"
   },
@@ -371,7 +371,7 @@
     "name": "Condat-sur-Vienne",
     "code": "87048",
     "epci_code": "248719312",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87920"
   },
@@ -379,7 +379,7 @@
     "name": "Coussac-Bonneval",
     "code": "87049",
     "epci_code": "248700189",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87500"
   },
@@ -387,7 +387,7 @@
     "name": "Couzeix",
     "code": "87050",
     "epci_code": "248719312",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87270"
   },
@@ -395,7 +395,7 @@
     "name": "La Croisille-sur-Briance",
     "code": "87051",
     "epci_code": "248719338",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87130"
   },
@@ -403,7 +403,7 @@
     "name": "La Croix-sur-Gartempe",
     "code": "87052",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87210"
   },
@@ -411,7 +411,7 @@
     "name": "Cromac",
     "code": "87053",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87160"
   },
@@ -419,7 +419,7 @@
     "name": "Cussac",
     "code": "87054",
     "epci_code": "200066520",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87150"
   },
@@ -427,7 +427,7 @@
     "name": "Dinsac",
     "code": "87056",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87210"
   },
@@ -435,7 +435,7 @@
     "name": "Dompierre-les-Églises",
     "code": "87057",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87190"
   },
@@ -443,7 +443,7 @@
     "name": "Domps",
     "code": "87058",
     "epci_code": "248719353",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87120"
   },
@@ -451,7 +451,7 @@
     "name": "Le Dorat",
     "code": "87059",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87210"
   },
@@ -459,7 +459,7 @@
     "name": "Dournazac",
     "code": "87060",
     "epci_code": "200070506",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87230"
   },
@@ -467,7 +467,7 @@
     "name": "Droux",
     "code": "87061",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87190"
   },
@@ -475,7 +475,7 @@
     "name": "Eybouleuf",
     "code": "87062",
     "epci_code": "248719361",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87400"
   },
@@ -483,7 +483,7 @@
     "name": "Eyjeaux",
     "code": "87063",
     "epci_code": "248719312",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87220"
   },
@@ -491,7 +491,7 @@
     "name": "Eymoutiers",
     "code": "87064",
     "epci_code": "248719353",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87120"
   },
@@ -499,7 +499,7 @@
     "name": "Feytiat",
     "code": "87065",
     "epci_code": "248719312",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87220"
   },
@@ -507,7 +507,7 @@
     "name": "Flavignac",
     "code": "87066",
     "epci_code": "200070506",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87230"
   },
@@ -515,7 +515,7 @@
     "name": "Folles",
     "code": "87067",
     "epci_code": "200066512",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87250"
   },
@@ -523,7 +523,7 @@
     "name": "Fromental",
     "code": "87068",
     "epci_code": "200066512",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87250"
   },
@@ -531,7 +531,7 @@
     "name": "Gajoubert",
     "code": "87069",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87330"
   },
@@ -539,7 +539,7 @@
     "name": "La Geneytouse",
     "code": "87070",
     "epci_code": "248719361",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87400"
   },
@@ -547,7 +547,7 @@
     "name": "Glandon",
     "code": "87071",
     "epci_code": "248700189",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87500"
   },
@@ -555,7 +555,7 @@
     "name": "Glanges",
     "code": "87072",
     "epci_code": "200040814",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87380"
   },
@@ -563,7 +563,7 @@
     "name": "Gorre",
     "code": "87073",
     "epci_code": "200066520",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87310"
   },
@@ -571,7 +571,7 @@
     "name": "Les Grands-Chézeaux",
     "code": "87074",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87160"
   },
@@ -579,7 +579,7 @@
     "name": "Isle",
     "code": "87075",
     "epci_code": "248719312",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87170"
   },
@@ -587,7 +587,7 @@
     "name": "Jabreilles-les-Bordes",
     "code": "87076",
     "epci_code": "200066512",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87370"
   },
@@ -595,7 +595,7 @@
     "name": "Janailhac",
     "code": "87077",
     "epci_code": "200070506",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87800"
   },
@@ -603,7 +603,7 @@
     "name": "Javerdat",
     "code": "87078",
     "epci_code": "200059400",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87520"
   },
@@ -611,7 +611,7 @@
     "name": "La Jonchère-Saint-Maurice",
     "code": "87079",
     "epci_code": "200066512",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87340"
   },
@@ -619,7 +619,7 @@
     "name": "Jouac",
     "code": "87080",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87890"
   },
@@ -627,7 +627,7 @@
     "name": "Jourgnac",
     "code": "87081",
     "epci_code": "248719288",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87800"
   },
@@ -635,7 +635,7 @@
     "name": "Ladignac-le-Long",
     "code": "87082",
     "epci_code": "248700189",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87500"
   },
@@ -643,7 +643,7 @@
     "name": "Laurière",
     "code": "87083",
     "epci_code": "200066512",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87370"
   },
@@ -651,7 +651,7 @@
     "name": "Lavignac",
     "code": "87084",
     "epci_code": "200070506",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87230"
   },
@@ -659,7 +659,7 @@
     "name": "Limoges",
     "code": "87085",
     "epci_code": "248719312",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87000"
   },
@@ -667,7 +667,7 @@
     "name": "Limoges",
     "code": "87085",
     "epci_code": "248719312",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87100"
   },
@@ -675,7 +675,7 @@
     "name": "Limoges",
     "code": "87085",
     "epci_code": "248719312",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87280"
   },
@@ -683,7 +683,7 @@
     "name": "Linards",
     "code": "87086",
     "epci_code": "248719338",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87130"
   },
@@ -691,7 +691,7 @@
     "name": "Lussac-les-Églises",
     "code": "87087",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87360"
   },
@@ -699,7 +699,7 @@
     "name": "Magnac-Bourg",
     "code": "87088",
     "epci_code": "200040814",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87380"
   },
@@ -707,7 +707,7 @@
     "name": "Magnac-Laval",
     "code": "87089",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87190"
   },
@@ -715,7 +715,7 @@
     "name": "Mailhac-sur-Benaize",
     "code": "87090",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87160"
   },
@@ -723,7 +723,7 @@
     "name": "Maisonnais-sur-Tardoire",
     "code": "87091",
     "epci_code": "200066520",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87440"
   },
@@ -731,7 +731,7 @@
     "name": "Marval",
     "code": "87092",
     "epci_code": "200066520",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87440"
   },
@@ -739,7 +739,7 @@
     "name": "Masléon",
     "code": "87093",
     "epci_code": "248719338",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87130"
   },
@@ -747,7 +747,7 @@
     "name": "Meilhac",
     "code": "87094",
     "epci_code": "200070506",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87800"
   },
@@ -755,7 +755,7 @@
     "name": "Meuzac",
     "code": "87095",
     "epci_code": "200040814",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87380"
   },
@@ -763,7 +763,7 @@
     "name": "La Meyze",
     "code": "87096",
     "epci_code": "248700189",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87800"
   },
@@ -771,7 +771,7 @@
     "name": "Val d’Issoire",
     "code": "87097",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87330"
   },
@@ -779,7 +779,7 @@
     "name": "Moissannes",
     "code": "87099",
     "epci_code": "248719361",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87400"
   },
@@ -787,7 +787,7 @@
     "name": "Montrol-Sénard",
     "code": "87100",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87330"
   },
@@ -795,7 +795,7 @@
     "name": "Mortemart",
     "code": "87101",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87330"
   },
@@ -803,7 +803,7 @@
     "name": "Nantiat",
     "code": "87103",
     "epci_code": "200066512",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87140"
   },
@@ -811,7 +811,7 @@
     "name": "Nedde",
     "code": "87104",
     "epci_code": "248719353",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87120"
   },
@@ -819,7 +819,7 @@
     "name": "Neuvic-Entier",
     "code": "87105",
     "epci_code": "248719338",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87130"
   },
@@ -827,7 +827,7 @@
     "name": "Nexon",
     "code": "87106",
     "epci_code": "200070506",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87800"
   },
@@ -835,7 +835,7 @@
     "name": "Nieul",
     "code": "87107",
     "epci_code": "200066512",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87510"
   },
@@ -843,7 +843,7 @@
     "name": "Nouic",
     "code": "87108",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87330"
   },
@@ -851,7 +851,7 @@
     "name": "Oradour-Saint-Genest",
     "code": "87109",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87210"
   },
@@ -859,7 +859,7 @@
     "name": "Oradour-sur-Glane",
     "code": "87110",
     "epci_code": "200059400",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87520"
   },
@@ -867,7 +867,7 @@
     "name": "Oradour-sur-Vayres",
     "code": "87111",
     "epci_code": "200066520",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87150"
   },
@@ -875,7 +875,7 @@
     "name": "Pageas",
     "code": "87112",
     "epci_code": "200070506",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87230"
   },
@@ -883,7 +883,7 @@
     "name": "Le Palais-sur-Vienne",
     "code": "87113",
     "epci_code": "248719312",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87410"
   },
@@ -891,7 +891,7 @@
     "name": "Panazol",
     "code": "87114",
     "epci_code": "248719312",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87350"
   },
@@ -899,7 +899,7 @@
     "name": "Pensol",
     "code": "87115",
     "epci_code": "200066520",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87440"
   },
@@ -907,7 +907,7 @@
     "name": "Peyrat-de-Bellac",
     "code": "87116",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87300"
   },
@@ -915,7 +915,7 @@
     "name": "Peyrat-le-Château",
     "code": "87117",
     "epci_code": "248719353",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87470"
   },
@@ -923,7 +923,7 @@
     "name": "Peyrilhac",
     "code": "87118",
     "epci_code": "248719312",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87510"
   },
@@ -931,7 +931,7 @@
     "name": "Pierre-Buffière",
     "code": "87119",
     "epci_code": "200040814",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87260"
   },
@@ -939,7 +939,7 @@
     "name": "La Porcherie",
     "code": "87120",
     "epci_code": "200040814",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87380"
   },
@@ -947,7 +947,7 @@
     "name": "Rancon",
     "code": "87121",
     "epci_code": "248719262",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87290"
   },
@@ -955,7 +955,7 @@
     "name": "Razès",
     "code": "87122",
     "epci_code": "200066512",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87640"
   },
@@ -963,7 +963,7 @@
     "name": "Rempnat",
     "code": "87123",
     "epci_code": "248719353",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87120"
   },
@@ -971,7 +971,7 @@
     "name": "Rilhac-Lastours",
     "code": "87124",
     "epci_code": "200070506",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87800"
   },
@@ -979,7 +979,7 @@
     "name": "Rilhac-Rancon",
     "code": "87125",
     "epci_code": "248719312",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87570"
   },
@@ -987,7 +987,7 @@
     "name": "Rochechouart",
     "code": "87126",
     "epci_code": "200059400",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87600"
   },
@@ -995,7 +995,7 @@
     "name": "La Roche-l’Abeille",
     "code": "87127",
     "epci_code": "248700189",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87800"
   },
@@ -1003,7 +1003,7 @@
     "name": "Saint-Pardoux-le-Lac",
     "code": "87128",
     "epci_code": "248719262",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87140"
   },
@@ -1011,7 +1011,7 @@
     "name": "Saint-Pardoux-le-Lac",
     "code": "87128",
     "epci_code": "248719262",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87250"
   },
@@ -1019,7 +1019,7 @@
     "name": "Royères",
     "code": "87129",
     "epci_code": "248719361",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87400"
   },
@@ -1027,7 +1027,7 @@
     "name": "Roziers-Saint-Georges",
     "code": "87130",
     "epci_code": "248719338",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87130"
   },
@@ -1035,7 +1035,7 @@
     "name": "Saillat-sur-Vienne",
     "code": "87131",
     "epci_code": "200059400",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87720"
   },
@@ -1043,7 +1043,7 @@
     "name": "Saint-Amand-le-Petit",
     "code": "87132",
     "epci_code": "248719353",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87120"
   },
@@ -1051,7 +1051,7 @@
     "name": "Saint-Amand-Magnazeix",
     "code": "87133",
     "epci_code": "248719262",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87290"
   },
@@ -1059,7 +1059,7 @@
     "name": "Sainte-Anne-Saint-Priest",
     "code": "87134",
     "epci_code": "248719353",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87120"
   },
@@ -1067,7 +1067,7 @@
     "name": "Saint-Auvent",
     "code": "87135",
     "epci_code": "200066520",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87310"
   },
@@ -1075,7 +1075,7 @@
     "name": "Saint-Bazile",
     "code": "87137",
     "epci_code": "200066520",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87150"
   },
@@ -1083,7 +1083,7 @@
     "name": "Saint-Bonnet-Briance",
     "code": "87138",
     "epci_code": "248719361",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87260"
   },
@@ -1091,7 +1091,7 @@
     "name": "Saint-Bonnet-de-Bellac",
     "code": "87139",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87300"
   },
@@ -1099,7 +1099,7 @@
     "name": "Saint-Brice-sur-Vienne",
     "code": "87140",
     "epci_code": "200059400",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87200"
   },
@@ -1107,7 +1107,7 @@
     "name": "Saint-Cyr",
     "code": "87141",
     "epci_code": "200066520",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87310"
   },
@@ -1115,7 +1115,7 @@
     "name": "Saint-Denis-des-Murs",
     "code": "87142",
     "epci_code": "248719361",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87400"
   },
@@ -1123,7 +1123,7 @@
     "name": "Saint-Gence",
     "code": "87143",
     "epci_code": "248719312",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87510"
   },
@@ -1131,7 +1131,7 @@
     "name": "Saint-Genest-sur-Roselle",
     "code": "87144",
     "epci_code": "200040814",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87260"
   },
@@ -1139,7 +1139,7 @@
     "name": "Saint-Georges-les-Landes",
     "code": "87145",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87160"
   },
@@ -1147,7 +1147,7 @@
     "name": "Saint-Germain-les-Belles",
     "code": "87146",
     "epci_code": "200040814",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87380"
   },
@@ -1155,7 +1155,7 @@
     "name": "Saint-Gilles-les-Forêts",
     "code": "87147",
     "epci_code": "248719338",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87130"
   },
@@ -1163,7 +1163,7 @@
     "name": "Saint-Hilaire-Bonneval",
     "code": "87148",
     "epci_code": "200040814",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87260"
   },
@@ -1171,7 +1171,7 @@
     "name": "Saint-Hilaire-la-Treille",
     "code": "87149",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87190"
   },
@@ -1179,7 +1179,7 @@
     "name": "Saint-Hilaire-les-Places",
     "code": "87150",
     "epci_code": "200070506",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87800"
   },
@@ -1187,7 +1187,7 @@
     "name": "Saint-Jean-Ligoure",
     "code": "87151",
     "epci_code": "200070506",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87260"
   },
@@ -1195,7 +1195,7 @@
     "name": "Saint-Jouvent",
     "code": "87152",
     "epci_code": "200066512",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87510"
   },
@@ -1203,7 +1203,7 @@
     "name": "Saint-Julien-le-Petit",
     "code": "87153",
     "epci_code": "248719353",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87460"
   },
@@ -1211,7 +1211,7 @@
     "name": "Saint-Junien",
     "code": "87154",
     "epci_code": "200059400",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87200"
   },
@@ -1219,7 +1219,7 @@
     "name": "Saint-Junien-les-Combes",
     "code": "87155",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87300"
   },
@@ -1227,7 +1227,7 @@
     "name": "Saint-Just-le-Martel",
     "code": "87156",
     "epci_code": "248719312",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87590"
   },
@@ -1235,7 +1235,7 @@
     "name": "Saint-Laurent-les-Églises",
     "code": "87157",
     "epci_code": "200066512",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87240"
   },
@@ -1243,7 +1243,7 @@
     "name": "Saint-Laurent-sur-Gorre",
     "code": "87158",
     "epci_code": "200066520",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87310"
   },
@@ -1251,7 +1251,7 @@
     "name": "Saint-Léger-la-Montagne",
     "code": "87159",
     "epci_code": "200066512",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87340"
   },
@@ -1259,7 +1259,7 @@
     "name": "Saint-Léger-Magnazeix",
     "code": "87160",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87190"
   },
@@ -1267,7 +1267,7 @@
     "name": "Saint-Léonard-de-Noblat",
     "code": "87161",
     "epci_code": "248719361",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87400"
   },
@@ -1275,7 +1275,7 @@
     "name": "Sainte-Marie-de-Vaux",
     "code": "87162",
     "epci_code": "200066520",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87420"
   },
@@ -1283,7 +1283,7 @@
     "name": "Saint-Martial-sur-Isop",
     "code": "87163",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87330"
   },
@@ -1291,7 +1291,7 @@
     "name": "Saint-Martin-de-Jussac",
     "code": "87164",
     "epci_code": "200059400",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87200"
   },
@@ -1299,7 +1299,7 @@
     "name": "Saint-Martin-le-Mault",
     "code": "87165",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87360"
   },
@@ -1307,7 +1307,7 @@
     "name": "Saint-Martin-le-Vieux",
     "code": "87166",
     "epci_code": "248719288",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87700"
   },
@@ -1315,7 +1315,7 @@
     "name": "Saint-Martin-Terressus",
     "code": "87167",
     "epci_code": "248719361",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87400"
   },
@@ -1323,7 +1323,7 @@
     "name": "Saint-Mathieu",
     "code": "87168",
     "epci_code": "200066520",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87440"
   },
@@ -1331,7 +1331,7 @@
     "name": "Saint-Maurice-les-Brousses",
     "code": "87169",
     "epci_code": "200070506",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87800"
   },
@@ -1339,7 +1339,7 @@
     "name": "Saint-Méard",
     "code": "87170",
     "epci_code": "248719338",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87130"
   },
@@ -1347,7 +1347,7 @@
     "name": "Saint-Ouen-sur-Gartempe",
     "code": "87172",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87300"
   },
@@ -1355,7 +1355,7 @@
     "name": "Saint-Paul",
     "code": "87174",
     "epci_code": "248719361",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87260"
   },
@@ -1363,7 +1363,7 @@
     "name": "Saint-Priest-Ligoure",
     "code": "87176",
     "epci_code": "200070506",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87800"
   },
@@ -1371,7 +1371,7 @@
     "name": "Saint-Priest-sous-Aixe",
     "code": "87177",
     "epci_code": "248719288",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87700"
   },
@@ -1379,7 +1379,7 @@
     "name": "Saint-Priest-Taurion",
     "code": "87178",
     "epci_code": "200066512",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87480"
   },
@@ -1387,7 +1387,7 @@
     "name": "Saint-Sornin-la-Marche",
     "code": "87179",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87210"
   },
@@ -1395,7 +1395,7 @@
     "name": "Saint-Sornin-Leulac",
     "code": "87180",
     "epci_code": "248719262",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87290"
   },
@@ -1403,7 +1403,7 @@
     "name": "Saint-Sulpice-Laurière",
     "code": "87181",
     "epci_code": "200066512",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87370"
   },
@@ -1411,7 +1411,7 @@
     "name": "Saint-Sulpice-les-Feuilles",
     "code": "87182",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87160"
   },
@@ -1419,7 +1419,7 @@
     "name": "Saint-Sylvestre",
     "code": "87183",
     "epci_code": "200066512",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87240"
   },
@@ -1427,7 +1427,7 @@
     "name": "Saint-Victurnien",
     "code": "87185",
     "epci_code": "200059400",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87420"
   },
@@ -1435,7 +1435,7 @@
     "name": "Saint-Vitte-sur-Briance",
     "code": "87186",
     "epci_code": "200040814",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87380"
   },
@@ -1443,7 +1443,7 @@
     "name": "Saint-Yrieix-la-Perche",
     "code": "87187",
     "epci_code": "248700189",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87500"
   },
@@ -1451,7 +1451,7 @@
     "name": "Saint-Yrieix-sous-Aixe",
     "code": "87188",
     "epci_code": "248719288",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87700"
   },
@@ -1459,7 +1459,7 @@
     "name": "Les Salles-Lavauguyon",
     "code": "87189",
     "epci_code": "200059400",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87440"
   },
@@ -1467,7 +1467,7 @@
     "name": "Sauviat-sur-Vige",
     "code": "87190",
     "epci_code": "248719361",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87400"
   },
@@ -1475,7 +1475,7 @@
     "name": "Séreilhac",
     "code": "87191",
     "epci_code": "248719288",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87620"
   },
@@ -1483,7 +1483,7 @@
     "name": "Solignac",
     "code": "87192",
     "epci_code": "248719312",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87110"
   },
@@ -1491,7 +1491,7 @@
     "name": "Surdoux",
     "code": "87193",
     "epci_code": "248719338",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87130"
   },
@@ -1499,7 +1499,7 @@
     "name": "Sussac",
     "code": "87194",
     "epci_code": "248719338",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87130"
   },
@@ -1507,7 +1507,7 @@
     "name": "Tersannes",
     "code": "87195",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87360"
   },
@@ -1515,7 +1515,7 @@
     "name": "Thouron",
     "code": "87197",
     "epci_code": "200066512",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87140"
   },
@@ -1523,7 +1523,7 @@
     "name": "Vaulry",
     "code": "87198",
     "epci_code": "200066512",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87140"
   },
@@ -1531,7 +1531,7 @@
     "name": "Vayres",
     "code": "87199",
     "epci_code": "200059400",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87600"
   },
@@ -1539,7 +1539,7 @@
     "name": "Verneuil-Moustiers",
     "code": "87200",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87360"
   },
@@ -1547,7 +1547,7 @@
     "name": "Verneuil-sur-Vienne",
     "code": "87201",
     "epci_code": "248719312",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87430"
   },
@@ -1555,7 +1555,7 @@
     "name": "Veyrac",
     "code": "87202",
     "epci_code": "248719312",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87520"
   },
@@ -1563,7 +1563,7 @@
     "name": "Vicq-sur-Breuilh",
     "code": "87203",
     "epci_code": "200040814",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87260"
   },
@@ -1571,7 +1571,7 @@
     "name": "Videix",
     "code": "87204",
     "epci_code": "200059400",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87600"
   },
@@ -1579,7 +1579,7 @@
     "name": "Le Vigen",
     "code": "87205",
     "epci_code": "248719312",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87110"
   },
@@ -1587,7 +1587,7 @@
     "name": "Villefavard",
     "code": "87206",
     "epci_code": "200071942",
-    "departement_code": "87",
+    "department_code": "87",
     "region_code": "75",
     "postal_code": "87190"
   }

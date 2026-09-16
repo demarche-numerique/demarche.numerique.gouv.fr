@@ -3,7 +3,7 @@
     "name": "Ableiges",
     "code": "95002",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95450"
   },
@@ -11,7 +11,7 @@
     "name": "Aincourt",
     "code": "95008",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95510"
   },
@@ -19,7 +19,7 @@
     "name": "Ambleville",
     "code": "95011",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95420"
   },
@@ -27,7 +27,7 @@
     "name": "Ambleville",
     "code": "95011",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95710"
   },
@@ -35,7 +35,7 @@
     "name": "Amenucourt",
     "code": "95012",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95510"
   },
@@ -43,7 +43,7 @@
     "name": "Andilly",
     "code": "95014",
     "epci_code": "200056380",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95580"
   },
@@ -51,7 +51,7 @@
     "name": "Argenteuil",
     "code": "95018",
     "epci_code": "200054781",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95100"
   },
@@ -59,7 +59,7 @@
     "name": "Arnouville",
     "code": "95019",
     "epci_code": "200055655",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95400"
   },
@@ -67,7 +67,7 @@
     "name": "Arronville",
     "code": "95023",
     "epci_code": "249500430",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95810"
   },
@@ -75,7 +75,7 @@
     "name": "Arthies",
     "code": "95024",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95420"
   },
@@ -83,7 +83,7 @@
     "name": "Asnières-sur-Oise",
     "code": "95026",
     "epci_code": "200073013",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95270"
   },
@@ -91,7 +91,7 @@
     "name": "Attainville",
     "code": "95028",
     "epci_code": "200056380",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95570"
   },
@@ -99,7 +99,7 @@
     "name": "Auvers-sur-Oise",
     "code": "95039",
     "epci_code": "249500430",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95430"
   },
@@ -107,7 +107,7 @@
     "name": "Avernes",
     "code": "95040",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95450"
   },
@@ -115,7 +115,7 @@
     "name": "Baillet-en-France",
     "code": "95042",
     "epci_code": "200073013",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95560"
   },
@@ -123,7 +123,7 @@
     "name": "Banthelu",
     "code": "95046",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95420"
   },
@@ -131,7 +131,7 @@
     "name": "Beauchamp",
     "code": "95051",
     "epci_code": "200058485",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95250"
   },
@@ -139,7 +139,7 @@
     "name": "Beaumont-sur-Oise",
     "code": "95052",
     "epci_code": "249500489",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95260"
   },
@@ -147,7 +147,7 @@
     "name": "Le Bellay-en-Vexin",
     "code": "95054",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95750"
   },
@@ -155,7 +155,7 @@
     "name": "Bellefontaine",
     "code": "95055",
     "epci_code": "200073013",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95270"
   },
@@ -163,7 +163,7 @@
     "name": "Belloy-en-France",
     "code": "95056",
     "epci_code": "200073013",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95270"
   },
@@ -171,7 +171,7 @@
     "name": "Bernes-sur-Oise",
     "code": "95058",
     "epci_code": "249500489",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95340"
   },
@@ -179,7 +179,7 @@
     "name": "Berville",
     "code": "95059",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95810"
   },
@@ -187,7 +187,7 @@
     "name": "Bessancourt",
     "code": "95060",
     "epci_code": "200058485",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95550"
   },
@@ -195,7 +195,7 @@
     "name": "Béthemont-la-Forêt",
     "code": "95061",
     "epci_code": "249500455",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95840"
   },
@@ -203,7 +203,7 @@
     "name": "Bezons",
     "code": "95063",
     "epci_code": "200058519",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95870"
   },
@@ -211,7 +211,7 @@
     "name": "Boisemont",
     "code": "95074",
     "epci_code": "249500109",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95000"
   },
@@ -219,7 +219,7 @@
     "name": "Boissy-l’Aillerie",
     "code": "95078",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95650"
   },
@@ -227,7 +227,7 @@
     "name": "Bonneuil-en-France",
     "code": "95088",
     "epci_code": "200055655",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95500"
   },
@@ -235,7 +235,7 @@
     "name": "Bouffémont",
     "code": "95091",
     "epci_code": "200056380",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95570"
   },
@@ -243,7 +243,7 @@
     "name": "Bouqueval",
     "code": "95094",
     "epci_code": "200055655",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95720"
   },
@@ -251,7 +251,7 @@
     "name": "Bray-et-Lû",
     "code": "95101",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95710"
   },
@@ -259,7 +259,7 @@
     "name": "Bréançon",
     "code": "95102",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95640"
   },
@@ -267,7 +267,7 @@
     "name": "Brignancourt",
     "code": "95110",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95640"
   },
@@ -275,7 +275,7 @@
     "name": "Bruyères-sur-Oise",
     "code": "95116",
     "epci_code": "249500489",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95820"
   },
@@ -283,7 +283,7 @@
     "name": "Buhy",
     "code": "95119",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95770"
   },
@@ -291,7 +291,7 @@
     "name": "Butry-sur-Oise",
     "code": "95120",
     "epci_code": "249500430",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95430"
   },
@@ -299,7 +299,7 @@
     "name": "Cergy",
     "code": "95127",
     "epci_code": "249500109",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95000"
   },
@@ -307,7 +307,7 @@
     "name": "Cergy",
     "code": "95127",
     "epci_code": "249500109",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95800"
   },
@@ -315,7 +315,7 @@
     "name": "Champagne-sur-Oise",
     "code": "95134",
     "epci_code": "249500489",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95660"
   },
@@ -323,7 +323,7 @@
     "name": "La Chapelle-en-Vexin",
     "code": "95139",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95420"
   },
@@ -331,7 +331,7 @@
     "name": "Charmont",
     "code": "95141",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95420"
   },
@@ -339,7 +339,7 @@
     "name": "Chars",
     "code": "95142",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95750"
   },
@@ -347,7 +347,7 @@
     "name": "Châtenay-en-France",
     "code": "95144",
     "epci_code": "200073013",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95190"
   },
@@ -355,7 +355,7 @@
     "name": "Chaumontel",
     "code": "95149",
     "epci_code": "200073013",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95270"
   },
@@ -363,7 +363,7 @@
     "name": "Chaussy",
     "code": "95150",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95710"
   },
@@ -371,7 +371,7 @@
     "name": "Chauvry",
     "code": "95151",
     "epci_code": "249500455",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95560"
   },
@@ -379,7 +379,7 @@
     "name": "Chennevières-lès-Louvres",
     "code": "95154",
     "epci_code": "200055655",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95380"
   },
@@ -387,7 +387,7 @@
     "name": "Chérence",
     "code": "95157",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95510"
   },
@@ -395,7 +395,7 @@
     "name": "Cléry-en-Vexin",
     "code": "95166",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95420"
   },
@@ -403,7 +403,7 @@
     "name": "Commeny",
     "code": "95169",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95450"
   },
@@ -411,7 +411,7 @@
     "name": "Condécourt",
     "code": "95170",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95450"
   },
@@ -419,7 +419,7 @@
     "name": "Cormeilles-en-Parisis",
     "code": "95176",
     "epci_code": "200058485",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95240"
   },
@@ -427,7 +427,7 @@
     "name": "Cormeilles-en-Vexin",
     "code": "95177",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95830"
   },
@@ -435,7 +435,7 @@
     "name": "Courcelles-sur-Viosne",
     "code": "95181",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95650"
   },
@@ -443,7 +443,7 @@
     "name": "Courdimanche",
     "code": "95183",
     "epci_code": "249500109",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95800"
   },
@@ -451,7 +451,7 @@
     "name": "Deuil-la-Barre",
     "code": "95197",
     "epci_code": "200056380",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95170"
   },
@@ -459,7 +459,7 @@
     "name": "Domont",
     "code": "95199",
     "epci_code": "200056380",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95330"
   },
@@ -467,7 +467,7 @@
     "name": "Eaubonne",
     "code": "95203",
     "epci_code": "200058485",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95600"
   },
@@ -475,7 +475,7 @@
     "name": "Écouen",
     "code": "95205",
     "epci_code": "200055655",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95440"
   },
@@ -483,7 +483,7 @@
     "name": "Enghien-les-Bains",
     "code": "95210",
     "epci_code": "200056380",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95880"
   },
@@ -491,7 +491,7 @@
     "name": "Ennery",
     "code": "95211",
     "epci_code": "249500430",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95300"
   },
@@ -499,7 +499,7 @@
     "name": "Épiais-lès-Louvres",
     "code": "95212",
     "epci_code": "200055655",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95380"
   },
@@ -507,7 +507,7 @@
     "name": "Épiais-Rhus",
     "code": "95213",
     "epci_code": "249500430",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95810"
   },
@@ -515,7 +515,7 @@
     "name": "Épinay-Champlâtreux",
     "code": "95214",
     "epci_code": "200073013",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95270"
   },
@@ -523,7 +523,7 @@
     "name": "Éragny-sur-Oise",
     "code": "95218",
     "epci_code": "249500109",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95610"
   },
@@ -531,7 +531,7 @@
     "name": "Ermont",
     "code": "95219",
     "epci_code": "200058485",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95120"
   },
@@ -539,7 +539,7 @@
     "name": "Ézanville",
     "code": "95229",
     "epci_code": "200056380",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95460"
   },
@@ -547,7 +547,7 @@
     "name": "Fontenay-en-Parisis",
     "code": "95241",
     "epci_code": "200055655",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95190"
   },
@@ -555,7 +555,7 @@
     "name": "Fosses",
     "code": "95250",
     "epci_code": "200055655",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95470"
   },
@@ -563,7 +563,7 @@
     "name": "Franconville",
     "code": "95252",
     "epci_code": "200058485",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95130"
   },
@@ -571,7 +571,7 @@
     "name": "Frémainville",
     "code": "95253",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95450"
   },
@@ -579,7 +579,7 @@
     "name": "Frémécourt",
     "code": "95254",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95830"
   },
@@ -587,7 +587,7 @@
     "name": "Frépillon",
     "code": "95256",
     "epci_code": "200058485",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95740"
   },
@@ -595,7 +595,7 @@
     "name": "La Frette-sur-Seine",
     "code": "95257",
     "epci_code": "200058485",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95530"
   },
@@ -603,7 +603,7 @@
     "name": "Frouville",
     "code": "95258",
     "epci_code": "249500430",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95690"
   },
@@ -611,7 +611,7 @@
     "name": "Garges-lès-Gonesse",
     "code": "95268",
     "epci_code": "200055655",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95140"
   },
@@ -619,7 +619,7 @@
     "name": "Genainville",
     "code": "95270",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95420"
   },
@@ -627,7 +627,7 @@
     "name": "Génicourt",
     "code": "95271",
     "epci_code": "249500430",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95650"
   },
@@ -635,7 +635,7 @@
     "name": "Gonesse",
     "code": "95277",
     "epci_code": "200055655",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95500"
   },
@@ -643,7 +643,7 @@
     "name": "Goussainville",
     "code": "95280",
     "epci_code": "200055655",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95190"
   },
@@ -651,7 +651,7 @@
     "name": "Grisy-les-Plâtres",
     "code": "95287",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95810"
   },
@@ -659,7 +659,7 @@
     "name": "Groslay",
     "code": "95288",
     "epci_code": "200056380",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95410"
   },
@@ -667,7 +667,7 @@
     "name": "Guiry-en-Vexin",
     "code": "95295",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95450"
   },
@@ -675,7 +675,7 @@
     "name": "Haravilliers",
     "code": "95298",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95640"
   },
@@ -683,7 +683,7 @@
     "name": "Haute-Isle",
     "code": "95301",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95780"
   },
@@ -691,7 +691,7 @@
     "name": "Le Heaulme",
     "code": "95303",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95640"
   },
@@ -699,7 +699,7 @@
     "name": "Hédouville",
     "code": "95304",
     "epci_code": "249500430",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95690"
   },
@@ -707,7 +707,7 @@
     "name": "Herblay-sur-Seine",
     "code": "95306",
     "epci_code": "200058485",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95220"
   },
@@ -715,7 +715,7 @@
     "name": "Hérouville-en-Vexin",
     "code": "95308",
     "epci_code": "249500430",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95300"
   },
@@ -723,7 +723,7 @@
     "name": "Hodent",
     "code": "95309",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95420"
   },
@@ -731,7 +731,7 @@
     "name": "L’Isle-Adam",
     "code": "95313",
     "epci_code": "249500455",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95290"
   },
@@ -739,7 +739,7 @@
     "name": "Jagny-sous-Bois",
     "code": "95316",
     "epci_code": "200073013",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95850"
   },
@@ -747,7 +747,7 @@
     "name": "Jouy-le-Moutier",
     "code": "95323",
     "epci_code": "249500109",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95280"
   },
@@ -755,7 +755,7 @@
     "name": "Labbeville",
     "code": "95328",
     "epci_code": "249500430",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95690"
   },
@@ -763,7 +763,7 @@
     "name": "Lassy",
     "code": "95331",
     "epci_code": "200073013",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95270"
   },
@@ -771,7 +771,7 @@
     "name": "Livilliers",
     "code": "95341",
     "epci_code": "249500430",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95300"
   },
@@ -779,7 +779,7 @@
     "name": "Longuesse",
     "code": "95348",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95450"
   },
@@ -787,7 +787,7 @@
     "name": "Louvres",
     "code": "95351",
     "epci_code": "200055655",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95380"
   },
@@ -795,7 +795,7 @@
     "name": "Luzarches",
     "code": "95352",
     "epci_code": "200073013",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95270"
   },
@@ -803,7 +803,7 @@
     "name": "Maffliers",
     "code": "95353",
     "epci_code": "200073013",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95560"
   },
@@ -811,7 +811,7 @@
     "name": "Magny-en-Vexin",
     "code": "95355",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95420"
   },
@@ -819,7 +819,7 @@
     "name": "Mareil-en-France",
     "code": "95365",
     "epci_code": "200073013",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95850"
   },
@@ -827,7 +827,7 @@
     "name": "Margency",
     "code": "95369",
     "epci_code": "200056380",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95580"
   },
@@ -835,7 +835,7 @@
     "name": "Marines",
     "code": "95370",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95640"
   },
@@ -843,7 +843,7 @@
     "name": "Marly-la-Ville",
     "code": "95371",
     "epci_code": "200055655",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95670"
   },
@@ -851,7 +851,7 @@
     "name": "Maudétour-en-Vexin",
     "code": "95379",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95420"
   },
@@ -859,7 +859,7 @@
     "name": "Menouville",
     "code": "95387",
     "epci_code": "249500430",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95810"
   },
@@ -867,7 +867,7 @@
     "name": "Menucourt",
     "code": "95388",
     "epci_code": "249500109",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95180"
   },
@@ -875,7 +875,7 @@
     "name": "Mériel",
     "code": "95392",
     "epci_code": "249500455",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95630"
   },
@@ -883,7 +883,7 @@
     "name": "Méry-sur-Oise",
     "code": "95394",
     "epci_code": "249500455",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95540"
   },
@@ -891,7 +891,7 @@
     "name": "Le Mesnil-Aubry",
     "code": "95395",
     "epci_code": "200055655",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95720"
   },
@@ -899,7 +899,7 @@
     "name": "Moisselles",
     "code": "95409",
     "epci_code": "200056380",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95570"
   },
@@ -907,7 +907,7 @@
     "name": "Montgeroult",
     "code": "95422",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95650"
   },
@@ -915,7 +915,7 @@
     "name": "Montigny-lès-Cormeilles",
     "code": "95424",
     "epci_code": "200058485",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95370"
   },
@@ -923,7 +923,7 @@
     "name": "Montlignon",
     "code": "95426",
     "epci_code": "200056380",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95680"
   },
@@ -931,7 +931,7 @@
     "name": "Montmagny",
     "code": "95427",
     "epci_code": "200056380",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95360"
   },
@@ -939,7 +939,7 @@
     "name": "Montmorency",
     "code": "95428",
     "epci_code": "200056380",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95160"
   },
@@ -947,7 +947,7 @@
     "name": "Montreuil-sur-Epte",
     "code": "95429",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95770"
   },
@@ -955,7 +955,7 @@
     "name": "Montsoult",
     "code": "95430",
     "epci_code": "200073013",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95560"
   },
@@ -963,7 +963,7 @@
     "name": "Mours",
     "code": "95436",
     "epci_code": "249500489",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95260"
   },
@@ -971,7 +971,7 @@
     "name": "Moussy",
     "code": "95438",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95640"
   },
@@ -979,7 +979,7 @@
     "name": "Nerville-la-Forêt",
     "code": "95445",
     "epci_code": "249500455",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95590"
   },
@@ -987,7 +987,7 @@
     "name": "Nesles-la-Vallée",
     "code": "95446",
     "epci_code": "249500430",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95690"
   },
@@ -995,7 +995,7 @@
     "name": "Neuilly-en-Vexin",
     "code": "95447",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95640"
   },
@@ -1003,7 +1003,7 @@
     "name": "Neuville-sur-Oise",
     "code": "95450",
     "epci_code": "249500109",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95000"
   },
@@ -1011,7 +1011,7 @@
     "name": "Nointel",
     "code": "95452",
     "epci_code": "249500489",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95590"
   },
@@ -1019,7 +1019,7 @@
     "name": "Noisy-sur-Oise",
     "code": "95456",
     "epci_code": "249500489",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95270"
   },
@@ -1027,7 +1027,7 @@
     "name": "Nucourt",
     "code": "95459",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95420"
   },
@@ -1035,7 +1035,7 @@
     "name": "Omerville",
     "code": "95462",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95420"
   },
@@ -1043,7 +1043,7 @@
     "name": "Osny",
     "code": "95476",
     "epci_code": "249500109",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95520"
   },
@@ -1051,7 +1051,7 @@
     "name": "Parmain",
     "code": "95480",
     "epci_code": "249500455",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95620"
   },
@@ -1059,7 +1059,7 @@
     "name": "Le Perchay",
     "code": "95483",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95450"
   },
@@ -1067,7 +1067,7 @@
     "name": "Persan",
     "code": "95487",
     "epci_code": "249500489",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95340"
   },
@@ -1075,7 +1075,7 @@
     "name": "Pierrelaye",
     "code": "95488",
     "epci_code": "200058485",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95220"
   },
@@ -1083,7 +1083,7 @@
     "name": "Pierrelaye",
     "code": "95488",
     "epci_code": "200058485",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95480"
   },
@@ -1091,7 +1091,7 @@
     "name": "Piscop",
     "code": "95489",
     "epci_code": "200056380",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95350"
   },
@@ -1099,7 +1099,7 @@
     "name": "Le Plessis-Bouchard",
     "code": "95491",
     "epci_code": "200058485",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95130"
   },
@@ -1107,7 +1107,7 @@
     "name": "Le Plessis-Gassot",
     "code": "95492",
     "epci_code": "200055655",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95720"
   },
@@ -1115,7 +1115,7 @@
     "name": "Le Plessis-Luzarches",
     "code": "95493",
     "epci_code": "200073013",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95270"
   },
@@ -1123,7 +1123,7 @@
     "name": "Pontoise",
     "code": "95500",
     "epci_code": "249500109",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95000"
   },
@@ -1131,7 +1131,7 @@
     "name": "Pontoise",
     "code": "95500",
     "epci_code": "249500109",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95300"
   },
@@ -1139,7 +1139,7 @@
     "name": "Presles",
     "code": "95504",
     "epci_code": "249500455",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95590"
   },
@@ -1147,7 +1147,7 @@
     "name": "Puiseux-en-France",
     "code": "95509",
     "epci_code": "200055655",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95380"
   },
@@ -1155,7 +1155,7 @@
     "name": "Puiseux-Pontoise",
     "code": "95510",
     "epci_code": "249500109",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95650"
   },
@@ -1163,7 +1163,7 @@
     "name": "La Roche-Guyon",
     "code": "95523",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95780"
   },
@@ -1171,7 +1171,7 @@
     "name": "Roissy-en-France",
     "code": "95527",
     "epci_code": "200055655",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95700"
   },
@@ -1179,7 +1179,7 @@
     "name": "Ronquerolles",
     "code": "95529",
     "epci_code": "249500489",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95340"
   },
@@ -1187,7 +1187,7 @@
     "name": "Sagy",
     "code": "95535",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95450"
   },
@@ -1195,7 +1195,7 @@
     "name": "Saint-Brice-sous-Forêt",
     "code": "95539",
     "epci_code": "200056380",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95350"
   },
@@ -1203,7 +1203,7 @@
     "name": "Saint-Clair-sur-Epte",
     "code": "95541",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95770"
   },
@@ -1211,7 +1211,7 @@
     "name": "Saint-Cyr-en-Arthies",
     "code": "95543",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95510"
   },
@@ -1219,7 +1219,7 @@
     "name": "Saint-Gervais",
     "code": "95554",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95420"
   },
@@ -1227,7 +1227,7 @@
     "name": "Saint-Gratien",
     "code": "95555",
     "epci_code": "200056380",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95210"
   },
@@ -1235,7 +1235,7 @@
     "name": "Saint-Leu-la-Forêt",
     "code": "95563",
     "epci_code": "200058485",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95320"
   },
@@ -1243,7 +1243,7 @@
     "name": "Saint-Martin-du-Tertre",
     "code": "95566",
     "epci_code": "200073013",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95270"
   },
@@ -1251,7 +1251,7 @@
     "name": "Saint-Ouen-l’Aumône",
     "code": "95572",
     "epci_code": "249500109",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95310"
   },
@@ -1259,7 +1259,7 @@
     "name": "Saint-Prix",
     "code": "95574",
     "epci_code": "200056380",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95390"
   },
@@ -1267,7 +1267,7 @@
     "name": "Saint-Witz",
     "code": "95580",
     "epci_code": "200055655",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95470"
   },
@@ -1275,7 +1275,7 @@
     "name": "Sannois",
     "code": "95582",
     "epci_code": "200058485",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95110"
   },
@@ -1283,7 +1283,7 @@
     "name": "Santeuil",
     "code": "95584",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95640"
   },
@@ -1291,7 +1291,7 @@
     "name": "Sarcelles",
     "code": "95585",
     "epci_code": "200055655",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95200"
   },
@@ -1299,7 +1299,7 @@
     "name": "Seraincourt",
     "code": "95592",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95450"
   },
@@ -1307,7 +1307,7 @@
     "name": "Seugy",
     "code": "95594",
     "epci_code": "200073013",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95270"
   },
@@ -1315,7 +1315,7 @@
     "name": "Soisy-sous-Montmorency",
     "code": "95598",
     "epci_code": "200056380",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95230"
   },
@@ -1323,7 +1323,7 @@
     "name": "Survilliers",
     "code": "95604",
     "epci_code": "200055655",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95470"
   },
@@ -1331,7 +1331,7 @@
     "name": "Taverny",
     "code": "95607",
     "epci_code": "200058485",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95150"
   },
@@ -1339,7 +1339,7 @@
     "name": "Théméricourt",
     "code": "95610",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95450"
   },
@@ -1347,7 +1347,7 @@
     "name": "Theuville",
     "code": "95611",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95810"
   },
@@ -1355,7 +1355,7 @@
     "name": "Le Thillay",
     "code": "95612",
     "epci_code": "200055655",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95500"
   },
@@ -1363,7 +1363,7 @@
     "name": "Us",
     "code": "95625",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95450"
   },
@@ -1371,7 +1371,7 @@
     "name": "Vallangoujard",
     "code": "95627",
     "epci_code": "249500430",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95810"
   },
@@ -1379,7 +1379,7 @@
     "name": "Valmondois",
     "code": "95628",
     "epci_code": "249500430",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95760"
   },
@@ -1387,7 +1387,7 @@
     "name": "Vaudherland",
     "code": "95633",
     "epci_code": "200055655",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95500"
   },
@@ -1395,7 +1395,7 @@
     "name": "Vauréal",
     "code": "95637",
     "epci_code": "249500109",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95490"
   },
@@ -1403,7 +1403,7 @@
     "name": "Vémars",
     "code": "95641",
     "epci_code": "200055655",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95470"
   },
@@ -1411,7 +1411,7 @@
     "name": "Vétheuil",
     "code": "95651",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95510"
   },
@@ -1419,7 +1419,7 @@
     "name": "Viarmes",
     "code": "95652",
     "epci_code": "200073013",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95270"
   },
@@ -1427,7 +1427,7 @@
     "name": "Vienne-en-Arthies",
     "code": "95656",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95510"
   },
@@ -1435,7 +1435,7 @@
     "name": "Vigny",
     "code": "95658",
     "epci_code": "200035970",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95450"
   },
@@ -1443,7 +1443,7 @@
     "name": "Villaines-sous-Bois",
     "code": "95660",
     "epci_code": "200073013",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95570"
   },
@@ -1451,7 +1451,7 @@
     "name": "Villeron",
     "code": "95675",
     "epci_code": "200055655",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95380"
   },
@@ -1459,7 +1459,7 @@
     "name": "Villers-en-Arthies",
     "code": "95676",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95510"
   },
@@ -1467,7 +1467,7 @@
     "name": "Villiers-Adam",
     "code": "95678",
     "epci_code": "249500455",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95840"
   },
@@ -1475,7 +1475,7 @@
     "name": "Villiers-le-Bel",
     "code": "95680",
     "epci_code": "200055655",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95400"
   },
@@ -1483,7 +1483,7 @@
     "name": "Villiers-le-Sec",
     "code": "95682",
     "epci_code": "200073013",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95720"
   },
@@ -1491,7 +1491,7 @@
     "name": "Wy-dit-Joli-Village",
     "code": "95690",
     "epci_code": "249500513",
-    "departement_code": "95",
+    "department_code": "95",
     "region_code": "11",
     "postal_code": "95420"
   }
