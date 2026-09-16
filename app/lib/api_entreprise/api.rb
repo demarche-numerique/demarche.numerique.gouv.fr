@@ -119,6 +119,10 @@ class APIEntreprise::API
     in Failure(type: :http, code:, error:)
       APIEntreprise::RateLimiter.calibrate!(error.try(:response), pool)
       classify_http_error(code, error.try(:response))
+    in Failure(type: :json | :unexpected_type => type, code:, error:)
+      # A 200 we cannot read is a fault on their side that they will fix.
+      APIEntreprise::RateLimiter.calibrate!(error.try(:response), pool)
+      Failure(type:, code:, retryable: true, raw_response: error.try(:response))
     in Failure(type:, code:, retryable:, error:)
       APIEntreprise::RateLimiter.calibrate!(error.try(:response), pool)
       Failure(type:, code:, retryable:, raw_response: error.try(:response))
