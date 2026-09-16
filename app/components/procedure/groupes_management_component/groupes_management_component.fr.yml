@@ -1,5 +1,8 @@
 ---
 fr:
+  page_title: Groupes
+  title: Gestion des groupes
+  defaut_groupe_label: "Et si aucune règle ne correspond, router vers :"
   groupe:
     one: "%{count} groupe"
     other: "%{count} groupes"
@@ -11,6 +14,13 @@ fr:
     custom: Personnalisé
     not_custom: Non personnalisé
     defaut: Groupe par défaut
+    groupes: Groupes
+    dossiers: Dossiers
+    instructeurs: Instructeurs
+    inactif: Inactif
+    aucune_regle: Aucune règle
+    regle_invalide: Règle invalide
+    regle_deja_attribuee: Règle déjà attribuée à %{groups}
   add_groupe_modal:
     title: Ajouter un groupe
     label: Nouveau groupe

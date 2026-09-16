@@ -1,6 +1,6 @@
-<% content_for(:title, 'Groupes') %>
+<% content_for(:title, t('.page_title')) %>
 
-<h1 class="fr-h2">Gestion des groupes</h1>
+<h1 class="fr-h2"><%= t('.title') %></h1>
 
 <div class="flex align-center">
   <button
@@ -112,7 +112,7 @@
                 scope="col"
                 class="<%= any_custom_contact_information? ? 'fr-col-6' : 'fr-col-9' %>"
               >
-                Groupes
+                <%= t('.table.groupes') %>
               </th>
 
               <% if any_custom_contact_information? %>
@@ -122,11 +122,11 @@
               <% end %>
 
               <th class="fr-col-1" scope="col">
-                Dossiers
+                <%= t('.table.dossiers') %>
               </th>
 
               <th class="fr-col-2 fr-cell--right" scope="col">
-                Instructeurs
+                <%= t('.table.instructeurs') %>
               </th>
             </tr>
           </thead>
@@ -151,19 +151,19 @@
 
                   <% if gi.closed %>
                     <p class="fr-badge fr-badge--info fr-badge--sm fr-mt-1w">
-                      inactif
+                      <%= t('.table.inactif') %>
                     </p>
                   <% elsif gi.routing_rule.nil? && !gi.defaut? %>
                     <p class="fr-badge fr-badge--warning fr-badge--sm fr-mt-1w">
-                      aucune règle
+                      <%= t('.table.aucune_regle') %>
                     </p>
                   <% elsif gi.routing_rule.present? && gi.invalid_rule? %>
                     <p class="fr-badge fr-badge--warning fr-badge--sm fr-mt-1w">
-                      règle invalide
+                      <%= t('.table.regle_invalide') %>
                     </p>
                   <% elsif gi.non_unique_rule? %>
                     <p class="fr-badge fr-badge--warning fr-badge--sm fr-mt-1w">
-                      règle déjà attribuée à <%= gi.groups_with_same_rule %>
+                      <%= t('.table.regle_deja_attribuee', groups: gi.groups_with_same_rule) %>
                     </p>
                   <% end %>
                 </td>
@@ -217,7 +217,7 @@
   url: admin_procedure_update_defaut_groupe_instructeur_path,
   class: 'fr-my-3w',
   data: { controller: 'autosubmit', turbo: 'true' } do %>
-  <%= label_tag :defaut_groupe_instructeur_id, 'Et si aucune règle ne correspond, router vers :', class: 'fr-label' %>
+  <%= label_tag :defaut_groupe_instructeur_id, t('.defaut_groupe_label'), class: 'fr-label' %>
 
   <%= select_tag :defaut_groupe_instructeur_id,
     options_for_select(@procedure.groupe_instructeurs.pluck(:label, :id), selected: @procedure.defaut_groupe_instructeur.id),

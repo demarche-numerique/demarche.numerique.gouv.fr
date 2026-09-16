@@ -1,5 +1,8 @@
 ---
 en:
+  page_title: Groups
+  title: Group management
+  defaut_groupe_label: "If no rule matches, route to:"
   groupe:
     one: "%{count} group"
     other: "%{count} groups"
@@ -11,6 +14,13 @@ en:
     custom: Custom
     not_custom: Not custom
     defaut: Default group
+    groupes: Groups
+    dossiers: Files
+    instructeurs: Instructors
+    inactif: Inactive
+    aucune_regle: No rule
+    regle_invalide: Invalid rule
+    regle_deja_attribuee: Rule already assigned to %{groups}
   add_groupe_modal:
     title: Add a group
     label: New group
