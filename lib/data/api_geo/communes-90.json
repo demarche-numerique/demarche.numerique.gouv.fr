@@ -3,7 +3,7 @@
     "name": "Andelnans",
     "code": "90001",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90400"
   },
@@ -11,7 +11,7 @@
     "name": "Angeot",
     "code": "90002",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90150"
   },
@@ -19,7 +19,7 @@
     "name": "Anjoutey",
     "code": "90003",
     "epci_code": "200069060",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90170"
   },
@@ -27,7 +27,7 @@
     "name": "Argiésans",
     "code": "90004",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90800"
   },
@@ -35,7 +35,7 @@
     "name": "Auxelles-Bas",
     "code": "90005",
     "epci_code": "200069060",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90200"
   },
@@ -43,7 +43,7 @@
     "name": "Auxelles-Haut",
     "code": "90006",
     "epci_code": "200069060",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90200"
   },
@@ -51,7 +51,7 @@
     "name": "Banvillars",
     "code": "90007",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90800"
   },
@@ -59,7 +59,7 @@
     "name": "Bavilliers",
     "code": "90008",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90800"
   },
@@ -67,7 +67,7 @@
     "name": "Beaucourt",
     "code": "90009",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90500"
   },
@@ -75,7 +75,7 @@
     "name": "Belfort",
     "code": "90010",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90000"
   },
@@ -83,7 +83,7 @@
     "name": "Bermont",
     "code": "90011",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90400"
   },
@@ -91,7 +91,7 @@
     "name": "Bessoncourt",
     "code": "90012",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90160"
   },
@@ -99,7 +99,7 @@
     "name": "Bethonvilliers",
     "code": "90013",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90150"
   },
@@ -107,7 +107,7 @@
     "name": "Boron",
     "code": "90014",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90100"
   },
@@ -115,7 +115,7 @@
     "name": "Botans",
     "code": "90015",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90400"
   },
@@ -123,7 +123,7 @@
     "name": "Bourg-sous-Châtelet",
     "code": "90016",
     "epci_code": "200069060",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90110"
   },
@@ -131,7 +131,7 @@
     "name": "Bourogne",
     "code": "90017",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90140"
   },
@@ -139,7 +139,7 @@
     "name": "Brebotte",
     "code": "90018",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90140"
   },
@@ -147,7 +147,7 @@
     "name": "Bretagne",
     "code": "90019",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90130"
   },
@@ -155,7 +155,7 @@
     "name": "Buc",
     "code": "90020",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90800"
   },
@@ -163,7 +163,7 @@
     "name": "Charmois",
     "code": "90021",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90140"
   },
@@ -171,7 +171,7 @@
     "name": "Châtenois-les-Forges",
     "code": "90022",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90700"
   },
@@ -179,7 +179,7 @@
     "name": "Chaux",
     "code": "90023",
     "epci_code": "200069060",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90330"
   },
@@ -187,7 +187,7 @@
     "name": "Chavanatte",
     "code": "90024",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90100"
   },
@@ -195,7 +195,7 @@
     "name": "Chavannes-les-Grands",
     "code": "90025",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90100"
   },
@@ -203,7 +203,7 @@
     "name": "Chèvremont",
     "code": "90026",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90340"
   },
@@ -211,7 +211,7 @@
     "name": "Courcelles",
     "code": "90027",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90100"
   },
@@ -219,7 +219,7 @@
     "name": "Courtelevant",
     "code": "90028",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90100"
   },
@@ -227,7 +227,7 @@
     "name": "Cravanche",
     "code": "90029",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90300"
   },
@@ -235,7 +235,7 @@
     "name": "Croix",
     "code": "90030",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90100"
   },
@@ -243,7 +243,7 @@
     "name": "Cunelières",
     "code": "90031",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90150"
   },
@@ -251,7 +251,7 @@
     "name": "Danjoutin",
     "code": "90032",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90400"
   },
@@ -259,7 +259,7 @@
     "name": "Delle",
     "code": "90033",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90100"
   },
@@ -267,7 +267,7 @@
     "name": "Denney",
     "code": "90034",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90160"
   },
@@ -275,7 +275,7 @@
     "name": "Dorans",
     "code": "90035",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90400"
   },
@@ -283,7 +283,7 @@
     "name": "Eguenigue",
     "code": "90036",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90150"
   },
@@ -291,7 +291,7 @@
     "name": "Éloie",
     "code": "90037",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90300"
   },
@@ -299,7 +299,7 @@
     "name": "Essert",
     "code": "90039",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90850"
   },
@@ -307,7 +307,7 @@
     "name": "Étueffont",
     "code": "90041",
     "epci_code": "200069060",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90170"
   },
@@ -315,7 +315,7 @@
     "name": "Évette-Salbert",
     "code": "90042",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90350"
   },
@@ -323,7 +323,7 @@
     "name": "Faverois",
     "code": "90043",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90100"
   },
@@ -331,7 +331,7 @@
     "name": "Felon",
     "code": "90044",
     "epci_code": "200069060",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90110"
   },
@@ -339,7 +339,7 @@
     "name": "Fêche-l’Église",
     "code": "90045",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90100"
   },
@@ -347,7 +347,7 @@
     "name": "Florimont",
     "code": "90046",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90100"
   },
@@ -355,7 +355,7 @@
     "name": "Fontaine",
     "code": "90047",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90150"
   },
@@ -363,7 +363,7 @@
     "name": "Fontenelle",
     "code": "90048",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90340"
   },
@@ -371,7 +371,7 @@
     "name": "Foussemagne",
     "code": "90049",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90150"
   },
@@ -379,7 +379,7 @@
     "name": "Frais",
     "code": "90050",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90150"
   },
@@ -387,7 +387,7 @@
     "name": "Froidefontaine",
     "code": "90051",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90140"
   },
@@ -395,7 +395,7 @@
     "name": "Giromagny",
     "code": "90052",
     "epci_code": "200069060",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90200"
   },
@@ -403,7 +403,7 @@
     "name": "Grandvillars",
     "code": "90053",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90600"
   },
@@ -411,7 +411,7 @@
     "name": "Grosmagny",
     "code": "90054",
     "epci_code": "200069060",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90200"
   },
@@ -419,7 +419,7 @@
     "name": "Grosne",
     "code": "90055",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90100"
   },
@@ -427,7 +427,7 @@
     "name": "Joncherey",
     "code": "90056",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90100"
   },
@@ -435,7 +435,7 @@
     "name": "Lachapelle-sous-Chaux",
     "code": "90057",
     "epci_code": "200069060",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90300"
   },
@@ -443,7 +443,7 @@
     "name": "Lachapelle-sous-Rougemont",
     "code": "90058",
     "epci_code": "200069060",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90360"
   },
@@ -451,7 +451,7 @@
     "name": "Lacollonge",
     "code": "90059",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90150"
   },
@@ -459,7 +459,7 @@
     "name": "Lagrange",
     "code": "90060",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90150"
   },
@@ -467,7 +467,7 @@
     "name": "Lamadeleine-Val-des-Anges",
     "code": "90061",
     "epci_code": "200069060",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90170"
   },
@@ -475,7 +475,7 @@
     "name": "Larivière",
     "code": "90062",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90150"
   },
@@ -483,7 +483,7 @@
     "name": "Lebetain",
     "code": "90063",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90100"
   },
@@ -491,7 +491,7 @@
     "name": "Lepuix-Neuf",
     "code": "90064",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90100"
   },
@@ -499,7 +499,7 @@
     "name": "Lepuix",
     "code": "90065",
     "epci_code": "200069060",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90200"
   },
@@ -507,7 +507,7 @@
     "name": "Leval",
     "code": "90066",
     "epci_code": "200069060",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90110"
   },
@@ -515,7 +515,7 @@
     "name": "Menoncourt",
     "code": "90067",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90150"
   },
@@ -523,7 +523,7 @@
     "name": "Meroux-Moval",
     "code": "90068",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90400"
   },
@@ -531,7 +531,7 @@
     "name": "Méziré",
     "code": "90069",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90120"
   },
@@ -539,7 +539,7 @@
     "name": "Montbouton",
     "code": "90070",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90500"
   },
@@ -547,7 +547,7 @@
     "name": "Montreux-Château",
     "code": "90071",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90130"
   },
@@ -555,7 +555,7 @@
     "name": "Morvillars",
     "code": "90072",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90120"
   },
@@ -563,7 +563,7 @@
     "name": "Novillard",
     "code": "90074",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90340"
   },
@@ -571,7 +571,7 @@
     "name": "Offemont",
     "code": "90075",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90300"
   },
@@ -579,7 +579,7 @@
     "name": "Pérouse",
     "code": "90076",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90160"
   },
@@ -587,7 +587,7 @@
     "name": "Petit-Croix",
     "code": "90077",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90130"
   },
@@ -595,7 +595,7 @@
     "name": "Petitefontaine",
     "code": "90078",
     "epci_code": "200069060",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90360"
   },
@@ -603,7 +603,7 @@
     "name": "Petitmagny",
     "code": "90079",
     "epci_code": "200069060",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90170"
   },
@@ -611,7 +611,7 @@
     "name": "Phaffans",
     "code": "90080",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90150"
   },
@@ -619,7 +619,7 @@
     "name": "Réchésy",
     "code": "90081",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90370"
   },
@@ -627,7 +627,7 @@
     "name": "Autrechêne",
     "code": "90082",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90140"
   },
@@ -635,7 +635,7 @@
     "name": "Recouvrance",
     "code": "90083",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90140"
   },
@@ -643,7 +643,7 @@
     "name": "Reppe",
     "code": "90084",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90150"
   },
@@ -651,7 +651,7 @@
     "name": "Riervescemont",
     "code": "90085",
     "epci_code": "200069060",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90200"
   },
@@ -659,7 +659,7 @@
     "name": "Romagny-sous-Rougemont",
     "code": "90086",
     "epci_code": "200069060",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90110"
   },
@@ -667,7 +667,7 @@
     "name": "Roppe",
     "code": "90087",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90380"
   },
@@ -675,7 +675,7 @@
     "name": "Rougegoutte",
     "code": "90088",
     "epci_code": "200069060",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90200"
   },
@@ -683,7 +683,7 @@
     "name": "Rougemont-le-Château",
     "code": "90089",
     "epci_code": "200069060",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90110"
   },
@@ -691,7 +691,7 @@
     "name": "Saint-Dizier-l’Évêque",
     "code": "90090",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90100"
   },
@@ -699,7 +699,7 @@
     "name": "Saint-Germain-le-Châtelet",
     "code": "90091",
     "epci_code": "200069060",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90110"
   },
@@ -707,7 +707,7 @@
     "name": "Sermamagny",
     "code": "90093",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90300"
   },
@@ -715,7 +715,7 @@
     "name": "Sevenans",
     "code": "90094",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90400"
   },
@@ -723,7 +723,7 @@
     "name": "Suarce",
     "code": "90095",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90100"
   },
@@ -731,7 +731,7 @@
     "name": "Thiancourt",
     "code": "90096",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90100"
   },
@@ -739,7 +739,7 @@
     "name": "Trévenans",
     "code": "90097",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90400"
   },
@@ -747,7 +747,7 @@
     "name": "Urcerey",
     "code": "90098",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90800"
   },
@@ -755,7 +755,7 @@
     "name": "Valdoie",
     "code": "90099",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90300"
   },
@@ -763,7 +763,7 @@
     "name": "Vauthiermont",
     "code": "90100",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90150"
   },
@@ -771,7 +771,7 @@
     "name": "Vellescot",
     "code": "90101",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90100"
   },
@@ -779,7 +779,7 @@
     "name": "Vescemont",
     "code": "90102",
     "epci_code": "200069060",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90200"
   },
@@ -787,7 +787,7 @@
     "name": "Vétrigne",
     "code": "90103",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90300"
   },
@@ -795,7 +795,7 @@
     "name": "Vézelois",
     "code": "90104",
     "epci_code": "200069052",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90400"
   },
@@ -803,7 +803,7 @@
     "name": "Villars-le-Sec",
     "code": "90105",
     "epci_code": "249000241",
-    "departement_code": "90",
+    "department_code": "90",
     "region_code": "27",
     "postal_code": "90100"
   }

@@ -3,7 +3,7 @@
     "name": "Accons",
     "code": "07001",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07160"
   },
@@ -11,7 +11,7 @@
     "name": "Ailhon",
     "code": "07002",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07200"
   },
@@ -19,7 +19,7 @@
     "name": "Aizac",
     "code": "07003",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07530"
   },
@@ -27,7 +27,7 @@
     "name": "Ajoux",
     "code": "07004",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07000"
   },
@@ -35,7 +35,7 @@
     "name": "Alba-la-Romaine",
     "code": "07005",
     "epci_code": "200071405",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07400"
   },
@@ -43,7 +43,7 @@
     "name": "Albon-d’Ardèche",
     "code": "07006",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07190"
   },
@@ -51,7 +51,7 @@
     "name": "Alboussière",
     "code": "07007",
     "epci_code": "200041366",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07440"
   },
@@ -59,7 +59,7 @@
     "name": "Alissas",
     "code": "07008",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07210"
   },
@@ -67,7 +67,7 @@
     "name": "Andance",
     "code": "07009",
     "epci_code": "200040491",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07340"
   },
@@ -75,7 +75,7 @@
     "name": "Annonay",
     "code": "07010",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07100"
   },
@@ -83,7 +83,7 @@
     "name": "Vallées-d’Antraigues-Asperjoc",
     "code": "07011",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07530"
   },
@@ -91,7 +91,7 @@
     "name": "Vallées-d’Antraigues-Asperjoc",
     "code": "07011",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07600"
   },
@@ -99,7 +99,7 @@
     "name": "Arcens",
     "code": "07012",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07310"
   },
@@ -107,7 +107,7 @@
     "name": "Ardoix",
     "code": "07013",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07290"
   },
@@ -115,7 +115,7 @@
     "name": "Arlebosc",
     "code": "07014",
     "epci_code": "200073096",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07410"
   },
@@ -123,7 +123,7 @@
     "name": "Arras-sur-Rhône",
     "code": "07015",
     "epci_code": "200040491",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07370"
   },
@@ -131,7 +131,7 @@
     "name": "Les Assions",
     "code": "07017",
     "epci_code": "200039832",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07140"
   },
@@ -139,7 +139,7 @@
     "name": "Astet",
     "code": "07018",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07330"
   },
@@ -147,7 +147,7 @@
     "name": "Aubenas",
     "code": "07019",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07200"
   },
@@ -155,7 +155,7 @@
     "name": "Aubignas",
     "code": "07020",
     "epci_code": "200071405",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07400"
   },
@@ -163,7 +163,7 @@
     "name": "Baix",
     "code": "07022",
     "epci_code": "200071405",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07210"
   },
@@ -171,7 +171,7 @@
     "name": "Balazuc",
     "code": "07023",
     "epci_code": "200039808",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07120"
   },
@@ -179,7 +179,7 @@
     "name": "Banne",
     "code": "07024",
     "epci_code": "200039832",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07460"
   },
@@ -187,7 +187,7 @@
     "name": "Barnas",
     "code": "07025",
     "epci_code": "200039824",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07330"
   },
@@ -195,7 +195,7 @@
     "name": "Le Béage",
     "code": "07026",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07630"
   },
@@ -203,7 +203,7 @@
     "name": "Beauchastel",
     "code": "07027",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07800"
   },
@@ -211,7 +211,7 @@
     "name": "Beaulieu",
     "code": "07028",
     "epci_code": "200039832",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07460"
   },
@@ -219,7 +219,7 @@
     "name": "Beaumont",
     "code": "07029",
     "epci_code": "240700302",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07110"
   },
@@ -227,7 +227,7 @@
     "name": "Beauvène",
     "code": "07030",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07190"
   },
@@ -235,7 +235,7 @@
     "name": "Berrias-et-Casteljau",
     "code": "07031",
     "epci_code": "200039832",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07460"
   },
@@ -243,7 +243,7 @@
     "name": "Berzème",
     "code": "07032",
     "epci_code": "240700815",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07580"
   },
@@ -251,7 +251,7 @@
     "name": "Bessas",
     "code": "07033",
     "epci_code": "200039808",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07150"
   },
@@ -259,7 +259,7 @@
     "name": "Bidon",
     "code": "07034",
     "epci_code": "240700864",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07700"
   },
@@ -267,7 +267,7 @@
     "name": "Boffres",
     "code": "07035",
     "epci_code": "200041366",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07440"
   },
@@ -275,7 +275,7 @@
     "name": "Bogy",
     "code": "07036",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07340"
   },
@@ -283,7 +283,7 @@
     "name": "Borée",
     "code": "07037",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07310"
   },
@@ -291,7 +291,7 @@
     "name": "Borne",
     "code": "07038",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07590"
   },
@@ -299,7 +299,7 @@
     "name": "Bozas",
     "code": "07039",
     "epci_code": "200073096",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07410"
   },
@@ -307,7 +307,7 @@
     "name": "Boucieu-le-Roi",
     "code": "07040",
     "epci_code": "200073096",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07270"
   },
@@ -315,7 +315,7 @@
     "name": "Boulieu-lès-Annonay",
     "code": "07041",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07100"
   },
@@ -323,7 +323,7 @@
     "name": "Bourg-Saint-Andéol",
     "code": "07042",
     "epci_code": "240700864",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07700"
   },
@@ -331,7 +331,7 @@
     "name": "Brossainc",
     "code": "07044",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07340"
   },
@@ -339,7 +339,7 @@
     "name": "Burzet",
     "code": "07045",
     "epci_code": "200039824",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07450"
   },
@@ -347,7 +347,7 @@
     "name": "Cellier-du-Luc",
     "code": "07047",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07590"
   },
@@ -355,7 +355,7 @@
     "name": "Chalencon",
     "code": "07048",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07240"
   },
@@ -363,7 +363,7 @@
     "name": "Le Chambon",
     "code": "07049",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07160"
   },
@@ -371,7 +371,7 @@
     "name": "Chambonas",
     "code": "07050",
     "epci_code": "200039832",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07140"
   },
@@ -379,7 +379,7 @@
     "name": "Champagne",
     "code": "07051",
     "epci_code": "200040491",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07340"
   },
@@ -387,7 +387,7 @@
     "name": "Champis",
     "code": "07052",
     "epci_code": "200041366",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07440"
   },
@@ -395,7 +395,7 @@
     "name": "Chandolas",
     "code": "07053",
     "epci_code": "240700302",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07230"
   },
@@ -403,7 +403,7 @@
     "name": "Chanéac",
     "code": "07054",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07310"
   },
@@ -411,7 +411,7 @@
     "name": "Charmes-sur-Rhône",
     "code": "07055",
     "epci_code": "200041366",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07800"
   },
@@ -419,7 +419,7 @@
     "name": "Charnas",
     "code": "07056",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07340"
   },
@@ -427,7 +427,7 @@
     "name": "Chassiers",
     "code": "07058",
     "epci_code": "240700617",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07110"
   },
@@ -435,7 +435,7 @@
     "name": "Châteaubourg",
     "code": "07059",
     "epci_code": "200041366",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07130"
   },
@@ -443,7 +443,7 @@
     "name": "Châteauneuf-de-Vernoux",
     "code": "07060",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07240"
   },
@@ -451,7 +451,7 @@
     "name": "Chauzon",
     "code": "07061",
     "epci_code": "200039808",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07120"
   },
@@ -459,7 +459,7 @@
     "name": "Chazeaux",
     "code": "07062",
     "epci_code": "240700617",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07110"
   },
@@ -467,7 +467,7 @@
     "name": "Cheminas",
     "code": "07063",
     "epci_code": "200073096",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07300"
   },
@@ -475,7 +475,7 @@
     "name": "Le Cheylard",
     "code": "07064",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07160"
   },
@@ -483,7 +483,7 @@
     "name": "Chirols",
     "code": "07065",
     "epci_code": "200039824",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07380"
   },
@@ -491,7 +491,7 @@
     "name": "Chomérac",
     "code": "07066",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07210"
   },
@@ -499,7 +499,7 @@
     "name": "Colombier-le-Cardinal",
     "code": "07067",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07430"
   },
@@ -507,7 +507,7 @@
     "name": "Colombier-le-Jeune",
     "code": "07068",
     "epci_code": "200073096",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07270"
   },
@@ -515,7 +515,7 @@
     "name": "Colombier-le-Vieux",
     "code": "07069",
     "epci_code": "200073096",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07410"
   },
@@ -523,7 +523,7 @@
     "name": "Cornas",
     "code": "07070",
     "epci_code": "200041366",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07130"
   },
@@ -531,7 +531,7 @@
     "name": "Coucouron",
     "code": "07071",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07470"
   },
@@ -539,7 +539,7 @@
     "name": "Coux",
     "code": "07072",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07000"
   },
@@ -547,7 +547,7 @@
     "name": "Le Crestet",
     "code": "07073",
     "epci_code": "200016905",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07270"
   },
@@ -555,7 +555,7 @@
     "name": "Creysseilles",
     "code": "07074",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07000"
   },
@@ -563,7 +563,7 @@
     "name": "Cros-de-Géorand",
     "code": "07075",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07510"
   },
@@ -571,7 +571,7 @@
     "name": "Cros-de-Géorand",
     "code": "07075",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07630"
   },
@@ -579,7 +579,7 @@
     "name": "Cruas",
     "code": "07076",
     "epci_code": "200071405",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07350"
   },
@@ -587,7 +587,7 @@
     "name": "Darbres",
     "code": "07077",
     "epci_code": "240700815",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07170"
   },
@@ -595,7 +595,7 @@
     "name": "Davézieux",
     "code": "07078",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07430"
   },
@@ -603,7 +603,7 @@
     "name": "Désaignes",
     "code": "07079",
     "epci_code": "200016905",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07570"
   },
@@ -611,7 +611,7 @@
     "name": "Devesset",
     "code": "07080",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07320"
   },
@@ -619,7 +619,7 @@
     "name": "Dompnac",
     "code": "07081",
     "epci_code": "240700302",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07260"
   },
@@ -627,7 +627,7 @@
     "name": "Dornas",
     "code": "07082",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07160"
   },
@@ -635,7 +635,7 @@
     "name": "Dunière-sur-Eyrieux",
     "code": "07083",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07360"
   },
@@ -643,7 +643,7 @@
     "name": "Eclassan",
     "code": "07084",
     "epci_code": "200040491",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07370"
   },
@@ -651,7 +651,7 @@
     "name": "Empurany",
     "code": "07085",
     "epci_code": "200016905",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07270"
   },
@@ -659,7 +659,7 @@
     "name": "Étables",
     "code": "07086",
     "epci_code": "200073096",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07300"
   },
@@ -667,7 +667,7 @@
     "name": "Fabras",
     "code": "07087",
     "epci_code": "200039824",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07380"
   },
@@ -675,7 +675,7 @@
     "name": "Faugères",
     "code": "07088",
     "epci_code": "240700302",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07230"
   },
@@ -683,7 +683,7 @@
     "name": "Félines",
     "code": "07089",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07340"
   },
@@ -691,7 +691,7 @@
     "name": "Flaviac",
     "code": "07090",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07000"
   },
@@ -699,7 +699,7 @@
     "name": "Fons",
     "code": "07091",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07200"
   },
@@ -707,7 +707,7 @@
     "name": "Freyssenet",
     "code": "07092",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07000"
   },
@@ -715,7 +715,7 @@
     "name": "Genestelle",
     "code": "07093",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07530"
   },
@@ -723,7 +723,7 @@
     "name": "Gilhac-et-Bruzac",
     "code": "07094",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07800"
   },
@@ -731,7 +731,7 @@
     "name": "Gilhoc-sur-Ormèze",
     "code": "07095",
     "epci_code": "200016905",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07270"
   },
@@ -739,7 +739,7 @@
     "name": "Gluiras",
     "code": "07096",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07190"
   },
@@ -747,7 +747,7 @@
     "name": "Glun",
     "code": "07097",
     "epci_code": "200073096",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07300"
   },
@@ -755,7 +755,7 @@
     "name": "Gourdon",
     "code": "07098",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07000"
   },
@@ -763,7 +763,7 @@
     "name": "Gras",
     "code": "07099",
     "epci_code": "240700864",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07700"
   },
@@ -771,7 +771,7 @@
     "name": "Gravières",
     "code": "07100",
     "epci_code": "200039832",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07140"
   },
@@ -779,7 +779,7 @@
     "name": "Grospierres",
     "code": "07101",
     "epci_code": "200039808",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07120"
   },
@@ -787,7 +787,7 @@
     "name": "Guilherand-Granges",
     "code": "07102",
     "epci_code": "200041366",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07500"
   },
@@ -795,7 +795,7 @@
     "name": "Saint-Julien-d’Intres",
     "code": "07103",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07310"
   },
@@ -803,7 +803,7 @@
     "name": "Saint-Julien-d’Intres",
     "code": "07103",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07320"
   },
@@ -811,7 +811,7 @@
     "name": "Issamoulenc",
     "code": "07104",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07190"
   },
@@ -819,7 +819,7 @@
     "name": "Issanlas",
     "code": "07105",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07510"
   },
@@ -827,7 +827,7 @@
     "name": "Issanlas",
     "code": "07105",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07660"
   },
@@ -835,7 +835,7 @@
     "name": "Issarlès",
     "code": "07106",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07470"
   },
@@ -843,7 +843,7 @@
     "name": "Jaujac",
     "code": "07107",
     "epci_code": "200039824",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07380"
   },
@@ -851,7 +851,7 @@
     "name": "Jaunac",
     "code": "07108",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07160"
   },
@@ -859,7 +859,7 @@
     "name": "Joannas",
     "code": "07109",
     "epci_code": "240700617",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07110"
   },
@@ -867,7 +867,7 @@
     "name": "Joyeuse",
     "code": "07110",
     "epci_code": "240700302",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07260"
   },
@@ -875,7 +875,7 @@
     "name": "Juvinas",
     "code": "07111",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07600"
   },
@@ -883,7 +883,7 @@
     "name": "Labastide-sur-Bésorgues",
     "code": "07112",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07600"
   },
@@ -891,7 +891,7 @@
     "name": "Labastide-de-Virac",
     "code": "07113",
     "epci_code": "200039808",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07150"
   },
@@ -899,7 +899,7 @@
     "name": "Labatie-d’Andaure",
     "code": "07114",
     "epci_code": "200016905",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07570"
   },
@@ -907,7 +907,7 @@
     "name": "Labeaume",
     "code": "07115",
     "epci_code": "200039808",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07120"
   },
@@ -915,7 +915,7 @@
     "name": "Labégude",
     "code": "07116",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07200"
   },
@@ -923,7 +923,7 @@
     "name": "Lablachère",
     "code": "07117",
     "epci_code": "240700302",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07230"
   },
@@ -931,7 +931,7 @@
     "name": "Laboule",
     "code": "07118",
     "epci_code": "240700302",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07110"
   },
@@ -939,7 +939,7 @@
     "name": "Le Lac-d’Issarlès",
     "code": "07119",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07470"
   },
@@ -947,7 +947,7 @@
     "name": "Lachamp-Raphaël",
     "code": "07120",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07530"
   },
@@ -955,7 +955,7 @@
     "name": "Lachapelle-Graillouse",
     "code": "07121",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07470"
   },
@@ -963,7 +963,7 @@
     "name": "Lachapelle-sous-Aubenas",
     "code": "07122",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07200"
   },
@@ -971,7 +971,7 @@
     "name": "Lachapelle-sous-Chanéac",
     "code": "07123",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07310"
   },
@@ -979,7 +979,7 @@
     "name": "Lafarre",
     "code": "07124",
     "epci_code": "200016905",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07520"
   },
@@ -987,7 +987,7 @@
     "name": "Lagorce",
     "code": "07126",
     "epci_code": "200039808",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07150"
   },
@@ -995,7 +995,7 @@
     "name": "Lalevade-d’Ardèche",
     "code": "07127",
     "epci_code": "200039824",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07380"
   },
@@ -1003,7 +1003,7 @@
     "name": "Lalouvesc",
     "code": "07128",
     "epci_code": "240700716",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07520"
   },
@@ -1011,7 +1011,7 @@
     "name": "Lamastre",
     "code": "07129",
     "epci_code": "200016905",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07270"
   },
@@ -1019,7 +1019,7 @@
     "name": "Lanarce",
     "code": "07130",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07660"
   },
@@ -1027,7 +1027,7 @@
     "name": "Lanas",
     "code": "07131",
     "epci_code": "200039808",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07200"
   },
@@ -1035,7 +1035,7 @@
     "name": "Largentière",
     "code": "07132",
     "epci_code": "240700617",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07110"
   },
@@ -1043,7 +1043,7 @@
     "name": "Larnas",
     "code": "07133",
     "epci_code": "240700864",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07220"
   },
@@ -1051,7 +1051,7 @@
     "name": "Laurac-en-Vivarais",
     "code": "07134",
     "epci_code": "240700617",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07110"
   },
@@ -1059,7 +1059,7 @@
     "name": "Laveyrune",
     "code": "07136",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "48250"
   },
@@ -1067,7 +1067,7 @@
     "name": "Lavillatte",
     "code": "07137",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07660"
   },
@@ -1075,7 +1075,7 @@
     "name": "Lavilledieu",
     "code": "07138",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07170"
   },
@@ -1083,7 +1083,7 @@
     "name": "Laviolle",
     "code": "07139",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07530"
   },
@@ -1091,7 +1091,7 @@
     "name": "Lemps",
     "code": "07140",
     "epci_code": "200073096",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07610"
   },
@@ -1099,7 +1099,7 @@
     "name": "Lentillères",
     "code": "07141",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07200"
   },
@@ -1107,7 +1107,7 @@
     "name": "Lespéron",
     "code": "07142",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07660"
   },
@@ -1115,7 +1115,7 @@
     "name": "Limony",
     "code": "07143",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07340"
   },
@@ -1123,7 +1123,7 @@
     "name": "Loubaresse",
     "code": "07144",
     "epci_code": "240700302",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07110"
   },
@@ -1131,7 +1131,7 @@
     "name": "Lussas",
     "code": "07145",
     "epci_code": "240700815",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07170"
   },
@@ -1139,7 +1139,7 @@
     "name": "Lyas",
     "code": "07146",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07000"
   },
@@ -1147,7 +1147,7 @@
     "name": "Malarce-sur-la-Thines",
     "code": "07147",
     "epci_code": "200039832",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07140"
   },
@@ -1155,7 +1155,7 @@
     "name": "Malbosc",
     "code": "07148",
     "epci_code": "200039832",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07140"
   },
@@ -1163,7 +1163,7 @@
     "name": "Marcols-les-Eaux",
     "code": "07149",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07190"
   },
@@ -1171,7 +1171,7 @@
     "name": "Mariac",
     "code": "07150",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07160"
   },
@@ -1179,7 +1179,7 @@
     "name": "Mars",
     "code": "07151",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07320"
   },
@@ -1187,7 +1187,7 @@
     "name": "Mauves",
     "code": "07152",
     "epci_code": "200073096",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07300"
   },
@@ -1195,7 +1195,7 @@
     "name": "Mayres",
     "code": "07153",
     "epci_code": "200039824",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07330"
   },
@@ -1203,7 +1203,7 @@
     "name": "Mazan-l’Abbaye",
     "code": "07154",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07510"
   },
@@ -1211,7 +1211,7 @@
     "name": "Mercuer",
     "code": "07155",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07200"
   },
@@ -1219,7 +1219,7 @@
     "name": "Meyras",
     "code": "07156",
     "epci_code": "200039824",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07380"
   },
@@ -1227,7 +1227,7 @@
     "name": "Meysse",
     "code": "07157",
     "epci_code": "200071405",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07400"
   },
@@ -1235,7 +1235,7 @@
     "name": "Mézilhac",
     "code": "07158",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07530"
   },
@@ -1243,7 +1243,7 @@
     "name": "Mirabel",
     "code": "07159",
     "epci_code": "240700815",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07170"
   },
@@ -1251,7 +1251,7 @@
     "name": "Monestier",
     "code": "07160",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07690"
   },
@@ -1259,7 +1259,7 @@
     "name": "Montpezat-sous-Bauzon",
     "code": "07161",
     "epci_code": "200039824",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07560"
   },
@@ -1267,7 +1267,7 @@
     "name": "Montréal",
     "code": "07162",
     "epci_code": "240700617",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07110"
   },
@@ -1275,7 +1275,7 @@
     "name": "Montselgues",
     "code": "07163",
     "epci_code": "200039832",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07140"
   },
@@ -1283,7 +1283,7 @@
     "name": "Belsentes",
     "code": "07165",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07160"
   },
@@ -1291,7 +1291,7 @@
     "name": "Nozières",
     "code": "07166",
     "epci_code": "200016905",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07270"
   },
@@ -1299,7 +1299,7 @@
     "name": "Les Ollières-sur-Eyrieux",
     "code": "07167",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07360"
   },
@@ -1307,7 +1307,7 @@
     "name": "Orgnac-l’Aven",
     "code": "07168",
     "epci_code": "200039808",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07150"
   },
@@ -1315,7 +1315,7 @@
     "name": "Ozon",
     "code": "07169",
     "epci_code": "200040491",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07370"
   },
@@ -1323,7 +1323,7 @@
     "name": "Pailharès",
     "code": "07170",
     "epci_code": "200073096",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07410"
   },
@@ -1331,7 +1331,7 @@
     "name": "Payzac",
     "code": "07171",
     "epci_code": "240700302",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07230"
   },
@@ -1339,7 +1339,7 @@
     "name": "Peaugres",
     "code": "07172",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07340"
   },
@@ -1347,7 +1347,7 @@
     "name": "Péreyres",
     "code": "07173",
     "epci_code": "200039824",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07450"
   },
@@ -1355,7 +1355,7 @@
     "name": "Peyraud",
     "code": "07174",
     "epci_code": "200040491",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07340"
   },
@@ -1363,7 +1363,7 @@
     "name": "Le Plagnal",
     "code": "07175",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07590"
   },
@@ -1371,7 +1371,7 @@
     "name": "Planzolles",
     "code": "07176",
     "epci_code": "240700302",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07230"
   },
@@ -1379,7 +1379,7 @@
     "name": "Plats",
     "code": "07177",
     "epci_code": "200073096",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07300"
   },
@@ -1387,7 +1387,7 @@
     "name": "Pont-de-Labeaume",
     "code": "07178",
     "epci_code": "200039824",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07380"
   },
@@ -1395,7 +1395,7 @@
     "name": "Pourchères",
     "code": "07179",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07000"
   },
@@ -1403,7 +1403,7 @@
     "name": "Le Pouzin",
     "code": "07181",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07250"
   },
@@ -1411,7 +1411,7 @@
     "name": "Prades",
     "code": "07182",
     "epci_code": "200039824",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07380"
   },
@@ -1419,7 +1419,7 @@
     "name": "Pradons",
     "code": "07183",
     "epci_code": "200039808",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07120"
   },
@@ -1427,7 +1427,7 @@
     "name": "Pranles",
     "code": "07184",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07000"
   },
@@ -1435,7 +1435,7 @@
     "name": "Préaux",
     "code": "07185",
     "epci_code": "240700716",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07290"
   },
@@ -1443,7 +1443,7 @@
     "name": "Privas",
     "code": "07186",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07000"
   },
@@ -1451,7 +1451,7 @@
     "name": "Prunet",
     "code": "07187",
     "epci_code": "240700617",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07110"
   },
@@ -1459,7 +1459,7 @@
     "name": "Quintenas",
     "code": "07188",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07290"
   },
@@ -1467,7 +1467,7 @@
     "name": "Ribes",
     "code": "07189",
     "epci_code": "240700302",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07260"
   },
@@ -1475,7 +1475,7 @@
     "name": "Rochecolombe",
     "code": "07190",
     "epci_code": "200039808",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07200"
   },
@@ -1483,7 +1483,7 @@
     "name": "Rochemaure",
     "code": "07191",
     "epci_code": "200071405",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07400"
   },
@@ -1491,7 +1491,7 @@
     "name": "Rochepaule",
     "code": "07192",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07320"
   },
@@ -1499,7 +1499,7 @@
     "name": "Rocher",
     "code": "07193",
     "epci_code": "240700617",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07110"
   },
@@ -1507,7 +1507,7 @@
     "name": "Rochessauve",
     "code": "07194",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07210"
   },
@@ -1515,7 +1515,7 @@
     "name": "La Rochette",
     "code": "07195",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07310"
   },
@@ -1523,7 +1523,7 @@
     "name": "Rocles",
     "code": "07196",
     "epci_code": "240700302",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07110"
   },
@@ -1531,7 +1531,7 @@
     "name": "Roiffieux",
     "code": "07197",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07100"
   },
@@ -1539,7 +1539,7 @@
     "name": "Rompon",
     "code": "07198",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07250"
   },
@@ -1547,7 +1547,7 @@
     "name": "Rompon",
     "code": "07198",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07800"
   },
@@ -1555,7 +1555,7 @@
     "name": "Rosières",
     "code": "07199",
     "epci_code": "240700302",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07260"
   },
@@ -1563,7 +1563,7 @@
     "name": "Le Roux",
     "code": "07200",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07560"
   },
@@ -1571,7 +1571,7 @@
     "name": "Ruoms",
     "code": "07201",
     "epci_code": "200039808",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07120"
   },
@@ -1579,7 +1579,7 @@
     "name": "Sablières",
     "code": "07202",
     "epci_code": "240700302",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07260"
   },
@@ -1587,7 +1587,7 @@
     "name": "Sagnes-et-Goudoulet",
     "code": "07203",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07450"
   },
@@ -1595,7 +1595,7 @@
     "name": "Saint-Agrève",
     "code": "07204",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07320"
   },
@@ -1603,7 +1603,7 @@
     "name": "Saint-Alban-d’Ay",
     "code": "07205",
     "epci_code": "240700716",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07790"
   },
@@ -1611,7 +1611,7 @@
     "name": "Saint-Alban-en-Montagne",
     "code": "07206",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07590"
   },
@@ -1619,7 +1619,7 @@
     "name": "Saint-Alban-Auriolles",
     "code": "07207",
     "epci_code": "200039808",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07120"
   },
@@ -1627,7 +1627,7 @@
     "name": "Saint-Andéol-de-Berg",
     "code": "07208",
     "epci_code": "240700815",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07170"
   },
@@ -1635,7 +1635,7 @@
     "name": "Saint-Andéol-de-Fourchades",
     "code": "07209",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07160"
   },
@@ -1643,7 +1643,7 @@
     "name": "Saint-Andéol-de-Vals",
     "code": "07210",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07600"
   },
@@ -1651,7 +1651,7 @@
     "name": "Saint-André-de-Cruzières",
     "code": "07211",
     "epci_code": "200039832",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07460"
   },
@@ -1659,7 +1659,7 @@
     "name": "Saint-André-en-Vivarais",
     "code": "07212",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07690"
   },
@@ -1667,7 +1667,7 @@
     "name": "Saint-André-Lachamp",
     "code": "07213",
     "epci_code": "240700302",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07230"
   },
@@ -1675,7 +1675,7 @@
     "name": "Saint-Apollinaire-de-Rias",
     "code": "07214",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07240"
   },
@@ -1683,7 +1683,7 @@
     "name": "Saint-Barthélemy-le-Meil",
     "code": "07215",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07160"
   },
@@ -1691,7 +1691,7 @@
     "name": "Saint-Barthélemy-Grozon",
     "code": "07216",
     "epci_code": "200016905",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07270"
   },
@@ -1699,7 +1699,7 @@
     "name": "Saint-Barthélemy-le-Plain",
     "code": "07217",
     "epci_code": "200073096",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07300"
   },
@@ -1707,7 +1707,7 @@
     "name": "Saint-Basile",
     "code": "07218",
     "epci_code": "200016905",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07270"
   },
@@ -1715,7 +1715,7 @@
     "name": "Saint-Bauzile",
     "code": "07219",
     "epci_code": "200071405",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07210"
   },
@@ -1723,7 +1723,7 @@
     "name": "Saint-Christol",
     "code": "07220",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07160"
   },
@@ -1731,7 +1731,7 @@
     "name": "Saint-Cierge-la-Serre",
     "code": "07221",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07800"
   },
@@ -1739,7 +1739,7 @@
     "name": "Saint-Cierge-sous-le-Cheylard",
     "code": "07222",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07160"
   },
@@ -1747,7 +1747,7 @@
     "name": "Saint-Cirgues-de-Prades",
     "code": "07223",
     "epci_code": "200039824",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07380"
   },
@@ -1755,7 +1755,7 @@
     "name": "Saint-Cirgues-en-Montagne",
     "code": "07224",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07510"
   },
@@ -1763,7 +1763,7 @@
     "name": "Saint-Clair",
     "code": "07225",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07430"
   },
@@ -1771,7 +1771,7 @@
     "name": "Saint-Clément",
     "code": "07226",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07310"
   },
@@ -1779,7 +1779,7 @@
     "name": "Saint-Cyr",
     "code": "07227",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07430"
   },
@@ -1787,7 +1787,7 @@
     "name": "Saint-Désirat",
     "code": "07228",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07340"
   },
@@ -1795,7 +1795,7 @@
     "name": "Saint-Didier-sous-Aubenas",
     "code": "07229",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07200"
   },
@@ -1803,7 +1803,7 @@
     "name": "Saint-Étienne-de-Boulogne",
     "code": "07230",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07200"
   },
@@ -1811,7 +1811,7 @@
     "name": "Saint-Étienne-de-Fontbellon",
     "code": "07231",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07200"
   },
@@ -1819,7 +1819,7 @@
     "name": "Saint-Étienne-de-Lugdarès",
     "code": "07232",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07590"
   },
@@ -1827,7 +1827,7 @@
     "name": "Saint-Étienne-de-Serre",
     "code": "07233",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07190"
   },
@@ -1835,7 +1835,7 @@
     "name": "Saint-Étienne-de-Valoux",
     "code": "07234",
     "epci_code": "200040491",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07340"
   },
@@ -1843,7 +1843,7 @@
     "name": "Sainte-Eulalie",
     "code": "07235",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07510"
   },
@@ -1851,7 +1851,7 @@
     "name": "Saint-Félicien",
     "code": "07236",
     "epci_code": "200073096",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07410"
   },
@@ -1859,7 +1859,7 @@
     "name": "Saint-Fortunat-sur-Eyrieux",
     "code": "07237",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07360"
   },
@@ -1867,7 +1867,7 @@
     "name": "Saint-Genest-de-Beauzon",
     "code": "07238",
     "epci_code": "240700302",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07230"
   },
@@ -1875,7 +1875,7 @@
     "name": "Saint-Genest-Lachamp",
     "code": "07239",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07160"
   },
@@ -1883,7 +1883,7 @@
     "name": "Saint-Genest-Lachamp",
     "code": "07239",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07190"
   },
@@ -1891,7 +1891,7 @@
     "name": "Saint-Georges-les-Bains",
     "code": "07240",
     "epci_code": "200041366",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07800"
   },
@@ -1899,7 +1899,7 @@
     "name": "Saint-Germain",
     "code": "07241",
     "epci_code": "240700815",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07170"
   },
@@ -1907,7 +1907,7 @@
     "name": "Saint-Gineys-en-Coiron",
     "code": "07242",
     "epci_code": "240700815",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07580"
   },
@@ -1915,7 +1915,7 @@
     "name": "Saint-Jacques-d’Atticieux",
     "code": "07243",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07340"
   },
@@ -1923,7 +1923,7 @@
     "name": "Saint-Jean-Chambre",
     "code": "07244",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07240"
   },
@@ -1931,7 +1931,7 @@
     "name": "Saint-Jean-de-Muzols",
     "code": "07245",
     "epci_code": "200073096",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07300"
   },
@@ -1939,7 +1939,7 @@
     "name": "Saint-Jean-le-Centenier",
     "code": "07247",
     "epci_code": "240700815",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07580"
   },
@@ -1947,7 +1947,7 @@
     "name": "Saint-Jean-Roure",
     "code": "07248",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07160"
   },
@@ -1955,7 +1955,7 @@
     "name": "Saint-Jeure-d’Andaure",
     "code": "07249",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07320"
   },
@@ -1963,7 +1963,7 @@
     "name": "Saint-Jeure-d’Ay",
     "code": "07250",
     "epci_code": "240700716",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07290"
   },
@@ -1971,7 +1971,7 @@
     "name": "Saint-Joseph-des-Bancs",
     "code": "07251",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07530"
   },
@@ -1979,7 +1979,7 @@
     "name": "Saint-Julien-du-Gua",
     "code": "07253",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07190"
   },
@@ -1987,7 +1987,7 @@
     "name": "Saint-Julien-du-Serre",
     "code": "07254",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07200"
   },
@@ -1995,7 +1995,7 @@
     "name": "Saint-Julien-en-Saint-Alban",
     "code": "07255",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07000"
   },
@@ -2003,7 +2003,7 @@
     "name": "Saint-Julien-le-Roux",
     "code": "07257",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07240"
   },
@@ -2011,7 +2011,7 @@
     "name": "Saint-Julien-Vocance",
     "code": "07258",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07690"
   },
@@ -2019,7 +2019,7 @@
     "name": "Saint-Just-d’Ardèche",
     "code": "07259",
     "epci_code": "240700864",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07700"
   },
@@ -2027,7 +2027,7 @@
     "name": "Saint-Lager-Bressac",
     "code": "07260",
     "epci_code": "200071405",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07210"
   },
@@ -2035,7 +2035,7 @@
     "name": "Saint-Laurent-du-Pape",
     "code": "07261",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07800"
   },
@@ -2043,7 +2043,7 @@
     "name": "Saint-Laurent-les-Bains-Laval-d’Aurelle",
     "code": "07262",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07590"
   },
@@ -2051,7 +2051,7 @@
     "name": "Saint-Laurent-sous-Coiron",
     "code": "07263",
     "epci_code": "240700815",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07170"
   },
@@ -2059,7 +2059,7 @@
     "name": "Saint-Marcel-d’Ardèche",
     "code": "07264",
     "epci_code": "240700864",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07700"
   },
@@ -2067,7 +2067,7 @@
     "name": "Saint-Marcel-lès-Annonay",
     "code": "07265",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07100"
   },
@@ -2075,7 +2075,7 @@
     "name": "Sainte-Marguerite-Lafigère",
     "code": "07266",
     "epci_code": "200039832",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07140"
   },
@@ -2083,7 +2083,7 @@
     "name": "Saint-Martial",
     "code": "07267",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07310"
   },
@@ -2091,7 +2091,7 @@
     "name": "Saint-Martin-d’Ardèche",
     "code": "07268",
     "epci_code": "240700864",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07700"
   },
@@ -2099,7 +2099,7 @@
     "name": "Saint-Martin-de-Valamas",
     "code": "07269",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07310"
   },
@@ -2107,7 +2107,7 @@
     "name": "Saint-Martin-sur-Lavezon",
     "code": "07270",
     "epci_code": "200071405",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07400"
   },
@@ -2115,7 +2115,7 @@
     "name": "Saint-Maurice-d’Ardèche",
     "code": "07272",
     "epci_code": "200039808",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07200"
   },
@@ -2123,7 +2123,7 @@
     "name": "Saint-Maurice-d’Ibie",
     "code": "07273",
     "epci_code": "240700815",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07170"
   },
@@ -2131,7 +2131,7 @@
     "name": "Saint-Maurice-en-Chalencon",
     "code": "07274",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07190"
   },
@@ -2139,7 +2139,7 @@
     "name": "Saint-Mélany",
     "code": "07275",
     "epci_code": "240700302",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07260"
   },
@@ -2147,7 +2147,7 @@
     "name": "Saint-Michel-d’Aurance",
     "code": "07276",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07160"
   },
@@ -2155,7 +2155,7 @@
     "name": "Saint-Michel-de-Boulogne",
     "code": "07277",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07200"
   },
@@ -2163,7 +2163,7 @@
     "name": "Saint-Michel-de-Chabrillanoux",
     "code": "07278",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07360"
   },
@@ -2171,7 +2171,7 @@
     "name": "Saint-Montan",
     "code": "07279",
     "epci_code": "240700864",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07220"
   },
@@ -2179,7 +2179,7 @@
     "name": "Saint-Paul-le-Jeune",
     "code": "07280",
     "epci_code": "200039832",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07460"
   },
@@ -2187,7 +2187,7 @@
     "name": "Saint-Péray",
     "code": "07281",
     "epci_code": "200041366",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07130"
   },
@@ -2195,7 +2195,7 @@
     "name": "Saint-Pierre-de-Colombier",
     "code": "07282",
     "epci_code": "200039824",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07450"
   },
@@ -2203,7 +2203,7 @@
     "name": "Saint-Pierre-la-Roche",
     "code": "07283",
     "epci_code": "200071405",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07400"
   },
@@ -2211,7 +2211,7 @@
     "name": "Saint-Pierre-Saint-Jean",
     "code": "07284",
     "epci_code": "200039832",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07140"
   },
@@ -2219,7 +2219,7 @@
     "name": "Saint-Pierre-sur-Doux",
     "code": "07285",
     "epci_code": "240700716",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07520"
   },
@@ -2227,7 +2227,7 @@
     "name": "Saint-Pierreville",
     "code": "07286",
     "epci_code": "200041465",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07190"
   },
@@ -2235,7 +2235,7 @@
     "name": "Saint-Pons",
     "code": "07287",
     "epci_code": "240700815",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07580"
   },
@@ -2243,7 +2243,7 @@
     "name": "Saint-Priest",
     "code": "07288",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07000"
   },
@@ -2251,7 +2251,7 @@
     "name": "Saint-Privat",
     "code": "07289",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07200"
   },
@@ -2259,7 +2259,7 @@
     "name": "Saint-Prix",
     "code": "07290",
     "epci_code": "200016905",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07270"
   },
@@ -2267,7 +2267,7 @@
     "name": "Saint-Remèze",
     "code": "07291",
     "epci_code": "200039808",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07700"
   },
@@ -2275,7 +2275,7 @@
     "name": "Saint-Romain-d’Ay",
     "code": "07292",
     "epci_code": "240700716",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07290"
   },
@@ -2283,7 +2283,7 @@
     "name": "Saint-Romain-de-Lerps",
     "code": "07293",
     "epci_code": "200041366",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07130"
   },
@@ -2291,7 +2291,7 @@
     "name": "Saint-Sauveur-de-Cruzières",
     "code": "07294",
     "epci_code": "200035129",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07460"
   },
@@ -2299,7 +2299,7 @@
     "name": "Saint-Sauveur-de-Montagut",
     "code": "07295",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07190"
   },
@@ -2307,7 +2307,7 @@
     "name": "Saint-Sernin",
     "code": "07296",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07200"
   },
@@ -2315,7 +2315,7 @@
     "name": "Saint-Sylvestre",
     "code": "07297",
     "epci_code": "200041366",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07440"
   },
@@ -2323,7 +2323,7 @@
     "name": "Saint-Symphorien-sous-Chomérac",
     "code": "07298",
     "epci_code": "200071405",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07210"
   },
@@ -2331,7 +2331,7 @@
     "name": "Saint-Symphorien-de-Mahun",
     "code": "07299",
     "epci_code": "240700716",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07290"
   },
@@ -2339,7 +2339,7 @@
     "name": "Saint-Thomé",
     "code": "07300",
     "epci_code": "200071405",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07220"
   },
@@ -2347,7 +2347,7 @@
     "name": "Saint-Victor",
     "code": "07301",
     "epci_code": "200073096",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07410"
   },
@@ -2355,7 +2355,7 @@
     "name": "Saint-Vincent-de-Barrès",
     "code": "07302",
     "epci_code": "200071405",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07210"
   },
@@ -2363,7 +2363,7 @@
     "name": "Saint-Vincent-de-Durfort",
     "code": "07303",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07360"
   },
@@ -2371,7 +2371,7 @@
     "name": "Salavas",
     "code": "07304",
     "epci_code": "200039808",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07150"
   },
@@ -2379,7 +2379,7 @@
     "name": "Les Salelles",
     "code": "07305",
     "epci_code": "200039832",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07140"
   },
@@ -2387,7 +2387,7 @@
     "name": "Sampzon",
     "code": "07306",
     "epci_code": "200039808",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07120"
   },
@@ -2395,7 +2395,7 @@
     "name": "Sanilhac",
     "code": "07307",
     "epci_code": "240700617",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07110"
   },
@@ -2403,7 +2403,7 @@
     "name": "Sarras",
     "code": "07308",
     "epci_code": "200040491",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07370"
   },
@@ -2411,7 +2411,7 @@
     "name": "Satillieu",
     "code": "07309",
     "epci_code": "240700716",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07290"
   },
@@ -2419,7 +2419,7 @@
     "name": "Savas",
     "code": "07310",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07430"
   },
@@ -2427,7 +2427,7 @@
     "name": "Sceautres",
     "code": "07311",
     "epci_code": "240700815",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07400"
   },
@@ -2435,7 +2435,7 @@
     "name": "Sécheras",
     "code": "07312",
     "epci_code": "200073096",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07610"
   },
@@ -2443,7 +2443,7 @@
     "name": "Serrières",
     "code": "07313",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07340"
   },
@@ -2451,7 +2451,7 @@
     "name": "Silhac",
     "code": "07314",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07240"
   },
@@ -2459,7 +2459,7 @@
     "name": "La Souche",
     "code": "07315",
     "epci_code": "200039824",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07380"
   },
@@ -2467,7 +2467,7 @@
     "name": "Soyons",
     "code": "07316",
     "epci_code": "200041366",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07130"
   },
@@ -2475,7 +2475,7 @@
     "name": "Talencieux",
     "code": "07317",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07340"
   },
@@ -2483,7 +2483,7 @@
     "name": "Tauriers",
     "code": "07318",
     "epci_code": "240700617",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07110"
   },
@@ -2491,7 +2491,7 @@
     "name": "Le Teil",
     "code": "07319",
     "epci_code": "200071405",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07400"
   },
@@ -2499,7 +2499,7 @@
     "name": "Thorrenc",
     "code": "07321",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07340"
   },
@@ -2507,7 +2507,7 @@
     "name": "Thueyts",
     "code": "07322",
     "epci_code": "200039824",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07330"
   },
@@ -2515,7 +2515,7 @@
     "name": "Toulaud",
     "code": "07323",
     "epci_code": "200041366",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07130"
   },
@@ -2523,7 +2523,7 @@
     "name": "Tournon-sur-Rhône",
     "code": "07324",
     "epci_code": "200073096",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07300"
   },
@@ -2531,7 +2531,7 @@
     "name": "Ucel",
     "code": "07325",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07200"
   },
@@ -2539,7 +2539,7 @@
     "name": "Usclades-et-Rieutord",
     "code": "07326",
     "epci_code": "200072007",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07510"
   },
@@ -2547,7 +2547,7 @@
     "name": "Uzer",
     "code": "07327",
     "epci_code": "240700617",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07110"
   },
@@ -2555,7 +2555,7 @@
     "name": "Vagnas",
     "code": "07328",
     "epci_code": "200039808",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07150"
   },
@@ -2563,7 +2563,7 @@
     "name": "Valgorge",
     "code": "07329",
     "epci_code": "240700302",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07110"
   },
@@ -2571,7 +2571,7 @@
     "name": "Vallon-Pont-d’Arc",
     "code": "07330",
     "epci_code": "200039808",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07150"
   },
@@ -2579,7 +2579,7 @@
     "name": "Vals-les-Bains",
     "code": "07331",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07600"
   },
@@ -2587,7 +2587,7 @@
     "name": "Valvignères",
     "code": "07332",
     "epci_code": "200071405",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07400"
   },
@@ -2595,7 +2595,7 @@
     "name": "Vanosc",
     "code": "07333",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07690"
   },
@@ -2603,7 +2603,7 @@
     "name": "Les Vans",
     "code": "07334",
     "epci_code": "200039832",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07140"
   },
@@ -2611,7 +2611,7 @@
     "name": "Vaudevant",
     "code": "07335",
     "epci_code": "200073096",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07410"
   },
@@ -2619,7 +2619,7 @@
     "name": "Vernon",
     "code": "07336",
     "epci_code": "240700302",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07260"
   },
@@ -2627,7 +2627,7 @@
     "name": "Vernosc-lès-Annonay",
     "code": "07337",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07430"
   },
@@ -2635,7 +2635,7 @@
     "name": "Vernoux-en-Vivarais",
     "code": "07338",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07240"
   },
@@ -2643,7 +2643,7 @@
     "name": "Vesseaux",
     "code": "07339",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07200"
   },
@@ -2651,7 +2651,7 @@
     "name": "Veyras",
     "code": "07340",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07000"
   },
@@ -2659,7 +2659,7 @@
     "name": "Villeneuve-de-Berg",
     "code": "07341",
     "epci_code": "240700815",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07170"
   },
@@ -2667,7 +2667,7 @@
     "name": "Villevocance",
     "code": "07342",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07690"
   },
@@ -2675,7 +2675,7 @@
     "name": "Vinezac",
     "code": "07343",
     "epci_code": "200073245",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07110"
   },
@@ -2683,7 +2683,7 @@
     "name": "Vinzieux",
     "code": "07344",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07340"
   },
@@ -2691,7 +2691,7 @@
     "name": "Vion",
     "code": "07345",
     "epci_code": "200073096",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07610"
   },
@@ -2699,7 +2699,7 @@
     "name": "Viviers",
     "code": "07346",
     "epci_code": "240700864",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07220"
   },
@@ -2707,7 +2707,7 @@
     "name": "Vocance",
     "code": "07347",
     "epci_code": "200072015",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07690"
   },
@@ -2715,7 +2715,7 @@
     "name": "Vogüé",
     "code": "07348",
     "epci_code": "200039808",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07200"
   },
@@ -2723,7 +2723,7 @@
     "name": "La Voulte-sur-Rhône",
     "code": "07349",
     "epci_code": "200071413",
-    "departement_code": "07",
+    "department_code": "07",
     "region_code": "84",
     "postal_code": "07800"
   }

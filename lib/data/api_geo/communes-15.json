@@ -3,7 +3,7 @@
     "name": "Allanche",
     "code": "15001",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15160"
   },
@@ -11,7 +11,7 @@
     "name": "Alleuze",
     "code": "15002",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15100"
   },
@@ -19,7 +19,7 @@
     "name": "Ally",
     "code": "15003",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15700"
   },
@@ -27,7 +27,7 @@
     "name": "Andelat",
     "code": "15004",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15100"
   },
@@ -35,7 +35,7 @@
     "name": "Anglards-de-Saint-Flour",
     "code": "15005",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15100"
   },
@@ -43,7 +43,7 @@
     "name": "Anglards-de-Salers",
     "code": "15006",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15380"
   },
@@ -51,7 +51,7 @@
     "name": "Anterrieux",
     "code": "15007",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15110"
   },
@@ -59,7 +59,7 @@
     "name": "Antignac",
     "code": "15008",
     "epci_code": "241501055",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15240"
   },
@@ -67,7 +67,7 @@
     "name": "Apchon",
     "code": "15009",
     "epci_code": "241500255",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15400"
   },
@@ -75,7 +75,7 @@
     "name": "Arches",
     "code": "15010",
     "epci_code": "241500271",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15200"
   },
@@ -83,7 +83,7 @@
     "name": "Arnac",
     "code": "15011",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15150"
   },
@@ -91,7 +91,7 @@
     "name": "Arpajon-sur-Cère",
     "code": "15012",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15130"
   },
@@ -99,7 +99,7 @@
     "name": "Auriac-l’Église",
     "code": "15013",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15500"
   },
@@ -107,7 +107,7 @@
     "name": "Aurillac",
     "code": "15014",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15000"
   },
@@ -115,7 +115,7 @@
     "name": "Auzers",
     "code": "15015",
     "epci_code": "241500271",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15240"
   },
@@ -123,7 +123,7 @@
     "name": "Ayrens",
     "code": "15016",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15250"
   },
@@ -131,7 +131,7 @@
     "name": "Badailhac",
     "code": "15017",
     "epci_code": "241501089",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15800"
   },
@@ -139,7 +139,7 @@
     "name": "Barriac-les-Bosquets",
     "code": "15018",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15700"
   },
@@ -147,7 +147,7 @@
     "name": "Bassignac",
     "code": "15019",
     "epci_code": "241501055",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15240"
   },
@@ -155,7 +155,7 @@
     "name": "Beaulieu",
     "code": "15020",
     "epci_code": "241501055",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15270"
   },
@@ -163,7 +163,7 @@
     "name": "Boisset",
     "code": "15021",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15600"
   },
@@ -171,7 +171,7 @@
     "name": "Bonnac",
     "code": "15022",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15500"
   },
@@ -179,7 +179,7 @@
     "name": "Brageac",
     "code": "15024",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15700"
   },
@@ -187,7 +187,7 @@
     "name": "Albepierre-Bredons",
     "code": "15025",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15300"
   },
@@ -195,7 +195,7 @@
     "name": "Brezons",
     "code": "15026",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15230"
   },
@@ -203,7 +203,7 @@
     "name": "Puycapel",
     "code": "15027",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15340"
   },
@@ -211,7 +211,7 @@
     "name": "Carlat",
     "code": "15028",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15130"
   },
@@ -219,7 +219,7 @@
     "name": "Cassaniouze",
     "code": "15029",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15340"
   },
@@ -227,7 +227,7 @@
     "name": "Cayrols",
     "code": "15030",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15290"
   },
@@ -235,7 +235,7 @@
     "name": "Celles",
     "code": "15031",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15170"
   },
@@ -243,7 +243,7 @@
     "name": "Celoux",
     "code": "15032",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15500"
   },
@@ -251,7 +251,7 @@
     "name": "Cézens",
     "code": "15033",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15230"
   },
@@ -259,7 +259,7 @@
     "name": "Chaliers",
     "code": "15034",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15320"
   },
@@ -267,7 +267,7 @@
     "name": "Chalinargues",
     "code": "15035",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15170"
   },
@@ -275,7 +275,7 @@
     "name": "Chalvignac",
     "code": "15036",
     "epci_code": "241500271",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15200"
   },
@@ -283,7 +283,7 @@
     "name": "Champagnac",
     "code": "15037",
     "epci_code": "241501055",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15350"
   },
@@ -291,7 +291,7 @@
     "name": "Champs-sur-Tarentaine-Marchal",
     "code": "15038",
     "epci_code": "241501055",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15270"
   },
@@ -299,7 +299,7 @@
     "name": "Chanterelle",
     "code": "15040",
     "epci_code": "241500255",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15190"
   },
@@ -307,7 +307,7 @@
     "name": "La Chapelle-d’Alagnon",
     "code": "15041",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15300"
   },
@@ -315,7 +315,7 @@
     "name": "La Chapelle-Laurent",
     "code": "15042",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15500"
   },
@@ -323,7 +323,7 @@
     "name": "Charmensac",
     "code": "15043",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15500"
   },
@@ -331,7 +331,7 @@
     "name": "Chaudes-Aigues",
     "code": "15045",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15110"
   },
@@ -339,7 +339,7 @@
     "name": "Chaussenac",
     "code": "15046",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15700"
   },
@@ -347,7 +347,7 @@
     "name": "Chavagnac",
     "code": "15047",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15300"
   },
@@ -355,7 +355,7 @@
     "name": "Chazelles",
     "code": "15048",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15500"
   },
@@ -363,7 +363,7 @@
     "name": "Cheylade",
     "code": "15049",
     "epci_code": "241500255",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15400"
   },
@@ -371,7 +371,7 @@
     "name": "Le Claux",
     "code": "15050",
     "epci_code": "241500255",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15400"
   },
@@ -379,7 +379,7 @@
     "name": "Clavières",
     "code": "15051",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15320"
   },
@@ -387,7 +387,7 @@
     "name": "Collandres",
     "code": "15052",
     "epci_code": "241500255",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15400"
   },
@@ -395,7 +395,7 @@
     "name": "Coltines",
     "code": "15053",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15170"
   },
@@ -403,7 +403,7 @@
     "name": "Condat",
     "code": "15054",
     "epci_code": "241500255",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15190"
   },
@@ -411,7 +411,7 @@
     "name": "Coren",
     "code": "15055",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15100"
   },
@@ -419,7 +419,7 @@
     "name": "Crandelles",
     "code": "15056",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15250"
   },
@@ -427,7 +427,7 @@
     "name": "Cros-de-Montvert",
     "code": "15057",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15150"
   },
@@ -435,7 +435,7 @@
     "name": "Cros-de-Ronesque",
     "code": "15058",
     "epci_code": "241501089",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15130"
   },
@@ -443,7 +443,7 @@
     "name": "Cussac",
     "code": "15059",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15430"
   },
@@ -451,7 +451,7 @@
     "name": "Deux-Verges",
     "code": "15060",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15110"
   },
@@ -459,7 +459,7 @@
     "name": "Dienne",
     "code": "15061",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15300"
   },
@@ -467,7 +467,7 @@
     "name": "Drugeac",
     "code": "15063",
     "epci_code": "241500271",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15140"
   },
@@ -475,7 +475,7 @@
     "name": "Escorailles",
     "code": "15064",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15700"
   },
@@ -483,7 +483,7 @@
     "name": "Espinasse",
     "code": "15065",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15110"
   },
@@ -491,7 +491,7 @@
     "name": "Le Falgoux",
     "code": "15066",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15380"
   },
@@ -499,7 +499,7 @@
     "name": "Le Fau",
     "code": "15067",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15140"
   },
@@ -507,7 +507,7 @@
     "name": "Ferrières-Saint-Mary",
     "code": "15069",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15170"
   },
@@ -515,7 +515,7 @@
     "name": "Fontanges",
     "code": "15070",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15140"
   },
@@ -523,7 +523,7 @@
     "name": "Freix-Anglards",
     "code": "15072",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15310"
   },
@@ -531,7 +531,7 @@
     "name": "Fridefont",
     "code": "15073",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15110"
   },
@@ -539,7 +539,7 @@
     "name": "Giou-de-Mamou",
     "code": "15074",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15130"
   },
@@ -547,7 +547,7 @@
     "name": "Girgols",
     "code": "15075",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15310"
   },
@@ -555,7 +555,7 @@
     "name": "Glénat",
     "code": "15076",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15150"
   },
@@ -563,7 +563,7 @@
     "name": "Gourdièges",
     "code": "15077",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15230"
   },
@@ -571,7 +571,7 @@
     "name": "Jabrun",
     "code": "15078",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15110"
   },
@@ -579,7 +579,7 @@
     "name": "Jaleyrac",
     "code": "15079",
     "epci_code": "241500271",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15200"
   },
@@ -587,7 +587,7 @@
     "name": "Joursac",
     "code": "15080",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15170"
   },
@@ -595,7 +595,7 @@
     "name": "Jou-sous-Monjou",
     "code": "15081",
     "epci_code": "241501089",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15800"
   },
@@ -603,7 +603,7 @@
     "name": "Junhac",
     "code": "15082",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15120"
   },
@@ -611,7 +611,7 @@
     "name": "Jussac",
     "code": "15083",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15250"
   },
@@ -619,7 +619,7 @@
     "name": "Labesserette",
     "code": "15084",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15120"
   },
@@ -627,7 +627,7 @@
     "name": "Labrousse",
     "code": "15085",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15130"
   },
@@ -635,7 +635,7 @@
     "name": "Lacapelle-Barrès",
     "code": "15086",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15230"
   },
@@ -643,7 +643,7 @@
     "name": "Lacapelle-del-Fraisse",
     "code": "15087",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15120"
   },
@@ -651,7 +651,7 @@
     "name": "Lacapelle-Viescamp",
     "code": "15088",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15150"
   },
@@ -659,7 +659,7 @@
     "name": "Ladinhac",
     "code": "15089",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15120"
   },
@@ -667,7 +667,7 @@
     "name": "Lafeuillade-en-Vézie",
     "code": "15090",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15130"
   },
@@ -675,7 +675,7 @@
     "name": "Landeyrat",
     "code": "15091",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15160"
   },
@@ -683,7 +683,7 @@
     "name": "Lanobre",
     "code": "15092",
     "epci_code": "241501055",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15270"
   },
@@ -691,7 +691,7 @@
     "name": "Lapeyrugue",
     "code": "15093",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15120"
   },
@@ -699,7 +699,7 @@
     "name": "Laroquebrou",
     "code": "15094",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15150"
   },
@@ -707,7 +707,7 @@
     "name": "Laroquevieille",
     "code": "15095",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15250"
   },
@@ -715,7 +715,7 @@
     "name": "Lascelle",
     "code": "15096",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15590"
   },
@@ -723,7 +723,7 @@
     "name": "Lastic",
     "code": "15097",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15500"
   },
@@ -731,7 +731,7 @@
     "name": "Laurie",
     "code": "15098",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15500"
   },
@@ -739,7 +739,7 @@
     "name": "Laveissenet",
     "code": "15100",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15300"
   },
@@ -747,7 +747,7 @@
     "name": "Laveissière",
     "code": "15101",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15300"
   },
@@ -755,7 +755,7 @@
     "name": "Lavigerie",
     "code": "15102",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15300"
   },
@@ -763,7 +763,7 @@
     "name": "Leucamp",
     "code": "15103",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15120"
   },
@@ -771,7 +771,7 @@
     "name": "Leynhac",
     "code": "15104",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15600"
   },
@@ -779,7 +779,7 @@
     "name": "Leyvaux",
     "code": "15105",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "43450"
   },
@@ -787,7 +787,7 @@
     "name": "Lieutadès",
     "code": "15106",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15110"
   },
@@ -795,7 +795,7 @@
     "name": "Lorcières",
     "code": "15107",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15320"
   },
@@ -803,7 +803,7 @@
     "name": "Val d’Arcomie",
     "code": "15108",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15320"
   },
@@ -811,7 +811,7 @@
     "name": "Lugarde",
     "code": "15110",
     "epci_code": "241500255",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15190"
   },
@@ -819,7 +819,7 @@
     "name": "Madic",
     "code": "15111",
     "epci_code": "241501055",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15210"
   },
@@ -827,7 +827,7 @@
     "name": "Malbo",
     "code": "15112",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15230"
   },
@@ -835,7 +835,7 @@
     "name": "Mandailles-Saint-Julien",
     "code": "15113",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15590"
   },
@@ -843,7 +843,7 @@
     "name": "Marcenat",
     "code": "15114",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15190"
   },
@@ -851,7 +851,7 @@
     "name": "Marchastel",
     "code": "15116",
     "epci_code": "241500255",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15400"
   },
@@ -859,7 +859,7 @@
     "name": "Marcolès",
     "code": "15117",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15220"
   },
@@ -867,7 +867,7 @@
     "name": "Marmanhac",
     "code": "15118",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15250"
   },
@@ -875,7 +875,7 @@
     "name": "Massiac",
     "code": "15119",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15500"
   },
@@ -883,7 +883,7 @@
     "name": "Mauriac",
     "code": "15120",
     "epci_code": "241500271",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15200"
   },
@@ -891,7 +891,7 @@
     "name": "Maurines",
     "code": "15121",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15110"
   },
@@ -899,7 +899,7 @@
     "name": "Maurs",
     "code": "15122",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15600"
   },
@@ -907,7 +907,7 @@
     "name": "Méallet",
     "code": "15123",
     "epci_code": "241500271",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15200"
   },
@@ -915,7 +915,7 @@
     "name": "Menet",
     "code": "15124",
     "epci_code": "241500255",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15400"
   },
@@ -923,7 +923,7 @@
     "name": "Mentières",
     "code": "15125",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15100"
   },
@@ -931,7 +931,7 @@
     "name": "Molèdes",
     "code": "15126",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15500"
   },
@@ -939,7 +939,7 @@
     "name": "Molompize",
     "code": "15127",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15500"
   },
@@ -947,7 +947,7 @@
     "name": "La Monselie",
     "code": "15128",
     "epci_code": "241501055",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15240"
   },
@@ -955,7 +955,7 @@
     "name": "Montboudif",
     "code": "15129",
     "epci_code": "241500255",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15190"
   },
@@ -963,7 +963,7 @@
     "name": "Montchamp",
     "code": "15130",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15100"
   },
@@ -971,7 +971,7 @@
     "name": "Le Monteil",
     "code": "15131",
     "epci_code": "241501055",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15240"
   },
@@ -979,7 +979,7 @@
     "name": "Montgreleix",
     "code": "15132",
     "epci_code": "246300966",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15190"
   },
@@ -987,7 +987,7 @@
     "name": "Montmurat",
     "code": "15133",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15600"
   },
@@ -995,7 +995,7 @@
     "name": "Montsalvy",
     "code": "15134",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15120"
   },
@@ -1003,7 +1003,7 @@
     "name": "Montvert",
     "code": "15135",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15150"
   },
@@ -1011,7 +1011,7 @@
     "name": "Moussages",
     "code": "15137",
     "epci_code": "241500271",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15380"
   },
@@ -1019,7 +1019,7 @@
     "name": "Murat",
     "code": "15138",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15300"
   },
@@ -1027,7 +1027,7 @@
     "name": "Narnhac",
     "code": "15139",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15230"
   },
@@ -1035,7 +1035,7 @@
     "name": "Naucelles",
     "code": "15140",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15250"
   },
@@ -1043,7 +1043,7 @@
     "name": "Neussargues-Moissac",
     "code": "15141",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15170"
   },
@@ -1051,7 +1051,7 @@
     "name": "Neuvéglise-sur-Truyère",
     "code": "15142",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15100"
   },
@@ -1059,7 +1059,7 @@
     "name": "Neuvéglise-sur-Truyère",
     "code": "15142",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15260"
   },
@@ -1067,7 +1067,7 @@
     "name": "Nieudan",
     "code": "15143",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15150"
   },
@@ -1075,7 +1075,7 @@
     "name": "Omps",
     "code": "15144",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15290"
   },
@@ -1083,7 +1083,7 @@
     "name": "Pailherols",
     "code": "15146",
     "epci_code": "241501089",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15800"
   },
@@ -1091,7 +1091,7 @@
     "name": "Parlan",
     "code": "15147",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15290"
   },
@@ -1099,7 +1099,7 @@
     "name": "Paulhac",
     "code": "15148",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15430"
   },
@@ -1107,7 +1107,7 @@
     "name": "Paulhenc",
     "code": "15149",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15230"
   },
@@ -1115,7 +1115,7 @@
     "name": "Peyrusse",
     "code": "15151",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15170"
   },
@@ -1123,7 +1123,7 @@
     "name": "Pierrefort",
     "code": "15152",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15230"
   },
@@ -1131,7 +1131,7 @@
     "name": "Pleaux",
     "code": "15153",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15700"
   },
@@ -1139,7 +1139,7 @@
     "name": "Polminhac",
     "code": "15154",
     "epci_code": "241501089",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15800"
   },
@@ -1147,7 +1147,7 @@
     "name": "Pradiers",
     "code": "15155",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15160"
   },
@@ -1155,7 +1155,7 @@
     "name": "Prunet",
     "code": "15156",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15130"
   },
@@ -1163,7 +1163,7 @@
     "name": "Quézac",
     "code": "15157",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15600"
   },
@@ -1171,7 +1171,7 @@
     "name": "Rageade",
     "code": "15158",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15500"
   },
@@ -1179,7 +1179,7 @@
     "name": "Raulhac",
     "code": "15159",
     "epci_code": "241501089",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15800"
   },
@@ -1187,7 +1187,7 @@
     "name": "Reilhac",
     "code": "15160",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15250"
   },
@@ -1195,7 +1195,7 @@
     "name": "Rézentières",
     "code": "15161",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15170"
   },
@@ -1203,7 +1203,7 @@
     "name": "Riom-ès-Montagnes",
     "code": "15162",
     "epci_code": "241500255",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15400"
   },
@@ -1211,7 +1211,7 @@
     "name": "Roannes-Saint-Mary",
     "code": "15163",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15220"
   },
@@ -1219,7 +1219,7 @@
     "name": "Roffiac",
     "code": "15164",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15100"
   },
@@ -1227,7 +1227,7 @@
     "name": "Rouffiac",
     "code": "15165",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15150"
   },
@@ -1235,7 +1235,7 @@
     "name": "Roumégoux",
     "code": "15166",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15290"
   },
@@ -1243,7 +1243,7 @@
     "name": "Rouziers",
     "code": "15167",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15600"
   },
@@ -1251,7 +1251,7 @@
     "name": "Ruynes-en-Margeride",
     "code": "15168",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15320"
   },
@@ -1259,7 +1259,7 @@
     "name": "Saignes",
     "code": "15169",
     "epci_code": "241501055",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15240"
   },
@@ -1267,7 +1267,7 @@
     "name": "Saint-Amandin",
     "code": "15170",
     "epci_code": "241500255",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15190"
   },
@@ -1275,7 +1275,7 @@
     "name": "Sainte-Anastasie",
     "code": "15171",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15170"
   },
@@ -1283,7 +1283,7 @@
     "name": "Saint-Antoine",
     "code": "15172",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15220"
   },
@@ -1291,7 +1291,7 @@
     "name": "Saint-Bonnet-de-Condat",
     "code": "15173",
     "epci_code": "241500255",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15190"
   },
@@ -1299,7 +1299,7 @@
     "name": "Saint-Bonnet-de-Salers",
     "code": "15174",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15140"
   },
@@ -1307,7 +1307,7 @@
     "name": "Saint-Cernin",
     "code": "15175",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15310"
   },
@@ -1315,7 +1315,7 @@
     "name": "Saint-Chamant",
     "code": "15176",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15140"
   },
@@ -1323,7 +1323,7 @@
     "name": "Saint-Cirgues-de-Jordanne",
     "code": "15178",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15590"
   },
@@ -1331,7 +1331,7 @@
     "name": "Saint-Cirgues-de-Malbert",
     "code": "15179",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15140"
   },
@@ -1339,7 +1339,7 @@
     "name": "Saint-Clément",
     "code": "15180",
     "epci_code": "241501089",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15800"
   },
@@ -1347,7 +1347,7 @@
     "name": "Saint-Constant-Fournoulès",
     "code": "15181",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15600"
   },
@@ -1355,7 +1355,7 @@
     "name": "Saint-Étienne-Cantalès",
     "code": "15182",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15150"
   },
@@ -1363,7 +1363,7 @@
     "name": "Saint-Étienne-de-Carlat",
     "code": "15183",
     "epci_code": "241501089",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15130"
   },
@@ -1371,7 +1371,7 @@
     "name": "Saint-Étienne-de-Maurs",
     "code": "15184",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15600"
   },
@@ -1379,7 +1379,7 @@
     "name": "Saint-Étienne-de-Chomeil",
     "code": "15185",
     "epci_code": "241500255",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15400"
   },
@@ -1387,7 +1387,7 @@
     "name": "Sainte-Eulalie",
     "code": "15186",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15140"
   },
@@ -1395,7 +1395,7 @@
     "name": "Saint-Flour",
     "code": "15187",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15100"
   },
@@ -1403,7 +1403,7 @@
     "name": "Saint-Georges",
     "code": "15188",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15100"
   },
@@ -1411,7 +1411,7 @@
     "name": "Saint-Gérons",
     "code": "15189",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15150"
   },
@@ -1419,7 +1419,7 @@
     "name": "Saint-Hippolyte",
     "code": "15190",
     "epci_code": "241500255",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15400"
   },
@@ -1427,7 +1427,7 @@
     "name": "Saint-Illide",
     "code": "15191",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15310"
   },
@@ -1435,7 +1435,7 @@
     "name": "Saint-Jacques-des-Blats",
     "code": "15192",
     "epci_code": "241501089",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15800"
   },
@@ -1443,7 +1443,7 @@
     "name": "Saint-Julien-de-Toursac",
     "code": "15194",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15600"
   },
@@ -1451,7 +1451,7 @@
     "name": "Saint-Mamet-la-Salvetat",
     "code": "15196",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15220"
   },
@@ -1459,7 +1459,7 @@
     "name": "Sainte-Marie",
     "code": "15198",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15230"
   },
@@ -1467,7 +1467,7 @@
     "name": "Saint-Martial",
     "code": "15199",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15110"
   },
@@ -1475,7 +1475,7 @@
     "name": "Saint-Martin-Cantalès",
     "code": "15200",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15140"
   },
@@ -1483,7 +1483,7 @@
     "name": "Saint-Martin-sous-Vigouroux",
     "code": "15201",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15230"
   },
@@ -1491,7 +1491,7 @@
     "name": "Saint-Martin-Valmeroux",
     "code": "15202",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15140"
   },
@@ -1499,7 +1499,7 @@
     "name": "Saint-Mary-le-Plain",
     "code": "15203",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15500"
   },
@@ -1507,7 +1507,7 @@
     "name": "Saint-Paul-des-Landes",
     "code": "15204",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15250"
   },
@@ -1515,7 +1515,7 @@
     "name": "Saint-Paul-de-Salers",
     "code": "15205",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15140"
   },
@@ -1523,7 +1523,7 @@
     "name": "Saint-Pierre",
     "code": "15206",
     "epci_code": "241501055",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15350"
   },
@@ -1531,7 +1531,7 @@
     "name": "Saint-Poncy",
     "code": "15207",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15500"
   },
@@ -1539,7 +1539,7 @@
     "name": "Saint-Projet-de-Salers",
     "code": "15208",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15140"
   },
@@ -1547,7 +1547,7 @@
     "name": "Saint-Rémy-de-Chaudes-Aigues",
     "code": "15209",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15110"
   },
@@ -1555,7 +1555,7 @@
     "name": "Saint-Santin-Cantalès",
     "code": "15211",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15150"
   },
@@ -1563,7 +1563,7 @@
     "name": "Saint-Santin-de-Maurs",
     "code": "15212",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15600"
   },
@@ -1571,7 +1571,7 @@
     "name": "Saint-Saturnin",
     "code": "15213",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15190"
   },
@@ -1579,7 +1579,7 @@
     "name": "Saint-Saury",
     "code": "15214",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15290"
   },
@@ -1587,7 +1587,7 @@
     "name": "Saint-Simon",
     "code": "15215",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15130"
   },
@@ -1595,7 +1595,7 @@
     "name": "Saint-Urcize",
     "code": "15216",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15110"
   },
@@ -1603,7 +1603,7 @@
     "name": "Saint-Victor",
     "code": "15217",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15150"
   },
@@ -1611,7 +1611,7 @@
     "name": "Saint-Vincent-de-Salers",
     "code": "15218",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15380"
   },
@@ -1619,7 +1619,7 @@
     "name": "Salers",
     "code": "15219",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15140"
   },
@@ -1627,7 +1627,7 @@
     "name": "Salins",
     "code": "15220",
     "epci_code": "241500271",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15200"
   },
@@ -1635,7 +1635,7 @@
     "name": "Sansac-de-Marmiesse",
     "code": "15221",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15130"
   },
@@ -1643,7 +1643,7 @@
     "name": "Sansac-Veinazès",
     "code": "15222",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15120"
   },
@@ -1651,7 +1651,7 @@
     "name": "Sauvat",
     "code": "15223",
     "epci_code": "241501055",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15240"
   },
@@ -1659,7 +1659,7 @@
     "name": "La Ségalassière",
     "code": "15224",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15290"
   },
@@ -1667,7 +1667,7 @@
     "name": "Ségur-les-Villas",
     "code": "15225",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15300"
   },
@@ -1675,7 +1675,7 @@
     "name": "Sénezergues",
     "code": "15226",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15340"
   },
@@ -1683,7 +1683,7 @@
     "name": "Siran",
     "code": "15228",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15150"
   },
@@ -1691,7 +1691,7 @@
     "name": "Soulages",
     "code": "15229",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15100"
   },
@@ -1699,7 +1699,7 @@
     "name": "Sourniac",
     "code": "15230",
     "epci_code": "241500271",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15200"
   },
@@ -1707,7 +1707,7 @@
     "name": "Talizat",
     "code": "15231",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15170"
   },
@@ -1715,7 +1715,7 @@
     "name": "Tanavelle",
     "code": "15232",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15100"
   },
@@ -1723,7 +1723,7 @@
     "name": "Teissières-de-Cornet",
     "code": "15233",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15250"
   },
@@ -1731,7 +1731,7 @@
     "name": "Teissières-lès-Bouliès",
     "code": "15234",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15130"
   },
@@ -1739,7 +1739,7 @@
     "name": "Les Ternes",
     "code": "15235",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15100"
   },
@@ -1747,7 +1747,7 @@
     "name": "Thiézac",
     "code": "15236",
     "epci_code": "241501089",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15800"
   },
@@ -1755,7 +1755,7 @@
     "name": "Tiviers",
     "code": "15237",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15100"
   },
@@ -1763,7 +1763,7 @@
     "name": "Tournemire",
     "code": "15238",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15310"
   },
@@ -1771,7 +1771,7 @@
     "name": "Trémouille",
     "code": "15240",
     "epci_code": "241501055",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15270"
   },
@@ -1779,7 +1779,7 @@
     "name": "La Trinitat",
     "code": "15241",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15110"
   },
@@ -1787,7 +1787,7 @@
     "name": "Le Trioulou",
     "code": "15242",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15600"
   },
@@ -1795,7 +1795,7 @@
     "name": "Trizac",
     "code": "15243",
     "epci_code": "241500255",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15400"
   },
@@ -1803,7 +1803,7 @@
     "name": "Ussel",
     "code": "15244",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15300"
   },
@@ -1811,7 +1811,7 @@
     "name": "Vabres",
     "code": "15245",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15100"
   },
@@ -1819,7 +1819,7 @@
     "name": "Valette",
     "code": "15246",
     "epci_code": "241500255",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15400"
   },
@@ -1827,7 +1827,7 @@
     "name": "Valjouze",
     "code": "15247",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15170"
   },
@@ -1835,7 +1835,7 @@
     "name": "Valuéjols",
     "code": "15248",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15300"
   },
@@ -1843,7 +1843,7 @@
     "name": "Le Vaulmier",
     "code": "15249",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15380"
   },
@@ -1851,7 +1851,7 @@
     "name": "Vebret",
     "code": "15250",
     "epci_code": "241501055",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15240"
   },
@@ -1859,7 +1859,7 @@
     "name": "Védrines-Saint-Loup",
     "code": "15251",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15100"
   },
@@ -1867,7 +1867,7 @@
     "name": "Velzic",
     "code": "15252",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15590"
   },
@@ -1875,7 +1875,7 @@
     "name": "Vernols",
     "code": "15253",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15160"
   },
@@ -1883,7 +1883,7 @@
     "name": "Veyrières",
     "code": "15254",
     "epci_code": "241501055",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15350"
   },
@@ -1891,7 +1891,7 @@
     "name": "Vézac",
     "code": "15255",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15130"
   },
@@ -1899,7 +1899,7 @@
     "name": "Vèze",
     "code": "15256",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15160"
   },
@@ -1907,7 +1907,7 @@
     "name": "Vezels-Roussy",
     "code": "15257",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15130"
   },
@@ -1915,7 +1915,7 @@
     "name": "Vic-sur-Cère",
     "code": "15258",
     "epci_code": "241501089",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15800"
   },
@@ -1923,7 +1923,7 @@
     "name": "Vieillespesse",
     "code": "15259",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15500"
   },
@@ -1931,7 +1931,7 @@
     "name": "Vieillevie",
     "code": "15260",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15120"
   },
@@ -1939,7 +1939,7 @@
     "name": "Le Vigean",
     "code": "15261",
     "epci_code": "241500271",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15200"
   },
@@ -1947,7 +1947,7 @@
     "name": "Villedieu",
     "code": "15262",
     "epci_code": "200066660",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15100"
   },
@@ -1955,7 +1955,7 @@
     "name": "Virargues",
     "code": "15263",
     "epci_code": "200066637",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15300"
   },
@@ -1963,7 +1963,7 @@
     "name": "Vitrac",
     "code": "15264",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15220"
   },
@@ -1971,7 +1971,7 @@
     "name": "Ydes",
     "code": "15265",
     "epci_code": "241501055",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15210"
   },
@@ -1979,7 +1979,7 @@
     "name": "Yolet",
     "code": "15266",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15130"
   },
@@ -1987,7 +1987,7 @@
     "name": "Ytrac",
     "code": "15267",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15000"
   },
@@ -1995,7 +1995,7 @@
     "name": "Ytrac",
     "code": "15267",
     "epci_code": "241500230",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15130"
   },
@@ -2003,7 +2003,7 @@
     "name": "Le Rouget-Pers",
     "code": "15268",
     "epci_code": "200066678",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15290"
   },
@@ -2011,7 +2011,7 @@
     "name": "Besse",
     "code": "15269",
     "epci_code": "241501139",
-    "departement_code": "15",
+    "department_code": "15",
     "region_code": "84",
     "postal_code": "15140"
   }

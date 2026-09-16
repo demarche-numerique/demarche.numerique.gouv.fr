@@ -3,7 +3,7 @@
     "name": "Ahun",
     "code": "23001",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23150"
   },
@@ -11,7 +11,7 @@
     "name": "Ajain",
     "code": "23002",
     "epci_code": "200034825",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23380"
   },
@@ -19,7 +19,7 @@
     "name": "Alleyrat",
     "code": "23003",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23200"
   },
@@ -27,7 +27,7 @@
     "name": "Anzême",
     "code": "23004",
     "epci_code": "200034825",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23000"
   },
@@ -35,7 +35,7 @@
     "name": "Arfeuille-Châtain",
     "code": "23005",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23700"
   },
@@ -43,7 +43,7 @@
     "name": "Arrènes",
     "code": "23006",
     "epci_code": "242320000",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23210"
   },
@@ -51,7 +51,7 @@
     "name": "Ars",
     "code": "23007",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23480"
   },
@@ -59,7 +59,7 @@
     "name": "Aubusson",
     "code": "23008",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23200"
   },
@@ -67,7 +67,7 @@
     "name": "Auge",
     "code": "23009",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23170"
   },
@@ -75,7 +75,7 @@
     "name": "Augères",
     "code": "23010",
     "epci_code": "242320000",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23210"
   },
@@ -83,7 +83,7 @@
     "name": "Aulon",
     "code": "23011",
     "epci_code": "242320000",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23210"
   },
@@ -91,7 +91,7 @@
     "name": "Auriat",
     "code": "23012",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23400"
   },
@@ -99,7 +99,7 @@
     "name": "Auzances",
     "code": "23013",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23700"
   },
@@ -107,7 +107,7 @@
     "name": "Azat-Châtenet",
     "code": "23014",
     "epci_code": "242320000",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23210"
   },
@@ -115,7 +115,7 @@
     "name": "Azerables",
     "code": "23015",
     "epci_code": "242300135",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23160"
   },
@@ -123,7 +123,7 @@
     "name": "Banize",
     "code": "23016",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23120"
   },
@@ -131,7 +131,7 @@
     "name": "Basville",
     "code": "23017",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23260"
   },
@@ -139,7 +139,7 @@
     "name": "Bazelat",
     "code": "23018",
     "epci_code": "242300135",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23160"
   },
@@ -147,7 +147,7 @@
     "name": "Beissat",
     "code": "23019",
     "epci_code": "200066744",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23260"
   },
@@ -155,7 +155,7 @@
     "name": "Bellegarde-en-Marche",
     "code": "23020",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23190"
   },
@@ -163,7 +163,7 @@
     "name": "Bénévent-l’Abbaye",
     "code": "23021",
     "epci_code": "242320000",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23210"
   },
@@ -171,7 +171,7 @@
     "name": "Bétête",
     "code": "23022",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23270"
   },
@@ -179,7 +179,7 @@
     "name": "Blessac",
     "code": "23024",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23200"
   },
@@ -187,7 +187,7 @@
     "name": "Bonnat",
     "code": "23025",
     "epci_code": "200041556",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23220"
   },
@@ -195,7 +195,7 @@
     "name": "Bord-Saint-Georges",
     "code": "23026",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23230"
   },
@@ -203,7 +203,7 @@
     "name": "Bosmoreau-les-Mines",
     "code": "23027",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23400"
   },
@@ -211,7 +211,7 @@
     "name": "Bosroger",
     "code": "23028",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23200"
   },
@@ -219,7 +219,7 @@
     "name": "Le Bourg-d’Hem",
     "code": "23029",
     "epci_code": "242320109",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23220"
   },
@@ -227,7 +227,7 @@
     "name": "Bourganeuf",
     "code": "23030",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23400"
   },
@@ -235,7 +235,7 @@
     "name": "Boussac",
     "code": "23031",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23600"
   },
@@ -243,7 +243,7 @@
     "name": "Boussac-Bourg",
     "code": "23032",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23600"
   },
@@ -251,7 +251,7 @@
     "name": "La Brionne",
     "code": "23033",
     "epci_code": "200034825",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23000"
   },
@@ -259,7 +259,7 @@
     "name": "Brousse",
     "code": "23034",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23700"
   },
@@ -267,7 +267,7 @@
     "name": "Budelière",
     "code": "23035",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23170"
   },
@@ -275,7 +275,7 @@
     "name": "Bussière-Dunoise",
     "code": "23036",
     "epci_code": "200034825",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23320"
   },
@@ -283,7 +283,7 @@
     "name": "Bussière-Nouvelle",
     "code": "23037",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23700"
   },
@@ -291,7 +291,7 @@
     "name": "Bussière-Saint-Georges",
     "code": "23038",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23600"
   },
@@ -299,7 +299,7 @@
     "name": "La Celle-Dunoise",
     "code": "23039",
     "epci_code": "242320109",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23800"
   },
@@ -307,7 +307,7 @@
     "name": "La Celle-sous-Gouzon",
     "code": "23040",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23230"
   },
@@ -315,7 +315,7 @@
     "name": "La Cellette",
     "code": "23041",
     "epci_code": "200041556",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23350"
   },
@@ -323,7 +323,7 @@
     "name": "Ceyroux",
     "code": "23042",
     "epci_code": "242320000",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23210"
   },
@@ -331,7 +331,7 @@
     "name": "Chamberaud",
     "code": "23043",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23480"
   },
@@ -339,7 +339,7 @@
     "name": "Chambon-Sainte-Croix",
     "code": "23044",
     "epci_code": "242320109",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23220"
   },
@@ -347,7 +347,7 @@
     "name": "Chambon-sur-Voueize",
     "code": "23045",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23170"
   },
@@ -355,7 +355,7 @@
     "name": "Chambonchard",
     "code": "23046",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23110"
   },
@@ -363,7 +363,7 @@
     "name": "Chamborand",
     "code": "23047",
     "epci_code": "242320000",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23240"
   },
@@ -371,7 +371,7 @@
     "name": "Champagnat",
     "code": "23048",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23190"
   },
@@ -379,7 +379,7 @@
     "name": "Champsanglard",
     "code": "23049",
     "epci_code": "200041556",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23220"
   },
@@ -387,7 +387,7 @@
     "name": "La Chapelle-Baloue",
     "code": "23050",
     "epci_code": "242320109",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23160"
   },
@@ -395,7 +395,7 @@
     "name": "La Chapelle-Saint-Martial",
     "code": "23051",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23250"
   },
@@ -403,7 +403,7 @@
     "name": "La Chapelle-Taillefert",
     "code": "23052",
     "epci_code": "200034825",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23000"
   },
@@ -411,7 +411,7 @@
     "name": "Chard",
     "code": "23053",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23700"
   },
@@ -419,7 +419,7 @@
     "name": "Charron",
     "code": "23054",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23700"
   },
@@ -427,7 +427,7 @@
     "name": "Châtelard",
     "code": "23055",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23700"
   },
@@ -435,7 +435,7 @@
     "name": "Châtelus-le-Marcheix",
     "code": "23056",
     "epci_code": "242320000",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23430"
   },
@@ -443,7 +443,7 @@
     "name": "Châtelus-Malvaleix",
     "code": "23057",
     "epci_code": "200041556",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23270"
   },
@@ -451,7 +451,7 @@
     "name": "Le Chauchet",
     "code": "23058",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23130"
   },
@@ -459,7 +459,7 @@
     "name": "La Chaussade",
     "code": "23059",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23200"
   },
@@ -467,7 +467,7 @@
     "name": "Chavanat",
     "code": "23060",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23250"
   },
@@ -475,7 +475,7 @@
     "name": "Chénérailles",
     "code": "23061",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23130"
   },
@@ -483,7 +483,7 @@
     "name": "Chéniers",
     "code": "23062",
     "epci_code": "242320109",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23220"
   },
@@ -491,7 +491,7 @@
     "name": "Clairavaux",
     "code": "23063",
     "epci_code": "200066744",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23500"
   },
@@ -499,7 +499,7 @@
     "name": "Clugnat",
     "code": "23064",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23270"
   },
@@ -507,7 +507,7 @@
     "name": "Colondannes",
     "code": "23065",
     "epci_code": "242320109",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23800"
   },
@@ -515,7 +515,7 @@
     "name": "Le Compas",
     "code": "23066",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23700"
   },
@@ -523,7 +523,7 @@
     "name": "La Courtine",
     "code": "23067",
     "epci_code": "200066744",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23100"
   },
@@ -531,7 +531,7 @@
     "name": "Cressat",
     "code": "23068",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23140"
   },
@@ -539,7 +539,7 @@
     "name": "Crocq",
     "code": "23069",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23260"
   },
@@ -547,7 +547,7 @@
     "name": "Crozant",
     "code": "23070",
     "epci_code": "242320109",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23160"
   },
@@ -555,7 +555,7 @@
     "name": "Croze",
     "code": "23071",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23500"
   },
@@ -563,7 +563,7 @@
     "name": "Domeyrot",
     "code": "23072",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23140"
   },
@@ -571,7 +571,7 @@
     "name": "Dontreix",
     "code": "23073",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23700"
   },
@@ -579,7 +579,7 @@
     "name": "Le Donzeil",
     "code": "23074",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23480"
   },
@@ -587,7 +587,7 @@
     "name": "Dun-le-Palestel",
     "code": "23075",
     "epci_code": "242320109",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23800"
   },
@@ -595,7 +595,7 @@
     "name": "Évaux-les-Bains",
     "code": "23076",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23110"
   },
@@ -603,7 +603,7 @@
     "name": "Faux-la-Montagne",
     "code": "23077",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23340"
   },
@@ -611,7 +611,7 @@
     "name": "Faux-Mazuras",
     "code": "23078",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23400"
   },
@@ -619,7 +619,7 @@
     "name": "Felletin",
     "code": "23079",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23500"
   },
@@ -627,7 +627,7 @@
     "name": "Féniers",
     "code": "23080",
     "epci_code": "200066744",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23100"
   },
@@ -635,7 +635,7 @@
     "name": "Flayat",
     "code": "23081",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23260"
   },
@@ -643,7 +643,7 @@
     "name": "Fleurat",
     "code": "23082",
     "epci_code": "242320000",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23320"
   },
@@ -651,7 +651,7 @@
     "name": "Fontanières",
     "code": "23083",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23110"
   },
@@ -659,7 +659,7 @@
     "name": "La Forêt-du-Temple",
     "code": "23084",
     "epci_code": "200041556",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23360"
   },
@@ -667,7 +667,7 @@
     "name": "Fransèches",
     "code": "23086",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23480"
   },
@@ -675,7 +675,7 @@
     "name": "Fresselines",
     "code": "23087",
     "epci_code": "242320109",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23450"
   },
@@ -683,7 +683,7 @@
     "name": "Gartempe",
     "code": "23088",
     "epci_code": "200034825",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23320"
   },
@@ -691,7 +691,7 @@
     "name": "Genouillac",
     "code": "23089",
     "epci_code": "200041556",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23350"
   },
@@ -699,7 +699,7 @@
     "name": "Gentioux-Pigerolles",
     "code": "23090",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23340"
   },
@@ -707,7 +707,7 @@
     "name": "Gioux",
     "code": "23091",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23500"
   },
@@ -715,7 +715,7 @@
     "name": "Glénic",
     "code": "23092",
     "epci_code": "200034825",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23380"
   },
@@ -723,7 +723,7 @@
     "name": "Gouzon",
     "code": "23093",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23230"
   },
@@ -731,7 +731,7 @@
     "name": "Le Grand-Bourg",
     "code": "23095",
     "epci_code": "242320000",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23240"
   },
@@ -739,7 +739,7 @@
     "name": "Guéret",
     "code": "23096",
     "epci_code": "200034825",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23000"
   },
@@ -747,7 +747,7 @@
     "name": "Issoudun-Létrieix",
     "code": "23097",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23130"
   },
@@ -755,7 +755,7 @@
     "name": "Jalesches",
     "code": "23098",
     "epci_code": "200041556",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23270"
   },
@@ -763,7 +763,7 @@
     "name": "Janaillat",
     "code": "23099",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23250"
   },
@@ -771,7 +771,7 @@
     "name": "Jarnages",
     "code": "23100",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23140"
   },
@@ -779,7 +779,7 @@
     "name": "Jouillat",
     "code": "23101",
     "epci_code": "200034825",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23220"
   },
@@ -787,7 +787,7 @@
     "name": "Ladapeyre",
     "code": "23102",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23270"
   },
@@ -795,7 +795,7 @@
     "name": "Lafat",
     "code": "23103",
     "epci_code": "242320109",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23800"
   },
@@ -803,7 +803,7 @@
     "name": "Lavaufranche",
     "code": "23104",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23600"
   },
@@ -811,7 +811,7 @@
     "name": "Lavaveix-les-Mines",
     "code": "23105",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23150"
   },
@@ -819,7 +819,7 @@
     "name": "Lépaud",
     "code": "23106",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23170"
   },
@@ -827,7 +827,7 @@
     "name": "Lépinas",
     "code": "23107",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23150"
   },
@@ -835,7 +835,7 @@
     "name": "Leyrat",
     "code": "23108",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23600"
   },
@@ -843,7 +843,7 @@
     "name": "Linard-Malval",
     "code": "23109",
     "epci_code": "200041556",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23220"
   },
@@ -851,7 +851,7 @@
     "name": "Lioux-les-Monges",
     "code": "23110",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23700"
   },
@@ -859,7 +859,7 @@
     "name": "Lizières",
     "code": "23111",
     "epci_code": "242320000",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23240"
   },
@@ -867,7 +867,7 @@
     "name": "Lourdoueix-Saint-Pierre",
     "code": "23112",
     "epci_code": "200041556",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23360"
   },
@@ -875,7 +875,7 @@
     "name": "Lupersat",
     "code": "23113",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23190"
   },
@@ -883,7 +883,7 @@
     "name": "Lussat",
     "code": "23114",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23170"
   },
@@ -891,7 +891,7 @@
     "name": "Magnat-l’Étrange",
     "code": "23115",
     "epci_code": "200066744",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23260"
   },
@@ -899,7 +899,7 @@
     "name": "Mainsat",
     "code": "23116",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23700"
   },
@@ -907,7 +907,7 @@
     "name": "Maison-Feyne",
     "code": "23117",
     "epci_code": "242320109",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23800"
   },
@@ -915,7 +915,7 @@
     "name": "Maisonnisses",
     "code": "23118",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23150"
   },
@@ -923,7 +923,7 @@
     "name": "Malleret",
     "code": "23119",
     "epci_code": "200066744",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23260"
   },
@@ -931,7 +931,7 @@
     "name": "Malleret-Boussac",
     "code": "23120",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23600"
   },
@@ -939,7 +939,7 @@
     "name": "Mansat-la-Courrière",
     "code": "23122",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23400"
   },
@@ -947,7 +947,7 @@
     "name": "Les Mars",
     "code": "23123",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23700"
   },
@@ -955,7 +955,7 @@
     "name": "Marsac",
     "code": "23124",
     "epci_code": "242320000",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23210"
   },
@@ -963,7 +963,7 @@
     "name": "Le Mas-d’Artige",
     "code": "23125",
     "epci_code": "200066744",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23100"
   },
@@ -971,7 +971,7 @@
     "name": "Mautes",
     "code": "23127",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23190"
   },
@@ -979,7 +979,7 @@
     "name": "Mazeirat",
     "code": "23128",
     "epci_code": "200034825",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23150"
   },
@@ -987,7 +987,7 @@
     "name": "La Mazière-aux-Bons-Hommes",
     "code": "23129",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23260"
   },
@@ -995,7 +995,7 @@
     "name": "Méasnes",
     "code": "23130",
     "epci_code": "200041556",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23360"
   },
@@ -1003,7 +1003,7 @@
     "name": "Mérinchal",
     "code": "23131",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23420"
   },
@@ -1011,7 +1011,7 @@
     "name": "Montaigut-le-Blanc",
     "code": "23132",
     "epci_code": "200034825",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23320"
   },
@@ -1019,7 +1019,7 @@
     "name": "Montboucher",
     "code": "23133",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23400"
   },
@@ -1027,7 +1027,7 @@
     "name": "Le Monteil-au-Vicomte",
     "code": "23134",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23460"
   },
@@ -1035,7 +1035,7 @@
     "name": "Mortroux",
     "code": "23136",
     "epci_code": "200041556",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23220"
   },
@@ -1043,7 +1043,7 @@
     "name": "Mourioux-Vieilleville",
     "code": "23137",
     "epci_code": "242320000",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23210"
   },
@@ -1051,7 +1051,7 @@
     "name": "Moutier-d’Ahun",
     "code": "23138",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23150"
   },
@@ -1059,7 +1059,7 @@
     "name": "Moutier-Malcard",
     "code": "23139",
     "epci_code": "200041556",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23220"
   },
@@ -1067,7 +1067,7 @@
     "name": "Moutier-Rozeille",
     "code": "23140",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23200"
   },
@@ -1075,7 +1075,7 @@
     "name": "Naillat",
     "code": "23141",
     "epci_code": "242320109",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23800"
   },
@@ -1083,7 +1083,7 @@
     "name": "Néoux",
     "code": "23142",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23200"
   },
@@ -1091,7 +1091,7 @@
     "name": "Noth",
     "code": "23143",
     "epci_code": "242300135",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23300"
   },
@@ -1099,7 +1099,7 @@
     "name": "La Nouaille",
     "code": "23144",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23500"
   },
@@ -1107,7 +1107,7 @@
     "name": "Nouhant",
     "code": "23145",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23170"
   },
@@ -1115,7 +1115,7 @@
     "name": "Nouzerines",
     "code": "23146",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23600"
   },
@@ -1123,7 +1123,7 @@
     "name": "Nouzerolles",
     "code": "23147",
     "epci_code": "242320109",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23360"
   },
@@ -1131,7 +1131,7 @@
     "name": "Nouziers",
     "code": "23148",
     "epci_code": "200041556",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23350"
   },
@@ -1139,7 +1139,7 @@
     "name": "Parsac",
     "code": "23149",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23140"
   },
@@ -1147,7 +1147,7 @@
     "name": "Peyrabout",
     "code": "23150",
     "epci_code": "200034825",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23000"
   },
@@ -1155,7 +1155,7 @@
     "name": "Peyrat-la-Nonière",
     "code": "23151",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23130"
   },
@@ -1163,7 +1163,7 @@
     "name": "Pierrefitte",
     "code": "23152",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23130"
   },
@@ -1171,7 +1171,7 @@
     "name": "Pionnat",
     "code": "23154",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23140"
   },
@@ -1179,7 +1179,7 @@
     "name": "Pontarion",
     "code": "23155",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23250"
   },
@@ -1187,7 +1187,7 @@
     "name": "Pontcharraud",
     "code": "23156",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23260"
   },
@@ -1195,7 +1195,7 @@
     "name": "La Pouge",
     "code": "23157",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23250"
   },
@@ -1203,7 +1203,7 @@
     "name": "Poussanges",
     "code": "23158",
     "epci_code": "200066744",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23500"
   },
@@ -1211,7 +1211,7 @@
     "name": "Puy-Malsignat",
     "code": "23159",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23130"
   },
@@ -1219,7 +1219,7 @@
     "name": "Reterre",
     "code": "23160",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23110"
   },
@@ -1227,7 +1227,7 @@
     "name": "Roches",
     "code": "23162",
     "epci_code": "200041556",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23270"
   },
@@ -1235,7 +1235,7 @@
     "name": "Rougnat",
     "code": "23164",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23700"
   },
@@ -1243,7 +1243,7 @@
     "name": "Royère-de-Vassivière",
     "code": "23165",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23460"
   },
@@ -1251,7 +1251,7 @@
     "name": "Sagnat",
     "code": "23166",
     "epci_code": "242320109",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23800"
   },
@@ -1259,7 +1259,7 @@
     "name": "Sannat",
     "code": "23167",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23110"
   },
@@ -1267,7 +1267,7 @@
     "name": "Sardent",
     "code": "23168",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23250"
   },
@@ -1275,7 +1275,7 @@
     "name": "La Saunière",
     "code": "23169",
     "epci_code": "200034825",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23000"
   },
@@ -1283,7 +1283,7 @@
     "name": "Savennes",
     "code": "23170",
     "epci_code": "200034825",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23000"
   },
@@ -1291,7 +1291,7 @@
     "name": "Sermur",
     "code": "23171",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23700"
   },
@@ -1299,7 +1299,7 @@
     "name": "La Serre-Bussière-Vieille",
     "code": "23172",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23190"
   },
@@ -1307,7 +1307,7 @@
     "name": "Soubrebost",
     "code": "23173",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23250"
   },
@@ -1315,7 +1315,7 @@
     "name": "Soumans",
     "code": "23174",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23600"
   },
@@ -1323,7 +1323,7 @@
     "name": "Sous-Parsat",
     "code": "23175",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23150"
   },
@@ -1331,7 +1331,7 @@
     "name": "La Souterraine",
     "code": "23176",
     "epci_code": "242300135",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23300"
   },
@@ -1339,7 +1339,7 @@
     "name": "Saint-Agnant-de-Versillat",
     "code": "23177",
     "epci_code": "242300135",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23300"
   },
@@ -1347,7 +1347,7 @@
     "name": "Saint-Agnant-près-Crocq",
     "code": "23178",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23260"
   },
@@ -1355,7 +1355,7 @@
     "name": "Saint-Alpinien",
     "code": "23179",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23200"
   },
@@ -1363,7 +1363,7 @@
     "name": "Saint-Amand",
     "code": "23180",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23200"
   },
@@ -1371,7 +1371,7 @@
     "name": "Saint-Amand-Jartoudeix",
     "code": "23181",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23400"
   },
@@ -1379,7 +1379,7 @@
     "name": "Saint-Avit-de-Tardes",
     "code": "23182",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23200"
   },
@@ -1387,7 +1387,7 @@
     "name": "Saint-Avit-le-Pauvre",
     "code": "23183",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23480"
   },
@@ -1395,7 +1395,7 @@
     "name": "Saint-Bard",
     "code": "23184",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23260"
   },
@@ -1403,7 +1403,7 @@
     "name": "Saint-Chabrais",
     "code": "23185",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23130"
   },
@@ -1411,7 +1411,7 @@
     "name": "Saint-Christophe",
     "code": "23186",
     "epci_code": "200034825",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23000"
   },
@@ -1419,7 +1419,7 @@
     "name": "Saint-Dizier-la-Tour",
     "code": "23187",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23130"
   },
@@ -1427,7 +1427,7 @@
     "name": "Saint-Dizier-les-Domaines",
     "code": "23188",
     "epci_code": "200041556",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23270"
   },
@@ -1435,7 +1435,7 @@
     "name": "Saint-Dizier-Masbaraud",
     "code": "23189",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23400"
   },
@@ -1443,7 +1443,7 @@
     "name": "Saint-Domet",
     "code": "23190",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23190"
   },
@@ -1451,7 +1451,7 @@
     "name": "Saint-Éloi",
     "code": "23191",
     "epci_code": "200034825",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23000"
   },
@@ -1459,7 +1459,7 @@
     "name": "Fursac",
     "code": "23192",
     "epci_code": "242320000",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23290"
   },
@@ -1467,7 +1467,7 @@
     "name": "Sainte-Feyre",
     "code": "23193",
     "epci_code": "200034825",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23000"
   },
@@ -1475,7 +1475,7 @@
     "name": "Sainte-Feyre-la-Montagne",
     "code": "23194",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23500"
   },
@@ -1483,7 +1483,7 @@
     "name": "Saint-Fiel",
     "code": "23195",
     "epci_code": "200034825",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23000"
   },
@@ -1491,7 +1491,7 @@
     "name": "Saint-Frion",
     "code": "23196",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23500"
   },
@@ -1499,7 +1499,7 @@
     "name": "Saint-Georges-la-Pouge",
     "code": "23197",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23250"
   },
@@ -1507,7 +1507,7 @@
     "name": "Saint-Georges-Nigremont",
     "code": "23198",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23500"
   },
@@ -1515,7 +1515,7 @@
     "name": "Saint-Germain-Beaupré",
     "code": "23199",
     "epci_code": "242300135",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23160"
   },
@@ -1523,7 +1523,7 @@
     "name": "Saint-Goussaud",
     "code": "23200",
     "epci_code": "242320000",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23430"
   },
@@ -1531,7 +1531,7 @@
     "name": "Saint-Hilaire-la-Plaine",
     "code": "23201",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23150"
   },
@@ -1539,7 +1539,7 @@
     "name": "Saint-Hilaire-le-Château",
     "code": "23202",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23250"
   },
@@ -1547,7 +1547,7 @@
     "name": "Saint-Julien-la-Genête",
     "code": "23203",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23110"
   },
@@ -1555,7 +1555,7 @@
     "name": "Saint-Julien-le-Châtel",
     "code": "23204",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23130"
   },
@@ -1563,7 +1563,7 @@
     "name": "Saint-Junien-la-Bregère",
     "code": "23205",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23400"
   },
@@ -1571,7 +1571,7 @@
     "name": "Saint-Laurent",
     "code": "23206",
     "epci_code": "200034825",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23000"
   },
@@ -1579,7 +1579,7 @@
     "name": "Saint-Léger-Bridereix",
     "code": "23207",
     "epci_code": "242300135",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23300"
   },
@@ -1587,7 +1587,7 @@
     "name": "Saint-Léger-le-Guérétois",
     "code": "23208",
     "epci_code": "200034825",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23000"
   },
@@ -1595,7 +1595,7 @@
     "name": "Saint-Loup",
     "code": "23209",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23130"
   },
@@ -1603,7 +1603,7 @@
     "name": "Saint-Maixant",
     "code": "23210",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23200"
   },
@@ -1611,7 +1611,7 @@
     "name": "Saint-Marc-à-Frongier",
     "code": "23211",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23200"
   },
@@ -1619,7 +1619,7 @@
     "name": "Saint-Marc-à-Loubaud",
     "code": "23212",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23460"
   },
@@ -1627,7 +1627,7 @@
     "name": "Saint-Marien",
     "code": "23213",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23600"
   },
@@ -1635,7 +1635,7 @@
     "name": "Saint-Martial-le-Mont",
     "code": "23214",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23150"
   },
@@ -1643,7 +1643,7 @@
     "name": "Saint-Martial-le-Vieux",
     "code": "23215",
     "epci_code": "200066744",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23100"
   },
@@ -1651,7 +1651,7 @@
     "name": "Saint-Martin-Château",
     "code": "23216",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23460"
   },
@@ -1659,7 +1659,7 @@
     "name": "Saint-Martin-Sainte-Catherine",
     "code": "23217",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23430"
   },
@@ -1667,7 +1667,7 @@
     "name": "Saint-Maurice-près-Crocq",
     "code": "23218",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23260"
   },
@@ -1675,7 +1675,7 @@
     "name": "Saint-Maurice-la-Souterraine",
     "code": "23219",
     "epci_code": "242300135",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23300"
   },
@@ -1683,7 +1683,7 @@
     "name": "Saint-Médard-la-Rochette",
     "code": "23220",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23200"
   },
@@ -1691,7 +1691,7 @@
     "name": "Saint-Merd-la-Breuille",
     "code": "23221",
     "epci_code": "200066744",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23100"
   },
@@ -1699,7 +1699,7 @@
     "name": "Saint-Michel-de-Veisse",
     "code": "23222",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23480"
   },
@@ -1707,7 +1707,7 @@
     "name": "Saint-Moreil",
     "code": "23223",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23400"
   },
@@ -1715,7 +1715,7 @@
     "name": "Saint-Oradoux-de-Chirouze",
     "code": "23224",
     "epci_code": "200066744",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23100"
   },
@@ -1723,7 +1723,7 @@
     "name": "Saint-Oradoux-près-Crocq",
     "code": "23225",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23260"
   },
@@ -1731,7 +1731,7 @@
     "name": "Saint-Pardoux-d’Arnet",
     "code": "23226",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23260"
   },
@@ -1739,7 +1739,7 @@
     "name": "Saint-Pardoux-Morterolles",
     "code": "23227",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23400"
   },
@@ -1747,7 +1747,7 @@
     "name": "Saint-Pardoux-le-Neuf",
     "code": "23228",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23200"
   },
@@ -1755,7 +1755,7 @@
     "name": "Saint-Pardoux-les-Cards",
     "code": "23229",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23150"
   },
@@ -1763,7 +1763,7 @@
     "name": "Saint-Pierre-Chérignat",
     "code": "23230",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23430"
   },
@@ -1771,7 +1771,7 @@
     "name": "Saint-Pierre-Bellevue",
     "code": "23232",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23460"
   },
@@ -1779,7 +1779,7 @@
     "name": "Saint-Pierre-le-Bost",
     "code": "23233",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23600"
   },
@@ -1787,7 +1787,7 @@
     "name": "Saint-Priest",
     "code": "23234",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23110"
   },
@@ -1795,7 +1795,7 @@
     "name": "Saint-Priest-la-Feuille",
     "code": "23235",
     "epci_code": "242300135",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23300"
   },
@@ -1803,7 +1803,7 @@
     "name": "Saint-Priest-la-Plaine",
     "code": "23236",
     "epci_code": "242320000",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23240"
   },
@@ -1811,7 +1811,7 @@
     "name": "Saint-Priest-Palus",
     "code": "23237",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23400"
   },
@@ -1819,7 +1819,7 @@
     "name": "Saint-Quentin-la-Chabanne",
     "code": "23238",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23500"
   },
@@ -1827,7 +1827,7 @@
     "name": "Saint-Sébastien",
     "code": "23239",
     "epci_code": "242320109",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23160"
   },
@@ -1835,7 +1835,7 @@
     "name": "Saint-Silvain-Bas-le-Roc",
     "code": "23240",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23600"
   },
@@ -1843,7 +1843,7 @@
     "name": "Saint-Silvain-Bellegarde",
     "code": "23241",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23190"
   },
@@ -1851,7 +1851,7 @@
     "name": "Saint-Silvain-Montaigut",
     "code": "23242",
     "epci_code": "200034825",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23320"
   },
@@ -1859,7 +1859,7 @@
     "name": "Saint-Silvain-sous-Toulx",
     "code": "23243",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23140"
   },
@@ -1867,7 +1867,7 @@
     "name": "Saint-Sulpice-le-Dunois",
     "code": "23244",
     "epci_code": "242320109",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23800"
   },
@@ -1875,7 +1875,7 @@
     "name": "Saint-Sulpice-le-Guérétois",
     "code": "23245",
     "epci_code": "200034825",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23000"
   },
@@ -1883,7 +1883,7 @@
     "name": "Saint-Sulpice-les-Champs",
     "code": "23246",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23480"
   },
@@ -1891,7 +1891,7 @@
     "name": "Saint-Vaury",
     "code": "23247",
     "epci_code": "200034825",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23320"
   },
@@ -1899,7 +1899,7 @@
     "name": "Saint-Victor-en-Marche",
     "code": "23248",
     "epci_code": "200034825",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23000"
   },
@@ -1907,7 +1907,7 @@
     "name": "Saint-Yrieix-la-Montagne",
     "code": "23249",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23460"
   },
@@ -1915,7 +1915,7 @@
     "name": "Saint-Yrieix-les-Bois",
     "code": "23250",
     "epci_code": "200034825",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23150"
   },
@@ -1923,7 +1923,7 @@
     "name": "Tardes",
     "code": "23251",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23170"
   },
@@ -1931,7 +1931,7 @@
     "name": "Tercillat",
     "code": "23252",
     "epci_code": "200041556",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23350"
   },
@@ -1939,7 +1939,7 @@
     "name": "Thauron",
     "code": "23253",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23250"
   },
@@ -1947,7 +1947,7 @@
     "name": "Toulx-Sainte-Croix",
     "code": "23254",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23600"
   },
@@ -1955,7 +1955,7 @@
     "name": "Trois-Fonds",
     "code": "23255",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23230"
   },
@@ -1963,7 +1963,7 @@
     "name": "Vallière",
     "code": "23257",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23120"
   },
@@ -1971,7 +1971,7 @@
     "name": "Vareilles",
     "code": "23258",
     "epci_code": "242300135",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23300"
   },
@@ -1979,7 +1979,7 @@
     "name": "Verneiges",
     "code": "23259",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23170"
   },
@@ -1987,7 +1987,7 @@
     "name": "Vidaillat",
     "code": "23260",
     "epci_code": "200067189",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23250"
   },
@@ -1995,7 +1995,7 @@
     "name": "Viersat",
     "code": "23261",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23170"
   },
@@ -2003,7 +2003,7 @@
     "name": "Vigeville",
     "code": "23262",
     "epci_code": "200067544",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23140"
   },
@@ -2011,7 +2011,7 @@
     "name": "Villard",
     "code": "23263",
     "epci_code": "242320109",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23800"
   },
@@ -2019,7 +2019,7 @@
     "name": "La Villedieu",
     "code": "23264",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23340"
   },
@@ -2027,7 +2027,7 @@
     "name": "La Villeneuve",
     "code": "23265",
     "epci_code": "200067593",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23260"
   },
@@ -2035,7 +2035,7 @@
     "name": "La Villetelle",
     "code": "23266",
     "epci_code": "200044014",
-    "departement_code": "23",
+    "department_code": "23",
     "region_code": "75",
     "postal_code": "23260"
   }
