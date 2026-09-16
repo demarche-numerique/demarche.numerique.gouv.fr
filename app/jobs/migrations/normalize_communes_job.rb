@@ -10,19 +10,19 @@ class Migrations::NormalizeCommunesJob < ApplicationJob
       else
         value_json = champ.value_json || {}
 
-        if !champ.departement? || champ.code_departement == 'undefined' || champ.code_departement == '99'
+        if !champ.departement? || champ.department_code == 'undefined' || champ.department_code == '99'
           metro_code = champ.external_id[0..1]
           drom_com_code = champ.external_id[0..2]
 
           if metro_code == '97' || metro_code == '98'
-            value_json[:code_departement] = drom_com_code
+            value_json[:department_code] = drom_com_code
           else
-            value_json[:code_departement] = metro_code
+            value_json[:department_code] = metro_code
           end
         end
 
-        if !champ.code_postal? && code_postal_with_fallback(champ).present?
-          value_json[:code_postal] = code_postal_with_fallback(champ)
+        if !champ.postal_code? && code_postal_with_fallback(champ).present?
+          value_json[:postal_code] = code_postal_with_fallback(champ)
         end
 
         if value_json.present?

@@ -125,7 +125,7 @@ describe RoutingEngine, type: :model do
       context 'with a matching rule' do
         before do
           gi_2.update(routing_rule: ds_in_departement(champ_value(communes_tdc.stable_id), constant('92')))
-          dossier.champ_data.first.update(code_postal: '92500', external_id: '92063')
+          dossier.champ_data.first.update(postal_code: '92500', external_id: '92063')
         end
 
         it { is_expected.to eq(gi_2) }
@@ -147,7 +147,7 @@ describe RoutingEngine, type: :model do
           dossier.champ_data.first.update_columns(
             external_id: 244200895,
             value: 'CC du Pilat Rhodanien',
-            value_json: { code_departement: '42' }
+            value_json: { department_code: '42' }
           )
         end
 

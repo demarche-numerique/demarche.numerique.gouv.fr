@@ -104,7 +104,7 @@ FactoryBot.define do
 
     factory :champ_do_not_use_communes, class: 'Champs::CommuneChamp' do
       external_id { '60172' }
-      code_postal { '60580' }
+      postal_code { '60580' }
     end
 
     factory :champ_do_not_use_epci, class: 'Champs::EpciChamp' do
