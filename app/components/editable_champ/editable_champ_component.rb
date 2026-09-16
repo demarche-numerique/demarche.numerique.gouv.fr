@@ -118,7 +118,7 @@ class EditableChamp::EditableChampComponent < ApplicationComponent
   end
 
   def data_dependent_conditions
-    if @champ.dependent_conditions?
+    if @champ.used_by_a_visibility_condition?
       { "dependent-conditions": "true" }
     else
       {}

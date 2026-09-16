@@ -7,9 +7,11 @@ module ChampConditionalConcern
     type_de_champ.read_attribute_before_type_cast('condition').present?
   end
 
-  def dependent_conditions?
+  def used_by_a_visibility_condition?
     dossier.revision.dependent_conditions(type_de_champ).any?
   end
+
+  def used_by_a_condition? = dossier.revision.used_by_a_condition?(type_de_champ)
 
   def visible?
     # Huge gain perf for cascade conditions
