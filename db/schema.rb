@@ -1103,6 +1103,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_180000) do
     t.boolean "allow_expert_review", default: true, null: false
     t.string "api_entreprise_token"
     t.datetime "api_entreprise_token_expiration_notice_sent_at"
+    t.datetime "api_entreprise_token_rejected_at"
     t.string "api_particulier_token"
     t.boolean "ask_birthday", default: false, null: false
     t.date "auto_archive_on"

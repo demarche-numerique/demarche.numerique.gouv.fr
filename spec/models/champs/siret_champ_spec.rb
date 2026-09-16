@@ -7,6 +7,14 @@ describe Champs::SiretChamp do
   let(:external_id) { "" }
   let(:etablissement) { nil }
 
+  # CI has no API_ENTREPRISE_KEY, so the instance token would read as missing.
+  def stub_instance_token
+    token = JWT.encode({ exp: 2.months.from_now.to_i }, nil, 'none')
+
+    allow(ENV).to receive(:[]).and_call_original
+    allow(ENV).to receive(:[]).with('API_ENTREPRISE_KEY').and_return(token)
+  end
+
   describe '#validate' do
     subject { champ.tap { _1.validate(:champ_value) } }
 
@@ -134,6 +142,121 @@ describe Champs::SiretChamp do
       it 'is a non retryable failure' do
         expect(fetch_external_data.failure[:retryable]).to be false
         expect(fetch_external_data.failure[:code]).to eq(404)
+      end
+    end
+
+    context 'when our own token is rejected' do
+      let(:api_etablissement_status) { 401 }
+
+      it 'degrades: the SIRET is not at fault and a renewed token will fix it' do
+        expect(fetch_external_data.failure[:degraded]).to be true
+        expect(fetch_external_data.failure[:code]).to eq(401)
+      end
+
+      it 'records the rejection on the procedure' do
+        expect { champ.fetch_external_data }
+          .to change { procedure.reload.api_entreprise_token_rejected_at }.from(nil)
+      end
+    end
+
+    # Nothing local says so: only the call can tell a revoked key from a good one.
+    context 'when a usable instance token is refused by the API', :caching do
+      let(:procedure) { create(:procedure, api_entreprise_token: nil, public_type_de_champs: [{ type: :siret }]) }
+      let(:api_etablissement_status) { 401 }
+
+      before { stub_instance_token }
+
+      it 'alerts operations, tagged with the procedure they can search for' do
+        expect(Sentry).to receive(:capture_message)
+          .with(anything, hash_including(tags: { procedure: procedure.id }, extra: hash_including(type: :unauthorized)))
+
+        fetch_external_data
+      end
+    end
+
+    context 'when our token is missing or expired' do
+      before { allow_any_instance_of(APIEntrepriseToken).to receive(:expired?).and_return(true) }
+
+      it 'degrades without any call going out' do
+        expect(fetch_external_data.failure[:degraded]).to be true
+
+        expect(a_request(:get, /entreprise.api.gouv.fr/)).not_to have_been_made
+      end
+
+      context 'and the procedure falls back on the instance token', :caching do
+        let(:procedure) { create(:procedure, api_entreprise_token: nil, public_type_de_champs: [{ type: :siret }]) }
+
+        before { stub_instance_token }
+
+        it 'records nothing: nobody could act on it from the interface' do
+          allow(Sentry).to receive(:capture_message)
+
+          expect { fetch_external_data }
+            .not_to change { procedure.reload.api_entreprise_token_rejected_at }
+        end
+
+        it 'alerts operations, with what to do about it' do
+          expect(Sentry).to receive(:capture_message)
+            .with(anything, hash_including(extra: hash_including(type: :token_expired, code: 401)))
+
+          fetch_external_data
+        end
+
+        it 'alerts once an hour, not once per dossier' do
+          expect(Sentry).to receive(:capture_message).once
+
+          2.times { champ.fetch_external_data }
+        end
+      end
+    end
+
+    context 'when the token was already rejected' do
+      before do
+        procedure.update_column(:api_entreprise_token_rejected_at, 1.hour.ago)
+        champ.reload
+      end
+
+      it 'degrades without spending a call we know will fail' do
+        expect(fetch_external_data.failure[:degraded]).to be true
+        expect(fetch_external_data.failure[:value]).to eq(siret)
+
+        expect(a_request(:get, /entreprise.api.gouv.fr/)).not_to have_been_made
+      end
+    end
+
+    context 'when the API answers again' do
+      before do
+        procedure.update_column(:api_entreprise_token_rejected_at, 2.days.ago)
+        champ.reload
+      end
+
+      it 'forgets the rejection: the token works, whoever repaired it' do
+        expect { fetch_external_data }
+          .to change { procedure.reload.api_entreprise_token_rejected_at }.to(nil)
+      end
+    end
+  end
+
+  describe '#may_fix_degraded?' do
+    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :siret }]) }
+    let(:dossier) { create(:dossier, procedure:) }
+    let(:champ) { dossier.champ_data.first.tap { _1.update_columns(external_id: '30613890001294', external_state: 'degraded') } }
+
+    it { expect(champ.may_fix_degraded?).to be true }
+
+    context 'while the token of the procedure is rejected' do
+      before { procedure.update_column(:api_entreprise_token_rejected_at, 1.hour.ago) }
+
+      it 'stays put, so the cron does not even enqueue a job' do
+        expect(champ.reload.may_fix_degraded?).to be false
+      end
+    end
+
+    context 'while the token of the procedure is expired' do
+      before { allow_any_instance_of(APIEntrepriseToken).to receive(:expired?).and_return(true) }
+
+      it 'stays put too: no call can succeed until it is renewed' do
+        expect(champ.may_fix_degraded?).to be false
       end
     end
   end
