@@ -116,4 +116,87 @@ describe 'As an administrateur I create an API token', js: true do
 
     expect(APIToken.last.expires_at).to eq(3.months.from_now.to_date)
   end
+
+  scenario 'going back through the steps preserves previously entered data' do
+    visit profil_path
+
+    click_on 'Créer un nouveau jeton'
+    fill_in 'Nom du jeton', with: 'jeton avec retour'
+    click_on 'Continuer'
+
+    custom_check 'target_custom'
+    select "#{procedure.id} - #{procedure.libelle}", from: 'procedureSelect'
+    click_on 'Ajouter'
+    custom_check 'access_read_write'
+    click_on 'Continuer'
+    expect(page).to have_content('Sécurité')
+
+    click_on 'Retour'
+    expect(page).to have_content('Privilèges du jeton')
+    expect(page).to have_checked_field('access_read_write')
+    expect(page).to have_text(procedure.libelle)
+
+    click_on 'Retour'
+    expect(page).to have_field('Nom du jeton', with: 'jeton avec retour')
+
+    click_on 'Continuer'
+    expect(page).to have_checked_field('access_read_write')
+    expect(page).to have_text(procedure.libelle)
+    click_on 'Continuer'
+    expect(page).to have_content('Sécurité')
+
+    custom_check 'networkFiltering_customnetworks'
+    fill_in 'networks', with: '192.168.1.0/24'
+    custom_check 'lifetime_oneweek'
+
+    click_on('Créer le jeton')
+    expect(page).to have_content('Votre jeton est prêt')
+
+    token = APIToken.last
+    expect(token.authorized_networks).to eq([IPAddr.new('192.168.1.0/24')])
+  end
+
+  scenario 'duplicating a token pre-fills steps 1 and 2 but leaves lifetime blank' do
+    original_token = APIToken.generate(administrateur).first
+    original_token.update!(name: 'Jeton original', write_access: true, allowed_procedure_ids: [procedure.id], authorized_networks: [IPAddr.new('192.168.1.0/24')])
+
+    visit profil_path
+    click_on 'Dupliquer'
+
+    expect(page).to have_field('Nom du jeton', with: 'Jeton original')
+    click_on 'Continuer'
+
+    expect(page).to have_checked_field('access_read_write')
+    expect(page).to have_text(procedure.libelle)
+    click_on 'Continuer'
+
+    expect(page).to have_content('Sécurité')
+    expect(page).to have_checked_field('networkFiltering_customnetworks')
+    expect(page).to have_field('networks', with: '192.168.1.0/24')
+    expect(page).to have_no_checked_field('lifetime_oneweek')
+    expect(page).to have_no_checked_field('lifetime_custom')
+  end
+
+  scenario 'restricting and restoring access to an api token' do
+    token = APIToken.generate(administrateur).first
+    visit edit_admin_api_token_path(token)
+
+    expect(page).to have_content('accès à toutes vos démarches')
+    click_on "Restreindre lʼaccès à certaines démarches"
+
+    select "#{procedure.id} - #{procedure.libelle}", from: 'procedure_to_add'
+    click_on 'Ajouter'
+
+    expect(page).to have_content(procedure.libelle)
+    expect(token.reload.allowed_procedure_ids).to eq([procedure.id])
+
+    click_on 'Supprimer'
+
+    expect(page).to have_no_css("li#authorized_procedure_#{procedure.id}")
+    expect(token.reload.allowed_procedure_ids).to be_nil
+
+    visit edit_admin_api_token_path(token)
+
+    expect(page).to have_content('accès à toutes vos démarches')
+  end
 end

@@ -1,0 +1,5 @@
+<%- fields.each do |key, value| -%>
+  <%- Array(value).each do |v| -%>
+    <%= hidden_field_tag "#{key}#{'[]' if value.is_a?(Array)}", v %>
+  <%- end -%>
+<%- end -%>
