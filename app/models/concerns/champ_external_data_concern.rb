@@ -18,8 +18,9 @@ module ChampExternalDataConcern
   # fetching -> fetched
   # if the API did not answer, the external_data_degraded event is triggered
   # fetching -> degraded
-  # a degraded champ goes back in the queue until the API answers
-  # degraded -> waiting_for_job -> fetching -> fetched
+  # a degraded champ is put back in the queue by a cron until the API answers.
+  # It waits in a state of its own, which does not block the user like waiting_for_job
+  # degraded -> waiting_for_fix -> fetching -> fetched
 
   included do
     include AASM
@@ -33,6 +34,7 @@ module ChampExternalDataConcern
       fetching: 'fetching',
       fetched: 'fetched',
       degraded: 'degraded',
+      waiting_for_fix: 'waiting_for_fix',
       external_error: 'external_error',
     }
 
@@ -42,6 +44,7 @@ module ChampExternalDataConcern
       state :fetching
       state :fetched
       state :degraded
+      state :waiting_for_fix
       state :external_error
 
       event :fetch_later, after_commit: :fetch_external_data_later do
@@ -49,7 +52,7 @@ module ChampExternalDataConcern
       end
 
       event :fetch, after_commit: :fetch_and_handle_result do
-        transitions from: [:waiting_for_job], to: :fetching
+        transitions from: [:waiting_for_job, :waiting_for_fix], to: :fetching
       end
 
       event :external_data_fetched do
@@ -61,7 +64,7 @@ module ChampExternalDataConcern
       end
 
       event :fix_degraded, after_commit: :fetch_external_data_later do
-        transitions from: :degraded, to: :waiting_for_job
+        transitions from: :degraded, to: :waiting_for_fix
       end
 
       event :external_data_error do
@@ -73,7 +76,7 @@ module ChampExternalDataConcern
       end
 
       event :reset_external_data, after: :after_reset_external_data do
-        transitions from: [:idle, :waiting_for_job, :fetching, :fetched, :degraded, :external_error], to: :idle
+        transitions from: [:idle, :waiting_for_job, :fetching, :fetched, :degraded, :waiting_for_fix, :external_error], to: :idle
       end
     end
 
@@ -86,7 +89,11 @@ module ChampExternalDataConcern
   end
 
   def pending? = waiting_for_job? || fetching?
-  def done? = fetched? || degraded? || external_error?
+  def done? = fetched? || awaiting_fix? || external_error?
+
+  # Both read as degraded everywhere: the champ carries the identifier alone and
+  # waits for the API, whether the cron has scheduled its retry yet or not.
+  def awaiting_fix? = degraded? || waiting_for_fix?
   def external_data_not_found? = external_error? && fetch_external_data_exceptions&.last&.not_found?
 
   def has_async_external_data? = false

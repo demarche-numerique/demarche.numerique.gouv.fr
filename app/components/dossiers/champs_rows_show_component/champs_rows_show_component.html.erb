@@ -31,7 +31,7 @@
               <%= render partial: "shared/champs/piece_justificative/show", locals: { champ: champ, profile: @profile } %>
             <% when TypeDeChamp.type_champs.fetch(:siret) %>
               <% etablissement = champ.etablissement %>
-              <% if champ.degraded? %>
+              <% if champ.awaiting_fix? %>
                 <%= render Dossiers::DegradedIdentiteEntrepriseComponent.new(siret: champ.siret, profile: @profile) %>
               <% elsif etablissement.present? %>
                 <% if etablissement.as_degraded_mode? %>

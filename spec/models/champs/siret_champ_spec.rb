@@ -61,6 +61,16 @@ describe Champs::SiretChamp do
       end
     end
 
+    context 'when the cron scheduled a retry' do
+      let(:external_id) { "12345678901245" }
+
+      before { champ.update_columns(external_state: 'waiting_for_fix') }
+
+      it 'does not block the user either: only the call itself may' do
+        expect(subject.errors[:external_id]).to be_empty
+      end
+    end
+
     context 'when external fetch failed' do
       let(:external_id) { "12345678901245" }
       let(:exception) { ExternalDataException.new(error: 'Not retryable', code: 404) }

@@ -29,7 +29,13 @@ RSpec.describe ChampFetchExternalDataJob, type: :job do
       it { expect(champ).not_to have_received(:fetch!) }
     end
 
-    context 'when champ is not in waiting_for_job state' do
+    context 'when the champ waits for its cron retry' do
+      let(:external_state) { 'waiting_for_fix' }
+
+      it { expect(champ).to have_received(:fetch!) }
+    end
+
+    context 'when the champ has nothing left to fetch' do
       let(:external_state) { 'fetched' }
 
       it { expect(champ).not_to have_received(:fetch!) }

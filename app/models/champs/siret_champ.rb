@@ -74,7 +74,7 @@ class Champs::SiretChamp < ChampData
   def validate_etablissement
     return if siret.blank?
     return if etablissement.present?
-    return if pending? || degraded?
+    return if pending? || awaiting_fix?
 
     validator = ActiveModel::Validations::SiretValidator.new(attributes: { value: true })
 
