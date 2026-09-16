@@ -692,7 +692,7 @@ describe DossierFilterService do
         end
       end
 
-      context "when searching by departement_code (enum)" do
+      context "when searching by department_code (enum)" do
         let(:value) { "99" }
         let(:filter) { ["rna – Département", value] }
 

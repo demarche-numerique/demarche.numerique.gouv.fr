@@ -9,7 +9,7 @@ class APIGeoDegradedService
           nom: commune[:name],
           code: commune[:code],
           codesPostaux: [commune[:postal_code]],
-          codeDepartement: commune[:departement_code],
+          codeDepartement: commune[:department_code],
           codeRegion: commune[:region_code],
           population: nil,
         }
@@ -40,8 +40,8 @@ class APIGeoDegradedService
       normalized_query = normalize_commune_name(name)
       results = []
 
-      departements_data.each do |departement_code, communes|
-        next if departement_code == '99' # Skip "Etranger"
+      departements_data.each do |department_code, communes|
+        next if department_code == '99' # Skip "Etranger"
 
         matching_communes = communes.filter do |commune|
           normalized_commune_name = normalize_commune_name(commune[:name])
@@ -72,8 +72,8 @@ class APIGeoDegradedService
     def search_communes_by_postal_code(postal_code, departements_data)
       results = []
 
-      departements_data.each do |departement_code, communes|
-        next if departement_code == '99' # Skip "Etranger"
+      departements_data.each do |department_code, communes|
+        next if department_code == '99' # Skip "Etranger"
 
         matching_communes = communes.filter do |commune|
           commune[:postal_code] == postal_code

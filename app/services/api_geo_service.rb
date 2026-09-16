@@ -128,25 +128,25 @@ class APIGeoService
       end
     end
 
-    def epcis(departement_code)
-      memoize(:epcis, departement_code) do
-        get_from_api_geo("epcis-#{departement_code}").sort_by { I18n.transliterate(_1[:name]) }.freeze
+    def epcis(department_code)
+      memoize(:epcis, department_code) do
+        get_from_api_geo("epcis-#{department_code}").sort_by { I18n.transliterate(_1[:name]) }.freeze
       end
     end
 
-    def epci_name(departement_code, code)
-      epcis(departement_code).find { _1[:code] == code }&.dig(:name)
+    def epci_name(department_code, code)
+      epcis(department_code).find { _1[:code] == code }&.dig(:name)
     end
 
-    def epci_code(departement_code, name)
-      epcis(departement_code).find { _1[:name] == name }&.dig(:code)
+    def epci_code(department_code, name)
+      epcis(department_code).find { _1[:name] == name }&.dig(:code)
     end
 
-    def communes(departement_code)
-      return [] if departement_code.blank? || departement_code == '99'
+    def communes(department_code)
+      return [] if department_code.blank? || department_code == '99'
 
-      memoize(:communes, departement_code) do
-        get_from_api_geo("communes-#{departement_code}").sort_by { I18n.transliterate([_1[:name], _1[:postal_code]].join(' ')) }.freeze
+      memoize(:communes, department_code) do
+        get_from_api_geo("communes-#{department_code}").sort_by { I18n.transliterate([_1[:name], _1[:postal_code]].join(' ')) }.freeze
       end
     end
 
@@ -159,8 +159,8 @@ class APIGeoService
       end
     end
 
-    def commune_name(departement_code, code)
-      communes(departement_code).find { _1[:code] == code }&.dig(:name)
+    def commune_name(department_code, code)
+      communes(department_code).find { _1[:code] == code }&.dig(:name)
     end
 
     def commune_by_name_or_postal_code(query)
@@ -171,12 +171,12 @@ class APIGeoService
       end
     end
 
-    def commune_code(departement_code, name)
-      communes(departement_code).find { _1[:name] == name }&.dig(:code)
+    def commune_code(department_code, name)
+      communes(department_code).find { _1[:name] == name }&.dig(:code)
     end
 
-    def commune_postal_codes(departement_code, code)
-      communes(departement_code).filter { _1[:code] == code }.map { _1[:postal_code] }
+    def commune_postal_codes(department_code, code)
+      communes(department_code).filter { _1[:code] == code }.map { _1[:postal_code] }
     end
 
     def parse_ban_address(feature)
@@ -235,7 +235,7 @@ class APIGeoService
       department_code, region_code = if postal_code.present? && city_code.present?
         commune = communes_by_postal_code(postal_code).find { _1[:code] == city_code }
         if commune.present?
-          [commune[:departement_code], commune[:region_code]]
+          [commune[:department_code], commune[:region_code]]
         else
           []
         end
@@ -267,7 +267,7 @@ class APIGeoService
       department_code, region_code = if postal_code.present? && city_code.present?
         commune = communes_by_postal_code(postal_code).find { _1[:code] == city_code }
         if commune.present?
-          [commune[:departement_code], commune[:region_code]]
+          [commune[:department_code], commune[:region_code]]
         else
           []
         end
@@ -299,7 +299,7 @@ class APIGeoService
       department_code, region_code = if postal_code.present? && city_code.present?
         commune = communes_by_postal_code(postal_code).find { _1[:code] == city_code }
         if commune.present?
-          [commune[:departement_code], commune[:region_code]]
+          [commune[:department_code], commune[:region_code]]
         else
           []
         end
@@ -334,7 +334,7 @@ class APIGeoService
         commune = communes_by_postal_code(postal_code).find { _1[:code] == city_code }
         return {} if commune.blank?
         region_code = commune[:region_code]
-        department_code = commune[:departement_code]
+        department_code = commune[:department_code]
 
         {
           postal_code:,
@@ -392,8 +392,8 @@ class APIGeoService
     def format_address_response(results)
       results[:features].flat_map do |feature|
         if feature[:properties][:type] == 'municipality'
-          departement_code = feature[:properties][:context].split(',').first
-          commune_postal_codes(departement_code, feature[:properties][:citycode]).map do |postcode|
+          department_code = feature[:properties][:context].split(',').first
+          commune_postal_codes(department_code, feature[:properties][:citycode]).map do |postcode|
             feature.deep_merge(properties: { postcode:, label: "#{feature[:properties][:label]} (#{postcode})" })
           end
         else
