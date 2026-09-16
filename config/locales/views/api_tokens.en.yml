@@ -2,10 +2,10 @@
 en:
   administrateurs:
     api_tokens:
+      new_token: New token creation
+      duplicate_title: Duplicate API token
       nom:
         title: New API token
-        new_token: New token creation
-        duplicate_title: Duplicate API token
         name: Name of the token
         name-hint: 'examples: prod orus, test presta'
         continue: Continue
@@ -29,7 +29,6 @@ en:
         continue: continue
       edit:
         title: 'Edit API token « %{name} »'
-        breadcrumb_api_token: 'API token: %{name}'
         rename_button: Rename
         enter_at_least_one_network: 'Enter at least 1 authorized network'
         enter_authorized_ips: 'Enter authorized IP addresses'
@@ -47,7 +46,6 @@ en:
       securite:
         title: Security of the token « %{name} »
         dashboard: Dashboard
-        security: Security
         security_warning: Your token will likely allow you to handle confidential or personal data.
         responsibility: It is your responsibility to keep it secure and limit its use to authorised persons only.
         features_intro: To help you, we offer network filtering and token lifetime features.
@@ -67,5 +65,5 @@ en:
         custom_lifetime_label: 'custom duration, at most %{count} days'
         invalid_lifetime: You must choose a lifetime between tomorrow and the maximum allowed duration
         enter_expiry: Enter the token expiry date
-        create_token: Create the token
+        validate: Valider
         back: Back

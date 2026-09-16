@@ -3,7 +3,7 @@
 <%= render partial: 'shared/breadcrumbs_section',
   locals: { steps: [['Tableau de bord', tableau_de_bord_helper_path],
     [t('users.profil.show.profile'), profil_path(context: :administrateur)],
-    [t('.breadcrumb_api_token', name: @api_token.name)]] } %>
+    [t('.title', name: @api_token.name)]] } %>
 
 <div class="fr-container fr-mt-2w">
   <turbo-frame id="tokenUpdate">

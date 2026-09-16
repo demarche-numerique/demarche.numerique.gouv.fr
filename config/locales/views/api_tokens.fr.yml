@@ -2,10 +2,10 @@
 fr:
   administrateurs:
     api_tokens:
+      new_token: Création d’un nouveau jeton
+      duplicate_title: Duplication du jeton
       nom:
         title: Nouveau jeton d’API
-        new_token: Création d’un nouveau jeton
-        duplicate_title: Duplication du jeton d’API
         name: Nom du jeton
         name-hint: 'exemples: prod orus, test presta'
         continue: Continuer
@@ -28,8 +28,7 @@ fr:
         cancel: Retour
         continue: Continuer
       edit:
-        title: 'Modification du jeton dʼAPI « %{name} »'
-        breadcrumb_api_token: 'Jeton dʼAPI : %{name}'
+        title: 'Modification du jeton « %{name} »'
         rename_button: Renommer
         enter_at_least_one_network: 'Entrez au moins 1 réseau autorisé'
         enter_authorized_ips: 'Entrez les adresses ip autorisées'
@@ -47,7 +46,6 @@ fr:
       securite:
         title: Sécurité du jeton « %{name} »
         dashboard: Tableau de bord
-        security: Sécurité
         security_warning: Votre jeton va probablement vous permettre de manipuler des données confidentielles, voir personnelles.
         responsibility: Il est de votre responsabilité de le conserver en sécurité et d’en limiter l’utilisation aux seules personnes habilitées.
         features_intro: Pour vous aider, nous vous proposons des fonctionnalités de filtrage réseau et de durée de vie du jeton.
@@ -67,5 +65,5 @@ fr:
         custom_lifetime_label: 'durée personnalisée, au maximum %{count} jours'
         invalid_lifetime: Vous devez choisir une durée de vie comprise entre demain et la durée maximale autorisée
         enter_expiry: Entrez la date de fin de validité du jeton
-        create_token: Créer le jeton
+        validate: Valider
         back: Retour

@@ -3,10 +3,10 @@
 <%= render partial: 'shared/breadcrumbs_section',
   locals: { steps: [[t('.dashboard'), tableau_de_bord_helper_path],
     [t('users.profil.show.profile'), profil_path(context: :administrateur)],
-    [t('administrateurs.api_tokens.nom.new_token')]] } %>
+    [@api_token_params.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token')]] } %>
 
 <div class="fr-container fr-mt-2w">
-  <h1><%= t('.security') %></h1>
+  <h1><%= @api_token_params.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token') %></h1>
   <%= render Dsfr::AlertComponent.new(title: nil, size: :sm, state: :info, extra_class_names: 'fr-mb-2w') do |c| %>
     <% c.with_body do %>
       <p>
@@ -60,6 +60,8 @@
       <%- end -%>
     </div>
 
+    <hr class="fr-hr">
+
     <%= render Dsfr::RadioButtonListComponent.new(form: f,
       target: :lifetime,
       error: params[:invalidLifetime].present? ? t('.invalid_lifetime') : nil,
@@ -100,17 +102,17 @@
 
     <ul class="fr-btns-group fr-btns-group--inline">
       <li>
+        <%= link_to t('.back'), autorisations_admin_api_tokens_path(@api_token_params.to_h), class: "fr-btn fr-btn--secondary" %>
+      </li>
+      <li>
         <%= f.button type: :submit,
           class: "fr-btn fr-btn--primary",
           disabled: true,
           'data-api-token-securite-target': 'continueButton' do %>
-          <%= t('.create_token') %>
+          <%= t('.validate') %>
         <% end %>
       </li>
 
-      <li>
-        <%= link_to t('.back'), autorisations_admin_api_tokens_path(@api_token_params.to_h), class: "fr-btn fr-btn--secondary" %>
-      </li>
     </ul>
   <% end %>
 </div>

@@ -3,7 +3,7 @@
 <%= render partial: 'shared/breadcrumbs_section',
   locals: { steps: [['Tableau de bord', tableau_de_bord_helper_path],
     [t('users.profil.show.profile'), profil_path(context: :administrateur)],
-    [t('administrateurs.api_tokens.nom.new_token')]] } %>
+    [t('administrateurs.api_tokens.new_token')]] } %>
 
 <div class="fr-container fr-mt-2w" data-turbo="true">
   <h1><%= t('.ready') %></h1>

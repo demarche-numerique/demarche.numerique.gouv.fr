@@ -44,7 +44,7 @@ describe 'As an administrateur I create an API token', js: true do
 
     custom_check 'networkFiltering_autoassign'
     custom_check 'lifetime_oneweek'
-    click_on('Créer le jeton')
+    click_on('Valider')
     expect(page).to have_content("Votre jeton est prêt")
 
     token = APIToken.last
@@ -67,7 +67,7 @@ describe 'As an administrateur I create an API token', js: true do
     custom_check 'networkFiltering_customnetworks'
     fill_in 'networks', with: '192.168.1.0/24'
     custom_check 'lifetime_oneweek'
-    click_on('Créer le jeton')
+    click_on('Valider')
     expect(page).to have_content("Votre jeton est prêt")
 
     token = APIToken.last
@@ -90,7 +90,7 @@ describe 'As an administrateur I create an API token', js: true do
 
     custom_check 'networkFiltering_autoassign'
     custom_check 'lifetime_sixmonths'
-    click_on('Créer le jeton')
+    click_on('Valider')
     expect(page).to have_content("Votre jeton est prêt")
 
     expect(APIToken.last.expires_at).to eq(APIToken::LIFETIMES[:sixMonths].from_now.to_date)
@@ -111,7 +111,7 @@ describe 'As an administrateur I create an API token', js: true do
     custom_check 'networkFiltering_autoassign'
     custom_check 'lifetime_custom'
     fill_in 'customLifetime', with: 3.months.from_now.to_date.iso8601
-    click_on('Créer le jeton')
+    click_on('Valider')
     expect(page).to have_content("Votre jeton est prêt")
 
     expect(APIToken.last.expires_at).to eq(3.months.from_now.to_date)
@@ -149,7 +149,7 @@ describe 'As an administrateur I create an API token', js: true do
     fill_in 'networks', with: '192.168.1.0/24'
     custom_check 'lifetime_oneweek'
 
-    click_on('Créer le jeton')
+    click_on('Valider')
     expect(page).to have_content('Votre jeton est prêt')
 
     token = APIToken.last
