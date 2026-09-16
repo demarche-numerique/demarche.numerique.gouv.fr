@@ -68,7 +68,7 @@ class ChampData < ApplicationRecord
   normalizes :value, with: NORMALIZES_NON_PRINTABLE_PROC
 
   # Reading any `store_accessor` attribute (e.g. `country_code`,
-  # `code_departement`) on a champ whose JSON column is nil silently
+  # `department_code`) on a champ whose JSON column is nil silently
   # initializes that column to `{}`. Left as-is, this empty hash is persisted as
   # a spurious change — bumping `updated_at` and making an untouched blank champ
   # look like it was edited. Revert blank-equivalent JSON columns before saving.

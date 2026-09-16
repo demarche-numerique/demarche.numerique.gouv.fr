@@ -16,7 +16,7 @@ class EditableChamp::EpciComponent < EditableChamp::EditableChampBaseComponent
     if !departement?
       @champ.focusable_input_id(:value) # must be focusable when no departement is selected
     else
-      @champ.focusable_input_id(:code_departement) # otherwise, use same as error name
+      @champ.focusable_input_id(:department_code) # otherwise, use same as error name
     end
   end
 
@@ -36,14 +36,14 @@ class EditableChamp::EpciComponent < EditableChamp::EditableChampBaseComponent
 
   def epci_options
     if @champ.departement?
-      APIGeoService.epcis(@champ.code_departement).map { ["#{_1[:code]} – #{_1[:name]}", _1[:code]] }
+      APIGeoService.epcis(@champ.department_code).map { ["#{_1[:code]} – #{_1[:name]}", _1[:code]] }
     else
       []
     end
   end
 
   def departement_select_options
-    { selected: @champ.code_departement }.merge(@champ.mandatory? ? { prompt: t('views.components.select_list') } : { include_blank: t('views.components.select_list') })
+    { selected: @champ.department_code }.merge(@champ.mandatory? ? { prompt: t('views.components.select_list') } : { include_blank: t('views.components.select_list') })
   end
 
   def epci_select_options

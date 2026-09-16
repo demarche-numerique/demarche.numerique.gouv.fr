@@ -28,33 +28,33 @@ class Champs::RNFChamp < ChampData
     rnf_id&.match?(RNF_REGEXP)
   end
 
-  def code_departement
+  def department_code
     address.present? && address['departmentCode']
   end
 
   def departement?
-    code_departement.present?
+    department_code.present?
   end
 
   def departement
     if departement?
-      { code: code_departement, name: departement_name }
+      { code: department_code, name: departement_name }
     end
   end
 
   def departement_name
-    APIGeoService.departement_name(code_departement)
+    APIGeoService.departement_name(department_code)
   end
 
   def departement_code_and_name
     if departement?
-      "#{code_departement} – #{departement_name}"
+      "#{department_code} – #{departement_name}"
     end
   end
 
   def commune_name
     if departement?
-      "#{APIGeoService.commune_name(code_departement, address['cityCode'])} (#{address['postalCode']})"
+      "#{APIGeoService.commune_name(department_code, address['cityCode'])} (#{address['postalCode']})"
     end
   end
 
@@ -64,8 +64,8 @@ class Champs::RNFChamp < ChampData
       city_name = address['cityName']
       postal_code = address['postalCode']
 
-      commune_name = APIGeoService.commune_name(code_departement, city_code)
-      commune_code = APIGeoService.commune_code(code_departement, city_name)
+      commune_name = APIGeoService.commune_name(department_code, city_code)
+      commune_code = APIGeoService.commune_code(department_code, city_name)
 
       if commune_name.present?
         {
