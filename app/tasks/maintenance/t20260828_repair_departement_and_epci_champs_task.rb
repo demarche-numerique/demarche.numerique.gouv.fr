@@ -67,17 +67,17 @@ module Maintenance
       champ.update_columns(
         external_id: code,
         value: name,
-        value_json: champ.value_json.to_h.merge('department_code' => code, 'region_code' => region_code, 'code_region' => region_code)
+        value_json: champ.value_json.to_h.merge('department_code' => code, 'region_code' => region_code)
       )
       champ.dossier.index_search_terms_later
     end
 
     def repair_epci(champ)
       # APIGeoService.epcis lève sans département exploitable
-      return if champ.code_departement.blank? || champ.code_departement == '99'
+      return if champ.department_code.blank? || champ.department_code == '99'
 
       name = champ.external_id
-      code = APIGeoService.epci_code(champ.code_departement, name)
+      code = APIGeoService.epci_code(champ.department_code, name)
       return if code.nil?
 
       champ.update_columns(external_id: code, value: name)

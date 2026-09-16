@@ -309,7 +309,7 @@ def add_single_champ(pdf, champ)
   when 'Champs::CommuneChamp'
     value = champ.blank? ? 'Non communiqué' : champ.to_s
     format_in_2_lines(pdf, tdc.libelle, value)
-    format_in_2_lines(pdf, "Code Postal :", champ.code_postal) if champ.code_postal?
+    format_in_2_lines(pdf, "Code Postal :", champ.postal_code) if champ.postal_code?
     format_in_2_lines(pdf, "Département :", champ.departement_code_and_name) if champ.departement?
   when 'Champs::TextareaChamp'
     value = champ.blank? ? 'Non communiqué' : champ.to_s

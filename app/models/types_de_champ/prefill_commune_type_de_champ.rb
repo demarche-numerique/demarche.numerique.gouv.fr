@@ -18,22 +18,22 @@ class TypesDeChamp::PrefillCommuneTypeDeChamp < TypesDeChamp::PrefillTypeDeChamp
     return if !value.one? && !APIGeoService.communes_by_postal_code(postal_code).any? { _1[:code] == commune_code }
 
     if value.one?
-      code_postal_attributes(postal_code)
+      postal_code_attributes(postal_code)
     else
-      code_postal_and_commune_attributes(postal_code, commune_code)
+      postal_code_and_commune_attributes(postal_code, commune_code)
     end
   end
 
   private
 
-  def code_postal_attributes(postal_code)
+  def postal_code_attributes(postal_code)
     {
-      code_postal: postal_code,
+      postal_code:,
     }
   end
 
-  def code_postal_and_commune_attributes(postal_code, commune_code)
-    code_postal_attributes(postal_code).merge(external_id: commune_code)
+  def postal_code_and_commune_attributes(postal_code, commune_code)
+    postal_code_attributes(postal_code).merge(external_id: commune_code)
   end
 
   def departements

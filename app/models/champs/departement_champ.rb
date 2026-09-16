@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Champs::DepartementChamp < Champs::TextChamp
-  store_accessor :value_json,  :code_region
+  store_accessor :value_json, :region_code
 
   NAMES = APIGeoService.departements.pluck(:name).freeze
   CODES = APIGeoService.departements.pluck(:code).freeze
@@ -14,12 +14,7 @@ class Champs::DepartementChamp < Champs::TextChamp
             inclusion: { in: CODES, message: :not_in_departement_codes },
             allow_nil: true,
             if: :should_validate_in_current_context?
-  before_save :store_code_region
-
-  def code_region=(v)
-    super
-    value_json['region_code'] = v
-  end
+  before_save :store_codes
 
   def selected
     code
@@ -38,7 +33,7 @@ class Champs::DepartementChamp < Champs::TextChamp
     end
   end
 
-  def code_region
+  def region_code
     APIGeoService.region_code_by_departement(code)
   end
 
@@ -48,12 +43,12 @@ class Champs::DepartementChamp < Champs::TextChamp
     super(resolution&.name)
   end
 
-  def condition_value = { value: code, region_code: code_region }
+  def condition_value = { value: code, region_code: }
 
   private
 
-  def store_code_region
-    self.code_region = code_region
+  def store_codes
+    self.region_code = region_code
     value_json['department_code'] = code
   end
 end

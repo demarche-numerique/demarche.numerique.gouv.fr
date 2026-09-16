@@ -1,57 +1,40 @@
 # frozen_string_literal: true
 
 class Champs::CommuneChamp < Champs::TextChamp
-  store_accessor :value_json, :code_departement, :code_postal, :code_region
+  store_accessor :value_json, :department_code, :postal_code, :region_code
   before_save :on_codes_change, if: :should_refresh_after_code_change?
 
   validates :external_id, presence: true, if: -> { value.present? && should_validate_in_current_context? }
   after_validation :instrument_external_id_error, if: -> { errors.include?(:external_id) }
 
-  def code_postal=(v)
-    super
-    value_json['postal_code'] = v
-  end
-
-  def code_departement=(v)
-    super
-    value_json['department_code'] = v
-  end
-
-  def code_region=(v)
-    super
-    value_json['region_code'] = v
-  end
-
   def departement_name
-    APIGeoService.departement_name(code_departement)
+    APIGeoService.departement_name(department_code)
   end
 
   def departement_code_and_name
     if departement?
-      "#{code_departement} – #{departement_name}"
+      "#{department_code} – #{departement_name}"
     end
   end
 
   def departement
-    { code: code_departement, name: departement_name }
+    { code: department_code, name: departement_name }
   end
 
   def departement?
-    code_departement.present?
+    department_code.present?
   end
 
   def code?
     code.present?
   end
 
-  def code_postal?
-    code_postal.present?
+  def postal_code?
+    postal_code.present?
   end
 
-  alias postal_code code_postal
-
   def name
-    APIGeoService.safely_normalize_city_name(code_departement, code, safe_to_s)
+    APIGeoService.safely_normalize_city_name(department_code, code, safe_to_s)
   end
 
   def code
@@ -59,7 +42,7 @@ class Champs::CommuneChamp < Champs::TextChamp
   end
 
   def selected
-    code? ? "#{code}-#{code_postal}" : nil
+    code? ? "#{code}-#{postal_code}" : nil
   end
 
   def selected_items
@@ -72,20 +55,20 @@ class Champs::CommuneChamp < Champs::TextChamp
 
   def code=(code)
     if code.blank?
-      self.code_departement = nil
-      self.code_postal = nil
+      self.department_code = nil
+      self.postal_code = nil
       self.external_id = nil
       self.value = nil
     elsif code.match?(/-/)
       codes = code.split('-')
       self.external_id = codes.first
-      self.code_postal = codes.second
+      self.postal_code = codes.second
     else
       self.external_id = code
     end
   end
 
-  def condition_value = { department_code: code_departement, region_code: code_region }
+  def condition_value = { department_code:, region_code: }
 
   private
 
@@ -94,8 +77,8 @@ class Champs::CommuneChamp < Champs::TextChamp
   end
 
   def communes
-    if code_postal?
-      APIGeoService.communes_by_postal_code(code_postal)
+    if postal_code?
+      APIGeoService.communes_by_postal_code(postal_code)
     else
       []
     end
@@ -107,14 +90,14 @@ class Champs::CommuneChamp < Champs::TextChamp
     commune = communes.find { _1[:code] == code }
 
     if commune.present?
-      self.code_departement = commune[:departement_code]
-      self.code_region = commune[:region_code]
+      self.department_code = commune[:department_code]
+      self.region_code = commune[:region_code]
       self.value = commune[:name]
       value_json['city_name'] = commune[:name]
       value_json['city_code'] = commune[:code]
     else
-      self.code_departement = nil
-      self.code_postal = nil
+      self.department_code = nil
+      self.postal_code = nil
       self.external_id = nil
       self.value = nil
       value_json['city_name'] = nil
@@ -123,7 +106,7 @@ class Champs::CommuneChamp < Champs::TextChamp
   end
 
   def should_refresh_after_code_change?
-    !departement? || code_postal_changed? || external_id_changed?
+    !departement? || postal_code_changed? || external_id_changed?
   end
 
   def instrument_external_id_error

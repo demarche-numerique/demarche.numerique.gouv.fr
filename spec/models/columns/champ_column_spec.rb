@@ -13,7 +13,7 @@ describe Columns::ChampColumn do
         expect_type_de_champ_values('email', eq(['yoda@beta.gouv.fr']))
         expect_type_de_champ_values('phone', eq(['0666666666']))
         expect_type_de_champ_values('address', eq(["2 rue des Démarches grenoble (38100)", "38000", "grenoble", "38", "84", "Auvergne-Rhones-Alpes"]))
-        expect_type_de_champ_values('communes', eq(["60580", "Coye-la-Forêt", "60", "32", "Coye-la-Forêt", "60580", "60"]))
+        expect_type_de_champ_values('communes', eq(["60580", "Coye-la-Forêt", "60", "32", "Coye-la-Forêt", nil, nil]))
         expect_type_de_champ_values('departements', eq(["01", "84", "01"]))
         expect_type_de_champ_values('regions', eq(['01', '01']))
         expect_type_de_champ_values('pays', eq(['FR']))
@@ -159,7 +159,7 @@ describe Columns::ChampColumn do
           Champs::CommuneChamp.new(
             value: 'Coye-la-Forêt',
             external_id: '60172',
-            code_postal: '60580'
+            postal_code: '60580'
           )
         end
 
