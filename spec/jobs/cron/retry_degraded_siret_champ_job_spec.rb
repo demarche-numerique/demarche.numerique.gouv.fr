@@ -14,9 +14,9 @@ RSpec.describe Cron::RetryDegradedSiretChampJob, type: :job do
   context 'with a degraded champ' do
     let(:external_state) { 'degraded' }
 
-    it 'puts it back in the queue' do
+    it 'puts it back in the queue, in a state that does not block the user' do
       expect { described_class.perform_now }
-        .to change { champ.reload.external_state }.from('degraded').to('waiting_for_job')
+        .to change { champ.reload.external_state }.from('degraded').to('waiting_for_fix')
     end
 
     it 'does not make the dossier look freshly modified to its instructeur' do
@@ -39,6 +39,14 @@ RSpec.describe Cron::RetryDegradedSiretChampJob, type: :job do
     let(:external_state) { 'external_error' }
 
     it { expect { described_class.perform_now }.not_to change { champ.reload.external_state } }
+  end
+
+  context 'with a champ whose retry is already scheduled' do
+    let(:external_state) { 'waiting_for_fix' }
+
+    it 'does not enqueue it twice' do
+      expect { described_class.perform_now }.not_to have_enqueued_job(ChampFetchExternalDataJob)
+    end
   end
 
   context 'while the API Entreprise pool is throttled' do

@@ -225,16 +225,41 @@ RSpec.describe ChampExternalDataConcern do
       end
     end
 
+    describe 'waiting for the fix' do
+      before do
+        champ.update_column(:external_state, 'waiting_for_fix')
+        allow(champ).to receive(:fetch_and_handle_result)
+      end
+
+      it 'still reads as degraded' do
+        expect(champ).to be_awaiting_fix
+        expect(champ).to be_done
+      end
+
+      it 'is fetched when the job runs' do
+        champ.fetch!
+
+        expect(champ).to be_fetching
+      end
+
+      it 'can be reset' do
+        champ.reset_external_data!
+
+        expect(champ).to be_idle
+      end
+    end
+
     describe 'fix_degraded' do
       before do
         champ.update_column(:external_state, 'degraded')
         allow(champ).to receive(:fetch_external_data_later)
       end
 
-      it 'goes back in the queue, with the given wait' do
+      it 'goes back in the queue, with the given wait, without blocking the user' do
         champ.fix_degraded!(wait: 20)
 
-        expect(champ).to be_waiting_for_job
+        expect(champ).to be_waiting_for_fix
+        expect(champ).not_to be_pending
         expect(champ).to have_received(:fetch_external_data_later).with(wait: 20)
       end
 
