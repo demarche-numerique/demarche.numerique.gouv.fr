@@ -62,6 +62,15 @@ describe APIEntreprise::API do
       end
     end
 
+    context 'when the API answers 409' do
+      let(:status) { 409 }
+      let(:body) { '' }
+
+      it 'is retryable: the conflict is on their side' do
+        expect(subject.failure).to include(type: :conflict, code: 409, retryable: true)
+      end
+    end
+
     context 'when forbidden (403)' do
       let(:status) { 403 }
       let(:body) { fixture_file('entreprises_private.json') }
