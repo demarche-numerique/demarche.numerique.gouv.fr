@@ -21,18 +21,18 @@ RSpec.describe TypesDeChamp::PrefillEpciTypeDeChamp do
   end
 
   describe '#example_value' do
-    let(:departement_code) { departements.pick(:code) }
-    let(:epci_code) { APIGeoService.epcis(departement_code).pick(:code) }
+    let(:department_code) { departements.pick(:code) }
+    let(:epci_code) { APIGeoService.epcis(department_code).pick(:code) }
     subject(:example_value) { described_class.new(type_de_champ, procedure.active_revision).example_value }
 
-    it { is_expected.to eq([departement_code, epci_code]) }
+    it { is_expected.to eq([department_code, epci_code]) }
   end
 
   describe '#to_assignable_attributes' do
     subject(:to_assignable_attributes) { described_class.build(type_de_champ, procedure.active_revision).to_assignable_attributes(champ, value) }
 
-    shared_examples "a transformation to" do |code_departement, value|
-      it { is_expected.to match({ code_departement: code_departement, value: value }) }
+    shared_examples "a transformation to" do |department_code, value|
+      it { is_expected.to match({ department_code: department_code, value: value }) }
     end
 
     context 'when the value is nil' do

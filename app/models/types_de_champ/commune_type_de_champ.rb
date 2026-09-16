@@ -36,7 +36,7 @@ class TypesDeChamp::CommuneTypeDeChamp < TypeDeChamp
   end
 
   def typed_champ_value(champ)
-    champ.code_postal? ? "#{champ.name} (#{champ.code_postal})" : champ.name
+    champ.postal_code? ? "#{champ.name} (#{champ.postal_code})" : champ.name
   end
 
   def columns(procedure_id:, displayable: true, prefix: nil)

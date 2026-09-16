@@ -69,7 +69,7 @@ RSpec.describe Dossiers::ErrorsFullMessagesComponent, type: :component do
        end
 
        context 'when departement is not selected' do
-         let(:attributes) { { value: nil, value_json: { code_departement: nil, name: nil } } }
+         let(:attributes) { { value: nil, value_json: { department_code: nil, name: nil } } }
 
          it 'focuses on focusable_input_id' do
            expect(subject).to have_link(champ.libelle, href: "##{champ.focusable_input_id(:value)}", count: 1)
@@ -77,7 +77,7 @@ RSpec.describe Dossiers::ErrorsFullMessagesComponent, type: :component do
        end
 
        context 'when name is not selected' do
-         let(:attributes) { { value: nil, value_json: { code_departement: '95', name: nil } } }
+         let(:attributes) { { value: nil, value_json: { department_code: '95', name: nil } } }
 
          it 'focuses on focusable_input_id' do
            expect(subject).to have_link(champ.libelle, href: "##{champ.focusable_input_id(:value)}", count: 1)
