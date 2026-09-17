@@ -351,9 +351,9 @@ fr:
         resent: 'Renvoyer un email de confirmation'
     invites:
       create:
-        success: "Une invitation a été envoyée à %{email}. Vous pouvez <a href=\"#\" class=\"fr-link fr-text--sm\" aria-controls=\"dossier-invites-modal-dialog\" data-fr-opened=\"false\" data-fr-js-modal-button=\"true\">inviter une autre personne</a>."
+        success: "Une invitation a été envoyée à %{email}. Vous pouvez <button type=\"button\" class=\"fr-link fr-text--sm\" aria-controls=\"dossier-invites-modal-dialog\" data-fr-opened=\"false\">inviter une autre personne</button>."
       destroy:
-        success: "L’autorisation de %{email} vient d’être révoquée. Vous pouvez <a href=\"#\" class=\"fr-link fr-text--sm\" aria-controls=\"dossier-invites-modal-dialog\" data-fr-opened=\"false\" data-fr-js-modal-button=\"true\">inviter une autre personne</a>."
+        success: "L’autorisation de %{email} vient d’être révoquée. Vous pouvez <button type=\"button\" class=\"fr-link fr-text--sm\" aria-controls=\"dossier-invites-modal-dialog\" data-fr-opened=\"false\">inviter une autre personne</button>."
         error: "Vous ne pouvez pas révoquer cette autorisation"
       dropdown:
         invite_to_edit: Inviter une personne à modifier ce dossier
@@ -372,8 +372,8 @@ fr:
         want_to_withdraw_permission: "Souhaitez-vous supprimer l’accès invité de %{email} ?"
         edit_dossier_html:
           zero: '<p class="fr-my-2w"><em>Aucun invité ne peut voir et modifier ce dossier actuellement.</em></p>'
-          one: '<h3 class="fr-h6 fr-mt-2w fr-mb-1w">1 personne invitée</h3>'
-          other: '<h3 class="fr-h6 fr-mt-2w fr-mb-1w">%{count} personnes invitées</h3>'
+          one: '<h2 class="fr-h6 fr-mt-2w fr-mb-1w">1 personne invitée</h2>'
+          other: '<h2 class="fr-h6 fr-mt-2w fr-mb-1w">%{count} personnes invitées</h2>'
         submit_dossier_yourself: "Une fois le dossier complet, vous devrez le déposer vous-même."
     pagination:
       next: Suivant

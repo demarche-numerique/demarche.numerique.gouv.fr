@@ -17,4 +17,4 @@
         = t('views.invites.dropdown.invite_to_edit')
 
   = turbo_frame_tag "dossier-invites-modal", data: { "lazy-modal-target": "frame" } do
-    %dialog.fr-modal#dossier-invites-modal-dialog
+    %dialog.fr-modal#dossier-invites-modal-dialog{ role: "dialog" }
