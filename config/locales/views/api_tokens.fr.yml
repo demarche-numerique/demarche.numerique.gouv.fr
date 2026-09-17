@@ -18,8 +18,6 @@ fr:
         all_procedures: toutes mes démarches
         all_procedures_hint: présentes et futures
         select_procedures: Sélectionner les démarches autorisées
-        add_procedure: Ajouter
-        no_procedure_selected: aucune démarche sélectionnée
         token_permission: Ce jeton permet
         read_only: de lire uniquement
         read_only_hint: récupérer des dossiers, des pièces-jointes

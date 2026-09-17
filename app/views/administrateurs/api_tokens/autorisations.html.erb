@@ -9,8 +9,9 @@
   <h1><%= @api_token_params.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token') %></h1>
 
   <%= form_with url: securite_admin_api_tokens_path,
-    method: :get,
-    data: { controller: 'api-token-autorisation' } do |f| %>
+  method: :get, id: 'api-token-autorisation-form',
+  data: { controller: 'api-token-autorisation',
+  action: 'change->api-token-autorisation#setContinueButtonState' } do |f| -%>
     <%= render Dsfr::RadioButtonListComponent.new(form: f,
       target: :target,
       buttons: [
@@ -35,29 +36,18 @@
           <%= t('.select_procedures') %>
         </label>
 
-        <div class="flex">
-          <%= f.select :value,
-            options_for_select(@libelle_id_procedures),
-            { include_blank: true },
-            { id: 'procedureSelect',
-              class: 'fr-select width-33',
-              name: 'procedureSelect',
-              data: { 'api-token-autorisation-target': 'procedureSelect' } } %>
-
-          <button
-            class="fr-btn fr-btn--secondary fr-ml-1w"
-            data-action="click->api-token-autorisation#addProcedure"
-          >
-            <%= t('.add_procedure') %>
-          </button>
+        <div class="fr-col-sm-12 fr-col-md-6">
+          <react-fragment>
+            <%= render ReactComponent.new 'ComboBox/MultiComboBox',
+              items: @libelle_id_procedures,
+              id: 'targets',
+              name: 'targets[]',
+              tagsBelow: true,
+              selectedKeys: @api_token_params.targets,
+              'aria-label': t('.select_procedures')
+            %>
+          </react-fragment>
         </div>
-
-        <style>
-          ul:empty { padding: 0; }
-          ul:empty:before { content: "<%= t('.no_procedure_selected') %>"; }
-        </style>
-
-        <ul data-api-token-autorisation-target="procedures"></ul>
       </div>
     </div>
 

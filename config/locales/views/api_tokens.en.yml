@@ -18,8 +18,6 @@ en:
         all_procedures: all my procedures
         all_procedures_hint: current and future
         select_procedures: Select authorized procedures
-        add_procedure: Add
-        no_procedure_selected: no procedure selected
         token_permission: This token allows
         read_only: read only
         read_only_hint: retrieve dossiers, attachments

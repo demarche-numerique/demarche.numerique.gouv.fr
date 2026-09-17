@@ -1,91 +1,21 @@
 import { ApplicationController } from './application_controller';
 
 export class ApiTokenAutorisationController extends ApplicationController {
-  static targets = [
-    'procedures',
-    'procedureSelect',
-    'procedureSelectGroup',
-    'continueButton'
-  ];
+  static targets = ['procedureSelectGroup', 'continueButton'];
 
   declare readonly continueButtonTarget: HTMLButtonElement;
-  declare readonly procedureSelectTarget: HTMLSelectElement;
   declare readonly procedureSelectGroupTarget: HTMLElement;
-  declare readonly proceduresTarget: HTMLElement;
+  declare hasInitialTargets: boolean;
 
   connect() {
     const urlSearchParams = new URLSearchParams(window.location.search);
-    const targetIds = urlSearchParams.getAll('targets[]');
     const customTargets = urlSearchParams.get('target') == 'custom';
+    this.hasInitialTargets = urlSearchParams.getAll('targets[]').length > 0;
 
-    this.setupProceduresTarget(targetIds);
-
-    if (customTargets && targetIds.length > 0) {
-      this.showProcedureSelectGroup();
+    if (customTargets) {
+      this.procedureSelectGroupTarget.classList.remove('hidden');
     }
 
-    this.setContinueButtonState();
-  }
-
-  setupProceduresTarget(targetIds: string[]) {
-    const options = Array.from(this.procedureSelectTarget.options);
-
-    targetIds
-      .map((id) => options.find((x) => x.value == id))
-      .forEach((option) => {
-        if (option) {
-          this.addProcedureToSelect(option);
-          option.disabled = true;
-        }
-      });
-  }
-
-  addProcedure(e: Event) {
-    e.preventDefault();
-    const selectedOption = this.procedureSelectTarget.selectedOptions[0];
-    if (!selectedOption || selectedOption.disabled) {
-      return;
-    }
-    this.addProcedureToSelect(selectedOption);
-
-    this.setContinueButtonState();
-  }
-
-  addProcedureToSelect(option: HTMLOptionElement) {
-    const li = document.createElement('li');
-    li.className = 'flex align-center';
-    li.append(option.text);
-
-    const button = document.createElement('button');
-    button.className =
-      'fr-btn fr-icon-delete-line fr-btn--tertiary-no-outline fr-ml-1w';
-    button.dataset.action = 'click->api-token-autorisation#deleteProcedure';
-    li.append(button);
-
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'targets[]';
-    input.value = option.value;
-    li.append(input);
-
-    this.proceduresTarget.append(li);
-    option.disabled = true;
-  }
-
-  deleteProcedure(e: Event) {
-    e.preventDefault();
-    const target = e.target as HTMLElement;
-    const li = target.closest('li');
-    const input = li?.querySelector(
-      'input[name="targets[]"]'
-    ) as HTMLInputElement | null;
-    if (input) {
-      const option = this.procedureSelectTarget.querySelector(
-        `option[value="${input.value}"]`
-      ) as HTMLOptionElement | null;
-      if (option) option.disabled = false;
-    }
-    li?.remove();
     this.setContinueButtonState();
   }
 
@@ -100,11 +30,10 @@ export class ApiTokenAutorisationController extends ApplicationController {
   }
 
   setContinueButtonState() {
-    if (this.targetDefined() && this.accessDefined()) {
-      this.continueButtonTarget.disabled = false;
-    } else {
-      this.continueButtonTarget.disabled = true;
-    }
+    this.continueButtonTarget.disabled = !(
+      this.targetDefined() && this.accessDefined()
+    );
+    this.hasInitialTargets = false; // toute vérification suivante ignore l'état initial
   }
 
   targetDefined() {
@@ -112,14 +41,17 @@ export class ApiTokenAutorisationController extends ApplicationController {
       return true;
     }
 
-    if (
-      this.element.querySelectorAll("[value='custom']:checked").length > 0 &&
-      this.proceduresTarget.children.length > 0
-    ) {
-      return true;
+    const hasCustomSelected =
+      this.element.querySelectorAll("[value='custom']:checked").length > 0;
+    if (!hasCustomSelected) {
+      return false;
     }
 
-    return false;
+    const selectedTargets = Array.from(
+      this.element.querySelectorAll<HTMLInputElement>("input[name='targets[]']")
+    ).filter((input) => input.value.trim() !== '');
+
+    return this.hasInitialTargets || selectedTargets.length > 0;
   }
 
   accessDefined() {
