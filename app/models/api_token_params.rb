@@ -13,6 +13,10 @@ class APITokenParams
     params[:name]
   end
 
+  def targets
+    Array(params[:targets])
+  end
+
   def duplicating?
     params[:api_token_to_duplicate].present?
   end

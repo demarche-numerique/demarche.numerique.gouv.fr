@@ -17,10 +17,10 @@ describe 'As an administrateur I create an API token', js: true do
     # Reached when a custom target was submitted without any procedure.
     visit autorisations_admin_api_tokens_path(name: 'test-xss', target: 'custom', noProcedure: true)
     expect(page).to have_text('Sélectionnez au moins une démarche')
-    expect(page).to have_select('procedureSelect', visible: true)
+    expect(page).to have_field('Sélectionner les démarches autorisées', visible: true)
 
-    select "#{procedure.id} - #{xss_payload}", from: 'procedureSelect'
-    click_on 'Ajouter'
+    fill_in 'Sélectionner les démarches autorisées', with: procedure.libelle
+    find('[role="option"]', text: procedure.libelle).click
 
     expect(page).to have_text(xss_payload)
     expect(page).to have_no_css('img[src="x"]')
@@ -35,8 +35,9 @@ describe 'As an administrateur I create an API token', js: true do
     click_on 'Continuer'
 
     custom_check "target_custom"
-    select "#{procedure.id} - #{procedure.libelle}"
-    click_on 'Ajouter'
+    fill_in 'Sélectionner les démarches autorisées', with: procedure.libelle
+    find('[role="option"]', text: procedure.libelle).click
+    send_keys(:escape)
     custom_check 'access_read_write'
     click_on 'Continuer'
     expect(page).to have_content("Sécurité")
@@ -125,8 +126,9 @@ describe 'As an administrateur I create an API token', js: true do
     click_on 'Continuer'
 
     custom_check 'target_custom'
-    select "#{procedure.id} - #{procedure.libelle}", from: 'procedureSelect'
-    click_on 'Ajouter'
+    fill_in 'Sélectionner les démarches autorisées', with: procedure.libelle
+    find('[role="option"]', text: procedure.libelle).click
+    send_keys(:escape)
     custom_check 'access_read_write'
     click_on 'Continuer'
     expect(page).to have_content('Sécurité')
