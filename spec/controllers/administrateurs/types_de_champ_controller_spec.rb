@@ -555,6 +555,16 @@ describe Administrateurs::TypesDeChampController, type: :controller do
           expect { subject }.not_to change { coordinate.reload.public_send(attribute).attachment.id }
         end
       end
+
+      context 'when a file whose upload failed is submitted with the form' do
+        let(:value) { fixture_file_upload('spec/fixtures/files/file.pdf', 'application/pdf') }
+
+        it 'ignores it' do
+          expect { subject }.not_to change { coordinate.reload.public_send(attribute).attached? }
+          expect(response).to have_http_status(:success)
+          expect(flash.alert).to be_nil
+        end
+      end
     end
 
     context 'piece_justificative_template' do

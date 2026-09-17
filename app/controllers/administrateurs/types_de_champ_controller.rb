@@ -202,8 +202,10 @@ module Administrateurs
     end
 
     # Uploaded through direct upload, then submitted with the form as a blob
-    # signed id. An untouched file input submits a blank value, which would
-    # otherwise purge the attachment on every autosave.
+    # signed id, the only value `update` may see: a blank one would purge the
+    # attachment, and a file whose upload failed stays in its input, so every
+    # later autosave submits it as an `UploadedFile`. Rack drops the empty part
+    # an untouched file input produces, so the blank guard is defensive.
     ATTACHMENT_ATTRIBUTES = ['piece_justificative_template', 'notice_explicative']
 
     def type_de_champ_update_params
@@ -265,7 +267,7 @@ module Administrateurs
           :zones_humides,
           :znieff,
         ])
-        .reject { |key, value| key.in?(ATTACHMENT_ATTRIBUTES) && value.blank? }
+        .reject { |key, value| key.in?(ATTACHMENT_ATTRIBUTES) && !(value.is_a?(String) && value.present?) }
     end
 
     def draft
