@@ -28,7 +28,7 @@ Warden::Manager.after_set_user do |record, warden, options|
   # second line without one: invisible while sessions without a row are still
   # adopted, a sign in loop the moment they no longer are.
   in :authentication | :set_user
-    SessionRegistrableConcern.open_session!(record, warden, scope)
+    Current.user_session_id = SessionRegistrableConcern.open_session!(record, warden, scope)
 
   # :fetch -- the user was read back from the cookie, on every request after the
   #           one that signed them in. The session continues, so the row it names
@@ -42,10 +42,21 @@ Warden::Manager.after_set_user do |record, warden, options|
     session_id = warden.session(scope)[SessionRegistrableConcern::SESSION_KEY]
 
     if session_id.nil?
-      SessionRegistrableConcern.open_session!(record, warden, scope)
+      Current.user_session_id = SessionRegistrableConcern.open_session!(record, warden, scope)
     else
+      Current.user_session_id = session_id
       user_session = UserSession.find_by(id: session_id, sessionable: record)
-      warden.logout(scope) if user_session.nil? || user_session.unusable?
+
+      if user_session.nil? || user_session.unusable?
+        # On Current, not in the session: we log out rather than throw, so
+        # there is no `throw(:warden, message:)` to carry the reason, and a
+        # session key would survive the request. This hook fires from
+        # `user_signed_in?` in the layout too, on pages that then render fine
+        # -- a stored key would go on to mislabel an unrelated failure days
+        # later. The failure app runs in this same request or not at all.
+        Current.session_end_reason = (user_session&.unusable_reason || :session_revoked).to_s
+        warden.logout(scope)
+      end
     end
   end
 rescue StandardError => e

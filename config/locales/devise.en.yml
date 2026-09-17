@@ -1,5 +1,13 @@
 en:
   devise:
+    failure:
+      expired: For your security, your session has expired. Please sign in again.
+      password_change: Your password changed, so your other sessions were closed. Sign in again on your other devices.
+      logout_all: You signed out of all your devices. Please sign in again.
+      logout_device: This device was signed out from your profile. Please sign in again.
+      new_session: You were signed out because a new sign in happened on your account. If it was not you, change your password.
+      session_revoked: Your session was closed. Please sign in again.
+      support: For your security, our team closed every session of your account. Contact us if you did not request it.
     passwords:
       new:
         request_new_password: Request new password
