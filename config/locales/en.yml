@@ -768,6 +768,7 @@ en:
         invalid_email_format: 'is invalid. Enter a valid email. Example: address@mail.com'
         api_response_pending: 'Pending response... Please try again in a few moments.'
         api_response_error: 'Not found.'
+        api_response_degraded: 'Company information could not be retrieved, and another question of the form depends on it. We are retrying for you: come back later to submit your file.'
         code_429: 'Too many requests. We are retrying for you.'
         code_500: 'Server error. We are retrying for you.'
         code_503: 'Service unavailable. We are retrying for you.'

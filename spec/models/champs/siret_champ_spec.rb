@@ -67,6 +67,81 @@ describe Champs::SiretChamp do
       it 'does not block the user on a SIRET we could not check' do
         expect(subject.errors[:external_id]).to be_empty
       end
+
+      # A degraded champ keeps its value and loses its value_json, so every
+      # column reads nil and each Eq quietly answers false. Whatever the rule
+      # decides is then decided on missing data, and nothing recomputes it once
+      # the cron has filled the champ in.
+      context 'and a rule reads it' do
+        include Logic
+
+        let(:blocked) { I18n.t('activerecord.errors.messages.api_response_degraded') }
+        let(:departement) do
+          procedure.active_revision.type_de_champs.find { _1.stable_id == 1 }
+            .columns(procedure_id: procedure.id)
+            .find { _1.try(:jsonpath) == '$.department_code' }
+        end
+
+        context 'another question of the form' do
+          let(:procedure) do
+            create(:procedure, :published, public_type_de_champs: [
+              { type: :siret, stable_id: 1 },
+              { type: :text, condition: ds_eq(champ_value(1), constant('x')) },
+            ])
+          end
+
+          it { expect(subject.errors[:external_id]).to include(blocked) }
+        end
+
+        context 'a question inside a repetition' do
+          let(:procedure) do
+            create(:procedure, :published, public_type_de_champs: [
+              { type: :siret, stable_id: 1 },
+              { type: :repetition, stable_id: 2, children: [{ type: :text, stable_id: 3 }] },
+            ])
+          end
+
+          before do
+            procedure.active_revision.type_de_champs.find { _1.stable_id == 3 }
+              .update!(condition: ds_eq(champ_column_value(departement), constant('75')))
+          end
+
+          it { expect(subject.errors[:external_id]).to include(blocked) }
+        end
+
+        context 'the eligibility rules' do
+          let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :siret, stable_id: 1 }]) }
+
+          before do
+            procedure.active_revision.update!(
+              ineligibilite_enabled: true,
+              ineligibilite_message: 'Votre entreprise ne peut pas déposer ce dossier.',
+              ineligibilite_rules: ds_eq(champ_column_value(departement), constant('75'))
+            )
+          end
+
+          it { expect(subject.errors[:external_id]).to include(blocked) }
+
+          context 'but the administrateur turned them off' do
+            before { procedure.active_revision.update!(ineligibilite_enabled: false) }
+
+            it 'lets the dossier through: an inactive rule decides nothing' do
+              expect(subject.errors[:external_id]).to be_empty
+            end
+          end
+        end
+
+        context 'the routing rules' do
+          let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :siret, stable_id: 1 }]) }
+
+          before do
+            create(:groupe_instructeur, procedure:, routing_rule: ds_eq(champ_column_value(departement), constant('75')))
+            procedure.reload
+          end
+
+          it { expect(subject.errors[:external_id]).to include(blocked) }
+        end
+      end
     end
 
     context 'when the cron scheduled a retry' do

@@ -9,15 +9,15 @@ describe ChampConditionalConcern do
   let(:last_champ) { dossier.root_champs_public.find { _1.stable_id == 999 }.tap { _1.update_column(:value, '1.1234') } }
   let(:condition) { nil }
 
-  describe '#dependent_conditions?' do
+  describe '#used_by_a_visibility_condition?' do
     context "when there are no condition" do
-      it { expect(champ.dependent_conditions?).to eq(false) }
+      it { expect(champ.used_by_a_visibility_condition?).to eq(false) }
     end
 
     context "when other tdc has a condition" do
       let(:condition) { ds_eq(champ_value(99), constant(1)) }
 
-      it { expect(champ.dependent_conditions?).to eq(true) }
+      it { expect(champ.used_by_a_visibility_condition?).to eq(true) }
     end
   end
 
