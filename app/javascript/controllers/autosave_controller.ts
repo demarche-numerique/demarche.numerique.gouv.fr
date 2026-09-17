@@ -174,28 +174,34 @@ export class AutosaveController extends ApplicationController {
   }
 
   private enqueueAutouploadRequest(target: HTMLInputElement, file: File) {
-    const autoupload = new AutoUpload(target, file);
-    autoupload
-      .start()
-      .catch((e) => {
-        const error = e as FileUploadError;
+    // The upload's retry button runs the same continuation, so a retried
+    // upload reports its outcome too.
+    const upload = () =>
+      autoupload
+        .start()
+        .catch((e) => {
+          const error = e as FileUploadError;
 
-        this.globalDispatch('autosave:error', { error });
+          this.globalDispatch('autosave:error', { error });
 
-        // Report unexpected client errors to Sentry.
-        // (But ignore usual client errors, or errors we can monitor better on the server side.)
-        if (
-          error.failureReason == FAILURE_CLIENT &&
-          error.code != ERROR_CODE_READ
-        ) {
-          throw error;
-        }
-      })
-      // Dispatched even after a handled failure: it re-enables the submit
-      // button so the user can retry or submit the rest of the form.
-      .then(() => {
-        this.globalDispatch('autosave:end');
-      });
+          // Report unexpected client errors to Sentry.
+          // (But ignore usual client errors, or errors we can monitor better on the server side.)
+          if (
+            error.failureReason == FAILURE_CLIENT &&
+            error.code != ERROR_CODE_READ
+          ) {
+            throw error;
+          }
+        })
+        // Dispatched even after a handled failure: it re-enables the submit
+        // button so the user can retry or submit the rest of the form.
+        .then(() => {
+          this.globalDispatch('autosave:end');
+        });
+    const autoupload: AutoUpload = new AutoUpload(target, file, {
+      retry: upload
+    });
+    upload();
   }
 
   private enqueueAutosaveWithValidationRequest() {

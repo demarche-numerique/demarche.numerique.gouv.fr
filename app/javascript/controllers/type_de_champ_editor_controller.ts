@@ -87,20 +87,31 @@ export class TypeDeChampEditorController extends ApplicationController {
   // Attachments are saved with their form: the file is uploaded straight to
   // the storage service, then the resulting blob signed id is submitted under
   // the file input's own name.
-  private async uploadAndSubmit(input: HTMLInputElement, file: File) {
-    const form = input.form;
-    const name = input.name;
-    const blobSignedId = await new AutoUpload(input, file)
-      .start()
-      .catch(() => null);
+  private uploadAndSubmit(input: HTMLInputElement, file: File) {
+    // The upload's retry button runs the same continuation, so a retried
+    // upload is submitted too. The error is already displayed above the input
+    // by `AutoUpload`; swallow the rejection so it is not reported as
+    // unhandled.
+    const upload = (): Promise<unknown> =>
+      autoUpload
+        .start()
+        .then((blobSignedId) => this.submitBlobSignedId(input, blobSignedId))
+        .catch(() => null);
+    const autoUpload: AutoUpload = new AutoUpload(input, file, {
+      retry: upload
+    });
+    return upload();
+  }
 
-    if (!form || !blobSignedId) {
+  private submitBlobSignedId(input: HTMLInputElement, blobSignedId: string) {
+    const form = input.form;
+    if (!form) {
       return;
     }
 
-    // The upload cleared the file input, but it still submits an empty value.
-    // The hidden input is appended after it, so it is the one that wins.
-    const hiddenInput = createHiddenInput(form, name, blobSignedId);
+    // The upload cleared the file input, so the blob signed id is submitted
+    // through a hidden input under the same name.
+    const hiddenInput = createHiddenInput(form, input.name, blobSignedId);
     this.requestSubmitForm(form);
     this.#latestPromise = this.#latestPromise.finally(() =>
       hiddenInput.remove()

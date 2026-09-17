@@ -88,4 +88,28 @@ suite('AutoUpload retry', () => {
 
     expect(rejections).toEqual([]);
   });
+
+  test('runs the given continuation again on retry', async () => {
+    uploaderStart
+      .mockRejectedValueOnce(storeError())
+      .mockResolvedValueOnce('signed-id');
+    const outcomes: (string | null)[] = [];
+
+    const upload = (): Promise<unknown> =>
+      autoUpload.start().then(
+        (blobSignedId) => outcomes.push(blobSignedId),
+        () => outcomes.push(null)
+      );
+    const autoUpload: InstanceType<typeof AutoUpload> = new AutoUpload(
+      input,
+      new File(['x'], 'attestation.pdf'),
+      { retry: upload }
+    );
+    await upload();
+    expect(outcomes).toEqual([null]);
+
+    document.querySelector<HTMLButtonElement>('.direct-upload__retry')!.click();
+
+    await vi.waitFor(() => expect(outcomes).toEqual([null, 'signed-id']));
+  });
 });
