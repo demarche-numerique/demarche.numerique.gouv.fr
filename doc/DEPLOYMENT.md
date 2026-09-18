@@ -235,6 +235,20 @@ A handful of directories (`/app/custom_views/`, `/config/custom_locales`) may co
 
 For more details, see [Customization.md](doc/customization.md).
 
+## 4. Hardening
+
+### 4.1 Sandboxing Image Processing
+
+Image processing is prone to security challenges ([latest example](https://github.com/rails/rails/security/advisories/GHSA-xr9x-r78c-5hrm)).
+
+In order to better sleep at night, we offer the possibility to run the various image operations in a sandbox, far away from the credentials Rails holds.
+
+To do that, install `bubblewrap` (0.8 or later) and `libvips-tools` on your job workers, and set `BWRAP_ISOLATION=enabled` there. The web role never transforms an image: it serves the variants the jobs made.
+
+On Ubuntu 24.04, AppArmor restricts the unprivileged user namespaces bubblewrap builds its sandbox out of. Grant them to `bwrap` alone, with an AppArmor profile carrying a `userns,` rule. If that profile also confines what the sandbox may read, it must allow `/etc/fonts/**`, `/usr/share/fonts/**`, `/usr/share/fontconfig/**`, `/var/cache/fontconfig/**` and `/usr/share/poppler/**`: without them, `pdftoppm` renders PDFs with non-embedded fonts as blank pages — and exits 0, so nothing will tell you.
+
+Do **not** reach for `kernel.apparmor_restrict_unprivileged_userns=0`: that restriction exists because unprivileged user namespaces were part of the exploit chain in [44% of the Linux kernel exploits](https://security.googleblog.com/2023/06/learnings-from-kctf-vrps-42-linux.html) submitted to Google's kCTF bug bounty.
+
 ## 5. Administrating and troubleshooting
 
 ### 5.1 Manager and super-admin
