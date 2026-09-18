@@ -199,6 +199,10 @@ class TypeDeChampTree < Data.define(:public_children, :private_children)
   # every node of the tree in document order, the public ones first
   def nodes = nodes_of(public_children) + nodes_of(private_children)
 
+  # every type de champ the tree lays out, in document order: what to load in
+  # one query before laying them out
+  def type_de_champ_ids = nodes.map(&:type_de_champ_id)
+
   def as_json(*) = { public_children: public_children.map(&:as_json), private_children: private_children.map(&:as_json) }
 
   private
