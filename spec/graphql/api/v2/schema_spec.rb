@@ -53,6 +53,22 @@ RSpec.describe API::V2::Schema do
     end
   end
 
+  # Parsing runs before validate_timeout and the analyzers, so the token limit is the only
+  # bound on a giant query string. It must reject abuse without touching our own document.
+  describe 'query string token limit' do
+    it 'admits the whole stored document' do
+      expect(GraphQL::Language::Lexer.tokenize(API::V2::StoredQuery::QUERY_V2).size).to be < described_class.max_query_string_tokens / 4
+    end
+
+    it 'rejects an oversized query string before executing it' do
+      aliases = (1..described_class.max_query_string_tokens).map { "a#{it}: __typename" }
+      result = described_class.execute("{ #{aliases.join(' ')} }", context: { internal_use: false })
+
+      expect(result['data']).to be_nil
+      expect(result['errors'].map { _1['message'] }.join).to match(/too large/i)
+    end
+  end
+
   # A client sending free text to a Date argument gets a proper validation error from
   # graphql-ruby on its own. Reporting it to Sentry on top of that was pure noise, and
   # since GraphQL::DateEncodingError embeds the offending value in its message, Sentry
