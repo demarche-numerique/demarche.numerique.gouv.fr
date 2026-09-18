@@ -90,7 +90,7 @@ module ProcedurePublishConcern
   def create_new_revision(revision = nil)
     transaction do
       new_revision = (revision || draft_revision)
-        .deep_clone(include: [:revision_type_de_champs])
+        .deep_clone(include: [:revision_type_de_champs], except: [:type_de_champ_tree])
         .tap { |revision| revision.published_at = nil }
         .tap { |revision| revision.administrateur_id = nil }
         .tap(&:save!)
@@ -104,13 +104,21 @@ module ProcedurePublishConcern
   private
 
   def publish_new_revision(administrateur)
+    # the tree stored below is built from this association, and the next draft
+    # cloned from it: what the database holds, not what this instance loaded a
+    # while ago
+    draft_revision.revision_type_de_champs.reset
     cleanup_type_de_champs_options!
     cleanup_type_de_champs_children!
     nullify_unused_referentiels
     self.published_revision = draft_revision
     self.draft_revision = create_new_revision
     save!(context: :publication)
-    published_revision.update_columns(published_at: Time.current, administrateur_id: administrateur.id)
+    published_revision.update_columns(
+      published_at: Time.current,
+      administrateur_id: administrateur.id,
+      type_de_champ_tree: TypeDeChampTree.from_coordinates(published_revision.revision_type_de_champs)
+    )
   end
 
   def move_new_children_to_new_parent_coordinate(new_draft)

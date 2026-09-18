@@ -44,6 +44,15 @@ class ProcedureRevision < ApplicationRecord
 
   serialize :ineligibilite_rules, coder: LogicSerializer
 
+  attribute :type_de_champ_tree, :type_de_champ_tree
+
+  # Stored once and for all on publication. A draft changes with every edit, so
+  # its tree is built from its coordinates, as is the one of a published
+  # revision not backfilled yet.
+  def type_de_champ_tree
+    super || TypeDeChampTree.from_coordinates(revision_type_de_champs)
+  end
+
   def add_type_de_champ(params)
     parent_stable_id = params.delete(:parent_stable_id)
     parent_coordinate, _ = coordinate_and_tdc(parent_stable_id)
@@ -399,6 +408,7 @@ class ProcedureRevision < ApplicationRecord
         kopy.procedure_id = procedure_id
       end
       coordinate.update!(type_de_champ: cloned_type_de_champ)
+      revision_type_de_champs.reset
       cloned_type_de_champ
     end
   end

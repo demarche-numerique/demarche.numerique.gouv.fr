@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_18_110200) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_18_140000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
@@ -1073,6 +1073,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_18_110200) do
     t.jsonb "ineligibilite_rules"
     t.bigint "procedure_id", null: false
     t.datetime "published_at", precision: nil
+    t.jsonb "type_de_champ_tree"
     t.datetime "updated_at", precision: nil, null: false
     t.index ["administrateur_id"], name: "index_procedure_revisions_on_administrateur_id"
     t.index ["dossier_submitted_message_id"], name: "index_procedure_revisions_on_dossier_submitted_message_id"
