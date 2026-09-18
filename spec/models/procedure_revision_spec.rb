@@ -10,6 +10,36 @@ describe ProcedureRevision do
     repetition
   end
 
+  describe '#type_de_champ_tree' do
+    context 'on a draft' do
+      let(:procedure) { create(:procedure, public_type_de_champs: [{ libelle: 'a' }]) }
+
+      it 'follows the coordinates' do
+        expect(draft.type_de_champ_tree.public_children.map(&:stable_id)).to eq([type_de_champ_public.stable_id])
+
+        added = draft.add_type_de_champ(type_champ: :text, libelle: 'b', after_stable_id: type_de_champ_public.stable_id)
+
+        expect(draft.type_de_champ_tree.public_children.map(&:stable_id)).to eq([type_de_champ_public.stable_id, added.stable_id])
+        expect(draft.read_attribute(:type_de_champ_tree)).to be_nil
+      end
+    end
+
+    context 'on a published revision' do
+      let(:revision) { procedures.individual.published_revision }
+
+      it 'is the stored one' do
+        expect(revision.type_de_champ_tree).to equal(revision.read_attribute(:type_de_champ_tree))
+        expect(revision.type_de_champ_tree).to eq(TypeDeChampTree.from_coordinates(revision.revision_type_de_champs))
+      end
+
+      it 'is built from the coordinates until backfilled' do
+        revision.update_columns(type_de_champ_tree: nil)
+
+        expect(revision.reload.type_de_champ_tree.public_children.map(&:stable_id)).to eq(revision.public_root_type_de_champs.map(&:stable_id))
+      end
+    end
+  end
+
   describe '#add_type_de_champ' do
     # tdc: public: text, repetition ; private: text ; +1 text child of repetition
     let(:procedure) do
