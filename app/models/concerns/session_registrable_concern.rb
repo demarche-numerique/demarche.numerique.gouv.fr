@@ -3,6 +3,9 @@
 module SessionRegistrableConcern
   extend ActiveSupport::Concern
 
+  # Rack env key, namespaced like `warden.options` and `action_dispatch.*`.
+  END_REASON_KEY = 'ds.session_end_reason'
+
   SESSION_KEY = 'user_session_id'
   USER_AGENT_MAX_LENGTH = 500
 
