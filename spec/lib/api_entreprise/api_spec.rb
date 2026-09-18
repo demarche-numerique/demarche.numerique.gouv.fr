@@ -62,6 +62,33 @@ describe APIEntreprise::API do
       end
     end
 
+    context 'when the API answers 409' do
+      let(:status) { 409 }
+      let(:body) { '' }
+
+      it 'is retryable: the conflict is on their side' do
+        expect(subject.failure).to include(type: :conflict, code: 409, retryable: true)
+      end
+    end
+
+    context 'when the API answers 200 with a body that is not JSON' do
+      let(:status) { 200 }
+      let(:body) { 'not json' }
+
+      it 'is retryable: they will fix their payload' do
+        expect(subject.failure).to include(type: :json, code: 200, retryable: true)
+      end
+    end
+
+    context 'when the API answers 200 with a JSON scalar' do
+      let(:status) { 200 }
+      let(:body) { 'null' }
+
+      it 'is retryable: they will fix their payload' do
+        expect(subject.failure).to include(type: :unexpected_type, code: 200, retryable: true)
+      end
+    end
+
     context 'when forbidden (403)' do
       let(:status) { 403 }
       let(:body) { fixture_file('entreprises_private.json') }

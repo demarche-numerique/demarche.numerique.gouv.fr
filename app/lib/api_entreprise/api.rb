@@ -119,6 +119,10 @@ class APIEntreprise::API
     in Failure(type: :http, code:, error:)
       APIEntreprise::RateLimiter.calibrate!(error.try(:response), pool)
       classify_http_error(code, error.try(:response))
+    in Failure(type: :json | :unexpected_type => type, code:, error:)
+      # A 200 we cannot read is a fault on their side that they will fix.
+      APIEntreprise::RateLimiter.calibrate!(error.try(:response), pool)
+      Failure(type:, code:, retryable: true, raw_response: error.try(:response))
     in Failure(type:, code:, retryable:, error:)
       APIEntreprise::RateLimiter.calibrate!(error.try(:response), pool)
       Failure(type:, code:, retryable:, raw_response: error.try(:response))
@@ -130,6 +134,7 @@ class APIEntreprise::API
   end
 
   # API Entreprise documented HTTP codes: 200, 401, 403, 404, 409, 422, 429, 451, 502, 503, 504
+  # https://entreprise.api.gouv.fr/developpeurs
   def classify_http_error(code, raw_response)
     case code
     when 401
@@ -139,7 +144,7 @@ class APIEntreprise::API
     when 404
       Failure(type: :not_found, code:, retryable: false, raw_response:)
     when 409
-      Failure(type: :conflict, code:, retryable: false, raw_response:)
+      Failure(type: :conflict, code:, retryable: true, raw_response:)
     when 422
       Failure(type: :unprocessable, code:, retryable: false, raw_response:)
     when 429

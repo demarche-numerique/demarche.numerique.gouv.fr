@@ -114,6 +114,25 @@ RSpec.describe ChampExternalDataConcern do
       end
     end
 
+    describe 'dossier timestamps' do
+      before do
+        allow(champ).to receive(:ready_for_external_call?).and_return(true)
+        champ.fetch_later!
+      end
+
+      it 'a state transition alone does not date the dossier' do
+        allow(champ).to receive(:fetch_and_handle_result)
+
+        expect { champ.fetch! }.not_to change { dossier.reload.updated_at }
+      end
+
+      it 'the data a fetch brings does' do
+        allow(champ).to receive(:fetch_external_data).and_return(Success(value_json: { 'title' => 'Fondation' }))
+
+        expect { champ.fetch! }.to change { dossier.reload.updated_at }
+      end
+    end
+
     describe 'fetch a success, now is fetched state' do
       before do
         allow(champ).to receive(:ready_for_external_call?).and_return(true)
@@ -174,6 +193,53 @@ RSpec.describe ChampExternalDataConcern do
       it do
         expect { subject }.to raise_error(RetryableFetchError)
         expect(champ.reload).to be_waiting_for_job
+      end
+    end
+
+    describe 'fetch a degraded failure, now is degraded state' do
+      before do
+        allow(champ).to receive(:ready_for_external_call?).and_return(true)
+        champ.fetch_later!
+
+        failure = Failure(degraded: true, value_json: { 'carried' => 'data' }, error: Exception.new('nop'), code: 503)
+        allow(champ).to receive(:fetch_external_data).and_return(failure)
+        champ.fetch!
+      end
+
+      it 'keeps the carried data and records the error' do
+        expect(champ.reload).to be_degraded
+        expect(champ.value_json).to eq({ 'carried' => 'data' })
+        expect(champ.fetch_external_data_exceptions.last.code).to eq(503)
+      end
+
+      it { expect(champ).to be_done }
+    end
+
+    describe 'leaving the degraded state' do
+      before { champ.update_column(:external_state, 'degraded') }
+
+      it 'can be reset' do
+        champ.reset_external_data!
+
+        expect(champ).to be_idle
+      end
+    end
+
+    describe 'fix_degraded' do
+      before do
+        champ.update_column(:external_state, 'degraded')
+        allow(champ).to receive(:fetch_external_data_later)
+      end
+
+      it 'goes back in the queue, with the given wait' do
+        champ.fix_degraded!(wait: 20)
+
+        expect(champ).to be_waiting_for_job
+        expect(champ).to have_received(:fetch_external_data_later).with(wait: 20)
+      end
+
+      it 'does not widen fetch_later, whose guard is used elsewhere' do
+        expect(champ.may_fetch_later?).to be_falsey
       end
     end
 
