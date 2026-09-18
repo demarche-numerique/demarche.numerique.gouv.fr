@@ -136,7 +136,7 @@ class AttestationTemplate < ApplicationRecord
     base_attributes = {
       created_at: Time.current,
       footer: params.fetch(:footer, footer),
-      signature: signature_to_render(groupe_instructeur),
+      signature: signature_for(groupe_instructeur),
     }
 
     if version == 2
@@ -152,6 +152,23 @@ class AttestationTemplate < ApplicationRecord
 
   def tiptap_body=(json)
     self.json_body = JSON.parse(json)
+  end
+
+  # The tiptap document (v2) with the dossier's values in place of the
+  # mentions, their "--id--" placeholders without a dossier (a preview).
+  def resolved_json_body(dossier = nil)
+    json = json_body&.deep_symbolize_keys
+    TiptapService.resolve(json, tiptap_substitutions(json, dossier))
+  end
+
+  # The signature stamping the attestation: the groupe instructeur's, the
+  # template's otherwise.
+  def signature_for(groupe_instructeur)
+    if groupe_instructeur&.signature&.attached?
+      groupe_instructeur.signature
+    else
+      signature
+    end
   end
 
   private
@@ -184,10 +201,7 @@ class AttestationTemplate < ApplicationRecord
     tiptap = TiptapService.new(hard_break: "<br><br>")
 
     if dossier.present?
-      # 2x faster this way than with `replace_tags` which would reparse text
-      used_tags = TiptapService.used_tags_and_libelle_for(json.deep_symbolize_keys)
-      substitutions = tags_substitutions(used_tags, dossier, escape: false)
-      body = tiptap.to_html(json, substitutions)
+      body = tiptap.to_html(json, tiptap_substitutions(json, dossier))
 
       attributes.merge(body:).merge(base_attributes)
     else
@@ -197,12 +211,12 @@ class AttestationTemplate < ApplicationRecord
     end
   end
 
-  def signature_to_render(groupe_instructeur)
-    if groupe_instructeur&.signature&.attached?
-      groupe_instructeur.signature
-    else
-      signature
-    end
+  def tiptap_substitutions(json, dossier)
+    return {} if json.nil? || dossier.nil?
+
+    # 2x faster this way than with `replace_tags` which would reparse text
+    used_tags = TiptapService.used_tags_and_libelle_for(json)
+    tags_substitutions(used_tags, dossier, escape: false)
   end
 
   def used_tags
@@ -215,36 +229,6 @@ class AttestationTemplate < ApplicationRecord
   end
 
   def build_pdf(dossier)
-    if version == 2
-      build_v2_pdf(dossier)
-    else
-      build_v1_pdf(dossier)
-    end
-  end
-
-  def build_v1_pdf(dossier)
-    attestation = render_attributes_for(dossier: dossier)
-    ApplicationController.render(
-      template: 'administrateurs/attestation_templates/show',
-      formats: :pdf,
-      assigns: { attestation: attestation }
-    )
-  end
-
-  def build_v2_pdf(dossier)
-    attributes = render_attributes_for(dossier:)
-    body = attributes.fetch(:body)
-    signature = attributes.fetch(:signature)
-
-    html = ApplicationController.render(
-      template: '/administrateurs/attestation_template_v2s/show',
-      formats: [:html],
-      layout: 'attestation',
-      assigns: { attestation_template: self, body:, signature: }
-    )
-
-    options = { procedure_id: procedure.id, dossier_id: dossier.id }
-
-    WeasyprintService.generate_pdf(html, options)
+    AttestationPdfService.render(self, dossier:, context: { dossier_id: dossier.id })
   end
 end
