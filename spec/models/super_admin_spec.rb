@@ -113,4 +113,19 @@ describe SuperAdmin, type: :model do
       it { expect(subject).to be_empty }
     end
   end
+
+  # The reset path is Devise's own controller, so nothing here is app code: the
+  # revocation has to hang off the model or it never runs for this scope.
+  describe 'changing the password' do
+    it 'closes every session of the account' do
+      super_admin = create(:super_admin)
+      one = super_admin.open_user_session!('a browser')
+      two = super_admin.open_user_session!('another browser')
+
+      super_admin.update!(password: "#{SECURE_PASSWORD}-bis")
+
+      expect(one.reload).to be_unusable
+      expect(two.reload).to be_unusable
+    end
+  end
 end

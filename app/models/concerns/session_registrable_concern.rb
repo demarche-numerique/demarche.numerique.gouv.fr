@@ -140,10 +140,17 @@ module SessionRegistrableConcern
     )
   end
 
+  # Called by every override: a subclass that revokes more than rows must refuse
+  # a bad call before touching anything irreversible.
+  def validate_revocation!(reason:, except:)
+    raise ArgumentError, "unknown revocation reason #{reason.inspect}" unless UserSession::REVOCATION_REASONS.include?(reason.to_s)
+    raise ArgumentError, 'cannot spare a session that is not persisted' if except && !except.persisted?
+  end
+
   # The id is generated database-side: an unsaved row has none, and
   # `where.not(id: nil)` would revoke the very session we mean to spare.
   def revoke_sessions!(reason:, except: nil)
-    raise ArgumentError, 'cannot spare a session that is not persisted' if except && !except.persisted?
+    validate_revocation!(reason:, except:)
 
     scope = user_sessions
     scope = scope.where.not(id: except.id) if except
