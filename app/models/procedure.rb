@@ -90,6 +90,46 @@ class Procedure < ApplicationRecord
     brouillon? ? draft_revision : published_revision
   end
 
+  # to bump when TypeDeChampTree.aggregate changes what it gives
+  AGGREGATED_TYPE_DE_CHAMP_TREE_VERSION = 1
+
+  # Every type de champ the published revisions ever held, laid out after the
+  # newest of them (TypeDeChampTree.aggregate): what the dossiers of a
+  # procedure may hold, whichever revision they follow.
+  #
+  # It derives from the trees of the published revisions, which never change:
+  # it is cached until the next publication, as plain ids. A procedure never
+  # published only has its draft, which changes with every edit.
+  #
+  # It is memoized by published revision: a procedure may be published while
+  # loaded.
+  def aggregated_type_de_champ_tree
+    return draft_revision.type_de_champ_tree if published_revision_id.nil?
+
+    @aggregated_type_de_champ_trees ||= {}
+    @aggregated_type_de_champ_trees[published_revision_id] ||= begin
+      cache_key = ["aggregated_type_de_champ_tree", AGGREGATED_TYPE_DE_CHAMP_TREE_VERSION, id, published_revision_id]
+      json = Rails.cache.fetch(cache_key, expires_in: 1.month) do
+        TypeDeChampTree.aggregate(published_revisions_oldest_first.map(&:type_de_champ_tree)).as_json
+      end
+
+      TypeDeChampTree.from_json(json)
+    end
+  end
+
+  # In the order of their publication, which is not always the one of their
+  # ids, and always ending with the published revision. A revision which is no
+  # longer the draft is not always a published one: a few drafts were left
+  # behind, never published.
+  def published_revisions_oldest_first
+    past_revisions = revisions
+      .where.not(id: [draft_revision_id, published_revision_id])
+      .where.not(published_at: nil)
+      .reorder(:published_at, :id)
+
+    [*past_revisions, published_revision]
+  end
+
   def all_revisions_type_de_champs(parent: nil, with_header_section: false)
     if brouillon?
       if parent.nil?

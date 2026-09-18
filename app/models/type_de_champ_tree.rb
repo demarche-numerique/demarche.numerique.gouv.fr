@@ -3,6 +3,13 @@
 # The layout of a revision's types de champ: which ones it holds, in which
 # order, and which repetition or header section contains them.
 class TypeDeChampTree < Data.define(:public_children, :private_children)
+  # a node while trees are merged: its children are an array left open, where
+  # the ones of a TypeDeChampNode are frozen
+  MergedNode = Data.define(:stable_id, :type_de_champ_id, :children, :parent) do
+    def to_node = TypeDeChampNode.new(stable_id:, type_de_champ_id:, children: children.map(&:to_node))
+  end
+  private_constant :MergedNode
+
   class << self
     def from_json(json)
       json = json.symbolize_keys
@@ -40,7 +47,82 @@ class TypeDeChampTree < Data.define(:public_children, :private_children)
       )
     end
 
+    # One tree out of the trees of a procedure's published revisions, from the
+    # oldest to the newest, holding every type de champ any of them held. Each
+    # tree is merged in the aggregate of the ones before, as if publication
+    # after publication:
+    #
+    # - the newest tree gives the layout, and the version of each type de champ;
+    # - a type de champ removed since comes at the end of its last-known
+    #   container, a removed container with the content removed along with it,
+    #   the latest removed first;
+    # - a type de champ moved since is only where the newest tree lays it.
+    def aggregate(trees)
+      kinds = container_kinds(trees)
+
+      trees.reduce(new) do |aggregate, tree|
+        new(
+          public_children: merged(tree.public_children, aggregate.public_children, kinds),
+          private_children: merged(tree.private_children, aggregate.private_children, kinds)
+        )
+      end
+    end
+
     private
+
+    def merged(newest, aggregated, kinds)
+      root = MergedNode.new(stable_id: nil, type_de_champ_id: nil, children: [], parent: nil)
+      merged_by_stable_id = {}
+
+      graft(newest, root, merged_by_stable_id, kinds)
+      graft(aggregated, root, merged_by_stable_id, kinds)
+
+      root.children.map(&:to_node)
+    end
+
+    # lays the nodes not merged yet at the end of the container, which is nil
+    # when their content has nowhere to go
+    def graft(nodes, container, merged_by_stable_id, kinds)
+      nodes.each do |node|
+        merged = merged_by_stable_id[node.stable_id]
+
+        if merged
+          graft(node.children, container_of_content(node, merged, kinds), merged_by_stable_id, kinds)
+        elsif container
+          merged = MergedNode.new(stable_id: node.stable_id, type_de_champ_id: node.type_de_champ_id, children: [], parent: container)
+          container.children << merged
+          merged_by_stable_id[node.stable_id] = merged
+          graft(node.children, merged, merged_by_stable_id, kinds)
+        end
+      end
+    end
+
+    # A type de champ keeps its stable id when its type changes. What a
+    # repetition held means nothing out of it, and is left out; what a header
+    # section held goes to the container the former header section sits in.
+    def container_of_content(node, merged, kinds)
+      kind, merged_kind = kinds.values_at(node.type_de_champ_id, merged.type_de_champ_id)
+
+      if node.children.empty? || kind == merged_kind
+        merged
+      elsif kind == TypeDeChamp.type_champs.fetch(:header_section)
+        merged.parent
+      end
+    end
+
+    # the type of each version of the types de champ which had children and
+    # changed since: nothing to look up, most of the time
+    def container_kinds(trees)
+      nodes = trees.flat_map(&:nodes)
+      container_stable_ids = nodes.reject { it.children.empty? }.to_set(&:stable_id)
+      type_de_champ_ids = nodes
+        .filter { it.stable_id.in?(container_stable_ids) }
+        .group_by(&:stable_id)
+        .flat_map { |_, versions| versions.map(&:type_de_champ_id).uniq.then { it.many? ? it : [] } }
+      return {} if type_de_champ_ids.empty?
+
+      TypeDeChamp.where(id: type_de_champ_ids).pluck(:id, :type_champ).to_h
+    end
 
     def usable(coordinates)
       coordinates = coordinates.reject { it.type_champ.blank? }

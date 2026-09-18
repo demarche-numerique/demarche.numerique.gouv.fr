@@ -1,6 +1,77 @@
 # frozen_string_literal: true
 
 describe Procedure do
+  describe '#aggregated_type_de_champ_tree' do
+    let(:procedure) { procedures.individual }
+    let(:removed) { procedure.published_revision.public_root_type_de_champs.first }
+
+    def remove_and_publish
+      procedure.draft_revision.remove_type_de_champ(removed.stable_id)
+      procedure.publish_revision!(administrateurs.default)
+    end
+
+    it 'is the tree of the draft for a procedure never published' do
+      procedure = procedures.brouillon
+
+      expect(Rails.cache).not_to receive(:fetch)
+      expect(procedure.aggregated_type_de_champ_tree).to eq(procedure.draft_revision.type_de_champ_tree)
+    end
+
+    it 'aggregates the published revisions' do
+      expect(procedure.aggregated_type_de_champ_tree).to eq(procedure.published_revision.type_de_champ_tree)
+
+      remove_and_publish
+
+      expect(procedure.published_revision.type_de_champ_tree.public_children.map(&:stable_id)).not_to include(removed.stable_id)
+      expect(procedure.aggregated_type_de_champ_tree.public_children.map(&:stable_id))
+        .to eq([*procedure.published_revision.type_de_champ_tree.public_children.map(&:stable_id), removed.stable_id])
+    end
+
+    it 'is memoized until the next publication' do
+      aggregated = procedure.aggregated_type_de_champ_tree
+
+      expect(Rails.cache).not_to receive(:fetch)
+      expect(procedure.aggregated_type_de_champ_tree).to equal(aggregated)
+    end
+
+    it 'leaves out a revision never published' do
+      left_behind = procedure.create_new_revision
+      left_behind.add_type_de_champ(type_champ: :text, libelle: 'never published')
+
+      expect(left_behind.id).to be > procedure.published_revision_id
+      expect(procedure.aggregated_type_de_champ_tree).to eq(procedure.published_revision.type_de_champ_tree)
+    end
+
+    it 'is laid out after the published revision, even when a revision published before has a higher id' do
+      published_before = procedure.create_new_revision
+      published_before.remove_type_de_champ(removed.stable_id)
+      published_before.update_columns(published_at: procedure.published_revision.published_at - 1.day)
+
+      expect(published_before.id).to be > procedure.published_revision_id
+      expect(procedure.aggregated_type_de_champ_tree).to eq(procedure.published_revision.type_de_champ_tree)
+    end
+
+    context 'with a cache' do
+      before { allow(Rails).to receive(:cache).and_return(ActiveSupport::Cache::MemoryStore.new) }
+
+      it 'does not go through the revisions again' do
+        aggregated = procedure.aggregated_type_de_champ_tree
+
+        expect(procedure).not_to receive(:revisions)
+        expect(Procedure.find(procedure.id).aggregated_type_de_champ_tree).to eq(aggregated)
+        expect(procedure.aggregated_type_de_champ_tree).to eq(aggregated)
+      end
+
+      it 'turns over with a publication' do
+        expect(procedure.aggregated_type_de_champ_tree.public_children.last.stable_id).not_to eq(removed.stable_id)
+
+        remove_and_publish
+
+        expect(procedure.aggregated_type_de_champ_tree.public_children.last.stable_id).to eq(removed.stable_id)
+      end
+    end
+  end
+
   [:lien_notice, :lien_dpo, :web_hook_url].each do |field|
     describe "#{field} validation" do
         let(:procedure) { procedures.brouillon }
