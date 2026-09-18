@@ -3,6 +3,7 @@ import { isButtonElement, isHTMLElement } from 'coldwired/utils';
 import * as s from 'superstruct';
 
 import { getAction } from '../../shared/tiptap/actions';
+import { blockTagsAllowed } from '../../shared/tiptap/block_tags';
 import { createEditor } from '../../shared/tiptap/editor';
 import { tagSchema, type TagSchema } from '../../shared/tiptap/tags';
 import { httpRequest } from '../../shared/utils';
@@ -82,6 +83,14 @@ export class TiptapController extends ApplicationController {
             button.disabled = empty && !hasExistingLink;
           } else {
             button.disabled = action.isDisabled();
+          }
+        }
+
+        // Tags rendered as a list cannot be inserted in a title or a heading.
+        const blockTagsEnabled = blockTagsAllowed(editor.state);
+        for (const tag of this.tagTargets) {
+          if (tag.dataset.tagBlock === 'true' && isButtonElement(tag)) {
+            tag.disabled = !blockTagsEnabled;
           }
         }
 
