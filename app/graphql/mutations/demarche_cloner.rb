@@ -15,7 +15,9 @@ module Mutations
       demarche_number = demarche.number.presence || ApplicationRecord.id_from_typed_id(demarche.id)
       demarche = Procedure.with_active_revision.find_by(id: demarche_number)
 
-      if demarche.present? && (demarche.opendata? || context.authorized_demarche?(demarche))
+      # opendata: true authorizes published opendata procedures (shareable) and
+      # the token's own procedures, but not another admin's unpublished draft.
+      if demarche.present? && context.authorized_demarche?(demarche, opendata: true)
         cloned_demarche = demarche.clone(admin: context.current_administrateur, options: { clone_service: })
         cloned_demarche.update!(libelle: title) if title.present?
         context.authorize_demarche!(cloned_demarche)
