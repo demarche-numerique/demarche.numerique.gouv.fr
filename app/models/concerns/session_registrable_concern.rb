@@ -8,6 +8,7 @@ module SessionRegistrableConcern
   END_REASON_KEY = 'ds.session_end_reason'
 
   LAST_SEEN_KEY = 'last_seen_on'
+  PERSISTENT_KEY = 'persistent'
 
   # Frozen in the session at creation, like `expires_at` on the row: the policy
   # a session lives under is the one it was opened under. Recomputing it from
@@ -15,6 +16,7 @@ module SessionRegistrableConcern
   # invited as an expert, leaving them a year with no bound at all -- and would
   # cost a `gestionnaires` SELECT on every authenticated request.
   INACTIVITY_KEY = 'inactivity_window'
+  COOKIE_LIFETIME_KEY = 'cookie_lifetime'
   USER_AGENT_MAX_LENGTH = 500
 
   # Not `warden.session(scope)`: it checks `authenticated?`, which refetches the
@@ -44,6 +46,7 @@ module SessionRegistrableConcern
     return if session.nil?
 
     session[INACTIVITY_KEY] = record.session_inactivity_window&.to_i unless session.key?(INACTIVITY_KEY)
+    session[COOKIE_LIFETIME_KEY] = record.session_cookie_lifetime&.to_i unless session.key?(COOKIE_LIFETIME_KEY)
   end
 
   # Inactivity is read from the cookie, which is signed: the client cannot push
@@ -61,6 +64,30 @@ module SessionRegistrableConcern
     Date.parse(last_seen) < window.seconds.ago.to_date
   rescue Date::Error
     false
+  end
+
+  # "Stay signed in" is an expiry on the session cookie, so the browser keeps it
+  # across a restart. It grants nothing on its own -- the row it names is still
+  # checked on every request -- so every role may have one.
+  def self.remember!(record, warden, scope)
+    warden.session(scope)[PERSISTENT_KEY] = !!record.try(:remember_me)
+    stamp_policy!(record, warden, scope)
+
+    persist_cookie!(warden, scope)
+  end
+
+  # On every request, not only at sign in: Rails rewrites the session cookie on
+  # every response, and a rewrite carrying no expiry would turn it back into a
+  # session cookie. The smallest wins -- one cookie carries every Warden scope.
+  def self.persist_cookie!(warden, scope)
+    session = warden_session(warden, scope)
+    return if !session[PERSISTENT_KEY]
+
+    lifetime = session[COOKIE_LIFETIME_KEY]
+    return if lifetime.blank?
+
+    options = warden.request.session_options
+    options[:expire_after] = [options[:expire_after]&.to_i, lifetime].compact.min
   end
 
   def self.touch_last_seen!(session)
@@ -94,6 +121,10 @@ module SessionRegistrableConcern
   # nil means no sliding window: an absolute deadline bounds the account instead,
   # and the two strategies are exclusive.
   def session_inactivity_window = nil
+
+  # Mirrors whatever bounds the account, so the cookie never outlives its row nor
+  # cuts a session short before it.
+  def session_cookie_lifetime = session_inactivity_window || session_max_lifetime
 
   # The raw user-agent is stored, not a label: deriving it at display time means
   # a better parser later also improves existing rows.

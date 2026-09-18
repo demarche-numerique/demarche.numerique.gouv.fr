@@ -29,7 +29,6 @@ Warden::Manager.after_set_user do |record, warden, options|
   # adopted, a sign in loop the moment they no longer are.
   in :authentication | :set_user
     SessionRegistrableConcern.open_session!(record, warden, scope)
-    SessionRegistrableConcern.stamp_policy!(record, warden, scope)
 
   # :fetch -- the user was read back from the cookie, on every request after the
   #           one that signed them in. The session continues, so the row it names
@@ -47,7 +46,6 @@ Warden::Manager.after_set_user do |record, warden, options|
       SessionRegistrableConcern.open_session!(record, warden, scope)
     else
       user_session = UserSession.find_by(id: session_id, sessionable: record)
-      SessionRegistrableConcern.stamp_policy!(record, warden, scope)
 
       # The row first: a session both revoked and stale must say it was revoked,
       # which is the message the user needs.
@@ -74,6 +72,26 @@ Warden::Manager.after_set_user do |record, warden, options|
         warden.logout(scope)
       end
     end
+  end
+rescue StandardError => e
+  Sentry.capture_exception(e)
+end
+
+# Separate from the hook above, and not gated: "stay signed in" is not part of
+# the registry, and gating it would take the persistent cookie away from
+# everyone for as long as the flag is off.
+Warden::Manager.after_set_user do |record, warden, options|
+  next unless record.is_a?(SessionRegistrableConcern)
+
+  case options[:event]
+  in :authentication | :set_user
+    SessionRegistrableConcern.remember!(record, warden, options[:scope])
+  in :fetch
+    # Stamped here too: a session adopted by the hook above opens a row without
+    # passing through `remember!`, and one opened before this shipped carries no
+    # policy at all.
+    SessionRegistrableConcern.stamp_policy!(record, warden, options[:scope])
+    SessionRegistrableConcern.persist_cookie!(warden, options[:scope])
   end
 rescue StandardError => e
   Sentry.capture_exception(e)
