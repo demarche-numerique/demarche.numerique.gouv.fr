@@ -150,6 +150,16 @@ describe ProcedurePublishConcern do
       expect(procedure.draft_revision.administrateur).to be_nil
     end
 
+    it 'stores the type de champ tree on the published revision only' do
+      subject
+
+      published_revision = procedure.published_revision.reload
+      type_de_champ = published_revision.public_root_type_de_champs.first
+      expect(published_revision.read_attribute(:type_de_champ_tree).public_children)
+        .to eq([TypeDeChampNode.new(stable_id: type_de_champ.stable_id, type_de_champ_id: type_de_champ.id)])
+      expect(procedure.draft_revision.reload.read_attribute(:type_de_champ_tree)).to be_nil
+    end
+
     context 'when the procedure has dossiers' do
       let(:dossier_draft) { create(:dossier, :brouillon, procedure: procedure) }
       let(:dossier_submitted) { create(:dossier, :en_construction, procedure: procedure) }
@@ -220,6 +230,16 @@ describe ProcedurePublishConcern do
         expect { previous_draft_revision.reload }.to raise_error(ActiveRecord::RecordNotFound)
         expect(procedure.attestation_acceptation_template).to eq(previous_attestation_template)
         expect(procedure.draft_revision.dossier_submitted_message).to eq(previous_dossier_submitted_message)
+      end
+
+      it "does not hand the published type de champ tree over to the new draft" do
+        procedure = procedures.individual
+        procedure.draft_revision.add_type_de_champ(tdc_attributes)
+
+        procedure.reset_draft_revision!
+
+        expect(procedure.published_revision.read_attribute(:type_de_champ_tree)).to be_present
+        expect(procedure.draft_revision.reload.read_attribute(:type_de_champ_tree)).to be_nil
       end
 
       it "should erase orphan tdc" do
