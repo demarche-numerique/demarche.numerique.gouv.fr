@@ -47,4 +47,31 @@ RSpec.describe TypeDeChamps::ConditionValidator do
       expect(subject).to include(invalid_condition_message)
     end
   end
+
+  context 'when a condition is contradictory' do
+    let(:public_type_de_champs) do
+      [
+        { type: :integer_number, libelle: 'Nombre', stable_id: 1 },
+        { type: :text, libelle: 'Conditionnel', stable_id: 2, condition: ds_and([greater_than(champ_value(1), constant(3)), less_than(champ_value(1), constant(2))]) },
+      ]
+    end
+
+    it 'adds an error on the condition' do
+      expect(subject).to include(invalid_condition_message)
+    end
+  end
+
+  context 'when a condition targets a champ that is never displayed in that case' do
+    let(:public_type_de_champs) do
+      [
+        { type: :integer_number, libelle: 'Nombre', stable_id: 1 },
+        { type: :yes_no, libelle: 'Caché', stable_id: 2, condition: greater_than(champ_value(1), constant(10)) },
+        { type: :text, libelle: 'Conditionnel', stable_id: 3, condition: ds_and([ds_eq(champ_value(2), constant(true)), less_than(champ_value(1), constant(5))]) },
+      ]
+    end
+
+    it 'adds an error on the condition' do
+      expect(subject).to include(invalid_condition_message)
+    end
+  end
 end
