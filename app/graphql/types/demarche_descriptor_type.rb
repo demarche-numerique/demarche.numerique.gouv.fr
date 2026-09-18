@@ -46,6 +46,7 @@ Cela évite l’accès récursif aux dossiers."
     field :zones, [String], "ministère(s) ou collectivité(s) qui mettent en oeuvre la démarche", null: false
 
     field :revision, Types::RevisionType, null: false
+    field :routing_rules, [Types::RoutingRuleType], "Règles de routage des dossiers vers les groupes instructeurs actifs (`null` si le routage n’est pas activé ; vide si aucune règle n’est encore définie).", null: true
     field :service, Types::ServiceType, null: true
 
     field :logo, Types::File, null: true, extensions: [{ Extensions::Attachment => { root: :procedure } }]
@@ -56,6 +57,14 @@ Cela évite l’accès récursif aux dossiers."
 
     def service
       dataloader.with(Sources::Association, :service).load(procedure)
+    end
+
+    def routing_rules
+      return if !procedure.routing_enabled
+
+      dataloader.with(Sources::Association, :groupe_instructeurs).load(procedure).then do |groupes|
+        groupes.filter { !it.closed? && it.routing_rule.present? }.sort_by(&:id)
+      end
     end
 
     def revision
