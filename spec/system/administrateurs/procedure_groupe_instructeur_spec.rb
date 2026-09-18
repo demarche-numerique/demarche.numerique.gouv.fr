@@ -56,4 +56,17 @@ describe 'Manage procedure instructeurs', js: true do
       expect(procedure.groupe_instructeurs.find_by(label: "Départements hors IDF")).to be_present
     end
   end
+
+  context 'when configuring the routing without a simple routable champ' do
+    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :integer_number }]) }
+
+    scenario 'creates the placeholder groupes once the button is clicked' do
+      visit options_admin_procedure_groupe_instructeurs_path(procedure)
+
+      click_button 'Configurer le routage'
+
+      expect(page).to have_content('Groupe 2 (à renommer et configurer)')
+      expect(procedure.reload.routing_enabled).to be_truthy
+    end
+  end
 end

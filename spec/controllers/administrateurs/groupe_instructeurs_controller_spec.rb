@@ -1094,11 +1094,24 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
                ],
                administrateurs: [admin])
       end
-      before { get :options, params: { procedure_id: procedure.id, state: 'choix' } }
 
-      it do
-        expect(response).to redirect_to(admin_procedure_groupe_instructeurs_path(procedure))
-        expect(procedure.reload.routing_enabled).to be_truthy
+      it 'renders the choice without configuring the routing on a GET request' do
+        expect {
+          get :options, params: { procedure_id: procedure.id, state: 'choix' }
+        }.not_to change { procedure.groupe_instructeurs.pluck(:label) }
+
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to include('Choix du type de configuration')
+        expect(procedure.reload.routing_enabled).to be_falsey
+      end
+
+      it 'offers the manual configuration through a PATCH form' do
+        get :options, params: { procedure_id: procedure.id }
+
+        wizard_path = wizard_admin_procedure_groupe_instructeurs_path(procedure)
+        expect(response.body).to have_selector("form[action='#{wizard_path}'] input[name='_method'][value='patch']", visible: false)
+        expect(response.body).to have_selector("form[action='#{wizard_path}'] input[name='choice[state]'][value='custom_routing']", visible: false)
+        expect(response.body).not_to include(options_admin_procedure_groupe_instructeurs_path(procedure, state: :choix))
       end
     end
 
