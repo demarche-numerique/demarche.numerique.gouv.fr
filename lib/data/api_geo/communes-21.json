@@ -3,7 +3,7 @@
     "name": "Agencourt",
     "code": "21001",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21700"
   },
@@ -11,7 +11,7 @@
     "name": "Agey",
     "code": "21002",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21410"
   },
@@ -19,7 +19,7 @@
     "name": "Ahuy",
     "code": "21003",
     "epci_code": "242100410",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21121"
   },
@@ -27,7 +27,7 @@
     "name": "Aignay-le-Duc",
     "code": "21004",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21510"
   },
@@ -35,7 +35,7 @@
     "name": "Aiserey",
     "code": "21005",
     "epci_code": "200000925",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21110"
   },
@@ -43,7 +43,7 @@
     "name": "Aisey-sur-Seine",
     "code": "21006",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -51,7 +51,7 @@
     "name": "Aisy-sous-Thil",
     "code": "21007",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21390"
   },
@@ -59,7 +59,7 @@
     "name": "Alise-Sainte-Reine",
     "code": "21008",
     "epci_code": "242101459",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21150"
   },
@@ -67,7 +67,7 @@
     "name": "Allerey",
     "code": "21009",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21230"
   },
@@ -75,7 +75,7 @@
     "name": "Aloxe-Corton",
     "code": "21010",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21420"
   },
@@ -83,7 +83,7 @@
     "name": "Ampilly-les-Bordes",
     "code": "21011",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21450"
   },
@@ -91,7 +91,7 @@
     "name": "Ampilly-le-Sec",
     "code": "21012",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -99,7 +99,7 @@
     "name": "Ancey",
     "code": "21013",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21410"
   },
@@ -107,7 +107,7 @@
     "name": "Antheuil",
     "code": "21014",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21360"
   },
@@ -115,7 +115,7 @@
     "name": "Antigny-la-Ville",
     "code": "21015",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21230"
   },
@@ -123,7 +123,7 @@
     "name": "Arceau",
     "code": "21016",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21310"
   },
@@ -131,7 +131,7 @@
     "name": "Arcenant",
     "code": "21017",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21700"
   },
@@ -139,7 +139,7 @@
     "name": "Arcey",
     "code": "21018",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21410"
   },
@@ -147,7 +147,7 @@
     "name": "Arconcey",
     "code": "21020",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21320"
   },
@@ -155,7 +155,7 @@
     "name": "Arc-sur-Tille",
     "code": "21021",
     "epci_code": "200069540",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21560"
   },
@@ -163,7 +163,7 @@
     "name": "Argilly",
     "code": "21022",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21700"
   },
@@ -171,7 +171,7 @@
     "name": "Arnay-le-Duc",
     "code": "21023",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21230"
   },
@@ -179,7 +179,7 @@
     "name": "Arnay-sous-Vitteaux",
     "code": "21024",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21350"
   },
@@ -187,7 +187,7 @@
     "name": "Arrans",
     "code": "21025",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -195,7 +195,7 @@
     "name": "Asnières-en-Montagne",
     "code": "21026",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -203,7 +203,7 @@
     "name": "Asnières-lès-Dijon",
     "code": "21027",
     "epci_code": "200069540",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21380"
   },
@@ -211,7 +211,7 @@
     "name": "Athée",
     "code": "21028",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21130"
   },
@@ -219,7 +219,7 @@
     "name": "Athie",
     "code": "21029",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -227,7 +227,7 @@
     "name": "Aubaine",
     "code": "21030",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21360"
   },
@@ -235,7 +235,7 @@
     "name": "Aubigny-en-Plaine",
     "code": "21031",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21170"
   },
@@ -243,7 +243,7 @@
     "name": "Aubigny-la-Ronce",
     "code": "21032",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21340"
   },
@@ -251,7 +251,7 @@
     "name": "Aubigny-lès-Sombernon",
     "code": "21033",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21540"
   },
@@ -259,7 +259,7 @@
     "name": "Autricourt",
     "code": "21034",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21570"
   },
@@ -267,7 +267,7 @@
     "name": "Auvillars-sur-Saône",
     "code": "21035",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21250"
   },
@@ -275,7 +275,7 @@
     "name": "Auxant",
     "code": "21036",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21360"
   },
@@ -283,7 +283,7 @@
     "name": "Auxey-Duresses",
     "code": "21037",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21190"
   },
@@ -291,7 +291,7 @@
     "name": "Auxonne",
     "code": "21038",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21130"
   },
@@ -299,7 +299,7 @@
     "name": "Avelanges",
     "code": "21039",
     "epci_code": "242100154",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21120"
   },
@@ -307,7 +307,7 @@
     "name": "Avosnes",
     "code": "21040",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21350"
   },
@@ -315,7 +315,7 @@
     "name": "Avot",
     "code": "21041",
     "epci_code": "200070910",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21580"
   },
@@ -323,7 +323,7 @@
     "name": "Bagnot",
     "code": "21042",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21700"
   },
@@ -331,7 +331,7 @@
     "name": "Baigneux-les-Juifs",
     "code": "21043",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21450"
   },
@@ -339,7 +339,7 @@
     "name": "Balot",
     "code": "21044",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21330"
   },
@@ -347,7 +347,7 @@
     "name": "Barbirey-sur-Ouche",
     "code": "21045",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21410"
   },
@@ -355,7 +355,7 @@
     "name": "Bard-le-Régulier",
     "code": "21046",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21430"
   },
@@ -363,7 +363,7 @@
     "name": "Bard-lès-Époisses",
     "code": "21047",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21460"
   },
@@ -371,7 +371,7 @@
     "name": "Barges",
     "code": "21048",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21910"
   },
@@ -379,7 +379,7 @@
     "name": "Barjon",
     "code": "21049",
     "epci_code": "200070910",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21580"
   },
@@ -387,7 +387,7 @@
     "name": "Baubigny",
     "code": "21050",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21340"
   },
@@ -395,7 +395,7 @@
     "name": "Baulme-la-Roche",
     "code": "21051",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21410"
   },
@@ -403,7 +403,7 @@
     "name": "Beaulieu",
     "code": "21052",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21510"
   },
@@ -411,7 +411,7 @@
     "name": "Beaumont-sur-Vingeanne",
     "code": "21053",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21310"
   },
@@ -419,7 +419,7 @@
     "name": "Beaune",
     "code": "21054",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21200"
   },
@@ -427,7 +427,7 @@
     "name": "Beaunotte",
     "code": "21055",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21510"
   },
@@ -435,7 +435,7 @@
     "name": "Beire-le-Châtel",
     "code": "21056",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21310"
   },
@@ -443,7 +443,7 @@
     "name": "Beire-le-Fort",
     "code": "21057",
     "epci_code": "200000925",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21110"
   },
@@ -451,7 +451,7 @@
     "name": "Belan-sur-Ource",
     "code": "21058",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21570"
   },
@@ -459,7 +459,7 @@
     "name": "Bellefond",
     "code": "21059",
     "epci_code": "200069540",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21490"
   },
@@ -467,7 +467,7 @@
     "name": "Belleneuve",
     "code": "21060",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21310"
   },
@@ -475,7 +475,7 @@
     "name": "Bellenod-sur-Seine",
     "code": "21061",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21510"
   },
@@ -483,7 +483,7 @@
     "name": "Bellenot-sous-Pouilly",
     "code": "21062",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21320"
   },
@@ -491,7 +491,7 @@
     "name": "Beneuvre",
     "code": "21063",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21290"
   },
@@ -499,7 +499,7 @@
     "name": "Benoisey",
     "code": "21064",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -507,7 +507,7 @@
     "name": "Bessey-en-Chaume",
     "code": "21065",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21360"
   },
@@ -515,7 +515,7 @@
     "name": "Bessey-la-Cour",
     "code": "21066",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21360"
   },
@@ -523,7 +523,7 @@
     "name": "Bessey-lès-Cîteaux",
     "code": "21067",
     "epci_code": "200000925",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21110"
   },
@@ -531,7 +531,7 @@
     "name": "Beurey-Bauguay",
     "code": "21068",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21320"
   },
@@ -539,7 +539,7 @@
     "name": "Beurizot",
     "code": "21069",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21350"
   },
@@ -547,7 +547,7 @@
     "name": "Bévy",
     "code": "21070",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21220"
   },
@@ -555,7 +555,7 @@
     "name": "Bèze",
     "code": "21071",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21310"
   },
@@ -563,7 +563,7 @@
     "name": "Bézouotte",
     "code": "21072",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21310"
   },
@@ -571,7 +571,7 @@
     "name": "Billey",
     "code": "21074",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21130"
   },
@@ -579,7 +579,7 @@
     "name": "Billy-lès-Chanceaux",
     "code": "21075",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21450"
   },
@@ -587,7 +587,7 @@
     "name": "Binges",
     "code": "21076",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21270"
   },
@@ -595,7 +595,7 @@
     "name": "Bissey-la-Côte",
     "code": "21077",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21520"
   },
@@ -603,7 +603,7 @@
     "name": "Bissey-la-Pierre",
     "code": "21078",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21330"
   },
@@ -611,7 +611,7 @@
     "name": "Blagny-sur-Vingeanne",
     "code": "21079",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21310"
   },
@@ -619,7 +619,7 @@
     "name": "Blaisy-Bas",
     "code": "21080",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21540"
   },
@@ -627,7 +627,7 @@
     "name": "Blaisy-Haut",
     "code": "21081",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21540"
   },
@@ -635,7 +635,7 @@
     "name": "Blancey",
     "code": "21082",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21320"
   },
@@ -643,7 +643,7 @@
     "name": "Blanot",
     "code": "21083",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21430"
   },
@@ -651,7 +651,7 @@
     "name": "Source-Seine",
     "code": "21084",
     "epci_code": "242101459",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21690"
   },
@@ -659,7 +659,7 @@
     "name": "Bligny-le-Sec",
     "code": "21085",
     "epci_code": "200039063",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21440"
   },
@@ -667,7 +667,7 @@
     "name": "Bligny-lès-Beaune",
     "code": "21086",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21200"
   },
@@ -675,7 +675,7 @@
     "name": "Bligny-sur-Ouche",
     "code": "21087",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21360"
   },
@@ -683,7 +683,7 @@
     "name": "Boncourt-le-Bois",
     "code": "21088",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21700"
   },
@@ -691,7 +691,7 @@
     "name": "Bonnencontre",
     "code": "21089",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21250"
   },
@@ -699,7 +699,7 @@
     "name": "Boudreville",
     "code": "21090",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21520"
   },
@@ -707,7 +707,7 @@
     "name": "Bouhey",
     "code": "21091",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21360"
   },
@@ -715,7 +715,7 @@
     "name": "Bouilland",
     "code": "21092",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21420"
   },
@@ -723,7 +723,7 @@
     "name": "Bouix",
     "code": "21093",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21330"
   },
@@ -731,7 +731,7 @@
     "name": "Bourberain",
     "code": "21094",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21610"
   },
@@ -739,7 +739,7 @@
     "name": "Bousselange",
     "code": "21095",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21250"
   },
@@ -747,7 +747,7 @@
     "name": "Boussenois",
     "code": "21096",
     "epci_code": "200070910",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21260"
   },
@@ -755,7 +755,7 @@
     "name": "Boussey",
     "code": "21097",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21350"
   },
@@ -763,7 +763,7 @@
     "name": "Boux-sous-Salmaise",
     "code": "21098",
     "epci_code": "242101459",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21690"
   },
@@ -771,7 +771,7 @@
     "name": "Bouze-lès-Beaune",
     "code": "21099",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21200"
   },
@@ -779,7 +779,7 @@
     "name": "Brain",
     "code": "21100",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21350"
   },
@@ -787,7 +787,7 @@
     "name": "Braux",
     "code": "21101",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21390"
   },
@@ -795,7 +795,7 @@
     "name": "Brazey-en-Morvan",
     "code": "21102",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21430"
   },
@@ -803,7 +803,7 @@
     "name": "Brazey-en-Plaine",
     "code": "21103",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21470"
   },
@@ -811,7 +811,7 @@
     "name": "Brémur-et-Vaurois",
     "code": "21104",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -819,7 +819,7 @@
     "name": "Bressey-sur-Tille",
     "code": "21105",
     "epci_code": "242100410",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21560"
   },
@@ -827,7 +827,7 @@
     "name": "Bretenière",
     "code": "21106",
     "epci_code": "242100410",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21110"
   },
@@ -835,7 +835,7 @@
     "name": "Bretigny",
     "code": "21107",
     "epci_code": "200069540",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21490"
   },
@@ -843,7 +843,7 @@
     "name": "Brianny",
     "code": "21108",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21390"
   },
@@ -851,7 +851,7 @@
     "name": "Brion-sur-Ource",
     "code": "21109",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21570"
   },
@@ -859,7 +859,7 @@
     "name": "Brochon",
     "code": "21110",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21220"
   },
@@ -867,7 +867,7 @@
     "name": "Brognon",
     "code": "21111",
     "epci_code": "200069540",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21490"
   },
@@ -875,7 +875,7 @@
     "name": "Broin",
     "code": "21112",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21250"
   },
@@ -883,7 +883,7 @@
     "name": "Broindon",
     "code": "21113",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21220"
   },
@@ -891,7 +891,7 @@
     "name": "Buffon",
     "code": "21114",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -899,7 +899,7 @@
     "name": "Buncey",
     "code": "21115",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -907,7 +907,7 @@
     "name": "Bure-les-Templiers",
     "code": "21116",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21290"
   },
@@ -915,7 +915,7 @@
     "name": "Busseaut",
     "code": "21117",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21510"
   },
@@ -923,7 +923,7 @@
     "name": "Busserotte-et-Montenaille",
     "code": "21118",
     "epci_code": "200070910",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21580"
   },
@@ -931,7 +931,7 @@
     "name": "Bussières",
     "code": "21119",
     "epci_code": "200070910",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21580"
   },
@@ -939,7 +939,7 @@
     "name": "La Bussière-sur-Ouche",
     "code": "21120",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21360"
   },
@@ -947,7 +947,7 @@
     "name": "Bussy-la-Pesle",
     "code": "21121",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21540"
   },
@@ -955,7 +955,7 @@
     "name": "Bussy-le-Grand",
     "code": "21122",
     "epci_code": "242101459",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21150"
   },
@@ -963,7 +963,7 @@
     "name": "Buxerolles",
     "code": "21123",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21290"
   },
@@ -971,7 +971,7 @@
     "name": "Censerey",
     "code": "21124",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21430"
   },
@@ -979,7 +979,7 @@
     "name": "Cérilly",
     "code": "21125",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21330"
   },
@@ -987,7 +987,7 @@
     "name": "Cessey-sur-Tille",
     "code": "21126",
     "epci_code": "200000925",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21110"
   },
@@ -995,7 +995,7 @@
     "name": "Chaignay",
     "code": "21127",
     "epci_code": "242100154",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21120"
   },
@@ -1003,7 +1003,7 @@
     "name": "Chailly-sur-Armançon",
     "code": "21128",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21320"
   },
@@ -1011,7 +1011,7 @@
     "name": "Chambain",
     "code": "21129",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21290"
   },
@@ -1019,7 +1019,7 @@
     "name": "Chambeire",
     "code": "21130",
     "epci_code": "200000925",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21110"
   },
@@ -1027,7 +1027,7 @@
     "name": "Chamblanc",
     "code": "21131",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21250"
   },
@@ -1035,7 +1035,7 @@
     "name": "Chambœuf",
     "code": "21132",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21220"
   },
@@ -1043,7 +1043,7 @@
     "name": "Chambolle-Musigny",
     "code": "21133",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21220"
   },
@@ -1051,7 +1051,7 @@
     "name": "Chamesson",
     "code": "21134",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -1059,7 +1059,7 @@
     "name": "Champagne-sur-Vingeanne",
     "code": "21135",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21310"
   },
@@ -1067,7 +1067,7 @@
     "name": "Champagny",
     "code": "21136",
     "epci_code": "200039063",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21440"
   },
@@ -1075,7 +1075,7 @@
     "name": "Champ-d’Oiseau",
     "code": "21137",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -1083,7 +1083,7 @@
     "name": "Champdôtre",
     "code": "21138",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21130"
   },
@@ -1091,7 +1091,7 @@
     "name": "Champeau-en-Morvan",
     "code": "21139",
     "epci_code": "242101442",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21210"
   },
@@ -1099,7 +1099,7 @@
     "name": "Champignolles",
     "code": "21140",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21230"
   },
@@ -1107,7 +1107,7 @@
     "name": "Champrenault",
     "code": "21141",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21690"
   },
@@ -1115,7 +1115,7 @@
     "name": "Chanceaux",
     "code": "21142",
     "epci_code": "200039063",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21440"
   },
@@ -1123,7 +1123,7 @@
     "name": "Channay",
     "code": "21143",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21330"
   },
@@ -1131,7 +1131,7 @@
     "name": "Charencey",
     "code": "21144",
     "epci_code": "242101459",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21690"
   },
@@ -1139,7 +1139,7 @@
     "name": "Charigny",
     "code": "21145",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21140"
   },
@@ -1147,7 +1147,7 @@
     "name": "Charmes",
     "code": "21146",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21310"
   },
@@ -1155,7 +1155,7 @@
     "name": "Charny",
     "code": "21147",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21350"
   },
@@ -1163,7 +1163,7 @@
     "name": "Charrey-sur-Saône",
     "code": "21148",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21170"
   },
@@ -1171,7 +1171,7 @@
     "name": "Charrey-sur-Seine",
     "code": "21149",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -1179,7 +1179,7 @@
     "name": "Chassagne-Montrachet",
     "code": "21150",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21190"
   },
@@ -1187,7 +1187,7 @@
     "name": "Chassey",
     "code": "21151",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21150"
   },
@@ -1195,7 +1195,7 @@
     "name": "Châteauneuf",
     "code": "21152",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21320"
   },
@@ -1203,7 +1203,7 @@
     "name": "Châtellenot",
     "code": "21153",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21320"
   },
@@ -1211,7 +1211,7 @@
     "name": "Châtillon-sur-Seine",
     "code": "21154",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -1219,7 +1219,7 @@
     "name": "Chaudenay-la-Ville",
     "code": "21155",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21360"
   },
@@ -1227,7 +1227,7 @@
     "name": "Chaudenay-le-Château",
     "code": "21156",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21360"
   },
@@ -1235,7 +1235,7 @@
     "name": "Chaugey",
     "code": "21157",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21290"
   },
@@ -1243,7 +1243,7 @@
     "name": "Chaume-et-Courchamp",
     "code": "21158",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21610"
   },
@@ -1251,7 +1251,7 @@
     "name": "La Chaume",
     "code": "21159",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21520"
   },
@@ -1259,7 +1259,7 @@
     "name": "Chaume-lès-Baigneux",
     "code": "21160",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21450"
   },
@@ -1267,7 +1267,7 @@
     "name": "Chaumont-le-Bois",
     "code": "21161",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -1275,7 +1275,7 @@
     "name": "Chaux",
     "code": "21162",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21700"
   },
@@ -1283,7 +1283,7 @@
     "name": "Chazeuil",
     "code": "21163",
     "epci_code": "200070910",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21260"
   },
@@ -1291,7 +1291,7 @@
     "name": "Chazilly",
     "code": "21164",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21320"
   },
@@ -1299,7 +1299,7 @@
     "name": "Chemin-d’Aisey",
     "code": "21165",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -1307,7 +1307,7 @@
     "name": "Chenôve",
     "code": "21166",
     "epci_code": "242100410",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21300"
   },
@@ -1315,7 +1315,7 @@
     "name": "Cheuge",
     "code": "21167",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21310"
   },
@@ -1323,7 +1323,7 @@
     "name": "Chevannay",
     "code": "21168",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21540"
   },
@@ -1331,7 +1331,7 @@
     "name": "Chevannes",
     "code": "21169",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21220"
   },
@@ -1339,7 +1339,7 @@
     "name": "Chevigny-en-Valière",
     "code": "21170",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21200"
   },
@@ -1347,7 +1347,7 @@
     "name": "Chevigny-Saint-Sauveur",
     "code": "21171",
     "epci_code": "242100410",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21800"
   },
@@ -1355,7 +1355,7 @@
     "name": "Chivres",
     "code": "21172",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21820"
   },
@@ -1363,7 +1363,7 @@
     "name": "Chorey-les-Beaune",
     "code": "21173",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21200"
   },
@@ -1371,7 +1371,7 @@
     "name": "Cirey-lès-Pontailler",
     "code": "21175",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21270"
   },
@@ -1379,7 +1379,7 @@
     "name": "Civry-en-Montagne",
     "code": "21176",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21320"
   },
@@ -1387,7 +1387,7 @@
     "name": "Clamerey",
     "code": "21177",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21390"
   },
@@ -1395,7 +1395,7 @@
     "name": "Valforêt",
     "code": "21178",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21220"
   },
@@ -1403,7 +1403,7 @@
     "name": "Clénay",
     "code": "21179",
     "epci_code": "200069540",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21490"
   },
@@ -1411,7 +1411,7 @@
     "name": "Cléry",
     "code": "21180",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21270"
   },
@@ -1419,7 +1419,7 @@
     "name": "Clomot",
     "code": "21181",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21230"
   },
@@ -1427,7 +1427,7 @@
     "name": "Collonges-lès-Bévy",
     "code": "21182",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21220"
   },
@@ -1435,7 +1435,7 @@
     "name": "Collonges-et-Premières",
     "code": "21183",
     "epci_code": "200000925",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21110"
   },
@@ -1443,7 +1443,7 @@
     "name": "Colombier",
     "code": "21184",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21360"
   },
@@ -1451,7 +1451,7 @@
     "name": "Combertault",
     "code": "21185",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21200"
   },
@@ -1459,7 +1459,7 @@
     "name": "Comblanchien",
     "code": "21186",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21700"
   },
@@ -1467,7 +1467,7 @@
     "name": "Commarin",
     "code": "21187",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21320"
   },
@@ -1475,7 +1475,7 @@
     "name": "Corberon",
     "code": "21189",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21250"
   },
@@ -1483,7 +1483,7 @@
     "name": "Corcelles-les-Arts",
     "code": "21190",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21190"
   },
@@ -1491,7 +1491,7 @@
     "name": "Corcelles-lès-Cîteaux",
     "code": "21191",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21910"
   },
@@ -1499,7 +1499,7 @@
     "name": "Corcelles-les-Monts",
     "code": "21192",
     "epci_code": "242100410",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21160"
   },
@@ -1507,7 +1507,7 @@
     "name": "Corgengoux",
     "code": "21193",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21250"
   },
@@ -1515,7 +1515,7 @@
     "name": "Corgoloin",
     "code": "21194",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21700"
   },
@@ -1523,7 +1523,7 @@
     "name": "Cormot-Vauchignon",
     "code": "21195",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21340"
   },
@@ -1531,7 +1531,7 @@
     "name": "Corpeau",
     "code": "21196",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21190"
   },
@@ -1539,7 +1539,7 @@
     "name": "Corpoyer-la-Chapelle",
     "code": "21197",
     "epci_code": "242101459",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21150"
   },
@@ -1547,7 +1547,7 @@
     "name": "Corrombles",
     "code": "21198",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21460"
   },
@@ -1555,7 +1555,7 @@
     "name": "Corsaint",
     "code": "21199",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21460"
   },
@@ -1563,7 +1563,7 @@
     "name": "Couchey",
     "code": "21200",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21160"
   },
@@ -1571,7 +1571,7 @@
     "name": "Coulmier-le-Sec",
     "code": "21201",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -1579,7 +1579,7 @@
     "name": "Courban",
     "code": "21202",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21520"
   },
@@ -1587,7 +1587,7 @@
     "name": "Courcelles-Frémoy",
     "code": "21203",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21460"
   },
@@ -1595,7 +1595,7 @@
     "name": "Courcelles-lès-Montbard",
     "code": "21204",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -1603,7 +1603,7 @@
     "name": "Courcelles-lès-Semur",
     "code": "21205",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21140"
   },
@@ -1611,7 +1611,7 @@
     "name": "Courlon",
     "code": "21207",
     "epci_code": "200070910",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21580"
   },
@@ -1619,7 +1619,7 @@
     "name": "Courtivron",
     "code": "21208",
     "epci_code": "242100154",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21120"
   },
@@ -1627,7 +1627,7 @@
     "name": "Couternon",
     "code": "21209",
     "epci_code": "200069540",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21560"
   },
@@ -1635,7 +1635,7 @@
     "name": "Créancey",
     "code": "21210",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21320"
   },
@@ -1643,7 +1643,7 @@
     "name": "Crécey-sur-Tille",
     "code": "21211",
     "epci_code": "242100154",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21120"
   },
@@ -1651,7 +1651,7 @@
     "name": "Crépand",
     "code": "21212",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -1659,7 +1659,7 @@
     "name": "Crugey",
     "code": "21214",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21360"
   },
@@ -1667,7 +1667,7 @@
     "name": "Cuiserey",
     "code": "21215",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21310"
   },
@@ -1675,7 +1675,7 @@
     "name": "Culètre",
     "code": "21216",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21230"
   },
@@ -1683,7 +1683,7 @@
     "name": "Curley",
     "code": "21217",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21220"
   },
@@ -1691,7 +1691,7 @@
     "name": "Curtil-Saint-Seine",
     "code": "21218",
     "epci_code": "200039063",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21380"
   },
@@ -1699,7 +1699,7 @@
     "name": "Curtil-Vergy",
     "code": "21219",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21220"
   },
@@ -1707,7 +1707,7 @@
     "name": "Cussey-les-Forges",
     "code": "21220",
     "epci_code": "200070910",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21580"
   },
@@ -1715,7 +1715,7 @@
     "name": "Cussy-la-Colonne",
     "code": "21221",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21360"
   },
@@ -1723,7 +1723,7 @@
     "name": "Cussy-le-Châtel",
     "code": "21222",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21230"
   },
@@ -1731,7 +1731,7 @@
     "name": "Daix",
     "code": "21223",
     "epci_code": "242100410",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21121"
   },
@@ -1739,7 +1739,7 @@
     "name": "Dampierre-en-Montagne",
     "code": "21224",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21350"
   },
@@ -1747,7 +1747,7 @@
     "name": "Dampierre-et-Flée",
     "code": "21225",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21310"
   },
@@ -1755,7 +1755,7 @@
     "name": "Darcey",
     "code": "21226",
     "epci_code": "242101459",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21150"
   },
@@ -1763,7 +1763,7 @@
     "name": "Darois",
     "code": "21227",
     "epci_code": "200039063",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21121"
   },
@@ -1771,7 +1771,7 @@
     "name": "Détain-et-Bruant",
     "code": "21228",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21220"
   },
@@ -1779,7 +1779,7 @@
     "name": "Diancey",
     "code": "21229",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21430"
   },
@@ -1787,7 +1787,7 @@
     "name": "Diénay",
     "code": "21230",
     "epci_code": "242100154",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21120"
   },
@@ -1795,7 +1795,7 @@
     "name": "Dijon",
     "code": "21231",
     "epci_code": "242100410",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21000"
   },
@@ -1803,7 +1803,7 @@
     "name": "Dompierre-en-Morvan",
     "code": "21232",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21390"
   },
@@ -1811,7 +1811,7 @@
     "name": "Drambon",
     "code": "21233",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21270"
   },
@@ -1819,7 +1819,7 @@
     "name": "Drée",
     "code": "21234",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21540"
   },
@@ -1827,7 +1827,7 @@
     "name": "Duesme",
     "code": "21235",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21510"
   },
@@ -1835,7 +1835,7 @@
     "name": "Ébaty",
     "code": "21236",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21190"
   },
@@ -1843,7 +1843,7 @@
     "name": "Échalot",
     "code": "21237",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21510"
   },
@@ -1851,7 +1851,7 @@
     "name": "Échannay",
     "code": "21238",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21540"
   },
@@ -1859,7 +1859,7 @@
     "name": "Échenon",
     "code": "21239",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21170"
   },
@@ -1867,7 +1867,7 @@
     "name": "Échevannes",
     "code": "21240",
     "epci_code": "242100154",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21120"
   },
@@ -1875,7 +1875,7 @@
     "name": "Échevronne",
     "code": "21241",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21420"
   },
@@ -1883,7 +1883,7 @@
     "name": "Échigey",
     "code": "21242",
     "epci_code": "200000925",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21110"
   },
@@ -1891,7 +1891,7 @@
     "name": "Écutigny",
     "code": "21243",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21360"
   },
@@ -1899,7 +1899,7 @@
     "name": "Éguilly",
     "code": "21244",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21320"
   },
@@ -1907,7 +1907,7 @@
     "name": "Épagny",
     "code": "21245",
     "epci_code": "242100154",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21380"
   },
@@ -1915,7 +1915,7 @@
     "name": "Épernay-sous-Gevrey",
     "code": "21246",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21220"
   },
@@ -1923,7 +1923,7 @@
     "name": "Époisses",
     "code": "21247",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21460"
   },
@@ -1931,7 +1931,7 @@
     "name": "Éringes",
     "code": "21248",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -1939,7 +1939,7 @@
     "name": "Esbarres",
     "code": "21249",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21170"
   },
@@ -1947,7 +1947,7 @@
     "name": "Essarois",
     "code": "21250",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21290"
   },
@@ -1955,7 +1955,7 @@
     "name": "Essey",
     "code": "21251",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21320"
   },
@@ -1963,7 +1963,7 @@
     "name": "Étais",
     "code": "21252",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -1971,7 +1971,7 @@
     "name": "Étalante",
     "code": "21253",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21510"
   },
@@ -1979,7 +1979,7 @@
     "name": "L’Étang-Vergy",
     "code": "21254",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21220"
   },
@@ -1987,7 +1987,7 @@
     "name": "Étaules",
     "code": "21255",
     "epci_code": "200039063",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21121"
   },
@@ -1995,7 +1995,7 @@
     "name": "Étevaux",
     "code": "21256",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21270"
   },
@@ -2003,7 +2003,7 @@
     "name": "Étormay",
     "code": "21257",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21450"
   },
@@ -2011,7 +2011,7 @@
     "name": "Étrochey",
     "code": "21258",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -2019,7 +2019,7 @@
     "name": "Fain-lès-Montbard",
     "code": "21259",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -2027,7 +2027,7 @@
     "name": "Fain-lès-Moutiers",
     "code": "21260",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -2035,7 +2035,7 @@
     "name": "Fauverney",
     "code": "21261",
     "epci_code": "200000925",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21110"
   },
@@ -2043,7 +2043,7 @@
     "name": "Faverolles-lès-Lucey",
     "code": "21262",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21290"
   },
@@ -2051,7 +2051,7 @@
     "name": "Fénay",
     "code": "21263",
     "epci_code": "242100410",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21600"
   },
@@ -2059,7 +2059,7 @@
     "name": "Le Fête",
     "code": "21264",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21230"
   },
@@ -2067,7 +2067,7 @@
     "name": "Fixin",
     "code": "21265",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21220"
   },
@@ -2075,7 +2075,7 @@
     "name": "Flacey",
     "code": "21266",
     "epci_code": "200069540",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21490"
   },
@@ -2083,7 +2083,7 @@
     "name": "Flagey-Echézeaux",
     "code": "21267",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21640"
   },
@@ -2091,7 +2091,7 @@
     "name": "Flagey-lès-Auxonne",
     "code": "21268",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21130"
   },
@@ -2099,7 +2099,7 @@
     "name": "Flammerans",
     "code": "21269",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21130"
   },
@@ -2107,7 +2107,7 @@
     "name": "Flavignerot",
     "code": "21270",
     "epci_code": "242100410",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21160"
   },
@@ -2115,7 +2115,7 @@
     "name": "Flavigny-sur-Ozerain",
     "code": "21271",
     "epci_code": "242101459",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21150"
   },
@@ -2123,7 +2123,7 @@
     "name": "Le Val-Larrey",
     "code": "21272",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21140"
   },
@@ -2131,7 +2131,7 @@
     "name": "Le Val-Larrey",
     "code": "21272",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21390"
   },
@@ -2139,7 +2139,7 @@
     "name": "Fleurey-sur-Ouche",
     "code": "21273",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21410"
   },
@@ -2147,7 +2147,7 @@
     "name": "Foissy",
     "code": "21274",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21230"
   },
@@ -2155,7 +2155,7 @@
     "name": "Foncegrive",
     "code": "21275",
     "epci_code": "200070910",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21260"
   },
@@ -2163,7 +2163,7 @@
     "name": "Fontaines-en-Duesmois",
     "code": "21276",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21450"
   },
@@ -2171,7 +2171,7 @@
     "name": "Fontaine-Française",
     "code": "21277",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21610"
   },
@@ -2179,7 +2179,7 @@
     "name": "Fontaine-lès-Dijon",
     "code": "21278",
     "epci_code": "242100410",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21121"
   },
@@ -2187,7 +2187,7 @@
     "name": "Fontaines-les-Sèches",
     "code": "21279",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21330"
   },
@@ -2195,7 +2195,7 @@
     "name": "Fontangy",
     "code": "21280",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21390"
   },
@@ -2203,7 +2203,7 @@
     "name": "Fontenelle",
     "code": "21281",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21610"
   },
@@ -2211,7 +2211,7 @@
     "name": "Forléans",
     "code": "21282",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21460"
   },
@@ -2219,7 +2219,7 @@
     "name": "Fraignot-et-Vesvrotte",
     "code": "21283",
     "epci_code": "200070910",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21580"
   },
@@ -2227,7 +2227,7 @@
     "name": "Francheville",
     "code": "21284",
     "epci_code": "200039063",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21440"
   },
@@ -2235,7 +2235,7 @@
     "name": "Franxault",
     "code": "21285",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21170"
   },
@@ -2243,7 +2243,7 @@
     "name": "Frénois",
     "code": "21286",
     "epci_code": "200039063",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21120"
   },
@@ -2251,7 +2251,7 @@
     "name": "Fresnes",
     "code": "21287",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -2259,7 +2259,7 @@
     "name": "Frôlois",
     "code": "21288",
     "epci_code": "242101459",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21150"
   },
@@ -2267,7 +2267,7 @@
     "name": "Fussey",
     "code": "21289",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21700"
   },
@@ -2275,7 +2275,7 @@
     "name": "Gemeaux",
     "code": "21290",
     "epci_code": "242100154",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21120"
   },
@@ -2283,7 +2283,7 @@
     "name": "Genay",
     "code": "21291",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21140"
   },
@@ -2291,7 +2291,7 @@
     "name": "Genlis",
     "code": "21292",
     "epci_code": "200000925",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21110"
   },
@@ -2299,7 +2299,7 @@
     "name": "Gergueil",
     "code": "21293",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21410"
   },
@@ -2307,7 +2307,7 @@
     "name": "Gerland",
     "code": "21294",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21700"
   },
@@ -2315,7 +2315,7 @@
     "name": "Gevrey-Chambertin",
     "code": "21295",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21220"
   },
@@ -2323,7 +2323,7 @@
     "name": "Gevrolles",
     "code": "21296",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21520"
   },
@@ -2331,7 +2331,7 @@
     "name": "Gilly-lès-Cîteaux",
     "code": "21297",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21640"
   },
@@ -2339,7 +2339,7 @@
     "name": "Gissey-le-Vieil",
     "code": "21298",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21350"
   },
@@ -2347,7 +2347,7 @@
     "name": "Gissey-sous-Flavigny",
     "code": "21299",
     "epci_code": "242101459",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21150"
   },
@@ -2355,7 +2355,7 @@
     "name": "Gissey-sur-Ouche",
     "code": "21300",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21410"
   },
@@ -2363,7 +2363,7 @@
     "name": "Glanon",
     "code": "21301",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21250"
   },
@@ -2371,7 +2371,7 @@
     "name": "Gomméville",
     "code": "21302",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -2379,7 +2379,7 @@
     "name": "Les Goulles",
     "code": "21303",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21520"
   },
@@ -2387,7 +2387,7 @@
     "name": "Grancey-le-Château-Neuvelle",
     "code": "21304",
     "epci_code": "200070910",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21580"
   },
@@ -2395,7 +2395,7 @@
     "name": "Grancey-sur-Ource",
     "code": "21305",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21570"
   },
@@ -2403,7 +2403,7 @@
     "name": "Grenant-lès-Sombernon",
     "code": "21306",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21540"
   },
@@ -2411,7 +2411,7 @@
     "name": "Grésigny-Sainte-Reine",
     "code": "21307",
     "epci_code": "242101459",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21150"
   },
@@ -2419,7 +2419,7 @@
     "name": "Grignon",
     "code": "21308",
     "epci_code": "242101459",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21150"
   },
@@ -2427,7 +2427,7 @@
     "name": "Griselles",
     "code": "21309",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21330"
   },
@@ -2435,7 +2435,7 @@
     "name": "Grosbois-en-Montagne",
     "code": "21310",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21540"
   },
@@ -2443,7 +2443,7 @@
     "name": "Grosbois-lès-Tichey",
     "code": "21311",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21250"
   },
@@ -2451,7 +2451,7 @@
     "name": "Gurgy-la-Ville",
     "code": "21312",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21290"
   },
@@ -2459,7 +2459,7 @@
     "name": "Gurgy-le-Château",
     "code": "21313",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21290"
   },
@@ -2467,7 +2467,7 @@
     "name": "Hauteroche",
     "code": "21314",
     "epci_code": "242101459",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21150"
   },
@@ -2475,7 +2475,7 @@
     "name": "Hauteville-lès-Dijon",
     "code": "21315",
     "epci_code": "242100410",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21121"
   },
@@ -2483,7 +2483,7 @@
     "name": "Heuilley-sur-Saône",
     "code": "21316",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21270"
   },
@@ -2491,7 +2491,7 @@
     "name": "Is-sur-Tille",
     "code": "21317",
     "epci_code": "242100154",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21120"
   },
@@ -2499,7 +2499,7 @@
     "name": "Izeure",
     "code": "21319",
     "epci_code": "200000925",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21110"
   },
@@ -2507,7 +2507,7 @@
     "name": "Izier",
     "code": "21320",
     "epci_code": "200000925",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21110"
   },
@@ -2515,7 +2515,7 @@
     "name": "Jailly-les-Moulins",
     "code": "21321",
     "epci_code": "242101459",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21150"
   },
@@ -2523,7 +2523,7 @@
     "name": "Jallanges",
     "code": "21322",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21250"
   },
@@ -2531,7 +2531,7 @@
     "name": "Jancigny",
     "code": "21323",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21310"
   },
@@ -2539,7 +2539,7 @@
     "name": "Jeux-lès-Bard",
     "code": "21324",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21460"
   },
@@ -2547,7 +2547,7 @@
     "name": "Jouey",
     "code": "21325",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21230"
   },
@@ -2555,7 +2555,7 @@
     "name": "Jours-lès-Baigneux",
     "code": "21326",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21450"
   },
@@ -2563,7 +2563,7 @@
     "name": "Val-Mont",
     "code": "21327",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21340"
   },
@@ -2571,7 +2571,7 @@
     "name": "Juillenay",
     "code": "21328",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21210"
   },
@@ -2579,7 +2579,7 @@
     "name": "Juilly",
     "code": "21329",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21140"
   },
@@ -2587,7 +2587,7 @@
     "name": "Labergement-Foigney",
     "code": "21330",
     "epci_code": "200000925",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21110"
   },
@@ -2595,7 +2595,7 @@
     "name": "Labergement-lès-Auxonne",
     "code": "21331",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21130"
   },
@@ -2603,7 +2603,7 @@
     "name": "Labergement-lès-Seurre",
     "code": "21332",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21820"
   },
@@ -2611,7 +2611,7 @@
     "name": "Labruyère",
     "code": "21333",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21250"
   },
@@ -2619,7 +2619,7 @@
     "name": "Lacanche",
     "code": "21334",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21230"
   },
@@ -2627,7 +2627,7 @@
     "name": "Lacour-d’Arcenay",
     "code": "21335",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21210"
   },
@@ -2635,7 +2635,7 @@
     "name": "Laignes",
     "code": "21336",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21330"
   },
@@ -2643,7 +2643,7 @@
     "name": "Lamarche-sur-Saône",
     "code": "21337",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21760"
   },
@@ -2651,7 +2651,7 @@
     "name": "Lamargelle",
     "code": "21338",
     "epci_code": "200039063",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21440"
   },
@@ -2659,7 +2659,7 @@
     "name": "Lantenay",
     "code": "21339",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21370"
   },
@@ -2667,7 +2667,7 @@
     "name": "Lanthes",
     "code": "21340",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21250"
   },
@@ -2675,7 +2675,7 @@
     "name": "Lantilly",
     "code": "21341",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21140"
   },
@@ -2683,7 +2683,7 @@
     "name": "Laperrière-sur-Saône",
     "code": "21342",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21170"
   },
@@ -2691,7 +2691,7 @@
     "name": "Larrey",
     "code": "21343",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21330"
   },
@@ -2699,7 +2699,7 @@
     "name": "Lechâtelet",
     "code": "21344",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21250"
   },
@@ -2707,7 +2707,7 @@
     "name": "Léry",
     "code": "21345",
     "epci_code": "200039063",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21440"
   },
@@ -2715,7 +2715,7 @@
     "name": "Leuglay",
     "code": "21346",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21290"
   },
@@ -2723,7 +2723,7 @@
     "name": "Levernois",
     "code": "21347",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21200"
   },
@@ -2731,7 +2731,7 @@
     "name": "Licey-sur-Vingeanne",
     "code": "21348",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21610"
   },
@@ -2739,7 +2739,7 @@
     "name": "Liernais",
     "code": "21349",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21430"
   },
@@ -2747,7 +2747,7 @@
     "name": "Lignerolles",
     "code": "21350",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21520"
   },
@@ -2755,7 +2755,7 @@
     "name": "Longchamp",
     "code": "21351",
     "epci_code": "200000925",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21110"
   },
@@ -2763,7 +2763,7 @@
     "name": "Longeault-Pluvault",
     "code": "21352",
     "epci_code": "200000925",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21110"
   },
@@ -2771,7 +2771,7 @@
     "name": "Longecourt-en-Plaine",
     "code": "21353",
     "epci_code": "200000925",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21110"
   },
@@ -2779,7 +2779,7 @@
     "name": "Longecourt-lès-Culêtre",
     "code": "21354",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21230"
   },
@@ -2787,7 +2787,7 @@
     "name": "Longvic",
     "code": "21355",
     "epci_code": "242100410",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21600"
   },
@@ -2795,7 +2795,7 @@
     "name": "Losne",
     "code": "21356",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21170"
   },
@@ -2803,7 +2803,7 @@
     "name": "Louesme",
     "code": "21357",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21520"
   },
@@ -2811,7 +2811,7 @@
     "name": "Lucenay-le-Duc",
     "code": "21358",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21150"
   },
@@ -2819,7 +2819,7 @@
     "name": "Lucey",
     "code": "21359",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21290"
   },
@@ -2827,7 +2827,7 @@
     "name": "Lusigny-sur-Ouche",
     "code": "21360",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21360"
   },
@@ -2835,7 +2835,7 @@
     "name": "Lux",
     "code": "21361",
     "epci_code": "242100154",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21120"
   },
@@ -2843,7 +2843,7 @@
     "name": "Maconge",
     "code": "21362",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21320"
   },
@@ -2851,7 +2851,7 @@
     "name": "Magnien",
     "code": "21363",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21230"
   },
@@ -2859,7 +2859,7 @@
     "name": "Magny-Lambert",
     "code": "21364",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21450"
   },
@@ -2867,7 +2867,7 @@
     "name": "Magny-la-Ville",
     "code": "21365",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21140"
   },
@@ -2875,7 +2875,7 @@
     "name": "Magny-lès-Aubigny",
     "code": "21366",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21170"
   },
@@ -2883,7 +2883,7 @@
     "name": "Magny-Montarlot",
     "code": "21367",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21130"
   },
@@ -2891,7 +2891,7 @@
     "name": "Magny-lès-Villers",
     "code": "21368",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21700"
   },
@@ -2899,7 +2899,7 @@
     "name": "Magny-Saint-Médard",
     "code": "21369",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21310"
   },
@@ -2907,7 +2907,7 @@
     "name": "Magny-sur-Tille",
     "code": "21370",
     "epci_code": "242100410",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21110"
   },
@@ -2915,7 +2915,7 @@
     "name": "Les Maillys",
     "code": "21371",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21130"
   },
@@ -2923,7 +2923,7 @@
     "name": "Maisey-le-Duc",
     "code": "21372",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -2931,7 +2931,7 @@
     "name": "Mâlain",
     "code": "21373",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21410"
   },
@@ -2939,7 +2939,7 @@
     "name": "Maligny",
     "code": "21374",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21230"
   },
@@ -2947,7 +2947,7 @@
     "name": "Manlay",
     "code": "21375",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21430"
   },
@@ -2955,7 +2955,7 @@
     "name": "Marandeuil",
     "code": "21376",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21270"
   },
@@ -2963,7 +2963,7 @@
     "name": "Marcellois",
     "code": "21377",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21350"
   },
@@ -2971,7 +2971,7 @@
     "name": "Marcenay",
     "code": "21378",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21330"
   },
@@ -2979,7 +2979,7 @@
     "name": "Marcheseuil",
     "code": "21379",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21430"
   },
@@ -2987,7 +2987,7 @@
     "name": "Marcigny-sous-Thil",
     "code": "21380",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21390"
   },
@@ -2995,7 +2995,7 @@
     "name": "Marcilly-et-Dracy",
     "code": "21381",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21350"
   },
@@ -3003,7 +3003,7 @@
     "name": "Marcilly-Ogny",
     "code": "21382",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21320"
   },
@@ -3011,7 +3011,7 @@
     "name": "Marcilly-sur-Tille",
     "code": "21383",
     "epci_code": "242100154",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21120"
   },
@@ -3019,7 +3019,7 @@
     "name": "Marey-lès-Fussey",
     "code": "21384",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21700"
   },
@@ -3027,7 +3027,7 @@
     "name": "Marey-sur-Tille",
     "code": "21385",
     "epci_code": "242100154",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21120"
   },
@@ -3035,7 +3035,7 @@
     "name": "Marigny-le-Cahouët",
     "code": "21386",
     "epci_code": "242101459",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21150"
   },
@@ -3043,7 +3043,7 @@
     "name": "Marigny-lès-Reullée",
     "code": "21387",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21200"
   },
@@ -3051,7 +3051,7 @@
     "name": "Marliens",
     "code": "21388",
     "epci_code": "200000925",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21110"
   },
@@ -3059,7 +3059,7 @@
     "name": "Marmagne",
     "code": "21389",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -3067,7 +3067,7 @@
     "name": "Marsannay-la-Côte",
     "code": "21390",
     "epci_code": "242100410",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21160"
   },
@@ -3075,7 +3075,7 @@
     "name": "Marsannay-le-Bois",
     "code": "21391",
     "epci_code": "242100154",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21380"
   },
@@ -3083,7 +3083,7 @@
     "name": "Martrois",
     "code": "21392",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21320"
   },
@@ -3091,7 +3091,7 @@
     "name": "Massingy",
     "code": "21393",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -3099,7 +3099,7 @@
     "name": "Massingy-lès-Semur",
     "code": "21394",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21140"
   },
@@ -3107,7 +3107,7 @@
     "name": "Massingy-lès-Vitteaux",
     "code": "21395",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21350"
   },
@@ -3115,7 +3115,7 @@
     "name": "Mauvilly",
     "code": "21396",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21510"
   },
@@ -3123,7 +3123,7 @@
     "name": "Mavilly-Mandelot",
     "code": "21397",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21190"
   },
@@ -3131,7 +3131,7 @@
     "name": "Maxilly-sur-Saône",
     "code": "21398",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21270"
   },
@@ -3139,7 +3139,7 @@
     "name": "Meilly-sur-Rouvres",
     "code": "21399",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21320"
   },
@@ -3147,7 +3147,7 @@
     "name": "Le Meix",
     "code": "21400",
     "epci_code": "200070910",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21580"
   },
@@ -3155,7 +3155,7 @@
     "name": "Meloisey",
     "code": "21401",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21190"
   },
@@ -3163,7 +3163,7 @@
     "name": "Menesble",
     "code": "21402",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21290"
   },
@@ -3171,7 +3171,7 @@
     "name": "Ménessaire",
     "code": "21403",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21430"
   },
@@ -3179,7 +3179,7 @@
     "name": "Ménétreux-le-Pitois",
     "code": "21404",
     "epci_code": "242101459",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21150"
   },
@@ -3187,7 +3187,7 @@
     "name": "Merceuil",
     "code": "21405",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21190"
   },
@@ -3195,7 +3195,7 @@
     "name": "Mesmont",
     "code": "21406",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21540"
   },
@@ -3203,7 +3203,7 @@
     "name": "Messanges",
     "code": "21407",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21220"
   },
@@ -3211,7 +3211,7 @@
     "name": "Messigny-et-Vantoux",
     "code": "21408",
     "epci_code": "200039063",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21380"
   },
@@ -3219,7 +3219,7 @@
     "name": "Meuilley",
     "code": "21409",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21700"
   },
@@ -3227,7 +3227,7 @@
     "name": "Meulson",
     "code": "21410",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21510"
   },
@@ -3235,7 +3235,7 @@
     "name": "Meursanges",
     "code": "21411",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21200"
   },
@@ -3243,7 +3243,7 @@
     "name": "Meursault",
     "code": "21412",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21190"
   },
@@ -3251,7 +3251,7 @@
     "name": "Millery",
     "code": "21413",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21140"
   },
@@ -3259,7 +3259,7 @@
     "name": "Mimeure",
     "code": "21414",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21230"
   },
@@ -3267,7 +3267,7 @@
     "name": "Minot",
     "code": "21415",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21510"
   },
@@ -3275,7 +3275,7 @@
     "name": "Mirebeau-sur-Bèze",
     "code": "21416",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21310"
   },
@@ -3283,7 +3283,7 @@
     "name": "Missery",
     "code": "21417",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21210"
   },
@@ -3291,7 +3291,7 @@
     "name": "Moitron",
     "code": "21418",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21510"
   },
@@ -3299,7 +3299,7 @@
     "name": "Molesme",
     "code": "21419",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21330"
   },
@@ -3307,7 +3307,7 @@
     "name": "Molinot",
     "code": "21420",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21340"
   },
@@ -3315,7 +3315,7 @@
     "name": "Moloy",
     "code": "21421",
     "epci_code": "242100154",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21120"
   },
@@ -3323,7 +3323,7 @@
     "name": "Molphey",
     "code": "21422",
     "epci_code": "242101442",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21210"
   },
@@ -3331,7 +3331,7 @@
     "name": "Montagny-lès-Beaune",
     "code": "21423",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21200"
   },
@@ -3339,7 +3339,7 @@
     "name": "Montagny-lès-Seurre",
     "code": "21424",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21250"
   },
@@ -3347,7 +3347,7 @@
     "name": "Montbard",
     "code": "21425",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -3355,7 +3355,7 @@
     "name": "Montberthault",
     "code": "21426",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21460"
   },
@@ -3363,7 +3363,7 @@
     "name": "Montceau-et-Écharnant",
     "code": "21427",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21360"
   },
@@ -3371,7 +3371,7 @@
     "name": "Monthelie",
     "code": "21428",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21190"
   },
@@ -3379,7 +3379,7 @@
     "name": "Montigny-Montfort",
     "code": "21429",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -3387,7 +3387,7 @@
     "name": "Montigny-Saint-Barthélemy",
     "code": "21430",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21390"
   },
@@ -3395,7 +3395,7 @@
     "name": "Montigny-sur-Armançon",
     "code": "21431",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21140"
   },
@@ -3403,7 +3403,7 @@
     "name": "Montigny-sur-Aube",
     "code": "21432",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21520"
   },
@@ -3411,7 +3411,7 @@
     "name": "Montigny-Mornay-Villeneuve-sur-Vingeanne",
     "code": "21433",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21610"
   },
@@ -3419,7 +3419,7 @@
     "name": "Montlay-en-Auxois",
     "code": "21434",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21210"
   },
@@ -3427,7 +3427,7 @@
     "name": "Montliot-et-Courcelles",
     "code": "21435",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -3435,7 +3435,7 @@
     "name": "Montmain",
     "code": "21436",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21250"
   },
@@ -3443,7 +3443,7 @@
     "name": "Montmançon",
     "code": "21437",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21270"
   },
@@ -3451,7 +3451,7 @@
     "name": "Montmoyen",
     "code": "21438",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21290"
   },
@@ -3459,7 +3459,7 @@
     "name": "Montoillot",
     "code": "21439",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21540"
   },
@@ -3467,7 +3467,7 @@
     "name": "Montot",
     "code": "21440",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21170"
   },
@@ -3475,7 +3475,7 @@
     "name": "Mont-Saint-Jean",
     "code": "21441",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21320"
   },
@@ -3483,7 +3483,7 @@
     "name": "Morey-Saint-Denis",
     "code": "21442",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21220"
   },
@@ -3491,7 +3491,7 @@
     "name": "Mosson",
     "code": "21444",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -3499,7 +3499,7 @@
     "name": "La Motte-Ternant",
     "code": "21445",
     "epci_code": "242101442",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21210"
   },
@@ -3507,7 +3507,7 @@
     "name": "Moutiers-Saint-Jean",
     "code": "21446",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -3515,7 +3515,7 @@
     "name": "Musigny",
     "code": "21447",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21230"
   },
@@ -3523,7 +3523,7 @@
     "name": "Mussy-la-Fosse",
     "code": "21448",
     "epci_code": "242101459",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21150"
   },
@@ -3531,7 +3531,7 @@
     "name": "Nan-sous-Thil",
     "code": "21449",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21390"
   },
@@ -3539,7 +3539,7 @@
     "name": "Nantoux",
     "code": "21450",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21190"
   },
@@ -3547,7 +3547,7 @@
     "name": "Nesle-et-Massoult",
     "code": "21451",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21330"
   },
@@ -3555,7 +3555,7 @@
     "name": "Neuilly-Crimolois",
     "code": "21452",
     "epci_code": "242100410",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21800"
   },
@@ -3563,7 +3563,7 @@
     "name": "Nicey",
     "code": "21454",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21330"
   },
@@ -3571,7 +3571,7 @@
     "name": "Nod-sur-Seine",
     "code": "21455",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -3579,7 +3579,7 @@
     "name": "Nogent-lès-Montbard",
     "code": "21456",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -3587,7 +3587,7 @@
     "name": "Noidan",
     "code": "21457",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21390"
   },
@@ -3595,7 +3595,7 @@
     "name": "Noiron-sous-Gevrey",
     "code": "21458",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21910"
   },
@@ -3603,7 +3603,7 @@
     "name": "Noiron-sur-Bèze",
     "code": "21459",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21310"
   },
@@ -3611,7 +3611,7 @@
     "name": "Noiron-sur-Seine",
     "code": "21460",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -3619,7 +3619,7 @@
     "name": "Nolay",
     "code": "21461",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21340"
   },
@@ -3627,7 +3627,7 @@
     "name": "Norges-la-Ville",
     "code": "21462",
     "epci_code": "200069540",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21490"
   },
@@ -3635,7 +3635,7 @@
     "name": "Normier",
     "code": "21463",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21390"
   },
@@ -3643,7 +3643,7 @@
     "name": "Nuits-Saint-Georges",
     "code": "21464",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21700"
   },
@@ -3651,7 +3651,7 @@
     "name": "Obtrée",
     "code": "21465",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -3659,7 +3659,7 @@
     "name": "Oigny",
     "code": "21466",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21450"
   },
@@ -3667,7 +3667,7 @@
     "name": "Oisilly",
     "code": "21467",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21310"
   },
@@ -3675,7 +3675,7 @@
     "name": "Orain",
     "code": "21468",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21610"
   },
@@ -3683,7 +3683,7 @@
     "name": "Orgeux",
     "code": "21469",
     "epci_code": "200069540",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21490"
   },
@@ -3691,7 +3691,7 @@
     "name": "Origny",
     "code": "21470",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21510"
   },
@@ -3699,7 +3699,7 @@
     "name": "Orret",
     "code": "21471",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21450"
   },
@@ -3707,7 +3707,7 @@
     "name": "Orville",
     "code": "21472",
     "epci_code": "200070910",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21260"
   },
@@ -3715,7 +3715,7 @@
     "name": "Ouges",
     "code": "21473",
     "epci_code": "242100410",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21600"
   },
@@ -3723,7 +3723,7 @@
     "name": "Pagny-la-Ville",
     "code": "21474",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21250"
   },
@@ -3731,7 +3731,7 @@
     "name": "Pagny-le-Château",
     "code": "21475",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21250"
   },
@@ -3739,7 +3739,7 @@
     "name": "Painblanc",
     "code": "21476",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21360"
   },
@@ -3747,7 +3747,7 @@
     "name": "Panges",
     "code": "21477",
     "epci_code": "200039063",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21540"
   },
@@ -3755,7 +3755,7 @@
     "name": "Pasques",
     "code": "21478",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21370"
   },
@@ -3763,7 +3763,7 @@
     "name": "Pellerey",
     "code": "21479",
     "epci_code": "200039063",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21440"
   },
@@ -3771,7 +3771,7 @@
     "name": "Pernand-Vergelesses",
     "code": "21480",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21420"
   },
@@ -3779,7 +3779,7 @@
     "name": "Perrigny-lès-Dijon",
     "code": "21481",
     "epci_code": "242100410",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21160"
   },
@@ -3787,7 +3787,7 @@
     "name": "Perrigny-sur-l’Ognon",
     "code": "21482",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21270"
   },
@@ -3795,7 +3795,7 @@
     "name": "Pichanges",
     "code": "21483",
     "epci_code": "242100154",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21120"
   },
@@ -3803,7 +3803,7 @@
     "name": "Planay",
     "code": "21484",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -3811,7 +3811,7 @@
     "name": "Plombières-lès-Dijon",
     "code": "21485",
     "epci_code": "242100410",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21370"
   },
@@ -3819,7 +3819,7 @@
     "name": "Pluvet",
     "code": "21487",
     "epci_code": "200000925",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21110"
   },
@@ -3827,7 +3827,7 @@
     "name": "Poinçon-lès-Larrey",
     "code": "21488",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21330"
   },
@@ -3835,7 +3835,7 @@
     "name": "Poiseul-la-Grange",
     "code": "21489",
     "epci_code": "200039063",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21440"
   },
@@ -3843,7 +3843,7 @@
     "name": "Poiseul-la-Ville-et-Laperrière",
     "code": "21490",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21450"
   },
@@ -3851,7 +3851,7 @@
     "name": "Poiseul-lès-Saulx",
     "code": "21491",
     "epci_code": "242100154",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21120"
   },
@@ -3859,7 +3859,7 @@
     "name": "Pommard",
     "code": "21492",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21630"
   },
@@ -3867,7 +3867,7 @@
     "name": "Poncey-lès-Athée",
     "code": "21493",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21130"
   },
@@ -3875,7 +3875,7 @@
     "name": "Poncey-sur-l’Ignon",
     "code": "21494",
     "epci_code": "200039063",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21440"
   },
@@ -3883,7 +3883,7 @@
     "name": "Pont",
     "code": "21495",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21130"
   },
@@ -3891,7 +3891,7 @@
     "name": "Pontailler-sur-Saône",
     "code": "21496",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21270"
   },
@@ -3899,7 +3899,7 @@
     "name": "Pont-et-Massène",
     "code": "21497",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21140"
   },
@@ -3907,7 +3907,7 @@
     "name": "Posanges",
     "code": "21498",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21350"
   },
@@ -3915,7 +3915,7 @@
     "name": "Pothières",
     "code": "21499",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -3923,7 +3923,7 @@
     "name": "Pouillenay",
     "code": "21500",
     "epci_code": "242101459",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21150"
   },
@@ -3931,7 +3931,7 @@
     "name": "Pouilly-en-Auxois",
     "code": "21501",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21320"
   },
@@ -3939,7 +3939,7 @@
     "name": "Pouilly-sur-Saône",
     "code": "21502",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21250"
   },
@@ -3947,7 +3947,7 @@
     "name": "Pouilly-sur-Vingeanne",
     "code": "21503",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21610"
   },
@@ -3955,7 +3955,7 @@
     "name": "Prâlon",
     "code": "21504",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21410"
   },
@@ -3963,7 +3963,7 @@
     "name": "Précy-sous-Thil",
     "code": "21505",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21390"
   },
@@ -3971,7 +3971,7 @@
     "name": "Premeaux-Prissey",
     "code": "21506",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21700"
   },
@@ -3979,7 +3979,7 @@
     "name": "Prenois",
     "code": "21508",
     "epci_code": "200039063",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21370"
   },
@@ -3987,7 +3987,7 @@
     "name": "Prusly-sur-Ource",
     "code": "21510",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -3995,7 +3995,7 @@
     "name": "Puits",
     "code": "21511",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -4003,7 +4003,7 @@
     "name": "Puligny-Montrachet",
     "code": "21512",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21190"
   },
@@ -4011,7 +4011,7 @@
     "name": "Quemigny-sur-Seine",
     "code": "21514",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21510"
   },
@@ -4019,7 +4019,7 @@
     "name": "Quetigny",
     "code": "21515",
     "epci_code": "242100410",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21800"
   },
@@ -4027,7 +4027,7 @@
     "name": "Quincerot",
     "code": "21516",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -4035,7 +4035,7 @@
     "name": "Quincey",
     "code": "21517",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21700"
   },
@@ -4043,7 +4043,7 @@
     "name": "Quincy-le-Vicomte",
     "code": "21518",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -4051,7 +4051,7 @@
     "name": "Recey-sur-Ource",
     "code": "21519",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21290"
   },
@@ -4059,7 +4059,7 @@
     "name": "Remilly-en-Montagne",
     "code": "21520",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21540"
   },
@@ -4067,7 +4067,7 @@
     "name": "Remilly-sur-Tille",
     "code": "21521",
     "epci_code": "200069540",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21560"
   },
@@ -4075,7 +4075,7 @@
     "name": "Renève",
     "code": "21522",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21310"
   },
@@ -4083,7 +4083,7 @@
     "name": "Reulle-Vergy",
     "code": "21523",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21220"
   },
@@ -4091,7 +4091,7 @@
     "name": "Riel-les-Eaux",
     "code": "21524",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21570"
   },
@@ -4099,7 +4099,7 @@
     "name": "La Roche-en-Brenil",
     "code": "21525",
     "epci_code": "242101442",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21530"
   },
@@ -4107,7 +4107,7 @@
     "name": "Rochefort-sur-Brévon",
     "code": "21526",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21510"
   },
@@ -4115,7 +4115,7 @@
     "name": "La Rochepot",
     "code": "21527",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21340"
   },
@@ -4123,7 +4123,7 @@
     "name": "La Roche-Vanneau",
     "code": "21528",
     "epci_code": "242101459",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21150"
   },
@@ -4131,7 +4131,7 @@
     "name": "Roilly",
     "code": "21529",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21390"
   },
@@ -4139,7 +4139,7 @@
     "name": "Rougemont",
     "code": "21530",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -4147,7 +4147,7 @@
     "name": "Rouvray",
     "code": "21531",
     "epci_code": "242101442",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21530"
   },
@@ -4155,7 +4155,7 @@
     "name": "Rouvres-en-Plaine",
     "code": "21532",
     "epci_code": "200000925",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21110"
   },
@@ -4163,7 +4163,7 @@
     "name": "Rouvres-sous-Meilly",
     "code": "21533",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21320"
   },
@@ -4171,7 +4171,7 @@
     "name": "Ruffey-lès-Beaune",
     "code": "21534",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21200"
   },
@@ -4179,7 +4179,7 @@
     "name": "Ruffey-lès-Echirey",
     "code": "21535",
     "epci_code": "200069540",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21490"
   },
@@ -4187,7 +4187,7 @@
     "name": "Sacquenay",
     "code": "21536",
     "epci_code": "200070910",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21260"
   },
@@ -4195,7 +4195,7 @@
     "name": "Saffres",
     "code": "21537",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21350"
   },
@@ -4203,7 +4203,7 @@
     "name": "Saint-Andeux",
     "code": "21538",
     "epci_code": "242101442",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21530"
   },
@@ -4211,7 +4211,7 @@
     "name": "Saint-Anthot",
     "code": "21539",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21540"
   },
@@ -4219,7 +4219,7 @@
     "name": "Saint-Apollinaire",
     "code": "21540",
     "epci_code": "242100410",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21850"
   },
@@ -4227,7 +4227,7 @@
     "name": "Saint-Aubin",
     "code": "21541",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21190"
   },
@@ -4235,7 +4235,7 @@
     "name": "Saint-Bernard",
     "code": "21542",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21700"
   },
@@ -4243,7 +4243,7 @@
     "name": "Saint-Broing-les-Moines",
     "code": "21543",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21290"
   },
@@ -4251,7 +4251,7 @@
     "name": "Sainte-Colombe-en-Auxois",
     "code": "21544",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21350"
   },
@@ -4259,7 +4259,7 @@
     "name": "Sainte-Colombe-sur-Seine",
     "code": "21545",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -4267,7 +4267,7 @@
     "name": "Saint-Didier",
     "code": "21546",
     "epci_code": "242101442",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21210"
   },
@@ -4275,7 +4275,7 @@
     "name": "Saint-Euphrône",
     "code": "21547",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21140"
   },
@@ -4283,7 +4283,7 @@
     "name": "Saint-Germain-de-Modéon",
     "code": "21548",
     "epci_code": "242101442",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21530"
   },
@@ -4291,7 +4291,7 @@
     "name": "Saint-Germain-le-Rocheux",
     "code": "21549",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21510"
   },
@@ -4299,7 +4299,7 @@
     "name": "Saint-Germain-lès-Senailly",
     "code": "21550",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -4307,7 +4307,7 @@
     "name": "Saint-Hélier",
     "code": "21552",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21690"
   },
@@ -4315,7 +4315,7 @@
     "name": "Saint-Jean-de-Bœuf",
     "code": "21553",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21410"
   },
@@ -4323,7 +4323,7 @@
     "name": "Saint-Jean-de-Losne",
     "code": "21554",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21170"
   },
@@ -4331,7 +4331,7 @@
     "name": "Saint-Julien",
     "code": "21555",
     "epci_code": "200069540",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21490"
   },
@@ -4339,7 +4339,7 @@
     "name": "Saint-Léger-Triey",
     "code": "21556",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21270"
   },
@@ -4347,7 +4347,7 @@
     "name": "Saint-Marc-sur-Seine",
     "code": "21557",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21450"
   },
@@ -4355,7 +4355,7 @@
     "name": "Sainte-Marie-la-Blanche",
     "code": "21558",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21200"
   },
@@ -4363,7 +4363,7 @@
     "name": "Sainte-Marie-sur-Ouche",
     "code": "21559",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21410"
   },
@@ -4371,7 +4371,7 @@
     "name": "Saint-Martin-de-la-Mer",
     "code": "21560",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21210"
   },
@@ -4379,7 +4379,7 @@
     "name": "Saint-Martin-du-Mont",
     "code": "21561",
     "epci_code": "200039063",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21440"
   },
@@ -4387,7 +4387,7 @@
     "name": "Saint-Maurice-sur-Vingeanne",
     "code": "21562",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21610"
   },
@@ -4395,7 +4395,7 @@
     "name": "Saint-Mesmin",
     "code": "21563",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21540"
   },
@@ -4403,7 +4403,7 @@
     "name": "Saint-Nicolas-lès-Cîteaux",
     "code": "21564",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21700"
   },
@@ -4411,7 +4411,7 @@
     "name": "Saint-Philibert",
     "code": "21565",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21220"
   },
@@ -4419,7 +4419,7 @@
     "name": "Saint-Pierre-en-Vaux",
     "code": "21566",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21230"
   },
@@ -4427,7 +4427,7 @@
     "name": "Saint-Prix-lès-Arnay",
     "code": "21567",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21230"
   },
@@ -4435,7 +4435,7 @@
     "name": "Saint-Rémy",
     "code": "21568",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -4443,7 +4443,7 @@
     "name": "Saint-Romain",
     "code": "21569",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21190"
   },
@@ -4451,7 +4451,7 @@
     "name": "Sainte-Sabine",
     "code": "21570",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21320"
   },
@@ -4459,7 +4459,7 @@
     "name": "Saint-Sauveur",
     "code": "21571",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21270"
   },
@@ -4467,7 +4467,7 @@
     "name": "Saint-Seine-en-Bâche",
     "code": "21572",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21130"
   },
@@ -4475,7 +4475,7 @@
     "name": "Saint-Seine-l’Abbaye",
     "code": "21573",
     "epci_code": "200039063",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21440"
   },
@@ -4483,7 +4483,7 @@
     "name": "Saint-Seine-sur-Vingeanne",
     "code": "21574",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21610"
   },
@@ -4491,7 +4491,7 @@
     "name": "Saint-Symphorien-sur-Saône",
     "code": "21575",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21170"
   },
@@ -4499,7 +4499,7 @@
     "name": "Saint-Thibault",
     "code": "21576",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21350"
   },
@@ -4507,7 +4507,7 @@
     "name": "Saint-Usage",
     "code": "21577",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21170"
   },
@@ -4515,7 +4515,7 @@
     "name": "Saint-Victor-sur-Ouche",
     "code": "21578",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21410"
   },
@@ -4523,7 +4523,7 @@
     "name": "Salives",
     "code": "21579",
     "epci_code": "200070910",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21580"
   },
@@ -4531,7 +4531,7 @@
     "name": "Salmaise",
     "code": "21580",
     "epci_code": "242101459",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21690"
   },
@@ -4539,7 +4539,7 @@
     "name": "Samerey",
     "code": "21581",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21170"
   },
@@ -4547,7 +4547,7 @@
     "name": "Santenay",
     "code": "21582",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21590"
   },
@@ -4555,7 +4555,7 @@
     "name": "Santosse",
     "code": "21583",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21340"
   },
@@ -4563,7 +4563,7 @@
     "name": "Saulieu",
     "code": "21584",
     "epci_code": "242101442",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21210"
   },
@@ -4571,7 +4571,7 @@
     "name": "Saulon-la-Chapelle",
     "code": "21585",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21910"
   },
@@ -4579,7 +4579,7 @@
     "name": "Saulon-la-Rue",
     "code": "21586",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21910"
   },
@@ -4587,7 +4587,7 @@
     "name": "Saulx-le-Duc",
     "code": "21587",
     "epci_code": "242100154",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21120"
   },
@@ -4595,7 +4595,7 @@
     "name": "Saussey",
     "code": "21588",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21360"
   },
@@ -4603,7 +4603,7 @@
     "name": "Saussy",
     "code": "21589",
     "epci_code": "200039063",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21380"
   },
@@ -4611,7 +4611,7 @@
     "name": "Savigny-lès-Beaune",
     "code": "21590",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21420"
   },
@@ -4619,7 +4619,7 @@
     "name": "Savigny-le-Sec",
     "code": "21591",
     "epci_code": "200039063",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21380"
   },
@@ -4627,7 +4627,7 @@
     "name": "Savigny-sous-Mâlain",
     "code": "21592",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21540"
   },
@@ -4635,7 +4635,7 @@
     "name": "Savilly",
     "code": "21593",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21430"
   },
@@ -4643,7 +4643,7 @@
     "name": "Savoisy",
     "code": "21594",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -4651,7 +4651,7 @@
     "name": "Savolles",
     "code": "21595",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21310"
   },
@@ -4659,7 +4659,7 @@
     "name": "Savouges",
     "code": "21596",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21910"
   },
@@ -4667,7 +4667,7 @@
     "name": "Segrois",
     "code": "21597",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21220"
   },
@@ -4675,7 +4675,7 @@
     "name": "Seigny",
     "code": "21598",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21150"
   },
@@ -4683,7 +4683,7 @@
     "name": "Selongey",
     "code": "21599",
     "epci_code": "200070910",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21260"
   },
@@ -4691,7 +4691,7 @@
     "name": "Semarey",
     "code": "21600",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21320"
   },
@@ -4699,7 +4699,7 @@
     "name": "Semezanges",
     "code": "21601",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21220"
   },
@@ -4707,7 +4707,7 @@
     "name": "Semond",
     "code": "21602",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21450"
   },
@@ -4715,7 +4715,7 @@
     "name": "Semur-en-Auxois",
     "code": "21603",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21140"
   },
@@ -4723,7 +4723,7 @@
     "name": "Senailly",
     "code": "21604",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -4731,7 +4731,7 @@
     "name": "Sennecey-lès-Dijon",
     "code": "21605",
     "epci_code": "242100410",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21800"
   },
@@ -4739,7 +4739,7 @@
     "name": "Ladoix-Serrigny",
     "code": "21606",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21550"
   },
@@ -4747,7 +4747,7 @@
     "name": "Seurre",
     "code": "21607",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21250"
   },
@@ -4755,7 +4755,7 @@
     "name": "Sincey-lès-Rouvray",
     "code": "21608",
     "epci_code": "242101442",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21530"
   },
@@ -4763,7 +4763,7 @@
     "name": "Soirans",
     "code": "21609",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21110"
   },
@@ -4771,7 +4771,7 @@
     "name": "Soissons-sur-Nacey",
     "code": "21610",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21270"
   },
@@ -4779,7 +4779,7 @@
     "name": "Sombernon",
     "code": "21611",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21540"
   },
@@ -4787,7 +4787,7 @@
     "name": "Souhey",
     "code": "21612",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21140"
   },
@@ -4795,7 +4795,7 @@
     "name": "Soussey-sur-Brionne",
     "code": "21613",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21350"
   },
@@ -4803,7 +4803,7 @@
     "name": "Spoy",
     "code": "21614",
     "epci_code": "242100154",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21120"
   },
@@ -4811,7 +4811,7 @@
     "name": "Sussey",
     "code": "21615",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21430"
   },
@@ -4819,7 +4819,7 @@
     "name": "Tailly",
     "code": "21616",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21190"
   },
@@ -4827,7 +4827,7 @@
     "name": "Talant",
     "code": "21617",
     "epci_code": "242100410",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21240"
   },
@@ -4835,7 +4835,7 @@
     "name": "Talmay",
     "code": "21618",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21270"
   },
@@ -4843,7 +4843,7 @@
     "name": "Tanay",
     "code": "21619",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21310"
   },
@@ -4851,7 +4851,7 @@
     "name": "Tarsul",
     "code": "21620",
     "epci_code": "242100154",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21120"
   },
@@ -4859,7 +4859,7 @@
     "name": "Tart-le-Bas",
     "code": "21622",
     "epci_code": "200000925",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21110"
   },
@@ -4867,7 +4867,7 @@
     "name": "Tart",
     "code": "21623",
     "epci_code": "200000925",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21110"
   },
@@ -4875,7 +4875,7 @@
     "name": "Tellecey",
     "code": "21624",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21270"
   },
@@ -4883,7 +4883,7 @@
     "name": "Ternant",
     "code": "21625",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21220"
   },
@@ -4891,7 +4891,7 @@
     "name": "Terrefondrée",
     "code": "21626",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21290"
   },
@@ -4899,7 +4899,7 @@
     "name": "Thenissey",
     "code": "21627",
     "epci_code": "242101459",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21150"
   },
@@ -4907,7 +4907,7 @@
     "name": "Thoires",
     "code": "21628",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21570"
   },
@@ -4915,7 +4915,7 @@
     "name": "Thoisy-la-Berchère",
     "code": "21629",
     "epci_code": "242101442",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21210"
   },
@@ -4923,7 +4923,7 @@
     "name": "Thoisy-le-Désert",
     "code": "21630",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21320"
   },
@@ -4931,7 +4931,7 @@
     "name": "Thomirey",
     "code": "21631",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21360"
   },
@@ -4939,7 +4939,7 @@
     "name": "Thorey-en-Plaine",
     "code": "21632",
     "epci_code": "200000925",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21110"
   },
@@ -4947,7 +4947,7 @@
     "name": "Thorey-sous-Charny",
     "code": "21633",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21350"
   },
@@ -4955,7 +4955,7 @@
     "name": "Thorey-sur-Ouche",
     "code": "21634",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21360"
   },
@@ -4963,7 +4963,7 @@
     "name": "Thoste",
     "code": "21635",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21460"
   },
@@ -4971,7 +4971,7 @@
     "name": "Thury",
     "code": "21636",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21340"
   },
@@ -4979,7 +4979,7 @@
     "name": "Tichey",
     "code": "21637",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21250"
   },
@@ -4987,7 +4987,7 @@
     "name": "Til-Châtel",
     "code": "21638",
     "epci_code": "242100154",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21120"
   },
@@ -4995,7 +4995,7 @@
     "name": "Tillenay",
     "code": "21639",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21130"
   },
@@ -5003,7 +5003,7 @@
     "name": "Torcy-et-Pouligny",
     "code": "21640",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21460"
   },
@@ -5011,7 +5011,7 @@
     "name": "Touillon",
     "code": "21641",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -5019,7 +5019,7 @@
     "name": "Toutry",
     "code": "21642",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21460"
   },
@@ -5027,7 +5027,7 @@
     "name": "Tréclun",
     "code": "21643",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21130"
   },
@@ -5035,7 +5035,7 @@
     "name": "Trochères",
     "code": "21644",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21310"
   },
@@ -5043,7 +5043,7 @@
     "name": "Trouhans",
     "code": "21645",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21170"
   },
@@ -5051,7 +5051,7 @@
     "name": "Trouhaut",
     "code": "21646",
     "epci_code": "200039063",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21440"
   },
@@ -5059,7 +5059,7 @@
     "name": "Trugny",
     "code": "21647",
     "epci_code": "242101509",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21250"
   },
@@ -5067,7 +5067,7 @@
     "name": "Turcey",
     "code": "21648",
     "epci_code": "200039063",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21540"
   },
@@ -5075,7 +5075,7 @@
     "name": "Uncey-le-Franc",
     "code": "21649",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21350"
   },
@@ -5083,7 +5083,7 @@
     "name": "Urcy",
     "code": "21650",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21220"
   },
@@ -5091,7 +5091,7 @@
     "name": "Val-Suzon",
     "code": "21651",
     "epci_code": "200039063",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21121"
   },
@@ -5099,7 +5099,7 @@
     "name": "Vandenesse-en-Auxois",
     "code": "21652",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21320"
   },
@@ -5107,7 +5107,7 @@
     "name": "Vannaire",
     "code": "21653",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -5115,7 +5115,7 @@
     "name": "Vanvey",
     "code": "21655",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -5123,7 +5123,7 @@
     "name": "Varanges",
     "code": "21656",
     "epci_code": "200000925",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21110"
   },
@@ -5131,7 +5131,7 @@
     "name": "Varois-et-Chaignot",
     "code": "21657",
     "epci_code": "200069540",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21490"
   },
@@ -5139,7 +5139,7 @@
     "name": "Vaux-Saules",
     "code": "21659",
     "epci_code": "200039063",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21440"
   },
@@ -5147,7 +5147,7 @@
     "name": "Veilly",
     "code": "21660",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21360"
   },
@@ -5155,7 +5155,7 @@
     "name": "Velars-sur-Ouche",
     "code": "21661",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21370"
   },
@@ -5163,7 +5163,7 @@
     "name": "Velogny",
     "code": "21662",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21350"
   },
@@ -5171,7 +5171,7 @@
     "name": "Venarey-les-Laumes",
     "code": "21663",
     "epci_code": "242101459",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21150"
   },
@@ -5179,7 +5179,7 @@
     "name": "Verdonnet",
     "code": "21664",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21330"
   },
@@ -5187,7 +5187,7 @@
     "name": "Vernois-lès-Vesvres",
     "code": "21665",
     "epci_code": "200070910",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21260"
   },
@@ -5195,7 +5195,7 @@
     "name": "Vernot",
     "code": "21666",
     "epci_code": "242100154",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21120"
   },
@@ -5203,7 +5203,7 @@
     "name": "Véronnes",
     "code": "21667",
     "epci_code": "200070910",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21260"
   },
@@ -5211,7 +5211,7 @@
     "name": "Verrey-sous-Drée",
     "code": "21669",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21540"
   },
@@ -5219,7 +5219,7 @@
     "name": "Verrey-sous-Salmaise",
     "code": "21670",
     "epci_code": "242101459",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21690"
   },
@@ -5227,7 +5227,7 @@
     "name": "Vertault",
     "code": "21671",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21330"
   },
@@ -5235,7 +5235,7 @@
     "name": "Vesvres",
     "code": "21672",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21350"
   },
@@ -5243,7 +5243,7 @@
     "name": "Veuvey-sur-Ouche",
     "code": "21673",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21360"
   },
@@ -5251,7 +5251,7 @@
     "name": "Veuxhaulles-sur-Aube",
     "code": "21674",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21520"
   },
@@ -5259,7 +5259,7 @@
     "name": "Vianges",
     "code": "21675",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21430"
   },
@@ -5267,7 +5267,7 @@
     "name": "Vic-de-Chassenay",
     "code": "21676",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21140"
   },
@@ -5275,7 +5275,7 @@
     "name": "Vic-des-Prés",
     "code": "21677",
     "epci_code": "200071207",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21360"
   },
@@ -5283,7 +5283,7 @@
     "name": "Vic-sous-Thil",
     "code": "21678",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21390"
   },
@@ -5291,7 +5291,7 @@
     "name": "Vieilmoulin",
     "code": "21679",
     "epci_code": "200039055",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21540"
   },
@@ -5299,7 +5299,7 @@
     "name": "Vielverge",
     "code": "21680",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21270"
   },
@@ -5307,7 +5307,7 @@
     "name": "Vieux-Château",
     "code": "21681",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21460"
   },
@@ -5315,7 +5315,7 @@
     "name": "Viévigne",
     "code": "21682",
     "epci_code": "200072825",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21310"
   },
@@ -5323,7 +5323,7 @@
     "name": "Viévy",
     "code": "21683",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21230"
   },
@@ -5331,7 +5331,7 @@
     "name": "Vignoles",
     "code": "21684",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21200"
   },
@@ -5339,7 +5339,7 @@
     "name": "Villaines-en-Duesmois",
     "code": "21685",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21450"
   },
@@ -5347,7 +5347,7 @@
     "name": "Villaines-les-Prévôtes",
     "code": "21686",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -5355,7 +5355,7 @@
     "name": "Villargoix",
     "code": "21687",
     "epci_code": "242101442",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21210"
   },
@@ -5363,7 +5363,7 @@
     "name": "Villars-Fontaine",
     "code": "21688",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21700"
   },
@@ -5371,7 +5371,7 @@
     "name": "Villars-et-Villenotte",
     "code": "21689",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21140"
   },
@@ -5379,7 +5379,7 @@
     "name": "Villeberny",
     "code": "21690",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21350"
   },
@@ -5387,7 +5387,7 @@
     "name": "Villebichot",
     "code": "21691",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21700"
   },
@@ -5395,7 +5395,7 @@
     "name": "Villecomte",
     "code": "21692",
     "epci_code": "242100154",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21120"
   },
@@ -5403,7 +5403,7 @@
     "name": "Villedieu",
     "code": "21693",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21330"
   },
@@ -5411,7 +5411,7 @@
     "name": "Villeferry",
     "code": "21694",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21350"
   },
@@ -5419,7 +5419,7 @@
     "name": "La Villeneuve-les-Convers",
     "code": "21695",
     "epci_code": "242101459",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21450"
   },
@@ -5427,7 +5427,7 @@
     "name": "Villeneuve-sous-Charigny",
     "code": "21696",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21140"
   },
@@ -5435,7 +5435,7 @@
     "name": "Villers-la-Faye",
     "code": "21698",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21700"
   },
@@ -5443,7 +5443,7 @@
     "name": "Villers-les-Pots",
     "code": "21699",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21130"
   },
@@ -5451,7 +5451,7 @@
     "name": "Villers-Patras",
     "code": "21700",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -5459,7 +5459,7 @@
     "name": "Villers-Rotin",
     "code": "21701",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21130"
   },
@@ -5467,7 +5467,7 @@
     "name": "Villey-sur-Tille",
     "code": "21702",
     "epci_code": "242100154",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21120"
   },
@@ -5475,7 +5475,7 @@
     "name": "Villiers-en-Morvan",
     "code": "21703",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21430"
   },
@@ -5483,7 +5483,7 @@
     "name": "Villiers-le-Duc",
     "code": "21704",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -5491,7 +5491,7 @@
     "name": "Villotte-Saint-Seine",
     "code": "21705",
     "epci_code": "200039063",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21690"
   },
@@ -5499,7 +5499,7 @@
     "name": "Villotte-sur-Ource",
     "code": "21706",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -5507,7 +5507,7 @@
     "name": "Villy-en-Auxois",
     "code": "21707",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21350"
   },
@@ -5515,7 +5515,7 @@
     "name": "Villy-le-Moutier",
     "code": "21708",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21250"
   },
@@ -5523,7 +5523,7 @@
     "name": "Viserny",
     "code": "21709",
     "epci_code": "242101491",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21500"
   },
@@ -5531,7 +5531,7 @@
     "name": "Vitteaux",
     "code": "21710",
     "epci_code": "200071017",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21350"
   },
@@ -5539,7 +5539,7 @@
     "name": "Vix",
     "code": "21711",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21400"
   },
@@ -5547,7 +5547,7 @@
     "name": "Volnay",
     "code": "21712",
     "epci_code": "200006682",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21190"
   },
@@ -5555,7 +5555,7 @@
     "name": "Vonges",
     "code": "21713",
     "epci_code": "200070902",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21270"
   },
@@ -5563,7 +5563,7 @@
     "name": "Vosne-Romanée",
     "code": "21714",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21700"
   },
@@ -5571,7 +5571,7 @@
     "name": "Voudenay",
     "code": "21715",
     "epci_code": "200071173",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21230"
   },
@@ -5579,7 +5579,7 @@
     "name": "Vougeot",
     "code": "21716",
     "epci_code": "200070894",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21640"
   },
@@ -5587,7 +5587,7 @@
     "name": "Voulaines-les-Templiers",
     "code": "21717",
     "epci_code": "242101434",
-    "departement_code": "21",
+    "department_code": "21",
     "region_code": "27",
     "postal_code": "21290"
   }

@@ -3,7 +3,7 @@
     "name": "Algolsheim",
     "code": "68001",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68600"
   },
@@ -11,7 +11,7 @@
     "name": "Altenach",
     "code": "68002",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -19,7 +19,7 @@
     "name": "Altkirch",
     "code": "68004",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68130"
   },
@@ -27,7 +27,7 @@
     "name": "Ammerschwihr",
     "code": "68005",
     "epci_code": "246800551",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68410"
   },
@@ -35,7 +35,7 @@
     "name": "Ammerschwihr",
     "code": "68005",
     "epci_code": "246800551",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68770"
   },
@@ -43,7 +43,7 @@
     "name": "Bernwiller",
     "code": "68006",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -51,7 +51,7 @@
     "name": "Andolsheim",
     "code": "68007",
     "epci_code": "246800726",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68280"
   },
@@ -59,7 +59,7 @@
     "name": "Appenwihr",
     "code": "68008",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68280"
   },
@@ -67,7 +67,7 @@
     "name": "Artzenheim",
     "code": "68009",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68320"
   },
@@ -75,7 +75,7 @@
     "name": "Aspach",
     "code": "68010",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68130"
   },
@@ -83,7 +83,7 @@
     "name": "Aspach-le-Bas",
     "code": "68011",
     "epci_code": "200036465",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68700"
   },
@@ -91,7 +91,7 @@
     "name": "Aspach-Michelbach",
     "code": "68012",
     "epci_code": "200036465",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68700"
   },
@@ -99,7 +99,7 @@
     "name": "Attenschwiller",
     "code": "68013",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68220"
   },
@@ -107,7 +107,7 @@
     "name": "Aubure",
     "code": "68014",
     "epci_code": "246800577",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68150"
   },
@@ -115,7 +115,7 @@
     "name": "Baldersheim",
     "code": "68015",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68390"
   },
@@ -123,7 +123,7 @@
     "name": "Balgau",
     "code": "68016",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68740"
   },
@@ -131,7 +131,7 @@
     "name": "Ballersdorf",
     "code": "68017",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -139,7 +139,7 @@
     "name": "Balschwiller",
     "code": "68018",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -147,7 +147,7 @@
     "name": "Baltzenheim",
     "code": "68019",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68320"
   },
@@ -155,7 +155,7 @@
     "name": "Bantzenheim",
     "code": "68020",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68490"
   },
@@ -163,7 +163,7 @@
     "name": "Bartenheim",
     "code": "68021",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68870"
   },
@@ -171,7 +171,7 @@
     "name": "Battenheim",
     "code": "68022",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68390"
   },
@@ -179,7 +179,7 @@
     "name": "Beblenheim",
     "code": "68023",
     "epci_code": "246800577",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68980"
   },
@@ -187,7 +187,7 @@
     "name": "Bellemagny",
     "code": "68024",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -195,7 +195,7 @@
     "name": "Bendorf",
     "code": "68025",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -203,7 +203,7 @@
     "name": "Bennwihr",
     "code": "68026",
     "epci_code": "246800577",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68126"
   },
@@ -211,7 +211,7 @@
     "name": "Bennwihr",
     "code": "68026",
     "epci_code": "246800577",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68630"
   },
@@ -219,7 +219,7 @@
     "name": "Berentzwiller",
     "code": "68027",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68130"
   },
@@ -227,7 +227,7 @@
     "name": "Bergheim",
     "code": "68028",
     "epci_code": "246800577",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68750"
   },
@@ -235,7 +235,7 @@
     "name": "Bergholtz",
     "code": "68029",
     "epci_code": "246800569",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68500"
   },
@@ -243,7 +243,7 @@
     "name": "Bergholtzzell",
     "code": "68030",
     "epci_code": "246800569",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68500"
   },
@@ -251,7 +251,7 @@
     "name": "Berrwiller",
     "code": "68032",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68500"
   },
@@ -259,7 +259,7 @@
     "name": "Bettendorf",
     "code": "68033",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68560"
   },
@@ -267,7 +267,7 @@
     "name": "Bettlach",
     "code": "68034",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -275,7 +275,7 @@
     "name": "Biederthal",
     "code": "68035",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -283,7 +283,7 @@
     "name": "Biesheim",
     "code": "68036",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68600"
   },
@@ -291,7 +291,7 @@
     "name": "Biltzheim",
     "code": "68037",
     "epci_code": "246800445",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68127"
   },
@@ -299,7 +299,7 @@
     "name": "Bischwihr",
     "code": "68038",
     "epci_code": "246800726",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68320"
   },
@@ -307,7 +307,7 @@
     "name": "Bisel",
     "code": "68039",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68580"
   },
@@ -315,7 +315,7 @@
     "name": "Bitschwiller-lès-Thann",
     "code": "68040",
     "epci_code": "200036465",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68620"
   },
@@ -323,7 +323,7 @@
     "name": "Blodelsheim",
     "code": "68041",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68740"
   },
@@ -331,7 +331,7 @@
     "name": "Blotzheim",
     "code": "68042",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68730"
   },
@@ -339,7 +339,7 @@
     "name": "Bollwiller",
     "code": "68043",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68540"
   },
@@ -347,7 +347,7 @@
     "name": "Le Bonhomme",
     "code": "68044",
     "epci_code": "246800551",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68650"
   },
@@ -355,7 +355,7 @@
     "name": "Bourbach-le-Bas",
     "code": "68045",
     "epci_code": "200036465",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68290"
   },
@@ -363,7 +363,7 @@
     "name": "Bourbach-le-Haut",
     "code": "68046",
     "epci_code": "200036465",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68290"
   },
@@ -371,7 +371,7 @@
     "name": "Bouxwiller",
     "code": "68049",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -379,7 +379,7 @@
     "name": "Bréchaumont",
     "code": "68050",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -387,7 +387,7 @@
     "name": "Breitenbach-Haut-Rhin",
     "code": "68051",
     "epci_code": "246800585",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68380"
   },
@@ -395,7 +395,7 @@
     "name": "Bretten",
     "code": "68052",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68780"
   },
@@ -403,7 +403,7 @@
     "name": "Brinckheim",
     "code": "68054",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68870"
   },
@@ -411,7 +411,7 @@
     "name": "Bruebach",
     "code": "68055",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68440"
   },
@@ -419,7 +419,7 @@
     "name": "Brunstatt-Didenheim",
     "code": "68056",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68350"
   },
@@ -427,7 +427,7 @@
     "name": "Buethwiller",
     "code": "68057",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -435,7 +435,7 @@
     "name": "Buhl",
     "code": "68058",
     "epci_code": "246800569",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68530"
   },
@@ -443,7 +443,7 @@
     "name": "Burnhaupt-le-Bas",
     "code": "68059",
     "epci_code": "246800676",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68520"
   },
@@ -451,7 +451,7 @@
     "name": "Burnhaupt-le-Haut",
     "code": "68060",
     "epci_code": "246800676",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68520"
   },
@@ -459,7 +459,7 @@
     "name": "Buschwiller",
     "code": "68061",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68220"
   },
@@ -467,7 +467,7 @@
     "name": "Carspach",
     "code": "68062",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68130"
   },
@@ -475,7 +475,7 @@
     "name": "Cernay",
     "code": "68063",
     "epci_code": "200036465",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68700"
   },
@@ -483,7 +483,7 @@
     "name": "Chalampé",
     "code": "68064",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68490"
   },
@@ -491,7 +491,7 @@
     "name": "Chavannes-sur-l’Étang",
     "code": "68065",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -499,7 +499,7 @@
     "name": "Colmar",
     "code": "68066",
     "epci_code": "246800726",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68000"
   },
@@ -507,7 +507,7 @@
     "name": "Courtavon",
     "code": "68067",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -515,7 +515,7 @@
     "name": "Dannemarie",
     "code": "68068",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -523,7 +523,7 @@
     "name": "Dessenheim",
     "code": "68069",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68600"
   },
@@ -531,7 +531,7 @@
     "name": "Diefmatten",
     "code": "68071",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68780"
   },
@@ -539,7 +539,7 @@
     "name": "Dietwiller",
     "code": "68072",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68440"
   },
@@ -547,7 +547,7 @@
     "name": "Dolleren",
     "code": "68073",
     "epci_code": "246800676",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68290"
   },
@@ -555,7 +555,7 @@
     "name": "Durlinsdorf",
     "code": "68074",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -563,7 +563,7 @@
     "name": "Durmenach",
     "code": "68075",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -571,7 +571,7 @@
     "name": "Durrenentzen",
     "code": "68076",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68320"
   },
@@ -579,7 +579,7 @@
     "name": "Eglingen",
     "code": "68077",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68720"
   },
@@ -587,7 +587,7 @@
     "name": "Eguisheim",
     "code": "68078",
     "epci_code": "246800494",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68420"
   },
@@ -595,7 +595,7 @@
     "name": "Elbach",
     "code": "68079",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -603,7 +603,7 @@
     "name": "Emlingen",
     "code": "68080",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68130"
   },
@@ -611,7 +611,7 @@
     "name": "Saint-Bernard",
     "code": "68081",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68720"
   },
@@ -619,7 +619,7 @@
     "name": "Ensisheim",
     "code": "68082",
     "epci_code": "246800445",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68190"
   },
@@ -627,7 +627,7 @@
     "name": "Eschbach-au-Val",
     "code": "68083",
     "epci_code": "246800585",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68140"
   },
@@ -635,7 +635,7 @@
     "name": "Eschentzwiller",
     "code": "68084",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68440"
   },
@@ -643,7 +643,7 @@
     "name": "Eteimbes",
     "code": "68085",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -651,7 +651,7 @@
     "name": "Falkwiller",
     "code": "68086",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -659,7 +659,7 @@
     "name": "Feldbach",
     "code": "68087",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68640"
   },
@@ -667,7 +667,7 @@
     "name": "Feldkirch",
     "code": "68088",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68540"
   },
@@ -675,7 +675,7 @@
     "name": "Fellering",
     "code": "68089",
     "epci_code": "246800205",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68470"
   },
@@ -683,7 +683,7 @@
     "name": "Ferrette",
     "code": "68090",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -691,7 +691,7 @@
     "name": "Fessenheim",
     "code": "68091",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68740"
   },
@@ -699,7 +699,7 @@
     "name": "Fislis",
     "code": "68092",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -707,7 +707,7 @@
     "name": "Flaxlanden",
     "code": "68093",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68720"
   },
@@ -715,7 +715,7 @@
     "name": "Folgensbourg",
     "code": "68094",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68220"
   },
@@ -723,7 +723,7 @@
     "name": "Fortschwihr",
     "code": "68095",
     "epci_code": "246800726",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68320"
   },
@@ -731,7 +731,7 @@
     "name": "Franken",
     "code": "68096",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68130"
   },
@@ -739,7 +739,7 @@
     "name": "Fréland",
     "code": "68097",
     "epci_code": "246800551",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68240"
   },
@@ -747,7 +747,7 @@
     "name": "Friesen",
     "code": "68098",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68580"
   },
@@ -755,7 +755,7 @@
     "name": "Frœningen",
     "code": "68099",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68720"
   },
@@ -763,7 +763,7 @@
     "name": "Fulleren",
     "code": "68100",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -771,7 +771,7 @@
     "name": "Galfingue",
     "code": "68101",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68990"
   },
@@ -779,7 +779,7 @@
     "name": "Geishouse",
     "code": "68102",
     "epci_code": "246800205",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68690"
   },
@@ -787,7 +787,7 @@
     "name": "Geispitzen",
     "code": "68103",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68510"
   },
@@ -795,7 +795,7 @@
     "name": "Geiswasser",
     "code": "68104",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68600"
   },
@@ -803,7 +803,7 @@
     "name": "Gildwiller",
     "code": "68105",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -811,7 +811,7 @@
     "name": "Goldbach-Altenbach",
     "code": "68106",
     "epci_code": "246800205",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68760"
   },
@@ -819,7 +819,7 @@
     "name": "Gommersdorf",
     "code": "68107",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -827,7 +827,7 @@
     "name": "Griesbach-au-Val",
     "code": "68109",
     "epci_code": "246800585",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68140"
   },
@@ -835,7 +835,7 @@
     "name": "Grussenheim",
     "code": "68110",
     "epci_code": "200030526",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68320"
   },
@@ -843,7 +843,7 @@
     "name": "Gueberschwihr",
     "code": "68111",
     "epci_code": "246800494",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68420"
   },
@@ -851,7 +851,7 @@
     "name": "Guebwiller",
     "code": "68112",
     "epci_code": "246800569",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68500"
   },
@@ -859,7 +859,7 @@
     "name": "Guémar",
     "code": "68113",
     "epci_code": "246800577",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68970"
   },
@@ -867,7 +867,7 @@
     "name": "Guevenatten",
     "code": "68114",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -875,7 +875,7 @@
     "name": "Guewenheim",
     "code": "68115",
     "epci_code": "246800676",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68116"
   },
@@ -883,7 +883,7 @@
     "name": "Gundolsheim",
     "code": "68116",
     "epci_code": "246800494",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68250"
   },
@@ -891,7 +891,7 @@
     "name": "Gunsbach",
     "code": "68117",
     "epci_code": "246800585",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68140"
   },
@@ -899,7 +899,7 @@
     "name": "Habsheim",
     "code": "68118",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68440"
   },
@@ -907,7 +907,7 @@
     "name": "Hagenbach",
     "code": "68119",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -915,7 +915,7 @@
     "name": "Hagenthal-le-Bas",
     "code": "68120",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68220"
   },
@@ -923,7 +923,7 @@
     "name": "Hagenthal-le-Haut",
     "code": "68121",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68220"
   },
@@ -931,7 +931,7 @@
     "name": "Hartmannswiller",
     "code": "68122",
     "epci_code": "246800569",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68500"
   },
@@ -939,7 +939,7 @@
     "name": "Hattstatt",
     "code": "68123",
     "epci_code": "246800494",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68420"
   },
@@ -947,7 +947,7 @@
     "name": "Hausgauen",
     "code": "68124",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68130"
   },
@@ -955,7 +955,7 @@
     "name": "Hecken",
     "code": "68125",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -963,7 +963,7 @@
     "name": "Hégenheim",
     "code": "68126",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68220"
   },
@@ -971,7 +971,7 @@
     "name": "Heidwiller",
     "code": "68127",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68720"
   },
@@ -979,7 +979,7 @@
     "name": "Heimersdorf",
     "code": "68128",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68560"
   },
@@ -987,7 +987,7 @@
     "name": "Heimsbrunn",
     "code": "68129",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68990"
   },
@@ -995,7 +995,7 @@
     "name": "Heiteren",
     "code": "68130",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68600"
   },
@@ -1003,7 +1003,7 @@
     "name": "Heiwiller",
     "code": "68131",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68130"
   },
@@ -1011,7 +1011,7 @@
     "name": "Helfrantzkirch",
     "code": "68132",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68510"
   },
@@ -1019,7 +1019,7 @@
     "name": "Herrlisheim-près-Colmar",
     "code": "68134",
     "epci_code": "246800726",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68420"
   },
@@ -1027,7 +1027,7 @@
     "name": "Hésingue",
     "code": "68135",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68220"
   },
@@ -1035,7 +1035,7 @@
     "name": "Hettenschlag",
     "code": "68136",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68600"
   },
@@ -1043,7 +1043,7 @@
     "name": "Hindlingen",
     "code": "68137",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68580"
   },
@@ -1051,7 +1051,7 @@
     "name": "Hirsingue",
     "code": "68138",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68560"
   },
@@ -1059,7 +1059,7 @@
     "name": "Hirtzbach",
     "code": "68139",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68118"
   },
@@ -1067,7 +1067,7 @@
     "name": "Hirtzfelden",
     "code": "68140",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68740"
   },
@@ -1075,7 +1075,7 @@
     "name": "Hochstatt",
     "code": "68141",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68720"
   },
@@ -1083,7 +1083,7 @@
     "name": "Hohrod",
     "code": "68142",
     "epci_code": "246800585",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68140"
   },
@@ -1091,7 +1091,7 @@
     "name": "Porte du Ried",
     "code": "68143",
     "epci_code": "246800726",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68320"
   },
@@ -1099,7 +1099,7 @@
     "name": "Hombourg",
     "code": "68144",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68490"
   },
@@ -1107,7 +1107,7 @@
     "name": "Horbourg-Wihr",
     "code": "68145",
     "epci_code": "246800726",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68180"
   },
@@ -1115,7 +1115,7 @@
     "name": "Houssen",
     "code": "68146",
     "epci_code": "246800726",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68125"
   },
@@ -1123,7 +1123,7 @@
     "name": "Hunawihr",
     "code": "68147",
     "epci_code": "246800577",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68150"
   },
@@ -1131,7 +1131,7 @@
     "name": "Hundsbach",
     "code": "68148",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68130"
   },
@@ -1139,7 +1139,7 @@
     "name": "Huningue",
     "code": "68149",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68330"
   },
@@ -1147,7 +1147,7 @@
     "name": "Husseren-les-Châteaux",
     "code": "68150",
     "epci_code": "246800494",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68420"
   },
@@ -1155,7 +1155,7 @@
     "name": "Husseren-Wesserling",
     "code": "68151",
     "epci_code": "246800205",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68470"
   },
@@ -1163,7 +1163,7 @@
     "name": "Illfurth",
     "code": "68152",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68720"
   },
@@ -1171,7 +1171,7 @@
     "name": "Illhaeusern",
     "code": "68153",
     "epci_code": "246800577",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68970"
   },
@@ -1179,7 +1179,7 @@
     "name": "Illzach",
     "code": "68154",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68110"
   },
@@ -1187,7 +1187,7 @@
     "name": "Ingersheim",
     "code": "68155",
     "epci_code": "246800726",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68040"
   },
@@ -1195,7 +1195,7 @@
     "name": "Issenheim",
     "code": "68156",
     "epci_code": "246800569",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68500"
   },
@@ -1203,7 +1203,7 @@
     "name": "Jebsheim",
     "code": "68157",
     "epci_code": "246800726",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68320"
   },
@@ -1211,7 +1211,7 @@
     "name": "Jettingen",
     "code": "68158",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68130"
   },
@@ -1219,7 +1219,7 @@
     "name": "Jungholtz",
     "code": "68159",
     "epci_code": "246800569",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68500"
   },
@@ -1227,7 +1227,7 @@
     "name": "Kappelen",
     "code": "68160",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68510"
   },
@@ -1235,7 +1235,7 @@
     "name": "Katzenthal",
     "code": "68161",
     "epci_code": "246800551",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68230"
   },
@@ -1243,7 +1243,7 @@
     "name": "Kaysersberg Vignoble",
     "code": "68162",
     "epci_code": "246800551",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68240"
   },
@@ -1251,7 +1251,7 @@
     "name": "Kembs",
     "code": "68163",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68680"
   },
@@ -1259,7 +1259,7 @@
     "name": "Kiffis",
     "code": "68165",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -1267,7 +1267,7 @@
     "name": "Kingersheim",
     "code": "68166",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68260"
   },
@@ -1275,7 +1275,7 @@
     "name": "Kirchberg",
     "code": "68167",
     "epci_code": "246800676",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68290"
   },
@@ -1283,7 +1283,7 @@
     "name": "Knœringue",
     "code": "68168",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68220"
   },
@@ -1291,7 +1291,7 @@
     "name": "Kœstlach",
     "code": "68169",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -1299,7 +1299,7 @@
     "name": "Kœtzingue",
     "code": "68170",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68510"
   },
@@ -1307,7 +1307,7 @@
     "name": "Kruth",
     "code": "68171",
     "epci_code": "246800205",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68820"
   },
@@ -1315,7 +1315,7 @@
     "name": "Kunheim",
     "code": "68172",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68320"
   },
@@ -1323,7 +1323,7 @@
     "name": "Labaroche",
     "code": "68173",
     "epci_code": "246800551",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68910"
   },
@@ -1331,7 +1331,7 @@
     "name": "Landser",
     "code": "68174",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68440"
   },
@@ -1339,7 +1339,7 @@
     "name": "Lapoutroie",
     "code": "68175",
     "epci_code": "246800551",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68650"
   },
@@ -1347,7 +1347,7 @@
     "name": "Largitzen",
     "code": "68176",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68580"
   },
@@ -1355,7 +1355,7 @@
     "name": "Lautenbach",
     "code": "68177",
     "epci_code": "246800569",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68610"
   },
@@ -1363,7 +1363,7 @@
     "name": "Lautenbachzell",
     "code": "68178",
     "epci_code": "246800569",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68610"
   },
@@ -1371,7 +1371,7 @@
     "name": "Lauw",
     "code": "68179",
     "epci_code": "246800676",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68290"
   },
@@ -1379,7 +1379,7 @@
     "name": "Leimbach",
     "code": "68180",
     "epci_code": "200036465",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68800"
   },
@@ -1387,7 +1387,7 @@
     "name": "Levoncourt",
     "code": "68181",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -1395,7 +1395,7 @@
     "name": "Leymen",
     "code": "68182",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68220"
   },
@@ -1403,7 +1403,7 @@
     "name": "Liebenswiller",
     "code": "68183",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68220"
   },
@@ -1411,7 +1411,7 @@
     "name": "Liebsdorf",
     "code": "68184",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -1419,7 +1419,7 @@
     "name": "Lièpvre",
     "code": "68185",
     "epci_code": "246800395",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68660"
   },
@@ -1427,7 +1427,7 @@
     "name": "Ligsdorf",
     "code": "68186",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -1435,7 +1435,7 @@
     "name": "Linsdorf",
     "code": "68187",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -1443,7 +1443,7 @@
     "name": "Linthal",
     "code": "68188",
     "epci_code": "246800569",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68610"
   },
@@ -1451,7 +1451,7 @@
     "name": "Logelheim",
     "code": "68189",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68280"
   },
@@ -1459,7 +1459,7 @@
     "name": "Lucelle",
     "code": "68190",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -1467,7 +1467,7 @@
     "name": "Luemschwiller",
     "code": "68191",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68720"
   },
@@ -1475,7 +1475,7 @@
     "name": "Valdieu-Lutran",
     "code": "68192",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -1483,7 +1483,7 @@
     "name": "Luttenbach-près-Munster",
     "code": "68193",
     "epci_code": "246800585",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68140"
   },
@@ -1491,7 +1491,7 @@
     "name": "Lutter",
     "code": "68194",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -1499,7 +1499,7 @@
     "name": "Lutterbach",
     "code": "68195",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68460"
   },
@@ -1507,7 +1507,7 @@
     "name": "Magny",
     "code": "68196",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -1515,7 +1515,7 @@
     "name": "Magstatt-le-Bas",
     "code": "68197",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68510"
   },
@@ -1523,7 +1523,7 @@
     "name": "Magstatt-le-Haut",
     "code": "68198",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68510"
   },
@@ -1531,7 +1531,7 @@
     "name": "Malmerspach",
     "code": "68199",
     "epci_code": "246800205",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68550"
   },
@@ -1539,7 +1539,7 @@
     "name": "Manspach",
     "code": "68200",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -1547,7 +1547,7 @@
     "name": "Masevaux-Niederbruck",
     "code": "68201",
     "epci_code": "246800676",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68290"
   },
@@ -1555,7 +1555,7 @@
     "name": "Mertzen",
     "code": "68202",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -1563,7 +1563,7 @@
     "name": "Merxheim",
     "code": "68203",
     "epci_code": "246800569",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68500"
   },
@@ -1571,7 +1571,7 @@
     "name": "Metzeral",
     "code": "68204",
     "epci_code": "246800585",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68380"
   },
@@ -1579,7 +1579,7 @@
     "name": "Meyenheim",
     "code": "68205",
     "epci_code": "246800445",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68890"
   },
@@ -1587,7 +1587,7 @@
     "name": "Michelbach-le-Bas",
     "code": "68207",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68730"
   },
@@ -1595,7 +1595,7 @@
     "name": "Michelbach-le-Haut",
     "code": "68208",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68220"
   },
@@ -1603,7 +1603,7 @@
     "name": "Mittelwihr",
     "code": "68209",
     "epci_code": "246800577",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68630"
   },
@@ -1611,7 +1611,7 @@
     "name": "Mittlach",
     "code": "68210",
     "epci_code": "246800585",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68380"
   },
@@ -1619,7 +1619,7 @@
     "name": "Mitzach",
     "code": "68211",
     "epci_code": "246800205",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68470"
   },
@@ -1627,7 +1627,7 @@
     "name": "Mœrnach",
     "code": "68212",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -1635,7 +1635,7 @@
     "name": "Mollau",
     "code": "68213",
     "epci_code": "246800205",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68470"
   },
@@ -1643,7 +1643,7 @@
     "name": "Montreux-Jeune",
     "code": "68214",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -1651,7 +1651,7 @@
     "name": "Montreux-Vieux",
     "code": "68215",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -1659,7 +1659,7 @@
     "name": "Mooslargue",
     "code": "68216",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68580"
   },
@@ -1667,7 +1667,7 @@
     "name": "Moosch",
     "code": "68217",
     "epci_code": "246800205",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68690"
   },
@@ -1675,7 +1675,7 @@
     "name": "Morschwiller-le-Bas",
     "code": "68218",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68790"
   },
@@ -1683,7 +1683,7 @@
     "name": "Le Haut Soultzbach",
     "code": "68219",
     "epci_code": "246800676",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68780"
   },
@@ -1691,7 +1691,7 @@
     "name": "Muespach",
     "code": "68221",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68640"
   },
@@ -1699,7 +1699,7 @@
     "name": "Muespach-le-Haut",
     "code": "68222",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68640"
   },
@@ -1707,7 +1707,7 @@
     "name": "Muhlbach-sur-Munster",
     "code": "68223",
     "epci_code": "246800585",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68380"
   },
@@ -1715,7 +1715,7 @@
     "name": "Mulhouse",
     "code": "68224",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68100"
   },
@@ -1723,7 +1723,7 @@
     "name": "Mulhouse",
     "code": "68224",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68200"
   },
@@ -1731,7 +1731,7 @@
     "name": "Munchhouse",
     "code": "68225",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68740"
   },
@@ -1739,7 +1739,7 @@
     "name": "Munster",
     "code": "68226",
     "epci_code": "246800585",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68140"
   },
@@ -1747,7 +1747,7 @@
     "name": "Muntzenheim",
     "code": "68227",
     "epci_code": "246800726",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68320"
   },
@@ -1755,7 +1755,7 @@
     "name": "Munwiller",
     "code": "68228",
     "epci_code": "246800445",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68250"
   },
@@ -1763,7 +1763,7 @@
     "name": "Murbach",
     "code": "68229",
     "epci_code": "246800569",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68530"
   },
@@ -1771,7 +1771,7 @@
     "name": "Nambsheim",
     "code": "68230",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68740"
   },
@@ -1779,7 +1779,7 @@
     "name": "Neuf-Brisach",
     "code": "68231",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68600"
   },
@@ -1787,7 +1787,7 @@
     "name": "Neuwiller",
     "code": "68232",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68220"
   },
@@ -1795,7 +1795,7 @@
     "name": "Niederentzen",
     "code": "68234",
     "epci_code": "246800445",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68127"
   },
@@ -1803,7 +1803,7 @@
     "name": "Niederhergheim",
     "code": "68235",
     "epci_code": "246800445",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68127"
   },
@@ -1811,7 +1811,7 @@
     "name": "Niedermorschwihr",
     "code": "68237",
     "epci_code": "246800726",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68230"
   },
@@ -1819,7 +1819,7 @@
     "name": "Niffer",
     "code": "68238",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68680"
   },
@@ -1827,7 +1827,7 @@
     "name": "Oberbruck",
     "code": "68239",
     "epci_code": "246800676",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68290"
   },
@@ -1835,7 +1835,7 @@
     "name": "Illtal",
     "code": "68240",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68960"
   },
@@ -1843,7 +1843,7 @@
     "name": "Oberentzen",
     "code": "68241",
     "epci_code": "246800445",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68127"
   },
@@ -1851,7 +1851,7 @@
     "name": "Oberhergheim",
     "code": "68242",
     "epci_code": "246800445",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68127"
   },
@@ -1859,7 +1859,7 @@
     "name": "Oberlarg",
     "code": "68243",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -1867,7 +1867,7 @@
     "name": "Obermorschwihr",
     "code": "68244",
     "epci_code": "246800494",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68420"
   },
@@ -1875,7 +1875,7 @@
     "name": "Obermorschwiller",
     "code": "68245",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68130"
   },
@@ -1883,7 +1883,7 @@
     "name": "Obersaasheim",
     "code": "68246",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68600"
   },
@@ -1891,7 +1891,7 @@
     "name": "Oderen",
     "code": "68247",
     "epci_code": "246800205",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68830"
   },
@@ -1899,7 +1899,7 @@
     "name": "Oltingue",
     "code": "68248",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -1907,7 +1907,7 @@
     "name": "Orbey",
     "code": "68249",
     "epci_code": "246800551",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68370"
   },
@@ -1915,7 +1915,7 @@
     "name": "Orschwihr",
     "code": "68250",
     "epci_code": "246800569",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68500"
   },
@@ -1923,7 +1923,7 @@
     "name": "Osenbach",
     "code": "68251",
     "epci_code": "246800494",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68570"
   },
@@ -1931,7 +1931,7 @@
     "name": "Ostheim",
     "code": "68252",
     "epci_code": "246800577",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68150"
   },
@@ -1939,7 +1939,7 @@
     "name": "Ottmarsheim",
     "code": "68253",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68490"
   },
@@ -1947,7 +1947,7 @@
     "name": "Petit-Landau",
     "code": "68254",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68490"
   },
@@ -1955,7 +1955,7 @@
     "name": "Pfaffenheim",
     "code": "68255",
     "epci_code": "246800494",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68250"
   },
@@ -1963,7 +1963,7 @@
     "name": "Pfastatt",
     "code": "68256",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68120"
   },
@@ -1971,7 +1971,7 @@
     "name": "Pfetterhouse",
     "code": "68257",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -1979,7 +1979,7 @@
     "name": "Pulversheim",
     "code": "68258",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68840"
   },
@@ -1987,7 +1987,7 @@
     "name": "Raedersdorf",
     "code": "68259",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -1995,7 +1995,7 @@
     "name": "Raedersheim",
     "code": "68260",
     "epci_code": "246800569",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68190"
   },
@@ -2003,7 +2003,7 @@
     "name": "Rammersmatt",
     "code": "68261",
     "epci_code": "200036465",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68800"
   },
@@ -2011,7 +2011,7 @@
     "name": "Ranspach",
     "code": "68262",
     "epci_code": "246800205",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68470"
   },
@@ -2019,7 +2019,7 @@
     "name": "Ranspach-le-Bas",
     "code": "68263",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68730"
   },
@@ -2027,7 +2027,7 @@
     "name": "Ranspach-le-Haut",
     "code": "68264",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68220"
   },
@@ -2035,7 +2035,7 @@
     "name": "Rantzwiller",
     "code": "68265",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68510"
   },
@@ -2043,7 +2043,7 @@
     "name": "Réguisheim",
     "code": "68266",
     "epci_code": "246800445",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68890"
   },
@@ -2051,7 +2051,7 @@
     "name": "Reiningue",
     "code": "68267",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68950"
   },
@@ -2059,7 +2059,7 @@
     "name": "Retzwiller",
     "code": "68268",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -2067,7 +2067,7 @@
     "name": "Ribeauvillé",
     "code": "68269",
     "epci_code": "246800577",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68150"
   },
@@ -2075,7 +2075,7 @@
     "name": "Richwiller",
     "code": "68270",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68120"
   },
@@ -2083,7 +2083,7 @@
     "name": "Riedisheim",
     "code": "68271",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68400"
   },
@@ -2091,7 +2091,7 @@
     "name": "Riespach",
     "code": "68273",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68640"
   },
@@ -2099,7 +2099,7 @@
     "name": "Rimbach-près-Guebwiller",
     "code": "68274",
     "epci_code": "246800569",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68500"
   },
@@ -2107,7 +2107,7 @@
     "name": "Rimbach-près-Masevaux",
     "code": "68275",
     "epci_code": "246800676",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68290"
   },
@@ -2115,7 +2115,7 @@
     "name": "Rimbachzell",
     "code": "68276",
     "epci_code": "246800569",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68500"
   },
@@ -2123,7 +2123,7 @@
     "name": "Riquewihr",
     "code": "68277",
     "epci_code": "246800577",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68340"
   },
@@ -2131,7 +2131,7 @@
     "name": "Rixheim",
     "code": "68278",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68170"
   },
@@ -2139,7 +2139,7 @@
     "name": "Roderen",
     "code": "68279",
     "epci_code": "200036465",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68800"
   },
@@ -2147,7 +2147,7 @@
     "name": "Rodern",
     "code": "68280",
     "epci_code": "246800577",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68590"
   },
@@ -2155,7 +2155,7 @@
     "name": "Roggenhouse",
     "code": "68281",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68740"
   },
@@ -2163,7 +2163,7 @@
     "name": "Romagny",
     "code": "68282",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -2171,7 +2171,7 @@
     "name": "Rombach-le-Franc",
     "code": "68283",
     "epci_code": "246800395",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68660"
   },
@@ -2179,7 +2179,7 @@
     "name": "Roppentzwiller",
     "code": "68284",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -2187,7 +2187,7 @@
     "name": "Rorschwihr",
     "code": "68285",
     "epci_code": "246800577",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68590"
   },
@@ -2195,7 +2195,7 @@
     "name": "Rosenau",
     "code": "68286",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68128"
   },
@@ -2203,7 +2203,7 @@
     "name": "Rouffach",
     "code": "68287",
     "epci_code": "246800494",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68250"
   },
@@ -2211,7 +2211,7 @@
     "name": "Ruederbach",
     "code": "68288",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68560"
   },
@@ -2219,7 +2219,7 @@
     "name": "Ruelisheim",
     "code": "68289",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68270"
   },
@@ -2227,7 +2227,7 @@
     "name": "Rustenhart",
     "code": "68290",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68740"
   },
@@ -2235,7 +2235,7 @@
     "name": "Rumersheim-le-Haut",
     "code": "68291",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68740"
   },
@@ -2243,7 +2243,7 @@
     "name": "Saint-Amarin",
     "code": "68292",
     "epci_code": "246800205",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68550"
   },
@@ -2251,7 +2251,7 @@
     "name": "Saint-Cosme",
     "code": "68293",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -2259,7 +2259,7 @@
     "name": "Sainte-Croix-aux-Mines",
     "code": "68294",
     "epci_code": "246800395",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68160"
   },
@@ -2267,7 +2267,7 @@
     "name": "Sainte-Croix-en-Plaine",
     "code": "68295",
     "epci_code": "246800726",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68127"
   },
@@ -2275,7 +2275,7 @@
     "name": "Saint-Hippolyte",
     "code": "68296",
     "epci_code": "246800577",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68590"
   },
@@ -2283,7 +2283,7 @@
     "name": "Saint-Louis",
     "code": "68297",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68300"
   },
@@ -2291,7 +2291,7 @@
     "name": "Sainte-Marie-aux-Mines",
     "code": "68298",
     "epci_code": "246800395",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68160"
   },
@@ -2299,7 +2299,7 @@
     "name": "Saint-Ulrich",
     "code": "68299",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -2307,7 +2307,7 @@
     "name": "Sausheim",
     "code": "68300",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68390"
   },
@@ -2315,7 +2315,7 @@
     "name": "Schlierbach",
     "code": "68301",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68440"
   },
@@ -2323,7 +2323,7 @@
     "name": "Schweighouse-Thann",
     "code": "68302",
     "epci_code": "200036465",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68520"
   },
@@ -2331,7 +2331,7 @@
     "name": "Schwoben",
     "code": "68303",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68130"
   },
@@ -2339,7 +2339,7 @@
     "name": "Sentheim",
     "code": "68304",
     "epci_code": "246800676",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68780"
   },
@@ -2347,7 +2347,7 @@
     "name": "Seppois-le-Bas",
     "code": "68305",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68580"
   },
@@ -2355,7 +2355,7 @@
     "name": "Seppois-le-Haut",
     "code": "68306",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68580"
   },
@@ -2363,7 +2363,7 @@
     "name": "Sewen",
     "code": "68307",
     "epci_code": "246800676",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68290"
   },
@@ -2371,7 +2371,7 @@
     "name": "Sickert",
     "code": "68308",
     "epci_code": "246800676",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68290"
   },
@@ -2379,7 +2379,7 @@
     "name": "Sierentz",
     "code": "68309",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68510"
   },
@@ -2387,7 +2387,7 @@
     "name": "Sondernach",
     "code": "68311",
     "epci_code": "246800585",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68380"
   },
@@ -2395,7 +2395,7 @@
     "name": "Sondersdorf",
     "code": "68312",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -2403,7 +2403,7 @@
     "name": "Soppe-le-Bas",
     "code": "68313",
     "epci_code": "246800676",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68780"
   },
@@ -2411,7 +2411,7 @@
     "name": "Soultz-Haut-Rhin",
     "code": "68315",
     "epci_code": "246800569",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68360"
   },
@@ -2419,7 +2419,7 @@
     "name": "Soultzbach-les-Bains",
     "code": "68316",
     "epci_code": "246800585",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68230"
   },
@@ -2427,7 +2427,7 @@
     "name": "Soultzeren",
     "code": "68317",
     "epci_code": "246800585",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68140"
   },
@@ -2435,7 +2435,7 @@
     "name": "Soultzmatt",
     "code": "68318",
     "epci_code": "246800569",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68570"
   },
@@ -2443,7 +2443,7 @@
     "name": "Spechbach",
     "code": "68320",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68720"
   },
@@ -2451,7 +2451,7 @@
     "name": "Staffelfelden",
     "code": "68321",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68850"
   },
@@ -2459,7 +2459,7 @@
     "name": "Steinbach",
     "code": "68322",
     "epci_code": "200036465",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68700"
   },
@@ -2467,7 +2467,7 @@
     "name": "Steinbrunn-le-Bas",
     "code": "68323",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68440"
   },
@@ -2475,7 +2475,7 @@
     "name": "Steinbrunn-le-Haut",
     "code": "68324",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68440"
   },
@@ -2483,7 +2483,7 @@
     "name": "Steinsoultz",
     "code": "68325",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68640"
   },
@@ -2491,7 +2491,7 @@
     "name": "Sternenberg",
     "code": "68326",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68780"
   },
@@ -2499,7 +2499,7 @@
     "name": "Stetten",
     "code": "68327",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68510"
   },
@@ -2507,7 +2507,7 @@
     "name": "Storckensohn",
     "code": "68328",
     "epci_code": "246800205",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68470"
   },
@@ -2515,7 +2515,7 @@
     "name": "Stosswihr",
     "code": "68329",
     "epci_code": "246800585",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68140"
   },
@@ -2523,7 +2523,7 @@
     "name": "Strueth",
     "code": "68330",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68580"
   },
@@ -2531,7 +2531,7 @@
     "name": "Sundhoffen",
     "code": "68331",
     "epci_code": "246800726",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68280"
   },
@@ -2539,7 +2539,7 @@
     "name": "Tagolsheim",
     "code": "68332",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68720"
   },
@@ -2547,7 +2547,7 @@
     "name": "Tagsdorf",
     "code": "68333",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68130"
   },
@@ -2555,7 +2555,7 @@
     "name": "Thann",
     "code": "68334",
     "epci_code": "200036465",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68800"
   },
@@ -2563,7 +2563,7 @@
     "name": "Thannenkirch",
     "code": "68335",
     "epci_code": "246800577",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68590"
   },
@@ -2571,7 +2571,7 @@
     "name": "Traubach-le-Bas",
     "code": "68336",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -2579,7 +2579,7 @@
     "name": "Traubach-le-Haut",
     "code": "68337",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -2587,7 +2587,7 @@
     "name": "Turckheim",
     "code": "68338",
     "epci_code": "246800726",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68230"
   },
@@ -2595,7 +2595,7 @@
     "name": "Ueberstrass",
     "code": "68340",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68580"
   },
@@ -2603,7 +2603,7 @@
     "name": "Uffheim",
     "code": "68341",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68510"
   },
@@ -2611,7 +2611,7 @@
     "name": "Uffholtz",
     "code": "68342",
     "epci_code": "200036465",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68700"
   },
@@ -2619,7 +2619,7 @@
     "name": "Ungersheim",
     "code": "68343",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68190"
   },
@@ -2627,7 +2627,7 @@
     "name": "Urbès",
     "code": "68344",
     "epci_code": "246800205",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68121"
   },
@@ -2635,7 +2635,7 @@
     "name": "Urschenheim",
     "code": "68345",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68320"
   },
@@ -2643,7 +2643,7 @@
     "name": "Vieux-Ferrette",
     "code": "68347",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -2651,7 +2651,7 @@
     "name": "Vieux-Thann",
     "code": "68348",
     "epci_code": "200036465",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68800"
   },
@@ -2659,7 +2659,7 @@
     "name": "Village-Neuf",
     "code": "68349",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68128"
   },
@@ -2667,7 +2667,7 @@
     "name": "Vœgtlinshoffen",
     "code": "68350",
     "epci_code": "246800494",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68420"
   },
@@ -2675,7 +2675,7 @@
     "name": "Vogelgrun",
     "code": "68351",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68600"
   },
@@ -2683,7 +2683,7 @@
     "name": "Volgelsheim",
     "code": "68352",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68600"
   },
@@ -2691,7 +2691,7 @@
     "name": "Wahlbach",
     "code": "68353",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68130"
   },
@@ -2699,7 +2699,7 @@
     "name": "Walbach",
     "code": "68354",
     "epci_code": "246800726",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68230"
   },
@@ -2707,7 +2707,7 @@
     "name": "Waldighoffen",
     "code": "68355",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68640"
   },
@@ -2715,7 +2715,7 @@
     "name": "Walheim",
     "code": "68356",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68130"
   },
@@ -2723,7 +2723,7 @@
     "name": "Waltenheim",
     "code": "68357",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68510"
   },
@@ -2731,7 +2731,7 @@
     "name": "Wasserbourg",
     "code": "68358",
     "epci_code": "246800585",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68230"
   },
@@ -2739,7 +2739,7 @@
     "name": "Wattwiller",
     "code": "68359",
     "epci_code": "200036465",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68700"
   },
@@ -2747,7 +2747,7 @@
     "name": "Weckolsheim",
     "code": "68360",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68600"
   },
@@ -2755,7 +2755,7 @@
     "name": "Wegscheid",
     "code": "68361",
     "epci_code": "246800676",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68290"
   },
@@ -2763,7 +2763,7 @@
     "name": "Wentzwiller",
     "code": "68362",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68220"
   },
@@ -2771,7 +2771,7 @@
     "name": "Werentzhouse",
     "code": "68363",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -2779,7 +2779,7 @@
     "name": "Westhalten",
     "code": "68364",
     "epci_code": "246800494",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68250"
   },
@@ -2787,7 +2787,7 @@
     "name": "Wettolsheim",
     "code": "68365",
     "epci_code": "246800726",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68920"
   },
@@ -2795,7 +2795,7 @@
     "name": "Wickerschwihr",
     "code": "68366",
     "epci_code": "246800726",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68320"
   },
@@ -2803,7 +2803,7 @@
     "name": "Widensolen",
     "code": "68367",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68320"
   },
@@ -2811,7 +2811,7 @@
     "name": "Wihr-au-Val",
     "code": "68368",
     "epci_code": "246800585",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68230"
   },
@@ -2819,7 +2819,7 @@
     "name": "Wildenstein",
     "code": "68370",
     "epci_code": "246800205",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68820"
   },
@@ -2827,7 +2827,7 @@
     "name": "Willer",
     "code": "68371",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68960"
   },
@@ -2835,7 +2835,7 @@
     "name": "Willer-sur-Thur",
     "code": "68372",
     "epci_code": "200036465",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68760"
   },
@@ -2843,7 +2843,7 @@
     "name": "Winkel",
     "code": "68373",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -2851,7 +2851,7 @@
     "name": "Wintzenheim",
     "code": "68374",
     "epci_code": "246800726",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68124"
   },
@@ -2859,7 +2859,7 @@
     "name": "Wintzenheim",
     "code": "68374",
     "epci_code": "246800726",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68920"
   },
@@ -2867,7 +2867,7 @@
     "name": "Wittelsheim",
     "code": "68375",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68310"
   },
@@ -2875,7 +2875,7 @@
     "name": "Wittenheim",
     "code": "68376",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68270"
   },
@@ -2883,7 +2883,7 @@
     "name": "Wittersdorf",
     "code": "68377",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68130"
   },
@@ -2891,7 +2891,7 @@
     "name": "Wolfersdorf",
     "code": "68378",
     "epci_code": "200066033",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68210"
   },
@@ -2899,7 +2899,7 @@
     "name": "Wolfgantzen",
     "code": "68379",
     "epci_code": "200066025",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68600"
   },
@@ -2907,7 +2907,7 @@
     "name": "Wolschwiller",
     "code": "68380",
     "epci_code": "200066041",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68480"
   },
@@ -2915,7 +2915,7 @@
     "name": "Wuenheim",
     "code": "68381",
     "epci_code": "246800569",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68500"
   },
@@ -2923,7 +2923,7 @@
     "name": "Zaessingue",
     "code": "68382",
     "epci_code": "200066058",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68130"
   },
@@ -2931,7 +2931,7 @@
     "name": "Zellenberg",
     "code": "68383",
     "epci_code": "246800577",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68340"
   },
@@ -2939,7 +2939,7 @@
     "name": "Zillisheim",
     "code": "68384",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68720"
   },
@@ -2947,7 +2947,7 @@
     "name": "Zimmerbach",
     "code": "68385",
     "epci_code": "246800726",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68230"
   },
@@ -2955,7 +2955,7 @@
     "name": "Zimmersheim",
     "code": "68386",
     "epci_code": "200066009",
-    "departement_code": "68",
+    "department_code": "68",
     "region_code": "44",
     "postal_code": "68440"
   }

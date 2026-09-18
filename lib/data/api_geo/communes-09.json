@@ -3,7 +3,7 @@
     "name": "Aigues-Juntes",
     "code": "09001",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09240"
   },
@@ -11,7 +11,7 @@
     "name": "Aigues-Vives",
     "code": "09002",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09600"
   },
@@ -19,7 +19,7 @@
     "name": "L’Aiguillon",
     "code": "09003",
     "epci_code": "240900464",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09300"
   },
@@ -27,7 +27,7 @@
     "name": "Albiès",
     "code": "09004",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09310"
   },
@@ -35,7 +35,7 @@
     "name": "Aleu",
     "code": "09005",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09320"
   },
@@ -43,7 +43,7 @@
     "name": "Alliat",
     "code": "09006",
     "epci_code": "240900431",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09400"
   },
@@ -51,7 +51,7 @@
     "name": "Allières",
     "code": "09007",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09240"
   },
@@ -59,7 +59,7 @@
     "name": "Alos",
     "code": "09008",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09200"
   },
@@ -67,7 +67,7 @@
     "name": "Alzen",
     "code": "09009",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09240"
   },
@@ -75,7 +75,7 @@
     "name": "Antras",
     "code": "09011",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09800"
   },
@@ -83,7 +83,7 @@
     "name": "Appy",
     "code": "09012",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09250"
   },
@@ -91,7 +91,7 @@
     "name": "Arabaux",
     "code": "09013",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09000"
   },
@@ -99,7 +99,7 @@
     "name": "Argein",
     "code": "09014",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09800"
   },
@@ -107,7 +107,7 @@
     "name": "Arignac",
     "code": "09015",
     "epci_code": "240900431",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09400"
   },
@@ -115,7 +115,7 @@
     "name": "Arnave",
     "code": "09016",
     "epci_code": "240900431",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09400"
   },
@@ -123,7 +123,7 @@
     "name": "Arrien-en-Bethmale",
     "code": "09017",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09800"
   },
@@ -131,7 +131,7 @@
     "name": "Arrout",
     "code": "09018",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09800"
   },
@@ -139,7 +139,7 @@
     "name": "Artigat",
     "code": "09019",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09130"
   },
@@ -147,7 +147,7 @@
     "name": "Artigues",
     "code": "09020",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09460"
   },
@@ -155,7 +155,7 @@
     "name": "Artix",
     "code": "09021",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09120"
   },
@@ -163,7 +163,7 @@
     "name": "Arvigna",
     "code": "09022",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09100"
   },
@@ -171,7 +171,7 @@
     "name": "Ascou",
     "code": "09023",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09110"
   },
@@ -179,7 +179,7 @@
     "name": "Aston",
     "code": "09024",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09310"
   },
@@ -187,7 +187,7 @@
     "name": "Aucazein",
     "code": "09025",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09800"
   },
@@ -195,7 +195,7 @@
     "name": "Audressein",
     "code": "09026",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09800"
   },
@@ -203,7 +203,7 @@
     "name": "Augirein",
     "code": "09027",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09800"
   },
@@ -211,7 +211,7 @@
     "name": "Aulus-les-Bains",
     "code": "09029",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09140"
   },
@@ -219,7 +219,7 @@
     "name": "Auzat",
     "code": "09030",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09220"
   },
@@ -227,7 +227,7 @@
     "name": "Axiat",
     "code": "09031",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09250"
   },
@@ -235,7 +235,7 @@
     "name": "Ax-les-Thermes",
     "code": "09032",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09110"
   },
@@ -243,7 +243,7 @@
     "name": "Bagert",
     "code": "09033",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09230"
   },
@@ -251,7 +251,7 @@
     "name": "Balacet",
     "code": "09034",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09800"
   },
@@ -259,7 +259,7 @@
     "name": "Balaguères",
     "code": "09035",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09800"
   },
@@ -267,7 +267,7 @@
     "name": "Barjac",
     "code": "09037",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09230"
   },
@@ -275,7 +275,7 @@
     "name": "La Bastide-de-Besplas",
     "code": "09038",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09350"
   },
@@ -283,7 +283,7 @@
     "name": "La Bastide-de-Bousignac",
     "code": "09039",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09500"
   },
@@ -291,7 +291,7 @@
     "name": "La Bastide-de-Lordat",
     "code": "09040",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09700"
   },
@@ -299,7 +299,7 @@
     "name": "La Bastide-du-Salat",
     "code": "09041",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09160"
   },
@@ -307,7 +307,7 @@
     "name": "La Bastide-de-Sérou",
     "code": "09042",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09240"
   },
@@ -315,7 +315,7 @@
     "name": "La Bastide-sur-l’Hers",
     "code": "09043",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09600"
   },
@@ -323,7 +323,7 @@
     "name": "Baulou",
     "code": "09044",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09000"
   },
@@ -331,7 +331,7 @@
     "name": "Bédeilhac-et-Aynat",
     "code": "09045",
     "epci_code": "240900431",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09400"
   },
@@ -339,7 +339,7 @@
     "name": "Bédeille",
     "code": "09046",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09230"
   },
@@ -347,7 +347,7 @@
     "name": "Bélesta",
     "code": "09047",
     "epci_code": "240900464",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09300"
   },
@@ -355,7 +355,7 @@
     "name": "Belloc",
     "code": "09048",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09600"
   },
@@ -363,7 +363,7 @@
     "name": "Bénac",
     "code": "09049",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09000"
   },
@@ -371,7 +371,7 @@
     "name": "Benagues",
     "code": "09050",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09100"
   },
@@ -379,7 +379,7 @@
     "name": "Bénaix",
     "code": "09051",
     "epci_code": "240900464",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09300"
   },
@@ -387,7 +387,7 @@
     "name": "Besset",
     "code": "09052",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09500"
   },
@@ -395,7 +395,7 @@
     "name": "Bestiac",
     "code": "09053",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09250"
   },
@@ -403,7 +403,7 @@
     "name": "Betchat",
     "code": "09054",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09160"
   },
@@ -411,7 +411,7 @@
     "name": "Bethmale",
     "code": "09055",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09800"
   },
@@ -419,7 +419,7 @@
     "name": "Bézac",
     "code": "09056",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09100"
   },
@@ -427,7 +427,7 @@
     "name": "Biert",
     "code": "09057",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09320"
   },
@@ -435,7 +435,7 @@
     "name": "Bompas",
     "code": "09058",
     "epci_code": "240900431",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09400"
   },
@@ -443,7 +443,7 @@
     "name": "Bonac-Irazein",
     "code": "09059",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09800"
   },
@@ -451,7 +451,7 @@
     "name": "Bonnac",
     "code": "09060",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09100"
   },
@@ -459,7 +459,7 @@
     "name": "Les Bordes-sur-Arize",
     "code": "09061",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09350"
   },
@@ -467,7 +467,7 @@
     "name": "Bordes-Uchentein",
     "code": "09062",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09800"
   },
@@ -475,7 +475,7 @@
     "name": "Le Bosc",
     "code": "09063",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09000"
   },
@@ -483,7 +483,7 @@
     "name": "Bouan",
     "code": "09064",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09310"
   },
@@ -491,7 +491,7 @@
     "name": "Boussenac",
     "code": "09065",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09320"
   },
@@ -499,7 +499,7 @@
     "name": "Brassac",
     "code": "09066",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09000"
   },
@@ -507,7 +507,7 @@
     "name": "Brie",
     "code": "09067",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09700"
   },
@@ -515,7 +515,7 @@
     "name": "Burret",
     "code": "09068",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09000"
   },
@@ -523,7 +523,7 @@
     "name": "Buzan",
     "code": "09069",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09800"
   },
@@ -531,7 +531,7 @@
     "name": "Les Cabannes",
     "code": "09070",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09310"
   },
@@ -539,7 +539,7 @@
     "name": "Cadarcet",
     "code": "09071",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09240"
   },
@@ -547,7 +547,7 @@
     "name": "Calzan",
     "code": "09072",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09120"
   },
@@ -555,7 +555,7 @@
     "name": "Camarade",
     "code": "09073",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09290"
   },
@@ -563,7 +563,7 @@
     "name": "Camon",
     "code": "09074",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09500"
   },
@@ -571,7 +571,7 @@
     "name": "Campagne-sur-Arize",
     "code": "09075",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09350"
   },
@@ -579,7 +579,7 @@
     "name": "Canté",
     "code": "09076",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09700"
   },
@@ -587,7 +587,7 @@
     "name": "Capoulet-et-Junac",
     "code": "09077",
     "epci_code": "240900431",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09400"
   },
@@ -595,7 +595,7 @@
     "name": "Carcanières",
     "code": "09078",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09460"
   },
@@ -603,7 +603,7 @@
     "name": "Carla-Bayle",
     "code": "09079",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09130"
   },
@@ -611,7 +611,7 @@
     "name": "Carla-de-Roquefort",
     "code": "09080",
     "epci_code": "240900464",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09300"
   },
@@ -619,7 +619,7 @@
     "name": "Le Carlaret",
     "code": "09081",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09100"
   },
@@ -627,7 +627,7 @@
     "name": "Castelnau-Durban",
     "code": "09082",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09420"
   },
@@ -635,7 +635,7 @@
     "name": "Castéras",
     "code": "09083",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09130"
   },
@@ -643,7 +643,7 @@
     "name": "Castex",
     "code": "09084",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09350"
   },
@@ -651,7 +651,7 @@
     "name": "Castillon-en-Couserans",
     "code": "09085",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09800"
   },
@@ -659,7 +659,7 @@
     "name": "Caumont",
     "code": "09086",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09160"
   },
@@ -667,7 +667,7 @@
     "name": "Caussou",
     "code": "09087",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09250"
   },
@@ -675,7 +675,7 @@
     "name": "Caychax-et-Senconac",
     "code": "09088",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09250"
   },
@@ -683,7 +683,7 @@
     "name": "Cazals-des-Baylès",
     "code": "09089",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09500"
   },
@@ -691,7 +691,7 @@
     "name": "Cazaux",
     "code": "09090",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09120"
   },
@@ -699,7 +699,7 @@
     "name": "Cazavet",
     "code": "09091",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09160"
   },
@@ -707,7 +707,7 @@
     "name": "Cazenave-Serres-et-Allens",
     "code": "09092",
     "epci_code": "240900431",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09400"
   },
@@ -715,7 +715,7 @@
     "name": "Celles",
     "code": "09093",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09000"
   },
@@ -723,7 +723,7 @@
     "name": "Cérizols",
     "code": "09094",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09230"
   },
@@ -731,7 +731,7 @@
     "name": "Cescau",
     "code": "09095",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09800"
   },
@@ -739,7 +739,7 @@
     "name": "Château-Verdun",
     "code": "09096",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09310"
   },
@@ -747,7 +747,7 @@
     "name": "Clermont",
     "code": "09097",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09420"
   },
@@ -755,7 +755,7 @@
     "name": "Contrazy",
     "code": "09098",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09230"
   },
@@ -763,7 +763,7 @@
     "name": "Cos",
     "code": "09099",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09000"
   },
@@ -771,7 +771,7 @@
     "name": "Couflens",
     "code": "09100",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09140"
   },
@@ -779,7 +779,7 @@
     "name": "Coussa",
     "code": "09101",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09120"
   },
@@ -787,7 +787,7 @@
     "name": "Coutens",
     "code": "09102",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09500"
   },
@@ -795,7 +795,7 @@
     "name": "Crampagna",
     "code": "09103",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09120"
   },
@@ -803,7 +803,7 @@
     "name": "Dalou",
     "code": "09104",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09120"
   },
@@ -811,7 +811,7 @@
     "name": "Daumazan-sur-Arize",
     "code": "09105",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09350"
   },
@@ -819,7 +819,7 @@
     "name": "Dreuilhe",
     "code": "09106",
     "epci_code": "240900464",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09300"
   },
@@ -827,7 +827,7 @@
     "name": "Dun",
     "code": "09107",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09600"
   },
@@ -835,7 +835,7 @@
     "name": "Durban-sur-Arize",
     "code": "09108",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09240"
   },
@@ -843,7 +843,7 @@
     "name": "Durfort",
     "code": "09109",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09130"
   },
@@ -851,7 +851,7 @@
     "name": "Encourtiech",
     "code": "09110",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09200"
   },
@@ -859,7 +859,7 @@
     "name": "Engomer",
     "code": "09111",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09800"
   },
@@ -867,7 +867,7 @@
     "name": "Ercé",
     "code": "09113",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09140"
   },
@@ -875,7 +875,7 @@
     "name": "Erp",
     "code": "09114",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09200"
   },
@@ -883,7 +883,7 @@
     "name": "Esclagne",
     "code": "09115",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09600"
   },
@@ -891,7 +891,7 @@
     "name": "Escosse",
     "code": "09116",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09100"
   },
@@ -899,7 +899,7 @@
     "name": "Esplas",
     "code": "09117",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09700"
   },
@@ -907,7 +907,7 @@
     "name": "Esplas-de-Sérou",
     "code": "09118",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09420"
   },
@@ -915,7 +915,7 @@
     "name": "Eycheil",
     "code": "09119",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09200"
   },
@@ -923,7 +923,7 @@
     "name": "Fabas",
     "code": "09120",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09230"
   },
@@ -931,7 +931,7 @@
     "name": "Ferrières-sur-Ariège",
     "code": "09121",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09000"
   },
@@ -939,7 +939,7 @@
     "name": "Foix",
     "code": "09122",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09000"
   },
@@ -947,7 +947,7 @@
     "name": "Fornex",
     "code": "09123",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09350"
   },
@@ -955,7 +955,7 @@
     "name": "Le Fossat",
     "code": "09124",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09130"
   },
@@ -963,7 +963,7 @@
     "name": "Fougax-et-Barrineuf",
     "code": "09125",
     "epci_code": "240900464",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09300"
   },
@@ -971,7 +971,7 @@
     "name": "Freychenet",
     "code": "09126",
     "epci_code": "240900464",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09300"
   },
@@ -979,7 +979,7 @@
     "name": "Gabre",
     "code": "09127",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09290"
   },
@@ -987,7 +987,7 @@
     "name": "Gajan",
     "code": "09128",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09190"
   },
@@ -995,7 +995,7 @@
     "name": "Galey",
     "code": "09129",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09800"
   },
@@ -1003,7 +1003,7 @@
     "name": "Ganac",
     "code": "09130",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09000"
   },
@@ -1011,7 +1011,7 @@
     "name": "Garanou",
     "code": "09131",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09250"
   },
@@ -1019,7 +1019,7 @@
     "name": "Gaudiès",
     "code": "09132",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09700"
   },
@@ -1027,7 +1027,7 @@
     "name": "Génat",
     "code": "09133",
     "epci_code": "240900431",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09400"
   },
@@ -1035,7 +1035,7 @@
     "name": "Gestiès",
     "code": "09134",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09220"
   },
@@ -1043,7 +1043,7 @@
     "name": "Gourbit",
     "code": "09136",
     "epci_code": "240900431",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09400"
   },
@@ -1051,7 +1051,7 @@
     "name": "Gudas",
     "code": "09137",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09120"
   },
@@ -1059,7 +1059,7 @@
     "name": "L’Herm",
     "code": "09138",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09000"
   },
@@ -1067,7 +1067,7 @@
     "name": "L’Hospitalet-près-l’Andorre",
     "code": "09139",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09390"
   },
@@ -1075,7 +1075,7 @@
     "name": "Ignaux",
     "code": "09140",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09110"
   },
@@ -1083,7 +1083,7 @@
     "name": "Illartein",
     "code": "09141",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09800"
   },
@@ -1091,7 +1091,7 @@
     "name": "Ilhat",
     "code": "09142",
     "epci_code": "240900464",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09300"
   },
@@ -1099,7 +1099,7 @@
     "name": "Illier-et-Laramade",
     "code": "09143",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09220"
   },
@@ -1107,7 +1107,7 @@
     "name": "Les Issards",
     "code": "09145",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09100"
   },
@@ -1115,7 +1115,7 @@
     "name": "Justiniac",
     "code": "09146",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09700"
   },
@@ -1123,7 +1123,7 @@
     "name": "Labatut",
     "code": "09147",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09700"
   },
@@ -1131,7 +1131,7 @@
     "name": "Lacave",
     "code": "09148",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09160"
   },
@@ -1139,7 +1139,7 @@
     "name": "Lacourt",
     "code": "09149",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09200"
   },
@@ -1147,7 +1147,7 @@
     "name": "Lagarde",
     "code": "09150",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09500"
   },
@@ -1155,7 +1155,7 @@
     "name": "Lanoux",
     "code": "09151",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09130"
   },
@@ -1163,7 +1163,7 @@
     "name": "Lapège",
     "code": "09152",
     "epci_code": "240900431",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09400"
   },
@@ -1171,7 +1171,7 @@
     "name": "Lapenne",
     "code": "09153",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09500"
   },
@@ -1179,7 +1179,7 @@
     "name": "Larbont",
     "code": "09154",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09240"
   },
@@ -1187,7 +1187,7 @@
     "name": "Larcat",
     "code": "09155",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09310"
   },
@@ -1195,7 +1195,7 @@
     "name": "Larnat",
     "code": "09156",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09310"
   },
@@ -1203,7 +1203,7 @@
     "name": "Laroque-d’Olmes",
     "code": "09157",
     "epci_code": "240900464",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09600"
   },
@@ -1211,7 +1211,7 @@
     "name": "Lasserre",
     "code": "09158",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09230"
   },
@@ -1219,7 +1219,7 @@
     "name": "Lassur",
     "code": "09159",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09310"
   },
@@ -1227,7 +1227,7 @@
     "name": "Lavelanet",
     "code": "09160",
     "epci_code": "240900464",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09300"
   },
@@ -1235,7 +1235,7 @@
     "name": "Léran",
     "code": "09161",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09600"
   },
@@ -1243,7 +1243,7 @@
     "name": "Lercoul",
     "code": "09162",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09220"
   },
@@ -1251,7 +1251,7 @@
     "name": "Lescousse",
     "code": "09163",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09100"
   },
@@ -1259,7 +1259,7 @@
     "name": "Lescure",
     "code": "09164",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09420"
   },
@@ -1267,7 +1267,7 @@
     "name": "Lesparrou",
     "code": "09165",
     "epci_code": "240900464",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09300"
   },
@@ -1275,7 +1275,7 @@
     "name": "Leychert",
     "code": "09166",
     "epci_code": "240900464",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09300"
   },
@@ -1283,7 +1283,7 @@
     "name": "Lézat-sur-Lèze",
     "code": "09167",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09210"
   },
@@ -1291,7 +1291,7 @@
     "name": "Lieurac",
     "code": "09168",
     "epci_code": "240900464",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09300"
   },
@@ -1299,7 +1299,7 @@
     "name": "Limbrassac",
     "code": "09169",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09600"
   },
@@ -1307,7 +1307,7 @@
     "name": "Lissac",
     "code": "09170",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09700"
   },
@@ -1315,7 +1315,7 @@
     "name": "Lordat",
     "code": "09171",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09250"
   },
@@ -1323,7 +1323,7 @@
     "name": "Loubaut",
     "code": "09172",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09350"
   },
@@ -1331,7 +1331,7 @@
     "name": "Loubens",
     "code": "09173",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09120"
   },
@@ -1339,7 +1339,7 @@
     "name": "Loubières",
     "code": "09174",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09000"
   },
@@ -1347,7 +1347,7 @@
     "name": "Ludiès",
     "code": "09175",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09100"
   },
@@ -1355,7 +1355,7 @@
     "name": "Luzenac",
     "code": "09176",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09250"
   },
@@ -1363,7 +1363,7 @@
     "name": "Madière",
     "code": "09177",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09100"
   },
@@ -1371,7 +1371,7 @@
     "name": "Malegoude",
     "code": "09178",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09500"
   },
@@ -1379,7 +1379,7 @@
     "name": "Malléon",
     "code": "09179",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09120"
   },
@@ -1387,7 +1387,7 @@
     "name": "Manses",
     "code": "09180",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09500"
   },
@@ -1395,7 +1395,7 @@
     "name": "Le Mas-d’Azil",
     "code": "09181",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09290"
   },
@@ -1403,7 +1403,7 @@
     "name": "Massat",
     "code": "09182",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09320"
   },
@@ -1411,7 +1411,7 @@
     "name": "Mauvezin-de-Prat",
     "code": "09183",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09160"
   },
@@ -1419,7 +1419,7 @@
     "name": "Mauvezin-de-Sainte-Croix",
     "code": "09184",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09230"
   },
@@ -1427,7 +1427,7 @@
     "name": "Mazères",
     "code": "09185",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09270"
   },
@@ -1435,7 +1435,7 @@
     "name": "Méras",
     "code": "09186",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09350"
   },
@@ -1443,7 +1443,7 @@
     "name": "Mercenac",
     "code": "09187",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09160"
   },
@@ -1451,7 +1451,7 @@
     "name": "Mercus-Garrabet",
     "code": "09188",
     "epci_code": "240900431",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09400"
   },
@@ -1459,7 +1459,7 @@
     "name": "Mérens-les-Vals",
     "code": "09189",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09110"
   },
@@ -1467,7 +1467,7 @@
     "name": "Mérigon",
     "code": "09190",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09230"
   },
@@ -1475,7 +1475,7 @@
     "name": "Miglos",
     "code": "09192",
     "epci_code": "240900431",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09400"
   },
@@ -1483,7 +1483,7 @@
     "name": "Mijanès",
     "code": "09193",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09460"
   },
@@ -1491,7 +1491,7 @@
     "name": "Mirepoix",
     "code": "09194",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09500"
   },
@@ -1499,7 +1499,7 @@
     "name": "Monesple",
     "code": "09195",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09130"
   },
@@ -1507,7 +1507,7 @@
     "name": "Montagagne",
     "code": "09196",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09240"
   },
@@ -1515,7 +1515,7 @@
     "name": "Montaillou",
     "code": "09197",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09110"
   },
@@ -1523,7 +1523,7 @@
     "name": "Montardit",
     "code": "09198",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09230"
   },
@@ -1531,7 +1531,7 @@
     "name": "Montaut",
     "code": "09199",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09700"
   },
@@ -1539,7 +1539,7 @@
     "name": "Montbel",
     "code": "09200",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09600"
   },
@@ -1547,7 +1547,7 @@
     "name": "Montégut-en-Couserans",
     "code": "09201",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09200"
   },
@@ -1555,7 +1555,7 @@
     "name": "Montégut-Plantaurel",
     "code": "09202",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09120"
   },
@@ -1563,7 +1563,7 @@
     "name": "Montels",
     "code": "09203",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09240"
   },
@@ -1571,7 +1571,7 @@
     "name": "Montesquieu-Avantès",
     "code": "09204",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09200"
   },
@@ -1579,7 +1579,7 @@
     "name": "Montfa",
     "code": "09205",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09350"
   },
@@ -1587,7 +1587,7 @@
     "name": "Montferrier",
     "code": "09206",
     "epci_code": "240900464",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09300"
   },
@@ -1595,7 +1595,7 @@
     "name": "Montgailhard",
     "code": "09207",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09330"
   },
@@ -1603,7 +1603,7 @@
     "name": "Montgauch",
     "code": "09208",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09160"
   },
@@ -1611,7 +1611,7 @@
     "name": "Montjoie-en-Couserans",
     "code": "09209",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09200"
   },
@@ -1619,7 +1619,7 @@
     "name": "Montoulieu",
     "code": "09210",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09000"
   },
@@ -1627,7 +1627,7 @@
     "name": "Montségur",
     "code": "09211",
     "epci_code": "240900464",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09300"
   },
@@ -1635,7 +1635,7 @@
     "name": "Montseron",
     "code": "09212",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09240"
   },
@@ -1643,7 +1643,7 @@
     "name": "Moulin-Neuf",
     "code": "09213",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09500"
   },
@@ -1651,7 +1651,7 @@
     "name": "Moulis",
     "code": "09214",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09200"
   },
@@ -1659,7 +1659,7 @@
     "name": "Nalzen",
     "code": "09215",
     "epci_code": "240900464",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09300"
   },
@@ -1667,7 +1667,7 @@
     "name": "Nescus",
     "code": "09216",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09240"
   },
@@ -1675,7 +1675,7 @@
     "name": "Niaux",
     "code": "09217",
     "epci_code": "240900431",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09400"
   },
@@ -1683,7 +1683,7 @@
     "name": "Orgeix",
     "code": "09218",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09110"
   },
@@ -1691,7 +1691,7 @@
     "name": "Orgibet",
     "code": "09219",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09800"
   },
@@ -1699,7 +1699,7 @@
     "name": "Orlu",
     "code": "09220",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09110"
   },
@@ -1707,7 +1707,7 @@
     "name": "Ornolac-Ussat-les-Bains",
     "code": "09221",
     "epci_code": "240900431",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09400"
   },
@@ -1715,7 +1715,7 @@
     "name": "Orus",
     "code": "09222",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09220"
   },
@@ -1723,7 +1723,7 @@
     "name": "Oust",
     "code": "09223",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09140"
   },
@@ -1731,7 +1731,7 @@
     "name": "Pailhès",
     "code": "09224",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09130"
   },
@@ -1739,7 +1739,7 @@
     "name": "Pamiers",
     "code": "09225",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09100"
   },
@@ -1747,7 +1747,7 @@
     "name": "Pech",
     "code": "09226",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09310"
   },
@@ -1755,7 +1755,7 @@
     "name": "Péreille",
     "code": "09227",
     "epci_code": "240900464",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09300"
   },
@@ -1763,7 +1763,7 @@
     "name": "Perles-et-Castelet",
     "code": "09228",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09110"
   },
@@ -1771,7 +1771,7 @@
     "name": "Le Peyrat",
     "code": "09229",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09600"
   },
@@ -1779,7 +1779,7 @@
     "name": "Le Pla",
     "code": "09230",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09460"
   },
@@ -1787,7 +1787,7 @@
     "name": "Le Port",
     "code": "09231",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09320"
   },
@@ -1795,7 +1795,7 @@
     "name": "Prades",
     "code": "09232",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09110"
   },
@@ -1803,7 +1803,7 @@
     "name": "Pradettes",
     "code": "09233",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09600"
   },
@@ -1811,7 +1811,7 @@
     "name": "Pradières",
     "code": "09234",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09000"
   },
@@ -1819,7 +1819,7 @@
     "name": "Prat-Bonrepaux",
     "code": "09235",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09160"
   },
@@ -1827,7 +1827,7 @@
     "name": "Prayols",
     "code": "09236",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09000"
   },
@@ -1835,7 +1835,7 @@
     "name": "Le Puch",
     "code": "09237",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09460"
   },
@@ -1843,7 +1843,7 @@
     "name": "Les Pujols",
     "code": "09238",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09100"
   },
@@ -1851,7 +1851,7 @@
     "name": "Quérigut",
     "code": "09239",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09460"
   },
@@ -1859,7 +1859,7 @@
     "name": "Quié",
     "code": "09240",
     "epci_code": "240900431",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09400"
   },
@@ -1867,7 +1867,7 @@
     "name": "Rabat-les-Trois-Seigneurs",
     "code": "09241",
     "epci_code": "240900431",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09400"
   },
@@ -1875,7 +1875,7 @@
     "name": "Raissac",
     "code": "09242",
     "epci_code": "240900464",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09300"
   },
@@ -1883,7 +1883,7 @@
     "name": "Régat",
     "code": "09243",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09600"
   },
@@ -1891,7 +1891,7 @@
     "name": "Rieucros",
     "code": "09244",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09500"
   },
@@ -1899,7 +1899,7 @@
     "name": "Rieux-de-Pelleport",
     "code": "09245",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09120"
   },
@@ -1907,7 +1907,7 @@
     "name": "Rimont",
     "code": "09246",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09420"
   },
@@ -1915,7 +1915,7 @@
     "name": "Rivèrenert",
     "code": "09247",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09200"
   },
@@ -1923,7 +1923,7 @@
     "name": "Roquefixade",
     "code": "09249",
     "epci_code": "240900464",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09300"
   },
@@ -1931,7 +1931,7 @@
     "name": "Roquefort-les-Cascades",
     "code": "09250",
     "epci_code": "240900464",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09300"
   },
@@ -1939,7 +1939,7 @@
     "name": "Roumengoux",
     "code": "09251",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09500"
   },
@@ -1947,7 +1947,7 @@
     "name": "Rouze",
     "code": "09252",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09460"
   },
@@ -1955,7 +1955,7 @@
     "name": "Sabarat",
     "code": "09253",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09350"
   },
@@ -1963,7 +1963,7 @@
     "name": "Saint-Amadou",
     "code": "09254",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09100"
   },
@@ -1971,7 +1971,7 @@
     "name": "Saint-Bauzeil",
     "code": "09256",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09120"
   },
@@ -1979,7 +1979,7 @@
     "name": "Sainte-Croix-Volvestre",
     "code": "09257",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09230"
   },
@@ -1987,7 +1987,7 @@
     "name": "Saint-Félix-de-Rieutord",
     "code": "09258",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09120"
   },
@@ -1995,7 +1995,7 @@
     "name": "Saint-Félix-de-Tournegat",
     "code": "09259",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09500"
   },
@@ -2003,7 +2003,7 @@
     "name": "Sainte-Foi",
     "code": "09260",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09500"
   },
@@ -2011,7 +2011,7 @@
     "name": "Saint-Girons",
     "code": "09261",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09200"
   },
@@ -2019,7 +2019,7 @@
     "name": "Saint-Jean-d’Aigues-Vives",
     "code": "09262",
     "epci_code": "240900464",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09300"
   },
@@ -2027,7 +2027,7 @@
     "name": "Saint-Jean-du-Castillonnais",
     "code": "09263",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09800"
   },
@@ -2035,7 +2035,7 @@
     "name": "Saint-Jean-de-Verges",
     "code": "09264",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09000"
   },
@@ -2043,7 +2043,7 @@
     "name": "Saint-Jean-du-Falga",
     "code": "09265",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09100"
   },
@@ -2051,7 +2051,7 @@
     "name": "Saint-Julien-de-Gras-Capou",
     "code": "09266",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09500"
   },
@@ -2059,7 +2059,7 @@
     "name": "Saint-Lary",
     "code": "09267",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09800"
   },
@@ -2067,7 +2067,7 @@
     "name": "Saint-Lizier",
     "code": "09268",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09190"
   },
@@ -2075,7 +2075,7 @@
     "name": "Saint-Martin-de-Caralp",
     "code": "09269",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09000"
   },
@@ -2083,7 +2083,7 @@
     "name": "Saint-Martin-d’Oydes",
     "code": "09270",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09100"
   },
@@ -2091,7 +2091,7 @@
     "name": "Saint-Michel",
     "code": "09271",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09100"
   },
@@ -2099,7 +2099,7 @@
     "name": "Saint-Paul-de-Jarrat",
     "code": "09272",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09000"
   },
@@ -2107,7 +2107,7 @@
     "name": "Saint-Pierre-de-Rivière",
     "code": "09273",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09000"
   },
@@ -2115,7 +2115,7 @@
     "name": "Saint-Quentin-la-Tour",
     "code": "09274",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09500"
   },
@@ -2123,7 +2123,7 @@
     "name": "Saint-Quirc",
     "code": "09275",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09700"
   },
@@ -2131,7 +2131,7 @@
     "name": "Saint-Victor-Rouzaud",
     "code": "09276",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09100"
   },
@@ -2139,7 +2139,7 @@
     "name": "Saint-Ybars",
     "code": "09277",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09210"
   },
@@ -2147,7 +2147,7 @@
     "name": "Salsein",
     "code": "09279",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09800"
   },
@@ -2155,7 +2155,7 @@
     "name": "Saurat",
     "code": "09280",
     "epci_code": "240900431",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09400"
   },
@@ -2163,7 +2163,7 @@
     "name": "Sautel",
     "code": "09281",
     "epci_code": "240900464",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09300"
   },
@@ -2171,7 +2171,7 @@
     "name": "Saverdun",
     "code": "09282",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09700"
   },
@@ -2179,7 +2179,7 @@
     "name": "Savignac-les-Ormeaux",
     "code": "09283",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09110"
   },
@@ -2187,7 +2187,7 @@
     "name": "Ségura",
     "code": "09284",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09120"
   },
@@ -2195,7 +2195,7 @@
     "name": "Seix",
     "code": "09285",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09140"
   },
@@ -2203,7 +2203,7 @@
     "name": "Lorp-Sentaraille",
     "code": "09289",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09190"
   },
@@ -2211,7 +2211,7 @@
     "name": "Sentein",
     "code": "09290",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09800"
   },
@@ -2219,7 +2219,7 @@
     "name": "Sentenac-d’Oust",
     "code": "09291",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09140"
   },
@@ -2227,7 +2227,7 @@
     "name": "Sentenac-de-Sérou",
     "code": "09292",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09240"
   },
@@ -2235,7 +2235,7 @@
     "name": "Serres-sur-Arget",
     "code": "09293",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09000"
   },
@@ -2243,7 +2243,7 @@
     "name": "Sieuras",
     "code": "09294",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09130"
   },
@@ -2251,7 +2251,7 @@
     "name": "Siguer",
     "code": "09295",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09220"
   },
@@ -2259,7 +2259,7 @@
     "name": "Aulos-Sinsat",
     "code": "09296",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09310"
   },
@@ -2267,7 +2267,7 @@
     "name": "Sor",
     "code": "09297",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09800"
   },
@@ -2275,7 +2275,7 @@
     "name": "Sorgeat",
     "code": "09298",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09110"
   },
@@ -2283,7 +2283,7 @@
     "name": "Soueix-Rogalle",
     "code": "09299",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09140"
   },
@@ -2291,7 +2291,7 @@
     "name": "Soula",
     "code": "09300",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09000"
   },
@@ -2299,7 +2299,7 @@
     "name": "Soulan",
     "code": "09301",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09320"
   },
@@ -2307,7 +2307,7 @@
     "name": "Surba",
     "code": "09303",
     "epci_code": "240900431",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09400"
   },
@@ -2315,7 +2315,7 @@
     "name": "Suzan",
     "code": "09304",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09240"
   },
@@ -2323,7 +2323,7 @@
     "name": "Tabre",
     "code": "09305",
     "epci_code": "240900464",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09600"
   },
@@ -2331,7 +2331,7 @@
     "name": "Tarascon-sur-Ariège",
     "code": "09306",
     "epci_code": "240900431",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09400"
   },
@@ -2339,7 +2339,7 @@
     "name": "Taurignan-Castet",
     "code": "09307",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09160"
   },
@@ -2347,7 +2347,7 @@
     "name": "Taurignan-Vieux",
     "code": "09308",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09190"
   },
@@ -2355,7 +2355,7 @@
     "name": "Teilhet",
     "code": "09309",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09500"
   },
@@ -2363,7 +2363,7 @@
     "name": "Thouars-sur-Arize",
     "code": "09310",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09350"
   },
@@ -2371,7 +2371,7 @@
     "name": "Tignac",
     "code": "09311",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09110"
   },
@@ -2379,7 +2379,7 @@
     "name": "La Tour-du-Crieu",
     "code": "09312",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09100"
   },
@@ -2387,7 +2387,7 @@
     "name": "Tourtouse",
     "code": "09313",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09230"
   },
@@ -2395,7 +2395,7 @@
     "name": "Tourtrol",
     "code": "09314",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09500"
   },
@@ -2403,7 +2403,7 @@
     "name": "Trémoulet",
     "code": "09315",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09700"
   },
@@ -2411,7 +2411,7 @@
     "name": "Troye-d’Ariège",
     "code": "09316",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09500"
   },
@@ -2419,7 +2419,7 @@
     "name": "Unac",
     "code": "09318",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09250"
   },
@@ -2427,7 +2427,7 @@
     "name": "Unzent",
     "code": "09319",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09100"
   },
@@ -2435,7 +2435,7 @@
     "name": "Urs",
     "code": "09320",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09310"
   },
@@ -2443,7 +2443,7 @@
     "name": "Ussat",
     "code": "09321",
     "epci_code": "240900431",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09400"
   },
@@ -2451,7 +2451,7 @@
     "name": "Ustou",
     "code": "09322",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09140"
   },
@@ -2459,7 +2459,7 @@
     "name": "Vals",
     "code": "09323",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09500"
   },
@@ -2467,7 +2467,7 @@
     "name": "Varilhes",
     "code": "09324",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09120"
   },
@@ -2475,7 +2475,7 @@
     "name": "Vaychis",
     "code": "09325",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09110"
   },
@@ -2483,7 +2483,7 @@
     "name": "Vèbre",
     "code": "09326",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09310"
   },
@@ -2491,7 +2491,7 @@
     "name": "Ventenac",
     "code": "09327",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09120"
   },
@@ -2499,7 +2499,7 @@
     "name": "Verdun",
     "code": "09328",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09310"
   },
@@ -2507,7 +2507,7 @@
     "name": "Vernajoul",
     "code": "09329",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09000"
   },
@@ -2515,7 +2515,7 @@
     "name": "Vernaux",
     "code": "09330",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09250"
   },
@@ -2523,7 +2523,7 @@
     "name": "Le Vernet",
     "code": "09331",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09700"
   },
@@ -2531,7 +2531,7 @@
     "name": "Verniolle",
     "code": "09332",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09340"
   },
@@ -2539,7 +2539,7 @@
     "name": "Val-de-Sos",
     "code": "09334",
     "epci_code": "200066363",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09220"
   },
@@ -2547,7 +2547,7 @@
     "name": "Villeneuve",
     "code": "09335",
     "epci_code": "200067940",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09800"
   },
@@ -2555,7 +2555,7 @@
     "name": "Villeneuve-d’Olmes",
     "code": "09336",
     "epci_code": "240900464",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09300"
   },
@@ -2563,7 +2563,7 @@
     "name": "Villeneuve-du-Latou",
     "code": "09338",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09130"
   },
@@ -2571,7 +2571,7 @@
     "name": "Villeneuve-du-Paréage",
     "code": "09339",
     "epci_code": "200066231",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09100"
   },
@@ -2579,7 +2579,7 @@
     "name": "Vira",
     "code": "09340",
     "epci_code": "200067791",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09120"
   },
@@ -2587,7 +2587,7 @@
     "name": "Viviès",
     "code": "09341",
     "epci_code": "200044469",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09500"
   },
@@ -2595,7 +2595,7 @@
     "name": "Sainte-Suzanne",
     "code": "09342",
     "epci_code": "200066223",
-    "departement_code": "09",
+    "department_code": "09",
     "region_code": "76",
     "postal_code": "09130"
   }
