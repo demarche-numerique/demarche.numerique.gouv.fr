@@ -718,6 +718,19 @@ describe API::V2::GraphqlController do
           expect(Procedure.last.service).to be_nil
         }
       end
+
+      context "another admin's opendata draft (cross-tenant, not in the token scope)" do
+        let(:other_admin) { create(:administrateur) }
+        let(:victim) { create(:procedure, administrateurs: [other_admin]) }
+        let(:variables) { { input: { demarche: { number: victim.id } } } }
+
+        it 'clones the foreign draft' do
+          expect(victim).to be_brouillon
+          expect(victim.opendata).to be(true)
+          expect(gql_data[:demarcheCloner][:errors]).to be_nil
+          expect(gql_data[:demarcheCloner][:demarche][:id]).to eq(Procedure.last.to_typed_id)
+        end
+      end
     end
 
     context 'dossierChangerGroupeInstructeur' do
