@@ -112,17 +112,12 @@ class GroupeInstructeur < ApplicationRecord
     !valid_rule?
   end
 
+  # A rule is valid when it is well formed on the champs of the active
+  # revision and can actually match a dossier (no contradictory rows).
   def valid_rule?
-    return false if routing_rule.nil?
-    if [And, Or].include?(routing_rule.class)
-      routing_rule.operands.all? { |rule_line| valid_rule_line?(rule_line) }
-    else
-      valid_rule_line?(routing_rule)
-    end
-  end
+    return false if routing_rule.nil? || routing_rule.is_a?(EmptyOperator)
 
-  def valid_rule_line?(rule)
-    !rule.is_a?(EmptyOperator) && routing_rule_matches_tdc?(rule)
+    Logic.errors(routing_rule, procedure.active_revision.public_root_type_de_champs).blank?
   end
 
   def non_unique_rule?
@@ -145,13 +140,6 @@ class GroupeInstructeur < ApplicationRecord
 
   def humanized_routing_rule
     routing_rule&.to_s(procedure.active_revision.type_de_champs)
-  end
-
-  private
-
-  def routing_rule_matches_tdc?(rule)
-    tdcs = procedure.active_revision.public_root_type_de_champs
-    rule.errors(tdcs).blank?
   end
 
   serialize :routing_rule, coder: LogicSerializer

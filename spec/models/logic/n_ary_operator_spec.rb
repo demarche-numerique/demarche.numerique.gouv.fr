@@ -7,7 +7,7 @@ describe Logic::NAryOperator do
     it do
       expect(ds_and([]).errors).to eq(["opérateur 'Et' vide"])
       expect(ds_and([constant(1), constant('toto')]).errors).to eq(["'Et' ne contient pas que des booléens : 1, toto"])
-      expect(ds_and([double(type: :boolean, errors: ['from double'])]).errors).to eq(["from double"])
+      expect(ds_and([double(type: :boolean, errors: ['from double'], sources: [])]).errors).to eq(["from double"])
     end
   end
 
