@@ -58,6 +58,35 @@ describe Champs::DropDownListChamp do
         end
       end
     end
+
+    describe 'completeness' do
+      let(:public_type_de_champs) { [{ type: :drop_down_list, mandatory: true, drop_down_other: true, referentiel:, drop_down_mode: }] }
+
+      subject { champ.validate(:champ_completeness) }
+
+      context 'when nothing is selected' do
+        it { is_expected.to be_falsey }
+      end
+
+      context 'when an option is selected' do
+        let(:value) { 'val1' }
+
+        it { is_expected.to be_truthy }
+      end
+
+      context 'when « Autre » is selected but no text is typed' do
+        let(:other) { true }
+
+        it { is_expected.to be_falsey }
+      end
+
+      context 'when « Autre » is selected and a text is typed' do
+        let(:other) { true }
+        let(:value) { 'something else' }
+
+        it { is_expected.to be_truthy }
+      end
+    end
   end
 
   describe 'value' do
