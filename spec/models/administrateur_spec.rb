@@ -373,5 +373,15 @@ describe Administrateur, type: :model do
 
       it { is_expected.to be true }
     end
+
+    context 'when the administrateur is exempted' do
+      before do
+        administrateur.update!(pro_connect_required_at: Time.zone.now)
+        Flipper.enable(:pro_connect_required_for_all_administrateurs)
+        Flipper.enable_actor(:administrateur_pro_connect_exempted, administrateur.user)
+      end
+
+      it { is_expected.to be false }
+    end
   end
 end
