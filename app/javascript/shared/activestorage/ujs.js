@@ -30,14 +30,8 @@ addUploadEventListener(INITIALIZE_EVENT, ({ target, detail: { id, file } }) => {
   ProgressBar.init(target, id, file);
 });
 
-addUploadEventListener(START_EVENT, ({ target, detail: { id } }) => {
+addUploadEventListener(START_EVENT, ({ detail: { id } }) => {
   ProgressBar.start(id);
-  // At the end of the upload, the form will be submitted again.
-  // Avoid the confirm dialog to be presented again then.
-  const button = target.form.querySelector('button.primary');
-  if (button) {
-    button.removeAttribute('data-confirm');
-  }
 });
 
 addUploadEventListener(PROGRESS_EVENT, ({ detail: { id, progress } }) => {
