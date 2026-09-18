@@ -24,5 +24,11 @@ module Instructeurs
       end
       redirect_back_or_to(avis_instructeur_dossier_path(avis.procedure, params[:statut], avis.dossier))
     end
+
+    private
+
+    def pro_connect_procedure_ids
+      super + procedure_ids_of(Dossier.where(id: Avis.where(id: params[:id]).select(:dossier_id)))
+    end
   end
 end

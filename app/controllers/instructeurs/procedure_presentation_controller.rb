@@ -147,6 +147,10 @@ module Instructeurs
       end
     end
 
+    def pro_connect_procedure_ids
+      ProcedurePresentation.where(id: params[:id]).joins(assign_to: :groupe_instructeur).pluck(GroupeInstructeur.arel_table[:procedure_id])
+    end
+
     def set_procedure_presentation
       @procedure_presentation = ProcedurePresentation
         .includes(:assign_to)

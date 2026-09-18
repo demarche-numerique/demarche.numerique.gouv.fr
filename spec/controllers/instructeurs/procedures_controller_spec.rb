@@ -807,7 +807,7 @@ describe Instructeurs::ProceduresController, type: :controller do
           subject
 
           expect(response).to redirect_to(pro_connect_required_path)
-          expect(flash[:alert]).to eq("Vous devez vous connecter par ProConnect pour accéder à cette démarche")
+          expect(flash[:alert]).to eq(I18n.t('errors.messages.pro_connect.procedure_required'))
         end
 
         context "and the cookie is set" do

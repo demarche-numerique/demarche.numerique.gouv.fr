@@ -38,6 +38,13 @@ module ProConnectSessionConcern
     redirect_to pro_connect_path(force_pro_connect: true), alert: t('errors.messages.pro_connect.required')
   end
 
+  # For a procedure restricted to ProConnect: the user comes back to the same
+  # page once logged in with ProConnect.
+  def redirect_to_pro_connect_required_for_procedure
+    store_location_for(:user, request.fullpath)
+    redirect_to pro_connect_required_path, alert: t('errors.messages.pro_connect.procedure_required')
+  end
+
   private
 
   def pro_connect_session

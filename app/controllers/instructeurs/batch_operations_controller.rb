@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Instructeurs
-  class BatchOperationsController < ApplicationController
+  class BatchOperationsController < InstructeurController
     before_action :set_procedure
     before_action :ensure_ownership!
 

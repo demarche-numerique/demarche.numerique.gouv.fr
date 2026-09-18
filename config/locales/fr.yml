@@ -880,6 +880,7 @@ fr:
       pro_connect:
         connexion: "Une erreur est survenue lors de la connexion avec ProConnect. Veuillez réessayer."
         required: "Vous devez utiliser ProConnect pour vous connecter."
+        procedure_required: "Vous devez vous connecter par ProConnect pour accéder à cette démarche."
       france_connect:
         connexion: "Une erreur est survenue lors de la connexion avec FranceConnect. Veuillez réessayer."
         forbidden_html: "Seul-e-s les usagers peuvent se connecter via FranceConnect. En tant qu’instructeur ou administrateur, veuillez vous identifier avec ProConnect ou vous connecter avec votre compte %{app_name}."

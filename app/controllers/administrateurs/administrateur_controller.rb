@@ -48,9 +48,7 @@ module Administrateurs
       return if logged_in_with_pro_connect?
       return if !current_administrateur.procedures.with_discarded.not_pro_connect_restriction_none.exists?(id: procedure_id)
 
-      store_location_for(:user, request.fullpath)
-      flash.alert = "Vous devez vous connecter par ProConnect pour accéder à cette démarche"
-      redirect_to pro_connect_required_path
+      redirect_to_pro_connect_required_for_procedure
     end
 
     # Id of the procedure the action works on, whose ProConnect restriction
