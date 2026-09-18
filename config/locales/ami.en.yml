@@ -1,0 +1,33 @@
+en:
+  ami:
+    notifications:
+      brouillon:
+        title: Resume your draft
+        body: Complete your procedure « %{libelle_demarche} » from the app or your %{app_host} account.
+      en_construction:
+        title: File submitted
+        body: Find your procedure « %{libelle_demarche} » no. %{dossier_id}.
+      en_instruction:
+        title: File being processed
+        body: Find your procedure « %{libelle_demarche} » no. %{dossier_id}.
+      repasser_en_instruction:
+        title: File under review
+        body: Your file no. %{dossier_id} is being reviewed again (%{libelle_demarche}).
+      accepte:
+        title: File accepted
+        body: Find your procedure « %{libelle_demarche} » no. %{dossier_id}.
+      refuse:
+        title: File refused
+        body: Find your procedure « %{libelle_demarche} » no. %{dossier_id}.
+      sans_suite:
+        title: File closed with no further action
+        body: Find your procedure « %{libelle_demarche} » no. %{dossier_id}.
+      decision_rendue:
+        title: See the decision on your file
+        body: Read the decision on your procedure « %{libelle_demarche} » no. %{dossier_id} now, from your %{app_host} account.
+      pending_correction:
+        title: Correct your file
+        body: Complete your procedure « %{libelle_demarche} » from the app or your %{app_host} account.
+      messagerie_message:
+        title: New message
+        body: Read the message about your procedure « %{libelle_demarche} » no. %{dossier_id}.
