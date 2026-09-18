@@ -1,6 +1,8 @@
 import * as Turbo from '@hotwired/turbo';
 import { Application } from '@hotwired/stimulus';
 
+import '../shared/session-expiry';
+
 import '../manager/fields/features';
 import { registerControllers } from '../shared/stimulus-loader';
 import { setupLocale } from '../shared/i18n';

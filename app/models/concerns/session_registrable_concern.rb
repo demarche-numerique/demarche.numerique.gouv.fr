@@ -4,6 +4,19 @@ module SessionRegistrableConcern
   extend ActiveSupport::Concern
 
   SESSION_KEY = 'user_session_id'
+  # Rack env key, namespaced like `warden.options` and `action_dispatch.*`.
+  END_REASON_KEY = 'ds.session_end_reason'
+
+  LAST_SEEN_KEY = 'last_seen_on'
+  PERSISTENT_KEY = 'persistent'
+
+  # Frozen in the session at creation, like `expires_at` on the row: the policy
+  # a session lives under is the one it was opened under. Recomputing it from
+  # today's roles would drop the usager's inactivity bound the moment they are
+  # invited as an expert, leaving them a year with no bound at all -- and would
+  # cost a `gestionnaires` SELECT on every authenticated request.
+  INACTIVITY_KEY = 'inactivity_window'
+  COOKIE_LIFETIME_KEY = 'cookie_lifetime'
   USER_AGENT_MAX_LENGTH = 500
 
   # Not `warden.session(scope)`: it checks `authenticated?`, which refetches the
@@ -14,15 +27,104 @@ module SessionRegistrableConcern
 
   def self.open_session!(record, warden, scope)
     request = warden.request
+    session = warden.session(scope)
 
-    warden.session(scope)[SESSION_KEY] = record.open_user_session!(request.user_agent, request.remote_ip).id
+    session[LAST_SEEN_KEY] = Date.current.iso8601
+
+    session[SESSION_KEY] = record.open_user_session!(request.user_agent, request.remote_ip).id
+  end
+
+  # The policy a session lives under is the one it was opened under, so it is
+  # written once and never recomputed. The guard is what adopts a session opened
+  # before this shipped: its first request stamps it, and no request after that
+  # reads the model for it again.
+  # Reads the raw hash rather than `warden.session`, which raises once a scope
+  # has been logged out -- which is exactly what the hook above may have just
+  # done when the session turned out to be revoked or stale.
+  def self.stamp_policy!(record, warden, scope)
+    session = warden.raw_session["warden.user.#{scope}.session"]
+    return if session.nil?
+
+    session[INACTIVITY_KEY] = record.session_inactivity_window&.to_i unless session.key?(INACTIVITY_KEY)
+    session[COOKIE_LIFETIME_KEY] = record.session_cookie_lifetime&.to_i unless session.key?(COOKIE_LIFETIME_KEY)
+  end
+
+  # Inactivity is read from the cookie, which is signed: the client cannot push
+  # the date forward. A date and not an instant -- the window is counted in
+  # weeks, the right day is precise enough.
+  def self.inactive?(session)
+    window = session[INACTIVITY_KEY]
+    return false if window.blank?
+
+    # No stamp means a session older than this code: adopt it, the request that
+    # adopts it stamps it.
+    last_seen = session[LAST_SEEN_KEY]
+    return false if last_seen.blank?
+
+    Date.parse(last_seen) < window.seconds.ago.to_date
+  rescue Date::Error
+    false
+  end
+
+  # "Stay signed in" is an expiry on the session cookie, so the browser keeps it
+  # across a restart. It grants nothing on its own -- the row it names is still
+  # checked on every request -- so every role may have one.
+  def self.remember!(record, warden, scope)
+    warden.session(scope)[PERSISTENT_KEY] = !!record.try(:remember_me)
+    stamp_policy!(record, warden, scope)
+
+    persist_cookie!(warden, scope)
+  end
+
+  # On every request, not only at sign in: Rails rewrites the session cookie on
+  # every response, and a rewrite carrying no expiry would turn it back into a
+  # session cookie. The smallest wins -- one cookie carries every Warden scope.
+  def self.persist_cookie!(warden, scope)
+    session = warden_session(warden, scope)
+    return if !session[PERSISTENT_KEY]
+
+    lifetime = session[COOKIE_LIFETIME_KEY]
+    return if lifetime.blank?
+
+    options = warden.request.session_options
+    options[:expire_after] = [options[:expire_after]&.to_i, lifetime].compact.min
+  end
+
+  def self.touch_last_seen!(session)
+    return if session[INACTIVITY_KEY].blank?
+
+    today = Date.current.iso8601
+
+    session[LAST_SEEN_KEY] = today if session[LAST_SEEN_KEY] != today
   end
 
   included do
     has_many :user_sessions, as: :sessionable, dependent: :delete_all
+
+    # Here rather than on User: SuperAdmin is `:recoverable` too, and its reset
+    # path is Devise's own controller, so a callback on User would leave the
+    # most privileged account the only one whose sessions survive a password
+    # change.
+    after_update :revoke_sessions_after_password_change, if: :saved_change_to_encrypted_password?
+  end
+
+  # Every session goes, the current one included. Devise's reset path refuses a
+  # signed in visitor (`require_no_authentication`), so in practice there is no
+  # session to spare; when a signed in change of password ships, sparing it is
+  # that feature's business.
+  def revoke_sessions_after_password_change
+    revoke_sessions!(reason: :password_change)
   end
 
   def session_max_lifetime = nil
+
+  # nil means no sliding window: an absolute deadline bounds the account instead,
+  # and the two strategies are exclusive.
+  def session_inactivity_window = nil
+
+  # Mirrors whatever bounds the account, so the cookie never outlives its row nor
+  # cuts a session short before it.
+  def session_cookie_lifetime = session_inactivity_window || session_max_lifetime
 
   # The raw user-agent is stored, not a label: deriving it at display time means
   # a better parser later also improves existing rows.
@@ -38,11 +140,20 @@ module SessionRegistrableConcern
     )
   end
 
-  # `except&.id`, not `except.present?`: an unsaved record has a nil id, and
-  # `where.not(id: nil)` would revoke the very row we mean to spare.
+  # Called by every override: a subclass that revokes more than rows must refuse
+  # a bad call before touching anything irreversible.
+  def validate_revocation!(reason:, except:)
+    raise ArgumentError, "unknown revocation reason #{reason.inspect}" unless UserSession::REVOCATION_REASONS.include?(reason.to_s)
+    raise ArgumentError, 'cannot spare a session that is not persisted' if except && !except.persisted?
+  end
+
+  # The id is generated database-side: an unsaved row has none, and
+  # `where.not(id: nil)` would revoke the very session we mean to spare.
   def revoke_sessions!(reason:, except: nil)
+    validate_revocation!(reason:, except:)
+
     scope = user_sessions
-    scope = scope.where.not(id: except.id) if except&.id
+    scope = scope.where.not(id: except.id) if except
     scope.revoke_all!(reason)
   end
 

@@ -130,18 +130,10 @@ Devise.setup do |config|
   # config.confirmation_keys = [ :email ]
 
   # ==> Configuration for :rememberable
-  # The time the user will be remembered without asking for credentials again.
-  config.remember_for = 2.weeks
-
-  # Invalidates all the remember me tokens when the user signs out.
-  config.expire_all_remember_me_on_sign_out = true
-
-  # If true, extends the user's remember period when remembered via cookie.
-  # config.extend_remember_period = false
-
-  # Options to be passed to the created cookie. For instance, you can set
-  # secure: true in order to force SSL only cookies.
-  # config.rememberable_options = {}
+  # Not configured: no scope enables the module. A cookie that signs someone back
+  # in without a password is replayed by Warden whenever a session is rejected,
+  # which would make revocation and expiry fictions. "Stay signed in" is an
+  # expiry on the session cookie instead -- see SessionRegistrableConcern.
 
   # ==> Configuration for :validatable
   # Range for password length.
@@ -153,9 +145,8 @@ Devise.setup do |config|
   config.email_regexp = URI::MailTo::EMAIL_REGEXP
 
   # ==> Configuration for :timeoutable
-  # The time you want to timeout the user session without activity. After this
-  # time the user will be asked for credentials again. Default is 30 minutes.
-  config.timeout_in = 1.hour
+  # Not configured: the module measures inactivity, not the age of a session,
+  # and no scope enables it. Session deadlines live on user_sessions (D2).
 
   # If true, expires auth token on session timeout.
   # config.expire_auth_token_on_timeout = false
@@ -240,6 +231,9 @@ Devise.setup do |config|
   #
   config.warden do |manager|
     manager.default_strategies(:scope => :administration).unshift :two_factor_authenticatable if SUPER_ADMIN_OTP_ENABLED
+    # Lazily: referencing an autoloadable constant here would pin a stale class
+    # across reloads in development.
+    manager.failure_app = -> (env) { SessionFailureApp.call(env) }
   end
 
   # ==> Mountable engine configurations
