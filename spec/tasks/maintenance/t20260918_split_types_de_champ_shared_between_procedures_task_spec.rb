@@ -44,6 +44,8 @@ module Maintenance
             .update_all(type_de_champ_id: original_ids_by_stable_id.fetch(stable_id))
         end
         TypeDeChamp.where(id: own_type_de_champ_ids).delete_all
+        # the trees follow the coordinates, as the backfill laid them
+        ProcedureRevision.where(procedure_id: kopy.id).find_each(&:store_type_de_champ_tree)
       end
 
       context "with the procedure holding the types de champ of an older one" do

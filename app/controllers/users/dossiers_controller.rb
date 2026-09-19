@@ -800,7 +800,9 @@ module Users
       user_procedures
         .distinct
         .order(:libelle)
-        .includes(published_revision: { revision_type_de_champs: :type_de_champ })
+        .includes(:published_revision)
+        .to_a
+        .tap { ProcedureRevision.preload_type_de_champs(it.filter_map(&:published_revision)) }
         .filter { _1.customizable_columns_by_section.any? }
     end
 

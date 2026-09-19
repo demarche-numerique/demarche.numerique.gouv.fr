@@ -411,6 +411,7 @@ describe ProcedureExportService do
         tdc_last = procedure.active_revision.public_revision_type_de_champs.last
 
         tdc_first.update(position: tdc_last.position + 1)
+        procedure.active_revision.store_type_de_champ_tree # laid by hand: the tree follows
         procedure.reload
       end
 
