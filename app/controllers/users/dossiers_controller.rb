@@ -659,6 +659,11 @@ module Users
       end
     end
 
+    def set_sentry_dossier_from_params
+      dossier_id = params[:id] || params[:dossier_id]
+      Sentry.set_tags(dossier: dossier_id) if dossier_id.present?
+    end
+
     def dossier
       @dossier ||= dossier_scope.find(params[:id] || params[:dossier_id]).tap do
         set_sentry_dossier(_1)
