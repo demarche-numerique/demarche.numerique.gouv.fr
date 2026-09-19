@@ -99,6 +99,8 @@ module ProcedureCloneConcern
         CloneReferentielService.clone_referentiel(original, kopy, same_admin?(admin))
       end
     end
+    # the copies would otherwise belong to the procedure they are cloned from
+    procedure.draft_revision.revision_type_de_champs.each { it.type_de_champ.procedure = procedure }
 
     procedure = initialize_clone_defaults(procedure, admin)
 

@@ -90,6 +90,8 @@ class TypeDeChamp < ApplicationRecord
   has_many :revisions, -> { ordered }, through: :revision_type_de_champs
 
   belongs_to :referentiel, optional: true, inverse_of: :type_de_champs
+  # optional until the types de champ laid out by no revision are purged
+  belongs_to :procedure, -> { with_discarded }, optional: true, inverse_of: :type_de_champs
 
   attribute :options, IndifferentJsonbType.new
 

@@ -13,8 +13,9 @@ FactoryBot.define do
     add_attribute(:private) { false }
     mandatory { !private }
 
+    procedure { nil }
+
     transient do
-      procedure { nil }
       position { nil }
       parent { nil }
       no_coordinate { false }

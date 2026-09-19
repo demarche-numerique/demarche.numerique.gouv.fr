@@ -84,6 +84,16 @@ describe ProcedureCloneConcern, type: :model do
       expect(subject.template).to be_falsey
     end
 
+    it 'attaches the cloned types de champ to the clone' do
+      type_de_champ_ids = procedure.draft_revision.revision_type_de_champs.map(&:type_de_champ_id)
+      TypeDeChamp.where(id: type_de_champ_ids).update_all(procedure_id: procedure.id)
+
+      cloned_type_de_champ_ids = subject.draft_revision.revision_type_de_champs.map(&:type_de_champ_id)
+      expect(cloned_type_de_champ_ids.size).to eq(11)
+      expect(TypeDeChamp.where(id: cloned_type_de_champ_ids).pluck(:procedure_id)).to all(eq(subject.id))
+      expect(TypeDeChamp.where(id: type_de_champ_ids).pluck(:procedure_id)).to all(eq(procedure.id))
+    end
+
     describe "should keep groupe instructeurs " do
       it "should clone groupe instructeurs" do
         expect(subject.groupe_instructeurs.size).to eq(2)

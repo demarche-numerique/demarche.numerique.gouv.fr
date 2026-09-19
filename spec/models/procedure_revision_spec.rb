@@ -42,6 +42,10 @@ describe ProcedureRevision do
         expect(last_coordinate.position).to eq(2)
         expect(last_coordinate.type_de_champ).to eq(subject)
       end
+
+      it 'attaches the type de champ to the procedure' do
+        expect(subject.reload.procedure_id).to eq(procedure.id)
+      end
     end
 
     context 'with a private tdc' do
@@ -107,6 +111,16 @@ describe ProcedureRevision do
 
   describe '#find_and_ensure_exclusive_use' do
     let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text }]) }
+
+    it 'attaches the clone of a published type de champ to the procedure' do
+      procedure.publish_or_reopen!(procedure.administrateurs.first, 'demarche-publiee')
+      published_type_de_champ = procedure.published_revision.public_root_type_de_champs.first
+
+      type_de_champ = procedure.draft_revision.find_and_ensure_exclusive_use(published_type_de_champ.stable_id)
+
+      expect(type_de_champ).not_to eq(published_type_de_champ)
+      expect(type_de_champ.reload.procedure_id).to eq(procedure.id)
+    end
 
     it 'raises RecordNotFound when the stable_id is no longer in the revision (RAILS-JZE)' do
       removed_stable_id = draft.public_root_type_de_champs.first.stable_id

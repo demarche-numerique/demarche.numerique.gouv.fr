@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_18_100000) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_18_110200) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
@@ -1408,11 +1408,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_18_100000) do
     t.text "nature"
     t.jsonb "options"
     t.boolean "private", default: false, null: false
+    t.bigint "procedure_id"
     t.bigint "referentiel_id"
     t.bigint "stable_id"
     t.string "type_champ"
     t.datetime "updated_at", precision: nil
     t.index ["private"], name: "index_types_de_champ_on_private"
+    t.index ["procedure_id"], name: "index_types_de_champ_on_procedure_id"
     t.index ["referentiel_id"], name: "index_types_de_champ_on_referentiel_id"
     t.index ["stable_id"], name: "index_types_de_champ_on_stable_id"
   end
@@ -1592,6 +1594,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_18_100000) do
   add_foreign_key "traitements", "dossiers"
   add_foreign_key "traitements", "procedure_revisions", column: "revision_id"
   add_foreign_key "trusted_device_tokens", "instructeurs"
+  add_foreign_key "types_de_champ", "procedures"
   add_foreign_key "types_de_champ", "referentiels"
   add_foreign_key "users", "users", column: "requested_merge_into_id"
   add_foreign_key "without_continuation_mails", "procedures", on_delete: :cascade

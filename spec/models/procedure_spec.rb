@@ -1383,6 +1383,13 @@ describe Procedure do
       expect(procedure.destroy).to be_truthy
     end
 
+    it "destroys its types de champ" do
+      type_de_champ_ids = procedure.type_de_champs.ids
+      expect(type_de_champ_ids.size).to eq(procedure.draft_revision.type_de_champs.size)
+
+      expect { procedure.destroy }.to change { TypeDeChamp.where(id: type_de_champ_ids).count }.from(type_de_champ_ids.size).to(0)
+    end
+
     it "destroys associated dossiers_list_personnalisations" do
       personnalisation = create(:dossiers_list_personnalisation, procedure:)
 

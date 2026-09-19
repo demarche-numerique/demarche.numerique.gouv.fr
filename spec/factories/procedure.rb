@@ -364,6 +364,8 @@ def build_type_de_champs(type_de_champs, revision:, scope: :public, parent: nil)
     else
       build(:"type_de_champ_#{type}", no_coordinate: true, **type_de_champ_attributes)
     end
+    # assigned rather than given to the factory, which would save the procedure half built
+    type_de_champ.procedure = revision.procedure
     coordinate = build(:procedure_revision_type_de_champ,
       revision:,
       type_de_champ:,
