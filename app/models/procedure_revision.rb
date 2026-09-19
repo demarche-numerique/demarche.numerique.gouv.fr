@@ -12,8 +12,25 @@ class ProcedureRevision < ApplicationRecord
   has_many :dossiers, inverse_of: :revision, foreign_key: :revision_id
   has_many :revision_type_de_champs, -> { order(:position, :id) }, class_name: 'ProcedureRevisionTypeDeChamp', foreign_key: :revision_id, dependent: :destroy, inverse_of: :revision
 
+  TypeDeChampLayout = Data.define(:type_de_champs_by_stable_id, :public_type_de_champs, :private_type_de_champs) do
+    def self.build(public_type_de_champs:, private_type_de_champs:)
+      type_de_champs = (public_type_de_champs + private_type_de_champs).flat_map { [it, *it.flat_children] }
+
+      new(type_de_champs_by_stable_id: type_de_champs.index_by(&:stable_id).freeze, public_type_de_champs:, private_type_de_champs:)
+    end
+  end
+  private_constant :TypeDeChampLayout
+
   def public_revision_type_de_champs = revision_type_de_champs.filter { _1.root? && _1.public? }.sort_by(&:position)
   def private_revision_type_de_champs = revision_type_de_champs.filter { _1.root? && _1.private? }.sort_by(&:position)
+
+  # The types de champ, laid out from the tree: each one knows its ancestors
+  # and its children (see TypeDeChamp#lay_out). These two hold the top of the
+  # tree, the content of header sections and repetitions being within them.
+  def public_type_de_champs = type_de_champ_layout.public_type_de_champs
+  def private_type_de_champs = type_de_champ_layout.private_type_de_champs
+  def type_de_champ(stable_id) = type_de_champ_layout.type_de_champs_by_stable_id[stable_id.to_i]
+
   def type_de_champs = revision_type_de_champs.map(&:type_de_champ)
   def public_root_type_de_champs = public_revision_type_de_champs.map(&:type_de_champ)
   def private_root_type_de_champs = private_revision_type_de_champs.map(&:type_de_champ)
@@ -79,7 +96,7 @@ class ProcedureRevision < ApplicationRecord
         revision_type_de_champs.create!(type_de_champ:, parent_id:, position:)
       end
 
-      revision_type_de_champs.reset
+      reset_type_de_champs
     end
 
     type_de_champ
@@ -114,7 +131,7 @@ class ProcedureRevision < ApplicationRecord
       coordinate.update_column(:position, position)
     end
 
-    revision_type_de_champs.reset
+    reset_type_de_champs
     coordinate.reload
     coordinate
   end
@@ -133,7 +150,7 @@ class ProcedureRevision < ApplicationRecord
       end
     end
 
-    revision_type_de_champs.reset
+    reset_type_de_champs
     coordinate.reload
     coordinate
   end
@@ -155,7 +172,7 @@ class ProcedureRevision < ApplicationRecord
       ProcedureRevisionTypeDeChamp.where(id: coordinate.siblings, position: coordinate.position..).unscope(:eager_load).update_all("position = position - 1")
     end
 
-    revision_type_de_champs.reset
+    reset_type_de_champs
     coordinate
   end
 
@@ -173,6 +190,11 @@ class ProcedureRevision < ApplicationRecord
     coordinate, _ = coordinate_and_tdc(stable_id)
 
     move_type_de_champ(stable_id, coordinate.position + 1)
+  end
+
+  def reload(*)
+    @type_de_champ_layout = nil
+    super
   end
 
   def draft?
@@ -341,6 +363,32 @@ class ProcedureRevision < ApplicationRecord
 
   private
 
+  # every edit of the draft goes through here: its types de champ are read again
+  def reset_type_de_champs
+    revision_type_de_champs.reset
+    @type_de_champ_layout = nil
+  end
+
+  # The instances laid out are the revision's own, loaded for it: the ones its
+  # coordinates hold may be shared with the coordinates of another revision (a
+  # preload hands one instance to every owner), where they sit elsewhere.
+  #
+  # A node whose type de champ is gone is left out, with what it held: the
+  # requests of the editor race, one removing what the tree of another names.
+  def type_de_champ_layout
+    @type_de_champ_layout ||= begin
+      raise ArgumentError, "a revision lays out its types de champ once saved: they have no stable id before" if new_record?
+
+      tree = type_de_champ_tree
+      type_de_champs_by_id = TypeDeChamp.where(id: tree.type_de_champ_ids).index_by(&:id)
+
+      TypeDeChampLayout.build(
+        public_type_de_champs: TypeDeChamp.laid_out(tree.public_children) { type_de_champs_by_id[it.type_de_champ_id] },
+        private_type_de_champs: TypeDeChamp.laid_out(tree.private_children) { type_de_champs_by_id[it.type_de_champ_id] }
+      )
+    end
+  end
+
   def compute_estimated_fill_duration
     public_root_type_de_champs.sum do |tdc|
       next tdc.estimated_read_duration unless tdc.fillable?
@@ -387,7 +435,7 @@ class ProcedureRevision < ApplicationRecord
         ClonePiecesJustificativesService.clone_attachments(original, kopy)
       end
       coordinate.update!(type_de_champ: cloned_type_de_champ)
-      revision_type_de_champs.reset
+      reset_type_de_champs
       cloned_type_de_champ
     end
   end
