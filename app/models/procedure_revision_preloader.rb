@@ -8,6 +8,11 @@ class ProcedureRevisionPreloader
   def all
     revisions = @revisions.to_a
     load_procedure_revision_type_de_champs(revisions)
+    # The editor preloads its draft again after each edit: what it laid out
+    # before is forgotten. Nothing is laid out here: the pages listing every
+    # revision only read their coordinates.
+    revisions.each(&:reset_type_de_champ_layout)
+    revisions
   end
 
   def self.load_one(revision)

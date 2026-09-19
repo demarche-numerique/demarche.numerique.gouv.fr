@@ -7,6 +7,8 @@ describe ProcedureRevision do
   let(:type_de_champ_repetition) do
     repetition = draft.public_root_type_de_champs.find(&:repetition?)
     repetition.update(stable_id: 3333)
+    # a stable id never changes: the revision has to lay out its types de champ again
+    draft.reload
     repetition
   end
 
@@ -55,6 +57,17 @@ describe ProcedureRevision do
 
     def libelles(type_de_champs) = type_de_champs.map(&:libelle)
     def laid_out(libelle) = (draft.public_type_de_champs + draft.private_type_de_champs).flat_map { [it, *it.flat_children] }.find { it.libelle == libelle }
+
+    it 'lists them as before' do
+      expect(libelles(draft.public_flat_type_de_champs)).to eq(['a', 'h1', 'b', 'r', 'rh1', 'r1', 'h2', 'c'])
+      expect(libelles(draft.public_root_type_de_champs)).to eq(['a', 'h1', 'b', 'r', 'h2', 'c'])
+      expect(libelles(draft.private_flat_type_de_champs)).to eq(['d'])
+      expect(libelles(draft.private_root_type_de_champs)).to eq(['d'])
+      expect(libelles(draft.type_de_champs)).to eq(['a', 'h1', 'b', 'r', 'rh1', 'r1', 'h2', 'c', 'd'])
+      expect(libelles(draft.children_of(laid_out('r')))).to eq(['rh1', 'r1'])
+      expect(draft.parent_of(laid_out('r1'))).to eq(laid_out('r'))
+      expect(draft.parent_of(laid_out('b'))).to be_nil
+    end
 
     it 'gives each one its children and its ancestors' do
       expect(libelles(draft.public_type_de_champs)).to eq(['a', 'h1'])
@@ -114,6 +127,48 @@ describe ProcedureRevision do
         expect(libelles(laid_out('r').children)).to eq(['r1'])
         expect(libelles(published.type_de_champ(laid_out('r').stable_id).children)).to eq(['r1', 'r2'])
         expect(libelles(laid_out('r').children)).to eq(['r1'])
+      end
+
+      it 'lays it out in each of them when preloaded together' do
+        ProcedureRevision.preload_type_de_champs([published, draft])
+
+        expect(published.type_de_champ(laid_out('r').stable_id)).not_to equal(laid_out('r'))
+        expect(libelles(laid_out('r').children)).to eq(['r1'])
+        expect(libelles(published.type_de_champ(laid_out('r').stable_id).children)).to eq(['r1', 'r2'])
+      end
+    end
+
+    describe '.preload_type_de_champs' do
+      let(:other_procedure) { create(:procedure, public_type_de_champs: [{ libelle: 'z' }]) }
+
+      def queries
+        queries = []
+        callback = lambda { |*args| queries << args.last[:sql] if args.last[:sql].include?('FROM "types_de_champ"') }
+        ActiveSupport::Notifications.subscribed(callback, 'sql.active_record') { yield }
+        queries
+      end
+
+      it 'lays out several revisions in one query' do
+        revisions = ProcedureRevision.where(id: [draft.id, other_procedure.draft_revision_id]).includes(:revision_type_de_champs).to_a
+
+        expect(queries { ProcedureRevision.preload_type_de_champs(revisions) }.size).to eq(1)
+        expect(queries { expect(revisions.map { libelles(it.type_de_champs) }).to contain_exactly(['a', 'h1', 'b', 'r', 'rh1', 'r1', 'h2', 'c', 'd'], ['z']) }).to be_empty
+      end
+
+      it 'loads once the types de champ several revisions hold' do
+        procedure.publish_revision!(procedure.administrateurs.first)
+        revisions = [procedure.published_revision, procedure.draft_revision]
+
+        expect(queries { ProcedureRevision.preload_type_de_champs(revisions) }.size).to eq(1)
+
+        published_type_de_champ, draft_type_de_champ = revisions.map { |revision| revision.type_de_champs.find { it.libelle == 'r' } }
+        expect(published_type_de_champ).to eq(draft_type_de_champ)
+        expect(published_type_de_champ).not_to equal(draft_type_de_champ)
+        expect(draft_type_de_champ).to be_a(TypesDeChamp::RepetitionTypeDeChamp)
+        expect(libelles(draft_type_de_champ.flat_children)).to eq(['rh1', 'r1'])
+
+        draft_type_de_champ.libelle = 'changed'
+        expect(published_type_de_champ.libelle).to eq('r')
       end
     end
 
@@ -621,6 +676,7 @@ describe ProcedureRevision do
           parent_coordinate = draft.revision_type_de_champs.find_by(type_de_champ_id: parent.id)
           draft.revision_type_de_champs.create(type_de_champ: child_position_2, position: 2, parent_id: parent_coordinate.id)
           draft.revision_type_de_champs.create(type_de_champ: child_position_1, position: 1, parent_id: parent_coordinate.id)
+          draft.reload
         end
 
         it 'returns the children in order' do
@@ -640,7 +696,7 @@ describe ProcedureRevision do
             .revision_type_de_champs
             .where(type_de_champ: first_child)
             .update(type_de_champ: new_child)
-          new_draft.revision_type_de_champs.reload
+          new_draft.reload
         end
 
         it 'returns the children regarding the revision' do

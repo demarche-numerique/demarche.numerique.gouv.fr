@@ -105,8 +105,9 @@ module ProcedurePublishConcern
 
   def publish_new_revision(administrateur)
     # what gets published, cloned into the next draft and stored as a tree is
-    # what the database holds, not what this instance loaded a while ago
-    draft_revision.revision_type_de_champs.reset
+    # what the database holds, not what this instance loaded or laid out a
+    # while ago
+    draft_revision.reload
     cleanup_type_de_champs_options!
     cleanup_type_de_champs_children!
     nullify_unused_referentiels

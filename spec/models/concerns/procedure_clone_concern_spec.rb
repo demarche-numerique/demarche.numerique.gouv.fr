@@ -60,6 +60,8 @@ describe ProcedureCloneConcern, type: :model do
     def tag_source_pj_with_old_pj
       pj_tdc = procedure.draft_revision.public_root_type_de_champs.find(&:piece_justificative?)
       pj_tdc.update!(options: pj_tdc.options.merge(old_pj: { stable_id: 1234 }))
+      # the clone copies the types de champ of the coordinates, loaded before the update
+      procedure.draft_revision.reload
     end
 
     subject do

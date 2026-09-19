@@ -67,18 +67,35 @@ class DossierPreloader
   # d'une révision est la requête la plus coûteuse du préchargement.
   def revisions_for(dossiers, pj_template: false)
     @revisions ||= {}
+    known_ids = @revisions.keys
     @revisions.merge!(preloaded_revisions(dossiers)) unless pj_template
 
     missing_ids = dossiers.flat_map { [it.revision_id, it.submitted_revision_id] }.compact.uniq - @revisions.keys
     if missing_ids.any?
       @revisions.merge!(
         ProcedureRevision.where(id: missing_ids)
-          .includes(procedure: [], revision_type_de_champs: { type_de_champ: pj_template ? { piece_justificative_template_attachment: :blob, notice_explicative_attachment: :blob } : [] })
+          .includes(:procedure, :revision_type_de_champs)
           .index_by(&:id)
       )
     end
 
+    preload_type_de_champs(@revisions.except(*known_ids).values, pj_template:)
+
     @revisions
+  end
+
+  # A revision lays out its own types de champ: better here, in one query,
+  # than wherever the first champ of each is read.
+  def preload_type_de_champs(revisions, pj_template:)
+    ProcedureRevision.preload_type_de_champs(revisions)
+    type_de_champs = revisions.flat_map(&:type_de_champs)
+
+    if pj_template && type_de_champs.any?
+      ::ActiveRecord::Associations::Preloader.new(
+        records: type_de_champs,
+        associations: { piece_justificative_template_attachment: :blob, notice_explicative_attachment: :blob }
+      ).call
+    end
   end
 
   def preloaded_revisions(dossiers)

@@ -12,14 +12,45 @@ class ProcedureRevision < ApplicationRecord
   has_many :dossiers, inverse_of: :revision, foreign_key: :revision_id
   has_many :revision_type_de_champs, -> { order(:position, :id) }, class_name: 'ProcedureRevisionTypeDeChamp', foreign_key: :revision_id, dependent: :destroy, inverse_of: :revision
 
-  TypeDeChampLayout = Data.define(:type_de_champs_by_stable_id, :public_type_de_champs, :private_type_de_champs) do
+  TypeDeChampLayout = Data.define(
+    :type_de_champs_by_stable_id,
+    :public_type_de_champs, :public_flat_type_de_champs, :public_root_type_de_champs,
+    :private_type_de_champs, :private_flat_type_de_champs, :private_root_type_de_champs
+  ) do
     def self.build(public_type_de_champs:, private_type_de_champs:)
-      type_de_champs = (public_type_de_champs + private_type_de_champs).flat_map { [it, *it.flat_children] }
+      public_flat_type_de_champs, private_flat_type_de_champs = [public_type_de_champs, private_type_de_champs]
+        .map { |type_de_champs| type_de_champs.flat_map { [it, *it.flat_children] }.freeze }
 
-      new(type_de_champs_by_stable_id: type_de_champs.index_by(&:stable_id).freeze, public_type_de_champs:, private_type_de_champs:)
+      new(
+        type_de_champs_by_stable_id: (public_flat_type_de_champs + private_flat_type_de_champs).index_by(&:stable_id).freeze,
+        public_type_de_champs:,
+        public_flat_type_de_champs:,
+        public_root_type_de_champs: public_flat_type_de_champs.reject(&:in_repetition?).freeze,
+        private_type_de_champs:,
+        private_flat_type_de_champs:,
+        private_root_type_de_champs: private_flat_type_de_champs.reject(&:in_repetition?).freeze
+      )
     end
   end
   private_constant :TypeDeChampLayout
+
+  # Lays out the types de champ of several revisions in one query, where each
+  # revision would run its own, anew if it already had. An instance goes to one
+  # revision only: the others get their own instance of the type de champ
+  # several revisions hold, built from the same row.
+  def self.preload_type_de_champs(revisions)
+    type_de_champ_ids = revisions.uniq.filter(&:persisted?).index_with { it.type_de_champ_tree.type_de_champ_ids }
+    type_de_champs_by_id = TypeDeChamp.where(id: type_de_champ_ids.values.flatten.uniq).index_by(&:id)
+    handed_ids = Set.new
+
+    type_de_champ_ids.each do |revision, ids|
+      own_type_de_champs_by_id = type_de_champs_by_id.slice(*ids).transform_values do |type_de_champ|
+        handed_ids.add?(type_de_champ.id) ? type_de_champ : TypeDeChamp.instantiate(type_de_champ.attributes_before_type_cast)
+      end
+
+      revision.lay_out_type_de_champs(own_type_de_champs_by_id)
+    end
+  end
 
   def public_revision_type_de_champs = revision_type_de_champs.filter { _1.root? && _1.public? }.sort_by(&:position)
   def private_revision_type_de_champs = revision_type_de_champs.filter { _1.root? && _1.private? }.sort_by(&:position)
@@ -31,13 +62,36 @@ class ProcedureRevision < ApplicationRecord
   def private_type_de_champs = type_de_champ_layout.private_type_de_champs
   def type_de_champ(stable_id) = type_de_champ_layout.type_de_champs_by_stable_id[stable_id.to_i]
 
-  def type_de_champs = revision_type_de_champs.map(&:type_de_champ)
-  def public_root_type_de_champs = public_revision_type_de_champs.map(&:type_de_champ)
-  def private_root_type_de_champs = private_revision_type_de_champs.map(&:type_de_champ)
+  # Lays out the types de champ again, from the tree as it is now. The ones
+  # given are not loaded again, and become the revision's own: an instance
+  # handed here must not be given to any other revision, nor be one a
+  # coordinate holds, as it sits elsewhere in another revision.
+  #
+  # A node whose type de champ is gone is left out, with what it held: the
+  # requests of the editor race, one removing what the tree of another names.
+  def lay_out_type_de_champs(own_type_de_champs_by_id = {})
+    raise ArgumentError, "a revision lays out its types de champ once saved: they have no stable id before" if new_record?
 
-  # All types de champ in document order, repetition children inlined after their repetition.
-  def public_flat_type_de_champs = public_revision_type_de_champs.flat_map { [it, *it.revision_type_de_champs] }.map(&:type_de_champ)
-  def private_flat_type_de_champs = private_revision_type_de_champs.flat_map { [it, *it.revision_type_de_champs] }.map(&:type_de_champ)
+    tree = type_de_champ_tree
+    missing_ids = tree.type_de_champ_ids - own_type_de_champs_by_id.keys
+    type_de_champs_by_id = missing_ids.any? ? own_type_de_champs_by_id.merge(TypeDeChamp.where(id: missing_ids).index_by(&:id)) : own_type_de_champs_by_id
+
+    @type_de_champ_layout = TypeDeChampLayout.build(
+      public_type_de_champs: TypeDeChamp.laid_out(tree.public_children) { type_de_champs_by_id[it.type_de_champ_id] },
+      private_type_de_champs: TypeDeChamp.laid_out(tree.private_children) { type_de_champs_by_id[it.type_de_champ_id] }
+    )
+
+    self
+  end
+
+  # All types de champ in document order, the content of header sections and
+  # repetitions inlined after them.
+  def type_de_champs = public_flat_type_de_champs + private_flat_type_de_champs
+  def public_flat_type_de_champs = type_de_champ_layout.public_flat_type_de_champs
+  def private_flat_type_de_champs = type_de_champ_layout.private_flat_type_de_champs
+  # root as in not within a repetition: header sections and their content are all there
+  def public_root_type_de_champs = type_de_champ_layout.public_root_type_de_champs
+  def private_root_type_de_champs = type_de_champ_layout.private_root_type_de_champs
 
   has_one :draft_procedure, -> { with_discarded }, class_name: 'Procedure', foreign_key: :draft_revision_id, dependent: :nullify, inverse_of: :draft_revision
   has_one :published_procedure, -> { with_discarded }, class_name: 'Procedure', foreign_key: :published_revision_id, dependent: :nullify, inverse_of: :published_revision
@@ -161,7 +215,9 @@ class ProcedureRevision < ApplicationRecord
     # in case of replay
     return nil if coordinate.nil?
 
-    children = children_of(tdc).to_a
+    # as the coordinates have it: the tree leaves out the children of anything
+    # but a repetition, which are removed here before a publication
+    children = coordinate.type_de_champs
 
     transaction do
       coordinate.destroy
@@ -192,8 +248,14 @@ class ProcedureRevision < ApplicationRecord
     move_type_de_champ(stable_id, coordinate.position + 1)
   end
 
-  def reload(*)
+  # The types de champ are laid out again, from the tree as it is by then,
+  # the next time they are read.
+  def reset_type_de_champ_layout
     @type_de_champ_layout = nil
+  end
+
+  def reload(*)
+    reset_type_de_champ_layout
     super
   end
 
@@ -230,14 +292,11 @@ class ProcedureRevision < ApplicationRecord
   end
 
   def children_of(tdc)
-    coordinate_for(tdc).type_de_champs
+    type_de_champ(tdc.stable_id).flat_children
   end
 
   def parent_of(tdc)
-    coordinate = coordinate_for(tdc)
-    if coordinate&.child?
-      revision_type_de_champs.find { _1.id == coordinate.parent_id }&.type_de_champ
-    end
+    type_de_champ(tdc.stable_id)&.enclosing_repetition
   end
 
   def dependent_conditions(tdc)
@@ -366,27 +425,13 @@ class ProcedureRevision < ApplicationRecord
   # every edit of the draft goes through here: its types de champ are read again
   def reset_type_de_champs
     revision_type_de_champs.reset
-    @type_de_champ_layout = nil
+    reset_type_de_champ_layout
   end
 
-  # The instances laid out are the revision's own, loaded for it: the ones its
-  # coordinates hold may be shared with the coordinates of another revision (a
-  # preload hands one instance to every owner), where they sit elsewhere.
-  #
-  # A node whose type de champ is gone is left out, with what it held: the
-  # requests of the editor race, one removing what the tree of another names.
   def type_de_champ_layout
-    @type_de_champ_layout ||= begin
-      raise ArgumentError, "a revision lays out its types de champ once saved: they have no stable id before" if new_record?
+    lay_out_type_de_champs if @type_de_champ_layout.nil?
 
-      tree = type_de_champ_tree
-      type_de_champs_by_id = TypeDeChamp.where(id: tree.type_de_champ_ids).index_by(&:id)
-
-      TypeDeChampLayout.build(
-        public_type_de_champs: TypeDeChamp.laid_out(tree.public_children) { type_de_champs_by_id[it.type_de_champ_id] },
-        private_type_de_champs: TypeDeChamp.laid_out(tree.private_children) { type_de_champs_by_id[it.type_de_champ_id] }
-      )
-    end
+    @type_de_champ_layout
   end
 
   def compute_estimated_fill_duration

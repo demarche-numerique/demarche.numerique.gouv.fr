@@ -25,6 +25,8 @@ describe 'Recovery::Revision::LifeCycle' do
       before do
         dossier
         procedure.published_revision.remove_type_de_champ(yes_no_type_de_champ.stable_id)
+        # the tree stored on publication would still lay it out
+        procedure.published_revision.update_columns(type_de_champ_tree: nil)
       end
 
       it do

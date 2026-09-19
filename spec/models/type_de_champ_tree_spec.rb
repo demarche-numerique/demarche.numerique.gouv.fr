@@ -228,7 +228,7 @@ describe TypeDeChampTree do
         before { lay(edited, position: 3) }
 
         it 'keeps the latest type de champ, where it is laid' do
-          expect(tree.public_children.map(&:type_de_champ_id)).to eq([repetition_coordinate.type_de_champ_id, revision.public_root_type_de_champs.third.id, edited.id])
+          expect(tree.public_children.map(&:type_de_champ_id)).to eq([repetition_coordinate.type_de_champ_id, revision.type_de_champs.find { it.libelle == 'b' }.id, edited.id])
         end
       end
     end
