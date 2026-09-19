@@ -487,6 +487,84 @@ class TypeDeChamp < ApplicationRecord
   CHAMP_TYPE_TO_TYPE_CHAMP = type_champs.values.index_by { type_champ_to_champ_class_name(_1) }
   CLASS_NAME_TO_TYPE_CHAMP = type_champs.values.index_by { type_champ_to_class_name(_1) }
 
+  class NotLaidOutError < StandardError
+    def initialize(type_de_champ)
+      super("type de champ #{type_de_champ.id} was not laid out: get it from a revision")
+    end
+  end
+
+  # The types de champ the nodes of a tree stand for, each one given by the
+  # block, laid out as the nodes are. A node the block has nothing for is left
+  # out, with what it holds.
+  def self.laid_out(nodes, ancestors = [], &)
+    nodes.each_with_object([]) do |node, laid_out_tdcs|
+      type_de_champ = yield node
+      next if type_de_champ.nil?
+
+      laid_out_tdcs << type_de_champ.lay_out(ancestors:, position: laid_out_tdcs.size, children: laid_out(node.children, [*ancestors, type_de_champ], &))
+    end.freeze
+  end
+
+  # Where a type de champ sits depends on who lays it out. A revision lays out
+  # its own instances from its tree (ProcedureRevision#type_de_champ and the
+  # lists next to it): any other instance knows nothing of its surroundings,
+  # and raises when asked.
+  def lay_out(ancestors:, position:, children:)
+    @ancestors = ancestors.freeze
+    @position = position
+    @children = children.freeze
+    self
+  end
+
+  # Called by Ruby on the copy, for dup and deep_clone. The copy is in no tree:
+  # it must not keep the place of the original.
+  def initialize_dup(*)
+    @ancestors = nil
+    @position = nil
+    @children = nil
+    super
+  end
+
+  # the header sections and the repetition holding it, outermost first
+  def ancestors
+    @ancestors || raise(NotLaidOutError, self)
+  end
+
+  # its index in the children of its parent, or at the top of the tree
+  def position
+    @position || raise(NotLaidOutError, self)
+  end
+
+  # what a header section or a repetition directly holds
+  def children
+    @children || raise(NotLaidOutError, self)
+  end
+
+  # everything it holds in document order, whatever the depth
+  def flat_children
+    children.flat_map { [it, *it.flat_children] }
+  end
+
+  def parent
+    ancestors.last
+  end
+
+  def in_repetition?
+    ancestors.any?(&:repetition?)
+  end
+
+  def in_section?
+    ancestors.any?(&:header_section?)
+  end
+
+  def enclosing_repetition
+    ancestors.reverse_each.find(&:repetition?)
+  end
+
+  def enclosing_section
+    ancestors.reverse_each.find(&:header_section?)
+  end
+
   private
 
   def set_default_libelle
