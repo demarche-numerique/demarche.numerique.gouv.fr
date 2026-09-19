@@ -102,6 +102,112 @@ describe ProcedureRevision do
     end
   end
 
+  describe 'types de champ laid out from the tree' do
+    let(:procedure) { create(:procedure, public_type_de_champs:, private_type_de_champs: [{ libelle: 'd' }]) }
+    let(:public_type_de_champs) do
+      [
+        { libelle: 'a' },
+        { type: :header_section, level: 1, libelle: 'h1' },
+        { libelle: 'b' },
+        { type: :repetition, libelle: 'r', children: [{ type: :header_section, level: 1, libelle: 'rh1' }, { libelle: 'r1' }] },
+        { type: :header_section, level: 2, libelle: 'h2' },
+        { libelle: 'c' },
+      ]
+    end
+
+    def libelles(type_de_champs) = type_de_champs.map(&:libelle)
+    def laid_out(libelle) = (draft.public_type_de_champs + draft.private_type_de_champs).flat_map { [it, *it.flat_children] }.find { it.libelle == libelle }
+
+    it 'gives each one its children and its ancestors' do
+      expect(libelles(draft.public_type_de_champs)).to eq(['a', 'h1'])
+      expect(libelles(draft.private_type_de_champs)).to eq(['d'])
+      expect(libelles(laid_out('h1').children)).to eq(['b', 'r', 'h2'])
+      expect(libelles(laid_out('h1').flat_children)).to eq(['b', 'r', 'rh1', 'r1', 'h2', 'c'])
+      expect(libelles(laid_out('r').children)).to eq(['rh1'])
+      expect(laid_out('a').children).to be_empty
+
+      r1 = laid_out('r1')
+      expect(libelles(r1.ancestors)).to eq(['h1', 'r', 'rh1'])
+      expect(r1.parent).to equal(laid_out('rh1'))
+      expect(r1.enclosing_repetition).to equal(laid_out('r'))
+      expect(r1.enclosing_section).to equal(laid_out('rh1'))
+      expect(r1).to be_in_repetition.and be_in_section
+
+      expect(laid_out('r').enclosing_section).to equal(laid_out('h1'))
+      expect(laid_out('r')).not_to be_in_repetition
+      expect(laid_out('a').parent).to be_nil
+      expect(laid_out('a')).not_to be_in_section
+    end
+
+    it 'finds one by its stable id' do
+      expect(draft.type_de_champ(laid_out('r1').stable_id)).to equal(laid_out('r1'))
+      expect(draft.type_de_champ(laid_out('r1').stable_id.to_s)).to equal(laid_out('r1'))
+      expect(draft.type_de_champ(0)).to be_nil
+    end
+
+    it 'follows the edits' do
+      added = draft.add_type_de_champ(type_champ: :text, libelle: 'r2', parent_stable_id: laid_out('r').stable_id, after_stable_id: laid_out('r1').stable_id)
+
+      expect(libelles(draft.type_de_champ(added.stable_id).ancestors)).to eq(['h1', 'r', 'rh1'])
+
+      draft.remove_type_de_champ(laid_out('rh1').stable_id)
+
+      expect(libelles(laid_out('r').children)).to eq(['r1', 'r2'])
+    end
+
+    it 'lays them out again once reloaded' do
+      TypeDeChamp.find(laid_out('a').id).update!(libelle: 'a2')
+
+      expect(libelles(draft.public_type_de_champs)).to eq(['a', 'h1'])
+      expect(libelles(draft.reload.public_type_de_champs)).to eq(['a2', 'h1'])
+    end
+
+    it 'leaves the other instances alone' do
+      expect { TypeDeChamp.find(laid_out('r').id).children }.to raise_error(TypeDeChamp::NotLaidOutError)
+      expect { draft.coordinate_for(laid_out('r')).type_de_champ.ancestors }.to raise_error(TypeDeChamp::NotLaidOutError)
+      expect { laid_out('r').dup.children }.to raise_error(TypeDeChamp::NotLaidOutError)
+      expect { draft.dup.public_type_de_champs }.to raise_error(ArgumentError)
+    end
+
+    context 'with a type de champ held by two revisions' do
+      let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :repetition, libelle: 'r', children: [{ libelle: 'r1' }, { libelle: 'r2' }] }]) }
+      let(:published) { procedure.published_revision }
+
+      before do
+        draft.remove_type_de_champ(draft.type_de_champs.find { it.libelle == 'r2' }.stable_id)
+        # hands the same instance of the repetition to the coordinates of both revisions
+        ProcedureRevisionPreloader.new([published, draft]).all
+      end
+
+      it 'lays it out in each of them' do
+        expect(published.coordinate_for(laid_out('r')).type_de_champ).to equal(draft.coordinate_for(laid_out('r')).type_de_champ)
+
+        expect(libelles(laid_out('r').children)).to eq(['r1'])
+        expect(libelles(published.type_de_champ(laid_out('r').stable_id).children)).to eq(['r1', 'r2'])
+        expect(libelles(laid_out('r').children)).to eq(['r1'])
+      end
+    end
+
+    it 'leaves out a type de champ removed since the coordinates were loaded' do
+      stable_id = draft.revision_type_de_champs.find { it.libelle == 'r' }.stable_id
+      ProcedureRevision.find(draft.id).remove_type_de_champ(stable_id)
+
+      expect(libelles(draft.public_type_de_champs.flat_map { [it, *it.flat_children] })).to eq(['a', 'h1', 'b', 'h2', 'c'])
+    end
+
+    context 'with a revision not saved yet' do
+      let(:procedure) { build(:procedure, public_type_de_champs:) }
+
+      it 'waits for its types de champ to have a stable id' do
+        expect { draft.public_type_de_champs }.to raise_error(ArgumentError)
+
+        procedure.save!
+
+        expect(libelles(draft.public_type_de_champs)).to eq(['a', 'h1'])
+      end
+    end
+  end
+
   describe '#add_type_de_champ' do
     # tdc: public: text, repetition ; private: text ; +1 text child of repetition
     let(:procedure) do
