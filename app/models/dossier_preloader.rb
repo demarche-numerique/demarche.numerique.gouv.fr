@@ -66,27 +66,39 @@ class DossierPreloader
   # Preloader ne charge que ce qui lui manque (ex: `Dossier.for_api_v2` a déjà
   # les types de champ, la requête la plus coûteuse du préchargement).
   def revisions_for(dossiers, pj_template: false)
-    @revisions ||= {}
-    known_ids = @revisions.keys
+    @revisions_by_id ||= {}
+    known_ids = @revisions_by_id.keys
 
     dossiers.each do |dossier|
-      @revisions[dossier.revision_id] ||= dossier.revision if dossier.association(:revision).loaded?
+      @revisions_by_id[dossier.revision_id] ||= dossier.revision if dossier.association(:revision).loaded?
     end
 
-    missing_ids = dossiers.flat_map { [it.revision_id, it.submitted_revision_id] }.compact.uniq - @revisions.keys
-    @revisions.merge!(ProcedureRevision.where(id: missing_ids).index_by(&:id))
+    missing_ids = dossiers.flat_map { [it.revision_id, it.submitted_revision_id] }.compact.uniq - @revisions_by_id.keys
+    @revisions_by_id.merge!(ProcedureRevision.where(id: missing_ids).index_by(&:id))
 
-    templates = pj_template ? { piece_justificative_template_attachment: :blob, notice_explicative_attachment: :blob } : []
-    ActiveRecord::Associations::Preloader.new(
-      records: @revisions.except(*known_ids).values,
-      associations: [:procedure, { revision_type_de_champs: { type_de_champ: templates } }]
-    ).call
+    new_revisions = @revisions_by_id.except(*known_ids).values
+    ActiveRecord::Associations::Preloader.new(records: new_revisions, associations: [:procedure, :revision_type_de_champs]).call
+    preload_type_de_champs(new_revisions, pj_template:)
 
-    @revisions
+    @revisions_by_id
+  end
+
+  # A revision lays out its own types de champ: better here, in one query,
+  # than wherever the first champ of each is read.
+  def preload_type_de_champs(revisions, pj_template:)
+    ProcedureRevision.preload_type_de_champs(revisions)
+    type_de_champs = revisions.flat_map(&:type_de_champs)
+
+    if pj_template && type_de_champs.any?
+      ::ActiveRecord::Associations::Preloader.new(
+        records: type_de_champs,
+        associations: { piece_justificative_template_attachment: :blob, notice_explicative_attachment: :blob }
+      ).call
+    end
   end
 
   def load_dossiers(dossiers, pj_template: false)
-    revisions = revisions_for(dossiers, pj_template:)
+    revisions_by_id = revisions_for(dossiers, pj_template:)
     to_include = @includes_for_champ.dup
 
     blob_include = if pj_template
@@ -116,7 +128,7 @@ class DossierPreloader
     champs_by_dossier = all_champs.group_by(&:dossier_id)
 
     dossiers.each do |dossier|
-      load_dossier(dossier, champs_by_dossier[dossier.id] || [], revisions)
+      load_dossier(dossier, champs_by_dossier[dossier.id] || [], revisions_by_id)
     end
 
     load_etablissements(all_champs)
@@ -136,12 +148,12 @@ class DossierPreloader
     end
   end
 
-  def load_dossier(dossier, champs, revisions)
-    revision = revisions[dossier.revision_id]
+  def load_dossier(dossier, champs, revisions_by_id)
+    revision = revisions_by_id[dossier.revision_id]
     if revision.present?
       dossier.association(:revision).target = revision
     end
-    submitted_revision = revisions[dossier.submitted_revision_id]
+    submitted_revision = revisions_by_id[dossier.submitted_revision_id]
     if submitted_revision.present?
       dossier.association(:submitted_revision).target = submitted_revision
     end

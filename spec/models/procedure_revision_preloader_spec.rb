@@ -49,5 +49,36 @@ describe ProcedureRevisionPreloader do
     def expect_relation_is_preloaded_sorted(original, preloaded, association)
       expect(original.draft_revision.send(association).map(&:id)).to eq(preloaded.draft_revision.send(association).map(&:id))
     end
+
+    describe 'the types de champ laid out before' do
+      it 'follow an edit made elsewhere, the tree read again' do
+        expect(revision.type_de_champs.size).to eq(5)
+        ProcedureRevision.find(revision.id).add_type_de_champ(type_champ: :text, libelle: 'added since')
+
+        expect(subject.type_de_champs.map(&:libelle)).to include('added since')
+        expect(revision).not_to have_changes_to_save
+      end
+
+      it 'stand when nothing changed' do
+        type_de_champ = revision.type_de_champs.first
+
+        expect(subject.type_de_champs.first).to equal(type_de_champ)
+      end
+    end
+  end
+
+  describe '#all' do
+    # the pages listing every revision read their coordinates only
+    it 'leaves the types de champ to be laid out when they are read' do
+      revisions = [procedure.published_revision, procedure.draft_revision]
+      queries = []
+      callback = lambda { |*args| queries << args.last[:sql] if args.last[:sql].include?('FROM "types_de_champ"') }
+
+      ActiveSupport::Notifications.subscribed(callback, 'sql.active_record') { ProcedureRevisionPreloader.new(revisions).all }
+      expect(queries).to be_empty
+
+      ActiveSupport::Notifications.subscribed(callback, 'sql.active_record') { revisions.first.type_de_champs }
+      expect(queries.size).to eq(1)
+    end
   end
 end

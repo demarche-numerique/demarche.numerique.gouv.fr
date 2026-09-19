@@ -102,14 +102,6 @@ module DossierChampsConcern
     [type_de_champ, row_id]
   end
 
-  def public_type_de_champs_all
-    revision.type_de_champs.filter(&:public?)
-  end
-
-  def private_type_de_champs_all
-    revision.type_de_champs.filter(&:private?)
-  end
-
   def champs_for_prefill(stable_ids)
     revision
       .type_de_champs
@@ -333,7 +325,7 @@ module DossierChampsConcern
     reset_champs_cache
 
     with_main_stream do
-      prefill_and_enqueue_fetch_external_data_jobs(buffer_champ_data.filter(&:referentiel?), private_type_de_champs_all)
+      prefill_and_enqueue_fetch_external_data_jobs(buffer_champ_data.filter(&:referentiel?), revision.private_flat_type_de_champs)
     end
 
     history_stream
