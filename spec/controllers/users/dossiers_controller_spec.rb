@@ -16,6 +16,18 @@ describe Users::DossiersController, type: :controller do
     end
   end
 
+  describe 'set_sentry_dossier_from_params' do
+    before do
+      allow(Sentry).to receive(:set_tags)
+      @controller.params[:id] = '42'
+      @controller.send(:set_sentry_dossier_from_params)
+    end
+
+    it 'reads the id of the dossier the controller is about' do
+      expect(Sentry).to have_received(:set_tags).with(dossier: '42')
+    end
+  end
+
   shared_examples_for 'does not redirect nor flash' do
     before { @controller.send(ensure_authorized) }
 

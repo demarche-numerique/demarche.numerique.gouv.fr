@@ -9,7 +9,28 @@ describe ApplicationController, type: :controller do
         .map(&:filter)
 
       expect(before_actions).to include(:set_sentry_user)
+      expect(before_actions).to include(:set_sentry_dossier_from_params)
       expect(before_actions).to include(:redirect_if_untrusted)
+    end
+  end
+
+  describe 'set_sentry_dossier_from_params' do
+    before do
+      allow(Sentry).to receive(:set_tags)
+      @controller.params[:dossier_id] = dossier_id
+      @controller.send(:set_sentry_dossier_from_params)
+    end
+
+    context 'when the params carry a dossier id' do
+      let(:dossier_id) { '42' }
+
+      it { expect(Sentry).to have_received(:set_tags).with(dossier: '42') }
+    end
+
+    context 'when they do not' do
+      let(:dossier_id) { nil }
+
+      it { expect(Sentry).not_to have_received(:set_tags) }
     end
   end
 

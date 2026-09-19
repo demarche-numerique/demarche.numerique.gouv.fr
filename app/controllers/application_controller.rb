@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
   around_action :switch_locale
 
   before_action :set_sentry_user
+  before_action :set_sentry_dossier_from_params
   before_action :redirect_if_untrusted
   before_action :reject, if: -> { ENV.fetch("MAINTENANCE_MODE", 'false') == 'true' }
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -284,6 +285,13 @@ class ApplicationController < ActionController::Base
 
   def set_sentry_dossier(dossier)
     Sentry.set_tags(procedure: dossier.procedure.id, dossier: dossier.id)
+  end
+
+  # Tags the dossier from the raw param, so an error raised before the record
+  # is loaded (find, authorization) carries it too. Controllers whose own
+  # resource is the dossier override it to read their :id.
+  def set_sentry_dossier_from_params
+    Sentry.set_tags(dossier: params[:dossier_id]) if params[:dossier_id].present?
   end
 
   # private method called by rails fwk
