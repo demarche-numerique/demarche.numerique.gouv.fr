@@ -56,7 +56,7 @@ module Administrateurs
     end
 
     def condition_form
-      ConditionForm.new(ineligibilite_rules_params.merge(source_tdcs: draft_revision.type_de_champs_for(scope: :public)))
+      ConditionForm.new(ineligibilite_rules_params.merge(source_tdcs: draft_revision.public_flat_type_de_champs))
     end
 
     def ineligibilite_rules_params

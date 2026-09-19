@@ -60,6 +60,8 @@ describe ProcedureCloneConcern, type: :model do
     def tag_source_pj_with_old_pj
       pj_tdc = procedure.draft_revision.public_root_type_de_champs.find(&:piece_justificative?)
       pj_tdc.update!(options: pj_tdc.options.merge(old_pj: { stable_id: 1234 }))
+      # the clone copies the types de champ of the coordinates, loaded before the update
+      procedure.draft_revision.reload
     end
 
     subject do
@@ -144,6 +146,18 @@ describe ProcedureCloneConcern, type: :model do
 
           expect(tree.public_children).to be_present
           expect(tree.private_children).to be_empty
+        end
+      end
+
+      context 'for another administrateur' do
+        let(:administrateur) { create(:administrateur) }
+
+        it 'leaves the old pj information of the cloned procedure alone' do
+          tag_source_pj_with_old_pj
+          subject
+
+          pj_tdc = procedure.draft_revision.reload.public_root_type_de_champs.find(&:piece_justificative?)
+          expect(pj_tdc.options).to have_key('old_pj')
         end
       end
     end

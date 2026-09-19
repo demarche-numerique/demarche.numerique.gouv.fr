@@ -11,7 +11,7 @@ RSpec.describe TypeDeChamps::RepetitionValidator do
     end
 
     let(:procedure) do
-      build(
+      create(
         :procedure,
         scope => [
           {

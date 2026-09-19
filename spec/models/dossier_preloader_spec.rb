@@ -76,6 +76,24 @@ describe DossierPreloader do
       expect(queries.size).to eq(1)
       expect(sql_touching('') { loaded_dossiers.first.root_champs_public.map(&:type_de_champ) }).to be_empty
     end
+
+    it 'keeps the revision laid out for a batch over the one loaded with the next' do
+      dossiers << create(:dossier, procedure:)
+      preloader = DossierPreloader.new(Dossier.where(id: dossiers))
+      allow(preloader).to receive(:adaptive_batch_size).and_return(1)
+      revisions = []
+
+      queries = sql_touching('FROM "types_de_champ"') do
+        preloader.in_batches(includes: { revision: :revision_type_de_champs }) do |batch|
+          revisions << batch.first.revision
+          batch.first.revision.type_de_champs
+        end
+      end
+
+      expect(revisions.size).to eq(2)
+      expect(revisions.first).to equal(revisions.last)
+      expect(queries.size).to eq(1)
+    end
   end
 
   describe '#in_batches (preloading for PDF/zip export)' do
