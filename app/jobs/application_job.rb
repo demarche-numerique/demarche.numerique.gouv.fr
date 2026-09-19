@@ -11,17 +11,21 @@ class ApplicationJob < ActiveJob::Base
       ActiveStorage::Current.url_options = Rails.application.routes.default_url_options
     end
 
-    arg = job.arguments.first
-
-    case arg
-    when Dossier
-      Sentry.set_tags(dossier: arg.id, procedure: arg.procedure.id)
-    when Procedure
-      Sentry.set_tags(procedure: arg.id)
-    when LLMRuleSuggestion
-      Sentry.set_tags(procedure: arg.procedure_revision.procedure_id)
-    when ActiveStorage::Blob
-      Sentry.set_tags(blob: arg.id)
+    job.arguments.each do |arg|
+      case arg
+      when Dossier
+        Sentry.set_tags(dossier: arg.id, procedure: arg.procedure.id)
+      when Procedure
+        Sentry.set_tags(procedure: arg.id)
+      when LLMRuleSuggestion
+        Sentry.set_tags(procedure: arg.procedure_revision.procedure_id)
+      when ActiveStorage::Blob
+        Sentry.set_tags(blob: arg.id)
+      else
+        # Champ, Commentaire, Avis, Etablissement…: the column is already
+        # loaded, tagging it costs no query.
+        Sentry.set_tags(dossier: arg.dossier_id) if arg.respond_to?(:dossier_id) && arg.dossier_id.present?
+      end
     end
   end
 
