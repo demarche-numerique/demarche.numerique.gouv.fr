@@ -14,6 +14,14 @@ class ProcedureRevision < ApplicationRecord
 
   def public_revision_type_de_champs = revision_type_de_champs.filter { _1.root? && _1.public? }.sort_by(&:position)
   def private_revision_type_de_champs = revision_type_de_champs.filter { _1.root? && _1.private? }.sort_by(&:position)
+
+  # The types de champ, laid out from the tree: each one knows its ancestors
+  # and its children (see TypeDeChamp#lay_out). These two hold the top of the
+  # tree, the content of header sections and repetitions being within them.
+  def public_type_de_champs = type_de_champ_layout.public_type_de_champs
+  def private_type_de_champs = type_de_champ_layout.private_type_de_champs
+  def type_de_champ(stable_id) = type_de_champ_layout.type_de_champ(stable_id)
+
   def type_de_champs = revision_type_de_champs.map(&:type_de_champ)
   def public_root_type_de_champs = public_revision_type_de_champs.map(&:type_de_champ)
   def private_root_type_de_champs = private_revision_type_de_champs.map(&:type_de_champ)
@@ -381,7 +389,8 @@ class ProcedureRevision < ApplicationRecord
   # lock reloads the revision, so it sees the edits made in the meantime rather
   # than the ones a request was sent against. The coordinates are left to be
   # read again, as an edit always left them: the type de champ it hands over is
-  # often updated next, past the ones they hold.
+  # often updated next, past the ones they hold. The types de champ are laid out
+  # again, as the lock reloads the tree.
   def edit_type_de_champs
     raise ArgumentError, "save the revision before editing its types de champ: the lock reloads it" if new_record? || has_changes_to_save?
 
@@ -403,6 +412,25 @@ class ProcedureRevision < ApplicationRecord
     ProcedureRevisionTypeDeChamp.where(id: coordinate.siblings, position: coordinate.position..).unscope(:eager_load).update_all("position = position - 1")
 
     coordinate
+  end
+
+  # The instances laid out are the revision's own, loaded for it: the ones its
+  # coordinates hold may be shared with the coordinates of another revision (a
+  # preload hands one instance to every owner), where they sit elsewhere.
+  #
+  # They are laid out from the stored tree, and again once it is another
+  # object: an edit writes it, a reload reads it again.
+  def type_de_champ_layout
+    raise ArgumentError, "a revision lays out its types de champ once saved: they have no stable id before" if new_record?
+
+    tree = type_de_champ_tree
+    if !@laid_out_type_de_champ_tree.equal?(tree)
+      # the layout first: were it to fail, the tree would say it is there
+      @type_de_champ_layout = TypeDeChampLayout.lay_out(tree)
+      @laid_out_type_de_champ_tree = tree
+    end
+
+    @type_de_champ_layout
   end
 
   def compute_estimated_fill_duration
