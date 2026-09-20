@@ -81,9 +81,8 @@ class ChampData < ApplicationRecord
   before_create :stamp_value_updated_at, unless: -> { user_buffer_stream? || instructeur_buffer_stream? }
 
   def type_de_champ
-    @type_de_champ ||= dossier.revision
-      .type_de_champs
-      .find(-> { raise "Type De Champ #{stable_id} not found in Revision #{dossier.revision_id}" }) { _1.stable_id == stable_id }
+    @type_de_champ ||= dossier.revision.type_de_champ(stable_id) ||
+      raise("Type De Champ #{stable_id} not found in Revision #{dossier.revision_id}")
   end
 
   def type_de_champ=(type_de_champ)
