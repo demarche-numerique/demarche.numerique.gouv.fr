@@ -85,14 +85,16 @@ module DossierChampsConcern
   end
 
   def find_type_de_champ_by_stable_id(stable_id, scope = nil)
+    type_de_champ = revision.type_de_champ(stable_id)
+
     case scope
     when :public
-      public_type_de_champs_all
+      type_de_champ if type_de_champ&.public?
     when :private
-      private_type_de_champs_all
+      type_de_champ if type_de_champ&.private?
     else
-      revision.type_de_champs
-    end.find { _1.stable_id == stable_id.to_i }
+      type_de_champ
+    end
   end
 
   # Same lookup, for callers that cannot do anything useful without a type de champ.
