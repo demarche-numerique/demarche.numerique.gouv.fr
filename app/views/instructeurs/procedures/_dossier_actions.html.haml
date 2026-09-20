@@ -1,3 +1,11 @@
+-# `turbo:` decides how the state-changing buttons of this partial respond (passer_en_instruction,
+-# repasser_en_instruction):
+-# - the lists (procedure table, search) render this partial with `turbo: false`: the submission
+-#   is native and the controller redirects back to the list;
+-# - the dossier page renders it with `turbo: true`: the request negotiates a Turbo Stream and the
+-#   controller renders instructeurs/dossiers/change_state.turbo_stream.erb, which refreshes the
+-#   regions of the page reading the state without discarding the work in progress in the tab.
+-# The en-construction menu (`with_menu`, dossier page only) opts its own forms into Turbo.
 - if hidden_by_administration && hidden_by_expired
   %li
     = button_to repousser_expiration_and_restore_instructeur_dossier_path(procedure_id, dossier_id), method: :post, class: "fr-btn fr-icon-arrow-right-up-line" do

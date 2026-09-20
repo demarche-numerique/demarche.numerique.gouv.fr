@@ -106,9 +106,7 @@
     </div>
 
     <% if profile == "instructeur" %>
-      <div class="fr-m-2v">
-        <%= render Instructeurs::EditDossierButtonComponent.new(dossier:) %>
-      </div>
+      <%= render Instructeurs::EditDossierButtonComponent.new(dossier:) %>
     <% end %>
   </h2>
 

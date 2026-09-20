@@ -14,7 +14,4 @@
   = render partial: 'instructeurs/dossiers/header_bottom', locals: { dossier:, gallery_attachments:, notifications_sticker: }
 
 .fr-container
-  .print-header
-    = dossier.procedure.libelle.truncate_words(10)
-    >
-    = "Dossier n° #{dossier.id} (#{dossier_display_state(dossier, lower: true)})"
+  = render partial: 'instructeurs/dossiers/print_header', locals: { dossier: }
