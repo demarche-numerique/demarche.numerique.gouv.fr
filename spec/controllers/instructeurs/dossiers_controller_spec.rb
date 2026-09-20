@@ -191,19 +191,34 @@ describe Instructeurs::DossiersController, type: :controller do
     let(:dossier) { create(:dossier, :en_construction, procedure: procedure) }
     let(:batch_operation) {}
     let(:notification) {}
+    let(:request_format) { :turbo_stream }
 
     before do
       batch_operation
       notification
       sign_in(instructeur.user)
-      post :passer_en_instruction, params: { procedure_id: procedure.id, dossier_id: dossier.id, statut: 'a-suivre' }, format: :turbo_stream
+      post :passer_en_instruction, params: { procedure_id: procedure.id, dossier_id: dossier.id, statut: 'a-suivre' }, format: request_format
     end
 
-    it do
+    it 'streams the regions of the dossier page reading the state' do
       expect(dossier.reload.state).to eq(Dossier.states.fetch(:en_instruction))
       expect(instructeur.follow?(dossier)).to be true
       expect(response).to have_http_status(:ok)
-      expect(response.body).to include('header-top')
+      expect(response.body).to include('target="header-top"')
+      expect(response.body).to include('target="print-header"')
+      expect(response.body).to include('target="edit-dossier-button"')
+      expect(response.body).to include('target="dossier-infos-generales"')
+      expect(response.body).to include('target="dossier-traitements"')
+    end
+
+    context 'with a native submission from a list' do
+      let(:request_format) { :html }
+
+      it 'redirects back' do
+        expect(dossier.reload.state).to eq(Dossier.states.fetch(:en_instruction))
+        expect(response).to redirect_to(instructeur_procedure_path(procedure))
+        expect(flash.notice).to eq('Dossier passé en instruction.')
+      end
     end
 
     context 'when the dossier has already been put en_instruction' do
@@ -250,18 +265,31 @@ describe Instructeurs::DossiersController, type: :controller do
   describe '#repasser_en_construction' do
     let(:dossier) { create(:dossier, :en_instruction, procedure: procedure) }
     let(:batch_operation) {}
+    let(:request_format) { :turbo_stream }
+
     before do
       batch_operation
       sign_in(instructeur.user)
       post :repasser_en_construction,
         params: { procedure_id: procedure.id, dossier_id: dossier.id, statut: 'a-suivre' },
-        format: :turbo_stream
+        format: request_format
     end
 
     it do
       expect(dossier.reload.state).to eq(Dossier.states.fetch(:en_construction))
       expect(response).to have_http_status(:ok)
-      expect(response.body).to include('header-top')
+      expect(response.body).to include('target="header-top"')
+      expect(response.body).to include('target="edit-dossier-button"')
+    end
+
+    context 'with a native submission from a list' do
+      let(:request_format) { :html }
+
+      it 'redirects back' do
+        expect(dossier.reload.state).to eq(Dossier.states.fetch(:en_construction))
+        expect(response).to redirect_to(instructeur_procedure_path(procedure))
+        expect(flash.notice).to eq('Dossier repassé en construction.')
+      end
     end
 
     context 'when the dossier has already been put en_construction' do
@@ -289,6 +317,7 @@ describe Instructeurs::DossiersController, type: :controller do
     let(:batch_operation) {}
     let(:notification) {}
     let(:current_user) { instructeur.user }
+    let(:request_format) { :turbo_stream }
 
     before do
       sign_in current_user
@@ -296,14 +325,25 @@ describe Instructeurs::DossiersController, type: :controller do
       notification
       post :repasser_en_instruction,
       params: { procedure_id: procedure.id, dossier_id: dossier.id, statut: 'a-suivre' },
-      format: :turbo_stream
+      format: request_format
     end
 
     context 'when the dossier is refuse' do
       it do
         expect(dossier.reload.state).to eq(Dossier.states.fetch(:en_instruction))
         expect(response).to have_http_status(:ok)
-        expect(response.body).to include('header-top')
+        expect(response.body).to include('target="header-top"')
+        expect(response.body).to include('target="print-header"')
+      end
+    end
+
+    context 'with a native submission from a list' do
+      let(:request_format) { :html }
+
+      it 'redirects back' do
+        expect(dossier.reload.state).to eq(Dossier.states.fetch(:en_instruction))
+        expect(response).to redirect_to(instructeur_procedure_path(procedure))
+        expect(flash.notice).to eq("Le dossier #{dossier.id} a été repassé en instruction.")
       end
     end
 
@@ -399,6 +439,30 @@ describe Instructeurs::DossiersController, type: :controller do
         end
       end
 
+      context 'with a native submission' do
+        subject { post :terminer, params: { process_action: "refuser", procedure_id: procedure.id, dossier_id: dossier.id, dossier: { motivation: "Motif du refus" }, statut: 'a-suivre' } }
+
+        it 'redirects back' do
+          subject
+
+          expect(dossier.reload.state).to eq(Dossier.states.fetch(:refuse))
+          expect(response).to redirect_to(instructeur_procedure_path(procedure))
+        end
+      end
+
+      context 'without a motivation' do
+        subject { post :terminer, params: { process_action: "refuser", procedure_id: procedure.id, dossier_id: dossier.id, dossier: { motivation: "" }, statut: 'a-suivre' }, format: :turbo_stream }
+
+        it 'keeps the dossier page and streams the alert' do
+          subject
+
+          expect(dossier.reload.state).to eq(Dossier.states.fetch(:en_instruction))
+          expect(response).to have_http_status(:ok)
+          expect(response.body).to include('« Motivation » doit être rempli')
+          expect(response.body).to include('target="header-top"')
+        end
+      end
+
       context 'refusal with a justificatif' do
         subject { post :terminer, params: { process_action: "refuser", procedure_id: procedure.id, dossier_id: dossier.id, dossier: { justificatif_motivation: fake_justificatif, motivation: "Motif du refus" }, statut: 'a-suivre' }, format: :turbo_stream }
 
@@ -410,7 +474,11 @@ describe Instructeurs::DossiersController, type: :controller do
           expect(dossier.justificatif_motivation).to be_attached
         end
 
-        it { expect(subject.body).to include('header-top') }
+        it 'streams the regions of the dossier page reading the state' do
+          expect(subject.body).to include('target="header-top"')
+          expect(subject.body).to include('target="print-header"')
+          expect(subject.body).to include('target="edit-dossier-button"')
+        end
       end
 
       context 'when the dossier does not have any attestation' do
@@ -739,13 +807,14 @@ describe Instructeurs::DossiersController, type: :controller do
     let(:message) { 'do that' }
     let(:justificatif) { nil }
     let(:reason) { nil }
+    let(:request_format) { :turbo_stream }
 
     subject do
       post :pending_correction, params: {
         procedure_id: procedure.id, dossier_id: dossier.id, statut: 'a-suivre',
         dossier: { motivation: message, justificatif_motivation: justificatif },
         reason:,
-      }, format: :turbo_stream
+      }, format: request_format
     end
 
     before do
@@ -767,10 +836,22 @@ describe Instructeurs::DossiersController, type: :controller do
       it 'pass en_construction and create a pending correction' do
         expect(response).to have_http_status(:ok)
         expect(response.body).to include('en attente de correction')
+        expect(response.body).to include('target="header-top"')
+        expect(response.body).to include('target="edit-dossier-button"')
 
         expect(dossier.reload).to be_en_construction
         expect(dossier).to be_pending_correction
         expect(dossier.corrections.last).to be_dossier_incorrect
+      end
+
+      context 'with a native submission' do
+        let(:request_format) { :html }
+
+        it 'redirects back' do
+          expect(dossier.reload).to be_pending_correction
+          expect(response).to redirect_to(instructeur_procedure_path(procedure))
+          expect(flash.notice).to eq('Dossier marqué comme en attente de correction.')
+        end
       end
 
       it 'create a comment with text body' do
@@ -2138,12 +2219,13 @@ describe Instructeurs::DossiersController, type: :controller do
     let(:procedure) { create(:procedure, :with_labels, instructeurs: [instructeur]) }
     let!(:dossier) { create(:dossier, :en_construction, procedure:) }
     context 'it create dossier labels' do
-      subject { post :dossier_labels, params: { procedure_id: procedure.id, dossier_id: dossier.id, label_id: [Label.first.id], statut: 'a-suivre' }, format: :turbo_stream }
+      subject { post :dossier_labels, params: { procedure_id: procedure.id, dossier_id: dossier.id, label_id: [procedure.labels.first.id], statut: 'a-suivre' }, format: :turbo_stream }
       it 'works' do
         subject
         dossier.reload
 
         expect(dossier.dossier_labels.count).to eq(1)
+        expect(subject.body).to include('target="header-top"')
         expect(subject.body).to include('fr-tag--purple-glycine')
         expect(subject.body).not_to include('Ajouter un label')
       end
@@ -2164,6 +2246,23 @@ describe Instructeurs::DossiersController, type: :controller do
 
         expect(dossier.dossier_labels.count).to eq(0)
         expect(subject.body).to include('Ajouter un label')
+      end
+    end
+
+    context 'with a native submission' do
+      subject { post :dossier_labels, params: { procedure_id: procedure.id, dossier_id: dossier.id, label_id: [procedure.labels.first.id], statut: 'a-suivre' } }
+
+      it 'redirects back' do
+        expect { subject }.to change { dossier.dossier_labels.count }.by(1)
+        expect(response).to redirect_to(instructeur_procedure_path(procedure))
+      end
+    end
+
+    context 'with a single label_id sent as a scalar' do
+      subject { post :dossier_labels, params: { procedure_id: procedure.id, dossier_id: dossier.id, label_id: procedure.labels.first.id, statut: 'a-suivre' }, format: :turbo_stream }
+
+      it 'applies the label' do
+        expect { subject }.to change { dossier.dossier_labels.count }.by(1)
       end
     end
 
