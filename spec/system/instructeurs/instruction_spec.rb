@@ -8,7 +8,7 @@ describe 'Instructing a dossier:', js: true do
   let(:password) { SECURE_PASSWORD }
   let!(:instructeur) { create(:instructeur, password: password) }
 
-  let!(:procedure) { create(:procedure, :published, instructeurs: [instructeur], private_type_de_champs: [{ type: 'checkbox', libelle: 'Yes/No', stable_id: 99 }, { libelle: 'Nom', condition: ds_eq(champ_value(99), constant(true)) }]) }
+  let!(:procedure) { create(:procedure, :published, instructeurs: [instructeur], instructeurs_can_edit_dossiers: true, private_type_de_champs: [{ type: 'checkbox', libelle: 'Yes/No', stable_id: 99 }, { libelle: 'Nom', condition: ds_eq(champ_value(99), constant(true)) }]) }
   let!(:dossier) { create(:dossier, :en_construction, :with_entreprise, procedure: procedure) }
 
   scenario 'A instructeur can signin by email' do
@@ -65,14 +65,41 @@ describe 'Instructing a dossier:', js: true do
     expect(page).to have_current_path(instructeur_dossier_path(procedure, 'suivis', dossier))
     expect(page).to have_selector(".back-btn[href=\"#{instructeur_procedure_path(procedure, statut: 'suivis')}\"]")
 
+    # Changing the state from the dossier page refreshes the regions reading the state
+    # without reloading the page: a message being written, with its attachment (which the
+    # persisted-form cache does not cover), survives it.
+    within('.fr-tabs') { click_on 'Messagerie' }
+    click_on 'Nouveau message'
+    fill_in 'commentaire_body', with: 'Message en cours de rédaction'
+    attach_file('Pièce jointe', Rails.root + 'spec/fixtures/files/piece_justificative_0.pdf')
+    expect(page).to have_text('piece_justificative_0.pdf')
+
     click_on 'Passer en instruction'
 
     expect(page).to have_text('Dossier passé en instruction.')
     expect(page).to have_text('Rendre une décision')
     expect(page).to have_selector('.fr-badge', text: 'en instruction')
+    expect(page).to have_field('commentaire_body', with: 'Message en cours de rédaction')
+    expect(page).to have_text('piece_justificative_0.pdf')
 
     dossier.reload
     expect(dossier.state).to eq(Dossier.states.fetch(:en_instruction))
+
+    # The "Modifier le dossier" button lives outside the header and is refreshed too.
+    within('.fr-tabs') { click_on 'Demande' }
+    expect(find_button('Modifier le dossier', disabled: true)[:title]).to eq('Vous ne pouvez pas modifier ce dossier car il est en instruction')
+
+    find('.en-construction-menu button.dropdown-button').click
+    within('#menu-en-construction') { click_on 'Repasser en construction' }
+
+    expect(page).to have_text('Dossier repassé en construction.')
+    expect(page).to have_selector('.fr-badge', text: 'en construction')
+    expect(page).to have_link('Modifier le dossier')
+
+    click_on 'Passer en instruction'
+
+    expect(page).to have_selector('.fr-badge', text: 'en instruction')
+    expect(page).to have_button('Modifier le dossier', disabled: true)
 
     click_on 'Rendre une décision'
 
@@ -89,6 +116,8 @@ describe 'Instructing a dossier:', js: true do
 
     expect(page).to have_text('Le dossier a bien été traité. L’usager a été informé que son dossier a été accepté.')
     expect(page).to have_button('Déplacer dans “à archiver“')
+    # The "Historique" block of the demande tab is refreshed too
+    expect(page).to have_text('Accepté le')
 
     dossier.reload
     expect(dossier.state).to eq(Dossier.states.fetch(:accepte))
