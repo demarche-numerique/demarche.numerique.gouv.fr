@@ -45,13 +45,9 @@ module ChampConditionalConcern
   end
 
   def parent_hidden?
-    # if there is no row_id, it always has been a root champ
-    return false if !child?
+    return false if !in_repetition?
 
-    # otherwise maybe the champ has been moved outside a repetition
-    parent_tdc = dossier.revision.parent_of(type_de_champ)
-
-    return false if parent_tdc.nil?
+    parent_tdc = type_de_champ.enclosing_repetition
 
     parent = dossier.champs
       .find { it.type_de_champ == parent_tdc }

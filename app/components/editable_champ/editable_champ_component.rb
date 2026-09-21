@@ -29,13 +29,13 @@ class EditableChamp::EditableChampComponent < ApplicationComponent
   end
 
   def number_of_siblings_if_in_repetition
-    return if !@champ.child?
+    return if !@champ.in_repetition?
 
     @number_of_siblings_if_in_repetition ||= repetition_type_de_champ.flat_children.count
   end
 
   def row_number_if_in_repetition
-    return if !@champ.child? || number_of_siblings_if_in_repetition > 1
+    return if !@champ.in_repetition? || number_of_siblings_if_in_repetition > 1
 
     @row_number_if_in_repetition ||= begin
       row_ids = @champ.dossier.repetition_row_ids(repetition_type_de_champ)

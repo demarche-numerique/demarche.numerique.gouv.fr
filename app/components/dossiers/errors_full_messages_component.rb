@@ -34,25 +34,25 @@ class Dossiers::ErrorsFullMessagesComponent < ApplicationComponent
   end
 
   def parent_prefix(model)
-    return "" if !model.child?
+    return "" if !model.in_repetition?
 
     "#{[is_in_fieldset?(model) ? "[#{row_number(model)}]" : nil, model.type_de_champ.enclosing_repetition.libelle].compact.join(" ")} - "
   end
 
   def row_number_prefix(model)
-    return "" if !model.child? || is_in_fieldset?(model)
+    return "" if !model.in_repetition? || is_in_fieldset?(model)
 
     "[#{row_number(model)}] "
   end
 
   def row_number(model)
-    return 1 if !model.child?
+    return 1 if !model.in_repetition?
 
     model.dossier.repetition_row_ids(model.type_de_champ.enclosing_repetition).index(model.row_id) + 1
   end
 
   def is_in_fieldset?(model)
-    return 0 if !model.child?
+    return 0 if !model.in_repetition?
 
     model.type_de_champ.enclosing_repetition.flat_children.size > 1
   end
