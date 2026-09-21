@@ -666,7 +666,7 @@ describe ChampData do
     it "returns the repetition champ, whatever the row" do
       expect(champ.parent).to be_repetition
       expect(champ.parent.row_id).to be_nil
-      expect(champ.parent.public_id).to eq(champ.enclosing_repetition.public_id)
+      expect(champ.parent).to equal(champ.enclosing_repetition)
     end
   end
 

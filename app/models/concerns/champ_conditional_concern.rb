@@ -47,11 +47,6 @@ module ChampConditionalConcern
   def parent_hidden?
     return false if !in_repetition?
 
-    parent_tdc = type_de_champ.enclosing_repetition
-
-    parent = dossier.champs
-      .find { it.type_de_champ == parent_tdc }
-
-    !parent.visible?
+    !enclosing_repetition.visible?
   end
 end
