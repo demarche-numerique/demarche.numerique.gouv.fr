@@ -14,7 +14,7 @@
 
 .fr-container
   - previous_revision = nil
-  - @procedure.revisions.each do |revision|
+  - @revisions.each do |revision|
     - if previous_revision.present? && !revision.draft?
       - dossiers = revision.dossiers.visible_by_administration
       - dossiers_en_construction_count = dossiers.state_en_construction.count

@@ -452,6 +452,35 @@ describe RevisionComparisonConcern do
         end
       end
 
+      context 'when a type de champ is moved within a repetition' do
+        let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text }, { type: :text }, { type: :repetition, children: [{ type: :text, libelle: 'first' }, { type: :text, libelle: 'second' }] }]) }
+        let(:first_child) { new_draft.public_root_type_de_champs.last.children.first }
+
+        before { new_draft.move_type_de_champ(first_child.stable_id, 1) }
+
+        it 'counts positions among the content of the repetition' do
+          is_expected.to contain_exactly(
+            a_hash_including(op: :move, label: 'second', from: 1, to: 0),
+            a_hash_including(op: :move, label: 'first', from: 0, to: 1)
+          )
+        end
+      end
+
+      context 'when a type de champ is moved out of a header section' do
+        let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text, libelle: 'before' }, { type: :header_section, libelle: 'section' }, { type: :text, libelle: 'within' }]) }
+        let(:within) { new_draft.public_root_type_de_champs.last }
+
+        before { new_draft.move_type_de_champ(within.stable_id, 0) }
+
+        it 'counts positions across header sections' do
+          is_expected.to contain_exactly(
+            a_hash_including(op: :move, label: 'within', from: 2, to: 0),
+            a_hash_including(op: :move, label: 'before', from: 0, to: 1),
+            a_hash_including(op: :move, label: 'section', from: 1, to: 2)
+          )
+        end
+      end
+
       context 'when a type de champ is removed' do
         let(:procedure) { create(:procedure, :with_type_de_champ) }
 
