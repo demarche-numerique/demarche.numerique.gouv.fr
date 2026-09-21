@@ -32,6 +32,18 @@ module DossierChampsConcern
     end
   end
 
+  # The champs laid out as the types de champ of the revision are: these two
+  # hold the top of the form, the rest being within the header sections
+  # (HeaderSectionChamp#children) and the rows of the repetitions
+  # (RepetitionRow#children).
+  def public_champs
+    @public_champs ||= revision.public_type_de_champs.map { project_champ(it) }
+  end
+
+  def private_champs
+    @private_champs ||= revision.private_type_de_champs.map { project_champ(it) }
+  end
+
   def root_champs_public
     @root_champs_public ||= revision.public_root_type_de_champs.map { project_champ(_1) }
   end
@@ -77,10 +89,8 @@ module DossierChampsConcern
     row_ids = repetition_row_ids(type_de_champ)
     return [] if row_ids.empty?
 
-    children_type_de_champs = revision.children_of(type_de_champ)
-
     row_ids.map.with_index(1) do |row_id, index|
-      RepetitionRow.new(id: row_id, index:, dossier: self, type_de_champ:, children_type_de_champs:)
+      RepetitionRow.new(id: row_id, index:, dossier: self, type_de_champ:)
     end
   end
 
@@ -473,6 +483,8 @@ module DossierChampsConcern
     @champ_data_by_public_id = nil
     @discarded_champ_data_by_public_id = nil
     @champs_by_row_id = nil
+    @public_champs = nil
+    @private_champs = nil
     @root_champs_public = nil
     @root_champs_private = nil
     @flat_champs_public = nil
