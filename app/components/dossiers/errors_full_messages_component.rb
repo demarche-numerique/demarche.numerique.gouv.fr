@@ -36,7 +36,7 @@ class Dossiers::ErrorsFullMessagesComponent < ApplicationComponent
   def parent_prefix(model)
     return "" if !model.child?
 
-    "#{[is_in_fieldset?(model) ? "[#{row_number(model)}]" : nil, model.parent.libelle].compact.join(" ")} - "
+    "#{[is_in_fieldset?(model) ? "[#{row_number(model)}]" : nil, model.type_de_champ.enclosing_repetition.libelle].compact.join(" ")} - "
   end
 
   def row_number_prefix(model)
@@ -48,13 +48,13 @@ class Dossiers::ErrorsFullMessagesComponent < ApplicationComponent
   def row_number(model)
     return 1 if !model.child?
 
-    model.dossier.repetition_row_ids(model.parent).index(model.row_id) + 1
+    model.dossier.repetition_row_ids(model.type_de_champ.enclosing_repetition).index(model.row_id) + 1
   end
 
   def is_in_fieldset?(model)
     return 0 if !model.child?
 
-    model.dossier.revision.children_of(model.parent).size > 1
+    model.type_de_champ.enclosing_repetition.flat_children.size > 1
   end
 
   def render?

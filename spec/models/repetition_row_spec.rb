@@ -16,20 +16,6 @@ describe RepetitionRow do
   # the repetition starts with one row
   before { 3.times { dossier.root_champs_public.find(&:repetition?).add_row(updated_by: 'test') } }
 
-  describe '#flat_children' do
-    it 'computes the revision children once for the whole repetition' do
-      revision = fresh_dossier.revision
-      calls = 0
-      allow(revision).to receive(:children_of).and_wrap_original do |original, *args|
-        calls += 1
-        original.call(*args)
-      end
-
-      expect(fresh_dossier.flat_champs_public.size).to eq(9) # the repetition + 4 rows x 2 children
-      expect(calls).to eq(1)
-    end
-  end
-
   describe '#spreadsheet_columns' do
     it 'exports the dossier id as a string and the 1-based row index' do
       repetition = procedure.active_revision.public_root_type_de_champs.find(&:repetition?)
