@@ -37,7 +37,7 @@ class APITokenParams
       targets: token.allowed_procedure_ids,
       access: token.write_access? ? 'read_write' : 'read',
       networkFiltering: token.authorized_networks.blank? ? 'autoAssign' : 'customNetworks',
-      networks: token.authorized_networks.presence&.map { |ip| "#{ip}/#{ip.prefix}" }&.join(' ')
+      networks: token.authorized_networks_for_ui.gsub(', ', ' ').presence
     ))
   end
 end
