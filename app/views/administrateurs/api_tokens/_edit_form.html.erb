@@ -85,7 +85,7 @@
         <label class="fr-label" for="procedure_to_add"><%= t('.add_authorized_procedures') %></label>
         <%= form_with url: admin_api_token_path(api_token), method: :patch do |f| -%>
           <div class="flex">
-            <%= f.select :value, options_for_select(libelle_id_procedures), { include_blank: true }, { class: 'fr-select width-33', name: 'procedure_to_add' } %>
+            <%= f.select :value, options_for_select(libelle_id_procedures), { include_blank: true }, { id: 'procedure_to_add', class: 'fr-select width-33', name: 'procedure_to_add' } %>
             <button class="fr-btn fr-btn--primary fr-ml-1w"><%= t('.add_button') %></button>
           </div>
         <%- end -%>
