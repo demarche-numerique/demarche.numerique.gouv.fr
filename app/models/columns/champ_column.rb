@@ -73,9 +73,16 @@ class Columns::ChampColumn < Column
   def filtered_ids_for_values(dossiers, search_terms)
     return dossiers.ids unless search_terms.any?(&:present?)
 
-    return dossiers.without_type_de_champ(stable_id).ids if should_exclude_empty_values?(search_terms)
-
     relation = dossiers.with_type_de_champ(stable_id)
+
+    empty_values = empty_values_for(search_terms)
+
+    if empty_values
+      # a champ the usager never touched has no row at all, while one they left
+      # empty has a row holding 'false' or NULL: both are "non coché" / "non rempli"
+      return dossiers.without_type_de_champ(stable_id).ids +
+        relation.where(champs: { column => empty_values }).ids
+    end
 
     if type == :enum
       relation.where(champs: { column => search_terms }).ids
@@ -89,11 +96,13 @@ class Columns::ChampColumn < Column
     end
   end
 
-  def should_exclude_empty_values?(search_terms)
-    return true if tdc_type == "yes_no" && search_terms == [Column::NOT_FILLED_VALUE]
-    return true if tdc_type == "checkbox" && search_terms == ["false"]
+  # The champ values that count as empty for these search terms, or nil when the
+  # search is a regular one on the champ value.
+  def empty_values_for(search_terms)
+    return [nil] if tdc_type == "yes_no" && search_terms == [Column::NOT_FILLED_VALUE]
+    return [nil, Champs::BooleanChamp::FALSE_VALUE] if tdc_type == "checkbox" && search_terms == ["false"]
 
-    false
+    nil
   end
 
   def champ_column? = true
