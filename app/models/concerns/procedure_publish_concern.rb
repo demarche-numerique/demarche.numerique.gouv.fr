@@ -97,7 +97,7 @@ module ProcedurePublishConcern
 
       move_new_children_to_new_parent_coordinate(new_revision)
 
-      new_revision
+      new_revision.store_type_de_champ_tree
     end
   end
 

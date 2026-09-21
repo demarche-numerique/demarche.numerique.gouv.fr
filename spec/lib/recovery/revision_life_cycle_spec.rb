@@ -25,8 +25,6 @@ describe 'Recovery::Revision::LifeCycle' do
       before do
         dossier
         procedure.published_revision.remove_type_de_champ(yes_no_type_de_champ.stable_id)
-        # the tree stored on publication would still lay it out
-        procedure.published_revision.update_columns(type_de_champ_tree: nil)
       end
 
       it do
@@ -39,6 +37,7 @@ describe 'Recovery::Revision::LifeCycle' do
         imported_dossier = Dossier.find(dossier.id)
         expect { DossierPreloader.load_one(imported_dossier) }.not_to raise_error
         expect(imported_dossier.root_champs_public.size).to eq(2)
+        expect(procedure.published_revision.reload.read_attribute(:type_de_champ_tree).public_children.size).to eq(2)
       end
     end
 

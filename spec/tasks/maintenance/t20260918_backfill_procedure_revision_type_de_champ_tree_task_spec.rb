@@ -38,6 +38,8 @@ module Maintenance
       stale_procedure = Procedure.find(procedure.id)
       procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'nouveau')
       procedure.publish_revision!(procedure.administrateurs.first)
+      # un brouillon d’avant l’enregistrement de l’arbre à chaque édition
+      procedure.draft_revision.update_columns(type_de_champ_tree: nil)
 
       described_class.new.process(stale_procedure)
 

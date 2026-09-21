@@ -115,6 +115,42 @@ describe ProcedureCloneConcern, type: :model do
       expect(subject.duree_conservation_dossiers_dans_ds).to eq(Expired::DEFAULT_DOSSIER_RENTENTION_IN_MONTH)
     end
 
+    context 'when the draft has its type de champ tree stored' do
+      before { procedure.draft_revision.store_type_de_champ_tree }
+
+      it 'stores the tree of the copies, not the one of the draft' do
+        source_tree = procedure.draft_revision.type_de_champ_tree
+        tree = subject.draft_revision.reload.read_attribute(:type_de_champ_tree)
+
+        expect(tree).to eq(TypeDeChampTree.from_coordinates(subject.draft_revision.revision_type_de_champs))
+        expect(tree.type_de_champ_ids.size).to eq(source_tree.type_de_champ_ids.size)
+        expect(tree.type_de_champ_ids & source_tree.type_de_champ_ids).to be_empty
+      end
+
+      context 'without the annotations' do
+        let(:options) { super().merge(clone_annotations: false) }
+
+        it 'leaves them out of the tree' do
+          tree = subject.draft_revision.reload.read_attribute(:type_de_champ_tree)
+
+          expect(tree.public_children).to be_present
+          expect(tree.private_children).to be_empty
+        end
+      end
+
+      context 'for another administrateur' do
+        let(:administrateur) { create(:administrateur) }
+
+        it 'leaves the old pj information of the cloned procedure alone' do
+          tag_source_pj_with_old_pj
+          subject
+
+          pj_tdc = procedure.draft_revision.reload.public_root_type_de_champs.find(&:piece_justificative?)
+          expect(pj_tdc.options).to have_key('old_pj')
+        end
+      end
+    end
+
     it 'should duplicate specific objects with different id' do
       expect(subject.id).not_to eq(procedure.id)
 

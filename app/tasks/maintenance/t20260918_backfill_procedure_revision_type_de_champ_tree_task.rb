@@ -4,7 +4,7 @@ module Maintenance
   class T20260918BackfillProcedureRevisionTypeDeChampTreeTask < MaintenanceTasks::Task
     # Documentation: cette tâche calcule et enregistre l’arbre des types de champ
     # des révisions publiées avant que la publication ne s’en charge. Les
-    # révisions en brouillon n’en ont pas : leur arbre change à chaque édition.
+    # révisions en brouillon enregistrent le leur à chaque édition.
 
     # Deliberately manual: it walks every procedure, and is to be launched once
     # the publication stores the trees. It must not fire on a deploy.
@@ -21,8 +21,9 @@ module Maintenance
         coordinates = revision.revision_type_de_champs.to_a
         type_de_champ_tree = TypeDeChampTree.from_coordinates(coordinates)
 
-        # A draft must never store a tree, and the publication stores its own:
-        # both are checked again by the statement which writes.
+        # A draft stores its tree with its edits, under its lock, and the
+        # publication stores its own: both are checked again by the statement
+        # which writes.
         next if backfillable_revisions(procedure).where(id: revision.id).update_all(type_de_champ_tree:) == 0
 
         # legacy types de champ without a type, children of a type de champ

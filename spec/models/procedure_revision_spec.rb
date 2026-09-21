@@ -760,7 +760,8 @@ describe ProcedureRevision do
             .revision_type_de_champs
             .where(type_de_champ: first_child)
             .update(type_de_champ: new_child)
-          new_draft.reload
+          # coordinates written by hand go around the edits of the draft
+          new_draft.store_type_de_champ_tree
         end
 
         it 'returns the children regarding the revision' do
