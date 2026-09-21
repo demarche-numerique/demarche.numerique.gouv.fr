@@ -305,11 +305,11 @@ describe Administrateurs::APITokensController, type: :controller do
         token.update!(allowed_procedure_ids: [procedure1.id])
       end
 
-      it 'restores full access instead of persisting an empty list' do
+      it 'persists an empty list instead of silently restoring full access' do
         subject
         token.reload
-        expect(token.allowed_procedure_ids).to be_nil
-        expect(token.full_access?).to be true
+        expect(token.allowed_procedure_ids).to eq([])
+        expect(token.full_access?).to be false
       end
     end
   end

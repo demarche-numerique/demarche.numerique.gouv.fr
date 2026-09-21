@@ -26,6 +26,9 @@ fr:
         cancel: Retour
         continue: Continuer
       edit:
+        back_link: Revenir
+        title: 'Modification du jeton « %{name} »'
+      edit_form:
         title: 'Modification du jeton « %{name} »'
         rename_button: Renommer
         enter_at_least_one_network: 'Entrez au moins 1 réseau autorisé'
@@ -40,7 +43,6 @@ fr:
         add_authorized_procedures: 'Ajouter des démarches autorisées'
         add_button: Ajouter
         delete_button: Supprimer
-        back_link: Revenir
       securite:
         title: Sécurité du jeton « %{name} »
         dashboard: Tableau de bord

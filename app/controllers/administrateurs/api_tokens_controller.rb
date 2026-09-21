@@ -92,10 +92,11 @@ module Administrateurs
     def remove_procedure
       procedure_id = params[:procedure_id].to_i
       remaining_ids = (@api_token.allowed_procedure_ids || @api_token.procedure_ids) - [procedure_id]
-      @api_token.allowed_procedure_ids = remaining_ids.presence
+      @api_token.allowed_procedure_ids = remaining_ids
       @api_token.save!
 
-      render turbo_stream: turbo_stream.remove("authorized_procedure_#{procedure_id}")
+      @libelle_id_procedures = libelle_id_procedures
+      render turbo_stream: turbo_stream.update("tokenUpdate", partial: "administrateurs/api_tokens/edit_form", locals: { api_token: @api_token, libelle_id_procedures: @libelle_id_procedures, invalid_network_message: nil })
     end
 
     def destroy

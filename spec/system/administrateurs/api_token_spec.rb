@@ -193,10 +193,11 @@ describe 'As an administrateur I create an API token', js: true do
     click_on 'Supprimer'
 
     expect(page).to have_no_css("li#authorized_procedure_#{procedure.id}")
-    expect(token.reload.allowed_procedure_ids).to be_nil
+    expect(token.reload.allowed_procedure_ids).to eq([])
 
-    visit edit_admin_api_token_path(token)
+    click_on "Restaurer lʼaccès à toutes les démarches"
 
     expect(page).to have_content('accès à toutes vos démarches')
+    expect(token.reload.allowed_procedure_ids).to be_nil
   end
 end

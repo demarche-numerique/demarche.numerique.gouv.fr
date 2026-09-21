@@ -26,6 +26,9 @@ en:
         cancel: back
         continue: continue
       edit:
+        back_link: Back
+        title: 'Edit API token « %{name} »'
+      edit_form:
         title: 'Edit API token « %{name} »'
         rename_button: Rename
         enter_at_least_one_network: 'Enter at least 1 authorized network'
@@ -40,7 +43,6 @@ en:
         add_authorized_procedures: 'Add authorized procedures'
         add_button: Add
         delete_button: Delete
-        back_link: Back
       securite:
         title: Security of the token « %{name} »
         dashboard: Dashboard
