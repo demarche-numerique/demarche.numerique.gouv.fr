@@ -6,7 +6,9 @@
     [@api_token_params.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token')]] } %>
 
 <div class="fr-container fr-mt-2w" data-turbo="true">
-  <h1><%= @api_token_params.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token') %></h1>
+  <h1>
+    <%= @api_token_params.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token') %>
+  </h1>
 
   <%= form_with url: securite_admin_api_tokens_path,
   method: :get, id: 'api-token-autorisation-form',
@@ -44,8 +46,7 @@
               name: 'targets[]',
               tagsBelow: true,
               selectedKeys: @api_token_params.targets,
-              'aria-label': t('.select_procedures')
-            %>
+              'aria-label': t('.select_procedures') %>
           </react-fragment>
         </div>
       </div>
@@ -70,11 +71,11 @@
 
     <%= render APITokens::HiddenFieldsComponent.new(fields: @api_token_params.hidden_fields_for(%i[target targets access])) %>
 
-
     <ul class="fr-btns-group fr-btns-group--inline">
       <li>
         <%= link_to t('.cancel'), nom_admin_api_tokens_path(@api_token_params.to_h), class: "fr-btn fr-btn--secondary" %>
       </li>
+
       <li>
         <%= f.button type: :submit,
           class: "fr-btn fr-btn--primary",
