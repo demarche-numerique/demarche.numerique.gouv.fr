@@ -78,8 +78,8 @@ class Columns::ChampColumn < Column
     empty_values = empty_values_for(search_terms)
 
     if empty_values
-      # a champ the usager never touched has no row at all, while one they left
-      # empty has a row holding 'false' or NULL: both are "non coché" / "non rempli"
+      # a champ the usager never touched has a row holding NULL, or no row at all
+      # on a dossier predating its type de champ: both are empty
       return dossiers.without_type_de_champ(stable_id).ids +
         relation.where(champs: { column => empty_values }).ids
     end
@@ -101,6 +101,7 @@ class Columns::ChampColumn < Column
   def empty_values_for(search_terms)
     # the columns offering a "non rempli" option are listed in ColumnFilterValueComponent
     return [nil] if tdc_type.in?(["yes_no", "civilite"]) && search_terms == [Column::NOT_FILLED_VALUE]
+    # a checkbox left alone holds NULL; 'false' only comes from a prefill or the API
     return [nil, Champs::BooleanChamp::FALSE_VALUE] if tdc_type == "checkbox" && search_terms == ["false"]
 
     nil

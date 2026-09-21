@@ -285,7 +285,7 @@ describe Columns::ChampColumn do
 
       before do
         dossier_with_checked.champ_data.first.update!(value: "true")
-        # the form posts 'false' for an unchecked box, so the champ exists
+        # 'false' reaches the champ through a prefill or the API, never the form
         dossier_unchecked.champ_data.first.update!(value: "false")
         dossier_with_empty_value.champ_data.first.update!(value: nil)
         dossier_not_filled.champ_data.first.destroy!
