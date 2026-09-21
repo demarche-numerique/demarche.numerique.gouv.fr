@@ -16,15 +16,24 @@ describe ProConnectController, type: :controller do
     let(:state) { 'state' }
     let(:nonce) { 'nonce' }
 
-    before do
-      expect(ProConnectService).to receive(:authorization_uri).and_return([uri, state, nonce])
-      get :login
-    end
+    before { expect(ProConnectService).to receive(:authorization_uri).and_return([uri, state, nonce]) }
 
     it do
+      get :login
+
       expect(state_cookie).to eq(state)
       expect(nonce_cookie).to eq(nonce)
       expect(response).to redirect_to(uri)
+    end
+
+    context 'when a forced MFA round trip was left behind' do
+      before { cookies.encrypted[ProConnectController::MFA_FORCED_COOKIE_NAME] = 'someone@example.com' }
+
+      it 'clears its marker so the next callback is not read as a failure' do
+        get :login
+
+        expect(cookies.encrypted[ProConnectController::MFA_FORCED_COOKIE_NAME]).to be_nil
+      end
     end
   end
 
@@ -181,22 +190,100 @@ describe ProConnectController, type: :controller do
               expect(instructeur.user.pro_connect_informations.first.acr).to eq('eidas1-mfa')
             end
           end
+
+          context 'and ProConnect asserts the MFA with the acr claim only' do
+            let(:amr) { ['pwd'] }
+            let(:acr) { 'eidas1-mfa' }
+
+            it 'records it as a proof in the ProConnect session' do
+              expect(controller).to receive(:sign_in)
+
+              subject
+
+              cookie = JSON.parse(cookies.encrypted[ProConnectSessionConcern::SESSION_INFO_COOKIE_NAME])
+              expect(cookie).to include('mfa' => true)
+            end
+          end
         end
 
-        context 'and the user is an administrateur who must use ProConnect' do
+        context 'and the user is an administrateur subject to ProConnect' do
           let(:administrateur) { administrateurs.default }
           let(:email) { administrateur.user.email }
 
           before do
             allow(ProConnectService).to receive(:enabled?).and_return(true)
-            Flipper.enable(:pro_connect_required_for_all_administrateurs)
+            administrateur.update!(pro_connect_required_at: Time.zone.now)
           end
 
-          it 'signs in the administrateur' do
-            subject
+          context 'without MFA' do
+            let(:uri) { 'https://mfa.proconnect.gouv.fr' }
 
-            expect(controller.current_user).to eq(administrateur.user)
-            expect(response).to redirect_to(root_path)
+            it 'sends it back to ProConnect with the MFA enforced' do
+              expect(ProConnectService).to receive(:authorization_uri)
+                .with(force_mfa: true, login_hint: email)
+                .and_return([uri, original_state, nonce])
+
+              subject
+
+              expect(response).to redirect_to(uri)
+              expect(controller.current_user).to be_nil
+              expect(cookies.encrypted[ProConnectController::MFA_FORCED_COOKIE_NAME]).to eq(email)
+            end
+          end
+
+          context 'without MFA, after the MFA was enforced for another account' do
+            let(:uri) { 'https://mfa.proconnect.gouv.fr' }
+
+            before { cookies.encrypted[ProConnectController::MFA_FORCED_COOKIE_NAME] = 'someone.else@example.com' }
+
+            it 'enforces the MFA for this one too' do
+              expect(ProConnectService).to receive(:authorization_uri)
+                .with(force_mfa: true, login_hint: email)
+                .and_return([uri, original_state, nonce])
+
+              subject
+
+              expect(response).to redirect_to(uri)
+            end
+          end
+
+          context 'without MFA, after the MFA was already enforced once' do
+            before { cookies.encrypted[ProConnectController::MFA_FORCED_COOKIE_NAME] = email }
+
+            it 'gives up with a message instead of looping' do
+              expect(ProConnectService).not_to receive(:authorization_uri)
+
+              subject
+
+              expect(controller.current_user).to be_nil
+              expect(response).to redirect_to(pro_connect_path)
+              expect(flash.alert).to eq(I18n.t('errors.messages.pro_connect.mfa_failed'))
+            end
+          end
+
+          context 'with MFA, after it was enforced' do
+            let(:acr) { 'eidas1-mfa' }
+
+            before { cookies.encrypted[ProConnectController::MFA_FORCED_COOKIE_NAME] = email }
+
+            it 'signs it in instead of reporting a failed MFA' do
+              subject
+
+              expect(controller.current_user).to eq(administrateur.user)
+              expect(cookies.encrypted[ProConnectController::MFA_FORCED_COOKIE_NAME]).to be_nil
+            end
+          end
+
+          context 'but exempted' do
+            before { Flipper.enable_actor(:administrateur_pro_connect_exempted, administrateur.user) }
+
+            it 'signs it in without any MFA' do
+              expect(ProConnectService).not_to receive(:authorization_uri)
+
+              subject
+
+              expect(controller.current_user).to eq(administrateur.user)
+            end
           end
         end
       end
