@@ -17,6 +17,7 @@ module Recovery
             ProcedureRevisionTypeDeChamp.upsert(coordinate.attributes)
             TypeDeChamp.upsert(coordinate.type_de_champ.attributes.except('type_champs'))
           end
+          ProcedureRevision.find_by(id: revision.id)&.store_type_de_champ_tree
         end
       end
     end

@@ -150,14 +150,14 @@ describe ProcedurePublishConcern do
       expect(procedure.draft_revision.administrateur).to be_nil
     end
 
-    it 'stores the type de champ tree on the published revision only' do
+    it 'stores the type de champ tree on the published revision and on the new draft' do
       subject
 
       published_revision = procedure.published_revision.reload
       type_de_champ = published_revision.public_root_type_de_champs.first
       expect(published_revision.read_attribute(:type_de_champ_tree).public_children)
         .to eq([TypeDeChampNode.new(stable_id: type_de_champ.stable_id, type_de_champ_id: type_de_champ.id)])
-      expect(procedure.draft_revision.reload.read_attribute(:type_de_champ_tree)).to be_nil
+      expect(procedure.draft_revision.reload.read_attribute(:type_de_champ_tree)).to eq(published_revision.type_de_champ_tree)
     end
 
     it 'stores the tree the database holds, whatever the draft loaded before' do
@@ -253,14 +253,15 @@ describe ProcedurePublishConcern do
         expect(procedure.draft_revision.dossier_submitted_message).to eq(previous_dossier_submitted_message)
       end
 
-      it "does not hand the published type de champ tree over to the new draft" do
+      it "stores the type de champ tree of the new draft, built from its coordinates" do
         procedure = procedures.individual
         procedure.draft_revision.add_type_de_champ(tdc_attributes)
 
         procedure.reset_draft_revision!
 
-        expect(procedure.published_revision.read_attribute(:type_de_champ_tree)).to be_present
-        expect(procedure.draft_revision.reload.read_attribute(:type_de_champ_tree)).to be_nil
+        draft_revision = procedure.draft_revision.reload
+        expect(draft_revision.read_attribute(:type_de_champ_tree)).to eq(procedure.published_revision.type_de_champ_tree)
+        expect(draft_revision.read_attribute(:type_de_champ_tree)).to eq(TypeDeChampTree.from_coordinates(draft_revision.revision_type_de_champs))
       end
 
       it "should erase orphan tdc" do

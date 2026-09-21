@@ -123,6 +123,31 @@ describe ProcedureCloneConcern, type: :model do
       expect(subject.duree_conservation_dossiers_dans_ds).to eq(Expired::DEFAULT_DOSSIER_RENTENTION_IN_MONTH)
     end
 
+    context 'when the draft has its type de champ tree stored' do
+      before { procedure.draft_revision.store_type_de_champ_tree }
+
+      it 'stores the tree of the copies, not the one of the draft' do
+        source_tree = procedure.draft_revision.type_de_champ_tree
+        tree = subject.draft_revision.reload.read_attribute(:type_de_champ_tree)
+
+        expect(tree).to eq(TypeDeChampTree.from_coordinates(subject.draft_revision.revision_type_de_champs))
+        type_de_champ_ids, source_type_de_champ_ids = [tree, source_tree].map { it.nodes.map(&:type_de_champ_id) }
+        expect(type_de_champ_ids.size).to eq(source_type_de_champ_ids.size)
+        expect(type_de_champ_ids & source_type_de_champ_ids).to be_empty
+      end
+
+      context 'without the annotations' do
+        let(:options) { super().merge(clone_annotations: false) }
+
+        it 'leaves them out of the tree' do
+          tree = subject.draft_revision.reload.read_attribute(:type_de_champ_tree)
+
+          expect(tree.public_children).to be_present
+          expect(tree.private_children).to be_empty
+        end
+      end
+    end
+
     it 'should duplicate specific objects with different id' do
       expect(subject.id).not_to eq(procedure.id)
 

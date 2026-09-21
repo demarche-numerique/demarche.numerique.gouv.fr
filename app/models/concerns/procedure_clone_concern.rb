@@ -95,7 +95,8 @@ module ProcedureCloneConcern
   def clone(options: nil, admin:)
     options = default_options.merge(options || {})
 
-    procedure = self.deep_clone(include: cloneable_associations(options, admin)) do |original, kopy|
+    # the tree of the draft names the types de champ of this procedure, not their copies
+    procedure = self.deep_clone(include: cloneable_associations(options, admin), except: [{ draft_revision: [:type_de_champ_tree] }]) do |original, kopy|
       ClonePiecesJustificativesService.clone_attachments(original, kopy)
       if original.is_a?(TypeDeChamp) && original.type_champ == 'referentiel'
         CloneReferentielService.clone_referentiel(original, kopy, same_admin?(admin))
@@ -123,6 +124,7 @@ module ProcedureCloneConcern
 
     procedure.draft_revision.revision_type_de_champs.public_only.each(&:destroy) if !options[:clone_champs]
     procedure.draft_revision.revision_type_de_champs.private_only.each(&:destroy) if !options[:clone_annotations]
+    procedure.draft_revision.store_type_de_champ_tree
     procedure.labels = [] if !options[:clone_labels]
 
     if !same_admin?(admin) || options[:cloned_from_library]
