@@ -117,11 +117,18 @@ class ProcedureRevision < ApplicationRecord
 
   attribute :type_de_champ_tree, :type_de_champ_tree
 
-  # Stored once and for all on publication. A draft changes with every edit, so
-  # its tree is built from its coordinates, as is the one of a published
-  # revision not backfilled yet.
+  # Stored with every edit of a draft, and once and for all on publication. A
+  # revision not backfilled yet builds it from its coordinates.
   def type_de_champ_tree
     super || TypeDeChampTree.from_coordinates(revision_type_de_champs)
+  end
+
+  # The tree as the coordinates have it by now: they remain what the editor
+  # writes, the tree following them, until it edits the tree itself.
+  def store_type_de_champ_tree
+    with_lock { rebuild_type_de_champ_tree }
+
+    self
   end
 
   def add_type_de_champ(params)
@@ -142,15 +149,13 @@ class ProcedureRevision < ApplicationRecord
       siblings = siblings_for(type_de_champ:, parent_coordinate:)
       position = next_position_for(after_coordinate:)
 
-      transaction do
+      edit_type_de_champs do
         # moving all the impacted tdc down
         ProcedureRevisionTypeDeChamp.where(id: siblings, position: position..).unscope(:eager_load).update_all("position = position + 1")
 
         # insertion of the new tdc
         revision_type_de_champs.create!(type_de_champ:, parent_id:, position:)
       end
-
-      reset_type_de_champs
     end
 
     type_de_champ
@@ -172,11 +177,20 @@ class ProcedureRevision < ApplicationRecord
     end
   end
 
+  # What a type de champ is lays it out as much as where it is: a header
+  # section holds what follows it, down to its level, and a repetition what is
+  # within it.
+  def update_type_de_champ(type_de_champ, params)
+    type_de_champ.update(params).tap do |updated|
+      store_type_de_champ_tree if updated && (type_de_champ.saved_change_to_type_champ? || type_de_champ.saved_change_to_options?)
+    end
+  end
+
   def move_type_de_champ(stable_id, position)
     coordinate, _ = coordinate_and_tdc(stable_id)
     siblings = coordinate.siblings
 
-    transaction do
+    edit_type_de_champs do
       if position > coordinate.position
         ProcedureRevisionTypeDeChamp.where(id: siblings, position: coordinate.position..position).unscope(:eager_load).update_all("position = position - 1")
       else
@@ -185,7 +199,6 @@ class ProcedureRevision < ApplicationRecord
       coordinate.update_column(:position, position)
     end
 
-    reset_type_de_champs
     coordinate.reload
     coordinate
   end
@@ -194,7 +207,7 @@ class ProcedureRevision < ApplicationRecord
     coordinate, _ = coordinate_and_tdc(stable_id)
     siblings = coordinate.siblings
 
-    transaction do
+    edit_type_de_champs do
       if position > coordinate.position
         ProcedureRevisionTypeDeChamp.where(id: siblings, position: coordinate.position..position).unscope(:eager_load).update_all("position = position - 1")
         coordinate.update_column(:position, position)
@@ -204,7 +217,6 @@ class ProcedureRevision < ApplicationRecord
       end
     end
 
-    reset_type_de_champs
     coordinate.reload
     coordinate
   end
@@ -219,7 +231,7 @@ class ProcedureRevision < ApplicationRecord
     # but a repetition, which are removed here before a publication
     children = coordinate.type_de_champs
 
-    transaction do
+    edit_type_de_champs do
       coordinate.destroy
 
       children.each(&:destroy_if_orphan)
@@ -228,7 +240,6 @@ class ProcedureRevision < ApplicationRecord
       ProcedureRevisionTypeDeChamp.where(id: coordinate.siblings, position: coordinate.position..).unscope(:eager_load).update_all("position = position - 1")
     end
 
-    reset_type_de_champs
     coordinate
   end
 
@@ -377,7 +388,7 @@ class ProcedureRevision < ApplicationRecord
         if after_stable_id.nil? # positionned at first
           coordinate = move_type_de_champ(stable_id, 0)
           if payload.key?(:header_section_level) && coordinate.type_de_champ.header_section? && params.present?
-            coordinate.type_de_champ.update(params)
+            update_type_de_champ(coordinate.type_de_champ, params)
           end
         else # positionned after another tdc
           if after_stable_id&.negative?
@@ -394,7 +405,7 @@ class ProcedureRevision < ApplicationRecord
           if after_coordinate
             coordinate = move_type_de_champ_after(stable_id, after_coordinate.position)
             if payload.key?(:header_section_level) && coordinate.type_de_champ.header_section? && params.present?
-              coordinate.type_de_champ.update(params)
+              update_type_de_champ(coordinate.type_de_champ, params)
             end
           end
         end
@@ -405,7 +416,7 @@ class ProcedureRevision < ApplicationRecord
         tdc = tdc.becomes_type(type_champ) if type_champ != tdc.type_champ
         update_params = { type_champ: }
         update_params[:options] = tdc.options.merge(options) if options.present?
-        tdc.update(update_params)
+        update_type_de_champ(tdc, update_params)
       else # LabelImprover: mise à jour contenu
         stable_id, libelle, description = payload.values_at(:stable_id, :libelle, :description)
 
@@ -422,9 +433,19 @@ class ProcedureRevision < ApplicationRecord
 
   private
 
-  # every edit of the draft goes through here: its types de champ are read again
-  def reset_type_de_champs
-    revision_type_de_champs.reset
+  # Every edit of the draft goes through here, one at a time: the requests of
+  # the editor race, and the tree of the one writing last has to be built from
+  # the coordinates of them all.
+  def edit_type_de_champs
+    with_lock do
+      yield.tap { rebuild_type_de_champ_tree }
+    end
+  end
+
+  # within the lock of the revision, which has just read it again
+  def rebuild_type_de_champ_tree
+    type_de_champ_tree = TypeDeChampTree.from_coordinates(revision_type_de_champs.reset)
+    update_columns(type_de_champ_tree:) if type_de_champ_tree != self[:type_de_champ_tree]
     reset_type_de_champ_layout
   end
 
@@ -475,12 +496,11 @@ class ProcedureRevision < ApplicationRecord
   end
 
   def replace_type_de_champ_by_clone(coordinate)
-    transaction do
+    edit_type_de_champs do
       cloned_type_de_champ = coordinate.type_de_champ.deep_clone do |original, kopy|
         ClonePiecesJustificativesService.clone_attachments(original, kopy)
       end
       coordinate.update!(type_de_champ: cloned_type_de_champ)
-      reset_type_de_champs
       cloned_type_de_champ
     end
   end

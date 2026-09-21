@@ -273,13 +273,14 @@ FactoryBot.define do
 end
 
 # Laying a type de champ on a revision by hand goes around its edits: the
-# revision has to read its types de champ again. A published revision never
-# changes, except here: its stored tree has to follow.
+# revision has to read its types de champ again, and its tree has to follow
+# once stored, by a publication or an edit.
 def restore_type_de_champ_tree(revision)
   return if revision.new_record?
 
   if revision.read_attribute(:type_de_champ_tree).present?
-    revision.update_columns(type_de_champ_tree: TypeDeChampTree.from_coordinates(revision.revision_type_de_champs))
+    revision.store_type_de_champ_tree
+  else
+    revision.reload
   end
-  revision.reload
 end

@@ -49,7 +49,7 @@ module Administrateurs
         # stale tab autosaving after one): drop the ones the type does not define
         update_params = update_params.except(*update_params.keys.reject { type_de_champ.respond_to?("#{it}=") })
 
-        if type_de_champ.update(update_params)
+        if draft.update_type_de_champ(type_de_champ, update_params)
           reload_procedure_with_includes
           @morphed = if was_prefill_with_fc_information != (type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?)
             draft.revision_type_de_champs.map { |c| champ_component_from(c) }
