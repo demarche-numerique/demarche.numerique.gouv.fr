@@ -6,7 +6,10 @@
     [@api_token_params.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token')]] } %>
 
 <div class="fr-container fr-mt-2w">
-  <h1><%= @api_token_params.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token') %></h1>
+  <h1>
+    <%= @api_token_params.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token') %>
+  </h1>
+
   <%= render Dsfr::AlertComponent.new(title: nil, size: :sm, state: :info, extra_class_names: 'fr-mb-2w') do |c| %>
     <% c.with_body do %>
       <p>
@@ -14,6 +17,7 @@
         <br>
         <b><%= t('.responsibility') %></b>
       </p>
+
       <p><%= t('.features_intro') %></p>
     <% end %>
   <% end %>
@@ -104,6 +108,7 @@
       <li>
         <%= link_to t('.back'), autorisations_admin_api_tokens_path(@api_token_params.to_h), class: "fr-btn fr-btn--secondary" %>
       </li>
+
       <li>
         <%= f.button type: :submit,
           class: "fr-btn fr-btn--primary",
@@ -112,7 +117,6 @@
           <%= t('.validate') %>
         <% end %>
       </li>
-
     </ul>
   <% end %>
 </div>
