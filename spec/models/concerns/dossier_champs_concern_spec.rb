@@ -142,6 +142,14 @@ RSpec.describe DossierChampsConcern do
           expect(subject).to be_new_record
           expect(subject.row_id).to eq(row_id)
         end
+
+        it "projects the same instance until the champs change" do
+          expect(dossier.project_champ(type_de_champ_public, row_id:)).to equal(subject)
+
+          dossier.champ_for_update(type_de_champ_public, row_id:, updated_by: 'test')
+
+          expect(dossier.project_champ(type_de_champ_public, row_id:)).to be_persisted
+        end
       end
 
       context "with a row_id on a champ outside any repetition" do
@@ -291,8 +299,9 @@ RSpec.describe DossierChampsConcern do
     let(:rows) { repetition.rows }
     let(:h1) { dossier.public_champs.second }
 
-    # the repetition starts with one row
-    before { repetition.add_row(updated_by: 'test') }
+    # the repetition starts with one row; adding one resets the projected champs,
+    # so `repetition` must not be read before
+    before { dossier.flat_champs_public.find(&:repetition?).add_row(updated_by: 'test') }
 
     def libelles(champs) = champs.map(&:libelle)
     def public_ids(champs) = champs.map(&:public_id)
@@ -325,16 +334,15 @@ RSpec.describe DossierChampsConcern do
       row = rows.second
       r1 = champ('r1', row)
 
-      expect(public_ids(r1.ancestors)).to eq(public_ids([h1, repetition, champ('rh1', row)]))
-      expect(r1.parent.public_id).to eq(champ('rh1', row).public_id)
-      expect(r1.enclosing_section.public_id).to eq(champ('rh1', row).public_id)
-      expect(r1.enclosing_repetition.public_id).to eq(repetition.public_id)
+      expect(r1.ancestors).to match([equal(h1), equal(repetition), equal(champ('rh1', row))])
+      expect(r1.parent).to equal(champ('rh1', row))
+      expect(r1.enclosing_section).to equal(champ('rh1', row))
+      expect(r1.enclosing_repetition).to equal(repetition)
       expect(r1).to be_in_repetition.and be_in_section
 
       r0 = champ('r0', row)
-      expect(r0.parent.public_id).to eq(repetition.public_id)
-      expect(r0.enclosing_section.libelle).to eq('h1')
-      expect(r0.enclosing_section.row_id).to be_nil
+      expect(r0.parent).to equal(repetition)
+      expect(r0.enclosing_section).to equal(h1)
 
       expect(libelles(champ('c').ancestors)).to eq(['h1', 'h2'])
       expect(repetition).to be_in_section
