@@ -22,23 +22,29 @@ module TabsHelper
     end
   end
 
-  def tab_item(label, url, active: false, badge: nil, notification: false, small_counter: nil, html_class: nil)
+  # Built from the notification_key of the tab, never from its label, which changes with the locale.
+  def notification_sticker_id(key)
+    "notification-sticker-#{key}"
+  end
+
+  def tab_item(label, url, active: false, badge: nil, notification: false, notification_key: nil, small_counter: nil, html_class: nil)
     render partial: 'shared/tab_item', locals: {
       label: label,
       url: url,
       active: active,
       badge: badge,
       notification: notification,
+      notification_key: notification_key,
       small_counter: small_counter,
       html_class: html_class,
     }
   end
 
-  def dynamic_tab_item(label, url_or_urls, badge: nil, notification: false)
+  def dynamic_tab_item(label, url_or_urls, badge: nil, notification: false, notification_key: nil)
     urls = [url_or_urls].flatten
     url = urls.first
     active = urls.any? { |u| current_page?(u) }
 
-    tab_item(label, url, active: active, badge: badge, notification: notification)
+    tab_item(label, url, active: active, badge: badge, notification: notification, notification_key: notification_key)
   end
 end
