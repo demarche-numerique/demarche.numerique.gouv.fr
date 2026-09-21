@@ -99,7 +99,8 @@ class Columns::ChampColumn < Column
   # The champ values that count as empty for these search terms, or nil when the
   # search is a regular one on the champ value.
   def empty_values_for(search_terms)
-    return [nil] if tdc_type == "yes_no" && search_terms == [Column::NOT_FILLED_VALUE]
+    # the columns offering a "non rempli" option are listed in ColumnFilterValueComponent
+    return [nil] if tdc_type.in?(["yes_no", "civilite"]) && search_terms == [Column::NOT_FILLED_VALUE]
     return [nil, Champs::BooleanChamp::FALSE_VALUE] if tdc_type == "checkbox" && search_terms == ["false"]
 
     nil

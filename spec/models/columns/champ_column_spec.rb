@@ -311,6 +311,38 @@ describe Columns::ChampColumn do
       end
     end
 
+    context "with a civilite champ not mandatory" do
+      let_it_be(:procedure) { create(:procedure, public_type_de_champs: [{ type: :civilite, mandatory: false, libelle: "civilité" }]) }
+      let(:dossier_with_madame) { create(:dossier, :en_instruction, procedure:) }
+      let(:dossier_with_empty_value) { create(:dossier, :en_instruction, procedure:) }
+      let(:dossier_not_filled) { create(:dossier, :en_instruction, procedure:) }
+
+      let(:column) { procedure.find_column(label: "civilité") }
+      let(:dossiers) { procedure.dossiers }
+
+      before do
+        dossier_with_madame.champ_data.first.update!(value: "Mme")
+        dossier_with_empty_value.champ_data.first.update!(value: nil)
+        dossier_not_filled.champ_data.first.destroy!
+      end
+
+      context "when searching for a madame" do
+        let(:search_terms) { ["Mme"] }
+
+        it "returns the correct ids" do
+          expect(subject).to match_array([dossier_with_madame.id])
+        end
+      end
+
+      context "when searching for a nil" do
+        let(:search_terms) { [Column::NOT_FILLED_VALUE] }
+
+        it "returns the correct ids" do
+          expect(subject).to match_array([dossier_with_empty_value.id, dossier_not_filled.id])
+        end
+      end
+    end
+
     context "with a drop_down_list champ" do
       let_it_be(:procedure) { create(:procedure, public_type_de_champs: [{ type: :drop_down_list, libelle: "drop_down_list", options: ["Fromage", "Dessert", "Chocolat"] }]) }
       let(:dossier_with_fromage) { create(:dossier, :en_instruction, procedure:) }
