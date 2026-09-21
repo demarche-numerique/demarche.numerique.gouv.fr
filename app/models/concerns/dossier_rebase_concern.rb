@@ -6,9 +6,10 @@ module DossierRebaseConcern
   extend ActiveSupport::Concern
 
   def rebase!
-    ProcedureRevisionPreloader.new([procedure.published_revision, revision].compact).all
     return if procedure.published_revision.blank?
     return if !can_rebase?
+
+    ProcedureRevision.preload_type_de_champs([procedure.published_revision, revision])
 
     transaction { rebase }
   end
