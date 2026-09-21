@@ -171,10 +171,6 @@ class ChampData < ApplicationRecord
     data&.dig("prefilled_from_france_connect_information") == true
   end
 
-  def child?
-    row_id.present? && !is_type?(TypeDeChamp.type_champs.fetch(:repetition))
-  end
-
   # Where the champ sits in its dossier, as its type de champ is laid out in
   # the revision: the header sections and the repetition holding it, outermost
   # first. The repetition stands for the row, and the header sections within it

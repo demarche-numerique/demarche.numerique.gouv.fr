@@ -33,7 +33,7 @@ class Manager::DossierChampRowComponent < ApplicationComponent
     class_names(
       'cell-data': true,
       'cell-disabled': !row.visible?,
-      'fr-pl-16v': cell == :label && row.child?
+      'fr-pl-16v': cell == :label && row.in_repetition?
     )
   end
 
