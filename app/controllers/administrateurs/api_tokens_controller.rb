@@ -23,13 +23,13 @@ module Administrateurs
 
     def create
       if params[:networkFiltering] == "customNetworks" && invalid_network?
-        return redirect_to securite_admin_api_tokens_path(all_params.merge(invalidNetwork: true))
+        return redirect_to securite_admin_api_tokens_path(@api_token_params.to_h.merge(invalidNetwork: true))
       end
 
       expires_at = requested_expires_at
 
       if expires_at.nil?
-        return redirect_to securite_admin_api_tokens_path(all_params.merge(invalidLifetime: true))
+        return redirect_to securite_admin_api_tokens_path(@api_token_params.to_h.merge(invalidLifetime: true))
       end
 
       @api_token, @packed_token = APIToken.generate(current_administrateur, expires_at:)
@@ -125,11 +125,6 @@ module Administrateurs
         .map { |libelle, id| ["#{id} - #{libelle}", id] }
     end
 
-    def all_params
-      [:name, :access, :target, :targets, :networkFiltering, :networks, :lifetime, :customLifetime]
-        .index_with { |param| params[param] }
-    end
-
     def authorized_networks
       if params[:networkFiltering] == "customNetworks"
         networks
@@ -178,7 +173,7 @@ module Administrateurs
       if params[:target] == "custom"
         current_administrateur
           .procedure_ids
-          .intersection(params[:targets].map(&:to_i))
+          .intersection(@api_token_params.targets.map(&:to_i))
       else
         nil
       end

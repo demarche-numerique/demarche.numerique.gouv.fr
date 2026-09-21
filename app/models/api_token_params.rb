@@ -6,7 +6,7 @@ class APITokenParams
   attr_reader :params
 
   def initialize(params)
-    @params = params
+    @params = params.permit(:name, :api_token_to_duplicate, :target, :access, :networkFiltering, :networks, :lifetime, :customLifetime, targets: [])
   end
 
   def name
