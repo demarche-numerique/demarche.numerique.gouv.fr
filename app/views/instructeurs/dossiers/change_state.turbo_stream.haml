@@ -1,4 +1,4 @@
 = turbo_stream.replace 'header-top', partial: 'header_top', locals: { dossier: @dossier, procedure_presentation: @procedure_presentation, notifications: @notifications }
 
-- @notifications_sticker.keys.each do |label|
-  = turbo_stream.replace "notification-sticker-#{label.to_s}", partial: 'shared/notification_sticker', locals: { label: label.to_s, notification: @notifications_sticker[label] }
+- @notifications_sticker.each do |key, notification|
+  = turbo_stream.replace notification_sticker_id(key), partial: 'shared/notification_sticker', locals: { key:, notification: }

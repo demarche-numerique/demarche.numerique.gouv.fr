@@ -1,0 +1,7 @@
+<% if notification %>
+  <%= tag.span class: 'notifications', id: key && notification_sticker_id(key) do %>
+    <span class="fr-sr-only">
+      <%= t('notification', scope: 'views.shared') %>
+    </span>
+  <% end %>
+<% end %>
