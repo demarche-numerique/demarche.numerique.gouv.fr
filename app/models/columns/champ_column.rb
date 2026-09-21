@@ -73,16 +73,11 @@ class Columns::ChampColumn < Column
   def filtered_ids_for_values(dossiers, search_terms)
     return dossiers.ids unless search_terms.any?(&:present?)
 
+    return dossiers.ids if both_checkbox_states?(search_terms)
+    return dossiers.without_checked_champ(stable_id).ids if unchecked_search?(search_terms)
+    return dossiers.without_filled_champ(stable_id).ids if not_filled_search?(search_terms)
+
     relation = dossiers.with_type_de_champ(stable_id)
-
-    empty_values = empty_values_for(search_terms)
-
-    if empty_values
-      # a champ the usager never touched has a row holding NULL, or no row at all
-      # on a dossier predating its type de champ: both are empty
-      return dossiers.without_type_de_champ(stable_id).ids +
-        relation.where(champs: { column => empty_values }).ids
-    end
 
     if type == :enum
       relation.where(champs: { column => search_terms }).ids
@@ -96,15 +91,20 @@ class Columns::ChampColumn < Column
     end
   end
 
-  # The champ values that count as empty for these search terms, or nil when the
-  # search is a regular one on the champ value.
-  def empty_values_for(search_terms)
-    # the columns offering a "non rempli" option are listed in ColumnFilterValueComponent
-    return [nil] if tdc_type.in?(["yes_no", "civilite"]) && search_terms == [Column::NOT_FILLED_VALUE]
-    # a checkbox left alone holds NULL; 'false' only comes from a prefill or the API
-    return [nil, Champs::BooleanChamp::FALSE_VALUE] if tdc_type == "checkbox" && search_terms == ["false"]
+  # A checkbox only has two states for the instructeur, so asking for both is
+  # asking for everyone. A yes_no also offers "non renseigné", so it is excluded.
+  def both_checkbox_states?(search_terms)
+    tdc_type == "checkbox" && search_terms.to_set == Set[Champs::BooleanChamp::TRUE_VALUE, Champs::BooleanChamp::FALSE_VALUE]
+  end
 
-    nil
+  def unchecked_search?(search_terms)
+    tdc_type == "checkbox" && search_terms == [Champs::BooleanChamp::FALSE_VALUE]
+  end
+
+  # NOT_FILLED_VALUE is the literal string 'nil', so this must stay away from the
+  # text columns, where searching for "nil" has to remain a text search.
+  def not_filled_search?(search_terms)
+    type.in?([:boolean, :enum]) && search_terms == [Column::NOT_FILLED_VALUE]
   end
 
   def champ_column? = true
