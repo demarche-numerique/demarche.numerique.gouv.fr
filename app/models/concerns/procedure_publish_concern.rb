@@ -104,21 +104,18 @@ module ProcedurePublishConcern
   private
 
   def publish_new_revision(administrateur)
-    # the tree stored below is built from this association, and the next draft
-    # cloned from it: what the database holds, not what this instance loaded a
-    # while ago
-    draft_revision.revision_type_de_champs.reset
-    cleanup_type_de_champs_options!
-    cleanup_type_de_champs_children!
-    nullify_unused_referentiels
+    # the last edit of the draft: the tree it leaves is the published one, and
+    # the lock, held until publication commits, keeps the editor from changing
+    # the coordinates before the next draft is cloned from them
+    draft_revision.edit_type_de_champs do
+      cleanup_type_de_champs_options!
+      cleanup_type_de_champs_children!
+      nullify_unused_referentiels
+    end
     self.published_revision = draft_revision
     self.draft_revision = create_new_revision
     save!(context: :publication)
-    published_revision.update_columns(
-      published_at: Time.current,
-      administrateur_id: administrateur.id,
-      type_de_champ_tree: TypeDeChampTree.from_coordinates(published_revision.revision_type_de_champs)
-    )
+    published_revision.update_columns(published_at: Time.current, administrateur_id: administrateur.id)
   end
 
   def move_new_children_to_new_parent_coordinate(new_draft)

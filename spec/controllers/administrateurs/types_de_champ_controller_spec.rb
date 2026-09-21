@@ -138,6 +138,18 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       end
     end
 
+    context 'changing the type to header section' do
+      let(:params) { default_params.deep_merge(type_de_champ: { type_champ: 'header_section' }) }
+
+      it 'stores the tree holding what follows within the section' do
+        is_expected.to have_http_status(:ok)
+
+        tree = procedure.draft_revision.reload.read_attribute(:type_de_champ_tree)
+        expect(tree.public_children.map(&:stable_id)).to eq([first_coordinate.stable_id, second_coordinate.stable_id])
+        expect(tree.public_children.second.children.map(&:stable_id)).to eq([third_coordinate.stable_id])
+      end
+    end
+
     context 'changing the type to formatted' do
       let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :textarea, libelle: 'l1' }]) }
       let(:params) do

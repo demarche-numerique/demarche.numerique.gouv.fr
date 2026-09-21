@@ -173,6 +173,14 @@ describe ProcedurePublishConcern do
       expect(procedure.draft_revision.reload.revision_type_de_champs.map(&:type_de_champ_id)).to eq([edited.id])
     end
 
+    it 'publishes the draft under the lock the editor takes' do
+      allow(procedure.draft_revision).to receive(:lock!).and_call_original
+
+      subject
+
+      expect(procedure.published_revision).to have_received(:lock!).with(ProcedureRevision::TYPE_DE_CHAMP_TREE_LOCK)
+    end
+
     context 'when the procedure has dossiers' do
       let(:dossier_draft) { create(:dossier, :brouillon, procedure: procedure) }
       let(:dossier_submitted) { create(:dossier, :en_construction, procedure: procedure) }
