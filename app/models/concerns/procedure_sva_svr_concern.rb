@@ -47,7 +47,11 @@ module ProcedureSVASVRConcern
     return if brouillon?
     return if [:sva, :svr].exclude?(decision_was)
 
-    errors.add(:sva_svr, :immutable)
+    if sva_svr_was['disabled_at'].present?
+      errors.add(:sva_svr, :definitive)
+    elsif sva_svr['disabled_at'].blank? || sva_svr.except('disabled_at') != sva_svr_was.except('disabled_at')
+      errors.add(:sva_svr, :immutable)
+    end
   end
 
   def validates_sva_svr_compatible

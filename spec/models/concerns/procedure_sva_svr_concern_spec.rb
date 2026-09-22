@@ -49,4 +49,51 @@ describe ProcedureSVASVRConcern do
       expect(Procedure.sva_svr).to include(procedure)
     end
   end
+
+  describe 'immuabilité sur une démarche publiée' do
+    let(:procedure) { procedures.sva }
+
+    def disable!(p) = p.sva_svr = p.sva_svr.merge('disabled_at' => Time.current.iso8601)
+
+    it 'autorise la désactivation' do
+      disable!(procedure)
+
+      expect(procedure).to be_valid
+    end
+
+    it 'refuse une modification du délai en même temps que la désactivation' do
+      procedure.sva_svr = procedure.sva_svr.merge('disabled_at' => Time.current.iso8601, 'period' => 12)
+
+      expect(procedure).not_to be_valid
+      expect(procedure.errors).to be_of_kind(:sva_svr, :immutable)
+    end
+
+    it 'refuse une modification seule' do
+      procedure.sva_svr = procedure.sva_svr.merge('period' => 12)
+
+      expect(procedure).not_to be_valid
+      expect(procedure.errors).to be_of_kind(:sva_svr, :immutable)
+    end
+
+    context 'quand la règle est déjà désactivée' do
+      before do
+        disable!(procedure)
+        procedure.save!
+      end
+
+      it 'refuse la réactivation' do
+        procedure.sva_svr = procedure.sva_svr.except('disabled_at')
+
+        expect(procedure).not_to be_valid
+        expect(procedure.errors).to be_of_kind(:sva_svr, :definitive)
+      end
+
+      it 'refuse un changement de sens' do
+        procedure.sva_svr = procedure.sva_svr.merge('decision' => 'svr')
+
+        expect(procedure).not_to be_valid
+        expect(procedure.errors).to be_of_kind(:sva_svr, :definitive)
+      end
+    end
+  end
 end
