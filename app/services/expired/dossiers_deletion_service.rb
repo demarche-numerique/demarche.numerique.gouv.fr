@@ -98,19 +98,11 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
 
   private
 
-  # All the dossiers of one user land in the same batch, hence in the same mail.
-  def each_termine_batch(ids_and_user_ids)
-    batches = [[]]
-    ids_and_user_ids.group_by(&:last).each_value do |user_dossiers|
-      batches << [] if batches.last.size >= TERMINE_BATCH_SIZE
-      batches.last.concat(user_dossiers.map(&:first))
-    end
-
-    batches.each do |ids|
-      # The state is checked again at processing time: a dossier sent back to
-      # instruction since the selection must be neither flagged nor hidden.
-      yield Dossier.where(id: ids).state_termine if ids.any?
-    end
+  # The state is checked again at processing time: a dossier sent back to
+  # instruction since the selection must be neither flagged nor hidden.
+  def each_termine_batch(ids_and_user_ids, &)
+    Removal::Runner.new(scope: Dossier.state_termine, batch_size: TERMINE_BATCH_SIZE)
+      .each_batch(ids_and_user_ids, &)
   end
 
   def send_expiration_notices(dossiers_close_to_expiration, close_to_expiration_flag)
