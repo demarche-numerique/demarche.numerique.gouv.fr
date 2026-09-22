@@ -39,13 +39,22 @@ Warden::Manager.after_set_user do |record, warden, options|
   # after the action. Emptying the scope lets whatever really needs it fail on
   # its own.
   in :fetch
-    session_id = warden.session(scope)[SessionRegistrableConcern::SESSION_KEY]
+    warden_session = warden.session(scope)
+    session_id = warden_session[SessionRegistrableConcern::SESSION_KEY]
 
     if session_id.nil?
       SessionRegistrableConcern.open_session!(record, warden, scope)
     else
       user_session = UserSession.find_by(id: session_id, sessionable: record)
-      warden.logout(scope) if user_session.nil? || user_session.unusable?
+
+      if user_session.nil? || user_session.unusable?
+        # In the Rack env, which Warden hands to the failure app unchanged: we
+        # log out rather than throw, so there is no `throw(:warden, message:)`
+        # to carry the reason. The env dies with the request, so a reason can
+        # never resurface on a later one.
+        warden.request.env[SessionRegistrableConcern::END_REASON_KEY] = (user_session&.unusable_reason || :session_revoked).to_s
+        warden.logout(scope)
+      end
     end
   end
 rescue StandardError => e
