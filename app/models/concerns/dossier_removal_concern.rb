@@ -164,6 +164,23 @@ module DossierRemovalConcern
     move_removal!(from: :hidden, to:, expired_at: expiration_date)
   end
 
+  # The conservation period of the procedure changed: start the expiration
+  # over, notices and automatic hiding included. Covers both systems, so that
+  # ResetExpiringDossiersJob does not have to know about stages.
+  def reset_removal!
+    transaction do
+      if expiration_started?
+        DossierNotification.destroy_notifications_by_dossier_and_type(self, :dossier_expirant)
+        DossierNotification.destroy_notifications_by_dossier_and_type(self, :dossier_suppression) if hidden_by_expired?
+        update(brouillon_close_to_expiration_notice_sent_at: nil,
+          termine_close_to_expiration_notice_sent_at: nil,
+          hidden_by_expired_at: nil)
+      end
+
+      update_expired_at
+    end
+  end
+
   private
 
   # Entering a managed state starts at retained (the due date is written with
