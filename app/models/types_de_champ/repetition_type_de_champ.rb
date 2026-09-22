@@ -43,10 +43,11 @@ class TypesDeChamp::RepetitionTypeDeChamp < TypeDeChamp
   def columns(procedure_id:, displayable: true, prefix: nil)
     prefix = prefix.present? ? "(#{prefix} #{libelle})" : libelle
 
-    Procedure.find(procedure_id)
-      .all_revisions_type_de_champs(parent: self)
-      .flat_map { it.columns(procedure_id:, displayable: false, prefix:) }
+    fillable_children.flat_map { it.columns(procedure_id:, displayable: false, prefix:) }
   end
+
+  # what a row may hold: the columns of the repetition's sheet in an export
+  def fillable_children = flat_children.filter(&:fillable?)
 
   def typed_champ_blank?(champ) = champ.dossier.repetition_row_ids(self).blank?
 

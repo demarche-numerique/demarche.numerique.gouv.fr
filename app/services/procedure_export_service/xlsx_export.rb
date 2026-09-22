@@ -189,13 +189,11 @@ class ProcedureExportService::XlsxExport
     end
 
     def repetition_tdcs
-      @repetition_tdcs ||= @procedure.all_revisions_type_de_champs.repetition.to_a
+      @repetition_tdcs ||= @procedure.aggregated_type_de_champs.root_type_de_champs.filter(&:repetition?)
     end
 
     def repetition_children_tdcs
-      @repetition_children_tdcs ||= repetition_tdcs.to_h do |tdc|
-        [tdc.stable_id, @procedure.all_revisions_type_de_champs(parent: tdc).to_a]
-      end
+      @repetition_children_tdcs ||= repetition_tdcs.to_h { [it.stable_id, it.fillable_children] }
     end
 
     def resolve_values(instance, columns)
