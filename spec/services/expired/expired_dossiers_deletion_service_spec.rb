@@ -312,7 +312,7 @@ describe Expired::DossiersDeletionService do
 
       before do
         [dossier_1, dossier_2].each(&:update_expired_at)
-        stub_const("#{described_class}::TERMINE_BATCH_SIZE", 1)
+        stub_const("Removal::Runner::BATCH_SIZE", 1)
         allow(DossierMailer).to receive(:notify_near_deletion_to_user).with([dossier_2], dossier_2.user.email).and_raise(StandardError, "smtp down")
       end
 
@@ -371,9 +371,9 @@ describe Expired::DossiersDeletionService do
 
       before do
         dossier.update_expired_at
-        allow(service).to receive(:each_termine_batch).and_wrap_original do |each_termine_batch, ids_and_user_ids, &block|
+        allow_any_instance_of(Removal::Runner).to receive(:each_batch).and_wrap_original do |each_batch, ids_and_user_ids, &block|
           dossier.update_columns(state: Dossier.states.fetch(:en_instruction))
-          each_termine_batch.call(ids_and_user_ids, &block)
+          each_batch.call(ids_and_user_ids, &block)
         end
         service.send_termine_expiration_notices
       end
@@ -392,7 +392,7 @@ describe Expired::DossiersDeletionService do
 
       before do
         [dossier_1, dossier_2, other_dossier].each(&:update_expired_at)
-        stub_const("#{described_class}::TERMINE_BATCH_SIZE", 1)
+        stub_const("Removal::Runner::BATCH_SIZE", 1)
         service.send_termine_expiration_notices
       end
 
@@ -565,7 +565,7 @@ describe Expired::DossiersDeletionService do
       let!(:dossier_2) { create(:dossier, :accepte, procedure: procedure, termine_close_to_expiration_notice_sent_at: (warning_period + 1.day).ago) }
 
       before do
-        stub_const("#{described_class}::TERMINE_BATCH_SIZE", 1)
+        stub_const("Removal::Runner::BATCH_SIZE", 1)
         service.delete_expired_termine_and_notify
       end
 
@@ -581,9 +581,9 @@ describe Expired::DossiersDeletionService do
       let!(:dossier) { create(:dossier, :followed, :accepte, procedure: procedure, termine_close_to_expiration_notice_sent_at: (warning_period + 1.day).ago) }
 
       before do
-        allow(service).to receive(:each_termine_batch).and_wrap_original do |each_termine_batch, ids_and_user_ids, &block|
+        allow_any_instance_of(Removal::Runner).to receive(:each_batch).and_wrap_original do |each_batch, ids_and_user_ids, &block|
           dossier.update_columns(state: Dossier.states.fetch(:en_instruction))
-          each_termine_batch.call(ids_and_user_ids, &block)
+          each_batch.call(ids_and_user_ids, &block)
         end
       end
 
@@ -601,7 +601,7 @@ describe Expired::DossiersDeletionService do
       let!(:other_dossier) { create(:dossier, :accepte, procedure: procedure, termine_close_to_expiration_notice_sent_at: (warning_period + 1.day).ago) }
 
       before do
-        stub_const("#{described_class}::TERMINE_BATCH_SIZE", 1)
+        stub_const("Removal::Runner::BATCH_SIZE", 1)
         service.delete_expired_termine_and_notify
       end
 

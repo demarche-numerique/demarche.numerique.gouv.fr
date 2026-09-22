@@ -5,11 +5,6 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
   BROUILLON_WITHOUT_NOTICE_DELETION_LIMIT_PER_DAY = ENV.fetch("BROUILLON_WITHOUT_NOTICE_DELETION_LIMIT_PER_DAY", 20_000).to_i
   TERMINE_NOTICES_LIMIT_PER_DAY = ENV.fetch("TERMINE_NOTICES_LIMIT_PER_DAY", 50_000).to_i
   TERMINE_DELETION_LIMIT_PER_DAY = ENV.fetch("TERMINE_DELETION_LIMIT_PER_DAY", 50_000).to_i
-  # Termine dossiers are flagged or hidden, then mailed, batch by batch: what a
-  # failure mid-run can lose is bounded to one batch (a retry starts over from
-  # the scopes, which no longer match the dossiers already flagged or hidden).
-  # A batch grows past this size rather than splitting a user's dossiers.
-  TERMINE_BATCH_SIZE = 1000
 
   def process_never_touched_dossiers_brouillon; delete_never_touched_brouillons; end
 
@@ -58,7 +53,9 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
       .limit(TERMINE_NOTICES_LIMIT_PER_DAY)
       .pluck(:id, :user_id)
 
-    each_termine_batch(ids_and_user_ids) do |dossiers|
+    # The state is checked again at processing time: a dossier sent back to
+    # instruction since the selection must be neither flagged nor hidden.
+    Removal::Runner.new(scope: Dossier.state_termine).each_batch(ids_and_user_ids) do |dossiers|
       send_expiration_notices(dossiers, :termine_close_to_expiration_notice_sent_at)
     end
   end
@@ -108,19 +105,12 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
       .limit(TERMINE_DELETION_LIMIT_PER_DAY)
       .pluck(:id, :user_id)
 
-    each_termine_batch(ids_and_user_ids) do |dossiers|
+    Removal::Runner.new(scope: Dossier.state_termine).each_batch(ids_and_user_ids) do |dossiers|
       delete_expired_and_notify(dossiers, notify_on_closed_procedures_to_user: true)
     end
   end
 
   private
-
-  # The state is checked again at processing time: a dossier sent back to
-  # instruction since the selection must be neither flagged nor hidden.
-  def each_termine_batch(ids_and_user_ids, &)
-    Removal::Runner.new(scope: Dossier.state_termine, batch_size: TERMINE_BATCH_SIZE)
-      .each_batch(ids_and_user_ids, &)
-  end
 
   def send_expiration_notices(dossiers_close_to_expiration, close_to_expiration_flag)
     user_notifications = group_by_user_email(dossiers_close_to_expiration)

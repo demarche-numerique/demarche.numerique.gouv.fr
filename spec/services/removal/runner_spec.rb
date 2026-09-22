@@ -10,7 +10,8 @@ describe Removal::Runner do
   end
 
   it "keeps the dossiers of one user in one batch, growing it past the batch size" do
-    runner = described_class.new(scope: Dossier.all, batch_size: 1)
+    stub_const("#{described_class}::BATCH_SIZE", 1)
+    runner = described_class.new(scope: Dossier.all)
     ids_and_user_ids = [[brouillon.id, 1], [en_construction.id, 2], [accepte.id, 1]]
 
     expect(batches(runner, ids_and_user_ids)).to eq([[brouillon.id, accepte.id].sort, [en_construction.id]])

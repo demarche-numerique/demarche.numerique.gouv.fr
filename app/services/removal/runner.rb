@@ -11,9 +11,8 @@ class Removal::Runner
   # scope: the conditions checked again when a batch is processed, so that a
   # dossier which left the selection in the meantime (edited, sent back to
   # instruction…) is skipped.
-  def initialize(scope:, batch_size: BATCH_SIZE)
+  def initialize(scope:)
     @scope = scope
-    @batch_size = batch_size
   end
 
   # ids_and_user_ids: [[dossier_id, user_id], …], plucked from the selection.
@@ -21,7 +20,7 @@ class Removal::Runner
   def each_batch(ids_and_user_ids)
     batches = [[]]
     ids_and_user_ids.group_by(&:last).each_value do |user_dossiers|
-      batches << [] if batches.last.size >= @batch_size
+      batches << [] if batches.last.size >= BATCH_SIZE
       batches.last.concat(user_dossiers.map(&:first))
     end
 
