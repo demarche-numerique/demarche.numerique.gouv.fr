@@ -7,7 +7,7 @@
 %p= t('.link')
 = dsfr_button(t('.access_message'), messagerie_dossier_url(@dossier), :primary)
 
-- if @dossier.sva_svr_decision_on.present?
+- if @dossier.procedure.sva_svr_enabled? && @dossier.sva_svr_decision_on.present?
   %p= t(".#{@correction.reason}.sva_svr", rule_name: t(@dossier.procedure.sva? ? :sva : :svr, scope: 'shared.procedures.sva_svr_rule_name'))
 
 = render 'layouts/mailers/signature', service: @service
