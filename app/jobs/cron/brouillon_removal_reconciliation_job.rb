@@ -15,7 +15,6 @@ class Cron::BrouillonRemovalReconciliationJob < Cron::CronJob
 
   # A trashed brouillon is purged two weeks after its earliest hiding.
   HIDING = "LEAST(hidden_by_user_at, hidden_by_expired_at)"
-  NOTICE = "brouillon_close_to_expiration_notice_sent_at"
 
   # `t ± n.weeks` in Ruby moves by calendar days in Paris time: across a DST
   # change it is 14 days ± 1 hour in UTC, where the columns are stored.
@@ -28,8 +27,6 @@ class Cron::BrouillonRemovalReconciliationJob < Cron::CronJob
     COUNT(*) FILTER (WHERE removal_stage IS NULL) AS without_stage,
     COUNT(*) FILTER (WHERE removal_stage = 'hidden' AND #{HIDING} IS NULL) AS hidden_without_hiding,
     COUNT(*) FILTER (WHERE removal_stage <> 'hidden' AND #{HIDING} IS NOT NULL) AS hiding_without_hidden,
-    COUNT(*) FILTER (WHERE removal_stage = 'warned' AND #{NOTICE} IS NULL) AS warned_without_notice,
-    COUNT(*) FILTER (WHERE removal_stage = 'retained' AND #{NOTICE} IS NOT NULL) AS notice_without_warned,
     COUNT(*) FILTER (WHERE removal_stage = 'retained' AND (removal_due_at = #{weeks('expired_at', '-', Expired::REMAINING_WEEKS_BEFORE_EXPIRATION)}) IS NOT TRUE) AS retained_due_at,
     COUNT(*) FILTER (WHERE removal_stage = 'warned' AND (removal_due_at = expired_at) IS NOT TRUE) AS warned_due_at,
     COUNT(*) FILTER (WHERE removal_stage = 'hidden' AND #{HIDING} IS NOT NULL AND (removal_due_at = #{weeks(HIDING, '+', Dossier::REMAINING_WEEKS_BEFORE_DELETION)}) IS NOT TRUE) AS hidden_due_at

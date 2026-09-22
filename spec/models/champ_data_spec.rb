@@ -707,17 +707,8 @@ describe ChampData do
           removal_stage: 'retained',
           removal_due_at: expires_at - 2.weeks,
           expired_at: expires_at,
-          brouillon_close_to_expiration_notice_sent_at: nil,
           last_champ_updated_at: Time.zone.now
         )
-      end
-
-      it 'writes the legacy expired_at alone for a brouillon off the removal stage' do
-        champ.dossier.update_columns(removal_stage: nil, removal_due_at: nil)
-
-        expect(count_queries(champ)).to eq(2)
-
-        expect(dossier.reload).to have_attributes(removal_stage: nil, expired_at: expires_at, last_champ_updated_at: Time.zone.now)
       end
 
       it 'writes the timestamps only when the brouillon was trashed since it was loaded' do
@@ -735,7 +726,7 @@ describe ChampData do
         )
       end
 
-      it 'keeps the notice when an annotation is edited, without a statement of its own' do
+      it 'keeps the warned stage when an annotation is edited, without a statement of its own' do
         procedure = create(:procedure, :published, private_type_de_champs: [{ type: :text }])
         type_de_champ = procedure.active_revision.private_root_type_de_champs.first
         brouillon = create(:dossier, :warned, procedure:, warned_at: 1.day.ago)
@@ -748,7 +739,6 @@ describe ChampData do
           removal_stage: 'warned',
           removal_due_at: 13.days.from_now,
           expired_at: 13.days.from_now,
-          brouillon_close_to_expiration_notice_sent_at: 1.day.ago,
           last_champ_private_updated_at: Time.zone.now
         )
       end

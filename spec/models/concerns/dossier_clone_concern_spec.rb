@@ -25,7 +25,6 @@ RSpec.describe DossierCloneConcern do
       expect(new_dossier.id).not_to eq(dossier.id)
       expect(new_dossier.api_entreprise_job_exceptions).to be_nil
       expect(new_dossier.archived).to be_falsey
-      expect(new_dossier.brouillon_close_to_expiration_notice_sent_at).to be_nil
       expect(new_dossier.conservation_extension).to eq(0.seconds)
       expect(new_dossier.declarative_triggered_at).to be_nil
       expect(new_dossier.deleted_user_email_never_send).to be_nil

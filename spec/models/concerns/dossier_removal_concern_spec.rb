@@ -126,13 +126,8 @@ describe DossierRemovalConcern do
     it 'warns the retained brouillons, destroyed two weeks later' do
       expect(Dossier.where(id: [brouillon, hidden]).warn_removal!(warned_at)).to eq([brouillon.id])
 
-      expect(brouillon.reload).to have_attributes(
-        removal_stage: 'warned',
-        removal_due_at: warned_at + 2.weeks,
-        expired_at: warned_at + 2.weeks,
-        brouillon_close_to_expiration_notice_sent_at: warned_at
-      )
-      expect(hidden.reload.brouillon_close_to_expiration_notice_sent_at).to be_nil
+      expect(brouillon.reload).to have_attributes(removal_stage: 'warned', removal_due_at: warned_at + 2.weeks, expired_at: warned_at + 2.weeks)
+      expect(hidden.reload).to be_removal_hidden
     end
   end
 
@@ -143,12 +138,7 @@ describe DossierRemovalConcern do
 
       expect(warned.restart_removal!).to be(true)
 
-      expect(warned.reload).to have_attributes(
-        removal_stage: 'retained',
-        removal_due_at: created_at + 4.months - 2.weeks,
-        expired_at: created_at + 4.months,
-        brouillon_close_to_expiration_notice_sent_at: nil
-      )
+      expect(warned.reload).to have_attributes(removal_stage: 'retained', removal_due_at: created_at + 4.months - 2.weeks, expired_at: created_at + 4.months)
     end
 
     it 'leaves a trashed brouillon alone' do
@@ -177,12 +167,7 @@ describe DossierRemovalConcern do
 
       expect(warned.restore_removal!).to be(true)
 
-      expect(warned.reload).to have_attributes(
-        removal_stage: 'retained',
-        removal_due_at: created_at + 4.months - 2.weeks,
-        expired_at: created_at + 4.months,
-        brouillon_close_to_expiration_notice_sent_at: nil
-      )
+      expect(warned.reload).to have_attributes(removal_stage: 'retained', removal_due_at: created_at + 4.months - 2.weeks, expired_at: created_at + 4.months)
     end
 
     it 'leaves a brouillon the expiration still hides in the trash' do
@@ -225,42 +210,27 @@ describe DossierRemovalConcern do
       travel_to(warned_at + 1.hour)
       brouillon.update!(autorisation_donnees: false)
 
-      expect(brouillon.reload).to have_attributes(
-        removal_stage: 'warned',
-        removal_due_at: expires_at,
-        expired_at: expires_at,
-        brouillon_close_to_expiration_notice_sent_at: warned_at
-      )
+      expect(brouillon.reload).to have_attributes(removal_stage: 'warned', removal_due_at: expires_at, expired_at: expires_at)
     end
   end
 
   describe 'the expiration predicates' do
-    # The flag is cached in process for 10 seconds: disable it explicitly
-    # rather than leaving it to the rollback of the example.
-    after { Flipper.disable(:brouillon_removal_stage) }
-
-    it 'read the stage of a brouillon when the flag is on, its legacy columns otherwise' do
-      # A drift on purpose: the stage says warned and over, the legacy
-      # columns know of no notice, so both readings disagree.
+    it 'read the stage of a brouillon: warned and past its due date, it has expired' do
       brouillon.update_columns(removal_stage: 'warned', removal_due_at: 1.day.ago)
-
-      expect(brouillon).not_to have_expired
-      expect(brouillon).not_to be_expiration_started
-
-      Flipper.enable(:brouillon_removal_stage)
 
       expect(brouillon).to have_expired
       expect(brouillon).to be_expiration_started
     end
 
-    it 'keep reading the legacy columns of a trashed brouillon, whose due date is its purge' do
+    it 'leave a trashed brouillon out of the expired ones: its due date is its purge' do
       travel_to(expires_at - 2.weeks)
       Dossier.where(id: brouillon).warn_removal!(Time.zone.now)
       brouillon.reload.hide_and_keep_track!(user, :user_request)
-      Flipper.enable(:brouillon_removal_stage)
 
       travel_to(expires_at + 1.day)
-      expect(brouillon).to have_expired
+      expect(brouillon).not_to have_expired
+      # Its removal did start: ResetExpiringDossiersJob takes it out of the
+      # trash when the conservation period of the procedure changes.
       expect(brouillon).to be_expiration_started
     end
   end

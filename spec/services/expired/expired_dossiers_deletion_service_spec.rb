@@ -36,8 +36,8 @@ describe Expired::DossiersDeletionService do
         expect(DossierMailer).to have_received(:notify_brouillon_near_deletion).with([brouillon_close_to_expiration], brouillon_close_to_expiration.user.email)
       end
 
-      it 'dossier brouillon_close_to_expiration_notice_sent_at should change' do
-        expect(brouillon_close_to_expiration.reload.brouillon_close_to_expiration_notice_sent_at).not_to be_nil
+      it 'dossier close to expiration should be warned' do
+        expect(brouillon_close_to_expiration.reload).to be_removal_warned
       end
 
       it 'deletes and notify expired brouillon' do
@@ -50,7 +50,7 @@ describe Expired::DossiersDeletionService do
 
     context 'silently drains never-notified expired brouillons' do
       let(:closed_procedure) { create(:procedure, :closed) }
-      let!(:expired_on_closed) { create(:dossier, procedure: closed_procedure).tap { |d| d.update_column(:expired_at, 1.day.ago) } }
+      let!(:expired_on_closed) { create(:dossier, :expired, procedure: closed_procedure) }
 
       before { service.process_expired_dossiers_brouillon }
 
@@ -76,7 +76,7 @@ describe Expired::DossiersDeletionService do
         let(:updated_at) { (conservation_par_defaut - 2.weeks - 1.day).ago }
 
         it do
-          expect(dossier.reload.brouillon_close_to_expiration_notice_sent_at).to be_nil
+          expect(dossier.reload).to be_removal_retained
           expect(DossierMailer).not_to have_received(:notify_brouillon_near_deletion)
         end
       end
@@ -85,10 +85,10 @@ describe Expired::DossiersDeletionService do
         let(:updated_at) { (conservation_par_defaut - 2.weeks + 1.day).ago }
 
         it do
-          expect(dossier.reload.brouillon_close_to_expiration_notice_sent_at).not_to be_nil
+          expect(dossier.reload).to be_removal_warned
           expect(DossierMailer).to have_received(:notify_brouillon_near_deletion).once
           expect(DossierMailer).to have_received(:notify_brouillon_near_deletion).with([dossier], dossier.user.email)
-          expect(dossier.expired_at).to be_within(1.second).of(dossier.expiration_date)
+          expect(dossier.expired_at).to be_within(1.second).of(Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks.from_now)
         end
       end
     end
@@ -117,18 +117,14 @@ describe Expired::DossiersDeletionService do
       it 'warns it along with the other brouillons of its user, and only then' do
         expect(DossierMailer).to have_received(:notify_brouillon_near_deletion).once
         expect(DossierMailer).to have_received(:notify_brouillon_near_deletion).with(match_array([dossier, on_closed_procedure]), user.email)
-        expect(alone_on_closed_procedure.reload.brouillon_close_to_expiration_notice_sent_at).to be_nil
+        expect(alone_on_closed_procedure.reload).to be_removal_retained
       end
     end
 
-    context 'when the crons read the removal stage' do
+    context 'with a brouillon trashed between the selection and the notice' do
       let(:updated_at) { (conservation_par_defaut - 2.weeks + 1.day).ago }
       let!(:dossier) { create(:dossier, procedure:, user:, updated_at:) }
       let!(:trashed_meanwhile) { create(:dossier, procedure: procedure_2, user:, updated_at:) }
-
-      before { Flipper.enable(:brouillon_removal_stage) }
-
-      after { Flipper.disable(:brouillon_removal_stage) }
 
       it 'warns and mails only the brouillons still retained when they are moved' do
         # The usager trashes one of them between the selection and the move.
@@ -140,8 +136,8 @@ describe Expired::DossiersDeletionService do
         service.send_brouillon_expiration_notices
 
         expect(DossierMailer).to have_received(:notify_brouillon_near_deletion).once.with([dossier], user.email)
-        expect(dossier.reload).to have_attributes(removal_stage: 'warned', brouillon_close_to_expiration_notice_sent_at: be_present)
-        expect(trashed_meanwhile.reload).to have_attributes(removal_stage: 'hidden', brouillon_close_to_expiration_notice_sent_at: nil)
+        expect(dossier.reload).to be_removal_warned
+        expect(trashed_meanwhile.reload).to be_removal_hidden
       end
     end
 
@@ -151,7 +147,7 @@ describe Expired::DossiersDeletionService do
       it 'has already stored the expiration date the mail announces' do
         expect(service).to receive(:send_with_delay) do
           dossier.reload
-          expect(dossier.brouillon_close_to_expiration_notice_sent_at).to be_present
+          expect(dossier).to be_removal_warned
           expect(dossier.expired_at).to be_within(1.second).of(Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks.from_now)
         end
 
@@ -236,8 +232,8 @@ describe Expired::DossiersDeletionService do
     before { travel_to(reference_date) }
 
     let(:closed_procedure) { create(:procedure, :closed) }
-    let!(:expired_on_closed)    { create(:dossier, procedure: closed_procedure).tap { |d| d.update_column(:expired_at, 1.day.ago) } }
-    let!(:notifiable_brouillon) { create(:dossier, procedure: procedure).tap { |d| d.update_column(:expired_at, 1.day.ago) } }
+    let!(:expired_on_closed)    { create(:dossier, :expired, procedure: closed_procedure) }
+    let!(:notifiable_brouillon) { create(:dossier, :expired, procedure:) }
 
     before do
       allow(DossierMailer).to receive(:notify_brouillon_deletion).and_call_original
@@ -258,7 +254,7 @@ describe Expired::DossiersDeletionService do
     end
 
     context 'when there are more expired brouillons than the per-day limit' do
-      let!(:other_expired_on_closed) { create(:dossier, procedure: closed_procedure).tap { |d| d.update_column(:expired_at, 2.days.ago) } }
+      let!(:other_expired_on_closed) { create(:dossier, :expired, expired_since: 2.days, procedure: closed_procedure) }
 
       before { stub_const("#{described_class}::BROUILLON_WITHOUT_NOTICE_DELETION_LIMIT_PER_DAY", 1) }
 

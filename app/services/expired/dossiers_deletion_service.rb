@@ -24,7 +24,7 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
     # Only the dossiers a mail can be sent for count toward the daily limit.
     notifiable = selection
       .with_notifiable_procedure
-      .order(brouillon_removal_order)
+      .order(:removal_due_at)
       .limit(BROUILLON_DELETION_EMAILS_LIMIT_PER_DAY)
 
     Removal::Runner.new(scope: selection).each_batch(notifiable) do |batch|
@@ -82,11 +82,11 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
 
   def delete_expired_brouillons_without_notice
     selection = brouillons_expired_without_notice
-    # Oldest expiry first, through index_dossiers_on_expired_at (or the index
-    # on the stage and its due date): ordering by id walked the primary key of
-    # every dossier to find the few expired ones.
+    # Oldest expiry first, through the index on the stage and its due date:
+    # ordering by id walked the primary key of every dossier to find the few
+    # expired ones.
     oldest_first = selection
-      .order(brouillon_removal_order)
+      .order(:removal_due_at)
       .limit(BROUILLON_WITHOUT_NOTICE_DELETION_LIMIT_PER_DAY)
 
     Removal::Runner.new(scope: selection).each_batch(oldest_first) do |dossiers|
@@ -247,55 +247,34 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
     end.transform_values(&:to_a)
   end
 
-  # The brouillons whose notice is due tonight: on the removal stage, the
-  # retained ones past their notice date, which is their due date.
+  # The brouillons whose notice is due tonight: the retained ones past their
+  # notice date, which is their due date.
   def brouillons_to_warn
-    return Dossier.brouillon_close_to_expiration.without_brouillon_expiration_notice_sent if !Dossier.removal_stage_read?
-
     Dossier.state_brouillon.where(for_procedure_preview: false).removal_due(:retained)
   end
 
-  # The brouillons destroyed tonight, two weeks after their notice: on the
-  # removal stage, the warned ones past their due date.
+  # The brouillons destroyed tonight, two weeks after their notice: the
+  # warned ones past their due date.
   def brouillons_warned_over
-    return Dossier.brouillon_expired_after_notice_grace if !Dossier.removal_stage_read?
-
     Dossier.state_brouillon.where(for_procedure_preview: false).removal_due(:warned)
   end
 
   # The brouillons nobody could be warned about (a preview, a procedure
-  # closed or still in brouillon), past their expiration: on the removal
-  # stage, the retained ones whose notice date is two weeks behind. A warned
-  # one was destroyed earlier tonight, with its mail.
+  # closed or still in brouillon), past their expiration: the retained ones
+  # whose notice date is two weeks behind. A warned one was destroyed
+  # earlier tonight, with its mail.
   def brouillons_expired_without_notice
-    return Dossier.brouillon_expired_without_notice if !Dossier.removal_stage_read?
-
     Dossier.state_brouillon
       .removal_due(:retained, Time.zone.now - Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks)
       .joins(:procedure)
       .where("dossiers.for_procedure_preview = TRUE OR procedures.aasm_state IN (?)", %w[close brouillon])
   end
 
-  # Oldest first: the removal stage dates the brouillons by their due date.
-  def brouillon_removal_order = Dossier.removal_stage_read? ? :removal_due_at : :expired_at
-
   # with_notifiable_procedure, on a dossier already loaded.
   def notifiable?(dossier) = dossier.user_id.present? && dossier.procedure.notifiable?
 
-  # The brouillons on the removal stage move to warned, and only those still
-  # retained are warned at all. Returns the ids warned. While the stage is
-  # not read, the brouillons without one (not backfilled yet) get the legacy
-  # columns, and every brouillon selected is warned as it was before.
-  def warn_brouillons(ids)
-    now = Time.zone.now
-    dossiers = Dossier.where(id: ids)
-    warned_ids = dossiers.warn_removal!(now)
-    return warned_ids.to_set if Dossier.removal_stage_read?
-
-    dossiers.where(removal_stage: nil).update_all(
-      brouillon_close_to_expiration_notice_sent_at: now,
-      expired_at: now + Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks
-    )
-    ids.to_set
-  end
+  # Only the brouillons still retained are warned at all: one edited or
+  # trashed since the selection is left where its own writer put it. Returns
+  # the ids warned.
+  def warn_brouillons(ids) = Dossier.where(id: ids).warn_removal!(Time.zone.now).to_set
 end

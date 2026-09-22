@@ -142,14 +142,37 @@ FactoryBot.define do
       end
     end
 
+    # Already expired: expired_at, and the removal stage that follows it for
+    # a brouillon (retained, its notice date two weeks earlier).
+    trait :expired do
+      transient do
+        expired_since { 1.day }
+      end
+
+      after(:create) do |dossier, evaluator|
+        expired_at = evaluator.expired_since.ago
+        if dossier.removal_managed?
+          dossier.move_removal!(from: :retained, to: :retained, expired_at:)
+        else
+          dossier.update_column(:expired_at, expired_at)
+        end
+      end
+    end
+
+    # The trash, as hide_and_keep_track! leaves it: the removal stage of a
+    # brouillon follows the hiding date.
     trait :hidden_by_expired do
       hidden_by_expired_at { 1.day.ago }
       hidden_by_reason { DeletedDossier.reasons.fetch(:expired) }
+
+      after(:create) { it.hide_removal!(it.hidden_by_expired_at) }
     end
 
     trait :hidden_by_user do
       hidden_by_user_at { 1.day.ago }
       hidden_by_reason { DeletedDossier.reasons.fetch(:user_request) }
+
+      after(:create) { it.hide_removal!(it.hidden_by_user_at) }
     end
 
     trait :hidden_by_administration do

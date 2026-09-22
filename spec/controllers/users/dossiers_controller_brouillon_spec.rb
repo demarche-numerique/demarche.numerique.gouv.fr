@@ -391,7 +391,7 @@ describe Users::DossiersController, type: :controller do
         expect(response).to have_http_status(:ok)
         expect(dossier.reload.updated_at.year).to eq(2100)
         expect(dossier.reload.state).to eq(Dossier.states.fetch(:brouillon))
-        expect(dossier.reload.brouillon_close_to_expiration_notice_sent_at).to be_nil
+        expect(dossier.reload).to be_removal_retained
         expect(first_champ.reload.value).to eq('beautiful value')
       end
 

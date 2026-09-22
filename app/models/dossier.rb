@@ -3,7 +3,12 @@
 class Dossier < ApplicationRecord
   # The search columns are only ever read and written as raw SQL: loading them as
   # attributes would carry a full-text blob on every dossier instance.
-  self.ignored_columns += [:search_terms, :private_search_terms, :search_terms_tsvector, :all_search_terms_tsvector]
+  # brouillon_close_to_expiration_notice_sent_at is replaced by the removal
+  # stage (#13915): dropped in a later release, ignored until then.
+  self.ignored_columns += [
+    :search_terms, :private_search_terms, :search_terms_tsvector, :all_search_terms_tsvector,
+    :brouillon_close_to_expiration_notice_sent_at,
+  ]
 
   include DossierCloneConcern
   include DossierCorrectableConcern
@@ -356,32 +361,16 @@ class Dossier < ApplicationRecord
   end
 
   scope :never_touched_brouillon_expired, -> { visible_by_user.brouillon.where.missing(:etablissement, :individual).where(last_champ_updated_at: nil, identity_updated_at: nil, parent_dossier: nil, last_commentaire_updated_at: nil).where(created_at: ..2.weeks.ago) }
-  scope :brouillon_expired_after_notice_grace, -> do
-    state_brouillon
-      .visible_by_user
-      .where(brouillon_close_to_expiration_notice_sent_at: ...(Time.zone.now - Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks))
-  end
-
-  scope :brouillon_expired_without_notice, -> do
-    state_brouillon
-      .where(expired_at: ..Time.zone.now)
-      .where(hidden_by_user_at: nil)
-      .joins(:procedure)
-      .where("dossiers.for_procedure_preview = TRUE OR procedures.aasm_state IN (?)", %w[close brouillon])
-  end
-
   scope :termine_expired_after_notice_grace, -> do
     state_termine
       .visible_by_user_or_administration
       .where(termine_close_to_expiration_notice_sent_at: ...(Time.zone.now - Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks))
   end
 
-  scope :without_brouillon_expiration_notice_sent, -> { where(brouillon_close_to_expiration_notice_sent_at: nil) }
   scope :without_termine_expiration_notice_sent, -> { where(termine_close_to_expiration_notice_sent_at: nil) }
   scope :deleted_by_user_expired, -> { where(dossiers: { hidden_by_user_at: ...REMAINING_WEEKS_BEFORE_DELETION.weeks.ago }) }
   scope :deleted_by_administration_expired, -> { where(dossiers: { hidden_by_administration_at: ...REMAINING_WEEKS_BEFORE_DELETION.weeks.ago }) }
   scope :deleted_by_automatic_expired, -> { where(dossiers: { hidden_by_expired_at: ...REMAINING_WEEKS_BEFORE_DELETION.weeks.ago }) }
-  scope :en_brouillon_expired_to_delete, -> { state_brouillon.deleted_by_user_expired.or(state_brouillon.deleted_by_automatic_expired) }
   scope :en_construction_expired_to_delete, -> { state_en_construction.deleted_by_user_expired.or(state_en_construction.deleted_by_automatic_expired) }
   scope :termine_expired_to_delete, -> { state_termine.deleted_by_user_expired.deleted_by_administration_expired.or(state_termine.deleted_by_automatic_expired) }
 
@@ -469,9 +458,10 @@ class Dossier < ApplicationRecord
   end
 
   after_save :send_web_hook
-  # Every dossier whose removal the stage owns keeps expired_at up to date:
-  # on create the due date cannot be computed before the row exists.
-  after_save :update_expired_at, if: :removal_managed_state?
+  # A save moves the expiration of a retained dossier (its reference date is
+  # updated_at until the first edit): follow it inside the stage. On create
+  # the due date cannot be computed before the row exists, hence after_save.
+  after_save :refresh_removal!, if: :removal_managed?
 
   validates :user, presence: true, if: -> { deleted_user_email_never_send.nil? }, unless: -> { prefilled }
   validates :individual, presence: true, if: -> { revision.procedure.for_individual? }
@@ -518,10 +508,12 @@ class Dossier < ApplicationRecord
     rdvs.booked.by_starts_at.last
   end
 
+  # A managed dossier has been warned once it left the retained stage: in the
+  # trash the notice it may have had is forgotten, but its removal did start.
   def expiration_started?
-    brouillon_notice_sent = read_removal_stage? ? removal_warned? : brouillon_close_to_expiration_notice_sent_at.present?
+    return !removal_retained? if removal_managed?
 
-    brouillon_notice_sent || termine_close_to_expiration_notice_sent_at.present?
+    termine_close_to_expiration_notice_sent_at.present?
   end
 
   def motivation
@@ -662,19 +654,12 @@ class Dossier < ApplicationRecord
 
   def has_expired?
     return false if en_instruction? || en_construction?
-    # The stage ends at the destruction once the brouillon has been warned.
-    return removal_warned? && removal_due_at.past? if read_removal_stage?
+    # The stage ends at the destruction once the brouillon has been warned. A
+    # trashed one is not expired: its due date is the purge.
+    return removal_warned? && removal_due_at.past? if removal_managed?
+    return false if !termine? || termine_close_to_expiration_notice_sent_at.nil?
 
-    notice_sent_at =
-      if brouillon?
-        brouillon_close_to_expiration_notice_sent_at
-      elsif termine?
-        termine_close_to_expiration_notice_sent_at
-      end
-
-    return false if notice_sent_at.nil?
-
-    notice_sent_at < Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks.ago
+    termine_close_to_expiration_notice_sent_at < Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks.ago
   end
 
   def expiration_date_reference
@@ -702,9 +687,7 @@ class Dossier < ApplicationRecord
   end
 
   def after_notification_expiration_date
-    if brouillon? && brouillon_close_to_expiration_notice_sent_at.present?
-      brouillon_close_to_expiration_notice_sent_at + Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks
-    elsif termine? && termine_close_to_expiration_notice_sent_at.present?
+    if termine? && termine_close_to_expiration_notice_sent_at.present?
       termine_close_to_expiration_notice_sent_at + Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks
     end
   end
@@ -715,14 +698,10 @@ class Dossier < ApplicationRecord
     after_notification_expiration_date.presence || expiration_date_with_extension
   end
 
-  # A brouillon on the removal stage has expired_at written with its stage,
-  # and only while nobody moved it since it was loaded.
+  # The legacy expiration, for the dossiers no stage owns. A managed one goes
+  # through its events, which write expired_at with the stage.
   def update_expired_at
-    if removal_managed?
-      refresh_removal!
-    else
-      update_column(:expired_at, expiration_date)
-    end
+    update_column(:expired_at, expiration_date)
   end
 
   # A brouillon rule, not an ownership check: only a brouillon offers the
@@ -733,7 +712,6 @@ class Dossier < ApplicationRecord
 
   def extend_conservation(conservation_extension)
     update(conservation_extension: self.conservation_extension + conservation_extension,
-      brouillon_close_to_expiration_notice_sent_at: nil,
       termine_close_to_expiration_notice_sent_at: nil)
     removal_managed? ? restart_removal! : update_expired_at
     DossierNotification.destroy_notifications_by_dossier_and_type(self, :dossier_expirant)

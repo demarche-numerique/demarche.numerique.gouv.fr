@@ -5,10 +5,7 @@
 # silent drains, trash and purge 14 days later, restore, extension, autosave
 # and submission. The removal_stage migration (issue #13915) kept this
 # behaviour, except for the restore, which now starts a brouillon over.
-#
-# The crons read the legacy columns or the removal stage depending on the
-# brouillon_removal_stage flag: the lifecycle is the same either way.
-RSpec.shared_examples "the brouillon lifecycle" do
+describe "Brouillon lifecycle" do
   # Far enough in the past that the seeded brouillons, created when the suite
   # starts, never come close to expiration during these examples: keep every
   # cron run within a few months of this date.
@@ -48,8 +45,8 @@ RSpec.shared_examples "the brouillon lifecycle" do
 
   def gone?(dossier) = !Dossier.exists?(dossier.id)
 
-  # The removal stage (#13915) is written along the legacy columns: where the
-  # brouillon stands, and when that stage ends.
+  # The removal stage (#13915): where the brouillon stands on its way out,
+  # and when that stage ends.
   def expect_removal(dossier, stage, due_at)
     expect(dossier.reload).to have_attributes(removal_stage: stage, removal_due_at: due_at)
   end
@@ -66,10 +63,8 @@ RSpec.shared_examples "the brouillon lifecycle" do
     expect { run_crons(notice_at + 1.minute) }.to notice_mail.with([dossier], user.email)
       .and have_enqueued_mail.exactly(:once)
 
-    dossier.reload
-    expect(dossier.brouillon_close_to_expiration_notice_sent_at).to eq(notice_at + 1.minute)
     # The mail announces expired_at: it moves to notice + 14 days.
-    expect(dossier.expired_at).to eq(notice_at + 1.minute + 2.weeks)
+    expect(dossier.reload.expired_at).to eq(notice_at + 1.minute + 2.weeks)
     expect_removal(dossier, 'warned', dossier.expired_at)
 
     deletion_at = dossier.expired_at
@@ -107,8 +102,6 @@ RSpec.shared_examples "the brouillon lifecycle" do
 
       # Never warned: they are destroyed at expired_at itself.
       run_crons(notice_at + 1.minute)
-      expect(on_closed_procedure.reload.brouillon_close_to_expiration_notice_sent_at).to be_nil
-      expect(preview.reload.brouillon_close_to_expiration_notice_sent_at).to be_nil
       expect_removal(on_closed_procedure, 'retained', notice_at)
       expect_removal(preview, 'retained', notice_at)
 
@@ -133,7 +126,6 @@ RSpec.shared_examples "the brouillon lifecycle" do
       run_crons(notice_at + 1.minute)
       run_crons(trashed_at + Dossier::REMAINING_WEEKS_BEFORE_DELETION.weeks - 1.minute)
     end.not_to have_enqueued_mail
-    expect(dossier.reload.brouillon_close_to_expiration_notice_sent_at).to be_nil
     expect_removal(dossier, 'hidden', purge_at)
 
     expect { run_crons(trashed_at + Dossier::REMAINING_WEEKS_BEFORE_DELETION.weeks + 1.minute) }.not_to have_enqueued_mail
@@ -162,9 +154,8 @@ RSpec.shared_examples "the brouillon lifecycle" do
     travel_to(restored_at)
     dossier.restore(user)
 
-    expect(dossier.reload.brouillon_close_to_expiration_notice_sent_at).to be_nil
     # Counted from the last edit again: already past its notice date.
-    expect(dossier.expired_at).to eq(expires_at)
+    expect(dossier.reload.expired_at).to eq(expires_at)
     expect_removal(dossier, 'retained', notice_at)
 
     renoticed_at = restored_at + 1.hour
@@ -186,10 +177,8 @@ RSpec.shared_examples "the brouillon lifecycle" do
     travel_to(notice_at + 3.days)
     dossier.extend_conservation(procedure.duree_conservation_dossiers_dans_ds.months)
 
-    dossier.reload
-    expect(dossier.brouillon_close_to_expiration_notice_sent_at).to be_nil
     # Counted from the last edit: 3 months + 3 months of extension.
-    expect(dossier.expired_at).to eq(created_at + 6.months)
+    expect(dossier.reload.expired_at).to eq(created_at + 6.months)
     expect_removal(dossier, 'retained', created_at + 6.months - 2.weeks)
 
     expect { run_crons(old_deletion_at + 1.minute) }.not_to have_enqueued_mail
@@ -206,9 +195,7 @@ RSpec.shared_examples "the brouillon lifecycle" do
     travel_to(edited_at)
     autosave(dossier)
 
-    dossier.reload
-    expect(dossier.brouillon_close_to_expiration_notice_sent_at).to be_nil
-    expect(dossier.expired_at).to eq(edited_at + 3.months)
+    expect(dossier.reload.expired_at).to eq(edited_at + 3.months)
     expect_removal(dossier, 'retained', edited_at + 3.months - 2.weeks)
 
     expect { run_crons(old_deletion_at + 1.minute) }.not_to have_enqueued_mail
@@ -229,21 +216,5 @@ RSpec.shared_examples "the brouillon lifecycle" do
     expect { run_crons(old_deletion_at + 1.minute) }.not_to have_enqueued_mail
     expect(dossier.reload).to be_en_construction
     expect_removal(dossier, nil, nil)
-  end
-end
-
-describe "Brouillon lifecycle" do
-  # The flag is cached in process for 10 seconds: disable it explicitly
-  # rather than leaving it to the rollback of the example.
-  after { Flipper.disable(:brouillon_removal_stage) }
-
-  context "when the crons read the legacy columns" do
-    it_behaves_like "the brouillon lifecycle"
-  end
-
-  context "when the crons read the removal stage" do
-    before { Flipper.enable(:brouillon_removal_stage) }
-
-    it_behaves_like "the brouillon lifecycle"
   end
 end

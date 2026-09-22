@@ -9,12 +9,14 @@
 # Only the dossiers in REMOVAL_MANAGED_STATES carry a stage: a dossier gets
 # `retained` when it enters one of them and loses its stage when it leaves,
 # in the statement writing the state. A NULL stage means the legacy columns
-# (expired_at, the notice dates, hidden_by_*_at) still rule the dossier.
+# (expired_at, the termine notice date, hidden_by_*_at) rule the dossier.
+# The stage is the only record of a brouillon notice.
 #
 # Every other write of the stage is an event (warn_removal!,
 # restart_removal!, hide_removal!, restore_removal!, refresh_removal!) going
 # through move_removal!, a compare-and-set which only follows
-# REMOVAL_TRANSITIONS. The legacy columns are still written alongside.
+# REMOVAL_TRANSITIONS. expired_at is written alongside: the usager and the
+# mails read it.
 module DossierRemovalConcern
   extend ActiveSupport::Concern
 
@@ -53,11 +55,6 @@ module DossierRemovalConcern
   end
 
   class_methods do
-    # Whether the brouillon removals read the stage rather than the legacy
-    # columns. Both are written whatever the flag: switching it off is a
-    # rollback. The brouillons without a stage are not read at all once on.
-    def removal_stage_read? = Flipper.enabled?(:brouillon_removal_stage)
-
     # The only place computing the notice date of a brouillon in Ruby.
     def removal_notice_at(expired_at) = expired_at - Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks
 
@@ -81,8 +78,7 @@ module DossierRemovalConcern
     # The cron notice, J-14: the brouillon is destroyed two weeks after `at`,
     # the date the mail announces.
     def warn_removal!(at)
-      expired_at = at + Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks
-      move_removal!(from: :retained, to: :warned, expired_at:, brouillon_close_to_expiration_notice_sent_at: at)
+      move_removal!(from: :retained, to: :warned, expired_at: at + Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks)
     end
 
     # What the stage and its due date become, with the columns written along.
@@ -108,15 +104,12 @@ module DossierRemovalConcern
 
   def removal_managed? = removal_stage.present?
 
-  # Whether the removal of a dossier in this state is the stage's business.
-  # A managed state without a stage is a dossier the backfill has not reached
-  # yet: it still expires through the legacy columns.
+  # Whether the removal of a dossier in this state is the stage's business:
+  # read on the way in and on the way out, to set the stage and to drop it.
+  # A managed state without a stage is a row written around the callbacks
+  # (Recovery::Importer): nothing removes it, and the reconciliation counts
+  # it as drift.
   def removal_managed_state? = state.in?(REMOVAL_MANAGED_STATES)
-
-  # Whether the expiration predicates of this dossier read its stage. Not in
-  # the trash: there the due date is the purge, and the expiration the usager
-  # sees is still the one of the legacy columns.
-  def read_removal_stage? = (removal_retained? || removal_warned?) && self.class.removal_stage_read?
 
   # Moves this dossier if it is still in one of the `from` stages in the
   # database, and writes `columns` with it. Returns whether it moved; when it
@@ -149,7 +142,7 @@ module DossierRemovalConcern
   # retained or warned brouillon back to retained, expiring a full
   # conservation period after its last edit, and cancels the notice.
   def restart_removal!(expired_at: expiration_date_with_extension, **columns)
-    move_removal!(from: REMOVAL_RESTARTABLE, to: :retained, expired_at:, brouillon_close_to_expiration_notice_sent_at: nil, **columns)
+    move_removal!(from: REMOVAL_RESTARTABLE, to: :retained, expired_at:, **columns)
   end
 
   # A save moved expired_at of a retained brouillon (its reference date is
@@ -176,8 +169,7 @@ module DossierRemovalConcern
   def restore_removal!
     return false if !removal_hidden? || hidden_by_user? || hidden_by_expired?
 
-    move_removal!(from: :hidden, to: :retained, expired_at: expiration_date_with_extension,
-      brouillon_close_to_expiration_notice_sent_at: nil)
+    move_removal!(from: :hidden, to: :retained, expired_at: expiration_date_with_extension)
   end
 
   # The conservation period of the procedure changed: start the expiration
@@ -188,9 +180,7 @@ module DossierRemovalConcern
       if expiration_started?
         DossierNotification.destroy_notifications_by_dossier_and_type(self, :dossier_expirant)
         DossierNotification.destroy_notifications_by_dossier_and_type(self, :dossier_suppression) if hidden_by_expired?
-        update(brouillon_close_to_expiration_notice_sent_at: nil,
-          termine_close_to_expiration_notice_sent_at: nil,
-          hidden_by_expired_at: nil)
+        update(termine_close_to_expiration_notice_sent_at: nil, hidden_by_expired_at: nil)
       end
 
       if !removal_managed?

@@ -386,30 +386,25 @@ class ChampData < ApplicationRecord
       attributes[:last_champ_private_updated_at] = updated_at
     else
       attributes[:last_champ_updated_at] = updated_at
-      attributes[:brouillon_close_to_expiration_notice_sent_at] = nil
     end
 
-    # The brouillon expires a full conservation period after this edit: until
-    # the first one, its reference date is the updated_at written here.
-    expired_at = updated_at + dossier.duree_totale_conservation_in_months.months
-
     if dossier.removal_managed?
+      # The brouillon expires a full conservation period after this edit:
+      # until the first one, its reference date is the updated_at written here.
+      expired_at = updated_at + dossier.duree_totale_conservation_in_months.months
+
       # One statement: the timestamps move the removal stage with them. An
-      # annotation only refreshes the due date of a retained brouillon, since
-      # it does not cancel a notice. When the stage moved since the dossier
-      # was loaded (trashed, submitted, warned), its mover owns it and only
-      # the timestamps are written.
+      # annotation does not cancel a notice, so it goes through
+      # refresh_removal!, which only refreshes a retained brouillon. When the
+      # stage moved since the dossier was loaded (trashed, submitted,
+      # warned), its mover owns it and only the timestamps are written.
       moved =
         if private?
           dossier.refresh_removal!(expired_at:, **attributes)
         else
-          dossier.restart_removal!(expired_at:, **attributes.except(:brouillon_close_to_expiration_notice_sent_at))
+          dossier.restart_removal!(expired_at:, **attributes)
         end
       return if moved
-
-      attributes.delete(:brouillon_close_to_expiration_notice_sent_at)
-    elsif dossier.brouillon?
-      attributes[:expired_at] = expired_at
     end
 
     dossier.update_columns(attributes)

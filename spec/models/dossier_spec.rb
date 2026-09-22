@@ -91,88 +91,6 @@ describe Dossier, type: :model do
         expect(described_class.instruction_action?(nil)).to be(false)
       end
     end
-
-    describe '.brouillon_expired_after_notice_grace' do
-      empty_seeds Dossier
-
-      let(:interval_between_first_and_second_expiration) { Dossier::MONTHS_AFTER_EXPIRATION.months + Dossier::DAYS_AFTER_EXPIRATION.days }
-
-      let!(:dossier_brouillon_expired_and_noticed_long_time_ago) do
-        travel_to(5.months.ago) do
-          create(:dossier, :warned, procedure: procedures.individual, warned_at: 1.day.ago)
-        end
-      end
-
-      let!(:dossier_brouillon_not_expired) do
-        travel_to(1.month.ago) do
-          create(:dossier,
-            state: :brouillon,
-            procedure: procedures.individual)
-        end
-      end
-
-      let!(:dossier_brouillon_expired_but_noticed_recently) do
-        travel_to(5.months.ago) do
-          create(:dossier, :warned, procedure: procedures.individual, warned_at: (4.months + 20.days).from_now)
-        end
-      end
-
-      let!(:dossier_brouillon_expired_but_not_noticed_yet) do
-        travel_to(5.months.ago) do
-          create(:dossier,
-            state: :brouillon,
-            procedure: procedures.individual)
-        end
-      end
-
-      let!(:dossier_instruction_expired) do
-        travel_to(5.months.ago) do
-          create(:dossier,
-            state: :en_instruction,
-            procedure: procedures.individual,
-            brouillon_close_to_expiration_notice_sent_at: 1.day.ago)
-        end
-      end
-
-      let!(:dossier_hidden) do
-        travel_to(5.months.ago) do
-          create(:dossier,
-            state: :brouillon,
-            procedure: procedures.individual,
-            brouillon_close_to_expiration_notice_sent_at: 1.day.ago,
-            hidden_by_user_at: Time.zone.now)
-        end
-      end
-
-      it 'returns only visible brouillon dossiers whose expiration notice period has passed' do
-        expect(Dossier.brouillon_expired_after_notice_grace).to contain_exactly(dossier_brouillon_expired_and_noticed_long_time_ago)
-      end
-    end
-
-    describe '.brouillon_expired_without_notice' do
-      empty_seeds Dossier
-
-      let(:published_procedure) { procedures.individual }
-      let(:closed_procedure) { procedures.close }
-      let(:draft_procedure)  { procedures.brouillon }
-
-      # targets: expired + structurally never notified
-      let!(:expired_on_closed) { create(:dossier, procedure: closed_procedure).tap { |d| d.update_column(:expired_at, 1.day.ago) } }
-      let!(:expired_on_draft)  { create(:dossier, procedure: draft_procedure).tap { |d| d.update_column(:expired_at, 1.day.ago) } }
-      let!(:expired_preview)   { create(:dossier, procedure: published_procedure, for_procedure_preview: true).tap { |d| d.update_column(:expired_at, 1.day.ago) } }
-
-      # non-targets
-      let!(:expired_on_published)  { create(:dossier, procedure: published_procedure).tap { |d| d.update_column(:expired_at, 1.day.ago) } }
-      let!(:not_expired_on_closed) { create(:dossier, procedure: closed_procedure).tap { |d| d.update_column(:expired_at, 1.day.from_now) } }
-      let!(:hidden_on_closed)      { create(:dossier, :hidden_by_user, procedure: closed_procedure).tap { |d| d.update_column(:expired_at, 1.day.ago) } }
-      # proves state_brouillon gate
-      let!(:en_construction_on_closed) { create(:dossier, :en_construction, procedure: closed_procedure).tap { |d| d.update_column(:expired_at, 1.day.ago) } }
-
-      it 'returns only expired brouillons structurally outside the notice path' do
-        expect(Dossier.brouillon_expired_without_notice)
-          .to contain_exactly(expired_on_closed, expired_on_draft, expired_preview)
-      end
-    end
   end
 
   describe 'validations' do
@@ -1995,7 +1913,7 @@ describe Dossier, type: :model do
     end
 
     it do
-      expect(Dossier.en_brouillon_expired_to_delete.count).to eq(2)
+      expect(Dossier.state_brouillon.removal_due(:hidden).count).to eq(2)
       expect(Dossier.en_construction_expired_to_delete.count).to eq(2)
     end
   end

@@ -17,8 +17,8 @@ describe ResetExpiringDossiersJob do
     it 'resets flags' do
       subject
 
-      expect(expiring_dossier_brouillon.reload.brouillon_close_to_expiration_notice_sent_at).to eq(nil)
       expect(expiring_dossier_termine.reload.termine_close_to_expiration_notice_sent_at).to eq(nil)
+      expect(expiring_dossier_brouillon.reload).to be_removal_retained
       expect(expiring_dossier_brouillon.expired_at).to be_within(1.hour).of(2.months.from_now)
       expect(expiring_dossier_termine.expired_at).to be_within(1.hour).of(2.months.from_now)
       expect(automatic_expiring_dossier.reload.hidden_by_expired_at).to eq(nil)
@@ -27,7 +27,6 @@ describe ResetExpiringDossiersJob do
 
     it 'takes a brouillon hidden by expiration out of the trash' do
       hidden_brouillon = create(:dossier, :warned, :hidden_by_expired, procedure:, warned_at: 3.weeks.ago)
-      hidden_brouillon.hide_removal!(hidden_brouillon.hidden_by_expired_at)
 
       subject
 
