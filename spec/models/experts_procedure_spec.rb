@@ -1,6 +1,40 @@
 # frozen_string_literal: true
 
 RSpec.describe ExpertsProcedure, type: :model do
+  describe '.granting_access' do
+    subject { ExpertsProcedure.where(id: experts_procedures.default.id).granting_access }
+
+    it { is_expected.to contain_exactly(experts_procedures.default) }
+
+    context 'when the link has been revoked' do
+      before { experts_procedures.default.update!(revoked_at: Time.zone.now) }
+
+      context 'and the procedure manages its experts with a predefined list' do
+        before { procedures.individual.update!(experts_require_administrateur_invitation: true) }
+
+        it { is_expected.to be_empty }
+      end
+
+      context 'and the procedure lets instructeurs invite the experts they want' do
+        it 'keeps the link: the revocation is dormant in that mode' do
+          expect(subject).to contain_exactly(experts_procedures.default)
+        end
+      end
+
+      context 'and the procedure has no value for that mode' do
+        before { procedures.individual.update_column(:experts_require_administrateur_invitation, nil) }
+
+        it { is_expected.to contain_exactly(experts_procedures.default) }
+      end
+    end
+
+    context 'when the procedure has been deleted' do
+      before { procedures.individual.update_column(:hidden_at, Time.zone.now) }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
   describe '#invited_expert_emails' do
     let(:procedure) { procedures.individual }
     let(:claimant) { instructeurs.default }

@@ -29,13 +29,17 @@ class Expert < ApplicationRecord
   end
 
   def self.autocomplete_mails(procedure)
+    # granting_access is a no-op while the procedure lets instructeurs invite
+    # whoever they want, so it applies to both modes and the branch below is
+    # left to decide only which experts are worth suggesting. A subquery rather
+    # than a merge: granting_access joins :procedure, which Expert has no
+    # singular association for.
     procedure_experts = Expert
       .joins(:experts_procedures, :user)
-      .where(experts_procedures: { procedure: procedure })
+      .where(experts_procedures: { procedure: procedure, id: ExpertsProcedure.granting_access })
 
     suggested_expert = if procedure.experts_require_administrateur_invitation?
       procedure_experts
-        .merge(ExpertsProcedure.not_revoked)
     else
       procedure_experts
         .where.not(users: { last_sign_in_at: nil })
