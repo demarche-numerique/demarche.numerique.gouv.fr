@@ -63,9 +63,7 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
   def delete_never_touched_brouillons
     selection = Dossier.never_touched_brouillon_expired
 
-    Removal::Runner.new(scope: selection).each_batch(selection.pluck(:id, :user_id)) do |dossiers|
-      dossiers.in_batches.destroy_all
-    end
+    Removal::Runner.new(scope: selection).each_batch(selection.pluck(:id, :user_id), &:destroy_all)
   end
 
   def delete_expired_brouillons_and_notify
@@ -75,7 +73,7 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
       user_notifications = group_by_user_email(dossiers_to_remove)
         .map { |(email, dossiers)| [email, dossiers.map(&:hash_for_deletion_mail)] }
 
-      dossiers_to_remove.in_batches.destroy_all
+      dossiers_to_remove.destroy_all
 
       user_notifications.each do |(email, dossiers_hash)|
         mail = DossierMailer.notify_brouillon_deletion(
