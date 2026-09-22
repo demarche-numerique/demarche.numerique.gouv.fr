@@ -25,25 +25,28 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
   end
 
   def send_brouillon_expiration_notices
-    dossiers_close_to_expiration = Dossier
-      .brouillon_close_to_expiration
-      .without_brouillon_expiration_notice_sent
+    selection = Dossier.brouillon_close_to_expiration.without_brouillon_expiration_notice_sent
+    # Only the dossiers a mail can be sent for count toward the daily limit.
+    ids_and_user_ids = selection
+      .visible_by_user
+      .with_notifiable_procedure
       .order(:expired_at)
       .limit(BROUILLON_DELETION_EMAILS_LIMIT_PER_DAY)
+      .pluck(:id, :user_id)
 
-    user_notifications = group_by_user_email(dossiers_close_to_expiration)
+    Removal::Runner.new(scope: selection).each_batch(ids_and_user_ids) do |dossiers_close_to_expiration|
+      group_by_user_email(dossiers_close_to_expiration).each do |(email, dossiers)|
+        all_user_dossiers = all_user_dossiers_brouillon_close_to_expiration(dossiers.first.user).to_a
+        # The mail announces expired_at: store it before enqueuing the mail.
+        Dossier.where(id: all_user_dossiers.map(&:id)).update_all(brouillon_close_to_expiration_notice_sent_at: Time.zone.now)
+        Dossier.where(id: all_user_dossiers.map(&:id)).find_each(&:update_expired_at)
 
-    user_notifications.each do |(email, dossiers)|
-      all_user_dossiers = all_user_dossiers_brouillon_close_to_expiration(dossiers.first.user).to_a
-      # The mail announces expired_at: store it before enqueuing the mail.
-      Dossier.where(id: all_user_dossiers.map(&:id)).update_all(brouillon_close_to_expiration_notice_sent_at: Time.zone.now)
-      Dossier.where(id: all_user_dossiers.map(&:id)).find_each(&:update_expired_at)
-
-      mail = DossierMailer.notify_brouillon_near_deletion(
-        all_user_dossiers,
-        email
-      )
-      send_with_delay(mail)
+        mail = DossierMailer.notify_brouillon_near_deletion(
+          all_user_dossiers,
+          email
+        )
+        send_with_delay(mail)
+      end
     end
   end
 
@@ -61,28 +64,42 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
   end
 
   def delete_never_touched_brouillons
-    Dossier.never_touched_brouillon_expired.in_batches.destroy_all
+    selection = Dossier.never_touched_brouillon_expired
+
+    Removal::Runner.new(scope: selection).each_batch(selection.pluck(:id, :user_id)) do |dossiers|
+      dossiers.in_batches.destroy_all
+    end
   end
 
   def delete_expired_brouillons_and_notify
-    user_notifications = group_by_user_email(Dossier.brouillon_expired_after_notice_grace)
-      .map { |(email, dossiers)| [email, dossiers.map(&:hash_for_deletion_mail)] }
+    selection = Dossier.brouillon_expired_after_notice_grace
 
-    Dossier.brouillon_expired_after_notice_grace.in_batches.destroy_all
+    Removal::Runner.new(scope: selection).each_batch(selection.pluck(:id, :user_id)) do |dossiers_to_remove|
+      user_notifications = group_by_user_email(dossiers_to_remove)
+        .map { |(email, dossiers)| [email, dossiers.map(&:hash_for_deletion_mail)] }
 
-    user_notifications.each do |(email, dossiers_hash)|
-      mail = DossierMailer.notify_brouillon_deletion(
-        dossiers_hash,
-        email
-      )
-      send_with_delay(mail)
+      dossiers_to_remove.in_batches.destroy_all
+
+      user_notifications.each do |(email, dossiers_hash)|
+        mail = DossierMailer.notify_brouillon_deletion(
+          dossiers_hash,
+          email
+        )
+        send_with_delay(mail)
+      end
     end
   end
 
   def delete_expired_brouillons_without_notice
-    Dossier.brouillon_expired_without_notice
+    selection = Dossier.brouillon_expired_without_notice
+    ids_and_user_ids = selection
+      .order(:id)
       .limit(BROUILLON_WITHOUT_NOTICE_DELETION_LIMIT_PER_DAY)
-      .in_batches { |batch| batch.each(&:purge_without_notice) }
+      .pluck(:id, :user_id)
+
+    Removal::Runner.new(scope: selection).each_batch(ids_and_user_ids) do |dossiers|
+      dossiers.each(&:purge_without_notice)
+    end
   end
 
   def delete_expired_termine_and_notify
