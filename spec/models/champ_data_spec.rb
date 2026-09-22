@@ -683,6 +683,76 @@ describe ChampData do
       expect(champ.read_attribute(:value_updated_at)).to eq(champ.updated_at)
       expect(dossier.reload.last_champ_updated_at).to eq(champ.updated_at)
     end
+
+    describe 'removal stage of a brouillon' do
+      let(:expires_at) { 3.months.from_now }
+
+      before { freeze_time }
+
+      # The dossier and its procedure are loaded beforehand: only the stamping
+      # statements count.
+      def count_queries(champ)
+        champ.dossier.duree_totale_conservation_in_months
+        count = 0
+        ActiveSupport::Notifications.subscribed(-> (*) { count += 1 }, 'sql.active_record') { champ.update_timestamps }
+        count
+      end
+
+      it 'restarts a warned brouillon in the statement stamping the dossier' do
+        Dossier.where(id: dossier).warn_removal!(1.day.ago)
+
+        expect(count_queries(champ)).to eq(2)
+
+        expect(dossier.reload).to have_attributes(
+          removal_stage: 'retained',
+          removal_due_at: expires_at - 2.weeks,
+          expired_at: expires_at,
+          brouillon_close_to_expiration_notice_sent_at: nil,
+          last_champ_updated_at: Time.zone.now
+        )
+      end
+
+      it 'writes the legacy expired_at alone for a brouillon off the removal stage' do
+        champ.dossier.update_columns(removal_stage: nil, removal_due_at: nil)
+
+        expect(count_queries(champ)).to eq(2)
+
+        expect(dossier.reload).to have_attributes(removal_stage: nil, expired_at: expires_at, last_champ_updated_at: Time.zone.now)
+      end
+
+      it 'writes the timestamps only when the brouillon was trashed since it was loaded' do
+        champ.dossier
+        Dossier.where(id: dossier).move_removal!(from: :retained, to: :hidden, due_at: 2.weeks.from_now)
+        expired_at = dossier.reload.expired_at
+
+        champ.update_timestamps
+
+        expect(dossier.reload).to have_attributes(
+          removal_stage: 'hidden',
+          removal_due_at: 2.weeks.from_now,
+          expired_at:,
+          last_champ_updated_at: Time.zone.now
+        )
+      end
+
+      it 'keeps the notice when an annotation is edited, without a statement of its own' do
+        procedure = create(:procedure, :published, private_type_de_champs: [{ type: :text }])
+        type_de_champ = procedure.active_revision.private_root_type_de_champs.first
+        brouillon = create(:dossier, :warned, procedure:, warned_at: 1.day.ago)
+        annotation = brouillon.champ_for_update(type_de_champ, updated_by: 'instructeur')
+
+        # No compare-and-set: a warned brouillon is not refreshed at all.
+        expect(count_queries(annotation)).to eq(2)
+
+        expect(brouillon.reload).to have_attributes(
+          removal_stage: 'warned',
+          removal_due_at: 13.days.from_now,
+          expired_at: 13.days.from_now,
+          brouillon_close_to_expiration_notice_sent_at: 1.day.ago,
+          last_champ_private_updated_at: Time.zone.now
+        )
+      end
+    end
   end
 
   describe '#value_updated_at' do

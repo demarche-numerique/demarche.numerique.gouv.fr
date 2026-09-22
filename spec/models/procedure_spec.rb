@@ -1396,7 +1396,7 @@ describe Procedure do
   describe 'extend_conservation_for_dossiers' do
     let(:duree_conservation_dossiers_dans_ds) { 2 }
     let(:procedure) { create(:procedure, duree_conservation_dossiers_dans_ds:) }
-    let(:expiring_dossier_brouillon) { create(:dossier, :brouillon, procedure: procedure, brouillon_close_to_expiration_notice_sent_at: duree_conservation_dossiers_dans_ds.months.ago) }
+    let(:expiring_dossier_brouillon) { create(:dossier, :warned, procedure: procedure, warned_at: duree_conservation_dossiers_dans_ds.months.ago) }
     let(:expiring_dossier_en_termine) { create(:dossier, :accepte, procedure: procedure, termine_close_to_expiration_notice_sent_at: duree_conservation_dossiers_dans_ds.months.ago) }
     let(:not_expiring_dossie) { create(:dossier, :accepte, procedure: procedure, created_at: duree_conservation_dossiers_dans_ds.months.ago) }
     before do

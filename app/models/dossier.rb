@@ -735,7 +735,7 @@ class Dossier < ApplicationRecord
     update(conservation_extension: self.conservation_extension + conservation_extension,
       brouillon_close_to_expiration_notice_sent_at: nil,
       termine_close_to_expiration_notice_sent_at: nil)
-    update_expired_at
+    removal_managed? ? restart_removal! : update_expired_at
     DossierNotification.destroy_notifications_by_dossier_and_type(self, :dossier_expirant)
   end
 

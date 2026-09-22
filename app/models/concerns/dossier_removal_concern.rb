@@ -177,7 +177,13 @@ module DossierRemovalConcern
           hidden_by_expired_at: nil)
       end
 
-      update_expired_at
+      if !removal_managed?
+        update_expired_at
+      elsif removal_hidden?
+        restore_removal!
+      else
+        restart_removal!
+      end
     end
   end
 

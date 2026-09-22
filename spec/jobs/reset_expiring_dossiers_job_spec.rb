@@ -8,7 +8,7 @@ describe ResetExpiringDossiersJob do
   let(:duree_conservation_dossiers_dans_ds) { 2 }
   let(:procedure) { create(:procedure, duree_conservation_dossiers_dans_ds:) }
 
-  let!(:expiring_dossier_brouillon) { create(:dossier, :brouillon, procedure: procedure, brouillon_close_to_expiration_notice_sent_at: duree_conservation_dossiers_dans_ds.months.ago) }
+  let!(:expiring_dossier_brouillon) { create(:dossier, :warned, procedure: procedure, warned_at: duree_conservation_dossiers_dans_ds.months.ago) }
   let!(:expiring_dossier_termine) { create(:dossier, :accepte, procedure: procedure, termine_close_to_expiration_notice_sent_at: duree_conservation_dossiers_dans_ds.months.ago) }
   let!(:automatic_expiring_dossier) { create(:dossier, :accepte, procedure:, termine_close_to_expiration_notice_sent_at: 3.weeks.ago, hidden_by_expired_at: 1.week.ago) }
   let!(:not_expiring_dossier) { create(:dossier, :accepte, procedure:, processed_at: 1.month.ago) }
@@ -23,6 +23,15 @@ describe ResetExpiringDossiersJob do
       expect(expiring_dossier_termine.expired_at).to be_within(1.hour).of(2.months.from_now)
       expect(automatic_expiring_dossier.reload.hidden_by_expired_at).to eq(nil)
       expect(not_expiring_dossier.reload.expired_at).to be_within(1.hour).of(1.month.from_now)
+    end
+
+    it 'takes a brouillon hidden by expiration out of the trash' do
+      hidden_brouillon = create(:dossier, :warned, :hidden_by_expired, procedure:, warned_at: 3.weeks.ago)
+      hidden_brouillon.hide_removal!(hidden_brouillon.hidden_by_expired_at)
+
+      subject
+
+      expect(hidden_brouillon.reload).to have_attributes(hidden_by_expired_at: nil, removal_stage: 'retained', removal_due_at: hidden_brouillon.expired_at - 2.weeks)
     end
 
     it 'destroys dossier_expirant notification' do
