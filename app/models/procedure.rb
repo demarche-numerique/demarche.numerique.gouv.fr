@@ -117,6 +117,21 @@ class Procedure < ApplicationRecord
     end
   end
 
+  # The types de champ of the aggregated tree, laid out (TypeDeChampLayout):
+  # each one in its latest version, where the newest published revision lays
+  # it, or at the end of its last-known container once removed. They are the
+  # procedure's own instances, distinct from the ones its revisions lay out.
+  #
+  # It is memoized by published revision, as the tree is. A procedure never
+  # published lays out its draft anew at every call, as it changes with every
+  # edit.
+  def aggregated_type_de_champs
+    return TypeDeChampLayout.lay_out(aggregated_type_de_champ_tree) if published_revision_id.nil?
+
+    @aggregated_type_de_champs ||= {}
+    @aggregated_type_de_champs[published_revision_id] ||= TypeDeChampLayout.lay_out(aggregated_type_de_champ_tree)
+  end
+
   # In the order of their publication, which is not always the one of their
   # ids, and always ending with the published revision. A revision which is no
   # longer the draft is not always a published one: a few drafts were left
