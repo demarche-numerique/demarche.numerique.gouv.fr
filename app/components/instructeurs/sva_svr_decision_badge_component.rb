@@ -56,17 +56,36 @@ class Instructeurs::SVASVRDecisionBadgeComponent < ApplicationComponent
     "#{human_decision} : "
   end
 
-  def title
-    if previously_termine?
-      t('.previously_termine_title')
+  def situation
+    @situation ||= if previously_termine?
+      :previously_termine
     elsif depose_before_configuration?
-      t('.depose_before_configuration_title', decision: human_decision)
+      :depose_before_configuration
     elsif without_date?
-      t('.manual_decision_title', decision: human_decision)
+      :no_date
     elsif pending_correction?
-      t(".dossier_terminated_x_days_after_correction", count: days_count)
+      :pending_correction
     else
-      t(".dossier_terminated_on", date: helpers.l(dossier.sva_svr_decision_on))
+      :scheduled
+    end
+  end
+
+  def badge_text
+    case situation
+    when :previously_termine, :no_date then t('.manual_decision')
+    when :depose_before_configuration then t('.depose_before_configuration', decision: human_decision)
+    when :pending_correction then t('.remaining_days_after_correction', count: days_count)
+    when :scheduled then t('.in_days', count: days_count)
+    end
+  end
+
+  def title
+    case situation
+    when :previously_termine then t('.previously_termine_title')
+    when :depose_before_configuration then t('.depose_before_configuration_title', decision: human_decision)
+    when :no_date then t('.manual_decision_title', decision: human_decision)
+    when :pending_correction then t('.dossier_terminated_x_days_after_correction', count: days_count)
+    when :scheduled then t('.dossier_terminated_on', date: helpers.l(dossier.sva_svr_decision_on))
     end
   end
 
