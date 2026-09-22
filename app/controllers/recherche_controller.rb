@@ -33,7 +33,7 @@ class RechercheController < ApplicationController
       .matching_dossiers(current_instructeur&.dossiers, @search_terms, with_annotations: true)
 
     expert_dossier_ids = DossierSearchService
-      .matching_dossiers(current_expert&.dossiers_from_not_revoked_avis, @search_terms)
+      .matching_dossiers(current_expert&.dossiers_for_search, @search_terms)
 
     matching_dossiers_ids = (@instructeur_dossiers_ids + expert_dossier_ids).uniq
 

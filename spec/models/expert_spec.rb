@@ -191,7 +191,14 @@ RSpec.describe Expert, type: :model do
     end
   end
 
-  describe '#dossiers_from_not_revoked_avis' do
+  # These two associations are the safe-by-default entry points: every caller
+  # reading an expert's avis — or the dossiers behind them — relies on them to
+  # drop both revocations without repeating the rule.
+  #
+  # dossiers is asserted alongside avis on purpose: it reaches them through a
+  # nested has_many, which is where a not_revoked that joins rather than
+  # subqueries loses `procedures` from the FROM clause.
+  describe 'revocation-aware associations' do
     let(:expert) { create(:expert) }
     let(:claimant) { create(:expert) }
     let(:procedure) { create(:procedure, :published) }
@@ -199,15 +206,25 @@ RSpec.describe Expert, type: :model do
     let(:dossier) { create(:dossier, :en_construction, procedure:) }
     let!(:avis) { create(:avis, dossier:, claimant:, experts_procedure:) }
 
-    subject { expert.dossiers_from_not_revoked_avis }
+    shared_examples 'hidden from the expert' do
+      it 'drops the avis, and the dossier reached through it' do
+        expect(expert.avis).to be_empty
+        expect(expert.dossiers).to be_empty
+      end
+    end
 
-    it { is_expected.to contain_exactly(dossier) }
+    context 'when nothing is revoked' do
+      it 'exposes the avis, and the dossier reached through it' do
+        expect(expert.avis).to contain_exactly(avis)
+        expect(expert.dossiers).to contain_exactly(dossier)
+      end
+    end
 
     context 'when the avis itself is revoked' do
       # update_column: revoking bypasses the on: :update answer-presence validation
       before { avis.update_column(:revoked_at, Time.zone.now) }
 
-      it { is_expected.to be_empty }
+      it_behaves_like 'hidden from the expert'
     end
 
     context 'when the expert is revoked from the procedure' do
@@ -216,11 +233,14 @@ RSpec.describe Expert, type: :model do
       context 'and the procedure manages its experts with a predefined list' do
         before { procedure.update!(experts_require_administrateur_invitation: true) }
 
-        it { is_expected.to be_empty }
+        it_behaves_like 'hidden from the expert'
       end
 
       context 'and the procedure lets instructeurs invite the experts they want' do
-        it { is_expected.to contain_exactly(dossier) }
+        it 'keeps both: the revocation has no meaning in that mode' do
+          expect(expert.avis).to contain_exactly(avis)
+          expect(expert.dossiers).to contain_exactly(dossier)
+        end
       end
     end
   end

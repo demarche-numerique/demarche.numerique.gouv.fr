@@ -18,7 +18,6 @@ module Experts
 
     def index
       avis = current_expert.avis
-        .not_revoked
         .includes(:dossier, :procedure)
         .not_hidden_by_administration
       @avis_by_procedure = avis.to_a.group_by(&:procedure)
@@ -33,7 +32,6 @@ module Experts
 
       expert_avis = current_expert
         .avis
-        .not_revoked
         .includes(:procedure)
         .includes(dossier: :user)
         .not_hidden_by_administration
@@ -284,7 +282,7 @@ module Experts
     end
 
     def set_avis_and_dossier
-      @avis = current_expert.avis.not_revoked.find_by(id: params[:id])
+      @avis = current_expert.avis.find_by(id: params[:id])
       unless @avis
         redirect_to expert_all_avis_path, flash: { alert: "Vous n’avez pas accès à cet avis." } and return
       end
