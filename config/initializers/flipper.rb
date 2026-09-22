@@ -21,6 +21,10 @@ end
 features = [
   :administrateur_web_hook,
   :blocking_pending_correction,
+  # The brouillon removals read dossiers.removal_stage. Enable only once
+  # T20260922backfillBrouillonRemovalStageTask has completed and
+  # Cron::BrouillonRemovalReconciliationJob reports no drift.
+  :brouillon_removal_stage,
   :cojo_type_de_champ,
   :dossier_pdf_vide,
   :dossiers_list_personnalisation,

@@ -45,9 +45,18 @@ module DossierRemovalConcern
     removal_stages.each_key { undef_method :"removal_#{it}!" }
 
     before_save :follow_removal_ownership, if: -> { new_record? || will_save_change_to_state? }
+
+    # The dossiers whose stage ends by `at`. Stage and due date only: the
+    # call sites add the state, the preview exclusion and the procedure.
+    scope :removal_due, -> (stage, at = Time.zone.now) { where(removal_stage: stage, removal_due_at: ..at) }
   end
 
   class_methods do
+    # Whether the brouillon removals read the stage rather than the legacy
+    # columns. Both are written whatever the flag: switching it off is a
+    # rollback. The brouillons without a stage are not read at all once on.
+    def removal_stage_read? = Flipper.enabled?(:brouillon_removal_stage)
+
     # The only place computing the notice date of a brouillon in Ruby.
     def removal_notice_at(expired_at) = expired_at - Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks
 

@@ -5,7 +5,10 @@
 # silent drains, trash and purge 14 days later, restore, extension, autosave
 # and submission. These examples pin the current behaviour; every step of the
 # removal_stage migration (issue #13915) must keep them green.
-describe "Brouillon lifecycle" do
+#
+# The crons read the legacy columns or the removal stage depending on the
+# brouillon_removal_stage flag: the lifecycle is the same either way.
+RSpec.shared_examples "the brouillon lifecycle" do
   # Far enough in the past that the seeded brouillons, created when the suite
   # starts, never come close to expiration during these examples: keep every
   # cron run within a few months of this date.
@@ -235,5 +238,21 @@ describe "Brouillon lifecycle" do
     expect { run_crons(old_deletion_at + 1.minute) }.not_to have_enqueued_mail
     expect(dossier.reload).to be_en_construction
     expect_removal(dossier, nil, nil)
+  end
+end
+
+describe "Brouillon lifecycle" do
+  # The flag is cached in process for 10 seconds: disable it explicitly
+  # rather than leaving it to the rollback of the example.
+  after { Flipper.disable(:brouillon_removal_stage) }
+
+  context "when the crons read the legacy columns" do
+    it_behaves_like "the brouillon lifecycle"
+  end
+
+  context "when the crons read the removal stage" do
+    before { Flipper.enable(:brouillon_removal_stage) }
+
+    it_behaves_like "the brouillon lifecycle"
   end
 end

@@ -5,5 +5,6 @@ class Cron::DiscardedBrouillonDossiersDeletionJob < Cron::DiscardedDossiersDelet
 
   private
 
-  def scope = Dossier.en_brouillon_expired_to_delete
+  # On the removal stage, a trashed brouillon is hidden and due at its purge.
+  def scope = Dossier.removal_stage_read? ? Dossier.state_brouillon.removal_due(:hidden) : Dossier.en_brouillon_expired_to_delete
 end

@@ -121,6 +121,30 @@ describe Expired::DossiersDeletionService do
       end
     end
 
+    context 'when the crons read the removal stage' do
+      let(:updated_at) { (conservation_par_defaut - 2.weeks + 1.day).ago }
+      let!(:dossier) { create(:dossier, procedure:, user:, updated_at:) }
+      let!(:trashed_meanwhile) { create(:dossier, procedure: procedure_2, user:, updated_at:) }
+
+      before { Flipper.enable(:brouillon_removal_stage) }
+
+      after { Flipper.disable(:brouillon_removal_stage) }
+
+      it 'warns and mails only the brouillons still retained when they are moved' do
+        # The usager trashes one of them between the selection and the move.
+        allow(service).to receive(:warn_brouillons).and_wrap_original do |original, ids|
+          trashed_meanwhile.hide_and_keep_track!(user, :user_request)
+          original.call(ids)
+        end
+
+        service.send_brouillon_expiration_notices
+
+        expect(DossierMailer).to have_received(:notify_brouillon_near_deletion).once.with([dossier], user.email)
+        expect(dossier.reload).to have_attributes(removal_stage: 'warned', brouillon_close_to_expiration_notice_sent_at: be_present)
+        expect(trashed_meanwhile.reload).to have_attributes(removal_stage: 'hidden', brouillon_close_to_expiration_notice_sent_at: nil)
+      end
+    end
+
     context 'when the mail is enqueued' do
       let!(:dossier) { create(:dossier, procedure:, updated_at: (conservation_par_defaut - 2.weeks + 1.day).ago) }
 
