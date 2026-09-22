@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
 class ExpertMailer < ApplicationMailer
+  include RevokedExpertGuardConcern
+
   layout 'mailers/layout'
 
   def send_dossier_decision(avis)
+    return if not_revoked_avis(avis).empty?
+
     @avis = avis
     @dossier = @avis.dossier
     email = @avis.expert.email

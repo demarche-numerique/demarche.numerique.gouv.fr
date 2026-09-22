@@ -39,4 +39,23 @@ RSpec.describe ExpertMailer, type: :mailer do
         .to change { ActionMailer::Base.deliveries.size }.by(1)
     end
   end
+
+  # The guard is in the mailer, so it holds whatever the caller did — including
+  # a revocation landing between the enqueue and the delivery.
+  describe '.send_dossier_decision, once the expert has been revoked' do
+    subject { described_class.send_dossier_decision(avis.answered).deliver_now }
+
+    it 'sends nothing when the avis itself is revoked' do
+      avis.answered.update!(revoked_at: Time.zone.now)
+
+      expect { subject }.not_to change { ActionMailer::Base.deliveries.size }
+    end
+
+    it 'sends nothing when the expert is revoked from the procedure' do
+      procedures.individual.update!(experts_require_administrateur_invitation: true)
+      experts_procedures.default.update!(revoked_at: Time.zone.now)
+
+      expect { subject }.not_to change { ActionMailer::Base.deliveries.size }
+    end
+  end
 end

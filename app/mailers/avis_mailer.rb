@@ -2,11 +2,15 @@
 
 # Preview all emails at http://localhost:3000/rails/mailers/avis_mailer
 class AvisMailer < ApplicationMailer
+  include RevokedExpertGuardConcern
+
   layout 'mailers/layout'
 
   def avis_invitation_and_confirm_email(user, token, avis) # ensure re-entrance if existing AvisMailer.avis_invitation in queue
-    avis = Array(avis)
-    avis = avis.filter { |a| a.dossier.visible_by_administration? }
+    # visible_by_administration? is wider than the not_hidden_by_administration
+    # scope — it also drops brouillon and user-hidden dossiers — so it stays a
+    # Ruby filter rather than folding into the query above.
+    avis = not_revoked_avis(avis).filter { it.dossier.visible_by_administration? }
 
     return if avis.empty?
 
@@ -55,6 +59,8 @@ class AvisMailer < ApplicationMailer
 
   # i18n-tasks-use t("avis_mailer.#{action}.subject")
   def notify_new_commentaire_to_expert(dossier, avis, expert)
+    return if not_revoked_avis(avis).empty?
+
     I18n.with_locale(dossier.user_locale) do
       @dossier = dossier
       @avis = avis

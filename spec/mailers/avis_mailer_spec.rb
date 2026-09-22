@@ -115,4 +115,30 @@ RSpec.describe AvisMailer, type: :mailer do
       end
     end
   end
+
+  describe ".notify_new_commentaire_to_expert" do
+    subject do
+      described_class
+        .notify_new_commentaire_to_expert(avis.pending.dossier, avis.pending, experts.default)
+        .deliver_now
+    end
+
+    it "is addressed to the expert" do
+      expect { subject }.to change { ActionMailer::Base.deliveries.size }.by(1)
+      expect(ActionMailer::Base.deliveries.last.to).to eq([experts.default.email])
+    end
+
+    it "sends nothing once the avis itself is revoked" do
+      avis.pending.update!(answer: "Avis favorable", revoked_at: Time.zone.now)
+
+      expect { subject }.not_to change { ActionMailer::Base.deliveries.size }
+    end
+
+    it "sends nothing once the expert is revoked from the procedure" do
+      procedures.individual.update!(experts_require_administrateur_invitation: true)
+      experts_procedures.default.update!(revoked_at: Time.zone.now)
+
+      expect { subject }.not_to change { ActionMailer::Base.deliveries.size }
+    end
+  end
 end
