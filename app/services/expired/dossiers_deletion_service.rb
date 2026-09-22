@@ -87,8 +87,10 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
 
   def delete_expired_brouillons_without_notice
     selection = Dossier.brouillon_expired_without_notice
+    # Oldest expiry first, through index_dossiers_on_expired_at: ordering by id
+    # walked the primary key of every dossier to find the few expired ones.
     ids_and_user_ids = selection
-      .order(:id)
+      .order(:expired_at)
       .limit(BROUILLON_WITHOUT_NOTICE_DELETION_LIMIT_PER_DAY)
       .pluck(:id, :user_id)
 

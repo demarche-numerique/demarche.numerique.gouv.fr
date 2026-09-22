@@ -222,9 +222,11 @@ describe Expired::DossiersDeletionService do
 
       before { stub_const("#{described_class}::BROUILLON_WITHOUT_NOTICE_DELETION_LIMIT_PER_DAY", 1) }
 
-      it 'deletes at most the limit per run' do
-        expect { service.delete_expired_brouillons_without_notice }
-          .to change { Dossier.brouillon_expired_without_notice.count }.by(-1)
+      it 'deletes at most the limit per run, oldest expiry first' do
+        service.delete_expired_brouillons_without_notice
+
+        expect(Dossier.exists?(other_expired_on_closed.id)).to be(false)
+        expect(Dossier.exists?(expired_on_closed.id)).to be(true)
       end
     end
   end
