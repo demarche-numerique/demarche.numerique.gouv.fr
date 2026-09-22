@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_22_100100) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_22_140000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
@@ -566,6 +566,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_22_100100) do
     t.index ["groupe_instructeur_id", "state", "archived"], name: "index_dossiers_on_groupe_instructeur_id_and_state_and_archived", where: "((hidden_by_administration_at IS NULL) AND (hidden_by_expired_at IS NULL))"
     t.index ["groupe_instructeur_id", "updated_at", "id"], name: "index_dossiers_on_groupe_instructeur_id_and_updated_at_and_id", where: "((hidden_by_administration_at IS NULL) AND (hidden_by_expired_at IS NULL))"
     t.index ["groupe_instructeur_id"], name: "index_dossiers_on_groupe_instructeur_id"
+    t.index ["id"], name: "index_dossiers_removal_stage_unmanaged", where: "(((state)::text <> 'brouillon'::text) AND ((removal_stage IS NOT NULL) OR (removal_due_at IS NOT NULL)))"
     t.index ["parent_dossier_id"], name: "index_dossiers_on_parent_dossier_id"
     t.index ["prefill_token"], name: "index_dossiers_on_prefill_token", unique: true
     t.index ["removal_stage", "removal_due_at"], name: "index_dossiers_on_removal_stage_and_removal_due_at", where: "(removal_due_at IS NOT NULL)"

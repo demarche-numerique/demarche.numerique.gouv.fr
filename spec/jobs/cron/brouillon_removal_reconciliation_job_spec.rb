@@ -64,6 +64,23 @@ describe Cron::BrouillonRemovalReconciliationJob do
     end
   end
 
+  # The count of the dossiers keeping a stage out of a managed state reads a
+  # partial index whose predicate holds a copy of REMOVAL_MANAGED_STATES,
+  # frozen when the migration was written. Adding a state to the constant
+  # (phase 2) leaves the count scanning the 11 M dossiers, so it must ship a
+  # replacement index: this fails until it does.
+  it "indexes the unmanaged count on the states the constant lists" do
+    predicate = Dossier.connection.select_value(<<~SQL.squish)
+      SELECT pg_get_expr(indpred, indrelid) FROM pg_index
+      WHERE indexrelid = 'index_dossiers_removal_stage_unmanaged'::regclass
+    SQL
+
+    # 'brouillon'::text for a single state, '{brouillon,…}'::text[] for several.
+    states = predicate.scan(/'([^']+)'/).flatten.flat_map { it.delete("{}").split(",") }
+
+    expect(states).to match_array(Dossier::REMOVAL_MANAGED_STATES)
+  end
+
   describe "#perform" do
     let(:job) { described_class.new }
 
