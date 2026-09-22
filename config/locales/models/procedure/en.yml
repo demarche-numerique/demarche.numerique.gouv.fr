@@ -136,6 +136,7 @@ en:
             sva_svr:
               immutable: "SVA/SVR configuration can no longer be modified"
               declarative_incompatible: "SVA/SVR is incompatible with a declarative procedure"
+              definitive: "The SVA/SVR rule has been disabled and can no longer be changed"
             monavis_embed:
               format: 'MonAvis code %{message}'
               invalid_format: "is not a valid MonAvis embed"
