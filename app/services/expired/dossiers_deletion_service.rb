@@ -35,14 +35,15 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
 
     user_notifications.each do |(email, dossiers)|
       all_user_dossiers = all_user_dossiers_brouillon_close_to_expiration(dossiers.first.user).to_a
+      # The mail announces expired_at: store it before enqueuing the mail.
+      Dossier.where(id: all_user_dossiers.map(&:id)).update_all(brouillon_close_to_expiration_notice_sent_at: Time.zone.now)
+      Dossier.where(id: all_user_dossiers.map(&:id)).find_each(&:update_expired_at)
+
       mail = DossierMailer.notify_brouillon_near_deletion(
         all_user_dossiers,
         email
       )
-
       send_with_delay(mail)
-      Dossier.where(id: all_user_dossiers.map(&:id)).update_all(brouillon_close_to_expiration_notice_sent_at: Time.zone.now)
-      Dossier.where(id: all_user_dossiers.map(&:id)).find_each(&:update_expired_at)
     end
   end
 

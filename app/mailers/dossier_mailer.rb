@@ -91,7 +91,8 @@ class DossierMailer < ApplicationMailer
     I18n.with_locale(dossiers.first.user_locale) do
       @subject = default_i18n_subject(count: dossiers.size)
       @dossiers = dossiers
-      @expiration_date = Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks.from_now
+      @expiration_date = earliest_expiration_date(dossiers)
+      return if @expiration_date.nil?
 
       mail(to: to_email, subject: @subject)
     end
@@ -116,7 +117,8 @@ class DossierMailer < ApplicationMailer
       @state = hidden_dossiers.first.state
       @subject = default_i18n_subject(count: hidden_dossiers.size)
       @hidden_dossiers = hidden_dossiers
-      @deletion_date = Dossier::REMAINING_WEEKS_BEFORE_DELETION.weeks.from_now
+      @deletion_date = earliest_deletion_date(hidden_dossiers)
+      return if @deletion_date.nil?
 
       mail(to: to_email, subject: @subject)
     end
@@ -130,7 +132,8 @@ class DossierMailer < ApplicationMailer
       default_i18n_subject(count: hidden_dossiers.size)
     end
     @hidden_dossiers = hidden_dossiers
-    @deletion_date = Dossier::REMAINING_WEEKS_BEFORE_DELETION.weeks.from_now
+    @deletion_date = earliest_deletion_date(hidden_dossiers)
+    return if @deletion_date.nil?
 
     mail(to: to_email, subject: @subject)
   end
@@ -138,7 +141,8 @@ class DossierMailer < ApplicationMailer
   def notify_automatic_deletion_to_administration(hidden_dossiers, to_email)
     @subject = default_i18n_subject(count: hidden_dossiers.size)
     @hidden_dossiers = hidden_dossiers
-    @deletion_date = Dossier::REMAINING_WEEKS_BEFORE_DELETION.weeks.from_now
+    @deletion_date = earliest_deletion_date(hidden_dossiers)
+    return if @deletion_date.nil?
 
     mail(to: to_email, subject: @subject)
   end
@@ -147,7 +151,8 @@ class DossierMailer < ApplicationMailer
     I18n.with_locale(dossiers.first.user_locale) do
       @subject = default_i18n_subject(count: dossiers.size, state: dossiers.first.state)
       @dossiers = dossiers
-      @expiration_date = Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks.from_now
+      @expiration_date = earliest_expiration_date(dossiers)
+      return if @expiration_date.nil?
 
       mail(to: to_email, subject: @subject)
     end
@@ -160,7 +165,8 @@ class DossierMailer < ApplicationMailer
       default_i18n_subject(count: dossiers.size)
     end
     @dossiers = dossiers
-    @expiration_date = Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks.from_now
+    @expiration_date = earliest_expiration_date(dossiers)
+    return if @expiration_date.nil?
 
     mail(to: to_email, subject: @subject)
   end
@@ -168,7 +174,8 @@ class DossierMailer < ApplicationMailer
   def notify_near_deletion_to_administration(dossiers, to_email)
     @subject = default_i18n_subject(count: dossiers.size, state: dossiers.first.state)
     @dossiers = dossiers
-    @expiration_date = Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks.from_now
+    @expiration_date = earliest_expiration_date(dossiers)
+    return if @expiration_date.nil?
 
     mail(to: to_email, subject: @subject)
   end
@@ -217,6 +224,16 @@ class DossierMailer < ApplicationMailer
   end
 
   protected
+
+  # The mails are delivered later, rate-limited over hours: they announce the
+  # dates stored when they were enqueued, the earliest one when they group
+  # several dossiers. No date left (every dossier restored or sent back to
+  # instruction since) means nothing to announce.
+  def earliest_expiration_date(dossiers) = dossiers.filter_map(&:expired_at).min
+
+  def earliest_deletion_date(hidden_dossiers)
+    hidden_dossiers.filter_map(&:hidden_by_expired_at).min&.+(Dossier::REMAINING_WEEKS_BEFORE_DELETION.weeks)
+  end
 
   def prevent_perform_deliveries
     commentaire = params[:commentaire]

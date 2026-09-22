@@ -104,6 +104,20 @@ describe Expired::DossiersDeletionService do
         expect(DossierMailer).to have_received(:notify_brouillon_near_deletion).with(match_array([dossier_1, dossier_2]), user.email)
       end
     end
+
+    context 'when the mail is enqueued' do
+      let!(:dossier) { create(:dossier, procedure:, updated_at: (conservation_par_defaut - 2.weeks + 1.day).ago) }
+
+      it 'has already stored the expiration date the mail announces' do
+        expect(service).to receive(:send_with_delay) do
+          dossier.reload
+          expect(dossier.brouillon_close_to_expiration_notice_sent_at).to be_present
+          expect(dossier.expired_at).to be_within(1.second).of(Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks.from_now)
+        end
+
+        service.send_brouillon_expiration_notices
+      end
+    end
   end
 
   describe '#process_never_touched_dossiers_brouillon' do

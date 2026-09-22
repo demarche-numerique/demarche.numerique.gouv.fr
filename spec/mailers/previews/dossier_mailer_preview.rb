@@ -21,27 +21,27 @@ class DossierMailerPreview < ActionMailer::Preview
   end
 
   def notify_brouillon_near_deletion
-    DossierMailer.notify_brouillon_near_deletion([dossier], usager_email)
+    DossierMailer.notify_brouillon_near_deletion([expiring(dossier)], usager_email)
   end
 
   def notify_brouillons_near_deletion
-    DossierMailer.notify_brouillon_near_deletion([dossier, dossier], usager_email)
+    DossierMailer.notify_brouillon_near_deletion([expiring(dossier), expiring(dossier)], usager_email)
   end
 
   def notify_brouillons_near_deletion_one
-    DossierMailer.notify_brouillon_near_deletion([dossier], usager_email)
+    DossierMailer.notify_brouillon_near_deletion([expiring(dossier)], usager_email)
   end
 
   def notify_termine_near_deletion_to_user
-    DossierMailer.notify_near_deletion_to_user([dossier_accepte], usager_email)
+    DossierMailer.notify_near_deletion_to_user([expiring(dossier_accepte)], usager_email)
   end
 
   def notify_termine_near_deletion_to_user_multiple
-    DossierMailer.notify_near_deletion_to_user([dossier_accepte, dossier_accepte], usager_email)
+    DossierMailer.notify_near_deletion_to_user([expiring(dossier_accepte), expiring(dossier_accepte)], usager_email)
   end
 
   def notify_termine_near_deletion_to_administration
-    DossierMailer.notify_near_deletion_to_administration([dossier_accepte, dossier_accepte], administration_email)
+    DossierMailer.notify_near_deletion_to_administration([expiring(dossier_accepte), expiring(dossier_accepte)], administration_email)
   end
 
   def notify_brouillon_deletion
@@ -58,15 +58,15 @@ class DossierMailerPreview < ActionMailer::Preview
   end
 
   def notify_automatic_deletion_to_user
-    DossierMailer.notify_automatic_deletion_to_user([dossier, dossier], usager_email)
+    DossierMailer.notify_automatic_deletion_to_user([hidden_by_expiration(dossier), hidden_by_expiration(dossier)], usager_email)
   end
 
   def notify_automatic_deletion_to_administration_one
-    DossierMailer.notify_automatic_deletion_to_administration([dossier], administration_email)
+    DossierMailer.notify_automatic_deletion_to_administration([hidden_by_expiration(dossier)], administration_email)
   end
 
   def notify_automatic_deletion_to_administration_multiple
-    DossierMailer.notify_automatic_deletion_to_administration([dossier, dossier], administration_email)
+    DossierMailer.notify_automatic_deletion_to_administration([hidden_by_expiration(dossier), hidden_by_expiration(dossier)], administration_email)
   end
 
   def notify_brouillon_not_submitted
@@ -135,6 +135,14 @@ class DossierMailerPreview < ActionMailer::Preview
 
   def dossier_accepte
     Dossier.new(id: 47882, state: :accepte, procedure: procedure, user: user)
+  end
+
+  def expiring(dossier)
+    dossier.tap { it.expired_at = Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks.from_now }
+  end
+
+  def hidden_by_expiration(dossier)
+    dossier.tap { it.hidden_by_expired_at = Time.zone.now }
   end
 
   def procedure

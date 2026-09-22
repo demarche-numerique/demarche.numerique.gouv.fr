@@ -112,14 +112,14 @@ RSpec.describe DossierMailer, type: :mailer do
   end
 
   describe '.notify_brouillon_near_deletion' do
-    let(:dossier) { create(:dossier) }
+    let(:dossier) { dossiers.brouillon.tap { it.update_columns(expired_at: 10.days.from_now) } }
 
     subject { described_class.notify_brouillon_near_deletion([dossier], dossier.user.email) }
 
     it 'checks email body for correct inclusions regarding brouillon nearing deletion' do
       expect(subject.body).to include("n° #{dossier.id} ")
       expect(subject.body).to include(dossier.procedure.libelle)
-      expect(subject.body).to include(I18n.l(Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks.from_now.to_date, format: :long).to_s)
+      expect(subject.body).to include(I18n.l(10.days.from_now.to_date, format: :long))
     end
   end
 
@@ -138,7 +138,7 @@ RSpec.describe DossierMailer, type: :mailer do
 
   describe '.notify_automatic_deletion_to_user' do
     describe 'en_construction' do
-      let(:hidden_dossier) { create(:dossier, :en_construction, hidden_by_expired_at: Time.zone.now, hidden_by_reason: 'expired') }
+      let(:hidden_dossier) { dossiers.en_construction.tap { it.update_columns(hidden_by_expired_at: 3.days.ago, hidden_by_reason: 'expired') } }
 
       subject { described_class.notify_automatic_deletion_to_user([hidden_dossier], hidden_dossier.user.email) }
 
@@ -147,12 +147,12 @@ RSpec.describe DossierMailer, type: :mailer do
         expect(subject.subject).to eq("Un dossier de votre compte a été mis à la corbeille")
         expect(subject.body).to include("N° #{hidden_dossier.id} ")
         expect(subject.body).to include(hidden_dossier.procedure.libelle)
-        expect(subject.body).to include(I18n.l(Dossier::REMAINING_WEEKS_BEFORE_DELETION.weeks.from_now.to_date, format: :long).to_s)
+        expect(subject.body).to include(I18n.l(11.days.from_now.to_date, format: :long))
       end
     end
 
     describe 'termine' do
-      let(:hidden_dossier) { create(:dossier, :accepte, hidden_by_expired_at: Time.zone.now, hidden_by_reason: 'expired') }
+      let(:hidden_dossier) { dossiers.accepte.tap { it.update_columns(hidden_by_expired_at: 3.days.ago, hidden_by_reason: 'expired') } }
 
       subject { described_class.notify_automatic_deletion_to_user([hidden_dossier], hidden_dossier.user.email) }
 
@@ -161,7 +161,7 @@ RSpec.describe DossierMailer, type: :mailer do
         expect(subject.subject).to eq("Un dossier de votre compte a été mis à la corbeille")
         expect(subject.body).to include("N° #{hidden_dossier.id} ")
         expect(subject.body).to include(hidden_dossier.procedure.libelle)
-        expect(subject.body).to include(I18n.l(Dossier::REMAINING_WEEKS_BEFORE_DELETION.weeks.from_now.to_date, format: :long).to_s)
+        expect(subject.body).to include(I18n.l(11.days.from_now.to_date, format: :long))
         expect(subject.body).to include("depuis la page")
         expect(subject.body).to include(">Corbeille</a>")
         expect(subject.body).to include("/corbeille")
@@ -169,7 +169,10 @@ RSpec.describe DossierMailer, type: :mailer do
     end
 
     describe 'multiple' do
-      let(:hidden_dossiers) { create_list(:dossier, 2, :accepte, hidden_by_expired_at: Time.zone.now, hidden_by_reason: 'expired') }
+      let(:user) { create(:user) }
+      let(:hidden_dossiers) do
+        [1.day.ago, 3.days.ago].map { create(:dossier, :accepte, user:, hidden_by_expired_at: it, hidden_by_reason: 'expired') }
+      end
 
       subject { described_class.notify_automatic_deletion_to_user(hidden_dossiers, hidden_dossiers.first.user.email) }
 
@@ -179,11 +182,26 @@ RSpec.describe DossierMailer, type: :mailer do
         expect(subject.body).to include("Vous pouvez encore retrouver ces dossiers")
         expect(subject.body).to include(">Corbeille</a>")
       end
+
+      it 'announces the earliest deletion date' do
+        expect(subject.body).to include(I18n.l(11.days.from_now.to_date, format: :long))
+        expect(subject.body).not_to include(I18n.l(13.days.from_now.to_date, format: :long))
+      end
+    end
+
+    describe 'restored since the mail was enqueued' do
+      let(:dossier) { dossiers.accepte }
+
+      subject { described_class.notify_automatic_deletion_to_user([dossier], dossier.user.email) }
+
+      it 'sends nothing' do
+        expect(subject.message).to be_a(ActionMailer::Base::NullMail)
+      end
     end
   end
 
   describe 'notify_automatic_deletion_for_tiers' do
-    let!(:dossier_for_tiers) { create(:dossier, :accepte, :for_tiers_with_notification, hidden_by_expired_at: Time.zone.now, hidden_by_reason: 'expired') }
+    let!(:dossier_for_tiers) { create(:dossier, :accepte, :for_tiers_with_notification, hidden_by_expired_at: 3.days.ago, hidden_by_reason: 'expired') }
 
     subject { described_class.notify_automatic_deletion_for_tiers([dossier_for_tiers], dossier_for_tiers.individual.email) }
 
@@ -193,7 +211,7 @@ RSpec.describe DossierMailer, type: :mailer do
       expect(subject.body).to include("N° #{dossier_for_tiers.id} ")
       expect(subject.body).to include(dossier_for_tiers.procedure.libelle)
       expect(subject.body).to include(dossier_for_tiers.user.email)
-      expect(subject.body).to include(I18n.l(Dossier::REMAINING_WEEKS_BEFORE_DELETION.weeks.from_now.to_date, format: :long).to_s)
+      expect(subject.body).to include(I18n.l(11.days.from_now.to_date, format: :long))
     end
 
     context 'with multiple dossiers' do
@@ -208,20 +226,20 @@ RSpec.describe DossierMailer, type: :mailer do
   end
 
   describe '.notify_automatic_deletion_to_administration' do
-    let(:hidden_dossier) { create(:dossier, :accepte, hidden_by_expired_at: Time.zone.now, hidden_by_reason: 'expired') }
+    let(:hidden_dossier) { dossiers.accepte.tap { it.update_columns(hidden_by_expired_at: 3.days.ago, hidden_by_reason: 'expired') } }
 
     subject { described_class.notify_automatic_deletion_to_administration([hidden_dossier], hidden_dossier.user.email) }
 
     it 'verifies subject and body content for automatic deletion notification' do
       expect(subject.subject).to eq("Un dossier a été mis à la corbeille")
       expect(subject.body).to include("n° #{hidden_dossier.id} (#{hidden_dossier.procedure.libelle})")
-      expect(subject.body).to include(I18n.l(Dossier::REMAINING_WEEKS_BEFORE_DELETION.weeks.from_now.to_date, format: :long).to_s)
+      expect(subject.body).to include(I18n.l(11.days.from_now.to_date, format: :long))
     end
   end
 
   describe '.notify_near_deletion_to_administration' do
     describe 'termine' do
-      let(:dossier) { create(:dossier, :accepte) }
+      let(:dossier) { dossiers.accepte.tap { it.update_columns(expired_at: 10.days.from_now) } }
 
       subject { described_class.notify_near_deletion_to_administration([dossier], dossier.user.email) }
 
@@ -229,14 +247,14 @@ RSpec.describe DossierMailer, type: :mailer do
         expect(subject.subject).to eq("Un dossier traité va bientôt être supprimé")
         expect(subject.body).to include("N° #{dossier.id} ")
         expect(subject.body).to include(dossier.procedure.libelle)
-        expect(subject.body).to include(I18n.l(Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks.from_now.to_date, format: :long).to_s)
+        expect(subject.body).to include(I18n.l(10.days.from_now.to_date, format: :long))
       end
     end
   end
 
   describe '.notify_near_deletion_to_user' do
     describe 'termine' do
-      let(:dossier) { create(:dossier, :accepte) }
+      let(:dossier) { dossiers.accepte.tap { it.update_columns(expired_at: 10.days.from_now) } }
 
       subject { described_class.notify_near_deletion_to_user([dossier], dossier.user.email) }
 
@@ -247,30 +265,44 @@ RSpec.describe DossierMailer, type: :mailer do
         expect(subject.body).to include(dossier.procedure.libelle)
         expect(subject.body).to include("Votre compte reste activé")
         expect(subject.body).to include("PDF")
-        expect(subject.body).to include(I18n.l(Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks.from_now.to_date, format: :long).to_s)
+        expect(subject.body).to include(I18n.l(10.days.from_now.to_date, format: :long))
         expect(subject.body).to include("Expire bientôt")
         expect(subject.body).to include(">mes dossiers</a>")
       end
     end
 
     describe 'multiple termines' do
-      let(:dossiers) { create_list(:dossier, 3, :accepte) }
+      let(:user) { create(:user) }
+      let(:termines) do
+        [12.days, 10.days, 13.days].map { |delay| create(:dossier, :accepte, user:).tap { it.update_columns(expired_at: delay.from_now) } }
+      end
 
-      subject { described_class.notify_near_deletion_to_user(dossiers, dossiers[0].user.email) }
+      subject { described_class.notify_near_deletion_to_user(termines, user.email) }
 
       it 'verifies email subject and body contain correct dossier numbers for multiple termine status' do
         expect(subject.subject).to eq("Des dossiers traités vont bientôt être supprimés")
         expect(subject.body).to include("retrouver tous vos dossiers expirants")
         expect(subject.body).to include("Expire bientôt")
-        dossiers.each do |dossier|
+        termines.each do |dossier|
           expect(subject.body).to include("N° #{dossier.id} ")
         end
+        expect(subject.body).to include(I18n.l(10.days.from_now.to_date, format: :long))
+      end
+    end
+
+    describe 'no longer expiring when the mail is delivered' do
+      let(:dossier) { dossiers.accepte.tap { it.update_columns(expired_at: nil) } }
+
+      subject { described_class.notify_near_deletion_to_user([dossier], dossier.user.email) }
+
+      it 'sends nothing' do
+        expect(subject.message).to be_a(ActionMailer::Base::NullMail)
       end
     end
   end
 
   describe 'notify_near_deletion_for_tiers' do
-    let!(:dossier_for_tiers) { create(:dossier, :accepte, :for_tiers_with_notification) }
+    let!(:dossier_for_tiers) { create(:dossier, :accepte, :for_tiers_with_notification).tap { it.update_columns(expired_at: 10.days.from_now) } }
 
     subject { described_class.notify_near_deletion_for_tiers([dossier_for_tiers], dossier_for_tiers.individual.email) }
 
@@ -280,7 +312,7 @@ RSpec.describe DossierMailer, type: :mailer do
       expect(subject.body).to include("N° #{dossier_for_tiers.id} ")
       expect(subject.body).to include(dossier_for_tiers.procedure.libelle)
       expect(subject.body).to include(dossier_for_tiers.user.email)
-      expect(subject.body).to include(I18n.l(Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks.from_now.to_date, format: :long).to_s)
+      expect(subject.body).to include(I18n.l(10.days.from_now.to_date, format: :long))
     end
   end
 
