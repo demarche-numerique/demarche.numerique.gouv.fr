@@ -68,7 +68,9 @@ module Connections
 
         expected_size = limit - 1
 
-        nodes = resolve_nodes(limit:, before:, after:, inverted:)
+        # Load the page once: `size` on an unloaded relation issues a COUNT that
+        # repeats the page query, and that query is the expensive part.
+        nodes = resolve_nodes(limit:, before:, after:, inverted:).to_a
 
         result_size = nodes.size
         @has_previous_page = previous_page?(after, result_size, limit, inverted)
@@ -94,7 +96,7 @@ module Connections
         inverted = !inverted
       end
 
-      nodes = resolve_nodes(limit:, before: after, after: before, inverted:)
+      nodes = resolve_nodes(limit:, before: after, after: before, inverted:).to_a
 
       result_size = nodes.size
       @has_next_page = previous_page?(before, result_size, limit, inverted)

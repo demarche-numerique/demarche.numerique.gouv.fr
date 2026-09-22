@@ -38,6 +38,19 @@ RSpec.describe Connections::DossiersConnection, type: :graphql do
     it_behaves_like 'a shape preloading champs'
   end
 
+  # The page query is the expensive part of a connection: it must not run a
+  # second time as a COUNT to compute the page info.
+  it 'reads the dossiers table once per page' do
+    execute(NODES_IDS_QUERY)
+
+    dossiers_queries = []
+    ActiveSupport::Notifications.subscribed(-> (_, _, _, _, payload) { dossiers_queries << payload[:sql] if payload[:sql].include?('FROM "dossiers"') }, 'sql.active_record') do
+      execute(NODES_IDS_QUERY)
+    end
+
+    expect(dossiers_queries.size).to eq(1)
+  end
+
   context 'when champs are selected through `edges { node }`' do
     let(:query) { EDGES_NODE_CHAMPS_QUERY }
 
@@ -87,6 +100,22 @@ RSpec.describe Connections::DossiersConnection, type: :graphql do
               }
             }
           }
+        }
+      }
+    }
+  }
+  GRAPHQL
+
+  NODES_IDS_QUERY = <<-GRAPHQL
+  query getDemarche($number: Int!) {
+    demarche(number: $number) {
+      dossiers {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        nodes {
+          id
         }
       }
     }
