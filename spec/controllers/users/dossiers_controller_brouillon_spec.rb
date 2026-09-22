@@ -212,7 +212,7 @@ describe Users::DossiersController, type: :controller do
 
     let(:procedure) { create(:procedure, :published, public_type_de_champs:) }
     let(:public_type_de_champs) { [{}, { type: :piece_justificative, mandatory: false }] }
-    let(:dossier) { create(:dossier, user:, procedure:, brouillon_close_to_expiration_notice_sent_at: 10.days.ago) }
+    let(:dossier) { create(:dossier, :warned, user:, procedure:, warned_at: 10.days.ago) }
     let(:first_champ) { dossier.root_champs_public.first }
     let(:piece_justificative_champ) { dossier.root_champs_public.last }
     let(:value) { 'beautiful value' }

@@ -32,8 +32,7 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
       group_by_user_email(dossiers_close_to_expiration).each do |(email, dossiers)|
         all_user_dossiers = all_user_dossiers_brouillon_close_to_expiration(dossiers.first.user).to_a
         # The mail announces expired_at: store it before enqueuing the mail.
-        Dossier.where(id: all_user_dossiers.map(&:id)).update_all(brouillon_close_to_expiration_notice_sent_at: Time.zone.now)
-        Dossier.where(id: all_user_dossiers.map(&:id)).find_each(&:update_expired_at)
+        warn_brouillons(Dossier.where(id: all_user_dossiers.map(&:id)))
 
         mail = DossierMailer.notify_brouillon_near_deletion(
           all_user_dossiers,
@@ -245,6 +244,17 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
         end
       end
     end.transform_values(&:to_a)
+  end
+
+  # The brouillons on the removal stage move to warned; the others (not
+  # backfilled yet) get the legacy columns only, with the same dates.
+  def warn_brouillons(dossiers)
+    now = Time.zone.now
+    dossiers.warn_removal!(now)
+    dossiers.where(removal_stage: nil).update_all(
+      brouillon_close_to_expiration_notice_sent_at: now,
+      expired_at: now + Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks
+    )
   end
 
   def all_user_dossiers_brouillon_close_to_expiration(user)

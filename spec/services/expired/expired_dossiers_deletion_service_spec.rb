@@ -19,9 +19,9 @@ describe Expired::DossiersDeletionService do
     let(:date_not_expired) { today - procedure.duree_conservation_dossiers_dans_ds.months + 2.months }
 
     context 'send messages for dossiers expiring soon and delete expired' do
-      let!(:expired_brouillon) { create(:dossier, procedure: procedure, updated_at: date_expired, brouillon_close_to_expiration_notice_sent_at: today - (warning_period + 3.days)) }
+      let!(:expired_brouillon) { create(:dossier, :warned, procedure: procedure, updated_at: date_expired, warned_at: today - (warning_period + 3.days)) }
       let!(:brouillon_close_to_expiration) { create(:dossier, procedure: procedure, updated_at: date_close_to_expiration) }
-      let!(:brouillon_close_but_with_notice_sent) { create(:dossier, procedure: procedure, updated_at: date_close_to_expiration, brouillon_close_to_expiration_notice_sent_at: Time.zone.now) }
+      let!(:brouillon_close_but_with_notice_sent) { create(:dossier, :warned, procedure: procedure, updated_at: date_close_to_expiration, warned_at: Time.zone.now) }
       let!(:valid_brouillon) { create(:dossier, procedure: procedure, updated_at: date_not_expired) }
 
       before do
@@ -146,12 +146,12 @@ describe Expired::DossiersDeletionService do
     end
 
     context 'with a single dossier' do
-      let!(:dossier) { create(:dossier, procedure: procedure, brouillon_close_to_expiration_notice_sent_at: notice_sent_at) }
+      let!(:dossier) { create(:dossier, :warned, procedure: procedure, warned_at: notice_sent_at) }
 
       before { service.delete_expired_brouillons_and_notify }
 
       context 'when no notice has been sent' do
-        let(:notice_sent_at) { nil }
+        let!(:dossier) { create(:dossier, procedure:) }
 
         it do
           expect { dossier.reload }.not_to raise_error
@@ -180,8 +180,8 @@ describe Expired::DossiersDeletionService do
     end
 
     context 'with 2 dossiers to delete' do
-      let!(:dossier_1) { create(:dossier, procedure: procedure, user: user, brouillon_close_to_expiration_notice_sent_at: (warning_period + 1.day).ago) }
-      let!(:dossier_2) { create(:dossier, procedure: procedure_2, user: user, brouillon_close_to_expiration_notice_sent_at: (warning_period + 1.day).ago) }
+      let!(:dossier_1) { create(:dossier, :warned, procedure: procedure, user: user, warned_at: (warning_period + 1.day).ago) }
+      let!(:dossier_2) { create(:dossier, :warned, procedure: procedure_2, user: user, warned_at: (warning_period + 1.day).ago) }
 
       before { service.delete_expired_brouillons_and_notify }
 
@@ -479,7 +479,7 @@ describe Expired::DossiersDeletionService do
       before { service.delete_expired_termine_and_notify }
 
       context 'when no notice has been sent' do
-        let(:notice_sent_at) { nil }
+        let!(:dossier) { create(:dossier, procedure:) }
 
         it "works" do
           expect { dossier.reload }.not_to raise_error

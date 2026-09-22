@@ -99,10 +99,7 @@ describe Dossier, type: :model do
 
       let!(:dossier_brouillon_expired_and_noticed_long_time_ago) do
         travel_to(5.months.ago) do
-          create(:dossier,
-            state: :brouillon,
-            procedure: procedures.individual,
-            brouillon_close_to_expiration_notice_sent_at: 1.day.ago)
+          create(:dossier, :warned, procedure: procedures.individual, warned_at: 1.day.ago)
         end
       end
 
@@ -116,10 +113,7 @@ describe Dossier, type: :model do
 
       let!(:dossier_brouillon_expired_but_noticed_recently) do
         travel_to(5.months.ago) do
-          create(:dossier,
-            state: :brouillon,
-            procedure: procedures.individual,
-            brouillon_close_to_expiration_notice_sent_at: (4.months + 20.days).from_now)
+          create(:dossier, :warned, procedure: procedures.individual, warned_at: (4.months + 20.days).from_now)
         end
       end
 
@@ -229,7 +223,7 @@ describe Dossier, type: :model do
     let_it_be(:procedure) { create(:procedure, :published, duree_conservation_dossiers_dans_ds: 6) }
     let_it_be(:young_dossier) { create(:dossier, :en_construction, procedure:) }
     let_it_be(:expiring_dossier) { create(:dossier, updated_at: 85.days.ago, procedure:) }
-    let_it_be(:expiring_dossier_with_notification) { create(:dossier, updated_at: 85.days.ago, brouillon_close_to_expiration_notice_sent_at: Time.zone.now, procedure:) }
+    let_it_be(:expiring_dossier_with_notification) { create(:dossier, :warned, updated_at: 85.days.ago, procedure:) }
     let_it_be(:just_expired_dossier) { create(:dossier, updated_at: (6.months + 1.hour + 10.seconds).ago, procedure:) }
     let_it_be(:long_expired_dossier) { create(:dossier, updated_at: 1.year.ago, procedure:) }
 
@@ -2270,7 +2264,7 @@ describe Dossier, type: :model do
 
   describe '#update_champs_timestamps' do
     let_it_be(:procedure) { create(:procedure, public_type_de_champs: [{}, { type: :piece_justificative }, { type: :piece_justificative, nature: 'titre_identite' }]) }
-    let(:dossier) { create(:dossier, procedure:, brouillon_close_to_expiration_notice_sent_at: 10.days.ago) }
+    let(:dossier) { create(:dossier, :warned, procedure:, warned_at: 10.days.ago) }
     let(:changed_champs) { dossier.champ_data.filter(&:text?) }
 
     subject { -> { dossier.update_champs_timestamps(changed_champs, Dossier::USER_BUFFER_STREAM) } }
