@@ -45,12 +45,19 @@ describe "Brouillon lifecycle" do
 
   def gone?(dossier) = !Dossier.exists?(dossier.id)
 
+  # The removal stage (#13915) is written along the legacy columns: where the
+  # brouillon stands, and when that stage ends.
+  def expect_removal(dossier, stage, due_at)
+    expect(dossier.reload).to have_attributes(removal_stage: stage, removal_due_at: due_at)
+  end
+
   let(:notice_mail) { have_enqueued_mail(DossierMailer, :notify_brouillon_near_deletion) }
   let(:deletion_mail) { have_enqueued_mail(DossierMailer, :notify_brouillon_deletion) }
 
   it "warns the usager at J-14, then destroys the brouillon at J with a mail" do
     dossier
     expect(dossier.reload.expired_at).to eq(expires_at)
+    expect_removal(dossier, 'retained', notice_at)
 
     expect { run_crons(notice_at - 1.minute) }.not_to have_enqueued_mail
     expect { run_crons(notice_at + 1.minute) }.to notice_mail.with([dossier], user.email)
@@ -60,11 +67,13 @@ describe "Brouillon lifecycle" do
     expect(dossier.brouillon_close_to_expiration_notice_sent_at).to eq(notice_at + 1.minute)
     # The mail announces expired_at: it moves to notice + 14 days.
     expect(dossier.expired_at).to eq(notice_at + 1.minute + 2.weeks)
+    expect_removal(dossier, 'warned', dossier.expired_at)
 
     deletion_at = dossier.expired_at
     expect { run_crons(notice_at + 1.day) }.not_to have_enqueued_mail
     expect { run_crons(deletion_at - 1.minute) }.not_to have_enqueued_mail
     expect(gone?(dossier)).to be(false)
+    expect_removal(dossier, 'warned', deletion_at)
 
     expect { run_crons(deletion_at + 1.minute) }.to deletion_mail.with([dossier.hash_for_deletion_mail], user.email)
       .and have_enqueued_mail.exactly(:once)
@@ -79,6 +88,7 @@ describe "Brouillon lifecycle" do
     never_touched = create(:dossier, procedure: procedures.entreprise, user:)
     prefilled_without_user = create(:dossier, :prefilled, procedure:, user: nil)
     drained = [on_closed_procedure, preview, never_touched, prefilled_without_user]
+    drained.each { expect_removal(it, 'retained', notice_at) }
 
     expect do
       run_crons(created_at + 5.days - 1.minute)
@@ -96,6 +106,8 @@ describe "Brouillon lifecycle" do
       run_crons(notice_at + 1.minute)
       expect(on_closed_procedure.reload.brouillon_close_to_expiration_notice_sent_at).to be_nil
       expect(preview.reload.brouillon_close_to_expiration_notice_sent_at).to be_nil
+      expect_removal(on_closed_procedure, 'retained', notice_at)
+      expect_removal(preview, 'retained', notice_at)
 
       run_crons(expires_at - 1.minute)
       expect(gone?(on_closed_procedure) || gone?(preview)).to be(false)
@@ -111,12 +123,15 @@ describe "Brouillon lifecycle" do
     trashed_at = notice_at - 1.day
     travel_to(trashed_at)
     dossier.hide_and_keep_track!(user, :user_request)
+    purge_at = trashed_at + Dossier::REMAINING_WEEKS_BEFORE_DELETION.weeks
+    expect_removal(dossier, 'hidden', purge_at)
 
     expect do
       run_crons(notice_at + 1.minute)
       run_crons(trashed_at + Dossier::REMAINING_WEEKS_BEFORE_DELETION.weeks - 1.minute)
     end.not_to have_enqueued_mail
     expect(dossier.reload.brouillon_close_to_expiration_notice_sent_at).to be_nil
+    expect_removal(dossier, 'hidden', purge_at)
 
     expect { run_crons(trashed_at + Dossier::REMAINING_WEEKS_BEFORE_DELETION.weeks + 1.minute) }.not_to have_enqueued_mail
     expect(gone?(dossier)).to be(true)
@@ -130,11 +145,13 @@ describe "Brouillon lifecycle" do
 
     travel_to(notice_at + 2.days)
     dossier.hide_and_keep_track!(user, :user_request)
+    expect_removal(dossier, 'hidden', notice_at + 2.days + 2.weeks)
     travel_to(notice_at + 5.days)
     dossier.restore(user)
 
     expect(dossier.reload.brouillon_close_to_expiration_notice_sent_at).to be_present
     expect(dossier.expired_at).to eq(deletion_at)
+    expect_removal(dossier, 'warned', deletion_at)
 
     expect { run_crons(deletion_at - 1.minute) }.not_to have_enqueued_mail
     expect { run_crons(deletion_at + 1.minute) }.to deletion_mail.with([dossier.hash_for_deletion_mail], user.email)
@@ -147,9 +164,11 @@ describe "Brouillon lifecycle" do
   # of the restore, without any new notice.
   it "destroys the same night a brouillon restored after its notice is older than 14 days" do
     warn!
+    deletion_at = dossier.expired_at
 
     travel_to(notice_at + 10.days)
     dossier.hide_and_keep_track!(user, :user_request)
+    expect_removal(dossier, 'hidden', notice_at + 10.days + 2.weeks)
     # A hidden brouillon is left alone at J…
     expect { run_crons(notice_at + 15.days) }.not_to have_enqueued_mail
     expect(gone?(dossier)).to be(false)
@@ -158,6 +177,8 @@ describe "Brouillon lifecycle" do
     restored_at = notice_at + 20.days
     travel_to(restored_at)
     dossier.restore(user)
+    # Back to warned, already past its due date.
+    expect_removal(dossier, 'warned', deletion_at)
 
     expect { run_crons(restored_at + 1.hour) }.to deletion_mail.with([dossier.hash_for_deletion_mail], user.email)
       .and have_enqueued_mail.exactly(:once)
@@ -175,6 +196,7 @@ describe "Brouillon lifecycle" do
     expect(dossier.brouillon_close_to_expiration_notice_sent_at).to be_nil
     # Counted from the last edit: 3 months + 3 months of extension.
     expect(dossier.expired_at).to eq(created_at + 6.months)
+    expect_removal(dossier, 'retained', created_at + 6.months - 2.weeks)
 
     expect { run_crons(old_deletion_at + 1.minute) }.not_to have_enqueued_mail
     expect(gone?(dossier)).to be(false)
@@ -193,6 +215,7 @@ describe "Brouillon lifecycle" do
     dossier.reload
     expect(dossier.brouillon_close_to_expiration_notice_sent_at).to be_nil
     expect(dossier.expired_at).to eq(edited_at + 3.months)
+    expect_removal(dossier, 'retained', edited_at + 3.months - 2.weeks)
 
     expect { run_crons(old_deletion_at + 1.minute) }.not_to have_enqueued_mail
     expect(gone?(dossier)).to be(false)
@@ -207,8 +230,10 @@ describe "Brouillon lifecycle" do
     travel_to(notice_at + 3.days)
     dossier.passer_en_construction!
     expect(dossier.reload.expired_at).to be_nil
+    expect_removal(dossier, nil, nil)
 
     expect { run_crons(old_deletion_at + 1.minute) }.not_to have_enqueued_mail
     expect(dossier.reload).to be_en_construction
+    expect_removal(dossier, nil, nil)
   end
 end
