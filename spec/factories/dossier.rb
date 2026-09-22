@@ -130,6 +130,18 @@ FactoryBot.define do
       archived { false }
     end
 
+    # A brouillon warned by the nightly cron at warned_at (Dossier.warn_removal!).
+    trait :warned do
+      transient do
+        warned_at { Time.zone.now }
+      end
+
+      after(:create) do |dossier, evaluator|
+        Dossier.where(id: dossier).warn_removal!(evaluator.warned_at)
+        dossier.reload
+      end
+    end
+
     trait :hidden_by_expired do
       hidden_by_expired_at { 1.day.ago }
       hidden_by_reason { DeletedDossier.reasons.fetch(:expired) }

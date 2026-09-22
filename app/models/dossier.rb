@@ -13,6 +13,7 @@ class Dossier < ApplicationRecord
   include DossierFilteringConcern
   include DossierPrefillableConcern
   include DossierRebaseConcern
+  include DossierRemovalConcern
   include DossierSearchableConcern
   include DossierSectionsConcern
   include DossierStateConcern
@@ -469,7 +470,9 @@ class Dossier < ApplicationRecord
   end
 
   after_save :send_web_hook
-  after_save :update_expired_at, if: :brouillon?
+  # Every dossier whose removal the stage owns keeps expired_at up to date:
+  # on create the due date cannot be computed before the row exists.
+  after_save :update_expired_at, if: :removal_managed_state?
 
   validates :user, presence: true, if: -> { deleted_user_email_never_send.nil? }, unless: -> { prefilled }
   validates :individual, presence: true, if: -> { revision.procedure.for_individual? }
@@ -675,6 +678,8 @@ class Dossier < ApplicationRecord
   end
 
   def expiration_date_reference
+    # A brouillon rule, not an ownership check: a brouillon expires from its
+    # last edit, whether or not its removal goes through the stage.
     if brouillon?
       [last_champ_updated_at, identity_updated_at].compact.max || updated_at
     elsif en_construction?
@@ -710,8 +715,18 @@ class Dossier < ApplicationRecord
     after_notification_expiration_date.presence || expiration_date_with_extension
   end
 
-  def update_expired_at = update_column(:expired_at, expiration_date)
+  # A brouillon on the removal stage has expired_at written with its stage,
+  # and only while nobody moved it since it was loaded.
+  def update_expired_at
+    if removal_managed?
+      refresh_removal!
+    else
+      update_column(:expired_at, expiration_date)
+    end
+  end
 
+  # A brouillon rule, not an ownership check: only a brouillon offers the
+  # usager to push its expiration back.
   def expiration_can_be_extended?
     brouillon?
   end
