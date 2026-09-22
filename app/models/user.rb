@@ -244,6 +244,42 @@ class User < ApplicationRecord
     expert.present?
   end
 
+  # An account that reads other people's dossiers, and therefore trades staying
+  # signed in for a bounded session. `expert?` is in: an expert reads a whole
+  # dossier, so the rule follows the data, not the way the role was granted.
+  #
+  # Exactly the keys of SESSION_MAX_LIFETIMES, so the two cannot disagree.
+  def privileged?
+    administrateur? || instructeur? || gestionnaire? || expert?
+  end
+
+  # The instructeur matches TRUSTED_DEVICE_PERIOD so session and device trust
+  # expire together. The expert follows them, with no trusted device of their own
+  # -- `redirect_if_untrusted` only fires for an instructeur -- so the month is
+  # the whole of their protection.
+  SESSION_MAX_LIFETIMES = {
+    administrateur: 1.week,
+    gestionnaire: 1.week,
+    instructeur: TrustedDeviceConcern::TRUSTED_DEVICE_PERIOD,
+    expert: TrustedDeviceConcern::TRUSTED_DEVICE_PERIOD,
+  }.freeze
+
+  # A purge horizon, not a policy: without a deadline these rows could never be
+  # purged.
+  USAGER_SESSION_MAX_LIFETIME = 1.year
+
+  # Frozen on the row at creation: the contract stays auditable and a role
+  # granted mid-session does not shorten a session already open. Several roles
+  # take the shortest, and `privileged?` guarantees `min` never sees an empty
+  # list.
+  def session_max_lifetime
+    return USAGER_SESSION_MAX_LIFETIME if !privileged?
+
+    SESSION_MAX_LIFETIMES
+      .filter_map { |role, lifetime| lifetime if public_send(:"#{role}?") }
+      .min
+  end
+
   def crisp_segments
     segments = []
     segments << 'administrateur' if administrateur?
