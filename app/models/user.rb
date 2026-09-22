@@ -265,8 +265,9 @@ class User < ApplicationRecord
   }.freeze
 
   # A purge horizon, not a policy: without a deadline these rows could never be
-  # purged.
+  # purged. What an usager actually meets is the window below.
   USAGER_SESSION_MAX_LIFETIME = 1.year
+  USAGER_SESSION_INACTIVITY_WINDOW = 2.weeks
 
   # Frozen on the row at creation: the contract stays auditable and a role
   # granted mid-session does not shorten a session already open. Several roles
@@ -278,6 +279,12 @@ class User < ApplicationRecord
     SESSION_MAX_LIFETIMES
       .filter_map { |role, lifetime| lifetime if public_send(:"#{role}?") }
       .min
+  end
+
+  # Read off the deadline, not off a role: an account already bounded by an
+  # absolute deadline is not bounded again by inactivity.
+  def session_inactivity_window
+    USAGER_SESSION_INACTIVITY_WINDOW if session_max_lifetime == USAGER_SESSION_MAX_LIFETIME
   end
 
   def crisp_segments
