@@ -28,17 +28,21 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
       .order(:expired_at)
       .limit(BROUILLON_DELETION_EMAILS_LIMIT_PER_DAY)
 
-    Removal::Runner.new(scope: selection).each_batch(notifiable) do |dossiers_close_to_expiration|
-      group_by_user_email(dossiers_close_to_expiration).each do |(email, dossiers)|
-        all_user_dossiers = all_user_dossiers_brouillon_close_to_expiration(dossiers.first.user).to_a
-        # The mail announces expired_at: store it before enqueuing the mail.
-        warn_brouillons(Dossier.where(id: all_user_dossiers.map(&:id)))
+    Removal::Runner.new(scope: selection).each_batch(notifiable) do |batch|
+      # One mail per user of the batch, with every brouillon of theirs to
+      # warn: those of a closed procedure too, which expire the same night.
+      user_ids = batch.with_notifiable_procedure.distinct.pluck(:user_id)
+      dossiers = selection
+        .where(user_id: user_ids)
+        .with_notifiable_procedure(notify_on_closed: true)
+        .includes(:user, :procedure)
+        .to_a
 
-        mail = DossierMailer.notify_brouillon_near_deletion(
-          all_user_dossiers,
-          email
-        )
-        send_with_delay(mail)
+      # The mail announces expired_at: store it before enqueuing the mail.
+      warn_brouillons(dossiers.map(&:id))
+
+      dossiers.group_by(&:user).each do |user, user_dossiers|
+        send_with_delay(DossierMailer.notify_brouillon_near_deletion(user_dossiers, user.email))
       end
     end
   end
@@ -248,21 +252,13 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
 
   # The brouillons on the removal stage move to warned; the others (not
   # backfilled yet) get the legacy columns only, with the same dates.
-  def warn_brouillons(dossiers)
+  def warn_brouillons(ids)
     now = Time.zone.now
+    dossiers = Dossier.where(id: ids)
     dossiers.warn_removal!(now)
     dossiers.where(removal_stage: nil).update_all(
       brouillon_close_to_expiration_notice_sent_at: now,
       expired_at: now + Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks
     )
-  end
-
-  def all_user_dossiers_brouillon_close_to_expiration(user)
-    user.dossiers
-      .brouillon_close_to_expiration
-      .without_brouillon_expiration_notice_sent
-      .visible_by_user
-      .with_notifiable_procedure(notify_on_closed: true)
-      .includes(:user, :procedure)
   end
 end

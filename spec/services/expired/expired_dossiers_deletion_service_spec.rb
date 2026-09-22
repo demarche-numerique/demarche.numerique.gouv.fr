@@ -105,6 +105,22 @@ describe Expired::DossiersDeletionService do
       end
     end
 
+    context 'with a brouillon of a closed procedure' do
+      let(:updated_at) { (conservation_par_defaut - 2.weeks + 1.day).ago }
+      let(:closed_procedure) { create(:procedure, :closed) }
+      let!(:dossier) { create(:dossier, procedure:, user:, updated_at:) }
+      let!(:on_closed_procedure) { create(:dossier, procedure: closed_procedure, user:, updated_at:) }
+      let!(:alone_on_closed_procedure) { create(:dossier, procedure: closed_procedure, updated_at:) }
+
+      before { service.send_brouillon_expiration_notices }
+
+      it 'warns it along with the other brouillons of its user, and only then' do
+        expect(DossierMailer).to have_received(:notify_brouillon_near_deletion).once
+        expect(DossierMailer).to have_received(:notify_brouillon_near_deletion).with(match_array([dossier, on_closed_procedure]), user.email)
+        expect(alone_on_closed_procedure.reload.brouillon_close_to_expiration_notice_sent_at).to be_nil
+      end
+    end
+
     context 'when the mail is enqueued' do
       let!(:dossier) { create(:dossier, procedure:, updated_at: (conservation_par_defaut - 2.weeks + 1.day).ago) }
 
@@ -675,23 +691,6 @@ describe Expired::DossiersDeletionService do
         expect(DossierMailer).to have_received(:notify_automatic_deletion_for_tiers).once
         expect(DossierMailer).to have_received(:notify_automatic_deletion_for_tiers).with(match_array([dossier_for_tiers_with_notif]), dossier_for_tiers_with_notif.individual.email)
       end
-    end
-  end
-
-  describe 'all_user_dossiers_brouillon_close_to_expiration' do
-    before { travel_to(reference_date) }
-
-    let(:today) { Time.zone.now.at_beginning_of_day }
-    let(:date_expired) { today - procedure.duree_conservation_dossiers_dans_ds.months - 6.days }
-    let(:user) { create(:user) }
-    let!(:expired_brouillon_1) { create(:dossier, procedure:, user:, updated_at: date_expired) }
-    let!(:expired_brouillon_2) { create(:dossier, procedure:, user:, updated_at: date_expired) }
-
-    it 'find additional dossiers' do
-      expired_brouillon_1
-      expired_brouillon_2
-      expect(Expired::DossiersDeletionService.new.send(:all_user_dossiers_brouillon_close_to_expiration, user))
-        .to contain_exactly(expired_brouillon_1, expired_brouillon_2)
     end
   end
 end
