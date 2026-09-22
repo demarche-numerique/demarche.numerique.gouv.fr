@@ -598,5 +598,20 @@ describe ProcedureCloneConcern, type: :model do
         end
       end
     end
+
+    describe 'clonage d’une démarche dont la règle est désactivée' do
+      before_all { seed "cases/sva" }
+
+      let(:procedure) { procedures.sva }
+      let(:admin) { procedure.administrateurs.first }
+
+      before { procedure.update_column(:sva_svr, procedure.sva_svr.merge('disabled_at' => Time.current.iso8601)) }
+
+      it 'repart sans règle même quand la copie est forcée' do
+        clone = procedure.clone(admin:, options: { clone_sva_svr: true })
+
+        expect(clone.sva_svr).to eq({})
+      end
+    end
   end
 end
