@@ -130,6 +130,34 @@ describe RechercheController, type: :controller do
           expect(assigns(:projected_dossiers)).to be_empty
         end
       end
+
+      context 'sva/svr rule on the procedure' do
+        before_all { seed "cases/sva" }
+        render_views
+
+        let(:procedure) { procedures.sva }
+        let(:query) { dossier.id }
+
+        context 'while the rule is running' do
+          let(:dossier) { create(:dossier, :en_instruction, :with_individual, procedure:) }
+
+          it 'hides a send back button that the transition would refuse anyway' do
+            subject
+            expect(response.body).not_to include('Repasser en construction')
+          end
+        end
+
+        context 'once the rule is disabled' do
+          let(:dossier) { create(:dossier, :en_instruction, :with_individual, procedure:, sva_svr_decision_on: Date.tomorrow) }
+
+          before { procedure.update_column(:sva_svr, procedure.sva_svr.merge('disabled_at' => Time.current.iso8601)) }
+
+          it 'lets the instructeur send the dossier back to en construction' do
+            subject
+            expect(response.body).to include('Repasser en construction')
+          end
+        end
+      end
     end
 
     describe 'by champs' do

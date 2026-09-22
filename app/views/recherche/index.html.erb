@@ -149,7 +149,7 @@
                                                                             close_to_expiration: nil,
                                                                             hidden_by_administration: nil,
                                                                             hidden_by_expired: nil,
-                                                                            sva_svr: dossier.sva_svr_decision_on.present?,
+                                                                            sva_svr: dossier.procedure.sva_svr_enabled?,
                                                                             has_blocking_pending_correction: dossier.pending_correction? && Flipper.enabled?(:blocking_pending_correction, ProcedureFlipperActor.new(procedure_id)),
                                                                             turbo: false,
                                                                             with_menu: false } %>
