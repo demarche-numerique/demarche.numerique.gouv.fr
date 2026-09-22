@@ -49,7 +49,7 @@ describe DossierRemovalConcern do
     it 'works on a relation with joins, order and limit' do
       selection = Dossier.where(id: [brouillon, hidden]).with_notifiable_procedure.order(id: :desc).limit(1)
 
-      expect(selection.move_removal!(from: [:retained, :hidden], to: :warned, expired_at:)).to eq([hidden.id])
+      expect(selection.move_removal!(from: [:retained, :hidden], to: :retained, expired_at:)).to eq([hidden.id])
     end
 
     it 'refuses a move out of the graph, writing nothing' do
@@ -57,6 +57,9 @@ describe DossierRemovalConcern do
         .to raise_error(DossierRemovalConcern::InvalidRemovalMove, 'warned -> warned')
       expect { Dossier.where(id: brouillon).move_removal!(from: [:retained, nil], to: :retained, expired_at:) }
         .to raise_error(DossierRemovalConcern::InvalidRemovalMove)
+      # Out of the trash a brouillon is retained, never warned again.
+      expect { Dossier.where(id: brouillon).move_removal!(from: :hidden, to: :warned, expired_at:) }
+        .to raise_error(DossierRemovalConcern::InvalidRemovalMove, 'hidden -> warned')
 
       expect(brouillon.reload).to have_attributes(removal_stage: 'retained', expired_at: expires_at)
     end
@@ -165,24 +168,21 @@ describe DossierRemovalConcern do
     end
   end
 
-  # CURRENT BEHAVIOUR, changed by PR 7: a restored brouillon keeps its notice.
   describe '#restore_removal!' do
-    it 'takes a brouillon warned before its trash back to warned, at the date its notice announced' do
+    it 'takes a brouillon out of the trash back to retained, cancelling the notice it was trashed with' do
       warned_at = expires_at - 2.weeks
       warned = create(:dossier, :warned, procedure:, user:, warned_at:)
+      warned.update_columns(last_champ_updated_at: created_at + 1.month)
       warned.hide_removal!(warned_at + 1.day)
 
       expect(warned.restore_removal!).to be(true)
 
-      expect(warned.reload).to have_attributes(removal_stage: 'warned', removal_due_at: warned_at + 2.weeks, expired_at: warned_at + 2.weeks)
-    end
-
-    it 'takes a brouillon never warned back to retained' do
-      brouillon.hide_removal!(created_at)
-
-      expect(brouillon.restore_removal!).to be(true)
-
-      expect(brouillon.reload).to have_attributes(removal_stage: 'retained', removal_due_at: expires_at - 2.weeks, expired_at: expires_at)
+      expect(warned.reload).to have_attributes(
+        removal_stage: 'retained',
+        removal_due_at: created_at + 4.months - 2.weeks,
+        expired_at: created_at + 4.months,
+        brouillon_close_to_expiration_notice_sent_at: nil
+      )
     end
 
     it 'leaves a brouillon the expiration still hides in the trash' do

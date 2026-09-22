@@ -3,8 +3,8 @@
 # End-to-end lifecycle of a brouillon, driven by the real nightly cron jobs:
 # notice 14 days before expiration (J-14), destruction at expiration (J),
 # silent drains, trash and purge 14 days later, restore, extension, autosave
-# and submission. These examples pin the current behaviour; every step of the
-# removal_stage migration (issue #13915) must keep them green.
+# and submission. The removal_stage migration (issue #13915) kept this
+# behaviour, except for the restore, which now starts a brouillon over.
 #
 # The crons read the legacy columns or the removal stage depending on the
 # brouillon_removal_stage flag: the lifecycle is the same either way.
@@ -142,49 +142,40 @@ RSpec.shared_examples "the brouillon lifecycle" do
     expect(DeletedDossier.exists?(dossier_id: dossier.id)).to be(false)
   end
 
-  it "keeps the notice of a brouillon restored from the trash, and destroys it at the announced date" do
+  # A restore starts the removal over: the old notice no longer counts, a new
+  # one goes out the next night and the usager gets 14 more days. A brouillon
+  # restored after the date its notice announced used to be destroyed the very
+  # night of its restore, without any new notice.
+  it "warns again the night after a restore from the trash, and destroys the brouillon 14 days later" do
     warn!
-    deletion_at = dossier.expired_at
-
-    travel_to(notice_at + 2.days)
-    dossier.hide_and_keep_track!(user, :user_request)
-    expect_removal(dossier, 'hidden', notice_at + 2.days + 2.weeks)
-    travel_to(notice_at + 5.days)
-    dossier.restore(user)
-
-    expect(dossier.reload.brouillon_close_to_expiration_notice_sent_at).to be_present
-    expect(dossier.expired_at).to eq(deletion_at)
-    expect_removal(dossier, 'warned', deletion_at)
-
-    expect { run_crons(deletion_at - 1.minute) }.not_to have_enqueued_mail
-    expect { run_crons(deletion_at + 1.minute) }.to deletion_mail.with([dossier.hash_for_deletion_mail], user.email)
-    expect(gone?(dossier)).to be(true)
-  end
-
-  # CURRENT BEHAVIOUR, flipped by PR 7 (brouillon-removal-07-restore-fix): a
-  # restored brouillon will go back to "retained", get a new notice and 14 more
-  # days. Today its old notice still counts, so it is destroyed the very night
-  # of the restore, without any new notice.
-  it "destroys the same night a brouillon restored after its notice is older than 14 days" do
-    warn!
-    deletion_at = dossier.expired_at
+    announced_at = dossier.expired_at
 
     travel_to(notice_at + 10.days)
     dossier.hide_and_keep_track!(user, :user_request)
     expect_removal(dossier, 'hidden', notice_at + 10.days + 2.weeks)
-    # A hidden brouillon is left alone at J…
-    expect { run_crons(notice_at + 15.days) }.not_to have_enqueued_mail
+    # A trashed brouillon is left alone at the announced date…
+    expect { run_crons(announced_at + 1.minute) }.not_to have_enqueued_mail
     expect(gone?(dossier)).to be(false)
 
-    # …and restored before its purge (trash + 14 days).
+    # …and restored after it, before its purge (trash + 14 days).
     restored_at = notice_at + 20.days
     travel_to(restored_at)
     dossier.restore(user)
-    # Back to warned, already past its due date.
+
+    expect(dossier.reload.brouillon_close_to_expiration_notice_sent_at).to be_nil
+    # Counted from the last edit again: already past its notice date.
+    expect(dossier.expired_at).to eq(expires_at)
+    expect_removal(dossier, 'retained', notice_at)
+
+    renoticed_at = restored_at + 1.hour
+    expect { run_crons(renoticed_at) }.to notice_mail.with([dossier], user.email)
+      .and have_enqueued_mail.exactly(:once)
+    deletion_at = renoticed_at + 2.weeks
+    expect(gone?(dossier)).to be(false)
     expect_removal(dossier, 'warned', deletion_at)
 
-    expect { run_crons(restored_at + 1.hour) }.to deletion_mail.with([dossier.hash_for_deletion_mail], user.email)
-      .and have_enqueued_mail.exactly(:once)
+    expect { run_crons(deletion_at - 1.minute) }.not_to have_enqueued_mail
+    expect { run_crons(deletion_at + 1.minute) }.to deletion_mail.with([dossier.hash_for_deletion_mail], user.email)
     expect(gone?(dossier)).to be(true)
   end
 

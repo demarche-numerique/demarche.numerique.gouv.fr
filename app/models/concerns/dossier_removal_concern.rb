@@ -23,11 +23,12 @@ module DossierRemovalConcern
   REMOVAL_MANAGED_STATES = ['brouillon'].freeze
 
   # from => the stages it may move to. retained → retained refreshes the due
-  # date when the brouillon is edited or its conservation extended.
+  # date when the brouillon is edited or its conservation extended. Out of
+  # the trash a brouillon is always retained: its notice no longer counts.
   REMOVAL_TRANSITIONS = {
     'retained' => ['retained', 'warned', 'hidden'].freeze,
     'warned' => ['retained', 'hidden'].freeze,
-    'hidden' => ['retained', 'warned'].freeze,
+    'hidden' => ['retained'].freeze,
   }.freeze
 
   # Stages that an activity of the usager (edit, extension) takes back to
@@ -168,14 +169,15 @@ module DossierRemovalConcern
   end
 
   # Out of the trash, and only once no hiding flag is left: a brouillon the
-  # usager took back while the expiration still hides it stays there. As
-  # before the stage existed, a brouillon warned before its trash is warned
-  # again, with the date its notice announced.
+  # usager took back while the expiration still hides it stays there. The
+  # removal then starts over, notice cleared: a brouillon restored long
+  # after its notice was sent used to be destroyed the very night of its
+  # restore, without a new notice.
   def restore_removal!
     return false if !removal_hidden? || hidden_by_user? || hidden_by_expired?
 
-    to = brouillon_close_to_expiration_notice_sent_at.present? ? :warned : :retained
-    move_removal!(from: :hidden, to:, expired_at: expiration_date)
+    move_removal!(from: :hidden, to: :retained, expired_at: expiration_date_with_extension,
+      brouillon_close_to_expiration_notice_sent_at: nil)
   end
 
   # The conservation period of the procedure changed: start the expiration

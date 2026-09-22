@@ -398,6 +398,25 @@ describe Dossier, type: :model do
         end
       end
     end
+
+    # Only a brouillon starts its removal over when it comes out of the trash.
+    context "when the usager restores a dossier notified of its expiration" do
+      let(:author) { dossier.user }
+      let(:notice_at) { 3.days.ago.change(usec: 0) }
+      let(:dossier) do
+        dossiers.accepte.tap do
+          it.update_columns(hidden_by_user_at: 1.hour.ago, hidden_by_reason: :user_request,
+            termine_close_to_expiration_notice_sent_at: notice_at, expired_at: notice_at + 2.weeks)
+        end
+      end
+
+      it "keeps its notice and its expiration" do
+        subject
+
+        expect(dossier.reload).to have_attributes(hidden_by_user_at: nil, removal_stage: nil,
+          termine_close_to_expiration_notice_sent_at: notice_at, expired_at: notice_at + 2.weeks)
+      end
+    end
   end
 
   describe 'methods' do
