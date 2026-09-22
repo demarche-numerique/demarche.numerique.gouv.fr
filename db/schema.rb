@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_18_110200) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_22_100100) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
@@ -540,6 +540,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_18_110200) do
     t.boolean "prefilled"
     t.string "private_search_terms"
     t.datetime "processed_at", precision: nil
+    t.datetime "removal_due_at"
+    t.string "removal_stage"
     t.bigint "revision_id"
     t.string "search_terms"
     t.tsvector "search_terms_tsvector"
@@ -566,6 +568,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_18_110200) do
     t.index ["groupe_instructeur_id"], name: "index_dossiers_on_groupe_instructeur_id"
     t.index ["parent_dossier_id"], name: "index_dossiers_on_parent_dossier_id"
     t.index ["prefill_token"], name: "index_dossiers_on_prefill_token", unique: true
+    t.index ["removal_stage", "removal_due_at"], name: "index_dossiers_on_removal_stage_and_removal_due_at", where: "(removal_due_at IS NOT NULL)"
     t.index ["revision_id"], name: "index_dossiers_on_revision_id"
     t.index ["revision_id"], name: "index_dossiers_stalled_declarative", where: "(((state)::text = 'en_construction'::text) AND (declarative_triggered_at IS NULL))"
     t.index ["search_terms_tsvector"], name: "index_dossiers_on_search_terms_tsvector", using: :gin
