@@ -9,12 +9,22 @@ module SessionRegistrableConcern
 
   LAST_SEEN_KEY = 'last_seen_on'
 
+  # The checkbox, remembered as a decision rather than read as a parameter: it
+  # only exists on the sign in request, and the expiry has to be set again on
+  # every response.
+  PERSISTENT_KEY = 'persistent'
+
   # Frozen in the session at creation, like `expires_at` on the row: the policy
   # a session lives under is the one it was opened under. Recomputing it from
   # today's roles would drop the usager's inactivity bound the moment they are
   # invited as an expert, leaving them a year with no bound at all -- and would
   # cost a `gestionnaires` SELECT on every authenticated request.
   INACTIVITY_KEY = 'inactivity_window'
+
+  # One duration for every role, and the same Devise gave `remember_for`. It
+  # decides nothing: the row is checked on every request and cuts first for
+  # anyone whose deadline is shorter.
+  SESSION_COOKIE_LIFETIME = 2.weeks
 
   USER_AGENT_MAX_LENGTH = 500
 
@@ -64,6 +74,30 @@ module SessionRegistrableConcern
     false
   end
 
+  # "Stay signed in" is an expiry on the session cookie, so the browser keeps it
+  # across a restart. It grants nothing on its own -- the row it names is still
+  # checked on every request -- so every role may have one.
+  def self.remember!(record, warden, scope)
+    warden.session(scope)[PERSISTENT_KEY] = !!record.try(:remember_me)
+    stamp_policy!(record, warden, scope)
+
+    persist_cookie!(warden, scope)
+  end
+
+  # Rack recomputes `Time.now + expire_after` on every response, so the window
+  # slides on its own -- but only as long as the option is there. Rails rewrites
+  # the session cookie on every response (its ciphertext is random, so the jar
+  # never sees it unchanged), and a rewrite carrying no expiry turns a
+  # persistent cookie back into a session one.
+  def self.persist_cookie!(warden, scope)
+    return if !warden_session(warden, scope)[PERSISTENT_KEY]
+
+    warden.request.session_options[:expire_after] = SESSION_COOKIE_LIFETIME
+  end
+
+  # On every request, not only at sign in: Rails rewrites the session cookie on
+  # every response, and a rewrite carrying no expiry would turn it back into a
+  # session cookie. The smallest wins -- one cookie carries every Warden scope.
   def self.touch_last_seen!(session)
     return if session[INACTIVITY_KEY].blank?
 
@@ -110,6 +144,13 @@ module SessionRegistrableConcern
     )
   end
 
+  # Called by every override: a subclass that revokes more than rows must refuse
+  # a bad call before touching anything irreversible.
+  def validate_revocation!(reason:, except:)
+    raise ArgumentError, "unknown revocation reason #{reason.inspect}" unless UserSession::REVOCATION_REASONS.include?(reason.to_s)
+    raise ArgumentError, 'cannot spare a session that is not persisted' if except && !except.persisted?
+  end
+
   # A role granted mid-session must not leave the session living under the year
   # an usager gets. Only ever shortens.
   #
@@ -137,7 +178,7 @@ module SessionRegistrableConcern
   # The id is generated database-side: an unsaved row has none, and
   # `where.not(id: nil)` would revoke the very session we mean to spare.
   def revoke_sessions!(reason:, except: nil)
-    raise ArgumentError, 'cannot spare a session that is not persisted' if except && !except.persisted?
+    validate_revocation!(reason:, except:)
 
     scope = user_sessions
     scope = scope.where.not(id: except.id) if except

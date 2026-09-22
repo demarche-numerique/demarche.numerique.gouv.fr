@@ -104,6 +104,33 @@ describe 'session deadlines', type: :request do
 
   # Rows written before roles had deadlines carry none, and the `usable` scope
   # treats a nil deadline as forever.
+  # The inactivity check is gated; the stamp that feeds it is not. Were it gated
+  # too, closing the flag would freeze `last_seen_on` and opening it again would
+  # sign every active user out at once.
+  context 'the registry flag closed, then opened again' do
+    let(:user) { create(:user, password:) }
+
+    before do
+      Flipper.enable_actor(:session_registry, user)
+      post_session(user)
+    end
+
+    it 'does not sign out someone who kept coming back meanwhile' do
+      Flipper.disable_actor(:session_registry, user)
+
+      travel(10.days) { get profil_path }
+      travel(20.days) { get profil_path }
+
+      Flipper.enable_actor(:session_registry, user)
+
+      travel(25.days) do
+        get profil_path
+
+        expect(response).to have_http_status(:ok)
+      end
+    end
+  end
+
   context 'a session registered before deadlines existed' do
     let(:user) { create(:user, password:) }
 
