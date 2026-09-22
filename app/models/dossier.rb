@@ -937,10 +937,12 @@ class Dossier < ApplicationRecord
         DossierNotification.create_notifications_for_non_customisable_type(self, :dossier_suppression) if hidden_by_user?
       elsif is_user?(author) && can_be_deleted_by_user?
         update(hidden_by_user_at: Time.zone.now, dossier_transfer_id: nil, hidden_by_reason: reason)
+        hide_removal!(hidden_by_user_at) if removal_managed?
         log_dossier_operation(author, :supprimer, self)
         DossierNotification.create_notifications_for_non_customisable_type(self, :dossier_suppression) if hidden_by_administration?
       elsif is_automatic?(author) && can_be_deleted_by_automatic?(reason)
         update(hidden_by_expired_at: Time.zone.now, hidden_by_reason: reason)
+        hide_removal!(hidden_by_expired_at) if removal_managed?
         log_automatic_dossier_operation(:supprimer, self)
         DossierNotification.destroy_notifications_by_dossier_and_type(self, :dossier_expirant)
         DossierNotification.create_notifications_for_non_customisable_type(self, :dossier_suppression)
@@ -976,6 +978,8 @@ class Dossier < ApplicationRecord
       elsif hidden_by_administration?
         update(hidden_by_reason: :instructeur_request)
       end
+
+      restore_removal!
 
       log_dossier_operation(author, :restaurer, self)
     end
