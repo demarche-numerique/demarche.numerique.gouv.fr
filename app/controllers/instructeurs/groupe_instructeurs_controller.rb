@@ -77,16 +77,6 @@ module Instructeurs
 
     private
 
-    def create_instructeur(email)
-      user = User.create_or_promote_to_instructeur(
-        email,
-        SecureRandom.hex,
-        administrateurs: [procedure.administrateurs.first]
-      )
-
-      user.instructeur
-    end
-
     def procedure
       current_instructeur
         .procedures
