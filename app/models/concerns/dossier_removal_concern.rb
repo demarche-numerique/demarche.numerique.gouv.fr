@@ -112,6 +112,11 @@ module DossierRemovalConcern
   # yet: it still expires through the legacy columns.
   def removal_managed_state? = state.in?(REMOVAL_MANAGED_STATES)
 
+  # Whether the expiration predicates of this dossier read its stage. Not in
+  # the trash: there the due date is the purge, and the expiration the usager
+  # sees is still the one of the legacy columns.
+  def read_removal_stage? = (removal_retained? || removal_warned?) && self.class.removal_stage_read?
+
   # Moves this dossier if it is still in one of the `from` stages in the
   # database, and writes `columns` with it. Returns whether it moved; when it
   # did not, nothing was written: whoever moved the row owns it.

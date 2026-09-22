@@ -519,10 +519,9 @@ class Dossier < ApplicationRecord
   end
 
   def expiration_started?
-    [
-      brouillon_close_to_expiration_notice_sent_at,
-      termine_close_to_expiration_notice_sent_at,
-    ].any?(&:present?)
+    brouillon_notice_sent = read_removal_stage? ? removal_warned? : brouillon_close_to_expiration_notice_sent_at.present?
+
+    brouillon_notice_sent || termine_close_to_expiration_notice_sent_at.present?
   end
 
   def motivation
@@ -663,6 +662,8 @@ class Dossier < ApplicationRecord
 
   def has_expired?
     return false if en_instruction? || en_construction?
+    # The stage ends at the destruction once the brouillon has been warned.
+    return removal_warned? && removal_due_at.past? if read_removal_stage?
 
     notice_sent_at =
       if brouillon?

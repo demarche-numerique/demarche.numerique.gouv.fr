@@ -233,4 +233,35 @@ describe DossierRemovalConcern do
       )
     end
   end
+
+  describe 'the expiration predicates' do
+    # The flag is cached in process for 10 seconds: disable it explicitly
+    # rather than leaving it to the rollback of the example.
+    after { Flipper.disable(:brouillon_removal_stage) }
+
+    it 'read the stage of a brouillon when the flag is on, its legacy columns otherwise' do
+      # A drift on purpose: the stage says warned and over, the legacy
+      # columns know of no notice, so both readings disagree.
+      brouillon.update_columns(removal_stage: 'warned', removal_due_at: 1.day.ago)
+
+      expect(brouillon).not_to have_expired
+      expect(brouillon).not_to be_expiration_started
+
+      Flipper.enable(:brouillon_removal_stage)
+
+      expect(brouillon).to have_expired
+      expect(brouillon).to be_expiration_started
+    end
+
+    it 'keep reading the legacy columns of a trashed brouillon, whose due date is its purge' do
+      travel_to(expires_at - 2.weeks)
+      Dossier.where(id: brouillon).warn_removal!(Time.zone.now)
+      brouillon.reload.hide_and_keep_track!(user, :user_request)
+      Flipper.enable(:brouillon_removal_stage)
+
+      travel_to(expires_at + 1.day)
+      expect(brouillon).to have_expired
+      expect(brouillon).to be_expiration_started
+    end
+  end
 end
