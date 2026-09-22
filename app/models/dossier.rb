@@ -3,12 +3,7 @@
 class Dossier < ApplicationRecord
   # The search columns are only ever read and written as raw SQL: loading them as
   # attributes would carry a full-text blob on every dossier instance.
-  # brouillon_close_to_expiration_notice_sent_at is replaced by the removal
-  # stage (#13915): dropped in a later release, ignored until then.
-  self.ignored_columns += [
-    :search_terms, :private_search_terms, :search_terms_tsvector, :all_search_terms_tsvector,
-    :brouillon_close_to_expiration_notice_sent_at,
-  ]
+  self.ignored_columns += [:search_terms, :private_search_terms, :search_terms_tsvector, :all_search_terms_tsvector]
 
   include DossierCloneConcern
   include DossierCorrectableConcern
