@@ -68,18 +68,13 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
   def delete_expired_brouillons_and_notify
     selection = Dossier.brouillon_expired_after_notice_grace
 
-    Removal::Runner.new(scope: selection).each_batch do |dossiers_to_remove|
-      user_notifications = group_by_user_email(dossiers_to_remove)
-        .map { |(email, dossiers)| [email, dossiers.map(&:hash_for_deletion_mail)] }
+    Removal::Runner.new(scope: selection).each_batch do |batch|
+      # One load per batch: once destroyed, there is nothing left to query.
+      dossiers = batch.includes(:user, :procedure).to_a
+      dossiers.each(&:destroy)
 
-      dossiers_to_remove.destroy_all
-
-      user_notifications.each do |(email, dossiers_hash)|
-        mail = DossierMailer.notify_brouillon_deletion(
-          dossiers_hash,
-          email
-        )
-        send_with_delay(mail)
+      dossiers.filter { it.destroyed? && notifiable?(it) }.group_by(&:user).each do |user, user_dossiers|
+        send_with_delay(DossierMailer.notify_brouillon_deletion(user_dossiers.map(&:hash_for_deletion_mail), user.email))
       end
     end
   end
@@ -248,6 +243,11 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
         end
       end
     end.transform_values(&:to_a)
+  end
+
+  # with_notifiable_procedure, on a dossier already loaded.
+  def notifiable?(dossier)
+    dossier.user_id.present? && (dossier.procedure.publiee? || dossier.procedure.depubliee?)
   end
 
   # The brouillons on the removal stage move to warned; the others (not
