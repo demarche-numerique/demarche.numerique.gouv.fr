@@ -25,7 +25,6 @@ features = [
   :dossier_pdf_vide,
   :dossiers_list_personnalisation,
   :engagement_juridique_type_de_champ,
-  :export_order_by_revision,
   :groupe_instructeur_api_hack,
   :pro_connect_restricted,
   :pro_connect_required_for_all_administrateurs,

@@ -46,7 +46,7 @@ module Maintenance
     end
 
     # The copy gets the highest id, and the highest id of a stable id reads as the
-    # latest version of the champ (Procedure#published_revisions_type_de_champs).
+    # latest version of the champ (Procedure#aggregated_type_de_champs).
     # A procedure that has since moved on to a newer version keeps the record,
     # and the copy goes to the older procedure instead.
     def coordinates_given_the_copy(procedure, type_de_champ)

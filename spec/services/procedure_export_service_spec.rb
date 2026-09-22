@@ -510,7 +510,7 @@ describe ProcedureExportService do
         # de découverte diffère donc de l'ordre canonique (position). Les feuilles
         # doivent suivre l'ordre canonique, comme l'export caxlsx historique.
         before do
-          canonical = procedure.all_revisions_type_de_champs.repetition.to_a
+          canonical = procedure.aggregated_type_de_champs.root_type_de_champs.filter(&:repetition?)
           rep = -> (dossier, stable_id) { dossier.root_champs_public.find { _1.repetition? && _1.stable_id == stable_id } }
 
           dossiers.first.update!(depose_at: 2.days.ago)
@@ -523,7 +523,7 @@ describe ProcedureExportService do
         end
 
         it 'orders the repetition sheets by canonical position, not discovery order' do
-          canonical_names = procedure.all_revisions_type_de_champs.repetition
+          canonical_names = procedure.aggregated_type_de_champs.root_type_de_champs.filter(&:repetition?)
             .map { ProcedureExportService.sanitize_sheet_name(_1.libelle_for_export) }
 
           expect(subject.sheets.map(&:name).last(canonical_names.size)).to eq(canonical_names)

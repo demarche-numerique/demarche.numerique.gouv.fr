@@ -123,6 +123,12 @@ describe Procedure do
       expect(procedure.aggregated_type_de_champs).not_to equal(aggregated)
     end
 
+    it 'leaves out the draft of a published procedure' do
+      procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'draft only')
+
+      expect(libelles(procedure.aggregated_type_de_champs.type_de_champs)).not_to include('draft only')
+    end
+
     it 'follows the edits of the draft of a procedure never published' do
       procedure = create(:procedure, public_type_de_champs: [{ type: :text, libelle: 'a' }])
 
@@ -1636,49 +1642,6 @@ describe Procedure do
       it 'returns an empty array when latest_zone_labels is empty' do
         procedure_detail_draft.latest_zone_labels = ''
         expect(procedure_detail_draft.parsed_latest_zone_labels).to eq([])
-      end
-    end
-  end
-
-  describe '#all_revisions_type_de_champs' do
-    let(:public_type_de_champs) do
-      [
-        { type: :text },
-        { type: :header_section },
-      ]
-    end
-
-    context 'when procedure brouillon' do
-      let(:procedure) { create(:procedure, public_type_de_champs:) }
-
-      it 'returns one type de champ' do
-        expect(procedure.all_revisions_type_de_champs.size).to eq 1
-      end
-
-      it 'returns also section type de champ' do
-        expect(procedure.all_revisions_type_de_champs(with_header_section: true).size).to eq 2
-      end
-
-      it "returns types de champ on draft revision" do
-        procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'onemorechamp')
-        expect(procedure.reload.all_revisions_type_de_champs.size).to eq 2
-      end
-    end
-
-    context 'when procedure is published' do
-      let(:procedure) { create(:procedure, :published, public_type_de_champs:) }
-
-      it 'returns one type de champ' do
-        expect(procedure.all_revisions_type_de_champs.size).to eq 1
-      end
-
-      it 'returns also section type de champ' do
-        expect(procedure.all_revisions_type_de_champs(with_header_section: true).size).to eq 2
-      end
-
-      it "doesn't return types de champ on draft revision" do
-        procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'onemorechamp')
-        expect(procedure.reload.all_revisions_type_de_champs.size).to eq 1
       end
     end
   end

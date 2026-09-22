@@ -6,7 +6,7 @@ describe Columns::ChampColumn do
 
     context 'without any cast' do
       let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-      let(:type_de_champs) { procedure.all_revisions_type_de_champs }
+      let(:type_de_champs) { procedure.aggregated_type_de_champs.root_type_de_champs }
 
       it 'extracts values for columns and type de champ', :slow do
         expect_type_de_champ_values('civilite', eq(["M."]))
