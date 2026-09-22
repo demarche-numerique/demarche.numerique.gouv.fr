@@ -192,8 +192,8 @@ describe 'the session registry', type: :request do
     end
 
     # A year is a housekeeping horizon, not a policy: it exists so the rows can
-    # be purged. What actually bounds an usager is the inactivity window, a date
-    # in their session cookie.
+    # be purged. What actually bounds an usager is the sliding remember-me
+    # window, which lives in the cookie.
     it 'gives that row the housekeeping horizon, far enough not to bite' do
       sign_in_user
 

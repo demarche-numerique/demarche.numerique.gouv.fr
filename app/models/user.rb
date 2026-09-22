@@ -294,6 +294,31 @@ class User < ApplicationRecord
     USAGER_SESSION_INACTIVITY_WINDOW if session_max_lifetime == USAGER_SESSION_MAX_LIFETIME
   end
 
+  # Reasons that mean "cut every access of this account", as opposed to closing
+  # one device or making room for a session that is just opening.
+  TOTAL_REVOCATION_REASONS = [:logout_all, :support, :password_change].freeze
+
+  # Returns how many sessions were actually closed, so a caller can report what
+  # happened rather than imply success.
+  def revoke_sessions!(reason:, except: nil)
+    validate_revocation!(reason:, except:)
+
+    # All of it or none of it: the irreversible steps run before the rows are
+    # revoked, so a failure on `user_sessions` would otherwise leave the account
+    # half signed out with the sessions it meant to close still live.
+    transaction do
+      if TOTAL_REVOCATION_REASONS.include?(reason.to_sym)
+        # The trusted device cookie is self-asserting: bumping the version is the
+        # only thing that reaches it. Pending email tokens open a session on
+        # their own, so they go too.
+        increment!(:trusted_device_version)
+        instructeur&.trusted_device_tokens&.destroy_all
+      end
+
+      super(reason:, except:)
+    end
+  end
+
   def crisp_segments
     segments = []
     segments << 'administrateur' if administrateur?
