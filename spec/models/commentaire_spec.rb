@@ -344,4 +344,55 @@ describe Commentaire do
       expect(user_message.reload.seen_by_recipient_at).to be_nil
     end
   end
+
+  # A revoked expert keeps no access to the dossier, so the messagerie must stop
+  # reaching them. The second expert's avis on the same dossier is left alone,
+  # which is what keeps these assertions specific to the revoked one.
+  describe 'notifying the experts of a new message' do
+    before do
+      experts_procedures.default.update!(notify_on_new_message: true)
+      experts_procedures.second.update!(notify_on_new_message: true)
+    end
+
+    subject do
+      create(:commentaire, dossier: dossiers.en_instruction, email: dossiers.en_instruction.user.email)
+    end
+
+    let(:mail_to_default_expert) do
+      have_enqueued_mail(AvisMailer, :notify_new_commentaire_to_expert)
+        .with(dossiers.en_instruction, avis.pending, experts.default)
+    end
+
+    # Asserted in every context: it is what tells a revocation apart from a
+    # loop that stopped notifying anyone at all.
+    let(:mail_to_second_expert) do
+      have_enqueued_mail(AvisMailer, :notify_new_commentaire_to_expert)
+        .with(dossiers.en_instruction, avis.confidentiel, experts.second)
+    end
+
+    it 'notifies both experts who have an avis on the dossier' do
+      expect { subject }.to mail_to_default_expert.and mail_to_second_expert
+    end
+
+    context 'when the avis itself has been revoked' do
+      before { avis.pending.update!(answer: 'Avis favorable', revoked_at: Time.zone.now) }
+
+      it 'stops notifying that expert, and only that one' do
+        expect { subject }.to mail_to_second_expert
+        expect { subject }.not_to mail_to_default_expert
+      end
+    end
+
+    context 'when the expert has been revoked from the procedure' do
+      before do
+        procedures.individual.update!(experts_require_administrateur_invitation: true)
+        experts_procedures.default.update!(revoked_at: Time.zone.now)
+      end
+
+      it 'stops notifying that expert, and only that one' do
+        expect { subject }.to mail_to_second_expert
+        expect { subject }.not_to mail_to_default_expert
+      end
+    end
+  end
 end

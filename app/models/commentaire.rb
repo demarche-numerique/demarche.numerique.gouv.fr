@@ -169,7 +169,7 @@ class Commentaire < ApplicationRecord
 
     experts_contactes = Set.new
 
-    dossier.avis.includes(:expert).find_each do |avis|
+    dossier.avis.not_revoked.includes(:expert).find_each do |avis|
       expert_procedure = avis.expert.experts_procedures.find_by(procedure_id: dossier.procedure.id)
       if expert_procedure.notify_on_new_message? && avis.expert.present?
         expert_id = avis.expert.id
