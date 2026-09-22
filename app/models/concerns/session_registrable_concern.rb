@@ -43,6 +43,30 @@ module SessionRegistrableConcern
 
   # `except&.id`, not `except.present?`: an unsaved record has a nil id, and
   # `where.not(id: nil)` would revoke the very row we mean to spare.
+  # A role granted mid-session must not leave the session living under the year
+  # an usager gets. Only ever shortens.
+  #
+  # Read afresh rather than `reload`: `has_one` assigns its target only after the
+  # record is saved, so inside the `after_create` that brings us here the owner
+  # still answers `nil` for the very role being granted -- and answers it from
+  # cache, without a query, since User eager loads its roles. Reloading `self`
+  # would reset associations the caller is still holding.
+  #
+  # A session already older than the new role's deadline ends at the next
+  # request. That is the deadline doing its job, but it does mean a promotion
+  # can sign someone out.
+  def tighten_sessions!
+    deadline = self.class.find(id).session_max_lifetime
+    return if deadline.nil?
+
+    user_sessions.usable.find_each do |session|
+      tightened = session.created_at + deadline
+      next if session.expires_at.present? && session.expires_at <= tightened
+
+      session.update_column(:expires_at, tightened)
+    end
+  end
+
   def revoke_sessions!(reason:, except: nil)
     scope = user_sessions
     scope = scope.where.not(id: except.id) if except&.id

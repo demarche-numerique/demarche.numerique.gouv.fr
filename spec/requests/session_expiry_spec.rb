@@ -51,4 +51,87 @@ describe 'session deadlines', type: :request do
       expect(user.session_max_lifetime).to eq(User::USAGER_SESSION_MAX_LIFETIME)
     end
   end
+
+  # Rows written before roles had deadlines carry none, and the `usable` scope
+  # treats a nil deadline as forever.
+  # The inactivity check is gated; the stamp that feeds it is not. Were it gated
+  # too, closing the flag would freeze `last_seen_on` and opening it again would
+  # sign every active user out at once.
+  context 'the registry flag closed, then opened again' do
+    let(:user) { create(:user, password:) }
+
+    before do
+      Flipper.enable_actor(:session_registry, user)
+      post_session(user)
+    end
+
+    it 'does not sign out someone who kept coming back meanwhile' do
+      Flipper.disable_actor(:session_registry, user)
+
+      travel(10.days) { get profil_path }
+      travel(20.days) { get profil_path }
+
+      Flipper.enable_actor(:session_registry, user)
+
+      travel(25.days) do
+        get profil_path
+
+        expect(response).to have_http_status(:ok)
+      end
+    end
+  end
+
+  context 'a session registered before deadlines existed' do
+    let(:user) { create(:user, password:) }
+
+    before do
+      Flipper.enable_actor(:session_registry, user)
+      post_session(user)
+      user.user_sessions.sole.update_column(:expires_at, nil)
+    end
+
+    it 'is given one, counted from when it opened' do
+      row = user.user_sessions.sole
+
+      travel(1.day) { get profil_path }
+
+      expect(row.reload.expires_at)
+        .to be_within(1.minute).of(row.created_at + User::USAGER_SESSION_MAX_LIFETIME)
+    end
+
+    it 'signs out an agent whose deadline had already passed' do
+      create(:administrateur, user:)
+      user.user_sessions.sole.update_column(:expires_at, nil)
+
+      travel(8.days) do
+        get profil_path
+
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+  end
+
+  # The deadline is frozen, but a role granted mid-session must not leave the
+  # session living under the year an usager gets.
+  context 'an usager promoted while signed in' do
+    let(:user) { create(:user, password:) }
+
+    before do
+      Flipper.enable_actor(:session_registry, user)
+      post_session(user)
+    end
+
+    # Promoted through a record loaded from a query, as every real promotion
+    # path does: User eager loads its roles, so the association answers `nil`
+    # from cache inside the `after_create` unless the record is reloaded.
+    it 'has its deadline shortened to the new role, not extended' do
+      row = user.user_sessions.sole
+      expect(row.expires_at).to be_within(1.minute).of(row.created_at + User::USAGER_SESSION_MAX_LIFETIME)
+
+      User.find(user.id).create_expert!
+
+      expect(row.reload.expires_at)
+        .to be_within(1.minute).of(row.created_at + TrustedDeviceConcern::TRUSTED_DEVICE_PERIOD)
+    end
+  end
 end

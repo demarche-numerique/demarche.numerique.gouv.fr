@@ -31,6 +31,10 @@ class Instructeur < ApplicationRecord
 
   belongs_to :user
 
+  # Granting a role must not leave sessions already open living under the
+  # deadline of the role the account had before.
+  after_create -> { user&.tighten_sessions! }
+
   validates :user_id, uniqueness: true
 
   scope :with_instant_email_new_message, -> (procedure) {

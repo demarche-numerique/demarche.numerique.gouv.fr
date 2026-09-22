@@ -47,6 +47,11 @@ Warden::Manager.after_set_user do |record, warden, options|
     else
       user_session = UserSession.find_by(id: session_id, sessionable: record)
 
+      # Rows written before roles had deadlines carry none, and nothing else
+      # would ever give them one. Counted from `created_at`, not from now: a
+      # deadline that restarts at the deploy is not the deadline.
+      user_session&.backfill_expiry! { record.session_max_lifetime }
+
       if user_session.nil? || user_session.unusable?
         # In the Rack env, which Warden hands to the failure app unchanged: we
         # log out rather than throw, so there is no `throw(:warden, message:)`

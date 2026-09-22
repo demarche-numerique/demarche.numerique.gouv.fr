@@ -16,6 +16,17 @@ class UserSession < ApplicationRecord
     usable.update_all(revoked_at: Time.current, revoked_reason: reason.to_s, updated_at: Time.current)
   end
 
+  # The deadline is yielded, not passed: computing it reads the account's roles,
+  # and the row almost always has one already.
+  def backfill_expiry!
+    return if expires_at.present?
+
+    lifetime = yield
+    return if lifetime.nil?
+
+    update_column(:expires_at, created_at + lifetime)
+  end
+
   def unusable?
     revoked_at.present? || (expires_at.present? && expires_at.past?)
   end

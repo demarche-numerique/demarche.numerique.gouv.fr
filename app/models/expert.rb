@@ -2,6 +2,10 @@
 
 class Expert < ApplicationRecord
   belongs_to :user
+
+  # Granting a role must not leave sessions already open living under the
+  # deadline of the role the account had before.
+  after_create -> { user&.tighten_sessions! }
   has_many :experts_procedures
   has_many :procedures, through: :experts_procedures
   has_many :avis, through: :experts_procedures
