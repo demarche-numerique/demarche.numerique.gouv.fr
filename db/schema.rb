@@ -561,8 +561,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_24_140000) do
     t.index ["expired_at"], name: "index_dossiers_on_expired_at"
     t.index ["groupe_instructeur_id", "depose_at", "id"], name: "index_dossiers_on_groupe_instructeur_id_and_depose_at_and_id", where: "((hidden_by_administration_at IS NULL) AND (hidden_by_expired_at IS NULL))"
     t.index ["groupe_instructeur_id", "state", "archived"], name: "index_dossiers_on_groupe_instructeur_id_and_state_and_archived", where: "((hidden_by_administration_at IS NULL) AND (hidden_by_expired_at IS NULL))"
+    t.index ["groupe_instructeur_id", "state", "depose_at", "id"], name: "index_dossiers_on_groupe_and_state_and_depose_at_and_id", where: "((hidden_by_administration_at IS NULL) AND (hidden_by_expired_at IS NULL))"
+    t.index ["groupe_instructeur_id", "state", "updated_at", "id"], name: "index_dossiers_on_groupe_and_state_and_updated_at_and_id", where: "((hidden_by_administration_at IS NULL) AND (hidden_by_expired_at IS NULL))"
     t.index ["groupe_instructeur_id", "updated_at", "id"], name: "index_dossiers_on_groupe_instructeur_id_and_updated_at_and_id", where: "((hidden_by_administration_at IS NULL) AND (hidden_by_expired_at IS NULL))"
     t.index ["groupe_instructeur_id"], name: "index_dossiers_on_groupe_instructeur_id"
+    t.index ["hidden_by_administration_at"], name: "index_dossiers_on_hidden_by_administration_at", where: "(hidden_by_administration_at IS NOT NULL)"
+    t.index ["hidden_by_user_at"], name: "index_dossiers_on_hidden_by_user_at", where: "(hidden_by_user_at IS NOT NULL)"
     t.index ["parent_dossier_id"], name: "index_dossiers_on_parent_dossier_id"
     t.index ["prefill_token"], name: "index_dossiers_on_prefill_token", unique: true
     t.index ["revision_id"], name: "index_dossiers_on_revision_id"
