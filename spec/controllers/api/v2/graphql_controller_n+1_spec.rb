@@ -45,9 +45,8 @@ describe API::V2::GraphqlController do
       expect(query_count).to be <= MAX_QUERY_COUNT
     end
 
-    # `Procedure.for_api_v2` loads the types de champ of the démarche's active
-    # revisions, then the dossiers of the connection carry their own revision:
-    # DossierPreloader must reuse it rather than load its types de champ again.
+    # The descriptors of the démarche read its revisions' trees, not their
+    # coordinates: only DossierPreloader loads the ones of the dossiers' revision.
     it "loads the types de champ of the dossiers' revision once" do
       variables = { demarcheNumber: procedure.id, includeDossiers: true, includeChamps: true, includeTraitements: false }
       dossier
@@ -58,12 +57,12 @@ describe API::V2::GraphqlController do
       end
 
       expect(gql_errors).to be_nil
-      expect(revision_queries.size).to eq(2)
+      expect(revision_queries.size).to eq(1)
     end
 
     # The stored query only reads `traitements { revision { id datePublication } }`:
-    # the types de champ of those revisions must not be loaded. The two expected
-    # queries load the démarche's active revisions and the dossiers' revision.
+    # the types de champ of those revisions must not be loaded. The expected
+    # query loads the dossiers' revision.
     it "does not load the types de champ of the traitements' revision" do
       variables = { demarcheNumber: procedure.id, includeDossiers: true, includeTraitements: true, includeChamps: false, includeAnnotations: false }
       dossier
@@ -75,7 +74,7 @@ describe API::V2::GraphqlController do
 
       expect(gql_errors).to be_nil
       expect(gql_data[:demarche][:dossiers][:nodes].first[:traitements].first[:revision][:id]).to eq(dossier.revision.to_typed_id)
-      expect(revision_queries.size).to eq(2)
+      expect(revision_queries.size).to eq(1)
     end
 
     context "with 3 dossiers per state" do
