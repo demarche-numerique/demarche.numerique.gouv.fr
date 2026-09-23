@@ -10,13 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_11_180000) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_23_100100) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_stat_statements"
   enable_extension "pgcrypto"
-  enable_extension "postgis"
   enable_extension "sslinfo"
   enable_extension "unaccent"
 
@@ -46,7 +44,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_180000) do
     t.string "content_type"
     t.datetime "created_at", precision: nil, null: false
     t.string "filename", null: false
-    t.string "key", null: false
+    t.string "key"
     t.text "metadata"
     t.jsonb "ocr"
     t.string "service_name", null: false
@@ -54,7 +52,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_180000) do
     t.string "virus_scan_result"
     t.datetime "virus_scanned_at", precision: nil
     t.datetime "watermarked_at", precision: nil
-    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
     t.index ["soft_deleted_at"], name: "index_active_storage_blobs_on_soft_deleted_at", where: "(soft_deleted_at IS NOT NULL)"
     t.index ["virus_scan_result", "id"], name: "index_active_storage_blobs_on_pending_virus_scan", order: { id: :desc }
   end
@@ -72,7 +69,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_180000) do
     t.datetime "pro_connect_required_at"
     t.datetime "updated_at", precision: nil
     t.bigint "user_id", null: false
-    t.index ["groupe_gestionnaire_id"], name: "index_administrateurs_on_groupe_gestionnaire_id"
     t.index ["user_id"], name: "index_administrateurs_on_user_id", unique: true
   end
 
@@ -98,6 +94,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_180000) do
   end
 
   create_table "agent_connect_informations", force: :cascade do |t|
+    t.string "acr"
     t.string "amr", default: [], array: true
     t.string "belonging_population"
     t.datetime "created_at", null: false
@@ -265,6 +262,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_180000) do
     t.string "external_id"
     t.string "external_state"
     t.string "fetch_external_data_exceptions", array: true
+    t.bigint "new_id"
     t.boolean "prefilled"
     t.jsonb "prefilled_original_value"
     t.boolean "private", default: false, null: false
@@ -314,7 +312,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_180000) do
   end
 
   create_table "commentaires", id: :serial, force: :cascade do |t|
-    t.string "body"
+    t.string "body", default: ""
     t.datetime "created_at", precision: nil, null: false
     t.boolean "deletable", default: true, null: false
     t.datetime "discarded_at", precision: nil
@@ -337,9 +335,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_180000) do
     t.boolean "for_admin", default: false, null: false
     t.string "phone"
     t.string "question_type", null: false
-    t.string "subject", null: false
+    t.string "subject", default: "", null: false
     t.string "tags", default: [], array: true
-    t.text "text", null: false
+    t.string "text", default: "", null: false
     t.datetime "updated_at", null: false
     t.text "user_agent"
     t.bigint "user_id"
@@ -455,7 +453,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_180000) do
     t.datetime "updated_at", precision: nil, null: false
     t.index ["bill_signature_id"], name: "index_dossier_operation_logs_on_bill_signature_id"
     t.index ["dossier_id"], name: "index_dossier_operation_logs_on_dossier_id"
-    t.index ["id"], name: "index_dossier_operation_logs_on_id", where: "(data IS NOT NULL)"
     t.index ["keep_until"], name: "index_dossier_operation_logs_on_keep_until"
   end
 
@@ -480,9 +477,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_180000) do
   create_table "dossier_transfer_logs", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.bigint "dossier_id", null: false
-    t.string "from", null: false
+    t.string "from", default: "", null: false
     t.boolean "from_support", default: false, null: false
-    t.string "to", null: false
+    t.string "to", default: "", null: false
     t.datetime "updated_at", null: false
     t.index ["dossier_id"], name: "index_dossier_transfer_logs_on_dossier_id"
   end
@@ -725,7 +722,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_180000) do
     t.bigint "user_profile_id"
     t.string "user_profile_type"
     t.index ["export_template_id"], name: "index_exports_on_export_template_id"
-    t.index ["instructeur_id"], name: "index_exports_on_instructeur_id"
     t.index ["key"], name: "index_exports_on_key"
     t.index ["procedure_presentation_id"], name: "index_exports_on_procedure_presentation_id"
   end
@@ -843,7 +839,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_180000) do
     t.bigint "groupe_gestionnaire_id"
     t.string "name", null: false
     t.datetime "updated_at", null: false
-    t.index ["ancestry"], name: "index_groupe_gestionnaires_on_ancestry"
     t.index ["groupe_gestionnaire_id"], name: "index_groupe_gestionnaires_on_groupe_gestionnaire_id"
     t.index ["name"], name: "index_groupe_gestionnaires_on_name"
   end
@@ -1079,7 +1074,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_180000) do
 
   create_table "procedure_tags", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.text "description"
     t.string "name", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_procedure_tags_on_name", unique: true
@@ -1113,6 +1107,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_180000) do
     t.boolean "closing_notification_brouillon", default: false, null: false
     t.boolean "closing_notification_en_cours", default: false, null: false
     t.string "closing_reason"
+    t.boolean "combined_declarative_email", default: true, null: false
     t.datetime "created_at", precision: nil, null: false
     t.string "declarative_with_state"
     t.bigint "defaut_groupe_instructeur_id"
@@ -1318,15 +1313,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_180000) do
   create_table "stats", force: :cascade do |t|
     t.bigint "administrations_partenaires", default: 0
     t.datetime "created_at", null: false
-    t.bigint "dossiers_brouillon", default: 0
     t.jsonb "dossiers_cumulative", default: "{}", null: false
     t.bigint "dossiers_depose_avant_30_jours", default: 0
     t.bigint "dossiers_deposes_entre_60_et_30_jours", default: 0
-    t.bigint "dossiers_en_construction", default: 0
-    t.bigint "dossiers_en_instruction", default: 0
     t.jsonb "dossiers_in_the_last_4_months", default: "{}", null: false
     t.bigint "dossiers_not_brouillon", default: 0
-    t.bigint "dossiers_termines", default: 0
     t.datetime "updated_at", null: false
   end
 
@@ -1411,18 +1402,31 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_180000) do
     t.text "nature"
     t.jsonb "options"
     t.boolean "private", default: false, null: false
+    t.bigint "procedure_id"
     t.bigint "referentiel_id"
     t.bigint "stable_id"
     t.string "type_champ"
     t.datetime "updated_at", precision: nil
     t.index ["private"], name: "index_types_de_champ_on_private"
+    t.index ["procedure_id"], name: "index_types_de_champ_on_procedure_id"
     t.index ["referentiel_id"], name: "index_types_de_champ_on_referentiel_id"
     t.index ["stable_id"], name: "index_types_de_champ_on_stable_id"
   end
 
+  create_table "user_procedure_presentations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.jsonb "displayed_columns", default: [], null: false, array: true
+    t.bigint "procedure_id", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["procedure_id"], name: "index_user_procedure_presentations_on_procedure_id"
+    t.index ["user_id", "procedure_id"], name: "index_user_procedure_presentations_on_user_id_and_procedure_id", unique: true
+    t.index ["user_id"], name: "index_user_procedure_presentations_on_user_id"
+  end
+
   create_table "user_sessions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.datetime "expires_at"
+    t.datetime "expires_at", null: false
     t.inet "ip_address"
     t.datetime "revoked_at"
     t.string "revoked_reason"
@@ -1456,6 +1460,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_180000) do
     t.string "loged_in_with_france_connect", default: "false"
     t.integer "preferred_domain"
     t.datetime "remember_created_at", precision: nil
+    t.string "remember_token"
     t.bigint "requested_merge_into_id"
     t.datetime "reset_password_sent_at", precision: nil
     t.string "reset_password_token"
@@ -1469,9 +1474,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_180000) do
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["last_sign_in_at"], name: "index_users_on_last_sign_in_at"
+    t.index ["remember_token"], name: "index_users_on_remember_token", unique: true
     t.index ["requested_merge_into_id"], name: "index_users_on_requested_merge_into_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["unconfirmed_email"], name: "index_users_on_unconfirmed_email"
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
@@ -1524,11 +1529,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_180000) do
   add_foreign_key "batch_operations", "instructeurs"
   add_foreign_key "bulk_messages", "procedures"
   add_foreign_key "champs", "dossiers"
-  add_foreign_key "champs", "etablissements"
   add_foreign_key "closed_mails", "procedures", on_delete: :cascade
   add_foreign_key "commentaires", "dossiers"
   add_foreign_key "commentaires", "experts"
-  add_foreign_key "commentaires", "instructeurs"
+  add_foreign_key "commentaires", "instructeurs", validate: false
   add_foreign_key "contact_forms", "users"
   add_foreign_key "contact_informations", "groupe_instructeurs"
   add_foreign_key "dossier_assignments", "dossiers"
@@ -1594,9 +1598,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_180000) do
   add_foreign_key "services", "administrateurs"
   add_foreign_key "targeted_user_links", "users"
   add_foreign_key "traitements", "dossiers"
-  add_foreign_key "traitements", "procedure_revisions", column: "revision_id"
+  add_foreign_key "traitements", "procedure_revisions", column: "revision_id", validate: false
   add_foreign_key "trusted_device_tokens", "instructeurs"
-  add_foreign_key "types_de_champ", "referentiels"
+  add_foreign_key "types_de_champ", "procedures"
+  add_foreign_key "types_de_champ", "referentiels", validate: false
+  add_foreign_key "user_procedure_presentations", "procedures"
+  add_foreign_key "user_procedure_presentations", "users"
   add_foreign_key "users", "users", column: "requested_merge_into_id"
   add_foreign_key "without_continuation_mails", "procedures", on_delete: :cascade
   add_foreign_key "zone_labels", "zones"
