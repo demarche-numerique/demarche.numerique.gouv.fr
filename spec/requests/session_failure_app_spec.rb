@@ -1,18 +1,17 @@
 # frozen_string_literal: true
 
 describe 'the session failure app', type: :request do
+  # No seeded super admin: the OTP secret is the point of this one.
+  let_it_be(:super_admin) { create(:super_admin, :with_otp) }
+
   let(:password) { users.default_password }
-  let(:usager) { create(:user, password:) }
+  let(:usager) { users.usager }
 
   before { Flipper.enable_actor(:session_registry, usager) }
 
-  def sign_in_usager
-    post user_session_path, params: { user: { email: usager.email, password: } }
-  end
-
   context 'when the session has been revoked' do
     before do
-      sign_in_usager
+      post_user_session(usager)
       usager.revoke_sessions!(reason: :logout_all)
     end
 
@@ -114,10 +113,9 @@ describe 'the session failure app', type: :request do
   # Two scopes share one request. The usager's session is fetched by
   # `set_sentry_user` on every page, the manager's by its own filter.
   it 'does not show one scope reason on another scope sign in page' do
-    super_admin = create(:super_admin, :with_otp)
     Flipper.enable_actor(:session_registry, super_admin)
 
-    sign_in_usager
+    post_user_session(usager)
     usager.revoke_sessions!(reason: :logout_all)
 
     get manager_root_path

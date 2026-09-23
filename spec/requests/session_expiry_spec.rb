@@ -3,18 +3,16 @@
 describe 'session deadlines', type: :request do
   let(:password) { users.default_password }
 
-  def post_session(user)
-    post user_session_path, params: { user: { email: user.email, password: } }
+  # Every context names its own `user`; the sign in is the same for all of them.
+  before do
+    Flipper.enable_actor(:session_registry, user)
+    post_user_session(user)
   end
 
+  # The blank administrateur, which holds that role and no other: an account
+  # that is also an instructeur would be bounded by whichever is shorter.
   context 'an administrateur' do
-    let(:user) { create(:administrateur).user }
-
-    before do
-      user.update!(password:)
-      Flipper.enable_actor(:session_registry, user)
-      post_session(user)
-    end
+    let(:user) { administrateurs.blank.user }
 
     it 'is still signed in six days in' do
       travel(6.days) do
@@ -39,12 +37,7 @@ describe 'session deadlines', type: :request do
   end
 
   context 'an usager' do
-    let(:user) { create(:user, password:) }
-
-    before do
-      Flipper.enable_actor(:session_registry, user)
-      post_session(user)
-    end
+    let(:user) { users.usager }
 
     it 'stays signed in as long as it keeps coming back' do
       travel(10.days) { get profil_path }
@@ -102,12 +95,7 @@ describe 'session deadlines', type: :request do
   # The check is gated; the stamp that feeds it is not. Gating both would
   # freeze `last_seen_on` and sign everyone out when the flag reopened.
   context 'the registry flag closed, then opened again' do
-    let(:user) { create(:user, password:) }
-
-    before do
-      Flipper.enable_actor(:session_registry, user)
-      post_session(user)
-    end
+    let(:user) { users.usager }
 
     it 'does not sign out someone who kept coming back meanwhile' do
       Flipper.disable_actor(:session_registry, user)
@@ -128,12 +116,7 @@ describe 'session deadlines', type: :request do
   # The deadline is frozen, but a role granted mid-session must not leave the
   # session living under the year an usager gets.
   context 'an usager promoted while signed in' do
-    let(:user) { create(:user, password:) }
-
-    before do
-      Flipper.enable_actor(:session_registry, user)
-      post_session(user)
-    end
+    let(:user) { users.usager }
 
     # Through a record loaded from a query, as every real promotion path does:
     # User eager loads its roles, so the association answers nil from cache.
@@ -151,13 +134,7 @@ describe 'session deadlines', type: :request do
   # The same for everyone. It only shows for roles whose absolute deadline is
   # longer -- an administrateur is out after a week whatever they do.
   context 'an instructeur' do
-    let(:user) { create(:instructeur).user }
-
-    before do
-      user.update!(password:)
-      Flipper.enable_actor(:session_registry, user)
-      post_session(user)
-    end
+    let(:user) { instructeurs.default.user }
 
     it 'is signed out two weeks after its last visit, well before its month' do
       travel(15.days) do

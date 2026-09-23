@@ -4,16 +4,14 @@
 # that signs you back in. The row it names is still checked on every request.
 describe 'staying signed in', type: :request do
   let(:password) { users.default_password }
-
-  def post_session(user, remember_me:)
-    post user_session_path,
-      params: { user: { email: user.email, password:, remember_me: remember_me ? '1' : '0' } }
-  end
+  let(:usager) { users.usager }
 
   def session_cookie
+    prefix = "#{Rails.application.config.session_options[:key]}="
+
     Array(response.headers['Set-Cookie'])
-      .flat_map { |header| header.split("\n") }
-      .find { |line| line.start_with?('_DS_session=') }
+      .flat_map { it.split("\n") }
+      .find { it.start_with?(prefix) }
   end
 
   def session_cookie_expiry
@@ -23,10 +21,8 @@ describe 'staying signed in', type: :request do
   end
 
   context 'an usager who ticked the box' do
-    let(:usager) { create(:user, password:) }
-
     it 'gets a cookie that outlives the browser' do
-      post_session(usager, remember_me: true)
+      post_user_session(usager, remember_me: true)
 
       expect(session_cookie_expiry)
         .to be_within(1.day).of(SessionRegistrableConcern::SESSION_COOKIE_LIFETIME.from_now)
@@ -35,7 +31,7 @@ describe 'staying signed in', type: :request do
     # Rails rewrites the cookie on every response; a rewrite with no expiry
     # would quietly turn it back into a session cookie.
     it 'keeps the expiry on the requests that follow' do
-      post_session(usager, remember_me: true)
+      post_user_session(usager, remember_me: true)
 
       get profil_path
 
@@ -46,10 +42,8 @@ describe 'staying signed in', type: :request do
   # Rack recomputes the expiry on every response, so the window slides without
   # a line of our own -- as long as the option is set again each time.
   context 'the window' do
-    let(:usager) { create(:user, password:) }
-
     it 'slides with use' do
-      post_session(usager, remember_me: true)
+      post_user_session(usager, remember_me: true)
       first = session_cookie_expiry
 
       travel(3.days) do
@@ -61,10 +55,8 @@ describe 'staying signed in', type: :request do
   end
 
   context 'an usager who did not tick it' do
-    let(:usager) { create(:user, password:) }
-
     it 'gets a session cookie, which dies with the browser' do
-      post_session(usager, remember_me: false)
+      post_user_session(usager, remember_me: false)
 
       expect(session_cookie).to be_present
       expect(session_cookie_expiry).to be_nil
@@ -76,7 +68,7 @@ describe 'staying signed in', type: :request do
   # and must not be read as saying no.
   context 'a programmatic sign in, after the box was ticked' do
     it 'leaves the choice alone' do
-      post_session(usager, remember_me: true)
+      post_user_session(usager, remember_me: true)
 
       patch users_activate_path, params: {
         user: {
@@ -94,12 +86,10 @@ describe 'staying signed in', type: :request do
   # One duration for everyone. What differs per role is the row, and the row
   # is what actually cuts.
   context 'an agent' do
-    let(:agent) { create(:instructeur).user }
-
-    before { agent.update!(password:) }
+    let(:agent) { instructeurs.default.user }
 
     it 'gets the same cookie as anyone else' do
-      post_session(agent, remember_me: true)
+      post_user_session(agent, remember_me: true)
 
       expect(session_cookie_expiry)
         .to be_within(1.day).of(SessionRegistrableConcern::SESSION_COOKIE_LIFETIME.from_now)
