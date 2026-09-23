@@ -28,39 +28,33 @@ Warden::Manager.after_set_user do |record, warden, options|
     SessionRegistrableConcern.open_session!(record, warden, scope)
 
   # :fetch -- read back from the cookie on every later request, so the row it
-  # names has to still be good. Logged out rather than thrown: this also fires
-  # on opportunistic fetches, one of them from an `ensure` after the action.
+  # names has to still be good.
   in :fetch
-    warden_session = warden.session(scope)
-    session_id = warden_session[SessionRegistrableConcern::SESSION_KEY]
+    SessionRegistrableConcern.continue_session!(record, warden, scope)
+  end
+rescue StandardError => e
+  Sentry.capture_exception(e)
+end
 
-    if session_id.nil?
-      SessionRegistrableConcern.open_session!(record, warden, scope)
-    else
-      user_session = UserSession.find_by(id: session_id, sessionable: record)
+# Not gated: "stay signed in" is not part of the registry, and gating it would
+# take the persistent cookie away from everyone while the flag is off.
+Warden::Manager.after_set_user do |record, warden, options|
+  next unless record.is_a?(SessionRegistrableConcern)
 
-      # The row first: a session both revoked and stale must say it was revoked,
-      # which is the message the user needs.
-      reason =
-        if user_session.nil? || user_session.unusable?
-          user_session&.unusable_reason || :session_revoked
-        elsif SessionRegistrableConcern.inactive?(warden_session)
-          :inactivity
-        end
+  case options[:event]
+  in :authentication | :set_user
+    SessionRegistrableConcern.remember!(record, warden, options[:scope])
+  in :fetch
+    # The hook above may have just logged this scope out, or died into its
+    # rescue: stamping then would resurrect the key Warden deleted and refresh a
+    # session that failed its check.
+    next if SessionRegistrableConcern.signed_out?(warden, options[:scope])
 
-      SessionRegistrableConcern.touch_last_seen!(warden_session)
-
-      if reason.present?
-        # Before the logout: `before_logout` would otherwise find the row usable
-        # and stamp it `sign_out`, as if the user had left on purpose.
-        record.user_sessions.usable.where(id: session_id).revoke_all!(:inactivity) if reason == :inactivity
-
-        # In the Rack env, which Warden hands to the failure app unchanged: we
-        # log out rather than throw, so there is no `throw(:warden, message:)`.
-        warden.request.env[SessionRegistrableConcern.end_reason_key(scope)] = reason.to_s
-        warden.logout(scope)
-      end
-    end
+    # Here rather than beside the check that reads it, because that check is
+    # gated: closing the flag would let `last_seen_on` go stale, and opening it
+    # again would sign every active user out at once.
+    SessionRegistrableConcern.touch_last_seen!(SessionRegistrableConcern.warden_session(warden, options[:scope]))
+    SessionRegistrableConcern.persist_cookie!(warden, options[:scope])
   end
 rescue StandardError => e
   Sentry.capture_exception(e)

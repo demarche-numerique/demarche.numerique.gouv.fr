@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 describe Users::SessionsController, type: :controller do
+  def persistent_session?
+    session.dig('warden.user.user.session', SessionRegistrableConcern::PERSISTENT_KEY)
+  end
+
   let(:email) { 'unique@plop.com' }
   let(:password) { SECURE_PASSWORD }
   let(:loged_in_with_france_connect) { User.loged_in_with_france_connects.fetch(:particulier) }
@@ -37,7 +41,7 @@ describe Users::SessionsController, type: :controller do
         expect(response).to redirect_to(root_path)
         expect(controller.current_user).to eq(user)
         expect(user.reload.loged_in_with_france_connect).to be(nil)
-        expect(user.reload.remember_created_at).to be_nil
+        expect(persistent_session?).to be(false)
 
         [
           FranceConnectController::ID_TOKEN_COOKIE_NAME,
@@ -51,10 +55,12 @@ describe Users::SessionsController, type: :controller do
       context 'when remember_me is specified' do
         let(:remember_me) { '1' }
 
-        it 'remembers' do
+        # No cookie of its own any more: the session cookie is given an expiry,
+        # so the browser keeps it across a restart.
+        it 'marks the session as one that outlives the browser' do
           subject
 
-          expect(user.reload.remember_created_at).to be_present
+          expect(persistent_session?).to be(true)
         end
       end
 
