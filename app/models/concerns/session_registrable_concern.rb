@@ -9,9 +9,17 @@ module SessionRegistrableConcern
 
   LAST_SEEN_KEY = 'last_seen_on'
 
+  # A decision, not a parameter: the checkbox only exists on the sign in
+  # request, and the expiry has to be set again on every response.
+  PERSISTENT_KEY = 'persistent'
+
   # The same for every role, and not the only bound: a shorter absolute
   # deadline cuts first.
   INACTIVITY_WINDOW = 2.weeks
+
+  # One duration for every role, the one `remember_for` had. It decides
+  # nothing: the row is still checked on every request.
+  SESSION_COOKIE_LIFETIME = 2.weeks
 
   USER_AGENT_MAX_LENGTH = 500
 
@@ -43,6 +51,25 @@ module SessionRegistrableConcern
     false
   end
 
+  # "Stay signed in" is an expiry on the session cookie. It grants nothing on
+  # its own -- the row it names is still checked -- so every role may have one.
+  def self.remember!(record, warden, scope)
+    warden.session(scope)[PERSISTENT_KEY] = !!record.try(:remember_me)
+
+    persist_cookie!(warden, scope)
+  end
+
+  # Rails rewrites the session cookie on every response (random ciphertext), and
+  # a rewrite carrying no expiry turns a persistent cookie back into a session
+  # one -- so the option has to be set again every time.
+  def self.persist_cookie!(warden, scope)
+    return if !warden_session(warden, scope)[PERSISTENT_KEY]
+
+    warden.request.session_options[:expire_after] = SESSION_COOKIE_LIFETIME
+  end
+
+  # Written only when the day turns, so the cookie is left alone the rest of
+  # the time.
   def self.touch_last_seen!(session)
     today = Date.current.iso8601
 
@@ -66,6 +93,13 @@ module SessionRegistrableConcern
     )
   end
 
+  # Called by every override: a subclass that revokes more than rows must refuse
+  # a bad call before touching anything irreversible.
+  def validate_revocation!(reason:, except:)
+    raise ArgumentError, "unknown revocation reason #{reason.inspect}" unless UserSession::REVOCATION_REASONS.include?(reason.to_s)
+    raise ArgumentError, 'cannot spare a session that is not persisted' if except && !except.persisted?
+  end
+
   # Read afresh rather than `reload`: `has_one` assigns its target only after
   # save, so inside the `after_create` the owner still answers nil for the role
   # being granted -- from cache, since User eager loads its roles.
@@ -82,7 +116,7 @@ module SessionRegistrableConcern
   end
 
   def revoke_sessions!(reason:, except: nil)
-    raise ArgumentError, 'cannot spare a session that is not persisted' if except && !except.persisted?
+    validate_revocation!(reason:, except:)
 
     scope = user_sessions
     scope = scope.where.not(id: except.id) if except

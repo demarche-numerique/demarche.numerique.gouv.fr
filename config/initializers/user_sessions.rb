@@ -48,8 +48,6 @@ Warden::Manager.after_set_user do |record, warden, options|
           :inactivity
         end
 
-      SessionRegistrableConcern.touch_last_seen!(warden_session)
-
       if reason.present?
         # Before the logout: `before_logout` would otherwise find the row usable
         # and stamp it `sign_out`, as if the user had left on purpose.
@@ -61,6 +59,25 @@ Warden::Manager.after_set_user do |record, warden, options|
         warden.logout(scope)
       end
     end
+  end
+rescue StandardError => e
+  Sentry.capture_exception(e)
+end
+
+# Not gated: "stay signed in" is not part of the registry, and gating it would
+# take the persistent cookie away from everyone while the flag is off.
+Warden::Manager.after_set_user do |record, warden, options|
+  next unless record.is_a?(SessionRegistrableConcern)
+
+  case options[:event]
+  in :authentication | :set_user
+    SessionRegistrableConcern.remember!(record, warden, options[:scope])
+  in :fetch
+    # Here rather than beside the check that reads it, because that check is
+    # gated: closing the flag would let `last_seen_on` go stale, and opening it
+    # again would sign every active user out at once.
+    SessionRegistrableConcern.touch_last_seen!(SessionRegistrableConcern.warden_session(warden, options[:scope]))
+    SessionRegistrableConcern.persist_cookie!(warden, options[:scope])
   end
 rescue StandardError => e
   Sentry.capture_exception(e)

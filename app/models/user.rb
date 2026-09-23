@@ -13,8 +13,14 @@ class User < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  # No `:rememberable`: Warden replays that cookie whenever a session is
+  # rejected, which would make revocation and expiry fictions.
   devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable
+    :recoverable, :trackable, :validatable, :confirmable, :lockable
+
+  # Still set by Devise's strategy from the params; it drives the session
+  # cookie lifetime now instead of issuing a cookie of its own.
+  attr_accessor :remember_me
 
   # We should never cascade delete dossiers. In normal case we call delete_and_keep_track_dossiers
   # before deleting a user (which dissociate dossiers from the user).
