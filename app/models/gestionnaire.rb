@@ -8,6 +8,10 @@ class Gestionnaire < ApplicationRecord
 
   belongs_to :user
 
+  # Granting a role must not leave sessions already open living under the
+  # deadline of the role the account had before.
+  after_create -> { user&.tighten_sessions! }
+
   delegate :email, to: :user
 
   default_scope { eager_load(:user) }
