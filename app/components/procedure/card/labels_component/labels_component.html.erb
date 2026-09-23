@@ -1,4 +1,5 @@
 <%= render SettingsTileComponent.new(
+  heading_level: :h4,
   url: [:admin, @procedure, :labels],
   badge:,
   counter: @procedure.labels.presence&.size,

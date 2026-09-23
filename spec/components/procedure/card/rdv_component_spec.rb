@@ -16,7 +16,7 @@ RSpec.describe Procedure::Card::RdvComponent, type: :component do
 
     it do
       is_expected.to have_css('p.fr-badge.fr-badge--success', text: "Activée")
-      is_expected.to have_css('h3.fr-h6', text: "Prise de rendez-vous")
+      is_expected.to have_css('h4.fr-h6', text: "Prise de rendez-vous")
     end
   end
 
@@ -25,7 +25,7 @@ RSpec.describe Procedure::Card::RdvComponent, type: :component do
 
     it do
       is_expected.to have_css('p.fr-badge', text: "Désactivée")
-      is_expected.to have_css('h3.fr-h6', text: "Prise de rendez-vous")
+      is_expected.to have_css('h4.fr-h6', text: "Prise de rendez-vous")
     end
   end
 end

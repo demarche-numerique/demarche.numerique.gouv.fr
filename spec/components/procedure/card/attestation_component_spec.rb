@@ -19,7 +19,7 @@ RSpec.describe Procedure::Card::AttestationComponent, type: :component do
         let(:activated) { true }
         it do
           is_expected.to have_css('p.fr-badge.fr-badge--success', text: "Activée")
-          is_expected.to have_css('h3.fr-h6', text: "Attestation d’acceptation")
+          is_expected.to have_css('h4.fr-h6', text: "Attestation d’acceptation")
           is_expected.to have_link(href: component.helpers.edit_admin_procedure_attestation_template_v2_path(procedure, attestation_kind: :acceptation))
         end
       end
@@ -28,7 +28,7 @@ RSpec.describe Procedure::Card::AttestationComponent, type: :component do
         let(:activated) { false }
         it do
           is_expected.to have_css('p.fr-badge', text: "Désactivée")
-          is_expected.to have_css('h3.fr-h6', text: "Attestation d’acceptation")
+          is_expected.to have_css('h4.fr-h6', text: "Attestation d’acceptation")
         end
       end
     end
@@ -50,7 +50,7 @@ RSpec.describe Procedure::Card::AttestationComponent, type: :component do
       let(:activated) { true }
       it do
         is_expected.to have_css('p.fr-badge.fr-badge--success', text: "Activée")
-        is_expected.to have_css('h3.fr-h6', text: "Attestation de refus")
+        is_expected.to have_css('h4.fr-h6', text: "Attestation de refus")
         is_expected.to have_link(href: component.helpers.edit_admin_procedure_attestation_template_v2_path(procedure, attestation_kind: :refus))
       end
     end
@@ -59,7 +59,7 @@ RSpec.describe Procedure::Card::AttestationComponent, type: :component do
       let(:activated) { false }
       it do
         is_expected.to have_css('p.fr-badge', text: "Désactivée")
-        is_expected.to have_css('h3.fr-h6', text: "Attestation de refus")
+        is_expected.to have_css('h4.fr-h6', text: "Attestation de refus")
       end
     end
   end

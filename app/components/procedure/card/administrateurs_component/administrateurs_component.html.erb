@@ -1,4 +1,5 @@
 <%= render SettingsTileComponent.new(
+  heading_level: :h4,
   url: admin_procedure_administrateurs_path(@procedure),
   badge: { label: t(".badge.validated"), variant: :success },
   counter: @procedure.administrateurs.size,
