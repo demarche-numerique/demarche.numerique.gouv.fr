@@ -39,10 +39,25 @@ Warden::Manager.after_set_user do |record, warden, options|
     else
       user_session = UserSession.find_by(id: session_id, sessionable: record)
 
-      if user_session.nil? || user_session.unusable?
+      # The row first: a session both revoked and stale must say it was revoked,
+      # which is the message the user needs.
+      reason =
+        if user_session.nil? || user_session.unusable?
+          user_session&.unusable_reason || :session_revoked
+        elsif SessionRegistrableConcern.inactive?(warden_session)
+          :inactivity
+        end
+
+      SessionRegistrableConcern.touch_last_seen!(warden_session)
+
+      if reason.present?
+        # Before the logout: `before_logout` would otherwise find the row usable
+        # and stamp it `sign_out`, as if the user had left on purpose.
+        record.user_sessions.usable.where(id: session_id).revoke_all!(:inactivity) if reason == :inactivity
+
         # In the Rack env, which Warden hands to the failure app unchanged: we
         # log out rather than throw, so there is no `throw(:warden, message:)`.
-        warden.request.env[SessionRegistrableConcern.end_reason_key(scope)] = (user_session&.unusable_reason || :session_revoked).to_s
+        warden.request.env[SessionRegistrableConcern.end_reason_key(scope)] = reason.to_s
         warden.logout(scope)
       end
     end

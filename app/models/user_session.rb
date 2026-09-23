@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UserSession < ApplicationRecord
-  REVOCATION_REASONS = %w[sign_out logout_device logout_all support new_session password_change].freeze
+  REVOCATION_REASONS = %w[sign_out logout_device logout_all support new_session password_change inactivity].freeze
 
   belongs_to :sessionable, polymorphic: true
 
