@@ -1,13 +1,13 @@
 <%= render SettingsTileComponent.new(
   url: @path,
-  badge: { label: "Validé", variant: :success },
+  badge: { label: t(".badge.validated"), variant: :success },
   counter: number_commentaires,
   link_attributes: { id: "commentaires" }
 ) do |tile| %>
   <% tile.with_title do %>
     <% if @unread_commentaires %>
       <span class="notifications">
-        <span class="fr-sr-only">notification</span>
+        <span class="fr-sr-only"><%= t(".notification") %></span>
       </span>
     <% end %>
 

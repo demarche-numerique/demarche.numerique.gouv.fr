@@ -3,3 +3,5 @@ fr:
   title:
     one: Administrateur
     other: Administrateurs
+  badge:
+    validated: Validé

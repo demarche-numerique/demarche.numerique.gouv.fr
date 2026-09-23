@@ -1,6 +1,6 @@
 <%= render SettingsTileComponent.new(
   url: @path,
-  badge: { label: "Validé", variant: :success },
+  badge: { label: t(".badge.validated"), variant: :success },
   counter: @groupe_gestionnaire.children.size,
   link_attributes: { id: "children" }
 ) do |tile| %>
