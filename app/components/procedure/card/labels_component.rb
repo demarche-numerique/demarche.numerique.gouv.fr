@@ -9,9 +9,9 @@ class Procedure::Card::LabelsComponent < ApplicationComponent
 
   def badge
     if @procedure.labels.present?
-      { label: 'Configuré', variant: :success }
+      { label: t('.badge.configured'), variant: :success }
     else
-      { label: 'À configurer', variant: :info }
+      { label: t('.badge.todo'), variant: :info }
     end
   end
 end

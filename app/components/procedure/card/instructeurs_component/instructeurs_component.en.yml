@@ -1,0 +1,15 @@
+---
+en:
+  title:
+    zero: Instructors
+    one: Instructor
+    other: Instructors
+  routee:
+    title:
+      zero: Instructor groups
+      one: Instructor group
+      other: Instructor groups
+  subtitle: File follow-up
+  badge:
+    todo: To do
+    validated: Validated

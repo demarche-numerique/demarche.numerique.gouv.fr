@@ -1,0 +1,11 @@
+---
+en:
+  title: Service
+  subtitle: Choice of the administrative service
+  action:
+    edit: Edit
+    choose: Choose
+    fill: Fill in
+  badge:
+    validated: Validated
+    todo: To do

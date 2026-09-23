@@ -25,7 +25,7 @@ class Procedure::Card::IneligibiliteDossierComponent < ApplicationComponent
     if !ready?
       { label: t('.state.pending') }
     elsif error?
-      { label: 'À modifier', variant: :error }
+      { label: t('.state.error'), variant: :error }
     else
       { label: t('.state.completed'), variant: :success }
     end

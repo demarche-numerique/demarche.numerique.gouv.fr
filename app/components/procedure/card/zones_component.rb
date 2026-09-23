@@ -9,9 +9,9 @@ class Procedure::Card::ZonesComponent < ApplicationComponent
 
   def badge
     if @procedure.zones.size >= 1
-      { label: 'Validé', variant: :success }
+      { label: t('.badge.validated'), variant: :success }
     else
-      { label: 'À faire', variant: :warning }
+      { label: t('.badge.todo'), variant: :warning }
     end
   end
 end

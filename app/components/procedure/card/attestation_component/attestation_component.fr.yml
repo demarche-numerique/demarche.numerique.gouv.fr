@@ -6,3 +6,7 @@ fr:
   refus:
     title: Attestation de refus
     subtitle: Délivrance automatique pour les dossiers refusés
+  badge:
+    disabled: Désactivée
+    error: À modifier
+    enabled: Activée

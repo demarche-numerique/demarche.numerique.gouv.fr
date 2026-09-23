@@ -9,9 +9,9 @@ class Procedure::Card::DossierSubmittedMessageComponent < ApplicationComponent
 
   def badge
     if @procedure.active_dossier_submitted_message.present?
-      { label: 'Validé', variant: :success }
+      { label: t('.badge.validated'), variant: :success }
     else
-      { label: 'À configurer', variant: :info }
+      { label: t('.badge.todo'), variant: :info }
     end
   end
 end

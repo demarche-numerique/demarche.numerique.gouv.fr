@@ -1,0 +1,8 @@
+---
+en:
+  title: Form fields
+  subtitle: Filled in by users
+  badge:
+    error: To fix
+    todo: To do
+    validated: Validated

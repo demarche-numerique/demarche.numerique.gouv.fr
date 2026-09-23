@@ -1,0 +1,12 @@
+---
+en:
+  acceptation:
+    title: Acceptance certificate
+    subtitle: Issued automatically for accepted files
+  refus:
+    title: Refusal certificate
+    subtitle: Issued automatically for refused files
+  badge:
+    disabled: Disabled
+    error: To fix
+    enabled: Enabled

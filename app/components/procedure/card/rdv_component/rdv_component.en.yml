@@ -1,0 +1,7 @@
+---
+en:
+  title: Appointment booking
+  subtitle: Let instructors book appointments with users
+  badge:
+    enabled: Enabled
+    disabled: Disabled

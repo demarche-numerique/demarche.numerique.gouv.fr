@@ -25,11 +25,11 @@ class Procedure::Card::APITokenComponent < ApplicationComponent
 
   def badge
     if !@procedure.specific_api_entreprise_token? && !@procedure.api_particulier_token?
-      { label: 'À configurer', variant: :info }
+      { label: t('.badge.todo'), variant: :info }
     elsif any_token_needs_renewal?
-      { label: 'À renouveler', variant: :error }
+      { label: t('.badge.renew'), variant: :error }
     else
-      { label: 'Configuré', variant: :success }
+      { label: t('.badge.configured'), variant: :success }
     end
   end
 end

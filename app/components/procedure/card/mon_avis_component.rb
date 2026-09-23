@@ -9,9 +9,9 @@ class Procedure::Card::MonAvisComponent < ApplicationComponent
 
   def badge
     if @procedure.monavis_embed.present?
-      { label: 'Validé', variant: :success }
+      { label: t('.badge.validated'), variant: :success }
     else
-      { label: 'À configurer', variant: :info }
+      { label: t('.badge.todo'), variant: :info }
     end
   end
 end

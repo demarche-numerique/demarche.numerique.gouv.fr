@@ -19,11 +19,11 @@ class Procedure::Card::EmailsComponent < ApplicationComponent
 
   def badge
     if error_messages.present?
-      { label: 'À modifier', variant: :warning }
+      { label: t('.badge.error'), variant: :warning }
     elsif customized?
-      { label: 'Configurés', variant: :info, icon: false }
+      { label: t('.badge.customized'), variant: :info, icon: false }
     else
-      { label: 'Configurés par défaut' }
+      { label: t('.badge.default') }
     end
   end
 

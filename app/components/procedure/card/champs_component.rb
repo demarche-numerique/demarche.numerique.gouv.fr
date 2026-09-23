@@ -14,11 +14,11 @@ class Procedure::Card::ChampsComponent < ApplicationComponent
 
   def badge
     if error_messages.present?
-      { label: 'À modifier', variant: :error }
+      { label: t('.badge.error'), variant: :error }
     elsif @count == 0
-      { label: 'À faire', variant: :warning }
+      { label: t('.badge.todo'), variant: :warning }
     else
-      { label: 'Validé', variant: :success }
+      { label: t('.badge.validated'), variant: :success }
     end
   end
 end

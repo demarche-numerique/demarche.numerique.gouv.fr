@@ -9,11 +9,11 @@ class Procedure::Card::InstructeursComponent < ApplicationComponent
 
   def badge
     if @procedure.routing_enabled? && @procedure.groupe_instructeurs.any?(&:routing_to_configure?)
-      { label: 'À faire', variant: :warning }
+      { label: t('.badge.todo'), variant: :warning }
     elsif @procedure.instructeurs.present?
-      { label: 'Validé', variant: :success }
+      { label: t('.badge.validated'), variant: :success }
     else
-      { label: 'À faire', variant: :warning }
+      { label: t('.badge.todo'), variant: :warning }
     end
   end
 

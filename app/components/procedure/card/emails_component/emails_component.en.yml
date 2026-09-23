@@ -1,0 +1,8 @@
+---
+en:
+  title: Email templates
+  subtitle: Automatic notifications
+  badge:
+    error: To fix
+    customized: Customized
+    default: Default settings

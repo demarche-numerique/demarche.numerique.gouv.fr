@@ -1,0 +1,7 @@
+---
+en:
+  title: Labels
+  subtitle: Manage the labels instructors can use
+  badge:
+    configured: Configured
+    todo: To configure

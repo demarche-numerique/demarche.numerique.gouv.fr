@@ -17,9 +17,9 @@ class Procedure::Card::ChorusComponent < ApplicationComponent
 
   def badge
     if complete?
-      { label: 'Configuré', variant: :success }
+      { label: t('.badge.configured'), variant: :success }
     else
-      { label: 'À compléter', variant: :warning }
+      { label: t('.badge.todo'), variant: :warning }
     end
   end
 end

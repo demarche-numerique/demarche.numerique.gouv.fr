@@ -2,3 +2,7 @@
 fr:
   title: Jetons API
   subtitle: Configurer les jetons API Entreprise ou API Particulier
+  badge:
+    todo: À configurer
+    renew: À renouveler
+    configured: Configuré

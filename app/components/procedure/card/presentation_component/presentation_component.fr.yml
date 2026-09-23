@@ -1,3 +1,6 @@
 ---
 fr:
   title: Présentation
+  subtitle: Logo, nom, description
+  badge:
+    validated: Validé

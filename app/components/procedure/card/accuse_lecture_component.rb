@@ -9,9 +9,9 @@ class Procedure::Card::AccuseLectureComponent < ApplicationComponent
 
   def badge
     if @procedure.accuse_lecture.present?
-      { label: 'Activé', variant: :success }
+      { label: t('.badge.enabled'), variant: :success }
     else
-      { label: 'Désactivé' }
+      { label: t('.badge.disabled') }
     end
   end
 end

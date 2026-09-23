@@ -13,9 +13,9 @@ class Procedure::Card::RdvComponent < ApplicationComponent
 
   def badge
     if @procedure.rdv_enabled?
-      { label: 'Activée', variant: :success }
+      { label: t('.badge.enabled'), variant: :success }
     else
-      { label: 'Désactivée' }
+      { label: t('.badge.disabled') }
     end
   end
 end

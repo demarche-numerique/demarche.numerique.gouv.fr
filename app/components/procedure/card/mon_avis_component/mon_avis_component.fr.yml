@@ -1,3 +1,7 @@
 ---
 fr:
   title: Bouton « Je Donne Mon Avis »
+  subtitle: Avis des usagers sur votre démarche
+  badge:
+    validated: Validé
+    todo: À configurer

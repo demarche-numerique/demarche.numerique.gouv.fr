@@ -1,0 +1,9 @@
+---
+en:
+  title: Chorus connector
+  subtitle: Do you handle state grant data?
+  link_title: Configure the Chorus budget framework
+  action: Configure
+  badge:
+    todo: To complete
+    configured: Configured

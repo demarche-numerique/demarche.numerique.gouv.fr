@@ -14,11 +14,11 @@ class Procedure::Card::AnnotationsComponent < ApplicationComponent
 
   def badge
     if error_messages.present?
-      { label: 'À modifier', variant: :error }
+      { label: t('.badge.error'), variant: :error }
     elsif @count == 0
-      { label: 'À configurer', variant: :info }
+      { label: t('.badge.todo'), variant: :info }
     else
-      { label: 'Validé', variant: :success }
+      { label: t('.badge.validated'), variant: :success }
     end
   end
 end

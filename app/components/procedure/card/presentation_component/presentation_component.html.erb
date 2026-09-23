@@ -1,7 +1,7 @@
 <%= render SettingsTileComponent.new(
   url: edit_admin_procedure_path(@procedure),
-  badge: { label: "Validé", variant: :success },
-  subtitle: "Logo, nom, description",
+  badge: { label: t(".badge.validated"), variant: :success },
+  subtitle: t(".subtitle"),
   link_attributes: { id: "presentation" }
 ) do |tile| %>
   <% tile.with_title_content(t(".title")) %>

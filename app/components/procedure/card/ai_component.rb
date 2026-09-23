@@ -23,9 +23,9 @@ class Procedure::Card::AiComponent < ApplicationComponent
 
   def badge
     if improved?
-      { label: 'Amélioré', variant: :success }
+      { label: t('.badge.improved'), variant: :success }
     else
-      { label: 'À faire', variant: :warning }
+      { label: t('.badge.todo'), variant: :warning }
     end
   end
 end

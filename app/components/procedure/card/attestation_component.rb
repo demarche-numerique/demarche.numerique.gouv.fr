@@ -18,11 +18,11 @@ class Procedure::Card::AttestationComponent < ApplicationComponent
 
   def badge
     if !@procedure.published_attestation_template_for(@kind)&.activated?
-      { label: 'Désactivée' }
+      { label: t('.badge.disabled') }
     elsif error_messages.present?
-      { label: 'À modifier', variant: :warning }
+      { label: t('.badge.error'), variant: :warning }
     else
-      { label: 'Activée', variant: :success }
+      { label: t('.badge.enabled'), variant: :success }
     end
   end
 

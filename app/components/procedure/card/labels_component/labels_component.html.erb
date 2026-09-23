@@ -2,7 +2,7 @@
   url: [:admin, @procedure, :labels],
   badge:,
   counter: @procedure.labels.presence&.size,
-  subtitle: "Gérer les labels utilisables par les instructeurs"
+  subtitle: t(".subtitle")
 ) do |tile| %>
   <% tile.with_title_content(t(".title")) %>
 <% end %>
