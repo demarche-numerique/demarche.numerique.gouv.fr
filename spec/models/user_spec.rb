@@ -872,6 +872,50 @@ describe User, type: :model do
     end
   end
 
+  describe 'session revocation' do
+    let(:usager) { create(:user) }
+    let(:agent) { create(:instructeur).user }
+
+    describe '#revoke_sessions!' do
+      it 'refuses to spare a session that is not persisted' do
+        expect { usager.revoke_sessions!(reason: :logout_all, except: UserSession.new) }
+          .to raise_error(ArgumentError, /not persisted/)
+      end
+
+      it 'closes every session, the current one included' do
+        one = usager.open_user_session!('a browser')
+        two = usager.open_user_session!('another browser')
+
+        usager.update!(password: "#{users.default_password} (bis)")
+
+        expect(one.reload).to be_unusable
+        expect(two.reload).to be_unusable
+      end
+
+      # A statement timeout on `user_sessions` is the realistic failure: without
+      # one transaction the account would be half signed out and told it failed.
+      it 'breaks nothing when the rows cannot be revoked' do
+        instructeur = create(:instructeur)
+        user = instructeur.user
+        token = instructeur.trusted_device_tokens.create!
+        version = user.trusted_device_version
+
+        allow(user).to receive(:user_sessions)
+          .and_raise(ActiveRecord::StatementInvalid, 'canceling statement due to statement timeout')
+
+        # `joinable: false` makes the revocation open a savepoint of its own
+        # rather than join this example's transaction, so the rollback shows.
+        ActiveRecord::Base.transaction(joinable: false) do
+          expect { user.revoke_sessions!(reason: :logout_all) }
+            .to raise_error(ActiveRecord::StatementInvalid)
+        end
+
+        expect(user.reload.trusted_device_version).to eq(version)
+        expect(TrustedDeviceToken.exists?(token.id)).to be(true)
+      end
+    end
+  end
+
   describe '#session_max_lifetime' do
     it 'gives an usager the housekeeping horizon' do
       expect(create(:user).session_max_lifetime).to eq(User::USAGER_SESSION_MAX_LIFETIME)

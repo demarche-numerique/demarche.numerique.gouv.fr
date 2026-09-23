@@ -128,6 +128,17 @@ module SessionRegistrableConcern
 
   included do
     has_many :user_sessions, as: :sessionable, dependent: :delete_all
+
+    # Here rather than on User: SuperAdmin is `:recoverable` too, and would
+    # otherwise be the only account whose sessions survive.
+    after_update :revoke_sessions_after_password_change, if: :saved_change_to_encrypted_password?
+  end
+
+  # The current session included: there is no request here to spare it from.
+  # A controller that signs the person in right after has to pass `force: true`,
+  # or Devise leaves them on the row this just revoked.
+  def revoke_sessions_after_password_change
+    revoke_sessions!(reason: :password_change)
   end
 
   def session_max_lifetime = nil
@@ -143,13 +154,6 @@ module SessionRegistrableConcern
     )
   end
 
-  # Called by every override: a subclass that revokes more than rows must refuse
-  # a bad call before touching anything irreversible.
-  def validate_revocation!(reason:, except:)
-    UserSession.validate_reason!(reason)
-    raise ArgumentError, 'cannot spare a session that is not persisted' if except && !except.persisted?
-  end
-
   # One UPDATE, no row loaded: this runs inside the `after_create` of a role, and
   # bulk promotions grant thousands of them.
   #
@@ -159,27 +163,30 @@ module SessionRegistrableConcern
   def tighten_sessions!(deadline)
     user_sessions
       .usable
-      .where('expires_at IS NULL OR expires_at > created_at + CAST(? AS interval)', deadline.iso8601)
+      .expiring_later_than(deadline)
       .expire_from_created_at!(deadline)
   end
 
+  # The guards run before anything irreversible: `except` with a nil id would
+  # turn into `where.not(id: nil)` and revoke every row, the one to spare first.
+  # Then the account-wide steps, so a failure on the rows cannot leave an account
+  # half signed out.
   def revoke_sessions!(reason:, except: nil)
-    validate_revocation!(reason:, except:)
+    UserSession.validate_reason!(reason)
+    raise ArgumentError, 'cannot spare a session that is not persisted' if except && !except.persisted?
 
-    revoke_session_rows!(reason:, except:)
+    transaction do
+      revoke_account_wide!(reason)
+
+      scope = except ? user_sessions.where.not(id: except.id) : user_sessions
+      scope.revoke_all!(reason)
+    end
   end
 
   private
 
-  # Split out so an override can validate once, act on what only it knows about,
-  # and still end on the rows -- without `super` validating a second time.
-  # Private: it carries no guard of its own, and `except` with a nil id would
-  # turn into `where.not(id: nil)` and revoke every row, the one to spare first.
-  def revoke_session_rows!(reason:, except:)
-    scope = user_sessions
-    scope = scope.where.not(id: except.id) if except
-    scope.revoke_all!(reason)
-  end
+  # What a sessionable cuts beyond its own rows. Nothing, unless it overrides.
+  def revoke_account_wide!(reason) = nil
 
   # Client-controlled: invalid UTF-8 or a NUL makes Postgres refuse the INSERT,
   # the hook rescues it, and the session opens with no row -- exempt from every

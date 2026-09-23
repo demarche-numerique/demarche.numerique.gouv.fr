@@ -57,4 +57,47 @@ describe UserSession, type: :model do
       expect(usable).not_to include(revoked, expired)
     end
   end
+
+  describe '.revoke_all!' do
+    # `.all`, `.where(nil)` and `.unscoped` all set a current_scope: its mere
+    # presence proved nothing, and the guard let the whole platform through.
+    it 'refuses an unfiltered relation' do
+      expect { UserSession.all.revoke_all!(:support) }
+        .to raise_error(ArgumentError, /scope the relation first/)
+    end
+  end
+
+  # Three lists have to agree and nothing binds them: the reasons here, the
+  # subset User treats as total, and the messages the failure app looks up by
+  # name. A missing message is a sign in page with no explanation.
+  describe 'the messages a reason resolves to' do
+    # The two the row reports without ever being revoked for them.
+    reasons = UserSession::REVOCATION_REASONS + %w[session_revoked expired]
+
+    reasons.each do |reason|
+      it "has a French and an English message for #{reason}" do
+        [:fr, :en].each do |locale|
+          expect(I18n.t("devise.failure.#{reason}", locale:, default: nil))
+            .to be_present, "missing devise.failure.#{reason} in #{locale}"
+        end
+      end
+    end
+
+    it 'treats as total only reasons that exist' do
+      expect(User::TOTAL_REVOCATION_REASONS.map(&:to_s) - UserSession::REVOCATION_REASONS).to be_empty
+    end
+  end
+
+  describe 'an unknown revocation reason' do
+    # It used to raise deep inside revoke_all!, after the caller had already
+    # broken the trusted device -- outside any transaction, so nothing rolled
+    # back.
+    it 'is refused before anything irreversible happens' do
+      user = create(:user)
+      version = user.trusted_device_version
+
+      expect { user.revoke_sessions!(reason: :made_up) }.to raise_error(ArgumentError, /unknown revocation reason/)
+      expect(user.reload.trusted_device_version).to eq(version)
+    end
+  end
 end

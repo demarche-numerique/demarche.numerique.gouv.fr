@@ -31,7 +31,10 @@ class Users::ActivateController < ApplicationController
     # a :reset_password_token => :expired error, which valid? would clear before
     # re-running (passing) model validations — signing the user in on a stale token.
     if user.errors.empty?
-      sign_in(user, scope: :user)
+      # `force`: the password change just revoked every session of the account,
+      # this one included, and Devise's `sign_in` does nothing when the visitor
+      # is already this user -- leaving them on a revoked row.
+      sign_in(user, scope: :user, force: true)
 
       trust_device(Time.zone.now, user.instructeur) if user.instructeur.present?
       user.update!(email_verified_at: Time.zone.now) if user.email_verified_at.nil?
