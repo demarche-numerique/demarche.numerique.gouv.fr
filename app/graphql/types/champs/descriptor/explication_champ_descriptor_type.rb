@@ -8,11 +8,11 @@ module Types::Champs::Descriptor
     field :collapsible_explanation_text, String, null: true
 
     def collapsible_explanation_enabled
-      object.type_de_champ.collapsible_explanation_enabled?
+      object.collapsible_explanation_enabled?
     end
 
     def collapsible_explanation_text
-      object.type_de_champ.collapsible_explanation_text
+      object.collapsible_explanation_text
     end
   end
 end

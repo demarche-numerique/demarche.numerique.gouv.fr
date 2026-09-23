@@ -114,13 +114,9 @@ module Types
     end
 
     def champ_descriptors
-      if type_de_champ.repetition?
-        object.revision_type_de_champs
+      if object.repetition?
+        object.flat_children
       end
-    end
-
-    def type_de_champ
-      object.type_de_champ
     end
   end
 end
