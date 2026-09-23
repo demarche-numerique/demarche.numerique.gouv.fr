@@ -3,6 +3,8 @@
 class Users::PasswordsController < Devise::PasswordsController
   include DevisePopulatedResource
 
+  # Declared first so it runs last: after_action callbacks run in reverse.
+  after_action :trust_device_after_reset, only: [:update]
   after_action :try_to_authenticate_instructeur, only: [:update]
   after_action :try_to_authenticate_administrateur, only: [:update]
   after_action :update_email_verified_at, only: [:update]
@@ -68,6 +70,20 @@ class Users::PasswordsController < Devise::PasswordsController
         sign_in(administrateur.user)
       end
     end
+  end
+
+  # The reset link arrived by email, the proof `trusted_device?` asks for, and
+  # the password change just bumped the version. Without this the instructeur
+  # gets a second link to prove what the first proved.
+  def trust_device_after_reset
+    # after_action runs on the failure branch too, where Devise re-renders the
+    # form with a 422. Nothing was proved then. Not dirty tracking: the callback
+    # declared below this one saves the same record again first.
+    return if resource.blank? || resource.errors.any?
+    return if !user_signed_in?
+    return if current_user.instructeur.nil?
+
+    trust_device(Time.zone.now, current_user.instructeur)
   end
 
   def update_email_verified_at

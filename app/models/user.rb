@@ -281,6 +281,12 @@ class User < ApplicationRecord
       .min || USAGER_SESSION_MAX_LIFETIME
   end
 
+  # Reasons that mean "cut every access of this account", as opposed to closing
+  # one device or making room for a session that is just opening. `:logout_device`
+  # is out because the counter below is one per account: cutting it to sign one
+  # device out would punish every other.
+  TOTAL_REVOCATION_REASONS = [:logout_all, :support, :password_change].freeze
+
   def crisp_segments
     segments = []
     segments << 'administrateur' if administrateur?
@@ -392,6 +398,15 @@ class User < ApplicationRecord
   end
 
   private
+
+  # The trusted device cookie is self-asserting: bumping the version is the only
+  # thing that reaches it. Pending email tokens open a session, so they go too.
+  def revoke_account_wide!(reason)
+    return if !TOTAL_REVOCATION_REASONS.include?(reason.to_sym)
+
+    increment!(:trusted_device_version)
+    instructeur&.trusted_device_tokens&.delete_all
+  end
 
   def does_not_merge_on_self
     return if requested_merge_into_id != self.id

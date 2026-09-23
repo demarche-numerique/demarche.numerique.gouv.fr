@@ -130,4 +130,52 @@ describe 'Trusted device (second factor by email link)', type: :request do
       expect(response).to redirect_to(%r{/lien-envoye})
     end
   end
+
+  # The reset link proves the instructeur controls the mailbox, which is what
+  # this second factor asks for. Without a re-issue they would get a second link
+  # to prove what the first just proved.
+  describe 'resetting the password keeps the browser trusted' do
+    let(:new_password) { '{An0ther-$3cure-p4ssWord}' }
+
+    before do
+      sign_in_with(instructeur.user)
+      get sign_in_by_link_path(instructeur.id, jeton: token)
+      sign_out!
+    end
+
+    def reset_password!
+      raw_token = instructeur.user.send_reset_password_instructions
+
+      put user_password_path, params: {
+        user: {
+          reset_password_token: raw_token,
+          password: new_password,
+          password_confirmation: new_password,
+        },
+      }
+    end
+
+    it 'does not ask for a second email link' do
+      reset_password!
+
+      get instructeur_procedures_path
+
+      expect(response).to have_http_status(:ok)
+    end
+
+    # A cookie carrying the pre-reset counter would read as revoked at once.
+    it 'issues a cookie the revocation cannot already have invalidated' do
+      reset_password!
+
+      expect(trusted_device_cookie).to be_present
+
+      get instructeur_procedures_path
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'still closes the other devices' do
+      expect { reset_password! }
+        .to change { instructeur.user.reload.trusted_device_version }
+    end
+  end
 end
