@@ -280,6 +280,27 @@ class User < ApplicationRecord
       .min
   end
 
+  # Reasons that mean "cut every access of this account", as opposed to closing
+  # one device or making room for a session that is just opening.
+  TOTAL_REVOCATION_REASONS = [:logout_all, :support, :password_change].freeze
+
+  def revoke_sessions!(reason:, except: nil)
+    validate_revocation!(reason:, except:)
+
+    # The irreversible steps run first, so a failure on `user_sessions` would
+    # otherwise leave the account half signed out.
+    transaction do
+      if TOTAL_REVOCATION_REASONS.include?(reason.to_sym)
+        # The cookie is self-asserting: bumping the version is the only thing
+        # that reaches it. Pending email tokens open a session, so they go too.
+        increment!(:trusted_device_version)
+        instructeur&.trusted_device_tokens&.destroy_all
+      end
+
+      super(reason:, except:)
+    end
+  end
+
   def crisp_segments
     segments = []
     segments << 'administrateur' if administrateur?

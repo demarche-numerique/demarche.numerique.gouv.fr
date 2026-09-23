@@ -78,6 +78,16 @@ module SessionRegistrableConcern
 
   included do
     has_many :user_sessions, as: :sessionable, dependent: :delete_all
+
+    # Here rather than on User: SuperAdmin is `:recoverable` too, and would
+    # otherwise be the only account whose sessions survive.
+    after_update :revoke_sessions_after_password_change, if: :saved_change_to_encrypted_password?
+  end
+
+  # The current session included: Devise's reset path refuses a signed in
+  # visitor (`require_no_authentication`), so there is none to spare.
+  def revoke_sessions_after_password_change
+    revoke_sessions!(reason: :password_change)
   end
 
   def session_max_lifetime = nil

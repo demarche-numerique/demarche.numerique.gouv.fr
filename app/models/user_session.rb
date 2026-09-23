@@ -10,7 +10,9 @@ class UserSession < ApplicationRecord
   scope :usable, -> { where(revoked_at: nil, expires_at: [nil, Time.current..]) }
 
   def self.revoke_all!(reason)
-    raise ArgumentError, 'refusing to revoke every session at once: scope the relation first' if current_scope.nil?
+    # `.all`, `.where(nil)` and `.unscoped` all set a current_scope, so its mere
+    # presence proves nothing: what matters is that the relation is filtered.
+    raise ArgumentError, 'refusing to revoke every session at once: scope the relation first' if current_scope.nil? || current_scope.where_clause.empty?
     raise ArgumentError, "unknown revocation reason #{reason.inspect}" unless REVOCATION_REASONS.include?(reason.to_s)
 
     usable.update_all(revoked_at: Time.current, revoked_reason: reason.to_s, updated_at: Time.current)
