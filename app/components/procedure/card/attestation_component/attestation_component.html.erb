@@ -1,0 +1,7 @@
+<%= render SettingsTileComponent.new(
+  url: edit_attestation_path,
+  badge:,
+  subtitle: t(".#{@kind}.subtitle")
+) do |tile| %>
+  <% tile.with_title_content(t(".#{@kind}.title")) %>
+<% end %>

@@ -16,6 +16,16 @@ class Procedure::Card::AttestationComponent < ApplicationComponent
     end
   end
 
+  def badge
+    if !@procedure.published_attestation_template_for(@kind)&.activated?
+      { label: 'Désactivée' }
+    elsif error_messages.present?
+      { label: 'À modifier', variant: :warning }
+    else
+      { label: 'Activée', variant: :success }
+    end
+  end
+
   def error_messages
     if @kind == AttestationTemplate.kinds.fetch(:acceptation)
       @procedure.errors.messages_for(:attestation_acceptation_template).to_sentence
