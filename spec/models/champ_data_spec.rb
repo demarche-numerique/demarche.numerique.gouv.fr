@@ -147,6 +147,27 @@ describe ChampData do
     end
   end
 
+  describe '#level' do
+    let(:procedure) do
+      create(:procedure, public_type_de_champs: [
+        { type: :header_section, level: 1 },
+        { type: :header_section, level: 2 },
+        { type: :repetition, mandatory: true, children: [{ type: :header_section, level: 1 }, {}] },
+      ])
+    end
+    let(:dossier) { create(:dossier, procedure:) }
+    let(:repetition) { dossier.root_champs_public.find(&:repetition?) }
+
+    it 'is the level of the type de champ, restarting within a repetition' do
+      section, champ = repetition.rows.first.flat_children
+
+      expect(repetition.level).to eq(2)
+      expect(section.level).to eq(1)
+      expect(champ.level).to eq(1)
+      expect(champ.enclosing_repetition.level).to eq(2)
+    end
+  end
+
   describe '#format_datetime' do
     let(:champ) { Champs::DatetimeChamp.new(value: value) }
     before { champ.run_callbacks(:validation) }

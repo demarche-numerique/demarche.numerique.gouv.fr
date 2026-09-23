@@ -33,7 +33,7 @@ class EditableChamp::SectionComponent < ApplicationComponent
   end
 
   def tag_for_depth
-    "h#{header_section.level + 1}"
+    "h#{section_level + 1}"
   end
 
   def split_section_champ(node)
@@ -46,6 +46,12 @@ class EditableChamp::SectionComponent < ApplicationComponent
   end
 
   private
+
+  # the level in the whole form: a section within a repetition sits under the
+  # sections holding the repetition
+  def section_level
+    header_section.level + header_section.enclosing_repetition&.level.to_i
+  end
 
   def to_fieldset(nodes:)
     nodes.map { _1.is_a?(Array) ? EditableChamp::SectionComponent.new(dossier: @dossier, nodes: _1, row_id: @row_id) : _1 }

@@ -552,6 +552,14 @@ class TypeDeChamp < ApplicationRecord
     ancestors.reverse_each.find(&:header_section?)
   end
 
+  # How deep in the header sections it sits, from 0 outside any section to 3
+  # under an h3, a header section counting itself: an h1 at the root is at
+  # level 1, and so is what it holds. A repetition opens a new count, so the
+  # levels within it are those of its own header sections.
+  def level
+    ancestors.reverse.take_while(&:header_section?).size + (header_section? ? 1 : 0)
+  end
+
   private
 
   def set_default_libelle
