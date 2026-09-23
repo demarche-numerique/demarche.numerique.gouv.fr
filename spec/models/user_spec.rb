@@ -871,4 +871,44 @@ describe User, type: :model do
       end
     end
   end
+
+  describe '#session_max_lifetime' do
+    it 'gives an usager the housekeeping horizon' do
+      expect(create(:user).session_max_lifetime).to eq(User::USAGER_SESSION_MAX_LIFETIME)
+    end
+
+    it 'gives an administrateur a week' do
+      expect(create(:administrateur).user.session_max_lifetime).to eq(1.week)
+    end
+
+    it 'gives a gestionnaire a week' do
+      expect(create(:gestionnaire).user.session_max_lifetime).to eq(1.week)
+    end
+
+    # Bounded like the instructeur whose dossiers they read.
+    it 'gives an expert the instructeur deadline' do
+      expect(create(:expert).user.session_max_lifetime)
+        .to eq(TrustedDeviceConcern::TRUSTED_DEVICE_PERIOD)
+    end
+
+    it 'gives an instructeur the trusted device period, so both expire together' do
+      expect(create(:instructeur).user.session_max_lifetime)
+        .to eq(TrustedDeviceConcern::TRUSTED_DEVICE_PERIOD)
+    end
+
+    it 'takes the shortest when the account holds several roles' do
+      user = create(:instructeur).user
+      user.create_administrateur!
+
+      expect(user.reload.session_max_lifetime).to eq(1.week)
+    end
+
+    # A gestionnaire is the one role outside User's default eager load, so it is
+    # also the one this method has to ask the database for.
+    it 'counts a gestionnaire read back from the database' do
+      gestionnaire = create(:gestionnaire)
+
+      expect(User.find(gestionnaire.user_id).session_max_lifetime).to eq(1.week)
+    end
+  end
 end
