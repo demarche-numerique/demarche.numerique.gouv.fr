@@ -295,6 +295,66 @@ describe ProcedureRevision do
     end
   end
 
+  describe 'an edit racing with another request' do
+    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text, libelle: 'a' }, { type: :text, libelle: 'b' }, { type: :text, libelle: 'c' }]) }
+    let(:other_request) { ProcedureRevision.find(draft.id) }
+
+    def libelles_and_positions = draft.reload.public_revision_type_de_champs.map { [it.libelle, it.position] }
+
+    # what the other request commits after this one read the draft and before
+    # it got the lock
+    def before_the_lock
+      done = false
+      allow(draft).to receive(:with_lock).and_wrap_original do |with_lock, *args, &edit|
+        yield unless done
+        done = true
+        with_lock.call(*args, &edit)
+      end
+    end
+
+    it 'adds a type de champ after the one added in the meantime' do
+      a = draft.public_root_type_de_champs.first
+      before_the_lock { other_request.add_type_de_champ(type_champ: :text, libelle: 'd', after_stable_id: a.stable_id) }
+
+      draft.add_type_de_champ(type_champ: :text, libelle: 'e', after_stable_id: a.stable_id)
+
+      expect(libelles_and_positions).to eq([['a', 0], ['e', 1], ['d', 2], ['b', 3], ['c', 4]])
+    end
+
+    it 'moves a type de champ from where it was moved in the meantime' do
+      a, _, c = draft.public_root_type_de_champs
+      before_the_lock { other_request.move_type_de_champ(c.stable_id, 0) }
+
+      draft.move_type_de_champ(a.stable_id, 2)
+
+      expect(libelles_and_positions).to eq([['c', 0], ['b', 1], ['a', 2]])
+    end
+
+    it 'removes a type de champ from where it was moved in the meantime' do
+      a, _, c = draft.public_root_type_de_champs
+      before_the_lock { other_request.move_type_de_champ(c.stable_id, 0) }
+
+      draft.remove_type_de_champ(a.stable_id)
+
+      expect(libelles_and_positions).to eq([['c', 0], ['b', 1]])
+    end
+
+    context 'on a published procedure' do
+      let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :text, libelle: 'a' }]) }
+
+      it 'edits the clone made in the meantime rather than cloning again' do
+        published_type_de_champ = procedure.published_revision.public_root_type_de_champs.first
+        stable_id = published_type_de_champ.stable_id
+        before_the_lock { other_request.find_and_ensure_exclusive_use(stable_id).update!(libelle: 'a bis') }
+
+        type_de_champ = draft.find_and_ensure_exclusive_use(stable_id)
+
+        expect(type_de_champ.libelle).to eq('a bis')
+        expect(TypeDeChamp.where(stable_id:)).to contain_exactly(published_type_de_champ, type_de_champ)
+      end
+    end
+  end
+
   describe '#remove_type_de_champ' do
     context 'for a classic tdc' do
       let(:procedure) { create(:procedure, :with_type_de_champ, :with_type_de_champ_private) }

@@ -64,11 +64,7 @@ class ProcedureRevision < ApplicationRecord
 
   def add_type_de_champ(params)
     parent_stable_id = params.delete(:parent_stable_id)
-    parent_coordinate, _ = coordinate_and_tdc(parent_stable_id)
-    parent_id = parent_coordinate&.id
-
     after_stable_id = params.delete(:after_stable_id)
-    after_coordinate, _ = coordinate_and_tdc(after_stable_id)
 
     type_de_champ = TypeDeChamp.new(params)
     type_de_champ.procedure_id = procedure_id
@@ -78,15 +74,17 @@ class ProcedureRevision < ApplicationRecord
     end
 
     if type_de_champ.save
-      siblings = siblings_for(type_de_champ:, parent_coordinate:)
-      position = next_position_for(after_coordinate:)
-
       edit_type_de_champs do
+        parent_coordinate, _ = coordinate_and_tdc(parent_stable_id)
+        after_coordinate, _ = coordinate_and_tdc(after_stable_id)
+        siblings = siblings_for(type_de_champ:, parent_coordinate:)
+        position = next_position_for(after_coordinate:)
+
         # moving all the impacted tdc down
         ProcedureRevisionTypeDeChamp.where(id: siblings, position: position..).unscope(:eager_load).update_all("position = position + 1")
 
         # insertion of the new tdc
-        revision_type_de_champs.create!(type_de_champ:, parent_id:, position:)
+        revision_type_de_champs.create!(type_de_champ:, parent_id: parent_coordinate&.id, position:)
       end
     end
 
@@ -95,17 +93,22 @@ class ProcedureRevision < ApplicationRecord
     TypeDeChamp.new.tap { _1.errors.add(:base, e.message) }
   end
 
+  # Decided under the lock: two requests editing a shared type de champ at once
+  # would otherwise each clone it, the last one orphaning the clone of the
+  # first along with its edit.
   def find_and_ensure_exclusive_use(stable_id)
-    coordinate, tdc = coordinate_and_tdc(stable_id)
+    with_lock(TYPE_DE_CHAMP_TREE_LOCK) do
+      coordinate, tdc = coordinate_and_tdc(stable_id)
 
-    # replayed request targeting a tdc no longer in this revision (deleted in
-    # another tab or by a previous request)
-    raise ActiveRecord::RecordNotFound if tdc.nil?
+      # replayed request targeting a tdc no longer in this revision (deleted in
+      # another tab or by a previous request)
+      raise ActiveRecord::RecordNotFound if tdc.nil?
 
-    if tdc.only_present_on_draft?
-      tdc
-    else
-      replace_type_de_champ_by_clone(coordinate)
+      if tdc.only_present_on_draft?
+        tdc
+      else
+        replace_type_de_champ_by_clone(coordinate)
+      end
     end
   end
 
@@ -116,27 +119,26 @@ class ProcedureRevision < ApplicationRecord
   end
 
   def move_type_de_champ(stable_id, position)
-    coordinate, _ = coordinate_and_tdc(stable_id)
-    siblings = coordinate.siblings
-
     edit_type_de_champs do
+      coordinate, _ = coordinate_and_tdc(stable_id)
+      siblings = coordinate.siblings
+
       if position > coordinate.position
         ProcedureRevisionTypeDeChamp.where(id: siblings, position: coordinate.position..position).unscope(:eager_load).update_all("position = position - 1")
       else
         ProcedureRevisionTypeDeChamp.where(id: siblings, position: position..coordinate.position).unscope(:eager_load).update_all("position = position + 1")
       end
       coordinate.update_column(:position, position)
-    end
 
-    coordinate.reload
-    coordinate
+      coordinate.reload
+    end
   end
 
   def move_type_de_champ_after(stable_id, position)
-    coordinate, _ = coordinate_and_tdc(stable_id)
-    siblings = coordinate.siblings
-
     edit_type_de_champs do
+      coordinate, _ = coordinate_and_tdc(stable_id)
+      siblings = coordinate.siblings
+
       if position > coordinate.position
         ProcedureRevisionTypeDeChamp.where(id: siblings, position: coordinate.position..position).unscope(:eager_load).update_all("position = position - 1")
         coordinate.update_column(:position, position)
@@ -144,30 +146,28 @@ class ProcedureRevision < ApplicationRecord
         ProcedureRevisionTypeDeChamp.where(id: siblings, position: (position + 1)...coordinate.position).unscope(:eager_load).update_all("position = position + 1")
         coordinate.update_column(:position, position + 1)
       end
-    end
 
-    coordinate.reload
-    coordinate
+      coordinate.reload
+    end
   end
 
   def remove_type_de_champ(stable_id)
-    coordinate, tdc = coordinate_and_tdc(stable_id)
-
-    # in case of replay
-    return nil if coordinate.nil?
-
-    children = children_of(tdc).to_a
-
     edit_type_de_champs do
+      coordinate, tdc = coordinate_and_tdc(stable_id)
+
+      # in case of replay
+      next if coordinate.nil?
+
+      children = children_of(tdc).to_a
       coordinate.destroy
 
       children.each(&:destroy_if_orphan)
       tdc.destroy_if_orphan
 
       ProcedureRevisionTypeDeChamp.where(id: coordinate.siblings, position: coordinate.position..).unscope(:eager_load).update_all("position = position - 1")
-    end
 
-    coordinate
+      coordinate
+    end
   end
 
   def move_up_type_de_champ(stable_id)
@@ -368,9 +368,12 @@ class ProcedureRevision < ApplicationRecord
 
   # Every edit of the draft goes through here, one at a time: the requests of
   # the editor race, and the tree of the one writing last has to be built from
-  # the coordinates of them all. They are left to be read again, as an edit
-  # always left them: the type de champ it hands over is often updated next,
-  # past the ones they hold.
+  # the coordinates of them all. What an edit relies on (the coordinate it
+  # moves, its siblings, the position it takes) is read inside as well: the
+  # lock reloads the revision, so it sees the edits made in the meantime rather
+  # than the ones a request was sent against. The coordinates are left to be
+  # read again, as an edit always left them: the type de champ it hands over is
+  # often updated next, past the ones they hold.
   def edit_type_de_champs
     with_lock(TYPE_DE_CHAMP_TREE_LOCK) do
       yield.tap do
