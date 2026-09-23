@@ -105,6 +105,7 @@ class ChampData < ApplicationRecord
     :header_section_level_value,
     :current_section_level,
     :level,
+    :absolute_level,
     :fillable?,
     :mandatory?,
     :prefillable?,

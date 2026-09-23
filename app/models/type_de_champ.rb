@@ -560,6 +560,12 @@ class TypeDeChamp < ApplicationRecord
     ancestors.reverse.take_while(&:header_section?).size + (header_section? ? 1 : 0)
   end
 
+  # The level in the whole form, where the header sections of a repetition
+  # sit under the ones holding it: the heading outline, up to 6.
+  def absolute_level
+    level + enclosing_repetition&.absolute_level.to_i
+  end
+
   private
 
   def set_default_libelle
