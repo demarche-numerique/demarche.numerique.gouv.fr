@@ -1,5 +1,7 @@
 en:
   instructeurs:
+    rdv_connections:
+      revoked: "Your connection to RDV Service Public has expired. Please reconnect your account."
     procedures:
       index:
         title: "Procedures"

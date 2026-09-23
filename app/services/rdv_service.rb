@@ -5,6 +5,8 @@ require 'oauth2'
 class RdvService
   include Dry::Monads[:result]
 
+  class RevokedConnectionError < StandardError; end
+
   def initialize(rdv_connection:)
     @rdv_connection = rdv_connection
   end
@@ -164,10 +166,12 @@ class RdvService
       expires_at: Time.zone.at(new_token.expires_at)
     )
   rescue OAuth2::Error => e
-    # Destroy the connection so the user needs to re-authorize
+    raise if e.code != 'invalid_grant'
+
+    # The refresh token was revoked or has expired: destroy the connection so the user needs to re-authorize
     @rdv_connection.destroy!
 
-    raise e
+    raise RevokedConnectionError
   end
 
   private

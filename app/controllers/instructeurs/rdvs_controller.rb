@@ -27,6 +27,8 @@ module Instructeurs
       Sentry.capture_message("Rdv creation failed", extra: { rdv_plan_result: @rdv_plan_result })
 
       redirect_to instructeur_dossier_path(@dossier.procedure, @dossier), alert: "Erreur lors de la création du rendez-vous"
+    rescue RdvService::RevokedConnectionError
+      redirect_to rendez_vous_instructeur_dossier_path(@dossier.procedure, @dossier, statut: params[:statut]), alert: t('instructeurs.rdv_connections.revoked')
     end
 
     private

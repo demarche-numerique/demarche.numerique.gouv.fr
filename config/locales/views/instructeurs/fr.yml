@@ -1,5 +1,7 @@
 fr:
   instructeurs:
+    rdv_connections:
+      revoked: "Votre connexion à RDV Service Public a expiré. Veuillez reconnecter votre compte."
     procedures:
       index:
         title: "Démarches"

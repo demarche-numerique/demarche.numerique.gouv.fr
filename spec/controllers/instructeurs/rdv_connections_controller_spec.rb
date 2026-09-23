@@ -12,15 +12,30 @@ describe Instructeurs::RdvConnectionsController, type: :controller do
     subject { get :show }
     render_views
 
-    before do
-      expect_any_instance_of(RdvService).to receive(:get_account_info).and_return({ "email" => "francis.factice.rdv@test.gouv.fr" })
+    context 'when the connection is valid' do
+      before do
+        expect_any_instance_of(RdvService).to receive(:get_account_info).and_return({ "email" => "francis.factice.rdv@test.gouv.fr" })
 
-      subject
+        subject
+      end
+
+      it "gives information about my connection to RDV Service Public" do
+        expect(response.body).to have_text("Votre compte #{APPLICATION_NAME} avec l’adresse électronique francis.factice.ds@test.gouv.fr")
+        expect(response.body).to have_text("est connecté au compte RDV Service Public avec l’adresse électronique francis.factice.rdv@test.gouv.fr.")
+      end
     end
 
-    it "gives information about my connection to RDV Service Public" do
-      expect(response.body).to have_text("Votre compte #{APPLICATION_NAME} avec l’adresse électronique francis.factice.ds@test.gouv.fr")
-      expect(response.body).to have_text("est connecté au compte RDV Service Public avec l’adresse électronique francis.factice.rdv@test.gouv.fr.")
+    context 'when RDV Service Public rejects the refresh token' do
+      let!(:rdv_connection) { create(:rdv_connection, instructeur:, expires_at: 1.day.ago) }
+
+      include_context "with a failing RDV Service Public token refresh"
+
+      it "asks me to reconnect within the turbo frame" do
+        subject
+
+        expect(response.body).to have_css('turbo-frame#rdv-connection-info', text: "Votre connexion à RDV Service Public a expiré")
+        expect(response.body).to have_button("Reconnecter RDV Service Public")
+      end
     end
   end
 

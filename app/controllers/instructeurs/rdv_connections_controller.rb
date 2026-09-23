@@ -5,6 +5,8 @@ module Instructeurs
     def show
       rdv_email = RdvService.new(rdv_connection: current_instructeur.rdv_connection).get_account_info["email"]
       render Instructeurs::RdvConnectionInfoComponent.new(rdv_email: rdv_email, redirect_path: params[:redirect_path])
+    rescue RdvService::RevokedConnectionError
+      render Instructeurs::RdvConnectionRevokedComponent.new
     end
 
     def destroy

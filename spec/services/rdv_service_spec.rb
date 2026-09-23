@@ -266,27 +266,21 @@ describe RdvService do
         rdv_connection.update!(expires_at: 1.day.ago)
       end
 
-      context 'when refresh fails with OAuth2::Error' do
-        let(:oauth_error) do
-          OAuth2::Error.new(
-            'invalid_grant'
-          )
-        end
+      include_context "with a failing RDV Service Public token refresh"
 
-        before do
-          allow(OAuth2::Client).to receive(:new).and_return(
-            instance_double(OAuth2::Client)
-          )
+      it 'destroys the rdv connection and raises a revoked connection error when the refresh token is rejected' do
+        expect { rdv_service.refresh_token_if_expired! }.to raise_error(RdvService::RevokedConnectionError)
 
-          mock_token = instance_double(OAuth2::AccessToken)
-          allow(mock_token).to receive(:refresh!).and_raise(oauth_error)
-          allow(OAuth2::AccessToken).to receive(:new).and_return(mock_token)
-        end
+        expect { rdv_connection.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      end
 
-        it 'destroys the rdv connection and re-raises the error' do
+      context 'when the refresh fails for another reason' do
+        let(:oauth_error_code) { 'invalid_client' }
+
+        it 'keeps the rdv connection and re-raises the error' do
           expect { rdv_service.refresh_token_if_expired! }.to raise_error(OAuth2::Error)
 
-          expect { rdv_connection.reload }.to raise_error(ActiveRecord::RecordNotFound)
+          expect { rdv_connection.reload }.not_to raise_error
         end
       end
     end
