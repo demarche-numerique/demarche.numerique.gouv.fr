@@ -124,7 +124,7 @@ class Dossiers::DossierVidePdfComponent < ApplicationComponent
   # Maps the section level to a heading below the "Formulaire" <h2>, mirroring the
   # web form (level 1 → h3), so the PDF/UA tag tree preserves the document outline.
   def header_section_heading(type_de_champ)
-    level = [type_de_champ.level_for_revision(revision) + 2, 6].min
+    level = [type_de_champ.absolute_level + 2, 6].min
     tag.public_send("h#{level}", type_de_champ.libelle)
   end
 
