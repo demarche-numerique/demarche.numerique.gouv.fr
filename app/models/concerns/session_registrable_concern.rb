@@ -3,13 +3,23 @@
 module SessionRegistrableConcern
   extend ActiveSupport::Concern
 
+  # Rack env key, namespaced like `warden.options` and `action_dispatch.*`. One
+  # per scope: several scopes fail in one request, and the failure app must not
+  # show an usager's reason on the super admin sign in page.
+  END_REASON_KEY_PREFIX = 'ds.session_end_reason.'
+
   SESSION_KEY = 'user_session_id'
   USER_AGENT_MAX_LENGTH = 500
 
+  def self.end_reason_key(scope) = "#{END_REASON_KEY_PREFIX}#{scope}"
+
   # Not `warden.session(scope)`: it checks `authenticated?`, which refetches the
   # user, which fires the fetch hook again. Infinite recursion.
+  #
+  # `||=` and not `||`: callers write into what they get back, and a fresh hash
+  # would be dropped with the request.
   def self.warden_session(warden, scope)
-    warden.raw_session["warden.user.#{scope}.session"] || {}
+    warden.raw_session["warden.user.#{scope}.session"] ||= {}
   end
 
   def self.open_session!(record, warden, scope)
@@ -24,12 +34,9 @@ module SessionRegistrableConcern
 
   def session_max_lifetime = nil
 
-  # The raw user-agent is stored, not a label: deriving it at display time means
-  # a better parser later also improves existing rows.
-  #
-  # The address is the one the session was opened from, and it is never rewritten
-  # afterwards: reading a row on every request must stay a read. What it is for is
-  # spotting a session that was opened from somewhere unexpected.
+  # The raw user-agent and not a label: deriving it at display time means a
+  # better parser later also improves old rows. The address is never rewritten
+  # afterwards -- reading a row on every request must stay a read.
   def open_user_session!(user_agent, ip_address = nil)
     user_sessions.create!(
       user_agent: sanitized_user_agent(user_agent),
@@ -48,11 +55,9 @@ module SessionRegistrableConcern
 
   private
 
-  # A header, so entirely client-controlled. Bytes that are not valid UTF-8, or
-  # a NUL, make Postgres refuse the INSERT -- and the hook rescues that, so the
-  # session would open with no row at all: exempt from every deadline and from
-  # revocation, on one crafted header. Scrubbed rather than rejected, because
-  # nothing here is worth signing someone out over.
+  # Client-controlled: invalid UTF-8 or a NUL makes Postgres refuse the INSERT,
+  # the hook rescues it, and the session opens with no row -- exempt from every
+  # deadline. Scrubbed rather than rejected.
   def sanitized_user_agent(user_agent)
     return if user_agent.nil?
 

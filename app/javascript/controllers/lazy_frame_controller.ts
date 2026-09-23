@@ -37,9 +37,9 @@ export default class LazyFrameController extends ApplicationController {
     // Already showing the current filter state: nothing to reload.
     if (frame.getAttribute('src') === src) return;
 
-    // If the session expired, the response won't contain the expected frame.
-    // Reload so authenticate_user! replays on the current URL instead of
-    // leaving the drawer stuck on its loading placeholder.
+    // An expired session no longer reaches this: shared/session-expiry catches
+    // the 401 first. What is left is a response that simply has no such frame --
+    // reload rather than leave the drawer on its loading placeholder.
     frame.addEventListener(
       'turbo:frame-missing',
       (event) => {
