@@ -20,4 +20,16 @@ class Procedure::Card::APITokenComponent < ApplicationComponent
   def any_token_needs_renewal?
     [@procedure.api_entreprise_token, @procedure.api_particulier_token].any?(&:needs_renewal?)
   end
+
+  private
+
+  def badge
+    if !@procedure.specific_api_entreprise_token? && !@procedure.api_particulier_token?
+      { label: 'À configurer', variant: :info }
+    elsif any_token_needs_renewal?
+      { label: 'À renouveler', variant: :error }
+    else
+      { label: 'Configuré', variant: :success }
+    end
+  end
 end
