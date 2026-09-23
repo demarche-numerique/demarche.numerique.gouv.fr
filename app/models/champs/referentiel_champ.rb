@@ -290,6 +290,9 @@ class Champs::ReferentielChamp < ChampData
 
     attributes[:prefilled] = true
     prefill_champ.update(attributes.merge(prefilled_original_value: attributes.except(:prefilled)))
+    # A prefilled value is a modification like the referentiel data it comes
+    # from; a refetch landing the same value leaves the champ undated.
+    prefill_champ.update_timestamps if prefill_champ.saved_changes.except('updated_at', 'updated_by').any?
     prefill_champ
   end
 
