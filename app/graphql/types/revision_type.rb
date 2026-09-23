@@ -9,20 +9,13 @@ module Types
     field :champ_descriptors, [Types::ChampDescriptorType], null: false
     field :annotation_descriptors, [Types::ChampDescriptorType], null: false
 
-    # Loading the types de champ of a revision is expensive, so callers hand
-    # over bare revisions and the descriptors are loaded on demand, batched
-    # across every revision of the response.
     def champ_descriptors
-      dataloader.with(Sources::Association, :revision_type_de_champs).load(object).then do
-        object.public_revision_type_de_champs
-      end
+      object.public_root_type_de_champs
     end
 
     def annotation_descriptors
       if context.authorized_demarche?(object.procedure)
-        dataloader.with(Sources::Association, :revision_type_de_champs).load(object).then do
-          object.private_revision_type_de_champs
-        end
+        object.private_root_type_de_champs
       else
         []
       end
