@@ -1,0 +1,9 @@
+<%= render SettingsTileComponent.new(
+  url: champs_admin_procedure_path(@procedure),
+  badge:,
+  counter: @count,
+  subtitle: "À remplir par les usagers",
+  link_attributes: { title: error_messages }
+) do |tile| %>
+  <% tile.with_title_content(t(".title")) %>
+<% end %>
