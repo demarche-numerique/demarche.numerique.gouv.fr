@@ -31,7 +31,7 @@ module DossierSectionsConcern
       .filter(&:header_section?)
       .filter { project_champ(it).visible? }
       .each do |tdc|
-      level = tdc.level_for_revision(revision)
+      level = tdc.level
 
       # drop counter with a higher level
       # ex: counters = [1,2,2], new header of level 2, drop last
