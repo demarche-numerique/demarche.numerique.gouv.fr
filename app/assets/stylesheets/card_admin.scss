@@ -1,6 +1,16 @@
 @import 'colors';
 @import 'constants';
 
+// Reserved even without a counter, so every tile title sits at the same height.
+.tile-counter {
+  min-height: 2rem;
+}
+
 .fr-tile-subtitle {
   min-height: 7rem;
+}
+
+// Titles start at the same height whatever their length; the button takes the slack.
+.tile-action {
+  margin-top: auto;
 }
