@@ -1,0 +1,25 @@
+<div class="fr-col-6 fr-col-md-4 fr-col-lg-3">
+  <%= link_to @url, class: "fr-tile fr-enlarge-link", **@link_attributes do %>
+    <div class="fr-tile__body flex column align-center justify-between">
+      <p class="<%= badge_class %>"><%= @badge[:label] %></p>
+
+      <div>
+        <% if counter? %>
+          <div class="line-count fr-my-1w">
+            <p class="fr-tag"><%= @counter %></p>
+          </div>
+        <% end %>
+
+        <%= content_tag @heading_level, title, class: class_names("fr-h6", "fr-mt-10v" => !counter?) %>
+
+        <% if @subtitle.present? %>
+          <p class="fr-tile-subtitle"><%= @subtitle %></p>
+        <% end %>
+      </div>
+
+      <p class="fr-btn fr-btn--tertiary">
+        <%= action? ? action : t("views.shared.actions.edit") %>
+      </p>
+    </div>
+  <% end %>
+</div>
