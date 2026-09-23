@@ -11,6 +11,7 @@ describe Procedure::Card::ChampsComponent, type: :component do
     context 'when no errors' do
       it 'does not render' do
         expect(subject).to have_selector('.fr-badge--warning', text: 'À faire')
+        expect(subject).to have_selector('a.fr-tile:not([title])')
       end
     end
 
@@ -18,6 +19,7 @@ describe Procedure::Card::ChampsComponent, type: :component do
       let(:public_type_de_champs) { [{ type: :repetition, children: [] }] }
       it 'does not render' do
         expect(subject).to have_selector('.fr-badge--error', text: 'À modifier')
+        expect(subject).to have_selector('a.fr-tile[title]')
       end
     end
 
