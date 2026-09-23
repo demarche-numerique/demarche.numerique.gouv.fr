@@ -33,16 +33,4 @@ class TypesDeChamp::HeaderSectionTypeDeChamp < TypeDeChamp
       nil
     end
   end
-
-  def level_for_revision(revision)
-    parent_type_de_champ = revision.parent_of(self)
-
-    if parent_type_de_champ.present?
-      header_section_level_value.to_i + parent_type_de_champ.current_section_level(revision)
-    elsif header_section_level_value
-      header_section_level_value.to_i
-    else
-      0
-    end
-  end
 end
