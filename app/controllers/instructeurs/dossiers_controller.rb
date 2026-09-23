@@ -147,7 +147,7 @@ module Instructeurs
       rdv_service.update_pending_rdv_plan!(dossier:)
 
       @booked_rdvs = rdv_service.list_rdvs(dossier.rdvs.booked.pluck(:rdv_external_id))
-      @rdv_email = RdvService.new(rdv_connection: current_instructeur.rdv_connection).get_account_info["email"]
+      @rdv_email = rdv_service.get_account_info["email"]
     rescue RdvService::RevokedConnectionError
       redirect_to rendez_vous_instructeur_dossier_path(dossier.procedure, dossier, statut: params[:statut]), alert: t('instructeurs.rdv_connections.revoked')
     end
