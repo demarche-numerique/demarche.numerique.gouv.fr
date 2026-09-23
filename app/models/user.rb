@@ -300,8 +300,8 @@ class User < ApplicationRecord
 
   # Returns how many sessions were actually closed, so a caller can report what
   # happened rather than imply success.
-  def revoke_sessions!(reason:, except: nil)
-    validate_revocation!(reason:, except:)
+  def revoke_sessions!(reason:, except: nil, only: nil)
+    validate_revocation!(reason:, except:, only:)
 
     # All of it or none of it: the irreversible steps run before the rows are
     # revoked, so a failure on `user_sessions` would otherwise leave the account
@@ -315,7 +315,7 @@ class User < ApplicationRecord
         instructeur&.trusted_device_tokens&.destroy_all
       end
 
-      super(reason:, except:)
+      super(reason:, except:, only:)
     end
   end
 

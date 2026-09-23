@@ -1,0 +1,66 @@
+<div class="card no-list">
+  <div class="card-title"><%= t(".title") %></div>
+
+  <p><%= t(".explication") %></p>
+
+  <div class="fr-table fr-table--bordered">
+    <table>
+      <caption class="fr-sr-only"><%= t(".title") %></caption>
+
+      <thead>
+        <tr>
+          <th scope="col"><%= t(".device") %></th>
+          <th scope="col"><%= t(".signed_in_at") %></th>
+          <th scope="col"><%= t(".actions") %></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% sessions.each do |user_session| %>
+          <tr>
+            <th scope="row">
+              <%= device_label(user_session) %>
+
+              <% if current?(user_session) %>
+                <span class="fr-badge fr-badge--success fr-badge--sm fr-ml-1v">
+                  <%= t(".current") %>
+                </span>
+              <% end %>
+            </th>
+
+            <td><%= l(user_session.created_at, format: :long_with_time) %></td>
+
+            <td>
+              <%#
+                No button on the row you are reading this from: signing out is what
+                the header is for, and a "Déconnecter" next to "Session actuelle"
+                reads as closing someone else's.
+
+                Turbo drive is off on the usager side, so `data-turbo-confirm` would
+                never fire. rails-ujs reads `data-confirm` on the button, as the rest
+                of this page does.
+              %>
+
+              <% if !current?(user_session) %>
+                <%= button_to t(".revoke"),
+                      revoke_session_path(id: user_session.id),
+                      method: :delete,
+                      class: "fr-btn fr-btn--secondary fr-btn--sm",
+                      data: { confirm: t(".revoke_confirmation") },
+                      aria: { label: t(".revoke_aria", device: device_label(user_session)) } %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <% if sessions.many? %>
+    <%= button_to t(".revoke_all"),
+          revoke_all_sessions_path,
+          method: :delete,
+          class: "fr-btn fr-btn--secondary fr-mt-2w",
+          data: { confirm: t(".revoke_all_confirmation") } %>
+  <% end %>
+</div>
