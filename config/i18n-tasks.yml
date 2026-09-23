@@ -102,6 +102,9 @@ ignore_missing:
 
 ## Consider these keys used:
 ignore_unused:
+  # I18n.t(reason, scope: [:devise, :failure]) in session_failure_app.rb. Named
+  # rather than starred, so a key nothing can reach still shows up as unused.
+  - 'devise.failure.{inactivity,expired,password_change,logout_all,logout_device,new_session,session_revoked,sign_out,support}'
   # YAML anchors aliased under public/private in revision_changes_component.fr.yml
   - 'procedure.revision_changes_component.update_referentiel_{public,private}.*'
   # t(".#{batch.operation}.finish.text_success") in batch_alert_component.html.haml
