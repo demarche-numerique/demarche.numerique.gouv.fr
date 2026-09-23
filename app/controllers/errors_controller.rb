@@ -64,13 +64,9 @@ class ErrorsController < ApplicationController
   # `flash` in this controller; use the csrf_retry parameter instead which is catched by application controller
   def csrf_retry_redirect_url
     return if !user_signed_in?
-    return if request.referer.blank?
 
-    referer_uri = URI.parse(request.referer)
-
-    return unless referer_uri.scheme == request.scheme
-    return unless referer_uri.host == request.host
-    return unless referer_uri.port == request.port
+    referer_uri = SameOriginUri.parse(request.referer, request)
+    return if referer_uri.nil?
 
     params = Rack::Utils.parse_nested_query(referer_uri.query)
     return if params['csrf_retry'] == '1'
@@ -78,7 +74,5 @@ class ErrorsController < ApplicationController
     params['csrf_retry'] = '1'
     referer_uri.query = params.to_query
     referer_uri.to_s
-  rescue URI::InvalidURIError
-    nil
   end
 end
