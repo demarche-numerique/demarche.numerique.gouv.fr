@@ -1422,7 +1422,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_28_120001) do
 
   create_table "user_sessions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.datetime "expires_at"
+    t.datetime "expires_at", null: false
     t.inet "ip_address"
     t.datetime "revoked_at"
     t.string "revoked_reason"
