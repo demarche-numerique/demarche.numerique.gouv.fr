@@ -10,7 +10,7 @@ class LLM::ImproveTypesItemComponent < LLM::SuggestionItemComponent
   end
 
   def type_champ_label(type_champ)
-    t(type_champ, scope: [:activerecord, :attributes, :type_de_champ, :type_champs])
+    t(type_champ, scope: [:activerecord, :attributes, :type_de_champ, :type_champs], app_name: APPLICATION_NAME)
   end
 
   def new_type_champ_label

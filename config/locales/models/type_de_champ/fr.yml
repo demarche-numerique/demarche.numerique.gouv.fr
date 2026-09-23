@@ -15,7 +15,7 @@ fr:
         type_champs:
           header_section: 'Titre de section'
           repetition: 'Bloc répétable'
-          dossier_link: 'Lien vers un autre dossier'
+          dossier_link: 'Lien vers un autre dossier %{app_name}'
           explication: 'Explication'
           civilite: 'Civilité'
           email: 'Adresse électronique'
