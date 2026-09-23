@@ -99,6 +99,34 @@ describe 'session deadlines', type: :request do
     end
   end
 
+  # The check is gated; the stamp that feeds it is not. Gating both would
+  # freeze `last_seen_on` and sign everyone out when the flag reopened.
+  context 'the registry flag closed, then opened again' do
+    let(:user) { create(:user, password:) }
+
+    before do
+      Flipper.enable_actor(:session_registry, user)
+      post_session(user)
+    end
+
+    it 'does not sign out someone who kept coming back meanwhile' do
+      Flipper.disable_actor(:session_registry, user)
+
+      travel(10.days) { get profil_path }
+      travel(20.days) { get profil_path }
+
+      Flipper.enable_actor(:session_registry, user)
+
+      travel(25.days) do
+        get profil_path
+
+        expect(response).to have_http_status(:ok)
+      end
+    end
+  end
+
+  # The deadline is frozen, but a role granted mid-session must not leave the
+  # session living under the year an usager gets.
   context 'an usager promoted while signed in' do
     let(:user) { create(:user, password:) }
 

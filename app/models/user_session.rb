@@ -9,9 +9,15 @@ class UserSession < ApplicationRecord
 
   scope :usable, -> { where(revoked_at: nil, expires_at: [nil, Time.current..]) }
 
+  # The one place that decides what a reason may be: a caller checking it again
+  # before acting calls this rather than repeating the list.
+  def self.validate_reason!(reason)
+    raise ArgumentError, "unknown revocation reason #{reason.inspect}" unless REVOCATION_REASONS.include?(reason.to_s)
+  end
+
   def self.revoke_all!(reason)
     raise ArgumentError, 'refusing to revoke every session at once: scope the relation first' if current_scope.nil?
-    raise ArgumentError, "unknown revocation reason #{reason.inspect}" unless REVOCATION_REASONS.include?(reason.to_s)
+    validate_reason!(reason)
 
     usable.update_all(revoked_at: Time.current, revoked_reason: reason.to_s, updated_at: Time.current)
   end
