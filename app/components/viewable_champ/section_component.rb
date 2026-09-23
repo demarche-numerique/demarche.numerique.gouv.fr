@@ -39,22 +39,28 @@ class ViewableChamp::SectionComponent < ApplicationComponent
   def reset_tag_for_depth
     return if header_section.nil?
 
-    "reset-h#{header_section.level + 1}"
+    "reset-h#{section_level + 1}"
   end
 
   def first_level?
     return if header_section.nil?
 
-    header_section.level == 1
+    section_level == 1
   end
 
   def repetition_heading_level
-    relative_level = header_section ? header_section.level : 1
+    relative_level = header_section ? section_level : 1
     # there are 2 levels of heading before the repetition heading
     [relative_level + 2, 6].min
   end
 
   private
+
+  # the level in the whole dossier: a section within a repetition sits under
+  # the sections holding the repetition
+  def section_level
+    header_section.level + header_section.enclosing_repetition&.level.to_i
+  end
 
   def to_sections(nodes:)
     nodes.map { _1.is_a?(Array) ? ViewableChamp::SectionComponent.new(dossier: @dossier, nodes: _1, demande_seen_at: @demande_seen_at, profile: @profile, row_id: @row_id) : _1 }
