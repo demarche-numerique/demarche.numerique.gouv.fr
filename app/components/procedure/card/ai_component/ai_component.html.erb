@@ -1,0 +1,8 @@
+<%= render SettingsTileComponent.new(
+  url: new_simplify_admin_procedure_types_de_champ_path(@procedure),
+  badge:,
+  subtitle: "Appliquez nos suggestions d'amélioration",
+  link_attributes: { id: "administrateurs" }
+) do |tile| %>
+  <% tile.with_title_content("Qualité du formulaire") %>
+<% end %>
