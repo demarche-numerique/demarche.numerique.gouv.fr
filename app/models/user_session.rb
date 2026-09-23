@@ -16,6 +16,13 @@ class UserSession < ApplicationRecord
     usable.update_all(revoked_at: Time.current, revoked_reason: reason.to_s, updated_at: Time.current)
   end
 
+  # The deadline crosses into SQL as an ISO 8601 interval, never as seconds: a
+  # month is a calendar month on both sides, where `1.month.to_i` is the average
+  # one -- ten hours longer than the trusted device it expires with.
+  def self.expire_from_created_at!(lifetime)
+    update_all(['expires_at = created_at + CAST(? AS interval), updated_at = ?', lifetime.iso8601, Time.current])
+  end
+
   def unusable?
     revoked_at.present? || (expires_at.present? && expires_at.past?)
   end
