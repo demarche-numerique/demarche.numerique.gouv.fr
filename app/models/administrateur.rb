@@ -14,6 +14,10 @@ class Administrateur < ApplicationRecord
   has_many :archives, as: :user_profile, dependent: :destroy
   has_many :exports, as: :user_profile, dependent: :destroy
   belongs_to :user
+
+  # Granting a role must not leave sessions already open living under the
+  # deadline of the role the account had before.
+  after_create -> { user&.tighten_sessions! }
   belongs_to :groupe_gestionnaire, optional: true
 
   validates :user_id, uniqueness: true

@@ -871,4 +871,111 @@ describe User, type: :model do
       end
     end
   end
+
+  describe '#privileged?' do
+    # The one role outside the default scope.
+    it 'counts a gestionnaire, whose role is not eager loaded' do
+      gestionnaire = create(:gestionnaire)
+
+      expect(User.find(gestionnaire.user_id)).to be_privileged
+    end
+
+    it 'counts an expert' do
+      expect(create(:expert).user).to be_privileged
+    end
+
+    it 'leaves an usager alone' do
+      expect(create(:user)).not_to be_privileged
+    end
+  end
+
+  describe 'session revocation' do
+    let(:usager) { create(:user) }
+    let(:agent) { create(:instructeur).user }
+
+    describe '#revoke_sessions!' do
+      it 'refuses to spare a session that is not persisted' do
+        expect { usager.revoke_sessions!(reason: :logout_all, except: UserSession.new) }
+          .to raise_error(ArgumentError, /not persisted/)
+      end
+
+      it 'closes every session, the current one included' do
+        one = usager.open_user_session!('a browser')
+        two = usager.open_user_session!('another browser')
+
+        usager.update!(password: "#{users.default_password} (bis)")
+
+        expect(one.reload).to be_unusable
+        expect(two.reload).to be_unusable
+      end
+
+      # A statement timeout on `user_sessions` is the realistic failure: without
+      # one transaction the account would be half signed out and told it failed.
+      it 'breaks nothing when the rows cannot be revoked' do
+        instructeur = create(:instructeur)
+        user = instructeur.user
+        token = instructeur.trusted_device_tokens.create!
+        version = user.trusted_device_version
+
+        allow(user).to receive(:user_sessions)
+          .and_raise(ActiveRecord::StatementInvalid, 'canceling statement due to statement timeout')
+
+        # `joinable: false` makes the revocation open a savepoint of its own
+        # rather than join this example's transaction, so the rollback shows.
+        ActiveRecord::Base.transaction(joinable: false) do
+          expect { user.revoke_sessions!(reason: :logout_all) }
+            .to raise_error(ActiveRecord::StatementInvalid)
+        end
+
+        expect(user.reload.trusted_device_version).to eq(version)
+        expect(TrustedDeviceToken.exists?(token.id)).to be(true)
+      end
+    end
+  end
+
+  describe '#session_max_lifetime' do
+    it 'gives an usager the housekeeping horizon' do
+      expect(create(:user).session_max_lifetime).to eq(User::USAGER_SESSION_MAX_LIFETIME)
+    end
+
+    it 'gives an administrateur a week' do
+      expect(create(:administrateur).user.session_max_lifetime).to eq(1.week)
+    end
+
+    it 'gives a gestionnaire a week' do
+      expect(create(:gestionnaire).user.session_max_lifetime).to eq(1.week)
+    end
+
+    # Bounded like the instructeur whose dossiers they read.
+    it 'gives an expert the instructeur deadline' do
+      expect(create(:expert).user.session_max_lifetime)
+        .to eq(TrustedDeviceConcern::TRUSTED_DEVICE_PERIOD)
+    end
+
+    it 'gives an instructeur the trusted device period, so both expire together' do
+      expect(create(:instructeur).user.session_max_lifetime)
+        .to eq(TrustedDeviceConcern::TRUSTED_DEVICE_PERIOD)
+    end
+
+    it 'takes the shortest when the account holds several roles' do
+      user = create(:instructeur).user
+      user.create_administrateur!
+
+      expect(user.reload.session_max_lifetime).to eq(1.week)
+    end
+
+    # Why `min` needs no fallback: a privileged account always matches a key.
+    it 'is keyed on exactly the roles that make an account privileged' do
+      roles = User::SESSION_MAX_LIFETIMES.keys
+
+      roles.each do |role|
+        user = create(role == :gestionnaire ? :gestionnaire : role).user
+
+        expect(user).to be_privileged, "a #{role} should be privileged"
+        expect(user.session_max_lifetime).to eq(User::SESSION_MAX_LIFETIMES[role])
+      end
+
+      expect(create(:user)).not_to be_privileged
+    end
+  end
 end

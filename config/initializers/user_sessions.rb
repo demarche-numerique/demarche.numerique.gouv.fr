@@ -39,14 +39,67 @@ Warden::Manager.after_set_user do |record, warden, options|
   # after the action. Emptying the scope lets whatever really needs it fail on
   # its own.
   in :fetch
-    session_id = warden.session(scope)[SessionRegistrableConcern::SESSION_KEY]
+    warden_session = warden.session(scope)
+    session_id = warden_session[SessionRegistrableConcern::SESSION_KEY]
 
     if session_id.nil?
       SessionRegistrableConcern.open_session!(record, warden, scope)
     else
       user_session = UserSession.find_by(id: session_id, sessionable: record)
-      warden.logout(scope) if user_session.nil? || user_session.unusable?
+
+      # Rows written before roles had deadlines carry none, and nothing else
+      # would ever give them one. Counted from `created_at`, not from now: a
+      # deadline that restarts at the deploy is not the deadline.
+      user_session&.backfill_expiry! { record.session_max_lifetime }
+
+      # The row first: a session both revoked and stale must say it was revoked,
+      # which is the message the user needs.
+      reason =
+        if user_session.nil? || user_session.unusable?
+          user_session&.unusable_reason || :session_revoked
+        elsif SessionRegistrableConcern.inactive?(warden_session)
+          :inactivity
+        end
+
+      if reason.present?
+        # Revoked here, before the logout: `before_logout` below would otherwise
+        # find the row still usable and stamp it `sign_out`, so the only durable
+        # trace would say the user left on purpose.
+        user_session&.usable_scope&.revoke_all!(:inactivity) if reason == :inactivity
+
+        # In the Rack env, which Warden hands to the failure app unchanged: we
+        # log out rather than throw, so there is no `throw(:warden, message:)`
+        # to carry the reason. The env dies with the request, so a reason can
+        # never resurface on a later one.
+        warden.request.env[SessionRegistrableConcern::END_REASON_KEY] = reason.to_s
+        warden.logout(scope)
+      end
     end
+  end
+rescue StandardError => e
+  Sentry.capture_exception(e)
+end
+
+# Separate from the hook above, and not gated: "stay signed in" is not part of
+# the registry, and gating it would take the persistent cookie away from
+# everyone for as long as the flag is off.
+Warden::Manager.after_set_user do |record, warden, options|
+  next unless record.is_a?(SessionRegistrableConcern)
+
+  case options[:event]
+  in :authentication | :set_user
+    SessionRegistrableConcern.remember!(record, warden, options[:scope])
+  in :fetch
+    # Stamped here too: a session adopted by the hook above opens a row without
+    # passing through `remember!`, and one opened before this shipped carries no
+    # policy at all.
+    #
+    # The activity stamp lives here rather than beside the check that reads it,
+    # because that check is gated: closing the flag would let `last_seen_on` go
+    # stale, and opening it again would sign every active user out at once.
+    SessionRegistrableConcern.stamp_policy!(record, warden, options[:scope])
+    SessionRegistrableConcern.touch_last_seen!(SessionRegistrableConcern.warden_session(warden, options[:scope]))
+    SessionRegistrableConcern.persist_cookie!(warden, options[:scope])
   end
 rescue StandardError => e
   Sentry.capture_exception(e)
