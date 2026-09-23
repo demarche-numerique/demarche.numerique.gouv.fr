@@ -1,0 +1,9 @@
+<%= render SettingsTileComponent.new(
+  url: service_link,
+  badge:,
+  subtitle: @procedure.service_id.present? ? @procedure.service.nom : "Choix du service administratif",
+  link_attributes: { id: "service" }
+) do |tile| %>
+  <% tile.with_title_content(t(".title")) %>
+  <% tile.with_action_content(service_button_text) %>
+<% end %>
