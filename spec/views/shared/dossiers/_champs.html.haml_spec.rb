@@ -154,23 +154,23 @@ describe 'shared/dossiers/champs', type: :view do
     let(:dossier) { create(:dossier, :en_construction, :with_populated_champs, procedure:, depose_at: 1.day.ago.change(usec: 0)) }
     let(:champ1) { dossier.champ_data.first }
 
-    context "with a demande_seen_at after champ updated_at" do
-      let(:demande_seen_at) { champ1.updated_at + 1.hour }
+    context "with a demande_seen_at after champ value_updated_at" do
+      let(:demande_seen_at) { champ1.value_updated_at + 1.hour }
 
       it { is_expected.not_to have_css(".fr-badge--new") }
     end
 
-    context "with a demande_seen_at before champ updated_at" do
-      let(:demande_seen_at) { champ1.updated_at - 1.hour }
+    context "with a demande_seen_at before champ value_updated_at" do
+      let(:demande_seen_at) { champ1.value_updated_at - 1.hour }
 
       it { is_expected.to have_css(".fr-badge--new") }
     end
 
-    context "with champ updated_at at depose_at" do
-      let(:demande_seen_at) { champ1.updated_at - 1.hour }
+    context "with champ value_updated_at at depose_at" do
+      let(:demande_seen_at) { champ1.value_updated_at - 1.hour }
 
       before do
-        champ1.update_columns(value: 'false', updated_at: dossier.depose_at)
+        champ1.update_columns(value: 'false', value_updated_at: dossier.depose_at)
       end
 
       it { is_expected.not_to have_css(".fr-badge--new") }

@@ -74,6 +74,12 @@ class ChampData < ApplicationRecord
   # look like it was edited. Revert blank-equivalent JSON columns before saving.
   before_save :nullify_blank_json_columns
 
+  # A row is born with its value (prefill, dossier clone, rebase, brouillon
+  # edit), so its creation dates it: without a stamp, the reader falls back on
+  # `updated_at`, which machinery keeps bumping after the deposit. Buffer rows
+  # are stamped by the merge, like in `update_timestamps`.
+  before_create :stamp_value_updated_at, unless: -> { user_buffer_stream? || instructeur_buffer_stream? }
+
   def type_de_champ
     @type_de_champ ||= dossier.revision
       .type_de_champs
@@ -365,7 +371,8 @@ class ChampData < ApplicationRecord
   # `value_updated_at` dates user-made changes only. Machinery also bumps
   # `updated_at` (attachment purge touches, external data fetches, autosave),
   # so displays like the "Modifié" badge must not trust it. Rows last modified
-  # before the column existed fall back to `updated_at`.
+  # before the column existed, and buffer rows until their merge, fall back to
+  # `updated_at`.
   def value_updated_at
     super || updated_at
   end
@@ -403,6 +410,12 @@ class ChampData < ApplicationRecord
   end
 
   private
+
+  # Timestamps are set before the create callbacks run, so the reader would
+  # already answer with `updated_at`: check the column itself.
+  def stamp_value_updated_at
+    self[:value_updated_at] ||= created_at
+  end
 
   def nullify_blank_json_columns
     [:value_json, :data].each do |column|
