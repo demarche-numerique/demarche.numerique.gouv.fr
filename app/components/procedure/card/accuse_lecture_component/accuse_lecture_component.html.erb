@@ -1,0 +1,7 @@
+<%= render SettingsTileComponent.new(
+  url: accuse_lecture_admin_procedure_path(@procedure),
+  badge:,
+  subtitle: t(".subtitle")
+) do |tile| %>
+  <% tile.with_title_content(t(".title")) %>
+<% end %>
