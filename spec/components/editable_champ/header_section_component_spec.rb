@@ -8,8 +8,7 @@ RSpec.describe EditableChamp::HeaderSectionComponent, type: :component do
   let(:dossier) { instance_double(Dossier, auto_numbering_section_headers_for?: false) }
 
   before do
-    allow(champ).to receive(:level).and_return(1)
-    allow(champ).to receive(:enclosing_repetition).and_return(nil)
+    allow(champ).to receive(:absolute_level).and_return(1)
     allow(champ).to receive(:libelle).and_return("Ma section")
     allow(champ).to receive(:visible?).and_return(true)
     allow(champ).to receive(:dossier).and_return(dossier)

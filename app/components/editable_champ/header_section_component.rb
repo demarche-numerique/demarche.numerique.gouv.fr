@@ -10,11 +10,11 @@ class EditableChamp::HeaderSectionComponent < ApplicationComponent
   end
 
   def level
-    section_level + 2 # The first title level should be a <h3>
+    @champ.absolute_level + 2 # The first title level should be a <h3>
   end
 
   def collapsible?
-    section_level == 1
+    @champ.absolute_level == 1
   end
 
   def libelle
@@ -43,13 +43,5 @@ class EditableChamp::HeaderSectionComponent < ApplicationComponent
     else
       "p"
     end
-  end
-
-  private
-
-  # the level in the whole form: a section within a repetition sits under the
-  # sections holding the repetition
-  def section_level
-    @champ.level + @champ.enclosing_repetition&.level.to_i
   end
 end
