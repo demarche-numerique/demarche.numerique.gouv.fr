@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Expert < ApplicationRecord
+  include GrantsSessionLifetimeConcern
+
   belongs_to :user
   has_many :experts_procedures
   has_many :procedures, through: :experts_procedures

@@ -2,6 +2,7 @@
 
 class Gestionnaire < ApplicationRecord
   include UserFindByConcern
+  include GrantsSessionLifetimeConcern
   has_and_belongs_to_many :groupe_gestionnaires
   has_many :commentaire_groupe_gestionnaires
   has_many :follow_commentaire_groupe_gestionnaires

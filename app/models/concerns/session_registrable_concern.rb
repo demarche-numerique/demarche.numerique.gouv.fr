@@ -47,6 +47,19 @@ module SessionRegistrableConcern
 
   # `except&.id`, not `except.present?`: an unsaved record has a nil id, and
   # `where.not(id: nil)` would revoke the very row we mean to spare.
+  # One UPDATE, no row loaded: this runs inside the `after_create` of a role, and
+  # bulk promotions grant thousands of them.
+  #
+  # A session older than the new deadline gets one already past and is cut on its
+  # next request. That is the intent: it predates the role and was never opened
+  # for its data.
+  def tighten_sessions!(deadline)
+    user_sessions
+      .usable
+      .where('expires_at IS NULL OR expires_at > created_at + CAST(? AS interval)', deadline.iso8601)
+      .expire_from_created_at!(deadline)
+  end
+
   def revoke_sessions!(reason:, except: nil)
     scope = user_sessions
     scope = scope.where.not(id: except.id) if except&.id

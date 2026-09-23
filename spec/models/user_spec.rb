@@ -910,5 +910,14 @@ describe User, type: :model do
 
       expect(User.find(gestionnaire.user_id).session_max_lifetime).to eq(1.week)
     end
+
+    # GrantsSessionLifetimeConcern reads the lifetime with
+    # `fetch(model_name.singular)`: the roles that tighten and the keys here are
+    # one list, and `fetch` raises the day they diverge.
+    it 'has a key for every role that tightens sessions when granted' do
+      User::SESSION_MAX_LIFETIMES.each_key do |role|
+        expect(role.to_s.camelize.constantize).to include(GrantsSessionLifetimeConcern)
+      end
+    end
   end
 end

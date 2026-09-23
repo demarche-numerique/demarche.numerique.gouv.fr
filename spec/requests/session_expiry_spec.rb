@@ -79,4 +79,28 @@ describe 'session deadlines', type: :request do
 
   # The deadline is frozen, but a role granted mid-session must not leave the
   # session living under the year an usager gets.
+
+  context 'an usager promoted while signed in' do
+    let(:user) { create(:user, password:) }
+
+    before do
+      Flipper.enable_actor(:session_registry, user)
+      post_session(user)
+    end
+
+    # Through a record loaded from a query, as every real promotion path does:
+    # User eager loads its roles, so the association answers nil from cache.
+    it 'has its deadline shortened to the new role, not extended' do
+      row = user.user_sessions.sole
+      expect(row.expires_at).to be_within(1.minute).of(row.created_at + User::USAGER_SESSION_MAX_LIFETIME)
+
+      User.find(user.id).create_expert!
+
+      expect(row.reload.expires_at)
+        .to be_within(1.minute).of(row.created_at + TrustedDeviceConcern::TRUSTED_DEVICE_PERIOD)
+    end
+  end
+
+  # The same for everyone. It only shows for roles whose absolute deadline is
+  # longer -- an administrateur is out after a week whatever they do.
 end
