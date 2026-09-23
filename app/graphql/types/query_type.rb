@@ -21,12 +21,7 @@ module Types
     field :demarche_descriptors, DemarcheDescriptorType.connection_type, null: false, description: "Liste des démarches publiques (publiées ou closes, en opendata)."
 
     def demarche_descriptors
-      Procedure.publiques.includes(
-        :procedure_paths,
-        published_revision: {
-          revision_type_de_champs: :type_de_champ,
-        }
-      )
+      Procedure.publiques.includes(:procedure_paths, :published_revision)
     end
 
     def demarche_descriptor(demarche:)
