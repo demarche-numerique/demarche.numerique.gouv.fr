@@ -12,4 +12,14 @@ class Procedure::Card::ChorusComponent < ApplicationComponent
   def complete?
     @procedure.chorus_configuration.complete?
   end
+
+  private
+
+  def badge
+    if complete?
+      { label: 'Configuré', variant: :success }
+    else
+      { label: 'À compléter', variant: :warning }
+    end
+  end
 end

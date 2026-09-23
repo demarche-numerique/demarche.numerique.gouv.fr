@@ -1,0 +1,9 @@
+<%= render SettingsTileComponent.new(
+  url: edit_admin_procedure_chorus_path(@procedure),
+  badge:,
+  subtitle: "Vous traitez des données de subvention d’état ?",
+  link_attributes: { title: "Configurer le cadre budgetaire Chorus" }
+) do |tile| %>
+  <% tile.with_title_content("Connecteur Chorus") %>
+  <% tile.with_action_content("Configurer") %>
+<% end %>
