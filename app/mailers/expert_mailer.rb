@@ -13,11 +13,6 @@ class ExpertMailer < ApplicationMailer
     mail(to: email, subject:)
   end
 
-  # Compat shim consuming the delivery jobs enqueued under the old action name
-  # before this rename was deployed. Remove once the Sidekiq retry set has
-  # drained (~3 weeks, the default 25 retries of PriorizedMailDeliveryJob).
-  def self.send_dossier_decision_v2(avis) = send_dossier_decision(avis)
-
   def self.critical_email?(action_name)
     false
   end
