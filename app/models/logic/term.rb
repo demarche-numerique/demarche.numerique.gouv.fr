@@ -16,6 +16,10 @@ class Logic::Term
 
   def terms = [self]
 
+  # A comparison `champ <operator> constant`, the kind Logic::PossibleValues
+  # can be narrowed by (see Logic::BinaryOperator).
+  def checkable? = false
+
   private
 
   def hash_value = to_h.hash
