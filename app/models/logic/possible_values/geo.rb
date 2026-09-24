@@ -24,7 +24,5 @@ class Logic::PossibleValues::Geo < Data.define(:codes)
 
   private
 
-  def departements_in_region(region_code)
-    APIGeoService.departements.filter { it[:region_code] == region_code }.map { it[:code] }
-  end
+  def departements_in_region(region_code) = APIGeoService.departements_by_region.fetch(region_code, [])
 end
