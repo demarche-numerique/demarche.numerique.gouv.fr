@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_24_140000) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_24_150000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
@@ -539,10 +539,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_24_140000) do
     t.bigint "parent_dossier_id"
     t.string "prefill_token"
     t.boolean "prefilled"
-    t.string "private_search_terms"
     t.datetime "processed_at", precision: nil
     t.bigint "revision_id"
-    t.string "search_terms"
     t.tsvector "search_terms_tsvector"
     t.string "state"
     t.bigint "submitted_revision_id"
