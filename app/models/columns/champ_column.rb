@@ -38,6 +38,8 @@ class Columns::ChampColumn < Column
       filtered_ids_before_value(dossiers, filter[:value])
     in { operator: 'after', value: Array }
       filtered_ids_after_value(dossiers, filter[:value])
+    in { operator: 'between', value: Array }
+      filtered_ids_for_date_range(dossiers, date_range(filter[:value]))
     in { operator: 'this_week' }
       filtered_ids_for_date_range(dossiers, Time.current.all_week)
     in { operator: 'this_month' }
@@ -66,6 +68,8 @@ class Columns::ChampColumn < Column
   end
 
   def filtered_ids_for_date_range(dossiers, range)
+    return dossiers.ids if range.begin.nil? && range.end.nil?
+
     relation = dossiers.with_type_de_champ(stable_id)
     relation.where(champs: { column => range_for_query(range) }).ids
   end

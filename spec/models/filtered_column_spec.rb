@@ -71,4 +71,20 @@ describe FilteredColumn do
       end
     end
   end
+
+  describe '#empty_filter?' do
+    subject { described_class.new(column:, filter:).empty_filter? }
+
+    context 'with a between filter without dates' do
+      let(:filter) { { operator: 'between', value: ['', ''] } }
+
+      it { is_expected.to be(true) }
+    end
+
+    context 'with a between filter with a single date' do
+      let(:filter) { { operator: 'between', value: ['', '2025-02-15'] } }
+
+      it { is_expected.to be(false) }
+    end
+  end
 end

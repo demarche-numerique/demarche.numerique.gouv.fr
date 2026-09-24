@@ -6,6 +6,7 @@ class FilteredColumn
   FILTERS_VALUE_MAX_LENGTH = 4048
   # https://www.postgresql.org/docs/current/datatype-numeric.html
   PG_INTEGER_MAX_VALUE = 2147483647
+  OPERATORS_WITH_VALUE = ['match', 'before', 'after', 'between'].freeze
 
   attr_reader :column, :filter
 
@@ -31,12 +32,14 @@ class FilteredColumn
   end
 
   def empty_filter?
-    filter_operator.in?(["match", "before", "after"]) && !filter_is_active?
+    filter_operator.in?(OPERATORS_WITH_VALUE) && !filter_is_active?
   end
 
   def id
     column.h_id.merge(filter: { operator: filter_operator, value: filter_values }).sort.to_json
   end
+
+  def date_range? = filter_operator == 'between'
 
   def filter_operator
     filter.is_a?(Hash) ? filter&.dig(:operator) : nil

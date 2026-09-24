@@ -186,6 +186,57 @@ describe Instructeurs::ProcedurePresentationController, type: :controller do
     end
   end
 
+  describe '#update_filter with the between operator' do
+    subject { patch :update_filter, params: { id: procedure_presentation.id, statut: 'tous', filter_key: existing_filter.id, filter: { id: column.id, filter: { operator: 'between', value: } } } }
+
+    let(:column) { procedure.find_column(label: 'Date de création') }
+    let(:existing_filter) { FilteredColumn.new(column:) }
+    let(:saved_values) { procedure_presentation.reload.tous_filters.first.filter_values }
+
+    before do
+      sign_in(instructeur.user)
+      procedure_presentation.update!(tous_filters: [existing_filter])
+    end
+
+    context 'when both dates are the same day' do
+      let(:value) { ['2025-02-12', '2025-02-12'] }
+
+      it { subject; expect(saved_values).to eq(['2025-02-12', '2025-02-12']) }
+    end
+
+    context 'when the start date is blank' do
+      let(:value) { ['', '2025-02-12'] }
+
+      it { subject; expect(saved_values).to eq(['', '2025-02-12']) }
+    end
+
+    context 'when the start date is after the end date' do
+      let(:value) { ['2025-02-15', '2025-02-12'] }
+
+      it 'swaps them' do
+        subject
+        expect(saved_values).to eq(['2025-02-12', '2025-02-15'])
+      end
+    end
+  end
+
+  describe '#update_filter when leaving the between operator' do
+    subject { patch :update_filter, params: { id: procedure_presentation.id, statut: 'tous', filter_key: existing_filter.id, filter: { id: column.id, filter: { operator: 'before', value: ['2025-02-12', '2025-02-15'] } } } }
+
+    let(:column) { procedure.find_column(label: 'Date de création') }
+    let(:existing_filter) { FilteredColumn.new(column:, filter: { operator: 'between', value: ['2025-02-12', '2025-02-15'] }) }
+
+    before do
+      sign_in(instructeur.user)
+      procedure_presentation.update!(tous_filters: [existing_filter])
+    end
+
+    it 'keeps the start date only, the single date operators reading one value' do
+      subject
+      expect(procedure_presentation.reload.tous_filters.first.filter_values).to eq(['2025-02-12'])
+    end
+  end
+
   describe '#persist_filters' do
     subject { post :persist_filters, params: }
 

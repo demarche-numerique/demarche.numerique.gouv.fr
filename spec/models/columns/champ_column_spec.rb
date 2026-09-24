@@ -428,6 +428,38 @@ describe Columns::ChampColumn do
         end
       end
 
+      context "when searching with between operator" do
+        let(:dossier_before) { create(:dossier, :en_instruction, procedure:) }
+        let(:dossier_first_day) { create(:dossier, :en_instruction, procedure:) }
+        let(:dossier_last_day) { create(:dossier, :en_instruction, procedure:) }
+        let(:dossier_after) { create(:dossier, :en_instruction, procedure:) }
+
+        before do
+          dossier_before.champ_data.first.update!(value: "2025-02-11")
+          dossier_first_day.champ_data.first.update!(value: "2025-02-12")
+          dossier_last_day.champ_data.first.update!(value: "2025-02-15")
+          dossier_after.champ_data.first.update!(value: "2025-02-16")
+        end
+
+        context "with both bounds" do
+          let(:filter) { { operator: 'between', value: ["2025-02-12", "2025-02-15"] } }
+
+          it { expect(subject).to match_array([dossier_first_day.id, dossier_last_day.id]) }
+        end
+
+        context "with only an end date" do
+          let(:filter) { { operator: 'between', value: ["", "2025-02-15"] } }
+
+          it { expect(subject).to match_array([dossier_before.id, dossier_first_day.id, dossier_last_day.id]) }
+        end
+
+        context "with unparseable dates" do
+          let(:filter) { { operator: 'between', value: ["abc", "2024-13-45"] } }
+
+          it { expect(subject).to match_array([dossier_before.id, dossier_first_day.id, dossier_last_day.id, dossier_after.id]) }
+        end
+      end
+
       # update_filter neither whitelists the operator nor validates the date, so
       # both of these reach the column.
       context "when searching with a date the filter form let through" do
@@ -552,6 +584,32 @@ describe Columns::ChampColumn do
 
         it "returns the correct ids" do
           expect(subject).to eq([dossier2.id])
+        end
+      end
+
+      context "when searching with between operator" do
+        let(:dossier_before) { create(:dossier, :en_instruction, procedure:) }
+        let(:dossier_first_day) { create(:dossier, :en_instruction, procedure:) }
+        let(:dossier_last_day) { create(:dossier, :en_instruction, procedure:) }
+        let(:dossier_after) { create(:dossier, :en_instruction, procedure:) }
+
+        before do
+          dossier_before.champ_data.first.update!(value: "2025-02-11T23:00:00+01:00")
+          dossier_first_day.champ_data.first.update!(value: "2025-02-12T00:30:00+01:00")
+          dossier_last_day.champ_data.first.update!(value: "2025-02-15T23:00:00+01:00")
+          dossier_after.champ_data.first.update!(value: "2025-02-16T00:30:00+01:00")
+        end
+
+        context "with both bounds" do
+          let(:filter) { { operator: 'between', value: ["2025-02-12", "2025-02-15"] } }
+
+          it { expect(subject).to match_array([dossier_first_day.id, dossier_last_day.id]) }
+        end
+
+        context "with only an end date" do
+          let(:filter) { { operator: 'between', value: ["", "2025-02-15"] } }
+
+          it { expect(subject).to match_array([dossier_before.id, dossier_first_day.id, dossier_last_day.id]) }
         end
       end
 
