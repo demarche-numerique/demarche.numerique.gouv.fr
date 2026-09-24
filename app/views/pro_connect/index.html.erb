@@ -72,11 +72,7 @@
 
           <hr>
 
-          <h2 class="fr-h6"><%= t('.you_are_a_citizen') %></h2>
-
-          <div class="fr-btns-group">
-            <%= link_to t('.citizen_page'), new_user_session_path, class: "fr-btn fr-btn--secondary" %>
-          </div>
+          <%= render ParticulierLoginComponent.new %>
         </div>
       </div>
 
