@@ -130,4 +130,85 @@ describe 'Trusted device (second factor by email link)', type: :request do
       expect(response).to redirect_to(%r{/lien-envoye})
     end
   end
+
+  # An expert invited on an avis sets their password from a link carrying a token
+  # they received by email -- the very proof the second factor asks for.
+  describe 'an expert signing up from an avis invitation' do
+    let_it_be(:pending_avis, refind: true) { avis.pending }
+    let_it_be(:expert_user, reload: true) { pending_avis.expert.user }
+    let_it_be(:expert_instructeur, refind: true) { expert_user.instructeur || expert_user.create_instructeur! }
+
+    let(:invited_at) { Time.current }
+    let(:invitation_token) do
+      travel_to(invited_at) { expert_user.invite_expert_and_send_avis!(pending_avis) }
+      expert_user.confirmation_token
+    end
+
+    def sign_up(user_params)
+      post sign_up_expert_avis_path(pending_avis.procedure, pending_avis),
+        params: { email: expert_user.email, user: { confirmation_token: invitation_token }.merge(user_params) }
+    end
+
+    it 'trusts the browser instead of asking for a second link to the same mailbox' do
+      sign_up(password:)
+
+      expect(response).to redirect_to(expert_all_avis_path)
+      expect(expert_user.reload.valid_password?(password)).to be true
+      expect(trusted_device_cookie).to be_present
+
+      follow_redirect!
+
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'sends a sign up carrying no password back to the form, and trusts nothing' do
+      sign_up({})
+
+      expect(response).to redirect_to(sign_up_expert_avis_path(pending_avis.procedure, pending_avis, email: expert_user.email, confirmation_token: invitation_token))
+      expect(trusted_device_cookie).to be_blank
+    end
+
+    context 'when the invitation was sent just under two days ago' do
+      let(:invited_at) { 47.hours.ago }
+
+      it 'still trusts the browser' do
+        sign_up(password:)
+
+        expect(trusted_device_cookie).to be_present
+      end
+    end
+
+    context 'when the avis has been revoked' do
+      before { pending_avis.update_column(:revoked_at, Time.current) }
+
+      it 'signs the expert up, but trusts nothing' do
+        sign_up(password:)
+
+        expect(response).to redirect_to(expert_all_avis_path)
+        expect(trusted_device_cookie).to be_blank
+      end
+    end
+
+    context 'when the invitation was sent more than two days ago' do
+      let(:invited_at) { 3.days.ago }
+
+      it 'signs the expert up, but trusts nothing' do
+        sign_up(password:)
+
+        expect(response).to redirect_to(expert_all_avis_path)
+        expect(trusted_device_cookie).to be_blank
+      end
+    end
+
+    context 'when the expert is not an instructeur' do
+      before { expert_instructeur.destroy! }
+
+      it 'writes no trusted device cookie' do
+        sign_up(password:)
+
+        expect(response).to redirect_to(expert_all_avis_path)
+        expect(trusted_device_cookie).to be_blank
+      end
+    end
+  end
 end
