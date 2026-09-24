@@ -1,0 +1,5 @@
+en:
+  administrateurs:
+    sva_svr:
+      edit:
+        disabled_notice: "%{rule} has been disabled since %{date}: no decision is taken automatically any more."

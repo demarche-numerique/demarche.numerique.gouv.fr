@@ -96,4 +96,18 @@ describe ProcedureSVASVRConcern do
       end
     end
   end
+
+  describe '#sva_svr_pending_dossiers' do
+    let(:procedure) { procedures.sva }
+
+    let!(:en_instruction) { create(:dossier, :en_instruction, :with_individual, procedure:, sva_svr_decision_on: 10.days.from_now.to_date) }
+    let!(:en_construction) { create(:dossier, :en_construction, :with_individual, procedure:, sva_svr_decision_on: 3.days.from_now.to_date) }
+    let!(:deja_declenche_mais_pas_termine) { create(:dossier, :en_instruction, :with_individual, procedure:, sva_svr_decision_on: 1.day.ago.to_date, sva_svr_decision_triggered_at: 1.day.ago) }
+    let!(:sans_date) { create(:dossier, :en_instruction, :with_individual, procedure:) }
+    let!(:masque_par_administration) { create(:dossier, :en_instruction, :with_individual, procedure:, sva_svr_decision_on: 5.days.from_now.to_date, hidden_by_administration_at: 1.day.ago) }
+
+    it 'ne retient que les dossiers en instruction visibles portant une date non déclenchée' do
+      expect(procedure.sva_svr_pending_dossiers).to contain_exactly(en_instruction)
+    end
+  end
 end

@@ -28,8 +28,8 @@ module Administrateurs
         flash.notice = "La configuration SVA/SVR a été mise à jour et prend immédiatement effet pour les nouveaux dossiers."
         redirect_to admin_procedure_path(@procedure)
       else
-        flash.now.alert = @procedure.errors.full_messages
-        render :edit
+        flash.alert = @procedure.errors.full_messages
+        redirect_to edit_admin_procedure_sva_svr_path(@procedure)
       end
     end
 

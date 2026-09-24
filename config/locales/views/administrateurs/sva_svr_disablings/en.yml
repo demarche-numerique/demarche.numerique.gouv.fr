@@ -1,0 +1,18 @@
+en:
+  administrateurs:
+    sva_svr_disablings:
+      new:
+        title: Disable %{rule}
+        definitive_title: This is permanent
+        consequences_intro: "Once %{rule} is disabled:"
+        new_dossiers_html: "There will be <strong>no automatic decision any more</strong>, neither on new files nor on those already submitted."
+        pending_dossiers_html:
+          one: "The <strong>file currently under instruction</strong> keeps the decision date announced to the applicant by %{rule}: <strong>%{date}</strong>.<br>Instructors must therefore make their decision <strong>no later than this date</strong>."
+          other: "The <strong>%{count} files currently under instruction</strong> keep the decision date announced to the applicant by %{rule}. The first one falls due on <strong>%{date}</strong>."
+        checkbox:
+          one: "I understand that instructors will have to process this file themselves"
+          other: "I understand that instructors will have to process these %{count} files themselves"
+        submit: Disable permanently
+        cancel: Cancel
+      create:
+        notice: "%{rule} has been disabled."
