@@ -3,6 +3,7 @@
 - invite_context = params[:context] == 'invite'
 - if invite_context
   = content_for(:hide_header_signin, true)
+- content_for(:notice_info, render(ProConnectAdministrateurAnnouncementComponent.new))
 
 #session-new.auth-form.sign-in-form
   = form_for resource, url: user_session_path, html: { class: "fr-py-5w" } do |f|

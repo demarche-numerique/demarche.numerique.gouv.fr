@@ -30,6 +30,7 @@ features = [
   :groupe_instructeur_api_hack,
   :pro_connect_restricted,
   :pro_connect_required_for_all_administrateurs,
+  :pro_connect_administrateur_announcement,
   :pre_rempli_type_de_champ,
   :rdv,
   :sva,

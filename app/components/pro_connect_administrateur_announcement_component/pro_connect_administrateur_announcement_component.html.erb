@@ -1,0 +1,4 @@
+<%= render Dsfr::NoticeComponent.new do |c| %>
+  <% c.with_title { t('.title') } %>
+  <% c.with_desc { t('.body_html', link: pro_connect_link) } %>
+<% end %>
