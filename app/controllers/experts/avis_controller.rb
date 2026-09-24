@@ -172,7 +172,7 @@ module Experts
         redirect_to url_for(expert_all_avis_path)
       else
         flash[:alert] = user.errors.full_messages
-        redirect_to sign_up_expert_avis_path(procedure_id, avis_id, email: email)
+        redirect_to sign_up_expert_avis_path(procedure_id, avis_id, email:, confirmation_token:)
       end
     end
 
