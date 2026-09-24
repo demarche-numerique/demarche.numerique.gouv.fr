@@ -37,6 +37,7 @@ describe 'Signin in:' do
 
     before do
       allow(ProConnectService).to receive(:enabled?).and_return(true)
+      allow(FranceConnectService).to receive(:enabled?).and_return(true)
       Flipper.enable(:pro_connect_required_for_all_administrateurs)
     end
 
@@ -50,6 +51,25 @@ describe 'Signin in:' do
       expect(page).to have_content('Vous devez utiliser ProConnect pour vous connecter.')
       expect(page).to have_link('S’identifier avec ProConnect')
       expect(page).not_to have_field(:user_password)
+    end
+
+    scenario 'the browser then offers only ProConnect, unless a citizen asks for the full form' do
+      visit new_user_session_path
+      try_sign_in_with admin.email, users.default_password
+
+      visit pro_connect_path
+      expect(page).not_to have_field(:user_password)
+
+      visit new_user_session_path
+      expect(page).to have_link('S’identifier avec ProConnect')
+      expect(page).not_to have_field(:user_password)
+      expect(page).not_to have_link('S’identifier avec FranceConnect')
+
+      click_on 'Se connecter sur votre espace'
+      try_sign_in_with user.email, 'wrong-password'
+
+      expect(page).to have_content('Adresse électronique ou mot de passe incorrect.')
+      expect(page).to have_field(:user_password)
     end
   end
 
