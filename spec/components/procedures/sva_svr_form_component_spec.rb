@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 RSpec.describe Procedure::SVASVRFormComponent, type: :component do
-  let(:procedure) { create(:procedure, :published) }
+  before_all { seed "cases/sva" }
 
-  subject(:rendered) { render_inline(described_class.new(procedure: procedure, configuration: SVASVRConfiguration.new)) }
+  let(:procedure) { procedures.individual }
+
+  subject(:rendered) { render_inline(described_class.new(procedure: procedure, configuration: procedure.sva_svr_configuration)) }
 
   let(:sva_enabled) { true }
   before { allow(procedure).to receive(:feature_enabled?).with(:sva).and_return(sva_enabled) }
@@ -18,12 +20,12 @@ RSpec.describe Procedure::SVASVRFormComponent, type: :component do
   end
 
   context "when procedure is published with config" do
-    let(:procedure) { create(:procedure, :published, :sva) }
+    let(:procedure) { procedures.sva }
 
-    it "shows notice about new files only" do
-      expect(rendered).to have_text(/changement.*impossible/i)
+    it "freezes the form and leads to the disabling" do
       expect(rendered).to have_field('Silence Vaut Accord', disabled: true)
       expect(rendered).to have_button('Enregistrer', disabled: true)
+      expect(rendered).to have_link('Désactiver le SVA', href: %r{/sva_svr_disabling/new})
     end
   end
 

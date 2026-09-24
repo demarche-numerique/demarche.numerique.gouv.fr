@@ -9,38 +9,46 @@
 .fr-container.fr-my-5w
   %h1.fr-h2 Silence Vaut Accord ou Rejet
 
-  = render Dsfr::CalloutComponent.new(title: "Fonctionnement du SVA/SVR") do |c|
-    - c.with_body do
-      %p.fr-callout__text
-        Le SVA “Silence Vaut Accord” ou SVR “Silence Vaut Rejet” est un principe législatif qui définit le comportement d’une demande en cas de silence de l’administration : soit la demande est automatiquement acceptée (SVA), soit elle est automatiquement rejetée (SVR).
-        %strong= Current.application_name
-        permet l’application de ce principe pour les démarches concernées.
+  - if !@procedure.sva_svr_disabled?
+    = render Dsfr::CalloutComponent.new(title: "Fonctionnement du SVA/SVR") do |c|
+      - c.with_body do
+        %p.fr-callout__text
+          Le SVA “Silence Vaut Accord” ou SVR “Silence Vaut Rejet” est un principe législatif qui définit le comportement d’une demande en cas de silence de l’administration : soit la demande est automatiquement acceptée (SVA), soit elle est automatiquement rejetée (SVR).
+          %strong= Current.application_name
+          permet l’application de ce principe pour les démarches concernées.
 
-      %p.fr-callout__text.fr-mt-2w
-        Concrètement, le silence est l’absence d’instruction d’un dossier par un instructeur à l’issue du délai imparti. À son dépôt, un dossier passe immédiatement “en instruction” (l’usager ne peut plus le modifier) et le calcul du délai démarrera le lendemain. À l’issue du délai, si le dossier n’a pas été instruit par un instructeur, il sera automatiquement accepté ou refusé, comme si un instructeur l’avait fait manuellement. Toutes les autres fonctionnalités restent inchangées.
+        %p.fr-callout__text.fr-mt-2w
+          Concrètement, le silence est l’absence d’instruction d’un dossier par un instructeur à l’issue du délai imparti. À son dépôt, un dossier passe immédiatement “en instruction” (l’usager ne peut plus le modifier) et le calcul du délai démarrera le lendemain. À l’issue du délai, si le dossier n’a pas été instruit par un instructeur, il sera automatiquement accepté ou refusé, comme si un instructeur l’avait fait manuellement. Toutes les autres fonctionnalités restent inchangées.
 
-      %p.fr-callout__text.fr-mt-2w
-        L’écoulement du délai est suspendu quand un instructeur
-        %strong demande des corrections
-        ou
-        déclare le
-        %strong dossier incomplet
-        (actions
-        %em Demander une correction
-        et
-        %em Demander à compléter
-        ). Le dossier repasse alors en construction.
-        Une fois les corrections effectuées, l’usager re-dépose son dossier. En fonction de la démarche et de la complétude du dossier, l’écoulement du délai reprend, ou est réinitialisé à 0.
+        %p.fr-callout__text.fr-mt-2w
+          L’écoulement du délai est suspendu quand un instructeur
+          %strong demande des corrections
+          ou
+          déclare le
+          %strong dossier incomplet
+          (actions
+          %em Demander une correction
+          et
+          %em Demander à compléter
+          ). Le dossier repasse alors en construction.
+          Une fois les corrections effectuées, l’usager re-dépose son dossier. En fonction de la démarche et de la complétude du dossier, l’écoulement du délai reprend, ou est réinitialisé à 0.
 
-      %p.fr-callout__text.fr-mt-2w
-        Cet écran permet le réglage des paramètres nécessaires au fonctionnement du SVA ou SVR.
-        %br
-        %strong Il sera ensuite impossible de modifier ou désactiver cette fonctionnalité sur une démarche publiée.
+        %p.fr-callout__text.fr-mt-2w
+          Cet écran permet le réglage des paramètres nécessaires au fonctionnement du SVA ou SVR.
+          %br
+          %strong Les réglages ne seront plus modifiables sur une démarche publiée. La règle pourra en revanche être désactivée, définitivement.
 
-    - c.with_bottom do
-      %p.fr-mt-2w
-        = link_to("Texte sur LegiFrance", "https://www.legifrance.gouv.fr/contenu/menu/autour-de-la-loi/sva-silence-vaut-accord", class: "fr-link fr-mr-1w", title: new_tab_suffix("En savoir plus sur le LegiFrance"), **external_link_attributes)
-        = link_to("Liste des démarches encadrées par ce principe", "https://www.service-public.fr/demarches-silence-vaut-accord", class: "fr-link", title: new_tab_suffix("Rechercher les démarches avec SVA sur service-public.fr"), **external_link_attributes)
+      - c.with_bottom do
+        %p.fr-mt-2w
+          = link_to("Texte sur LegiFrance", "https://www.legifrance.gouv.fr/contenu/menu/autour-de-la-loi/sva-silence-vaut-accord", class: "fr-link fr-mr-1w", title: new_tab_suffix("En savoir plus sur le LegiFrance"), **external_link_attributes)
+          = link_to("Liste des démarches encadrées par ce principe", "https://www.service-public.fr/demarches-silence-vaut-accord", class: "fr-link", title: new_tab_suffix("Rechercher les démarches avec SVA sur service-public.fr"), **external_link_attributes)
 
 
-= render Procedure::SVASVRFormComponent.new(procedure: @procedure, configuration: @configuration)
+- if @procedure.sva_svr_disabled?
+  .fr-container
+    .fr-alert.fr-alert--info.fr-alert--sm.fr-mb-4w
+      %p= t('.disabled_notice_html', rule: @configuration.human_decision, delay: @configuration.human_delay, date: try_format_date(@procedure.sva_svr_disabled_at), contact: mail_to(CONTACT_EMAIL))
+
+  = render Procedure::FixedFooterComponent.new(procedure: @procedure)
+- else
+  = render Procedure::SVASVRFormComponent.new(procedure: @procedure, configuration: @configuration)

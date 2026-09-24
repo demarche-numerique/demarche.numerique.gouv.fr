@@ -1,0 +1,5 @@
+fr:
+  administrateurs:
+    sva_svr:
+      edit:
+        disabled_notice_html: "Le %{rule}, réglé sur %{delay}, est désactivé depuis le %{date} : aucune décision n’est plus prise automatiquement. Pour le rétablir sur cette démarche, contactez-nous sur %{contact}."

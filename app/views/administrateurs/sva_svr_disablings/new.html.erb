@@ -1,0 +1,52 @@
+<% rule = @procedure.sva_svr_configuration.human_decision %>
+<% content_for(:title, t('.title', rule:)) %>
+<% render_procedure_sticky_title(@procedure) %>
+
+<%= render partial: 'shared/breadcrumbs_section',
+  locals: { steps: [[admin_procedures_back_label(@procedure), admin_procedures_back_path(@procedure)],
+                    [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)],
+                    ['Silence Vaut Accord ou Rejet', edit_admin_procedure_sva_svr_path(@procedure)],
+                    [t('.title', rule:)]] } %>
+
+<div class="fr-container fr-my-5w">
+  <div class="fr-grid-row">
+    <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
+      <h1 class="fr-h2"><%= t('.title', rule:) %></h1>
+
+      <%= render Dsfr::AlertComponent.new(title: t('.definitive_title'), state: :warning, with_prefix: false, heading_level: 'h2', extra_class_names: 'fr-mb-4w') do |c| %>
+        <% c.with_body do %>
+          <p><%= t('.definitive_body') %></p>
+        <% end %>
+      <% end %>
+
+      <ul class="fr-mb-4w">
+        <li><%= t('.new_dossiers_html') %></li>
+
+        <% if @pending_dossiers_count > 0 %>
+          <li>
+            <%= t('.pending_dossiers_html', count: @pending_dossiers_count, date: l(@earliest_decision_on, format: :long)) %>
+          </li>
+        <% else %>
+          <li><%= t('.no_pending_dossiers_html') %></li>
+        <% end %>
+      </ul>
+
+      <%= form_with url: admin_procedure_sva_svr_disabling_path(@procedure) do %>
+        <% if @pending_dossiers_count > 0 %>
+          <div class="fr-checkbox-group fr-mb-4w">
+            <%= check_box_tag :confirm, '1', false, required: true %>
+            <%= label_tag :confirm, t('.checkbox', count: @pending_dossiers_count), class: 'fr-label' %>
+          </div>
+        <% end %>
+
+        <ul class="fr-btns-group fr-btns-group--inline-md">
+          <li><%= submit_tag t('.submit'), class: 'fr-btn' %></li>
+
+          <li>
+            <%= link_to t('.cancel'), edit_admin_procedure_sva_svr_path(@procedure), class: 'fr-btn fr-btn--secondary' %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</div>

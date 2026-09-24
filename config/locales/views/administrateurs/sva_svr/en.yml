@@ -1,0 +1,5 @@
+en:
+  administrateurs:
+    sva_svr:
+      edit:
+        disabled_notice_html: "%{rule}, set to %{delay}, has been disabled since %{date}: no decision is taken automatically any more. To reinstate it on this procedure, contact us at %{contact}."

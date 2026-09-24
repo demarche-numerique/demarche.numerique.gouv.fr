@@ -23,5 +23,6 @@ en:
     reset_label: "Reset the delay"
     reset_hint: "Example: if the file is resubmitted on April 15 and the delay is 2 months, the decision will be automatically made on June 15, unless the instructor pronounces in the meantime or asks for corrections again."
   notice_new_files_only: "Information: if you activate this rule, only the newly submitted files will be subject to it."
-  notice_edit_denied: "Warning: SVA/SVR cannot be changed or disabled."
+  notice_edit_denied: "Settings can no longer be changed. Only disabling remains possible, and it is permanent."
+  disable: "Disable %{rule}"
   notice_incompatible_with_declarative_html: 'Warning: SVA/SVR is incompatible with declarative procedures. <a href="%{edit_admin_procedure_path}">Disable declarative mode</a> first.'

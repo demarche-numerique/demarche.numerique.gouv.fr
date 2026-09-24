@@ -15,9 +15,11 @@
       .fr-alert.fr-alert--warning.fr-alert--sm.fr-mb-4w
         %p= t('.notice_incompatible_with_declarative_html', edit_admin_procedure_path: edit_admin_procedure_path(procedure, section: "options-avancees", anchor: "declarative_with_state-legend"))
 
-    - if procedure.publiee? && procedure.sva_svr_enabled?
-      .fr-alert.fr-alert--warning.fr-alert--sm.fr-mb-4w
+    - if procedure.sva_svr_disablable?
+      .fr-alert.fr-alert--warning.fr-alert--sm.fr-mb-2w
         %p= t('.notice_edit_denied')
+      %p.fr-mb-4w
+        = link_to t('.disable', rule: configuration.human_decision), new_admin_procedure_sva_svr_disabling_path(procedure), class: 'fr-btn fr-btn--secondary'
 
     %fieldset.fr-fieldset
       %legend.fr-fieldset__legend= t(".rule")

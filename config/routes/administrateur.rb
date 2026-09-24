@@ -256,6 +256,7 @@ scope module: 'administrateurs', path: 'admin', as: 'admin', defaults: { nav_bar
     get 'attestation_template/preview' => 'attestation_templates#preview'
 
     resource :sva_svr, only: [:show, :edit, :update], controller: 'sva_svr'
+    resource :sva_svr_disabling, only: [:new, :create]
   end
 
   get 'mon-groupe' => 'groupe_gestionnaire#show', as: :groupe_gestionnaire
