@@ -159,7 +159,9 @@ module Experts
       end
 
       password = params.require(:user).permit(:password)[:password]
-      user = User.create_or_promote_to_expert(email, password)
+      # The row the lookup above authorised: looking it up again by the raw email
+      # param would miss a non normalized one and sign up a second account.
+      user = avis.expert.user
       user.reset_password(password, password)
 
       if user.valid?
