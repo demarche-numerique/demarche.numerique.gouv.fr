@@ -15,7 +15,7 @@
         <%= render_label %>
       </legend>
 
-      <div class="flex width-100">
+      <div class="flex width-100 align-end">
         <div class="fr-fieldset__element fr-fieldset__element--inline">
           <div class="flex column">
             <%= form.label "filter[filter][operator]", t(".operator"), class: 'fr-label fr-sr-only', for: input_id(value: "operator") %>
@@ -25,7 +25,30 @@
           </div>
         </div>
 
-        <% if is_operator_with_value? %>
+        <% if date_range? %>
+          <div
+            class="
+              fr-fieldset__element fr-fieldset__element--inline flex
+              align-center
+            "
+          >
+            <%= form.label "filter[filter][value][]", t(".from"), class: 'fr-label fr-mr-2w', for: input_id(value: "from") %>
+            <%= form.date_field "filter[filter][value][]", value: value.first, id: input_id(value: "from"), class: 'fr-input fr-mt-0' %>
+          </div>
+          <div
+            class="
+              fr-fieldset__element fr-fieldset__element--inline flex
+              align-center
+            "
+          >
+            <%= form.label "filter[filter][value][]", t(".to"), class: 'fr-label fr-mr-2w', for: input_id(value: "to") %>
+
+            <div class="fr-input-wrap fr-input-wrap--addon fr-mt-0">
+              <%= form.date_field "filter[filter][value][]", value: value.second, id: input_id(value: "to"), class: 'fr-input fr-mt-0' %>
+              <%= form.button t('.update'), class: 'fr-btn fr-icon-search-line' %>
+            </div>
+          </div>
+        <% elsif is_operator_with_value? %>
           <div class="fr-fieldset__element fr-fieldset__element--inline">
             <%= render Dsfr::InputComponent.new(form:, attribute: "filter[filter][value][]", input_type: :date_field, required: false, opts: { id: input_id(value: "value") }, label_opts: { class: 'fr-sr-only' }) do |c| %>
               <% c.with_label do %>

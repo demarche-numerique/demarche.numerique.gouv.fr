@@ -4,9 +4,12 @@ en:
     match: On
     before: Before
     after: After
+    between: Date range
     this_week: This week
     this_month: This month
     this_year: This year
+  from: From
+  to: To
   update: Update
   multi_select_placeholder: Select
   search_placeholder: Search

@@ -47,6 +47,28 @@ describe Instructeurs::ClearFilterButtonsComponent, type: :component do
       end
     end
 
+    context 'when filter is a date range' do
+      let(:filter) { to_filter(['Date de création', { operator: 'between', value: ['2023-06-15', '2023-06-30'] }]) }
+
+      it 'renders a single tag with both dates, removing the whole range' do
+        expect(page).to have_button(count: 1)
+        expect(page).to have_text("Date de création : du 15 juin 2023 au 30 juin 2023")
+        expect(page).to have_field('filter[filter][operator]', with: 'match', type: 'hidden')
+      end
+
+      context 'with only a start date' do
+        let(:filter) { to_filter(['Date de création', { operator: 'between', value: ['2023-06-15', ''] }]) }
+
+        it { expect(page).to have_text("Date de création : à partir du 15 juin 2023") }
+      end
+
+      context 'with only an end date' do
+        let(:filter) { to_filter(['Date de création', { operator: 'between', value: ['', '2023-06-30'] }]) }
+
+        it { expect(page).to have_text("Date de création : jusqu’au 30 juin 2023") }
+      end
+    end
+
     context 'when there are multiple filters' do
       let(:filters) do
         [

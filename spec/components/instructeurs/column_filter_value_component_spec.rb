@@ -40,6 +40,18 @@ describe Instructeurs::ColumnFilterValueComponent, type: :component do
     it { expect(page).to have_selector('input[name="filter[filter][value][]"][type="date"]', count: 1) }
   end
 
+  describe 'the date range case' do
+    let(:column) { double("Column", column: :value, type: :datetime, mandatory: true, h_id: {}, label: 'date') }
+    let(:filter) { { operator: 'between', value: ['2025-02-12', '2025-02-15'] } }
+
+    it 'renders a start and an end date, filled with the current range' do
+      expect(page).to have_select('Opérateur', selected: 'Période')
+      expect(page).to have_field('Du', type: 'date', with: '2025-02-12')
+      expect(page).to have_field('Au', type: 'date', with: '2025-02-15')
+      expect(page).to have_button('Mettre à jour', count: 1)
+    end
+  end
+
   describe 'the yes no case' do
     let(:column) { double("Column", column: :value, type: :boolean, tdc_type: "yes_no", options_for_select: Champs::YesNoChamp.options, mandatory:, h_id: {}, label: 'oui non') }
 

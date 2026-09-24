@@ -4,9 +4,12 @@ fr:
     match: Le
     before: Avant le
     after: Après le
+    between: Période
     this_week: Cette semaine
     this_month: Ce mois
     this_year: Cette année
+  from: Du
+  to: Au
   update: Mettre à jour
   multi_select_placeholder: Sélectionner
   search_placeholder: Rechercher

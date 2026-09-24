@@ -7,3 +7,7 @@ en:
     this_week: 'this week'
     this_month: 'this month'
     this_year: 'this year'
+  date_range:
+    between: 'from %{start_date} to %{end_date}'
+    since: 'from %{start_date}'
+    until: 'until %{end_date}'
