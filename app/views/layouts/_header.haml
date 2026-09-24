@@ -44,7 +44,8 @@
                   - if request.path == new_user_registration_path
                     %li.fr-hidden-sm.fr-unhidden-lg.fr-link--sm.fr-mr-1v= t('views.shared.account.already_user_question')
                   - if request.path != new_user_session_path && !content_for?(:hide_header_signin)
-                    %li= link_to t('views.shared.account.signin'), new_user_session_path(with_proconnect: true), class: "fr-btn fr-btn--tertiary fr-icon-account-circle-fill fr-btn--icon-left"
+                    - signin_path = controller.try(:administrateur_device?) ? pro_connect_path : new_user_session_path(with_proconnect: true)
+                    %li= link_to t('views.shared.account.signin'), signin_path, class: "fr-btn fr-btn--tertiary fr-icon-account-circle-fill fr-btn--icon-left"
                   - if request.path != pro_connect_path
                     %li= link_to t('views.shared.account.professional'),
                       content_for(:pro_connect_path) || pro_connect_path,

@@ -60,6 +60,8 @@ class ProConnectController < ApplicationController
     mfa_already_forced = cookies.encrypted[MFA_FORCED_COOKIE_NAME] == email
     cookies.delete MFA_FORCED_COOKIE_NAME
 
+    remember_administrateur_device if user.administrateur&.pro_connect_required?
+
     if !mfa && must_force_mfa?(user, user_info)
       return redirect_pro_connect_mfa_failed if mfa_already_forced
 

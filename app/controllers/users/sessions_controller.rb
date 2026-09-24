@@ -25,12 +25,14 @@ class Users::SessionsController < Devise::SessionsController
       if resource.administrateur&.pro_connect_required?
         sign_out(resource)
         flash.discard(:notice)
+        remember_administrateur_device
         return redirect_to_pro_connect_required
       end
 
       resource.update_tracked_fields!(request)
       delete_france_connect_cookies
       delete_pro_connect_session_info_cookie
+      forget_administrateur_device if resource.administrateur
       resource.update(loged_in_with_france_connect: nil)
       resource.update_preferred_domain(Current.host)
     end

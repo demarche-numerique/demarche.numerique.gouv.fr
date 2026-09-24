@@ -168,6 +168,33 @@ describe Users::SessionsController, type: :controller do
       end
     end
 
+    context 'when the browser is marked as an administrateur one' do
+      let(:device_cookie_name) { ProConnectSessionConcern::ADMINISTRATEUR_DEVICE_COOKIE_NAME.to_s }
+
+      before { cookies[device_cookie_name] = '1' }
+
+      it 'keeps the mark when a citizen signs in' do
+        subject
+
+        expect(controller.current_user).to eq(user)
+        expect(response.cookies.keys).not_to include(device_cookie_name)
+      end
+
+      context 'when an administrateur free to use a password signs in' do
+        let(:user) { administrateurs.default.user }
+        let(:email) { user.email }
+        let(:password) { users.default_password }
+
+        it 'forgets the mark' do
+          subject
+
+          expect(controller.current_user).to eq(user)
+          expect(response.cookies.keys).to include(device_cookie_name)
+          expect(response.cookies[device_cookie_name]).to be_nil
+        end
+      end
+    end
+
     xcontext 'when email domain is in mandatory list' do
       let(:email) { 'user@beta.gouv.fr' }
       it 'redirects to pro connect with force parameter and is not logged in' do
