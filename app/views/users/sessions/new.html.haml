@@ -3,21 +3,12 @@
 - invite_context = params[:context] == 'invite'
 - if invite_context
   = content_for(:hide_header_signin, true)
+- content_for(:notice_info, render(ProConnectAdministrateurAnnouncementComponent.new))
 
 #session-new.auth-form.sign-in-form
-  = form_for resource, url: user_session_path, html: { class: "fr-py-5w" } do |f|
-
-    %h1.fr-h2= t('views.users.sessions.new.sign_in', application_name: Current.application_name)
-
-    = render partial: 'shared/france_connect_login', locals: { url: france_connect_path }
-    - if invite_context || params[:with_proconnect]
-      = render ProConnectLoginComponent.new
-
-    %p.fr-hr-or= t('views.shared.france_connect_login.separator')
-
-    %fieldset.fr-mb-0.fr-fieldset{ aria: { labelledby: 'new-account-legend' } }
-      %legend.fr-fieldset__legend#new-account-legend
-        %h2.fr-h6= t('views.users.sessions.new.subtitle')
+  - if pro_connect_only_login? && !invite_context
+    .fr-py-5w
+      %h1.fr-h2= t('views.users.sessions.new.sign_in', application_name: Current.application_name)
 
       - banner = banner_for(:login_page)
       - if banner&.active?
@@ -25,26 +16,51 @@
           - c.with_title do
             = sanitize_banner(banner.content)
 
-      .fr-fieldset__element
-        %p.fr-text--sm= t('utils.asterisk_html')
+      = render ProConnectLoginComponent.new
 
-      .fr-fieldset__element= render Dsfr::InputComponent.new(form: f, attribute: :email, input_type: :email_field, opts: { autocomplete: 'email', autofocus: true })
+      .fr-background-alt--blue-france.fr-p-4w
+        = render ParticulierLoginComponent.new
+  - else
+    = form_for resource, url: user_session_path(particulier: params[:particulier]), html: { class: "fr-py-5w" } do |f|
 
-      .fr-fieldset__element
-        = render Dsfr::InputComponent.new(form: f, attribute: :password, input_type: :password_field, opts: { autocomplete: 'current-password', 'data-email-input-target': 'next' })
+      %h1.fr-h2= t('views.users.sessions.new.sign_in', application_name: Current.application_name)
 
-        %p= link_to t('views.users.sessions.new.reset_password'), new_user_password_path, class: "fr-link"
+      = render partial: 'shared/france_connect_login', locals: { url: france_connect_path }
+      - if invite_context || params[:with_proconnect]
+        = render ProConnectLoginComponent.new
+
+      %p.fr-hr-or= t('views.shared.france_connect_login.separator')
+
+      %fieldset.fr-mb-0.fr-fieldset{ aria: { labelledby: 'new-account-legend' } }
+        %legend.fr-fieldset__legend#new-account-legend
+          %h2.fr-h6= t('views.users.sessions.new.subtitle')
+
+        - banner = banner_for(:login_page)
+        - if banner&.active?
+          = render Dsfr::NoticeComponent.new(closable: false, extra_class_names: 'banner-notice') do |c|
+            - c.with_title do
+              = sanitize_banner(banner.content)
+
+        .fr-fieldset__element
+          %p.fr-text--sm= t('utils.asterisk_html')
+
+        .fr-fieldset__element= render Dsfr::InputComponent.new(form: f, attribute: :email, input_type: :email_field, opts: { autocomplete: 'email', autofocus: true })
+
+        .fr-fieldset__element
+          = render Dsfr::InputComponent.new(form: f, attribute: :password, input_type: :password_field, opts: { autocomplete: 'current-password', 'data-email-input-target': 'next' })
+
+          %p= link_to t('views.users.sessions.new.reset_password'), new_user_password_path, class: "fr-link"
 
 
-      .fr-fieldset__element
-        .fr-checkbox-group.fr-checkbox-group--sm
-          = f.check_box :remember_me
-          = f.label :remember_me, t('views.users.sessions.new.remember_me'), class: 'fr-label'
+        .fr-fieldset__element
+          .fr-checkbox-group.fr-checkbox-group--sm
+            = f.check_box :remember_me
+            = f.label :remember_me, t('views.users.sessions.new.remember_me'), class: 'fr-label'
 
-      .fr-fieldset__element.fr-mt-1w
-        .fr-btns-group= f.submit t('views.users.sessions.new.connection'), class: "fr-btn"
+        .fr-fieldset__element.fr-mt-1w
+          .fr-btns-group= f.submit t('views.users.sessions.new.connection'), class: "fr-btn"
 
-    - if invite_context
-      %h2.fr-h6.fr-mt-4w= t('views.users.sessions.new_invite.no_account')
-      .fr-btns-group
-        = link_to t('views.shared.account.create', application_name: Current.application_name), new_user_registration_path, class: "fr-btn fr-btn--secondary"
+      - if invite_context
+        %h2.fr-h6.fr-mt-4w= t('views.users.sessions.new_invite.no_account')
+        .fr-btns-group
+          = link_to t('views.shared.account.create', application_name: Current.application_name), new_user_registration_path, class: "fr-btn fr-btn--secondary"

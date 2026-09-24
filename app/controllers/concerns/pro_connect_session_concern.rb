@@ -4,9 +4,10 @@ module ProConnectSessionConcern
   extend ActiveSupport::Concern
 
   SESSION_INFO_COOKIE_NAME = :pro_connect_session_info
+  ADMINISTRATEUR_DEVICE_COOKIE_NAME = :administrateur_device
 
   included do
-    helper_method :logged_in_with_pro_connect?
+    helper_method :logged_in_with_pro_connect?, :pro_connect_only_login?
   end
 
   def set_pro_connect_session_info_cookie(user_id, mfa: false)
@@ -32,6 +33,24 @@ module ProConnectSessionConcern
 
   def delete_pro_connect_session_info_cookie
     cookies.delete SESSION_INFO_COOKIE_NAME
+  end
+
+  def remember_administrateur_device
+    cookies[ADMINISTRATEUR_DEVICE_COOKIE_NAME] = {
+      value: '1',
+      expires: 1.year.from_now,
+      secure: Rails.env.production?,
+      httponly: true,
+    }
+  end
+
+  def forget_administrateur_device
+    cookies.delete ADMINISTRATEUR_DEVICE_COOKIE_NAME
+  end
+
+  def pro_connect_only_login?
+    params[:force_pro_connect].present? ||
+      (cookies[ADMINISTRATEUR_DEVICE_COOKIE_NAME].present? && params[:particulier].blank?)
   end
 
   def redirect_to_pro_connect_required
