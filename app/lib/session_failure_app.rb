@@ -18,14 +18,14 @@ class SessionFailureApp < Devise::FailureApp
     # then the scope is logged out, so no later request recomputes why. The
     # flash is the only thing that reaches the page they land on.
     if http_auth?
-      remember_why! if @end_reason.present?
+      remember_why! if @end_reason.present? || request.flash[SESSION_ENDED_KEY]
 
       return super
     end
 
     return super if !frame_navigation?
 
-    request.flash[:alert] = i18n_message
+    remember_why!
     store_location!
 
     headers[REDIRECT_HEADER] = scope_url
@@ -45,18 +45,29 @@ class SessionFailureApp < Devise::FailureApp
   # The reason exists on the first rejected request only: the scope is logged
   # out by then, so nothing recomputes it. The client that gets this 401 throws
   # the body away and reloads, and that reload is another failure -- which would
-  # write the generic message over ours. Marked and kept for one more hop, the
-  # way Devise keeps its own `:timedout` message.
+  # write the generic message over ours. Marked and kept, the way Devise keeps its
+  # own `:timedout` message.
+  #
+  # The one place that writes it, so no branch can mark a message it explains or
+  # overwrite one already marked. A page carrying several lazy frames fails once
+  # per frame, so the explanation is kept for as long as failures keep coming --
+  # each hop being another failure, it cannot outlive the trouble it explains.
   def remember_why!
+    if request.flash[SESSION_ENDED_KEY] && @end_reason.blank?
+      request.flash.keep(:alert)
+      request.flash.keep(SESSION_ENDED_KEY)
+
+      return
+    end
+
     request.flash[:alert] = i18n_message
-    request.flash[SESSION_ENDED_KEY] = true
+    request.flash[SESSION_ENDED_KEY] = true if @end_reason.present?
   end
 
-  # The marker is not kept, so the message survives exactly one hop.
   def redirect
     return super if !request.flash[SESSION_ENDED_KEY]
 
-    request.flash.keep(:alert)
+    remember_why!
     store_location!
     redirect_to redirect_url
   end

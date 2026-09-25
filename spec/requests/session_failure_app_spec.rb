@@ -113,6 +113,20 @@ describe 'the session failure app', type: :request do
       expect(response.body).to include(I18n.t('devise.failure.logout_all'))
     end
 
+    # A page carrying several lazy frames fails once per frame, and only the first
+    # of them has a reason to compute. Without the marker the generic message was
+    # written over the one that explains.
+    it 'keeps its reason through the failures a page of frames produces' do
+      get profil_path, headers: { 'Turbo-Frame' => 'a-modal' }
+      expect(flash[:alert]).to eq(I18n.t('devise.failure.logout_all'))
+
+      get profil_path, headers: { 'Turbo-Frame' => 'a-sibling-modal' }
+      get profil_path
+      follow_redirect!
+
+      expect(response.body).to include(I18n.t('devise.failure.logout_all'))
+    end
+
     it 'reads the reason once, so the next failure does not inherit it' do
       get profil_path
       get profil_path
