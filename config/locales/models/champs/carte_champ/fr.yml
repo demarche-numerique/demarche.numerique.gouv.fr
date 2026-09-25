@@ -3,5 +3,5 @@ fr:
     attributes:
       champs/carte_champ:
         hints:
-          value_html: |
-            Besoin d’aide ? <a href="https://doc.demarches-simplifiees.fr/pour-aller-plus-loin/cartographie" target="_blank" rel="noreferrer">consulter les tutoriels video</a>
+          help_html: Besoin d’aide ? %{link}
+          help_link: consulter les tutoriels video

@@ -16,7 +16,9 @@
   <h2 class="fr-my-4w"><%= t(".no_consent_banner_title") %></h2>
 
   <p>
-    <%= t(".no_consent_banner_text_html") %>
+    <%= t(".no_consent_banner_text_html",
+      matomo_link: link_to("Matomo", "https://matomo.org/", **external_link_attributes("Matomo")),
+      free_software_link: link_to(t(".free_software_link"), "https://matomo.org/free-software/", **external_link_attributes(t(".free_software_link")))) %>
   </p>
 
   <h2 class="fr-my-4w"><%= t(".disable_tracking_title") %></h2>

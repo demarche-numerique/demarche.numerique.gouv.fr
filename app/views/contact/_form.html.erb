@@ -32,7 +32,11 @@
               <%= render Dsfr::CalloutComponent.new(title: t('.our_answer')) do |c| %>
                 <% c.with_html_body do %>
                   <%# i18n-tasks-use t("contact.index.#{question_type}.answer_html") %>
-                  <%= t('answer_html', scope: [:contact, :index, question_type], base_url: Current.application_base_url, "link_#{question_type}": link) %>
+                  <% if question_type == ContactForm::TYPE_AMELIORATION %>
+                    <%= t('answer_html', scope: [:contact, :index, question_type], dashboard_link: link_to(t('contact.index.product.dashboard_link'), link, **external_link_attributes(t('contact.index.product.dashboard_link')))) %>
+                  <% else %>
+                    <%= t('answer_html', scope: [:contact, :index, question_type], base_url: Current.application_base_url, "link_#{question_type}": link) %>
+                  <% end %>
                 <% end %>
               <% end %>
             </div>

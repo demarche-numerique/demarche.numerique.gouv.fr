@@ -38,8 +38,9 @@ en:
           <p>If you are facing technical issues on the website, use the form below. We will not be able to inform you about the instruction of your application.</p>'
       product:
         question: I have an idea to improve the website
+        dashboard_link: Please check our enhancement dashboard
         answer_html:
-          '<p>Got an idea? <a href="%{link_product}" rel="noopener noreferrer" target="_blank" title="Please check our enhancement dashboard - New tab">Please check our enhancement dashboard</a> :</p>
+          '<p>Got an idea? %{dashboard_link} :</p>
           <ul><li>Vote for your priority improvements</li>
           <li>Share your own ideas</li></ul>'
       lost_user:

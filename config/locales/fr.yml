@@ -151,7 +151,7 @@ fr:
           intro: "Les usagers peuvent suivre les mesures engagées par le service pour améliorer l’accessibilité du site grâce au "
           label: "programme d’amélioration continue de DS en matière d’accessibilité"
           url: "https://github.com/demarche-numerique/demarche.numerique.gouv.fr/issues?q=accessibilit%C3%A9+"
-          title: "programme d’amélioration continue de DS en matière d’accessibilité - nouvel onglet"
+          title: "programme d’amélioration continue de DS en matière d’accessibilité"
       no_accessible:
         title: "Contenus non accessibles"
         subtitle_one: "Non-conformités"
@@ -191,7 +191,7 @@ fr:
         techno_ruby:
           label: "Ruby on Rails"
           url: "https://rubyonrails.org/"
-          title: "Ruby on Rails - nouvel onglet"
+          title: "Ruby on Rails"
         subtitle_two: "Environnement de test"
         environment_intro: "Les vérifications de restitution de contenus ont été réalisées sur la base d’une combinaison fournie par la base de référence du RGAA, avec les versions suivantes :"
         environment_one: "Chrome 134 et NVDA 2024.4.2"
@@ -241,12 +241,12 @@ fr:
         remedies_one:
           label: "Un formulaire de contact"
           url: "https://www.defenseurdesdroits.fr/nous-contacter"
-          title: "Un formulaire de contact - nouvel onglet"
+          title: "Un formulaire de contact"
           info: "Choisissez la thématique « Je suis victime de discrimination » puis « Biens et services privés » et enfin « Handicap »."
         remedies_two:
           label: "Contacter le délégué du Défenseur des droits dans votre région"
           url: "https://www.defenseurdesdroits.fr/fr/saisir/delegues"
-          title: "Contacter le délégué du Défenseur des droits dans votre région - nouvel onglet"
+          title: "Contacter le délégué du Défenseur des droits dans votre région"
         remedies_three_html: "Envoyer un courrier par la poste (gratuit, ne pas mettre de timbre) à l’adresse suivante :
           <p class=\"fr-mb-2w\">Défenseur des droits
           <br >Libre réponse 71120
@@ -287,11 +287,11 @@ fr:
           iban_html: Un numéro Iban
           yes_no_html: '"true" pour Oui, "false" pour Non'
           checkbox_html: '"true" pour coché, "false" pour décoché'
-          pays_html: Un <a href="https://en.wikipedia.org/wiki/ISO_3166-2" target="_blank" rel="noopener noreferrer">code pays ISO 3166-2</a>
-          regions_html: Un <a href="https://fr.wikipedia.org/wiki/R%C3%A9gion_fran%C3%A7aise" target="_blank" rel="noopener noreferrer">code INSEE de région</a>
-          departements_html: Un <a href="https://fr.wikipedia.org/wiki/Num%C3%A9rotation_des_d%C3%A9partements_fran%C3%A7ais" target="_blank">numéro de département</a>
-          communes_html: Un tableau contenant le code postal et <a href="https://geo.api.gouv.fr/communes" target="_blank" rel="noopener noreferrer">le code INSEE de la commune</a>
-          address_html: Une adresse EXACTEMENT formatée telle que le label retourné par <a href="https://adresse.data.gouv.fr" target="_blank" rel="noopener noreferrer">la Base Adresse Nationale</a>
+          pays_html: Un %{link}
+          regions_html: Un %{link}
+          departements_html: Un %{link}
+          communes_html: Un tableau contenant le code postal et %{link}
+          address_html: Une adresse EXACTEMENT formatée telle que le label retourné par %{link}
           drop_down_list_html: Un choix parmi ceux sélectionnés à la création de la procédure
           datetime_html: Datetime au format ISO8601
           date_html: Date au format ISO8601
@@ -299,9 +299,17 @@ fr:
           rna_html: Un numéro RNA
           siret_html: Un numéro de SIRET
           repetition_html: Un tableau de dictionnaires avec les valeurs possibles pour chaque champ de la répétition.
-          annuaire_education_html: Un code d’établissement scolaire, tel que défini par <a href="https://api.gouv.fr/les-api/api-annuaire-education" target="_blank" rel="noopener noreferrer">l’Annuaire de l’Éducation Nationale</a>
+          annuaire_education_html: Un code d’établissement scolaire, tel que défini par %{link}
           dossier_link_html: L’identifiant du dossier, sous forme de nombre entier
-          epci_html: Un tableau contenant le code de département et <a href="https://geo.api.gouv.fr/epcis" target="_blank" rel="noopener noreferrer">celui de l’EPCI</a>
+          epci_html: Un tableau contenant le code de département et %{link}
+          reference_links:
+            pays: code pays ISO 3166-2
+            regions: code INSEE de région
+            departements: numéro de département
+            communes: le code INSEE de la commune
+            address: la Base Adresse Nationale
+            epci: celui de l’EPCI
+            annuaire_education: l’Annuaire de l’Éducation Nationale
         examples:
           title: Exemple
           prenom: "Jean"
@@ -484,9 +492,11 @@ fr:
         archives_notice_title: Archivage des dossiers
         archives_notice_html: |
           Ces dossiers seront supprimés lorsque leur délai de conservation dans %{app_name} (%{duration_months} mois) sera expiré.
-          <a href="%{doc_url}" rel="external noopener" target="_blank" title="Documentation sur l’archivage des dossiers">En savoir plus</a>
+          %{link}
           <br>
           Pour sauvegarder et archiver vos dossiers sur votre serveur, vous devez les télécharger.
+        archives_notice_link: En savoir plus
+        archives_notice_link_title: Documentation sur l’archivage des dossiers
       avis:
         introduction_file_explaination: "Fichier joint à la demande d’avis"
       search:
@@ -709,7 +719,8 @@ fr:
           flash_alert: "Vous devez vous connecter ou créer un compte pour continuer."
           no_account: "Vous n’avez pas de compte"
         link_sent:
-          consult_help_page_html: Si vous voyez cette page trop souvent, <a target="_blank" rel="noopener noreferrer" href="%{href}">consultez notre aide</a>.
+          consult_help_page_html: Si vous voyez cette page trop souvent, %{link}.
+          consult_help_page_link: consultez notre aide
           email_cta_html: "Nous avons besoin de vérifier votre adresse électronique <strong>%{email}</strong>."
         trusted_device_renewal_notice:
           one: "Votre connexion sécurisée a bien été renouvelée. Votre navigateur est authentifié pour %{count} jour."
@@ -1130,8 +1141,12 @@ fr:
       auto_archive_on: sera clôturée le
     jetons:
       index:
-        api_entreprise_description_html: "%{app_name} utilise <a target=\"_blank\" rel=\"noopener\" title=\"En savoir plus sur API Entreprise — Nouvel onglet\" href=\"https://entreprise.api.gouv.fr/\">API Entreprise</a> qui permet de récupérer les informations administratives des entreprises et des associations.<br />Si vous avez besoin d’informations complémentaires, vous pouvez demander votre propre habilitation API Entreprise en cliquant sur le lien suivant <a target=\"_blank\" rel=\"noopener\" title=\"Demander une habilitation API Entreprise — Nouvel onglet\" href=\"https://www.data.gouv.fr/dataservices/api-entreprise\">https://www.data.gouv.fr/dataservices/api-entreprise</a>."
-        api_particulier_description_html: "%{app_name} utilise <a target=\"_blank\" rel=\"noopener\" title=\"En savoir plus sur API Particulier — Nouvel onglet\" href=\"https://particulier.api.gouv.fr/\">API Particulier</a> qui permet d’accéder aux données familiales (CAF ou MSA), au statut étudiant boursier, au statut allocation d’éducation de l’enfant handicapé (AEEH), au statut allocation adulte handicapé (AAH), et au statut d’allocation de rentrée scolaire (ARS).<br />Pour en bénéficier, demandez une habilitation API Particulier en cliquant sur le lien suivant <a target=\"_blank\" rel=\"noopener\" title=\"Demander une habilitation API Particulier — Nouvel onglet\" href=\"https://datapass.api.gouv.fr/formulaires/api-particulier-demarche-numerique/demande/nouveau\">https://datapass.api.gouv.fr/formulaires/api-particulier-demarche-numerique/demande/nouveau</a>."
+        api_entreprise_description_html: "%{app_name} utilise %{api_link} qui permet de récupérer les informations administratives des entreprises et des associations.<br />Si vous avez besoin d’informations complémentaires, vous pouvez demander votre propre habilitation API Entreprise en cliquant sur le lien suivant %{habilitation_link}."
+        api_particulier_description_html: "%{app_name} utilise %{api_link} qui permet d’accéder aux données familiales (CAF ou MSA), au statut étudiant boursier, au statut allocation d’éducation de l’enfant handicapé (AEEH), au statut allocation adulte handicapé (AAH), et au statut d’allocation de rentrée scolaire (ARS).<br />Pour en bénéficier, demandez une habilitation API Particulier en cliquant sur le lien suivant %{habilitation_link}."
+        api_entreprise_link_title: En savoir plus sur API Entreprise
+        api_entreprise_habilitation_title: Demander une habilitation API Entreprise
+        api_particulier_link_title: En savoir plus sur API Particulier
+        api_particulier_habilitation_title: Demander une habilitation API Particulier
   france_connect:
     choose_email:
       intro_html: "Votre compte FranceConnect utilise <span class='fr-badge fr-badge--info fr-badge--no-icon fr-badge--lowercase'>%{email}</span> comme email de contact."

@@ -47,7 +47,8 @@
               %p
                 %span.fr-notice__title= t('views.instructeurs.dossiers.archives_notice_title')
                 %span.fr-notice__desc
-                  = t('views.instructeurs.dossiers.archives_notice_html', app_name: APPLICATION_NAME, duration_months: @procedure.duree_conservation_dossiers_dans_ds, doc_url: ARCHIVAGE_DOC_URL)
+                  = t('views.instructeurs.dossiers.archives_notice_html', app_name: APPLICATION_NAME, duration_months: @procedure.duree_conservation_dossiers_dans_ds,
+                    link: link_to(t('views.instructeurs.dossiers.archives_notice_link'), ARCHIVAGE_DOC_URL, hreflang: "fr", **external_link_attributes(t('views.instructeurs.dossiers.archives_notice_link_title'))))
 
       %div{ data: batch_operation_component.render? ? { controller: 'batch-operation', 'batch-operation-limit-value': BatchOperation::BATCH_SELECTION_LIMIT } : {} }
         .flex.align-center.fr-mt-2w

@@ -14,7 +14,9 @@
   %h2.fr-h4 API Entreprise
 
   %p
-    = t('.api_entreprise_description_html', app_name: Current.application_name)
+    = t('.api_entreprise_description_html', app_name: Current.application_name,
+      api_link: link_to("API Entreprise", "https://entreprise.api.gouv.fr/", **external_link_attributes(t('.api_entreprise_link_title'))),
+      habilitation_link: link_to("https://www.data.gouv.fr/dataservices/api-entreprise", "https://www.data.gouv.fr/dataservices/api-entreprise", **external_link_attributes(t('.api_entreprise_habilitation_title'))))
 
   - if @procedure.specific_api_entreprise_token?
     .fr-table.fr-table--lg#api_entreprise
@@ -59,7 +61,9 @@
   %hr.fr-hr.fr-mt-5w.fr-mb-1w
   %h2.fr-h4 API Particulier
   %p
-    = t('.api_particulier_description_html', app_name: Current.application_name)
+    = t('.api_particulier_description_html', app_name: Current.application_name,
+      api_link: link_to("API Particulier", "https://particulier.api.gouv.fr/", **external_link_attributes(t('.api_particulier_link_title'))),
+      habilitation_link: link_to("https://datapass.api.gouv.fr/formulaires/api-particulier-demarche-numerique/demande/nouveau", "https://datapass.api.gouv.fr/formulaires/api-particulier-demarche-numerique/demande/nouveau", **external_link_attributes(t('.api_particulier_habilitation_title'))))
 
   - if @procedure.api_particulier_token?
     .fr-table.fr-table--lg
