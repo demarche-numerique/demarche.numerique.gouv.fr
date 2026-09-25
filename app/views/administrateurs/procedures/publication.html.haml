@@ -27,7 +27,7 @@
             = render partial: 'publication_form', locals: { procedure: @procedure, administrateur: @current_administrateur }
           - elsif @procedure.publiee?
             %p= t('.published_procedure_html')
-            = link_to commencer_url(@procedure.path), commencer_url(@procedure.path), target: :blank, rel: :noopener, class: "mb-4"
+            = link_to commencer_url(@procedure.path), commencer_url(@procedure.path), target: "_blank", rel: "noopener", class: "mb-4"
 
             = render Dsfr::AlertComponent.new(state: :info, size: :sm, extra_class_names: 'fr-my-2w') do |c|
               - c.with_body do
