@@ -885,15 +885,7 @@ class Dossier < ApplicationRecord
       return attestation_depot_pdf.blob.download
     end
 
-    html = ApplicationController.render(
-      template: 'users/dossiers/attestation_depot',
-      layout: 'attestation',
-      assigns: { dossier: self }
-    )
-
-    options = { procedure_id: procedure.id, dossier_id: id }
-
-    pdf = WeasyprintService.generate_pdf(html, options)
+    pdf = AttestationDepotService.render(self)
 
     attestation_depot_pdf.attach(
       io: StringIO.new(pdf),
