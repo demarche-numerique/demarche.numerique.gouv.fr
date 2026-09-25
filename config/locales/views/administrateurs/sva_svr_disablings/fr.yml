@@ -1,0 +1,19 @@
+fr:
+  administrateurs:
+    sva_svr_disablings:
+      new:
+        title: Désactiver le %{rule}
+        definitive_title: Cette désactivation est définitive
+        definitive_body: Pour rétablir la règle sur cette démarche, il faudra nous contacter.
+        new_dossiers_html: "<strong>Plus aucune décision automatique</strong>, ni sur les nouveaux dossiers ni sur ceux déjà déposés."
+        pending_dossiers_html:
+          one: "<strong>1 dossier en instruction</strong> garde la date de décision annoncée à l’usager : vos instructeurs devront le traiter <strong>au plus tard le %{date}</strong>."
+          other: "<strong>%{count} dossiers en instruction</strong> gardent la date de décision annoncée à l’usager : vos instructeurs devront les traiter <strong>au plus tard à leur date</strong>, la plus proche le <strong>%{date}</strong>."
+        no_pending_dossiers_html: "<strong>Dossiers en instruction :</strong> aucun n’attend de décision automatique."
+        checkbox:
+          one: "J’ai compris : mes instructeurs devront traiter ce dossier eux-mêmes."
+          other: "J’ai compris : mes instructeurs devront traiter ces %{count} dossiers eux-mêmes."
+        submit: Désactiver définitivement
+        cancel: Annuler
+      create:
+        notice: Le %{rule} a été désactivé.

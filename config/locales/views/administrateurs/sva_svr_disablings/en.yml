@@ -1,0 +1,19 @@
+en:
+  administrateurs:
+    sva_svr_disablings:
+      new:
+        title: Disable %{rule}
+        definitive_title: This is permanent
+        definitive_body: Reinstating the rule on this procedure will require contacting us.
+        new_dossiers_html: "<strong>No automatic decision any more</strong>, neither on new files nor on those already submitted."
+        pending_dossiers_html:
+          one: "<strong>1 file under instruction</strong> keeps the decision date announced to the applicant: your instructors must process it <strong>no later than %{date}</strong>."
+          other: "<strong>%{count} files under instruction</strong> keep the decision date announced to the applicant: your instructors must process them <strong>no later than their own date</strong>, the earliest on <strong>%{date}</strong>."
+        no_pending_dossiers_html: "<strong>Files under instruction:</strong> none is awaiting an automatic decision."
+        checkbox:
+          one: "I understand: my instructors will have to process this file themselves."
+          other: "I understand: my instructors will have to process these %{count} files themselves."
+        submit: Disable permanently
+        cancel: Cancel
+      create:
+        notice: "%{rule} has been disabled."
