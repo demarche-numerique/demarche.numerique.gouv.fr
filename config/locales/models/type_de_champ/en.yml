@@ -15,7 +15,7 @@ en:
         type_champs:
           header_section: 'Header section'
           repetition: 'Repetition'
-          dossier_link: 'File link'
+          dossier_link: 'Link to another %{app_name} file'
           explication: 'Explication'
           civilite: 'Civility'
           email: 'Email'

@@ -40,7 +40,7 @@ class TypesDeChampEditor::TypeDeChampSelectorComponent < ApplicationComponent
         {
           id: category,
           label: t(category, scope: cat_scope),
-          items: klasses.map { { value: it.sti_name, label: t(it.sti_name, scope: tdc_scope), icon: it.icon } },
+          items: klasses.map { { value: it.sti_name, label: t(it.sti_name, scope: tdc_scope, app_name: APPLICATION_NAME), icon: it.icon } },
         }
       end
   end

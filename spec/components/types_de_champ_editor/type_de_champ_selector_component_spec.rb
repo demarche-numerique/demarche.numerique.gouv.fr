@@ -42,6 +42,14 @@ describe TypesDeChampEditor::TypeDeChampSelectorComponent, type: :component do
     end
   end
 
+  describe 'the dossier_link type' do
+    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :dossier_link }]) }
+
+    it 'names the instance, so it does not read as a link to any dossier out there' do
+      expect(items.find { it['value'] == 'dossier_link' }['label']).to eq("Lien vers un autre dossier #{APPLICATION_NAME}")
+    end
+  end
+
   describe 'the legacy number type' do
     let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text }, { type: :number }]) }
 

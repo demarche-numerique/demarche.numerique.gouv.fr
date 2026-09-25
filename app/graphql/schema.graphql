@@ -5904,7 +5904,7 @@ enum TypeDeChamp {
   departements
 
   """
-  Lien vers un autre dossier
+  Lien vers un autre dossier demarche.numerique.gouv.fr
   """
   dossier_link
 

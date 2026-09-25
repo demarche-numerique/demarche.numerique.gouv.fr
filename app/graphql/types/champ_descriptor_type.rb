@@ -7,7 +7,7 @@ module Types
     class TypeDeChampType < Types::BaseEnum
       TypeDeChamp.type_champs.each do |symbol_name, string_name|
         value(string_name,
-          I18n.t(symbol_name, scope: [:activerecord, :attributes, :type_de_champ, :type_champs]),
+          I18n.t(symbol_name, scope: [:activerecord, :attributes, :type_de_champ, :type_champs], app_name: APPLICATION_NAME),
           value: symbol_name)
       end
     end
