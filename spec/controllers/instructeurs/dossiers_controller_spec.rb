@@ -2190,6 +2190,7 @@ describe Instructeurs::DossiersController, type: :controller do
       get :rendez_vous, params: {
         procedure_id: procedure.id,
         dossier_id: dossier.id,
+        statut: 'a-suivre',
       }
     end
 
@@ -2201,6 +2202,19 @@ describe Instructeurs::DossiersController, type: :controller do
       it 'should not crash' do
         expect { subject }.not_to raise_error
         expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'when RDV Service Public rejects the refresh token' do
+      let!(:rdv_connection) { create(:rdv_connection, instructeur:, expires_at: 1.day.ago) }
+
+      include_context "with a failing RDV Service Public token refresh"
+
+      it 'asks the instructeur to reconnect' do
+        subject
+
+        expect(response).to redirect_to(rendez_vous_instructeur_dossier_path(procedure, dossier, statut: 'a-suivre'))
+        expect(flash.alert).to eq(I18n.t('instructeurs.rdv_connections.revoked'))
       end
     end
   end
