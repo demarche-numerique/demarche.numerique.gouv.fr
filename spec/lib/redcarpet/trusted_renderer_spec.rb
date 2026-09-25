@@ -10,9 +10,9 @@ RSpec.describe Redcarpet::TrustedRenderer do
       expect(renderer.render(markdown)).to include('<a href="/internal">Click here</a>')
     end
 
-    it 'renders external links with target="_blank" and rel="noopener noreferrer"' do
+    it 'renders external links with target="_blank" and rel="noopener external"' do
       markdown = "[Visit](http://example.com)"
-      expect(renderer.render(markdown)).to include('<a href="http://example.com" title="Visit — Nouvel onglet" target="_blank" rel="noopener noreferrer">Visit</a>')
+      expect(renderer.render(markdown)).to include('<a href="http://example.com" title="Visit — Nouvel onglet" target="_blank" rel="noopener external">Visit</a>')
     end
   end
 
@@ -31,7 +31,7 @@ RSpec.describe Redcarpet::TrustedRenderer do
   context 'when autolinking' do
     it 'autolinks URLs' do
       markdown = "Visit http://example.com"
-      expect(renderer.render(markdown)).to include('Visit <a href="http://example.com" title="http://example.com — Nouvel onglet" target="_blank" rel="noopener noreferrer">http://example.com</a>')
+      expect(renderer.render(markdown)).to include('Visit <a href="http://example.com" title="http://example.com — Nouvel onglet" target="_blank" rel="noopener external">http://example.com</a>')
     end
 
     it 'autolinks email addresses with mailto' do
