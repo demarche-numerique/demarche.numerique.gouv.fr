@@ -1,0 +1,10 @@
+<%= render SettingsTileComponent.new(
+  heading_level: :h4,
+  url: edit_admin_procedure_chorus_path(@procedure),
+  badge:,
+  subtitle: t(".subtitle"),
+  link_attributes: { title: t(".link_title") }
+) do |tile| %>
+  <% tile.with_title_content(t(".title")) %>
+  <% tile.with_action_content(t(".action")) %>
+<% end %>

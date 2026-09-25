@@ -17,6 +17,16 @@ class Procedure::Card::EmailsComponent < ApplicationComponent
 
   private
 
+  def badge
+    if error_messages.present?
+      { label: t('.badge.error'), variant: :warning }
+    elsif customized?
+      { label: t('.badge.customized'), variant: :info, icon: false }
+    else
+      { label: t('.badge.default') }
+    end
+  end
+
   def error_messages
     [
       @procedure.errors.messages_for(:email_depose),

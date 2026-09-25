@@ -1,0 +1,9 @@
+<%= render SettingsTileComponent.new(
+  url: @path,
+  badge: { label: t(".badge.validated"), variant: :success },
+  counter: @groupe_gestionnaire.administrateurs.size,
+  link_attributes: { id: "administrateurs" }
+) do |tile| %>
+  <% tile.with_title_content(t(".title", count: @groupe_gestionnaire.administrateurs.size)) %>
+  <% tile.with_action_content(@is_gestionnaire ? t("views.shared.actions.edit") : t("views.shared.actions.see")) %>
+<% end %>

@@ -18,4 +18,16 @@ class Procedure::Card::IneligibiliteDossierComponent < ApplicationComponent
   def completed?
     @procedure.draft_revision.ineligibilite_enabled
   end
+
+  private
+
+  def badge
+    if !ready?
+      { label: t('.state.pending') }
+    elsif error?
+      { label: t('.state.error'), variant: :error }
+    else
+      { label: t('.state.completed'), variant: :success }
+    end
+  end
 end

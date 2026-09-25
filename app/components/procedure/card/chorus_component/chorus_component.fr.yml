@@ -1,0 +1,9 @@
+---
+fr:
+  title: Connecteur Chorus
+  subtitle: Vous traitez des données de subvention d’état ?
+  link_title: Configurer le cadre budgetaire Chorus
+  action: Configurer
+  badge:
+    todo: À compléter
+    configured: Configuré

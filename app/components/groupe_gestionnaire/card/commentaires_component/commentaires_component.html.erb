@@ -1,0 +1,18 @@
+<%= render SettingsTileComponent.new(
+  url: @path,
+  badge: { label: t(".badge.validated"), variant: :success },
+  counter: number_commentaires,
+  link_attributes: { id: "commentaires" }
+) do |tile| %>
+  <% tile.with_title do %>
+    <% if @unread_commentaires %>
+      <span class="notifications">
+        <span class="fr-sr-only"><%= t(".notification") %></span>
+      </span>
+    <% end %>
+
+    <%= t(".title", count: number_commentaires) %>
+  <% end %>
+
+  <% tile.with_action_content(t("views.shared.actions.see")) %>
+<% end %>

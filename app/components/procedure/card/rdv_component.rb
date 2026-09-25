@@ -8,4 +8,14 @@ class Procedure::Card::RdvComponent < ApplicationComponent
   def render?
     feature_enabled?(:rdv)
   end
+
+  private
+
+  def badge
+    if @procedure.rdv_enabled?
+      { label: t('.badge.enabled'), variant: :success }
+    else
+      { label: t('.badge.disabled') }
+    end
+  end
 end

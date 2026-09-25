@@ -3,3 +3,5 @@ fr:
   title:
     one: Gestionnaire
     other: Gestionnaires
+  badge:
+    validated: Validé

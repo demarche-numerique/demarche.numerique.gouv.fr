@@ -1,0 +1,8 @@
+---
+en:
+  title:
+    one: Message
+    other: Messages
+  notification: notification
+  badge:
+    validated: Validated

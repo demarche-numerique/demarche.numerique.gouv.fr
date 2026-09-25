@@ -1,3 +1,11 @@
 ---
 fr:
   title: Service
+  subtitle: Choix du service administratif
+  action:
+    edit: Modifier
+    choose: Choisir
+    fill: Remplir
+  badge:
+    validated: Validé
+    todo: À faire

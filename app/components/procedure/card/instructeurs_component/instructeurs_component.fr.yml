@@ -9,3 +9,7 @@ fr:
       zero: Groupe Instructeurs
       one: Groupe Instructeur
       other: Groupe Instructeurs
+  subtitle: Suivi des dossiers
+  badge:
+    todo: À faire
+    validated: Validé

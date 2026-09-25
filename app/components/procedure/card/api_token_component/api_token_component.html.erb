@@ -1,0 +1,10 @@
+<%= render SettingsTileComponent.new(
+  heading_level: :h4,
+  url: admin_procedure_jetons_path(@procedure),
+  badge:,
+  counter: api_tokens_count_for_badge,
+  subtitle: t(".subtitle"),
+  link_attributes: { id: "api_token" }
+) do |tile| %>
+  <% tile.with_title_content(t(".title")) %>
+<% end %>

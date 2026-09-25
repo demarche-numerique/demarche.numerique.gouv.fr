@@ -1,3 +1,8 @@
 ---
 fr:
   title: Champs du formulaire
+  subtitle: À remplir par les usagers
+  badge:
+    error: À modifier
+    todo: À faire
+    validated: Validé

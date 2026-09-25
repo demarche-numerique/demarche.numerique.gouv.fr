@@ -18,13 +18,21 @@ class Procedure::Card::ServiceComponent < ApplicationComponent
     end
   end
 
+  def badge
+    if @procedure.service_id.present?
+      { label: t('.badge.validated'), variant: :success }
+    else
+      { label: t('.badge.todo'), variant: :warning }
+    end
+  end
+
   def service_button_text
     if @procedure.service.present?
-      'Modifier'
+      t('.action.edit')
     elsif @administrateur.services.present?
-      'Choisir'
+      t('.action.choose')
     else
-      'Remplir'
+      t('.action.fill')
     end
   end
 end

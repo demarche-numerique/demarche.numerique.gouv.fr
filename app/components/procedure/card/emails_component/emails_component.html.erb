@@ -1,0 +1,9 @@
+<%= render SettingsTileComponent.new(
+  heading_level: :h4,
+  url: admin_procedure_email_templates_path(@procedure),
+  badge:,
+  counter: customized_progress,
+  subtitle: t(".subtitle")
+) do |tile| %>
+  <% tile.with_title_content(t(".title")) %>
+<% end %>

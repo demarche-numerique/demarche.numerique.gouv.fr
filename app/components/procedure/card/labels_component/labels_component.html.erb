@@ -1,34 +1,9 @@
-<div class="fr-col-6 fr-col-md-4 fr-col-lg-3">
-  <%= link_to [:admin, @procedure, :labels], class: 'fr-tile fr-enlarge-link' do %>
-    <div class="fr-tile__body flex column align-center justify-between">
-      <% if @procedure.labels.present? %>
-        <p class="fr-badge fr-badge--success">
-          Configuré
-        </p>
-      <% else %>
-        <p class="fr-badge fr-badge--info">
-          À configurer
-        </p>
-      <% end %>
-
-      <div>
-        <% if @procedure.labels.present? %>
-          <div class="line-count fr-my-1w">
-            <p class="fr-tag"><%= @procedure.labels.size %></p>
-          </div>
-          <h3 class="fr-h6"><%= t('.title') %></h3>
-        <% else %>
-          <h3 class="fr-h6 fr-mt-10v"><%= t('.title') %></h3>
-        <% end %>
-
-        <p class="fr-tile-subtitle">
-          Gérer les labels utilisables par les instructeurs
-        </p>
-      </div>
-
-      <p class="fr-btn fr-btn--tertiary">
-        <%= t('views.shared.actions.edit') %>
-      </p>
-    </div>
-  <% end %>
-</div>
+<%= render SettingsTileComponent.new(
+  heading_level: :h4,
+  url: [:admin, @procedure, :labels],
+  badge:,
+  counter: @procedure.labels.presence&.size,
+  subtitle: t(".subtitle")
+) do |tile| %>
+  <% tile.with_title_content(t(".title")) %>
+<% end %>

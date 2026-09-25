@@ -3,3 +3,5 @@ fr:
   title:
     one: Groupe enfants
     other: Groupes enfants
+  badge:
+    validated: Validé

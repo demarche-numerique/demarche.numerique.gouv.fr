@@ -3,3 +3,6 @@ fr:
   title:
     one: Administrateur
     other: Administrateurs
+  subtitle: Gestion de la démarche
+  badge:
+    validated: Validé

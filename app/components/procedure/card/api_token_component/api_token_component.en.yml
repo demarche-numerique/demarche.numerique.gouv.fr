@@ -1,0 +1,8 @@
+---
+en:
+  title: API tokens
+  subtitle: Configure the API Entreprise or API Particulier tokens
+  badge:
+    todo: To configure
+    renew: To renew
+    configured: Configured

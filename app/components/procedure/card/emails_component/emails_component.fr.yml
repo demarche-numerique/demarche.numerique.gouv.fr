@@ -1,3 +1,8 @@
 ---
 fr:
   title: Modèles d’email
+  subtitle: Notifications automatiques
+  badge:
+    error: À modifier
+    customized: Configurés
+    default: Configurés par défaut

@@ -1,3 +1,7 @@
 ---
 fr:
   title: Labels
+  subtitle: Gérer les labels utilisables par les instructeurs
+  badge:
+    configured: Configuré
+    todo: À configurer

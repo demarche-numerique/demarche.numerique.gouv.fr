@@ -1,3 +1,8 @@
 ---
 fr:
   title: Annotations privées
+  subtitle: Champs à remplir par l’administration
+  badge:
+    error: À modifier
+    todo: À configurer
+    validated: Validé

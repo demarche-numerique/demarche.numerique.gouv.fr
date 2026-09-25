@@ -3,3 +3,6 @@ fr:
   title:
     one: Message
     other: Messages
+  notification: notification
+  badge:
+    validated: Validé

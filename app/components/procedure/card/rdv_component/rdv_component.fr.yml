@@ -2,3 +2,6 @@
 fr:
   title: Prise de rendez-vous
   subtitle: Permettre aux instructeurs de prendre des rendez-vous avec les usagers
+  badge:
+    enabled: Activée
+    disabled: Désactivée

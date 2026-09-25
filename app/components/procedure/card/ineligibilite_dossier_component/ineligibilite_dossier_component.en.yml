@@ -1,0 +1,8 @@
+---
+en:
+  title: File ineligibility
+  state:
+    pending: Disabled
+    error: To fix
+    completed: Enabled
+  subtitle: Manage your ineligibility conditions based on the form fields

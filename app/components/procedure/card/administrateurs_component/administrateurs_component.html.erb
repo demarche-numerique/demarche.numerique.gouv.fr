@@ -1,0 +1,10 @@
+<%= render SettingsTileComponent.new(
+  heading_level: :h4,
+  url: admin_procedure_administrateurs_path(@procedure),
+  badge: { label: t(".badge.validated"), variant: :success },
+  counter: @procedure.administrateurs.size,
+  subtitle: t(".subtitle"),
+  link_attributes: { id: "administrateurs" }
+) do |tile| %>
+  <% tile.with_title_content(t(".title", count: @procedure.administrateurs.size)) %>
+<% end %>

@@ -22,7 +22,9 @@ class Procedure::Card::ProConnectRestrictedComponent < ApplicationComponent
     end
   end
 
-  def badge_state
-    @procedure.pro_connect_restriction_none? ? :default : :success
+  private
+
+  def badge
+    { label: restriction_label, variant: @procedure.pro_connect_restriction_none? ? nil : :success }
   end
 end

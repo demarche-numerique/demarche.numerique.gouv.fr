@@ -18,4 +18,14 @@ class Procedure::Card::AiComponent < ApplicationComponent
   def any_tunnel_finished?
     @any_tunnel_finished ||= LLM::TunnelQuery.any_finished?(procedure_revision_id: procedure.draft_revision.id)
   end
+
+  private
+
+  def badge
+    if improved?
+      { label: t('.badge.improved'), variant: :success }
+    else
+      { label: t('.badge.todo'), variant: :warning }
+    end
+  end
 end

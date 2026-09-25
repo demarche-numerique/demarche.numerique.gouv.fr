@@ -1,3 +1,6 @@
 ---
 fr:
   sub_title: Orienter l’usager suite au dépôt de son dossier
+  badge:
+    validated: Validé
+    todo: À configurer

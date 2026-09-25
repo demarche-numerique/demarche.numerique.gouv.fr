@@ -1,0 +1,8 @@
+---
+en:
+  title: Private annotations
+  subtitle: Fields filled in by the administration
+  badge:
+    error: To fix
+    todo: To configure
+    validated: Validated

@@ -1,0 +1,10 @@
+<%= render SettingsTileComponent.new(
+  heading_level: :h4,
+  url: annotations_admin_procedure_path(@procedure),
+  badge:,
+  counter: @count,
+  subtitle: t(".subtitle"),
+  link_attributes: { title: error_messages.presence }
+) do |tile| %>
+  <% tile.with_title_content(t(".title")) %>
+<% end %>

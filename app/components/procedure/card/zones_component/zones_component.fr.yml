@@ -2,3 +2,6 @@
 fr:
   title: Zones
   subtitle: Ministère(s) ou collectivité qui mettent en oeuvre la démarche
+  badge:
+    validated: Validé
+    todo: À faire
