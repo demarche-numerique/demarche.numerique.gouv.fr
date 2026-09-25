@@ -3,7 +3,7 @@
     "name": "Abeilhan",
     "code": "34001",
     "epci_code": "200071058",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34290"
   },
@@ -11,7 +11,7 @@
     "name": "Adissan",
     "code": "34002",
     "epci_code": "243400819",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34230"
   },
@@ -19,7 +19,7 @@
     "name": "Agde",
     "code": "34003",
     "epci_code": "243400819",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34300"
   },
@@ -27,7 +27,7 @@
     "name": "Agel",
     "code": "34004",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34210"
   },
@@ -35,7 +35,7 @@
     "name": "Agonès",
     "code": "34005",
     "epci_code": "243400736",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34190"
   },
@@ -43,7 +43,7 @@
     "name": "Aigne",
     "code": "34006",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34210"
   },
@@ -51,7 +51,7 @@
     "name": "Aigues-Vives",
     "code": "34007",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34210"
   },
@@ -59,7 +59,7 @@
     "name": "Les Aires",
     "code": "34008",
     "epci_code": "200042646",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34600"
   },
@@ -67,7 +67,7 @@
     "name": "Alignan-du-Vent",
     "code": "34009",
     "epci_code": "243400769",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34290"
   },
@@ -75,7 +75,7 @@
     "name": "Aniane",
     "code": "34010",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34150"
   },
@@ -83,7 +83,7 @@
     "name": "Arboras",
     "code": "34011",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34150"
   },
@@ -91,7 +91,7 @@
     "name": "Argelliers",
     "code": "34012",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34380"
   },
@@ -99,7 +99,7 @@
     "name": "Aspiran",
     "code": "34013",
     "epci_code": "243400355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34800"
   },
@@ -107,7 +107,7 @@
     "name": "Assas",
     "code": "34014",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34820"
   },
@@ -115,7 +115,7 @@
     "name": "Assignan",
     "code": "34015",
     "epci_code": "200042653",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34360"
   },
@@ -123,7 +123,7 @@
     "name": "Aumelas",
     "code": "34016",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34230"
   },
@@ -131,7 +131,7 @@
     "name": "Aumes",
     "code": "34017",
     "epci_code": "243400819",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34530"
   },
@@ -139,7 +139,7 @@
     "name": "Autignac",
     "code": "34018",
     "epci_code": "200071058",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34480"
   },
@@ -147,7 +147,7 @@
     "name": "Avène",
     "code": "34019",
     "epci_code": "200042646",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34260"
   },
@@ -155,7 +155,7 @@
     "name": "Azillanet",
     "code": "34020",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34210"
   },
@@ -163,7 +163,7 @@
     "name": "Babeau-Bouldoux",
     "code": "34021",
     "epci_code": "200042653",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34360"
   },
@@ -171,7 +171,7 @@
     "name": "Baillargues",
     "code": "34022",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34670"
   },
@@ -179,7 +179,7 @@
     "name": "Balaruc-les-Bains",
     "code": "34023",
     "epci_code": "200066355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34540"
   },
@@ -187,7 +187,7 @@
     "name": "Balaruc-le-Vieux",
     "code": "34024",
     "epci_code": "200066355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34540"
   },
@@ -195,7 +195,7 @@
     "name": "Bassan",
     "code": "34025",
     "epci_code": "243400769",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34290"
   },
@@ -203,7 +203,7 @@
     "name": "Beaufort",
     "code": "34026",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34210"
   },
@@ -211,7 +211,7 @@
     "name": "Beaulieu",
     "code": "34027",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34160"
   },
@@ -219,7 +219,7 @@
     "name": "Bédarieux",
     "code": "34028",
     "epci_code": "200042646",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34600"
   },
@@ -227,7 +227,7 @@
     "name": "Bélarga",
     "code": "34029",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34230"
   },
@@ -235,7 +235,7 @@
     "name": "Berlou",
     "code": "34030",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34360"
   },
@@ -243,7 +243,7 @@
     "name": "Bessan",
     "code": "34031",
     "epci_code": "243400819",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34550"
   },
@@ -251,7 +251,7 @@
     "name": "Béziers",
     "code": "34032",
     "epci_code": "243400769",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34500"
   },
@@ -259,7 +259,7 @@
     "name": "Boisseron",
     "code": "34033",
     "epci_code": "243400520",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34160"
   },
@@ -267,7 +267,7 @@
     "name": "Boisset",
     "code": "34034",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34220"
   },
@@ -275,7 +275,7 @@
     "name": "La Boissière",
     "code": "34035",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34150"
   },
@@ -283,7 +283,7 @@
     "name": "Le Bosc",
     "code": "34036",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34700"
   },
@@ -291,7 +291,7 @@
     "name": "Boujan-sur-Libron",
     "code": "34037",
     "epci_code": "243400769",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34760"
   },
@@ -299,7 +299,7 @@
     "name": "Le Bousquet-d’Orb",
     "code": "34038",
     "epci_code": "200042646",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34260"
   },
@@ -307,7 +307,7 @@
     "name": "Bouzigues",
     "code": "34039",
     "epci_code": "200066355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34140"
   },
@@ -315,7 +315,7 @@
     "name": "Brenas",
     "code": "34040",
     "epci_code": "200042646",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34650"
   },
@@ -323,7 +323,7 @@
     "name": "Brignac",
     "code": "34041",
     "epci_code": "243400355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34800"
   },
@@ -331,7 +331,7 @@
     "name": "Brissac",
     "code": "34042",
     "epci_code": "243400736",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34190"
   },
@@ -339,7 +339,7 @@
     "name": "Buzignargues",
     "code": "34043",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34160"
   },
@@ -347,7 +347,7 @@
     "name": "Cabrerolles",
     "code": "34044",
     "epci_code": "200071058",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34480"
   },
@@ -355,7 +355,7 @@
     "name": "Cabrières",
     "code": "34045",
     "epci_code": "243400355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34800"
   },
@@ -363,7 +363,7 @@
     "name": "Cambon-et-Salvergues",
     "code": "34046",
     "epci_code": "200066553",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34330"
   },
@@ -371,7 +371,7 @@
     "name": "Campagnan",
     "code": "34047",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34230"
   },
@@ -379,7 +379,7 @@
     "name": "Campagne",
     "code": "34048",
     "epci_code": "243400520",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34160"
   },
@@ -387,7 +387,7 @@
     "name": "Camplong",
     "code": "34049",
     "epci_code": "200042646",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34260"
   },
@@ -395,7 +395,7 @@
     "name": "Candillargues",
     "code": "34050",
     "epci_code": "243400470",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34130"
   },
@@ -403,7 +403,7 @@
     "name": "Canet",
     "code": "34051",
     "epci_code": "243400355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34800"
   },
@@ -411,7 +411,7 @@
     "name": "Capestang",
     "code": "34052",
     "epci_code": "200042653",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34310"
   },
@@ -419,7 +419,7 @@
     "name": "Carlencas-et-Levas",
     "code": "34053",
     "epci_code": "200042646",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34600"
   },
@@ -427,7 +427,7 @@
     "name": "Cassagnoles",
     "code": "34054",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34210"
   },
@@ -435,7 +435,7 @@
     "name": "Castanet-le-Haut",
     "code": "34055",
     "epci_code": "200066553",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34610"
   },
@@ -443,7 +443,7 @@
     "name": "Castelnau-de-Guers",
     "code": "34056",
     "epci_code": "243400819",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34120"
   },
@@ -451,7 +451,7 @@
     "name": "Castelnau-le-Lez",
     "code": "34057",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34170"
   },
@@ -459,7 +459,7 @@
     "name": "Castries",
     "code": "34058",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34160"
   },
@@ -467,7 +467,7 @@
     "name": "La Caunette",
     "code": "34059",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34210"
   },
@@ -475,7 +475,7 @@
     "name": "Causse-de-la-Selle",
     "code": "34060",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34380"
   },
@@ -483,7 +483,7 @@
     "name": "Causses-et-Veyran",
     "code": "34061",
     "epci_code": "200071058",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34490"
   },
@@ -491,7 +491,7 @@
     "name": "Caussiniojouls",
     "code": "34062",
     "epci_code": "200071058",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34600"
   },
@@ -499,7 +499,7 @@
     "name": "Caux",
     "code": "34063",
     "epci_code": "243400819",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34720"
   },
@@ -507,7 +507,7 @@
     "name": "Le Caylar",
     "code": "34064",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34520"
   },
@@ -515,7 +515,7 @@
     "name": "Cazedarnes",
     "code": "34065",
     "epci_code": "200042653",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34460"
   },
@@ -523,7 +523,7 @@
     "name": "Cazevieille",
     "code": "34066",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34270"
   },
@@ -531,7 +531,7 @@
     "name": "Cazilhac",
     "code": "34067",
     "epci_code": "243400736",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34190"
   },
@@ -539,7 +539,7 @@
     "name": "Cazouls-d’Hérault",
     "code": "34068",
     "epci_code": "243400819",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34120"
   },
@@ -547,7 +547,7 @@
     "name": "Cazouls-lès-Béziers",
     "code": "34069",
     "epci_code": "243400488",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34370"
   },
@@ -555,7 +555,7 @@
     "name": "Cébazan",
     "code": "34070",
     "epci_code": "200042653",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34360"
   },
@@ -563,7 +563,7 @@
     "name": "Ceilhes-et-Rocozels",
     "code": "34071",
     "epci_code": "200042646",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34260"
   },
@@ -571,7 +571,7 @@
     "name": "Celles",
     "code": "34072",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34700"
   },
@@ -579,7 +579,7 @@
     "name": "Cers",
     "code": "34073",
     "epci_code": "243400769",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34420"
   },
@@ -587,7 +587,7 @@
     "name": "Cessenon-sur-Orb",
     "code": "34074",
     "epci_code": "200042653",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34460"
   },
@@ -595,7 +595,7 @@
     "name": "Cesseras",
     "code": "34075",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34210"
   },
@@ -603,7 +603,7 @@
     "name": "Ceyras",
     "code": "34076",
     "epci_code": "243400355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34800"
   },
@@ -611,7 +611,7 @@
     "name": "Clapiers",
     "code": "34077",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34830"
   },
@@ -619,7 +619,7 @@
     "name": "Claret",
     "code": "34078",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34270"
   },
@@ -627,7 +627,7 @@
     "name": "Clermont-l’Hérault",
     "code": "34079",
     "epci_code": "243400355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34800"
   },
@@ -635,7 +635,7 @@
     "name": "Colombières-sur-Orb",
     "code": "34080",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34390"
   },
@@ -643,7 +643,7 @@
     "name": "Colombiers",
     "code": "34081",
     "epci_code": "243400488",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34440"
   },
@@ -651,7 +651,7 @@
     "name": "Combaillaux",
     "code": "34082",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34980"
   },
@@ -659,7 +659,7 @@
     "name": "Combes",
     "code": "34083",
     "epci_code": "200042646",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34240"
   },
@@ -667,7 +667,7 @@
     "name": "Corneilhan",
     "code": "34084",
     "epci_code": "243400769",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34490"
   },
@@ -675,7 +675,7 @@
     "name": "Coulobres",
     "code": "34085",
     "epci_code": "243400769",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34290"
   },
@@ -683,7 +683,7 @@
     "name": "Courniou",
     "code": "34086",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34220"
   },
@@ -691,7 +691,7 @@
     "name": "Cournonsec",
     "code": "34087",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34660"
   },
@@ -699,7 +699,7 @@
     "name": "Cournonterral",
     "code": "34088",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34660"
   },
@@ -707,7 +707,7 @@
     "name": "Creissan",
     "code": "34089",
     "epci_code": "200042653",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34370"
   },
@@ -715,7 +715,7 @@
     "name": "Le Crès",
     "code": "34090",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34920"
   },
@@ -723,7 +723,7 @@
     "name": "Le Cros",
     "code": "34091",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34520"
   },
@@ -731,7 +731,7 @@
     "name": "Cruzy",
     "code": "34092",
     "epci_code": "200042653",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34310"
   },
@@ -739,7 +739,7 @@
     "name": "Espondeilhan",
     "code": "34094",
     "epci_code": "243400769",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34290"
   },
@@ -747,7 +747,7 @@
     "name": "Fabrègues",
     "code": "34095",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34690"
   },
@@ -755,7 +755,7 @@
     "name": "Faugères",
     "code": "34096",
     "epci_code": "200071058",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34600"
   },
@@ -763,7 +763,7 @@
     "name": "Félines-Minervois",
     "code": "34097",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34210"
   },
@@ -771,7 +771,7 @@
     "name": "Ferrals-les-Montagnes",
     "code": "34098",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34210"
   },
@@ -779,7 +779,7 @@
     "name": "Ferrières-les-Verreries",
     "code": "34099",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34190"
   },
@@ -787,7 +787,7 @@
     "name": "Ferrières-Poussarou",
     "code": "34100",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34360"
   },
@@ -795,7 +795,7 @@
     "name": "Florensac",
     "code": "34101",
     "epci_code": "243400819",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34510"
   },
@@ -803,7 +803,7 @@
     "name": "Fontanès",
     "code": "34102",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34270"
   },
@@ -811,7 +811,7 @@
     "name": "Fontès",
     "code": "34103",
     "epci_code": "243400355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34320"
   },
@@ -819,7 +819,7 @@
     "name": "Fos",
     "code": "34104",
     "epci_code": "200071058",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34320"
   },
@@ -827,7 +827,7 @@
     "name": "Fouzilhon",
     "code": "34105",
     "epci_code": "200071058",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34480"
   },
@@ -835,7 +835,7 @@
     "name": "Fozières",
     "code": "34106",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34700"
   },
@@ -843,7 +843,7 @@
     "name": "Fraisse-sur-Agout",
     "code": "34107",
     "epci_code": "200066553",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34330"
   },
@@ -851,7 +851,7 @@
     "name": "Frontignan",
     "code": "34108",
     "epci_code": "200066355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34110"
   },
@@ -859,7 +859,7 @@
     "name": "Gabian",
     "code": "34109",
     "epci_code": "200071058",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34320"
   },
@@ -867,7 +867,7 @@
     "name": "Galargues",
     "code": "34110",
     "epci_code": "243400520",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34160"
   },
@@ -875,7 +875,7 @@
     "name": "Ganges",
     "code": "34111",
     "epci_code": "243400736",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34190"
   },
@@ -883,7 +883,7 @@
     "name": "Garrigues",
     "code": "34112",
     "epci_code": "243400520",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34160"
   },
@@ -891,7 +891,7 @@
     "name": "Gigean",
     "code": "34113",
     "epci_code": "200066355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34770"
   },
@@ -899,7 +899,7 @@
     "name": "Gignac",
     "code": "34114",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34150"
   },
@@ -907,7 +907,7 @@
     "name": "Gorniès",
     "code": "34115",
     "epci_code": "243400736",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34190"
   },
@@ -915,7 +915,7 @@
     "name": "Grabels",
     "code": "34116",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34790"
   },
@@ -923,7 +923,7 @@
     "name": "Graissessac",
     "code": "34117",
     "epci_code": "200042646",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34260"
   },
@@ -931,7 +931,7 @@
     "name": "Guzargues",
     "code": "34118",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34820"
   },
@@ -939,7 +939,7 @@
     "name": "Hérépian",
     "code": "34119",
     "epci_code": "200042646",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34600"
   },
@@ -947,7 +947,7 @@
     "name": "Jacou",
     "code": "34120",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34830"
   },
@@ -955,7 +955,7 @@
     "name": "Joncels",
     "code": "34121",
     "epci_code": "200042646",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34650"
   },
@@ -963,7 +963,7 @@
     "name": "Jonquières",
     "code": "34122",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34725"
   },
@@ -971,7 +971,7 @@
     "name": "Juvignac",
     "code": "34123",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34990"
   },
@@ -979,7 +979,7 @@
     "name": "Lacoste",
     "code": "34124",
     "epci_code": "243400355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34800"
   },
@@ -987,7 +987,7 @@
     "name": "Lagamas",
     "code": "34125",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34150"
   },
@@ -995,7 +995,7 @@
     "name": "Lamalou-les-Bains",
     "code": "34126",
     "epci_code": "200042646",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34240"
   },
@@ -1003,7 +1003,7 @@
     "name": "Lansargues",
     "code": "34127",
     "epci_code": "243400470",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34130"
   },
@@ -1011,7 +1011,7 @@
     "name": "Laroque",
     "code": "34128",
     "epci_code": "243400736",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34190"
   },
@@ -1019,7 +1019,7 @@
     "name": "Lattes",
     "code": "34129",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34970"
   },
@@ -1027,7 +1027,7 @@
     "name": "Laurens",
     "code": "34130",
     "epci_code": "200071058",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34480"
   },
@@ -1035,7 +1035,7 @@
     "name": "Lauret",
     "code": "34131",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34270"
   },
@@ -1043,7 +1043,7 @@
     "name": "Lauroux",
     "code": "34132",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34700"
   },
@@ -1051,7 +1051,7 @@
     "name": "Lavalette",
     "code": "34133",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34700"
   },
@@ -1059,7 +1059,7 @@
     "name": "Lavérune",
     "code": "34134",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34880"
   },
@@ -1067,7 +1067,7 @@
     "name": "Lespignan",
     "code": "34135",
     "epci_code": "243400488",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34710"
   },
@@ -1075,7 +1075,7 @@
     "name": "Lézignan-la-Cèbe",
     "code": "34136",
     "epci_code": "243400819",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34120"
   },
@@ -1083,7 +1083,7 @@
     "name": "Liausson",
     "code": "34137",
     "epci_code": "243400355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34800"
   },
@@ -1091,7 +1091,7 @@
     "name": "Lieuran-Cabrières",
     "code": "34138",
     "epci_code": "243400355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34800"
   },
@@ -1099,7 +1099,7 @@
     "name": "Lieuran-lès-Béziers",
     "code": "34139",
     "epci_code": "243400769",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34290"
   },
@@ -1107,7 +1107,7 @@
     "name": "Lignan-sur-Orb",
     "code": "34140",
     "epci_code": "243400769",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34490"
   },
@@ -1115,7 +1115,7 @@
     "name": "La Livinière",
     "code": "34141",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34210"
   },
@@ -1123,7 +1123,7 @@
     "name": "Lodève",
     "code": "34142",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34700"
   },
@@ -1131,7 +1131,7 @@
     "name": "Loupian",
     "code": "34143",
     "epci_code": "200066355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34140"
   },
@@ -1139,7 +1139,7 @@
     "name": "Lunas-les-Châteaux",
     "code": "34144",
     "epci_code": "200042646",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34650"
   },
@@ -1147,7 +1147,7 @@
     "name": "Lunel",
     "code": "34145",
     "epci_code": "243400520",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34400"
   },
@@ -1155,7 +1155,7 @@
     "name": "Lunel-Viel",
     "code": "34146",
     "epci_code": "243400520",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34400"
   },
@@ -1163,7 +1163,7 @@
     "name": "Magalas",
     "code": "34147",
     "epci_code": "200071058",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34480"
   },
@@ -1171,7 +1171,7 @@
     "name": "Maraussan",
     "code": "34148",
     "epci_code": "243400488",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34370"
   },
@@ -1179,7 +1179,7 @@
     "name": "Margon",
     "code": "34149",
     "epci_code": "200071058",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34320"
   },
@@ -1187,7 +1187,7 @@
     "name": "Marseillan",
     "code": "34150",
     "epci_code": "200066355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34340"
   },
@@ -1195,7 +1195,7 @@
     "name": "Marsillargues",
     "code": "34151",
     "epci_code": "243400520",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34590"
   },
@@ -1203,7 +1203,7 @@
     "name": "Mas-de-Londres",
     "code": "34152",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34380"
   },
@@ -1211,7 +1211,7 @@
     "name": "Les Matelles",
     "code": "34153",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34270"
   },
@@ -1219,7 +1219,7 @@
     "name": "Mauguio",
     "code": "34154",
     "epci_code": "243400470",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34130"
   },
@@ -1227,7 +1227,7 @@
     "name": "Maureilhan",
     "code": "34155",
     "epci_code": "243400488",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34370"
   },
@@ -1235,7 +1235,7 @@
     "name": "Mérifons",
     "code": "34156",
     "epci_code": "243400355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34800"
   },
@@ -1243,7 +1243,7 @@
     "name": "Mèze",
     "code": "34157",
     "epci_code": "200066355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34140"
   },
@@ -1251,7 +1251,7 @@
     "name": "Minerve",
     "code": "34158",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34210"
   },
@@ -1259,7 +1259,7 @@
     "name": "Mireval",
     "code": "34159",
     "epci_code": "200066355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34110"
   },
@@ -1267,7 +1267,7 @@
     "name": "Mons",
     "code": "34160",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34390"
   },
@@ -1275,7 +1275,7 @@
     "name": "Montady",
     "code": "34161",
     "epci_code": "243400488",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34310"
   },
@@ -1283,7 +1283,7 @@
     "name": "Montagnac",
     "code": "34162",
     "epci_code": "243400819",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34530"
   },
@@ -1291,7 +1291,7 @@
     "name": "Montarnaud",
     "code": "34163",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34570"
   },
@@ -1299,7 +1299,7 @@
     "name": "Montaud",
     "code": "34164",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34160"
   },
@@ -1307,7 +1307,7 @@
     "name": "Montbazin",
     "code": "34165",
     "epci_code": "200066355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34560"
   },
@@ -1315,7 +1315,7 @@
     "name": "Montblanc",
     "code": "34166",
     "epci_code": "243400769",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34290"
   },
@@ -1323,7 +1323,7 @@
     "name": "Montels",
     "code": "34167",
     "epci_code": "200042653",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34310"
   },
@@ -1331,7 +1331,7 @@
     "name": "Montesquieu",
     "code": "34168",
     "epci_code": "200071058",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34320"
   },
@@ -1339,7 +1339,7 @@
     "name": "Montferrier-sur-Lez",
     "code": "34169",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34980"
   },
@@ -1347,7 +1347,7 @@
     "name": "Montouliers",
     "code": "34170",
     "epci_code": "200042653",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34310"
   },
@@ -1355,7 +1355,7 @@
     "name": "Montoulieu",
     "code": "34171",
     "epci_code": "243400736",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34190"
   },
@@ -1363,7 +1363,7 @@
     "name": "Montpellier",
     "code": "34172",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34090"
   },
@@ -1371,7 +1371,7 @@
     "name": "Montpellier",
     "code": "34172",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34000"
   },
@@ -1379,7 +1379,7 @@
     "name": "Montpellier",
     "code": "34172",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34070"
   },
@@ -1387,7 +1387,7 @@
     "name": "Montpellier",
     "code": "34172",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34080"
   },
@@ -1395,7 +1395,7 @@
     "name": "Montpeyroux",
     "code": "34173",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34150"
   },
@@ -1403,7 +1403,7 @@
     "name": "Moulès-et-Baucels",
     "code": "34174",
     "epci_code": "243400736",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34190"
   },
@@ -1411,7 +1411,7 @@
     "name": "Mourèze",
     "code": "34175",
     "epci_code": "243400355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34800"
   },
@@ -1419,7 +1419,7 @@
     "name": "Mudaison",
     "code": "34176",
     "epci_code": "243400470",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34130"
   },
@@ -1427,7 +1427,7 @@
     "name": "Murles",
     "code": "34177",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34980"
   },
@@ -1435,7 +1435,7 @@
     "name": "Murviel-lès-Béziers",
     "code": "34178",
     "epci_code": "200071058",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34490"
   },
@@ -1443,7 +1443,7 @@
     "name": "Murviel-lès-Montpellier",
     "code": "34179",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34570"
   },
@@ -1451,7 +1451,7 @@
     "name": "Nébian",
     "code": "34180",
     "epci_code": "243400355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34800"
   },
@@ -1459,7 +1459,7 @@
     "name": "Neffiès",
     "code": "34181",
     "epci_code": "200071058",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34320"
   },
@@ -1467,7 +1467,7 @@
     "name": "Nézignan-l’Évêque",
     "code": "34182",
     "epci_code": "243400819",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34120"
   },
@@ -1475,7 +1475,7 @@
     "name": "Nissan-lez-Enserune",
     "code": "34183",
     "epci_code": "243400488",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34440"
   },
@@ -1483,7 +1483,7 @@
     "name": "Nizas",
     "code": "34184",
     "epci_code": "243400819",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34320"
   },
@@ -1491,7 +1491,7 @@
     "name": "Notre-Dame-de-Londres",
     "code": "34185",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34380"
   },
@@ -1499,7 +1499,7 @@
     "name": "Octon",
     "code": "34186",
     "epci_code": "243400355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34800"
   },
@@ -1507,7 +1507,7 @@
     "name": "Olargues",
     "code": "34187",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34390"
   },
@@ -1515,7 +1515,7 @@
     "name": "Olmet-et-Villecun",
     "code": "34188",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34700"
   },
@@ -1523,7 +1523,7 @@
     "name": "Olonzac",
     "code": "34189",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34210"
   },
@@ -1531,7 +1531,7 @@
     "name": "Oupia",
     "code": "34190",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34210"
   },
@@ -1539,7 +1539,7 @@
     "name": "Pailhès",
     "code": "34191",
     "epci_code": "200071058",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34490"
   },
@@ -1547,7 +1547,7 @@
     "name": "Palavas-les-Flots",
     "code": "34192",
     "epci_code": "243400470",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34250"
   },
@@ -1555,7 +1555,7 @@
     "name": "Pardailhan",
     "code": "34193",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34360"
   },
@@ -1563,7 +1563,7 @@
     "name": "Paulhan",
     "code": "34194",
     "epci_code": "243400355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34230"
   },
@@ -1571,7 +1571,7 @@
     "name": "Pégairolles-de-Buèges",
     "code": "34195",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34380"
   },
@@ -1579,7 +1579,7 @@
     "name": "Pégairolles-de-l’Escalette",
     "code": "34196",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34700"
   },
@@ -1587,7 +1587,7 @@
     "name": "Péret",
     "code": "34197",
     "epci_code": "243400355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34800"
   },
@@ -1595,7 +1595,7 @@
     "name": "Pérols",
     "code": "34198",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34470"
   },
@@ -1603,7 +1603,7 @@
     "name": "Pézenas",
     "code": "34199",
     "epci_code": "243400819",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34120"
   },
@@ -1611,7 +1611,7 @@
     "name": "Pézènes-les-Mines",
     "code": "34200",
     "epci_code": "200042646",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34600"
   },
@@ -1619,7 +1619,7 @@
     "name": "Pierrerue",
     "code": "34201",
     "epci_code": "200042653",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34360"
   },
@@ -1627,7 +1627,7 @@
     "name": "Pignan",
     "code": "34202",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34570"
   },
@@ -1635,7 +1635,7 @@
     "name": "Pinet",
     "code": "34203",
     "epci_code": "243400819",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34850"
   },
@@ -1643,7 +1643,7 @@
     "name": "Plaissan",
     "code": "34204",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34230"
   },
@@ -1651,7 +1651,7 @@
     "name": "Les Plans",
     "code": "34205",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34700"
   },
@@ -1659,7 +1659,7 @@
     "name": "Poilhes",
     "code": "34206",
     "epci_code": "200042653",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34310"
   },
@@ -1667,7 +1667,7 @@
     "name": "Pomérols",
     "code": "34207",
     "epci_code": "243400819",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34810"
   },
@@ -1675,7 +1675,7 @@
     "name": "Popian",
     "code": "34208",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34230"
   },
@@ -1683,7 +1683,7 @@
     "name": "Portiragnes",
     "code": "34209",
     "epci_code": "243400819",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34420"
   },
@@ -1691,7 +1691,7 @@
     "name": "Le Pouget",
     "code": "34210",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34230"
   },
@@ -1699,7 +1699,7 @@
     "name": "Le Poujol-sur-Orb",
     "code": "34211",
     "epci_code": "200042646",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34600"
   },
@@ -1707,7 +1707,7 @@
     "name": "Poujols",
     "code": "34212",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34700"
   },
@@ -1715,7 +1715,7 @@
     "name": "Poussan",
     "code": "34213",
     "epci_code": "200066355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34560"
   },
@@ -1723,7 +1723,7 @@
     "name": "Pouzolles",
     "code": "34214",
     "epci_code": "200071058",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34480"
   },
@@ -1731,7 +1731,7 @@
     "name": "Pouzols",
     "code": "34215",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34230"
   },
@@ -1739,7 +1739,7 @@
     "name": "Le Pradal",
     "code": "34216",
     "epci_code": "200042646",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34600"
   },
@@ -1747,7 +1747,7 @@
     "name": "Prades-le-Lez",
     "code": "34217",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34730"
   },
@@ -1755,7 +1755,7 @@
     "name": "Prades-sur-Vernazobre",
     "code": "34218",
     "epci_code": "200042653",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34360"
   },
@@ -1763,7 +1763,7 @@
     "name": "Prémian",
     "code": "34219",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34390"
   },
@@ -1771,7 +1771,7 @@
     "name": "Le Puech",
     "code": "34220",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34700"
   },
@@ -1779,7 +1779,7 @@
     "name": "Puéchabon",
     "code": "34221",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34150"
   },
@@ -1787,7 +1787,7 @@
     "name": "Puilacher",
     "code": "34222",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34230"
   },
@@ -1795,7 +1795,7 @@
     "name": "Puimisson",
     "code": "34223",
     "epci_code": "200071058",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34480"
   },
@@ -1803,7 +1803,7 @@
     "name": "Puissalicon",
     "code": "34224",
     "epci_code": "200071058",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34480"
   },
@@ -1811,7 +1811,7 @@
     "name": "Puisserguier",
     "code": "34225",
     "epci_code": "200042653",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34620"
   },
@@ -1819,7 +1819,7 @@
     "name": "Quarante",
     "code": "34226",
     "epci_code": "200042653",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34310"
   },
@@ -1827,7 +1827,7 @@
     "name": "Restinclières",
     "code": "34227",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34160"
   },
@@ -1835,7 +1835,7 @@
     "name": "Rieussec",
     "code": "34228",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34220"
   },
@@ -1843,7 +1843,7 @@
     "name": "Riols",
     "code": "34229",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34220"
   },
@@ -1851,7 +1851,7 @@
     "name": "Les Rives",
     "code": "34230",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34520"
   },
@@ -1859,7 +1859,7 @@
     "name": "Romiguières",
     "code": "34231",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34650"
   },
@@ -1867,7 +1867,7 @@
     "name": "Roquebrun",
     "code": "34232",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34460"
   },
@@ -1875,7 +1875,7 @@
     "name": "Roqueredonde",
     "code": "34233",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34650"
   },
@@ -1883,7 +1883,7 @@
     "name": "Roquessels",
     "code": "34234",
     "epci_code": "200071058",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34320"
   },
@@ -1891,7 +1891,7 @@
     "name": "Rosis",
     "code": "34235",
     "epci_code": "200066553",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34610"
   },
@@ -1899,7 +1899,7 @@
     "name": "Rouet",
     "code": "34236",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34380"
   },
@@ -1907,7 +1907,7 @@
     "name": "Roujan",
     "code": "34237",
     "epci_code": "200071058",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34320"
   },
@@ -1915,7 +1915,7 @@
     "name": "Saint-André-de-Buèges",
     "code": "34238",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34190"
   },
@@ -1923,7 +1923,7 @@
     "name": "Saint-André-de-Sangonis",
     "code": "34239",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34725"
   },
@@ -1931,7 +1931,7 @@
     "name": "Saint-Aunès",
     "code": "34240",
     "epci_code": "243400470",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34130"
   },
@@ -1939,7 +1939,7 @@
     "name": "Saint-Bauzille-de-la-Sylve",
     "code": "34241",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34230"
   },
@@ -1947,7 +1947,7 @@
     "name": "Saint-Bauzille-de-Montmel",
     "code": "34242",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34160"
   },
@@ -1955,7 +1955,7 @@
     "name": "Saint-Bauzille-de-Putois",
     "code": "34243",
     "epci_code": "243400736",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34190"
   },
@@ -1963,7 +1963,7 @@
     "name": "Saint-Brès",
     "code": "34244",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34670"
   },
@@ -1971,7 +1971,7 @@
     "name": "Saint-Chinian",
     "code": "34245",
     "epci_code": "200042653",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34360"
   },
@@ -1979,7 +1979,7 @@
     "name": "Entre-Vignes",
     "code": "34246",
     "epci_code": "243400520",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34400"
   },
@@ -1987,7 +1987,7 @@
     "name": "Saint-Clément-de-Rivière",
     "code": "34247",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34980"
   },
@@ -1995,7 +1995,7 @@
     "name": "Sainte-Croix-de-Quintillargues",
     "code": "34248",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34270"
   },
@@ -2003,7 +2003,7 @@
     "name": "Saint-Drézéry",
     "code": "34249",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34160"
   },
@@ -2011,7 +2011,7 @@
     "name": "Saint-Étienne-d’Albagnan",
     "code": "34250",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34390"
   },
@@ -2019,7 +2019,7 @@
     "name": "Saint-Étienne-de-Gourgas",
     "code": "34251",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34700"
   },
@@ -2027,7 +2027,7 @@
     "name": "Saint-Étienne-Estréchoux",
     "code": "34252",
     "epci_code": "200042646",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34260"
   },
@@ -2035,7 +2035,7 @@
     "name": "Saint-Félix-de-l’Héras",
     "code": "34253",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34520"
   },
@@ -2043,7 +2043,7 @@
     "name": "Saint-Félix-de-Lodez",
     "code": "34254",
     "epci_code": "243400355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34725"
   },
@@ -2051,7 +2051,7 @@
     "name": "Saint-Gély-du-Fesc",
     "code": "34255",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34980"
   },
@@ -2059,7 +2059,7 @@
     "name": "Saint-Geniès-des-Mourgues",
     "code": "34256",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34160"
   },
@@ -2067,7 +2067,7 @@
     "name": "Saint-Geniès-de-Varensal",
     "code": "34257",
     "epci_code": "200042646",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34610"
   },
@@ -2075,7 +2075,7 @@
     "name": "Saint-Geniès-de-Fontedit",
     "code": "34258",
     "epci_code": "200071058",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34480"
   },
@@ -2083,7 +2083,7 @@
     "name": "Saint-Georges-d’Orques",
     "code": "34259",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34680"
   },
@@ -2091,7 +2091,7 @@
     "name": "Saint-Gervais-sur-Mare",
     "code": "34260",
     "epci_code": "200042646",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34610"
   },
@@ -2099,7 +2099,7 @@
     "name": "Saint-Guilhem-le-Désert",
     "code": "34261",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34150"
   },
@@ -2107,7 +2107,7 @@
     "name": "Saint-Guiraud",
     "code": "34262",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34725"
   },
@@ -2115,7 +2115,7 @@
     "name": "Saint-Hilaire-de-Beauvoir",
     "code": "34263",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34160"
   },
@@ -2123,7 +2123,7 @@
     "name": "Saint-Jean-de-Buèges",
     "code": "34264",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34380"
   },
@@ -2131,7 +2131,7 @@
     "name": "Saint-Jean-de-Cornies",
     "code": "34265",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34160"
   },
@@ -2139,7 +2139,7 @@
     "name": "Saint-Jean-de-Cuculles",
     "code": "34266",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34270"
   },
@@ -2147,7 +2147,7 @@
     "name": "Saint-Jean-de-Fos",
     "code": "34267",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34150"
   },
@@ -2155,7 +2155,7 @@
     "name": "Saint-Jean-de-la-Blaquière",
     "code": "34268",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34700"
   },
@@ -2163,7 +2163,7 @@
     "name": "Saint-Jean-de-Minervois",
     "code": "34269",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34360"
   },
@@ -2171,7 +2171,7 @@
     "name": "Saint-Jean-de-Védas",
     "code": "34270",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34430"
   },
@@ -2179,7 +2179,7 @@
     "name": "Saint-Julien",
     "code": "34271",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34390"
   },
@@ -2187,7 +2187,7 @@
     "name": "Saint-Just",
     "code": "34272",
     "epci_code": "243400520",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34400"
   },
@@ -2195,7 +2195,7 @@
     "name": "Saint-Martin-de-l’Arçon",
     "code": "34273",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34390"
   },
@@ -2203,7 +2203,7 @@
     "name": "Saint-Martin-de-Londres",
     "code": "34274",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34380"
   },
@@ -2211,7 +2211,7 @@
     "name": "Saint-Mathieu-de-Tréviers",
     "code": "34276",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34270"
   },
@@ -2219,7 +2219,7 @@
     "name": "Saint-Maurice-Navacelles",
     "code": "34277",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34190"
   },
@@ -2227,7 +2227,7 @@
     "name": "Saint-Maurice-Navacelles",
     "code": "34277",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34520"
   },
@@ -2235,7 +2235,7 @@
     "name": "Saint-Michel",
     "code": "34278",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34520"
   },
@@ -2243,7 +2243,7 @@
     "name": "Saint-Nazaire-de-Ladarez",
     "code": "34279",
     "epci_code": "200071058",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34490"
   },
@@ -2251,7 +2251,7 @@
     "name": "Saint-Nazaire-de-Pézan",
     "code": "34280",
     "epci_code": "243400520",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34400"
   },
@@ -2259,7 +2259,7 @@
     "name": "Saint-Pargoire",
     "code": "34281",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34230"
   },
@@ -2267,7 +2267,7 @@
     "name": "Saint-Paul-et-Valmalle",
     "code": "34282",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34570"
   },
@@ -2275,7 +2275,7 @@
     "name": "Saint-Pierre-de-la-Fage",
     "code": "34283",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34520"
   },
@@ -2283,7 +2283,7 @@
     "name": "Saint-Pons-de-Thomières",
     "code": "34284",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34220"
   },
@@ -2291,7 +2291,7 @@
     "name": "Saint-Pons-de-Mauchiens",
     "code": "34285",
     "epci_code": "243400819",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34230"
   },
@@ -2299,7 +2299,7 @@
     "name": "Saint-Privat",
     "code": "34286",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34700"
   },
@@ -2307,7 +2307,7 @@
     "name": "Saint-Saturnin-de-Lucian",
     "code": "34287",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34725"
   },
@@ -2315,7 +2315,7 @@
     "name": "Saint-Sériès",
     "code": "34288",
     "epci_code": "243400520",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34400"
   },
@@ -2323,7 +2323,7 @@
     "name": "Saint-Thibéry",
     "code": "34289",
     "epci_code": "243400819",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34630"
   },
@@ -2331,7 +2331,7 @@
     "name": "Saint-Vincent-de-Barbeyrargues",
     "code": "34290",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34730"
   },
@@ -2339,7 +2339,7 @@
     "name": "Saint-Vincent-d’Olargues",
     "code": "34291",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34390"
   },
@@ -2347,7 +2347,7 @@
     "name": "Salasc",
     "code": "34292",
     "epci_code": "243400355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34800"
   },
@@ -2355,7 +2355,7 @@
     "name": "La Salvetat-sur-Agout",
     "code": "34293",
     "epci_code": "200066553",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34330"
   },
@@ -2363,7 +2363,7 @@
     "name": "Saturargues",
     "code": "34294",
     "epci_code": "243400520",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34400"
   },
@@ -2371,7 +2371,7 @@
     "name": "Saussan",
     "code": "34295",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34570"
   },
@@ -2379,7 +2379,7 @@
     "name": "Saussines",
     "code": "34296",
     "epci_code": "243400520",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34160"
   },
@@ -2387,7 +2387,7 @@
     "name": "Sauteyrargues",
     "code": "34297",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34270"
   },
@@ -2395,7 +2395,7 @@
     "name": "Sauvian",
     "code": "34298",
     "epci_code": "243400769",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34410"
   },
@@ -2403,7 +2403,7 @@
     "name": "Sérignan",
     "code": "34299",
     "epci_code": "243400769",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34410"
   },
@@ -2411,7 +2411,7 @@
     "name": "Servian",
     "code": "34300",
     "epci_code": "243400769",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34290"
   },
@@ -2419,7 +2419,7 @@
     "name": "Sète",
     "code": "34301",
     "epci_code": "200066355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34200"
   },
@@ -2427,7 +2427,7 @@
     "name": "Siran",
     "code": "34302",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34210"
   },
@@ -2435,7 +2435,7 @@
     "name": "Sorbs",
     "code": "34303",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34520"
   },
@@ -2443,7 +2443,7 @@
     "name": "Soubès",
     "code": "34304",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34700"
   },
@@ -2451,7 +2451,7 @@
     "name": "Le Soulié",
     "code": "34305",
     "epci_code": "200066553",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34330"
   },
@@ -2459,7 +2459,7 @@
     "name": "Soumont",
     "code": "34306",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34700"
   },
@@ -2467,7 +2467,7 @@
     "name": "Sussargues",
     "code": "34307",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34160"
   },
@@ -2475,7 +2475,7 @@
     "name": "Taussac-la-Billière",
     "code": "34308",
     "epci_code": "200042646",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34600"
   },
@@ -2483,7 +2483,7 @@
     "name": "Teyran",
     "code": "34309",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34820"
   },
@@ -2491,7 +2491,7 @@
     "name": "Thézan-lès-Béziers",
     "code": "34310",
     "epci_code": "200071058",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34490"
   },
@@ -2499,7 +2499,7 @@
     "name": "Tourbes",
     "code": "34311",
     "epci_code": "243400819",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34120"
   },
@@ -2507,7 +2507,7 @@
     "name": "La Tour-sur-Orb",
     "code": "34312",
     "epci_code": "200042646",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34260"
   },
@@ -2515,7 +2515,7 @@
     "name": "Tressan",
     "code": "34313",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34230"
   },
@@ -2523,7 +2523,7 @@
     "name": "Le Triadou",
     "code": "34314",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34270"
   },
@@ -2531,7 +2531,7 @@
     "name": "Usclas-d’Hérault",
     "code": "34315",
     "epci_code": "243400355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34230"
   },
@@ -2539,7 +2539,7 @@
     "name": "Usclas-du-Bosc",
     "code": "34316",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34700"
   },
@@ -2547,7 +2547,7 @@
     "name": "La Vacquerie-et-Saint-Martin-de-Castries",
     "code": "34317",
     "epci_code": "200017341",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34520"
   },
@@ -2555,7 +2555,7 @@
     "name": "Vacquières",
     "code": "34318",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34270"
   },
@@ -2563,7 +2563,7 @@
     "name": "Vailhan",
     "code": "34319",
     "epci_code": "200071058",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34320"
   },
@@ -2571,7 +2571,7 @@
     "name": "Vailhauquès",
     "code": "34320",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34570"
   },
@@ -2579,7 +2579,7 @@
     "name": "Valergues",
     "code": "34321",
     "epci_code": "243400470",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34130"
   },
@@ -2587,7 +2587,7 @@
     "name": "Valflaunès",
     "code": "34322",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34270"
   },
@@ -2595,7 +2595,7 @@
     "name": "Valmascle",
     "code": "34323",
     "epci_code": "243400355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34800"
   },
@@ -2603,7 +2603,7 @@
     "name": "Valras-Plage",
     "code": "34324",
     "epci_code": "243400769",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34350"
   },
@@ -2611,7 +2611,7 @@
     "name": "Valros",
     "code": "34325",
     "epci_code": "243400769",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34290"
   },
@@ -2619,7 +2619,7 @@
     "name": "Vélieux",
     "code": "34326",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34220"
   },
@@ -2627,7 +2627,7 @@
     "name": "Vendargues",
     "code": "34327",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34740"
   },
@@ -2635,7 +2635,7 @@
     "name": "Vendémian",
     "code": "34328",
     "epci_code": "243400694",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34230"
   },
@@ -2643,7 +2643,7 @@
     "name": "Vendres",
     "code": "34329",
     "epci_code": "243400488",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34350"
   },
@@ -2651,7 +2651,7 @@
     "name": "Verreries-de-Moussans",
     "code": "34331",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34220"
   },
@@ -2659,7 +2659,7 @@
     "name": "Vias",
     "code": "34332",
     "epci_code": "243400819",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34450"
   },
@@ -2667,7 +2667,7 @@
     "name": "Vic-la-Gardiole",
     "code": "34333",
     "epci_code": "200066355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34110"
   },
@@ -2675,7 +2675,7 @@
     "name": "Vieussan",
     "code": "34334",
     "epci_code": "200066348",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34390"
   },
@@ -2683,7 +2683,7 @@
     "name": "Villemagne-l’Argentière",
     "code": "34335",
     "epci_code": "200042646",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34600"
   },
@@ -2691,7 +2691,7 @@
     "name": "Villeneuve-lès-Béziers",
     "code": "34336",
     "epci_code": "243400769",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34420"
   },
@@ -2699,7 +2699,7 @@
     "name": "Villeneuve-lès-Béziers",
     "code": "34336",
     "epci_code": "243400769",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34500"
   },
@@ -2707,7 +2707,7 @@
     "name": "Villeneuve-lès-Maguelone",
     "code": "34337",
     "epci_code": "243400017",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34750"
   },
@@ -2715,7 +2715,7 @@
     "name": "Villeneuvette",
     "code": "34338",
     "epci_code": "243400355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34800"
   },
@@ -2723,7 +2723,7 @@
     "name": "Villespassans",
     "code": "34339",
     "epci_code": "200042653",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34360"
   },
@@ -2731,7 +2731,7 @@
     "name": "Villetelle",
     "code": "34340",
     "epci_code": "243400520",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34400"
   },
@@ -2739,7 +2739,7 @@
     "name": "Villeveyrac",
     "code": "34341",
     "epci_code": "200066355",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34560"
   },
@@ -2747,7 +2747,7 @@
     "name": "Viols-en-Laval",
     "code": "34342",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34380"
   },
@@ -2755,7 +2755,7 @@
     "name": "Viols-le-Fort",
     "code": "34343",
     "epci_code": "200022986",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34380"
   },
@@ -2763,7 +2763,7 @@
     "name": "La Grande-Motte",
     "code": "34344",
     "epci_code": "243400470",
-    "departement_code": "34",
+    "department_code": "34",
     "region_code": "76",
     "postal_code": "34280"
   }

@@ -3,7 +3,7 @@
     "name": "Abancourt",
     "code": "59001",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59268"
   },
@@ -11,7 +11,7 @@
     "name": "Abscon",
     "code": "59002",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59215"
   },
@@ -19,7 +19,7 @@
     "name": "Aibes",
     "code": "59003",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59149"
   },
@@ -27,7 +27,7 @@
     "name": "Aix-en-Pévèle",
     "code": "59004",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59310"
   },
@@ -35,7 +35,7 @@
     "name": "Allennes-les-Marais",
     "code": "59005",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59251"
   },
@@ -43,7 +43,7 @@
     "name": "L’Orée de Mormal",
     "code": "59006",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59144"
   },
@@ -51,7 +51,7 @@
     "name": "L’Orée de Mormal",
     "code": "59006",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59570"
   },
@@ -59,7 +59,7 @@
     "name": "Anhiers",
     "code": "59007",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59194"
   },
@@ -67,7 +67,7 @@
     "name": "Aniche",
     "code": "59008",
     "epci_code": "245901152",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59580"
   },
@@ -75,7 +75,7 @@
     "name": "Villeneuve-d’Ascq",
     "code": "59009",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59491"
   },
@@ -83,7 +83,7 @@
     "name": "Villeneuve-d’Ascq",
     "code": "59009",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59493"
   },
@@ -91,7 +91,7 @@
     "name": "Villeneuve-d’Ascq",
     "code": "59009",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59650"
   },
@@ -99,7 +99,7 @@
     "name": "Anneux",
     "code": "59010",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59400"
   },
@@ -107,7 +107,7 @@
     "name": "Annœullin",
     "code": "59011",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59112"
   },
@@ -115,7 +115,7 @@
     "name": "Anor",
     "code": "59012",
     "epci_code": "200043404",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59186"
   },
@@ -123,7 +123,7 @@
     "name": "Anstaing",
     "code": "59013",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59152"
   },
@@ -131,7 +131,7 @@
     "name": "Anzin",
     "code": "59014",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59410"
   },
@@ -139,7 +139,7 @@
     "name": "Arleux",
     "code": "59015",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59151"
   },
@@ -147,7 +147,7 @@
     "name": "Armbouts-Cappel",
     "code": "59016",
     "epci_code": "245900428",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59380"
   },
@@ -155,7 +155,7 @@
     "name": "Armentières",
     "code": "59017",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59280"
   },
@@ -163,7 +163,7 @@
     "name": "Arnèke",
     "code": "59018",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59285"
   },
@@ -171,7 +171,7 @@
     "name": "Artres",
     "code": "59019",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59269"
   },
@@ -179,7 +179,7 @@
     "name": "Assevent",
     "code": "59021",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59600"
   },
@@ -187,7 +187,7 @@
     "name": "Attiches",
     "code": "59022",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59551"
   },
@@ -195,7 +195,7 @@
     "name": "Aubencheul-au-Bac",
     "code": "59023",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59265"
   },
@@ -203,7 +203,7 @@
     "name": "Auberchicourt",
     "code": "59024",
     "epci_code": "245901152",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59165"
   },
@@ -211,7 +211,7 @@
     "name": "Aubers",
     "code": "59025",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59249"
   },
@@ -219,7 +219,7 @@
     "name": "Aubigny-au-Bac",
     "code": "59026",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59265"
   },
@@ -227,7 +227,7 @@
     "name": "Aubry-du-Hainaut",
     "code": "59027",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59494"
   },
@@ -235,7 +235,7 @@
     "name": "Auby",
     "code": "59028",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59950"
   },
@@ -243,7 +243,7 @@
     "name": "Auchy-lez-Orchies",
     "code": "59029",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59310"
   },
@@ -251,7 +251,7 @@
     "name": "Audignies",
     "code": "59031",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59570"
   },
@@ -259,7 +259,7 @@
     "name": "Aulnoy-lez-Valenciennes",
     "code": "59032",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59300"
   },
@@ -267,7 +267,7 @@
     "name": "Aulnoye-Aymeries",
     "code": "59033",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59620"
   },
@@ -275,7 +275,7 @@
     "name": "Avelin",
     "code": "59034",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59710"
   },
@@ -283,7 +283,7 @@
     "name": "Avesnelles",
     "code": "59035",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59440"
   },
@@ -291,7 +291,7 @@
     "name": "Avesnes-sur-Helpe",
     "code": "59036",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59440"
   },
@@ -299,7 +299,7 @@
     "name": "Avesnes-les-Aubert",
     "code": "59037",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59129"
   },
@@ -307,7 +307,7 @@
     "name": "Avesnes-le-Sec",
     "code": "59038",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59296"
   },
@@ -315,7 +315,7 @@
     "name": "Awoingt",
     "code": "59039",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59400"
   },
@@ -323,7 +323,7 @@
     "name": "Bachant",
     "code": "59041",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59138"
   },
@@ -331,7 +331,7 @@
     "name": "Bachy",
     "code": "59042",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59830"
   },
@@ -339,7 +339,7 @@
     "name": "Bailleul",
     "code": "59043",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59270"
   },
@@ -347,7 +347,7 @@
     "name": "Baisieux",
     "code": "59044",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59780"
   },
@@ -355,7 +355,7 @@
     "name": "Baives",
     "code": "59045",
     "epci_code": "200043404",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59132"
   },
@@ -363,7 +363,7 @@
     "name": "Bambecque",
     "code": "59046",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59470"
   },
@@ -371,7 +371,7 @@
     "name": "Banteux",
     "code": "59047",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59266"
   },
@@ -379,7 +379,7 @@
     "name": "Bantigny",
     "code": "59048",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59554"
   },
@@ -387,7 +387,7 @@
     "name": "Bantouzelle",
     "code": "59049",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59266"
   },
@@ -395,7 +395,7 @@
     "name": "Bas-Lieu",
     "code": "59050",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59440"
   },
@@ -403,7 +403,7 @@
     "name": "La Bassée",
     "code": "59051",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59480"
   },
@@ -411,7 +411,7 @@
     "name": "Bauvin",
     "code": "59052",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59221"
   },
@@ -419,7 +419,7 @@
     "name": "Bavay",
     "code": "59053",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59570"
   },
@@ -427,7 +427,7 @@
     "name": "Bavinchove",
     "code": "59054",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59670"
   },
@@ -435,7 +435,7 @@
     "name": "Bazuel",
     "code": "59055",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59360"
   },
@@ -443,7 +443,7 @@
     "name": "Beaucamps-Ligny",
     "code": "59056",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59134"
   },
@@ -451,7 +451,7 @@
     "name": "Beaudignies",
     "code": "59057",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59530"
   },
@@ -459,7 +459,7 @@
     "name": "Beaufort",
     "code": "59058",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59330"
   },
@@ -467,7 +467,7 @@
     "name": "Beaumont-en-Cambrésis",
     "code": "59059",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59540"
   },
@@ -475,7 +475,7 @@
     "name": "Beaurain",
     "code": "59060",
     "epci_code": "245901038",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59730"
   },
@@ -483,7 +483,7 @@
     "name": "Beaurepaire-sur-Sambre",
     "code": "59061",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59550"
   },
@@ -491,7 +491,7 @@
     "name": "Beaurieux",
     "code": "59062",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59740"
   },
@@ -499,7 +499,7 @@
     "name": "Beauvois-en-Cambrésis",
     "code": "59063",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59157"
   },
@@ -507,7 +507,7 @@
     "name": "Bellaing",
     "code": "59064",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59135"
   },
@@ -515,7 +515,7 @@
     "name": "Bellignies",
     "code": "59065",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59570"
   },
@@ -523,7 +523,7 @@
     "name": "Bérelles",
     "code": "59066",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59740"
   },
@@ -531,7 +531,7 @@
     "name": "Bergues",
     "code": "59067",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59380"
   },
@@ -539,7 +539,7 @@
     "name": "Berlaimont",
     "code": "59068",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59145"
   },
@@ -547,7 +547,7 @@
     "name": "Bermerain",
     "code": "59069",
     "epci_code": "245901038",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59213"
   },
@@ -555,7 +555,7 @@
     "name": "Bersée",
     "code": "59071",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59235"
   },
@@ -563,7 +563,7 @@
     "name": "Bersillies",
     "code": "59072",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59600"
   },
@@ -571,7 +571,7 @@
     "name": "Berthen",
     "code": "59073",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59270"
   },
@@ -579,7 +579,7 @@
     "name": "Bertry",
     "code": "59074",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59980"
   },
@@ -587,7 +587,7 @@
     "name": "Béthencourt",
     "code": "59075",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59540"
   },
@@ -595,7 +595,7 @@
     "name": "Bettignies",
     "code": "59076",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59600"
   },
@@ -603,7 +603,7 @@
     "name": "Bettrechies",
     "code": "59077",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59570"
   },
@@ -611,7 +611,7 @@
     "name": "Beugnies",
     "code": "59078",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59216"
   },
@@ -619,7 +619,7 @@
     "name": "Beuvrages",
     "code": "59079",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59192"
   },
@@ -627,7 +627,7 @@
     "name": "Beuvry-la-Forêt",
     "code": "59080",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59310"
   },
@@ -635,7 +635,7 @@
     "name": "Bévillers",
     "code": "59081",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59217"
   },
@@ -643,7 +643,7 @@
     "name": "Bierne",
     "code": "59082",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59380"
   },
@@ -651,7 +651,7 @@
     "name": "Bissezeele",
     "code": "59083",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59380"
   },
@@ -659,7 +659,7 @@
     "name": "Blaringhem",
     "code": "59084",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59173"
   },
@@ -667,7 +667,7 @@
     "name": "Blécourt",
     "code": "59085",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59268"
   },
@@ -675,7 +675,7 @@
     "name": "Boeschepe",
     "code": "59086",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59299"
   },
@@ -683,7 +683,7 @@
     "name": "Boëseghem",
     "code": "59087",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59189"
   },
@@ -691,7 +691,7 @@
     "name": "Bois-Grenier",
     "code": "59088",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59280"
   },
@@ -699,7 +699,7 @@
     "name": "Bollezeele",
     "code": "59089",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59470"
   },
@@ -707,7 +707,7 @@
     "name": "Bondues",
     "code": "59090",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59910"
   },
@@ -715,7 +715,7 @@
     "name": "Borre",
     "code": "59091",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59190"
   },
@@ -723,7 +723,7 @@
     "name": "Bouchain",
     "code": "59092",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59111"
   },
@@ -731,7 +731,7 @@
     "name": "Boulogne-sur-Helpe",
     "code": "59093",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59440"
   },
@@ -739,7 +739,7 @@
     "name": "Bourbourg",
     "code": "59094",
     "epci_code": "245900428",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59630"
   },
@@ -747,7 +747,7 @@
     "name": "Bourghelles",
     "code": "59096",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59830"
   },
@@ -755,7 +755,7 @@
     "name": "Boursies",
     "code": "59097",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59400"
   },
@@ -763,7 +763,7 @@
     "name": "Bousbecque",
     "code": "59098",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59166"
   },
@@ -771,7 +771,7 @@
     "name": "Bousies",
     "code": "59099",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59222"
   },
@@ -779,7 +779,7 @@
     "name": "Bousignies",
     "code": "59100",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59178"
   },
@@ -787,7 +787,7 @@
     "name": "Bousignies-sur-Roc",
     "code": "59101",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59149"
   },
@@ -795,7 +795,7 @@
     "name": "Boussières-en-Cambrésis",
     "code": "59102",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59217"
   },
@@ -803,7 +803,7 @@
     "name": "Boussières-sur-Sambre",
     "code": "59103",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59330"
   },
@@ -811,7 +811,7 @@
     "name": "Boussois",
     "code": "59104",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59168"
   },
@@ -819,7 +819,7 @@
     "name": "Bouvignies",
     "code": "59105",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59870"
   },
@@ -827,7 +827,7 @@
     "name": "Bouvines",
     "code": "59106",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59830"
   },
@@ -835,7 +835,7 @@
     "name": "Bray-Dunes",
     "code": "59107",
     "epci_code": "245900428",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59123"
   },
@@ -843,7 +843,7 @@
     "name": "Briastre",
     "code": "59108",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59730"
   },
@@ -851,7 +851,7 @@
     "name": "Brillon",
     "code": "59109",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59178"
   },
@@ -859,7 +859,7 @@
     "name": "Brouckerque",
     "code": "59110",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59630"
   },
@@ -867,7 +867,7 @@
     "name": "Broxeele",
     "code": "59111",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59470"
   },
@@ -875,7 +875,7 @@
     "name": "Bruay-sur-l’Escaut",
     "code": "59112",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59860"
   },
@@ -883,7 +883,7 @@
     "name": "Bruille-lez-Marchiennes",
     "code": "59113",
     "epci_code": "245901152",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59490"
   },
@@ -891,7 +891,7 @@
     "name": "Bruille-Saint-Amand",
     "code": "59114",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59199"
   },
@@ -899,7 +899,7 @@
     "name": "Brunémont",
     "code": "59115",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59151"
   },
@@ -907,7 +907,7 @@
     "name": "Bry",
     "code": "59116",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59144"
   },
@@ -915,7 +915,7 @@
     "name": "Bugnicourt",
     "code": "59117",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59151"
   },
@@ -923,7 +923,7 @@
     "name": "Busigny",
     "code": "59118",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59137"
   },
@@ -931,7 +931,7 @@
     "name": "Buysscheure",
     "code": "59119",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59285"
   },
@@ -939,7 +939,7 @@
     "name": "Caëstre",
     "code": "59120",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59190"
   },
@@ -947,7 +947,7 @@
     "name": "Cagnoncles",
     "code": "59121",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59161"
   },
@@ -955,7 +955,7 @@
     "name": "Cambrai",
     "code": "59122",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59400"
   },
@@ -963,7 +963,7 @@
     "name": "Camphin-en-Carembault",
     "code": "59123",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59133"
   },
@@ -971,7 +971,7 @@
     "name": "Camphin-en-Pévèle",
     "code": "59124",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59780"
   },
@@ -979,7 +979,7 @@
     "name": "Cantaing-sur-Escaut",
     "code": "59125",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59267"
   },
@@ -987,7 +987,7 @@
     "name": "Cantin",
     "code": "59126",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59169"
   },
@@ -995,7 +995,7 @@
     "name": "Capelle",
     "code": "59127",
     "epci_code": "245901038",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59213"
   },
@@ -1003,7 +1003,7 @@
     "name": "Capinghem",
     "code": "59128",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59160"
   },
@@ -1011,7 +1011,7 @@
     "name": "Cappelle-en-Pévèle",
     "code": "59129",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59242"
   },
@@ -1019,7 +1019,7 @@
     "name": "Cappelle-Brouck",
     "code": "59130",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59630"
   },
@@ -1027,7 +1027,7 @@
     "name": "Cappelle-la-Grande",
     "code": "59131",
     "epci_code": "245900428",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59180"
   },
@@ -1035,7 +1035,7 @@
     "name": "Carnières",
     "code": "59132",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59217"
   },
@@ -1043,7 +1043,7 @@
     "name": "Carnin",
     "code": "59133",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59112"
   },
@@ -1051,7 +1051,7 @@
     "name": "Cartignies",
     "code": "59134",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59244"
   },
@@ -1059,7 +1059,7 @@
     "name": "Cassel",
     "code": "59135",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59670"
   },
@@ -1067,7 +1067,7 @@
     "name": "Le Cateau-Cambrésis",
     "code": "59136",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59360"
   },
@@ -1075,7 +1075,7 @@
     "name": "Catillon-sur-Sambre",
     "code": "59137",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59360"
   },
@@ -1083,7 +1083,7 @@
     "name": "Cattenières",
     "code": "59138",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59217"
   },
@@ -1091,7 +1091,7 @@
     "name": "Caudry",
     "code": "59139",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59540"
   },
@@ -1099,7 +1099,7 @@
     "name": "Caullery",
     "code": "59140",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59191"
   },
@@ -1107,7 +1107,7 @@
     "name": "Cauroir",
     "code": "59141",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59400"
   },
@@ -1115,7 +1115,7 @@
     "name": "Cerfontaine",
     "code": "59142",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59680"
   },
@@ -1123,7 +1123,7 @@
     "name": "La Chapelle-d’Armentières",
     "code": "59143",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59930"
   },
@@ -1131,7 +1131,7 @@
     "name": "Château-l’Abbaye",
     "code": "59144",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59230"
   },
@@ -1139,7 +1139,7 @@
     "name": "Chemy",
     "code": "59145",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59147"
   },
@@ -1147,7 +1147,7 @@
     "name": "Chéreng",
     "code": "59146",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59152"
   },
@@ -1155,7 +1155,7 @@
     "name": "Choisies",
     "code": "59147",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59740"
   },
@@ -1163,7 +1163,7 @@
     "name": "Clairfayts",
     "code": "59148",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59740"
   },
@@ -1171,7 +1171,7 @@
     "name": "Clary",
     "code": "59149",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59225"
   },
@@ -1179,7 +1179,7 @@
     "name": "Cobrieux",
     "code": "59150",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59830"
   },
@@ -1187,7 +1187,7 @@
     "name": "Colleret",
     "code": "59151",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59680"
   },
@@ -1195,7 +1195,7 @@
     "name": "Comines",
     "code": "59152",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59560"
   },
@@ -1203,7 +1203,7 @@
     "name": "Condé-sur-l’Escaut",
     "code": "59153",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59163"
   },
@@ -1211,7 +1211,7 @@
     "name": "Coudekerque-Branche",
     "code": "59155",
     "epci_code": "245900428",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59210"
   },
@@ -1219,7 +1219,7 @@
     "name": "Courchelettes",
     "code": "59156",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59552"
   },
@@ -1227,7 +1227,7 @@
     "name": "Cousolre",
     "code": "59157",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59149"
   },
@@ -1235,7 +1235,7 @@
     "name": "Coutiches",
     "code": "59158",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59310"
   },
@@ -1243,7 +1243,7 @@
     "name": "Craywick",
     "code": "59159",
     "epci_code": "245900428",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59279"
   },
@@ -1251,7 +1251,7 @@
     "name": "Crespin",
     "code": "59160",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59154"
   },
@@ -1259,7 +1259,7 @@
     "name": "Crèvecœur-sur-l’Escaut",
     "code": "59161",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59258"
   },
@@ -1267,7 +1267,7 @@
     "name": "Crochte",
     "code": "59162",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59380"
   },
@@ -1275,7 +1275,7 @@
     "name": "Croix",
     "code": "59163",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59170"
   },
@@ -1283,7 +1283,7 @@
     "name": "Croix-Caluyau",
     "code": "59164",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59222"
   },
@@ -1291,7 +1291,7 @@
     "name": "Cuincy",
     "code": "59165",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59553"
   },
@@ -1299,7 +1299,7 @@
     "name": "Curgies",
     "code": "59166",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59990"
   },
@@ -1307,7 +1307,7 @@
     "name": "Cuvillers",
     "code": "59167",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59268"
   },
@@ -1315,7 +1315,7 @@
     "name": "Cysoing",
     "code": "59168",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59830"
   },
@@ -1323,7 +1323,7 @@
     "name": "Damousies",
     "code": "59169",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59680"
   },
@@ -1331,7 +1331,7 @@
     "name": "Dechy",
     "code": "59170",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59187"
   },
@@ -1339,7 +1339,7 @@
     "name": "Dehéries",
     "code": "59171",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59127"
   },
@@ -1347,7 +1347,7 @@
     "name": "Denain",
     "code": "59172",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59220"
   },
@@ -1355,7 +1355,7 @@
     "name": "Deûlémont",
     "code": "59173",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59890"
   },
@@ -1363,7 +1363,7 @@
     "name": "Dimechaux",
     "code": "59174",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59740"
   },
@@ -1371,7 +1371,7 @@
     "name": "Dimont",
     "code": "59175",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59216"
   },
@@ -1379,7 +1379,7 @@
     "name": "Doignies",
     "code": "59176",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59400"
   },
@@ -1387,7 +1387,7 @@
     "name": "Dompierre-sur-Helpe",
     "code": "59177",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59440"
   },
@@ -1395,7 +1395,7 @@
     "name": "Douai",
     "code": "59178",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59500"
   },
@@ -1403,7 +1403,7 @@
     "name": "Douchy-les-Mines",
     "code": "59179",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59282"
   },
@@ -1411,7 +1411,7 @@
     "name": "Le Doulieu",
     "code": "59180",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59940"
   },
@@ -1419,7 +1419,7 @@
     "name": "Dourlers",
     "code": "59181",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59440"
   },
@@ -1427,7 +1427,7 @@
     "name": "Drincham",
     "code": "59182",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59630"
   },
@@ -1435,7 +1435,7 @@
     "name": "Dunkerque",
     "code": "59183",
     "epci_code": "245900428",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59140"
   },
@@ -1443,7 +1443,7 @@
     "name": "Dunkerque",
     "code": "59183",
     "epci_code": "245900428",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59240"
   },
@@ -1451,7 +1451,7 @@
     "name": "Dunkerque",
     "code": "59183",
     "epci_code": "245900428",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59279"
   },
@@ -1459,7 +1459,7 @@
     "name": "Dunkerque",
     "code": "59183",
     "epci_code": "245900428",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59430"
   },
@@ -1467,7 +1467,7 @@
     "name": "Dunkerque",
     "code": "59183",
     "epci_code": "245900428",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59640"
   },
@@ -1475,7 +1475,7 @@
     "name": "Ebblinghem",
     "code": "59184",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59173"
   },
@@ -1483,7 +1483,7 @@
     "name": "Écaillon",
     "code": "59185",
     "epci_code": "245901152",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59176"
   },
@@ -1491,7 +1491,7 @@
     "name": "Eccles",
     "code": "59186",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59740"
   },
@@ -1499,7 +1499,7 @@
     "name": "Éclaibes",
     "code": "59187",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59330"
   },
@@ -1507,7 +1507,7 @@
     "name": "Écuélin",
     "code": "59188",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59620"
   },
@@ -1515,7 +1515,7 @@
     "name": "Eecke",
     "code": "59189",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59114"
   },
@@ -1523,7 +1523,7 @@
     "name": "Élesmes",
     "code": "59190",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59600"
   },
@@ -1531,7 +1531,7 @@
     "name": "Élincourt",
     "code": "59191",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59127"
   },
@@ -1539,7 +1539,7 @@
     "name": "Émerchicourt",
     "code": "59192",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59580"
   },
@@ -1547,7 +1547,7 @@
     "name": "Emmerin",
     "code": "59193",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59320"
   },
@@ -1555,7 +1555,7 @@
     "name": "Englefontaine",
     "code": "59194",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59530"
   },
@@ -1563,7 +1563,7 @@
     "name": "Englos",
     "code": "59195",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59320"
   },
@@ -1571,7 +1571,7 @@
     "name": "Ennetières-en-Weppes",
     "code": "59196",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59320"
   },
@@ -1579,7 +1579,7 @@
     "name": "Ennevelin",
     "code": "59197",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59710"
   },
@@ -1587,7 +1587,7 @@
     "name": "Eppe-Sauvage",
     "code": "59198",
     "epci_code": "200043404",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59132"
   },
@@ -1595,7 +1595,7 @@
     "name": "Erchin",
     "code": "59199",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59169"
   },
@@ -1603,7 +1603,7 @@
     "name": "Eringhem",
     "code": "59200",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59470"
   },
@@ -1611,7 +1611,7 @@
     "name": "Erquinghem-le-Sec",
     "code": "59201",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59320"
   },
@@ -1619,7 +1619,7 @@
     "name": "Erquinghem-Lys",
     "code": "59202",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59193"
   },
@@ -1627,7 +1627,7 @@
     "name": "Erre",
     "code": "59203",
     "epci_code": "245901152",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59171"
   },
@@ -1635,7 +1635,7 @@
     "name": "Escarmain",
     "code": "59204",
     "epci_code": "245901038",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59213"
   },
@@ -1643,7 +1643,7 @@
     "name": "Escaudain",
     "code": "59205",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59124"
   },
@@ -1651,7 +1651,7 @@
     "name": "Escaudœuvres",
     "code": "59206",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59161"
   },
@@ -1659,7 +1659,7 @@
     "name": "Escautpont",
     "code": "59207",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59278"
   },
@@ -1667,7 +1667,7 @@
     "name": "Escobecques",
     "code": "59208",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59320"
   },
@@ -1675,7 +1675,7 @@
     "name": "Esnes",
     "code": "59209",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59127"
   },
@@ -1683,7 +1683,7 @@
     "name": "Esquelbecq",
     "code": "59210",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59470"
   },
@@ -1691,7 +1691,7 @@
     "name": "Esquerchin",
     "code": "59211",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59553"
   },
@@ -1699,7 +1699,7 @@
     "name": "Estaires",
     "code": "59212",
     "epci_code": "245900758",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59940"
   },
@@ -1707,7 +1707,7 @@
     "name": "Estourmel",
     "code": "59213",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59400"
   },
@@ -1715,7 +1715,7 @@
     "name": "Estrées",
     "code": "59214",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59151"
   },
@@ -1723,7 +1723,7 @@
     "name": "Estreux",
     "code": "59215",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59990"
   },
@@ -1731,7 +1731,7 @@
     "name": "Eswars",
     "code": "59216",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59161"
   },
@@ -1739,7 +1739,7 @@
     "name": "Eth",
     "code": "59217",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59144"
   },
@@ -1747,7 +1747,7 @@
     "name": "Étrœungt",
     "code": "59218",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59219"
   },
@@ -1755,7 +1755,7 @@
     "name": "Estrun",
     "code": "59219",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59295"
   },
@@ -1763,7 +1763,7 @@
     "name": "Faches-Thumesnil",
     "code": "59220",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59155"
   },
@@ -1771,7 +1771,7 @@
     "name": "Famars",
     "code": "59221",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59300"
   },
@@ -1779,7 +1779,7 @@
     "name": "Faumont",
     "code": "59222",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59310"
   },
@@ -1787,7 +1787,7 @@
     "name": "Le Favril",
     "code": "59223",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59550"
   },
@@ -1795,7 +1795,7 @@
     "name": "Féchain",
     "code": "59224",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59247"
   },
@@ -1803,7 +1803,7 @@
     "name": "Feignies",
     "code": "59225",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59750"
   },
@@ -1811,7 +1811,7 @@
     "name": "Felleries",
     "code": "59226",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59740"
   },
@@ -1819,7 +1819,7 @@
     "name": "Fenain",
     "code": "59227",
     "epci_code": "245901152",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59179"
   },
@@ -1827,7 +1827,7 @@
     "name": "Férin",
     "code": "59228",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59169"
   },
@@ -1835,7 +1835,7 @@
     "name": "Féron",
     "code": "59229",
     "epci_code": "200043404",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59610"
   },
@@ -1843,7 +1843,7 @@
     "name": "Ferrière-la-Grande",
     "code": "59230",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59680"
   },
@@ -1851,7 +1851,7 @@
     "name": "Ferrière-la-Petite",
     "code": "59231",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59680"
   },
@@ -1859,7 +1859,7 @@
     "name": "La Flamengrie",
     "code": "59232",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59570"
   },
@@ -1867,7 +1867,7 @@
     "name": "Flaumont-Waudrechies",
     "code": "59233",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59440"
   },
@@ -1875,7 +1875,7 @@
     "name": "Flers-en-Escrebieux",
     "code": "59234",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59128"
   },
@@ -1883,7 +1883,7 @@
     "name": "Flesquières",
     "code": "59236",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59267"
   },
@@ -1891,7 +1891,7 @@
     "name": "Flêtre",
     "code": "59237",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59270"
   },
@@ -1899,7 +1899,7 @@
     "name": "Flines-lès-Mortagne",
     "code": "59238",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59158"
   },
@@ -1907,7 +1907,7 @@
     "name": "Flines-lez-Raches",
     "code": "59239",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59148"
   },
@@ -1915,7 +1915,7 @@
     "name": "Floursies",
     "code": "59240",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59440"
   },
@@ -1923,7 +1923,7 @@
     "name": "Floyon",
     "code": "59241",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59219"
   },
@@ -1931,7 +1931,7 @@
     "name": "Fontaine-au-Bois",
     "code": "59242",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59550"
   },
@@ -1939,7 +1939,7 @@
     "name": "Fontaine-au-Pire",
     "code": "59243",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59157"
   },
@@ -1947,7 +1947,7 @@
     "name": "Fontaine-Notre-Dame",
     "code": "59244",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59400"
   },
@@ -1955,7 +1955,7 @@
     "name": "Forest-en-Cambrésis",
     "code": "59246",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59222"
   },
@@ -1963,7 +1963,7 @@
     "name": "Forest-sur-Marque",
     "code": "59247",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59510"
   },
@@ -1971,7 +1971,7 @@
     "name": "Fourmies",
     "code": "59249",
     "epci_code": "200043404",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59610"
   },
@@ -1979,7 +1979,7 @@
     "name": "Fournes-en-Weppes",
     "code": "59250",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59134"
   },
@@ -1987,7 +1987,7 @@
     "name": "Frasnoy",
     "code": "59251",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59530"
   },
@@ -1995,7 +1995,7 @@
     "name": "Frelinghien",
     "code": "59252",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59236"
   },
@@ -2003,7 +2003,7 @@
     "name": "Fresnes-sur-Escaut",
     "code": "59253",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59970"
   },
@@ -2011,7 +2011,7 @@
     "name": "Fressain",
     "code": "59254",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59234"
   },
@@ -2019,7 +2019,7 @@
     "name": "Fressies",
     "code": "59255",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59268"
   },
@@ -2027,7 +2027,7 @@
     "name": "Fretin",
     "code": "59256",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59273"
   },
@@ -2035,7 +2035,7 @@
     "name": "Fromelles",
     "code": "59257",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59249"
   },
@@ -2043,7 +2043,7 @@
     "name": "Genech",
     "code": "59258",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59242"
   },
@@ -2051,7 +2051,7 @@
     "name": "Ghissignies",
     "code": "59259",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59530"
   },
@@ -2059,7 +2059,7 @@
     "name": "Ghyvelde",
     "code": "59260",
     "epci_code": "245900428",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59122"
   },
@@ -2067,7 +2067,7 @@
     "name": "Ghyvelde",
     "code": "59260",
     "epci_code": "245900428",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59254"
   },
@@ -2075,7 +2075,7 @@
     "name": "Glageon",
     "code": "59261",
     "epci_code": "200043404",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59132"
   },
@@ -2083,7 +2083,7 @@
     "name": "Godewaersvelde",
     "code": "59262",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59270"
   },
@@ -2091,7 +2091,7 @@
     "name": "Gœulzin",
     "code": "59263",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59169"
   },
@@ -2099,7 +2099,7 @@
     "name": "Gognies-Chaussée",
     "code": "59264",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59600"
   },
@@ -2107,7 +2107,7 @@
     "name": "Gommegnies",
     "code": "59265",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59144"
   },
@@ -2115,7 +2115,7 @@
     "name": "Gondecourt",
     "code": "59266",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59147"
   },
@@ -2123,7 +2123,7 @@
     "name": "Gonnelieu",
     "code": "59267",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59231"
   },
@@ -2131,7 +2131,7 @@
     "name": "La Gorgue",
     "code": "59268",
     "epci_code": "245900758",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59253"
   },
@@ -2139,7 +2139,7 @@
     "name": "Gouzeaucourt",
     "code": "59269",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59231"
   },
@@ -2147,7 +2147,7 @@
     "name": "Grand-Fayt",
     "code": "59270",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59244"
   },
@@ -2155,7 +2155,7 @@
     "name": "Grande-Synthe",
     "code": "59271",
     "epci_code": "245900428",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59760"
   },
@@ -2163,7 +2163,7 @@
     "name": "Grand-Fort-Philippe",
     "code": "59272",
     "epci_code": "245900428",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59153"
   },
@@ -2171,7 +2171,7 @@
     "name": "Gravelines",
     "code": "59273",
     "epci_code": "245900428",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59820"
   },
@@ -2179,7 +2179,7 @@
     "name": "La Groise",
     "code": "59274",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59360"
   },
@@ -2187,7 +2187,7 @@
     "name": "Gruson",
     "code": "59275",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59152"
   },
@@ -2195,7 +2195,7 @@
     "name": "Guesnain",
     "code": "59276",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59287"
   },
@@ -2203,7 +2203,7 @@
     "name": "Gussignies",
     "code": "59277",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59570"
   },
@@ -2211,7 +2211,7 @@
     "name": "Hallennes-lez-Haubourdin",
     "code": "59278",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59320"
   },
@@ -2219,7 +2219,7 @@
     "name": "Halluin",
     "code": "59279",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59250"
   },
@@ -2227,7 +2227,7 @@
     "name": "Hamel",
     "code": "59280",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59151"
   },
@@ -2235,7 +2235,7 @@
     "name": "Hantay",
     "code": "59281",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59496"
   },
@@ -2243,7 +2243,7 @@
     "name": "Hardifort",
     "code": "59282",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59670"
   },
@@ -2251,7 +2251,7 @@
     "name": "Hargnies",
     "code": "59283",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59138"
   },
@@ -2259,7 +2259,7 @@
     "name": "Hasnon",
     "code": "59284",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59178"
   },
@@ -2267,7 +2267,7 @@
     "name": "Haspres",
     "code": "59285",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59198"
   },
@@ -2275,7 +2275,7 @@
     "name": "Haubourdin",
     "code": "59286",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59320"
   },
@@ -2283,7 +2283,7 @@
     "name": "Haucourt-en-Cambrésis",
     "code": "59287",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59191"
   },
@@ -2291,7 +2291,7 @@
     "name": "Haulchin",
     "code": "59288",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59121"
   },
@@ -2299,7 +2299,7 @@
     "name": "Haussy",
     "code": "59289",
     "epci_code": "245901038",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59294"
   },
@@ -2307,7 +2307,7 @@
     "name": "Haut-Lieu",
     "code": "59290",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59440"
   },
@@ -2315,7 +2315,7 @@
     "name": "Hautmont",
     "code": "59291",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59330"
   },
@@ -2323,7 +2323,7 @@
     "name": "Haveluy",
     "code": "59292",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59255"
   },
@@ -2331,7 +2331,7 @@
     "name": "Haverskerque",
     "code": "59293",
     "epci_code": "245900758",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59660"
   },
@@ -2339,7 +2339,7 @@
     "name": "Haynecourt",
     "code": "59294",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59268"
   },
@@ -2347,7 +2347,7 @@
     "name": "Hazebrouck",
     "code": "59295",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59190"
   },
@@ -2355,7 +2355,7 @@
     "name": "Hecq",
     "code": "59296",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59530"
   },
@@ -2363,7 +2363,7 @@
     "name": "Hélesmes",
     "code": "59297",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59171"
   },
@@ -2371,7 +2371,7 @@
     "name": "Hem",
     "code": "59299",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59510"
   },
@@ -2379,7 +2379,7 @@
     "name": "Hem-Lenglet",
     "code": "59300",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59247"
   },
@@ -2387,7 +2387,7 @@
     "name": "Hergnies",
     "code": "59301",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59199"
   },
@@ -2395,7 +2395,7 @@
     "name": "Hérin",
     "code": "59302",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59195"
   },
@@ -2403,7 +2403,7 @@
     "name": "Herlies",
     "code": "59303",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59134"
   },
@@ -2411,7 +2411,7 @@
     "name": "Herrin",
     "code": "59304",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59147"
   },
@@ -2419,7 +2419,7 @@
     "name": "Herzeele",
     "code": "59305",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59470"
   },
@@ -2427,7 +2427,7 @@
     "name": "Hestrud",
     "code": "59306",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59740"
   },
@@ -2435,7 +2435,7 @@
     "name": "Holque",
     "code": "59307",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59143"
   },
@@ -2443,7 +2443,7 @@
     "name": "Hondeghem",
     "code": "59308",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59190"
   },
@@ -2451,7 +2451,7 @@
     "name": "Hondschoote",
     "code": "59309",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59122"
   },
@@ -2459,7 +2459,7 @@
     "name": "Hon-Hergies",
     "code": "59310",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59570"
   },
@@ -2467,7 +2467,7 @@
     "name": "Honnechy",
     "code": "59311",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59980"
   },
@@ -2475,7 +2475,7 @@
     "name": "Honnecourt-sur-Escaut",
     "code": "59312",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59266"
   },
@@ -2483,7 +2483,7 @@
     "name": "Hordain",
     "code": "59313",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59111"
   },
@@ -2491,7 +2491,7 @@
     "name": "Hornaing",
     "code": "59314",
     "epci_code": "245901152",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59171"
   },
@@ -2499,7 +2499,7 @@
     "name": "Houdain-lez-Bavay",
     "code": "59315",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59570"
   },
@@ -2507,7 +2507,7 @@
     "name": "Houplin-Ancoisne",
     "code": "59316",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59263"
   },
@@ -2515,7 +2515,7 @@
     "name": "Houplines",
     "code": "59317",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59116"
   },
@@ -2523,7 +2523,7 @@
     "name": "Houtkerque",
     "code": "59318",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59470"
   },
@@ -2531,7 +2531,7 @@
     "name": "Hoymille",
     "code": "59319",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59492"
   },
@@ -2539,7 +2539,7 @@
     "name": "Illies",
     "code": "59320",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59480"
   },
@@ -2547,7 +2547,7 @@
     "name": "Inchy",
     "code": "59321",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59540"
   },
@@ -2555,7 +2555,7 @@
     "name": "Iwuy",
     "code": "59322",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59141"
   },
@@ -2563,7 +2563,7 @@
     "name": "Jenlain",
     "code": "59323",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59144"
   },
@@ -2571,7 +2571,7 @@
     "name": "Jeumont",
     "code": "59324",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59460"
   },
@@ -2579,7 +2579,7 @@
     "name": "Jolimetz",
     "code": "59325",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59530"
   },
@@ -2587,7 +2587,7 @@
     "name": "Killem",
     "code": "59326",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59122"
   },
@@ -2595,7 +2595,7 @@
     "name": "Lallaing",
     "code": "59327",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59167"
   },
@@ -2603,7 +2603,7 @@
     "name": "Lambersart",
     "code": "59328",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59130"
   },
@@ -2611,7 +2611,7 @@
     "name": "Lambres-lez-Douai",
     "code": "59329",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59552"
   },
@@ -2619,7 +2619,7 @@
     "name": "Landas",
     "code": "59330",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59310"
   },
@@ -2627,7 +2627,7 @@
     "name": "Landrecies",
     "code": "59331",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59550"
   },
@@ -2635,7 +2635,7 @@
     "name": "Lannoy",
     "code": "59332",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59390"
   },
@@ -2643,7 +2643,7 @@
     "name": "Larouillies",
     "code": "59333",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59219"
   },
@@ -2651,7 +2651,7 @@
     "name": "Lauwin-Planque",
     "code": "59334",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59553"
   },
@@ -2659,7 +2659,7 @@
     "name": "Lecelles",
     "code": "59335",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59226"
   },
@@ -2667,7 +2667,7 @@
     "name": "Lécluse",
     "code": "59336",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59259"
   },
@@ -2675,7 +2675,7 @@
     "name": "Lederzeele",
     "code": "59337",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59143"
   },
@@ -2683,7 +2683,7 @@
     "name": "Ledringhem",
     "code": "59338",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59470"
   },
@@ -2691,7 +2691,7 @@
     "name": "Leers",
     "code": "59339",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59115"
   },
@@ -2699,7 +2699,7 @@
     "name": "Leffrinckoucke",
     "code": "59340",
     "epci_code": "245900428",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59495"
   },
@@ -2707,7 +2707,7 @@
     "name": "Lesdain",
     "code": "59341",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59258"
   },
@@ -2715,7 +2715,7 @@
     "name": "Lez-Fontaine",
     "code": "59342",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59740"
   },
@@ -2723,7 +2723,7 @@
     "name": "Lesquin",
     "code": "59343",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59810"
   },
@@ -2731,7 +2731,7 @@
     "name": "Leval",
     "code": "59344",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59620"
   },
@@ -2739,7 +2739,7 @@
     "name": "Lewarde",
     "code": "59345",
     "epci_code": "245901152",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59287"
   },
@@ -2747,7 +2747,7 @@
     "name": "Lezennes",
     "code": "59346",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59260"
   },
@@ -2755,7 +2755,7 @@
     "name": "Liessies",
     "code": "59347",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59740"
   },
@@ -2763,7 +2763,7 @@
     "name": "Lieu-Saint-Amand",
     "code": "59348",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59111"
   },
@@ -2771,7 +2771,7 @@
     "name": "Ligny-en-Cambrésis",
     "code": "59349",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59191"
   },
@@ -2779,7 +2779,7 @@
     "name": "Lille",
     "code": "59350",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59000"
   },
@@ -2787,7 +2787,7 @@
     "name": "Lille",
     "code": "59350",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59160"
   },
@@ -2795,7 +2795,7 @@
     "name": "Lille",
     "code": "59350",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59260"
   },
@@ -2803,7 +2803,7 @@
     "name": "Lille",
     "code": "59350",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59777"
   },
@@ -2811,7 +2811,7 @@
     "name": "Lille",
     "code": "59350",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59800"
   },
@@ -2819,7 +2819,7 @@
     "name": "Limont-Fontaine",
     "code": "59351",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59330"
   },
@@ -2827,7 +2827,7 @@
     "name": "Linselles",
     "code": "59352",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59126"
   },
@@ -2835,7 +2835,7 @@
     "name": "Locquignol",
     "code": "59353",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59530"
   },
@@ -2843,7 +2843,7 @@
     "name": "Loffre",
     "code": "59354",
     "epci_code": "245901152",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59182"
   },
@@ -2851,7 +2851,7 @@
     "name": "Lompret",
     "code": "59356",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59840"
   },
@@ -2859,7 +2859,7 @@
     "name": "La Longueville",
     "code": "59357",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59570"
   },
@@ -2867,7 +2867,7 @@
     "name": "Looberghe",
     "code": "59358",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59630"
   },
@@ -2875,7 +2875,7 @@
     "name": "Loon-Plage",
     "code": "59359",
     "epci_code": "245900428",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59279"
   },
@@ -2883,7 +2883,7 @@
     "name": "Loos",
     "code": "59360",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59120"
   },
@@ -2891,7 +2891,7 @@
     "name": "Lourches",
     "code": "59361",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59156"
   },
@@ -2899,7 +2899,7 @@
     "name": "Louvignies-Quesnoy",
     "code": "59363",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59530"
   },
@@ -2907,7 +2907,7 @@
     "name": "Louvil",
     "code": "59364",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59830"
   },
@@ -2915,7 +2915,7 @@
     "name": "Louvroil",
     "code": "59365",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59720"
   },
@@ -2923,7 +2923,7 @@
     "name": "Lynde",
     "code": "59366",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59173"
   },
@@ -2931,7 +2931,7 @@
     "name": "Lys-lez-Lannoy",
     "code": "59367",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59390"
   },
@@ -2939,7 +2939,7 @@
     "name": "La Madeleine",
     "code": "59368",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59110"
   },
@@ -2947,7 +2947,7 @@
     "name": "Maing",
     "code": "59369",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59233"
   },
@@ -2955,7 +2955,7 @@
     "name": "Mairieux",
     "code": "59370",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59600"
   },
@@ -2963,7 +2963,7 @@
     "name": "Le Maisnil",
     "code": "59371",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59134"
   },
@@ -2971,7 +2971,7 @@
     "name": "Malincourt",
     "code": "59372",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59127"
   },
@@ -2979,7 +2979,7 @@
     "name": "Marbaix",
     "code": "59374",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59440"
   },
@@ -2987,7 +2987,7 @@
     "name": "Marchiennes",
     "code": "59375",
     "epci_code": "245901152",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59870"
   },
@@ -2995,7 +2995,7 @@
     "name": "Marcoing",
     "code": "59377",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59159"
   },
@@ -3003,7 +3003,7 @@
     "name": "Marcq-en-Barœul",
     "code": "59378",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59700"
   },
@@ -3011,7 +3011,7 @@
     "name": "Marcq-en-Ostrevent",
     "code": "59379",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59252"
   },
@@ -3019,7 +3019,7 @@
     "name": "Maresches",
     "code": "59381",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59990"
   },
@@ -3027,7 +3027,7 @@
     "name": "Maretz",
     "code": "59382",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59238"
   },
@@ -3035,7 +3035,7 @@
     "name": "Marly",
     "code": "59383",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59770"
   },
@@ -3043,7 +3043,7 @@
     "name": "Maroilles",
     "code": "59384",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59550"
   },
@@ -3051,7 +3051,7 @@
     "name": "Marpent",
     "code": "59385",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59164"
   },
@@ -3059,7 +3059,7 @@
     "name": "Marquette-lez-Lille",
     "code": "59386",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59520"
   },
@@ -3067,7 +3067,7 @@
     "name": "Marquette-en-Ostrevant",
     "code": "59387",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59252"
   },
@@ -3075,7 +3075,7 @@
     "name": "Marquillies",
     "code": "59388",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59274"
   },
@@ -3083,7 +3083,7 @@
     "name": "Masnières",
     "code": "59389",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59241"
   },
@@ -3091,7 +3091,7 @@
     "name": "Masny",
     "code": "59390",
     "epci_code": "245901152",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59176"
   },
@@ -3099,7 +3099,7 @@
     "name": "Mastaing",
     "code": "59391",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59172"
   },
@@ -3107,7 +3107,7 @@
     "name": "Maubeuge",
     "code": "59392",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59600"
   },
@@ -3115,7 +3115,7 @@
     "name": "Maulde",
     "code": "59393",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59158"
   },
@@ -3123,7 +3123,7 @@
     "name": "Maurois",
     "code": "59394",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59980"
   },
@@ -3131,7 +3131,7 @@
     "name": "Mazinghien",
     "code": "59395",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59360"
   },
@@ -3139,7 +3139,7 @@
     "name": "Mecquignies",
     "code": "59396",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59570"
   },
@@ -3147,7 +3147,7 @@
     "name": "Merckeghem",
     "code": "59397",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59470"
   },
@@ -3155,7 +3155,7 @@
     "name": "Mérignies",
     "code": "59398",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59710"
   },
@@ -3163,7 +3163,7 @@
     "name": "Merris",
     "code": "59399",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59270"
   },
@@ -3171,7 +3171,7 @@
     "name": "Merville",
     "code": "59400",
     "epci_code": "245900758",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59660"
   },
@@ -3179,7 +3179,7 @@
     "name": "Méteren",
     "code": "59401",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59270"
   },
@@ -3187,7 +3187,7 @@
     "name": "Millam",
     "code": "59402",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59143"
   },
@@ -3195,7 +3195,7 @@
     "name": "Millonfosse",
     "code": "59403",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59178"
   },
@@ -3203,7 +3203,7 @@
     "name": "Mœuvres",
     "code": "59405",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59400"
   },
@@ -3211,7 +3211,7 @@
     "name": "Monceau-Saint-Waast",
     "code": "59406",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59620"
   },
@@ -3219,7 +3219,7 @@
     "name": "Monchaux-sur-Écaillon",
     "code": "59407",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59224"
   },
@@ -3227,7 +3227,7 @@
     "name": "Moncheaux",
     "code": "59408",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59283"
   },
@@ -3235,7 +3235,7 @@
     "name": "Monchecourt",
     "code": "59409",
     "epci_code": "245901152",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59234"
   },
@@ -3243,7 +3243,7 @@
     "name": "Mons-en-Barœul",
     "code": "59410",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59370"
   },
@@ -3251,7 +3251,7 @@
     "name": "Mons-en-Pévèle",
     "code": "59411",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59246"
   },
@@ -3259,7 +3259,7 @@
     "name": "Montay",
     "code": "59412",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59360"
   },
@@ -3267,7 +3267,7 @@
     "name": "Montigny-en-Cambrésis",
     "code": "59413",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59225"
   },
@@ -3275,7 +3275,7 @@
     "name": "Montigny-en-Ostrevent",
     "code": "59414",
     "epci_code": "245901152",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59182"
   },
@@ -3283,7 +3283,7 @@
     "name": "Montrécourt",
     "code": "59415",
     "epci_code": "245901038",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59227"
   },
@@ -3291,7 +3291,7 @@
     "name": "Morbecque",
     "code": "59416",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59190"
   },
@@ -3299,7 +3299,7 @@
     "name": "Mortagne-du-Nord",
     "code": "59418",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59158"
   },
@@ -3307,7 +3307,7 @@
     "name": "Mouchin",
     "code": "59419",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59310"
   },
@@ -3315,7 +3315,7 @@
     "name": "Moustier-en-Fagne",
     "code": "59420",
     "epci_code": "200043404",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59132"
   },
@@ -3323,7 +3323,7 @@
     "name": "Mouvaux",
     "code": "59421",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59420"
   },
@@ -3331,7 +3331,7 @@
     "name": "Naves",
     "code": "59422",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59161"
   },
@@ -3339,7 +3339,7 @@
     "name": "Neuf-Berquin",
     "code": "59423",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59940"
   },
@@ -3347,7 +3347,7 @@
     "name": "Neuf-Mesnil",
     "code": "59424",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59330"
   },
@@ -3355,7 +3355,7 @@
     "name": "Neuville-en-Avesnois",
     "code": "59425",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59218"
   },
@@ -3363,7 +3363,7 @@
     "name": "Neuville-en-Ferrain",
     "code": "59426",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59960"
   },
@@ -3371,7 +3371,7 @@
     "name": "La Neuville",
     "code": "59427",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59239"
   },
@@ -3379,7 +3379,7 @@
     "name": "Neuville-Saint-Rémy",
     "code": "59428",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59554"
   },
@@ -3387,7 +3387,7 @@
     "name": "Neuville-sur-Escaut",
     "code": "59429",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59293"
   },
@@ -3395,7 +3395,7 @@
     "name": "Neuvilly",
     "code": "59430",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59360"
   },
@@ -3403,7 +3403,7 @@
     "name": "Nieppe",
     "code": "59431",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59850"
   },
@@ -3411,7 +3411,7 @@
     "name": "Niergnies",
     "code": "59432",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59400"
   },
@@ -3419,7 +3419,7 @@
     "name": "Nieurlet",
     "code": "59433",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59143"
   },
@@ -3427,7 +3427,7 @@
     "name": "Nivelle",
     "code": "59434",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59230"
   },
@@ -3435,7 +3435,7 @@
     "name": "Nomain",
     "code": "59435",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59310"
   },
@@ -3443,7 +3443,7 @@
     "name": "Noordpeene",
     "code": "59436",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59670"
   },
@@ -3451,7 +3451,7 @@
     "name": "Noyelles-lès-Seclin",
     "code": "59437",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59139"
   },
@@ -3459,7 +3459,7 @@
     "name": "Noyelles-sur-Escaut",
     "code": "59438",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59159"
   },
@@ -3467,7 +3467,7 @@
     "name": "Noyelles-sur-Sambre",
     "code": "59439",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59550"
   },
@@ -3475,7 +3475,7 @@
     "name": "Noyelles-sur-Selle",
     "code": "59440",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59282"
   },
@@ -3483,7 +3483,7 @@
     "name": "Obies",
     "code": "59441",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59570"
   },
@@ -3491,7 +3491,7 @@
     "name": "Obrechies",
     "code": "59442",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59680"
   },
@@ -3499,7 +3499,7 @@
     "name": "Ochtezeele",
     "code": "59443",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59670"
   },
@@ -3507,7 +3507,7 @@
     "name": "Odomez",
     "code": "59444",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59970"
   },
@@ -3515,7 +3515,7 @@
     "name": "Ohain",
     "code": "59445",
     "epci_code": "200043404",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59132"
   },
@@ -3523,7 +3523,7 @@
     "name": "Oisy",
     "code": "59446",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59195"
   },
@@ -3531,7 +3531,7 @@
     "name": "Onnaing",
     "code": "59447",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59264"
   },
@@ -3539,7 +3539,7 @@
     "name": "Oost-Cappel",
     "code": "59448",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59122"
   },
@@ -3547,7 +3547,7 @@
     "name": "Orchies",
     "code": "59449",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59310"
   },
@@ -3555,7 +3555,7 @@
     "name": "Ors",
     "code": "59450",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59360"
   },
@@ -3563,7 +3563,7 @@
     "name": "Orsinval",
     "code": "59451",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59530"
   },
@@ -3571,7 +3571,7 @@
     "name": "Ostricourt",
     "code": "59452",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59162"
   },
@@ -3579,7 +3579,7 @@
     "name": "Oudezeele",
     "code": "59453",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59670"
   },
@@ -3587,7 +3587,7 @@
     "name": "Oxelaëre",
     "code": "59454",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59670"
   },
@@ -3595,7 +3595,7 @@
     "name": "Paillencourt",
     "code": "59455",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59295"
   },
@@ -3603,7 +3603,7 @@
     "name": "Pecquencourt",
     "code": "59456",
     "epci_code": "245901152",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59146"
   },
@@ -3611,7 +3611,7 @@
     "name": "Pérenchies",
     "code": "59457",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59840"
   },
@@ -3619,7 +3619,7 @@
     "name": "Péronne-en-Mélantois",
     "code": "59458",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59273"
   },
@@ -3627,7 +3627,7 @@
     "name": "Petite-Forêt",
     "code": "59459",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59494"
   },
@@ -3635,7 +3635,7 @@
     "name": "Petit-Fayt",
     "code": "59461",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59244"
   },
@@ -3643,7 +3643,7 @@
     "name": "Phalempin",
     "code": "59462",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59133"
   },
@@ -3651,7 +3651,7 @@
     "name": "Pitgam",
     "code": "59463",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59284"
   },
@@ -3659,7 +3659,7 @@
     "name": "Poix-du-Nord",
     "code": "59464",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59218"
   },
@@ -3667,7 +3667,7 @@
     "name": "Pommereuil",
     "code": "59465",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59360"
   },
@@ -3675,7 +3675,7 @@
     "name": "Pont-à-Marcq",
     "code": "59466",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59710"
   },
@@ -3683,7 +3683,7 @@
     "name": "Pont-sur-Sambre",
     "code": "59467",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59138"
   },
@@ -3691,7 +3691,7 @@
     "name": "Potelle",
     "code": "59468",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59530"
   },
@@ -3699,7 +3699,7 @@
     "name": "Pradelles",
     "code": "59469",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59190"
   },
@@ -3707,7 +3707,7 @@
     "name": "Prémesques",
     "code": "59470",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59840"
   },
@@ -3715,7 +3715,7 @@
     "name": "Préseau",
     "code": "59471",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59990"
   },
@@ -3723,7 +3723,7 @@
     "name": "Preux-au-Bois",
     "code": "59472",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59288"
   },
@@ -3731,7 +3731,7 @@
     "name": "Preux-au-Sart",
     "code": "59473",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59144"
   },
@@ -3739,7 +3739,7 @@
     "name": "Prisches",
     "code": "59474",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59550"
   },
@@ -3747,7 +3747,7 @@
     "name": "Prouvy",
     "code": "59475",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59121"
   },
@@ -3755,7 +3755,7 @@
     "name": "Proville",
     "code": "59476",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59267"
   },
@@ -3763,7 +3763,7 @@
     "name": "Provin",
     "code": "59477",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59185"
   },
@@ -3771,7 +3771,7 @@
     "name": "Quaëdypre",
     "code": "59478",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59380"
   },
@@ -3779,7 +3779,7 @@
     "name": "Quarouble",
     "code": "59479",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59243"
   },
@@ -3787,7 +3787,7 @@
     "name": "Quérénaing",
     "code": "59480",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59269"
   },
@@ -3795,7 +3795,7 @@
     "name": "Le Quesnoy",
     "code": "59481",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59530"
   },
@@ -3803,7 +3803,7 @@
     "name": "Quesnoy-sur-Deûle",
     "code": "59482",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59890"
   },
@@ -3811,7 +3811,7 @@
     "name": "Quiévelon",
     "code": "59483",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59680"
   },
@@ -3819,7 +3819,7 @@
     "name": "Quiévrechain",
     "code": "59484",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59920"
   },
@@ -3827,7 +3827,7 @@
     "name": "Quiévy",
     "code": "59485",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59214"
   },
@@ -3835,7 +3835,7 @@
     "name": "Râches",
     "code": "59486",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59194"
   },
@@ -3843,7 +3843,7 @@
     "name": "Radinghem-en-Weppes",
     "code": "59487",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59320"
   },
@@ -3851,7 +3851,7 @@
     "name": "Raillencourt-Sainte-Olle",
     "code": "59488",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59554"
   },
@@ -3859,7 +3859,7 @@
     "name": "Raimbeaucourt",
     "code": "59489",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59283"
   },
@@ -3867,7 +3867,7 @@
     "name": "Rainsars",
     "code": "59490",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59177"
   },
@@ -3875,7 +3875,7 @@
     "name": "Raismes",
     "code": "59491",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59590"
   },
@@ -3883,7 +3883,7 @@
     "name": "Ramillies",
     "code": "59492",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59161"
   },
@@ -3891,7 +3891,7 @@
     "name": "Ramousies",
     "code": "59493",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59177"
   },
@@ -3899,7 +3899,7 @@
     "name": "Raucourt-au-Bois",
     "code": "59494",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59530"
   },
@@ -3907,7 +3907,7 @@
     "name": "Recquignies",
     "code": "59495",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59245"
   },
@@ -3915,7 +3915,7 @@
     "name": "Rejet-de-Beaulieu",
     "code": "59496",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59360"
   },
@@ -3923,7 +3923,7 @@
     "name": "Renescure",
     "code": "59497",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59173"
   },
@@ -3931,7 +3931,7 @@
     "name": "Reumont",
     "code": "59498",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59980"
   },
@@ -3939,7 +3939,7 @@
     "name": "Rexpoëde",
     "code": "59499",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59122"
   },
@@ -3947,7 +3947,7 @@
     "name": "Ribécourt-la-Tour",
     "code": "59500",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59159"
   },
@@ -3955,7 +3955,7 @@
     "name": "Rieulay",
     "code": "59501",
     "epci_code": "245901152",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59870"
   },
@@ -3963,7 +3963,7 @@
     "name": "Rieux-en-Cambrésis",
     "code": "59502",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59277"
   },
@@ -3971,7 +3971,7 @@
     "name": "Robersart",
     "code": "59503",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59550"
   },
@@ -3979,7 +3979,7 @@
     "name": "Rœulx",
     "code": "59504",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59172"
   },
@@ -3987,7 +3987,7 @@
     "name": "Rombies-et-Marchipont",
     "code": "59505",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59990"
   },
@@ -3995,7 +3995,7 @@
     "name": "Romeries",
     "code": "59506",
     "epci_code": "245901038",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59730"
   },
@@ -4003,7 +4003,7 @@
     "name": "Ronchin",
     "code": "59507",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59790"
   },
@@ -4011,7 +4011,7 @@
     "name": "Roncq",
     "code": "59508",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59223"
   },
@@ -4019,7 +4019,7 @@
     "name": "Roost-Warendin",
     "code": "59509",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59286"
   },
@@ -4027,7 +4027,7 @@
     "name": "Rosult",
     "code": "59511",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59230"
   },
@@ -4035,7 +4035,7 @@
     "name": "Roubaix",
     "code": "59512",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59100"
   },
@@ -4043,7 +4043,7 @@
     "name": "Roucourt",
     "code": "59513",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59169"
   },
@@ -4051,7 +4051,7 @@
     "name": "Rousies",
     "code": "59514",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59131"
   },
@@ -4059,7 +4059,7 @@
     "name": "Rouvignies",
     "code": "59515",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59220"
   },
@@ -4067,7 +4067,7 @@
     "name": "Rubrouck",
     "code": "59516",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59285"
   },
@@ -4075,7 +4075,7 @@
     "name": "Les Rues-des-Vignes",
     "code": "59517",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59258"
   },
@@ -4083,7 +4083,7 @@
     "name": "Ruesnes",
     "code": "59518",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59530"
   },
@@ -4091,7 +4091,7 @@
     "name": "Rumegies",
     "code": "59519",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59226"
   },
@@ -4099,7 +4099,7 @@
     "name": "Rumilly-en-Cambrésis",
     "code": "59520",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59281"
   },
@@ -4107,7 +4107,7 @@
     "name": "Sailly-lez-Cambrai",
     "code": "59521",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59554"
   },
@@ -4115,7 +4115,7 @@
     "name": "Sailly-lez-Lannoy",
     "code": "59522",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59390"
   },
@@ -4123,7 +4123,7 @@
     "name": "Sainghin-en-Mélantois",
     "code": "59523",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59262"
   },
@@ -4131,7 +4131,7 @@
     "name": "Sainghin-en-Weppes",
     "code": "59524",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59184"
   },
@@ -4139,7 +4139,7 @@
     "name": "Sains-du-Nord",
     "code": "59525",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59177"
   },
@@ -4147,7 +4147,7 @@
     "name": "Saint-Amand-les-Eaux",
     "code": "59526",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59230"
   },
@@ -4155,7 +4155,7 @@
     "name": "Saint-André-lez-Lille",
     "code": "59527",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59350"
   },
@@ -4163,7 +4163,7 @@
     "name": "Saint-Aubert",
     "code": "59528",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59188"
   },
@@ -4171,7 +4171,7 @@
     "name": "Saint-Aubin",
     "code": "59529",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59440"
   },
@@ -4179,7 +4179,7 @@
     "name": "Saint-Aybert",
     "code": "59530",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59163"
   },
@@ -4187,7 +4187,7 @@
     "name": "Saint-Benin",
     "code": "59531",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59360"
   },
@@ -4195,7 +4195,7 @@
     "name": "Saint-Georges-sur-l’Aa",
     "code": "59532",
     "epci_code": "245900428",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59820"
   },
@@ -4203,7 +4203,7 @@
     "name": "Saint-Hilaire-lez-Cambrai",
     "code": "59533",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59292"
   },
@@ -4211,7 +4211,7 @@
     "name": "Saint-Hilaire-sur-Helpe",
     "code": "59534",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59440"
   },
@@ -4219,7 +4219,7 @@
     "name": "Saint-Jans-Cappel",
     "code": "59535",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59270"
   },
@@ -4227,7 +4227,7 @@
     "name": "Sainte-Marie-Cappel",
     "code": "59536",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59670"
   },
@@ -4235,7 +4235,7 @@
     "name": "Saint-Martin-sur-Écaillon",
     "code": "59537",
     "epci_code": "245901038",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59213"
   },
@@ -4243,7 +4243,7 @@
     "name": "Saint-Momelin",
     "code": "59538",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59143"
   },
@@ -4251,7 +4251,7 @@
     "name": "Saint-Pierre-Brouck",
     "code": "59539",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59630"
   },
@@ -4259,7 +4259,7 @@
     "name": "Saint-Python",
     "code": "59541",
     "epci_code": "245901038",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59730"
   },
@@ -4267,7 +4267,7 @@
     "name": "Saint-Remy-Chaussée",
     "code": "59542",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59620"
   },
@@ -4275,7 +4275,7 @@
     "name": "Saint-Remy-du-Nord",
     "code": "59543",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59330"
   },
@@ -4283,7 +4283,7 @@
     "name": "Saint-Saulve",
     "code": "59544",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59880"
   },
@@ -4291,7 +4291,7 @@
     "name": "Saint-Souplet",
     "code": "59545",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59360"
   },
@@ -4299,7 +4299,7 @@
     "name": "Saint-Sylvestre-Cappel",
     "code": "59546",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59114"
   },
@@ -4307,7 +4307,7 @@
     "name": "Saint-Vaast-en-Cambrésis",
     "code": "59547",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59188"
   },
@@ -4315,7 +4315,7 @@
     "name": "Saint-Waast",
     "code": "59548",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59570"
   },
@@ -4323,7 +4323,7 @@
     "name": "Salesches",
     "code": "59549",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59218"
   },
@@ -4331,7 +4331,7 @@
     "name": "Salomé",
     "code": "59550",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59496"
   },
@@ -4339,7 +4339,7 @@
     "name": "Saméon",
     "code": "59551",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59310"
   },
@@ -4347,7 +4347,7 @@
     "name": "Sancourt",
     "code": "59552",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59268"
   },
@@ -4355,7 +4355,7 @@
     "name": "Santes",
     "code": "59553",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59211"
   },
@@ -4363,7 +4363,7 @@
     "name": "Sars-et-Rosières",
     "code": "59554",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59230"
   },
@@ -4371,7 +4371,7 @@
     "name": "Sars-Poteries",
     "code": "59555",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59216"
   },
@@ -4379,7 +4379,7 @@
     "name": "Sassegnies",
     "code": "59556",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59145"
   },
@@ -4387,7 +4387,7 @@
     "name": "Saultain",
     "code": "59557",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59990"
   },
@@ -4395,7 +4395,7 @@
     "name": "Saulzoir",
     "code": "59558",
     "epci_code": "245901038",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59227"
   },
@@ -4403,7 +4403,7 @@
     "name": "Sebourg",
     "code": "59559",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59990"
   },
@@ -4411,7 +4411,7 @@
     "name": "Seclin",
     "code": "59560",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59113"
   },
@@ -4419,7 +4419,7 @@
     "name": "Sémeries",
     "code": "59562",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59440"
   },
@@ -4427,7 +4427,7 @@
     "name": "Semousies",
     "code": "59563",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59440"
   },
@@ -4435,7 +4435,7 @@
     "name": "La Sentinelle",
     "code": "59564",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59174"
   },
@@ -4443,7 +4443,7 @@
     "name": "Sepmeries",
     "code": "59565",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59269"
   },
@@ -4451,7 +4451,7 @@
     "name": "Sequedin",
     "code": "59566",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59320"
   },
@@ -4459,7 +4459,7 @@
     "name": "Séranvillers-Forenville",
     "code": "59567",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59400"
   },
@@ -4467,7 +4467,7 @@
     "name": "Sercus",
     "code": "59568",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59173"
   },
@@ -4475,7 +4475,7 @@
     "name": "Sin-le-Noble",
     "code": "59569",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59450"
   },
@@ -4483,7 +4483,7 @@
     "name": "Socx",
     "code": "59570",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59380"
   },
@@ -4491,7 +4491,7 @@
     "name": "Solesmes",
     "code": "59571",
     "epci_code": "245901038",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59730"
   },
@@ -4499,7 +4499,7 @@
     "name": "Solre-le-Château",
     "code": "59572",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59740"
   },
@@ -4507,7 +4507,7 @@
     "name": "Solrinnes",
     "code": "59573",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59740"
   },
@@ -4515,7 +4515,7 @@
     "name": "Somain",
     "code": "59574",
     "epci_code": "245901152",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59490"
   },
@@ -4523,7 +4523,7 @@
     "name": "Sommaing",
     "code": "59575",
     "epci_code": "245901038",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59213"
   },
@@ -4531,7 +4531,7 @@
     "name": "Spycker",
     "code": "59576",
     "epci_code": "245900428",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59380"
   },
@@ -4539,7 +4539,7 @@
     "name": "Staple",
     "code": "59577",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59190"
   },
@@ -4547,7 +4547,7 @@
     "name": "Steenbecque",
     "code": "59578",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59189"
   },
@@ -4555,7 +4555,7 @@
     "name": "Steene",
     "code": "59579",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59380"
   },
@@ -4563,7 +4563,7 @@
     "name": "Steenvoorde",
     "code": "59580",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59114"
   },
@@ -4571,7 +4571,7 @@
     "name": "Steenwerck",
     "code": "59581",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59181"
   },
@@ -4579,7 +4579,7 @@
     "name": "Strazeele",
     "code": "59582",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59270"
   },
@@ -4587,7 +4587,7 @@
     "name": "Taisnières-en-Thiérache",
     "code": "59583",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59550"
   },
@@ -4595,7 +4595,7 @@
     "name": "Taisnières-sur-Hon",
     "code": "59584",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59570"
   },
@@ -4603,7 +4603,7 @@
     "name": "Templemars",
     "code": "59585",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59175"
   },
@@ -4611,7 +4611,7 @@
     "name": "Templeuve-en-Pévèle",
     "code": "59586",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59242"
   },
@@ -4619,7 +4619,7 @@
     "name": "Terdeghem",
     "code": "59587",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59114"
   },
@@ -4627,7 +4627,7 @@
     "name": "Téteghem-Coudekerque-Village",
     "code": "59588",
     "epci_code": "245900428",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59229"
   },
@@ -4635,7 +4635,7 @@
     "name": "Téteghem-Coudekerque-Village",
     "code": "59588",
     "epci_code": "245900428",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59380"
   },
@@ -4643,7 +4643,7 @@
     "name": "Thiant",
     "code": "59589",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59224"
   },
@@ -4651,7 +4651,7 @@
     "name": "Thiennes",
     "code": "59590",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59189"
   },
@@ -4659,7 +4659,7 @@
     "name": "Thivencelle",
     "code": "59591",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59163"
   },
@@ -4667,7 +4667,7 @@
     "name": "Thumeries",
     "code": "59592",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59239"
   },
@@ -4675,7 +4675,7 @@
     "name": "Thun-l’Évêque",
     "code": "59593",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59141"
   },
@@ -4683,7 +4683,7 @@
     "name": "Thun-Saint-Amand",
     "code": "59594",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59158"
   },
@@ -4691,7 +4691,7 @@
     "name": "Thun-Saint-Martin",
     "code": "59595",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59141"
   },
@@ -4699,7 +4699,7 @@
     "name": "Tilloy-lez-Marchiennes",
     "code": "59596",
     "epci_code": "245901152",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59870"
   },
@@ -4707,7 +4707,7 @@
     "name": "Tilloy-lez-Cambrai",
     "code": "59597",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59554"
   },
@@ -4715,7 +4715,7 @@
     "name": "Toufflers",
     "code": "59598",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59390"
   },
@@ -4723,7 +4723,7 @@
     "name": "Tourcoing",
     "code": "59599",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59200"
   },
@@ -4731,7 +4731,7 @@
     "name": "Tourmignies",
     "code": "59600",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59551"
   },
@@ -4739,7 +4739,7 @@
     "name": "Trélon",
     "code": "59601",
     "epci_code": "200043404",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59132"
   },
@@ -4747,7 +4747,7 @@
     "name": "Tressin",
     "code": "59602",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59152"
   },
@@ -4755,7 +4755,7 @@
     "name": "Trith-Saint-Léger",
     "code": "59603",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59125"
   },
@@ -4763,7 +4763,7 @@
     "name": "Troisvilles",
     "code": "59604",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59980"
   },
@@ -4771,7 +4771,7 @@
     "name": "Uxem",
     "code": "59605",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59229"
   },
@@ -4779,7 +4779,7 @@
     "name": "Valenciennes",
     "code": "59606",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59300"
   },
@@ -4787,7 +4787,7 @@
     "name": "Vendegies-au-Bois",
     "code": "59607",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59218"
   },
@@ -4795,7 +4795,7 @@
     "name": "Vendegies-sur-Écaillon",
     "code": "59608",
     "epci_code": "245901038",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59213"
   },
@@ -4803,7 +4803,7 @@
     "name": "Vendeville",
     "code": "59609",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59175"
   },
@@ -4811,7 +4811,7 @@
     "name": "Verchain-Maugré",
     "code": "59610",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59227"
   },
@@ -4819,7 +4819,7 @@
     "name": "Verlinghem",
     "code": "59611",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59237"
   },
@@ -4827,7 +4827,7 @@
     "name": "Vertain",
     "code": "59612",
     "epci_code": "245901038",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59730"
   },
@@ -4835,7 +4835,7 @@
     "name": "Vicq",
     "code": "59613",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59970"
   },
@@ -4843,7 +4843,7 @@
     "name": "Viesly",
     "code": "59614",
     "epci_code": "245901038",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59271"
   },
@@ -4851,7 +4851,7 @@
     "name": "Vieux-Berquin",
     "code": "59615",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59232"
   },
@@ -4859,7 +4859,7 @@
     "name": "Vieux-Condé",
     "code": "59616",
     "epci_code": "245901160",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59690"
   },
@@ -4867,7 +4867,7 @@
     "name": "Vieux-Mesnil",
     "code": "59617",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59138"
   },
@@ -4875,7 +4875,7 @@
     "name": "Vieux-Reng",
     "code": "59618",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59600"
   },
@@ -4883,7 +4883,7 @@
     "name": "Villereau",
     "code": "59619",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59530"
   },
@@ -4891,7 +4891,7 @@
     "name": "Villers-au-Tertre",
     "code": "59620",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59234"
   },
@@ -4899,7 +4899,7 @@
     "name": "Villers-en-Cauchies",
     "code": "59622",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59188"
   },
@@ -4907,7 +4907,7 @@
     "name": "Villers-Guislain",
     "code": "59623",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59297"
   },
@@ -4915,7 +4915,7 @@
     "name": "Villers-Outréaux",
     "code": "59624",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59142"
   },
@@ -4923,7 +4923,7 @@
     "name": "Villers-Plouich",
     "code": "59625",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59231"
   },
@@ -4931,7 +4931,7 @@
     "name": "Villers-Pol",
     "code": "59626",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59530"
   },
@@ -4939,7 +4939,7 @@
     "name": "Villers-Sire-Nicole",
     "code": "59627",
     "epci_code": "200043396",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59600"
   },
@@ -4947,7 +4947,7 @@
     "name": "Volckerinckhove",
     "code": "59628",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59470"
   },
@@ -4955,7 +4955,7 @@
     "name": "Vred",
     "code": "59629",
     "epci_code": "245901152",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59870"
   },
@@ -4963,7 +4963,7 @@
     "name": "Wahagnies",
     "code": "59630",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59261"
   },
@@ -4971,7 +4971,7 @@
     "name": "Walincourt-Selvigny",
     "code": "59631",
     "epci_code": "200030633",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59127"
   },
@@ -4979,7 +4979,7 @@
     "name": "Wallers",
     "code": "59632",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59135"
   },
@@ -4987,7 +4987,7 @@
     "name": "Wallers-en-Fagne",
     "code": "59633",
     "epci_code": "200043404",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59132"
   },
@@ -4995,7 +4995,7 @@
     "name": "Wallon-Cappel",
     "code": "59634",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59190"
   },
@@ -5003,7 +5003,7 @@
     "name": "Wambaix",
     "code": "59635",
     "epci_code": "200068500",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59400"
   },
@@ -5011,7 +5011,7 @@
     "name": "Wambrechies",
     "code": "59636",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59118"
   },
@@ -5019,7 +5019,7 @@
     "name": "Wandignies-Hamage",
     "code": "59637",
     "epci_code": "245901152",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59870"
   },
@@ -5027,7 +5027,7 @@
     "name": "Wannehain",
     "code": "59638",
     "epci_code": "200041960",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59830"
   },
@@ -5035,7 +5035,7 @@
     "name": "Wargnies-le-Grand",
     "code": "59639",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59144"
   },
@@ -5043,7 +5043,7 @@
     "name": "Wargnies-le-Petit",
     "code": "59640",
     "epci_code": "200043321",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59144"
   },
@@ -5051,7 +5051,7 @@
     "name": "Warhem",
     "code": "59641",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59380"
   },
@@ -5059,7 +5059,7 @@
     "name": "Warlaing",
     "code": "59642",
     "epci_code": "245901152",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59870"
   },
@@ -5067,7 +5067,7 @@
     "name": "Warneton",
     "code": "59643",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59560"
   },
@@ -5075,7 +5075,7 @@
     "name": "Wasnes-au-Bac",
     "code": "59645",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59252"
   },
@@ -5083,7 +5083,7 @@
     "name": "Wasquehal",
     "code": "59646",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59290"
   },
@@ -5091,7 +5091,7 @@
     "name": "Watten",
     "code": "59647",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59143"
   },
@@ -5099,7 +5099,7 @@
     "name": "Wattignies",
     "code": "59648",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59139"
   },
@@ -5107,7 +5107,7 @@
     "name": "Wattignies-la-Victoire",
     "code": "59649",
     "epci_code": "200043263",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59680"
   },
@@ -5115,7 +5115,7 @@
     "name": "Wattrelos",
     "code": "59650",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59150"
   },
@@ -5123,7 +5123,7 @@
     "name": "Wavrechain-sous-Denain",
     "code": "59651",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59220"
   },
@@ -5131,7 +5131,7 @@
     "name": "Wavrechain-sous-Faulx",
     "code": "59652",
     "epci_code": "200042190",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59111"
   },
@@ -5139,7 +5139,7 @@
     "name": "Wavrin",
     "code": "59653",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59136"
   },
@@ -5147,7 +5147,7 @@
     "name": "Waziers",
     "code": "59654",
     "epci_code": "200044618",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59119"
   },
@@ -5155,7 +5155,7 @@
     "name": "Wemaers-Cappel",
     "code": "59655",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59670"
   },
@@ -5163,7 +5163,7 @@
     "name": "Wervicq-Sud",
     "code": "59656",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59117"
   },
@@ -5171,7 +5171,7 @@
     "name": "West-Cappel",
     "code": "59657",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59380"
   },
@@ -5179,7 +5179,7 @@
     "name": "Wicres",
     "code": "59658",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59134"
   },
@@ -5187,7 +5187,7 @@
     "name": "Wignehies",
     "code": "59659",
     "epci_code": "200043404",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59212"
   },
@@ -5195,7 +5195,7 @@
     "name": "Willems",
     "code": "59660",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59780"
   },
@@ -5203,7 +5203,7 @@
     "name": "Willies",
     "code": "59661",
     "epci_code": "200043404",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59740"
   },
@@ -5211,7 +5211,7 @@
     "name": "Winnezeele",
     "code": "59662",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59670"
   },
@@ -5219,7 +5219,7 @@
     "name": "Wormhout",
     "code": "59663",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59470"
   },
@@ -5227,7 +5227,7 @@
     "name": "Wulverdinghe",
     "code": "59664",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59143"
   },
@@ -5235,7 +5235,7 @@
     "name": "Wylder",
     "code": "59665",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59380"
   },
@@ -5243,7 +5243,7 @@
     "name": "Zegerscappel",
     "code": "59666",
     "epci_code": "200040954",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59470"
   },
@@ -5251,7 +5251,7 @@
     "name": "Zermezeele",
     "code": "59667",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59670"
   },
@@ -5259,7 +5259,7 @@
     "name": "Zuydcoote",
     "code": "59668",
     "epci_code": "245900428",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59123"
   },
@@ -5267,7 +5267,7 @@
     "name": "Zuytpeene",
     "code": "59669",
     "epci_code": "200040947",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59670"
   },
@@ -5275,7 +5275,7 @@
     "name": "Don",
     "code": "59670",
     "epci_code": "200093201",
-    "departement_code": "59",
+    "department_code": "59",
     "region_code": "32",
     "postal_code": "59272"
   }

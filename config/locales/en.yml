@@ -854,7 +854,7 @@ en:
               not_in_departement_codes: "must be a valid department code"
         "champs/epci_champ":
           attributes:
-            code_departement:
+            department_code:
               not_in_departement_codes: "must be a valid department code"
             external_id:
               not_in_departement_epci_codes: "must be a valid EPCI code of the matching department"

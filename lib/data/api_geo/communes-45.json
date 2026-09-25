@@ -3,7 +3,7 @@
     "name": "Adon",
     "code": "45001",
     "epci_code": "200068278",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45230"
   },
@@ -11,7 +11,7 @@
     "name": "Aillant-sur-Milleron",
     "code": "45002",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45230"
   },
@@ -19,7 +19,7 @@
     "name": "Amilly",
     "code": "45004",
     "epci_code": "244500203",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45200"
   },
@@ -27,7 +27,7 @@
     "name": "Andonville",
     "code": "45005",
     "epci_code": "244500542",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45480"
   },
@@ -35,7 +35,7 @@
     "name": "Ardon",
     "code": "45006",
     "epci_code": "200005932",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45160"
   },
@@ -43,7 +43,7 @@
     "name": "Artenay",
     "code": "45008",
     "epci_code": "200035764",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45410"
   },
@@ -51,7 +51,7 @@
     "name": "Aschères-le-Marché",
     "code": "45009",
     "epci_code": "244500484",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45170"
   },
@@ -59,7 +59,7 @@
     "name": "Ascoux",
     "code": "45010",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -67,7 +67,7 @@
     "name": "Attray",
     "code": "45011",
     "epci_code": "244500542",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45170"
   },
@@ -75,7 +75,7 @@
     "name": "Audeville",
     "code": "45012",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -83,7 +83,7 @@
     "name": "Augerville-la-Rivière",
     "code": "45013",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45330"
   },
@@ -91,7 +91,7 @@
     "name": "Aulnay-la-Rivière",
     "code": "45014",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45390"
   },
@@ -99,7 +99,7 @@
     "name": "Autruy-sur-Juine",
     "code": "45015",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45480"
   },
@@ -107,7 +107,7 @@
     "name": "Autry-le-Châtel",
     "code": "45016",
     "epci_code": "200068278",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45500"
   },
@@ -115,7 +115,7 @@
     "name": "Auvilliers-en-Gâtinais",
     "code": "45017",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45270"
   },
@@ -123,7 +123,7 @@
     "name": "Auxy",
     "code": "45018",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45340"
   },
@@ -131,7 +131,7 @@
     "name": "Baccon",
     "code": "45019",
     "epci_code": "200070183",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45130"
   },
@@ -139,7 +139,7 @@
     "name": "Le Bardon",
     "code": "45020",
     "epci_code": "200070183",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45130"
   },
@@ -147,7 +147,7 @@
     "name": "Barville-en-Gâtinais",
     "code": "45021",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45340"
   },
@@ -155,7 +155,7 @@
     "name": "Batilly-en-Gâtinais",
     "code": "45022",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45340"
   },
@@ -163,7 +163,7 @@
     "name": "Batilly-en-Puisaye",
     "code": "45023",
     "epci_code": "200068278",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45420"
   },
@@ -171,7 +171,7 @@
     "name": "Baule",
     "code": "45024",
     "epci_code": "200070183",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45130"
   },
@@ -179,7 +179,7 @@
     "name": "Bazoches-les-Gallerandes",
     "code": "45025",
     "epci_code": "244500542",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45480"
   },
@@ -187,7 +187,7 @@
     "name": "Bazoches-sur-le-Betz",
     "code": "45026",
     "epci_code": "200067668",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45210"
   },
@@ -195,7 +195,7 @@
     "name": "Beauchamps-sur-Huillard",
     "code": "45027",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45270"
   },
@@ -203,7 +203,7 @@
     "name": "Beaugency",
     "code": "45028",
     "epci_code": "200070183",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45190"
   },
@@ -211,7 +211,7 @@
     "name": "Beaulieu-sur-Loire",
     "code": "45029",
     "epci_code": "200068278",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45630"
   },
@@ -219,7 +219,7 @@
     "name": "Beaune-la-Rolande",
     "code": "45030",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45340"
   },
@@ -227,7 +227,7 @@
     "name": "Bellegarde",
     "code": "45031",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45270"
   },
@@ -235,7 +235,7 @@
     "name": "Le Bignon-Mirabeau",
     "code": "45032",
     "epci_code": "244500419",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45210"
   },
@@ -243,7 +243,7 @@
     "name": "Boësses",
     "code": "45033",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45390"
   },
@@ -251,7 +251,7 @@
     "name": "Boigny-sur-Bionne",
     "code": "45034",
     "epci_code": "244500468",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45760"
   },
@@ -259,7 +259,7 @@
     "name": "Boiscommun",
     "code": "45035",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45340"
   },
@@ -267,7 +267,7 @@
     "name": "Boismorand",
     "code": "45036",
     "epci_code": "244500211",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45290"
   },
@@ -275,7 +275,7 @@
     "name": "Boisseaux",
     "code": "45037",
     "epci_code": "244500542",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45480"
   },
@@ -283,7 +283,7 @@
     "name": "Bondaroy",
     "code": "45038",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -291,7 +291,7 @@
     "name": "Bonnée",
     "code": "45039",
     "epci_code": "200070100",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45460"
   },
@@ -299,7 +299,7 @@
     "name": "Bonny-sur-Loire",
     "code": "45040",
     "epci_code": "200068278",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45420"
   },
@@ -307,7 +307,7 @@
     "name": "Bordeaux-en-Gâtinais",
     "code": "45041",
     "epci_code": "244500419",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45340"
   },
@@ -315,7 +315,7 @@
     "name": "Les Bordes",
     "code": "45042",
     "epci_code": "200070100",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45460"
   },
@@ -323,7 +323,7 @@
     "name": "Bou",
     "code": "45043",
     "epci_code": "244500468",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45430"
   },
@@ -331,7 +331,7 @@
     "name": "Bougy-lez-Neuville",
     "code": "45044",
     "epci_code": "244500484",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45170"
   },
@@ -339,7 +339,7 @@
     "name": "Bouilly-en-Gâtinais",
     "code": "45045",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -347,7 +347,7 @@
     "name": "Boulay-les-Barres",
     "code": "45046",
     "epci_code": "200035764",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45140"
   },
@@ -355,7 +355,7 @@
     "name": "Bouzonville-aux-Bois",
     "code": "45047",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -363,7 +363,7 @@
     "name": "Bouzy-la-Forêt",
     "code": "45049",
     "epci_code": "244500427",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45460"
   },
@@ -371,7 +371,7 @@
     "name": "Boynes",
     "code": "45050",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -379,7 +379,7 @@
     "name": "Bray-Saint-Aignan",
     "code": "45051",
     "epci_code": "200070100",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45460"
   },
@@ -387,7 +387,7 @@
     "name": "Breteau",
     "code": "45052",
     "epci_code": "200068278",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45250"
   },
@@ -395,7 +395,7 @@
     "name": "Briare",
     "code": "45053",
     "epci_code": "200068278",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45250"
   },
@@ -403,7 +403,7 @@
     "name": "Briarres-sur-Essonne",
     "code": "45054",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45390"
   },
@@ -411,7 +411,7 @@
     "name": "Bricy",
     "code": "45055",
     "epci_code": "200035764",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45310"
   },
@@ -419,7 +419,7 @@
     "name": "Bromeilles",
     "code": "45056",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45390"
   },
@@ -427,7 +427,7 @@
     "name": "Bucy-le-Roi",
     "code": "45058",
     "epci_code": "200035764",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45410"
   },
@@ -435,7 +435,7 @@
     "name": "Bucy-Saint-Liphard",
     "code": "45059",
     "epci_code": "200035764",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45140"
   },
@@ -443,7 +443,7 @@
     "name": "La Bussière",
     "code": "45060",
     "epci_code": "200068278",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45230"
   },
@@ -451,7 +451,7 @@
     "name": "Cepoy",
     "code": "45061",
     "epci_code": "244500203",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45120"
   },
@@ -459,7 +459,7 @@
     "name": "Cercottes",
     "code": "45062",
     "epci_code": "200035764",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45520"
   },
@@ -467,7 +467,7 @@
     "name": "Cerdon",
     "code": "45063",
     "epci_code": "200070100",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45620"
   },
@@ -475,7 +475,7 @@
     "name": "Cernoy-en-Berry",
     "code": "45064",
     "epci_code": "200068278",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45360"
   },
@@ -483,7 +483,7 @@
     "name": "Césarville-Dossainville",
     "code": "45065",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -491,7 +491,7 @@
     "name": "Chailly-en-Gâtinais",
     "code": "45066",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45260"
   },
@@ -499,7 +499,7 @@
     "name": "Chaingy",
     "code": "45067",
     "epci_code": "200070183",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45380"
   },
@@ -507,7 +507,7 @@
     "name": "Châlette-sur-Loing",
     "code": "45068",
     "epci_code": "244500203",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45120"
   },
@@ -515,7 +515,7 @@
     "name": "Chambon-la-Forêt",
     "code": "45069",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45340"
   },
@@ -523,7 +523,7 @@
     "name": "Champoulet",
     "code": "45070",
     "epci_code": "200068278",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45420"
   },
@@ -531,7 +531,7 @@
     "name": "Chanteau",
     "code": "45072",
     "epci_code": "244500468",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45400"
   },
@@ -539,7 +539,7 @@
     "name": "Chantecoq",
     "code": "45073",
     "epci_code": "200067668",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45320"
   },
@@ -547,7 +547,7 @@
     "name": "La Chapelle-Onzerain",
     "code": "45074",
     "epci_code": "200035764",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45310"
   },
@@ -555,7 +555,7 @@
     "name": "La Chapelle-Saint-Mesmin",
     "code": "45075",
     "epci_code": "244500468",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45380"
   },
@@ -563,7 +563,7 @@
     "name": "La Chapelle-Saint-Sépulcre",
     "code": "45076",
     "epci_code": "200067668",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45210"
   },
@@ -571,7 +571,7 @@
     "name": "La Chapelle-sur-Aveyron",
     "code": "45077",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45230"
   },
@@ -579,7 +579,7 @@
     "name": "Chapelon",
     "code": "45078",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45270"
   },
@@ -587,7 +587,7 @@
     "name": "Le Charme",
     "code": "45079",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45230"
   },
@@ -595,7 +595,7 @@
     "name": "Charmont-en-Beauce",
     "code": "45080",
     "epci_code": "244500542",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45480"
   },
@@ -603,7 +603,7 @@
     "name": "Charsonville",
     "code": "45081",
     "epci_code": "200070183",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45130"
   },
@@ -611,7 +611,7 @@
     "name": "Châteauneuf-sur-Loire",
     "code": "45082",
     "epci_code": "244500427",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45110"
   },
@@ -619,7 +619,7 @@
     "name": "Château-Renard",
     "code": "45083",
     "epci_code": "200067668",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45220"
   },
@@ -627,7 +627,7 @@
     "name": "Châtenoy",
     "code": "45084",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45260"
   },
@@ -635,7 +635,7 @@
     "name": "Châtillon-Coligny",
     "code": "45085",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45230"
   },
@@ -643,7 +643,7 @@
     "name": "Châtillon-le-Roi",
     "code": "45086",
     "epci_code": "244500542",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45480"
   },
@@ -651,7 +651,7 @@
     "name": "Châtillon-sur-Loire",
     "code": "45087",
     "epci_code": "200068278",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45360"
   },
@@ -659,7 +659,7 @@
     "name": "Chaussy",
     "code": "45088",
     "epci_code": "244500542",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45480"
   },
@@ -667,7 +667,7 @@
     "name": "Chécy",
     "code": "45089",
     "epci_code": "244500468",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45430"
   },
@@ -675,7 +675,7 @@
     "name": "Chevannes",
     "code": "45091",
     "epci_code": "244500419",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45210"
   },
@@ -683,7 +683,7 @@
     "name": "Chevillon-sur-Huillard",
     "code": "45092",
     "epci_code": "244500203",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45700"
   },
@@ -691,7 +691,7 @@
     "name": "Chevilly",
     "code": "45093",
     "epci_code": "200035764",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45520"
   },
@@ -699,7 +699,7 @@
     "name": "Chevry-sous-le-Bignon",
     "code": "45094",
     "epci_code": "244500419",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45210"
   },
@@ -707,7 +707,7 @@
     "name": "Chilleurs-aux-Bois",
     "code": "45095",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45170"
   },
@@ -715,7 +715,7 @@
     "name": "Les Choux",
     "code": "45096",
     "epci_code": "244500211",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45290"
   },
@@ -723,7 +723,7 @@
     "name": "Chuelles",
     "code": "45097",
     "epci_code": "200067668",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45220"
   },
@@ -731,7 +731,7 @@
     "name": "Cléry-Saint-André",
     "code": "45098",
     "epci_code": "200070183",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45370"
   },
@@ -739,7 +739,7 @@
     "name": "Coinces",
     "code": "45099",
     "epci_code": "200035764",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45310"
   },
@@ -747,7 +747,7 @@
     "name": "Combleux",
     "code": "45100",
     "epci_code": "244500468",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45800"
   },
@@ -755,7 +755,7 @@
     "name": "Combreux",
     "code": "45101",
     "epci_code": "244500427",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45530"
   },
@@ -763,7 +763,7 @@
     "name": "Conflans-sur-Loing",
     "code": "45102",
     "epci_code": "244500203",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45700"
   },
@@ -771,7 +771,7 @@
     "name": "Corbeilles",
     "code": "45103",
     "epci_code": "244500419",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45490"
   },
@@ -779,7 +779,7 @@
     "name": "Corquilleroy",
     "code": "45104",
     "epci_code": "244500203",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45120"
   },
@@ -787,7 +787,7 @@
     "name": "Cortrat",
     "code": "45105",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45700"
   },
@@ -795,7 +795,7 @@
     "name": "Coudroy",
     "code": "45107",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45260"
   },
@@ -803,7 +803,7 @@
     "name": "Coullons",
     "code": "45108",
     "epci_code": "244500211",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45720"
   },
@@ -811,7 +811,7 @@
     "name": "Coulmiers",
     "code": "45109",
     "epci_code": "200070183",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45130"
   },
@@ -819,7 +819,7 @@
     "name": "Courcelles-le-Roi",
     "code": "45110",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -827,7 +827,7 @@
     "name": "Courcy-aux-Loges",
     "code": "45111",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -835,7 +835,7 @@
     "name": "La Cour-Marigny",
     "code": "45112",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45260"
   },
@@ -843,7 +843,7 @@
     "name": "Courtemaux",
     "code": "45113",
     "epci_code": "200067668",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45320"
   },
@@ -851,7 +851,7 @@
     "name": "Courtempierre",
     "code": "45114",
     "epci_code": "244500419",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45490"
   },
@@ -859,7 +859,7 @@
     "name": "Courtenay",
     "code": "45115",
     "epci_code": "200067668",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45320"
   },
@@ -867,7 +867,7 @@
     "name": "Cravant",
     "code": "45116",
     "epci_code": "200070183",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45190"
   },
@@ -875,7 +875,7 @@
     "name": "Crottes-en-Pithiverais",
     "code": "45118",
     "epci_code": "244500542",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45170"
   },
@@ -883,7 +883,7 @@
     "name": "Dadonville",
     "code": "45119",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -891,7 +891,7 @@
     "name": "Dammarie-en-Puisaye",
     "code": "45120",
     "epci_code": "200068278",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45420"
   },
@@ -899,7 +899,7 @@
     "name": "Dammarie-sur-Loing",
     "code": "45121",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45230"
   },
@@ -907,7 +907,7 @@
     "name": "Dampierre-en-Burly",
     "code": "45122",
     "epci_code": "200070100",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45570"
   },
@@ -915,7 +915,7 @@
     "name": "Darvoy",
     "code": "45123",
     "epci_code": "244500427",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45150"
   },
@@ -923,7 +923,7 @@
     "name": "Desmonts",
     "code": "45124",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45390"
   },
@@ -931,7 +931,7 @@
     "name": "Dimancheville",
     "code": "45125",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45390"
   },
@@ -939,7 +939,7 @@
     "name": "Donnery",
     "code": "45126",
     "epci_code": "244500427",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45450"
   },
@@ -947,7 +947,7 @@
     "name": "Dordives",
     "code": "45127",
     "epci_code": "244500419",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45680"
   },
@@ -955,7 +955,7 @@
     "name": "Douchy-Montcorbon",
     "code": "45129",
     "epci_code": "200067668",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45220"
   },
@@ -963,7 +963,7 @@
     "name": "Dry",
     "code": "45130",
     "epci_code": "200070183",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45370"
   },
@@ -971,7 +971,7 @@
     "name": "Échilleuses",
     "code": "45131",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45390"
   },
@@ -979,7 +979,7 @@
     "name": "Égry",
     "code": "45132",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45340"
   },
@@ -987,7 +987,7 @@
     "name": "Engenville",
     "code": "45133",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -995,7 +995,7 @@
     "name": "Épieds-en-Beauce",
     "code": "45134",
     "epci_code": "200070183",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45130"
   },
@@ -1003,7 +1003,7 @@
     "name": "Erceville",
     "code": "45135",
     "epci_code": "244500542",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45480"
   },
@@ -1011,7 +1011,7 @@
     "name": "Ervauville",
     "code": "45136",
     "epci_code": "200067668",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45320"
   },
@@ -1019,7 +1019,7 @@
     "name": "Escrennes",
     "code": "45137",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -1027,7 +1027,7 @@
     "name": "Escrignelles",
     "code": "45138",
     "epci_code": "200068278",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45250"
   },
@@ -1035,7 +1035,7 @@
     "name": "Estouy",
     "code": "45139",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -1043,7 +1043,7 @@
     "name": "Faverelles",
     "code": "45141",
     "epci_code": "200068278",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45420"
   },
@@ -1051,7 +1051,7 @@
     "name": "Fay-aux-Loges",
     "code": "45142",
     "epci_code": "244500427",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45450"
   },
@@ -1059,7 +1059,7 @@
     "name": "Feins-en-Gâtinais",
     "code": "45143",
     "epci_code": "200068278",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45230"
   },
@@ -1067,7 +1067,7 @@
     "name": "Férolles",
     "code": "45144",
     "epci_code": "244500427",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45150"
   },
@@ -1075,7 +1075,7 @@
     "name": "Ferrières-en-Gâtinais",
     "code": "45145",
     "epci_code": "244500419",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45210"
   },
@@ -1083,7 +1083,7 @@
     "name": "La Ferté-Saint-Aubin",
     "code": "45146",
     "epci_code": "200005932",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45240"
   },
@@ -1091,7 +1091,7 @@
     "name": "Fleury-les-Aubrais",
     "code": "45147",
     "epci_code": "244500468",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45400"
   },
@@ -1099,7 +1099,7 @@
     "name": "Fontenay-sur-Loing",
     "code": "45148",
     "epci_code": "244500419",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45210"
   },
@@ -1107,7 +1107,7 @@
     "name": "Foucherolles",
     "code": "45149",
     "epci_code": "200067668",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45320"
   },
@@ -1115,7 +1115,7 @@
     "name": "Fréville-du-Gâtinais",
     "code": "45150",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45270"
   },
@@ -1123,7 +1123,7 @@
     "name": "Gaubertin",
     "code": "45151",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45340"
   },
@@ -1131,7 +1131,7 @@
     "name": "Gémigny",
     "code": "45152",
     "epci_code": "200035764",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45310"
   },
@@ -1139,7 +1139,7 @@
     "name": "Germigny-des-Prés",
     "code": "45153",
     "epci_code": "200070100",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45110"
   },
@@ -1147,7 +1147,7 @@
     "name": "Gidy",
     "code": "45154",
     "epci_code": "200035764",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45520"
   },
@@ -1155,7 +1155,7 @@
     "name": "Gien",
     "code": "45155",
     "epci_code": "244500211",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45500"
   },
@@ -1163,7 +1163,7 @@
     "name": "Girolles",
     "code": "45156",
     "epci_code": "244500419",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45120"
   },
@@ -1171,7 +1171,7 @@
     "name": "Givraines",
     "code": "45157",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -1179,7 +1179,7 @@
     "name": "Gondreville",
     "code": "45158",
     "epci_code": "244500419",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45490"
   },
@@ -1187,7 +1187,7 @@
     "name": "Grangermont",
     "code": "45159",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45390"
   },
@@ -1195,7 +1195,7 @@
     "name": "Greneville-en-Beauce",
     "code": "45160",
     "epci_code": "244500542",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45480"
   },
@@ -1203,7 +1203,7 @@
     "name": "Griselles",
     "code": "45161",
     "epci_code": "244500419",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45210"
   },
@@ -1211,7 +1211,7 @@
     "name": "Guigneville",
     "code": "45162",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -1219,7 +1219,7 @@
     "name": "Guilly",
     "code": "45164",
     "epci_code": "200070100",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45600"
   },
@@ -1227,7 +1227,7 @@
     "name": "Gy-les-Nonains",
     "code": "45165",
     "epci_code": "200067668",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45220"
   },
@@ -1235,7 +1235,7 @@
     "name": "Huêtre",
     "code": "45166",
     "epci_code": "200035764",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45520"
   },
@@ -1243,7 +1243,7 @@
     "name": "Huisseau-sur-Mauves",
     "code": "45167",
     "epci_code": "200070183",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45130"
   },
@@ -1251,7 +1251,7 @@
     "name": "Ingrannes",
     "code": "45168",
     "epci_code": "244500427",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45450"
   },
@@ -1259,7 +1259,7 @@
     "name": "Ingré",
     "code": "45169",
     "epci_code": "244500468",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45140"
   },
@@ -1267,7 +1267,7 @@
     "name": "Intville-la-Guétard",
     "code": "45170",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -1275,7 +1275,7 @@
     "name": "Isdes",
     "code": "45171",
     "epci_code": "200070100",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45620"
   },
@@ -1283,7 +1283,7 @@
     "name": "Jargeau",
     "code": "45173",
     "epci_code": "244500427",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45150"
   },
@@ -1291,7 +1291,7 @@
     "name": "Jouy-en-Pithiverais",
     "code": "45174",
     "epci_code": "244500542",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45480"
   },
@@ -1299,7 +1299,7 @@
     "name": "Jouy-le-Potier",
     "code": "45175",
     "epci_code": "200005932",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45370"
   },
@@ -1307,7 +1307,7 @@
     "name": "Juranville",
     "code": "45176",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45340"
   },
@@ -1315,7 +1315,7 @@
     "name": "Laas",
     "code": "45177",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -1323,7 +1323,7 @@
     "name": "Ladon",
     "code": "45178",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45270"
   },
@@ -1331,7 +1331,7 @@
     "name": "Lailly-en-Val",
     "code": "45179",
     "epci_code": "200070183",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45740"
   },
@@ -1339,7 +1339,7 @@
     "name": "Langesse",
     "code": "45180",
     "epci_code": "244500211",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45290"
   },
@@ -1347,7 +1347,7 @@
     "name": "Léouville",
     "code": "45181",
     "epci_code": "244500542",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45480"
   },
@@ -1355,7 +1355,7 @@
     "name": "Ligny-le-Ribault",
     "code": "45182",
     "epci_code": "200005932",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45240"
   },
@@ -1363,7 +1363,7 @@
     "name": "Lion-en-Beauce",
     "code": "45183",
     "epci_code": "200035764",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45410"
   },
@@ -1371,7 +1371,7 @@
     "name": "Lion-en-Sullias",
     "code": "45184",
     "epci_code": "200070100",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45600"
   },
@@ -1379,7 +1379,7 @@
     "name": "Lombreuil",
     "code": "45185",
     "epci_code": "244500203",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45700"
   },
@@ -1387,7 +1387,7 @@
     "name": "Lorcy",
     "code": "45186",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45490"
   },
@@ -1395,7 +1395,7 @@
     "name": "Lorris",
     "code": "45187",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45260"
   },
@@ -1403,7 +1403,7 @@
     "name": "Loury",
     "code": "45188",
     "epci_code": "244500484",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45470"
   },
@@ -1411,7 +1411,7 @@
     "name": "Louzouer",
     "code": "45189",
     "epci_code": "200067668",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45210"
   },
@@ -1419,7 +1419,7 @@
     "name": "Le Malesherbois",
     "code": "45191",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -1427,7 +1427,7 @@
     "name": "Le Malesherbois",
     "code": "45191",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45330"
   },
@@ -1435,7 +1435,7 @@
     "name": "Marcilly-en-Villette",
     "code": "45193",
     "epci_code": "200005932",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45240"
   },
@@ -1443,7 +1443,7 @@
     "name": "Mardié",
     "code": "45194",
     "epci_code": "244500468",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45430"
   },
@@ -1451,7 +1451,7 @@
     "name": "Mareau-aux-Bois",
     "code": "45195",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -1459,7 +1459,7 @@
     "name": "Mareau-aux-Prés",
     "code": "45196",
     "epci_code": "200070183",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45370"
   },
@@ -1467,7 +1467,7 @@
     "name": "Marigny-les-Usages",
     "code": "45197",
     "epci_code": "244500468",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45760"
   },
@@ -1475,7 +1475,7 @@
     "name": "Marsainvilliers",
     "code": "45198",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -1483,7 +1483,7 @@
     "name": "Melleroy",
     "code": "45199",
     "epci_code": "200067668",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45220"
   },
@@ -1491,7 +1491,7 @@
     "name": "Ménestreau-en-Villette",
     "code": "45200",
     "epci_code": "200005932",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45240"
   },
@@ -1499,7 +1499,7 @@
     "name": "Mérinville",
     "code": "45201",
     "epci_code": "200067668",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45210"
   },
@@ -1507,7 +1507,7 @@
     "name": "Messas",
     "code": "45202",
     "epci_code": "200070183",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45190"
   },
@@ -1515,7 +1515,7 @@
     "name": "Meung-sur-Loire",
     "code": "45203",
     "epci_code": "200070183",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45130"
   },
@@ -1523,7 +1523,7 @@
     "name": "Mézières-lez-Cléry",
     "code": "45204",
     "epci_code": "200070183",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45370"
   },
@@ -1531,7 +1531,7 @@
     "name": "Mézières-en-Gâtinais",
     "code": "45205",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45270"
   },
@@ -1539,7 +1539,7 @@
     "name": "Mignères",
     "code": "45206",
     "epci_code": "244500419",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45490"
   },
@@ -1547,7 +1547,7 @@
     "name": "Mignerette",
     "code": "45207",
     "epci_code": "244500419",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45490"
   },
@@ -1555,7 +1555,7 @@
     "name": "Montargis",
     "code": "45208",
     "epci_code": "244500203",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45200"
   },
@@ -1563,7 +1563,7 @@
     "name": "Montbarrois",
     "code": "45209",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45340"
   },
@@ -1571,7 +1571,7 @@
     "name": "Montbouy",
     "code": "45210",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45230"
   },
@@ -1579,7 +1579,7 @@
     "name": "Montcresson",
     "code": "45212",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45700"
   },
@@ -1587,7 +1587,7 @@
     "name": "Montereau",
     "code": "45213",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45260"
   },
@@ -1595,7 +1595,7 @@
     "name": "Montigny",
     "code": "45214",
     "epci_code": "244500484",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45170"
   },
@@ -1603,7 +1603,7 @@
     "name": "Montliard",
     "code": "45215",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45340"
   },
@@ -1611,7 +1611,7 @@
     "name": "Mormant-sur-Vernisson",
     "code": "45216",
     "epci_code": "244500203",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45700"
   },
@@ -1619,7 +1619,7 @@
     "name": "Morville-en-Beauce",
     "code": "45217",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -1627,7 +1627,7 @@
     "name": "Le Moulinet-sur-Solin",
     "code": "45218",
     "epci_code": "244500211",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45290"
   },
@@ -1635,7 +1635,7 @@
     "name": "Moulon",
     "code": "45219",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45270"
   },
@@ -1643,7 +1643,7 @@
     "name": "Nancray-sur-Rimarde",
     "code": "45220",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45340"
   },
@@ -1651,7 +1651,7 @@
     "name": "Nargis",
     "code": "45222",
     "epci_code": "244500419",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45210"
   },
@@ -1659,7 +1659,7 @@
     "name": "Nesploy",
     "code": "45223",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45270"
   },
@@ -1667,7 +1667,7 @@
     "name": "Neuville-aux-Bois",
     "code": "45224",
     "epci_code": "244500484",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45170"
   },
@@ -1675,7 +1675,7 @@
     "name": "La Neuville-sur-Essonne",
     "code": "45225",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45390"
   },
@@ -1683,7 +1683,7 @@
     "name": "Neuvy-en-Sullias",
     "code": "45226",
     "epci_code": "200070100",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45510"
   },
@@ -1691,7 +1691,7 @@
     "name": "Nevoy",
     "code": "45227",
     "epci_code": "244500211",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45500"
   },
@@ -1699,7 +1699,7 @@
     "name": "Nibelle",
     "code": "45228",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45340"
   },
@@ -1707,7 +1707,7 @@
     "name": "Nogent-sur-Vernisson",
     "code": "45229",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45290"
   },
@@ -1715,7 +1715,7 @@
     "name": "Noyers",
     "code": "45230",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45260"
   },
@@ -1723,7 +1723,7 @@
     "name": "Oison",
     "code": "45231",
     "epci_code": "244500542",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45170"
   },
@@ -1731,7 +1731,7 @@
     "name": "Olivet",
     "code": "45232",
     "epci_code": "244500468",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45160"
   },
@@ -1739,7 +1739,7 @@
     "name": "Ondreville-sur-Essonne",
     "code": "45233",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45390"
   },
@@ -1747,7 +1747,7 @@
     "name": "Orléans",
     "code": "45234",
     "epci_code": "244500468",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45000"
   },
@@ -1755,7 +1755,7 @@
     "name": "Orléans",
     "code": "45234",
     "epci_code": "244500468",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45100"
   },
@@ -1763,7 +1763,7 @@
     "name": "Ormes",
     "code": "45235",
     "epci_code": "244500468",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45140"
   },
@@ -1771,7 +1771,7 @@
     "name": "Orville",
     "code": "45237",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45390"
   },
@@ -1779,7 +1779,7 @@
     "name": "Ousson-sur-Loire",
     "code": "45238",
     "epci_code": "200068278",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45250"
   },
@@ -1787,7 +1787,7 @@
     "name": "Oussoy-en-Gâtinais",
     "code": "45239",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45290"
   },
@@ -1795,7 +1795,7 @@
     "name": "Outarville",
     "code": "45240",
     "epci_code": "244500542",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45480"
   },
@@ -1803,7 +1803,7 @@
     "name": "Ouvrouer-les-Champs",
     "code": "45241",
     "epci_code": "244500427",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45150"
   },
@@ -1811,7 +1811,7 @@
     "name": "Ouzouer-des-Champs",
     "code": "45242",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45290"
   },
@@ -1819,7 +1819,7 @@
     "name": "Ouzouer-sous-Bellegarde",
     "code": "45243",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45270"
   },
@@ -1827,7 +1827,7 @@
     "name": "Ouzouer-sur-Loire",
     "code": "45244",
     "epci_code": "200070100",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45570"
   },
@@ -1835,7 +1835,7 @@
     "name": "Ouzouer-sur-Trézée",
     "code": "45245",
     "epci_code": "200068278",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45250"
   },
@@ -1843,7 +1843,7 @@
     "name": "Pannecières",
     "code": "45246",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -1851,7 +1851,7 @@
     "name": "Pannes",
     "code": "45247",
     "epci_code": "244500203",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45700"
   },
@@ -1859,7 +1859,7 @@
     "name": "Patay",
     "code": "45248",
     "epci_code": "200035764",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45310"
   },
@@ -1867,7 +1867,7 @@
     "name": "Paucourt",
     "code": "45249",
     "epci_code": "244500203",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45200"
   },
@@ -1875,7 +1875,7 @@
     "name": "Pers-en-Gâtinais",
     "code": "45250",
     "epci_code": "200067668",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45210"
   },
@@ -1883,7 +1883,7 @@
     "name": "Pierrefitte-ès-Bois",
     "code": "45251",
     "epci_code": "200068278",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45360"
   },
@@ -1891,7 +1891,7 @@
     "name": "Pithiviers",
     "code": "45252",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -1899,7 +1899,7 @@
     "name": "Pithiviers-le-Vieil",
     "code": "45253",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -1907,7 +1907,7 @@
     "name": "Poilly-lez-Gien",
     "code": "45254",
     "epci_code": "244500211",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45500"
   },
@@ -1915,7 +1915,7 @@
     "name": "Préfontaines",
     "code": "45255",
     "epci_code": "244500419",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45490"
   },
@@ -1923,7 +1923,7 @@
     "name": "Presnoy",
     "code": "45256",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45260"
   },
@@ -1931,7 +1931,7 @@
     "name": "Pressigny-les-Pins",
     "code": "45257",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45290"
   },
@@ -1939,7 +1939,7 @@
     "name": "Puiseaux",
     "code": "45258",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45390"
   },
@@ -1947,7 +1947,7 @@
     "name": "Quiers-sur-Bezonde",
     "code": "45259",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45270"
   },
@@ -1955,7 +1955,7 @@
     "name": "Ramoulu",
     "code": "45260",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -1963,7 +1963,7 @@
     "name": "Rebréchien",
     "code": "45261",
     "epci_code": "244500484",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45470"
   },
@@ -1971,7 +1971,7 @@
     "name": "Rouvray-Sainte-Croix",
     "code": "45262",
     "epci_code": "200035764",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45310"
   },
@@ -1979,7 +1979,7 @@
     "name": "Rouvres-Saint-Jean",
     "code": "45263",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -1987,7 +1987,7 @@
     "name": "Rozières-en-Beauce",
     "code": "45264",
     "epci_code": "200070183",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45130"
   },
@@ -1995,7 +1995,7 @@
     "name": "Rozoy-le-Vieil",
     "code": "45265",
     "epci_code": "244500419",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45210"
   },
@@ -2003,7 +2003,7 @@
     "name": "Ruan",
     "code": "45266",
     "epci_code": "200035764",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45410"
   },
@@ -2011,7 +2011,7 @@
     "name": "Saint-Aignan-le-Jaillard",
     "code": "45268",
     "epci_code": "200070100",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45600"
   },
@@ -2019,7 +2019,7 @@
     "name": "Saint-Ay",
     "code": "45269",
     "epci_code": "200070183",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45130"
   },
@@ -2027,7 +2027,7 @@
     "name": "Saint-Benoît-sur-Loire",
     "code": "45270",
     "epci_code": "200070100",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45730"
   },
@@ -2035,7 +2035,7 @@
     "name": "Saint-Brisson-sur-Loire",
     "code": "45271",
     "epci_code": "244500211",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45500"
   },
@@ -2043,7 +2043,7 @@
     "name": "Saint-Cyr-en-Val",
     "code": "45272",
     "epci_code": "244500468",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45590"
   },
@@ -2051,7 +2051,7 @@
     "name": "Saint-Denis-de-l’Hôtel",
     "code": "45273",
     "epci_code": "244500427",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45550"
   },
@@ -2059,7 +2059,7 @@
     "name": "Saint-Denis-en-Val",
     "code": "45274",
     "epci_code": "244500468",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45560"
   },
@@ -2067,7 +2067,7 @@
     "name": "Saint-Firmin-des-Bois",
     "code": "45275",
     "epci_code": "200067668",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45220"
   },
@@ -2075,7 +2075,7 @@
     "name": "Saint-Firmin-sur-Loire",
     "code": "45276",
     "epci_code": "200068278",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45360"
   },
@@ -2083,7 +2083,7 @@
     "name": "Saint-Florent-le-Jeune",
     "code": "45277",
     "epci_code": "200070100",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45600"
   },
@@ -2091,7 +2091,7 @@
     "name": "Sainte-Geneviève-des-Bois",
     "code": "45278",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45230"
   },
@@ -2099,7 +2099,7 @@
     "name": "Saint-Germain-des-Prés",
     "code": "45279",
     "epci_code": "200067668",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45220"
   },
@@ -2107,7 +2107,7 @@
     "name": "Saint-Gondon",
     "code": "45280",
     "epci_code": "244500211",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45500"
   },
@@ -2115,7 +2115,7 @@
     "name": "Saint-Hilaire-les-Andrésis",
     "code": "45281",
     "epci_code": "200067668",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45320"
   },
@@ -2123,7 +2123,7 @@
     "name": "Saint-Hilaire-Saint-Mesmin",
     "code": "45282",
     "epci_code": "244500468",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45160"
   },
@@ -2131,7 +2131,7 @@
     "name": "Saint-Hilaire-sur-Puiseaux",
     "code": "45283",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45700"
   },
@@ -2139,7 +2139,7 @@
     "name": "Saint-Jean-de-Braye",
     "code": "45284",
     "epci_code": "244500468",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45800"
   },
@@ -2147,7 +2147,7 @@
     "name": "Saint-Jean-de-la-Ruelle",
     "code": "45285",
     "epci_code": "244500468",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45140"
   },
@@ -2155,7 +2155,7 @@
     "name": "Saint-Jean-le-Blanc",
     "code": "45286",
     "epci_code": "244500468",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45650"
   },
@@ -2163,7 +2163,7 @@
     "name": "Saint-Loup-des-Vignes",
     "code": "45288",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45340"
   },
@@ -2171,7 +2171,7 @@
     "name": "Saint-Lyé-la-Forêt",
     "code": "45289",
     "epci_code": "244500484",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45170"
   },
@@ -2179,7 +2179,7 @@
     "name": "Saint-Martin-d’Abbat",
     "code": "45290",
     "epci_code": "244500427",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45110"
   },
@@ -2187,7 +2187,7 @@
     "name": "Saint-Martin-sur-Ocre",
     "code": "45291",
     "epci_code": "244500211",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45500"
   },
@@ -2195,7 +2195,7 @@
     "name": "Saint-Maurice-sur-Aveyron",
     "code": "45292",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45230"
   },
@@ -2203,7 +2203,7 @@
     "name": "Saint-Maurice-sur-Fessard",
     "code": "45293",
     "epci_code": "244500203",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45700"
   },
@@ -2211,7 +2211,7 @@
     "name": "Saint-Michel",
     "code": "45294",
     "epci_code": "200071850",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45340"
   },
@@ -2219,7 +2219,7 @@
     "name": "Saint-Péravy-la-Colombe",
     "code": "45296",
     "epci_code": "200035764",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45310"
   },
@@ -2227,7 +2227,7 @@
     "name": "Saint-Père-sur-Loire",
     "code": "45297",
     "epci_code": "200070100",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45600"
   },
@@ -2235,7 +2235,7 @@
     "name": "Saint-Pryvé-Saint-Mesmin",
     "code": "45298",
     "epci_code": "244500468",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45750"
   },
@@ -2243,7 +2243,7 @@
     "name": "Saint-Sigismond",
     "code": "45299",
     "epci_code": "200035764",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45310"
   },
@@ -2251,7 +2251,7 @@
     "name": "Sandillon",
     "code": "45300",
     "epci_code": "244500427",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45640"
   },
@@ -2259,7 +2259,7 @@
     "name": "Santeau",
     "code": "45301",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45170"
   },
@@ -2267,7 +2267,7 @@
     "name": "Saran",
     "code": "45302",
     "epci_code": "244500468",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45770"
   },
@@ -2275,7 +2275,7 @@
     "name": "Sceaux-du-Gâtinais",
     "code": "45303",
     "epci_code": "244500419",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45490"
   },
@@ -2283,7 +2283,7 @@
     "name": "Seichebrières",
     "code": "45305",
     "epci_code": "244500427",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45530"
   },
@@ -2291,7 +2291,7 @@
     "name": "La Selle-en-Hermoy",
     "code": "45306",
     "epci_code": "200067668",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45210"
   },
@@ -2299,7 +2299,7 @@
     "name": "La Selle-sur-le-Bied",
     "code": "45307",
     "epci_code": "200067668",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45210"
   },
@@ -2307,7 +2307,7 @@
     "name": "Semoy",
     "code": "45308",
     "epci_code": "244500468",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45400"
   },
@@ -2315,7 +2315,7 @@
     "name": "Sennely",
     "code": "45309",
     "epci_code": "200005932",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45240"
   },
@@ -2323,7 +2323,7 @@
     "name": "Sermaises",
     "code": "45310",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -2331,7 +2331,7 @@
     "name": "Sigloy",
     "code": "45311",
     "epci_code": "244500427",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45110"
   },
@@ -2339,7 +2339,7 @@
     "name": "Solterre",
     "code": "45312",
     "epci_code": "244500203",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45700"
   },
@@ -2347,7 +2347,7 @@
     "name": "Sougy",
     "code": "45313",
     "epci_code": "200035764",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45410"
   },
@@ -2355,7 +2355,7 @@
     "name": "Sully-la-Chapelle",
     "code": "45314",
     "epci_code": "244500427",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45450"
   },
@@ -2363,7 +2363,7 @@
     "name": "Sully-sur-Loire",
     "code": "45315",
     "epci_code": "200070100",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45600"
   },
@@ -2371,7 +2371,7 @@
     "name": "Sury-aux-Bois",
     "code": "45316",
     "epci_code": "244500427",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45530"
   },
@@ -2379,7 +2379,7 @@
     "name": "Tavers",
     "code": "45317",
     "epci_code": "200070183",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45190"
   },
@@ -2387,7 +2387,7 @@
     "name": "Thignonville",
     "code": "45320",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -2395,7 +2395,7 @@
     "name": "Thimory",
     "code": "45321",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45260"
   },
@@ -2403,7 +2403,7 @@
     "name": "Thorailles",
     "code": "45322",
     "epci_code": "200067668",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45210"
   },
@@ -2411,7 +2411,7 @@
     "name": "Thou",
     "code": "45323",
     "epci_code": "200068278",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45420"
   },
@@ -2419,7 +2419,7 @@
     "name": "Tigy",
     "code": "45324",
     "epci_code": "244500427",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45510"
   },
@@ -2427,7 +2427,7 @@
     "name": "Tivernon",
     "code": "45325",
     "epci_code": "244500542",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45170"
   },
@@ -2435,7 +2435,7 @@
     "name": "Tournoisis",
     "code": "45326",
     "epci_code": "200035764",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45310"
   },
@@ -2443,7 +2443,7 @@
     "name": "Traînou",
     "code": "45327",
     "epci_code": "244500484",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45470"
   },
@@ -2451,7 +2451,7 @@
     "name": "Treilles-en-Gâtinais",
     "code": "45328",
     "epci_code": "244500419",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45490"
   },
@@ -2459,7 +2459,7 @@
     "name": "Triguères",
     "code": "45329",
     "epci_code": "200067668",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45220"
   },
@@ -2467,7 +2467,7 @@
     "name": "Trinay",
     "code": "45330",
     "epci_code": "200035764",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45410"
   },
@@ -2475,7 +2475,7 @@
     "name": "Vannes-sur-Cosson",
     "code": "45331",
     "epci_code": "200070100",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45510"
   },
@@ -2483,7 +2483,7 @@
     "name": "Varennes-Changy",
     "code": "45332",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45290"
   },
@@ -2491,7 +2491,7 @@
     "name": "Vennecy",
     "code": "45333",
     "epci_code": "244500484",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45760"
   },
@@ -2499,7 +2499,7 @@
     "name": "Vieilles-Maisons-sur-Joudry",
     "code": "45334",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45260"
   },
@@ -2507,7 +2507,7 @@
     "name": "Vienne-en-Val",
     "code": "45335",
     "epci_code": "244500427",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45510"
   },
@@ -2515,7 +2515,7 @@
     "name": "Viglain",
     "code": "45336",
     "epci_code": "200070100",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45600"
   },
@@ -2523,7 +2523,7 @@
     "name": "Villamblain",
     "code": "45337",
     "epci_code": "200035764",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45310"
   },
@@ -2531,7 +2531,7 @@
     "name": "Villemandeur",
     "code": "45338",
     "epci_code": "244500203",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45700"
   },
@@ -2539,7 +2539,7 @@
     "name": "Villemoutiers",
     "code": "45339",
     "epci_code": "200067676",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45270"
   },
@@ -2547,7 +2547,7 @@
     "name": "Villemurlin",
     "code": "45340",
     "epci_code": "200070100",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45600"
   },
@@ -2555,7 +2555,7 @@
     "name": "Villeneuve-sur-Conie",
     "code": "45341",
     "epci_code": "200035764",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45310"
   },
@@ -2563,7 +2563,7 @@
     "name": "Villereau",
     "code": "45342",
     "epci_code": "244500484",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45170"
   },
@@ -2571,7 +2571,7 @@
     "name": "Villevoques",
     "code": "45343",
     "epci_code": "244500419",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45700"
   },
@@ -2579,7 +2579,7 @@
     "name": "Villorceau",
     "code": "45344",
     "epci_code": "200070183",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45190"
   },
@@ -2587,7 +2587,7 @@
     "name": "Vimory",
     "code": "45345",
     "epci_code": "244500203",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45700"
   },
@@ -2595,7 +2595,7 @@
     "name": "Vitry-aux-Loges",
     "code": "45346",
     "epci_code": "244500427",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45530"
   },
@@ -2603,7 +2603,7 @@
     "name": "Vrigny",
     "code": "45347",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   },
@@ -2611,7 +2611,7 @@
     "name": "Yèvre-la-Ville",
     "code": "45348",
     "epci_code": "200066280",
-    "departement_code": "45",
+    "department_code": "45",
     "region_code": "24",
     "postal_code": "45300"
   }

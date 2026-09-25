@@ -3,7 +3,7 @@
     "name": "Aboncourt",
     "code": "57001",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57920"
   },
@@ -11,7 +11,7 @@
     "name": "Aboncourt-sur-Seille",
     "code": "57002",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -19,7 +19,7 @@
     "name": "Abreschviller",
     "code": "57003",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57560"
   },
@@ -27,7 +27,7 @@
     "name": "Achain",
     "code": "57004",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -35,7 +35,7 @@
     "name": "Achen",
     "code": "57006",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57412"
   },
@@ -43,7 +43,7 @@
     "name": "Adaincourt",
     "code": "57007",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57580"
   },
@@ -51,7 +51,7 @@
     "name": "Adelange",
     "code": "57008",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57380"
   },
@@ -59,7 +59,7 @@
     "name": "Ajoncourt",
     "code": "57009",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -67,7 +67,7 @@
     "name": "Alaincourt-la-Côte",
     "code": "57010",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -75,7 +75,7 @@
     "name": "Albestroff",
     "code": "57011",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57670"
   },
@@ -83,7 +83,7 @@
     "name": "Algrange",
     "code": "57012",
     "epci_code": "245701222",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57440"
   },
@@ -91,7 +91,7 @@
     "name": "Alsting",
     "code": "57013",
     "epci_code": "245700372",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57515"
   },
@@ -99,7 +99,7 @@
     "name": "Altrippe",
     "code": "57014",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57660"
   },
@@ -107,7 +107,7 @@
     "name": "Altviller",
     "code": "57015",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57730"
   },
@@ -115,7 +115,7 @@
     "name": "Alzing",
     "code": "57016",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -123,7 +123,7 @@
     "name": "Amanvillers",
     "code": "57017",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57865"
   },
@@ -131,7 +131,7 @@
     "name": "Amelécourt",
     "code": "57018",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57170"
   },
@@ -139,7 +139,7 @@
     "name": "Amnéville",
     "code": "57019",
     "epci_code": "245701271",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57360"
   },
@@ -147,7 +147,7 @@
     "name": "Ancerville",
     "code": "57020",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57580"
   },
@@ -155,7 +155,7 @@
     "name": "Ancy-Dornot",
     "code": "57021",
     "epci_code": "200070738",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57130"
   },
@@ -163,7 +163,7 @@
     "name": "Angevillers",
     "code": "57022",
     "epci_code": "245701362",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57440"
   },
@@ -171,7 +171,7 @@
     "name": "Antilly",
     "code": "57024",
     "epci_code": "200039949",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57640"
   },
@@ -179,7 +179,7 @@
     "name": "Anzeling",
     "code": "57025",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -187,7 +187,7 @@
     "name": "Apach",
     "code": "57026",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57480"
   },
@@ -195,7 +195,7 @@
     "name": "Arraincourt",
     "code": "57027",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57380"
   },
@@ -203,7 +203,7 @@
     "name": "Argancy",
     "code": "57028",
     "epci_code": "200039949",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57640"
   },
@@ -211,7 +211,7 @@
     "name": "Arriance",
     "code": "57029",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57580"
   },
@@ -219,7 +219,7 @@
     "name": "Arry",
     "code": "57030",
     "epci_code": "200070738",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57680"
   },
@@ -227,7 +227,7 @@
     "name": "Ars-Laquenexy",
     "code": "57031",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57530"
   },
@@ -235,7 +235,7 @@
     "name": "Ars-sur-Moselle",
     "code": "57032",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57130"
   },
@@ -243,7 +243,7 @@
     "name": "Arzviller",
     "code": "57033",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57405"
   },
@@ -251,7 +251,7 @@
     "name": "Aspach",
     "code": "57034",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57790"
   },
@@ -259,7 +259,7 @@
     "name": "Assenoncourt",
     "code": "57035",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57260"
   },
@@ -267,7 +267,7 @@
     "name": "Attilloncourt",
     "code": "57036",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57170"
   },
@@ -275,7 +275,7 @@
     "name": "Aube",
     "code": "57037",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57580"
   },
@@ -283,7 +283,7 @@
     "name": "Audun-le-Tiche",
     "code": "57038",
     "epci_code": "245701404",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57390"
   },
@@ -291,7 +291,7 @@
     "name": "Augny",
     "code": "57039",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57685"
   },
@@ -299,7 +299,7 @@
     "name": "Aulnois-sur-Seille",
     "code": "57040",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -307,7 +307,7 @@
     "name": "Aumetz",
     "code": "57041",
     "epci_code": "245701404",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57710"
   },
@@ -315,7 +315,7 @@
     "name": "Avricourt",
     "code": "57042",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57810"
   },
@@ -323,7 +323,7 @@
     "name": "Ay-sur-Moselle",
     "code": "57043",
     "epci_code": "200039949",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57300"
   },
@@ -331,7 +331,7 @@
     "name": "Azoudange",
     "code": "57044",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57810"
   },
@@ -339,7 +339,7 @@
     "name": "Bacourt",
     "code": "57045",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -347,7 +347,7 @@
     "name": "Baerenthal",
     "code": "57046",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57230"
   },
@@ -355,7 +355,7 @@
     "name": "Bambiderstroff",
     "code": "57047",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57690"
   },
@@ -363,7 +363,7 @@
     "name": "Bannay",
     "code": "57048",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -371,7 +371,7 @@
     "name": "Le Ban-Saint-Martin",
     "code": "57049",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57050"
   },
@@ -379,7 +379,7 @@
     "name": "Barchain",
     "code": "57050",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57830"
   },
@@ -387,7 +387,7 @@
     "name": "Baronville",
     "code": "57051",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -395,7 +395,7 @@
     "name": "Barst",
     "code": "57052",
     "epci_code": "245700398",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57450"
   },
@@ -403,7 +403,7 @@
     "name": "Bassing",
     "code": "57053",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57260"
   },
@@ -411,7 +411,7 @@
     "name": "Baudrecourt",
     "code": "57054",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57580"
   },
@@ -419,7 +419,7 @@
     "name": "Bazoncourt",
     "code": "57055",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57530"
   },
@@ -427,7 +427,7 @@
     "name": "Bébing",
     "code": "57056",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57830"
   },
@@ -435,7 +435,7 @@
     "name": "Béchy",
     "code": "57057",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57580"
   },
@@ -443,7 +443,7 @@
     "name": "Behren-lès-Forbach",
     "code": "57058",
     "epci_code": "245700372",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57460"
   },
@@ -451,7 +451,7 @@
     "name": "Bellange",
     "code": "57059",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -459,7 +459,7 @@
     "name": "Bénestroff",
     "code": "57060",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57670"
   },
@@ -467,7 +467,7 @@
     "name": "Béning-lès-Saint-Avold",
     "code": "57061",
     "epci_code": "245700398",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57800"
   },
@@ -475,7 +475,7 @@
     "name": "Berg-sur-Moselle",
     "code": "57062",
     "epci_code": "245700695",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57570"
   },
@@ -483,7 +483,7 @@
     "name": "Bérig-Vintrange",
     "code": "57063",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57660"
   },
@@ -491,7 +491,7 @@
     "name": "Berling",
     "code": "57064",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57370"
   },
@@ -499,7 +499,7 @@
     "name": "Bermering",
     "code": "57065",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -507,7 +507,7 @@
     "name": "Berthelming",
     "code": "57066",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57930"
   },
@@ -515,7 +515,7 @@
     "name": "Bertrange",
     "code": "57067",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57310"
   },
@@ -523,7 +523,7 @@
     "name": "Berviller-en-Moselle",
     "code": "57069",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57550"
   },
@@ -531,7 +531,7 @@
     "name": "Bettange",
     "code": "57070",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -539,7 +539,7 @@
     "name": "Bettborn",
     "code": "57071",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57930"
   },
@@ -547,7 +547,7 @@
     "name": "Bettelainville",
     "code": "57072",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57640"
   },
@@ -555,7 +555,7 @@
     "name": "Betting",
     "code": "57073",
     "epci_code": "245700398",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57800"
   },
@@ -563,7 +563,7 @@
     "name": "Bettviller",
     "code": "57074",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57410"
   },
@@ -571,7 +571,7 @@
     "name": "Beux",
     "code": "57075",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57580"
   },
@@ -579,7 +579,7 @@
     "name": "Beyren-lès-Sierck",
     "code": "57076",
     "epci_code": "245700695",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57570"
   },
@@ -587,7 +587,7 @@
     "name": "Bezange-la-Petite",
     "code": "57077",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57630"
   },
@@ -595,7 +595,7 @@
     "name": "Bibiche",
     "code": "57079",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -603,7 +603,7 @@
     "name": "Bickenholtz",
     "code": "57080",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57635"
   },
@@ -611,7 +611,7 @@
     "name": "Bidestroff",
     "code": "57081",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57260"
   },
@@ -619,7 +619,7 @@
     "name": "Biding",
     "code": "57082",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57660"
   },
@@ -627,7 +627,7 @@
     "name": "Bining",
     "code": "57083",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57410"
   },
@@ -635,7 +635,7 @@
     "name": "Bioncourt",
     "code": "57084",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57170"
   },
@@ -643,7 +643,7 @@
     "name": "Bionville-sur-Nied",
     "code": "57085",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -651,7 +651,7 @@
     "name": "Belles-Forêts",
     "code": "57086",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57930"
   },
@@ -659,7 +659,7 @@
     "name": "Bisten-en-Lorraine",
     "code": "57087",
     "epci_code": "245701164",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -667,7 +667,7 @@
     "name": "Bistroff",
     "code": "57088",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57660"
   },
@@ -675,7 +675,7 @@
     "name": "Bitche",
     "code": "57089",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57230"
   },
@@ -683,7 +683,7 @@
     "name": "Blanche-Église",
     "code": "57090",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57260"
   },
@@ -691,7 +691,7 @@
     "name": "Bliesbruck",
     "code": "57091",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57200"
   },
@@ -699,7 +699,7 @@
     "name": "Blies-Ébersing",
     "code": "57092",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57200"
   },
@@ -707,7 +707,7 @@
     "name": "Blies-Guersviller",
     "code": "57093",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57200"
   },
@@ -715,7 +715,7 @@
     "name": "Boucheporn",
     "code": "57095",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -723,7 +723,7 @@
     "name": "Boulange",
     "code": "57096",
     "epci_code": "245701404",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57655"
   },
@@ -731,7 +731,7 @@
     "name": "Boulay-Moselle",
     "code": "57097",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -739,7 +739,7 @@
     "name": "Bourgaltroff",
     "code": "57098",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57260"
   },
@@ -747,7 +747,7 @@
     "name": "Bourdonnay",
     "code": "57099",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57810"
   },
@@ -755,7 +755,7 @@
     "name": "Bourscheid",
     "code": "57100",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57370"
   },
@@ -763,7 +763,7 @@
     "name": "Bousbach",
     "code": "57101",
     "epci_code": "245700372",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57460"
   },
@@ -771,7 +771,7 @@
     "name": "Bousse",
     "code": "57102",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57310"
   },
@@ -779,7 +779,7 @@
     "name": "Bousseviller",
     "code": "57103",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57230"
   },
@@ -787,7 +787,7 @@
     "name": "Boust",
     "code": "57104",
     "epci_code": "245700695",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57570"
   },
@@ -795,7 +795,7 @@
     "name": "Boustroff",
     "code": "57105",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57380"
   },
@@ -803,7 +803,7 @@
     "name": "Bouzonville",
     "code": "57106",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -811,7 +811,7 @@
     "name": "Bréhain",
     "code": "57107",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -819,7 +819,7 @@
     "name": "Breidenbach",
     "code": "57108",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57720"
   },
@@ -827,7 +827,7 @@
     "name": "Breistroff-la-Grande",
     "code": "57109",
     "epci_code": "245700695",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57570"
   },
@@ -835,7 +835,7 @@
     "name": "Brettnach",
     "code": "57110",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -843,7 +843,7 @@
     "name": "Bronvaux",
     "code": "57111",
     "epci_code": "245701271",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57535"
   },
@@ -851,7 +851,7 @@
     "name": "Brouck",
     "code": "57112",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -859,7 +859,7 @@
     "name": "Brouderdorff",
     "code": "57113",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57565"
   },
@@ -867,7 +867,7 @@
     "name": "Brouviller",
     "code": "57114",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57635"
   },
@@ -875,7 +875,7 @@
     "name": "Brulange",
     "code": "57115",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -883,7 +883,7 @@
     "name": "Buchy",
     "code": "57116",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -891,7 +891,7 @@
     "name": "Buding",
     "code": "57117",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57920"
   },
@@ -899,7 +899,7 @@
     "name": "Budling",
     "code": "57118",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57970"
   },
@@ -907,7 +907,7 @@
     "name": "Buhl-Lorraine",
     "code": "57119",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57400"
   },
@@ -915,7 +915,7 @@
     "name": "Burlioncourt",
     "code": "57120",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57170"
   },
@@ -923,7 +923,7 @@
     "name": "Burtoncourt",
     "code": "57121",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -931,7 +931,7 @@
     "name": "Cappel",
     "code": "57122",
     "epci_code": "245700398",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57450"
   },
@@ -939,7 +939,7 @@
     "name": "Carling",
     "code": "57123",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57490"
   },
@@ -947,7 +947,7 @@
     "name": "Cattenom",
     "code": "57124",
     "epci_code": "245700695",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57570"
   },
@@ -955,7 +955,7 @@
     "name": "Chailly-lès-Ennery",
     "code": "57125",
     "epci_code": "200039949",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57365"
   },
@@ -963,7 +963,7 @@
     "name": "Chambrey",
     "code": "57126",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57170"
   },
@@ -971,7 +971,7 @@
     "name": "Chanville",
     "code": "57127",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57580"
   },
@@ -979,7 +979,7 @@
     "name": "Charleville-sous-Bois",
     "code": "57128",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -987,7 +987,7 @@
     "name": "Charly-Oradour",
     "code": "57129",
     "epci_code": "200039949",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57640"
   },
@@ -995,7 +995,7 @@
     "name": "Château-Bréhain",
     "code": "57130",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -1003,7 +1003,7 @@
     "name": "Château-Rouge",
     "code": "57131",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -1011,7 +1011,7 @@
     "name": "Château-Salins",
     "code": "57132",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57170"
   },
@@ -1019,7 +1019,7 @@
     "name": "Château-Voué",
     "code": "57133",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57170"
   },
@@ -1027,7 +1027,7 @@
     "name": "Châtel-Saint-Germain",
     "code": "57134",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57160"
   },
@@ -1035,7 +1035,7 @@
     "name": "Chémery-les-Deux",
     "code": "57136",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -1043,7 +1043,7 @@
     "name": "Cheminot",
     "code": "57137",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -1051,7 +1051,7 @@
     "name": "Chenois",
     "code": "57138",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57580"
   },
@@ -1059,7 +1059,7 @@
     "name": "Chérisey",
     "code": "57139",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -1067,7 +1067,7 @@
     "name": "Chesny",
     "code": "57140",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57245"
   },
@@ -1075,7 +1075,7 @@
     "name": "Chicourt",
     "code": "57141",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -1083,7 +1083,7 @@
     "name": "Chieulles",
     "code": "57142",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57070"
   },
@@ -1091,7 +1091,7 @@
     "name": "Clouange",
     "code": "57143",
     "epci_code": "245701271",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57185"
   },
@@ -1099,7 +1099,7 @@
     "name": "Cocheren",
     "code": "57144",
     "epci_code": "245700372",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57800"
   },
@@ -1107,7 +1107,7 @@
     "name": "Coincy",
     "code": "57145",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57530"
   },
@@ -1115,7 +1115,7 @@
     "name": "Coin-lès-Cuvry",
     "code": "57146",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -1123,7 +1123,7 @@
     "name": "Coin-sur-Seille",
     "code": "57147",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -1131,7 +1131,7 @@
     "name": "Colligny-Maizery",
     "code": "57148",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57530"
   },
@@ -1139,7 +1139,7 @@
     "name": "Colmen",
     "code": "57149",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -1147,7 +1147,7 @@
     "name": "Condé-Northen",
     "code": "57150",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -1155,7 +1155,7 @@
     "name": "Conthil",
     "code": "57151",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -1163,7 +1163,7 @@
     "name": "Contz-les-Bains",
     "code": "57152",
     "epci_code": "245700695",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57480"
   },
@@ -1171,7 +1171,7 @@
     "name": "Corny-sur-Moselle",
     "code": "57153",
     "epci_code": "200070738",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57680"
   },
@@ -1179,7 +1179,7 @@
     "name": "Coume",
     "code": "57154",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -1187,7 +1187,7 @@
     "name": "Courcelles-Chaussy",
     "code": "57155",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57530"
   },
@@ -1195,7 +1195,7 @@
     "name": "Courcelles-sur-Nied",
     "code": "57156",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57530"
   },
@@ -1203,7 +1203,7 @@
     "name": "Craincourt",
     "code": "57158",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -1211,7 +1211,7 @@
     "name": "Créhange",
     "code": "57159",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57690"
   },
@@ -1219,7 +1219,7 @@
     "name": "Creutzwald",
     "code": "57160",
     "epci_code": "245701164",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57150"
   },
@@ -1227,7 +1227,7 @@
     "name": "Cutting",
     "code": "57161",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57260"
   },
@@ -1235,7 +1235,7 @@
     "name": "Cuvry",
     "code": "57162",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -1243,7 +1243,7 @@
     "name": "Dabo",
     "code": "57163",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57850"
   },
@@ -1251,7 +1251,7 @@
     "name": "Dalem",
     "code": "57165",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57550"
   },
@@ -1259,7 +1259,7 @@
     "name": "Dalhain",
     "code": "57166",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -1267,7 +1267,7 @@
     "name": "Dalstein",
     "code": "57167",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -1275,7 +1275,7 @@
     "name": "Danne-et-Quatre-Vents",
     "code": "57168",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57370"
   },
@@ -1283,7 +1283,7 @@
     "name": "Dannelbourg",
     "code": "57169",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57820"
   },
@@ -1291,7 +1291,7 @@
     "name": "Delme",
     "code": "57171",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -1299,7 +1299,7 @@
     "name": "Denting",
     "code": "57172",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -1307,7 +1307,7 @@
     "name": "Desseling",
     "code": "57173",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57260"
   },
@@ -1315,7 +1315,7 @@
     "name": "Destry",
     "code": "57174",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -1323,7 +1323,7 @@
     "name": "Diane-Capelle",
     "code": "57175",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57830"
   },
@@ -1331,7 +1331,7 @@
     "name": "Diebling",
     "code": "57176",
     "epci_code": "245700372",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57980"
   },
@@ -1339,7 +1339,7 @@
     "name": "Dieuze",
     "code": "57177",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57260"
   },
@@ -1347,7 +1347,7 @@
     "name": "Diffembach-lès-Hellimer",
     "code": "57178",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57660"
   },
@@ -1355,7 +1355,7 @@
     "name": "Distroff",
     "code": "57179",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57925"
   },
@@ -1363,7 +1363,7 @@
     "name": "Dolving",
     "code": "57180",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57400"
   },
@@ -1371,7 +1371,7 @@
     "name": "Domnom-lès-Dieuze",
     "code": "57181",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57260"
   },
@@ -1379,7 +1379,7 @@
     "name": "Donjeux",
     "code": "57182",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -1387,7 +1387,7 @@
     "name": "Donnelay",
     "code": "57183",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57810"
   },
@@ -1395,7 +1395,7 @@
     "name": "Ébersviller",
     "code": "57186",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -1403,7 +1403,7 @@
     "name": "Éblange",
     "code": "57187",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -1411,7 +1411,7 @@
     "name": "Éguelshardt",
     "code": "57188",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57230"
   },
@@ -1419,7 +1419,7 @@
     "name": "Eincheville",
     "code": "57189",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -1427,7 +1427,7 @@
     "name": "Elvange",
     "code": "57190",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57690"
   },
@@ -1435,7 +1435,7 @@
     "name": "Elzange",
     "code": "57191",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57970"
   },
@@ -1443,7 +1443,7 @@
     "name": "Enchenberg",
     "code": "57192",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57415"
   },
@@ -1451,7 +1451,7 @@
     "name": "Ennery",
     "code": "57193",
     "epci_code": "200039949",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57365"
   },
@@ -1459,7 +1459,7 @@
     "name": "Entrange",
     "code": "57194",
     "epci_code": "245700695",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57330"
   },
@@ -1467,7 +1467,7 @@
     "name": "Epping",
     "code": "57195",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57720"
   },
@@ -1475,7 +1475,7 @@
     "name": "Erching",
     "code": "57196",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57720"
   },
@@ -1483,7 +1483,7 @@
     "name": "Ernestviller",
     "code": "57197",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57510"
   },
@@ -1491,7 +1491,7 @@
     "name": "Erstroff",
     "code": "57198",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57660"
   },
@@ -1499,7 +1499,7 @@
     "name": "Escherange",
     "code": "57199",
     "epci_code": "245700695",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57330"
   },
@@ -1507,7 +1507,7 @@
     "name": "Les Étangs",
     "code": "57200",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57530"
   },
@@ -1515,7 +1515,7 @@
     "name": "Etting",
     "code": "57201",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57412"
   },
@@ -1523,7 +1523,7 @@
     "name": "Etzling",
     "code": "57202",
     "epci_code": "245700372",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57460"
   },
@@ -1531,7 +1531,7 @@
     "name": "Évrange",
     "code": "57203",
     "epci_code": "245700695",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57570"
   },
@@ -1539,7 +1539,7 @@
     "name": "Failly",
     "code": "57204",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57640"
   },
@@ -1547,7 +1547,7 @@
     "name": "Falck",
     "code": "57205",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57550"
   },
@@ -1555,7 +1555,7 @@
     "name": "Fameck",
     "code": "57206",
     "epci_code": "245701222",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57290"
   },
@@ -1563,7 +1563,7 @@
     "name": "Farébersviller",
     "code": "57207",
     "epci_code": "245700398",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57450"
   },
@@ -1571,7 +1571,7 @@
     "name": "Farschviller",
     "code": "57208",
     "epci_code": "245700372",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57450"
   },
@@ -1579,7 +1579,7 @@
     "name": "Faulquemont",
     "code": "57209",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57380"
   },
@@ -1587,7 +1587,7 @@
     "name": "Fénétrange",
     "code": "57210",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57930"
   },
@@ -1595,7 +1595,7 @@
     "name": "Fèves",
     "code": "57211",
     "epci_code": "200039949",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57280"
   },
@@ -1603,7 +1603,7 @@
     "name": "Féy",
     "code": "57212",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -1611,7 +1611,7 @@
     "name": "Filstroff",
     "code": "57213",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -1619,7 +1619,7 @@
     "name": "Fixem",
     "code": "57214",
     "epci_code": "245700695",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57570"
   },
@@ -1627,7 +1627,7 @@
     "name": "Flastroff",
     "code": "57215",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -1635,7 +1635,7 @@
     "name": "Fleisheim",
     "code": "57216",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57635"
   },
@@ -1643,7 +1643,7 @@
     "name": "Flétrange",
     "code": "57217",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57690"
   },
@@ -1651,7 +1651,7 @@
     "name": "Fleury",
     "code": "57218",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -1659,7 +1659,7 @@
     "name": "Flévy",
     "code": "57219",
     "epci_code": "200039949",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57365"
   },
@@ -1667,7 +1667,7 @@
     "name": "Flocourt",
     "code": "57220",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57580"
   },
@@ -1675,7 +1675,7 @@
     "name": "Florange",
     "code": "57221",
     "epci_code": "245701222",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57190"
   },
@@ -1683,7 +1683,7 @@
     "name": "Folkling",
     "code": "57222",
     "epci_code": "245700372",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57600"
   },
@@ -1691,7 +1691,7 @@
     "name": "Folschviller",
     "code": "57224",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57730"
   },
@@ -1699,7 +1699,7 @@
     "name": "Fonteny",
     "code": "57225",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -1707,7 +1707,7 @@
     "name": "Fontoy",
     "code": "57226",
     "epci_code": "245701362",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57650"
   },
@@ -1715,7 +1715,7 @@
     "name": "Forbach",
     "code": "57227",
     "epci_code": "245700372",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57600"
   },
@@ -1723,7 +1723,7 @@
     "name": "Fossieux",
     "code": "57228",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -1731,7 +1731,7 @@
     "name": "Foulcrey",
     "code": "57229",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57830"
   },
@@ -1739,7 +1739,7 @@
     "name": "Fouligny",
     "code": "57230",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -1747,7 +1747,7 @@
     "name": "Foville",
     "code": "57231",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -1755,7 +1755,7 @@
     "name": "Francaltroff",
     "code": "57232",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57670"
   },
@@ -1763,7 +1763,7 @@
     "name": "Fraquelfing",
     "code": "57233",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57790"
   },
@@ -1771,7 +1771,7 @@
     "name": "Frauenberg",
     "code": "57234",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57200"
   },
@@ -1779,7 +1779,7 @@
     "name": "Freistroff",
     "code": "57235",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -1787,7 +1787,7 @@
     "name": "Frémery",
     "code": "57236",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -1795,7 +1795,7 @@
     "name": "Frémestroff",
     "code": "57237",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57660"
   },
@@ -1803,7 +1803,7 @@
     "name": "Fresnes-en-Saulnois",
     "code": "57238",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57170"
   },
@@ -1811,7 +1811,7 @@
     "name": "Freybouse",
     "code": "57239",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57660"
   },
@@ -1819,7 +1819,7 @@
     "name": "Freyming-Merlebach",
     "code": "57240",
     "epci_code": "245700398",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57800"
   },
@@ -1827,7 +1827,7 @@
     "name": "Fribourg",
     "code": "57241",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57810"
   },
@@ -1835,7 +1835,7 @@
     "name": "Gandrange",
     "code": "57242",
     "epci_code": "200039949",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57175"
   },
@@ -1843,7 +1843,7 @@
     "name": "Garrebourg",
     "code": "57244",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57820"
   },
@@ -1851,7 +1851,7 @@
     "name": "Gavisse",
     "code": "57245",
     "epci_code": "245700695",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57570"
   },
@@ -1859,7 +1859,7 @@
     "name": "Gelucourt",
     "code": "57246",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57260"
   },
@@ -1867,7 +1867,7 @@
     "name": "Gerbécourt",
     "code": "57247",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57170"
   },
@@ -1875,7 +1875,7 @@
     "name": "Givrycourt",
     "code": "57248",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57670"
   },
@@ -1883,7 +1883,7 @@
     "name": "Glatigny",
     "code": "57249",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57530"
   },
@@ -1891,7 +1891,7 @@
     "name": "Goetzenbruck",
     "code": "57250",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57620"
   },
@@ -1899,7 +1899,7 @@
     "name": "Goin",
     "code": "57251",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -1907,7 +1907,7 @@
     "name": "Gomelange",
     "code": "57252",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -1915,7 +1915,7 @@
     "name": "Gondrexange",
     "code": "57253",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57815"
   },
@@ -1923,7 +1923,7 @@
     "name": "Gorze",
     "code": "57254",
     "epci_code": "200070738",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57680"
   },
@@ -1931,7 +1931,7 @@
     "name": "Gosselming",
     "code": "57255",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57930"
   },
@@ -1939,7 +1939,7 @@
     "name": "Gravelotte",
     "code": "57256",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57130"
   },
@@ -1947,7 +1947,7 @@
     "name": "Grémecey",
     "code": "57257",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57170"
   },
@@ -1955,7 +1955,7 @@
     "name": "Gréning",
     "code": "57258",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57660"
   },
@@ -1963,7 +1963,7 @@
     "name": "Grindorff-Bizing",
     "code": "57259",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57480"
   },
@@ -1971,7 +1971,7 @@
     "name": "Grosbliederstroff",
     "code": "57260",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57520"
   },
@@ -1979,7 +1979,7 @@
     "name": "Gros-Réderching",
     "code": "57261",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57410"
   },
@@ -1987,7 +1987,7 @@
     "name": "Grostenquin",
     "code": "57262",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57660"
   },
@@ -1995,7 +1995,7 @@
     "name": "Grundviller",
     "code": "57263",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57510"
   },
@@ -2003,7 +2003,7 @@
     "name": "Guebenhouse",
     "code": "57264",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57510"
   },
@@ -2011,7 +2011,7 @@
     "name": "Guébestroff",
     "code": "57265",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57260"
   },
@@ -2019,7 +2019,7 @@
     "name": "Guéblange-lès-Dieuze",
     "code": "57266",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57260"
   },
@@ -2027,7 +2027,7 @@
     "name": "Le Val-de-Guéblange",
     "code": "57267",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57430"
   },
@@ -2035,7 +2035,7 @@
     "name": "Guébling",
     "code": "57268",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57260"
   },
@@ -2043,7 +2043,7 @@
     "name": "Guénange",
     "code": "57269",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57310"
   },
@@ -2051,7 +2051,7 @@
     "name": "Val-de-Bride",
     "code": "57270",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57260"
   },
@@ -2059,7 +2059,7 @@
     "name": "Guenviller",
     "code": "57271",
     "epci_code": "245700398",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57470"
   },
@@ -2067,7 +2067,7 @@
     "name": "Guermange",
     "code": "57272",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57260"
   },
@@ -2075,7 +2075,7 @@
     "name": "Guerstling",
     "code": "57273",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -2083,7 +2083,7 @@
     "name": "Guerting",
     "code": "57274",
     "epci_code": "245701164",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57880"
   },
@@ -2091,7 +2091,7 @@
     "name": "Guessling-Hémering",
     "code": "57275",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57380"
   },
@@ -2099,7 +2099,7 @@
     "name": "Guinglange",
     "code": "57276",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57690"
   },
@@ -2107,7 +2107,7 @@
     "name": "Guinkirchen",
     "code": "57277",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -2115,7 +2115,7 @@
     "name": "Guinzeling",
     "code": "57278",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57670"
   },
@@ -2123,7 +2123,7 @@
     "name": "Guntzviller",
     "code": "57280",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57405"
   },
@@ -2131,7 +2131,7 @@
     "name": "Haboudange",
     "code": "57281",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -2139,7 +2139,7 @@
     "name": "Hagen",
     "code": "57282",
     "epci_code": "245700695",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57570"
   },
@@ -2147,7 +2147,7 @@
     "name": "Hagondange",
     "code": "57283",
     "epci_code": "200039949",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57300"
   },
@@ -2155,7 +2155,7 @@
     "name": "Hallering",
     "code": "57284",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57690"
   },
@@ -2163,7 +2163,7 @@
     "name": "Halstroff",
     "code": "57286",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57480"
   },
@@ -2171,7 +2171,7 @@
     "name": "Basse-Ham",
     "code": "57287",
     "epci_code": "245701362",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57970"
   },
@@ -2179,7 +2179,7 @@
     "name": "Ham-sous-Varsberg",
     "code": "57288",
     "epci_code": "245701164",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57880"
   },
@@ -2187,7 +2187,7 @@
     "name": "Hambach",
     "code": "57289",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57910"
   },
@@ -2195,7 +2195,7 @@
     "name": "Hampont",
     "code": "57290",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57170"
   },
@@ -2203,7 +2203,7 @@
     "name": "Hangviller",
     "code": "57291",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57370"
   },
@@ -2211,7 +2211,7 @@
     "name": "Hannocourt",
     "code": "57292",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -2219,7 +2219,7 @@
     "name": "Han-sur-Nied",
     "code": "57293",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57580"
   },
@@ -2227,7 +2227,7 @@
     "name": "Hanviller",
     "code": "57294",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57230"
   },
@@ -2235,7 +2235,7 @@
     "name": "Haraucourt-sur-Seille",
     "code": "57295",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57630"
   },
@@ -2243,7 +2243,7 @@
     "name": "Hargarten-aux-Mines",
     "code": "57296",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57550"
   },
@@ -2251,7 +2251,7 @@
     "name": "Harprich",
     "code": "57297",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -2259,7 +2259,7 @@
     "name": "Harreberg",
     "code": "57298",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57870"
   },
@@ -2267,7 +2267,7 @@
     "name": "Hartzviller",
     "code": "57299",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57870"
   },
@@ -2275,7 +2275,7 @@
     "name": "Haselbourg",
     "code": "57300",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57850"
   },
@@ -2283,7 +2283,7 @@
     "name": "Haspelschiedt",
     "code": "57301",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57230"
   },
@@ -2291,7 +2291,7 @@
     "name": "Hattigny",
     "code": "57302",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57790"
   },
@@ -2299,7 +2299,7 @@
     "name": "Hauconcourt",
     "code": "57303",
     "epci_code": "200039949",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57280"
   },
@@ -2307,7 +2307,7 @@
     "name": "Haut-Clocher",
     "code": "57304",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57400"
   },
@@ -2315,7 +2315,7 @@
     "name": "Havange",
     "code": "57305",
     "epci_code": "245701362",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57650"
   },
@@ -2323,7 +2323,7 @@
     "name": "Hayange",
     "code": "57306",
     "epci_code": "245701222",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57700"
   },
@@ -2331,7 +2331,7 @@
     "name": "Hayes",
     "code": "57307",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57530"
   },
@@ -2339,7 +2339,7 @@
     "name": "Hazembourg",
     "code": "57308",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57430"
   },
@@ -2347,7 +2347,7 @@
     "name": "Heining-lès-Bouzonville",
     "code": "57309",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -2355,7 +2355,7 @@
     "name": "Hellering-lès-Fénétrange",
     "code": "57310",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57930"
   },
@@ -2363,7 +2363,7 @@
     "name": "Hellimer",
     "code": "57311",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57660"
   },
@@ -2371,7 +2371,7 @@
     "name": "Helstroff",
     "code": "57312",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -2379,7 +2379,7 @@
     "name": "Hémilly",
     "code": "57313",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57690"
   },
@@ -2387,7 +2387,7 @@
     "name": "Héming",
     "code": "57314",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57830"
   },
@@ -2395,7 +2395,7 @@
     "name": "Henridorff",
     "code": "57315",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57820"
   },
@@ -2403,7 +2403,7 @@
     "name": "Henriville",
     "code": "57316",
     "epci_code": "245700398",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57450"
   },
@@ -2411,7 +2411,7 @@
     "name": "Hérange",
     "code": "57317",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57635"
   },
@@ -2419,7 +2419,7 @@
     "name": "Hermelange",
     "code": "57318",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57790"
   },
@@ -2427,7 +2427,7 @@
     "name": "Herny",
     "code": "57319",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57580"
   },
@@ -2435,7 +2435,7 @@
     "name": "Hertzing",
     "code": "57320",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57830"
   },
@@ -2443,7 +2443,7 @@
     "name": "Hesse",
     "code": "57321",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57400"
   },
@@ -2451,7 +2451,7 @@
     "name": "Hestroff",
     "code": "57322",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -2459,7 +2459,7 @@
     "name": "Hettange-Grande",
     "code": "57323",
     "epci_code": "245700695",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57330"
   },
@@ -2467,7 +2467,7 @@
     "name": "Hilbesheim",
     "code": "57324",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57400"
   },
@@ -2475,7 +2475,7 @@
     "name": "Hilsprich",
     "code": "57325",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57510"
   },
@@ -2483,7 +2483,7 @@
     "name": "Hinckange",
     "code": "57326",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -2491,7 +2491,7 @@
     "name": "Holacourt",
     "code": "57328",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57380"
   },
@@ -2499,7 +2499,7 @@
     "name": "Holling",
     "code": "57329",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -2507,7 +2507,7 @@
     "name": "Holving",
     "code": "57330",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57510"
   },
@@ -2515,7 +2515,7 @@
     "name": "Hombourg-Budange",
     "code": "57331",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57920"
   },
@@ -2523,7 +2523,7 @@
     "name": "Hombourg-Haut",
     "code": "57332",
     "epci_code": "245700398",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57470"
   },
@@ -2531,7 +2531,7 @@
     "name": "Hommarting",
     "code": "57333",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57405"
   },
@@ -2539,7 +2539,7 @@
     "name": "Hommert",
     "code": "57334",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57870"
   },
@@ -2547,7 +2547,7 @@
     "name": "Honskirch",
     "code": "57335",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57670"
   },
@@ -2555,7 +2555,7 @@
     "name": "L’Hôpital",
     "code": "57336",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57490"
   },
@@ -2563,7 +2563,7 @@
     "name": "Hoste",
     "code": "57337",
     "epci_code": "245700398",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57510"
   },
@@ -2571,7 +2571,7 @@
     "name": "Hottviller",
     "code": "57338",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57720"
   },
@@ -2579,7 +2579,7 @@
     "name": "Hultehouse",
     "code": "57339",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57820"
   },
@@ -2587,7 +2587,7 @@
     "name": "Hundling",
     "code": "57340",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57990"
   },
@@ -2595,7 +2595,7 @@
     "name": "Hunting",
     "code": "57341",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57480"
   },
@@ -2603,7 +2603,7 @@
     "name": "Ibigny",
     "code": "57342",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57830"
   },
@@ -2611,7 +2611,7 @@
     "name": "Illange",
     "code": "57343",
     "epci_code": "245701362",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57970"
   },
@@ -2619,7 +2619,7 @@
     "name": "Imling",
     "code": "57344",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57400"
   },
@@ -2627,7 +2627,7 @@
     "name": "Inglange",
     "code": "57345",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57970"
   },
@@ -2635,7 +2635,7 @@
     "name": "Insming",
     "code": "57346",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57670"
   },
@@ -2643,7 +2643,7 @@
     "name": "Insviller",
     "code": "57347",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57670"
   },
@@ -2651,7 +2651,7 @@
     "name": "Ippling",
     "code": "57348",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57990"
   },
@@ -2659,7 +2659,7 @@
     "name": "Jallaucourt",
     "code": "57349",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -2667,7 +2667,7 @@
     "name": "Jouy-aux-Arches",
     "code": "57350",
     "epci_code": "200070738",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57130"
   },
@@ -2675,7 +2675,7 @@
     "name": "Jury",
     "code": "57351",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57245"
   },
@@ -2683,7 +2683,7 @@
     "name": "Jussy",
     "code": "57352",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57130"
   },
@@ -2691,7 +2691,7 @@
     "name": "Juvelize",
     "code": "57353",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57630"
   },
@@ -2699,7 +2699,7 @@
     "name": "Juville",
     "code": "57354",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -2707,7 +2707,7 @@
     "name": "Kalhausen",
     "code": "57355",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57412"
   },
@@ -2715,7 +2715,7 @@
     "name": "Kanfen",
     "code": "57356",
     "epci_code": "245700695",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57330"
   },
@@ -2723,7 +2723,7 @@
     "name": "Kappelkinger",
     "code": "57357",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57430"
   },
@@ -2731,7 +2731,7 @@
     "name": "Kédange-sur-Canner",
     "code": "57358",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57920"
   },
@@ -2739,7 +2739,7 @@
     "name": "Kemplich",
     "code": "57359",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57920"
   },
@@ -2747,7 +2747,7 @@
     "name": "Kerbach",
     "code": "57360",
     "epci_code": "245700372",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57460"
   },
@@ -2755,7 +2755,7 @@
     "name": "Kerling-lès-Sierck",
     "code": "57361",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57480"
   },
@@ -2763,7 +2763,7 @@
     "name": "Kerprich-aux-Bois",
     "code": "57362",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57830"
   },
@@ -2771,7 +2771,7 @@
     "name": "Kirsch-lès-Sierck",
     "code": "57364",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57480"
   },
@@ -2779,7 +2779,7 @@
     "name": "Kirschnaumen",
     "code": "57365",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57480"
   },
@@ -2787,7 +2787,7 @@
     "name": "Kirviller",
     "code": "57366",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57430"
   },
@@ -2795,7 +2795,7 @@
     "name": "Klang",
     "code": "57367",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57920"
   },
@@ -2803,7 +2803,7 @@
     "name": "Knutange",
     "code": "57368",
     "epci_code": "245701222",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57240"
   },
@@ -2811,7 +2811,7 @@
     "name": "Kœnigsmacker",
     "code": "57370",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57970"
   },
@@ -2819,7 +2819,7 @@
     "name": "Haute-Kontz",
     "code": "57371",
     "epci_code": "245700695",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57480"
   },
@@ -2827,7 +2827,7 @@
     "name": "Kuntzig",
     "code": "57372",
     "epci_code": "245701362",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57970"
   },
@@ -2835,7 +2835,7 @@
     "name": "Lachambre",
     "code": "57373",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57730"
   },
@@ -2843,7 +2843,7 @@
     "name": "Lafrimbolle",
     "code": "57374",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57560"
   },
@@ -2851,7 +2851,7 @@
     "name": "Lagarde",
     "code": "57375",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57810"
   },
@@ -2859,7 +2859,7 @@
     "name": "Lambach",
     "code": "57376",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57410"
   },
@@ -2867,7 +2867,7 @@
     "name": "Landange",
     "code": "57377",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57830"
   },
@@ -2875,7 +2875,7 @@
     "name": "Landroff",
     "code": "57379",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -2883,7 +2883,7 @@
     "name": "Laneuveville-lès-Lorquin",
     "code": "57380",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57790"
   },
@@ -2891,7 +2891,7 @@
     "name": "Laneuveville-en-Saulnois",
     "code": "57381",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -2899,7 +2899,7 @@
     "name": "Langatte",
     "code": "57382",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57400"
   },
@@ -2907,7 +2907,7 @@
     "name": "Languimberg",
     "code": "57383",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57810"
   },
@@ -2915,7 +2915,7 @@
     "name": "Laning",
     "code": "57384",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57660"
   },
@@ -2923,7 +2923,7 @@
     "name": "Laquenexy",
     "code": "57385",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57530"
   },
@@ -2931,7 +2931,7 @@
     "name": "Laudrefang",
     "code": "57386",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57385"
   },
@@ -2939,7 +2939,7 @@
     "name": "Laumesfeld",
     "code": "57387",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57480"
   },
@@ -2947,7 +2947,7 @@
     "name": "Launstroff",
     "code": "57388",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57480"
   },
@@ -2955,7 +2955,7 @@
     "name": "Lelling",
     "code": "57389",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57660"
   },
@@ -2963,7 +2963,7 @@
     "name": "Lemberg",
     "code": "57390",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57620"
   },
@@ -2971,7 +2971,7 @@
     "name": "Lemoncourt",
     "code": "57391",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -2979,7 +2979,7 @@
     "name": "Lemud",
     "code": "57392",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57580"
   },
@@ -2987,7 +2987,7 @@
     "name": "Lengelsheim",
     "code": "57393",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57720"
   },
@@ -2995,7 +2995,7 @@
     "name": "Léning",
     "code": "57394",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57670"
   },
@@ -3003,7 +3003,7 @@
     "name": "Lesse",
     "code": "57395",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57580"
   },
@@ -3011,7 +3011,7 @@
     "name": "Lessy",
     "code": "57396",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57160"
   },
@@ -3019,7 +3019,7 @@
     "name": "Ley",
     "code": "57397",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57810"
   },
@@ -3027,7 +3027,7 @@
     "name": "Leyviller",
     "code": "57398",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57660"
   },
@@ -3035,7 +3035,7 @@
     "name": "Lezey",
     "code": "57399",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57630"
   },
@@ -3043,7 +3043,7 @@
     "name": "Lidrezing",
     "code": "57401",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -3051,7 +3051,7 @@
     "name": "Liederschiedt",
     "code": "57402",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57230"
   },
@@ -3059,7 +3059,7 @@
     "name": "Liéhon",
     "code": "57403",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -3067,7 +3067,7 @@
     "name": "Lindre-Basse",
     "code": "57404",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57260"
   },
@@ -3075,7 +3075,7 @@
     "name": "Lindre-Haute",
     "code": "57405",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57260"
   },
@@ -3083,7 +3083,7 @@
     "name": "Liocourt",
     "code": "57406",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -3091,7 +3091,7 @@
     "name": "Lixheim",
     "code": "57407",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57635"
   },
@@ -3099,7 +3099,7 @@
     "name": "Lixing-lès-Rouhling",
     "code": "57408",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57520"
   },
@@ -3107,7 +3107,7 @@
     "name": "Lixing-lès-Saint-Avold",
     "code": "57409",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57660"
   },
@@ -3115,7 +3115,7 @@
     "name": "Lhor",
     "code": "57410",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57670"
   },
@@ -3123,7 +3123,7 @@
     "name": "Lommerange",
     "code": "57411",
     "epci_code": "245701362",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57650"
   },
@@ -3131,7 +3131,7 @@
     "name": "Longeville-lès-Metz",
     "code": "57412",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57050"
   },
@@ -3139,7 +3139,7 @@
     "name": "Longeville-lès-Saint-Avold",
     "code": "57413",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57740"
   },
@@ -3147,7 +3147,7 @@
     "name": "Lorquin",
     "code": "57414",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57790"
   },
@@ -3155,7 +3155,7 @@
     "name": "Lorry-lès-Metz",
     "code": "57415",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57050"
   },
@@ -3163,7 +3163,7 @@
     "name": "Lorry-Mardigny",
     "code": "57416",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -3171,7 +3171,7 @@
     "name": "Lostroff",
     "code": "57417",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57670"
   },
@@ -3179,7 +3179,7 @@
     "name": "Loudrefing",
     "code": "57418",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57670"
   },
@@ -3187,7 +3187,7 @@
     "name": "Loupershouse",
     "code": "57419",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57510"
   },
@@ -3195,7 +3195,7 @@
     "name": "Loutzviller",
     "code": "57421",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57720"
   },
@@ -3203,7 +3203,7 @@
     "name": "Louvigny",
     "code": "57422",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -3211,7 +3211,7 @@
     "name": "Lubécourt",
     "code": "57423",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57170"
   },
@@ -3219,7 +3219,7 @@
     "name": "Lucy",
     "code": "57424",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -3227,7 +3227,7 @@
     "name": "Luppy",
     "code": "57425",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57580"
   },
@@ -3235,7 +3235,7 @@
     "name": "Luttange",
     "code": "57426",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57935"
   },
@@ -3243,7 +3243,7 @@
     "name": "Lutzelbourg",
     "code": "57427",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57820"
   },
@@ -3251,7 +3251,7 @@
     "name": "Macheren",
     "code": "57428",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57730"
   },
@@ -3259,7 +3259,7 @@
     "name": "Mainvillers",
     "code": "57430",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57380"
   },
@@ -3267,7 +3267,7 @@
     "name": "Maizeroy",
     "code": "57431",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57530"
   },
@@ -3275,7 +3275,7 @@
     "name": "Maizières-lès-Metz",
     "code": "57433",
     "epci_code": "200039949",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57280"
   },
@@ -3283,7 +3283,7 @@
     "name": "Maizières-lès-Vic",
     "code": "57434",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57810"
   },
@@ -3291,7 +3291,7 @@
     "name": "Malaucourt-sur-Seille",
     "code": "57436",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -3299,7 +3299,7 @@
     "name": "Malling",
     "code": "57437",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57480"
   },
@@ -3307,7 +3307,7 @@
     "name": "Malroy",
     "code": "57438",
     "epci_code": "200039949",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57640"
   },
@@ -3315,7 +3315,7 @@
     "name": "Manderen-Ritzing",
     "code": "57439",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57480"
   },
@@ -3323,7 +3323,7 @@
     "name": "Manhoué",
     "code": "57440",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -3331,7 +3331,7 @@
     "name": "Manom",
     "code": "57441",
     "epci_code": "245701362",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57100"
   },
@@ -3339,7 +3339,7 @@
     "name": "Many",
     "code": "57442",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57380"
   },
@@ -3347,7 +3347,7 @@
     "name": "Marange-Silvange",
     "code": "57443",
     "epci_code": "245701271",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57535"
   },
@@ -3355,7 +3355,7 @@
     "name": "Marange-Zondrange",
     "code": "57444",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57690"
   },
@@ -3363,7 +3363,7 @@
     "name": "Marieulles",
     "code": "57445",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -3371,7 +3371,7 @@
     "name": "Marimont-lès-Bénestroff",
     "code": "57446",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57670"
   },
@@ -3379,7 +3379,7 @@
     "name": "Marly",
     "code": "57447",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57155"
   },
@@ -3387,7 +3387,7 @@
     "name": "Marsal",
     "code": "57448",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57630"
   },
@@ -3395,7 +3395,7 @@
     "name": "Marsilly",
     "code": "57449",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57530"
   },
@@ -3403,7 +3403,7 @@
     "name": "Marthille",
     "code": "57451",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -3411,7 +3411,7 @@
     "name": "La Maxe",
     "code": "57452",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57140"
   },
@@ -3419,7 +3419,7 @@
     "name": "Maxstadt",
     "code": "57453",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57660"
   },
@@ -3427,7 +3427,7 @@
     "name": "Mécleuves",
     "code": "57454",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57245"
   },
@@ -3435,7 +3435,7 @@
     "name": "Mégange",
     "code": "57455",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -3443,7 +3443,7 @@
     "name": "Meisenthal",
     "code": "57456",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57960"
   },
@@ -3451,7 +3451,7 @@
     "name": "Menskirch",
     "code": "57457",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -3459,7 +3459,7 @@
     "name": "Merschweiller",
     "code": "57459",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57480"
   },
@@ -3467,7 +3467,7 @@
     "name": "Merten",
     "code": "57460",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57550"
   },
@@ -3475,7 +3475,7 @@
     "name": "Métairies-Saint-Quirin",
     "code": "57461",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57560"
   },
@@ -3483,7 +3483,7 @@
     "name": "Metting",
     "code": "57462",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57370"
   },
@@ -3491,7 +3491,7 @@
     "name": "Metz",
     "code": "57463",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57000"
   },
@@ -3499,7 +3499,7 @@
     "name": "Metz",
     "code": "57463",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57050"
   },
@@ -3507,7 +3507,7 @@
     "name": "Metz",
     "code": "57463",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57070"
   },
@@ -3515,7 +3515,7 @@
     "name": "Metzeresche",
     "code": "57464",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57920"
   },
@@ -3523,7 +3523,7 @@
     "name": "Metzervisse",
     "code": "57465",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57940"
   },
@@ -3531,7 +3531,7 @@
     "name": "Metzing",
     "code": "57466",
     "epci_code": "245700372",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57980"
   },
@@ -3539,7 +3539,7 @@
     "name": "Mey",
     "code": "57467",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57070"
   },
@@ -3547,7 +3547,7 @@
     "name": "Mittelbronn",
     "code": "57468",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57370"
   },
@@ -3555,7 +3555,7 @@
     "name": "Mittersheim",
     "code": "57469",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57930"
   },
@@ -3563,7 +3563,7 @@
     "name": "Molring",
     "code": "57470",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57670"
   },
@@ -3571,7 +3571,7 @@
     "name": "Momerstroff",
     "code": "57471",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -3579,7 +3579,7 @@
     "name": "Moncheux",
     "code": "57472",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -3587,7 +3587,7 @@
     "name": "Moncourt",
     "code": "57473",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57810"
   },
@@ -3595,7 +3595,7 @@
     "name": "Mondelange",
     "code": "57474",
     "epci_code": "200039949",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57300"
   },
@@ -3603,7 +3603,7 @@
     "name": "Mondorff",
     "code": "57475",
     "epci_code": "245700695",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57570"
   },
@@ -3611,7 +3611,7 @@
     "name": "Monneren",
     "code": "57476",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57920"
   },
@@ -3619,7 +3619,7 @@
     "name": "Montbronn",
     "code": "57477",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57415"
   },
@@ -3627,7 +3627,7 @@
     "name": "Montdidier",
     "code": "57478",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57670"
   },
@@ -3635,7 +3635,7 @@
     "name": "Montenach",
     "code": "57479",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57480"
   },
@@ -3643,7 +3643,7 @@
     "name": "Montigny-lès-Metz",
     "code": "57480",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57950"
   },
@@ -3651,7 +3651,7 @@
     "name": "Montois-la-Montagne",
     "code": "57481",
     "epci_code": "245701271",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57860"
   },
@@ -3659,7 +3659,7 @@
     "name": "Ogy-Montoy-Flanville",
     "code": "57482",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57530"
   },
@@ -3667,7 +3667,7 @@
     "name": "Ogy-Montoy-Flanville",
     "code": "57482",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57645"
   },
@@ -3675,7 +3675,7 @@
     "name": "Morhange",
     "code": "57483",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -3683,7 +3683,7 @@
     "name": "Morsbach",
     "code": "57484",
     "epci_code": "245700372",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57600"
   },
@@ -3691,7 +3691,7 @@
     "name": "Morville-lès-Vic",
     "code": "57485",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57170"
   },
@@ -3699,7 +3699,7 @@
     "name": "Morville-sur-Nied",
     "code": "57486",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -3707,7 +3707,7 @@
     "name": "Moulins-lès-Metz",
     "code": "57487",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57160"
   },
@@ -3715,7 +3715,7 @@
     "name": "Moussey",
     "code": "57488",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57770"
   },
@@ -3723,7 +3723,7 @@
     "name": "Mouterhouse",
     "code": "57489",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57620"
   },
@@ -3731,7 +3731,7 @@
     "name": "Moyenvic",
     "code": "57490",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57630"
   },
@@ -3739,7 +3739,7 @@
     "name": "Moyeuvre-Grande",
     "code": "57491",
     "epci_code": "245701271",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57250"
   },
@@ -3747,7 +3747,7 @@
     "name": "Moyeuvre-Petite",
     "code": "57492",
     "epci_code": "245701271",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57250"
   },
@@ -3755,7 +3755,7 @@
     "name": "Mulcey",
     "code": "57493",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57260"
   },
@@ -3763,7 +3763,7 @@
     "name": "Munster",
     "code": "57494",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57670"
   },
@@ -3771,7 +3771,7 @@
     "name": "Narbéfontaine",
     "code": "57495",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -3779,7 +3779,7 @@
     "name": "Nébing",
     "code": "57496",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57670"
   },
@@ -3787,7 +3787,7 @@
     "name": "Nelling",
     "code": "57497",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57670"
   },
@@ -3795,7 +3795,7 @@
     "name": "Neufchef",
     "code": "57498",
     "epci_code": "245701222",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57700"
   },
@@ -3803,7 +3803,7 @@
     "name": "Neufgrange",
     "code": "57499",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57910"
   },
@@ -3811,7 +3811,7 @@
     "name": "Neufmoulins",
     "code": "57500",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57830"
   },
@@ -3819,7 +3819,7 @@
     "name": "Neufvillage",
     "code": "57501",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57670"
   },
@@ -3827,7 +3827,7 @@
     "name": "Neunkirchen-lès-Bouzonville",
     "code": "57502",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -3835,7 +3835,7 @@
     "name": "Niderhoff",
     "code": "57504",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57560"
   },
@@ -3843,7 +3843,7 @@
     "name": "Niderviller",
     "code": "57505",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57565"
   },
@@ -3851,7 +3851,7 @@
     "name": "Niederstinzel",
     "code": "57506",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57930"
   },
@@ -3859,7 +3859,7 @@
     "name": "Niedervisse",
     "code": "57507",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -3867,7 +3867,7 @@
     "name": "Nilvange",
     "code": "57508",
     "epci_code": "245701222",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57240"
   },
@@ -3875,7 +3875,7 @@
     "name": "Nitting",
     "code": "57509",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57790"
   },
@@ -3883,7 +3883,7 @@
     "name": "Noisseville",
     "code": "57510",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57645"
   },
@@ -3891,7 +3891,7 @@
     "name": "Norroy-le-Veneur",
     "code": "57511",
     "epci_code": "200039949",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57140"
   },
@@ -3899,7 +3899,7 @@
     "name": "Nouilly",
     "code": "57512",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57645"
   },
@@ -3907,7 +3907,7 @@
     "name": "Nousseviller-lès-Bitche",
     "code": "57513",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57720"
   },
@@ -3915,7 +3915,7 @@
     "name": "Nousseviller-Saint-Nabor",
     "code": "57514",
     "epci_code": "245700372",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57990"
   },
@@ -3923,7 +3923,7 @@
     "name": "Novéant-sur-Moselle",
     "code": "57515",
     "epci_code": "200070738",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57680"
   },
@@ -3931,7 +3931,7 @@
     "name": "Oberdorff",
     "code": "57516",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -3939,7 +3939,7 @@
     "name": "Obergailbach",
     "code": "57517",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57720"
   },
@@ -3947,7 +3947,7 @@
     "name": "Oberstinzel",
     "code": "57518",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57930"
   },
@@ -3955,7 +3955,7 @@
     "name": "Obervisse",
     "code": "57519",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -3963,7 +3963,7 @@
     "name": "Obreck",
     "code": "57520",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57170"
   },
@@ -3971,7 +3971,7 @@
     "name": "Œting",
     "code": "57521",
     "epci_code": "245700372",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57600"
   },
@@ -3979,7 +3979,7 @@
     "name": "Ommeray",
     "code": "57524",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57810"
   },
@@ -3987,7 +3987,7 @@
     "name": "Oriocourt",
     "code": "57525",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -3995,7 +3995,7 @@
     "name": "Ormersviller",
     "code": "57526",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57720"
   },
@@ -4003,7 +4003,7 @@
     "name": "Orny",
     "code": "57527",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -4011,7 +4011,7 @@
     "name": "Oron",
     "code": "57528",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -4019,7 +4019,7 @@
     "name": "Ottange",
     "code": "57529",
     "epci_code": "245701404",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57840"
   },
@@ -4027,7 +4027,7 @@
     "name": "Ottonville",
     "code": "57530",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -4035,7 +4035,7 @@
     "name": "Oudrenne",
     "code": "57531",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57970"
   },
@@ -4043,7 +4043,7 @@
     "name": "Pagny-lès-Goin",
     "code": "57532",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -4051,7 +4051,7 @@
     "name": "Pange",
     "code": "57533",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57530"
   },
@@ -4059,7 +4059,7 @@
     "name": "Peltre",
     "code": "57534",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57245"
   },
@@ -4067,7 +4067,7 @@
     "name": "Petit-Réderching",
     "code": "57535",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57410"
   },
@@ -4075,7 +4075,7 @@
     "name": "Petit-Tenquin",
     "code": "57536",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57660"
   },
@@ -4083,7 +4083,7 @@
     "name": "Petite-Rosselle",
     "code": "57537",
     "epci_code": "245700372",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57540"
   },
@@ -4091,7 +4091,7 @@
     "name": "Pettoncourt",
     "code": "57538",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57170"
   },
@@ -4099,7 +4099,7 @@
     "name": "Pévange",
     "code": "57539",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -4107,7 +4107,7 @@
     "name": "Phalsbourg",
     "code": "57540",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57370"
   },
@@ -4115,7 +4115,7 @@
     "name": "Philippsbourg",
     "code": "57541",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57230"
   },
@@ -4123,7 +4123,7 @@
     "name": "Piblange",
     "code": "57542",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -4131,7 +4131,7 @@
     "name": "Pierrevillers",
     "code": "57543",
     "epci_code": "245701271",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57120"
   },
@@ -4139,7 +4139,7 @@
     "name": "Plaine-de-Walsch",
     "code": "57544",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57870"
   },
@@ -4147,7 +4147,7 @@
     "name": "Plappeville",
     "code": "57545",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57050"
   },
@@ -4155,7 +4155,7 @@
     "name": "Plesnois",
     "code": "57546",
     "epci_code": "200039949",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57140"
   },
@@ -4163,7 +4163,7 @@
     "name": "Pommérieux",
     "code": "57547",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -4171,7 +4171,7 @@
     "name": "Pontoy",
     "code": "57548",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -4179,7 +4179,7 @@
     "name": "Pontpierre",
     "code": "57549",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57380"
   },
@@ -4187,7 +4187,7 @@
     "name": "Porcelette",
     "code": "57550",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57890"
   },
@@ -4195,7 +4195,7 @@
     "name": "Postroff",
     "code": "57551",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57930"
   },
@@ -4203,7 +4203,7 @@
     "name": "Pouilly",
     "code": "57552",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -4211,7 +4211,7 @@
     "name": "Pournoy-la-Chétive",
     "code": "57553",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -4219,7 +4219,7 @@
     "name": "Pournoy-la-Grasse",
     "code": "57554",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -4227,7 +4227,7 @@
     "name": "Prévocourt",
     "code": "57555",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -4235,7 +4235,7 @@
     "name": "Puttelange-aux-Lacs",
     "code": "57556",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57510"
   },
@@ -4243,7 +4243,7 @@
     "name": "Puttelange-lès-Thionville",
     "code": "57557",
     "epci_code": "245700695",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57570"
   },
@@ -4251,7 +4251,7 @@
     "name": "Puttigny",
     "code": "57558",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57170"
   },
@@ -4259,7 +4259,7 @@
     "name": "Puzieux",
     "code": "57559",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -4267,7 +4267,7 @@
     "name": "Racrange",
     "code": "57560",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -4275,7 +4275,7 @@
     "name": "Rahling",
     "code": "57561",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57410"
   },
@@ -4283,7 +4283,7 @@
     "name": "Ranguevaux",
     "code": "57562",
     "epci_code": "245701222",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57700"
   },
@@ -4291,7 +4291,7 @@
     "name": "Raville",
     "code": "57563",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57530"
   },
@@ -4299,7 +4299,7 @@
     "name": "Réchicourt-le-Château",
     "code": "57564",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57810"
   },
@@ -4307,7 +4307,7 @@
     "name": "Rédange",
     "code": "57565",
     "epci_code": "245701404",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57390"
   },
@@ -4315,7 +4315,7 @@
     "name": "Réding",
     "code": "57566",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57445"
   },
@@ -4323,7 +4323,7 @@
     "name": "Rémelfang",
     "code": "57567",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -4331,7 +4331,7 @@
     "name": "Rémelfing",
     "code": "57568",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57200"
   },
@@ -4339,7 +4339,7 @@
     "name": "Rémeling",
     "code": "57569",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57480"
   },
@@ -4347,7 +4347,7 @@
     "name": "Rémering",
     "code": "57570",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57550"
   },
@@ -4355,7 +4355,7 @@
     "name": "Rémering-lès-Puttelange",
     "code": "57571",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57510"
   },
@@ -4363,7 +4363,7 @@
     "name": "Rémilly",
     "code": "57572",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57580"
   },
@@ -4371,7 +4371,7 @@
     "name": "Réning",
     "code": "57573",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57670"
   },
@@ -4379,7 +4379,7 @@
     "name": "Basse-Rentgen",
     "code": "57574",
     "epci_code": "245700695",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57570"
   },
@@ -4387,7 +4387,7 @@
     "name": "Retonfey",
     "code": "57575",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57645"
   },
@@ -4395,7 +4395,7 @@
     "name": "Rettel",
     "code": "57576",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57480"
   },
@@ -4403,7 +4403,7 @@
     "name": "Reyersviller",
     "code": "57577",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57230"
   },
@@ -4411,7 +4411,7 @@
     "name": "Rezonville-Vionville",
     "code": "57578",
     "epci_code": "200070738",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57130"
   },
@@ -4419,7 +4419,7 @@
     "name": "Rhodes",
     "code": "57579",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57810"
   },
@@ -4427,7 +4427,7 @@
     "name": "Riche",
     "code": "57580",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -4435,7 +4435,7 @@
     "name": "Richeling",
     "code": "57581",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57510"
   },
@@ -4443,7 +4443,7 @@
     "name": "Richemont",
     "code": "57582",
     "epci_code": "200039949",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57270"
   },
@@ -4451,7 +4451,7 @@
     "name": "Richeval",
     "code": "57583",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57830"
   },
@@ -4459,7 +4459,7 @@
     "name": "Rimling",
     "code": "57584",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57720"
   },
@@ -4467,7 +4467,7 @@
     "name": "Rochonvillers",
     "code": "57586",
     "epci_code": "245701362",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57840"
   },
@@ -4475,7 +4475,7 @@
     "name": "Rodalbe",
     "code": "57587",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -4483,7 +4483,7 @@
     "name": "Rodemack",
     "code": "57588",
     "epci_code": "245700695",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57570"
   },
@@ -4491,7 +4491,7 @@
     "name": "Rohrbach-lès-Bitche",
     "code": "57589",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57410"
   },
@@ -4499,7 +4499,7 @@
     "name": "Rolbing",
     "code": "57590",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57720"
   },
@@ -4507,7 +4507,7 @@
     "name": "Rombas",
     "code": "57591",
     "epci_code": "245701271",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57120"
   },
@@ -4515,7 +4515,7 @@
     "name": "Romelfing",
     "code": "57592",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57930"
   },
@@ -4523,7 +4523,7 @@
     "name": "Roncourt",
     "code": "57593",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57860"
   },
@@ -4531,7 +4531,7 @@
     "name": "Roppeviller",
     "code": "57594",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57230"
   },
@@ -4539,7 +4539,7 @@
     "name": "Rorbach-lès-Dieuze",
     "code": "57595",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57260"
   },
@@ -4547,7 +4547,7 @@
     "name": "Rosbruck",
     "code": "57596",
     "epci_code": "245700372",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57800"
   },
@@ -4555,7 +4555,7 @@
     "name": "Rosselange",
     "code": "57597",
     "epci_code": "245701271",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57780"
   },
@@ -4563,7 +4563,7 @@
     "name": "Rouhling",
     "code": "57598",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57520"
   },
@@ -4571,7 +4571,7 @@
     "name": "Roupeldange",
     "code": "57599",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -4579,7 +4579,7 @@
     "name": "Roussy-le-Village",
     "code": "57600",
     "epci_code": "245700695",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57330"
   },
@@ -4587,7 +4587,7 @@
     "name": "Rozérieulles",
     "code": "57601",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57160"
   },
@@ -4595,7 +4595,7 @@
     "name": "Rurange-lès-Thionville",
     "code": "57602",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57310"
   },
@@ -4603,7 +4603,7 @@
     "name": "Russange",
     "code": "57603",
     "epci_code": "245701404",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57390"
   },
@@ -4611,7 +4611,7 @@
     "name": "Rustroff",
     "code": "57604",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57480"
   },
@@ -4619,7 +4619,7 @@
     "name": "Sailly-Achâtel",
     "code": "57605",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -4627,7 +4627,7 @@
     "name": "Saint-Avold",
     "code": "57606",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57500"
   },
@@ -4635,7 +4635,7 @@
     "name": "Sainte-Barbe",
     "code": "57607",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57640"
   },
@@ -4643,7 +4643,7 @@
     "name": "Saint-Epvre",
     "code": "57609",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57580"
   },
@@ -4651,7 +4651,7 @@
     "name": "Saint-François-Lacroix",
     "code": "57610",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -4659,7 +4659,7 @@
     "name": "Saint-Georges",
     "code": "57611",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57830"
   },
@@ -4667,7 +4667,7 @@
     "name": "Saint-Hubert",
     "code": "57612",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57640"
   },
@@ -4675,7 +4675,7 @@
     "name": "Saint-Jean-de-Bassel",
     "code": "57613",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57930"
   },
@@ -4683,7 +4683,7 @@
     "name": "Saint-Jean-Kourtzerode",
     "code": "57614",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57370"
   },
@@ -4691,7 +4691,7 @@
     "name": "Saint-Jean-Rohrbach",
     "code": "57615",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57510"
   },
@@ -4699,7 +4699,7 @@
     "name": "Saint-Julien-lès-Metz",
     "code": "57616",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57070"
   },
@@ -4707,7 +4707,7 @@
     "name": "Saint-Jure",
     "code": "57617",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -4715,7 +4715,7 @@
     "name": "Saint-Louis",
     "code": "57618",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57820"
   },
@@ -4723,7 +4723,7 @@
     "name": "Saint-Louis-lès-Bitche",
     "code": "57619",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57620"
   },
@@ -4731,7 +4731,7 @@
     "name": "Sainte-Marie-aux-Chênes",
     "code": "57620",
     "epci_code": "245701271",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57255"
   },
@@ -4739,7 +4739,7 @@
     "name": "Saint-Médard",
     "code": "57621",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57260"
   },
@@ -4747,7 +4747,7 @@
     "name": "Saint-Privat-la-Montagne",
     "code": "57622",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57855"
   },
@@ -4755,7 +4755,7 @@
     "name": "Saint-Quirin",
     "code": "57623",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57560"
   },
@@ -4763,7 +4763,7 @@
     "name": "Sainte-Ruffine",
     "code": "57624",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57130"
   },
@@ -4771,7 +4771,7 @@
     "name": "Salonnes",
     "code": "57625",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57170"
   },
@@ -4779,7 +4779,7 @@
     "name": "Sanry-lès-Vigy",
     "code": "57626",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57640"
   },
@@ -4787,7 +4787,7 @@
     "name": "Sanry-sur-Nied",
     "code": "57627",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57530"
   },
@@ -4795,7 +4795,7 @@
     "name": "Sarralbe",
     "code": "57628",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57430"
   },
@@ -4803,7 +4803,7 @@
     "name": "Sarraltroff",
     "code": "57629",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57400"
   },
@@ -4811,7 +4811,7 @@
     "name": "Sarrebourg",
     "code": "57630",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57400"
   },
@@ -4819,7 +4819,7 @@
     "name": "Sarreguemines",
     "code": "57631",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57200"
   },
@@ -4827,7 +4827,7 @@
     "name": "Sarreinsming",
     "code": "57633",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57905"
   },
@@ -4835,7 +4835,7 @@
     "name": "Saulny",
     "code": "57634",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57140"
   },
@@ -4843,7 +4843,7 @@
     "name": "Schalbach",
     "code": "57635",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57370"
   },
@@ -4851,7 +4851,7 @@
     "name": "Schmittviller",
     "code": "57636",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57412"
   },
@@ -4859,7 +4859,7 @@
     "name": "Schneckenbusch",
     "code": "57637",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57400"
   },
@@ -4867,7 +4867,7 @@
     "name": "Schœneck",
     "code": "57638",
     "epci_code": "245700372",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57350"
   },
@@ -4875,7 +4875,7 @@
     "name": "Schorbach",
     "code": "57639",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57230"
   },
@@ -4883,7 +4883,7 @@
     "name": "Schwerdorff",
     "code": "57640",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -4891,7 +4891,7 @@
     "name": "Schweyen",
     "code": "57641",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57720"
   },
@@ -4899,7 +4899,7 @@
     "name": "Scy-Chazelles",
     "code": "57642",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57160"
   },
@@ -4907,7 +4907,7 @@
     "name": "Secourt",
     "code": "57643",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -4915,7 +4915,7 @@
     "name": "Seingbouse",
     "code": "57644",
     "epci_code": "245700398",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57455"
   },
@@ -4923,7 +4923,7 @@
     "name": "Semécourt",
     "code": "57645",
     "epci_code": "200039949",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57280"
   },
@@ -4931,7 +4931,7 @@
     "name": "Serémange-Erzange",
     "code": "57647",
     "epci_code": "245701222",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57290"
   },
@@ -4939,7 +4939,7 @@
     "name": "Servigny-lès-Raville",
     "code": "57648",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57530"
   },
@@ -4947,7 +4947,7 @@
     "name": "Servigny-lès-Sainte-Barbe",
     "code": "57649",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57640"
   },
@@ -4955,7 +4955,7 @@
     "name": "Sierck-les-Bains",
     "code": "57650",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57480"
   },
@@ -4963,7 +4963,7 @@
     "name": "Siersthal",
     "code": "57651",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57410"
   },
@@ -4971,7 +4971,7 @@
     "name": "Sillegny",
     "code": "57652",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -4979,7 +4979,7 @@
     "name": "Silly-en-Saulnois",
     "code": "57653",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -4987,7 +4987,7 @@
     "name": "Silly-sur-Nied",
     "code": "57654",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57530"
   },
@@ -4995,7 +4995,7 @@
     "name": "Solgne",
     "code": "57655",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -5003,7 +5003,7 @@
     "name": "Sorbey",
     "code": "57656",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57580"
   },
@@ -5011,7 +5011,7 @@
     "name": "Sotzeling",
     "code": "57657",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57170"
   },
@@ -5019,7 +5019,7 @@
     "name": "Soucht",
     "code": "57658",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57960"
   },
@@ -5027,7 +5027,7 @@
     "name": "Spicheren",
     "code": "57659",
     "epci_code": "245700372",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57350"
   },
@@ -5035,7 +5035,7 @@
     "name": "Stiring-Wendel",
     "code": "57660",
     "epci_code": "245700372",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57350"
   },
@@ -5043,7 +5043,7 @@
     "name": "Sturzelbronn",
     "code": "57661",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57230"
   },
@@ -5051,7 +5051,7 @@
     "name": "Suisse",
     "code": "57662",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -5059,7 +5059,7 @@
     "name": "Talange",
     "code": "57663",
     "epci_code": "200039949",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57525"
   },
@@ -5067,7 +5067,7 @@
     "name": "Tarquimpol",
     "code": "57664",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57260"
   },
@@ -5075,7 +5075,7 @@
     "name": "Tenteling",
     "code": "57665",
     "epci_code": "245700372",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57980"
   },
@@ -5083,7 +5083,7 @@
     "name": "Terville",
     "code": "57666",
     "epci_code": "245701362",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57180"
   },
@@ -5091,7 +5091,7 @@
     "name": "Téterchen",
     "code": "57667",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -5099,7 +5099,7 @@
     "name": "Teting-sur-Nied",
     "code": "57668",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57385"
   },
@@ -5107,7 +5107,7 @@
     "name": "Théding",
     "code": "57669",
     "epci_code": "245700372",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57450"
   },
@@ -5115,7 +5115,7 @@
     "name": "Thicourt",
     "code": "57670",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57380"
   },
@@ -5123,7 +5123,7 @@
     "name": "Thimonville",
     "code": "57671",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57580"
   },
@@ -5131,7 +5131,7 @@
     "name": "Thionville",
     "code": "57672",
     "epci_code": "245701362",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57100"
   },
@@ -5139,7 +5139,7 @@
     "name": "Thonville",
     "code": "57673",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57380"
   },
@@ -5147,7 +5147,7 @@
     "name": "Tincry",
     "code": "57674",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -5155,7 +5155,7 @@
     "name": "Torcheville",
     "code": "57675",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57670"
   },
@@ -5163,7 +5163,7 @@
     "name": "Tragny",
     "code": "57676",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57580"
   },
@@ -5171,7 +5171,7 @@
     "name": "Trémery",
     "code": "57677",
     "epci_code": "200039949",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57300"
   },
@@ -5179,7 +5179,7 @@
     "name": "Tressange",
     "code": "57678",
     "epci_code": "245701362",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57710"
   },
@@ -5187,7 +5187,7 @@
     "name": "Tritteling-Redlach",
     "code": "57679",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57385"
   },
@@ -5195,7 +5195,7 @@
     "name": "Troisfontaines",
     "code": "57680",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57870"
   },
@@ -5203,7 +5203,7 @@
     "name": "Tromborn",
     "code": "57681",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -5211,7 +5211,7 @@
     "name": "Turquestein-Blancrupt",
     "code": "57682",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57560"
   },
@@ -5219,7 +5219,7 @@
     "name": "Uckange",
     "code": "57683",
     "epci_code": "245701222",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57270"
   },
@@ -5227,7 +5227,7 @@
     "name": "Vahl-Ebersing",
     "code": "57684",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57660"
   },
@@ -5235,7 +5235,7 @@
     "name": "Vahl-lès-Bénestroff",
     "code": "57685",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57670"
   },
@@ -5243,7 +5243,7 @@
     "name": "Vahl-lès-Faulquemont",
     "code": "57686",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57380"
   },
@@ -5251,7 +5251,7 @@
     "name": "Vallerange",
     "code": "57687",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -5259,7 +5259,7 @@
     "name": "Valmestroff",
     "code": "57689",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57970"
   },
@@ -5267,7 +5267,7 @@
     "name": "Valmont",
     "code": "57690",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57730"
   },
@@ -5275,7 +5275,7 @@
     "name": "Valmunster",
     "code": "57691",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -5283,7 +5283,7 @@
     "name": "Vannecourt",
     "code": "57692",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -5291,7 +5291,7 @@
     "name": "Vantoux",
     "code": "57693",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57070"
   },
@@ -5299,7 +5299,7 @@
     "name": "Vany",
     "code": "57694",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57070"
   },
@@ -5307,7 +5307,7 @@
     "name": "Varize-Vaudoncourt",
     "code": "57695",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -5315,7 +5315,7 @@
     "name": "Varsberg",
     "code": "57696",
     "epci_code": "245701164",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57880"
   },
@@ -5323,7 +5323,7 @@
     "name": "Vasperviller",
     "code": "57697",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57560"
   },
@@ -5331,7 +5331,7 @@
     "name": "Vatimont",
     "code": "57698",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57580"
   },
@@ -5339,7 +5339,7 @@
     "name": "Vaudreching",
     "code": "57700",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -5347,7 +5347,7 @@
     "name": "Vaux",
     "code": "57701",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57130"
   },
@@ -5355,7 +5355,7 @@
     "name": "Vaxy",
     "code": "57702",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57170"
   },
@@ -5363,7 +5363,7 @@
     "name": "Veckersviller",
     "code": "57703",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57370"
   },
@@ -5371,7 +5371,7 @@
     "name": "Veckring",
     "code": "57704",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57920"
   },
@@ -5379,7 +5379,7 @@
     "name": "Velving",
     "code": "57705",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -5387,7 +5387,7 @@
     "name": "Vergaville",
     "code": "57706",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57260"
   },
@@ -5395,7 +5395,7 @@
     "name": "Vernéville",
     "code": "57707",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57130"
   },
@@ -5403,7 +5403,7 @@
     "name": "Verny",
     "code": "57708",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -5411,7 +5411,7 @@
     "name": "Vescheim",
     "code": "57709",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57370"
   },
@@ -5419,7 +5419,7 @@
     "name": "Vibersviller",
     "code": "57711",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57670"
   },
@@ -5427,7 +5427,7 @@
     "name": "Vic-sur-Seille",
     "code": "57712",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57630"
   },
@@ -5435,7 +5435,7 @@
     "name": "Vieux-Lixheim",
     "code": "57713",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57635"
   },
@@ -5443,7 +5443,7 @@
     "name": "Haute-Vigneulles",
     "code": "57714",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57690"
   },
@@ -5451,7 +5451,7 @@
     "name": "Vigny",
     "code": "57715",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -5459,7 +5459,7 @@
     "name": "Vigy",
     "code": "57716",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57640"
   },
@@ -5467,7 +5467,7 @@
     "name": "Viller",
     "code": "57717",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -5475,7 +5475,7 @@
     "name": "Villers-Stoncourt",
     "code": "57718",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57530"
   },
@@ -5483,7 +5483,7 @@
     "name": "Villers-sur-Nied",
     "code": "57719",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -5491,7 +5491,7 @@
     "name": "Villing",
     "code": "57720",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57550"
   },
@@ -5499,7 +5499,7 @@
     "name": "Vilsberg",
     "code": "57721",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57370"
   },
@@ -5507,7 +5507,7 @@
     "name": "Virming",
     "code": "57723",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -5515,7 +5515,7 @@
     "name": "Vitry-sur-Orne",
     "code": "57724",
     "epci_code": "245701271",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57185"
   },
@@ -5523,7 +5523,7 @@
     "name": "Vittersbourg",
     "code": "57725",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57670"
   },
@@ -5531,7 +5531,7 @@
     "name": "Vittoncourt",
     "code": "57726",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57580"
   },
@@ -5539,7 +5539,7 @@
     "name": "Viviers",
     "code": "57727",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -5547,7 +5547,7 @@
     "name": "Voimhaut",
     "code": "57728",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57580"
   },
@@ -5555,7 +5555,7 @@
     "name": "Volmerange-lès-Boulay",
     "code": "57730",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57220"
   },
@@ -5563,7 +5563,7 @@
     "name": "Volmerange-les-Mines",
     "code": "57731",
     "epci_code": "245700695",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57330"
   },
@@ -5571,7 +5571,7 @@
     "name": "Volmunster",
     "code": "57732",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57720"
   },
@@ -5579,7 +5579,7 @@
     "name": "Volstroff",
     "code": "57733",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57940"
   },
@@ -5587,7 +5587,7 @@
     "name": "Voyer",
     "code": "57734",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57560"
   },
@@ -5595,7 +5595,7 @@
     "name": "Vry",
     "code": "57736",
     "epci_code": "200067957",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57640"
   },
@@ -5603,7 +5603,7 @@
     "name": "Vulmont",
     "code": "57737",
     "epci_code": "200039907",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57420"
   },
@@ -5611,7 +5611,7 @@
     "name": "Waldhouse",
     "code": "57738",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57720"
   },
@@ -5619,7 +5619,7 @@
     "name": "Waldweistroff",
     "code": "57739",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -5627,7 +5627,7 @@
     "name": "Waldwisse",
     "code": "57740",
     "epci_code": "200067486",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57480"
   },
@@ -5635,7 +5635,7 @@
     "name": "Walschbronn",
     "code": "57741",
     "epci_code": "200069441",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57720"
   },
@@ -5643,7 +5643,7 @@
     "name": "Walscheid",
     "code": "57742",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57870"
   },
@@ -5651,7 +5651,7 @@
     "name": "Waltembourg",
     "code": "57743",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57370"
   },
@@ -5659,7 +5659,7 @@
     "name": "Wiesviller",
     "code": "57745",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57200"
   },
@@ -5667,7 +5667,7 @@
     "name": "Willerwald",
     "code": "57746",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57430"
   },
@@ -5675,7 +5675,7 @@
     "name": "Wintersbourg",
     "code": "57747",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57635"
   },
@@ -5683,7 +5683,7 @@
     "name": "Wittring",
     "code": "57748",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57905"
   },
@@ -5691,7 +5691,7 @@
     "name": "Vœlfling-lès-Bouzonville",
     "code": "57749",
     "epci_code": "200067650",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57320"
   },
@@ -5699,7 +5699,7 @@
     "name": "Wœlfling-lès-Sarreguemines",
     "code": "57750",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57200"
   },
@@ -5707,7 +5707,7 @@
     "name": "Woippy",
     "code": "57751",
     "epci_code": "200039865",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57140"
   },
@@ -5715,7 +5715,7 @@
     "name": "Woustviller",
     "code": "57752",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57915"
   },
@@ -5723,7 +5723,7 @@
     "name": "Wuisse",
     "code": "57753",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57170"
   },
@@ -5731,7 +5731,7 @@
     "name": "Xanrey",
     "code": "57754",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57630"
   },
@@ -5739,7 +5739,7 @@
     "name": "Xocourt",
     "code": "57755",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57590"
   },
@@ -5747,7 +5747,7 @@
     "name": "Xouaxange",
     "code": "57756",
     "epci_code": "200068146",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57830"
   },
@@ -5755,7 +5755,7 @@
     "name": "Yutz",
     "code": "57757",
     "epci_code": "245701362",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57970"
   },
@@ -5763,7 +5763,7 @@
     "name": "Zarbeling",
     "code": "57759",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57340"
   },
@@ -5771,7 +5771,7 @@
     "name": "Zetting",
     "code": "57760",
     "epci_code": "200070746",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57905"
   },
@@ -5779,7 +5779,7 @@
     "name": "Zilling",
     "code": "57761",
     "epci_code": "245700950",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57370"
   },
@@ -5787,7 +5787,7 @@
     "name": "Zimming",
     "code": "57762",
     "epci_code": "245700133",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57690"
   },
@@ -5795,7 +5795,7 @@
     "name": "Zommange",
     "code": "57763",
     "epci_code": "245701206",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57260"
   },
@@ -5803,7 +5803,7 @@
     "name": "Zoufftgen",
     "code": "57764",
     "epci_code": "245700695",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57330"
   },
@@ -5811,7 +5811,7 @@
     "name": "Diesen",
     "code": "57765",
     "epci_code": "200067502",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57890"
   },
@@ -5819,7 +5819,7 @@
     "name": "Stuckange",
     "code": "57767",
     "epci_code": "245701354",
-    "departement_code": "57",
+    "department_code": "57",
     "region_code": "44",
     "postal_code": "57970"
   }

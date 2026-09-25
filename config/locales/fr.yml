@@ -863,7 +863,7 @@ fr:
               not_in_departement_codes: "doit être un code de département valide"
         "champs/epci_champ":
           attributes:
-            code_departement:
+            department_code:
               not_in_departement_codes: "doit être un code de département valide"
             external_id:
               not_in_departement_epci_codes: "doit être un code d’EPCI du département correspondant"

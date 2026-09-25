@@ -1,9 +1,9 @@
 <div class="fr-fieldset__element">
-  <%= @form.label :code_departement, for: focusable_departement_input_id, class: 'fr-label', id: input_label_id(@champ, :code_departement) do %>
+  <%= @form.label :department_code, for: focusable_departement_input_id, class: 'fr-label', id: input_label_id(@champ, :department_code) do %>
     <%= t(".departement_label") %>
   <% end %>
 
-  <%= @form.select :code_departement, departement_options, departement_select_options, required: @champ.required?, id: focusable_departement_input_id, class: "width-33-desktop width-100-mobile fr-select", aria: labelledby_id_attr(input_label_id(@champ, :code_departement)) %>
+  <%= @form.select :department_code, departement_options, departement_select_options, required: @champ.required?, id: focusable_departement_input_id, class: "width-33-desktop width-100-mobile fr-select", aria: labelledby_id_attr(input_label_id(@champ, :department_code)) %>
 </div>
 
 <% if @champ.departement? %>

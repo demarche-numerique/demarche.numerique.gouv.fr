@@ -167,14 +167,14 @@ describe Champs::DepartementChamp, type: :model do
     end
   end
 
-  describe 'double-write of canonical value_json keys' do
-    it 'persists department_code and region_code alongside code_region after save' do
+  describe 'canonical value_json keys' do
+    it 'persists department_code and region_code after save' do
       champ.value = '01'
       champ.save
 
-      expect(champ.value_json['code_region']).to eq('84')
       expect(champ.value_json['region_code']).to eq('84')
       expect(champ.value_json['department_code']).to eq('01')
+      expect(champ.value_json.keys).not_to include('code_region')
     end
   end
 end
