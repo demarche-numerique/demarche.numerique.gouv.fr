@@ -135,6 +135,10 @@ module ApplicationHelper
     { target: "_blank", rel: "noopener noreferrer" }
   end
 
+  def new_tab_link_attributes
+    { target: "_blank", rel: "noopener" }
+  end
+
   def new_tab_suffix(title)
     # I18n.t: also called from Redcarpet::BareRenderer, outside any view context
     [title, I18n.t('utils.new_tab')].compact.join(' — ') # rubocop:disable DS/GlobalI18nTranslate

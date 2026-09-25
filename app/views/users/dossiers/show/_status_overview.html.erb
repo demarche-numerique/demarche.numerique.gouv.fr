@@ -123,7 +123,7 @@
 
             <% if dossier.attestation.present? %>
               <div class="action">
-                <%= link_to attestation_dossier_path(dossier), class: "fr-btn fr-icon-download-line fr-btn--icon-left", **external_link_attributes do %>
+                <%= link_to attestation_dossier_path(dossier), class: "fr-btn fr-icon-download-line fr-btn--icon-left", **new_tab_link_attributes do %>
                   <%= t('views.users.dossiers.show.status_overview.accepte_attestation') %>
                 <% end %>
               </div>
@@ -148,7 +148,7 @@
             <%= render partial: 'users/dossiers/show/download_justificatif', locals: { dossier: dossier } %>
 
             <% if dossier.attestation.present? %>
-              <%= link_to attestation_dossier_path(dossier), class: "fr-btn fr-icon-download-line fr-btn--icon-left fr-mb-2w", **external_link_attributes do %>
+              <%= link_to attestation_dossier_path(dossier), class: "fr-btn fr-icon-download-line fr-btn--icon-left fr-mb-2w", **new_tab_link_attributes do %>
                 <%= t('views.users.dossiers.show.status_overview.accepte_attestation') %>
               <% end %>
             <% end %>
