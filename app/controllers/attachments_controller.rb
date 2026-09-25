@@ -105,7 +105,6 @@ class AttachmentsController < ApplicationController
       attached_file: record.public_send(@attachment.name),
       view_as: params[:view_as]&.to_sym,
       direct_upload: params[:direct_upload] == "true",
-      auto_attach_url: params[:direct_upload] == "true" ? params[:auto_attach_url] : nil,
     }
   end
 end

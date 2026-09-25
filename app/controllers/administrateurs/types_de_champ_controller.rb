@@ -62,34 +62,6 @@ module Administrateurs
       end
     end
 
-    def piece_justificative_template
-      type_de_champ = draft.find_and_ensure_exclusive_use(params[:stable_id])
-
-      if type_de_champ.piece_justificative_template.attach(params[:blob_signed_id])
-        reload_procedure_with_includes
-        @coordinate = draft.coordinate_for(type_de_champ)
-        @morphed = [champ_component_from(@coordinate)]
-
-        render :create
-      else
-        render json: { errors: type_de_champ.errors.full_messages }, status: 422
-      end
-    end
-
-    def notice_explicative
-      type_de_champ = draft.find_and_ensure_exclusive_use(params[:stable_id])
-
-      if type_de_champ.notice_explicative.attach(params[:blob_signed_id])
-        reload_procedure_with_includes
-        @coordinate = draft.coordinate_for(type_de_champ)
-        @morphed = [champ_component_from(@coordinate)]
-
-        render :create
-      else
-        render json: { errors: type_de_champ.errors.full_messages }, status: 422
-      end
-    end
-
     def move_and_morph
       source_type_de_champ = draft.find_and_ensure_exclusive_use(params[:stable_id])
       target_type_de_champ = draft.find_and_ensure_exclusive_use(params[:target_stable_id])
@@ -229,8 +201,17 @@ module Administrateurs
         .permit(:type_champ, :parent_stable_id, :private, :libelle, :after_stable_id)
     end
 
+    # Uploaded through direct upload, then submitted with the form as a blob
+    # signed id, the only value `update` may see: a blank one would purge the
+    # attachment, and a file whose upload failed stays in its input, so every
+    # later autosave submits it as an `UploadedFile`. Rack drops the empty part
+    # an untouched file input produces, so the blank guard is defensive.
+    ATTACHMENT_ATTRIBUTES = ['piece_justificative_template', 'notice_explicative']
+
     def type_de_champ_update_params
       params.required(:type_de_champ).permit(:type_champ,
+        :piece_justificative_template,
+        :notice_explicative,
         :libelle,
         :description,
         :mandatory,
@@ -286,6 +267,7 @@ module Administrateurs
           :zones_humides,
           :znieff,
         ])
+        .reject { |key, value| key.in?(ATTACHMENT_ATTRIBUTES) && !(value.is_a?(String) && value.present?) }
     end
 
     def draft

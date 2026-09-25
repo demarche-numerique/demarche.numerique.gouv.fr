@@ -12,19 +12,30 @@ type ErrorMessage = {
   retry: boolean;
 };
 
-// Given a file input in a champ with a selected file, upload a file,
-// then attach it to the dossier.
+type Options = {
+  // What the retry button runs. `start()` settles once per attempt, so a
+  // caller acting on the signed id passes its whole continuation here to run
+  // it again. The default starts the upload over with nobody watching.
+  retry?: () => Promise<unknown>;
+};
+
+// Given a file input with a selected file, upload the file, and — when the
+// input carries an auto attach url — attach it right away.
 //
-// On success, the champ is replaced by an HTML fragment describing the attachment.
-// On error, a error message is displayed above the input.
+// On success, the input is replaced by an HTML fragment describing the
+// attachment, and the blob signed id is returned so a caller can submit it
+// with its form instead. On error, an error message is displayed above the
+// input.
 export class AutoUpload {
   #input: HTMLInputElement;
   #uploader: Uploader;
+  #retry: () => Promise<unknown>;
 
-  constructor(input: HTMLInputElement, file: File) {
+  constructor(input: HTMLInputElement, file: File, options: Options = {}) {
     const { directUploadUrl, autoAttachUrl, maxFileSize } = input.dataset;
     invariant(directUploadUrl, 'Could not find the direct upload URL.');
     this.#input = input;
+    this.#retry = options.retry ?? (() => this.start());
     this.#uploader = new Uploader(
       input,
       file,
@@ -34,13 +45,15 @@ export class AutoUpload {
     );
   }
 
-  // Create, upload and attach the file.
-  // On failure, display an error message and throw a FileUploadError.
-  async start() {
+  // Create, upload and attach the file. Returns the blob signed id.
+  // On failure, display an error message and throw a FileUploadError. The
+  // message may offer a retry button, which runs `options.retry`.
+  async start(): Promise<string> {
     try {
       this.begin();
-      await this.#uploader.start();
+      const blobSignedId = await this.#uploader.start();
       this.succeeded();
+      return blobSignedId;
     } catch (error) {
       this.failed(error as FileUploadError);
       throw error;
@@ -125,11 +138,11 @@ export class AutoUpload {
           );
           errorZone?.classList.add('hidden');
 
-          // Restart the upload. `start()` re-throws so its caller can react,
-          // but here there is no caller: `failed()` already displayed the
-          // error, and an uncaught rejection would be reported to Sentry as if
-          // nothing had handled it.
-          this.start().catch(() => null);
+          // `start()` re-throws so its caller can react, but the default
+          // retry has no caller: `failed()` already displayed the error, and
+          // an uncaught rejection would be reported to Sentry as if nothing
+          // had handled it.
+          this.#retry().catch(() => null);
         },
         { once: true }
       );
