@@ -135,21 +135,35 @@ module SessionRegistrableConcern
   end
 
   # "Stay signed in" is an expiry on the session cookie, granting nothing on its
-  # own. Written only when someone said something: a programmatic `sign_in`
-  # leaves the accessor nil, and must not silently take the choice back.
+  # own. Always written, so it never outlives the account that asked for it:
+  # `set_user` rewrites Warden's key but keeps the per-scope hash, and a choice
+  # left in place is inherited by the next account signed in on this browser.
+  #
+  # A programmatic `sign_in` therefore means "not persistent". The one caller for
+  # which that is wrong -- the same person, right after changing their password --
+  # says so by setting the accessor.
   def self.remember!(record, warden, scope)
-    remember_me = record.try(:remember_me)
-
-    warden.session(scope)[PERSISTENT_KEY] = !!remember_me if !remember_me.nil?
+    warden.session(scope)[PERSISTENT_KEY] = !!record.try(:remember_me)
 
     persist_cookie!(warden, scope)
+  end
+
+  # Whether this session was asked to outlive the browser.
+  def self.persistent?(warden, scope) = !!warden_session(warden, scope)[PERSISTENT_KEY]
+
+  # Called before a programmatic `sign_in` that re-signs in the account already on
+  # this browser -- a password change -- where defaulting to "not persistent"
+  # would quietly take the choice back. Any other account gets the default, which
+  # is the whole point: the choice belongs to the one that made it.
+  def self.carry_over_persistence!(record, warden, scope)
+    record.remember_me = warden.user(scope) == record && persistent?(warden, scope)
   end
 
   # Rails rewrites the session cookie on every response (random ciphertext), and
   # a rewrite carrying no expiry turns a persistent cookie back into a session
   # one -- so the option has to be set again every time.
   def self.persist_cookie!(warden, scope)
-    return if !warden_session(warden, scope)[PERSISTENT_KEY]
+    return if !persistent?(warden, scope)
 
     warden.request.session_options[:expire_after] = SESSION_COOKIE_LIFETIME
   end

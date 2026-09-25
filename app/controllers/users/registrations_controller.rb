@@ -65,7 +65,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # visitor already is this user and Devise's `sign_in` would do nothing.
   def update
     super do |resource|
-      sign_in(resource, scope: :user, force: true) if resource.saved_change_to_encrypted_password?
+      next if !resource.saved_change_to_encrypted_password?
+
+      SessionRegistrableConcern.carry_over_persistence!(resource, warden, :user)
+
+      sign_in(resource, scope: :user, force: true)
     end
   end
 
