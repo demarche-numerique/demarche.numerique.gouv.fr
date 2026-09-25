@@ -97,6 +97,21 @@ describe ProcedureSVASVRConcern do
     end
   end
 
+  describe '#disable_sva_svr' do
+    let(:procedure) { procedures.sva }
+
+    let!(:en_instruction) { create(:dossier, :en_instruction, :with_individual, procedure:, sva_svr_decision_on: 10.days.from_now.to_date) }
+    let!(:en_attente_de_correction) { create(:dossier, :en_construction, :with_individual, procedure:, sva_svr_decision_on: 3.days.from_now.to_date) }
+
+    it 'retire la date provisoire des seuls dossiers en construction' do
+      procedure.disable_sva_svr
+      procedure.save!
+
+      expect(en_attente_de_correction.reload.sva_svr_decision_on).to be_nil
+      expect(en_instruction.reload.sva_svr_decision_on).to eq(10.days.from_now.to_date)
+    end
+  end
+
   describe '#sva_svr_pending_dossiers' do
     let(:procedure) { procedures.sva }
 
