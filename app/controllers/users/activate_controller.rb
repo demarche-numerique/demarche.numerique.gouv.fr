@@ -34,6 +34,7 @@ class Users::ActivateController < ApplicationController
       # `force`: the password change just revoked every session of the account,
       # this one included, and Devise's `sign_in` does nothing when the visitor
       # is already this user -- leaving them on a revoked row.
+      SessionRegistrableConcern.carry_over_persistence!(user, warden, :user)
       sign_in(user, scope: :user, force: true)
 
       trust_device(Time.zone.now, user.instructeur) if user.instructeur.present?

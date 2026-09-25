@@ -61,22 +61,28 @@ module SessionRegistrableConcern
     false
   end
 
-  # "Stay signed in" is an expiry on the session cookie, granting nothing on its
-  # own. Written only when someone said something: a programmatic `sign_in`
-  # leaves the accessor nil, and must not silently take the choice back.
+  # Always written, so the choice never outlives the account that made it:
+  # `set_user` rewrites Warden's key but keeps the per-scope hash. A programmatic
+  # `sign_in` therefore means "not persistent".
   def self.remember!(record, warden, scope)
-    remember_me = record.try(:remember_me)
-
-    warden.session(scope)[PERSISTENT_KEY] = !!remember_me if !remember_me.nil?
+    warden.session(scope)[PERSISTENT_KEY] = !!record.try(:remember_me)
 
     persist_cookie!(warden, scope)
+  end
+
+  def self.persistent?(warden, scope) = !!warden_session(warden, scope)[PERSISTENT_KEY]
+
+  # For a programmatic `sign_in` that re-signs in the account already on this
+  # browser; any other account gets the default.
+  def self.carry_over_persistence!(record, warden, scope)
+    record.remember_me = warden.user(scope) == record && persistent?(warden, scope)
   end
 
   # Rails rewrites the session cookie on every response (random ciphertext), and
   # a rewrite carrying no expiry turns a persistent cookie back into a session
   # one -- so the option has to be set again every time.
   def self.persist_cookie!(warden, scope)
-    return if !warden_session(warden, scope)[PERSISTENT_KEY]
+    return if !persistent?(warden, scope)
 
     warden.request.session_options[:expire_after] = SESSION_COOKIE_LIFETIME
   end
