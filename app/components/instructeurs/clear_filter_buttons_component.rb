@@ -19,7 +19,7 @@ class Instructeurs::ClearFilterButtonsComponent < ApplicationComponent
     @filters
       .reject(&:empty_filter?)
       .flat_map do |filter|
-        if filter.filter_values.empty?
+        if filter.filter_values.empty? || filter.date_range?
           [filter_form(filter, nil)]
         else
           filter.filter_values.map { |value| filter_form(filter, value) }
@@ -72,7 +72,9 @@ class Instructeurs::ClearFilterButtonsComponent < ApplicationComponent
   end
 
   def button_content(filter, value)
-    if value.nil?
+    if filter.date_range?
+      "#{filter.label.truncate(50)} : #{human_date_range(filter)}"
+    elsif value.nil?
       "#{filter.label.truncate(50)} : #{human_operator(filter.filter_operator)}"
     else
       "#{filter.label.truncate(50)} : #{human_value(filter, value)}"
@@ -89,6 +91,18 @@ class Instructeurs::ClearFilterButtonsComponent < ApplicationComponent
     end
 
     [human_operator(filter_column.filter_operator), processed_value].compact_blank.join(' ')
+  end
+
+  def human_date_range(filter)
+    start_date, end_date = filter.filter_values.map { helpers.try_parse_format_date(it) }
+
+    if start_date && end_date
+      t('.date_range.between', start_date:, end_date:)
+    elsif start_date
+      t('.date_range.since', start_date:)
+    else
+      t('.date_range.until', end_date:)
+    end
   end
 
   def human_operator(operator)

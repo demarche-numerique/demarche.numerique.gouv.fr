@@ -192,6 +192,43 @@ describe Columns::DossierColumn do
         end
       end
 
+      context 'when searching with between operator' do
+        let!(:dossier_before) { travel_to(Time.zone.parse("11/02/2025 12:00")) { create(:dossier, :en_instruction, procedure:) } }
+        let!(:dossier_first_day) { travel_to(Time.zone.parse("12/02/2025 12:00")) { create(:dossier, :en_instruction, procedure:) } }
+        let!(:dossier_last_day) { travel_to(Time.zone.parse("15/02/2025 12:00")) { create(:dossier, :en_instruction, procedure:) } }
+        let!(:dossier_after) { travel_to(Time.zone.parse("16/02/2025 12:00")) { create(:dossier, :en_instruction, procedure:) } }
+
+        context 'with both bounds' do
+          let(:search_terms) { { operator: 'between', value: ["2025-02-12", "2025-02-15"] } }
+
+          it { is_expected.to contain_exactly(dossier_first_day.id, dossier_last_day.id) }
+        end
+
+        context 'with the same day as both bounds' do
+          let(:search_terms) { { operator: 'between', value: ["2025-02-12", "2025-02-12"] } }
+
+          it { is_expected.to contain_exactly(dossier_first_day.id) }
+        end
+
+        context 'with only a start date' do
+          let(:search_terms) { { operator: 'between', value: ["2025-02-12", ""] } }
+
+          it { is_expected.to contain_exactly(dossier_first_day.id, dossier_last_day.id, dossier_after.id) }
+        end
+
+        context 'with only an end date' do
+          let(:search_terms) { { operator: 'between', value: ["", "2025-02-15"] } }
+
+          it { is_expected.to contain_exactly(dossier_before.id, dossier_first_day.id, dossier_last_day.id) }
+        end
+
+        context 'with unparseable dates' do
+          let(:search_terms) { { operator: 'between', value: ["abc", "2024-13-45"] } }
+
+          it { is_expected.to contain_exactly(dossier_before.id, dossier_first_day.id, dossier_last_day.id, dossier_after.id) }
+        end
+      end
+
       # update_filter neither whitelists the operator nor validates the date, so
       # both of these reach the column.
       context 'when searching with a date the filter form let through' do

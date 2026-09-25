@@ -125,6 +125,34 @@ describe "procedure filters" do
     end
   end
 
+  scenario "should filter dossiers on a date range", js: true do
+    new_unfollow_dossier_2.update_column(:created_at, Time.zone.parse("2020-03-15 12:00"))
+
+    add_filter("informations-dossier", "Date de création")
+
+    within "#editable-filters-component" do
+      select "Période", from: "Opérateur"
+      fill_in "Du", with: "2020-03-01"
+      fill_in "Au", with: "2020-03-15"
+      find_field("Au").send_keys(:enter)
+    end
+
+    clear_button = find_button(text: "Date de création : du 01 mars 2020 au 15 mars 2020")
+
+    within ".dossiers-table" do
+      expect(page).to have_link(new_unfollow_dossier_2.id.to_s, exact: true)
+      expect(page).not_to have_link(new_unfollow_dossier.id.to_s, exact: true)
+    end
+    expect(page).to have_field("Du", with: "2020-03-01")
+    expect(page).to have_field("Au", with: "2020-03-15")
+
+    clear_button.click
+
+    within ".dossiers-table" do
+      expect(page).to have_link(new_unfollow_dossier.id.to_s, exact: true)
+    end
+  end
+
   describe 'with repetition' do
     let(:public_type_de_champs) { [{ type: :repetition, libelle: 'Enfants', children: [{ libelle: 'Nom' }] }] }
 

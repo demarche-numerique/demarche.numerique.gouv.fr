@@ -81,4 +81,10 @@ class Column
   private
 
   def parse_datetime(value) = Time.zone.parse(value) rescue nil
+
+  # [start, end], both days included; a blank or invalid bound leaves that side open
+  def date_range(values)
+    start_date, end_date = values.map { parse_datetime(it) }
+    start_date&.beginning_of_day..end_date&.end_of_day
+  end
 end

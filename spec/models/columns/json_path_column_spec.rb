@@ -126,6 +126,20 @@ describe Columns::JSONPathColumn do
         end
       end
 
+      context 'bounded on both sides, bounds included (between operator)' do
+        before do
+          dossier_in_range.champ_data.first.update(value_json: { issue_date: '2021-06-30' })
+          dossier_out_range.champ_data.first.update(value_json: { issue_date: '2021-07-01' })
+        end
+
+        subject { column.filtered_ids(Dossier.all, { operator: 'between', value: ['2021-01-01', '2021-06-30'] }) }
+
+        it do
+          is_expected.to include(dossier_in_range.id)
+          is_expected.not_to include(dossier_out_range.id)
+        end
+      end
+
       context 'nil..nil range' do
         before do
           dossier_in_range.champ_data.first.update(value_json: { issue_date: '2022-06-15' })

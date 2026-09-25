@@ -97,10 +97,28 @@ module Instructeurs
 
       if params_hash.key?('filter')
         params_hash['filter'] = ValueNormalizer.normalize(params_hash['filter'])
-        params_hash['filter']['value'] = params_hash['filter']['value']&.reject(&:empty?)&.uniq
+        values = params_hash['filter']['value']
+
+        params_hash['filter']['value'] = case params_hash['filter']['operator']
+        when 'between'
+          ordered_date_range(values)
+        when 'before', 'after'
+          # switching from a range posts both of its dates, only the first one is read
+          values&.compact_blank&.first(1)
+        else
+          values&.reject(&:empty?)&.uniq
+        end
       end
 
       FilteredColumnType.new.cast(params_hash)
+    end
+
+    # [start, end] keeps its positions (a blank bound means an open range); swapped when reversed
+    def ordered_date_range(values)
+      range = Array(values).values_at(0, 1).map(&:to_s)
+      start_date, end_date = range.map { Date.iso8601(it) rescue nil }
+
+      start_date && end_date && start_date > end_date ? range.reverse : range
     end
 
     def current_instructeur_administrates_procedure?

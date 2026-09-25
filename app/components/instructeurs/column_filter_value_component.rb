@@ -3,7 +3,7 @@
 class Instructeurs::ColumnFilterValueComponent < ApplicationComponent
   attr_reader :filtered_column, :form, :instructeur_procedure
 
-  delegate :label, to: :filtered_column
+  delegate :label, :date_range?, to: :filtered_column
 
   MAX_LABEL_LENGTH = 50
 
@@ -74,7 +74,7 @@ class Instructeurs::ColumnFilterValueComponent < ApplicationComponent
   end
 
   def date_filter_options
-    ['match', 'before', 'after', 'this_week', 'this_month', 'this_year']
+    [*FilteredColumn::OPERATORS_WITH_VALUE, 'this_week', 'this_month', 'this_year']
       .map { |operator| [t(".operators.#{operator}"), operator] }
   end
 
@@ -89,7 +89,7 @@ class Instructeurs::ColumnFilterValueComponent < ApplicationComponent
   def is_operator_with_value?
     return true if !is_date?
 
-    filtered_column.filter_operator.in?(["before", "after", "match"])
+    filtered_column.filter_operator.in?(FilteredColumn::OPERATORS_WITH_VALUE)
   end
 
   def selectable?
