@@ -7,6 +7,7 @@ module ProcedureSVASVRConcern
     scope :sva_svr, -> { where("sva_svr ->> 'decision' IN (?) AND sva_svr ->> 'disabled_at' IS NULL", ['sva', 'svr']) }
     validate :sva_svr_immutable_on_published, if: :will_save_change_to_sva_svr?
     validate :validates_sva_svr_compatible
+    after_update :drop_sva_svr_dates_en_construction, if: -> { saved_change_to_sva_svr? && sva_svr_disabled? }
   end
 
   def sva_svr_disabled? = sva_svr['disabled_at'].present?
@@ -49,6 +50,12 @@ module ProcedureSVASVRConcern
   end
 
   private
+
+  def drop_sva_svr_dates_en_construction
+    dossiers.state_en_construction
+      .where.not(sva_svr_decision_on: nil)
+      .update_all(sva_svr_decision_on: nil, updated_at: Time.current)
+  end
 
   def decision
     sva_svr.fetch("decision", nil)&.to_sym
