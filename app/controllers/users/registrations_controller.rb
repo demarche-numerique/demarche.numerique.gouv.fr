@@ -70,6 +70,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       SessionRegistrableConcern.carry_over_persistence!(resource, warden, :user)
 
       sign_in(resource, scope: :user, force: true)
+
+      # The current password was proof enough to get here, so this browser keeps
+      # the trust the counter bump just took from it.
+      retrust_device_after_password_change(resource)
     end
   end
 

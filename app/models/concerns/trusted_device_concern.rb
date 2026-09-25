@@ -18,6 +18,16 @@ module TrustedDeviceConcern
     end
   end
 
+  # A password change bumps the account's counter, which invalidates this browser's
+  # cookie along with every other. Re-issued here because whoever just changed the
+  # password proved at least what the email link proves -- otherwise the
+  # instructeur is sent a second link to prove what the first one proved.
+  def retrust_device_after_password_change(user)
+    return if user.blank? || user.instructeur.nil?
+
+    trust_device(Time.zone.now, user.instructeur)
+  end
+
   # The cookie only vouches for the instructeur it was issued to: a browser trusted
   # for one account must still go through the email link for any other account.
   #

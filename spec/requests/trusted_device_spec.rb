@@ -177,4 +177,35 @@ describe 'Trusted device (second factor by email link)', type: :request do
         .to change { instructeur.user.reload.trusted_device_version }
     end
   end
+
+  # The other path to a new password. The current password proves at least what
+  # the link proves, and the counter bump takes this browser's trust along with
+  # every other one's, so the re-issue has to happen here too.
+  describe 'changing the password from the account page keeps the browser trusted' do
+    let(:new_password) { '{An0ther-$3cure-p4ssWord}' }
+
+    before do
+      post_user_session(instructeur.user, password:)
+      get sign_in_by_link_path(instructeur.id, jeton: token)
+    end
+
+    def change_password!
+      put user_registration_path, params: {
+        user: { current_password: password, password: new_password, password_confirmation: new_password },
+      }
+    end
+
+    it 'does not ask for an email link' do
+      change_password!
+
+      get instructeur_procedures_path
+
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'still closes the other devices' do
+      expect { change_password! }
+        .to change { instructeur.user.reload.trusted_device_version }
+    end
+  end
 end
