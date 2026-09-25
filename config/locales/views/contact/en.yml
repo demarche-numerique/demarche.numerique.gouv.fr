@@ -39,7 +39,7 @@ en:
       product:
         question: I have an idea to improve the website
         answer_html:
-          '<p>Got an idea? <a href="%{link_product}" rel="noopener noreferrer" target="_blank" title="Please check our enhancement dashboard - New tab">Please check our enhancement dashboard</a> :</p>
+          '<p>Got an idea? <a href="%{link_product}" rel="noopener external" target="_blank" title="Please check our enhancement dashboard - New tab">Please check our enhancement dashboard</a> :</p>
           <ul><li>Vote for your priority improvements</li>
           <li>Share your own ideas</li></ul>'
       lost_user:

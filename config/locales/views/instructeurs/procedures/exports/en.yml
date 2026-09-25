@@ -13,14 +13,14 @@ en:
           They are available for %{expiration_time} hours after generation.
         title_zip: A problem with the zip format ?
         export_description_zip_html: |
-          Are you facing an issue when you try to extract the export.zip ? Try it with <a href="https://www.7-zip.org/" target="_blank" rel="noopener noreferrer">7zip</a>.<br>
+          Are you facing an issue when you try to extract the export.zip ? Try it with <a href="https://www.7-zip.org/" target="_blank" rel="noopener external">7zip</a>.<br>
           Are you facing an issue when you try to extract the export.zip on your company network ? Try to rename it with a shorter name first, then extract it.
 
         no_export_html: You have no export at the moment. <br> Can't find an export? It may have expired, exports are deleted after %{expiration_time} hours.
       export_templates:
         export_template_list_description_html: |
           Each instructor can <b>configure an export template</b> to customize exports (attachments name for a zip export, columns selection for a tabular export). It will be made <b>available to all instructors</b> assigned to the procedure.</br>
-          <a href="%{doc_template_url}" target="_blank" rel="noopener noreferrer">Find out more about export template configuration</a>
+          <a href="%{doc_template_url}" target="_blank" rel="noopener external">Find out more about export template configuration</a>
         new_zip_export_template: Create ZIP export template
         new_tabular_export_template: Create tabular export template
         template_name: Template name

@@ -287,11 +287,11 @@ fr:
           iban_html: Un numéro Iban
           yes_no_html: '"true" pour Oui, "false" pour Non'
           checkbox_html: '"true" pour coché, "false" pour décoché'
-          pays_html: Un <a href="https://en.wikipedia.org/wiki/ISO_3166-2" target="_blank" rel="noopener noreferrer">code pays ISO 3166-2</a>
-          regions_html: Un <a href="https://fr.wikipedia.org/wiki/R%C3%A9gion_fran%C3%A7aise" target="_blank" rel="noopener noreferrer">code INSEE de région</a>
+          pays_html: Un <a href="https://en.wikipedia.org/wiki/ISO_3166-2" target="_blank" rel="noopener external">code pays ISO 3166-2</a>
+          regions_html: Un <a href="https://fr.wikipedia.org/wiki/R%C3%A9gion_fran%C3%A7aise" target="_blank" rel="noopener external">code INSEE de région</a>
           departements_html: Un <a href="https://fr.wikipedia.org/wiki/Num%C3%A9rotation_des_d%C3%A9partements_fran%C3%A7ais" target="_blank">numéro de département</a>
-          communes_html: Un tableau contenant le code postal et <a href="https://geo.api.gouv.fr/communes" target="_blank" rel="noopener noreferrer">le code INSEE de la commune</a>
-          address_html: Une adresse EXACTEMENT formatée telle que le label retourné par <a href="https://adresse.data.gouv.fr" target="_blank" rel="noopener noreferrer">la Base Adresse Nationale</a>
+          communes_html: Un tableau contenant le code postal et <a href="https://geo.api.gouv.fr/communes" target="_blank" rel="noopener external">le code INSEE de la commune</a>
+          address_html: Une adresse EXACTEMENT formatée telle que le label retourné par <a href="https://adresse.data.gouv.fr" target="_blank" rel="noopener external">la Base Adresse Nationale</a>
           drop_down_list_html: Un choix parmi ceux sélectionnés à la création de la procédure
           datetime_html: Datetime au format ISO8601
           date_html: Date au format ISO8601
@@ -299,9 +299,9 @@ fr:
           rna_html: Un numéro RNA
           siret_html: Un numéro de SIRET
           repetition_html: Un tableau de dictionnaires avec les valeurs possibles pour chaque champ de la répétition.
-          annuaire_education_html: Un code d’établissement scolaire, tel que défini par <a href="https://api.gouv.fr/les-api/api-annuaire-education" target="_blank" rel="noopener noreferrer">l’Annuaire de l’Éducation Nationale</a>
+          annuaire_education_html: Un code d’établissement scolaire, tel que défini par <a href="https://api.gouv.fr/les-api/api-annuaire-education" target="_blank" rel="noopener external">l’Annuaire de l’Éducation Nationale</a>
           dossier_link_html: L’identifiant du dossier, sous forme de nombre entier
-          epci_html: Un tableau contenant le code de département et <a href="https://geo.api.gouv.fr/epcis" target="_blank" rel="noopener noreferrer">celui de l’EPCI</a>
+          epci_html: Un tableau contenant le code de département et <a href="https://geo.api.gouv.fr/epcis" target="_blank" rel="noopener external">celui de l’EPCI</a>
         examples:
           title: Exemple
           prenom: "Jean"
@@ -484,7 +484,7 @@ fr:
         archives_notice_title: Archivage des dossiers
         archives_notice_html: |
           Ces dossiers seront supprimés lorsque leur délai de conservation dans %{app_name} (%{duration_months} mois) sera expiré.
-          <a href="%{doc_url}" rel="external noopener" target="_blank" title="Documentation sur l’archivage des dossiers">En savoir plus</a>
+          <a href="%{doc_url}" rel="noopener external" target="_blank" title="Documentation sur l’archivage des dossiers">En savoir plus</a>
           <br>
           Pour sauvegarder et archiver vos dossiers sur votre serveur, vous devez les télécharger.
       avis:
@@ -709,7 +709,7 @@ fr:
           flash_alert: "Vous devez vous connecter ou créer un compte pour continuer."
           no_account: "Vous n’avez pas de compte"
         link_sent:
-          consult_help_page_html: Si vous voyez cette page trop souvent, <a target="_blank" rel="noopener noreferrer" href="%{href}">consultez notre aide</a>.
+          consult_help_page_html: Si vous voyez cette page trop souvent, <a target="_blank" rel="noopener external" href="%{href}">consultez notre aide</a>.
           email_cta_html: "Nous avons besoin de vérifier votre adresse électronique <strong>%{email}</strong>."
         trusted_device_renewal_notice:
           one: "Votre connexion sécurisée a bien été renouvelée. Votre navigateur est authentifié pour %{count} jour."

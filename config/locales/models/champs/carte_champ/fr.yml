@@ -4,4 +4,4 @@ fr:
       champs/carte_champ:
         hints:
           value_html: |
-            Besoin d’aide ? <a href="https://doc.demarches-simplifiees.fr/pour-aller-plus-loin/cartographie" target="_blank" rel="noreferrer">consulter les tutoriels video</a>
+            Besoin d’aide ? <a href="https://doc.demarches-simplifiees.fr/pour-aller-plus-loin/cartographie" target="_blank" rel="noopener external">consulter les tutoriels video</a>

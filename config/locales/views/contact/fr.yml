@@ -39,7 +39,7 @@ fr:
       product:
         question: J’ai une idée d’amélioration pour votre site
         answer_html:
-          '<p>Une idée ? Pensez à <a href="%{link_product}" rel="noopener noreferrer" target="_blank" title="Consulter notre tableau de bord des améliorations - Nouvel onglet">consulter notre tableau de bord des améliorations</a> :</p>
+          '<p>Une idée ? Pensez à <a href="%{link_product}" rel="noopener external" target="_blank" title="Consulter notre tableau de bord des améliorations - Nouvel onglet">consulter notre tableau de bord des améliorations</a> :</p>
           <ul><li>Votez pour vos améliorations prioritaires,</li>
           <li>Proposez votre propre idée.</li></ul>'
       lost_user:

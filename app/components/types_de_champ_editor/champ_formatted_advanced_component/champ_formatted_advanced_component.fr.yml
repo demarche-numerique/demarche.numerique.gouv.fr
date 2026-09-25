@@ -5,7 +5,7 @@ fr:
       Pensez aux ancres de début <code class="fr-background-alt--grey">^</code> et fin <code class="fr-background-alt--grey">$</code> :<br>
       <code class="fr-background-alt--grey">12 km</code> serait accepté par
       <code class="fr-background-alt--grey">/[[:digit:]]+/</code> mais rejeté par <code class="fr-background-alt--grey">/^[[:digit:]]+$/</code><br>
-      <a href="https://rubular.com" target="_blank" rel="external noreferrer noopener">Tester l’expression et consulter la syntaxe sur rubular.com</a>
+      <a href="https://rubular.com" target="_blank" rel="noopener external">Tester l’expression et consulter la syntaxe sur rubular.com</a>
     indications: Indications sur le format de saisie attendu (affichées à l’usager)
     indications_hint: 'Exemple : Numéro à 7 caractères comportant des chiffres et des lettres (exemple: AB446KP)'
     valid_exemple: Exemple de saisie valide afin de vérifier la regex (non affiché à l’usager)
