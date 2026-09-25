@@ -7,10 +7,12 @@ RSpec.describe Ami::RecipientFcHash do
   describe '.call' do
     let(:user) { create(:user) }
 
-    # Chaque fixture est la copie conforme du jeu de test fourni par AMI :
-    # mêmes données pivot, seule la colonne `hash` change de version.
-    def expect_hashes_matching(fixture)
-      rows = CSV.read(Rails.root.join('spec/fixtures/files/ami', fixture), headers: true)
+    # La fixture est la copie conforme du jeu de test fourni par AMI.
+    it 'matches expected hashes from the CSV fixture' do
+      rows = CSV.read(
+        Rails.root.join('spec/fixtures/files/ami/fc_recipient_hashes.csv'),
+        headers: true
+      )
 
       rows.each do |row|
         fc_information = instance_double(
@@ -28,20 +30,6 @@ RSpec.describe Ami::RecipientFcHash do
         computed_hash = described_class.call(user)
         expect(computed_hash).to eq(row.fetch('hash')),
           "row id=#{row.fetch('id')} does not match #{computed_hash} != #{row.fetch('hash')}"
-      end
-    end
-
-    context 'when :ami_recipient_fc_hash_v2 is disabled' do
-      it 'matches expected v1 hashes from the CSV fixture' do
-        expect_hashes_matching('fc_recepient_hashes.csv')
-      end
-    end
-
-    context 'when :ami_recipient_fc_hash_v2 is enabled' do
-      before { Flipper.enable(:ami_recipient_fc_hash_v2) }
-
-      it 'matches expected v2 hashes from the CSV fixture' do
-        expect_hashes_matching('fc_recepient_hashes_v2.csv')
       end
     end
   end
