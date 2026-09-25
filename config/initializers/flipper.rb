@@ -39,6 +39,7 @@ features = [
   :dossier_vide_weasyprint,
   :dossier_vide_typst,
   :attestation_depot_typst,
+  :dossier_pdf_typst,
   :s3_storage,
   :session_registry,
 ]
