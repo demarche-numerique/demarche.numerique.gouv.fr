@@ -13,6 +13,45 @@ class Logic::PossibleValues::Enums < Data.define(:options, :must_include, :must_
 
   def limits = nil
 
+  # Two requirements sets can only be told as one when they differ on a single
+  # option, which then stops being required either way.
+  def union(other)
+    return nil if !other.is_a?(self.class)
+
+    swapped = (must_include & other.must_exclude) | (must_exclude & other.must_include)
+    same = (must_include - swapped) == (other.must_include - swapped) && (must_exclude - swapped) == (other.must_exclude - swapped)
+
+    return nil if swapped.size != 1 || !same
+
+    with(must_include: must_include - swapped, must_exclude: must_exclude - swapped)
+  end
+
+  # In the order the champ lists its options
+  def sort_key = [0]
+
+  def to_s(type_de_champ)
+    labels = type_de_champ.condition_options.to_h { |label, value| [value, label] }
+    with = must_include.map { labels.fetch(it, it.to_s) }
+    without = must_exclude.map { labels.fetch(it, it.to_s) }
+
+    [
+      with.presence && I18n.t('logic.possible_values.enums.with', options: with.join(', ')),
+      without.presence && I18n.t('logic.possible_values.enums.without', options: without.join(', ')),
+    ].compact.join(', ').presence || I18n.t('logic.possible_values.enums.any')
+  end
+
+  # Every combination of the options the comparisons mention being selected or not.
+  def regions(comparisons)
+    mentioned = comparisons.map(&:last).uniq
+
+    (0..mentioned.size).flat_map { |n| mentioned.combination(n).to_a }.map do |selected|
+      with(must_include: must_include | selected, must_exclude: must_exclude | (mentioned - selected))
+    end.reject(&:empty?)
+  end
+
+  # Exponential in the mentioned options: check it before calling `regions`.
+  def max_regions(comparisons) = 2**comparisons.map(&:last).uniq.size
+
   def restrict(operator_class, value)
     case operator_class.name
     when Logic::IncludeOperator.name then with(must_include: must_include | [value], must_exclude: must_exclude)
