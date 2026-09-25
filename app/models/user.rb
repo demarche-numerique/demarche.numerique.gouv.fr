@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  # Dropping :rememberable left `remember_created_at` without a writer. Ignored
+  # here first, so a running instance never selects it, and dropped in a later
+  # migration.
+  self.ignored_columns += [:remember_created_at]
+
   include DomainMigratableConcern
   include EmailSanitizableConcern
   include PasswordComplexityConcern
@@ -13,8 +18,14 @@ class User < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  # No `:rememberable`: Warden replays that cookie whenever a session is
+  # rejected, which would make revocation and expiry fictions.
   devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable
+    :recoverable, :trackable, :validatable, :confirmable, :lockable
+
+  # Still set by Devise's strategy from the params; it drives the session
+  # cookie lifetime now instead of issuing a cookie of its own.
+  attr_accessor :remember_me
 
   # We should never cascade delete dossiers. In normal case we call delete_and_keep_track_dossiers
   # before deleting a user (which dissociate dossiers from the user).
@@ -244,6 +255,38 @@ class User < ApplicationRecord
     expert.present?
   end
 
+  # Reading other people's dossiers trades staying signed in for a bounded
+  # session. `expert?` is in: the rule follows the data, not the way the role was
+  # granted. The keys are the models including GrantsSessionLifetimeConcern.
+  #
+  # The instructeur matches TRUSTED_DEVICE_PERIOD so session and device trust
+  # expire together. The expert follows, with no trusted device of their own.
+  SESSION_MAX_LIFETIMES = {
+    administrateur: 1.week,
+    gestionnaire: 1.week,
+    instructeur: TrustedDeviceConcern::TRUSTED_DEVICE_PERIOD,
+    expert: TrustedDeviceConcern::TRUSTED_DEVICE_PERIOD,
+  }.freeze
+
+  # A purge horizon and not a policy: what an usager actually meets is
+  # INACTIVITY_WINDOW.
+  USAGER_SESSION_MAX_LIFETIME = 1.year
+
+  # Several roles take the shortest. The `gestionnaire?` call is the one role
+  # User does not eager load, so it costs a query -- paid once, when a session
+  # opens, not on every request.
+  def session_max_lifetime
+    SESSION_MAX_LIFETIMES
+      .filter_map { |role, lifetime| lifetime if public_send(:"#{role}?") }
+      .min || USAGER_SESSION_MAX_LIFETIME
+  end
+
+  # Reasons that mean "cut every access of this account", as opposed to closing
+  # one device or making room for a session that is just opening. `:logout_device`
+  # is out because the counter below is one per account: cutting it to sign one
+  # device out would punish every other.
+  TOTAL_REVOCATION_REASONS = [:logout_all, :support, :password_change].freeze
+
   def crisp_segments
     segments = []
     segments << 'administrateur' if administrateur?
@@ -355,6 +398,15 @@ class User < ApplicationRecord
   end
 
   private
+
+  # The trusted device cookie is self-asserting: bumping the version is the only
+  # thing that reaches it. Pending email tokens open a session, so they go too.
+  def revoke_account_wide!(reason)
+    return if !TOTAL_REVOCATION_REASONS.include?(reason.to_sym)
+
+    increment!(:trusted_device_version)
+    instructeur&.trusted_device_tokens&.delete_all
+  end
 
   def does_not_merge_on_self
     return if requested_merge_into_id != self.id

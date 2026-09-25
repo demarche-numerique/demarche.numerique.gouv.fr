@@ -4,12 +4,9 @@
 # ourselves included. Hence the rescue on each one, and the adoption of sessions
 # older than the registry.
 
-# Warden funnels three events through this single callback, and they split in
-# two: two ways a session opens, one way it continues. Matching on the event
-# rather than registering twice behind a filter -- a fourth event would then
-# match neither and be dropped in silence, which is exactly how `sign_in` went
-# unregistered for a while. Here it raises NoMatchingPatternError, lands in
-# Sentry, and the request carries on.
+# Matched on the event rather than filtered: a fourth event would be dropped in
+# silence, which is how `sign_in` went unregistered for a while. Here it raises
+# NoMatchingPatternError and lands in Sentry.
 Warden::Manager.after_set_user do |record, warden, options|
   next unless record.is_a?(SessionRegistrableConcern)
   next unless Flipper.enabled?(:session_registry, record)
@@ -30,30 +27,40 @@ Warden::Manager.after_set_user do |record, warden, options|
   in :authentication | :set_user
     SessionRegistrableConcern.open_session!(record, warden, scope)
 
-  # :fetch -- the user was read back from the cookie, on every request after the
-  #           one that signed them in. The session continues, so the row it names
-  #           has to still be good.
-  #
-  # Log out rather than throw: this also fires on opportunistic fetches, like
-  # `current_super_admin` in the layout, and one of them runs from an `ensure`
-  # after the action. Emptying the scope lets whatever really needs it fail on
-  # its own.
+  # :fetch -- read back from the cookie on every later request, so the row it
+  # names has to still be good.
   in :fetch
-    session_id = warden.session(scope)[SessionRegistrableConcern::SESSION_KEY]
-
-    if session_id.nil?
-      SessionRegistrableConcern.open_session!(record, warden, scope)
-    else
-      user_session = UserSession.find_by(id: session_id, sessionable: record)
-      warden.logout(scope) if user_session.nil? || user_session.unusable?
-    end
+    SessionRegistrableConcern.continue_session!(record, warden, scope)
   end
 rescue StandardError => e
   Sentry.capture_exception(e)
 end
 
-# Not gated on the feature: a row left alive by a sign out would make the session
-# list lie, and closing one locks nobody out.
+# Not gated: "stay signed in" is not part of the registry, and gating it would
+# take the persistent cookie away from everyone while the flag is off.
+Warden::Manager.after_set_user do |record, warden, options|
+  next unless record.is_a?(SessionRegistrableConcern)
+
+  case options[:event]
+  in :authentication | :set_user
+    SessionRegistrableConcern.remember!(record, warden, options[:scope])
+  in :fetch
+    # The hook above may have just logged this scope out, or died into its
+    # rescue: stamping then would resurrect the key Warden deleted and refresh a
+    # session that failed its check.
+    next if SessionRegistrableConcern.signed_out?(warden, options[:scope])
+
+    # Here rather than beside the check that reads it, because that check is
+    # gated: closing the flag would let `last_seen_on` go stale, and opening it
+    # again would sign every active user out at once.
+    SessionRegistrableConcern.touch_last_seen!(SessionRegistrableConcern.warden_session(warden, options[:scope]))
+    SessionRegistrableConcern.persist_cookie!(warden, options[:scope])
+  end
+rescue StandardError => e
+  Sentry.capture_exception(e)
+end
+
+# Not gated: a row left alive by a sign out would make the session list lie.
 Warden::Manager.before_logout do |record, warden, options|
   next unless record.is_a?(SessionRegistrableConcern)
 

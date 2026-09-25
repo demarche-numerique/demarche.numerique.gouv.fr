@@ -58,9 +58,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  #
+  # Devise re-establishes the session with `bypass_sign_in`, which writes the
+  # Warden key directly and fires no event -- so the password change just
+  # revoked this session and nothing opened a replacement. `force`, because the
+  # visitor already is this user and Devise's `sign_in` would do nothing.
+  def update
+    super do |resource|
+      sign_in(resource, scope: :user, force: true) if resource.saved_change_to_encrypted_password?
+    end
+  end
 
   # DELETE /resource
   # def destroy

@@ -18,10 +18,10 @@ export default class LazyModalController extends ApplicationController {
 
     const src = button.getAttribute('src');
     if (src) {
-      // Si la session a expiré (ex: bfcache iOS), la réponse ne contient pas le frame
-      // attendu. On recharge la page courante : authenticate_user! sera rejoué sur
-      // la bonne URL, qui sera donc stockée comme retour après login (au lieu de
-      // l'URL interne de la modale, qui afficherait un fragment orphelin).
+      // Une session expirée n'arrive plus jusqu'ici : shared/session-expiry
+      // intercepte le 401 en amont. Reste le cas d'une réponse qui ne contient
+      // pas le frame attendu — on recharge la page courante plutôt que d'afficher
+      // un fragment orphelin.
       frame.addEventListener(
         'turbo:frame-missing',
         (event) => {

@@ -34,6 +34,54 @@ describe SessionRegistrableConcern do
     end
   end
 
+  describe '#tighten_sessions!' do
+    let(:user) { create(:user) }
+
+    it 'brings a longer deadline back to the one the role allows' do
+      user_session = user.open_user_session!(chrome_on_mac)
+
+      user.tighten_sessions!(1.week)
+
+      expect(user_session.reload.expires_at)
+        .to be_within(1.second).of(user_session.created_at + 1.week)
+    end
+
+    it 'leaves a deadline that is already shorter alone' do
+      user_session = user.open_user_session!(chrome_on_mac)
+      user_session.update!(expires_at: user_session.created_at + 1.day)
+
+      expect { user.tighten_sessions!(1.week) }
+        .not_to change { user_session.reload.expires_at }
+    end
+
+    it 'leaves a revoked session alone' do
+      user_session = user.open_user_session!(chrome_on_mac)
+      user.revoke_sessions!(reason: :logout_all)
+
+      expect { user.tighten_sessions!(1.week) }
+        .not_to change { user_session.reload.expires_at }
+    end
+
+    # The whole point of granting the role: an older session gets a deadline in
+    # the past and is cut on its next request.
+    it 'writes a deadline already past when the session predates the role' do
+      user_session = user.open_user_session!(chrome_on_mac)
+      user_session.update!(created_at: 3.weeks.ago, expires_at: nil)
+
+      user.tighten_sessions!(1.week)
+
+      expect(user_session.reload).to be_unusable
+    end
+
+    # Granted inside the `after_create` of every role, and bulk promotions grant
+    # thousands: it must not scale with the number of open sessions.
+    it 'costs one statement whatever the number of sessions' do
+      3.times { user.open_user_session!(chrome_on_mac) }
+
+      expect(count_queries { user.tighten_sessions!(1.week) }).to eq(1)
+    end
+  end
+
   describe '#revoke_sessions! with except:' do
     it 'spares the session it is given' do
       kept = super_admin.open_user_session!(chrome_on_mac)

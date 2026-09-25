@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 describe 'the session registry', type: :request do
-  let(:super_admin) { create(:super_admin, :with_otp) }
+  # No seeded super admin: the OTP secret is the point of this file.
+  let_it_be(:super_admin) { create(:super_admin, :with_otp) }
   let(:chrome_on_mac) { "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" }
 
   def sign_in_super_admin = post_super_admin_session(super_admin, user_agent: chrome_on_mac)
@@ -149,16 +150,10 @@ describe 'the session registry', type: :request do
 
     before { Flipper.enable_actor(:session_registry, user) }
 
-    def sign_in_user
-      post user_session_path,
-        params: { user: { email: user.email, password: users.default_password } },
-        headers: { 'HTTP_USER_AGENT' => chrome_on_mac }
-    end
-
     def user_sessions = UserSession.where(sessionable: user)
 
     it 'registers a row' do
-      expect { sign_in_user }.to change { user_sessions.count }.by(1)
+      expect { post_user_session(user, user_agent: chrome_on_mac) }.to change { user_sessions.count }.by(1)
     end
 
     # Devise's `sign_in` raises the :set_user event, not :authentication. Every
@@ -171,7 +166,7 @@ describe 'the session registry', type: :request do
     # This is the first step where the hook can be exercised on that half: a
     # super admin never reaches a `sign_in` in test, OTP being forced on there.
     context 'through a path that calls Devise sign_in, as the activation link does' do
-      let(:user) { create(:user) }
+      let(:user) { users.usager }
       let(:token) { user.send(:set_reset_password_token) }
       let(:new_password) { "#{users.default_password} (neuf)" }
 
@@ -191,17 +186,18 @@ describe 'the session registry', type: :request do
       end
     end
 
-    # Usagers have no deadline until step 8. Opening the registry to everyone
-    # must not expire anyone.
-    it 'gives that row no deadline' do
-      sign_in_user
+    # A housekeeping horizon, not a policy: it exists so the rows can be
+    # purged. What actually bounds an usager is the inactivity window.
+    it 'gives that row the housekeeping horizon, far enough not to bite' do
+      post_user_session(user, user_agent: chrome_on_mac)
 
-      expect(user_sessions.sole.expires_at).to be_nil
+      expect(user_sessions.sole.expires_at)
+        .to be_within(1.minute).of(User::USAGER_SESSION_MAX_LIFETIME.from_now)
     end
 
     it 'adopts a session opened before the registry rather than reject it' do
       Flipper.disable_actor(:session_registry, user)
-      sign_in_user
+      post_user_session(user, user_agent: chrome_on_mac)
       expect(user_sessions).to be_empty
       Flipper.enable_actor(:session_registry, user)
 
