@@ -471,7 +471,7 @@ describe DossierRebaseConcern do
             metadata: { virus_scan_result: ActiveStorage::VirusScanner::SAFE }
           )
 
-          first_champ.update_column('updated_at', Time.zone.parse('01/01/1901'))
+          first_champ.update_columns(updated_at: Time.zone.parse('01/01/1901'), value_updated_at: Time.zone.parse('01/01/1901'))
 
           stable_id = procedure.draft_revision.type_de_champs.find { _1.libelle == 'l1' }.stable_id
           tdc_to_update = procedure.draft_revision.find_and_ensure_exclusive_use(stable_id)
@@ -485,7 +485,7 @@ describe DossierRebaseConcern do
         it { expect { subject }.to change { first_champ.data }.from({ 'a' => 1 }).to(nil) }
         it { expect { subject }.to change { first_champ.geo_areas.count }.from(1).to(0) }
         it { expect { subject }.to change { first_champ.piece_justificative_file.attached? }.from(true).to(false) }
-        it { expect { subject }.not_to change { first_champ.updated_at }.from(Time.zone.parse('01/01/1901')) }
+        it { expect { subject }.not_to change { first_champ.value_updated_at }.from(Time.zone.parse('01/01/1901')) }
       end
     end
 

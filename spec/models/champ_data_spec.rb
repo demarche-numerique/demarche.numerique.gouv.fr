@@ -701,6 +701,28 @@ describe ChampData do
       expect(champ.reload.value_updated_at).to eq(time)
     end
 
+    context 'when the row is created' do
+      let(:dossier) { create(:dossier, procedure:) }
+      let(:type_de_champ) { dossier.revision.public_root_type_de_champs.sole }
+
+      it 'stamps a main stream row, which machinery touches do not move' do
+        created = travel_to(1.day.ago) { dossier.champ_for_update(type_de_champ, updated_by: 'usager') }
+
+        created.touch
+
+        expect(created.reload.read_attribute(:value_updated_at)).to eq(created.created_at)
+      end
+
+      it 'leaves a buffer row to its merge' do
+        dossier.champ_for_update(type_de_champ, updated_by: 'usager').update!(value: 'déposé')
+        dossier.passer_en_construction!
+
+        buffer = dossier.with_update_stream(dossier.user) { dossier.public_champ_for_update(type_de_champ.public_id(nil), updated_by: 'usager') }
+
+        expect(buffer.reload.read_attribute(:value_updated_at)).to be_nil
+      end
+    end
+
     it 'is not moved by a plain save, unlike updated_at (a backfill without no_touching)' do
       stamp = 3.days.ago.change(usec: 0)
       champ.update_columns(updated_at: stamp, value_updated_at: stamp)
