@@ -17,4 +17,4 @@
       = f.submit 'Ajouter le tampon', class: 'fr-btn', disabled: true, data: { 'enable-submit-if-uploaded-target': 'submit' }
 
       - if @groupe_instructeur.signature.persisted?
-        = link_to("Prévisualiser", preview_path, class: "fr-btn fr-btn--secondary", **external_link_attributes)
+        = link_to("Prévisualiser", preview_path, class: "fr-btn fr-btn--secondary", **new_tab_link_attributes)

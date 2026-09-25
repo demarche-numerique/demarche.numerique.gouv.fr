@@ -44,7 +44,7 @@
                   %b Besoin d’autres labels ?
                   %br
                   Contactez les
-                  = link_to 'administrateurs de la démarche', administrateurs_instructeur_procedure_path(dossier.procedure), class: 'fr-link fr-link--sm', **external_link_attributes
+                  = link_to 'administrateurs de la démarche', administrateurs_instructeur_procedure_path(dossier.procedure), class: 'fr-link fr-link--sm', **new_tab_link_attributes
               - if !@procedure_presentation.displayed_columns.any? { |c| c.column == "label_id" }
                 %hr.fr-mt-2w
                 .fr-notice.fr-notice--info

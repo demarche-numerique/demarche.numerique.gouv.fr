@@ -181,7 +181,7 @@
             <% c.with_value do %>
               <% if profile == 'instructeur' %>
                 <p>
-                  <%= link_to t(".consulter_attestation"), url_for(etablissement.entreprise_attestation_sociale), **external_link_attributes %>
+                  <%= link_to t(".consulter_attestation"), url_for(etablissement.entreprise_attestation_sociale), **new_tab_link_attributes %>
                 </p>
               <% else %>
                 <p><%= t(".attestation_sociale_message") %></p>
@@ -194,7 +194,7 @@
             <% c.with_value do %>
               <% if profile == 'instructeur' %>
                 <p>
-                  <%= link_to t(".consulter_attestation"), url_for(etablissement.entreprise_attestation_fiscale), **external_link_attributes %>
+                  <%= link_to t(".consulter_attestation"), url_for(etablissement.entreprise_attestation_fiscale), **new_tab_link_attributes %>
                 </p>
               <% else %>
                 <p><%= t(".attestation_fiscale_message") %></p>

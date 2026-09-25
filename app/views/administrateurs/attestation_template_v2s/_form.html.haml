@@ -119,7 +119,7 @@
           %p.fr-hint-text
             L’aperçu est mis à jour automatiquement après chaque modification.
             Pour générer un aperçu fidèle avec champs et dates,
-            = link_to("créez-vous un dossier", new_dossier_path(procedure_id: procedure, brouillon: true), **external_link_attributes)
+            = link_to("créez-vous un dossier", new_dossier_path(procedure_id: procedure, brouillon: true), **new_tab_link_attributes)
             et acceptez-le : l’aperçu l’utilisera.
 
   - if attestation_template.draft?

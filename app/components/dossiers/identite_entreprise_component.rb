@@ -5,7 +5,7 @@ class Dossiers::IdentiteEntrepriseComponent < ApplicationComponent
 
   delegate :pretty_siret, :raison_sociale_or_name, :try_format_date, :try_format_mois_effectif,
     :effectif, :pretty_currency, :sanitize, :pretty_date_exercice, :year_for_bilan, :value_for_bilan_key,
-    :pretty_currency_unit, :external_link_attributes, :address_array, to: :helpers
+    :pretty_currency_unit, :new_tab_link_attributes, :address_array, to: :helpers
 
   def initialize(champ: nil, etablissement: nil, avis: nil)
     @etablissement = champ&.etablissement || etablissement
@@ -64,13 +64,13 @@ class Dossiers::IdentiteEntrepriseComponent < ApplicationComponent
 
   def link_attestation_sociale
     if etablissement.entreprise_attestation_sociale.attached?
-      link_to(t(".consult_attestation"), url_for(etablissement.entreprise_attestation_sociale), **external_link_attributes)
+      link_to(t(".consult_attestation"), url_for(etablissement.entreprise_attestation_sociale), **new_tab_link_attributes)
     end
   end
 
   def link_attestation_fiscale
     if etablissement.entreprise_attestation_fiscale.attached?
-      link_to(t(".consult_attestation"), url_for(etablissement.entreprise_attestation_fiscale), **external_link_attributes)
+      link_to(t(".consult_attestation"), url_for(etablissement.entreprise_attestation_fiscale), **new_tab_link_attributes)
     end
   end
 
