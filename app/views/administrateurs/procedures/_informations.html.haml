@@ -52,7 +52,7 @@
           %br
           • Texte juridique (statuts, délibération, décision du conseil d’administration…)
           %br
-          = link_to("En savoir plus avec cette vidéo de 5 minutes", CADRE_JURIDIQUE_URL, target: "_blank", rel: "noopener")
+          = link_to("En savoir plus avec cette vidéo de 5 minutes", CADRE_JURIDIQUE_URL, **external_link_attributes)
         %p Vous pouvez saisir un lien web vers ce texte, ou l’importer depuis un fichier.
 
   .fr-fieldset__element
@@ -146,7 +146,7 @@
             %p.fr-hint-text
               %strong Les webhooks sont maintenant dépréciés
               Nous vous recommandons d’utiliser l’API GraphQL en faisant du polling,
-              = link_to "voici un exemple d’implementation ", WEBHOOK_ALTERNATIVE_DOC_URL, rel: "noopener", target: "_blank", title: "Voir une implémentation alternative à l’ancien système de webhook"
+              = link_to "voici un exemple d’implementation ", WEBHOOK_ALTERNATIVE_DOC_URL, title: "Voir une implémentation alternative à l’ancien système de webhook", **external_link_attributes
             = f.text_field :web_hook_url, class: 'fr-input', placeholder: 'https://callback.exemple.fr/'
 
         .fr-fieldset__element

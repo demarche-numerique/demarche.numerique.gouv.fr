@@ -21,7 +21,7 @@
           %p.fr-mb-2w= t('views.accessibility_statement.results.content')
           %p.fr-mb-2w
             = t('views.accessibility_statement.results.programme.intro')
-            = link_to t("views.accessibility_statement.results.programme.label"), t("views.accessibility_statement.results.programme.url"), title: t("views.accessibility_statement.results.programme.title"), target: "_blank", rel: "noopener noreferrer"
+            = link_to t("views.accessibility_statement.results.programme.label"), t("views.accessibility_statement.results.programme.url"), title: t("views.accessibility_statement.results.programme.title"), **external_link_attributes
             = "."
 
         %div
@@ -46,7 +46,7 @@
             = t('views.accessibility_statement.preparation.subtitle_one')
           %ul.fr-mb-2w
             %li
-              = link_to t("views.accessibility_statement.preparation.techno_ruby.label"), t("views.accessibility_statement.preparation.techno_ruby.url"), title: t("views.accessibility_statement.preparation.techno_ruby.title"), target: "_blank", rel: "noopener noreferrer"
+              = link_to t("views.accessibility_statement.preparation.techno_ruby.label"), t("views.accessibility_statement.preparation.techno_ruby.url"), title: t("views.accessibility_statement.preparation.techno_ruby.title"), **external_link_attributes
             %li
               = "HTML 5"
             %li
@@ -143,10 +143,10 @@
           %p.fr-mb-2w= t('views.accessibility_statement.remedies.ddd_intro')
           %ul
             %li
-              = link_to t("views.accessibility_statement.remedies.remedies_one.label"), t("views.accessibility_statement.remedies.remedies_one.url"), title: t("views.accessibility_statement.remedies.remedies_one.title"), target: "_blank", rel: "noopener noreferrer"
+              = link_to t("views.accessibility_statement.remedies.remedies_one.label"), t("views.accessibility_statement.remedies.remedies_one.url"), title: t("views.accessibility_statement.remedies.remedies_one.title"), **external_link_attributes
               %br
               = t('views.accessibility_statement.remedies.remedies_one.info')
             %li
-              = link_to t("views.accessibility_statement.remedies.remedies_two.label"), t("views.accessibility_statement.remedies.remedies_two.url"), title: t("views.accessibility_statement.remedies.remedies_two.title"), target: "_blank", rel: "noopener noreferrer"
+              = link_to t("views.accessibility_statement.remedies.remedies_two.label"), t("views.accessibility_statement.remedies.remedies_two.url"), title: t("views.accessibility_statement.remedies.remedies_two.title"), **external_link_attributes
             %li
               = t('views.accessibility_statement.remedies.remedies_three_html')

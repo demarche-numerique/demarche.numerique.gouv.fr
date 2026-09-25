@@ -52,7 +52,7 @@
 
                 <p>
                   <%= link_to t('.modal.documentation'), EMAILS_AUTOMATIQUES_DOC_URL,
-                        target: '_blank', rel: 'noopener', class: 'fr-link' %>
+                        class: 'fr-link', **helpers.external_link_attributes %>
                 </p>
               <% end %>
             <% end %>
