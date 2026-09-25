@@ -239,6 +239,45 @@ describe Champs::PieceJustificativeChamp do
         expect(champ.ocr_result.reference_avis).to eq('2538A22409999')
       end
     end
+
+    context 'when nature is rib' do
+      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :piece_justificative, nature: 'rib' }]) }
+
+      before { champ.update_columns(external_state:, value_json:) }
+
+      context 'when fetched' do
+        let(:external_state) { 'fetched' }
+        let(:value_json) { { 'rib' => { 'iban' => 'FR7612345678901234567890123' } } }
+
+        it do
+          expect(champ.ocr_result).to be_a(RIB)
+          expect(champ.ocr_result.iban).to eq('FR7612345678901234567890123')
+        end
+      end
+
+      context 'when in external_error' do
+        let(:external_state) { 'external_error' }
+        let(:value_json) { nil }
+
+        it do
+          expect(champ.ocr_result).to be_a(RIB)
+          expect(champ.ocr_result.to_h).to eq(account_holder: nil, bank_name: nil, bic: nil, iban: nil)
+        end
+
+        context 'once the instructeur has filled it in' do
+          let(:value_json) { { 'rib' => { 'iban' => 'FR7612345678901234567890123' }, 'hint' => 'rib' } }
+
+          it { expect(champ.ocr_result.iban).to eq('FR7612345678901234567890123') }
+        end
+      end
+
+      context 'when still fetching' do
+        let(:external_state) { 'fetching' }
+        let(:value_json) { nil }
+
+        it { expect(champ.ocr_result).to be_nil }
+      end
+    end
   end
 
   describe "#for_export" do
