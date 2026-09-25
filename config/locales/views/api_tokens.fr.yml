@@ -2,9 +2,10 @@
 fr:
   administrateurs:
     api_tokens:
+      new_token: Création d’un nouveau jeton
+      duplicate_title: Duplication du jeton
       nom:
         title: Nouveau jeton d’API
-        new_token: Création d’un nouveau jeton
         name: Nom du jeton
         name-hint: 'exemples: prod orus, test presta'
         continue: Continuer
@@ -17,8 +18,6 @@ fr:
         all_procedures: toutes mes démarches
         all_procedures_hint: présentes et futures
         select_procedures: Sélectionner les démarches autorisées
-        add_procedure: Ajouter
-        no_procedure_selected: aucune démarche sélectionnée
         token_permission: Ce jeton permet
         read_only: de lire uniquement
         read_only_hint: récupérer des dossiers, des pièces-jointes
@@ -27,26 +26,26 @@ fr:
         cancel: Retour
         continue: Continuer
       edit:
-        title: 'Modification du jeton d''API « %{name} »'
-        breadcrumb_api_token: 'Jeton d''API : %{name}'
+        back_link: Revenir
+        title: 'Modification du jeton « %{name} »'
+      edit_form:
+        title: 'Modification du jeton « %{name} »'
         rename_button: Renommer
         enter_at_least_one_network: 'Entrez au moins 1 réseau autorisé'
         enter_authorized_ips: 'Entrez les adresses ip autorisées'
         networks_hint: 'adresses réseaux séparées par des espaces. ex: 176.31.79.200 192.168.33.0/24 2001:41d0:304:400::52f/128'
         modify_button: Modifier
-        pending_auto_ip_message: 'Si aucun réseau n''est configuré, l''adresse IP sera automatiquement verrouillée lors du premier appel API.'
-        full_access_message: 'Votre jeton d''API a accès à toutes vos démarches.'
-        restrict_access_button: 'Restreindre l''accès à certaines démarches'
+        pending_auto_ip_message: 'Si aucun réseau nʼest configuré, lʼadresse IP sera automatiquement verrouillée lors du premier appel API.'
+        full_access_message: 'Votre jeton dʼAPI a accès à toutes vos démarches.'
+        restrict_access_message: 'Votre jeton dʼAPI a accès à certaines démarches.'
+        restrict_access_button: 'Restreindre lʼaccès à certaines démarches'
+        restore_full_access_button: 'Restaurer lʼaccès à toutes les démarches'
         add_authorized_procedures: 'Ajouter des démarches autorisées'
         add_button: Ajouter
         delete_button: Supprimer
-        back_link: Revenir
       securite:
         title: Sécurité du jeton « %{name} »
         dashboard: Tableau de bord
-        security: Sécurité
-        great_power_quote: Avec un grand pouvoir vient une grande responsabilité
-        quote_source: Oncle Ben dans Spider-Man
         security_warning: Votre jeton va probablement vous permettre de manipuler des données confidentielles, voir personnelles.
         responsibility: Il est de votre responsabilité de le conserver en sécurité et d’en limiter l’utilisation aux seules personnes habilitées.
         features_intro: Pour vous aider, nous vous proposons des fonctionnalités de filtrage réseau et de durée de vie du jeton.
@@ -66,5 +65,5 @@ fr:
         custom_lifetime_label: 'durée personnalisée, au maximum %{count} jours'
         invalid_lifetime: Vous devez choisir une durée de vie comprise entre demain et la durée maximale autorisée
         enter_expiry: Entrez la date de fin de validité du jeton
-        create_token: Créer le jeton
+        validate: Valider
         back: Retour

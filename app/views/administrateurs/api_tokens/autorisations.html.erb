@@ -3,25 +3,29 @@
 <%= render partial: 'shared/breadcrumbs_section',
   locals: { steps: [['Tableau de bord', tableau_de_bord_helper_path],
     [t('users.profil.show.profile'), profil_path(context: :administrateur)],
-    [t('administrateurs.api_tokens.nom.new_token')]] } %>
+    [@api_token_params.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token')]] } %>
 
 <div class="fr-container fr-mt-2w" data-turbo="true">
-  <h1><%= t('.title', name: @name) %></h1>
+  <h1>
+    <%= @api_token_params.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token') %>
+  </h1>
 
   <%= form_with url: securite_admin_api_tokens_path,
-    method: :get,
-    data: { controller: 'api-token-autorisation' } do |f| %>
+  method: :get, id: 'api-token-autorisation-form',
+  data: { controller: 'api-token-autorisation',
+  action: 'change->api-token-autorisation#setContinueButtonState' } do |f| -%>
     <%= render Dsfr::RadioButtonListComponent.new(form: f,
       target: :target,
-      buttons: [ { label: t('.custom_procedures'),
-        value: :custom,
-        checked: params[:target] == 'custom',
-        data: { 'action': 'click->api-token-autorisation#showProcedureSelectGroup' } },
+      buttons: [
         { label: t('.all_procedures'),
         value: :all,
         hint: t('.all_procedures_hint'),
         checked: params[:target] == 'all',
-        data: { 'action': 'click->api-token-autorisation#hideProcedureSelectGroup' } }]) do %>
+        data: { 'action': 'click->api-token-autorisation#hideProcedureSelectGroup' } },
+        { label: t('.custom_procedures'),
+        value: :custom,
+        checked: params[:target] == 'custom',
+        data: { 'action': 'click->api-token-autorisation#showProcedureSelectGroup' } },]) do %>
       <%= t('.token_access') %>
     <% end %>
 
@@ -34,31 +38,21 @@
           <%= t('.select_procedures') %>
         </label>
 
-        <div class="flex">
-          <%= f.select :value,
-            options_for_select(@libelle_id_procedures),
-            { include_blank: true },
-            { id: 'procedureSelect',
-              class: 'fr-select width-33',
-              name: 'procedureSelect',
-              data: { 'api-token-autorisation-target': 'procedureSelect' } } %>
-
-          <button
-            class="fr-btn fr-btn--secondary fr-ml-1w"
-            data-action="click->api-token-autorisation#addProcedure"
-          >
-            <%= t('.add_procedure') %>
-          </button>
+        <div class="fr-col-sm-12 fr-col-md-6">
+          <react-fragment>
+            <%= render ReactComponent.new 'ComboBox/MultiComboBox',
+              items: @libelle_id_procedures,
+              id: 'targets',
+              name: 'targets[]',
+              tagsBelow: true,
+              selectedKeys: @api_token_params.targets,
+              'aria-label': t('.select_procedures') %>
+          </react-fragment>
         </div>
-
-        <style>
-          ul:empty { padding: 0; }
-          ul:empty:before { content: "<%= t('.no_procedure_selected') %>"; }
-        </style>
-
-        <ul data-api-token-autorisation-target="procedures"></ul>
       </div>
     </div>
+
+    <hr class="fr-hr">
 
     <div data-action="click->api-token-autorisation#setContinueButtonState">
       <%= render Dsfr::RadioButtonListComponent.new(form: f,
@@ -75,9 +69,13 @@
       <% end %>
     </div>
 
-    <%= f.hidden_field :name, value: @name %>
+    <%= render APITokens::HiddenFieldsComponent.new(fields: @api_token_params.hidden_fields_for(%i[target targets access])) %>
 
     <ul class="fr-btns-group fr-btns-group--inline">
+      <li>
+        <%= link_to t('.cancel'), nom_admin_api_tokens_path(@api_token_params.to_h), class: "fr-btn fr-btn--secondary" %>
+      </li>
+
       <li>
         <%= f.button type: :submit,
           class: "fr-btn fr-btn--primary",
@@ -85,10 +83,6 @@
           'data-api-token-autorisation-target': 'continueButton' do %>
           <%= t('.continue') %>
         <% end %>
-      </li>
-
-      <li>
-        <%= link_to t('.cancel'), nom_admin_api_tokens_path(name: @name), class: "fr-btn fr-btn--secondary" %>
       </li>
     </ul>
   <% end %>

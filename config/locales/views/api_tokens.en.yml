@@ -2,9 +2,10 @@
 en:
   administrateurs:
     api_tokens:
+      new_token: New token creation
+      duplicate_title: Duplicate API token
       nom:
         title: New API token
-        new_token: New token creation
         name: Name of the token
         name-hint: 'examples: prod orus, test presta'
         continue: Continue
@@ -17,8 +18,6 @@ en:
         all_procedures: all my procedures
         all_procedures_hint: current and future
         select_procedures: Select authorized procedures
-        add_procedure: Add
-        no_procedure_selected: no procedure selected
         token_permission: This token allows
         read_only: read only
         read_only_hint: retrieve dossiers, attachments
@@ -27,8 +26,10 @@ en:
         cancel: back
         continue: continue
       edit:
+        back_link: Back
         title: 'Edit API token « %{name} »'
-        breadcrumb_api_token: 'API token: %{name}'
+      edit_form:
+        title: 'Edit API token « %{name} »'
         rename_button: Rename
         enter_at_least_one_network: 'Enter at least 1 authorized network'
         enter_authorized_ips: 'Enter authorized IP addresses'
@@ -36,17 +37,15 @@ en:
         modify_button: Modify
         pending_auto_ip_message: 'If no network is configured, the IP address will be automatically locked on the first API call.'
         full_access_message: 'Your API token has access to all your procedures.'
+        restrict_access_message: 'Your API token has access to certain procedures.'
         restrict_access_button: 'Restrict access to certain procedures'
+        restore_full_access_button: 'Restore access to all procedures'
         add_authorized_procedures: 'Add authorized procedures'
         add_button: Add
         delete_button: Delete
-        back_link: Back
       securite:
         title: Security of the token « %{name} »
         dashboard: Dashboard
-        security: Security
-        great_power_quote: With great power comes great responsibility
-        quote_source: Uncle Ben in Spider-Man
         security_warning: Your token will likely allow you to handle confidential or personal data.
         responsibility: It is your responsibility to keep it secure and limit its use to authorised persons only.
         features_intro: To help you, we offer network filtering and token lifetime features.
@@ -66,5 +65,5 @@ en:
         custom_lifetime_label: 'custom duration, at most %{count} days'
         invalid_lifetime: You must choose a lifetime between tomorrow and the maximum allowed duration
         enter_expiry: Enter the token expiry date
-        create_token: Create the token
+        validate: Valider
         back: Back
