@@ -138,6 +138,8 @@ describe 'Piece justificative drag and drop', js: true do
 
     scenario 'validates file count and shows DSFR error when limit exceeded' do
       within find('.editable-champ', text: 'Documents') do
+        file_input_id = find_field('Documents', visible: :all)[:id]
+
         # Upload 3 fichiers d'un coup alors que le max est 2
         attach_file('Documents', [
           Rails.root.join('spec/fixtures/files/file.pdf'),
@@ -162,12 +164,16 @@ describe 'Piece justificative drag and drop', js: true do
 
         # Attendre que la suppression soit effective
         expect(page).not_to have_text('file.pdf', wait: 5)
+        # Le bouton supprimé part avec sa ligne, le focus revient sur le champ
+        expect(page).to have_css("##{file_input_id}:focus", visible: :all)
 
         # Ajouter un nouveau fichier
         attach_file('Documents', Rails.root.join('spec/fixtures/files/image-no-rotation.jpg'))
 
         # Le message doit avoir disparu
         expect(page).to have_selector('[data-attachment-error].hidden', visible: :all)
+        # Le focus passe sur le bouton de suppression du fichier ajouté
+        expect(page).to have_css('[data-attachment-delete-button][title*="image-no-rotation.jpg"]:focus')
       end
     end
 

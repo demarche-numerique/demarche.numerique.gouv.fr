@@ -146,6 +146,8 @@ describe 'The user', js: true do
     expect(page).to have_selector(".repetition .champs-group:first-child .utils-repetition-required-destroy-button", count: 1, visible: false)
     expect(page).to have_selector(".repetition .champs-group", count: 2)
     expect(page).to have_selector(".repetition .champs-group:last-child .utils-repetition-required-destroy-button", count: 2, visible: true)
+    # the add button is replaced by the stream, focus moves to the new row
+    expect(page).to have_css('.repetition .repetition-row:last-child input:focus')
 
     within '.repetition .repetition-row:first-child' do
       fill_in('sub type de champ', with: 'un autre texte')
@@ -162,6 +164,13 @@ describe 'The user', js: true do
       # removing a repetition means one child only, thus its button destroy is not visible
       expect(page).to have_selector(".repetition .repetition-row:first-child .utils-repetition-required-destroy-button", count: 1, visible: false)
     end.to change { ChampData.where.not(discarded_at: nil).count }
+
+    # the destroy button went away with its row, focus moves to the remaining row
+    expect(page).to have_css('.repetition .repetition-row:first-child input:focus')
+    # the announcement is appended after the focus, and must not steal it
+    expect(page).to have_css('[role="status"]', text: '[2] sub type de champ supprimé', visible: :all)
+    expect(page).to have_css('.repetition .repetition-row:first-child input:focus')
+    expect(page).to have_field('sub type de champ', with: 'un autre texte')
   end
 
   let(:procedure_with_repetition_limited) do
