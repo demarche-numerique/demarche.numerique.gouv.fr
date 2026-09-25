@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 describe APIEntrepriseService do
-  shared_examples 'schedule fetch of all etablissement params' do
+  shared_examples 'schedule fetch of etablissement params' do
     [
       APIEntreprise::ExtraitKbisJob, APIEntreprise::TvaJob,
       APIEntreprise::AssociationJob, APIEntreprise::ExercicesJob,
-      APIEntreprise::EffectifsJob, APIEntreprise::EffectifsAnnuelsJob, APIEntreprise::AttestationSocialeJob,
-      APIEntreprise::BilansBdfJob,
+      APIEntreprise::EffectifsJob, APIEntreprise::EffectifsAnnuelsJob,
     ].each do |job|
       it "should enqueue #{job.class.name}" do
         expect { subject }.to have_enqueued_job(job)
@@ -44,7 +43,7 @@ describe APIEntrepriseService do
         expect(subject.value!.entreprise_raison_sociale).to eq(raison_sociale)
       end
 
-      it_behaves_like 'schedule fetch of all etablissement params'
+      it_behaves_like 'schedule fetch of etablissement params'
     end
 
     context 'when etablissement api down' do
@@ -105,7 +104,7 @@ describe APIEntrepriseService do
       expect(etablissement).to be_as_degraded_mode
     end
 
-    it_behaves_like 'schedule fetch of all etablissement params'
+    it_behaves_like 'schedule fetch of etablissement params'
   end
 
   describe '#create_etablissement_with_fallback' do
@@ -183,6 +182,38 @@ describe APIEntrepriseService do
       it 'returns Failure without fallback' do
         expect(subject).to be_failure
         expect(subject.failure[:type]).to eq(:unavailable_for_legal_reasons)
+      end
+    end
+  end
+
+  describe '#perform_later_fetch_jobs' do
+    let(:etablissement) { dossiers.avec_siret.etablissement }
+
+    subject { APIEntrepriseService.perform_later_fetch_jobs(etablissement, procedures.entreprise.id, users.usager.id) }
+
+    before { allow_any_instance_of(APIEntrepriseToken).to receive(:roles).and_return(roles) }
+
+    context 'when the token holds no role' do
+      let(:roles) { [] }
+
+      it 'skips the jobs gated by a role' do
+        subject
+
+        expect(APIEntreprise::AttestationSocialeJob).not_to have_been_enqueued
+        expect(APIEntreprise::AttestationFiscaleJob).not_to have_been_enqueued
+        expect(APIEntreprise::BilansBdfJob).not_to have_been_enqueued
+      end
+    end
+
+    context 'when the token holds the roles' do
+      let(:roles) { ['attestation_sociale', 'attestation_fiscale', 'bilans_entreprise_bdf'] }
+
+      it 'enqueues the jobs gated by a role' do
+        subject
+
+        expect(APIEntreprise::AttestationSocialeJob).to have_been_enqueued
+        expect(APIEntreprise::AttestationFiscaleJob).to have_been_enqueued
+        expect(APIEntreprise::BilansBdfJob).to have_been_enqueued
       end
     end
   end

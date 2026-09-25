@@ -68,12 +68,14 @@ class APIEntrepriseService
     end
 
     def perform_later_fetch_jobs(etablissement, procedure_id, user_id, wait: nil)
+      token = Procedure.find(procedure_id).api_entreprise_token
       jobs = [
         APIEntreprise::ExtraitKbisJob, APIEntreprise::TvaJob,
         APIEntreprise::AssociationJob, APIEntreprise::ExercicesJob,
-        APIEntreprise::EffectifsJob, APIEntreprise::EffectifsAnnuelsJob, APIEntreprise::AttestationSocialeJob,
-        APIEntreprise::BilansBdfJob,
+        APIEntreprise::EffectifsJob, APIEntreprise::EffectifsAnnuelsJob,
       ]
+      jobs << APIEntreprise::AttestationSocialeJob if token.can_fetch_attestation_sociale?
+      jobs << APIEntreprise::BilansBdfJob if token.can_fetch_bilans_bdf?
       if etablissement.as_degraded_mode?
         jobs << APIEntreprise::EtablissementJob
       end
@@ -81,7 +83,9 @@ class APIEntrepriseService
         job.set(wait:).perform_later(etablissement.id, procedure_id)
       end
 
-      APIEntreprise::AttestationFiscaleJob.set(wait:).perform_later(etablissement.id, procedure_id, user_id)
+      if token.can_fetch_attestation_fiscale?
+        APIEntreprise::AttestationFiscaleJob.set(wait:).perform_later(etablissement.id, procedure_id, user_id)
+      end
     end
 
     def report_error(failure, tags = {})
