@@ -109,13 +109,16 @@ module SessionRegistrableConcern
     false
   end
 
+  # The row before the stamp: an INSERT that fails has to leave nothing behind. A
+  # stamp without a row would be rewritten by every later request, since each one
+  # adopts the session again and retries.
   def self.open_session!(record, warden, scope)
     request = warden.request
     session = warden.session(scope)
 
-    session[LAST_SEEN_KEY] = Date.current.iso8601
-
     session[SESSION_KEY] = record.open_user_session!(request.user_agent, request.remote_ip).id
+
+    session[LAST_SEEN_KEY] = Date.current.iso8601
   end
 
   # Read from the signed cookie, so the client cannot push the date forward.

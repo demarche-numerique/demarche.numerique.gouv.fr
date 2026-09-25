@@ -92,6 +92,18 @@ describe 'the session registry', type: :request do
       expect(response).to have_http_status(:ok)
     end
 
+    # A stamp without a row would be rewritten by every later request, since each
+    # one adopts the session again -- so the inactivity clock would never move.
+    it 'leaves no stamp behind when the row cannot be written' do
+      allow_any_instance_of(SuperAdmin).to receive(:open_user_session!).and_raise('boom')
+      expect(Sentry).to receive(:capture_exception).at_least(:once)
+
+      sign_in_super_admin
+
+      expect(super_admin_sessions).to be_empty
+      expect(session['warden.user.super_admin.session'].to_h).not_to include('last_seen_on')
+    end
+
     it 'rejects a session whose row no longer exists' do
       sign_in_super_admin
       super_admin.user_sessions.destroy_all
