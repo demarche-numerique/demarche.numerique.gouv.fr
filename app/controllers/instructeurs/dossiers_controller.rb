@@ -19,7 +19,7 @@ module Instructeurs
     before_action :dossier_with_submitted_revision, only: [:show_submitted_revision]
     before_action :set_gallery_attachments, only: [:show, :pieces_jointes, :annotations_privees, :avis, :messagerie, :personnes_impliquees, :reaffectation, :rendez_vous, :rdv_connection]
     before_action :retrieve_procedure_presentation, only: [:annotations_privees, :avis_new, :avis, :messagerie, :personnes_impliquees, :pieces_jointes, :reaffectation, :rendez_vous, :rdv_connection, :show, :dossier_labels, :passer_en_instruction, :repasser_en_construction, :repasser_en_instruction, :terminer, :pending_correction, :create_avis, :create_commentaire]
-    before_action :set_notifications, only: [:show, :annotations_privees, :avis, :avis_new, :messagerie, :personnes_impliquees, :pieces_jointes, :reaffectation, :rendez_vous, :rdv_connection, :dossier_labels, :repasser_en_construction, :repasser_en_instruction, :create_avis, :create_commentaire]
+    before_action :set_notifications, only: [:show, :annotations_privees, :avis, :avis_new, :messagerie, :personnes_impliquees, :pieces_jointes, :reaffectation, :rendez_vous, :rdv_connection, :create_avis, :create_commentaire]
 
     after_action :mark_demande_as_read, only: :show
     after_action :mark_messagerie_as_read, only: [:messagerie, :create_commentaire, :pending_correction]
@@ -86,18 +86,16 @@ module Instructeurs
     end
 
     def dossier_labels
-      @dossier = dossier
+      requested_label_ids = Array(params[:label_id]).map(&:to_i)
+      labels = dossier.procedure.labels.where(id: requested_label_ids).pluck(:id)
 
-      requested_label_ids = params[:label_id]&.map(&:to_i) || []
-      labels = @dossier.procedure.labels.where(id: requested_label_ids).pluck(:id)
+      labels.each { |label_id| DossierLabel.find_or_create_by(dossier_id: dossier.id, label_id:) }
 
-      labels.each { |label_id| DossierLabel.find_or_create_by(dossier_id: @dossier.id, label_id:) }
+      all_labels = DossierLabel.where(dossier_id: dossier.id).pluck(:label_id)
 
-      all_labels = DossierLabel.where(dossier_id: @dossier.id).pluck(:label_id)
+      (all_labels - labels).each { DossierLabel.find_by(dossier_id: dossier.id, label_id: _1).destroy }
 
-      (all_labels - labels).each { DossierLabel.find_by(dossier_id: @dossier.id, label_id: _1).destroy }
-
-      render :change_state
+      respond_with_change_state
     end
 
     def messagerie
@@ -209,17 +207,7 @@ module Instructeurs
         flash.alert = aasm_error_message(e, target_state: :en_instruction)
       end
 
-      @dossier = dossier
-      respond_to do |format|
-        format.turbo_stream do
-          set_notifications
-          render :change_state
-        end
-
-        format.html do
-          redirect_back_or_to(instructeur_procedure_path(procedure))
-        end
-      end
+      respond_with_change_state
     end
 
     def repasser_en_construction
@@ -230,16 +218,7 @@ module Instructeurs
         flash.alert = aasm_error_message(e, target_state: :en_construction)
       end
 
-      @dossier = dossier
-      respond_to do |format|
-        format.turbo_stream do
-          render :change_state
-        end
-
-        format.html do
-          redirect_back_or_to(instructeur_procedure_path(procedure))
-        end
-      end
+      respond_with_change_state
     end
 
     def repasser_en_instruction
@@ -250,16 +229,7 @@ module Instructeurs
         flash.alert = aasm_error_message(e, target_state: :en_instruction)
       end
 
-      @dossier = dossier
-      respond_to do |format|
-        format.turbo_stream do
-          render :change_state
-        end
-
-        format.html do
-          redirect_back_or_to(instructeur_procedure_path(procedure))
-        end
-      end
+      respond_with_change_state
     end
 
     def terminer
@@ -268,7 +238,7 @@ module Instructeurs
 
       if params[:process_action] != "accepter" && motivation.blank?
         flash.alert = t('instructeurs.dossiers.motivation_missing_error')
-        return redirect_back_or_to(instructeur_dossier_path(dossier.procedure, dossier))
+        return respond_with_change_state
       end
 
       h = { instructeur: current_instructeur, motivation: motivation, justificatif: justificatif }
@@ -292,9 +262,7 @@ module Instructeurs
         flash.alert = e.record.errors.full_messages
       end
 
-      @dossier = dossier
-      set_notifications
-      render :change_state
+      respond_with_change_state
     end
 
     def pending_correction
@@ -318,17 +286,7 @@ module Instructeurs
         end
       end
 
-      respond_to do |format|
-        format.turbo_stream do
-          @dossier = dossier
-          set_notifications
-          render :change_state
-        end
-
-        format.html do
-          redirect_back_or_to(instructeur_procedure_path(procedure))
-        end
-      end
+      respond_with_change_state
     end
 
     def create_commentaire
@@ -590,6 +548,22 @@ module Instructeurs
     def redirect_on_dossier_not_found
       if !dossier_scope.exists?(id: params[:dossier_id])
         redirect_to instructeur_procedure_path(procedure)
+      end
+    end
+
+    # Shared response of the six actions changing the state of a dossier. A native submission
+    # (the lists render `instructeurs/procedures/_dossier_actions` with `turbo: false`) redirects
+    # back to the list; a Turbo submission (the dossier page, `turbo: true`) renders the
+    # `change_state` stream, which refreshes the regions of the page reading the state without
+    # discarding the work in progress in the current tab. The notifications are read here, after
+    # the transition: the stickers are an eager Hash, a `before_action` would snapshot them before it.
+    def respond_with_change_state
+      respond_to do |format|
+        format.html { redirect_back_or_to(instructeur_procedure_path(procedure)) }
+        format.turbo_stream do
+          set_notifications
+          render :change_state
+        end
       end
     end
 

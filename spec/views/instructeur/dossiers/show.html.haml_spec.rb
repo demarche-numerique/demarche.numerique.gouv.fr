@@ -30,6 +30,17 @@ describe 'instructeurs/dossiers/show', type: :view do
     end
   end
 
+  context 'with a notification on every tab' do
+    let(:notifications_sticker) { { demande: true, annotations_privees: true, avis_externe: true, messagerie: true } }
+
+    it 'identifies each sticker by the key the turbo streams target, whatever the locale' do
+      I18n.with_locale(:en) do
+        expect(Capybara.string(subject).all('span.notifications[id]').map { it[:id] })
+          .to match_array(notifications_sticker.keys.map { view.notification_sticker_id(it) })
+      end
+    end
+  end
+
   it 'renders the dossier infos' do
     expect(subject).to have_text('Identité')
     expect(subject).to have_text('Demande')
