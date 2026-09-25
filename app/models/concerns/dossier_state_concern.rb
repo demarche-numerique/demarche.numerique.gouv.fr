@@ -9,6 +9,11 @@ module DossierStateConcern
     self.submitted_revision_id = revision_id
     save!
 
+    # Before routing/resolve/process: those may re-route the dossier or
+    # auto-transition it, and the events they emit (groupe_instructeur_change,
+    # state changes) must sequence after the modification that caused them.
+    emit_webhook_event(:dossier_modifie)
+
     RoutingEngine.compute(self)
 
     resolve_pending_correction!
@@ -18,6 +23,10 @@ module DossierStateConcern
     DossierNotification.create_notification(self, :dossier_modifie)
   end
 
+  # No dossier_modifie emission here, on purpose: instructeur edits concern
+  # private champs and must not be announced as a modification of the dossier.
+  # The commentaire created below does emit message_cree — also on purpose:
+  # it is a genuine messagerie message, visible to the usager.
   def instructeur_submit_en_construction!(instructeur:, motivation: nil)
     checkpoint = merge_instructeur_buffer_stream!
     traitement = self.traitements.instructeur_submit_en_construction(instructeur:, checkpoint:, motivation:)
@@ -44,6 +53,10 @@ module DossierStateConcern
       EmailTemplatePresenterService.create_commentaire_for_state(self, Dossier.states.fetch(:en_construction))
     end
     procedure.compute_dossiers_count
+
+    # Before process_*: a declarative/sva auto-transition emits its own event,
+    # which must sequence after the dépôt that caused it.
+    emit_webhook_event(:dossier_depose)
 
     process_declarative!
     process_sva_svr!
@@ -103,6 +116,7 @@ module DossierStateConcern
     resolve_pending_correction!
 
     log_dossier_operation(instructeur, :passer_en_instruction)
+    emit_webhook_event(:dossier_en_instruction)
   end
 
   def after_commit_passer_en_instruction(h)
@@ -142,6 +156,8 @@ module DossierStateConcern
     else
       log_automatic_dossier_operation(:passer_en_instruction)
     end
+
+    emit_webhook_event(:dossier_en_instruction)
   end
 
   def after_commit_passer_automatiquement_en_instruction(h = {})
@@ -171,6 +187,7 @@ module DossierStateConcern
     save!
 
     log_dossier_operation(instructeur, :repasser_en_construction)
+    emit_webhook_event(:dossier_repasse_en_construction)
   end
 
   def after_commit_repasser_en_construction
@@ -198,6 +215,7 @@ module DossierStateConcern
     EmailTemplatePresenterService.create_commentaire_for_state(self, Dossier.states.fetch(:accepte))
 
     log_dossier_operation(instructeur, :accepter, self)
+    emit_webhook_event(:dossier_accepte)
   end
 
   def after_commit_accepter(h)
@@ -242,6 +260,7 @@ module DossierStateConcern
     EmailTemplatePresenterService.create_commentaire_for_state(self, state)
 
     log_automatic_dossier_operation(:accepter, self)
+    emit_webhook_event(:dossier_accepte)
   end
 
   def after_commit_accepter_automatiquement
@@ -276,6 +295,7 @@ module DossierStateConcern
     EmailTemplatePresenterService.create_commentaire_for_state(self, Dossier.states.fetch(:refuse))
 
     log_dossier_operation(instructeur, :refuser, self)
+    emit_webhook_event(:dossier_refuse)
   end
 
   def after_commit_refuser(h)
@@ -313,6 +333,7 @@ module DossierStateConcern
     EmailTemplatePresenterService.create_commentaire_for_state(self, Dossier.states.fetch(:refuse))
 
     log_automatic_dossier_operation(:refuser, self)
+    emit_webhook_event(:dossier_refuse)
   end
 
   def after_commit_refuser_automatiquement
@@ -345,6 +366,7 @@ module DossierStateConcern
     EmailTemplatePresenterService.create_commentaire_for_state(self, Dossier.states.fetch(:sans_suite))
 
     log_dossier_operation(instructeur, :classer_sans_suite, self)
+    emit_webhook_event(:dossier_sans_suite)
   end
 
   def after_commit_classer_sans_suite(h)
@@ -389,6 +411,7 @@ module DossierStateConcern
     EmailTemplatePresenterService.create_commentaire_for_state(self, DossierOperationLog.operations.fetch(:repasser_en_instruction))
 
     log_dossier_operation(instructeur, :repasser_en_instruction)
+    emit_webhook_event(:dossier_repasse_en_instruction)
   end
 
   def after_commit_repasser_en_instruction(h)
@@ -416,6 +439,30 @@ module DossierStateConcern
   def clean_champs_after_instruction!
     remove_discarded_rows!
     clear_auto_purged_piece_justificatives!
+  end
+
+  # Emits once the surrounding transaction (if any) is committed, so the event
+  # row and its delivery job are never rolled back with the business change.
+  #
+  # Ordering contract: call this from INSIDE the business transaction (the
+  # aasm `after` callback), in causal order — the registered blocks run FIFO
+  # at the real commit, so event ids follow the order of the calls even when
+  # a transition nests an automatic one. Never emit from an aasm
+  # `after_commit` callback: at the real commit the inner transition's commit
+  # hooks run before the outer's, which would give the consequence
+  # (dossier_accepte) a lower id than its cause (dossier_depose).
+  def emit_webhook_event(event_type)
+    # Fail fast, and at the emit site: a type missing from EVENT_TYPES would
+    # otherwise be a permanent silent no-op (EmitEventService matches zero
+    # subscriptions and records nothing), and inside the deferred block the
+    # service's rescue would downgrade the bug to a Sentry event.
+    if !Webhook::EVENT_TYPES.include?(event_type.to_s)
+      raise ArgumentError, "unknown webhook event type: #{event_type}"
+    end
+
+    ActiveRecord.after_all_transactions_commit do
+      Webhooks::EmitEventService.call(dossier: self, event_type:)
+    end
   end
 
   private
