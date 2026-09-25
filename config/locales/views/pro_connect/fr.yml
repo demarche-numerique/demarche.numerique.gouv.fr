@@ -5,8 +5,8 @@ fr:
       explanation: "Cette démarche nécessite une authentification via ProConnect. Seuls les agents disposant d’un compte ProConnect peuvent y accéder."
     index:
       cta: Se connecter avec ProConnect
-      explanation: ProConnect est la solution proposée par l’État pour sécuriser et simplifier la connexion aux services en ligne
-      full_deploy_title: ProConnect est désormais entièrement déployé
-      full_deploy_body: Tous les ministères et opérateurs peuvent l’utiliser à ce jour
+      explanation_html: "Seuls les professionnels disposant <strong>d’un compte ProConnect</strong> peuvent accéder à leur <strong>espace administrateur</strong>. Veuillez vous connecter ou vous inscrire en cliquant sur le bouton ci-dessous :"
+      full_deploy_title: ProConnect est entièrement déployé
+      full_deploy_body: Tous les ministères et opérateurs peuvent l’utiliser à ce jour.
       whats_ds: '%{application_name}, la plateforme nationale de dématérialisation des démarches administratives'
       pro_email: Adresse électronique professionnelle

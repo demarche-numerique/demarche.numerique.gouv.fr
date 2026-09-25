@@ -5,8 +5,8 @@ en:
       explanation: "This procedure requires ProConnect authentication. Please sign in with ProConnect to access it."
     index:
       cta: Connect with ProConnect
-      explanation: ProConnect is the solution provided by the French government to secure and simplify connection to online services
-      full_deploy_title: ProConnect is now fully deployed
-      full_deploy_body: All ministries and operators can use it today
+      explanation_html: "Only professionals with <strong>a ProConnect account</strong> can access their <strong>administrator space</strong>. Please sign in or sign up by clicking the button below:"
+      full_deploy_title: ProConnect is fully deployed
+      full_deploy_body: All ministries and operators can use it today.
       whats_ds: '%{application_name}, the national platform for digitizing administrative procedures'
       pro_email: Professional email address
