@@ -245,7 +245,7 @@ class Procedure < ApplicationRecord
   end
 
   scope :for_api, -> { with_active_revision.includes(:administrateurs, :module_api_carto) }
-  scope :for_api_v2, -> { with_active_revision.includes(administrateurs: :user) }
+  scope :for_api_v2, -> { includes(:draft_revision, :published_revision, administrateurs: :user) }
   scope :with_active_revision, -> { includes(draft_revision: :revision_type_de_champs, published_revision: :revision_type_de_champs) }
 
   scope :order_by_position_for, -> (instructeur) {
