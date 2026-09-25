@@ -298,6 +298,32 @@ describe Champs::ReferentielChamp, type: :model do
           end
         end
       end
+
+      describe 'value_updated_at of the prefilled champ' do
+        let(:data) { { "ok" => "hello" } }
+        let(:prefilled_type_de_champ_type) { :text }
+        let(:stamp) { 3.days.ago.change(usec: 0) }
+
+        def prefilled_champ = dossier.reload.champ_data.find { it.stable_id == prefillable_stable_id }
+
+        it 'dates the prefilled value' do
+          prefilled_champ.update_columns(value_updated_at: stamp)
+
+          subject
+
+          expect(prefilled_champ.value_updated_at).to be > stamp
+          expect(dossier.reload.last_champ_updated_at).to eq(prefilled_champ.value_updated_at)
+        end
+
+        it 'leaves it alone when a refetch lands the same value' do
+          subject
+          prefilled_champ.update_columns(value_updated_at: stamp)
+
+          referentiel_champ.reload.update_external_data!(data:)
+
+          expect(prefilled_champ.value_updated_at).to eq(stamp)
+        end
+      end
     end
   end
 
