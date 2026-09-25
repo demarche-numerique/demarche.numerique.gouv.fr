@@ -1594,6 +1594,26 @@ describe Administrateurs::ProceduresController, type: :controller do
     end
   end
 
+  describe 'GET #modifications' do
+    render_views
+
+    let(:procedure) { create(:procedure, :published, administrateur: admin, public_type_de_champs: [{ libelle: 'premier champ' }]) }
+
+    before do
+      procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'second champ')
+      procedure.publish_revision!(admin)
+      procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'champ du brouillon')
+    end
+
+    it 'lists the changes of each published revision' do
+      get :modifications, params: { id: procedure.id }
+
+      expect(response).to have_http_status(:ok)
+      expect(response.body).to include('second champ')
+      expect(response.body).not_to include('champ du brouillon')
+    end
+  end
+
   describe 'PUT #publish' do
     let(:procedure) { create(:procedure, administrateur: admin, lien_site_web: lien_site_web) }
     let(:procedure2) { create(:procedure, :published, administrateur: admin, lien_site_web: lien_site_web) }

@@ -304,7 +304,8 @@ module Administrateurs
     end
 
     def modifications
-      ProcedureRevisionPreloader.new(@procedure.revisions.includes(administrateur: :user).reorder(published_at: :desc)).all
+      @revisions = @procedure.revisions.includes(administrateur: :user).to_a
+      ProcedureRevision.preload_type_de_champs(@revisions.reject(&:draft?))
     end
 
     def publication

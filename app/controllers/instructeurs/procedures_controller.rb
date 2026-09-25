@@ -401,6 +401,8 @@ module Instructeurs
         .includes(administrateur: :user)
         .where.not(published_at: nil)
         .reorder(published_at: :desc)
+        .to_a
+      ProcedureRevision.preload_type_de_champs(@revisions)
       @instructeur_procedure = find_or_create_instructeur_procedure(@procedure)
     end
 
