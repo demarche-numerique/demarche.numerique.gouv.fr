@@ -29,7 +29,7 @@
 
       - if @procedure.brouillon? || @procedure.draft_changed?
         %li
-          = link_to 'Tester la démarche', commencer_url(@procedure.path, test: true), target: :blank, rel: :noopener, class: 'fr-btn fr-btn--tertiary fr-btn--icon-left fr-icon-flashlight-line'
+          = link_to 'Tester la démarche', commencer_url(@procedure.path, test: true), target: "_blank", rel: "noopener", class: 'fr-btn fr-btn--tertiary fr-btn--icon-left fr-icon-flashlight-line'
 
       - if @procedure.brouillon?
         %li
