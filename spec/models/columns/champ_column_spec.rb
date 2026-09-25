@@ -238,6 +238,7 @@ describe Columns::ChampColumn do
       let_it_be(:procedure) { create(:procedure, public_type_de_champs: [{ type: :yes_no, mandatory: false, libelle: "oui/non" }]) }
       let(:dossier_with_yes) { create(:dossier, :en_instruction, procedure:) }
       let(:dossier_with_no) { create(:dossier, :en_instruction, procedure:) }
+      let(:dossier_with_empty_value) { create(:dossier, :en_instruction, procedure:) }
       let(:dossier_not_filled) { create(:dossier, :en_instruction, procedure:) }
 
       let(:column) { procedure.find_column(label: "oui/non") }
@@ -246,6 +247,7 @@ describe Columns::ChampColumn do
       before do
         dossier_with_yes.champ_data.first.update!(value: "true")
         dossier_with_no.champ_data.first.update!(value: "false")
+        dossier_with_empty_value.champ_data.first.update!(value: nil)
         dossier_not_filled.champ_data.first.destroy!
       end
 
@@ -269,7 +271,7 @@ describe Columns::ChampColumn do
         let(:search_terms) { [Column::NOT_FILLED_VALUE] }
 
         it "returns the correct ids" do
-          expect(subject).to match_array([dossier_not_filled.id])
+          expect(subject).to match_array([dossier_with_empty_value.id, dossier_not_filled.id])
         end
       end
     end
@@ -277,11 +279,16 @@ describe Columns::ChampColumn do
     context "with a checkbox champ not mandatory" do
       let_it_be(:procedure) { create(:procedure, public_type_de_champs: [{ type: :checkbox, mandatory: false, libelle: "checkbox" }]) }
       let(:dossier_with_checked) { create(:dossier, :en_instruction, procedure:) }
-      let(:dossier_not_checked) { create(:dossier, :en_instruction, procedure:) }
+      let(:dossier_unchecked) { create(:dossier, :en_instruction, procedure:) }
+      let(:dossier_with_empty_value) { create(:dossier, :en_instruction, procedure:) }
+      let(:dossier_not_filled) { create(:dossier, :en_instruction, procedure:) }
 
       before do
         dossier_with_checked.champ_data.first.update!(value: "true")
-        dossier_not_checked.champ_data.first.destroy!
+        # 'false' reaches the champ through a prefill or the API, never the form
+        dossier_unchecked.champ_data.first.update!(value: "false")
+        dossier_with_empty_value.champ_data.first.update!(value: nil)
+        dossier_not_filled.champ_data.first.destroy!
       end
 
       let(:column) { procedure.find_column(label: "checkbox") }
@@ -299,37 +306,39 @@ describe Columns::ChampColumn do
         let(:search_terms) { ["false"] }
 
         it "returns the correct ids" do
-          expect(subject).to match_array([dossier_not_checked.id])
+          expect(subject).to match_array([dossier_unchecked.id, dossier_with_empty_value.id, dossier_not_filled.id])
         end
       end
     end
 
-    context "with a checkbox champ not mandatory" do
-      let_it_be(:procedure) { create(:procedure, public_type_de_champs: [{ type: :checkbox, mandatory: false, libelle: "checkbox" }]) }
-      let(:dossier_with_checked) { create(:dossier, :en_instruction, procedure:) }
-      let(:dossier_not_checked) { create(:dossier, :en_instruction, procedure:) }
+    context "with a civilite champ not mandatory" do
+      let_it_be(:procedure) { create(:procedure, public_type_de_champs: [{ type: :civilite, mandatory: false, libelle: "civilité" }]) }
+      let(:dossier_with_madame) { create(:dossier, :en_instruction, procedure:) }
+      let(:dossier_with_empty_value) { create(:dossier, :en_instruction, procedure:) }
+      let(:dossier_not_filled) { create(:dossier, :en_instruction, procedure:) }
 
-      before do
-        dossier_with_checked.champ_data.first.update!(value: "true")
-        dossier_not_checked.champ_data.first.destroy!
-      end
-
-      let(:column) { procedure.find_column(label: "checkbox") }
+      let(:column) { procedure.find_column(label: "civilité") }
       let(:dossiers) { procedure.dossiers }
 
-      context "when searching for a checked" do
-        let(:search_terms) { ["true"] }
+      before do
+        dossier_with_madame.champ_data.first.update!(value: "Mme")
+        dossier_with_empty_value.champ_data.first.update!(value: nil)
+        dossier_not_filled.champ_data.first.destroy!
+      end
+
+      context "when searching for a madame" do
+        let(:search_terms) { ["Mme"] }
 
         it "returns the correct ids" do
-          expect(subject).to match_array([dossier_with_checked.id])
+          expect(subject).to match_array([dossier_with_madame.id])
         end
       end
 
-      context "when searching for a not checked" do
-        let(:search_terms) { ["false"] }
+      context "when searching for a nil" do
+        let(:search_terms) { [Column::NOT_FILLED_VALUE] }
 
         it "returns the correct ids" do
-          expect(subject).to match_array([dossier_not_checked.id])
+          expect(subject).to match_array([dossier_with_empty_value.id, dossier_not_filled.id])
         end
       end
     end
