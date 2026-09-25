@@ -78,7 +78,7 @@ RSpec.describe ReleaseNotesController, type: :controller do
 
       it 'renders links with proper rel and target attributes' do
         expect(response.body).to include('href="https://example.gouv.fr"')
-        expect(response.body).to include('rel="noreferrer noopener"')
+        expect(response.body).to include('rel="noopener external"')
         expect(response.body).to include('target="_blank"')
         expect(response.body).to include('title=')
       end
