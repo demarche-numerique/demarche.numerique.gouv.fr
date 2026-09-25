@@ -903,6 +903,22 @@ describe User, type: :model do
         expect(two.reload).to be_unusable
       end
 
+      # The live link has to go, the old row has to stay: it is what
+      # Cron::TrustedDeviceTokenRenewalJob joins on to warn an instructeur before
+      # their browser stops being trusted, and it can no longer open anything.
+      it 'takes the email links that still work, and leaves the renewal warning its rows' do
+        instructeur = create(:instructeur)
+        live = instructeur.trusted_device_tokens.create!
+        spent = instructeur.trusted_device_tokens.create!(activated_at: 25.days.ago)
+        spent.update_column(:created_at, 25.days.ago)
+
+        instructeur.user.update!(password: "#{users.default_password} (bis)")
+
+        expect(TrustedDeviceToken.exists?(live.id)).to be(false)
+        expect(TrustedDeviceToken.exists?(spent.id)).to be(true)
+        expect(TrustedDeviceToken.expiring_in_one_week).to include(spent)
+      end
+
       # A statement timeout on `user_sessions` is the realistic failure: without
       # one transaction the account would be half signed out and told it failed.
       it 'breaks nothing when the rows cannot be revoked' do

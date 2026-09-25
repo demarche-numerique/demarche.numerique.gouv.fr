@@ -400,12 +400,17 @@ class User < ApplicationRecord
   private
 
   # The trusted device cookie is self-asserting: bumping the version is the only
-  # thing that reaches it. Pending email tokens open a session, so they go too.
+  # thing that reaches it. Email tokens that can still open a session go too.
+  #
+  # Only those: the older rows are what `Cron::TrustedDeviceTokenRenewalJob` joins
+  # on to warn before a trusted browser expires, and they cannot open anything
+  # any more. The two sets never overlap, a month of trust being longer than a
+  # week of validity.
   def revoke_account_wide!(reason)
     return if !TOTAL_REVOCATION_REASONS.include?(reason.to_sym)
 
     increment!(:trusted_device_version)
-    instructeur&.trusted_device_tokens&.delete_all
+    instructeur&.trusted_device_tokens&.usable_as_login_link&.delete_all
   end
 
   def does_not_merge_on_self
