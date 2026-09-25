@@ -88,7 +88,7 @@
             L’aperçu se met à jour automatiquement après chaque modification.
             <% if @preview_dossiers.blank? %>
               Pour générer un aperçu fidèle avec les champs et les dates,
-              <%= link_to("créez-vous un dossier", new_dossier_path(procedure_id: @procedure, brouillon: true), class: "no-wrap", **external_link_attributes) %>
+              <%= link_to("créez-vous un dossier", new_dossier_path(procedure_id: @procedure, brouillon: true), class: "no-wrap", **new_tab_link_attributes) %>
               et déposez-le&nbsp;: l’aperçu l’utilisera.
             <% end %>
           </p>

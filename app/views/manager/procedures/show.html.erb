@@ -92,9 +92,9 @@
                 <p style="margin-top: 20px;">
                   Vous êtes administrateur de cette démarche. Aller à la
                   démarche
-                  <%= link_to("ETQ admin", admin_procedure_path(procedure), **external_link_attributes) %>
+                  <%= link_to("ETQ admin", admin_procedure_path(procedure), **new_tab_link_attributes) %>
                   ou
-                  <%= link_to("ETQ instructeur", instructeur_procedure_path(procedure), **external_link_attributes) %>.
+                  <%= link_to("ETQ instructeur", instructeur_procedure_path(procedure), **new_tab_link_attributes) %>.
                 </p>
                 <%= button_to 'Me retirer de cette démarche', delete_administrateur_manager_procedure_path(procedure), method: :put, class: 'button' %>
               <% else %>
