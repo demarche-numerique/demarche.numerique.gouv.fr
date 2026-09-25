@@ -1,0 +1,12 @@
+---
+:concurrency: 10
+
+:queues:
+  - critical
+  - mailers
+  - default
+  - low
+  - cron
+  - exports
+  - archives
+  - ultra_low
