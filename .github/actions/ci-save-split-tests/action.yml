@@ -11,7 +11,7 @@ runs:
   using: composite
   steps:
     - name: Save test reports
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       with:
         path: ${{ inputs.results_path }}
         key: tests-reports-${{ github.ref }}-${{ github.sha }}-${{ github.run_id }}

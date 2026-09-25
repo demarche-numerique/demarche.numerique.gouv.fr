@@ -21,7 +21,7 @@ runs:
 
     - name: Restore cached test database schema
       if: inputs.database == 'true'
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       with:
         path: tmp/schema_cache.sql
         key: db-schema-v1-${{ hashFiles('db/schema.rb', 'db/migrate/**') }}
