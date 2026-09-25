@@ -167,6 +167,7 @@ module DossierStateConcern
       .passer_en_construction(instructeur: instructeur)
       .processed_at
     self.expired_at = expiration_date
+    self.sva_svr_decision_on = nil if procedure.sva_svr_disabled?
 
     save!
 

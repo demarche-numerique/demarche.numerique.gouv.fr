@@ -219,7 +219,7 @@ module ProcedureCloneConcern
     procedure.experts_require_administrateur_invitation = false if !options[:clone_avis]
     procedure.api_entreprise_token = nil if !options[:clone_api_entreprise_token] || !same_admin?(admin)
     procedure.web_hook_url = nil if !same_admin?(admin)
-    procedure.sva_svr = {} if !options[:clone_sva_svr]
+    procedure.sva_svr = {} if !options[:clone_sva_svr] || sva_svr_disabled?
     procedure.combined_declarative_email = true
 
     if !options[:clone_instructeurs] || !same_admin?(admin)

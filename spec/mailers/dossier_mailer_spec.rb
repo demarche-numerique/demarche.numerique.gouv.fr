@@ -353,6 +353,17 @@ RSpec.describe DossierMailer, type: :mailer do
         expect(subject.body).to include("réinitialisé")
       end
     end
+
+    context 'sva reverted to disabled while still in brouillon, after a dossier already carries a decision date' do
+      let(:sva_svr_decision_on) { Date.tomorrow }
+      let(:procedure) { create(:procedure, :sva) }
+
+      before { procedure.update!(sva_svr: procedure.sva_svr.merge('decision' => 'disabled')) }
+
+      it 'does not name a rule the procedure no longer carries' do
+        expect(subject.body).not_to include("Silence")
+      end
+    end
   end
 
   describe 'notify_transfer' do

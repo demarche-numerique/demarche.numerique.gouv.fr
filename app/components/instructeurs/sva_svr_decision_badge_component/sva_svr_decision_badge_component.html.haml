@@ -2,13 +2,4 @@
   - if with_label.present?
     = label_for_badge
 
-  - if previously_termine?
-    = t('.manual_decision')
-  - elsif depose_before_configuration?
-    = t('.depose_before_configuration', decision: human_decision)
-  - elsif without_date? # generic case without SVA/SVR date, when we have a projection
-    = t('.manual_decision')
-  - elsif pending_correction?
-    = t('.remaining_days_after_correction', count: days_count)
-  - else
-    = t('.in_days', count: days_count)
+  = badge_text

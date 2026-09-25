@@ -537,4 +537,29 @@ describe ColumnsConcern do
       expect(labels).to eq(['Toujours visible'])
     end
   end
+
+  describe 'colonnes SVA d’une démarche désactivée' do
+    before_all { seed "cases/sva" }
+
+    let(:procedure) { procedures.sva }
+
+    before { procedure.update_column(:sva_svr, procedure.sva_svr.merge('disabled_at' => Time.current.iso8601)) }
+
+    it 'garde la colonne de date et son filtre' do
+      column_ids = procedure.columns.map(&:column)
+
+      expect(column_ids).to include('sva_svr_decision_on')
+      expect(column_ids).to include('sva_svr_decision_before')
+    end
+
+    it 'garde la colonne dans les colonnes exportables' do
+      expect(procedure.dossier_columns_for_export.map(&:column)).to include('sva_svr_decision_on')
+    end
+
+    it 'reste résoluble par find_column, donc par une présentation enregistrée' do
+      column = procedure.columns.find { it.column == 'sva_svr_decision_on' }
+
+      expect { procedure.find_column(h_id: column.h_id) }.not_to raise_error
+    end
+  end
 end

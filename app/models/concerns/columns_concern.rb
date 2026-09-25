@@ -54,7 +54,7 @@ module ColumnsConcern
     columns = [dossier_state_column, dossier_archived_column]
     columns.concat(dossier_dates_columns)
     columns.concat([dossier_motivation_column])
-    columns.concat(sva_svr_columns(for_export: true)) if sva_svr_enabled?
+    columns.concat(sva_svr_columns(for_export: true)) if sva_svr_ever_enabled?
     columns.concat([dossier_accuse_lecture_agreement_at_column]) if accuse_lecture?
     columns.concat([groupe_instructeurs_id_column, followers_instructeurs_email_column])
     columns.concat([dossier_labels_column])
@@ -224,7 +224,7 @@ module ColumnsConcern
     columns.concat(dossier_dates_columns)
     columns.concat([dossier_motivation_column])
     columns.concat([dossier_accuse_lecture_agreement_at_column]) if accuse_lecture?
-    columns.concat(sva_svr_columns(for_export: false)) if sva_svr_enabled?
+    columns.concat(sva_svr_columns(for_export: false)) if sva_svr_ever_enabled?
     columns.concat(dossier_non_displayable_dates_columns)
     columns.concat(dossier_submitted_with_identity_provider_columns)
     columns.concat([Columns::ReadAgreementColumn.new(procedure_id: id)]) if accuse_lecture?

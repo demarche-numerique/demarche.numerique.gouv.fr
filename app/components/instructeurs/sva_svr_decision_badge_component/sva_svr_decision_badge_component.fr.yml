@@ -4,6 +4,7 @@
     manual_decision_title: Le dossier doit être traité par un instructeur, soit car il a été déposé avant la configuration %{decision}, soit car il a été repassé en instruction.
     depose_before_configuration: Déposé avant %{decision}
     depose_before_configuration_title: Ce dossier a été déposé avant la configuration %{decision}.
+    rule_disabled_title: La décision automatique a été désactivée sur cette démarche. Ce dossier doit être traité par un instructeur.
     previously_termine_title: Le dossier a été repassé en instruction. Il doit être traité par un instructeur.
     in_days:
       zero: Aujourd’hui

@@ -123,6 +123,19 @@ describe DossierCorrectableConcern do
       end
     end
 
+    context 'when the sva rule has been disabled' do
+      before_all { seed "cases/sva" }
+
+      let(:procedure) { procedures.sva }
+      let(:dossier) { create(:dossier, :en_instruction, :with_individual, procedure:, sva_svr_decision_on: Date.current + 12.days) }
+
+      before { procedure.update_column(:sva_svr, procedure.sva_svr.merge('disabled_at' => Time.current.iso8601)) }
+
+      it 'drops the decision date nothing will recompute any more' do
+        expect { flag }.to change { dossier.reload.sva_svr_decision_on }.to(nil)
+      end
+    end
+
     context "when there others instructeurs" do
       let(:procedure) { create(:procedure) }
       let(:dossier) { create(:dossier, :en_construction, groupe_instructeur:, procedure:) }

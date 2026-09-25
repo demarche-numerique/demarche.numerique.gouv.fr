@@ -4,6 +4,7 @@
   manual_decision_title: The file must be processed by an instructor, either because it was submitted before the %{decision} configuration, or because it has been returned to the instruction stage.
   depose_before_configuration: Submitted before %{decision}
   depose_before_configuration_title: This file was submitted before the %{decision} configuration.
+  rule_disabled_title: The automatic decision has been disabled on this procedure. This file must be processed by an instructor.
   previously_termine_title: The file has been returned to the instruction stage. It must now be processed by an instructor.
   in_days:
     zero: Today
