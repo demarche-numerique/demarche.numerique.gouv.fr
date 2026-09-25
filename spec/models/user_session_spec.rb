@@ -64,8 +64,9 @@ describe UserSession, type: :model do
   # subset User treats as total, and the messages the failure app looks up by
   # name. A missing message is a sign in page with no explanation.
   describe 'the messages a reason resolves to' do
-    # The two the row reports without ever being revoked for them.
-    reasons = UserSession::REVOCATION_REASONS + %w[session_revoked expired]
+    # password_change never reaches a sign in page: the salt rejects the other
+    # devices first. session_revoked and expired are reported, never stored.
+    reasons = UserSession::REVOCATION_REASONS - %w[password_change] + %w[session_revoked expired]
 
     reasons.each do |reason|
       it "has a French and an English message for #{reason}" do
