@@ -12,14 +12,16 @@ RSpec.describe ProcedureHelper, type: :helper do
     end
   end
 
-  describe '#estimated_fill_duration_minutes' do
-    subject { estimated_fill_duration_minutes(procedure.reload) }
+  describe '#estimated_fill_minutes_text' do
+    include Logic
+
+    subject { estimated_fill_minutes_text(procedure.reload.active_revision) }
 
     context 'with champs' do
       let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :yes_no }, { type: :piece_justificative }]) }
 
       it 'rounds up the duration to the minute' do
-        expect(subject).to eq(3)
+        expect(subject).to eq('3')
       end
     end
 
@@ -27,7 +29,20 @@ RSpec.describe ProcedureHelper, type: :helper do
       let(:procedure) { create(:procedure) }
 
       it 'never displays ’zero minutes’' do
-        expect(subject).to eq(1)
+        expect(subject).to eq('1')
+      end
+    end
+
+    context 'with conditions' do
+      let(:procedure) do
+        create(:procedure, public_type_de_champs: [
+          { type: :yes_no, mandatory: true, description: nil, stable_id: 1 },
+          { type: :piece_justificative, mandatory: true, description: nil, condition: ds_eq(champ_value(1), constant(true)) },
+        ])
+      end
+
+      it 'displays a range' do
+        expect(subject).to eq('1 à 3')
       end
     end
   end

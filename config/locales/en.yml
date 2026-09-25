@@ -75,6 +75,8 @@ en:
     modal_close: "Close"
     modal_close_alt: "Close this modal"
   helpers:
+    estimated_fill_duration:
+      range: "%{min} to %{max}"
     admin_procedures_back_label:
       publiee: 'Published procedures'
       brouillon: 'Procedures in test'
@@ -1200,7 +1202,7 @@ en:
         sva: "Silence Vaut Accord"
         svr: "Silence Vaut Rejet"
     procedure_description:
-      estimated_fill_duration: "Estimated fill time: %{estimated_minutes} mins. (may vary depending on the options)"
+      estimated_fill_duration: "Estimated fill time: %{estimated_minutes} mins."
       date_limite: "Deadline: %{date}."
       usual_traitement_time_title: What are the processing times for this procedure?
       pieces_jointes : What are the required attachments ?
