@@ -39,6 +39,52 @@ module SessionRegistrableConcern
     warden.raw_session["warden.user.#{scope}.session"] ||= {}
   end
 
+  # Runs on every authenticated request, so the registry side fails open. Matched
+  # rather than filtered: that is how `sign_in` went unregistered for a while.
+  def self.after_set_user(record, warden, options)
+    return if !record.is_a?(SessionRegistrableConcern)
+
+    scope = options[:scope]
+
+    case options[:event]
+    # :set_user is Devise's `sign_in`: FranceConnect, ProConnect, invitations,
+    # confirmations, password resets, expert links. It opens a session too.
+    in :authentication | :set_user
+      run_registry { open_session!(record, warden, scope) }
+
+      remember!(record, warden, scope)
+
+    in :fetch
+      intact = run_registry { continue_session!(record, warden, scope) }
+
+      touch_last_seen!(warden_session(warden, scope)) if intact && !signed_out?(warden, scope)
+
+      persist_cookie!(warden, scope)
+    end
+  rescue StandardError => e
+    Sentry.capture_exception(e)
+  end
+
+  def self.before_logout(record, warden, options)
+    return if !record.is_a?(SessionRegistrableConcern)
+
+    session_id = warden_session(warden, options[:scope])[SESSION_KEY]
+
+    return if session_id.nil?
+
+    record.user_sessions.usable.where(id: session_id).revoke_all!(:sign_out)
+  rescue StandardError => e
+    Sentry.capture_exception(e)
+  end
+
+  def self.run_registry
+    yield
+    true
+  rescue StandardError => e
+    Sentry.capture_exception(e)
+    false
+  end
+
   def self.open_session!(record, warden, scope)
     request = warden.request
     session = warden.session(scope)
@@ -100,7 +146,6 @@ module SessionRegistrableConcern
     session[LAST_SEEN_KEY] = today if session[LAST_SEEN_KEY] != today
   end
 
-  # Whether `continue_session!` -- or its rescue -- has just dropped this scope.
   def self.signed_out?(warden, scope)
     warden.raw_session["warden.user.#{scope}.key"].nil?
   end
