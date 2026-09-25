@@ -60,12 +60,12 @@ describe UserSession, type: :model do
     end
   end
 
-  # Three lists have to agree and nothing binds them: the reasons here, the
-  # subset User treats as total, and the messages the failure app looks up by
-  # name. A missing message is a sign in page with no explanation.
+  # Three lists have to agree and nothing binds them: the reasons, the subset
+  # User treats as total, and the messages looked up by name.
   describe 'the messages a reason resolves to' do
-    # The two the row reports without ever being revoked for them.
-    reasons = UserSession::REVOCATION_REASONS + %w[session_revoked expired]
+    # The two the row reports without being revoked for them, minus the one that
+    # cannot reach a sign in page: the salt rejects the other devices first.
+    reasons = UserSession::REVOCATION_REASONS - %w[password_change] + %w[session_revoked expired]
 
     reasons.each do |reason|
       it "has a French and an English message for #{reason}" do
