@@ -880,7 +880,7 @@ fr:
       procedure_not_found: "La démarche n’existe pas"
       pro_connect:
         connexion: "Une erreur est survenue lors de la connexion avec ProConnect. Veuillez réessayer."
-        required: "Vous devez utiliser ProConnect pour vous connecter."
+        required: "Vous devez utiliser ProConnect pour vous connecter à votre espace administrateur."
         mfa_failed: "ProConnect n’a pas pu vérifier votre double authentification. Réessayez, puis contactez le support si le problème persiste."
       france_connect:
         connexion: "Une erreur est survenue lors de la connexion avec FranceConnect. Veuillez réessayer."

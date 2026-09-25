@@ -48,7 +48,7 @@ describe 'Signin in:' do
       try_sign_in_with admin.email, users.default_password
 
       expect(page).to have_current_path(pro_connect_path(force_pro_connect: true))
-      expect(page).to have_content('Vous devez utiliser ProConnect pour vous connecter.')
+      expect(page).to have_content('Vous devez utiliser ProConnect pour vous connecter à votre espace administrateur.')
       expect(page).to have_link('S’identifier avec ProConnect')
       expect(page).not_to have_field(:user_password)
       within('.fr-header__tools') do

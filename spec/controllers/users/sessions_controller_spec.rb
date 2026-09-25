@@ -150,7 +150,7 @@ describe Users::SessionsController, type: :controller do
         subject
 
         expect(response).to redirect_to(pro_connect_path(force_pro_connect: true))
-        expect(flash.alert).to eq('Vous devez utiliser ProConnect pour vous connecter.')
+        expect(flash.alert).to eq('Vous devez utiliser ProConnect pour vous connecter à votre espace administrateur.')
         expect(controller.current_user).to be_nil
         expect(user.reload.last_sign_in_at).to eq(2.days.ago)
         expect(user.sign_in_count).to eq(3)

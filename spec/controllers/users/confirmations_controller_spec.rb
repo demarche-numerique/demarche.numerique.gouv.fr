@@ -46,7 +46,7 @@ describe Users::ConfirmationsController, type: :controller do
         expect(user.reload).to be_confirmed
         expect(controller.current_user).to be_nil
         expect(response).to redirect_to(pro_connect_path(force_pro_connect: true))
-        expect(flash.alert).to eq('Vous devez utiliser ProConnect pour vous connecter.')
+        expect(flash.alert).to eq('Vous devez utiliser ProConnect pour vous connecter à votre espace administrateur.')
       end
     end
 

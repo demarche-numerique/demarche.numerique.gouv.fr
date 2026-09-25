@@ -875,7 +875,7 @@ en:
         unavailable_for_legal_reasons: 'Information for this establishment is not available (non-diffusable entity).'
       pro_connect:
         connexion: "Error trying to connect to ProConnect. Please try again."
-        required: "You must use ProConnect to sign in."
+        required: "You must use ProConnect to sign in to your administrator space."
         mfa_failed: "ProConnect could not verify your two-factor authentication. Try again, then contact support if the problem persists."
       france_connect:
         connexion: "Error trying to connect to FranceConnect."
