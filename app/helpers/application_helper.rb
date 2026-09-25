@@ -132,7 +132,7 @@ module ApplicationHelper
   end
 
   def external_link_attributes
-    { target: "_blank", rel: "noopener noreferrer" }
+    { target: "_blank", rel: "noopener external" }
   end
 
   def new_tab_link_attributes
