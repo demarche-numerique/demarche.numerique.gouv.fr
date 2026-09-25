@@ -64,21 +64,39 @@ class DossierPreloader
   # Révisions indexées par id pour un batch de dossiers, mémorisées d'un batch
   # à l'autre. Les révisions déjà chargées avec leurs `revision_type_de_champs`
   # (ex: `Dossier.for_api_v2`) sont réutilisées : recharger les types de champ
-  # d'une révision est la requête la plus coûteuse du préchargement.
+  # d'une révision est la requête la plus coûteuse du préchargement. Une
+  # révision déjà connue, donc déjà disposée, l'emporte sur celle d'un batch.
   def revisions_for(dossiers, pj_template: false)
     @revisions ||= {}
-    @revisions.merge!(preloaded_revisions(dossiers)) unless pj_template
+    known_ids = @revisions.keys
+    @revisions.reverse_merge!(preloaded_revisions(dossiers)) unless pj_template
 
     missing_ids = dossiers.flat_map { [it.revision_id, it.submitted_revision_id] }.compact.uniq - @revisions.keys
     if missing_ids.any?
       @revisions.merge!(
         ProcedureRevision.where(id: missing_ids)
-          .includes(procedure: [], revision_type_de_champs: { type_de_champ: pj_template ? { piece_justificative_template_attachment: :blob, notice_explicative_attachment: :blob } : [] })
+          .includes(:procedure, :revision_type_de_champs)
           .index_by(&:id)
       )
     end
 
+    preload_type_de_champs(@revisions.except(*known_ids).values, pj_template:)
+
     @revisions
+  end
+
+  # A revision lays out its own types de champ: better here, in one query,
+  # than wherever the first champ of each is read.
+  def preload_type_de_champs(revisions, pj_template:)
+    ProcedureRevision.preload_type_de_champs(revisions)
+    type_de_champs = revisions.flat_map(&:type_de_champs)
+
+    if pj_template && type_de_champs.any?
+      ::ActiveRecord::Associations::Preloader.new(
+        records: type_de_champs,
+        associations: { piece_justificative_template_attachment: :blob, notice_explicative_attachment: :blob }
+      ).call
+    end
   end
 
   def preloaded_revisions(dossiers)

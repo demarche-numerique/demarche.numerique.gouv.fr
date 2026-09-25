@@ -85,27 +85,21 @@ module DossierChampsConcern
   end
 
   def find_type_de_champ_by_stable_id(stable_id, scope = nil)
+    type_de_champ = revision.type_de_champ(stable_id)
+
     case scope
     when :public
-      public_type_de_champs_all
+      type_de_champ if type_de_champ&.public?
     when :private
-      private_type_de_champs_all
+      type_de_champ if type_de_champ&.private?
     else
-      revision.type_de_champs
-    end.find { _1.stable_id == stable_id.to_i }
+      type_de_champ
+    end
   end
 
   # Same lookup, for callers that cannot do anything useful without a type de champ.
   def find_type_de_champ_by_stable_id!(stable_id, scope = nil, row_id: nil)
     find_type_de_champ_by_stable_id(stable_id, scope) || raise(ChampNotInRevisionError.new(stable_id, row_id))
-  end
-
-  def public_type_de_champs_all
-    revision.type_de_champs.filter(&:public?)
-  end
-
-  def private_type_de_champs_all
-    revision.type_de_champs.filter(&:private?)
   end
 
   def champs_for_prefill(stable_ids)
@@ -318,7 +312,7 @@ module DossierChampsConcern
     reset_champs_cache
 
     with_main_stream do
-      prefill_and_enqueue_fetch_external_data_jobs(buffer_champ_data.filter(&:referentiel?), private_type_de_champs_all)
+      prefill_and_enqueue_fetch_external_data_jobs(buffer_champ_data.filter(&:referentiel?), revision.private_flat_type_de_champs)
     end
 
     history_stream

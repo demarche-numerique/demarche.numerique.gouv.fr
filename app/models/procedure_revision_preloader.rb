@@ -8,6 +8,9 @@ class ProcedureRevisionPreloader
   def all
     revisions = @revisions.to_a
     load_procedure_revision_type_de_champs(revisions)
+    # Nothing is laid out here: the pages listing every revision only read
+    # their coordinates.
+    revisions
   end
 
   def self.load_one(revision)
@@ -18,6 +21,8 @@ class ProcedureRevisionPreloader
 
   def load_procedure_revision_type_de_champs(revisions)
     revisions_by_id = revisions.index_by(&:id)
+
+    reload_type_de_champ_trees(revisions_by_id)
 
     coordinates_by_revision_id = ProcedureRevisionTypeDeChamp
       .where(revision_id: revisions.map(&:id))
@@ -36,6 +41,19 @@ class ProcedureRevisionPreloader
     end
 
     assign_revision_type_de_champ(revisions_by_id, coordinates_by_revision_id)
+  end
+
+  # The stored tree is read again with the coordinates, so that the types de
+  # champ laid out before follow an edit made elsewhere. A tree as it was is
+  # left alone: the layout stands.
+  def reload_type_de_champ_trees(revisions_by_id)
+    ProcedureRevision.where(id: revisions_by_id.keys).pluck(:id, :type_de_champ_tree).each do |id, type_de_champ_tree|
+      revision = revisions_by_id[id]
+      next if type_de_champ_tree == revision[:type_de_champ_tree]
+
+      revision.write_attribute(:type_de_champ_tree, type_de_champ_tree)
+      revision.clear_attribute_changes([:type_de_champ_tree])
+    end
   end
 
   def assign_revision_type_de_champ(revisions_by_id, coordinates_by_revision_id)

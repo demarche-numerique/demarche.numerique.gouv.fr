@@ -44,6 +44,9 @@ module Maintenance
             .update_all(type_de_champ_id: original_ids_by_stable_id.fetch(stable_id))
         end
         TypeDeChamp.where(id: own_type_de_champ_ids).delete_all
+        # the task ran before the revisions stored their tree: the types de champ
+        # are laid out from the coordinates, as they were then
+        ProcedureRevision.where(procedure_id: kopy.id).update_all(type_de_champ_tree: nil)
       end
 
       context "with the procedure holding the types de champ of an older one" do

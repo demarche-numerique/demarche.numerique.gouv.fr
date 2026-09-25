@@ -36,6 +36,7 @@ FactoryBot.define do
           parent: evaluator.parent)
 
         revision.save
+        restore_type_de_champ_tree(revision)
       end
     end
 
@@ -249,6 +250,7 @@ FactoryBot.define do
         end
 
         revision.save
+        restore_type_de_champ_tree(revision)
       end
 
       # TODO: drop

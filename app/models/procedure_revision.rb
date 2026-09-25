@@ -12,15 +12,57 @@ class ProcedureRevision < ApplicationRecord
   has_many :dossiers, inverse_of: :revision, foreign_key: :revision_id
   has_many :revision_type_de_champs, -> { order(:position, :id) }, class_name: 'ProcedureRevisionTypeDeChamp', foreign_key: :revision_id, dependent: :destroy, inverse_of: :revision
 
+  # Lays out the types de champ of several revisions in one query, where each
+  # revision would run its own, anew if it already had. An instance goes to one
+  # revision only: the others get their own instance of the type de champ
+  # several revisions hold, built from the same row. Two instances of one
+  # revision are two revisions here, each laid out.
+  def self.preload_type_de_champs(revisions)
+    trees = revisions.uniq(&:object_id).filter(&:persisted?).map { [it, it.type_de_champ_tree] }
+    type_de_champs_by_id = TypeDeChamp.where(id: trees.flat_map { it.last.type_de_champ_ids }.uniq).index_by(&:id)
+    handed_ids = Set.new
+
+    trees.each do |revision, tree|
+      own_type_de_champs_by_id = type_de_champs_by_id.slice(*tree.type_de_champ_ids).transform_values do |type_de_champ|
+        handed_ids.add?(type_de_champ.id) ? type_de_champ : TypeDeChamp.instantiate(type_de_champ.attributes_before_type_cast)
+      end
+
+      revision.lay_out_type_de_champs(own_type_de_champs_by_id, tree:)
+    end
+  end
+
   def public_revision_type_de_champs = revision_type_de_champs.filter { _1.root? && _1.public? }.sort_by(&:position)
   def private_revision_type_de_champs = revision_type_de_champs.filter { _1.root? && _1.private? }.sort_by(&:position)
-  def type_de_champs = revision_type_de_champs.map(&:type_de_champ)
-  def public_root_type_de_champs = public_revision_type_de_champs.map(&:type_de_champ)
-  def private_root_type_de_champs = private_revision_type_de_champs.map(&:type_de_champ)
 
-  # All types de champ in document order, repetition children inlined after their repetition.
-  def public_flat_type_de_champs = public_revision_type_de_champs.flat_map { [it, *it.revision_type_de_champs] }.map(&:type_de_champ)
-  def private_flat_type_de_champs = private_revision_type_de_champs.flat_map { [it, *it.revision_type_de_champs] }.map(&:type_de_champ)
+  # The types de champ, laid out from the tree: each one knows its ancestors
+  # and its children (see TypeDeChamp#lay_out). These two hold the top of the
+  # tree, the content of header sections and repetitions being within them.
+  def public_type_de_champs = type_de_champ_layout.public_type_de_champs
+  def private_type_de_champs = type_de_champ_layout.private_type_de_champs
+  def type_de_champ(stable_id) = type_de_champ_layout.type_de_champ(stable_id)
+
+  # Lays out the types de champ again, from the tree as it is now. The ones
+  # given are not loaded again, and become the revision's own: an instance
+  # handed here must not be given to any other revision, nor be one a
+  # coordinate holds, as it sits elsewhere in another revision. The tree is
+  # the revision's own, built here unless the caller has it already.
+  def lay_out_type_de_champs(own_type_de_champs_by_id = {}, tree: type_de_champ_tree)
+    raise ArgumentError, "a revision lays out its types de champ once saved: they have no stable id before" if new_record?
+
+    # the layout first: were it to fail, the source would say it is there
+    layout = TypeDeChampLayout.lay_out(tree, own_type_de_champs_by_id)
+    @type_de_champ_layout_source = type_de_champ_layout_source
+    @type_de_champ_layout = layout
+
+    self
+  end
+
+  def type_de_champs = type_de_champ_layout.type_de_champs
+  def public_flat_type_de_champs = type_de_champ_layout.public_flat_type_de_champs
+  def private_flat_type_de_champs = type_de_champ_layout.private_flat_type_de_champs
+  # root as in not within a repetition: header sections and their content are all there
+  def public_root_type_de_champs = type_de_champ_layout.public_root_type_de_champs
+  def private_root_type_de_champs = type_de_champ_layout.private_root_type_de_champs
 
   has_one :draft_procedure, -> { with_discarded }, class_name: 'Procedure', foreign_key: :draft_revision_id, dependent: :nullify, inverse_of: :draft_revision
   has_one :published_procedure, -> { with_discarded }, class_name: 'Procedure', foreign_key: :published_revision_id, dependent: :nullify, inverse_of: :published_revision
@@ -158,7 +200,9 @@ class ProcedureRevision < ApplicationRecord
       # in case of replay
       next if coordinate.nil?
 
-      children = children_of(tdc).to_a
+      # as the coordinates have it: the tree leaves out the children of anything
+      # but a repetition, which are removed here before a publication
+      children = coordinate.type_de_champs
       coordinate.destroy
 
       children.each(&:destroy_if_orphan)
@@ -207,26 +251,16 @@ class ProcedureRevision < ApplicationRecord
     dossier
   end
 
-  def type_de_champs_for(scope: nil)
-    case scope
-    when :public
-      type_de_champs.filter(&:public?)
-    when :private
-      type_de_champs.filter(&:private?)
-    else
-      type_de_champs
-    end
-  end
-
+  # The content of a repetition. A header section holds its content too, but
+  # it is not nested: its content sits among the root types de champ.
   def children_of(tdc)
-    coordinate_for(tdc).type_de_champs
+    return [] unless tdc.repetition?
+
+    type_de_champ(tdc.stable_id)&.flat_children || []
   end
 
   def parent_of(tdc)
-    coordinate = coordinate_for(tdc)
-    if coordinate&.child?
-      revision_type_de_champs.find { _1.id == coordinate.parent_id }&.type_de_champ
-    end
+    type_de_champ(tdc.stable_id)&.enclosing_repetition
   end
 
   # Every Logic tree this champ's value feeds, beyond the visibility of another
@@ -237,9 +271,9 @@ class ProcedureRevision < ApplicationRecord
   def used_by_a_condition?(tdc)
     stable_id = tdc.stable_id
     # An annotation can gate another annotation, never a question of the form.
-    scope = tdc.public? ? nil : :private
+    tdcs = tdc.public? ? type_de_champs : private_flat_type_de_champs
 
-    return true if type_de_champs_for(scope:).any? { _1.condition? && _1.condition.sources.include?(stable_id) }
+    return true if tdcs.any? { it.condition? && it.condition.sources.include?(stable_id) }
     return true if ineligibilite_enabled? && ineligibilite_rules&.sources&.include?(stable_id)
 
     procedure.used_by_routing_rules?(tdc)
@@ -292,7 +326,7 @@ class ProcedureRevision < ApplicationRecord
   end
 
   def conditionable_type_de_champs
-    type_de_champs_for(scope: :public).filter(&:conditionable?)
+    public_flat_type_de_champs.filter(&:conditionable?)
   end
 
   def champ_value_in_condition?
@@ -373,7 +407,8 @@ class ProcedureRevision < ApplicationRecord
   # lock reloads the revision, so it sees the edits made in the meantime rather
   # than the ones a request was sent against. The coordinates are left to be
   # read again, as an edit always left them: the type de champ it hands over is
-  # often updated next, past the ones they hold.
+  # often updated next, past the ones they hold. The types de champ are laid out
+  # again, as the lock reloads the tree.
   def edit_type_de_champs
     raise ArgumentError, "save the revision before editing its types de champ: the lock reloads it" if new_record? || has_changes_to_save?
 
@@ -387,6 +422,21 @@ class ProcedureRevision < ApplicationRecord
   end
 
   private
+
+  # The instances laid out are the revision's own, loaded for it: the ones its
+  # coordinates hold may be shared with the coordinates of another revision (a
+  # preload hands one instance to every owner), where they sit elsewhere.
+  def type_de_champ_layout
+    lay_out_type_de_champs if !@type_de_champ_layout_source.equal?(type_de_champ_layout_source)
+
+    @type_de_champ_layout
+  end
+
+  # What they are laid out from, and laid out again once it is another object:
+  # the tree, which an edit writes and a reload reads again, or, until the tree
+  # is stored, the coordinates as they are loaded (again after a reset, a
+  # reload or a preload). A copy starts over: it holds neither.
+  def type_de_champ_layout_source = self[:type_de_champ_tree] || revision_type_de_champs.load_target
 
   def compute_estimated_fill_duration
     public_root_type_de_champs.sum do |tdc|
@@ -423,7 +473,7 @@ class ProcedureRevision < ApplicationRecord
 
     # The solver only judges rules that are in use: leftover rules of a
     # disabled ineligibility must not block publication
-    tdcs = type_de_champs_for(scope: :public).to_a
+    tdcs = public_flat_type_de_champs
     rules_errors = ineligibilite_enabled? ? Logic.errors(ineligibilite_rules, tdcs) : ineligibilite_rules.errors(tdcs)
 
     if rules_errors.any? || ineligibilite_rules.type == :empty

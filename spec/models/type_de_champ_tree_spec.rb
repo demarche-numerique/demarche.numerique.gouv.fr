@@ -225,7 +225,7 @@ describe TypeDeChampTree do
         before { lay(edited, position: 3) }
 
         it 'keeps the latest type de champ, where it is laid' do
-          expect(tree.public_children.map(&:type_de_champ_id)).to eq([repetition_coordinate.type_de_champ_id, revision.public_root_type_de_champs.third.id, edited.id])
+          expect(tree.public_children.map(&:type_de_champ_id)).to eq([repetition_coordinate.type_de_champ_id, revision.type_de_champs.find { it.libelle == 'b' }.id, edited.id])
         end
       end
     end
@@ -239,6 +239,34 @@ describe TypeDeChampTree do
         expect(tree.public_children.map { it.children.size }).to eq([1])
         expect(tree.public_children.first.children.map { it.children.size }).to eq([1])
       end
+    end
+  end
+
+  describe '#type_de_champ_ids' do
+    let(:public_type_de_champs) do
+      [
+        { libelle: 'a' },
+        { type: :header_section, level: 1, libelle: 'h1' },
+        { type: :repetition, libelle: 'r', children: [{ type: :header_section, level: 1, libelle: 'rh1' }, { libelle: 'r1' }] },
+        { libelle: 'b' },
+      ]
+    end
+    let(:private_type_de_champs) { [{ libelle: 'c' }] }
+
+    it 'lists every type de champ of the tree, whatever its depth, in document order' do
+      expect(tree.type_de_champ_ids).to eq((revision.public_flat_type_de_champs + revision.private_flat_type_de_champs).map(&:id))
+      expect(TypeDeChamp.where(id: tree.type_de_champ_ids).pluck(:libelle)).to match_array(['a', 'h1', 'r', 'rh1', 'r1', 'b', 'c'])
+    end
+
+    it 'is empty for an empty tree' do
+      expect(described_class.new.type_de_champ_ids).to eq([])
+    end
+
+    it 'leaves out what the tree leaves out' do
+      revision.public_root_type_de_champs.find(&:repetition?).update_columns(type_champ: 'text')
+      revision.reload
+
+      expect(TypeDeChamp.where(id: tree.type_de_champ_ids).pluck(:libelle)).to match_array(['a', 'h1', 'r', 'b', 'c'])
     end
   end
 
