@@ -155,7 +155,7 @@ module ColumnsConcern
       if type_de_champ.header_section?
         label = type_de_champ.libelle
         if auto_numbering
-          level = type_de_champ.level_for_revision(current_revision)
+          level = type_de_champ.level
           counters = counters.first(level)
           counters[level - 1] = (counters[level - 1] || 0) + 1
           counters.map! { it || 1 }

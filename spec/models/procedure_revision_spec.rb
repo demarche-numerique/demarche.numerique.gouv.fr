@@ -153,6 +153,18 @@ describe ProcedureRevision do
       expect(laid_out('a')).not_to be_in_section
     end
 
+    it 'gives each one its level, restarting within a repetition' do
+      levels = draft.type_de_champs.to_h { [it.libelle, it.level] }
+
+      expect(levels).to eq({ 'a' => 0, 'h1' => 1, 'b' => 1, 'r' => 1, 'rh1' => 1, 'r1' => 1, 'h2' => 2, 'c' => 2, 'd' => 0 })
+    end
+
+    it 'gives each one its absolute level, going on through a repetition' do
+      absolute_levels = draft.type_de_champs.to_h { [it.libelle, it.absolute_level] }
+
+      expect(absolute_levels).to eq({ 'a' => 0, 'h1' => 1, 'b' => 1, 'r' => 1, 'rh1' => 2, 'r1' => 2, 'h2' => 2, 'c' => 2, 'd' => 0 })
+    end
+
     it 'finds one by its stable id' do
       expect(draft.type_de_champ(laid_out('r1').stable_id)).to equal(laid_out('r1'))
       expect(draft.type_de_champ(laid_out('r1').stable_id.to_s)).to equal(laid_out('r1'))
