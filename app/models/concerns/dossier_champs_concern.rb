@@ -338,18 +338,21 @@ module DossierChampsConcern
     elsif instructeur_buffer_stream?
       (champ_data_on_instructeur_buffer_stream + champ_data_on_main_stream).uniq(&:public_id)
     elsif user_history_stream?
+      submitted_at = last_usager_submission_at
       champ_data
-        # only "main" and "history"
-        .reject(&:buffer_stream?)
-        # only updates made before last submission
-        .filter { _1.value_updated_at <= en_construction_at }
-        # take last change
-        .sort_by(&:value_updated_at).reverse
-        # compact
+        .filter { it.on_main_stream_at?(submitted_at) }
+        # a single row per champ is on main at any time; legacy rows can overlap
+        .sort_by(&:main_stream_since).reverse
         .uniq(&:public_id)
     else
       champ_data_on_main_stream
     end
+  end
+
+  # The dossier as the usager last submitted it: the deposit or their latest
+  # correction. `en_construction_at` only moves on a (re)passage en construction.
+  def last_usager_submission_at
+    traitements.filter { it.event.in?([:depose, :depose_correction_usager]) }.last&.processed_at || en_construction_at
   end
 
   def revision_stable_ids
