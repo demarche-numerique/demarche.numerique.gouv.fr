@@ -23,7 +23,7 @@
     - if @exports.any?{_1.format == Export.formats.fetch(:zip)}
       = render Dsfr::AlertComponent.new(title: t('.title_zip'), state: :info, extra_class_names: 'fr-mb-3w') do |c|
         - c.with_body do
-          %p= t('.export_description_zip_html')
+          %p= t('.export_description_zip_html', link: link_to("7zip", "https://www.7-zip.org/", **external_link_attributes("7zip")))
 
   - else
     = t('.no_export_html', expiration_time: Export::MAX_DUREE_CONSERVATION_EXPORT.in_hours.to_i )

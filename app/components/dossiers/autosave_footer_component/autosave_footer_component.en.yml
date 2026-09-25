@@ -1,21 +1,22 @@
 ---
 en:
   error_code_format: "(error\u00a0code: %{id})"
+  contact_link: contact us
   brouillon:
     explanation: File is automatically saved.
     confirmation_html: File successfully saved.
-    error_server_html: '<span class="fr-sr-only">Warning:</span> Impossible to save the file, <a href="%{contact_path}" target="_blank">contact us</a> if the issue persists.'
+    error_server_html: '<span class="fr-sr-only">Warning:</span> Impossible to save the file, %{link} if the issue persists.'
     error_auth_html: '<span class="fr-sr-only">Warning:</span> Impossible to save the file, you must <a href="%{sign_in_path}">sign in again</a>.'
     error_network_html: '<span class="fr-sr-only">Warning:</span> Impossible to save the file, check your Internet connection.'
   en_construction:
     explanation: Modifications are automatically saved.
     confirmation_html: Modifications successfully saved.
-    error_server_html: '<span class="fr-sr-only">Warning:</span> Impossible to save the modifications, <a href="%{contact_path}" target="_blank">contact us</a> if the issue persists.'
+    error_server_html: '<span class="fr-sr-only">Warning:</span> Impossible to save the modifications, %{link} if the issue persists.'
     error_auth_html: '<span class="fr-sr-only">Warning:</span> Impossible to save the modifications, you must <a href="%{sign_in_path}">sign in again</a>.'
     error_network_html: '<span class="fr-sr-only">Warning:</span> Impossible to save the modifications, check your Internet connection.'
   annotations:
     explanation: Your annotations are automatically saved.
     confirmation_html: Annotations successfully saved.
-    error_server_html: '<span class="fr-sr-only">Warning:</span> Impossible to save the annotations, <a href="%{contact_path}" target="_blank">contact us</a> if the issue persists.'
+    error_server_html: '<span class="fr-sr-only">Warning:</span> Impossible to save the annotations, %{link} if the issue persists.'
     error_auth_html: '<span class="fr-sr-only">Warning:</span> Impossible to save the annotations, you must <a href="%{sign_in_path}">sign in again</a>.'
     error_network_html: '<span class="fr-sr-only">Warning:</span> Impossible to save the annotations, check your Internet connection.'

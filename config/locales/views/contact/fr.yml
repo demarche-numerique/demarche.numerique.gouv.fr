@@ -38,8 +38,9 @@ fr:
           <p>Si vous souhaitez poser une question pour un problème technique sur le site, utilisez le formulaire ci-dessous. Nous ne pourrons pas vous renseigner sur l’instruction de votre dossier.</p>'
       product:
         question: J’ai une idée d’amélioration pour votre site
+        dashboard_link: consulter notre tableau de bord des améliorations
         answer_html:
-          '<p>Une idée ? Pensez à <a href="%{link_product}" rel="noopener noreferrer" target="_blank" title="Consulter notre tableau de bord des améliorations - Nouvel onglet">consulter notre tableau de bord des améliorations</a> :</p>
+          '<p>Une idée ? Pensez à %{dashboard_link} :</p>
           <ul><li>Votez pour vos améliorations prioritaires,</li>
           <li>Proposez votre propre idée.</li></ul>'
       lost_user:
