@@ -113,6 +113,34 @@ describe 'session deadlines', type: :request do
     end
   end
 
+  # The check fails open, because a bug there would lock everyone out. The stamp
+  # is another matter: it is proof of activity, and writing one behind a check
+  # that died would hand a session that failed a fresh two weeks.
+  context 'the check itself failing' do
+    let(:user) { users.usager }
+
+    it 'leaves the inactivity clock where it was' do
+      expect(Sentry).to receive(:capture_exception).at_least(:once)
+
+      travel(20.days) do
+        allow(UserSession).to receive(:find_by).and_raise(ActiveRecord::StatementInvalid.new('the registry is down'))
+
+        get profil_path
+
+        expect(response).to have_http_status(:ok)
+      end
+
+      allow(UserSession).to receive(:find_by).and_call_original
+
+      travel(21.days) do
+        get profil_path
+
+        expect(response).to redirect_to(new_user_session_path)
+        expect(flash[:alert]).to eq(I18n.t('devise.failure.inactivity'))
+      end
+    end
+  end
+
   # The deadline is frozen, but a role granted mid-session must not leave the
   # session living under the year an usager gets.
   context 'an usager promoted while signed in' do

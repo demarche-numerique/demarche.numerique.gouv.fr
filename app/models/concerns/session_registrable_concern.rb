@@ -39,6 +39,76 @@ module SessionRegistrableConcern
     warden.raw_session["warden.user.#{scope}.session"] ||= {}
   end
 
+  # Warden fires this on every authenticated request, so a bug here locks
+  # everyone out, ourselves included: the registry side fails open and only
+  # reports.
+  #
+  # Matched on the event rather than filtered: a fourth one raises
+  # NoMatchingPatternError and lands in Sentry instead of being dropped in
+  # silence, which is how `sign_in` went unregistered for a while.
+  def self.after_set_user(record, warden, options)
+    return if !record.is_a?(SessionRegistrableConcern)
+
+    scope = options[:scope]
+
+    case options[:event]
+    # :authentication is the sign in form, OTP step included. :set_user is
+    # application code calling Devise's `sign_in`: FranceConnect, ProConnect,
+    # invitations, email confirmation, password resets, expert links. Both open a
+    # session, so both write its row.
+    in :authentication | :set_user
+      run_registry(record) { open_session!(record, warden, scope) }
+
+      # Outside the registry: "stay signed in" is not part of it, and a row that
+      # failed to be written must not take the choice back.
+      remember!(record, warden, scope)
+
+    # :fetch -- read back from the cookie on every later request, so the row it
+    # names has to still be good.
+    in :fetch
+      intact = run_registry(record) { continue_session!(record, warden, scope) }
+
+      # A stamp is proof of activity: not written when the check died, which
+      # would refresh a session that failed, nor when it ended the session,
+      # which would resurrect the key Warden just deleted.
+      touch_last_seen!(warden_session(warden, scope)) if intact && !signed_out?(warden, scope)
+
+      # Outside the rescue too: Rails rewrites the session cookie on every
+      # response, and skipping one expiry rewrite turns a persistent cookie back
+      # into a session one.
+      persist_cookie!(warden, scope)
+    end
+  rescue StandardError => e
+    Sentry.capture_exception(e)
+  end
+
+  # A row left alive by a sign out would make the session list lie. Not gated by
+  # the flag: closing it must not start leaving rows behind.
+  def self.before_logout(record, warden, options)
+    return if !record.is_a?(SessionRegistrableConcern)
+
+    session_id = warden_session(warden, options[:scope])[SESSION_KEY]
+
+    return if session_id.nil?
+
+    record.user_sessions.usable.where(id: session_id).revoke_all!(:sign_out)
+  rescue StandardError => e
+    Sentry.capture_exception(e)
+  end
+
+  # The registry side of `after_set_user`: gated on the flag, and failing open
+  # because a bug there would lock everyone out. False only when the block died
+  # -- a closed registry ran nothing, which is not a failure.
+  def self.run_registry(record)
+    return true if !Flipper.enabled?(:session_registry, record)
+
+    yield
+    true
+  rescue StandardError => e
+    Sentry.capture_exception(e)
+    false
+  end
+
   def self.open_session!(record, warden, scope)
     request = warden.request
     session = warden.session(scope)
@@ -89,7 +159,8 @@ module SessionRegistrableConcern
     session[LAST_SEEN_KEY] = today if session[LAST_SEEN_KEY] != today
   end
 
-  # Whether `continue_session!` -- or its rescue -- has just dropped this scope.
+  # Whether `continue_session!` has just logged this scope out. A check that died
+  # leaves the key in place, so the caller has to ask `run_registry` too.
   def self.signed_out?(warden, scope)
     warden.raw_session["warden.user.#{scope}.key"].nil?
   end
