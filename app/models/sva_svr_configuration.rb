@@ -28,6 +28,10 @@ class SVASVRConfiguration
     decision.upcase
   end
 
+  def human_delay
+    I18n.t("x_#{unit}", count: period.to_i, scope: 'datetime.distance_in_words')
+  end
+
   private
 
   def enabled?
