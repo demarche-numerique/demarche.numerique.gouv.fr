@@ -87,12 +87,16 @@ class SessionFailureApp < Devise::FailureApp
     store_location_for(scope, location)
   end
 
+  # The origin gate, and nothing more: `store_location_for` runs Devise's own
+  # `extract_path_from_location` over what it is handed, which is where the path
+  # belongs -- it collapses the leading slashes of a `//host` referer and keeps a
+  # fragment, neither of which a path built here would.
   def page_around_the_frame
     uri = SameOriginUri.parse(request.referer, request)
 
     return if uri.nil? || uri.path.blank?
 
-    [uri.path, uri.query].compact.join('?')
+    uri.to_s
   end
 
   # Frames only, not every Turbo request: a stream or a form submission follows a
