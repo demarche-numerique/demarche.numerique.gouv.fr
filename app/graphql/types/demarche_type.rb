@@ -92,8 +92,8 @@ module Types
     end
 
     def dossiers(updated_since: nil, created_since: nil, state: nil, archived: nil, revision: nil, max_revision: nil, min_revision: nil, order:, lookahead:)
-      dossiers = object
-        .dossiers
+      dossiers = Dossier
+        .for_procedure(object)
         .visible_by_administration
         .for_api_v2
 
@@ -143,7 +143,7 @@ module Types
     end
 
     def pending_deleted_dossiers(deleted_since: nil, order:)
-      dossiers = object.dossiers.hidden_for_administration
+      dossiers = Dossier.for_procedure(object).hidden_for_administration
 
       if deleted_since.present?
         dossiers = dossiers.hidden_since(deleted_since)

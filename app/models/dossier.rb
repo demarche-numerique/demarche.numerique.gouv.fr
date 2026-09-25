@@ -284,6 +284,12 @@ class Dossier < ApplicationRecord
   }
   scope :for_procedure_preview, -> { where(for_procedure_preview: true) }
   scope :for_groupe_instructeur, -> (groupe_instructeurs) { where(groupe_instructeur: groupe_instructeurs) }
+  # The dossiers of a procedure reached through their groupe instructeur rather
+  # than through `procedure.dossiers` (a join on the revision). Every dossier past
+  # brouillon has a groupe, and `groupe_instructeur_id` leads the indexes that
+  # order the API connections, where the revision join has to walk the global
+  # ordering index and filter millions of rows for a sparse procedure.
+  scope :for_procedure, -> (procedure) { where(groupe_instructeur_id: GroupeInstructeur.where(procedure_id: procedure).select(:id)) }
   scope :order_by_updated_at,            -> (order = :desc) { order(updated_at: order, id: order) }
   scope :order_by_depose_at,             -> (order = :desc) { order(depose_at: order, id: order) }
   scope :order_by_created_at,            -> (order = :asc) { order(depose_at: order, id: order) }
