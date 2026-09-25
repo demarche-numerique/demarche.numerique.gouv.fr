@@ -23,7 +23,7 @@ class SessionFailureApp < Devise::FailureApp
       return super
     end
 
-    return super if !turbo_frame_request?
+    return super if !frame_navigation?
 
     request.flash[:alert] = i18n_message
     store_location!
@@ -65,7 +65,7 @@ class SessionFailureApp < Devise::FailureApp
   # around it. Devise's GET-only rule does not apply: the destination is the
   # referer, a page the browser just rendered.
   def store_location!
-    return super if !turbo_frame_request?
+    return super if !frame_request?
 
     location = page_around_the_frame
 
@@ -84,11 +84,21 @@ class SessionFailureApp < Devise::FailureApp
     [uri.path, uri.query].compact.join('?')
   end
 
-  # Frames only, not every Turbo request: a form submission or a stream follows
-  # a redirect perfectly well, and answering those with a 401 would put their
-  # recovery in the hands of the JavaScript. A frame cannot -- the sign in page
-  # would render inside it.
-  def turbo_frame_request?
+  # Frames only, not every Turbo request: a stream or a form submission follows a
+  # redirect perfectly well, and answering those with a 401 would put their
+  # recovery in the hands of the JavaScript. A frame navigation cannot -- the sign
+  # in page would render inside the frame.
+  #
+  # Hence the method, and not the header alone: Turbo sets `Turbo-Frame` on a form
+  # submission targeted at a frame too.
+  def frame_navigation?
+    request.get? && frame_request?
+  end
+
+  # Anything Turbo routed through a frame, whatever its method. What the person
+  # was looking at is the page around it, so this is what decides where they come
+  # back to -- a POST included.
+  def frame_request?
     request.headers['Turbo-Frame'].present?
   end
 end

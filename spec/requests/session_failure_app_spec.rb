@@ -30,6 +30,17 @@ describe 'the session failure app', type: :request do
       expect(response).to redirect_to(new_user_session_path)
     end
 
+    # Turbo sets the same header on a form submission targeted at a frame, and a
+    # submission does follow a redirect: answering it with a bodiless 401 would
+    # hand its recovery to the JavaScript for nothing, and lose what was typed.
+    it 'redirects a form submission targeted at a frame' do
+      post clone_dossier_path(dossiers.en_construction),
+        headers: { 'Turbo-Frame' => 'a-modal', 'Referer' => "http://www.example.com#{dossiers_path}" }
+
+      expect(response).to redirect_to(new_user_session_path)
+      expect(session['user_return_to']).to eq(dossiers_path)
+    end
+
     it 'answers a bare 401 inside a turbo frame, and nothing else' do
       get profil_path, headers: { 'Turbo-Frame' => 'a-modal' }
 
