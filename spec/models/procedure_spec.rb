@@ -72,6 +72,74 @@ describe Procedure do
     end
   end
 
+  describe '#aggregated_type_de_champs' do
+    let(:procedure) do
+      create(:procedure, :published,
+        public_type_de_champs: [
+          { type: :header_section, libelle: 'section' },
+          { type: :text, libelle: 'removed' },
+          { type: :repetition, libelle: 'repetition', children: [{ type: :text, libelle: 'child' }] },
+        ],
+        private_type_de_champs: [{ type: :text, libelle: 'annotation' }])
+    end
+    let(:published) { procedure.published_revision }
+    let(:removed) { published.public_root_type_de_champs.find { it.libelle == 'removed' } }
+    let(:repetition) { published.public_root_type_de_champs.find { it.libelle == 'repetition' } }
+
+    def libelles(type_de_champs) = type_de_champs.map(&:libelle)
+
+    it 'lays out the published revision, with its own instances' do
+      aggregated = procedure.aggregated_type_de_champs
+
+      expect(libelles(aggregated.public_root_type_de_champs)).to eq(['section', 'removed', 'repetition'])
+      expect(libelles(aggregated.private_root_type_de_champs)).to eq(['annotation'])
+      expect(libelles(aggregated.type_de_champ(repetition.stable_id).flat_children)).to eq(['child'])
+      expect(aggregated.type_de_champ(removed.stable_id)).to eq(removed)
+      expect(aggregated.type_de_champ(removed.stable_id)).not_to equal(removed)
+    end
+
+    it 'lays out the types de champ removed since after the ones remaining, in their latest version' do
+      child = published.type_de_champ(repetition.stable_id).flat_children.first
+      procedure.draft_revision.remove_type_de_champ(removed.stable_id)
+      procedure.draft_revision.find_and_ensure_exclusive_use(child.stable_id).update!(libelle: 'renamed child')
+      procedure.publish_revision!(administrateurs.default)
+
+      aggregated = procedure.aggregated_type_de_champs
+
+      expect(libelles(aggregated.public_root_type_de_champs)).to eq(['section', 'repetition', 'removed'])
+      expect(aggregated.type_de_champ(removed.stable_id).parent.libelle).to eq('section')
+      expect(libelles(aggregated.type_de_champ(repetition.stable_id).flat_children)).to eq(['renamed child'])
+      expect(libelles(procedure.published_revision.type_de_champs)).not_to include('removed')
+    end
+
+    it 'is memoized until the next publication' do
+      aggregated = procedure.aggregated_type_de_champs
+
+      expect(procedure.aggregated_type_de_champs).to equal(aggregated)
+
+      procedure.draft_revision.remove_type_de_champ(removed.stable_id)
+      procedure.publish_revision!(administrateurs.default)
+
+      expect(procedure.aggregated_type_de_champs).not_to equal(aggregated)
+    end
+
+    it 'leaves out the draft of a published procedure' do
+      procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'draft only')
+
+      expect(libelles(procedure.aggregated_type_de_champs.type_de_champs)).not_to include('draft only')
+    end
+
+    it 'follows the edits of the draft of a procedure never published' do
+      procedure = create(:procedure, public_type_de_champs: [{ type: :text, libelle: 'a' }])
+
+      expect(libelles(procedure.aggregated_type_de_champs.type_de_champs)).to eq(['a'])
+
+      procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'b', after_stable_id: procedure.draft_revision.public_type_de_champs.first.stable_id)
+
+      expect(libelles(procedure.aggregated_type_de_champs.type_de_champs)).to eq(['a', 'b'])
+    end
+  end
+
   [:lien_notice, :lien_dpo, :web_hook_url].each do |field|
     describe "#{field} validation" do
         let(:procedure) { procedures.brouillon }
@@ -1574,49 +1642,6 @@ describe Procedure do
       it 'returns an empty array when latest_zone_labels is empty' do
         procedure_detail_draft.latest_zone_labels = ''
         expect(procedure_detail_draft.parsed_latest_zone_labels).to eq([])
-      end
-    end
-  end
-
-  describe '#all_revisions_type_de_champs' do
-    let(:public_type_de_champs) do
-      [
-        { type: :text },
-        { type: :header_section },
-      ]
-    end
-
-    context 'when procedure brouillon' do
-      let(:procedure) { create(:procedure, public_type_de_champs:) }
-
-      it 'returns one type de champ' do
-        expect(procedure.all_revisions_type_de_champs.size).to eq 1
-      end
-
-      it 'returns also section type de champ' do
-        expect(procedure.all_revisions_type_de_champs(with_header_section: true).size).to eq 2
-      end
-
-      it "returns types de champ on draft revision" do
-        procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'onemorechamp')
-        expect(procedure.reload.all_revisions_type_de_champs.size).to eq 2
-      end
-    end
-
-    context 'when procedure is published' do
-      let(:procedure) { create(:procedure, :published, public_type_de_champs:) }
-
-      it 'returns one type de champ' do
-        expect(procedure.all_revisions_type_de_champs.size).to eq 1
-      end
-
-      it 'returns also section type de champ' do
-        expect(procedure.all_revisions_type_de_champs(with_header_section: true).size).to eq 2
-      end
-
-      it "doesn't return types de champ on draft revision" do
-        procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'onemorechamp')
-        expect(procedure.reload.all_revisions_type_de_champs.size).to eq 1
       end
     end
   end

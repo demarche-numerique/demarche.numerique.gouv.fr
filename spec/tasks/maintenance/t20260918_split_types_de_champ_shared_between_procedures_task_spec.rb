@@ -105,7 +105,7 @@ module Maintenance
           end
 
           it "keeps the newer version the latest one" do
-            libelle = -> { Procedure.find(kopy.id).all_revisions_type_de_champs.find { it.stable_id == stable_id }.libelle }
+            libelle = -> { Procedure.find(kopy.id).aggregated_type_de_champs.type_de_champ(stable_id).libelle }
 
             expect { process }.not_to change { libelle.call }.from("nouveau libellé")
           end

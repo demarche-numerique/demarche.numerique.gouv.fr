@@ -117,6 +117,21 @@ class Procedure < ApplicationRecord
     end
   end
 
+  # The types de champ of the aggregated tree, laid out (TypeDeChampLayout):
+  # each one in its latest version, where the newest published revision lays
+  # it, or at the end of its last-known container once removed. They are the
+  # procedure's own instances, distinct from the ones its revisions lay out.
+  #
+  # It is memoized by published revision, as the tree is. A procedure never
+  # published lays out its draft anew at every call, as it changes with every
+  # edit.
+  def aggregated_type_de_champs
+    return TypeDeChampLayout.lay_out(aggregated_type_de_champ_tree) if published_revision_id.nil?
+
+    @aggregated_type_de_champs ||= {}
+    @aggregated_type_de_champs[published_revision_id] ||= TypeDeChampLayout.lay_out(aggregated_type_de_champ_tree)
+  end
+
   # In the order of their publication, which is not always the one of their
   # ids, and always ending with the published revision. A revision which is no
   # longer the draft is not always a published one: a few drafts were left
@@ -130,26 +145,10 @@ class Procedure < ApplicationRecord
     [*past_revisions, published_revision]
   end
 
-  def all_revisions_type_de_champs(parent: nil, with_header_section: false)
-    if brouillon?
-      if parent.nil?
-        (with_header_section ? TypeDeChamp.with_header_section : TypeDeChamp.fillable)
-          .joins(:revision_type_de_champs)
-          .where(revision_type_de_champs: { revision_id: draft_revision_id, parent_id: nil })
-          .order(:private, :position)
-      else
-        draft_revision.children_of(parent)
-      end
-    else
-      # 'sti': entries marshalled before the TypeDeChamp STI deserialize as the
-      # base class, without the typed behavior.
-      cache_key = ['all_revisions_type_de_champs', 'sti', published_revision, parent, with_header_section, ActiveRecord::VERSION::STRING].compact
-      Rails.cache.fetch(cache_key, expires_in: 1.month) { published_revisions_type_de_champs(parent:, with_header_section:) }
-    end
-  end
-
+  # The columns of a spreadsheet export: what the dossiers may hold out of
+  # any repetition, each repetition having a sheet of its own.
   def type_de_champs_for_procedure_export
-    all_revisions_type_de_champs.not_repetition
+    aggregated_type_de_champs.root_type_de_champs.filter { it.fillable? && !it.repetition? }
   end
 
   # The template tag parser's vocabulary (mail templates, attestations,
@@ -833,46 +832,6 @@ class Procedure < ApplicationRecord
       .filter { it.is_a?(Referentiels::APIReferentiel) }
       .flat_map(&:tiptap_mention_stable_ids)
       .uniq
-  end
-
-  def published_revisions_type_de_champs(parent: nil, with_header_section: false)
-    # all published revisions
-    revision_ids = revisions.ids - [draft_revision_id]
-    # fetch all parent types de champ
-    parent_ids = if parent.present?
-      ProcedureRevisionTypeDeChamp
-        .where(revision_id: revision_ids)
-        .joins(:type_de_champ)
-        .where(type_de_champ: { stable_id: parent.stable_id })
-        .ids
-    end
-
-    # fetch all type_de_champ.stable_id for all the revisions expect draft
-    # and for each stable_id take the bigger (more recent) type_de_champ.id
-    type_de_champs_scope = with_header_section ? TypeDeChamp.with_header_section : TypeDeChamp.fillable
-    recent_ids = type_de_champs_scope
-      .joins(:revision_type_de_champs)
-      .where(revision_type_de_champs: { revision_id: revision_ids, parent_id: parent_ids })
-      .group(:stable_id).pluck('MAX(types_de_champ.id)')
-
-    # fetch the more recent procedure_revision_types_de_champ
-    # which includes recents_ids
-    recents_prtdc = ProcedureRevisionTypeDeChamp
-      .unscope(:eager_load)
-      .where(type_de_champ_id: recent_ids)
-      .where.not(revision_id: draft_revision_id)
-      .group(:type_de_champ_id)
-      .pluck('MAX(id)')
-
-    TypeDeChamp
-      .joins(:revision_type_de_champs)
-      .where(revision_type_de_champs: { id: recents_prtdc }).then do |relation|
-        if feature_enabled?(:export_order_by_revision) # Fonds Verts, en attente d’exports personnalisables
-          relation.order(:private, 'revision_type_de_champs.revision_id': :desc, position: :asc)
-        else
-          relation.order(:private, :position, 'revision_type_de_champs.revision_id': :desc)
-        end
-      end
   end
 
   def validates_associated_draft_revision_with_context
