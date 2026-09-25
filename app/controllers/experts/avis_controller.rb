@@ -159,16 +159,24 @@ module Experts
       end
 
       password = params.require(:user).permit(:password)[:password]
-      user = User.create_or_promote_to_expert(email, password)
-      user.reset_password(password, password)
+      # The row the lookup above authorised: looking it up again by the raw email
+      # param would miss a non normalized one and sign up a second account.
+      user = avis.expert.user
 
-      if user.valid?
+      # Gate on what reset_password returns, not on User#valid?: for a blank password
+      # it leaves the password unchanged and only adds :password => :blank, which
+      # valid? would clear before re-running (passing) validations.
+      if user.reset_password(password, password)
+        # Read before sign_in stamps last_sign_in_at.
+        trust_browser = trust_browser_after_invitation?(user, avis)
+
         sign_in(user)
+        trust_device(Time.zone.now, user.instructeur) if trust_browser
         user.update!(email_verified_at: Time.zone.now) if user.unverified_email?
         redirect_to url_for(expert_all_avis_path)
       else
         flash[:alert] = user.errors.full_messages
-        redirect_to sign_up_expert_avis_path(procedure_id, avis_id, email: email)
+        redirect_to sign_up_expert_avis_path(procedure_id, avis_id, email:, confirmation_token:)
       end
     end
 
@@ -240,6 +248,17 @@ module Experts
         flash[:alert] = "Vous n'êtes pas autorisé à acceder à la messagerie"
         redirect_to expert_avis_url(avis.procedure, avis)
       end
+    end
+
+    # The invitation token was read from a mailbox, the proof the second factor asks
+    # for by email. Only an invitation that is fresh and still stands, and only for an
+    # account with no trust of its own.
+    def trust_browser_after_invitation?(user, avis)
+      user.instructeur.present? &&
+        !user.active? &&
+        avis.revoked_at.nil? &&
+        user.confirmation_sent_at.present? &&
+        user.confirmation_sent_at >= 2.days.ago
     end
 
     def redirect_if_no_sign_up_needed

@@ -919,6 +919,14 @@ describe Experts::AvisController, type: :controller do
           it { is_expected.to redirect_to expert_all_avis_path }
         end
 
+        # Sans le token, le champ caché revient vide et la seconde tentative est
+        # refusée : un mot de passe trop faible renverrait l’expert à sa boîte mail.
+        context 'when the password is refused' do
+          let(:password) { 'short' }
+
+          it { is_expected.to redirect_to sign_up_expert_avis_path(procedure_id, avis_id, email:, confirmation_token:) }
+        end
+
         context 'with a random avis, procedure and user' do
           let(:avis_id) { create(:avis).id }
           let(:random_user) { create(:user, password: '{Another-$3cure-p4ssWord}') }
