@@ -31,7 +31,7 @@ runs:
     #
     # The actual retrieval uses the `restore-keys` instead.
     - name: Restore previous runs timings
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       with:
         path: ${{ inputs.results_path }}
         key: single-instance-report-${{ github.sha }}-${{ env.dummy_random_value }}

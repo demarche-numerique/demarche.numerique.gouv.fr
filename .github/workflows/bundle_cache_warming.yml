@@ -27,7 +27,7 @@ jobs:
           POSTGRES_PASSWORD: tps_test
         ports: ["5432:5432"]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Setup Ruby, bundle cache and test database schema cache
         uses: ./.github/actions/ci-setup-rails
