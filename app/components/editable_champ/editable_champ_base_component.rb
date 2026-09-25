@@ -26,7 +26,7 @@ class EditableChamp::EditableChampBaseComponent < ApplicationComponent
   end
 
   def labelledby_id_attr(label_id = nil)
-    return {} if !@champ.child?
+    return {} if !@champ.in_repetition?
 
     { labelledby: labelledby_id(label_id) }
   end
@@ -48,7 +48,7 @@ class EditableChamp::EditableChampBaseComponent < ApplicationComponent
   private
 
   def labelledby_id(label_id = nil)
-    return nil if !@champ.child?
+    return nil if !@champ.in_repetition?
 
     labelledby = []
     # in repetition, aria_labelledby_prefix is the fieldset legend id

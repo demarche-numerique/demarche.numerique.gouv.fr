@@ -171,14 +171,32 @@ class ChampData < ApplicationRecord
     data&.dig("prefilled_from_france_connect_information") == true
   end
 
-  def child?
-    row_id.present? && !is_type?(TypeDeChamp.type_champs.fetch(:repetition))
+  # Where the champ sits in its dossier, as its type de champ is laid out in
+  # the revision: the header sections and the repetition holding it, outermost
+  # first. The repetition stands for the row, and the header sections within it
+  # are those of the champ's own row.
+  def ancestors
+    type_de_champ.ancestors.map { project_ancestor(it) }
   end
 
   def parent
-    return nil if row_id.blank?
+    project_ancestor(type_de_champ.parent)
+  end
 
-    dossier.revision.parent_of(type_de_champ)
+  def enclosing_section
+    project_ancestor(type_de_champ.enclosing_section)
+  end
+
+  def enclosing_repetition
+    project_ancestor(type_de_champ.enclosing_repetition)
+  end
+
+  def in_section?
+    type_de_champ.in_section?
+  end
+
+  def in_repetition?
+    type_de_champ.in_repetition?
   end
 
   def row?
@@ -402,6 +420,12 @@ class ChampData < ApplicationRecord
   end
 
   private
+
+  def project_ancestor(type_de_champ)
+    return if type_de_champ.nil?
+
+    dossier.project_champ(type_de_champ, row_id: type_de_champ.in_repetition? ? row_id : nil)
+  end
 
   def nullify_blank_json_columns
     [:value_json, :data].each do |column|

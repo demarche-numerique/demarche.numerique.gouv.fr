@@ -142,6 +142,14 @@ RSpec.describe DossierChampsConcern do
           expect(subject).to be_new_record
           expect(subject.row_id).to eq(row_id)
         end
+
+        it "projects the same instance until the champs change" do
+          expect(dossier.project_champ(type_de_champ_public, row_id:)).to equal(subject)
+
+          dossier.champ_for_update(type_de_champ_public, row_id:, updated_by: 'test')
+
+          expect(dossier.project_champ(type_de_champ_public, row_id:)).to be_persisted
+        end
       end
 
       context "with a row_id on a champ outside any repetition" do
@@ -273,6 +281,80 @@ RSpec.describe DossierChampsConcern do
     subject { dossier.flat_champs_private }
 
     it { expect(subject.map(&:libelle)).to eq(["Une annotation"]) }
+  end
+
+  describe 'champs laid out as the types de champ are' do
+    let(:public_type_de_champs) do
+      [
+        { libelle: 'a' },
+        { type: :header_section, level: 1, libelle: 'h1' },
+        { libelle: 'b' },
+        { type: :repetition, libelle: 'r', children: [{ libelle: 'r0' }, { type: :header_section, level: 1, libelle: 'rh1' }, { libelle: 'r1' }] },
+        { type: :header_section, level: 2, libelle: 'h2' },
+        { libelle: 'c' },
+      ]
+    end
+    let(:private_type_de_champs) { [{ libelle: 'd' }] }
+    let(:repetition) { dossier.flat_champs_public.find(&:repetition?) }
+    let(:rows) { repetition.rows }
+    let(:h1) { dossier.public_champs.second }
+
+    # the repetition starts with one row; adding one resets the projected champs,
+    # so `repetition` must not be read before
+    before { dossier.flat_champs_public.find(&:repetition?).add_row(updated_by: 'test') }
+
+    def libelles(champs) = champs.map(&:libelle)
+    def public_ids(champs) = champs.map(&:public_id)
+    def champ(libelle, within = h1) = within.flat_children.find { it.libelle == libelle }
+
+    it 'lists the top of the form' do
+      expect(libelles(dossier.public_champs)).to eq(['a', 'h1'])
+      expect(libelles(dossier.private_champs)).to eq(['d'])
+    end
+
+    it 'gives a header section what it holds' do
+      expect(libelles(h1.children)).to eq(['b', 'r', 'h2'])
+      expect(libelles(champ('h2').children)).to eq(['c'])
+      expect(libelles(h1.flat_children)).to eq(['b', 'r', 'r0', 'rh1', 'r1', 'r0', 'rh1', 'r1', 'h2', 'c'])
+      expect(public_ids(dossier.public_champs.flat_map { [it, *it.try(:flat_children)] })).to eq(public_ids(dossier.flat_champs_public))
+    end
+
+    it 'gives a row what it holds' do
+      expect(rows.size).to eq(2)
+
+      rows.each do |row|
+        expect(libelles(row.children)).to eq(['r0', 'rh1'])
+        expect(libelles(row.flat_children)).to eq(['r0', 'rh1', 'r1'])
+        expect(libelles(champ('rh1', row).children)).to eq(['r1'])
+        expect(row.flat_children.map(&:row_id)).to all(eq(row.id))
+      end
+    end
+
+    it 'gives a champ its ancestors' do
+      row = rows.second
+      r1 = champ('r1', row)
+
+      expect(r1.ancestors).to match([equal(h1), equal(repetition), equal(champ('rh1', row))])
+      expect(r1.parent).to equal(champ('rh1', row))
+      expect(r1.enclosing_section).to equal(champ('rh1', row))
+      expect(r1.enclosing_repetition).to equal(repetition)
+      expect(r1).to be_in_repetition.and be_in_section
+
+      r0 = champ('r0', row)
+      expect(r0.parent).to equal(repetition)
+      expect(r0.enclosing_section).to equal(h1)
+
+      expect(libelles(champ('c').ancestors)).to eq(['h1', 'h2'])
+      expect(repetition).to be_in_section
+      expect(repetition).not_to be_in_repetition
+
+      a = dossier.public_champs.first
+      expect(a.ancestors).to be_empty
+      expect(a.parent).to be_nil
+      expect(a.enclosing_section).to be_nil
+      expect(a.enclosing_repetition).to be_nil
+      expect(a).not_to be_in_section
+    end
   end
 
   describe '#repetition_row_ids' do
