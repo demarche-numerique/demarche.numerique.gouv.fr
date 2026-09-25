@@ -71,8 +71,11 @@ describe UserSession, type: :model do
   # subset User treats as total, and the messages the failure app looks up by
   # name. A missing message is a sign in page with no explanation.
   describe 'the messages a reason resolves to' do
-    # The two the row reports without ever being revoked for them.
-    reasons = UserSession::REVOCATION_REASONS + %w[session_revoked expired]
+    # The two the row reports without ever being revoked for them. Minus the one
+    # that cannot reach a sign in page: Devise serialises the password salt into
+    # the Warden key, so a password change rejects the other devices before the
+    # fetch hook runs, and nothing is left to name a reason.
+    reasons = UserSession::REVOCATION_REASONS - %w[password_change] + %w[session_revoked expired]
 
     reasons.each do |reason|
       it "has a French and an English message for #{reason}" do
