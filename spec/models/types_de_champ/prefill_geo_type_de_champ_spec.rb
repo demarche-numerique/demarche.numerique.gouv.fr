@@ -14,7 +14,7 @@ RSpec.describe TypesDeChamp::PrefillGeoTypeDeChamp, type: :model do
     let(:type_de_champ) { build(:type_de_champ_pays, procedure: procedure) }
 
     describe '#possible_values' do
-      let(:expected_values) { "Un <a href=\"https://en.wikipedia.org/wiki/ISO_3166-2\" target=\"_blank\" rel=\"noopener noreferrer\">code pays ISO 3166-2</a><br><a title=\"Toutes les valeurs possibles — Nouvel onglet\" target=\"_blank\" rel=\"noopener noreferrer\" href=\"/procedures/#{procedure.path}/prefill_type_de_champs/#{type_de_champ.id}\">Voir toutes les valeurs possibles</a>" }
+      let(:expected_values) { "Un <a href=\"https://en.wikipedia.org/wiki/ISO_3166-2\" target=\"_blank\" rel=\"noopener external\">code pays ISO 3166-2</a><br><a title=\"Toutes les valeurs possibles — Nouvel onglet\" target=\"_blank\" rel=\"noopener\" href=\"/procedures/#{procedure.path}/prefill_type_de_champs/#{type_de_champ.id}\">Voir toutes les valeurs possibles</a>" }
       subject(:possible_values) { described_class.new(type_de_champ, procedure.active_revision).possible_values }
 
       before { type_de_champ.reload }
@@ -68,7 +68,7 @@ RSpec.describe TypesDeChamp::PrefillGeoTypeDeChamp, type: :model do
     let(:type_de_champ) { create(:type_de_champ_regions, procedure: procedure) }
 
     describe '#possible_values' do
-      let(:expected_values) { "Un <a href=\"https://fr.wikipedia.org/wiki/R%C3%A9gion_fran%C3%A7aise\" target=\"_blank\" rel=\"noopener noreferrer\">code INSEE de région</a><br><a title=\"Toutes les valeurs possibles — Nouvel onglet\" target=\"_blank\" rel=\"noopener noreferrer\" href=\"/procedures/#{procedure.path}/prefill_type_de_champs/#{type_de_champ.id}\">Voir toutes les valeurs possibles</a>" }
+      let(:expected_values) { "Un <a href=\"https://fr.wikipedia.org/wiki/R%C3%A9gion_fran%C3%A7aise\" target=\"_blank\" rel=\"noopener external\">code INSEE de région</a><br><a title=\"Toutes les valeurs possibles — Nouvel onglet\" target=\"_blank\" rel=\"noopener\" href=\"/procedures/#{procedure.path}/prefill_type_de_champs/#{type_de_champ.id}\">Voir toutes les valeurs possibles</a>" }
       subject(:possible_values) { described_class.new(type_de_champ, procedure.active_revision).possible_values }
 
       before { type_de_champ.reload }
@@ -117,7 +117,7 @@ RSpec.describe TypesDeChamp::PrefillGeoTypeDeChamp, type: :model do
 
     describe '#possible_values' do
       let(:expected_values) {
-        "Un <a href=\"https://fr.wikipedia.org/wiki/Num%C3%A9rotation_des_d%C3%A9partements_fran%C3%A7ais\" target=\"_blank\">numéro de département</a><br><a title=\"Toutes les valeurs possibles — Nouvel onglet\" target=\"_blank\" rel=\"noopener noreferrer\" href=\"/procedures/#{procedure.path}/prefill_type_de_champs/#{type_de_champ.id}\">Voir toutes les valeurs possibles</a>"
+        "Un <a href=\"https://fr.wikipedia.org/wiki/Num%C3%A9rotation_des_d%C3%A9partements_fran%C3%A7ais\" target=\"_blank\">numéro de département</a><br><a title=\"Toutes les valeurs possibles — Nouvel onglet\" target=\"_blank\" rel=\"noopener\" href=\"/procedures/#{procedure.path}/prefill_type_de_champs/#{type_de_champ.id}\">Voir toutes les valeurs possibles</a>"
       }
       subject(:possible_values) { described_class.new(type_de_champ, procedure.active_revision).possible_values }
 

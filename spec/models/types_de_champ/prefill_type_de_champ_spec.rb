@@ -104,7 +104,7 @@ RSpec.describe TypesDeChamp::PrefillTypeDeChamp, type: :model do
             I18n.t("views.prefill_descriptions.edit.possible_values.link.text"),
             Rails.application.routes.url_helpers.prefill_type_de_champ_path(procedure.path, type_de_champ),
             title: new_tab_suffix(I18n.t("views.prefill_descriptions.edit.possible_values.link.title")),
-            **external_link_attributes
+            **new_tab_link_attributes
           )
         }
 

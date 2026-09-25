@@ -14,7 +14,7 @@
       <% else %>
         <p class="fr-mb-2v attachment-filename">
           <% if viewable? %>
-            <%= link_to filename, helpers.url_for(attachment.blob), title: t(".open_file", filename:), **helpers.external_link_attributes %>
+            <%= link_to filename, helpers.url_for(attachment.blob), title: t(".open_file", filename:), **helpers.new_tab_link_attributes %>
           <% else %>
             <%= filename %>
           <% end %>

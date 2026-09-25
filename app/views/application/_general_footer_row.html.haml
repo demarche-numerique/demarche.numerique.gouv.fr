@@ -4,13 +4,13 @@
 %ul.fr-footer__bottom-list
   - if is_agent
     %li.fr-footer__bottom-item
-      = link_to t("links.footer.doc.label"), DOC_URL, title: t("links.footer.doc.title"), class: "fr-footer__bottom-link", target: "_blank", rel: "noopener noreferrer"
+      = link_to t("links.footer.doc.label"), DOC_URL, title: t("links.footer.doc.title"), class: "fr-footer__bottom-link", **external_link_attributes
     %li.fr-footer__bottom-item
-      = link_to t("links.footer.vote_feature.label"), FEATURE_UPVOTE_URL, title: t("links.footer.vote_feature.title"), class: "fr-footer__bottom-link", target: "_blank", rel: "noopener noreferrer"
+      = link_to t("links.footer.vote_feature.label"), FEATURE_UPVOTE_URL, title: t("links.footer.vote_feature.title"), class: "fr-footer__bottom-link", **external_link_attributes
   %li.fr-footer__bottom-item
-    = link_to t("links.footer.accessibilite.label"), ACCESSIBILITE_URL, class: "fr-footer__bottom-link", rel: "noopener noreferrer"
+    = link_to t("links.footer.accessibilite.label"), ACCESSIBILITE_URL, class: "fr-footer__bottom-link"
   %li.fr-footer__bottom-item
-    = link_to t("links.footer.mentions_legales.label"), MENTIONS_LEGALES_URL, class: "fr-footer__bottom-link", rel: "noopener noreferrer"
+    = link_to t("links.footer.mentions_legales.label"), MENTIONS_LEGALES_URL, class: "fr-footer__bottom-link"
   %li.fr-footer__bottom-item
     = link_to t("links.footer.cookies.label"), suivi_path, class: "fr-footer__bottom-link", hreflang: "fr"
   %li.fr-footer__bottom-item

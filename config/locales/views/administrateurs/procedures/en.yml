@@ -43,8 +43,8 @@ en:
           cancel: Cancel
       closing_notification:
         page_title: Alert users
-        page_subtitle_html: Your procedure has been successfully closed. The link of the procedure now redirects to this <a href="%{closing_path}" target="_blank" rel="noopener noreferrer">closing page</a>.
-        page_subtitle_with_redirection_html: Your procedure has been successfully closed. The link of the procedure now redirects to this <a href="%{redirection_path}" target="_blank" rel="noopener noreferrer">procedure</a>.
+        page_subtitle_html: Your procedure has been successfully closed. The link of the procedure now redirects to this <a href="%{closing_path}" target="_blank" rel="noopener">closing page</a>.
+        page_subtitle_with_redirection_html: Your procedure has been successfully closed. The link of the procedure now redirects to this <a href="%{redirection_path}" target="_blank" rel="noopener">procedure</a>.
         callout_content: You can continue to examine the submitted files. If you do not intend to examine these files, we invite you to inform users
         email_toggle_brouillon:
           one: You want to send an email to the user with a draft folder

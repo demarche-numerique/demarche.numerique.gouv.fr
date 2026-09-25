@@ -80,7 +80,7 @@
 
           - if !procedure.close? && !procedure.discarded?
             - menu.with_item do
-              = link_to commencer_url(path: procedure.path), target: :blank, rel: :noopener, role: 'menuitem' do
+              = link_to commencer_url(path: procedure.path), target: "_blank", rel: "noopener", role: 'menuitem' do
                 = dsfr_icon('fr-icon-flashlight-line')
                 .dropdown-description
                   %h4= t('administrateurs.dropdown_actions.to_test')
