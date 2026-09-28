@@ -15,6 +15,10 @@ class PriorizedMailDeliveryJob < ActionMailer::MailDeliveryJob
     Sentry.set_tags(mailer:, action:)
   end
 
+  around_perform do |job, block|
+    Current.set(mail_idempotency_key: job.job_id) { block.call }
+  end
+
   def queue_name
     mailer, action_name = @arguments
     if mailer.constantize.critical_email?(action_name)
