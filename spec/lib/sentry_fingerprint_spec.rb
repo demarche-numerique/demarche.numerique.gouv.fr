@@ -73,6 +73,19 @@ describe SentryFingerprint do
       expect(fingerprint_for(exception: upstream)).to eq(['provider-outage', 'APIEntreprise::ExercicesJob'])
     end
 
+    it 'groups Brevo API errors by kind and Brevo code, outages by provider' do
+      error = -> (kind, code) { Brevo::API::Error[kind, :http, 400, code, 'message'] }
+
+      expect(fingerprint_for(exception: Brevo::APIDeliveryMethod::OutageError.new(error[:outage, nil]))).to eq(['provider-outage', 'brevo'])
+      expect(fingerprint_for(exception: Brevo::APIDeliveryMethod::RejectedError.new(error[:rejected, 'invalid_parameter']))).to eq(['brevo-rejected', 'invalid_parameter'])
+      expect(fingerprint_for(exception: Brevo::APIDeliveryMethod::AccountError.new(error[:account, nil]))).to eq(['brevo-account'])
+
+      recording_failure = raise_wrapped(Brevo::APIDeliveryMethod::RejectedError.new(error[:rejected, 'invalid_parameter'])) do
+        ActiveRecord::StatementInvalid.new('PG::QueryCanceled')
+      end
+      expect(fingerprint_for(exception: recording_failure)).to be_empty
+    end
+
     it 'lets an infrastructure error wrapped in a provider outage win' do
       wrapped = RetryableFetchError.new(Redis::CannotConnectError.new('Connection refused'), provider: 'Champs::SiretChamp')
       expect(fingerprint_for(exception: wrapped)).to eq(['Redis::CannotConnectError'])

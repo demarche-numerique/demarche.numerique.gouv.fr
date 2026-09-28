@@ -4,7 +4,11 @@ class Brevo::APIDeliveryMethod
   include Dry::Monads[:result]
 
   class Error < StandardError
+    attr_reader :kind, :brevo_code
+
     def initialize(error)
+      @kind = error.kind
+      @brevo_code = error.brevo_code
       super("Brevo API #{error.kind} (#{error.type}): HTTP #{error.http_code} #{error.brevo_code} #{error.message}")
     end
   end
