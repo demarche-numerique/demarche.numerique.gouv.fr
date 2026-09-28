@@ -2043,9 +2043,16 @@ describe Dossier, type: :model do
 
     let(:notify_on_closed) { false }
     let(:dossiers) { Dossier.with_notifiable_procedure(notify_on_closed: notify_on_closed) }
+    # Expired::DossiersDeletionService filters a batch it has loaded in Ruby,
+    # so the predicate must list the same states as the scope.
+    let(:notifiable_procedures) do
+      [procedures.brouillon, procedures.individual, closed_procedure, unpublished_procedure]
+        .filter { it.notifiable?(on_closed: notify_on_closed) }
+    end
 
     it 'should find dossiers with notifiable procedure' do
       expect(dossiers).to match_array([dossier_on_published_procedure, dossier_on_unpublished_procedure])
+      expect(notifiable_procedures).to match_array(dossiers.map(&:procedure))
     end
 
     context 'when notify on closed is true' do
@@ -2053,6 +2060,7 @@ describe Dossier, type: :model do
 
       it 'should find dossiers with notifiable procedure' do
         expect(dossiers).to match_array([dossier_on_published_procedure, dossier_on_closed_procedure, dossier_on_unpublished_procedure])
+        expect(notifiable_procedures).to match_array(dossiers.map(&:procedure))
       end
     end
   end

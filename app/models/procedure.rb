@@ -28,6 +28,13 @@ class Procedure < ApplicationRecord
 
   DOSSIERS_COUNT_EXPIRING = 12.hours
 
+  # The states a dossier may be mailed about its expiration in. A closed
+  # procedure is left out of the notices — its dossiers cannot be worked on
+  # any more — but announcing their deletion still makes sense, so the caller
+  # asks for it.
+  NOTIFIABLE_STATES = ['publiee', 'depubliee'].freeze
+  NOTIFIABLE_STATES_ON_CLOSED = ['publiee', 'depubliee', 'close'].freeze
+
   encrypts :api_particulier_token
 
   has_many :revisions, -> { order(:id) }, class_name: 'ProcedureRevision', inverse_of: :procedure
@@ -397,6 +404,12 @@ class Procedure < ApplicationRecord
   def locked?
     publiee? || close? || depubliee?
   end
+
+  def self.notifiable_states(on_closed: false) = on_closed ? NOTIFIABLE_STATES_ON_CLOSED : NOTIFIABLE_STATES
+
+  # Whether the expiration of a dossier of this procedure is worth a mail.
+  # The relation counterpart is Dossier.with_notifiable_procedure.
+  def notifiable?(on_closed: false) = aasm_state.in?(Procedure.notifiable_states(on_closed:))
 
   def draft_changed?
     preload_draft_and_published_revisions

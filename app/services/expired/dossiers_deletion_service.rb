@@ -246,9 +246,7 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
   end
 
   # with_notifiable_procedure, on a dossier already loaded.
-  def notifiable?(dossier)
-    dossier.user_id.present? && (dossier.procedure.publiee? || dossier.procedure.depubliee?)
-  end
+  def notifiable?(dossier) = dossier.user_id.present? && dossier.procedure.notifiable?
 
   # The brouillons on the removal stage move to warned; the others (not
   # backfilled yet) get the legacy columns only, with the same dates.
