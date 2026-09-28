@@ -245,6 +245,11 @@ RSpec.describe PriorityDeliveryConcern do
     end
   end
 
+  it 'names the mailer and action in a header' do
+    mail = ExampleMailer.greet('test@example.com').deliver_now
+    expect(mail[PriorityDeliveryConcern::MAILER_HEADER].value).to eq('ExampleMailer.greet')
+  end
+
   # Helpers
 
   def have_been_delivered_using(delivery_class)
