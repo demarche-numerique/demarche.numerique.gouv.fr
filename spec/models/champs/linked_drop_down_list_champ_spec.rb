@@ -96,7 +96,7 @@ describe Champs::LinkedDropDownListChamp do
     let(:primary_value) { nil }
     let(:secondary_value) { nil }
 
-    subject { champ.type_de_champ.champ_value_for_export(champ) }
+    subject { legacy_export_cells(champ).first.second }
 
     context 'with no value' do
       let(:value) { nil }

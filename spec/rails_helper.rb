@@ -151,6 +151,13 @@ RSpec.configure do |config|
     def champ_for_update(champ)
       champ.dossier.champ_for_update(champ.type_de_champ, row_id: champ.row_id, updated_by: 'test')
     end
+
+    # The [libelle, cell] pairs the default tabular export writes for a champ.
+    def legacy_export_cells(champ, type_de_champ: champ.type_de_champ, format: :xlsx)
+      type_de_champ.legacy_export_columns(procedure_id: 0).map do |(libelle, column)|
+        [libelle, ExportedColumnFormatter.format(column:, champ_or_dossier: champ, format:)]
+      end
+    end
   end
 
   config.include SpecHelpers

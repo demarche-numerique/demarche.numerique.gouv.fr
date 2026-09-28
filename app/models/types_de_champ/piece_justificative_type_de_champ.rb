@@ -38,14 +38,6 @@ class TypesDeChamp::PieceJustificativeTypeDeChamp < TypeDeChamp
       .parameterize
   end
 
-  def typed_champ_value_for_export(champ, path = :value)
-    if titre_identite?
-      champ.piece_justificative_file.attached? ? "présent" : "absent"
-    else
-      champ.piece_justificative_file.map { _1.filename.to_s }.join(', ')
-    end
-  end
-
   def typed_champ_value_for_api(champ, version: 2)
     return if version == 2
 

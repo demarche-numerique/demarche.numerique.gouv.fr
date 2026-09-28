@@ -158,17 +158,17 @@ describe Champs::RNAChamp do
     end
   end
 
-  describe "#export" do
+  describe "default export" do
     context "with association title" do
       before do
-        champ.update(data: { association_titre: "Super asso" })
+        champ.update(value_json: { title: "Super asso" })
       end
 
-      it { expect(champ.type_de_champ.champ_value_for_export(champ)).to eq("W182736273 (Super asso)") }
+      it { expect(legacy_export_cells(champ).first.second).to eq("W182736273 (Super asso)") }
     end
 
     context "no association title" do
-      it { expect(champ.type_de_champ.champ_value_for_export(champ)).to eq("W182736273") }
+      it { expect(legacy_export_cells(champ).first.second).to eq("W182736273") }
     end
   end
 end

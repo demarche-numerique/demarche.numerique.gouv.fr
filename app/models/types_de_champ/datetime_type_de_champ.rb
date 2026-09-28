@@ -14,4 +14,9 @@ class TypesDeChamp::DatetimeTypeDeChamp < TypeDeChamp
   def typed_champ_value(champ)
     I18n.l(Time.zone.parse(champ.value))
   end
+
+  # the stored ISO 8601 string, not a datetime cell
+  def legacy_export_columns(procedure_id:)
+    [legacy_export_column(procedure_id:, label: libelle, columns: canonical_column(procedure_id:)) { it&.iso8601 }]
+  end
 end

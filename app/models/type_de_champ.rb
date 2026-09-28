@@ -285,14 +285,6 @@ class TypeDeChamp < ApplicationRecord
     end
   end
 
-  def champ_value_for_export(champ, path = :value)
-    if champ_blank?(champ)
-      champ_default_export_value(path)
-    else
-      typed_champ_value_for_export(champ, path)
-    end
-  end
-
   def champ_value_for_tag(champ, path = :value)
     if champ_blank?(champ)
       ''
@@ -336,20 +328,12 @@ class TypeDeChamp < ApplicationRecord
     end
   end
 
-  def typed_champ_value_for_export(champ, path = :value)
-    path == :value ? champ_text_value(champ).presence : champ_default_export_value(path)
-  end
-
   def typed_champ_value_for_tag(champ, path = :value)
     path == :value ? typed_champ_value(champ) : nil
   end
 
   def champ_default_value
     ''
-  end
-
-  def champ_default_export_value(path = :value)
-    nil
   end
 
   def champ_default_api_value(version = 2)
@@ -378,8 +362,13 @@ class TypeDeChamp < ApplicationRecord
     end
   end
 
-  def libelles_for_export
-    paths.map { [_1[:libelle], _1[:path]] }
+  # The columns of the default tabular export (LegacyExportTemplate) under
+  # their historical headers, as [libelle, column] pairs: the catalogue column
+  # by default, a Columns::LegacyColumn over catalogue columns wherever the
+  # historical cell was formatted differently.
+  def legacy_export_columns(procedure_id:)
+    column = canonical_column(procedure_id:)
+    column.nil? ? [] : [[libelle, column]]
   end
 
   def canonical_column(procedure_id:, displayable: true, prefix: nil)
@@ -520,6 +509,12 @@ class TypeDeChamp < ApplicationRecord
         description:,
       },
     ]
+  end
+
+  # A [label, column] pair of the default export whose cell is the historical
+  # formatting of one or more catalogue columns' values.
+  def legacy_export_column(procedure_id:, label:, columns:, type: :text, &transform)
+    [label, Columns::LegacyColumn.new(procedure_id:, columns:, label:, type:, &transform)]
   end
 
   def castable_on_change?(from_type, to_type)

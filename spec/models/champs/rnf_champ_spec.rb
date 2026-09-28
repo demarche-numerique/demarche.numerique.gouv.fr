@@ -234,6 +234,7 @@ describe Champs::RNFChamp, type: :model do
           street_number: "16",
           street_name: "Rue du Général de Boissieu",
           street_address: "16 Rue du Général de Boissieu",
+          label: "16 Rue du Général de Boissieu 75015 Paris",
           postal_code: "75015",
           city_name: "Paris 15e Arrondissement",
           city_code: "75115",
@@ -253,15 +254,19 @@ describe Champs::RNFChamp, type: :model do
     end
   end
 
-  describe 'for_export' do
-    let(:champ) { described_class.new(external_id:, data: JSON.parse(body)) }
-    before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_rnf)) }
-    it do
-      expect(champ.type_de_champ.champ_value_for_export(champ, :value)).to eq '075-FDD-00003-01'
-      expect(champ.type_de_champ.champ_value_for_export(champ, :nom)).to eq 'Fondation SFR'
-      expect(champ.type_de_champ.champ_value_for_export(champ, :address)).to eq '16 Rue du Général de Boissieu 75015 Paris'
-      expect(champ.type_de_champ.champ_value_for_export(champ, :code_insee)).to eq '75115'
-      expect(champ.type_de_champ.champ_value_for_export(champ, :departement)).to eq '75 – Paris'
+  describe 'default export' do
+    let(:value_json) { { title: 'Fondation SFR', label: '16 Rue du Général de Boissieu 75015 Paris', city_code: '75115', department_code: '75' } }
+    let(:champ) { described_class.new(external_id:, value_json:) }
+    before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_rnf, libelle: 'rnf')) }
+
+    it 'reads the fetched value_json' do
+      expect(legacy_export_cells(champ)).to eq([
+        ['rnf', '075-FDD-00003-01'],
+        ['rnf (Nom)', 'Fondation SFR'],
+        ['rnf (Adresse)', '16 Rue du Général de Boissieu 75015 Paris'],
+        ['rnf (Code INSEE Ville)', '75115'],
+        ['rnf (Département)', '75 – Paris'],
+      ])
     end
   end
 end

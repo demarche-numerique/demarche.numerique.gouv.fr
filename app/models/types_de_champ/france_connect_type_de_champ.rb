@@ -71,9 +71,8 @@ class TypesDeChamp::FranceConnectTypeDeChamp < TypeDeChamp
     end
   end
 
-  def typed_champ_value_for_export(champ, path = :value)
-    ''
-  end
+  # the historical column was always empty
+  def legacy_export_columns(procedure_id:) = []
 
   def columns(procedure_id:, displayable: true, prefix: nil)
     TypesDeChamp::FranceConnectTypeDeChamp.config_for(type_champ)[:columns].map do |label, jsonpath, type|

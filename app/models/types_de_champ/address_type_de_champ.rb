@@ -11,11 +11,6 @@ class TypesDeChamp::AddressTypeDeChamp < TypesDeChamp::TextTypeDeChamp
 
   include AddressableColumnConcern
 
-  def libelles_for_export
-    path = paths.first
-    [[path[:libelle], path[:path]]]
-  end
-
   def typed_champ_value(champ)
     champ.address_label.presence || ''
   end
@@ -32,17 +27,6 @@ class TypesDeChamp::AddressTypeDeChamp < TypesDeChamp::TextTypeDeChamp
       champ.departement_code_and_name || ''
     when :commune
       champ.commune_name || ''
-    end
-  end
-
-  def typed_champ_value_for_export(champ, path = :value)
-    case path
-    when :value
-      typed_champ_value(champ)
-    when :departement
-      champ.departement_code_and_name
-    when :commune
-      champ.commune_name
     end
   end
 

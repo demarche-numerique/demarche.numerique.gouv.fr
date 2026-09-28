@@ -27,9 +27,7 @@ describe Champs::CommuneChamp do
         expect(champ.code).to eq(code_insee)
         expect(champ.code_departement).to eq(code_departement)
         expect(champ.code_postal).to eq(code_postal)
-        expect(champ.type_de_champ.champ_value_for_export(champ, :value)).to eq 'Châteldon (63290)'
-        expect(champ.type_de_champ.champ_value_for_export(champ, :code)).to eq '63102'
-        expect(champ.type_de_champ.champ_value_for_export(champ, :departement)).to eq '63 – Puy-de-Dôme'
+        expect(legacy_export_cells(champ).map(&:second)).to eq(['Châteldon (63290)', '63102', '63 – Puy-de-Dôme'])
       end
     end
 
@@ -60,9 +58,7 @@ describe Champs::CommuneChamp do
         expect(champ.code).to eq(code_insee)
         expect(champ.code_departement).to eq(code_departement)
         expect(champ.code_postal).to eq(code_postal)
-        expect(champ.type_de_champ.champ_value_for_export(champ, :value)).to eq 'Châteldon (63290)'
-        expect(champ.type_de_champ.champ_value_for_export(champ, :code)).to eq '63102'
-        expect(champ.type_de_champ.champ_value_for_export(champ, :departement)).to eq '63 – Puy-de-Dôme'
+        expect(legacy_export_cells(champ).map(&:second)).to eq(['Châteldon (63290)', '63102', '63 – Puy-de-Dôme'])
       end
     end
   end

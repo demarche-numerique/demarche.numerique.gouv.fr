@@ -39,22 +39,4 @@ describe Champs::CarteChamp do
       it { is_expected.to eq(feature_collection) }
     end
   end
-
-  describe "#for_export" do
-    context "when geo areas is a point" do
-      let(:geo_areas) { [build(:geo_area, :selection_utilisateur, :point)] }
-
-      it "returns point label" do
-        expect(champ.type_de_champ.champ_value_for_export(champ)).to eq("Un point situé à 46°32'19\"N 2°25'42\"E")
-      end
-    end
-
-    context "when geo area is a cadastre parcelle" do
-      let(:geo_areas) { [build(:geo_area, :selection_utilisateur, :cadastre)] }
-
-      it "returns cadastre parcelle label" do
-        expect(champ.type_de_champ.champ_value_for_export(champ)).to match(/Parcelle n° 42/)
-      end
-    end
-  end
 end

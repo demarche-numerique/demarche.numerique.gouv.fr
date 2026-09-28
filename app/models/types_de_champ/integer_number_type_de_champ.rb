@@ -12,10 +12,6 @@ class TypesDeChamp::IntegerNumberTypeDeChamp < TypeDeChamp
   store_accessor :options, :positive_number, :min_number, :max_number, :range_number
   boolean_options :positive_number, :range_number
 
-  def typed_champ_value_for_export(champ, path = :value)
-    champ_formatted_value(champ)
-  end
-
   def typed_champ_value_for_api(champ, version: 2)
     case version
     when 1
@@ -25,8 +21,9 @@ class TypesDeChamp::IntegerNumberTypeDeChamp < TypeDeChamp
     end
   end
 
-  def champ_default_export_value(path = :value)
-    0
+  # 0 when blank
+  def legacy_export_columns(procedure_id:)
+    [legacy_export_column(procedure_id:, label: libelle, columns: canonical_column(procedure_id:), type: :integer) { it || 0 }]
   end
 
   private

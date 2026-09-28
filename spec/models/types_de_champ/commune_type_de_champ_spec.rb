@@ -1,12 +1,23 @@
 # frozen_string_literal: true
 
 describe TypesDeChamp::CommuneTypeDeChamp do
-  let(:tdc_commune) { create(:type_de_champ_communes, libelle: 'Ma commune') }
-  it { expect(tdc_commune.libelles_for_export).to match_array([['Ma commune', :value], ['Ma commune (Code INSEE)', :code], ['Ma commune (Département)', :departement]]) }
+  let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :communes, libelle: 'Ma commune' }]) }
+  let(:tdc) { procedure.active_revision.type_de_champs.first }
+
+  describe '#legacy_export_columns' do
+    subject(:columns) { tdc.legacy_export_columns(procedure_id: procedure.id) }
+
+    it 'keeps the historical name cell, and reuses the catalogue code INSEE and département' do
+      expect(columns.map(&:first)).to eq(['Ma commune', 'Ma commune (Code INSEE)', 'Ma commune (Département)'])
+      expect(columns.map(&:second)).to match([
+        an_instance_of(Columns::LegacyColumn),
+        an_instance_of(Columns::JSONPathColumn).and(having_attributes(jsonpath: '$.city_code')),
+        an_instance_of(Columns::JSONPathColumn).and(having_attributes(jsonpath: '$.department_code')),
+      ])
+    end
+  end
 
   describe '#columns' do
-    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :communes, libelle: 'Ma commune' }]) }
-    let(:tdc) { procedure.active_revision.type_de_champs.first }
     let(:jsonpath_columns) { tdc.columns(procedure_id: procedure.id).grep(Columns::JSONPathColumn) }
 
     it 'exposes the addressable columns as displayable and filterable' do

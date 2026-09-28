@@ -8,20 +8,12 @@ class TypesDeChamp::RNFTypeDeChamp < TypesDeChamp::TextTypeDeChamp
 
   include AddressableColumnConcern
 
-  def typed_champ_value_for_export(champ, path = :value)
-    case path
-    when :value
-      champ.rnf_id
-    when :departement
-      champ.departement_code_and_name
-    when :code_insee
-      champ.commune&.fetch(:code)
-    when :address
-      champ.full_address
-    when :nom
-      champ.title
-    end
-  end
+  # value_json keys exposed as columns, with their labels
+  DATA_COLUMNS = {
+    title: 'Titre au répertoire national des fondations ',
+    label: 'Adresse',
+    city_code: 'Code INSEE',
+  }.freeze
 
   def typed_champ_value_for_tag(champ, path = :value)
     case path
@@ -40,24 +32,36 @@ class TypesDeChamp::RNFTypeDeChamp < TypesDeChamp::TextTypeDeChamp
 
   def typed_champ_blank?(champ) = champ.external_id.blank?
 
+  # the name, the address on one line, the code INSEE and the département
+  def legacy_export_columns(procedure_id:)
+    super + [
+      ["#{libelle} (Nom)", data_column(procedure_id:, displayable: false, prefix: nil, key: :title)],
+      ["#{libelle} (Adresse)", data_column(procedure_id:, displayable: false, prefix: nil, key: :label)],
+      ["#{libelle} (Code INSEE Ville)", data_column(procedure_id:, displayable: false, prefix: nil, key: :city_code)],
+      ["#{libelle} (Département)", addressable_columns(procedure_id:, only: [:department_code]).first],
+    ]
+  end
+
   def columns(procedure_id:, displayable: true, prefix: nil)
     super
       .concat(addressable_columns(procedure_id:, displayable:, prefix:, deprecated_columns: true))
-      .concat([
-        Columns::JSONPathColumn.new(
-          procedure_id:,
-          stable_id:,
-          tdc_type: type_champ,
-          label: "#{libelle_with_prefix(prefix)} – Titre au répertoire national des fondations ",
-          type: :text,
-          jsonpath: '$.title',
-          displayable:,
-          mandatory: mandatory?
-        ),
-      ])
+      .concat(DATA_COLUMNS.keys.map { data_column(procedure_id:, displayable:, prefix:, key: it) })
   end
 
   private
+
+  def data_column(procedure_id:, displayable:, prefix:, key:)
+    Columns::JSONPathColumn.new(
+      procedure_id:,
+      stable_id:,
+      tdc_type: type_champ,
+      label: "#{libelle_with_prefix(prefix)} – #{DATA_COLUMNS.fetch(key)}",
+      type: :text,
+      jsonpath: "$.#{key}",
+      displayable:,
+      mandatory: mandatory?
+    )
+  end
 
   def paths
     paths = super

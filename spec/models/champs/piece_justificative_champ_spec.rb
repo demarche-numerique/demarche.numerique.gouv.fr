@@ -280,17 +280,6 @@ describe Champs::PieceJustificativeChamp do
     end
   end
 
-  describe "#for_export" do
-    subject { champ.type_de_champ.champ_value_for_export(champ) }
-
-    it { is_expected.to eq('toto.txt') }
-
-    context 'without attached file' do
-      before { champ.piece_justificative_file.purge }
-      it { is_expected.to eq(nil) }
-    end
-  end
-
   describe '#for_api' do
     before { champ.piece_justificative_file.first.blob.update(virus_scan_result:) }
 

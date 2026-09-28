@@ -12,7 +12,7 @@ class ProcedureExportService
 
   def to_csv
     Tempfile.create(['export', '.csv'], binmode: true) do |file|
-      CsvExport.new(procedure:, dossiers:, export_template: @export_template).write_to(file)
+      CsvExport.new(procedure:, dossiers:, export_template: tabular_export_template(:csv)).write_to(file)
       file.rewind
       create_blob(file, :csv)
     end
@@ -20,7 +20,7 @@ class ProcedureExportService
 
   def to_xlsx
     Tempfile.create(['export', '.xlsx'], binmode: true) do |file|
-      XlsxExport.new(procedure:, dossiers:, export_template: @export_template).write_to(file)
+      XlsxExport.new(procedure:, dossiers:, export_template: tabular_export_template(:xlsx)).write_to(file)
       file.rewind
       create_blob(file, :xlsx)
     end
@@ -28,11 +28,12 @@ class ProcedureExportService
 
   def to_ods
     @dossiers = @dossiers.downloadable_sorted_batch
-    tables = [:dossiers, :etablissements, :avis] + champs_repetables_options(format: :ods)
+    export_template = tabular_export_template(:ods)
+    tables = [:dossiers, :etablissements, :avis] + champs_repetables_options(export_template:, format: :ods)
 
     # We recursively build multi page spreadsheet
     io = StringIO.new(tables.reduce(nil) do |spreadsheet, table|
-      SpreadsheetArchitect.to_rodf_spreadsheet(options_for(table, :ods), spreadsheet)
+      SpreadsheetArchitect.to_rodf_spreadsheet(options_for(table, :ods, export_template), spreadsheet)
     end.bytes)
     create_blob(io, :ods)
   end
@@ -62,6 +63,11 @@ class ProcedureExportService
   end
 
   private
+
+  # Without a chosen template, the export follows the historical default columns.
+  def tabular_export_template(kind)
+    @export_template || LegacyExportTemplate.new(procedure:, kind:)
+  end
 
   def create_blob(io, format)
     ActiveStorage::Blob.create_and_upload!(
@@ -111,7 +117,7 @@ class ProcedureExportService
     @avis ||= dossiers.flat_map(&:avis)
   end
 
-  def champs_repetables_options(format:)
+  def champs_repetables_options(export_template:, format:)
     procedure
       .all_revisions_type_de_champs
       .repetition
@@ -123,7 +129,7 @@ class ProcedureExportService
           {
             sheet_name: type_de_champ_repetition.libelle_for_export,
             instances: rows,
-            spreadsheet_columns: Proc.new { |instance| instance.spreadsheet_columns(type_de_champs, export_template: @export_template, format:) },
+            spreadsheet_columns: Proc.new { |instance| instance.spreadsheet_columns(type_de_champs, export_template:, format:) },
           }
         end
       end
@@ -134,10 +140,10 @@ class ProcedureExportService
     row_style: { background_color: nil, color: "000000", font_size: 12 },
   }
 
-  def options_for(table, format)
+  def options_for(table, format, export_template)
     options = case table
     when :dossiers
-      { instances: dossiers.to_a, sheet_name: 'Dossiers', spreadsheet_columns: spreadsheet_columns(format) }
+      { instances: dossiers.to_a, sheet_name: 'Dossiers', spreadsheet_columns: spreadsheet_columns(format, export_template) }
     when :etablissements
       { instances: etablissements.to_a, sheet_name: 'Etablissements' }
     when :avis
@@ -151,11 +157,11 @@ class ProcedureExportService
     options
   end
 
-  def spreadsheet_columns(format)
+  def spreadsheet_columns(format, export_template)
     type_de_champs = procedure.type_de_champs_for_procedure_export.to_a
 
     Proc.new do |instance|
-      instance.send(:"spreadsheet_columns_#{format}", type_de_champs: type_de_champs, export_template: @export_template)
+      instance.send(:"spreadsheet_columns_#{format}", type_de_champs: type_de_champs, export_template:)
     end
   end
 end

@@ -19,6 +19,11 @@ class TypesDeChamp::DateTypeDeChamp < TypeDeChamp
     champ.value.presence || "" # old dossiers can have not parseable dates
   end
 
+  # the stored ISO 8601 string, not a date cell
+  def legacy_export_columns(procedure_id:)
+    [legacy_export_column(procedure_id:, label: libelle, columns: canonical_column(procedure_id:)) { it&.iso8601 }]
+  end
+
   private
 
   def clear_conflicting_options
