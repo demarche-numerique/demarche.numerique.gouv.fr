@@ -7,6 +7,8 @@ class PriorizedMailDeliveryJob < ActionMailer::MailDeliveryJob
 
   discard_on ActiveJob::DeserializationError
 
+  sidekiq_options attempt_threshold: 6
+
   # DeviseUserMailer descends from Devise::Mailer, so ApplicationMailer never
   # tags it.
   before_perform do |job|
