@@ -15,11 +15,12 @@ class Removal::Runner
     @scope = scope
   end
 
-  # ids_and_user_ids: [[dossier_id, user_id], …], plucked from the selection.
-  # All the dossiers of one user land in the same batch, hence in the same mail.
-  def each_batch(ids_and_user_ids)
+  # Walks `selection`, the scope itself unless a narrower relation is given (a
+  # daily limit, an order the index serves). All the dossiers of one user land
+  # in the same batch, hence in the same mail.
+  def each_batch(selection = @scope)
     batches = [[]]
-    ids_and_user_ids.group_by(&:last).each_value do |user_dossiers|
+    selection.pluck(:id, :user_id).group_by(&:last).each_value do |user_dossiers|
       batches << [] if batches.last.size >= BATCH_SIZE
       batches.last.concat(user_dossiers.map(&:first))
     end

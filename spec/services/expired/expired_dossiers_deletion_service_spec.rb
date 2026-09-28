@@ -373,9 +373,12 @@ describe Expired::DossiersDeletionService do
 
       before do
         dossier.update_expired_at
-        allow_any_instance_of(Removal::Runner).to receive(:each_batch).and_wrap_original do |each_batch, ids_and_user_ids, &block|
-          dossier.update_columns(state: Dossier.states.fetch(:en_instruction))
-          each_batch.call(ids_and_user_ids, &block)
+        # Between the selection and the batch being processed.
+        allow_any_instance_of(Removal::Runner).to receive(:each_batch).and_wrap_original do |each_batch, *args, &block|
+          each_batch.call(*args) do |batch|
+            dossier.update_columns(state: Dossier.states.fetch(:en_instruction))
+            block.call(batch)
+          end
         end
         service.send_termine_expiration_notices
       end
@@ -583,9 +586,12 @@ describe Expired::DossiersDeletionService do
       let!(:dossier) { create(:dossier, :followed, :accepte, procedure: procedure, termine_close_to_expiration_notice_sent_at: (warning_period + 1.day).ago) }
 
       before do
-        allow_any_instance_of(Removal::Runner).to receive(:each_batch).and_wrap_original do |each_batch, ids_and_user_ids, &block|
-          dossier.update_columns(state: Dossier.states.fetch(:en_instruction))
-          each_batch.call(ids_and_user_ids, &block)
+        # Between the selection and the batch being processed.
+        allow_any_instance_of(Removal::Runner).to receive(:each_batch).and_wrap_original do |each_batch, *args, &block|
+          each_batch.call(*args) do |batch|
+            dossier.update_columns(state: Dossier.states.fetch(:en_instruction))
+            block.call(batch)
+          end
         end
       end
 

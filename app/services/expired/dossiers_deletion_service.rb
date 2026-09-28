@@ -22,14 +22,13 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
   def send_brouillon_expiration_notices
     selection = Dossier.brouillon_close_to_expiration.without_brouillon_expiration_notice_sent
     # Only the dossiers a mail can be sent for count toward the daily limit.
-    ids_and_user_ids = selection
+    notifiable = selection
       .visible_by_user
       .with_notifiable_procedure
       .order(:expired_at)
       .limit(BROUILLON_DELETION_EMAILS_LIMIT_PER_DAY)
-      .pluck(:id, :user_id)
 
-    Removal::Runner.new(scope: selection).each_batch(ids_and_user_ids) do |dossiers_close_to_expiration|
+    Removal::Runner.new(scope: selection).each_batch(notifiable) do |dossiers_close_to_expiration|
       group_by_user_email(dossiers_close_to_expiration).each do |(email, dossiers)|
         all_user_dossiers = all_user_dossiers_brouillon_close_to_expiration(dossiers.first.user).to_a
         # The mail announces expired_at: store it before enqueuing the mail.
@@ -46,30 +45,27 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
   end
 
   def send_termine_expiration_notices
-    # Ids first: the scope is a sparse filter over the 8M termine dossiers, and
-    # iterating it with in_batches walked the primary key (#13816).
-    ids_and_user_ids = Dossier.termine_close_to_expiration.without_termine_expiration_notice_sent
+    # Ids first: the selection is a sparse filter over the 8M termine dossiers,
+    # and iterating it with in_batches walked the primary key (#13816).
+    selection = Dossier.termine_close_to_expiration.without_termine_expiration_notice_sent
       .order(:expired_at)
       .limit(TERMINE_NOTICES_LIMIT_PER_DAY)
-      .pluck(:id, :user_id)
 
     # The state is checked again at processing time: a dossier sent back to
     # instruction since the selection must be neither flagged nor hidden.
-    Removal::Runner.new(scope: Dossier.state_termine).each_batch(ids_and_user_ids) do |dossiers|
+    Removal::Runner.new(scope: Dossier.state_termine).each_batch(selection) do |dossiers|
       send_expiration_notices(dossiers, :termine_close_to_expiration_notice_sent_at)
     end
   end
 
   def delete_never_touched_brouillons
-    selection = Dossier.never_touched_brouillon_expired
-
-    Removal::Runner.new(scope: selection).each_batch(selection.pluck(:id, :user_id), &:destroy_all)
+    Removal::Runner.new(scope: Dossier.never_touched_brouillon_expired).each_batch(&:destroy_all)
   end
 
   def delete_expired_brouillons_and_notify
     selection = Dossier.brouillon_expired_after_notice_grace
 
-    Removal::Runner.new(scope: selection).each_batch(selection.pluck(:id, :user_id)) do |dossiers_to_remove|
+    Removal::Runner.new(scope: selection).each_batch do |dossiers_to_remove|
       user_notifications = group_by_user_email(dossiers_to_remove)
         .map { |(email, dossiers)| [email, dossiers.map(&:hash_for_deletion_mail)] }
 
@@ -89,23 +85,21 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
     selection = Dossier.brouillon_expired_without_notice
     # Oldest expiry first, through index_dossiers_on_expired_at: ordering by id
     # walked the primary key of every dossier to find the few expired ones.
-    ids_and_user_ids = selection
+    oldest_first = selection
       .order(:expired_at)
       .limit(BROUILLON_WITHOUT_NOTICE_DELETION_LIMIT_PER_DAY)
-      .pluck(:id, :user_id)
 
-    Removal::Runner.new(scope: selection).each_batch(ids_and_user_ids) do |dossiers|
+    Removal::Runner.new(scope: selection).each_batch(oldest_first) do |dossiers|
       dossiers.each(&:purge_without_notice)
     end
   end
 
   def delete_expired_termine_and_notify
-    ids_and_user_ids = Dossier.termine_expired_after_notice_grace
+    selection = Dossier.termine_expired_after_notice_grace
       .order(:termine_close_to_expiration_notice_sent_at)
       .limit(TERMINE_DELETION_LIMIT_PER_DAY)
-      .pluck(:id, :user_id)
 
-    Removal::Runner.new(scope: Dossier.state_termine).each_batch(ids_and_user_ids) do |dossiers|
+    Removal::Runner.new(scope: Dossier.state_termine).each_batch(selection) do |dossiers|
       delete_expired_and_notify(dossiers, notify_on_closed_procedures_to_user: true)
     end
   end
