@@ -44,6 +44,26 @@ RSpec.describe Types::DemarcheType, type: :graphql do
     }
   end
 
+  describe 'champ descriptors' do
+    let(:procedure) do
+      create(:procedure, administrateurs: [admin], public_type_de_champs: [
+        { type: :header_section, libelle: 'Section', level: 1 },
+        { libelle: 'Nom' },
+        { type: :repetition, libelle: 'Bloc', children: [{ type: :header_section, libelle: 'Sous-section', level: 1 }, { libelle: 'Prénom' }] },
+      ])
+    end
+    let(:query) { DEMARCHE_WITH_NESTED_CHAMP_DESCRIPTORS_QUERY }
+    let(:variables) { { number: procedure.id } }
+
+    it 'lists the champs outside repetitions, a repetition listing its own, levels counted through it' do
+      expect(data[:demarche][:draftRevision][:champDescriptors]).to eq([
+        { label: 'Section', level: 1 },
+        { label: 'Nom' },
+        { label: 'Bloc', champDescriptors: [{ label: 'Sous-section', level: 2 }, { label: 'Prénom' }] },
+      ])
+    end
+  end
+
   describe 'add administrateur' do
     let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :yes_no }], administrateurs: [admin]) }
     let(:query) { ADD_ADMINISTRATEUR_DEMARCHE_QUERY }
@@ -302,6 +322,25 @@ RSpec.describe Types::DemarcheType, type: :graphql do
         champDescriptors {
           id
           label
+        }
+      }
+    }
+  }
+  GRAPHQL
+
+  DEMARCHE_WITH_NESTED_CHAMP_DESCRIPTORS_QUERY = <<-GRAPHQL
+  query($number: Int!) {
+    demarche(number: $number) {
+      draftRevision {
+        champDescriptors {
+          label
+          ... on HeaderSectionChampDescriptor { level }
+          ... on RepetitionChampDescriptor {
+            champDescriptors {
+              label
+              ... on HeaderSectionChampDescriptor { level }
+            }
+          }
         }
       }
     }

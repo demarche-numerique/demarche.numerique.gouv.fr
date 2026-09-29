@@ -7,7 +7,7 @@ module Types::Champs::Descriptor
     field :birthdate, Boolean, "Ce champ est une date de naissance.", null: true
 
     def birthdate
-      object.type_de_champ.birthdate?
+      object.birthdate?
     end
   end
 end

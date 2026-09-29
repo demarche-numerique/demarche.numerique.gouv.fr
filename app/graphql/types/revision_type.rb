@@ -13,15 +13,15 @@ module Types
     # over bare revisions and the descriptors are loaded on demand, batched
     # across every revision of the response.
     def champ_descriptors
-      dataloader.with(Sources::Association, :revision_type_de_champs).load(object).then do
-        object.public_revision_type_de_champs
+      dataloader.with(Sources::RevisionTypeDeChamps).load(object).then do
+        object.public_root_type_de_champs
       end
     end
 
     def annotation_descriptors
       if context.authorized_demarche?(object.procedure)
-        dataloader.with(Sources::Association, :revision_type_de_champs).load(object).then do
-          object.private_revision_type_de_champs
+        dataloader.with(Sources::RevisionTypeDeChamps).load(object).then do
+          object.private_root_type_de_champs
         end
       else
         []
