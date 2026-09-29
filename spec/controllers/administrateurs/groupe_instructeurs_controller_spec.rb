@@ -1434,21 +1434,27 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
 
   describe '#add_signature' do
     let(:signature) { fixture_file_upload('spec/fixtures/files/black.png', 'image/png') }
+    let(:signature_params) { { groupe_instructeur: { signature: } } }
 
-    before {
-      post :add_signature,
-      params: {
-        procedure_id: procedure.id,
-        id: gi_1_1.id,
-        groupe_instructeur: {
-          signature: signature,
-        },
-      }
-    }
+    before do
+      post :add_signature, params: { procedure_id: procedure.id, id: gi_1_1.id, **signature_params }
+    end
 
     it do
       expect(response).to redirect_to(admin_procedure_groupe_instructeur_path(procedure, gi_1_1))
       expect(gi_1_1.signature).to be_attached
+    end
+
+    context 'without a file' do
+      # the browser drops an empty file input, so the form sends no groupe_instructeur at all
+      let(:signature_params) { {} }
+
+      it 'renders the group again with an error' do
+        expect(response).to have_http_status(:unprocessable_content)
+        expect(response.body).to include("Aucun fichier joint pour le tampon de l’attestation")
+        expect(assigns(:available_instructeur_emails)).not_to be_nil
+        expect(gi_1_1.reload.signature).not_to be_attached
+      end
     end
   end
 

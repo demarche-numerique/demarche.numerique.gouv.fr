@@ -8,14 +8,14 @@ module GroupeInstructeursSignatureConcern
     @groupe_instructeur = groupe_instructeur
     @instructeurs = paginated_instructeurs
 
-    signature_file = params[:groupe_instructeur][:signature]
+    signature_file = params.dig(:groupe_instructeur, :signature)
 
-    if params[:groupe_instructeur].nil? || signature_file.blank?
-      if respond_to?(:available_instructeur_emails)
+    if signature_file.blank?
+      if respond_to?(:available_instructeur_emails, true)
         @available_instructeur_emails = available_instructeur_emails
       end
 
-      flash[:alert] = "Aucun fichier joint pour le tampon de l’attestation"
+      flash.now.alert = "Aucun fichier joint pour le tampon de l’attestation"
       render :show, status: :unprocessable_content
     else
       if @groupe_instructeur.signature.attach(signature_file)
