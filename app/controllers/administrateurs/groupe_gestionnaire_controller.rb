@@ -33,7 +33,7 @@ module Administrateurs
         redirect_to admin_groupe_gestionnaire_commentaires_path
       else
         flash.alert = @commentaire.errors.full_messages
-        render :commentaires
+        render :commentaires, status: :unprocessable_content
       end
     end
 

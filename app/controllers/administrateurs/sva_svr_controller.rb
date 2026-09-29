@@ -18,7 +18,7 @@ module Administrateurs
 
       if @configuration.invalid?
         flash.now.alert = "Des erreurs empêchent la validation du SVA/SVR. Corrigez les erreurs"
-        render :edit and return
+        render :edit, status: :unprocessable_content and return
       end
 
       @procedure.assign_attributes(sva_svr: @configuration.attributes)
@@ -29,7 +29,7 @@ module Administrateurs
         redirect_to admin_procedure_path(@procedure)
       else
         flash.now.alert = @procedure.errors.full_messages
-        render :edit
+        render :edit, status: :unprocessable_content
       end
     end
 

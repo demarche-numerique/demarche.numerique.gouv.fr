@@ -52,7 +52,7 @@ module Administrateurs
       if !params[:networks].nil?
         if invalid_network?
           @invalid_network_message = "vous devez entrer des adresses ipv4 ou ipv6 valides"
-          return render :edit
+          return render :edit, status: :unprocessable_content
         end
 
         # Tokens predating automatic IP pinning have no safety net: assign_first_ip!
@@ -62,7 +62,7 @@ module Administrateurs
         if !@api_token.requires_ip_filtering? && networks.empty?
           @invalid_network_message = "Vous ne pouvez pas supprimer les restrictions d’accès à l’API d’un jeton permanent."
           @api_token.reload
-          return render :edit
+          return render :edit, status: :unprocessable_content
         end
 
         h[:authorized_networks] = networks

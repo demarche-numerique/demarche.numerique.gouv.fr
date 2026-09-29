@@ -31,7 +31,7 @@ class SuperAdmins::ReleaseNotesController < ApplicationController
       redirect_to edit_super_admins_release_note_path(@release_note), notice: t('.success')
     else
       flash.now[:alert] = [t('.error'), @release_note.errors.full_messages].flatten
-      render :new
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -44,7 +44,7 @@ class SuperAdmins::ReleaseNotesController < ApplicationController
       redirect_to edit_super_admins_release_note_path(@release_note), notice: t('.success')
     else
       flash.now[:alert] = [t('.error'), @release_note.errors.full_messages].flatten
-      render :edit
+      render :edit, status: :unprocessable_content
     end
   end
 

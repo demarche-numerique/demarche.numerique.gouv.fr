@@ -16,7 +16,7 @@ module Administrateurs
           notice: "Les informations de contact ont bien été ajoutées"
       else
         flash.now[:alert] = @contact_information.errors.full_messages
-        render :new
+        render :new, status: :unprocessable_content
       end
     end
 
@@ -31,7 +31,7 @@ module Administrateurs
           notice: "Les informations de contact ont bien été modifiées"
       else
         flash.now[:alert] = @contact_information.errors.full_messages
-        render :edit
+        render :edit, status: :unprocessable_content
       end
     end
 

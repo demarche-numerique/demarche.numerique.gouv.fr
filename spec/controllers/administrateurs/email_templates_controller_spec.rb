@@ -139,7 +139,7 @@ describe Administrateurs::EmailTemplatesController, type: :controller do
           procedure_id: procedure.id, id: 'passe_en_instruction',
           email_template: { tiptap_subject: invalid_subject },
         }
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(procedure.reload.email_passe_en_instruction).to be_nil
       end
     end

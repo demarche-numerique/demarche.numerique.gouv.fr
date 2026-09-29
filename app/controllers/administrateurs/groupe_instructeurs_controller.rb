@@ -147,7 +147,7 @@ module Administrateurs
         @groupes_instructeurs = paginated_groupe_instructeurs
 
         flash.now[:alert] = @groupe_instructeur.errors.full_messages
-        render :index
+        render :index, status: :unprocessable_content
       end
     end
 
@@ -164,7 +164,7 @@ module Administrateurs
         @available_instructeur_emails = available_instructeur_emails
 
         flash.now[:alert] = @groupe_instructeur.errors.full_messages
-        render :show
+        render :show, status: :unprocessable_content
       end
     end
 

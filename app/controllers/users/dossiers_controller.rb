@@ -191,7 +191,7 @@ module Users
         end
       else
         flash.now.alert = @dossier.individual.errors.full_messages + @dossier.errors.full_messages
-        render :identite
+        render :identite, status: :unprocessable_content
       end
     end
 
@@ -271,7 +271,7 @@ module Users
         end
       end
 
-      render :brouillon
+      render :brouillon, status: :unprocessable_content
     end
 
     def extend_conservation
@@ -306,7 +306,7 @@ module Users
 
         redirect_to dossier_path(dossier)
       else
-        render :modifier
+        render :modifier, status: :unprocessable_content
       end
     end
 
@@ -324,9 +324,9 @@ module Users
       else
         flash.alert = t('.error')
         if dossier.brouillon?
-          render :brouillon
+          render :brouillon, status: :unprocessable_content
         else
-          render :modifier
+          render :modifier, status: :unprocessable_content
         end
       end
     end

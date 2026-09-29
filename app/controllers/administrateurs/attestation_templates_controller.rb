@@ -24,7 +24,7 @@ module Administrateurs
       else
         flash.now.alert = "Le modèle de l’attestation contient des erreurs et n’a pas pu être enregistré. Veuiller les corriger"
 
-        render :edit
+        render :edit, status: :unprocessable_content
       end
     end
 
@@ -38,7 +38,7 @@ module Administrateurs
       else
         flash.now.alert = @attestation_template.errors.full_messages
 
-        render :edit
+        render :edit, status: :unprocessable_content
       end
     end
 

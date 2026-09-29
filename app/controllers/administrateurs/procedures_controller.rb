@@ -112,7 +112,7 @@ module Administrateurs
 
       if !@procedure.save
         flash.now.alert = @procedure.errors.full_messages
-        render 'new'
+        render 'new', status: :unprocessable_content
       else
         @procedure.create_generic_labels
         flash.notice = 'Démarche enregistrée.'
@@ -126,9 +126,9 @@ module Administrateurs
       if !@procedure.update(procedure_params)
         flash.now.alert = @procedure.errors.full_messages
         if @procedure.errors[:zones].present?
-          render 'zones'
+          render 'zones', status: :unprocessable_content
         else
-          render 'edit'
+          render 'edit', status: :unprocessable_content
         end
       elsif @procedure.brouillon?
         flash.notice = 'Démarche modifiée. Tous les dossiers de cette démarche ont été supprimés.'
@@ -262,7 +262,7 @@ module Administrateurs
         redirect_to admin_procedure_path(id: @procedure.id)
       else
         flash.now.alert = @procedure.errors.full_messages
-        render 'monavis'
+        render 'monavis', status: :unprocessable_content
       end
     end
 
@@ -357,7 +357,7 @@ module Administrateurs
         redirect_to admin_procedure_path(@procedure)
       else
         flash.alert = @procedure.errors.full_messages
-        render :path
+        render :path, status: :unprocessable_content
       end
     end
 
