@@ -64,13 +64,13 @@ class Dossiers::IdentiteEntrepriseComponent < ApplicationComponent
 
   def link_attestation_sociale
     if etablissement.entreprise_attestation_sociale.attached?
-      link_to(t(".consult_attestation"), url_for(etablissement.entreprise_attestation_sociale), **new_tab_link_attributes)
+      link_to(t(".consult_attestation"), url_for(etablissement.entreprise_attestation_sociale), **new_tab_link_attributes(t(".consult_attestation")))
     end
   end
 
   def link_attestation_fiscale
     if etablissement.entreprise_attestation_fiscale.attached?
-      link_to(t(".consult_attestation"), url_for(etablissement.entreprise_attestation_fiscale), **new_tab_link_attributes)
+      link_to(t(".consult_attestation"), url_for(etablissement.entreprise_attestation_fiscale), **new_tab_link_attributes(t(".consult_attestation")))
     end
   end
 

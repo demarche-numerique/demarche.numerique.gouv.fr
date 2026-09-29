@@ -27,8 +27,8 @@
 
           <p class="fr-h5"><%= t(".role_description") %></p>
 
-          <%= link_to t(".demo_video_link"), DEMO_VIDEO_URL, class: "fr-btn fr-btn--lg fr-mr-1w fr-mb-2w", **external_link_attributes %>
-          <%= link_to t(".documentation_link"), DOC_URL, class: "fr-btn fr-btn--secondary fr-btn--lg", **external_link_attributes %>
+          <%= link_to t(".demo_video_link"), DEMO_VIDEO_URL, class: "fr-btn fr-btn--lg fr-mr-1w fr-mb-2w", **external_link_attributes(t(".demo_video_link")) %>
+          <%= link_to t(".documentation_link"), DOC_URL, class: "fr-btn fr-btn--secondary fr-btn--lg", **external_link_attributes(t(".documentation_link")) %>
         </div>
 
         <div class="role-panel-30 role-more-info-image fr-mt-2w">
@@ -165,7 +165,7 @@
       <div class="fr-col-md-6 fr-col-12">
         <%= render Dsfr::CardVerticalComponent.new(title: t(".card_ready_title"), desc: t(".card_ready_desc")) do |c| %>
           <% c.with_footer_button do %>
-            <%= link_to(t(".create_admin_account"), DEMANDE_INSCRIPTION_ADMIN_PAGE_URL, class: "fr-btn", **external_link_attributes) %>
+            <%= link_to(t(".create_admin_account"), DEMANDE_INSCRIPTION_ADMIN_PAGE_URL, class: "fr-btn", **external_link_attributes(t(".create_admin_account"))) %>
           <% end %>
         <% end %>
       </div>
@@ -173,7 +173,7 @@
       <div class="fr-col-md-6 fr-col-12">
         <%= render Dsfr::CardVerticalComponent.new(title: t(".card_know_more_title"), desc: t(".card_know_more_desc")) do |c| %>
           <% c.with_footer_button do %>
-            <%= link_to(t(".webinar_link"), INSCRIPTION_WEBINAIRE_URL, class: "fr-btn", **external_link_attributes) %>
+            <%= link_to(t(".webinar_link"), INSCRIPTION_WEBINAIRE_URL, class: "fr-btn", **external_link_attributes(t(".webinar_link"))) %>
           <% end %>
         <% end %>
       </div>
@@ -189,7 +189,7 @@
         </div>
 
         <div>
-          <%= link_to t(".faq_link"), t("links.common.faq.url"), class: "fr-btn fr-btn--lg", **external_link_attributes %>
+          <%= link_to t(".faq_link"), t("links.common.faq.url"), class: "fr-btn fr-btn--lg", **external_link_attributes(t(".faq_link")) %>
         </div>
       </div>
     </div>

@@ -42,7 +42,7 @@
                   <ul>
                     <% administrateurs_emails.each do |email| %>
                       <li>
-                        <%= mail_to(email, email, target: "_blank", rel: "noopener", class: "fr-link fr-icon-external-link-line fr-link--icon-right") %>
+                        <%= mail_to(email, email, class: "fr-link fr-icon-external-link-line fr-link--icon-right") %>
                       </li>
                     <% end %>
                   </ul>

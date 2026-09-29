@@ -69,7 +69,7 @@
               Revenir à l’écran de gestion
           - if @procedure.draft_revision.public_revision_type_de_champs.count > 0
             %li
-              = link_to t('preview', scope: [:layouts, :breadcrumb]), apercu_admin_procedure_path(@procedure), target: "_blank", rel: "noopener", class: 'fr-link fr-mb-2w'
+              = link_to t('preview', scope: [:layouts, :breadcrumb]), apercu_admin_procedure_path(@procedure), class: 'fr-link fr-mb-2w', **new_tab_link_attributes(t('preview', scope: [:layouts, :breadcrumb]))
         .fr-ml-auto
           #autosave-notice.hidden
           = render TypesDeChampEditor::EstimatedFillDurationComponent.new(revision: @procedure.draft_revision, is_annotation: false)

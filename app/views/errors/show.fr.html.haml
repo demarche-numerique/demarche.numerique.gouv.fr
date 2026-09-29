@@ -8,7 +8,7 @@
 
         - if @error_name.present? # valid error code
           %p.fr-text--sm.fr-mb-5w
-            = link_to("Qu’est-ce que cela veut dire ?", "https://developer.mozilla.org/fr/docs/Web/HTTP/Status/#{@status}", **external_link_attributes)
+            = link_to("Qu’est-ce que cela veut dire ?", "https://developer.mozilla.org/fr/docs/Web/HTTP/Status/#{@status}", **external_link_attributes("Qu’est-ce que cela veut dire ?"))
 
         %ul.fr-btns-group.fr-btns-group--inline-md
           %li

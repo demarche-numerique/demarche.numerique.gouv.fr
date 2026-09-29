@@ -25,7 +25,7 @@
   - else
     - path = dossier_linked_path(current_instructeur || current_user, dossier)
     - if path.present?
-      %p= link_to("Dossier n° #{dossier.id}", path, target: '_blank', rel: 'noopener')
+      %p= link_to("Dossier n° #{dossier.id}", path, **new_tab_link_attributes("Dossier n° #{dossier.id}"))
     - elsif current_instructeur
       = render Dossiers::NoAccessToDossierComponent.new(dossier, current_instructeur)
     - else

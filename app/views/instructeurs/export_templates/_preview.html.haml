@@ -5,7 +5,7 @@
   - if dossier.nil?
     %p.fr-text--sm
       Pour générer un aperçu fidèle avec tous les champs et les dates,
-      = link_to 'créez-vous un dossier', commencer_url(procedure.path), target: '_blank'
+      = link_to 'créez-vous un dossier', commencer_url(procedure.path), **new_tab_link_attributes('créez-vous un dossier')
       et acceptez-le : l’aperçu l’utilisera.
 
   - else

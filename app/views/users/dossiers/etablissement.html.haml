@@ -21,8 +21,7 @@
             correspond bien à votre entreprise :
 
           %p
-            = link_to annuaire_link(etablissement.siret), class: "fr-btn fr-btn--secondary", **external_link_attributes do
-              Vérifier dans l’annuaire des entreprises
+            = link_to "Vérifier dans l’annuaire des entreprises", annuaire_link(etablissement.siret), class: "fr-btn fr-btn--secondary", **external_link_attributes("Vérifier dans l’annuaire des entreprises")
 
     - elsif etablissement.diffusable_commercialement == false
       %p= t('warning_for_private_info', scope: 'views.shared.dossiers.identite_entreprise', siret: pretty_siret(etablissement.siret))

@@ -21,7 +21,7 @@
           %li et/ou préremplir d’autres champs ou annotations avec des données issues du référentiel
         %p.fr-notice__desc
           Vous pouvez vous référer à
-          = link_to "notre documentation", "https://doc.demarches-simplifiees.fr/tutoriels/champ-referentiel-avance-a-configurer", target: "_blank"
+          = link_to "notre documentation", "https://doc.demarches-simplifiees.fr/tutoriels/champ-referentiel-avance-a-configurer", **helpers.external_link_attributes("notre documentation")
           = " pour prendre en main ce champ"
   - if ready? && type_de_champ.referentiel_mapping_prefillable_with_stable_id.present?
     = render Dsfr::AlertComponent.new(title: "Résumé du pré-remplissage automatique", state: :info, heading_level: 'h2', extra_class_names: 'fr-mb-2w') do |c|
