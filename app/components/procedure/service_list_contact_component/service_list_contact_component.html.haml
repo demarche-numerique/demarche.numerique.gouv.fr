@@ -1,16 +1,16 @@
 - if faq_link.present? && contact_link.present?
   %ul
     %li.fr-mb-2v
-      = link_to t('.faq_link'), faq_link , title: helpers.new_tab_suffix(t('.faq_link')), class: footer ? '' : 'fr-link fr-link--sm', **helpers.external_link_attributes
+      = link_to t('.faq_link'), faq_link , class: footer ? '' : 'fr-link fr-link--sm', **helpers.external_link_attributes(t('.faq_link'))
     %li.fr-mb-2w
-      = link_to t('.contact_link'), contact_link, title: helpers.new_tab_suffix(t('.contact_link')), class: footer ? '' : 'fr-link fr-link--sm', **helpers.external_link_attributes
+      = link_to t('.contact_link'), contact_link, class: footer ? '' : 'fr-link fr-link--sm', **helpers.external_link_attributes(t('.contact_link'))
 
 - elsif faq_link.present? || contact_link.present?
   .fr-mb-2w
     - if faq_link.present?
-      = link_to t('.faq_link'), faq_link , title: helpers.new_tab_suffix(t('.faq_link')), class: footer ? '' : 'fr-link fr-link--sm', **helpers.external_link_attributes
+      = link_to t('.faq_link'), faq_link , class: footer ? '' : 'fr-link fr-link--sm', **helpers.external_link_attributes(t('.faq_link'))
     - if contact_link.present?
-      = link_to t('.contact_link'), contact_link, title: helpers.new_tab_suffix(t('.contact_link')), class: footer ? '' : 'fr-link fr-link--sm', **helpers.external_link_attributes
+      = link_to t('.contact_link'), contact_link, class: footer ? '' : 'fr-link fr-link--sm', **helpers.external_link_attributes(t('.contact_link'))
 
 %dl.border-left-dark
   - if dossier.present? && dossier&.messagerie_available?

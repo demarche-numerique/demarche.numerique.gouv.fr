@@ -8,14 +8,14 @@ RSpec.describe ReleaseNotesHelper, type: :helper do
       release_note.body = "Go to <a href='http://example.com'>Example</a>"
       processed_content = helper.render_release_note_content(release_note.body)
 
-      expect(processed_content.body.to_s).to include('Go to <a href="http://example.com" target="_blank" rel="noopener external" title="Example — Nouvel onglet">Example</a>')
+      expect(processed_content.body.to_s).to include('Go to <a href="http://example.com" title="Example — Nouvel onglet" target="_blank" rel="noopener external">Example</a>')
     end
 
     it "strips whitespace around the href" do
       release_note.body = "Go to <a href=' http://example.com/doc '>Example</a>"
       processed_content = helper.render_release_note_content(release_note.body)
 
-      expect(processed_content.body.to_s).to include('<a href="http://example.com/doc" target="_blank" rel="noopener external" title="Example — Nouvel onglet">Example</a>')
+      expect(processed_content.body.to_s).to include('<a href="http://example.com/doc" title="Example — Nouvel onglet" target="_blank" rel="noopener external">Example</a>')
     end
 
     it "strips non-breaking spaces around the href" do
@@ -30,7 +30,7 @@ RSpec.describe ReleaseNotesHelper, type: :helper do
         release_note.body = "Go to <a href='#{href}'>Example</a>"
         processed_content = helper.render_release_note_content(release_note.body)
 
-        expect(processed_content.body.to_s).to include('title="Example — Nouvel onglet">Example</a>')
+        expect(processed_content.body.to_s).to include('title="Example — Nouvel onglet" target="_blank" rel="noopener external">Example</a>')
       end
     end
 

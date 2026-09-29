@@ -2,7 +2,7 @@
   <% c.with_html_body do %>
     <p><%= t('jdma.body') %></p>
 
-    <%= link_to href, title: helpers.new_tab_suffix(t('jdma.alt')), class: 'inline-block fr-raw-link fr-mt-2w', **helpers.external_link_attributes do %>
+    <%= link_to href, class: 'inline-block fr-raw-link fr-mt-2w', **helpers.external_link_attributes(t('jdma.alt')) do %>
       <%= image_tag 'jdma/bouton-bleu-light.svg', alt: t('jdma.alt'), class: 'hidden-on-dark-theme' %>
       <%= image_tag 'jdma/bouton-bleu-dark.svg', alt: t('jdma.alt'), class: 'hidden-on-light-theme' %>
     <% end %>

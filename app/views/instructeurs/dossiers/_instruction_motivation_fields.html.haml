@@ -73,8 +73,7 @@
             = link_to t('instructeurs.dossiers.preview_attestation'),
               apercu_attestation_instructeur_dossier_path(dossier.procedure, dossier, attestation_kind: attestation_context[:kind]),
               class: 'fr-notice__link',
-              title: new_tab_suffix(t('instructeurs.dossiers.preview_attestation')),
-              **new_tab_link_attributes
+              **new_tab_link_attributes(t('instructeurs.dossiers.preview_attestation'))
 
     - if !batch && attestation_context[:kind].present?
       = render partial: 'instructeurs/dossiers/unspecified_champs',

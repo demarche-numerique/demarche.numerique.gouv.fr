@@ -6,6 +6,6 @@ class ProConnectAdministrateurAnnouncementComponent < ApplicationComponent
   private
 
   def pro_connect_link
-    link_to "ProConnect", PRO_CONNECT_URL, title: helpers.new_tab_suffix("ProConnect"), **helpers.external_link_attributes
+    link_to "ProConnect", PRO_CONNECT_URL, **helpers.external_link_attributes("ProConnect")
   end
 end

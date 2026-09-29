@@ -39,8 +39,7 @@ module ReleaseNotesHelper
       # Hrefs are typed by hand: without this, the sanitizer turns surrounding (nbsp) spaces into %20
       link.set_attribute('href', link['href'].gsub(/\A[[:space:]]+|[[:space:]]+\z/, ''))
 
-      external_link_attributes.each { |name, value| link.set_attribute(name.to_s, value) }
-      link.set_attribute('title', new_tab_suffix(link.text.squish.presence))
+      external_link_attributes(link.text.squish.presence).each { |name, value| link.set_attribute(name.to_s, value) }
     end
 
     content

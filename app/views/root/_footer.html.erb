@@ -124,11 +124,11 @@
       <div class="fr-footer__content">
         <p class="fr-footer__content-desc">
           <%= t("links.footer.description_1", application_name: Current.application_name) %>
-          <%= link_to(t("links.footer.link_1_label"), t("links.footer.link_1_url"), title: new_tab_suffix(t("links.footer.link_1_label")), hreflang: "fr", **external_link_attributes) + "." %>
+          <%= link_to(t("links.footer.link_1_label"), t("links.footer.link_1_url"), hreflang: "fr", **external_link_attributes(t("links.footer.link_1_label"))) + "." %>
         </p>
 
         <p class="fr-footer__content-desc">
-          <%= link_to(t("links.footer.link_2_label"), t("links.footer.code.url"), title: new_tab_suffix(t("links.footer.link_2_label")), hreflang: "fr", **external_link_attributes) %>
+          <%= link_to(t("links.footer.link_2_label"), t("links.footer.code.url"), hreflang: "fr", **external_link_attributes(t("links.footer.link_2_label"))) %>
           <%= t("links.footer.description_2") %>
         </p>
 

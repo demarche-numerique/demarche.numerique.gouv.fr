@@ -13,7 +13,7 @@
     <% end -%>
 
     <p>
-      <%= link_to t('views.shared.france_connect_login.plus_help_link'), "https://www.franceconnect.gouv.fr/franceconnect-plus/", title: new_tab_suffix(t('views.shared.france_connect_login.plus_help_link')), **external_link_attributes %>
+      <%= link_to t('views.shared.france_connect_login.plus_help_link'), "https://www.franceconnect.gouv.fr/franceconnect-plus/", **external_link_attributes(t('views.shared.france_connect_login.plus_help_link')) %>
     </p>
   </div>
 <% else -%>

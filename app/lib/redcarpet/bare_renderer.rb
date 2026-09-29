@@ -27,7 +27,7 @@ module Redcarpet
     end
 
     def link(href, title, content)
-      content_tag(:a, content, { href:, title: new_tab_suffix(title), **external_link_attributes }, false)
+      content_tag(:a, content, { href:, **external_link_attributes(title) }, false)
     end
 
     # Redcarpet's C scanner ends an autolink on isalnum(), which on macOS in a
