@@ -39,17 +39,17 @@ class ViewableChamp::SectionComponent < ApplicationComponent
   def reset_tag_for_depth
     return if header_section.nil?
 
-    "reset-h#{header_section.level + 1}"
+    "reset-h#{header_section.absolute_level + 1}"
   end
 
   def first_level?
     return if header_section.nil?
 
-    header_section.level == 1
+    header_section.absolute_level == 1
   end
 
   def repetition_heading_level
-    relative_level = header_section ? header_section.level : 1
+    relative_level = header_section ? header_section.absolute_level : 1
     # there are 2 levels of heading before the repetition heading
     [relative_level + 2, 6].min
   end

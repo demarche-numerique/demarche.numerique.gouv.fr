@@ -33,7 +33,7 @@ class EditableChamp::SectionComponent < ApplicationComponent
   end
 
   def tag_for_depth
-    "h#{header_section.level + 1}"
+    "h#{header_section.absolute_level + 1}"
   end
 
   def split_section_champ(node)
