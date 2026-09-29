@@ -1,7 +1,8 @@
 import { DirectUpload } from '@rails/activestorage';
-import { httpRequest, ResponseError } from '@utils';
+import { fire, httpRequest, ResponseError } from '@utils';
 import {
   ERROR_CODE_ATTACH,
+  ERROR_CODE_STORE,
   errorFromDirectUploadMessage,
   FileUploadError
 } from './file-upload-error';
@@ -18,6 +19,7 @@ export default class Uploader {
   autoAttachUrl?: string;
   maxFileSize: number;
   file: File;
+  #storageUrl?: string;
 
   constructor(
     input: HTMLInputElement,
@@ -82,6 +84,7 @@ export default class Uploader {
       this.directUpload.create((errorMsg, attributes) => {
         if (errorMsg) {
           const error = errorFromDirectUploadMessage(errorMsg);
+          this.reportStorageFailure(error);
           reject(error);
         } else {
           resolve(attributes.signed_id);
@@ -118,11 +121,49 @@ export default class Uploader {
     }
   }
 
+  /**
+    The PUT goes straight to the storage: its failures never reach the Rails
+    project. A storage answering without CORS headers (a rejected preflight,
+    or an error response to the PUT) makes the upload fail with status 0,
+    exactly like a network failure. A `no-cors` request is not subject to
+    CORS: if it gets an answer, the storage is reachable and it is its
+    response that the browser blocked.
+    */
+  private async reportStorageFailure(error: FileUploadError) {
+    if (error.code != ERROR_CODE_STORE || error.status != 0) {
+      return;
+    }
+
+    try {
+      await fetch(new URL(this.#storageUrl!).origin, {
+        mode: 'no-cors',
+        cache: 'no-store'
+      });
+    } catch {
+      return;
+    }
+
+    fire(document, 'sentry:capture-message', {
+      message: 'Direct upload blocked by CORS'
+    });
+  }
+
   uploadRequestDidProgress(event: ProgressEvent) {
     const progress = (event.loaded / event.total) * 100;
     if (progress) {
       this.progressBar.progress(progress);
     }
+  }
+
+  // ActiveStorage deletes `direct_upload` from the response in its own `load`
+  // listener, which runs before any listener we could add: read the URL on
+  // `readystatechange`, dispatched first.
+  directUploadWillCreateBlobWithXHR(xhr: XMLHttpRequest) {
+    xhr.addEventListener('readystatechange', () => {
+      if (xhr.readyState == XMLHttpRequest.DONE) {
+        this.#storageUrl = xhr.response?.direct_upload?.url;
+      }
+    });
   }
 
   directUploadWillStoreFileWithXHR(xhr: XMLHttpRequest) {
