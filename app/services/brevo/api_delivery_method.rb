@@ -45,6 +45,7 @@ class Brevo::APIDeliveryMethod
     case Brevo::API.new.send_email(Brevo::EmailPayload.new(mail).to_h)
     in Success(*message_ids)
       mail.message_id = message_ids.first
+      mail[EmailEvent::MESSAGE_IDS_HEADER] = message_ids.map { it.delete('<>') }.join(',')
     in Failure(kind: :duplicate)
       nil
     in Failure(error)

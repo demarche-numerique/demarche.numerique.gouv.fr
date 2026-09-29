@@ -2,6 +2,7 @@
 
 class EmailEvent < ApplicationRecord
   RETENTION_DURATION = 1.month
+  MESSAGE_IDS_HEADER = 'X-DN-Message-Ids'
 
   enum :status, {
     pending: 'pending',
@@ -15,14 +16,15 @@ class EmailEvent < ApplicationRecord
   class << self
     def create_from_message!(message, status:)
       recipients = message.to_addrs.presence || message.bcc_addrs
+      message_ids = message[MESSAGE_IDS_HEADER]&.value.to_s.split(',')
 
-      recipients.each do |recipient|
+      recipients.each_with_index do |recipient, index|
         EmailEvent.create!(
           to: recipient,
           subject: message.subject || "",
           processed_at: message.date,
           method: ActionMailer::Base.delivery_methods.key(message.delivery_method.class),
-          message_id: message.message_id,
+          message_id: message_ids[index] || message.message_id,
           status:
         )
       rescue StandardError => error
