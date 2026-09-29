@@ -31,16 +31,21 @@ module Administrateurs
           end
         end
 
-        flash.now[:notice] = t('.experts_assignment',
+        notice = t('.experts_assignment',
           count: valid_users.count,
-          value: valid_users.map(&:email).join(', '),
+          value: emails_for_flash(valid_users.map(&:email)),
           procedure: @procedure.id)
       end
 
-      flash.now[:alert] = errors.join(". ") if !errors.empty?
-      retrieve_experts_procedure
-      retrieve_experts_emails
-      render :index
+      if errors.empty?
+        redirect_to admin_procedure_experts_path(@procedure), notice:
+      else
+        flash.now[:notice] = notice
+        flash.now[:alert] = errors.join(". ")
+        retrieve_experts_procedure
+        retrieve_experts_emails
+        render :index, status: :unprocessable_content
+      end
     end
 
     def update
