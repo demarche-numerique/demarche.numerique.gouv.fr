@@ -1,25 +1,29 @@
 # frozen_string_literal: true
 
 describe Instructeurs::EditController, type: :controller do
-  let(:instructeur) { create(:instructeur) }
-  let(:procedure) do
-    create(:procedure, :published,
-      instructeurs: [instructeur],
-      instructeurs_can_edit_dossiers: true,
-      public_type_de_champs: [{ type: :text, libelle: 'Texte', stable_id: 99, mandatory: true }])
-  end
-  let(:dossier) { create(:dossier, :en_construction, :with_populated_champs, procedure:) }
+  let_it_be(:instructeur) { instructeurs.default }
+  let_it_be(:procedure) { procedures.individual.tap { it.update!(instructeurs_can_edit_dossiers: true) } }
+  let_it_be(:nom_stable_id) { stable_id_for('Nom du projet') }
+  let_it_be(:description_stable_id) { stable_id_for('Description du projet') }
+  let(:dossier) { dossiers.en_construction }
 
-  def buffer_value(value)
+  def stable_id_for(libelle)
+    procedure.active_revision.types_de_champ_public.find { it.libelle == libelle }.stable_id
+  end
+
+  # the seeded dossier leaves its two mandatory champs empty: fill the description,
+  # so that the nom alone decides whether the dossier is valid
+  def buffer_nom(value)
     dossier.with_instructeur_buffer_stream do
-      dossier.public_champ_for_update('99', updated_by: instructeur.email).assign_attributes(value:)
+      dossier.public_champ_for_update(description_stable_id.to_s, updated_by: instructeur.email).assign_attributes(value: 'Une description')
+      dossier.public_champ_for_update(nom_stable_id.to_s, updated_by: instructeur.email).assign_attributes(value:)
     end
     dossier.save!
   end
 
-  def main_value
+  def main_nom
     dossier.reload.champ_data
-      .find { it.stream == Dossier::MAIN_STREAM && it.stable_id == 99 }
+      .find { it.stream == Dossier::MAIN_STREAM && it.stable_id == nom_stable_id }
       &.value
   end
 
@@ -38,22 +42,22 @@ describe Instructeurs::EditController, type: :controller do
     end
 
     context 'when the buffered changes are valid' do
-      before { buffer_value('Valeur corrigée par l’instructeur') }
+      before { buffer_nom('Valeur corrigée par l’instructeur') }
 
       it 'merges them onto the dossier and goes back to it' do
         expect { subject }.to change { dossier.traitements.count }.by(1)
 
         expect(response).to redirect_to(instructeur_dossier_path(procedure, dossier, statut: 'a-suivre'))
-        expect(main_value).to eq('Valeur corrigée par l’instructeur')
+        expect(main_nom).to eq('Valeur corrigée par l’instructeur')
       end
     end
 
     # The confirmation dialog only opens on a valid dossier: this is the dossier
     # turned invalid in between, by a change made from another tab.
     context 'when the buffered changes make the dossier invalid' do
-      let!(:value_before) { main_value }
+      let!(:nom_before) { main_nom }
 
-      before { buffer_value('') }
+      before { buffer_nom('') }
 
       it 'renders the form again with its errors and merges nothing' do
         expect { subject }.not_to change { dossier.traitements.count }
@@ -61,7 +65,7 @@ describe Instructeurs::EditController, type: :controller do
         expect(response).to have_http_status(:unprocessable_content)
         expect(response).to render_template(:show)
         expect(response.body).to include('Votre dossier contient 1 champ en erreur')
-        expect(main_value).to eq(value_before)
+        expect(main_nom).to eq(nom_before)
       end
     end
   end
