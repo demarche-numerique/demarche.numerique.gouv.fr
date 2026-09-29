@@ -32,6 +32,9 @@ module FormResponseGuard
     # opts out of Turbo with data-turbo="false"
     'administrateurs/api_tokens#create',
     'super_admins#enable_otp',
+    # asking for the password of an existing account is a step, not an error:
+    # the email choice form opts out of Turbo with data-turbo="false"
+    'france_connect#send_email_merge_request',
     # called by jQuery, not by a form
     'manager/users#enable_feature',
   ].freeze

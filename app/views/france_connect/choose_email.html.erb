@@ -11,7 +11,8 @@
         <%= form_with url: france_connect_merge_using_fc_email_path,
           method: :post,
           authenticity_token: form_authenticity_token,
-          data: { controller: 'email-france-connect',
+          data: { turbo: false,
+            controller: 'email-france-connect',
             email_france_connect_fc_email_path_value: france_connect_merge_using_fc_email_path,
             email_france_connect_custom_email_path_value: france_connect_send_email_merge_request_path,
             email_france_connect_target: "form" } do |f| %>

@@ -558,6 +558,7 @@ describe FranceConnectController, type: :controller do
           expect(UserMailer).not_to receive(:france_connect_merge_confirmation)
           subject
 
+          expect(response).to have_http_status(:ok)
           expect(response).to render_template(:confirm_email_merge_password)
           expect(fci.reload.email_merge_token).to be_nil
           expect(fci.reload.requested_email).to be_nil
@@ -571,6 +572,7 @@ describe FranceConnectController, type: :controller do
           expect(UserMailer).not_to receive(:france_connect_merge_confirmation)
           subject
 
+          expect(response).to have_http_status(:unprocessable_content)
           expect(response).to render_template(:confirm_email_merge_password)
           expect(flash[:alert]).to eq(I18n.t('france_connect.flash.invalid_password'))
           expect(fci.reload.email_merge_token).to be_nil
