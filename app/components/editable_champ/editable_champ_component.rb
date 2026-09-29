@@ -15,11 +15,11 @@ class EditableChamp::EditableChampComponent < ApplicationComponent
   end
 
   def parent_fieldset_legend_id
-    "#{@champ.parent.html_id}-legend"
+    "#{repetition_type_de_champ.html_id}-legend"
   end
 
   def fieldset_legend_id
-    "#{@champ.parent.html_id(@champ.row_id)}-legend"
+    "#{repetition_type_de_champ.html_id(@champ.row_id)}-legend"
   end
 
   def aria_labelledby_prefix
@@ -29,22 +29,23 @@ class EditableChamp::EditableChampComponent < ApplicationComponent
   end
 
   def number_of_siblings_if_in_repetition
-    return if !@champ.child?
+    return if !@champ.in_repetition?
 
-    @number_of_siblings_if_in_repetition ||= @champ.dossier.revision.children_of(@champ.parent).count
+    @number_of_siblings_if_in_repetition ||= repetition_type_de_champ.flat_children.count
   end
 
   def row_number_if_in_repetition
-    return if !@champ.child? || number_of_siblings_if_in_repetition > 1
+    return if !@champ.in_repetition? || number_of_siblings_if_in_repetition > 1
 
     @row_number_if_in_repetition ||= begin
-      parent = @champ.parent
-      row_ids = @champ.dossier.repetition_row_ids(parent)
+      row_ids = @champ.dossier.repetition_row_ids(repetition_type_de_champ)
       row_ids.find_index(@champ.row_id)&.+ 1
     end
   end
 
   private
+
+  def repetition_type_de_champ = @champ.type_de_champ.enclosing_repetition
 
   def hidden_pre_rempli? = @champ.pre_rempli? && @champ.pre_rempli_hidden?
 

@@ -663,8 +663,10 @@ describe ChampData do
 
     let(:champ) { dossier.champ_data.where(type: "Champs::TextChamp").first }
 
-    it "returns the parent" do
-      expect(champ.parent).to eq(TypeDeChamp.find_by(type_champ: "repetition"))
+    it "returns the repetition champ, whatever the row" do
+      expect(champ.parent).to be_repetition
+      expect(champ.parent.row_id).to be_nil
+      expect(champ.parent).to equal(champ.enclosing_repetition)
     end
   end
 

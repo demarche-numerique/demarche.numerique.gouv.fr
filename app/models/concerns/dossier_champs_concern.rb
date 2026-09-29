@@ -18,18 +18,35 @@ module DossierChampsConcern
     end
   end
 
+  # The same champ whoever asks: a stored one is the instance the dossier
+  # loaded, one that is not is built once, until the champs change
+  # (reset_champs_cache).
   def project_champ(type_de_champ, row_id: nil)
     check_valid_row_id_on_read?(type_de_champ, row_id)
     data = champ_data_by_public_id[type_de_champ.public_id(row_id)]
     if data.nil? || !data.is_type?(type_de_champ.type_champ)
-      value = type_de_champ.champ_blank?(data) ? nil : data.value
-      updated_at = data&.value_updated_at || depose_at || created_at
-      rebased_at = data&.rebased_at
-      type_de_champ.build_champ(dossier: self, row_id:, updated_at:, rebased_at:, value:, stream:)
+      built_champs[[type_de_champ.public_id(row_id), type_de_champ.id]] ||= begin
+        value = type_de_champ.champ_blank?(data) ? nil : data.value
+        updated_at = data&.value_updated_at || depose_at || created_at
+        rebased_at = data&.rebased_at
+        type_de_champ.build_champ(dossier: self, row_id:, updated_at:, rebased_at:, value:, stream:)
+      end
     else
       data.type_de_champ = type_de_champ
       data
     end
+  end
+
+  # The champs laid out as the types de champ of the revision are: these two
+  # hold the top of the form, the rest being within the header sections
+  # (HeaderSectionChamp#children) and the rows of the repetitions
+  # (RepetitionRow#children).
+  def public_champs
+    @public_champs ||= revision.public_type_de_champs.map { project_champ(it) }
+  end
+
+  def private_champs
+    @private_champs ||= revision.private_type_de_champs.map { project_champ(it) }
   end
 
   def root_champs_public
@@ -77,10 +94,8 @@ module DossierChampsConcern
     row_ids = repetition_row_ids(type_de_champ)
     return [] if row_ids.empty?
 
-    children_type_de_champs = revision.children_of(type_de_champ)
-
     row_ids.map.with_index(1) do |row_id, index|
-      RepetitionRow.new(id: row_id, index:, dossier: self, type_de_champ:, children_type_de_champs:)
+      RepetitionRow.new(id: row_id, index:, dossier: self, type_de_champ:)
     end
   end
 
@@ -322,6 +337,10 @@ module DossierChampsConcern
     @champ_data_by_public_id ||= champ_data_on_stream.index_by(&:public_id)
   end
 
+  def built_champs
+    @built_champs ||= {}
+  end
+
   def discarded_champ_data_by_public_id
     @discarded_champ_data_by_public_id ||= discarded_champ_data_on_main_stream.index_by(&:public_id)
   end
@@ -471,8 +490,11 @@ module DossierChampsConcern
 
   def reset_champs_cache
     @champ_data_by_public_id = nil
+    @built_champs = nil
     @discarded_champ_data_by_public_id = nil
     @champs_by_row_id = nil
+    @public_champs = nil
+    @private_champs = nil
     @root_champs_public = nil
     @root_champs_private = nil
     @flat_champs_public = nil
