@@ -2,4 +2,4 @@
 .fr-pl-1w
   %h1= t('help_dropdown.problem_title', app_name: APPLICATION_NAME)
   = t('help_dropdown.problem_description')
-  = link_to t('help_dropdown.problem_url_title'), t("links.common.faq.url"), title: new_tab_suffix(t('help_dropdown.problem_url_title')), class: 'fr-link fr-link--sm', **external_link_attributes
+  = link_to t('help_dropdown.problem_url_title'), t("links.common.faq.url"), class: 'fr-link fr-link--sm', **external_link_attributes(t('help_dropdown.problem_url_title'))

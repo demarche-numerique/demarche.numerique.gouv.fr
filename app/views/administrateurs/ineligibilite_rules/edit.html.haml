@@ -16,7 +16,7 @@
         - c.with_body do
           %p
             Les dossiers répondant à vos conditions d’inéligibilité ne pourront pas être déposés. Plus d’informations sur l’inéligibilité des dossiers dans la
-            = link_to('doc', ELIGIBILITE_URL, title: "Document sur l’inéligibilité des dossiers", **external_link_attributes)
+            = link_to('doc', ELIGIBILITE_URL, **external_link_attributes("Document sur l’inéligibilité des dossiers"))
 
       - if !@procedure.draft_revision.conditionable_type_de_champs.present?
         %p.fr-mt-2w.fr-mb-2w

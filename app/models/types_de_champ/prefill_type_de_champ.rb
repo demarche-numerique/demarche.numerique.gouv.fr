@@ -118,8 +118,7 @@ class TypesDeChamp::PrefillTypeDeChamp < SimpleDelegator
     link_to(
       I18n.t("views.prefill_descriptions.edit.possible_values.link.text"),
       Rails.application.routes.url_helpers.prefill_type_de_champ_path(@revision.procedure_path, self),
-      title: new_tab_suffix(I18n.t("views.prefill_descriptions.edit.possible_values.link.title")),
-      **new_tab_link_attributes
+      **new_tab_link_attributes(I18n.t("views.prefill_descriptions.edit.possible_values.link.title"))
     )
   end
 

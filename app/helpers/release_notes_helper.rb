@@ -38,8 +38,7 @@ module ReleaseNotesHelper
     content.body.fragment.source.css("a[href]").each do |link|
       uri = URI.parse(link['href'])
 
-      external_link_attributes.each { |name, value| link.set_attribute(name.to_s, value) }
-      link.set_attribute('title', new_tab_suffix(uri.host))
+      external_link_attributes(uri.host).each { |name, value| link.set_attribute(name.to_s, value) }
     end
 
     content

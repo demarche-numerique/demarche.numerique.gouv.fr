@@ -35,8 +35,7 @@
     = t('.routage_doc.learn_more')
     = link_to(t('.routage_doc.link_text'),
       ROUTAGE_URL,
-      title: t('.routage_doc.title'),
-      **helpers.external_link_attributes)
+      **helpers.external_link_attributes(t('.routage_doc.title')))
   - if !@procedure.routing_enabled?
     %p.fr-mt-2w
       %i.fr-mt-2w= t('.routing_not_configured')
@@ -95,7 +94,7 @@
     - c.with_body do
       %p
         = t('.anonymisation_callout.content_part_1')
-        = link_to t('.anonymisation_callout.link_text'), t('.anonymisation_callout.link_url'), title: helpers.new_tab_suffix(t('.anonymisation_callout.link_text')), **helpers.external_link_attributes
+        = link_to t('.anonymisation_callout.link_text'), t('.anonymisation_callout.link_url'), **helpers.external_link_attributes(t('.anonymisation_callout.link_text'))
       %p
         = t('.anonymisation_callout.content_part_2_html', id: @procedure.id, contact_email: CONTACT_EMAIL)
 

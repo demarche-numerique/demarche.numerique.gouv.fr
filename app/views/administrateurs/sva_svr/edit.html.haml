@@ -39,8 +39,8 @@
 
     - c.with_bottom do
       %p.fr-mt-2w
-        = link_to("Texte sur LegiFrance", "https://www.legifrance.gouv.fr/contenu/menu/autour-de-la-loi/sva-silence-vaut-accord", class: "fr-link fr-mr-1w", title: new_tab_suffix("En savoir plus sur le LegiFrance"), **external_link_attributes)
-        = link_to("Liste des démarches encadrées par ce principe", "https://www.service-public.fr/demarches-silence-vaut-accord", class: "fr-link", title: new_tab_suffix("Rechercher les démarches avec SVA sur service-public.fr"), **external_link_attributes)
+        = link_to("Texte sur LegiFrance", "https://www.legifrance.gouv.fr/contenu/menu/autour-de-la-loi/sva-silence-vaut-accord", class: "fr-link fr-mr-1w", **external_link_attributes("En savoir plus sur le LegiFrance"))
+        = link_to("Liste des démarches encadrées par ce principe", "https://www.service-public.fr/demarches-silence-vaut-accord", class: "fr-link", **external_link_attributes("Rechercher les démarches avec SVA sur service-public.fr"))
 
 
 = render Procedure::SVASVRFormComponent.new(procedure: @procedure, configuration: @configuration)

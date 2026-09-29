@@ -13,7 +13,7 @@
             %ul.fr-footer__top-list
               - politiques.each do |politique|
                 %li
-                  = link_to t("users.procedure_footer.legals.data_retention_url"), class: "fr-footer__link", title: new_tab_suffix(t("users.procedure_footer.legals.data_retention_title", data_retention_title: politiques_conservation_de_donnees(procedure).join)), **external_link_attributes do
+                  = link_to t("users.procedure_footer.legals.data_retention_url"), class: "fr-footer__link", **external_link_attributes(t("users.procedure_footer.legals.data_retention_title", data_retention_title: politiques_conservation_de_donnees(procedure).join)) do
                     = politique
               - if procedure.deliberation.attached?
                 %li
@@ -41,11 +41,11 @@
             - if procedure.zones.none? { |z| z.acronym == 'MI' }
               %li
                 = link_to t('users.procedure_footer.support_links.france_service.title'), t("users.procedure_footer.support_links.france_service.url"),
-                  title: new_tab_suffix(t("users.procedure_footer.support_links.france_service.title")), class: "fr-footer__link", **external_link_attributes
+                  class: "fr-footer__link", **external_link_attributes(t("users.procedure_footer.support_links.france_service.title"))
 
             %li
               = link_to t('users.procedure_footer.support_links.carte_inclusion.title'), t("users.procedure_footer.support_links.carte_inclusion.url"),
-                title: new_tab_suffix(t("users.procedure_footer.support_links.carte_inclusion.title")), class: "fr-footer__link", **external_link_attributes
+                class: "fr-footer__link", **external_link_attributes(t("users.procedure_footer.support_links.carte_inclusion.title"))
 
   .fr-footer__bottom.fr-mt-0
     .fr-container

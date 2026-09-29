@@ -146,7 +146,7 @@
             %p.fr-hint-text
               %strong Les webhooks sont maintenant dépréciés
               Nous vous recommandons d’utiliser l’API GraphQL en faisant du polling,
-              = link_to "voici un exemple d’implementation ", WEBHOOK_ALTERNATIVE_DOC_URL, title: "Voir une implémentation alternative à l’ancien système de webhook", **external_link_attributes
+              = link_to "voici un exemple d’implementation ", WEBHOOK_ALTERNATIVE_DOC_URL, **external_link_attributes("Voir une implémentation alternative à l’ancien système de webhook")
             = f.text_field :web_hook_url, class: 'fr-input', placeholder: 'https://callback.exemple.fr/'
 
         .fr-fieldset__element

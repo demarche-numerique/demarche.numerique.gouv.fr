@@ -8,7 +8,7 @@ RSpec.describe ReleaseNotesHelper, type: :helper do
       release_note.body = "Go to <a href='http://example.com'>Example</a>"
       processed_content = helper.render_release_note_content(release_note.body)
 
-      expect(processed_content.body.to_s).to include('Go to <a href="http://example.com" target="_blank" rel="noopener external" title="example.com — Nouvel onglet">Example</a>')
+      expect(processed_content.body.to_s).to include('Go to <a href="http://example.com" title="example.com — Nouvel onglet" target="_blank" rel="noopener external">Example</a>')
     end
 
     it "handles content without links" do
