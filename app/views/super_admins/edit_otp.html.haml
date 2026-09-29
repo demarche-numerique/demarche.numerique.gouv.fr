@@ -7,7 +7,7 @@
         %p
           %strong Votre authentification double-facteur est déjà activée.
           Continuer remplacera votre application actuelle par une nouvelle&nbsp;: saisissez le code qu’elle affiche pour confirmer.
-      = form_with url: enable_super_admin_otp_path, method: :put, local: true do |f|
+      = form_with url: enable_super_admin_otp_path, method: :put, local: true, data: { turbo: false } do |f|
         .fr-input-group
           = f.label :current_password, "Mot de passe actuel", class: 'fr-label'
           = f.password_field :current_password, autocomplete: 'current-password', required: true, class: 'fr-input'
