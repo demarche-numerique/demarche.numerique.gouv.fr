@@ -58,7 +58,7 @@ if (enabled && key) {
     Sentry.captureException(error);
   });
   addEventListener('sentry:capture-message', (event) => {
-    const { message } = (event as CustomEvent).detail;
-    Sentry.captureMessage(message, 'error');
+    const { message, tags } = (event as CustomEvent).detail;
+    Sentry.captureMessage(message, { level: 'error', tags });
   });
 }

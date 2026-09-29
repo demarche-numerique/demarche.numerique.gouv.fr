@@ -1,5 +1,7 @@
 import { afterEach, beforeEach, expect, suite, test, vi } from 'vitest';
 
+const { store } = vi.hoisted(() => ({ store: { status: 0 } }));
+
 vi.mock('./progress-bar', () => ({
   default: class {
     start = vi.fn();
@@ -32,20 +34,21 @@ vi.mock('@rails/activestorage', () => ({
         upload: new EventTarget()
       });
 
-      callback('Error storing "attestation.pdf". Status: 0');
+      callback(`Error storing "attestation.pdf". Status: ${store.status}`);
     }
   }
 }));
 
 const { default: Uploader } = await import('./uploader');
 
-suite('Uploader, when storing the file fails with status 0', () => {
-  let reported: { message: string }[];
+suite('Uploader, when storing the file fails', () => {
+  let reported: { message: string; tags?: object }[];
   const collect = (event: Event) =>
     reported.push((event as CustomEvent).detail);
 
   beforeEach(() => {
     reported = [];
+    store.status = 0;
     document.addEventListener('sentry:capture-message', collect);
   });
 
@@ -62,6 +65,21 @@ suite('Uploader, when storing the file fails with status 0', () => {
     );
     return expect(uploader.start()).rejects.toThrowError('Error storing file.');
   }
+
+  test('reports the error status the storage answered', async () => {
+    const probe = vi.spyOn(window, 'fetch');
+    store.status = 422;
+
+    await failUpload();
+
+    expect(reported).toEqual([
+      {
+        message: 'Direct upload rejected by the storage',
+        tags: { status: 422 }
+      }
+    ]);
+    expect(probe).not.toHaveBeenCalled();
+  });
 
   test('reports a storage the browser reaches but cannot read', async () => {
     const probe = vi.spyOn(window, 'fetch').mockResolvedValue(new Response());

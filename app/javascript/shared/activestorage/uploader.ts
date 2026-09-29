@@ -130,7 +130,15 @@ export default class Uploader {
     response that the browser blocked.
     */
   private async reportStorageFailure(error: FileUploadError) {
-    if (error.code != ERROR_CODE_STORE || error.status != 0) {
+    if (error.code != ERROR_CODE_STORE) {
+      return;
+    }
+
+    if (error.status != 0) {
+      fire(document, 'sentry:capture-message', {
+        message: 'Direct upload rejected by the storage',
+        tags: { status: error.status }
+      });
       return;
     }
 
