@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 # The types de champ a TypeDeChampTree lays out, each one knowing its
-# ancestors and its children (TypeDeChamp#lay_out).
+# ancestors and its children (TypeDeChamp#lay_out). A revision lays out its
+# own tree, a procedure the aggregate of the trees of its published revisions.
 class TypeDeChampLayout < Data.define(
   :type_de_champs_by_stable_id,
   :public_type_de_champs, :public_flat_type_de_champs, :public_root_type_de_champs,
@@ -44,4 +45,7 @@ class TypeDeChampLayout < Data.define(
   # All types de champ in document order, the content of header sections and
   # repetitions inlined after them.
   def type_de_champs = public_flat_type_de_champs + private_flat_type_de_champs
+
+  # root as in not within a repetition: header sections and their content are all there
+  def root_type_de_champs = public_root_type_de_champs + private_root_type_de_champs
 end
