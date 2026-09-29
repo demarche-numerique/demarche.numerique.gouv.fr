@@ -14,9 +14,9 @@ class EmailEvent < ApplicationRecord
 
   class << self
     def create_from_message!(message, status:)
-      to = message.to_addrs || ["unset"] # no recipients when error occurs *before* setting to: in the mailer
+      recipients = message.to_addrs.presence || message.bcc_addrs
 
-      to.each do |recipient|
+      recipients.each do |recipient|
         EmailEvent.create!(
           to: recipient,
           subject: message.subject || "",
