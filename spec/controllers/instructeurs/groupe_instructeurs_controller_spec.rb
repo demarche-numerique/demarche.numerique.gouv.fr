@@ -100,7 +100,7 @@ describe Instructeurs::GroupeInstructeursController, type: :controller do
     end
 
     context 'of a new instructeur' do
-      let(:new_instructeur_email) { 'new_instructeur@gmail.com' }
+      let(:new_instructeur_email) { "new_instructeur@#{instructeur.email_domain}" }
       before { subject }
 
       it "works" do
@@ -113,7 +113,7 @@ describe Instructeurs::GroupeInstructeursController, type: :controller do
     end
 
     context 'of an instructeur already known and with email verified' do
-      let(:known_instructeur) { create(:instructeur, :email_verified) }
+      let(:known_instructeur) { create(:instructeur, :email_verified, email: "connu@#{instructeur.email_domain}") }
       let(:new_instructeur_email) { known_instructeur.email }
 
       before { subject }
@@ -128,7 +128,7 @@ describe Instructeurs::GroupeInstructeursController, type: :controller do
     end
 
     context 'of an instructeur already known that has received a invitation email long time ago' do
-      let(:known_instructeur) { create(:instructeur, user: create(:user, { reset_password_sent_at: 10.days.ago })) }
+      let(:known_instructeur) { create(:instructeur, user: create(:user, email: "connu@#{instructeur.email_domain}", reset_password_sent_at: 10.days.ago)) }
       let(:new_instructeur_email) { known_instructeur.email }
 
       before { subject }
@@ -164,6 +164,43 @@ describe Instructeurs::GroupeInstructeursController, type: :controller do
         expect(flash.alert).to include(new_instructeur_email)
         expect(GroupeInstructeurMailer).not_to have_received(:confirm_and_notify_added_instructeur)
         expect(GroupeInstructeurMailer).not_to have_received(:notify_added_instructeurs)
+      end
+    end
+
+    context 'when an instructeur on self management procedure adds an email from another domain' do
+      let(:instructeur) { create(:instructeur, email: 'moi@interieur.gouv.fr') }
+      let(:procedure) { create(:procedure, :published, instructeurs_self_management_enabled: true) }
+      let(:new_instructeur_email) { 'quelquun@gmail.com' }
+
+      before { expect(instructeur.user.administrateur).to be_nil }
+
+      it 'is rejected' do
+        expect { subject }.not_to enqueue_email
+        expect(flash.alert).to include(new_instructeur_email)
+        expect(gi_1_2.reload.instructeurs.map(&:email)).not_to include(new_instructeur_email)
+      end
+    end
+
+    context 'when an instructeur also administrateur adds an email from another domain' do
+      let(:new_instructeur_email) { 'user@test.com' }
+
+      it 'is still rejected, the restriction applies to anyone using instructeur interface' do
+        expect { subject }.not_to enqueue_email
+        expect(flash.alert).to include(new_instructeur_email)
+        expect(GroupeInstructeurMailer).not_to have_received(:confirm_and_notify_added_instructeur)
+        expect(GroupeInstructeurMailer).not_to have_received(:notify_added_instructeurs)
+      end
+    end
+
+    context 'with a mix of valid and invalid domains' do
+      it 'adds only the valid one' do
+        good = "collegue@#{instructeur.email_domain}"
+        bad = 'quelquun@gmail.com'
+        post :add_instructeurs, params: { procedure_id: procedure.id, id: gi_1_2.id, emails: [good, bad] }
+
+        expect(gi_1_2.reload.instructeurs.map(&:email)).to include(good)
+        expect(gi_1_2.instructeurs.map(&:email)).not_to include(bad)
+        expect(flash.alert).to include(bad)
       end
     end
 
@@ -365,10 +402,11 @@ describe Instructeurs::GroupeInstructeursController, type: :controller do
       end
 
       it 'still adds instructeurs to a group they have not joined' do
+        email = "new_instructeur@#{instructeur.email_domain}"
         post :add_instructeurs,
-          params: { procedure_id: procedure.id, id: gi_1_1.id, emails: ['new_instructeur@example.com'] }
+          params: { procedure_id: procedure.id, id: gi_1_1.id, emails: [email] }
 
-        expect(gi_1_1.reload.instructeurs.map(&:email)).to include('new_instructeur@example.com')
+        expect(gi_1_1.reload.instructeurs.map(&:email)).to include(email)
       end
     end
   end

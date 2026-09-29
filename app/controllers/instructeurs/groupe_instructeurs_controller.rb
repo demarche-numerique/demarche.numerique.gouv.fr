@@ -26,13 +26,22 @@ module Instructeurs
     def add_instructeurs
       emails, maybe_typos, errors = parse_emails
 
-      added_instructeurs, invalid_emails = groupe_instructeur.add_instructeurs(emails:)
+      added_instructeurs, invalid_emails, invalid_domain_emails = groupe_instructeur.add_instructeurs(emails:, current_instructeur:)
 
       if invalid_emails.present?
         errors += [
           t('.wrong_address',
             count: invalid_emails.size,
             emails: emails_for_flash(invalid_emails)),
+        ]
+      end
+
+      if invalid_domain_emails.present?
+        errors += [
+          t('.wrong_domain',
+            count: invalid_domain_emails.size,
+            emails: emails_for_flash(invalid_domain_emails),
+            domain: current_instructeur.email_domain),
         ]
       end
 
