@@ -356,7 +356,7 @@ module Administrateurs
         flash.notice = "L'URL de la démarche a bien été mise à jour"
         redirect_to admin_procedure_path(@procedure)
       else
-        flash.alert = @procedure.errors.full_messages
+        flash.now.alert = @procedure.errors.full_messages
         render :path, status: :unprocessable_content
       end
     end

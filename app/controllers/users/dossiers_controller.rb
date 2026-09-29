@@ -322,7 +322,7 @@ module Users
           redirect_to modifier_dossier_path(@dossier)
         end
       else
-        flash.alert = t('.error')
+        flash.now.alert = t('.error')
         if dossier.brouillon?
           render :brouillon, status: :unprocessable_content
         else
@@ -714,7 +714,7 @@ module Users
     end
 
     def render_siret_error(error_message)
-      flash.alert = error_message
+      flash.now.alert = error_message
       render :siret, status: :unprocessable_content
     end
 

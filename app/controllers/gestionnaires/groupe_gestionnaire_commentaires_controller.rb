@@ -31,7 +31,7 @@ module Gestionnaires
         current_gestionnaire.mark_commentaire_as_seen(@last_commentaire.groupe_gestionnaire, @commentaire.sender_id, @commentaire.sender_type)
         redirect_to gestionnaire_groupe_gestionnaire_commentaire_path(@groupe_gestionnaire, @commentaire)
       else
-        flash.alert = @commentaire.errors.full_messages
+        flash.now.alert = @commentaire.errors.full_messages
         render :show, status: :unprocessable_content
       end
     end
@@ -56,7 +56,7 @@ module Gestionnaires
         flash.notice = "Message envoyé"
         redirect_to parent_groupe_gestionnaire_gestionnaire_groupe_gestionnaire_commentaires_path(@groupe_gestionnaire)
       else
-        flash.alert = @commentaire.errors.full_messages
+        flash.now.alert = @commentaire.errors.full_messages
         render :parent_groupe_gestionnaire, status: :unprocessable_content
       end
     end

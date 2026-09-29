@@ -26,7 +26,7 @@ module Administrateurs
         flash.notice = 'Le label a bien été créé'
         redirect_to [:admin, @procedure, :labels]
       else
-        flash.alert = @label.errors.full_messages
+        flash.now.alert = @label.errors.full_messages
         render :new, status: :unprocessable_content
       end
     end
@@ -36,7 +36,7 @@ module Administrateurs
         flash.notice = 'Le label a bien été modifié'
         redirect_to [:admin, @procedure, :labels]
       else
-        flash.alert = @label.errors.full_messages
+        flash.now.alert = @label.errors.full_messages
         render :edit, status: :unprocessable_content
       end
     end

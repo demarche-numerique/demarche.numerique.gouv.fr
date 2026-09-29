@@ -14,7 +14,7 @@ module Administrateurs
         flash[:notice] = "Les conditions d’inéligibilité ont été modifiées."
         redirect_to [:admin, @procedure]
       else
-        flash[:alert] = draft_revision.errors.full_messages
+        flash.now.alert = draft_revision.errors.full_messages
         render :edit, status: :unprocessable_content
       end
     end

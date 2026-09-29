@@ -38,7 +38,7 @@ class ContactController < ApplicationController
 
       redirect_to root_path
     else
-      flash.alert = @form.errors.full_messages
+      flash.now.alert = @form.errors.full_messages
       render (@form.for_admin ? :admin : :index), status: :unprocessable_content
     end
   end
@@ -104,7 +104,7 @@ class ContactController < ApplicationController
     return if piece_jointe.is_a?(ActionDispatch::Http::UploadedFile)
 
     @form = ContactForm.new(user: current_user)
-    flash.alert = t('invalid_piece_jointe', scope: "contact.create")
+    flash.now.alert = t('invalid_piece_jointe', scope: "contact.create")
     render(@form.for_admin ? :admin : :index, status: :unprocessable_content)
   end
 end

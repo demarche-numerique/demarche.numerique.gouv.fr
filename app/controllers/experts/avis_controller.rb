@@ -206,7 +206,7 @@ module Experts
             render template: 'shared/dossiers/create_commentaire', status: :unprocessable_content
           end
           format.html do
-            flash.alert = @commentaire.errors.full_messages
+            flash.now.alert = @commentaire.errors.full_messages
             render :messagerie, status: :unprocessable_content
           end
         end
