@@ -127,6 +127,19 @@ describe Administrateurs::GroupeGestionnaireController, type: :controller do
       it '2 emails are sent' do
         expect { perform_enqueued_jobs { subject } }.to change { ActionMailer::Base.deliveries.count }.by(2)
       end
+
+      context "with an empty message" do
+        let(:body) { "" }
+
+        before { admin.update!(commentaire_seen_at: 1.day.ago) }
+
+        it "renders the messagerie again, keeping the messages already seen" do
+          expect { subject }.not_to change(CommentaireGroupeGestionnaire, :count)
+
+          expect(response).to have_http_status(:unprocessable_content)
+          expect(assigns(:commentaire_seen_at)).to eq(admin.reload.commentaire_seen_at)
+        end
+      end
     end
   end
 end

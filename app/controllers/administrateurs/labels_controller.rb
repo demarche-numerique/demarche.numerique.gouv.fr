@@ -5,17 +5,16 @@ module Administrateurs
     before_action :retrieve_procedure
     before_action :retrieve_label, only: [:edit, :update, :destroy]
     before_action :set_colors_collection, only: [:edit, :new, :create, :update]
+    before_action :set_labels, only: [:edit, :new, :create, :update]
 
     def index
       @labels = @procedure.labels.includes(:dossier_labels)
     end
 
     def edit
-      @labels = @procedure.labels
     end
 
     def new
-      @labels = @procedure.labels
       @label = Label.new
     end
 
@@ -73,6 +72,11 @@ module Administrateurs
 
     def set_colors_collection
       @colors_collection = Label.colors.keys
+    end
+
+    # an array, loaded before create builds the new label into the association
+    def set_labels
+      @labels = @procedure.labels.to_a
     end
   end
 end

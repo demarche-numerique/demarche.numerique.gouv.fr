@@ -32,6 +32,7 @@ module Administrateurs
         flash.notice = "Message envoyé"
         redirect_to admin_groupe_gestionnaire_commentaires_path
       else
+        @commentaire_seen_at = current_administrateur.commentaire_seen_at
         flash.now.alert = @commentaire.errors.full_messages
         render :commentaires, status: :unprocessable_content
       end

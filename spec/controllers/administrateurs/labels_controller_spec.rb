@@ -58,6 +58,7 @@ describe Administrateurs::LabelsController, type: :controller do
 
     context 'when submitting an invalid label' do
       let(:params) { { label: { name: 'Nouveau label' }, procedure_id: procedure.id } }
+      let!(:existing_label) { create(:label, procedure:) }
 
       it { expect { subject }.not_to change { Label.count } }
 
@@ -66,6 +67,7 @@ describe Administrateurs::LabelsController, type: :controller do
         expect(flash.alert).to eq(["Le champ « Couleur » doit être rempli"])
         expect(response).to render_template(:new)
         expect(assigns(:label).name).to eq('Nouveau label')
+        expect(assigns(:labels)).to eq([existing_label])
       end
     end
 
@@ -121,6 +123,7 @@ describe Administrateurs::LabelsController, type: :controller do
         subject
         expect(flash.alert).not_to be_nil
         expect(response).to render_template(:edit)
+        expect(assigns(:labels)).to eq([label])
         expect(label.reload.updated_at).to eq(label.reload.created_at)
       end
     end
