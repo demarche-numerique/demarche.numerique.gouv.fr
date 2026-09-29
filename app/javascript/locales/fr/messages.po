@@ -26,6 +26,14 @@ msgid "La taille maximale du fichier autorisée est de&nbsp;<strong>{maxSizeMB} 
 msgstr "La taille maximale du fichier autorisée est de&nbsp;<strong>{maxSizeMB} "
 "Mo</strong>."
 
+#: app/javascript/components/Map/MapCanvas.tsx:149
+msgid "Nous ne pouvons pas afficher la carte car elle est incompatible avec "
+"votre navigateur. Nous vous conseillons de le mettre à jour ou "
+"d’utiliser <0>un navigateur plus récent</0>."
+msgstr "Nous ne pouvons pas afficher la carte car elle est incompatible avec "
+"votre navigateur. Nous vous conseillons de le mettre à jour ou "
+"d’utiliser <0>un navigateur plus récent</0>."
+
 #: app/javascript/components/Select.tsx:125
 msgid "Rechercher"
 msgstr "Rechercher"
