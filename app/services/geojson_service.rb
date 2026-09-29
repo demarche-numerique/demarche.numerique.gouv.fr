@@ -61,21 +61,22 @@ class GeojsonService
     radians * EQUATORIAL_RADIUS
   end
 
+  # West, south, east, north: the order of RFC 7946.
   def self.bbox(geojson)
-    result = [-Float::INFINITY, -Float::INFINITY, Float::INFINITY, Float::INFINITY]
+    result = [Float::INFINITY, Float::INFINITY, -Float::INFINITY, -Float::INFINITY]
 
     self.yield_each_coordinate_in_geojson(geojson) do |coord|
-      if result[3] > coord[1]
-        result[3] = coord[1]
+      if result[0] > coord[0]
+        result[0] = coord[0]
       end
-      if result[2] > coord[0]
-        result[2] = coord[0]
-      end
-      if result[1] < coord[1]
+      if result[1] > coord[1]
         result[1] = coord[1]
       end
-      if result[0] < coord[0]
-        result[0] = coord[0]
+      if result[2] < coord[0]
+        result[2] = coord[0]
+      end
+      if result[3] < coord[1]
+        result[3] = coord[1]
       end
     end
 

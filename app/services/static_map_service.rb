@@ -92,11 +92,6 @@ class StaticMapService
   # --- Extent ----------------------------------------------------------------
 
   # Square projected extent, as [min_x, min_y, max_x, max_y].
-  #
-  # Deliberately recomputed from the coordinates rather than taken from
-  # `feature_collection[:bbox]`: `GeojsonService.bbox` returns
-  # [max_lon, max_lat, min_lon, min_lat], the reverse of the GeoJSON
-  # convention.
   def bbox
     @bbox ||= begin
       points = features.flat_map { each_coordinate(it[:geometry]).map { |coord| project(coord) } }

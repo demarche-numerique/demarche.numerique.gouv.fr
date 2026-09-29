@@ -2060,7 +2060,7 @@ describe Dossier, type: :model do
       expect(dossier.to_feature_collection).to eq({
         type: 'FeatureCollection',
         id: dossier.id,
-        bbox: [2.428439855575562, 46.538491597754714, 2.42824137210846, 46.53841410755813],
+        bbox: [2.42824137210846, 46.53841410755813, 2.428439855575562, 46.538491597754714],
         features: [
           {
             type: 'Feature',
