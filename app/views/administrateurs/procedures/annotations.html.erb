@@ -39,6 +39,6 @@
 
 <%= render Procedure::FixedFooterComponent.new(procedure: @procedure) do %>
   <% if @procedure.draft_revision.private_root_type_de_champs.any? %>
-    <%= link_to t('preview_annotations', scope: [:layouts, :breadcrumb]), apercu_admin_procedure_path(@procedure, params: {tab: 'annotations-privees'}), target: "_blank", rel: "noopener", class: 'fr-link' %>
+    <%= link_to t('preview_annotations', scope: [:layouts, :breadcrumb]), apercu_admin_procedure_path(@procedure, params: {tab: 'annotations-privees'}), class: 'fr-link', **new_tab_link_attributes(t('preview_annotations', scope: [:layouts, :breadcrumb])) %>
   <% end %>
 <% end %>

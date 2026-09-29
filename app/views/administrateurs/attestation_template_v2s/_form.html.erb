@@ -229,7 +229,7 @@
             <h2 class="fr-h4">Aperçu</h2>
 
             <p>
-              <%= link_to 'Prévisualiser en taille réelle', preview_path, class: 'fr-link', target: '_blank', rel: 'noopener', data: { preview_dossier_target: 'url' } %>
+              <%= link_to 'Prévisualiser en taille réelle', preview_path, class: 'fr-link', data: { preview_dossier_target: 'url' }, **new_tab_link_attributes('Prévisualiser en taille réelle') %>
             </p>
           </div>
 
@@ -247,7 +247,7 @@
             L’aperçu est mis à jour automatiquement après chaque modification.
             <% if preselected.nil? %>
               Pour générer un aperçu fidèle avec champs et dates,
-              <%= link_to("créez-vous un dossier", new_dossier_path(procedure_id: procedure, brouillon: true), **new_tab_link_attributes) %>
+              <%= link_to("créez-vous un dossier", new_dossier_path(procedure_id: procedure, brouillon: true), **new_tab_link_attributes("créez-vous un dossier")) %>
               et acceptez-le&nbsp;: l’aperçu l’utilisera.
             <% end %>
           </p>

@@ -21,7 +21,7 @@
                     = t("users.procedure_footer.legals.terms")
               - elsif procedure.cadre_juridique&.starts_with?("http")
                 %li
-                  = link_to t("users.procedure_footer.legals.terms"), procedure.cadre_juridique, class: 'fr-footer__link', **external_link_attributes
+                  = link_to t("users.procedure_footer.legals.terms"), procedure.cadre_juridique, class: 'fr-footer__link', **external_link_attributes(t("users.procedure_footer.legals.terms"))
 
               - if procedure.lien_dpo.present? && (lien_dpo_url = url_or_email_to_lien_dpo(procedure))
                 %li

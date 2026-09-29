@@ -17,9 +17,8 @@
 
       <%= link_to t('instructeurs.dossiers.submitted_revision.download'),
         original_instructeur_dossier_path(format: :pdf),
-        target: "_blank",
-        rel: "noopener",
-        class: 'fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-download-line' %>
+        class: 'fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-download-line',
+        **new_tab_link_attributes(t('instructeurs.dossiers.submitted_revision.download')) %>
     </div>
   </div>
 

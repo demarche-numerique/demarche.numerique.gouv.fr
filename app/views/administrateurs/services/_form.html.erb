@@ -16,7 +16,7 @@
   ) do |c| %>
     <% c.with_hint do %>
       <%= t(".siret_hint_html") %>
-      <%= link_to("annuaire-entreprises.data.gouv.fr", annuaire_link, **external_link_attributes) %>
+      <%= link_to("annuaire-entreprises.data.gouv.fr", annuaire_link, **external_link_attributes("annuaire-entreprises.data.gouv.fr")) %>
 
       <br>
       <%= t(".siret_format") %>

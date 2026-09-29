@@ -115,7 +115,7 @@
               <% end %>
 
               <li>
-                <%= link_to t('instructeurs.dossiers.header.banner.preview'), apercu_instructeur_procedure_path(p), target: "_blank", rel: "noopener", class: 'fr-nav__link' %>
+                <%= link_to t('instructeurs.dossiers.header.banner.preview'), apercu_instructeur_procedure_path(p), class: 'fr-nav__link', **new_tab_link_attributes(t('instructeurs.dossiers.header.banner.preview')) %>
               </li>
 
               <li

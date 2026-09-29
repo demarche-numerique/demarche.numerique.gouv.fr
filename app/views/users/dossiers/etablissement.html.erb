@@ -23,9 +23,7 @@
           </p>
 
           <p>
-            <%= link_to annuaire_link(siret), class: "fr-btn fr-btn--secondary", **external_link_attributes do %>
-              <%= t('.check_in_annuaire') %>
-            <% end %>
+            <%= link_to t('.check_in_annuaire'), annuaire_link(siret), class: "fr-btn fr-btn--secondary", **external_link_attributes(t('.check_in_annuaire')) %>
           </p>
         <% end %>
       <% end %>
