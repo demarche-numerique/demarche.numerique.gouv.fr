@@ -24,11 +24,11 @@ msgid "{0, plural, =0 {{defaultChildren}} one {1 choix sélectionné} other {# "
 msgstr "{0, plural, =0 {{defaultChildren}} one {1 item selected} other {# items "
 "selected}}"
 
-#: app/javascript/components/Map/parcelle.ts:81
+#: app/javascript/components/Map/parcelle.ts:113
 msgid "{area} hectares"
 msgstr "{area} hectares"
 
-#: app/javascript/components/Map/parcelle.ts:84
+#: app/javascript/components/Map/parcelle.ts:116
 msgid "{area} m²"
 msgstr "{area} m²"
 
@@ -68,7 +68,7 @@ msgstr "Choose a GPX or KML file"
 msgid "Commencez à saisir"
 msgstr "Start typing"
 
-#: app/javascript/components/Map/parcelle.ts:87
+#: app/javascript/components/Map/parcelle.ts:119
 msgid "commune {commune}"
 msgstr "town {commune}"
 
@@ -96,7 +96,7 @@ msgstr "Draw a rectangle"
 msgid "Exemple :"
 msgstr "Example:"
 
-#: app/javascript/components/Map/parcelle.ts:77
+#: app/javascript/components/Map/parcelle.ts:109
 msgid "Feuille {feuille}"
 msgstr "Sheet {feuille}"
 
@@ -120,7 +120,7 @@ msgstr "We cannot display the map because your browser does not support it. We "
 msgid "Outils de dessin"
 msgstr "Drawing tools"
 
-#: app/javascript/components/Map/parcelle.ts:74
+#: app/javascript/components/Map/parcelle.ts:106
 msgid "Parcelle n° {numero}"
 msgstr "Parcel n° {numero}"
 

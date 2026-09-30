@@ -23,6 +23,7 @@ import {
   type GeoJSONStoreFeatures
 } from 'terra-draw';
 import { TerraDrawMapLibreGLAdapter } from 'terra-draw-maplibre-gl-adapter';
+import { Popup } from '@vis.gl/react-maplibre';
 
 import { ANCHORS } from '../shared/maplibre/styles';
 import { useMapLibre } from './MapLibreProvider';
@@ -43,8 +44,15 @@ export type DrawMode =
 
 // Where the parcelles of the tiles are drawn, and clicked on.
 const PARCELLES_FILL_LAYER = 'parcelles-fill';
+const PARCELLES_SOURCE_LAYER = 'parcelles';
 
 export type DrawnFeature = Feature<DrawableGeometry> & { id: string };
+
+type HoveredParcelle = {
+  parcelle: MapGeoJSONFeature;
+  longitude: number;
+  latitude: number;
+};
 
 // A Terra Draw instance lives as long as a basemap: its layers are not part of
 // the map style, and a new style would remove them under its feet.
@@ -63,6 +71,7 @@ export function DrawLayer({
   onDelete,
   onRefuse,
   onParcelleClick,
+  describeParcelle,
   history
 }: {
   features: Feature[];
@@ -73,6 +82,8 @@ export function DrawLayer({
   onRefuse?: (ids: string[]) => void;
   // Given, the toolbar offers to pick the parcelles of the tiles.
   onParcelleClick?: (parcelle: MapGeoJSONFeature) => void;
+  // What to say of the parcelle under the mouse, while picking parcelles.
+  describeParcelle?: (parcelle: MapGeoJSONFeature) => string | null;
   // Given, the toolbar offers to undo and redo the changes of the usager.
   history?: History;
 }) {
@@ -82,6 +93,8 @@ export function DrawLayer({
   const [session, setSession] = useState<Session | null>(null);
   const [mode, setMode] = useState<DrawMode>('select');
   const [selected, setSelected] = useState<string | null>(null);
+  const [hoveredParcelle, setHoveredParcelle] =
+    useState<HoveredParcelle | null>(null);
   const drawable = useMemo(() => features.filter(isDrawable), [features]);
 
   const onFinish = useEffectEvent(
@@ -195,24 +208,61 @@ export function DrawLayer({
     }
   });
 
+  const onHoverParcelle = useEffectEvent((event: MapLayerMouseEvent) => {
+    const parcelle = event.features?.at(0);
+    if (parcelle?.id == null || parcelle.id == hoveredParcelle?.parcelle.id) {
+      return;
+    }
+    // The popup opens where the mouse enters the parcelle: the parcelles of
+    // the tiles are cut along the tiles, their center is nowhere to be found.
+    setHoveredParcelle({
+      parcelle,
+      longitude: event.lngLat.lng,
+      latitude: event.lngLat.lat
+    });
+  });
+
   useEffect(() => {
     const instance = map?.getMap();
     if (!instance || mode != 'parcelles') {
       return;
     }
     const onClick = (event: MapLayerMouseEvent) => onClickParcelle(event);
+    const onMove = (event: MapLayerMouseEvent) => onHoverParcelle(event);
     const onEnter = () => (instance.getCanvas().style.cursor = 'pointer');
-    const onLeave = () => (instance.getCanvas().style.cursor = '');
+    const onLeave = () => {
+      instance.getCanvas().style.cursor = '';
+      setHoveredParcelle(null);
+    };
     instance.on('click', PARCELLES_FILL_LAYER, onClick);
+    instance.on('mousemove', PARCELLES_FILL_LAYER, onMove);
     instance.on('mouseenter', PARCELLES_FILL_LAYER, onEnter);
     instance.on('mouseleave', PARCELLES_FILL_LAYER, onLeave);
     return () => {
       instance.off('click', PARCELLES_FILL_LAYER, onClick);
+      instance.off('mousemove', PARCELLES_FILL_LAYER, onMove);
       instance.off('mouseenter', PARCELLES_FILL_LAYER, onEnter);
       instance.off('mouseleave', PARCELLES_FILL_LAYER, onLeave);
       onLeave();
     };
   }, [map, mode]);
+
+  // The parcelle under the mouse lights up, as the tiles style it.
+  useEffect(() => {
+    const instance = map?.getMap();
+    if (!instance || !hoveredParcelle) {
+      return;
+    }
+    const { source, id } = hoveredParcelle.parcelle;
+    const target = { source, sourceLayer: PARCELLES_SOURCE_LAYER, id };
+    instance.setFeatureState(target, { hover: true });
+    return () => {
+      // A new basemap took the source, and its state, away.
+      if (instance.getSource(source)) {
+        instance.setFeatureState(target, { hover: false });
+      }
+    };
+  }, [map, hoveredParcelle]);
 
   const onKeyDown = useEffectEvent((event: KeyboardEvent) => {
     if (!history || !(event.ctrlKey || event.metaKey)) {
@@ -268,67 +318,88 @@ export function DrawLayer({
       'fr-icon-grid-line'
     ]);
   }
+  // Described as it is now: a click may have just selected it.
+  const parcelleLabel = hoveredParcelle
+    ? describeParcelle?.(hoveredParcelle.parcelle)
+    : null;
   const deleteLabel = t`Supprimer la forme sélectionnée`;
   const undoLabel = t`Annuler la dernière modification`;
   const redoLabel = t`Rétablir la modification annulée`;
 
   return (
-    <PortalControl position="top-left">
-      <div role="group" aria-label={t`Outils de dessin`} className="draw-tools">
-        {tools.map(([tool, label, icon]) => (
-          <button
-            key={tool}
-            type="button"
-            title={label}
-            aria-label={label}
-            aria-pressed={mode == tool}
-            onClick={() => setMode(tool)}
-          >
-            <span className={`${icon} fr-icon--sm`} aria-hidden="true" />
-          </button>
-        ))}
-        <button
-          type="button"
-          title={deleteLabel}
-          aria-label={deleteLabel}
-          disabled={!selected}
-          onClick={deleteSelected}
+    <>
+      <PortalControl position="top-left">
+        <div
+          role="group"
+          aria-label={t`Outils de dessin`}
+          className="draw-tools"
         >
-          <span
-            className="fr-icon-delete-bin-line fr-icon--sm"
-            aria-hidden="true"
-          />
-        </button>
-        {history ? (
-          <>
+          {tools.map(([tool, label, icon]) => (
             <button
+              key={tool}
               type="button"
-              title={undoLabel}
-              aria-label={undoLabel}
-              disabled={!history.canUndo}
-              onClick={history.undo}
+              title={label}
+              aria-label={label}
+              aria-pressed={mode == tool}
+              onClick={() => setMode(tool)}
             >
-              <span
-                className="fr-icon-arrow-go-back-line fr-icon--sm"
-                aria-hidden="true"
-              />
+              <span className={`${icon} fr-icon--sm`} aria-hidden="true" />
             </button>
-            <button
-              type="button"
-              title={redoLabel}
-              aria-label={redoLabel}
-              disabled={!history.canRedo}
-              onClick={history.redo}
-            >
-              <span
-                className="fr-icon-arrow-go-forward-line fr-icon--sm"
-                aria-hidden="true"
-              />
-            </button>
-          </>
-        ) : null}
-      </div>
-    </PortalControl>
+          ))}
+          <button
+            type="button"
+            title={deleteLabel}
+            aria-label={deleteLabel}
+            disabled={!selected}
+            onClick={deleteSelected}
+          >
+            <span
+              className="fr-icon-delete-bin-line fr-icon--sm"
+              aria-hidden="true"
+            />
+          </button>
+          {history ? (
+            <>
+              <button
+                type="button"
+                title={undoLabel}
+                aria-label={undoLabel}
+                disabled={!history.canUndo}
+                onClick={history.undo}
+              >
+                <span
+                  className="fr-icon-arrow-go-back-line fr-icon--sm"
+                  aria-hidden="true"
+                />
+              </button>
+              <button
+                type="button"
+                title={redoLabel}
+                aria-label={redoLabel}
+                disabled={!history.canRedo}
+                onClick={history.redo}
+              >
+                <span
+                  className="fr-icon-arrow-go-forward-line fr-icon--sm"
+                  aria-hidden="true"
+                />
+              </button>
+            </>
+          ) : null}
+        </div>
+      </PortalControl>
+      {hoveredParcelle && parcelleLabel ? (
+        <Popup
+          longitude={hoveredParcelle.longitude}
+          latitude={hoveredParcelle.latitude}
+          closeButton={false}
+          closeOnClick={false}
+          className="map-popup"
+        >
+          {parcelleLabel}
+        </Popup>
+      ) : null}
+    </>
   );
 }
 
