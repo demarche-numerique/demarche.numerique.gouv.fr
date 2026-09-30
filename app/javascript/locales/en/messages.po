@@ -20,9 +20,21 @@ msgid "{0, plural, =0 {{defaultChildren}} one {1 choix sélectionné} other {# "
 msgstr "{0, plural, =0 {{defaultChildren}} one {1 item selected} other {# items "
 "selected}}"
 
+#: app/javascript/components/Map/parcelle.ts:81
+msgid "{area} hectares"
+msgstr "{area} hectares"
+
+#: app/javascript/components/Map/parcelle.ts:84
+msgid "{area} m²"
+msgstr "{area} m²"
+
 #: app/javascript/components/shared/maplibre/StyleControl.tsx:28
 msgid "Carte IGN"
 msgstr "IGN map"
+
+#: app/javascript/components/Map/parcelle.ts:87
+msgid "commune {commune}"
+msgstr "town {commune}"
 
 #: app/javascript/components/shared/maplibre/StyleControl.tsx:99
 msgid "Couches"
@@ -31,6 +43,10 @@ msgstr "Layers"
 #: app/javascript/components/shared/maplibre/StyleControl.tsx:58
 msgid "Couches cartographiques"
 msgstr "Map layers"
+
+#: app/javascript/components/Map/parcelle.ts:77
+msgid "Feuille {feuille}"
+msgstr "Sheet {feuille}"
 
 #: app/javascript/components/shared/maplibre/StyleControl.tsx:67
 msgid "Fond de carte"
@@ -47,6 +63,10 @@ msgid "Nous ne pouvons pas afficher la carte car elle est incompatible avec "
 "d’utiliser <0>un navigateur plus récent</0>."
 msgstr "We cannot display the map because your browser does not support it. We "
 "advise you to update it or to use <0>a more recent browser</0>."
+
+#: app/javascript/components/Map/parcelle.ts:74
+msgid "Parcelle n° {numero}"
+msgstr "Parcel n° {numero}"
 
 #: app/javascript/components/Select.tsx:125
 msgid "Rechercher"

@@ -1,11 +1,12 @@
 import { useRef, useState } from 'react';
+import type { Feature } from 'geojson';
 import {
   Map,
   NavigationControl,
   Popup,
   type MapLayerMouseEvent
 } from '@vis.gl/react-maplibre';
-import { LngLatBounds } from 'maplibre-gl';
+import { LngLatBounds, type MapGeoJSONFeature } from 'maplibre-gl';
 import { Trans } from '@lingui/react/macro';
 import invariant from 'tiny-invariant';
 
@@ -19,15 +20,25 @@ import { SelectionsLayer, SELECTIONS_LAYERS } from './SelectionsLayer';
 import { useElementVisible, useMapStyle } from './hooks';
 import { getBounds } from './geometry';
 import { getMaxZoom } from './camera';
+import {
+  isParcelleSource,
+  parcelleInfo,
+  tileParcelleId,
+  useParcelleLabel
+} from './parcelle';
 import './Popup.css';
 
 // maplibre-gl 6 requires WebGL2: a WebGL1-only browser must get our banner,
 // not maplibre's own error.
 const webglSupported = isWebglSupported();
 
+// The parcelles of the dossier are those of the tiles, highlighted.
+const PARCELLE_HIGHLIGHTED_LAYER = 'parcelle-highlighted';
+const INTERACTIVE_LAYERS = [...SELECTIONS_LAYERS, PARCELLE_HIGHLIGHTED_LAYER];
+
 type Hovered = {
   id: string;
-  description: string;
+  lines: string[];
   longitude: number;
   latitude: number;
 };
@@ -55,7 +66,7 @@ export function MapCanvas({ layers }: { layers: string[] }) {
             fitBoundsOptions: { padding: 100, maxZoom: getMaxZoom(bounds) }
           }}
           attributionControl={false}
-          interactiveLayerIds={SELECTIONS_LAYERS}
+          interactiveLayerIds={INTERACTIVE_LAYERS}
           cursor={hovered ? 'pointer' : undefined}
           onMouseMove={onMouseMove}
           onMouseLeave={onMouseLeave}
@@ -81,7 +92,9 @@ export function MapCanvas({ layers }: { layers: string[] }) {
               closeOnClick={false}
               className="map-popup"
             >
-              {hovered.description}
+              {hovered.lines.map((line, index) => (
+                <div key={index}>{line}</div>
+              ))}
             </Popup>
           ) : null}
         </Map>
@@ -100,16 +113,28 @@ function useBounds() {
 function useHoveredFeature() {
   const { features } = useFeatureCollection();
   const [hovered, setHovered] = useState<Hovered | null>(null);
+  const parcelleLabel = useParcelleLabel();
+
+  // A parcelle tells what it is, and every feature its description.
+  const describe = (feature: Feature) => {
+    const parcelle = parcelleInfo(feature.properties);
+    return [
+      parcelle ? parcelleLabel(parcelle) : null,
+      feature.properties?.description
+    ].filter(Boolean);
+  };
 
   const onMouseMove = (event: MapLayerMouseEvent) => {
-    const id = event.features?.at(0)?.properties.id;
+    const target = event.features?.at(0);
+    // The features of the event are cut along the tiles: the geometry is only
+    // whole on our own feature.
+    const feature = target ? findFeature(features, target) : undefined;
+    const id = feature?.properties?.id;
     if (id == hovered?.id) {
       return;
     }
-    // The features of the event are cut along the tiles: the geometry is only
-    // whole on our own feature.
-    const feature = features.find((feature) => feature.properties?.id == id);
-    if (feature?.properties?.description) {
+    const lines = feature ? describe(feature) : [];
+    if (feature && lines.length > 0) {
       const { lng, lat } =
         feature.geometry.type == 'LineString' ||
         feature.geometry.type == 'MultiLineString'
@@ -117,7 +142,7 @@ function useHoveredFeature() {
           : getBounds(feature.geometry).getCenter();
       setHovered({
         id,
-        description: feature.properties.description,
+        lines,
         longitude: lng,
         latitude: lat
       });
@@ -128,6 +153,19 @@ function useHoveredFeature() {
   const onMouseLeave = () => setHovered(null);
 
   return [hovered, onMouseMove, onMouseLeave] as const;
+}
+
+function findFeature(features: Feature[], target: MapGeoJSONFeature) {
+  if (target.layer.id == PARCELLE_HIGHLIGHTED_LAYER) {
+    const cid = tileParcelleId(target);
+    return features.find(
+      ({ properties }) =>
+        isParcelleSource(properties?.source) && properties?.cid == cid
+    );
+  }
+  return features.find(
+    ({ properties }) => properties?.id == target.properties.id
+  );
 }
 
 function UnsupportedBrowser() {
