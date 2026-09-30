@@ -21,6 +21,8 @@ describe "Brouillon lifecycle" do
   # How long a brouillon nobody ever filled in survives: never touched since
   # its creation, or prefilled and never claimed.
   let(:never_touched_lifetime) { Expired::WEEKS_BEFORE_NEVER_TOUCHED_BROUILLON_EXPIRATION.weeks }
+  # How long a trashed brouillon stays in the trash before its purge.
+  let(:trash_period) { Dossier::REMAINING_WEEKS_BEFORE_DELETION.weeks }
 
   let(:expires_at) { created_at + brouillon_lifetime }
   let(:notice_at) { expires_at - notice_period }
@@ -71,5 +73,38 @@ describe "Brouillon lifecycle" do
     end.not_to have_enqueued_mail
 
     expect(DeletedDossier.where(dossier_id: drained.map(&:id))).to be_empty
+  end
+
+  # Cron::DiscardedBrouillonDossiersDeletionJob purges it, without any mail.
+  it "purges a trashed brouillon a trash period after the trash" do
+    travel_to(created_at)
+    dossier = create(:dossier, :with_individual, procedure:, user:)
+    trashed_at = created_at + 1.day
+    travel_to(trashed_at)
+    dossier.hide_and_keep_track!(user, :user_request)
+    purge_at = trashed_at + trash_period
+
+    expect do
+      run_crons(just_before(purge_at))
+      expect(gone?(dossier)).to be(false)
+      run_crons(just_after(purge_at))
+      expect(gone?(dossier)).to be(true)
+    end.not_to have_enqueued_mail
+
+    expect(DeletedDossier.exists?(dossier_id: dossier.id)).to be(false)
+  end
+
+  # Cron::DiscardedBrouillonDossiersDeletionJob leaves it alone once restored.
+  it "keeps a brouillon restored from the trash before its purge" do
+    travel_to(created_at)
+    dossier = create(:dossier, :with_individual, procedure:, user:)
+    trashed_at = created_at + 1.day
+    travel_to(trashed_at)
+    dossier.hide_and_keep_track!(user, :user_request)
+    travel_to(trashed_at + 1.day)
+    dossier.restore(user)
+
+    run_crons(just_after(trashed_at + trash_period))
+    expect(gone?(dossier)).to be(false)
   end
 end
