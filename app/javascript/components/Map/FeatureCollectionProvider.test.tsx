@@ -1,12 +1,16 @@
 import { vi, suite, test, expect, beforeEach, afterEach } from 'vite-plus/test';
-import { createRoot, type Root } from 'react-dom/client';
+import { page, userEvent } from 'vite-plus/test/browser/context';
+import type { Root } from 'react-dom/client';
 import { flushSync } from 'react-dom';
 import type { Feature, FeatureCollection } from 'geojson';
 
 import {
   ReadableFeatureCollectionProvider,
-  useFeature
+  useFeature,
+  WritableFeatureCollectionProvider
 } from './FeatureCollectionProvider';
+import { DescriptionInput } from './DescriptionInput';
+import { createAppRoot } from '../../test/react';
 
 function point(id: string, description?: string): Feature {
   return {
@@ -28,6 +32,12 @@ function Line({ id }: { id: string }) {
   return <p data-id={id}>{feature?.properties?.description}</p>;
 }
 
+function EditableLine({ id }: { id: string }) {
+  const feature = useFeature(id);
+  rendered(id);
+  return <DescriptionInput id={id} label={String(feature?.properties?.id)} />;
+}
+
 suite('ReadableFeatureCollectionProvider', () => {
   let container: HTMLDivElement;
   let root: Root;
@@ -35,7 +45,7 @@ suite('ReadableFeatureCollectionProvider', () => {
   beforeEach(() => {
     container = document.createElement('div');
     document.body.appendChild(container);
-    root = createRoot(container);
+    root = createAppRoot(container);
     rendered.mockClear();
   });
 
@@ -81,5 +91,46 @@ suite('ReadableFeatureCollectionProvider', () => {
     );
     expect(renders('a')).toBe(2);
     expect(renders('b')).toBe(1);
+  });
+});
+
+suite('WritableFeatureCollectionProvider', () => {
+  let container: HTMLDivElement;
+  let root: Root;
+
+  beforeEach(() => {
+    container = document.createElement('div');
+    document.body.appendChild(container);
+    root = createAppRoot(container);
+    rendered.mockClear();
+  });
+
+  afterEach(() => {
+    root.unmount();
+    container.remove();
+  });
+
+  test('renders again only the line of the description typed in', async () => {
+    root.render(
+      <WritableFeatureCollectionProvider
+        featureCollection={{
+          type: 'FeatureCollection',
+          features: [point('a'), point('b')]
+        }}
+      >
+        <EditableLine id="a" />
+        <EditableLine id="b" />
+      </WritableFeatureCollectionProvider>
+    );
+    const input = page.getByLabelText('Description (a)');
+    await expect.element(input).toBeInTheDocument();
+    const before = { a: renders('a'), b: renders('b') };
+
+    await userEvent.type(input, 'Mon jardin');
+
+    // Typed key by key, the controlled input keeps every key.
+    await expect.element(input).toHaveValue('Mon jardin');
+    expect(renders('a')).toBeGreaterThan(before.a);
+    expect(renders('b')).toBe(before.b);
   });
 });
