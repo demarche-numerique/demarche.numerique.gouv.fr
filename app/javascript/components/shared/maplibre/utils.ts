@@ -1,5 +1,5 @@
 import type { Feature, FeatureCollection, Geometry } from 'geojson';
-import type { LngLat, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
+import type { LngLatBoundsLike } from 'maplibre-gl';
 import { LngLatBounds } from 'maplibre-gl';
 import invariant from 'tiny-invariant';
 
@@ -51,39 +51,6 @@ export function filterFeatureCollection<G extends Geometry>(
   };
 }
 
-export function filterFeatureCollectionByGeometryType<G extends Geometry>(
-  featureCollection: FeatureCollection<G>,
-  type: Geometry['type']
-): FeatureCollection<G> {
-  return {
-    type: 'FeatureCollection',
-    features: featureCollection.features.filter(
-      (feature) => feature.geometry.type === type
-    )
-  };
-}
-
 export function generateId(): string {
   return Math.random().toString(20).substring(2, 6);
-}
-
-export function getCenter(geometry: Geometry, lngLat: LngLat): LngLatLike {
-  const bbox = new LngLatBounds();
-
-  invariant(
-    geometry.type != 'GeometryCollection',
-    'GeometryCollection not supported'
-  );
-
-  switch (geometry.type) {
-    case 'Point':
-      return [...geometry.coordinates] as [number, number];
-    case 'LineString':
-      return [lngLat.lng, lngLat.lat];
-    default:
-      for (const coordinate of geometry.coordinates[0]) {
-        bbox.extend(coordinate as [number, number]);
-      }
-      return bbox.getCenter();
-  }
 }
