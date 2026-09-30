@@ -122,6 +122,19 @@ describe Expired::DossiersDeletionService do
         expect(Dossier.all).to contain_exactly(never_touched_brouillon_2, never_touched_en_construction, touched_brouillon)
       end
     end
+
+    context 'with prefilled brouillons' do
+      let(:delay) { Expired::DAYS_BEFORE_UNCLAIMED_PREFILLED_EXPIRATION.days }
+      # Prefilled with an identity, so the never touched drain leaves them alone.
+      let!(:unclaimed) { travel_to((delay + 1.day).ago) { create(:dossier, :prefilled, :with_individual, procedure: procedures.individual, user: nil) } }
+      let!(:unclaimed_recent) { travel_to((delay - 1.day).ago) { create(:dossier, :prefilled, :with_individual, procedure: procedures.individual, user: nil) } }
+      let!(:claimed) { travel_to((delay + 1.day).ago) { create(:dossier, :prefilled, :with_individual, procedure: procedures.individual, user:) } }
+
+      it 'deletes the unclaimed ones past the delay' do
+        subject
+        expect(Dossier.where(id: [unclaimed, unclaimed_recent, claimed])).to contain_exactly(unclaimed_recent, claimed)
+      end
+    end
   end
 
   describe '#delete_expired_brouillons_and_notify' do

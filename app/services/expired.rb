@@ -33,8 +33,6 @@ module Expired
     case caller.name
     when 'Cron::NeverTouchedDossiersBrouillonDeletionJob'
       "every day at 5 am"
-    when 'Cron::ExpiredPrefilledDossiersDeletionJob'
-      "every day at 3 am"
     when 'Cron::ExpiredDossiersTermineDeletionJob'
       "every day at 1 am"
     when 'Cron::ExpiredDossiersBrouillonDeletionJob'

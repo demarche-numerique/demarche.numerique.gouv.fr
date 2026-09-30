@@ -31,7 +31,6 @@ describe "Brouillon lifecycle" do
     travel_to(at)
     Cron::ExpiredDossiersBrouillonDeletionJob.perform_now
     Cron::NeverTouchedDossiersBrouillonDeletionJob.perform_now
-    Cron::ExpiredPrefilledDossiersDeletionJob.perform_now
     Cron::DiscardedBrouillonDossiersDeletionJob.perform_now
   end
 
@@ -41,9 +40,9 @@ describe "Brouillon lifecycle" do
 
   def gone?(dossier) = !Dossier.exists?(dossier.id)
 
-  # One job per kind of brouillon, none of them sends a mail:
-  # Cron::ExpiredPrefilledDossiersDeletionJob, Cron::NeverTouchedDossiersBrouillonDeletionJob
-  # and Cron::ExpiredDossiersBrouillonDeletionJob (deletion without notice).
+  # None of them sends a mail: Cron::NeverTouchedDossiersBrouillonDeletionJob
+  # removes the ones nobody ever filled in, Cron::ExpiredDossiersBrouillonDeletionJob
+  # the others (deletion without notice).
   it "silently drains the brouillons nobody can be warned about" do
     travel_to(created_at)
     on_closed_procedure = create(:dossier, procedure: procedures.close, user:)
@@ -53,7 +52,7 @@ describe "Brouillon lifecycle" do
     drained = [on_closed_procedure, preview, never_touched, prefilled_without_user]
 
     expect do
-      # Cron::ExpiredPrefilledDossiersDeletionJob: the prefilled one nobody claimed.
+      # Cron::NeverTouchedDossiersBrouillonDeletionJob: the prefilled one nobody claimed.
       run_crons(just_before(created_at + unclaimed_prefilled_lifetime))
       expect(drained.map { gone?(it) }).to eq([false, false, false, false])
 
