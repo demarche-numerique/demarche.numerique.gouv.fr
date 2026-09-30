@@ -16,6 +16,11 @@ describe 'Carte of a dossier', js: true do
     expect(page).to have_css('.maplibregl-canvas')
     # The attribution stays behind its button until asked for.
     expect(page).to have_css('.maplibregl-ctrl-attrib.maplibregl-compact:not(.maplibregl-compact-show)')
+    # Only the raster sources get credited here: the vector ones never load, as
+    # the CSP of the test environment keeps their TileJSON out.
+    find('.maplibregl-ctrl-attrib-button').click
+    expect(find('.maplibregl-ctrl-attrib-inner')).to have_text('© IGN | MapLibre', exact: true)
+    find('.maplibregl-ctrl-attrib-button').click
     hover_map_center { expect(page).to have_css('.maplibregl-popup', wait: 0) }
 
     within('.maplibregl-popup') do

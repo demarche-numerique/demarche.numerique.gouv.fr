@@ -37,4 +37,31 @@ suite('getMapStyle', () => {
       }
     }
   });
+
+  test('credits every source, each credit spelled the same everywhere', () => {
+    const style = getMapStyle('vector', ['cadastres', 'unesco'], {
+      cadastres: 70,
+      unesco: 70
+    });
+    const credits = new Set<string>();
+
+    for (const [id, source] of Object.entries(style.sources)) {
+      expect(source, id).toHaveProperty('attribution');
+      for (const credit of (
+        source as { attribution: string }
+      ).attribution.split(/(?<=<\/a>) /)) {
+        credits.add(credit);
+      }
+    }
+
+    expect(
+      [...credits].map((credit) => credit.replace(/<[^>]+>/g, ''))
+    ).toEqual([
+      '© DINUM (data.gouv.fr)',
+      '© Contributeurs OpenStreetMap',
+      '© OpenMapTiles',
+      '© IGN',
+      '© PatriNat (OFB-MNHN-CNRS-IRD)'
+    ]);
+  });
 });

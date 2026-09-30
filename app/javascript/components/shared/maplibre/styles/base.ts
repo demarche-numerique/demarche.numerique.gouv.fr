@@ -9,6 +9,20 @@ import invariant from 'tiny-invariant';
 import { layers as cadastreLayers } from './layers/cadastre.ts';
 import { layers as rpgLayers } from './layers/rpg.ts';
 
+// The attribution of a source set here wins over the one of its TileJSON, and
+// maplibre shows an attribution once, when it is repeated word for word or is
+// part of a longer one: the same credit must read the same on every source.
+const CREDITS = {
+  dinum: '<a href="https://www.data.gouv.fr/">© DINUM (data.gouv.fr)</a>',
+  openstreetmap:
+    '<a href="https://www.openstreetmap.org/copyright">© Contributeurs OpenStreetMap</a>',
+  openmaptiles: '<a href="https://www.openmaptiles.org/">© OpenMapTiles</a>',
+  ign: '<a href="https://www.ign.fr/">© IGN</a>',
+  // The protected areas are drawn by PatriNat, the OFB-MNHN-CNRS-IRD unit
+  // behind the INPN, and only served by the IGN.
+  patrinat: '<a href="https://inpn.mnhn.fr/">© PatriNat (OFB-MNHN-CNRS-IRD)</a>'
+};
+
 function ignServiceURL(layer: string, style: string, format = 'image/png') {
   const url = `https://data.geopf.fr/wmts`;
   const query =
@@ -148,13 +162,15 @@ export function buildOptionalSources(
   if (ids.includes('cadastres')) {
     sources.cadastre = {
       type: 'vector',
-      url: 'https://openmaptiles.geo.data.gouv.fr/data/cadastre.json'
+      url: 'https://openmaptiles.geo.data.gouv.fr/data/cadastre.json',
+      attribution: CREDITS.dinum
     };
   }
   if (ids.includes('rpg')) {
     sources.rpg = {
       type: 'vector',
-      url: 'pmtiles://https://pmtiles-data.s3.rbx.io.cloud.ovh.net/rpg_2023.pmtiles'
+      url: 'pmtiles://https://pmtiles-data.s3.rbx.io.cloud.ovh.net/rpg_2023.pmtiles',
+      attribution: CREDITS.ign
     };
   }
 
@@ -167,7 +183,7 @@ function buildSources() {
       .flatMap(({ layers }) => layers)
       .map(([, code, style]) => [
         getLayerCode(code),
-        rasterSource([ignServiceURL(code, style)], 'IGN-F/Géoportail/MNHN')
+        rasterSource([ignServiceURL(code, style)], CREDITS.patrinat)
       ])
   );
 }
@@ -254,19 +270,21 @@ export const style: StyleSpecification = {
   sources: {
     'decoupage-administratif': {
       type: 'vector',
-      url: 'https://openmaptiles.geo.data.gouv.fr/data/decoupage-administratif.json'
+      url: 'https://openmaptiles.geo.data.gouv.fr/data/decoupage-administratif.json',
+      attribution: CREDITS.dinum
     },
     openmaptiles: {
       type: 'vector',
-      url: 'https://openmaptiles.geo.data.gouv.fr/data/france-vector.json'
+      url: 'https://openmaptiles.geo.data.gouv.fr/data/france-vector.json',
+      attribution: `${CREDITS.openstreetmap} ${CREDITS.openmaptiles} ${CREDITS.dinum}`
     },
     'photographies-aeriennes': rasterSource(
       [ignServiceURL('ORTHOIMAGERY.ORTHOPHOTOS', 'normal', 'image/jpeg')],
-      'IGN-F/Géoportail'
+      CREDITS.ign
     ),
     'plan-ign': rasterSource(
       [ignServiceURL('GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2', 'normal')],
-      'IGN-F/Géoportail'
+      CREDITS.ign
     ),
     ...buildSources()
   },
