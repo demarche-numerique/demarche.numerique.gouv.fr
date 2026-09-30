@@ -6,9 +6,7 @@ RSpec.describe Dossiers::GeoAreaComponent, type: :component do
   let(:champ) { dossier.champ_data.first }
   let(:geo_area) { create(:geo_area, :selection_utilisateur, :polygon, champ_data: champ) }
 
-  let(:legacy_editor) { false }
-
-  before { render_inline(described_class.new(geo_area:, editing:, legacy_editor:)) }
+  before { render_inline(described_class.new(geo_area:, editing:)) }
 
   let(:feature_id) { geo_area.to_feature[:properties][:id] }
 
@@ -22,15 +20,6 @@ RSpec.describe Dossiers::GeoAreaComponent, type: :component do
       expect(JSON.parse(input['props'])).to eq('id' => feature_id, 'label' => geo_area.label)
       button = page.find("react-component[name='Map/RemoveFeatureButton']")
       expect(JSON.parse(button['props'])).to eq('id' => feature_id, 'label' => geo_area.label)
-    end
-  end
-
-  context 'when editing in the legacy editor' do
-    let(:editing) { true }
-    let(:legacy_editor) { true }
-
-    it "matches the id of the map's geojson feature so clicking it can zoom to the right shape" do
-      expect(page.find("[data-controller='geo-area']")['data-geo-area-id-value']).to eq(feature_id)
     end
   end
 
