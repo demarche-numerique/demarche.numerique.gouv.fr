@@ -1,0 +1,9 @@
+---
+fr:
+  dossier_mailer:
+    notify_dossier_modifie_par_instructeur:
+      subject: Votre dossier n° %{dossier_id} a été modifié par un instructeur (%{libelle_demarche})
+      explanation_html:
+        Afin de poursuivre son instruction, <strong>un instructeur a apporté des modifications</strong> à votre dossier n° %{dossier_id} de la démarche « %{libelle_demarche} ».
+      link: Vous pouvez consulter la messagerie de votre dossier pour prendre connaissance du détail des modifications effectuées.
+      access_message: Ouvrir la messagerie

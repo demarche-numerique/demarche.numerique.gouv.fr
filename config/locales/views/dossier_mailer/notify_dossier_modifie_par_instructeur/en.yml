@@ -1,0 +1,9 @@
+---
+en:
+  dossier_mailer:
+    notify_dossier_modifie_par_instructeur:
+      subject: Your application no. %{dossier_id} has been modified by a reviewer (%{libelle_demarche})
+      explanation_html:
+        In order to continue its review, <strong>a reviewer has made changes</strong> to your application no. %{dossier_id} of the ‘%{libelle_demarche}’ procedure.
+      link: You can check your application’s messaging to see the details of the changes made.
+      access_message: Open messaging

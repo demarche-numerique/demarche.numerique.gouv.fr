@@ -34,3 +34,6 @@ en:
       messagerie_message:
         title: New message
         body: "Read the message about your procedure ‘%{libelle_demarche}’ no.\u00A0%{dossier_id}."
+      dossier_modifie_par_instructeur:
+        title: Application modified by a reviewer
+        body: "See the changes made to your procedure ‘%{libelle_demarche}’ no.\u00A0%{dossier_id}."
