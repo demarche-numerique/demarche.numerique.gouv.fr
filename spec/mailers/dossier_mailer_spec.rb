@@ -355,6 +355,19 @@ RSpec.describe DossierMailer, type: :mailer do
     end
   end
 
+  describe '.notify_dossier_modifie_par_instructeur' do
+    let(:dossier) { dossiers.en_construction }
+    let(:commentaire) { commentaires.from_instructeur }
+
+    subject { described_class.with(commentaire:).notify_dossier_modifie_par_instructeur }
+
+    it 'tells the usager that an instructeur edited the dossier' do
+      expect(subject.subject).to eq("Votre dossier n° #{dossier.id} a été modifié par un instructeur (#{dossier.procedure.libelle})")
+      expect(subject.body).to include('un instructeur a apporté des modifications')
+      expect(subject.body).to include('Ouvrir la messagerie')
+    end
+  end
+
   describe 'notify_transfer' do
     let(:user) { create(:user) }
     let(:user_2) { create(:user) }
