@@ -201,7 +201,8 @@ const OPTIONAL_LAYERS: { label: string; id: string; layers: string[][] }[] = [
 // them only when their layer is enabled, instead of in the base style: a source
 // that never loads leaves the style permanently "not loaded", which downgrades
 // subsequent setStyle() calls to a full reload — aborting and refetching every
-// tile in flight.
+// tile in flight. Their parcelles go by their id property, for the editor to
+// set the hover state of the one under the mouse.
 export function buildOptionalSources(
   ids: string[]
 ): StyleSpecification['sources'] {
@@ -212,14 +213,16 @@ export function buildOptionalSources(
       sources[PARCELLE_LAYERS.cadastres.source] = {
         type: 'vector',
         url: 'https://openmaptiles.geo.data.gouv.fr/data/cadastre.json',
-        attribution: CREDITS.dinum
+        attribution: CREDITS.dinum,
+        promoteId: { parcelles: PARCELLE_LAYERS.cadastres.idProperty }
       };
       break;
     case 'rpg':
       sources[PARCELLE_LAYERS.rpg.source] = {
         type: 'vector',
         url: 'pmtiles://https://pmtiles-data.s3.rbx.io.cloud.ovh.net/rpg_2023.pmtiles',
-        attribution: CREDITS.ign
+        attribution: CREDITS.ign,
+        promoteId: { parcelles: PARCELLE_LAYERS.rpg.idProperty }
       };
       break;
   }
