@@ -17,6 +17,8 @@ module DossierRemovalConcern
   included do
     enum :removal_stage, { hidden: 'hidden' }, prefix: :removal
 
+    scope :trash_purge_due, -> { removal_hidden.where(removal_due_at: ...Time.zone.now) }
+
     before_save :follow_trash, if: -> { will_save_change_to_state? || will_save_change_to_hidden_by_user_at? || will_save_change_to_hidden_by_expired_at? }
   end
 

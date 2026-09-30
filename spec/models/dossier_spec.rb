@@ -2029,7 +2029,7 @@ describe Dossier, type: :model do
     end
 
     it do
-      expect(Dossier.en_brouillon_expired_to_delete.count).to eq(2)
+      expect(Dossier.trash_purge_due.count).to eq(2)
       expect(Dossier.en_construction_expired_to_delete.count).to eq(2)
     end
   end

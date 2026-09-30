@@ -52,6 +52,15 @@ describe DossierRemovalConcern do
     expect(brouillon.reload).to have_attributes(removal_stage: nil, removal_due_at: nil)
   end
 
+  it "makes a trashed brouillon due for purge once its purge date is past" do
+    brouillon.hide_and_keep_track!(brouillon.user, :user_request)
+
+    travel_to(brouillon.removal_due_at)
+    expect(Dossier.trash_purge_due).not_to include(brouillon)
+    travel 1.second
+    expect(Dossier.trash_purge_due).to include(brouillon)
+  end
+
   it "leaves a trashed dossier en construction to the legacy columns" do
     dossier = dossiers.en_construction
     dossier.hide_and_keep_track!(dossier.user, :user_request)
