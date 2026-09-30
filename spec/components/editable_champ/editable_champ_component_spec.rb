@@ -31,7 +31,8 @@ describe EditableChamp::EditableChampComponent, type: :component do
     context 'when a carte champ' do
       let(:public_type_de_champs) { [{ type: :carte }] }
 
-      it { expect(subject).to eq(nil) }
+      # The editor saves the whole collection through the autosave.
+      it { expect(subject).to eq('autosave') }
     end
 
     context 'when a private champ' do

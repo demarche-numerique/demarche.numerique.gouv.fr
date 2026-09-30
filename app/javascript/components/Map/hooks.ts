@@ -7,6 +7,8 @@ import {
   type RefObject
 } from 'react';
 
+import invariant from 'tiny-invariant';
+
 import {
   getLayerName,
   getMapStyle,
@@ -43,7 +45,9 @@ export function useMapStyle(optionalLayers: string[]) {
 export const MapStyleIdContext = createContext<string | undefined>(undefined);
 
 export function useMapStyleId() {
-  return use(MapStyleIdContext);
+  const styleId = use(MapStyleIdContext);
+  invariant(styleId, 'useMapStyleId must be used inside the map canvas');
+  return styleId;
 }
 
 function optionalLayersMap(optionalLayers: string[]): LayersMap {

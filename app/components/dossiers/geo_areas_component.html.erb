@@ -3,7 +3,7 @@
   <div class="areas">
     <ul>
       <%- champ.selections_utilisateur.slice(0, 50).each do |geo_area| -%>
-        <%= render Dossiers::GeoAreaComponent.new(geo_area:, editing:) %>
+        <%= render Dossiers::GeoAreaComponent.new(geo_area:, editing:, legacy_editor:) %>
       <%- end -%>
 
       <%- if champ.selections_utilisateur.size > 50 -%>
@@ -22,7 +22,7 @@
   <div class="areas">
     <ul>
       <%- champ.cadastres.each do |geo_area| -%>
-        <%= render Dossiers::GeoAreaComponent.new(geo_area:, editing:) %>
+        <%= render Dossiers::GeoAreaComponent.new(geo_area:, editing:, legacy_editor:) %>
       <%- end -%>
     </ul>
   </div>
@@ -33,7 +33,7 @@
   <div class="areas">
     <ul>
       <%- champ.rpgs.each do |geo_area| -%>
-        <%= render Dossiers::GeoAreaComponent.new(geo_area:, editing:) %>
+        <%= render Dossiers::GeoAreaComponent.new(geo_area:, editing:, legacy_editor:) %>
       <%- end -%>
     </ul>
   </div>

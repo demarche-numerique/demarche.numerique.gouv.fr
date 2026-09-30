@@ -7,7 +7,7 @@ import {
 import type { FeatureCollection } from 'geojson';
 import invariant from 'tiny-invariant';
 
-import { readGeoFile } from '../readGeoFile';
+import { readGeoFile } from '../../Map/readGeoFile';
 import { generateId } from '../../shared/maplibre/utils';
 import type { CreateFeatures, DeleteFeatures } from '../hooks';
 

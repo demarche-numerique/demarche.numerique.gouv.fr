@@ -33,8 +33,6 @@ class TypesDeChamp::CarteTypeDeChamp < TypeDeChamp
 
   def revision_diff_options = { carte_layers: carte_optional_layers }
 
-  def refresh_after_update? = false
-
   def layer_enabled?(layer)
     ActiveModel::Type::Boolean.new.cast(options&.dig(layer)) || false
   end
