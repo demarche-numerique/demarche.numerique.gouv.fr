@@ -16,7 +16,12 @@ import {
 } from 'react';
 
 import { useMapLibre } from './MapLibre';
-import { getLayerName, getMapStyle, type LayersMap } from './styles';
+import {
+  getLayerName,
+  getMapStyle,
+  isParcelleLayer,
+  type LayersMap
+} from './styles';
 
 export function useFitBounds() {
   const map = useMapLibre();
@@ -97,7 +102,8 @@ function optionalLayersMap(optionalLayers: string[]): LayersMap {
     optionalLayers.map((layer) => [
       layer,
       {
-        configurable: layer != 'cadastres',
+        // The parcelle layer shows the parcelles of the dossier: always on.
+        configurable: !isParcelleLayer(layer),
         enabled: true,
         opacity: 70,
         name: getLayerName(layer)
