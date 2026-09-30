@@ -7,6 +7,11 @@ const STYLES: MapStyle[] = ['ortho', 'vector', 'ign'];
 const SELECTIONS = [[], ['cadastres'], ['rpg']];
 const OPACITY = { cadastres: 70, rpg: 70 };
 
+// What a credit reads once rendered, without its link.
+function creditText(credit: string) {
+  return new DOMParser().parseFromString(credit, 'text/html').body.textContent;
+}
+
 suite('getMapStyle', () => {
   test('declares a parcelle source only when its layer is enabled', () => {
     expect(getMapStyle('ortho', [], OPACITY).sources).not.toHaveProperty('rpg');
@@ -36,5 +41,31 @@ suite('getMapStyle', () => {
         }
       }
     }
+  });
+
+  test('credits every source, each credit spelled the same everywhere', () => {
+    const style = getMapStyle('vector', ['cadastres', 'unesco'], {
+      cadastres: 70,
+      unesco: 70
+    });
+    const credits = new Set<string>();
+
+    for (const [id, source] of Object.entries(style.sources)) {
+      expect(source, id).toHaveProperty('attribution');
+      for (const credit of (
+        source as { attribution: string }
+      ).attribution.split(/(?<=<\/a>) /)) {
+        expect(credit, id).toContain('target="_blank"');
+        credits.add(credit);
+      }
+    }
+
+    expect([...credits].map(creditText)).toEqual([
+      '© DINUM (data.gouv.fr)',
+      '© Contributeurs OpenStreetMap',
+      '© OpenMapTiles',
+      '© IGN',
+      '© PatriNat (OFB-MNHN-CNRS-IRD)'
+    ]);
   });
 });
