@@ -5,6 +5,39 @@ class Champs::CarteChamp < ChampData
   DEFAULT_LON = 2.428462
   DEFAULT_LAT = 46.538192
 
+  # Properties kept from the tile a parcelle was picked on. Its id comes as
+  # `cid`, like in #to_feature_collection: `id` is the id of the feature.
+  PARCELLE_PROPERTIES = ['arpente', 'commune', 'contenance', 'created', 'numero', 'prefixe', 'section', 'updated'].freeze
+  SELECTION_PROPERTIES = ['filename'].freeze
+  UUID_FORMAT = /\A\h{8}-\h{4}-\h{4}-\h{4}-\h{12}\z/
+
+  # The editor sends the whole feature collection as the value of the champ.
+  # It is not stored: the geo areas are synced with it by feature id.
+  #
+  # - a feature with an unknown id becomes a new geo area (the editor
+  #   generates the uuids);
+  # - a known one updates its description, and its geometry when the usager
+  #   drew it: the geometry of a parcelle comes from the cadastre, not from
+  #   the tile the usager clicked on (see FetchCadastreRealGeometryJob);
+  # - a geo area missing from the collection is destroyed.
+  #
+  # A feature with an invalid geometry is left out, and the rest is saved: an
+  # imported file in the wrong projection must not block every later save.
+  # The editor learns which ones from #rejected_features, and drops them.
+  #
+  # nil or blank (a clone, a reset on type change) leaves the geo areas alone.
+  def value=(value)
+    @rejected_features = {}
+    features = parse_features(value)
+    sync_geo_areas(features) if features
+  end
+
+  # The error messages of the geometries the last value= left out, by feature
+  # id. Only known to the champ that was assigned the value.
+  def rejected_features
+    @rejected_features || {}
+  end
+
   def legend_label?
     true
   end
@@ -140,6 +173,83 @@ class Champs::CarteChamp < ChampData
   end
 
   private
+
+  def parse_features(value)
+    return if value.blank?
+
+    feature_collection = JSON.parse(value)
+    features = feature_collection['features'] if feature_collection.is_a?(Hash)
+    return if !features.is_a?(Array)
+
+    features
+      .filter { it.is_a?(Hash) && it['id'].present? && it['geometry'].is_a?(Hash) && it['geometry'].present? }
+      .index_by { it['id'].to_s }
+  rescue JSON::ParserError
+    nil
+  end
+
+  def sync_geo_areas(features)
+    geo_areas.each do |geo_area|
+      feature = features.delete(geo_area.uuid)
+
+      if feature.nil?
+        geo_area.mark_for_destruction
+      else
+        update_geo_area(geo_area, feature)
+      end
+    end
+
+    features.each { |id, feature| build_geo_area(id, feature) }
+  end
+
+  def update_geo_area(geo_area, feature)
+    if geo_area.selection_utilisateur? && geometry_valid?(geo_area.uuid, feature['geometry'])
+      geo_area.geometry = feature['geometry']
+    end
+
+    description = feature_properties(feature)['description'].presence
+    if description != geo_area.description
+      geo_area.properties = geo_area.properties.merge('description' => description)
+    end
+  end
+
+  def build_geo_area(id, feature)
+    return if !id.match?(UUID_FORMAT)
+    return if !geometry_valid?(id, feature['geometry'])
+
+    properties = feature_properties(feature)
+    source = properties['source'].presence_in(GeoArea.sources.values) || GeoArea.sources.fetch(:selection_utilisateur)
+    kept_properties = if source == GeoArea.sources.fetch(:selection_utilisateur)
+      properties.slice('description', *SELECTION_PROPERTIES)
+    else
+      return if parcelle_selected?(source, properties['cid'])
+
+      properties.slice('description', *PARCELLE_PROPERTIES).merge('id' => properties['cid'])
+    end
+
+    geo_areas.build(
+      uuid: id,
+      source:,
+      geometry: feature['geometry'],
+      properties: kept_properties.compact_blank
+    )
+  end
+
+  def geometry_valid?(id, geometry)
+    errors = GeoArea.new(geometry:).tap(&:validate).errors.where(:geometry)
+    @rejected_features[id] = errors.map(&:message) if errors.any?
+    errors.none?
+  end
+
+  def feature_properties(feature)
+    properties = feature['properties']
+    properties.is_a?(Hash) ? properties : {}
+  end
+
+  # A parcelle is picked once, whatever the collection says.
+  def parcelle_selected?(source, cid)
+    cid.blank? || geo_areas.any? { it.source == source && !it.marked_for_destruction? && it.cid == cid }
+  end
 
   def selection_utilisateur_legacy_geometry
     if selections_utilisateur.present?

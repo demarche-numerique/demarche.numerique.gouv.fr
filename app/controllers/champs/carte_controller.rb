@@ -15,7 +15,6 @@ class Champs::CarteController < Champs::ChampController
 
       if save_feature(geo_area, create_params_feature)
         @champ.update_timestamps
-        FetchCadastreRealGeometryJob.perform_later(geo_area) if geo_area.cadastre?
         render json: { feature: geo_area.to_feature }, status: :created
       else
         render json: { errors: geo_area.errors.full_messages }, status: :unprocessable_content
