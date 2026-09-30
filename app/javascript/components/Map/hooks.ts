@@ -1,4 +1,11 @@
-import { useEffect, useMemo, useState, type RefObject } from 'react';
+import {
+  createContext,
+  use,
+  useEffect,
+  useMemo,
+  useState,
+  type RefObject
+} from 'react';
 
 import {
   getLayerName,
@@ -28,6 +35,15 @@ export function useMapStyle(optionalLayers: string[]) {
   const style = useMemo(() => getMapStyle(styleId, [], {}), [styleId]);
 
   return { style, layers, setStyle, setLayerEnabled, setLayerOpacity };
+}
+
+// The basemap currently shown by the canvas. Layers the map style does not
+// know about, like the drawing layers, must be removed before the canvas
+// applies another basemap and added back once it is in.
+export const MapStyleIdContext = createContext<string | undefined>(undefined);
+
+export function useMapStyleId() {
+  return use(MapStyleIdContext);
 }
 
 function optionalLayersMap(optionalLayers: string[]): LayersMap {
