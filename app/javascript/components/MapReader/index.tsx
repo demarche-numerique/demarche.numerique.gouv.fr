@@ -3,7 +3,7 @@ import type { FeatureCollection } from 'geojson';
 import { MapLibre } from '../shared/maplibre/MapLibre';
 import { ParcelleLayer } from './components/ParcelleLayer';
 import { GeoJSONLayer } from './components/GeoJSONLayer';
-import { getParcellesSource } from '../shared/maplibre/utils';
+import { getParcelleLayer, PARCELLE_LAYERS } from '../shared/maplibre/styles';
 
 const MapReader = ({
   featureCollection,
@@ -12,7 +12,8 @@ const MapReader = ({
   featureCollection: FeatureCollection;
   options: { layers: string[] };
 }) => {
-  const source = getParcellesSource(options.layers);
+  const parcelleLayer = getParcelleLayer(options.layers);
+  const source = parcelleLayer && PARCELLE_LAYERS[parcelleLayer].source;
   return (
     <MapLibre layers={options.layers}>
       <GeoJSONLayer featureCollection={featureCollection} />

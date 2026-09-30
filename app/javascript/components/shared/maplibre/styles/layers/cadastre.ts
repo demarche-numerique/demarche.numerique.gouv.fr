@@ -1,5 +1,8 @@
 import type { LayerSpecification } from 'maplibre-gl';
 
+// Same layer ids as rpg.ts on purpose: a map shows one parcelle layer at most
+// (see PARCELLE_LAYERS in ../base.ts), and the editor addresses the parcelles
+// by these ids whichever the source.
 export const layers: LayerSpecification[] = [
   {
     id: 'batiments-line',
