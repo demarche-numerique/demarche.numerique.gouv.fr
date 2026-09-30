@@ -11,7 +11,7 @@ import { layers as ignLayers } from './layers/ign.ts';
 import orthoLayers from './layers/ortho.json';
 import vectorLayers from './layers/vector.json';
 
-export { getLayerName, NBS };
+export { buildOptionalLayers, buildOptionalSources, getLayerName, NBS };
 
 export type LayersMap = Record<
   string,

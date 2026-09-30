@@ -20,21 +20,11 @@ export function useMapStyle(optionalLayers: string[]) {
       ...layers,
       [layer]: { ...layers[layer], opacity }
     }));
-  // The map applies a style as soon as its identity changes: build a new one
-  // only when it really changed, or every render would recreate the sources
-  // and refetch the tiles.
-  const style = useMemo(() => {
-    const enabledLayers = Object.entries(layers).filter(
-      ([, { enabled }]) => enabled
-    );
-    return getMapStyle(
-      styleId,
-      enabledLayers.map(([layer]) => layer),
-      Object.fromEntries(
-        enabledLayers.map(([layer, { opacity }]) => [layer, opacity])
-      )
-    );
-  }, [styleId, layers]);
+  // The optional layers are not part of the style: they are React layers, so
+  // that toggling one or moving its opacity never applies a new style, which
+  // would drop and re-add every React layer on the map. The style only
+  // changes with the basemap.
+  const style = useMemo(() => getMapStyle(styleId, [], {}), [styleId]);
 
   return { style, layers, setStyle, setLayerEnabled, setLayerOpacity };
 }

@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Layer } from '@vis.gl/react-maplibre';
 
 import { useFeatures } from './FeatureCollectionProvider';
@@ -9,7 +10,10 @@ export type ParcellesSource = 'cadastre' | 'rpg';
 export function ParcellesLayer({ source }: { source: ParcellesSource }) {
   const features = useFeatures(source);
   const property = source == 'rpg' ? 'ID_PARCEL' : 'id';
-  const ids = features.map((feature) => feature.properties?.cid);
+  const ids = useMemo(
+    () => features.map((feature) => feature.properties?.cid),
+    [features]
+  );
 
   return (
     <Layer

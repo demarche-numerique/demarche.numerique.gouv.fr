@@ -14,6 +14,7 @@ import { MAP_ID } from './MapLibreProvider';
 import { useFeatureCollection } from './FeatureCollectionProvider';
 import { PortalControl } from './PortalControl';
 import { AttributionControl } from './AttributionControl';
+import { OptionalLayers } from './OptionalLayers';
 import { SelectionsLayer, SELECTIONS_LAYERS } from './SelectionsLayer';
 import { ParcellesLayer, type ParcellesSource } from './ParcellesLayer';
 import { useElementVisible, useMapStyle } from './hooks';
@@ -69,6 +70,7 @@ export function MapCanvas({ layers }: { layers: string[] }) {
               {...styleProps}
             />
           </PortalControl>
+          <OptionalLayers layers={optionalLayers} />
           <SelectionsLayer />
           {parcellesSource ? <ParcellesLayer source={parcellesSource} /> : null}
           {hovered ? (

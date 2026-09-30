@@ -1,4 +1,6 @@
+import { useMemo } from 'react';
 import { Layer, Source } from '@vis.gl/react-maplibre';
+import type { FeatureCollection } from 'geojson';
 import type { FilterSpecification } from 'maplibre-gl';
 
 import { useFeatures } from './FeatureCollectionProvider';
@@ -13,13 +15,13 @@ export const SELECTIONS_LAYERS = [
 
 export function SelectionsLayer() {
   const features = useFeatures(SOURCE);
+  const data = useMemo<FeatureCollection>(
+    () => ({ type: 'FeatureCollection', features }),
+    [features]
+  );
 
   return (
-    <Source
-      id="selections"
-      type="geojson"
-      data={{ type: 'FeatureCollection', features }}
-    >
+    <Source id="selections" type="geojson" data={data}>
       <Layer
         id="selections-polygon-outline"
         type="line"

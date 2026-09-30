@@ -8,7 +8,11 @@ describe 'Carte of a dossier', js: true do
   let(:description) { 'Un <b>jardin</b>' }
   let!(:geo_area) { create(:geo_area, :selection_utilisateur, :polygon, champ_data: champ, properties: { description: }) }
 
-  before { login_as instructeur.user, scope: :user }
+  before do
+    # The factory leaves the options of the champ empty: enable a layer by hand.
+    TypeDeChamp.where(id: champ.type_de_champ.id).update_all(options: { unesco: '1' })
+    login_as instructeur.user, scope: :user
+  end
 
   scenario 'the instructeur finds the shapes on the map' do
     visit instructeur_dossier_path(procedure, dossier)
@@ -19,7 +23,7 @@ describe 'Carte of a dossier', js: true do
     # Only the raster sources get credited here: the vector ones never load, as
     # the CSP of the test environment keeps their TileJSON out.
     find('.maplibregl-ctrl-attrib-button').click
-    expect(find('.maplibregl-ctrl-attrib-inner')).to have_text('© IGN | MapLibre', exact: true)
+    expect(find('.maplibregl-ctrl-attrib-inner')).to have_text('© IGN | MapLibre | © PatriNat (OFB-MNHN-CNRS-IRD)', exact: true)
     find('.maplibregl-ctrl-attrib-button').click
     hover_map_center { expect(page).to have_css('.maplibregl-popup', wait: 0) }
 
@@ -28,9 +32,11 @@ describe 'Carte of a dossier', js: true do
       expect(page).to have_no_css('b')
     end
 
-    # The shapes outlive a change of basemap.
+    # The shapes outlive a change of basemap, of opacity and of layers.
     click_on 'Sélectionner les couches cartographiques'
     find('label', text: 'Vectoriel').click
+    find('input[type=range]').send_keys(:left)
+    find('label', text: 'UNESCO').click
     send_keys :escape
     hover_map_center { expect(page).to have_css('.maplibregl-popup', wait: 0) }
 
