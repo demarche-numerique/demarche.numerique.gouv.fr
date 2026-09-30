@@ -11,7 +11,10 @@ import { useMapLibre } from './MapLibreProvider';
 import { ANCHORS } from '../shared/maplibre/styles';
 
 vi.mock('@lingui/react/macro', () => ({
-  useLingui: () => ({ t: (s: TemplateStringsArray | string) => String(s) }),
+  useLingui: () => ({
+    t: (s: TemplateStringsArray | string) => String(s),
+    i18n: { locale: 'fr' }
+  }),
   Trans: ({ children }: { children: React.ReactNode }) => children
 }));
 
