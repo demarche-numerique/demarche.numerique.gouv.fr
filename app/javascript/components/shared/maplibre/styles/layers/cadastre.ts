@@ -84,6 +84,19 @@ export const layers: LayerSpecification[] = [
       ]
     }
   },
+  // Under the labels, so that the numero of a highlighted parcelle stays
+  // readable.
+  {
+    id: 'parcelle-highlighted',
+    type: 'fill',
+    source: 'cadastre',
+    'source-layer': 'parcelles',
+    filter: ['in', 'id', ''],
+    paint: {
+      'fill-color': 'rgba(1, 129, 0, 1)',
+      'fill-opacity': 0.7
+    }
+  },
   {
     id: 'parcelles-labels',
     type: 'symbol',
@@ -100,17 +113,6 @@ export const layers: LayerSpecification[] = [
       'text-color': 'rgba(0, 0, 0, 1)',
       'text-halo-color': 'rgba(255, 255, 255, 1)',
       'text-halo-width': 1
-    }
-  },
-  {
-    id: 'parcelle-highlighted',
-    type: 'fill',
-    source: 'cadastre',
-    'source-layer': 'parcelles',
-    filter: ['in', 'id', ''],
-    paint: {
-      'fill-color': 'rgba(1, 129, 0, 1)',
-      'fill-opacity': 0.7
     }
   },
   {
