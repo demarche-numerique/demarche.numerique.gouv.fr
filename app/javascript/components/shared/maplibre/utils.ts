@@ -87,12 +87,3 @@ export function getCenter(geometry: Geometry, lngLat: LngLat): LngLatLike {
       return bbox.getCenter();
   }
 }
-
-export function getParcellesSource(layers: string[]) {
-  if (layers.includes('cadastres')) {
-    return 'cadastre';
-  }
-  if (layers.includes('rpg')) {
-    return 'rpg';
-  }
-}
