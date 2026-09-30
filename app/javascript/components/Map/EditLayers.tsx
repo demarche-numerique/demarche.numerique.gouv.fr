@@ -15,6 +15,7 @@ import {
 import { DrawLayer } from './DrawLayer';
 import { SelectionsLayer } from './SelectionsLayer';
 import { isDrawable } from './draw';
+import { tileParcelleInfo, useParcelleLabel } from './parcelle';
 
 // The layers of the editor: Terra Draw holds the shapes of the usager, and
 // the selections layer shows what it cannot hold. The others stay in the
@@ -24,6 +25,7 @@ export function EditLayers({ layers }: { layers: LayersMap }) {
   const actions = useFeatureActions();
   const history = useHistory();
   const [refused, setRefused] = useState<string[]>([]);
+  const parcelleLabel = useParcelleLabel();
   const parcelleLayer = getParcelleLayer(Object.keys(layers));
   const selections = useMemo(
     () =>
@@ -39,6 +41,18 @@ export function EditLayers({ layers }: { layers: LayersMap }) {
     return null;
   }
 
+  const findSelected = (parcelle: MapGeoJSONFeature) => {
+    if (!parcelleLayer) {
+      return undefined;
+    }
+    const { source, idProperty } = PARCELLE_LAYERS[parcelleLayer];
+    const cid = String(parcelle.properties[idProperty]);
+    return features.find(
+      (feature) =>
+        feature.properties?.source == source && feature.properties?.cid == cid
+    );
+  };
+
   // A click on a parcelle of the tiles selects it, a second one deselects it.
   const toggleParcelle = (parcelle: MapGeoJSONFeature) => {
     if (!parcelleLayer) {
@@ -46,10 +60,7 @@ export function EditLayers({ layers }: { layers: LayersMap }) {
     }
     const { source, idProperty } = PARCELLE_LAYERS[parcelleLayer];
     const cid = String(parcelle.properties[idProperty]);
-    const selected = features.find(
-      (feature) =>
-        feature.properties?.source == source && feature.properties?.cid == cid
-    );
+    const selected = findSelected(parcelle);
     if (selected) {
       actions.remove([String(selected.id)]);
     } else {
@@ -72,6 +83,13 @@ export function EditLayers({ layers }: { layers: LayersMap }) {
         onDelete={(id) => actions.remove([id])}
         onRefuse={setRefused}
         onParcelleClick={parcelleLayer ? toggleParcelle : undefined}
+        // A selected parcelle is described by the canvas, as in the reader.
+        describeParcelle={(parcelle) => {
+          const info = findSelected(parcelle)
+            ? null
+            : tileParcelleInfo(parcelle);
+          return info ? parcelleLabel(info) : null;
+        }}
         history={history ?? undefined}
       />
     </>

@@ -39,8 +39,40 @@ export function parcelleInfo(
     prefixe: properties.prefixe,
     section: properties.section,
     commune: properties.commune,
-    surface: properties.surface
+    // Until the server saves it, a picked parcelle has the surface of the
+    // tiles.
+    surface: properties.surface ?? properties.contenance
   };
+}
+
+// A parcelle of the tiles: the cadastre names its properties as the dossier
+// does, the RPG has its own, with a surface in hectares.
+export function tileParcelleInfo(
+  parcelle: MapGeoJSONFeature
+): ParcelleInfo | null {
+  const { properties } = parcelle;
+  switch (parcelle.source) {
+    case PARCELLE_LAYERS.cadastres.source:
+      return {
+        source: parcelle.source,
+        numero: properties.numero,
+        prefixe: properties.prefixe,
+        section: properties.section,
+        commune: properties.commune,
+        surface: properties.contenance
+      };
+    case PARCELLE_LAYERS.rpg.source:
+      return {
+        source: parcelle.source,
+        numero: String(properties.ID_PARCEL),
+        surface:
+          properties.SURF_PARC == null
+            ? undefined
+            : properties.SURF_PARC * 10_000
+      };
+    default:
+      return null;
+  }
 }
 
 // The id of a parcelle of the tiles, as the dossier keeps it (`cid`).
