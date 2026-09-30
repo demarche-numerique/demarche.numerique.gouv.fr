@@ -60,6 +60,8 @@
         "react-use-event-hook": "^0.9.6",
         "stimulus-use": "^0.52.3",
         "superstruct": "^2.0.2",
+        "terra-draw": "^1.35.0",
+        "terra-draw-maplibre-gl-adapter": "^1.4.1",
         "tiny-invariant": "^1.3.3",
         "tippy.js": "^6.3.7",
         "trix": "^2.1.12",
@@ -1428,6 +1430,10 @@
     "synckit": ["synckit@0.11.13", "", { "dependencies": { "@pkgr/core": "^0.3.6" } }, "sha512-eNRKgb3z66Yp3D2CixVujOUvXLFUTij/zVnV8KRyvFdQwpz7I5DS8UfRkTeLzb64u+dkzDSdelE24izu+zSSUg=="],
 
     "tailwindcss": ["tailwindcss@4.1.17", "", {}, "sha512-j9Ee2YjuQqYT9bbRTfTZht9W/ytp5H+jJpZKiYdP/bpnXARAuELt9ofP0lPnmHjbga7SNQIxdTAXCmtKVYjN+Q=="],
+
+    "terra-draw": ["terra-draw@1.35.0", "", {}, "sha512-uQI8lcPiUMqwVV29CexTfvT/AM4lGHtA+xWraW4njVExiM1+eGvRetYOBXmXEmgy5pL4X2dmjwMRH8JEYVtbgw=="],
+
+    "terra-draw-maplibre-gl-adapter": ["terra-draw-maplibre-gl-adapter@1.4.1", "", { "peerDependencies": { "maplibre-gl": ">=4", "terra-draw": "^1.0.0" } }, "sha512-qZ/bc9bVPnyt0keLVTofV8xiTPkdkbO6RzqrfNLe9zH/edW5PsjvJw97m1EksPZeXNJtFxsVbhi12cPaoNiWfg=="],
 
     "tiny-invariant": ["tiny-invariant@1.3.3", "", {}, "sha512-+FbBPE1o9QAYvviau/qC5SE3caw21q3xkvWKBtja5vgqOWIHHJ3ioaq1VPfn/Szqctz2bU/oYeKd9/z5BL+PVg=="],
 

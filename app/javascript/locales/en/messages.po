@@ -28,6 +28,10 @@ msgstr "{area} hectares"
 msgid "{area} m²"
 msgstr "{area} m²"
 
+#: app/javascript/components/Map/DrawLayer.tsx:168
+msgid "Ajouter un point"
+msgstr "Add a point"
+
 #: app/javascript/components/shared/maplibre/StyleControl.tsx:28
 msgid "Carte IGN"
 msgstr "IGN map"
@@ -43,6 +47,14 @@ msgstr "Layers"
 #: app/javascript/components/shared/maplibre/StyleControl.tsx:58
 msgid "Couches cartographiques"
 msgstr "Map layers"
+
+#: app/javascript/components/Map/DrawLayer.tsx:170
+msgid "Dessiner un polygone"
+msgstr "Draw a polygon"
+
+#: app/javascript/components/Map/DrawLayer.tsx:171
+msgid "Dessiner un rectangle"
+msgstr "Draw a rectangle"
 
 #: app/javascript/components/Map/parcelle.ts:77
 msgid "Feuille {feuille}"
@@ -63,6 +75,10 @@ msgid "Nous ne pouvons pas afficher la carte car elle est incompatible avec "
 "d’utiliser <0>un navigateur plus récent</0>."
 msgstr "We cannot display the map because your browser does not support it. We "
 "advise you to update it or to use <0>a more recent browser</0>."
+
+#: app/javascript/components/Map/DrawLayer.tsx:177
+msgid "Outils de dessin"
+msgstr "Drawing tools"
 
 #: app/javascript/components/Map/parcelle.ts:74
 msgid "Parcelle n° {numero}"
@@ -88,6 +104,10 @@ msgstr "Satellite"
 msgid "Sélection"
 msgstr "Selection"
 
+#: app/javascript/components/Map/DrawLayer.tsx:165
+msgid "Sélectionner et modifier une forme"
+msgstr "Select and edit a shape"
+
 #: app/javascript/components/shared/maplibre/StyleControl.tsx:37
 msgid "Sélectionner les couches cartographiques"
 msgstr "Select the map layers"
@@ -96,6 +116,14 @@ msgstr "Select the map layers"
 #: app/javascript/components/react-aria/components/TagGroup.tsx:36
 msgid "Supprimer {0}"
 msgstr "Delete {0}"
+
+#: app/javascript/components/Map/DrawLayer.tsx:173
+msgid "Supprimer la forme sélectionnée"
+msgstr "Delete the selected shape"
+
+#: app/javascript/components/Map/DrawLayer.tsx:169
+msgid "Tracer une ligne"
+msgstr "Draw a line"
 
 #: app/javascript/components/shared/maplibre/StyleControl.tsx:27
 msgid "Vectoriel"
