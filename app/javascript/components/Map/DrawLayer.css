@@ -1,0 +1,9 @@
+.draw-tools button[aria-pressed='true'] {
+  background-color: var(--background-action-low-blue-france);
+  color: var(--text-action-high-blue-france);
+}
+
+.draw-tools button:disabled {
+  color: var(--text-disabled-grey);
+  cursor: not-allowed;
+}
