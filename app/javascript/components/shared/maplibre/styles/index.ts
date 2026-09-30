@@ -1,6 +1,8 @@
 import type { LayerSpecification, StyleSpecification } from 'maplibre-gl';
 
 import {
+  ANCHORS,
+  anchorLayers,
   style as baseStyle,
   buildOptionalLayers,
   buildOptionalSources,
@@ -16,6 +18,7 @@ import orthoLayers from './layers/ortho.json';
 import vectorLayers from './layers/vector.json';
 
 export {
+  ANCHORS,
   buildOptionalLayers,
   buildOptionalSources,
   getLayerName,
@@ -53,7 +56,11 @@ export function getMapStyle(
         id,
         name: 'Photographies aériennes',
         sources,
-        layers: [...(orthoLayers as LayerSpecification[]), ...optionalLayers]
+        layers: [
+          ...(orthoLayers as LayerSpecification[]),
+          ...optionalLayers,
+          ...anchorLayers
+        ]
       };
     case 'vector':
       return {
@@ -61,7 +68,11 @@ export function getMapStyle(
         id,
         name: 'Carte OSM',
         sources,
-        layers: [...(vectorLayers as LayerSpecification[]), ...optionalLayers]
+        layers: [
+          ...(vectorLayers as LayerSpecification[]),
+          ...optionalLayers,
+          ...anchorLayers
+        ]
       };
     default:
       return {
@@ -69,7 +80,7 @@ export function getMapStyle(
         id,
         name: 'Carte IGN',
         sources,
-        layers: [...ignLayers, ...optionalLayers]
+        layers: [...ignLayers, ...optionalLayers, ...anchorLayers]
       };
   }
 }

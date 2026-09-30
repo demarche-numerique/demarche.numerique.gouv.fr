@@ -1,6 +1,11 @@
 import { suite, test, expect } from 'vitest';
 
-import { buildOptionalLayers, getMapStyle, type MapStyle } from './index';
+import {
+  ANCHORS,
+  buildOptionalLayers,
+  getMapStyle,
+  type MapStyle
+} from './index';
 
 const STYLES: MapStyle[] = ['ortho', 'vector', 'ign'];
 // `cadastres` and `rpg` share layer ids, so they are never enabled together.
@@ -67,6 +72,19 @@ suite('getMapStyle', () => {
       '© IGN',
       '© PatriNat (OFB-MNHN-CNRS-IRD)'
     ]);
+  });
+
+  test('closes every basemap with the anchors, in order', () => {
+    for (const id of STYLES) {
+      const ids = getMapStyle(id, ['cadastres'], OPACITY).layers.map(
+        (layer) => layer.id
+      );
+      expect(ids.slice(-3), id).toEqual([
+        ANCHORS.rasters,
+        ANCHORS.optionalLayers,
+        ANCHORS.selections
+      ]);
+    }
   });
 
   test('highlights the parcelles of the dossier by their id property', () => {
