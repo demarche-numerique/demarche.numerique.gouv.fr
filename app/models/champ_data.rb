@@ -61,7 +61,7 @@ class ChampData < ApplicationRecord
 
   # We declare champ specific relationships (Champs::CarteChamp, Champs::SiretChamp and Champs::RepetitionChamp)
   # here because otherwise we can't easily use includes in our queries.
-  has_many :geo_areas, -> { order(:created_at) }, dependent: :destroy, inverse_of: :champ_data
+  has_many :geo_areas, -> { order(:created_at) }, dependent: :destroy, inverse_of: :champ_data, autosave: true
   belongs_to :etablissement, optional: true, dependent: :destroy, inverse_of: :champ_data
 
   delegate :procedure, to: :dossier

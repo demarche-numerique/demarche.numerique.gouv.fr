@@ -4,6 +4,7 @@ class GeoArea < ApplicationRecord
   include ActionView::Helpers::NumberHelper
   belongs_to :champ_data, class_name: 'ChampData', foreign_key: :champ_id, optional: false, inverse_of: :geo_areas
   before_create :set_default_uuid
+  after_create_commit :fetch_cadastre_real_geometry, if: -> { cadastre? && cadastre_state.nil? }
 
   enum :cadastre_state, %w[cadastre_fetched cadastre_error].index_by(&:itself)
 
@@ -58,7 +59,7 @@ class GeoArea < ApplicationRecord
         length: length,
         description: description,
         filename: filename,
-        id: (uuid || id).to_s,
+        id: uuid,
         champ_label: champ_data.libelle,
         champ_id: champ_data.stable_id,
         champ_row: champ_data.row_id,
@@ -293,6 +294,10 @@ class GeoArea < ApplicationRecord
       # a legacy surface may be a string
       I18n.t('geo_area.label.surface_m2', surface: number_with_delimiter(surface.to_f.round))
     end
+  end
+
+  def fetch_cadastre_real_geometry
+    FetchCadastreRealGeometryJob.perform_later(self)
   end
 
   def set_default_uuid
