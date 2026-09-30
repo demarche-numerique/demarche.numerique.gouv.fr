@@ -1,6 +1,11 @@
 import { suite, test, expect } from 'vitest';
 
-import { getMapStyle, type MapStyle } from './index';
+import {
+  ANCHORS,
+  buildOptionalLayers,
+  getMapStyle,
+  type MapStyle
+} from './index';
 
 const STYLES: MapStyle[] = ['ortho', 'vector', 'ign'];
 // `cadastres` and `rpg` share layer ids, so they are never enabled together.
@@ -63,5 +68,41 @@ suite('getMapStyle', () => {
       '© IGN',
       '© PatriNat (OFB-MNHN-CNRS-IRD)'
     ]);
+  });
+
+  test('closes every basemap with the anchors, in order', () => {
+    for (const id of STYLES) {
+      const ids = getMapStyle(id, ['cadastres'], OPACITY).layers.map(
+        (layer) => layer.id
+      );
+      expect(ids.slice(-2), id).toEqual([
+        ANCHORS.optionalLayers,
+        ANCHORS.selections
+      ]);
+    }
+  });
+
+  test('highlights the parcelles of the dossier by their id property', () => {
+    const highlight = (layers: string[]) =>
+      buildOptionalLayers(layers, OPACITY, ['a', 'b']).find(
+        (layer) => layer.id == 'parcelle-highlighted'
+      );
+
+    expect(highlight(['cadastres'])).toHaveProperty('filter', [
+      'in',
+      ['get', 'id'],
+      ['literal', ['a', 'b']]
+    ]);
+    expect(highlight(['rpg'])).toHaveProperty('filter', [
+      'in',
+      ['get', 'ID_PARCEL'],
+      ['literal', ['a', 'b']]
+    ]);
+  });
+
+  test('refuses both parcelle layers at once', () => {
+    expect(() => buildOptionalLayers(['cadastres', 'rpg'], OPACITY)).toThrow(
+      /one parcelle layer/
+    );
   });
 });

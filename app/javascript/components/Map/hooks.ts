@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState, type RefObject } from 'react';
 import {
   getLayerName,
   getMapStyle,
+  isParcelleLayer,
   type LayersMap,
   type MapStyle
 } from '../shared/maplibre/styles';
@@ -34,7 +35,8 @@ function optionalLayersMap(optionalLayers: string[]): LayersMap {
     optionalLayers.map((layer) => [
       layer,
       {
-        configurable: layer != 'cadastres',
+        // The parcelle layer shows the parcelles of the dossier: always on.
+        configurable: !isParcelleLayer(layer),
         enabled: true,
         opacity: 70,
         name: getLayerName(layer)

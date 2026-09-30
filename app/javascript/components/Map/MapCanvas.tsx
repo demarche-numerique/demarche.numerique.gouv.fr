@@ -10,13 +10,12 @@ import { Trans } from '@lingui/react/macro';
 import invariant from 'tiny-invariant';
 
 import { StyleSwitch } from '../shared/maplibre/StyleControl';
-import { MAP_ID } from './MapLibreProvider';
+import { useMapId } from './MapLibreProvider';
 import { useFeatureCollection } from './FeatureCollectionProvider';
 import { PortalControl } from './PortalControl';
 import { AttributionControl } from './AttributionControl';
 import { OptionalLayers } from './OptionalLayers';
 import { SelectionsLayer, SELECTIONS_LAYERS } from './SelectionsLayer';
-import { ParcellesLayer, type ParcellesSource } from './ParcellesLayer';
 import { useElementVisible, useMapStyle } from './hooks';
 import { getBounds } from './geometry';
 import { getMaxZoom } from './camera';
@@ -34,12 +33,12 @@ type Hovered = {
 };
 
 export function MapCanvas({ layers }: { layers: string[] }) {
+  const mapId = useMapId();
   const bounds = useBounds();
   const containerRef = useRef<HTMLDivElement>(null);
   const visible = useElementVisible(containerRef);
   const { style, layers: optionalLayers, ...styleProps } = useMapStyle(layers);
   const [hovered, onMouseMove, onMouseLeave] = useHoveredFeature();
-  const parcellesSource = getParcellesSource(optionalLayers);
 
   if (!webglSupported) {
     return <UnsupportedBrowser />;
@@ -49,7 +48,7 @@ export function MapCanvas({ layers }: { layers: string[] }) {
     <div ref={containerRef} style={{ height: '500px' }}>
       {visible ? (
         <Map
-          id={MAP_ID}
+          id={mapId}
           mapStyle={style}
           initialViewState={{
             bounds,
@@ -72,7 +71,6 @@ export function MapCanvas({ layers }: { layers: string[] }) {
           </PortalControl>
           <OptionalLayers layers={optionalLayers} />
           <SelectionsLayer />
-          {parcellesSource ? <ParcellesLayer source={parcellesSource} /> : null}
           {hovered ? (
             <Popup
               longitude={hovered.longitude}
@@ -128,17 +126,6 @@ function useHoveredFeature() {
   const onMouseLeave = () => setHovered(null);
 
   return [hovered, onMouseMove, onMouseLeave] as const;
-}
-
-function getParcellesSource(
-  layers: Record<string, { enabled: boolean }>
-): ParcellesSource | undefined {
-  if (layers.cadastres?.enabled) {
-    return 'cadastre';
-  }
-  if (layers.rpg?.enabled) {
-    return 'rpg';
-  }
 }
 
 function UnsupportedBrowser() {

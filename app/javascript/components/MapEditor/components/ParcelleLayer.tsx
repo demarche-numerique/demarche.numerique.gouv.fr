@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import type { Feature, FeatureCollection } from 'geojson';
 
 import { useMapLibre, ReactControl } from '../../shared/maplibre/MapLibre';
+import { PARCELLE_LAYERS } from '../../shared/maplibre/styles';
 import {
   useEvent,
   useMapEvent,
@@ -35,7 +36,9 @@ export function ParcelleLayer({
   const [controlElement, setControlElement] = useState<HTMLElement | null>(
     null
   );
-  const cidProperty = source == 'rpg' ? 'ID_PARCEL' : 'id';
+  const cidProperty = Object.values(PARCELLE_LAYERS).find(
+    (layer) => layer.source == source
+  )!.idProperty;
 
   useEffect(() => {
     const control = new ReactControl();

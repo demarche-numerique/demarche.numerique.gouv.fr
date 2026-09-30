@@ -54,12 +54,3 @@ export function filterFeatureCollection<G extends Geometry>(
 export function generateId(): string {
   return Math.random().toString(20).substring(2, 6);
 }
-
-export function getParcellesSource(layers: string[]) {
-  if (layers.includes('cadastres')) {
-    return 'cadastre';
-  }
-  if (layers.includes('rpg')) {
-    return 'rpg';
-  }
-}

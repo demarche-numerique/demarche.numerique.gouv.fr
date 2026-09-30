@@ -9,6 +9,44 @@ import invariant from 'tiny-invariant';
 import { layers as cadastreLayers } from './layers/cadastre.ts';
 import { layers as rpgLayers } from './layers/rpg.ts';
 
+// The parcelle layers, mirroring CarteTypeDeChamp::PARCELLE_LAYERS: a champ
+// enables at most one of them, which is why their layers share their ids. The
+// parcelles of a dossier are never drawn from their geometry: the tiles'
+// parcelles are highlighted through the filter of the `parcelle-highlighted`
+// layer, by the id property below.
+export const PARCELLE_LAYERS = {
+  cadastres: { source: 'cadastre', idProperty: 'id', layers: cadastreLayers },
+  rpg: { source: 'rpg', idProperty: 'ID_PARCEL', layers: rpgLayers }
+} as const;
+
+export type ParcelleLayer = keyof typeof PARCELLE_LAYERS;
+
+export function isParcelleLayer(id: string): id is ParcelleLayer {
+  return id in PARCELLE_LAYERS;
+}
+
+// The parcelle layer among the enabled ones, if any.
+export function getParcelleLayer(ids: string[]): ParcelleLayer | undefined {
+  const parcelleLayers = ids.filter(isParcelleLayer);
+  invariant(
+    parcelleLayers.length <= 1,
+    `A map shows one parcelle layer at most, got ${parcelleLayers.join(', ')}`
+  );
+  return parcelleLayers[0];
+}
+
+// Hidden layers closing every basemap: the layers added by the map components
+// are inserted before them, so their order never depends on which component
+// got to add its layer first.
+export const ANCHORS = {
+  optionalLayers: 'anchor-optional-layers',
+  selections: 'anchor-selections'
+} as const;
+
+export const anchorLayers: LayerSpecification[] = Object.values(ANCHORS).map(
+  (id) => ({ id, type: 'background', layout: { visibility: 'none' } })
+);
+
 // The attribution of a source set here wins over the one of its TileJSON, and
 // maplibre shows an attribution once, when it is repeated word for word or is
 // part of a longer one: the same credit must read the same on every source.
@@ -159,19 +197,21 @@ export function buildOptionalSources(
 ): StyleSpecification['sources'] {
   const sources: StyleSpecification['sources'] = {};
 
-  if (ids.includes('cadastres')) {
-    sources.cadastre = {
-      type: 'vector',
-      url: 'https://openmaptiles.geo.data.gouv.fr/data/cadastre.json',
-      attribution: CREDITS.dinum
-    };
-  }
-  if (ids.includes('rpg')) {
-    sources.rpg = {
-      type: 'vector',
-      url: 'pmtiles://https://pmtiles-data.s3.rbx.io.cloud.ovh.net/rpg_2023.pmtiles',
-      attribution: CREDITS.ign
-    };
+  switch (getParcelleLayer(ids)) {
+    case 'cadastres':
+      sources[PARCELLE_LAYERS.cadastres.source] = {
+        type: 'vector',
+        url: 'https://openmaptiles.geo.data.gouv.fr/data/cadastre.json',
+        attribution: CREDITS.dinum
+      };
+      break;
+    case 'rpg':
+      sources[PARCELLE_LAYERS.rpg.source] = {
+        type: 'vector',
+        url: 'pmtiles://https://pmtiles-data.s3.rbx.io.cloud.ovh.net/rpg_2023.pmtiles',
+        attribution: CREDITS.ign
+      };
+      break;
   }
 
   return sources;
@@ -179,7 +219,7 @@ export function buildOptionalSources(
 
 function buildSources() {
   return Object.fromEntries(
-    OPTIONAL_LAYERS.filter(({ id }) => id != 'cadastres' && id != 'rpg')
+    OPTIONAL_LAYERS.filter(({ id }) => !isParcelleLayer(id))
       .flatMap(({ layers }) => layers)
       .map(([, code, style]) => [
         getLayerCode(code),
@@ -214,22 +254,43 @@ function rasterLayer(
   };
 }
 
+// `highlighted` holds the ids of the parcelles to highlight; without it, the
+// filter of `parcelle-highlighted` is left to the caller (the editor sets it).
 export function buildOptionalLayers(
   ids: string[],
-  opacity: Record<string, number>
+  opacity: Record<string, number>,
+  highlighted?: string[]
 ): LayerSpecification[] {
+  const parcelleLayer = getParcelleLayer(ids);
+
   return OPTIONAL_LAYERS.filter(({ id }) => ids.includes(id))
     .flatMap(({ layers, id }) =>
       layers.map(([, code]) => [code, opacity[id] / 100] as const)
     )
     .flatMap(([code, opacity]) => {
-      if (code == 'CADASTRE') {
-        return cadastreLayers;
-      } else if (code == 'RPG') {
-        return rpgLayers;
+      if (code == 'CADASTRE' || code == 'RPG') {
+        invariant(parcelleLayer, `No parcelle layer for ${code}`);
+        return parcelleLayers(PARCELLE_LAYERS[parcelleLayer], highlighted);
       }
       return [rasterLayer(getLayerCode(code), opacity)];
     });
+}
+
+function parcelleLayers(
+  { idProperty, layers }: (typeof PARCELLE_LAYERS)[ParcelleLayer],
+  highlighted?: string[]
+): LayerSpecification[] {
+  if (!highlighted) {
+    return layers;
+  }
+  return layers.map((layer) =>
+    layer.id == 'parcelle-highlighted'
+      ? {
+          ...layer,
+          filter: ['in', ['get', idProperty], ['literal', highlighted]]
+        }
+      : layer
+  );
 }
 
 export const NBS = ' ' as const;
