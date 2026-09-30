@@ -21,10 +21,8 @@ module Expired
   # A dossier is considered expired after 3 months max of inactivity
   MONTHS_BEFORE_BROUILLON_EXPIRATION = 3
 
-  # A prefilled brouillon nobody claimed (no user) is deleted after this idleness
-  DAYS_BEFORE_UNCLAIMED_PREFILLED_EXPIRATION = 5
-
-  # A brouillon never touched since its creation is deleted after this delay
+  # A brouillon nobody ever filled in is deleted after this delay: never touched
+  # since its creation, or prefilled and never claimed by a user
   WEEKS_BEFORE_NEVER_TOUCHED_BROUILLON_EXPIRATION = 2
 
   # Expiracy jobs are run daily.

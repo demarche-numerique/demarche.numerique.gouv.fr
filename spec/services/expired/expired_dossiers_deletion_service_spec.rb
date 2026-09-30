@@ -124,7 +124,7 @@ describe Expired::DossiersDeletionService do
     end
 
     context 'with prefilled brouillons' do
-      let(:delay) { Expired::DAYS_BEFORE_UNCLAIMED_PREFILLED_EXPIRATION.days }
+      let(:delay) { Expired::WEEKS_BEFORE_NEVER_TOUCHED_BROUILLON_EXPIRATION.weeks }
       # Prefilled with an identity, so the never touched drain leaves them alone.
       let!(:unclaimed) { travel_to((delay + 1.day).ago) { create(:dossier, :prefilled, :with_individual, procedure: procedures.individual, user: nil) } }
       let!(:unclaimed_recent) { travel_to((delay - 1.day).ago) { create(:dossier, :prefilled, :with_individual, procedure: procedures.individual, user: nil) } }

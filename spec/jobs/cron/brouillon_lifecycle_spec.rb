@@ -18,10 +18,9 @@ describe "Brouillon lifecycle" do
   # How long before expiration the usager is warned, hence how long a warned
   # brouillon survives its notice.
   let(:notice_period) { Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks }
-  # How long a brouillon nobody ever touched survives its creation.
+  # How long a brouillon nobody ever filled in survives: never touched since
+  # its creation, or prefilled and never claimed.
   let(:never_touched_lifetime) { Expired::WEEKS_BEFORE_NEVER_TOUCHED_BROUILLON_EXPIRATION.weeks }
-  # How long a prefilled brouillon nobody claimed survives its last update.
-  let(:unclaimed_prefilled_lifetime) { Expired::DAYS_BEFORE_UNCLAIMED_PREFILLED_EXPIRATION.days }
 
   let(:expires_at) { created_at + brouillon_lifetime }
   let(:notice_at) { expires_at - notice_period }
@@ -52,16 +51,10 @@ describe "Brouillon lifecycle" do
     drained = [on_closed_procedure, preview, never_touched, prefilled_without_user]
 
     expect do
-      # Cron::NeverTouchedDossiersBrouillonDeletionJob: the prefilled one nobody claimed.
-      run_crons(just_before(created_at + unclaimed_prefilled_lifetime))
-      expect(drained.map { gone?(it) }).to eq([false, false, false, false])
-
-      run_crons(just_after(created_at + unclaimed_prefilled_lifetime))
-      expect(drained.map { gone?(it) }).to eq([false, false, false, true])
-
-      # Cron::NeverTouchedDossiersBrouillonDeletionJob: the one nobody ever edited.
+      # Cron::NeverTouchedDossiersBrouillonDeletionJob: the prefilled one nobody
+      # claimed and the one nobody ever edited, after the same delay.
       run_crons(just_before(created_at + never_touched_lifetime))
-      expect(drained.map { gone?(it) }).to eq([false, false, false, true])
+      expect(drained.map { gone?(it) }).to eq([false, false, false, false])
       run_crons(just_after(created_at + never_touched_lifetime))
       expect(drained.map { gone?(it) }).to eq([false, false, true, true])
 
