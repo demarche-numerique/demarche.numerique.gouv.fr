@@ -1,0 +1,14 @@
+<div class="fr-fieldset__element">
+  <react-fragment class="width-100">
+    <%= render ReactComponent.new("Map/Editor", feature_collection: @champ.to_feature_collection, name: @form.field_name(:value), rejected: @champ.rejected_features.keys) do %>
+      <%= render ReactComponent.new("Map/FileImport") %>
+      <%= render ReactComponent.new("Map/AddressInput", source: data_sources_data_source_adresse_path, id: @champ.focusable_input_id, aria_labelledby_prefix: address_aria_labelledby_prefix) %>
+      <%= render ReactComponent.new("Map/Canvas", layers: @champ.optional_layers) %>
+      <%= render ReactComponent.new("Map/PointInput") %>
+
+      <div class="geo-areas fr-mt-3w">
+        <%= render Dossiers::GeoAreasComponent.new(champ: @champ, editing: true) %>
+      </div>
+    <% end %>
+  </react-fragment>
+</div>

@@ -29,6 +29,7 @@ module Dsfr
       referentiel_support_statut? ||
       address_support_statut? ||
       dossier_link_support_statut? ||
+      carte_support_statut? ||
       prefilled? ||
       pjs_statut?
     end
@@ -58,6 +59,10 @@ module Dsfr
 
     def address_support_statut?
       type_de_champ.address? && !@champ.idle?
+    end
+
+    def carte_support_statut?
+      type_de_champ.carte? && @champ.rejected_features.present?
     end
 
     def dossier_link_support_statut?
@@ -137,6 +142,11 @@ module Dsfr
           else
             { state: :info, text: dossier.text_summary }
           end
+        end
+      when TypeDeChamp.type_champs[:carte]
+        if @champ.rejected_features.present?
+          errors = @champ.rejected_features.values.flatten.uniq.join(' ; ')
+          { state: :error, text: t('.carte.rejected', count: @champ.rejected_features.size, errors:) }
         end
       when TypeDeChamp.type_champs[:referentiel]
         if type_de_champ.referentiel.blank?

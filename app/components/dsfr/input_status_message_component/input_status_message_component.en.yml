@@ -15,6 +15,10 @@ en:
     fetched: "%{raison_sociale_or_name} %{forme_juridique}"
     error: "An error occurred while retrieving SIRET information."
     degraded: "SIRET %{value} is saved. Company information will arrive later: you can carry on."
+  carte:
+    rejected:
+      one: "A shape was not saved: its geometry %{errors}."
+      other: "%{count} shapes were not saved: their geometry %{errors}."
   referentiel:
     not_configured: "This field has not been configured by the administrator yet."
     fetching: "Search in progress."
