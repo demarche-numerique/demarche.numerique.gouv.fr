@@ -1,8 +1,6 @@
 import { gpx, kml } from '@tmcw/togeojson';
 import type { FeatureCollection, Feature, Geometry } from 'geojson';
 
-import { generateId } from '../shared/maplibre/utils';
-
 export function readGeoFile(
   file: File
 ): Promise<FeatureCollection & { filename: string }> {
@@ -34,7 +32,7 @@ function normalizeFeatureCollection(
   featureCollection: FeatureCollection<Geometry | null>,
   filename: string
 ): FeatureCollection & { filename: string } {
-  const sourceFilename = `${generateId()}-${filename}`;
+  const sourceFilename = `${crypto.randomUUID()}-${filename}`;
   const features = featureCollection.features
     .filter(isFeatureWithGeometry)
     .flatMap((feature) => normalizeFeature(feature, sourceFilename));
