@@ -1,5 +1,7 @@
 import { vi, suite, test, expect, beforeEach, afterEach } from 'vite-plus/test';
-import { createRoot, type Root } from 'react-dom/client';
+import type { Root } from 'react-dom/client';
+
+import { createAppRoot } from '../../../test/react';
 
 type Handler = () => void;
 
@@ -67,7 +69,7 @@ suite('MapLibre', () => {
     } as unknown as WebGL2RenderingContext);
     container = document.createElement('div');
     document.body.appendChild(container);
-    root = createRoot(container);
+    root = createAppRoot(container);
   });
 
   afterEach(() => {
