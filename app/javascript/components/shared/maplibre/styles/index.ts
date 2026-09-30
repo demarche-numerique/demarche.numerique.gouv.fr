@@ -5,13 +5,26 @@ import {
   buildOptionalLayers,
   buildOptionalSources,
   getLayerName,
-  NBS
+  getParcelleLayer,
+  isParcelleLayer,
+  NBS,
+  PARCELLE_LAYERS,
+  type ParcelleLayer
 } from './base';
 import { layers as ignLayers } from './layers/ign.ts';
 import orthoLayers from './layers/ortho.json';
 import vectorLayers from './layers/vector.json';
 
-export { getLayerName, NBS };
+export {
+  buildOptionalLayers,
+  buildOptionalSources,
+  getLayerName,
+  getParcelleLayer,
+  isParcelleLayer,
+  NBS,
+  PARCELLE_LAYERS,
+  type ParcelleLayer
+};
 
 export type LayersMap = Record<
   string,
