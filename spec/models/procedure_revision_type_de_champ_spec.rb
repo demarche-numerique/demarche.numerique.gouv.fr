@@ -178,6 +178,16 @@ describe ProcedureRevisionTypeDeChamp do
       it 'takes no public champ' do
         expect(subject).to match_array(['a2'])
       end
+
+      context 'when the procedure may prefill public champs from an annotation' do
+        before { Flipper.enable(:annotation_prefill_champs_public, procedure) }
+
+        # p1 est avant l'annotation dans son propre bloc : sa position ne doit pas
+        # être comparée à celle de l'annotation, qui vit dans l'autre bloc.
+        it 'takes every public champ, whatever its position' do
+          expect(subject).to match_array(['p1', 'p2', 'p3', 'p3.1', 'p3.2', 'a2'])
+        end
+      end
     end
   end
 end

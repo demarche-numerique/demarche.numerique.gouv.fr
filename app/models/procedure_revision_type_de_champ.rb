@@ -134,9 +134,13 @@ class ProcedureRevisionTypeDeChamp < ApplicationRecord
   private
 
   def public_prefill_targets
-    return [] if private?
+    public_coordinates = revision.revision_type_de_champs.filter(&:public?)
 
-    coordinates_after_self(revision.revision_type_de_champs.filter(&:public?))
+    if private?
+      procedure.feature_enabled?(:annotation_prefill_champs_public) ? public_coordinates : []
+    else
+      coordinates_after_self(public_coordinates)
+    end
   end
 
   def private_prefill_targets

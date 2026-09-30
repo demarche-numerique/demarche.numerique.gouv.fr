@@ -46,11 +46,7 @@ class Referentiels::ReferentielPrefillComponent < Referentiels::MappingFormBase
   private
 
   def build_select_options(target_tdcs, selected_value)
-    if type_de_champ.public?
-      grouped_options_for_select(target_tdcs, selected_value)
-    else
-      options_for_select(target_tdcs, selected_value)
-    end
+    grouped_options_for_select(target_tdcs, selected_value)
   end
 
   def tdc_targets(mapping_element)
@@ -99,12 +95,10 @@ class Referentiels::ReferentielPrefillComponent < Referentiels::MappingFormBase
     [tdc.libelle_with_parent(draft_revision), tdc.stable_id]
   end
 
+  # Le filtrage par visibilité a déjà eu lieu sur la coordonnée : un groupe vide ici
+  # signifie que ce champ n'a aucune cible de cette visibilité.
   def select_grouped_tdcs(grouped_tdcs)
-    if type_de_champ.public?
-      grouped_tdcs.compact_blank
-    else
-      grouped_tdcs[private_annotations_group]
-    end
+    grouped_tdcs.compact_blank
   end
 
   def render?
