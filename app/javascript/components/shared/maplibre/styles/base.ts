@@ -35,6 +35,21 @@ export function getParcelleLayer(ids: string[]): ParcelleLayer | undefined {
   return parcelleLayers[0];
 }
 
+// Hidden layers closing every basemap: the layers added by the map components
+// are inserted before them, so their order never depends on which component
+// got to add its layer first. The rasters have their own, under the parcelle
+// layers: they are back at once after a change of basemap, the parcelle layers
+// only once their source is.
+export const ANCHORS = {
+  rasters: 'anchor-rasters',
+  optionalLayers: 'anchor-optional-layers',
+  selections: 'anchor-selections'
+} as const;
+
+export const anchorLayers: LayerSpecification[] = Object.values(ANCHORS).map(
+  (id) => ({ id, type: 'background', layout: { visibility: 'none' } })
+);
+
 // In a new tab: the map sits in a form the usager is filling.
 function credit(href: string, name: string) {
   return `<a href="${href}" target="_blank" rel="noopener noreferrer">© ${name}</a>`;
