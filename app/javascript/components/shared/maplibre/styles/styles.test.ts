@@ -100,6 +100,19 @@ suite('getMapStyle', () => {
     ]);
   });
 
+  test('highlights a parcelle under its numero', () => {
+    const ids = buildOptionalLayers(['cadastres'], OPACITY).map(
+      (layer) => layer.id
+    );
+
+    expect(ids.indexOf('parcelle-highlighted')).toBeGreaterThan(
+      ids.indexOf('parcelles-fill')
+    );
+    expect(ids.indexOf('parcelle-highlighted')).toBeLessThan(
+      ids.indexOf('parcelles-labels')
+    );
+  });
+
   test('refuses both parcelle layers at once', () => {
     expect(() => buildOptionalLayers(['cadastres', 'rpg'], OPACITY)).toThrow(
       /one parcelle layer/

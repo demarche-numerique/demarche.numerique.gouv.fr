@@ -67,9 +67,12 @@ function expectLayerOrder() {
     expect(ids, id).toContain(id);
     return ids.indexOf(id);
   };
-  // The highlight sits where the cadastre style puts it, under the sections;
-  // the selections of the usager sit above everything.
-  expect(position('parcelle-highlighted')).toBeLessThan(position('sections'));
+  // The highlight sits where the cadastre style puts it, under the labels and
+  // the sections; the selections of the usager sit above everything.
+  expect(position('parcelle-highlighted')).toBeLessThan(
+    position('parcelles-labels')
+  );
+  expect(position('parcelles-labels')).toBeLessThan(position('sections'));
   expect(position('sections')).toBeLessThan(position(ANCHORS.optionalLayers));
   expect(position(ANCHORS.optionalLayers)).toBeLessThan(
     position('selections-polygon')
