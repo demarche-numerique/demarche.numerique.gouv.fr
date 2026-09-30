@@ -13,6 +13,7 @@ class Dossier < ApplicationRecord
   include DossierFilteringConcern
   include DossierPrefillableConcern
   include DossierRebaseConcern
+  include DossierRemovalConcern
   include DossierSearchableConcern
   include DossierSectionsConcern
   include DossierStateConcern
