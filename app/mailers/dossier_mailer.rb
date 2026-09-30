@@ -13,7 +13,7 @@ class DossierMailer < ApplicationMailer
   default from: NO_REPLY_EMAIL
 
   before_action :abort_perform_deliveries, only: [:notify_transfer]
-  before_action :prevent_perform_deliveries, only: [:notify_new_draft, :notify_new_answer, :notify_pending_correction, :notify_transfer]
+  before_action :prevent_perform_deliveries, only: [:notify_new_draft, :notify_new_answer, :notify_pending_correction, :notify_dossier_modifie_par_instructeur, :notify_transfer]
 
   # when we don't want to render the view
   rescue_from AbortDeliveryError, with: -> {}
@@ -67,6 +67,19 @@ class DossierMailer < ApplicationMailer
 
       # No default: a fallback would give a plausible but wrong subject ("correct" for a complement).
       @subject = t(".#{@correction.reason}.subject", dossier_id: dossier.id, libelle_demarche: dossier.procedure.libelle)
+
+      mail(to: dossier.user_email_for(:notification), subject: @subject)
+    end
+  end
+
+  def notify_dossier_modifie_par_instructeur
+    dossier = params[:commentaire].dossier
+
+    I18n.with_locale(dossier.user_locale) do
+      @dossier = dossier
+      @service = dossier.procedure.service
+      @logo_url = procedure_logo_url(@dossier.procedure)
+      @subject = default_i18n_subject(dossier_id: dossier.id, libelle_demarche: dossier.procedure.libelle)
 
       mail(to: dossier.user_email_for(:notification), subject: @subject)
     end

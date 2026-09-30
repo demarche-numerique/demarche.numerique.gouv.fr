@@ -1,0 +1,9 @@
+---
+en:
+  dossier_mailer:
+    notify_dossier_modifie_par_instructeur:
+      subject: Your file no. %{dossier_id} has been modified by an instructor (%{libelle_demarche})
+      explanation_html:
+        In order to continue its instruction, <strong>an instructor has made changes</strong> to your file no. %{dossier_id} of the « %{libelle_demarche} » procedure.
+      link: You can check your file's mailbox to see the details of the changes made.
+      access_message: Open the mailbox

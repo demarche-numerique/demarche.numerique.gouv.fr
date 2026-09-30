@@ -20,6 +20,10 @@ class DossierMailerPreview < ActionMailer::Preview
     DossierMailer.with(commentaire:).notify_pending_correction
   end
 
+  def notify_dossier_modifie_par_instructeur
+    DossierMailer.with(commentaire: commentaire(on: dossier_en_construction)).notify_dossier_modifie_par_instructeur
+  end
+
   def notify_brouillon_near_deletion
     DossierMailer.notify_brouillon_near_deletion([dossier], usager_email)
   end

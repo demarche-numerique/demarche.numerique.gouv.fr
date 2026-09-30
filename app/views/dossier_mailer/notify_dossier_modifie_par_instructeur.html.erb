@@ -1,0 +1,23 @@
+<% content_for :procedure_logo do %>
+  <%= render 'layouts/mailers/logo', url: @logo_url %>
+<% end %>
+
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<p>
+  <%= t('.explanation_html', dossier_id: @dossier.id, libelle_demarche: @dossier.procedure.libelle) %>
+</p>
+
+<p><%= t('.link') %></p>
+
+<%= dsfr_button(t('.access_message'), messagerie_dossier_url(@dossier), :primary) %>
+
+<%= render 'layouts/mailers/signature', service: @service %>
+
+<% content_for :footer do %>
+  <%= render 'layouts/mailers/service_footer', dossier: @dossier %>
+<% end %>
+
+<% content_for :sent_to do %>
+  <%= render 'layouts/mailers/sent_to', dossier: @dossier %>
+<% end %>
