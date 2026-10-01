@@ -67,7 +67,7 @@ class GroupeInstructeur < ApplicationRecord
       candidate_emails = instructeurs_to_add.map(&:email) + not_found_emails
       invalid_domain_emails = invalid_domain_for(candidate_emails, restrict_to_domain)
       not_found_emails -= invalid_domain_emails
-      instructeurs_to_add = instructeurs_to_add.reject { invalid_domain_emails.include?(_1.email) }
+      instructeurs_to_add = instructeurs_to_add.reject { invalid_domain_emails.include?(it.email) }
     end
 
     # Send invitations to users without account
@@ -80,17 +80,6 @@ class GroupeInstructeur < ApplicationRecord
     DossierNotification.refresh_notifications_new_instructeurs_for_groupe(self, added)
 
     [instructeurs_to_add, invalid_emails, invalid_domain_emails]
-  end
-
-  def invalid_domain_for(emails, domain)
-    emails.reject { _1.split('@').last.casecmp?(domain) }
-  end
-
-  def create_instructeur_for(emails)
-    emails.map do |email|
-      user = User.create_or_promote_to_instructeur(email, SecureRandom.hex, administrateurs: procedure.administrateurs)
-      user.instructeur
-    end
   end
 
   def can_delete?
@@ -161,6 +150,17 @@ class GroupeInstructeur < ApplicationRecord
   end
 
   private
+
+  def invalid_domain_for(emails, domain)
+    emails.reject { it.split('@').last.casecmp?(domain) }
+  end
+
+  def create_instructeur_for(emails)
+    emails.map do |email|
+      user = User.create_or_promote_to_instructeur(email, SecureRandom.hex, administrateurs: procedure.administrateurs)
+      user.instructeur
+    end
+  end
 
   def routing_rule_matches_tdc?(rule)
     tdcs = procedure.active_revision.public_root_type_de_champs
