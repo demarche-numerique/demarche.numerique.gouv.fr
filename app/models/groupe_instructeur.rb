@@ -152,7 +152,7 @@ class GroupeInstructeur < ApplicationRecord
   private
 
   def invalid_domain_for(emails, domain)
-    emails.reject { it.split('@').last.casecmp?(domain) }
+    emails.reject { it.split('@').last.downcase == domain }
   end
 
   def create_instructeur_for(emails)

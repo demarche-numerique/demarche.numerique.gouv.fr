@@ -81,7 +81,7 @@ class Instructeur < ApplicationRecord
   end
 
   def email_domain
-    email.split('@').last
+    email.split('@').last.downcase
   end
 
   def follow(dossier)
