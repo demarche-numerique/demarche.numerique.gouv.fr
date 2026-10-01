@@ -155,7 +155,7 @@ en:
           intro: "Users can follow the measures taken by the service to improve the accessibility of the site via "
           label: "the DS accessibility continuous improvement programme"
           url: "https://github.com/demarche-numerique/demarche.numerique.gouv.fr/issues?q=accessibilit%C3%A9+"
-          title: "the DS accessibility continuous improvement programme - new tab"
+          title: "the DS accessibility continuous improvement programme"
       no_accessible:
         title: "Non-accessible content"
         subtitle_one: "Non-compliances"
@@ -196,7 +196,7 @@ en:
         techno_ruby:
           label: "Ruby on Rails"
           url: "https://rubyonrails.org/"
-          title: "Ruby on Rails - new tab"
+          title: "Ruby on Rails"
         subtitle_two: "Test environment"
         environment_intro: "The content rendering checks were carried out on the basis of a combination provided by the RGAA reference base, with the following versions:"
         environment_one: "Chrome 134 and NVDA 2024.4.2"
@@ -242,12 +242,12 @@ en:
         remedies_one:
           label: "A contact form"
           url: "https://www.defenseurdesdroits.fr/nous-contacter"
-          title: "A contact form - new tab"
+          title: "A contact form"
           info: "Select “I am a victim of discrimination,” followed by “Private goods and services,” and then “Disability.”"
         remedies_two:
           label: "Contact the delegate of the Human Rights Defender in your region"
           url: "https://www.defenseurdesdroits.fr/fr/saisir/delegues"
-          title: "Contact the delegate of the Human Rights Defender in your region - new tab"
+          title: "Contact the delegate of the Human Rights Defender in your region"
         remedies_three_html: "Send a letter by post (free of charge, do not put a stamp) to the following address
           <p class=\"fr-mb-2w\">Défenseur des droits
           <br >Libre réponse 71120
@@ -287,11 +287,11 @@ en:
           iban_html: An Iban number
           yes_no_html: '"true" for Yes, "false" pour No'
           checkbox_html: '"true" to check, "false" to uncheck'
-          pays_html: An <a href="https://en.wikipedia.org/wiki/ISO_3166-2" target="_blank" rel="noopener noreferrer">ISO 3166-2 country code</a>
-          regions_html: An <a href="https://fr.wikipedia.org/wiki/R%C3%A9gion_fran%C3%A7aise" target="_blank" rel="noopener noreferrer">INSEE region code</a>
-          departements_html: A <a href="https://fr.wikipedia.org/wiki/Num%C3%A9rotation_des_d%C3%A9partements_fran%C3%A7ais" target="_blank">department number</a>
-          communes_html: An array of the postal code and the <a href="https://geo.api.gouv.fr/communes" target="_blank" rel="noopener noreferrer">INSEE commune code</a>
-          address_html: An address EXACTLY formated as the label returned by <a href="https://adresse.data.gouv.fr" target="_blank" rel="noopener noreferrer">the Base Adresse Nationale</a>
+          pays_html: An %{link}
+          regions_html: An %{link}
+          departements_html: A %{link}
+          communes_html: An array of the postal code and the %{link}
+          address_html: An address EXACTLY formated as the label returned by %{link}
           drop_down_list_html: A choice among those selected when the procedure was created
           date_html: ISO8601 date
           datetime_html: ISO8601 datetime
@@ -299,9 +299,17 @@ en:
           siret_html: A SIRET number
           rna_html: A RNA number
           repetition_html: A array of hashes with possible values for each field of the repetition
-          epci_html: An array of the department code and the <a href="https://geo.api.gouv.fr/epcis" target="_blank" rel="noopener noreferrer">EPCI one</a>
-          annuaire_education_html: An educational institution code, as defined by the <a href="https://api.gouv.fr/les-api/api-annuaire-education" target="_blank" rel="noopener noreferrer">Éducation Nationale</a> directory
+          epci_html: An array of the department code and the %{link}
+          annuaire_education_html: An educational institution code, as defined by the %{link} directory
           dossier_link_html: The file ID, as integer
+          reference_links:
+            pays: ISO 3166-2 country code
+            regions: INSEE region code
+            departements: department number
+            communes: INSEE commune code
+            address: the Base Adresse Nationale
+            epci: EPCI one
+            annuaire_education: Éducation Nationale
         examples:
           title: Example
           prenom: "Jean"
@@ -476,9 +484,11 @@ en:
         archives_notice_title: Files archiving
         archives_notice_html: |
           These files will be deleted when their retention period in %{app_name} (%{duration_months} months) expires.
-          <a href="%{doc_url}" rel="external noopener" target="_blank" title="Documentation about files archiving" lang="fr">Learn more</a>
+          %{link}
           <br>
           To save and archive your files on your server, you must download them.
+        archives_notice_link: Learn more
+        archives_notice_link_title: Documentation about files archiving
       avis:
         introduction_file_explaination: "File attached to the request for advice"
       search:
@@ -701,7 +711,8 @@ en:
           flash_alert: "You must sign in or create an account to continue."
           no_account: "Don't have an account?"
         link_sent:
-          consult_help_page_html: If you're seeing this page too often, <a target="_blank" rel="noopener noreferrer" href="%{href}">please consult our help page</a>.
+          consult_help_page_html: If you're seeing this page too often, %{link}.
+          consult_help_page_link: please consult our help page
           email_cta_html: "We have to validate your email address <strong>%{email}</strong>."
         trusted_device_renewal_notice:
           one: "Your secure connection has been renewed. Your browser is authenticated for %{count} day."

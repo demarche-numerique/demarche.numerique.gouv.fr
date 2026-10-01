@@ -21,7 +21,7 @@ RSpec.describe Dossiers::JdmaButtonComponent, type: :component do
 
     it 'links to the feedback URL with source=site, in a new tab' do
       expect(page).to have_link(href: "https://jedonnemonavis.numerique.gouv.fr/Demarches/123?nd_source=site&key=abc")
-      expect(page).to have_css("a[target='_blank'][rel='noopener noreferrer']")
+      expect(page).to have_css("a[target='_blank'][rel='noopener external']")
     end
 
     it 'renders both light and dark button images' do

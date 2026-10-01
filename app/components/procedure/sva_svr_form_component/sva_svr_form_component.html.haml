@@ -4,7 +4,7 @@
       .fr-alert.fr-alert--info.fr-alert--sm.fr-mb-5w
         %p
           Pour activer le paramétrage de cette fonctionnalité, contactez-nous sur
-          = link_to CONTACT_EMAIL, "mailto:#{CONTACT_EMAIL}", **helpers.external_link_attributes
+          = link_to CONTACT_EMAIL, "mailto:#{CONTACT_EMAIL}"
           en indiquant votre numéro de démarche (#{@procedure.id}) et le cadre d’application du SVA/SVR.
 
     - elsif procedure.publiee? && !procedure.sva_svr_enabled?

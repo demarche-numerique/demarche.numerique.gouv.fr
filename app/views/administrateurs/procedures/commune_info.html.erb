@@ -4,7 +4,7 @@
   </h1>
 
   <p>
-    <%= t(".description_html", api_geo_link: link_to("API Géo", "https://api.gouv.fr/les-api/api-geo", **external_link_attributes.merge(class: 'fr-link'))) %>
+    <%= t(".description_html", api_geo_link: link_to("API Géo", "https://api.gouv.fr/les-api/api-geo", **external_link_attributes("API Géo").merge(class: 'fr-link'))) %>
   </p>
 
   <%= render Dsfr::AlertComponent.new(state: :warning) do |c| %>

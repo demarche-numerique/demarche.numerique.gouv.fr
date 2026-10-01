@@ -32,13 +32,13 @@
 
     <% if instructeur? && controller.try(:nav_bar_profile) == :instructeur %>
       <li class="fr-nav__item">
-        <%= link_to t("links.main_navigation.doc.label"), INSTRUCTEUR_TUTORIAL_URL, title: t("links.main_navigation.doc.instructeur_title"), class: "fr-nav__link", **helpers.external_link_attributes %>
+        <%= link_to t("links.main_navigation.doc.label"), INSTRUCTEUR_TUTORIAL_URL, class: "fr-nav__link", **helpers.external_link_attributes(t("links.main_navigation.doc.instructeur_title")) %>
       </li>
     <% end %>
 
     <% if expert? && controller.try(:nav_bar_profile) == :expert %>
       <li class="fr-nav__item">
-        <%= link_to t("links.main_navigation.doc.label"), EXPERT_TUTORIAL_URL, title: t("links.main_navigation.doc.expert_title"), class: "fr-nav__link", **helpers.external_link_attributes %>
+        <%= link_to t("links.main_navigation.doc.label"), EXPERT_TUTORIAL_URL, class: "fr-nav__link", **helpers.external_link_attributes(t("links.main_navigation.doc.expert_title")) %>
       </li>
     <% end %>
   </ul>

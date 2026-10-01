@@ -30,4 +30,4 @@
           = link_to "Revenir à l’écran de gestion", admin_procedure_path(@procedure), title: t('continue_annotations', scope: [:layouts, :breadcrumb]), class: 'fr-link fr-icon-arrow-left-line fr-link--icon-left fr-mb-2w fr-mr-2w'
         - if @procedure.draft_revision.private_revision_type_de_champs.count > 0
           %li
-            = link_to t('preview_annotations', scope: [:layouts, :breadcrumb]), apercu_admin_procedure_path(@procedure, params: {tab: 'annotations-privees'}), target: "_blank", rel: "noopener", class: 'fr-link fr-mb-2w'
+            = link_to t('preview_annotations', scope: [:layouts, :breadcrumb]), apercu_admin_procedure_path(@procedure, params: {tab: 'annotations-privees'}), class: 'fr-link fr-mb-2w', **new_tab_link_attributes(t('preview_annotations', scope: [:layouts, :breadcrumb]))

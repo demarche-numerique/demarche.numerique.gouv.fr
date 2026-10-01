@@ -56,6 +56,8 @@ class EditableChamp::ChampLabelContentComponent < ApplicationComponent
         text_hints
       elsif @champ.dossier_link?
         dossier_link_hints
+      elsif @champ.carte?
+        carte_hints
       else
         []
       end
@@ -74,6 +76,12 @@ class EditableChamp::ChampLabelContentComponent < ApplicationComponent
   def dossier_link_hints
     key = @champ.selectable? ? :select : :free
     [I18n.t("activerecord.attributes.champs/dossier_link_champ.hints.#{key}", application_name: APPLICATION_NAME)]
+  end
+
+  def carte_hints
+    label = I18n.t("activerecord.attributes.champs/carte_champ.hints.help_link")
+    link = link_to(label, "https://doc.demarches-simplifiees.fr/pour-aller-plus-loin/cartographie", **external_link_attributes(label))
+    [ActiveSupport::HtmlSafeTranslation.translate("activerecord.attributes.champs/carte_champ.hints.help_html", link:)]
   end
 
   def formatted_champ_hints

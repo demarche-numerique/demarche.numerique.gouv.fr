@@ -1,4 +1,4 @@
 - if link?
-  = link_to url, t(".name"), class: "fr-download__link", title: helpers.new_tab_suffix(t(".name")), **helpers.external_link_attributes
+  = link_to url, t(".name"), class: "fr-download__link", **helpers.external_link_attributes(t(".name"))
 - elsif attachment?
   = render Dsfr::DownloadComponent.new(attachment:, name: t(".name"), has_name: true, ephemeral_link: helpers.administrateur_signed_in?)

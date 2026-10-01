@@ -131,7 +131,7 @@ TEXT
       it { expect(page).to have_selector("a") }
       it "inject expected attributes" do
         link = page.find_link("https://demarche.numerique.gouv.fr").native
-        expect(link[:rel]).to eq("noopener noreferrer")
+        expect(link[:rel]).to eq("noopener external")
         expect(link[:title]).to eq("Nouvel onglet")
       end
 
@@ -158,7 +158,7 @@ TEXT
       it "convert www only" do
         link = page.find_link("www.ds.io").native
         expect(link[:href]).to eq("http://www.ds.io")
-        expect(link[:rel]).to eq("noopener noreferrer")
+        expect(link[:rel]).to eq("noopener external")
         expect(link[:title]).to eq("Nouvel onglet")
       end
 
@@ -170,7 +170,7 @@ TEXT
       it "convert markdown link" do
         link = page.find_link("lien markdown").native
         expect(link[:href]).to eq("https://github.com")
-        expect(link[:rel]).to eq("noopener noreferrer")
+        expect(link[:rel]).to eq("noopener external")
         expect(link[:title]).to eq("Nouvel onglet")
       end
     end
@@ -185,7 +185,7 @@ TEXT
 
       it "inject expected attributes" do
         link = page.find_link("https://demarche.numerique.gouv.fr").native
-        expect(link[:rel]).to eq("noopener noreferrer")
+        expect(link[:rel]).to eq("noopener external")
         expect(link[:title]).to include("Nouvel onglet")
       end
 

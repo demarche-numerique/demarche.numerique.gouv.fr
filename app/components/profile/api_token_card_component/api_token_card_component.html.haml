@@ -2,7 +2,8 @@
   .card-title
     = t('.tokens_title')
   %p
-    = t('.first_paragraph_html', application_name: Current.application_name, api_doc_url: API_DOC_URL)
+    = t('.first_paragraph_html', application_name: Current.application_name,
+      link: link_to(t('.doc_link'), API_DOC_URL, **helpers.external_link_attributes(t('.doc_link_title', application_name: Current.application_name))))
 
   = link_to t('.create_token'), nom_admin_api_tokens_path, class: "fr-btn fr-btn--secondary fr-mt-2w"
 

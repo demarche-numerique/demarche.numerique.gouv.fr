@@ -6,6 +6,16 @@ class TypesDeChamp::PrefillTypeDeChamp < SimpleDelegator
 
   POSSIBLE_VALUES_THRESHOLD = 5
 
+  REFERENCE_URLS = {
+    "pays" => "https://en.wikipedia.org/wiki/ISO_3166-2",
+    "regions" => "https://fr.wikipedia.org/wiki/R%C3%A9gion_fran%C3%A7aise",
+    "departements" => "https://fr.wikipedia.org/wiki/Num%C3%A9rotation_des_d%C3%A9partements_fran%C3%A7ais",
+    "communes" => "https://geo.api.gouv.fr/communes",
+    "address" => "https://adresse.data.gouv.fr",
+    "epci" => "https://geo.api.gouv.fr/epcis",
+    "annuaire_education" => "https://api.gouv.fr/les-api/api-annuaire-education",
+  }.freeze
+
   def initialize(type_de_champ, revision)
     super(type_de_champ)
     @revision = revision
@@ -118,8 +128,7 @@ class TypesDeChamp::PrefillTypeDeChamp < SimpleDelegator
     link_to(
       I18n.t("views.prefill_descriptions.edit.possible_values.link.text"),
       Rails.application.routes.url_helpers.prefill_type_de_champ_path(@revision.procedure_path, self),
-      title: new_tab_suffix(I18n.t("views.prefill_descriptions.edit.possible_values.link.title")),
-      **external_link_attributes
+      **new_tab_link_attributes(I18n.t("views.prefill_descriptions.edit.possible_values.link.title"))
     )
   end
 
@@ -129,6 +138,14 @@ class TypesDeChamp::PrefillTypeDeChamp < SimpleDelegator
 
   def description
     # HtmlSafeTranslation honours the `_html` convention that `I18n.t` ignores.
-    @description ||= ActiveSupport::HtmlSafeTranslation.translate("views.prefill_descriptions.edit.possible_values.#{type_champ}_html", default: nil)
+    @description ||= ActiveSupport::HtmlSafeTranslation.translate("views.prefill_descriptions.edit.possible_values.#{type_champ}_html", default: nil, link: reference_link)
+  end
+
+  def reference_link
+    url = REFERENCE_URLS[type_champ]
+    return if url.nil?
+
+    label = I18n.t("views.prefill_descriptions.edit.possible_values.reference_links.#{type_champ}")
+    link_to(label, url, **external_link_attributes(label))
   end
 end

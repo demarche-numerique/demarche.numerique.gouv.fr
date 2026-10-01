@@ -20,7 +20,8 @@ RSpec.describe EditableChamp::ChampLabelContentComponent, type: :component do
       integer_number?: false,
       decimal_number?: false,
       textarea?: false,
-      dossier_link?: false
+      dossier_link?: false,
+      carte?: false
     )
   end
 
@@ -160,6 +161,20 @@ RSpec.describe EditableChamp::ChampLabelContentComponent, type: :component do
 
       it "returns no hints" do
         expect(component.hints_for_champ).to eq([])
+      end
+    end
+
+    context "when champ is a carte" do
+      before do
+        allow(champ).to receive(:visible?).and_return(true)
+        allow(champ).to receive(:formatted?).and_return(false)
+        allow(champ).to receive(:carte?).and_return(true)
+      end
+
+      it "links to the tutorial in a new tab" do
+        expect(component.hints_for_champ.map { it[:text] }).to eq([
+          'Besoin d’aide ? <a title="consulter les tutoriels video — Nouvel onglet" target="_blank" rel="noopener external" href="https://doc.demarches-simplifiees.fr/pour-aller-plus-loin/cartographie">consulter les tutoriels video</a>',
+        ])
       end
     end
 

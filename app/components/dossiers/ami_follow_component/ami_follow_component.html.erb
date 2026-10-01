@@ -21,7 +21,7 @@
           faute de quoi il s'afficherait à la taille par défaut, 1.5rem.
         %>
 
-        <%= link_to Ami::APP_URL, class: 'fr-btn fr-btn--icon-left fr-icon-smartphone-line', title: helpers.new_tab_suffix(t('.see_in_app')), **helpers.external_link_attributes do %>
+        <%= link_to Ami::APP_URL, class: 'fr-btn fr-btn--icon-left fr-icon-smartphone-line', **helpers.external_link_attributes(t('.see_in_app')) do %>
           <%= t('.see_in_app') %>
 
           <span

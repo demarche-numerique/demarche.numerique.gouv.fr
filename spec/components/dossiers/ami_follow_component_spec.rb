@@ -18,7 +18,7 @@ RSpec.describe Dossiers::AmiFollowComponent, type: :component do
     expect(page).to have_text(Ami::APP_NAME)
     expect(page).to have_link(href: Ami::APP_URL, class: 'fr-icon-smartphone-line')
     expect(page).to have_css("a[href='#{Ami::APP_URL}'] .fr-icon-external-link-line")
-    expect(page).to have_css("a[target='_blank'][rel='noopener noreferrer']")
+    expect(page).to have_css("a[target='_blank'][rel='noopener external']")
   end
 
   it 'loads the consent state aside from the page' do

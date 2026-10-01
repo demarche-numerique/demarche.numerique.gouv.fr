@@ -6,7 +6,7 @@
 
       .type-de-champ-expression-reguliere
         = form.text_field :expression_reguliere, class: "fr-input small-margin small fr-text--monospace", id: dom_id(type_de_champ, :expression_reguliere)
-      %p.fr-hint-text.fr-mt-1w= t('.labels.hint_html')
+      %p.fr-hint-text.fr-mt-1w= t('.labels.hint_html', link: link_to(t('.labels.rubular_link'), "https://rubular.com", **helpers.external_link_attributes(t('.labels.rubular_link'))))
   .cell.fr-mt-2w
     .fr-input-group
       = form.label :expression_reguliere_indications, for: dom_id(type_de_champ, :expression_reguliere_indications), class: "fr-mb-0" do

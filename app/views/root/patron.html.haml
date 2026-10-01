@@ -251,7 +251,7 @@
 
   .container
     %h1 Dsfr::CalloutComponent
-    %p= link_to "Documentation DSFR Mis en avant (callout)", "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/mise-en-avant", **external_link_attributes
+    %p= link_to "Documentation DSFR Mis en avant (callout)", "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/mise-en-avant", **external_link_attributes("Documentation DSFR Mis en avant (callout)")
 
     = render Dsfr::CalloutComponent.new(title: "Information minimale") do |c|
       - c.with_body do
@@ -267,11 +267,11 @@
       - c.with_body do
         %p
           N’importe quelle icône
-          = link_to("du jeu d’icônes", "https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/icones", **external_link_attributes)
+          = link_to("du jeu d’icônes", "https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/icones", **external_link_attributes("du jeu d’icônes"))
           peut être utilisée.
 
     %h1 Dsfr::CardVerticalComponent
-    %p= link_to "Documentation DSFR Carte", "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/carte", **external_link_attributes
+    %p= link_to "Documentation DSFR Carte", "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/carte", **external_link_attributes("Documentation DSFR Carte")
 
     .fr-grid-row.fr-grid-row--gutters.fr-py-5w
       .fr-col-md-6.fr-col-12
@@ -280,12 +280,12 @@
       .fr-col-md-6.fr-col-12
         = render Dsfr::CardVerticalComponent.new(title: "With footer buttons") do |c|
           - c.with_footer_button do
-            = link_to "Button 1", "#", class: "fr-btn", **external_link_attributes
+            = link_to "Button 1", "#", class: "fr-btn", **external_link_attributes("Button 1")
           - c.with_footer_button do
             = button_tag "Button 2", class: "fr-btn fr-btn--secondary"
 
     %h1 Dsfr::NoticeComponent
-    %p= link_to "Documentation DSFR Bandeau d’information", "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/bandeau-d-information-importante", **external_link_attributes
+    %p= link_to "Documentation DSFR Bandeau d’information", "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/bandeau-d-information-importante", **external_link_attributes("Documentation DSFR Bandeau d’information")
     .fr-my-6v
       = render Dsfr::NoticeComponent.new(closable: true) do |c|
         - c.with_title do

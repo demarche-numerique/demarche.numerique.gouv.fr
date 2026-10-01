@@ -65,8 +65,8 @@ describe 'shared/dossiers/champs', type: :view do
       champ2.update(value: "https://github.com/LeSim")
     end
 
-    let(:link1) { '<a href="https://github.com/tchak" target="_blank" rel="noopener">https://github.com/tchak</a>' }
-    let(:link2) { '<a href="https://github.com/LeSim" target="_blank" rel="noopener">https://github.com/LeSim</a>' }
+    let(:link1) { '<a href="https://github.com/tchak" title="Nouvel onglet" target="_blank" rel="noopener external">https://github.com/tchak</a>' }
+    let(:link2) { '<a href="https://github.com/LeSim" title="Nouvel onglet" target="_blank" rel="noopener external">https://github.com/LeSim</a>' }
 
     it "render links" do
       expect(subject).to include(link1)

@@ -373,7 +373,7 @@
     <h1>Dsfr::CalloutComponent</h1>
 
     <p>
-      <%= link_to "Documentation DSFR Mis en avant (callout)", "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/mise-en-avant", external_link_attributes %>
+      <%= link_to "Documentation DSFR Mis en avant (callout)", "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/mise-en-avant", external_link_attributes("Documentation DSFR Mis en avant (callout)") %>
     </p>
 
     <%= render Dsfr::CalloutComponent.new(title: "Information minimale") do |c| -%>
@@ -396,7 +396,7 @@
       <%- c.with_body do -%>
         <p>
           N’importe quelle icône
-          <%= link_to("du jeu d’icônes", "https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/icones", external_link_attributes) %>
+          <%= link_to("du jeu d’icônes", "https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/icones", external_link_attributes("du jeu d’icônes")) %>
           peut être utilisée.
         </p>
       <%- end -%>
@@ -405,7 +405,7 @@
     <h1>Dsfr::CardVerticalComponent</h1>
 
     <p>
-      <%= link_to "Documentation DSFR Carte", "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/carte", external_link_attributes %>
+      <%= link_to "Documentation DSFR Carte", "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/carte", external_link_attributes("Documentation DSFR Carte") %>
     </p>
 
     <div class="fr-grid-row fr-grid-row--gutters fr-py-5w">
@@ -416,7 +416,7 @@
       <div class="fr-col-md-6 fr-col-12">
         <%= render Dsfr::CardVerticalComponent.new(title: "With footer buttons") do |c| -%>
           <%- c.with_footer_button do -%>
-            <%= link_to "Button 1", "#", { class: "fr-btn" }.merge(external_link_attributes) %>
+            <%= link_to "Button 1", "#", { class: "fr-btn" }.merge(external_link_attributes("Button 1")) %>
           <%- end -%>
 
           <%- c.with_footer_button do -%>
@@ -429,7 +429,7 @@
     <h1>Dsfr::NoticeComponent</h1>
 
     <p>
-      <%= link_to "Documentation DSFR Bandeau d’information", "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/bandeau-d-information-importante", external_link_attributes %>
+      <%= link_to "Documentation DSFR Bandeau d’information", "https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/bandeau-d-information-importante", external_link_attributes("Documentation DSFR Bandeau d’information") %>
     </p>
 
     <div class="fr-my-6v">

@@ -127,8 +127,12 @@ module ApplicationHelper
     !BrowserSupport.supported?(browser)
   end
 
-  def external_link_attributes
-    { target: "_blank", rel: "noopener noreferrer" }
+  def external_link_attributes(title = nil)
+    { title: new_tab_suffix(title), target: "_blank", rel: "noopener external" }
+  end
+
+  def new_tab_link_attributes(title = nil)
+    { title: new_tab_suffix(title), target: "_blank", rel: "noopener" }
   end
 
   def new_tab_suffix(title)

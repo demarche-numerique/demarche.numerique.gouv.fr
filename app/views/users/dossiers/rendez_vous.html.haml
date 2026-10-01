@@ -11,4 +11,4 @@
       %h2.fr-h6
         = t('views.users.dossiers.rendez_vous.title')
       %p
-        = link_to t('views.users.dossiers.rendez_vous.navigate_to_rdv_sp'), RdvService.rdv_sp_rdv_user_url(@rdv.rdv_external_id), target: '_blank', class: 'fr-link'
+        = link_to t('views.users.dossiers.rendez_vous.navigate_to_rdv_sp'), RdvService.rdv_sp_rdv_user_url(@rdv.rdv_external_id), class: 'fr-link', **external_link_attributes(t('views.users.dossiers.rendez_vous.navigate_to_rdv_sp'))
