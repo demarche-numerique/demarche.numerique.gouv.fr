@@ -6200,8 +6200,8 @@ il permet de dédupliquer et d’ordonner les livraisons.
 """
 type Webhook {
   """
-  Date de désactivation automatique après échecs répétés de livraison. Utilisez
-  la mutation `webhookActiver` pour le réactiver.
+  Date de désactivation automatique, après des échecs répétés de livraison ou
+  une réponse 410 Gone. Utilisez la mutation `webhookActiver` pour le réactiver.
   """
   autoDisabledAt: ISO8601DateTime
 
