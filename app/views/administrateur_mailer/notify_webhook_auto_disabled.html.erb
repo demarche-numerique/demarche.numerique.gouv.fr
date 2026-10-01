@@ -8,7 +8,11 @@
 
 <p>
   <strong>
-    <%= t('.disabled', webhook: @webhook.label.presence || @webhook.url, attempts: Webhook::MAX_ATTEMPTS) %>
+    <% if @gone %>
+      <%= t('.disabled_gone', webhook: @webhook.label.presence || @webhook.url) %>
+    <% else %>
+      <%= t('.disabled', webhook: @webhook.label.presence || @webhook.url, attempts: Webhook::MAX_ATTEMPTS) %>
+    <% end %>
   </strong>
 </p>
 

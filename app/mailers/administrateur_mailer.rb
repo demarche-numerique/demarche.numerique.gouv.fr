@@ -27,9 +27,10 @@ class AdministrateurMailer < ApplicationMailer
       reply_to: CONTACT_EMAIL)
   end
 
-  def notify_webhook_auto_disabled(administrateur, webhook)
+  def notify_webhook_auto_disabled(administrateur, webhook, gone: false)
     use_recipient_locale(administrateur.user)
     @webhook = webhook
+    @gone = gone
     @procedure = webhook.procedure
     @subject = t('.subject', procedure_id: @procedure.id)
 

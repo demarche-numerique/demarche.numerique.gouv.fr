@@ -13,5 +13,6 @@ en:
       title: A webhook of your procedure has been disabled
       administrator_html: You are an administrator of the procedure %{procedure}.
       disabled: The webhook %{webhook} was automatically disabled after %{attempts} failed delivery attempts.
+      disabled_gone: "The webhook %{webhook} was automatically disabled: its destination URL answered ‘410 Gone’, which asks for deliveries to stop."
       last_error: "Last error: %{error}"
       retention_html: "The events of the procedure are still recorded for %{days} days. Once the problem is fixed, you can reactivate the webhook with the <code>webhookActiver</code> GraphQL mutation: the pending events will then be delivered in order."
