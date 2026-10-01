@@ -683,6 +683,14 @@ describe ChampData do
       expect(champ.read_attribute(:value_updated_at)).to eq(champ.updated_at)
       expect(dossier.reload.last_champ_updated_at).to eq(champ.updated_at)
     end
+
+    it 'cancels the notice of a brouillon, and takes it out of the warned stage' do
+      dossier.update!(brouillon_close_to_expiration_notice_sent_at: Time.zone.now)
+
+      champ.update_timestamps
+
+      expect(dossier.reload).to have_attributes(brouillon_close_to_expiration_notice_sent_at: nil, removal_stage: nil, removal_due_at: nil)
+    end
   end
 
   describe '#value_updated_at' do

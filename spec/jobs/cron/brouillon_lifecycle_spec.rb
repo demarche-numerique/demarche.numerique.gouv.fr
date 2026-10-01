@@ -23,9 +23,19 @@ describe "Brouillon lifecycle" do
   let(:never_touched_lifetime) { Expired::WEEKS_BEFORE_NEVER_TOUCHED_BROUILLON_EXPIRATION.weeks }
   # How long a trashed brouillon stays in the trash before its purge.
   let(:trash_period) { Dossier::REMAINING_WEEKS_BEFORE_DELETION.weeks }
+  # What the usager's "extend" button adds to the conservation.
+  let(:extension) { procedure.duree_conservation_dossiers_dans_ds.months }
 
   let(:expires_at) { created_at + brouillon_lifetime }
   let(:notice_at) { expires_at - notice_period }
+  # Edited once at its creation, so that it is not drained as never touched.
+  let(:dossier) do
+    travel_to(created_at)
+    create(:dossier, procedure:, user:).tap { autosave(it) }
+  end
+
+  let(:notice_mail) { have_enqueued_mail(DossierMailer, :notify_brouillon_near_deletion) }
+  let(:deletion_mail) { have_enqueued_mail(DossierMailer, :notify_brouillon_deletion) }
 
   # Every nightly job that removes brouillons.
   def run_crons(at)
@@ -39,7 +49,80 @@ describe "Brouillon lifecycle" do
   def just_before(at) = at - 1.minute
   def just_after(at) = at + 1.minute
 
+  # What the usager's edit of a champ does (DossierEditConcern).
+  def autosave(dossier)
+    dossier.reload
+    champ = dossier.champ_for_update(dossier.revision.public_root_type_de_champs.first, updated_by: user.email)
+    Dossier.no_touching { champ.update!(value: "Projet #{Time.current.to_i}") }
+    champ.update_timestamps
+  end
+
+  def warn!
+    dossier
+    run_crons(just_after(notice_at))
+    dossier.reload
+  end
+
   def gone?(dossier) = !Dossier.exists?(dossier.id)
+
+  # Cron::ExpiredDossiersBrouillonDeletionJob: sends the notice, then destroys
+  # the brouillon once the notice period is over.
+  it "warns the usager at J-14, then destroys the brouillon at J with a mail" do
+    dossier
+    expect(dossier.reload.expired_at).to eq(expires_at)
+
+    expect { run_crons(just_before(notice_at)) }.not_to have_enqueued_mail
+    expect { run_crons(just_after(notice_at)) }.to notice_mail.with([dossier], user.email)
+      .and have_enqueued_mail.exactly(:once)
+
+    # The mail announces expired_at: it moves to a notice period after the notice.
+    deletion_at = dossier.reload.expired_at
+    expect(deletion_at).to eq(just_after(notice_at) + notice_period)
+
+    expect { run_crons(just_before(deletion_at)) }.not_to have_enqueued_mail
+    expect(gone?(dossier)).to be(false)
+
+    expect { run_crons(just_after(deletion_at)) }.to deletion_mail.with([dossier.hash_for_deletion_mail], user.email)
+      .and have_enqueued_mail.exactly(:once)
+    expect(gone?(dossier)).to be(true)
+    expect(DeletedDossier.exists?(dossier_id: dossier.id)).to be(false)
+  end
+
+  # Cron::ExpiredDossiersBrouillonDeletionJob: no destruction at the announced
+  # date, a new notice before the new one. Reset by Dossier#extend_conservation.
+  it "gives a new conservation period when the usager extends it after the notice" do
+    warn!
+    old_deletion_at = dossier.expired_at
+
+    travel_to(notice_at + 3.days)
+    dossier.extend_conservation(extension)
+
+    # Counted from the last edit.
+    expect(dossier.reload.expired_at).to eq(created_at + brouillon_lifetime + extension)
+
+    expect { run_crons(just_after(old_deletion_at)) }.not_to have_enqueued_mail
+    expect(gone?(dossier)).to be(false)
+
+    expect { run_crons(just_after(dossier.expired_at - notice_period)) }.to notice_mail.with([dossier], user.email)
+  end
+
+  # Cron::ExpiredDossiersBrouillonDeletionJob: no destruction at the announced
+  # date, a new notice before the new one. Reset by ChampData#update_timestamps.
+  it "cancels the notice when the usager edits the brouillon" do
+    warn!
+    old_deletion_at = dossier.expired_at
+
+    edited_at = notice_at + 3.days
+    travel_to(edited_at)
+    autosave(dossier)
+
+    expect(dossier.reload.expired_at).to eq(edited_at + brouillon_lifetime)
+
+    expect { run_crons(just_after(old_deletion_at)) }.not_to have_enqueued_mail
+    expect(gone?(dossier)).to be(false)
+
+    expect { run_crons(just_after(edited_at + brouillon_lifetime - notice_period)) }.to notice_mail.with([dossier], user.email)
+  end
 
   # None of them sends a mail: Cron::NeverTouchedDossiersBrouillonDeletionJob
   # removes the ones nobody ever filled in, Cron::ExpiredDossiersBrouillonDeletionJob

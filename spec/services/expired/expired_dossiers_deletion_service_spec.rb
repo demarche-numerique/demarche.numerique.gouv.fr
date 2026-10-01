@@ -90,6 +90,10 @@ describe Expired::DossiersDeletionService do
           expect(DossierMailer).to have_received(:notify_brouillon_near_deletion).with([dossier], dossier.user.email)
           expect(dossier.expired_at).to be_within(1.second).of(dossier.expiration_date)
         end
+
+        it 'moves it to the warned stage, due at the date the mail announces' do
+          expect(dossier.reload).to have_attributes(removal_stage: 'warned', removal_due_at: dossier.expired_at)
+        end
       end
     end
 
