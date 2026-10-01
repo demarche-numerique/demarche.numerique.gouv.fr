@@ -13,7 +13,6 @@ class Expired::UsersDeletionService < Expired::MailRateLimiter
 
   private
 
-  # rubocop:disable DS/Unscoped
   def send_inactive_close_to_expiration_notice(users)
     user_ids = to_notify_only(users).pluck(:id)
 
@@ -21,9 +20,8 @@ class Expired::UsersDeletionService < Expired::MailRateLimiter
       send_with_delay(UserMailer.notify_inactive_close_to_deletion(user))
     end
 
-    User.unscoped.where(id: user_ids).update_all(inactive_close_to_expiration_notice_sent_at: Time.zone.now.utc)
+    users.where(id: user_ids).update_all(inactive_close_to_expiration_notice_sent_at: Time.zone.now.utc)
   end
-  # rubocop:enable DS/Unscoped
 
   def delete_notified_users(users)
     user_ids = only_notified(users).pluck(:id)

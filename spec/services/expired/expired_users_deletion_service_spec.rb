@@ -127,6 +127,21 @@ describe Expired::UsersDeletionService do
       end
     end
 
+    context 'when the user signs in while the notices are being sent' do
+      let(:dossier) { nil }
+      let(:user) { create(:user, :with_email_verified, current_sign_in_at: signed_in_expired) }
+
+      it 'does not date a notice after that sign-in' do
+        expect(UserMailer).to receive(:notify_inactive_close_to_deletion).with(user) do
+          user.update_columns(current_sign_in_at: Time.current)
+          mail_double
+        end
+
+        subject
+        expect(user.reload.inactive_close_to_expiration_notice_sent_at).to be_nil
+      end
+    end
+
     context 'when the user email was never verified' do
       let(:dossier) { nil }
       let(:user) { create(:user, current_sign_in_at: signed_in_expired) }
