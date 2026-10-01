@@ -1,0 +1,27 @@
+<button class="fr-btn" aria-controls="preview-modal" data-fr-opened="true">
+  Ouvrir
+</button>
+
+<%= render Dsfr::ModalComponent.new(id: 'preview-modal', size: :lg) do |modal| %>
+  <% modal.with_title { 'Titre de la modale' } %>
+
+  <% modal.with_footer do %>
+    <ul class="fr-btns-group fr-btns-group--right fr-btns-group--inline-lg">
+      <li>
+        <button
+          class="fr-btn fr-btn--secondary"
+          type="button"
+          aria-controls="preview-modal"
+        >
+          Annuler
+        </button>
+      </li>
+
+      <li>
+        <button class="fr-btn" type="button">Valider</button>
+      </li>
+    </ul>
+  <% end %>
+
+  <p>Contenu de la modale.</p>
+<% end %>
