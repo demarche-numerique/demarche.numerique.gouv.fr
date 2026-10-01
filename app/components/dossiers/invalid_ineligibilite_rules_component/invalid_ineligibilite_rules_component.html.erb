@@ -1,0 +1,55 @@
+<% modal_content = capture do %>
+  <button
+    class="fr-sr-only"
+    aria-controls="modal-eligibilite-rules-dialog"
+    data-fr-opened="<%= opened?.to_s %>"
+  >
+    show modal
+  </button>
+
+  <dialog
+    class="fr-modal"
+    id="modal-eligibilite-rules-dialog"
+    aria-labelledby="fr-modal-title-modal-1"
+    aria-describedby="modal-eligibilite-rules-description"
+    role="alertdialog"
+    data-turbo-permanent="true"
+  >
+    <div class="fr-container fr-container--fluid fr-container-md">
+      <div class="fr-grid-row fr-grid-row--center">
+        <div class="fr-col-12 fr-col-md-8 fr-col-lg-6">
+          <div class="fr-modal__body">
+            <div class="fr-modal__header">
+              <button
+                class="fr-btn--close fr-btn"
+                aria-controls="modal-eligibilite-rules-dialog"
+                title="<%= t('utils.modal_close_alt') %>"
+              >
+                <%= t('utils.modal_close') %>
+              </button>
+            </div>
+
+            <div class="fr-modal__content">
+              <h1 class="fr-modal__title" id="fr-modal-title-modal-1">
+                <span class="fr-icon-arrow-right-line fr-icon--lg"></span>
+                <%= t('.modal.title') %>
+              </h1>
+
+              <div id="modal-eligibilite-rules-description">
+                <%= render SimpleFormatComponent.new(error_message) %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+<% end %>
+
+<% if wrapped? %>
+  <div id="ineligibilite_rules_modal">
+    <%= modal_content %>
+  </div>
+<% else %>
+  <%= modal_content %>
+<% end %>
