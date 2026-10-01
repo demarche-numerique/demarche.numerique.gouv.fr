@@ -5,7 +5,10 @@ describe Webhooks::EmitEventService do
   let(:dossier) { dossiers.en_construction }
   let(:webhook) { webhooks.default }
 
-  before { Flipper.enable(:webhooks_api, procedure) }
+  before do
+    Flipper.enable(:webhooks_api, procedure)
+    webhook.debounce_delivery_flag.remove
+  end
 
   def emit(event_type = :dossier_depose)
     described_class.call(dossier:, event_type:)
@@ -20,6 +23,12 @@ describe Webhooks::EmitEventService do
     event = procedure.webhook_events.last
     expect(event.dossier_id).to eq(dossier.id)
     expect(event.event_type).to eq("dossier_depose")
+  end
+
+  it 'schedules a single delivery for a burst of events' do
+    expect { 3.times { emit } }.to change { procedure.webhook_events.count }.by(3)
+
+    expect(Webhooks::DeliveryJob).to have_been_enqueued.with(webhook.id).once
   end
 
   it 'does nothing when the feature is disabled' do

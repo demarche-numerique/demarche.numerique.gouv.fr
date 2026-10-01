@@ -15,9 +15,7 @@ module Webhooks
 
       WebhookEvent.create!(procedure:, dossier_id: dossier.id, event_type:)
 
-      webhooks.filter(&:enabled?).each do |webhook|
-        Webhooks::DeliveryJob.set(wait: Webhooks::DeliveryJob::SAFETY_LAG).perform_later(webhook.id)
-      end
+      webhooks.filter(&:enabled?).each(&:schedule_delivery)
     rescue StandardError => e
       Sentry.capture_exception(e, tags: { procedure: procedure&.id, dossier: dossier.id }.compact, extra: { event_type: })
     end
