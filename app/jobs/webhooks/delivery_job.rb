@@ -21,7 +21,7 @@ module Webhooks
       claimed_at = claim(webhook_id)
       return if claimed_at.nil?
 
-      more = false
+      outcome = nil
       begin
         # read under the claim: an earlier read may hold a cursor or a
         # subscription another run or a modification has since changed
@@ -29,12 +29,17 @@ module Webhooks
         return if webhook.nil?
 
         Sentry.set_tags(procedure: webhook.procedure_id)
-        more = deliver_pending_events(webhook, claimed_at)
+        outcome = deliver_pending_events(webhook, claimed_at)
       ensure
         release(webhook_id, claimed_at)
       end
 
-      Webhooks::DeliveryJob.perform_later(webhook_id) if more
+      case outcome
+      when :more
+        Webhooks::DeliveryJob.perform_later(webhook_id)
+      when :lagging
+        webhook.schedule_delivery
+      end
     end
 
     private
@@ -56,7 +61,9 @@ module Webhooks
       Webhook.where(id: webhook_id, delivery_claimed_at: claimed_at).update_all(delivery_claimed_at: nil)
     end
 
-    # true when events remain for a follow-up job
+    # :more when the run stopped with events left, :lagging when the only
+    # events left are inside the safety lag (their emitters may not have
+    # scheduled a run, see Webhook#schedule_delivery)
     def deliver_pending_events(webhook, claimed_at)
       MAX_BATCHES_PER_RUN.times do
         ceiling = ceiling(webhook)
@@ -64,20 +71,20 @@ module Webhooks
 
         if events.empty?
           skip_other_events(webhook, claimed_at, ceiling)
-          return false
+          return webhook.pending_events.exists? ? :lagging : nil
         end
 
         failure = deliver(webhook, events)
 
         if failure.nil?
-          return false if !advance_cursor(webhook, claimed_at, events.last.id)
+          return if !advance_cursor(webhook, claimed_at, events.last.id)
         else
           register_failure(webhook, claimed_at, failure)
-          return false
+          return
         end
       end
 
-      true
+      :more
     end
 
     # Only advances while this run still holds the claim: a subscription

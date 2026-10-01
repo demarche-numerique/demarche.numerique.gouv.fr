@@ -35,6 +35,8 @@ class Webhook < ApplicationRecord
 
   belongs_to :procedure, inverse_of: :webhooks
 
+  kredis_flag :debounce_delivery_flag
+
   encrypts :secret
   encrypts :previous_secret
 
@@ -97,6 +99,16 @@ class Webhook < ApplicationRecord
 
   def retry_delay
     RETRY_SCHEDULE.fetch(consecutive_failures - 1, RETRY_SCHEDULE.last) * rand((1 - RETRY_JITTER)..(1 + RETRY_JITTER))
+  end
+
+  # One scheduled run per lag window: it delivers the events emitted
+  # meanwhile, or schedules a follow-up for those still inside the lag.
+  def schedule_delivery
+    lag = Webhooks::DeliveryJob::SAFETY_LAG
+    # nil when Redis is unavailable: schedule anyway
+    return if debounce_delivery_flag.mark(expires_in: lag, force: false) == false
+
+    Webhooks::DeliveryJob.set(wait: lag).perform_later(id)
   end
 
   def reactivate!

@@ -7,6 +7,7 @@ describe Webhooks::DeliveryJob, type: :job do
 
   before do
     allow(Resolv).to receive(:getaddresses).and_return(["93.184.216.34"])
+    webhook.debounce_delivery_flag.remove
   end
 
   def create_events(count, event_type: "dossier_depose", created_at: 1.minute.ago)
@@ -106,12 +107,20 @@ describe Webhooks::DeliveryJob, type: :job do
       perform
     end
 
-    it 'leaves fresh events (within the safety lag) for a later run' do
+    it 'leaves fresh events (within the safety lag) to a follow-up run' do
       create_events(1, created_at: Time.current)
 
       perform
 
       expect(webhook.reload.cursor).to eq(events.last.id)
+      expect(Webhooks::DeliveryJob).to have_been_enqueued.with(webhook.id)
+    end
+
+    it 'schedules no follow-up once everything is delivered' do
+      perform
+
+      expect(webhook.reload.cursor).to eq(events.last.id)
+      expect(Webhooks::DeliveryJob).not_to have_been_enqueued
     end
 
     it 'never advances the cursor past a fresh event with a lower id than an older one' do
