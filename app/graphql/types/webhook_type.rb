@@ -9,7 +9,7 @@ class Types::WebhookType < Types::BaseObject
   field :label, String, null: true, description: "Libellé du webhook."
   field :event_types, [Types::WebhookEventTypeEnum], null: false, description: "Types d’évènements auxquels le webhook est abonné."
   field :enabled, Boolean, null: false, description: "Le webhook est-il activé ?"
-  field :auto_disabled_at, GraphQL::Types::ISO8601DateTime, null: true, description: "Date de désactivation automatique après échecs répétés de livraison. Utilisez la mutation `webhookActiver` pour le réactiver."
+  field :auto_disabled_at, GraphQL::Types::ISO8601DateTime, null: true, description: "Date de désactivation automatique, après des échecs répétés de livraison ou une réponse 410 Gone. Utilisez la mutation `webhookActiver` pour le réactiver."
   field :last_error, String, null: true, description: "Dernière erreur de livraison rencontrée."
   field :last_success_at, GraphQL::Types::ISO8601DateTime, null: true, description: "Date de la dernière livraison réussie."
   field :previous_secret_expires_at, GraphQL::Types::ISO8601DateTime, null: true, description: "Après un renouvellement du secret, date jusqu’à laquelle l’ancien secret signe encore les livraisons."

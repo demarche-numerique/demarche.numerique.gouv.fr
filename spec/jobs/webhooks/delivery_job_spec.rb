@@ -167,6 +167,52 @@ describe Webhooks::DeliveryJob, type: :job do
       expect(Webhooks::DeliveryJob).not_to have_been_enqueued.with(webhook.id)
     end
 
+    it 'disables at once and notifies when the endpoint answers 410 Gone' do
+      stub_request(:post, url).to_return(status: 410)
+
+      expect { perform }.to have_enqueued_mail(AdministrateurMailer, :notify_webhook_auto_disabled)
+        .with(administrateurs.default, webhook, gone: true)
+
+      webhook.reload
+      expect(webhook.enabled).to be(false)
+      expect(webhook.auto_disabled_at).to be_present
+      expect(webhook.consecutive_failures).to eq(1)
+      expect(Webhooks::DeliveryJob).not_to have_been_enqueued.with(webhook.id)
+    end
+
+    it 'waits as long as Retry-After asks when longer than the schedule' do
+      stub_request(:post, url).to_return(status: 429, headers: { 'Retry-After' => '120' })
+
+      perform
+
+      expect(webhook.reload.retry_at).to be_within(1.second).of(120.seconds.from_now)
+    end
+
+    it 'reads Retry-After as an HTTP date' do
+      stub_request(:post, url).to_return(status: 503, headers: { 'Retry-After' => 1.hour.from_now.httpdate })
+
+      perform
+
+      expect(webhook.reload.retry_at).to be_within(2.seconds).of(1.hour.from_now)
+    end
+
+    it 'caps Retry-After at the longest step of the schedule' do
+      stub_request(:post, url).to_return(status: 429, headers: { 'Retry-After' => 1.week.to_i.to_s })
+
+      perform
+
+      expect(webhook.reload.retry_at).to be_within(1.second).of(Webhook::RETRY_SCHEDULE.last.from_now)
+    end
+
+    it 'keeps the schedule when Retry-After is shorter or unreadable' do
+      webhook.update!(consecutive_failures: 2)
+      stub_request(:post, url).to_return(status: 429, headers: { 'Retry-After' => 'soon' })
+
+      perform
+
+      expect(webhook.reload.retry_at).to be_within(4.minutes).of(30.minutes.from_now)
+    end
+
     it 'counts a timeout as a failure' do
       stub_request(:post, url).to_timeout
 

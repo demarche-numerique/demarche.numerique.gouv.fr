@@ -10,8 +10,15 @@
 <p>
   <strong>
     Le webhook <%= @webhook.label.presence || @webhook.url %> a été
-    automatiquement désactivé après <%= Webhook::MAX_ATTEMPTS %> tentatives de
-    livraison infructueuses.
+    automatiquement désactivé
+    <% if @gone %>
+      : son URL de destination a répondu « 410 Gone », qui demande l’arrêt des
+      livraisons.
+    <% else %>
+      après
+      <%= Webhook::MAX_ATTEMPTS %>
+      tentatives de livraison infructueuses.
+    <% end %>
   </strong>
 </p>
 
