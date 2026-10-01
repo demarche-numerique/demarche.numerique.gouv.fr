@@ -1,0 +1,67 @@
+<% if render_button? %>
+  <button
+    class="
+      fr-btn fr-btn--sm fr-btn--tertiary-no-outline fr-btn--icon-left
+      fr-icon-question-line fr-ml-2v
+    "
+    aria-controls="modal-tabs-explanations"
+    aria-haspopup="dialog"
+    data-fr-opened="false"
+  >
+    <%= t('.modal.title') %>
+  </button>
+<% end %>
+
+<% if render_dialog? %>
+  <dialog
+    class="fr-modal"
+    id="modal-tabs-explanations"
+    aria-labelledby="fr-modal-title-modal-1"
+    role="dialog"
+  >
+    <div class="fr-container fr-container--fluid fr-container-md">
+      <div class="fr-grid-row fr-grid-row--center">
+        <div class="fr-col-12 fr-col-md-10 fr-col-lg-8">
+          <div class="fr-modal__body">
+            <div class="fr-modal__header">
+              <button
+                class="fr-btn--close fr-btn"
+                aria-controls="modal-tabs-explanations"
+                title="<%= t('.modal.close_alt') %>"
+              >
+                <%= t('.modal.close') %>
+              </button>
+            </div>
+
+            <div class="fr-modal__content">
+              <h1 class="fr-modal__title" id="fr-modal-title-modal-1">
+                <span class="fr-icon-arrow-right-line fr-icon--lg"></span>
+                <%= t('.modal.title') %>
+              </h1>
+
+              <% if action_name == "index" %>
+                <% %w(en_cours en_test close).each do |tab| %>
+                  <p>
+                    <%= t(".modal.tabs_#{tab}_html") %>
+                  </p>
+                <% end %>
+              <% else %>
+                <% %w(a_suivre suivis traites tous expirant archives supprimes).each do |tab| %>
+                  <p>
+                    <% if tab == "supprimes" %>
+                      <% days = Dossier::REMAINING_WEEKS_BEFORE_DELETION * 7 %>
+                      <% months = Dossier::CONSERVATION_EXTENSION_DURATION / 1.month %>
+                      <%= t(".modal.tabs_#{tab}_html", app_name: APPLICATION_NAME, days_part: t('.modal.tabs_supprimes_days', count: days), months_part: t(".modal.tabs_supprimes_months.#{months}")) %>
+                    <% else %>
+                      <%= t(".modal.tabs_#{tab}_html", app_name: APPLICATION_NAME) %>
+                    <% end %>
+                  </p>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+<% end %>
