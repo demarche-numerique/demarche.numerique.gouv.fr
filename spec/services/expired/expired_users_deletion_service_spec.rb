@@ -224,6 +224,11 @@ describe Expired::UsersDeletionService do
       it { is_expected.not_to include(user) }
     end
 
+    context 'when user is expired and is a gestionnaire' do
+      let(:user) { create(:user, gestionnaire: create(:gestionnaire), current_sign_in_at: signed_in_expired) }
+      it { is_expected.not_to include(user) }
+    end
+
     context 'when user is expired but have a dossier' do
       let(:user) { users.admin.tap { it.update(current_sign_in_at: signed_in_expired) } }
       let(:dossier) { create(:dossier, :brouillon, user:, created_at: signed_in_expired) }

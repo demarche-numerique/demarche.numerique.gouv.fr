@@ -49,6 +49,7 @@ class Expired::UsersDeletionService < Expired::MailRateLimiter
       .where.not(owned_by_user(Expert))
       .where.not(owned_by_user(Instructeur))
       .where.not(owned_by_user(Administrateur))
+      .where.not(owned_by_user(Gestionnaire))
       .where(INACTIVITY_CLOCK.lteq(Expired::INACTIVE_USER_RETENTION_IN_YEAR.years.ago))
   end
   # rubocop:enable DS/Unscoped
