@@ -81,6 +81,10 @@ describe Instructeurs::GroupeInstructeursController, type: :controller do
       end
 
       it { expect(response).to have_http_status(:ok) }
+
+      it 'tells which email domain can be added' do
+        expect(response.body).to include("Seules les adresses du même domaine que la vôtre (@#{instructeur.email_domain}) peuvent être ajoutées.")
+      end
     end
   end
 
