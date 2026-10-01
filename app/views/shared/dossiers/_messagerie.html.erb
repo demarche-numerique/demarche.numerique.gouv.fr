@@ -38,45 +38,15 @@
 <% end %>
 
 <% if dossier.procedure&.service.present? && !dossier.messagerie_available? %>
-  <dialog
-    class="fr-modal"
-    id="messagerie-close-explanations"
-    aria-labelledby="fr-modal-title-modal-1"
-    role="dialog"
-  >
-    <div class="fr-container fr-container--fluid fr-container-md">
-      <div class="fr-grid-row fr-grid-row--center">
-        <div class="fr-col-12 fr-col-md-10 fr-col-lg-8">
-          <div class="fr-modal__body">
-            <div class="fr-modal__header">
-              <button
-                class="fr-btn--close fr-btn"
-                aria-controls="messagerie-close-explanations"
-                title="<%= t('utils.modal_close_alt') %>"
-              >
-                <%= t('utils.modal_close') %>
-              </button>
-            </div>
+  <%= render Dsfr::ModalComponent.new(id: 'messagerie-close-explanations', size: :lg) do |modal| %>
+    <% modal.with_title { t('shared.messagerie.disabled_modal.title') } %>
 
-            <div class="fr-modal__content">
-              <h1 class="fr-modal__title" id="fr-modal-title-modal-1">
-                <span class="fr-icon-arrow-right-line fr-icon--lg"></span>
-                La messagerie est désactivée.
-              </h1>
+    <p>
+      <%= t('shared.messagerie.disabled_modal.contact_html', dossier_id: dossier.id) %>
+    </p>
 
-              <p>
-                Pour poser une question, contactez le service ci-dessous, en
-                précisant que votre demande concerne le
-                <b>dossier n°&nbsp;<%= dossier.id %></b>&nbsp;:
-              </p>
-
-              <ul class="list-style-type-none">
-                <%= render Procedure::ServiceListContactComponent.new(service_or_contact_information: dossier.procedure.service, dossier: dossier) %>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </dialog>
+    <ul class="list-style-type-none">
+      <%= render Procedure::ServiceListContactComponent.new(service_or_contact_information: dossier.procedure.service, dossier: dossier) %>
+    </ul>
+  <% end %>
 <% end %>

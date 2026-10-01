@@ -3,3 +3,6 @@ fr:
   shared:
     messagerie:
       new_message: Nouveau message
+      disabled_modal:
+        title: La messagerie est désactivée.
+        contact_html: "Pour poser une question, contactez le service ci-dessous, en précisant que votre demande concerne le <b>dossier n°&nbsp;%{dossier_id}</b>&nbsp;:"
