@@ -400,7 +400,11 @@ class ChampData < ApplicationRecord
       attributes[:expired_at] = (updated_at + dossier.duree_totale_conservation_in_months.months)
     end
 
-    dossier.update_columns(attributes)
+    if attributes.key?(:brouillon_close_to_expiration_notice_sent_at)
+      dossier.update_columns_and_unwarn(attributes)
+    else
+      dossier.update_columns(attributes)
+    end
   end
 
   class NotImplemented < ::StandardError

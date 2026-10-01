@@ -41,7 +41,7 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
       )
 
       send_with_delay(mail)
-      Dossier.where(id: all_user_dossiers.map(&:id)).update_all(brouillon_close_to_expiration_notice_sent_at: Time.zone.now)
+      Dossier.where(id: all_user_dossiers.map(&:id)).warn_removal!(Time.zone.now)
       Dossier.where(id: all_user_dossiers.map(&:id)).find_each(&:update_expired_at)
     end
   end
