@@ -115,6 +115,18 @@ describe Expired::UsersDeletionService do
       end
     end
 
+    context 'when the user signed in again after an earlier notice' do
+      let(:dossier) { nil }
+      let(:user) { create(:user, :with_email_verified, current_sign_in_at: signed_in_expired, inactive_close_to_expiration_notice_sent_at: signed_in_expired - 1.year) }
+
+      it 'warns the user again instead of deleting them' do
+        expect(UserMailer).to receive(:notify_inactive_close_to_deletion).with(user).and_return(mail_double)
+
+        subject
+        expect(user.reload.inactive_close_to_expiration_notice_sent_at).to be > 1.minute.ago
+      end
+    end
+
     context 'when the user email was never verified' do
       let(:dossier) { nil }
       let(:user) { create(:user, current_sign_in_at: signed_in_expired) }

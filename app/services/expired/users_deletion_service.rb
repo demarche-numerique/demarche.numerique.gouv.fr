@@ -2,6 +2,7 @@
 
 class Expired::UsersDeletionService < Expired::MailRateLimiter
   INACTIVITY_CLOCK = Arel.sql("COALESCE(users.current_sign_in_at, users.created_at)")
+  NOTICE_SENT_AT = User.arel_table[:inactive_close_to_expiration_notice_sent_at]
 
   def process_expired
     # we are working on two dataset because we apply two incompatible join on the same query
@@ -73,13 +74,14 @@ class Expired::UsersDeletionService < Expired::MailRateLimiter
   # rubocop:enable DS/Unscoped
 
   def to_notify_only(users)
-    users.where(inactive_close_to_expiration_notice_sent_at: nil)
+    users.where(NOTICE_SENT_AT.eq(nil).or(NOTICE_SENT_AT.lteq(INACTIVITY_CLOCK)))
       .order(INACTIVITY_CLOCK)
       .limit(daily_limit) # ensure to not send too much email
   end
 
   def only_notified(users)
-    users.where.not(inactive_close_to_expiration_notice_sent_at: Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks.ago..)
+    users.where(NOTICE_SENT_AT.gt(INACTIVITY_CLOCK))
+      .where.not(inactive_close_to_expiration_notice_sent_at: Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks.ago..)
       .limit(daily_limit) # event if we do not send email, avoid to destroy 800k user in one batch
   end
 
