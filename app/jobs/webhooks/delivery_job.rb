@@ -12,6 +12,10 @@ module Webhooks
     SAFETY_LAG = 5.seconds
     CLAIM_TTL = 10.minutes
 
+    Failure = Data.define(:error, :gone, :retry_after) do
+      def initialize(error:, gone: false, retry_after: nil) = super
+    end
+
     def perform(webhook_id)
       Sentry.set_tags(webhook: webhook_id)
       claimed_at = claim(webhook_id)
@@ -63,12 +67,12 @@ module Webhooks
           return false
         end
 
-        error = deliver(webhook, events)
+        failure = deliver(webhook, events)
 
-        if error.nil?
+        if failure.nil?
           return false if !advance_cursor(webhook, claimed_at, events.last.id)
         else
-          register_failure(webhook, claimed_at, error)
+          register_failure(webhook, claimed_at, failure)
           return false
         end
       end
@@ -127,14 +131,14 @@ module Webhooks
         .update_all(cursor: ceiling, updated_at: Time.current)
     end
 
-    # nil when delivered, the error otherwise
+    # nil when delivered, a Failure otherwise
     def deliver(webhook, events)
       url = PublicAddressResolver.request_url(webhook.url)
       addresses = PublicAddressResolver.addresses(url)
       # one message: telling an unresolvable host from a private one would
       # reveal internal names
       if addresses.empty? || addresses.any? { PublicAddressResolver.private_address?(it) }
-        return "L'URL du webhook n'est pas autorisée"
+        return Failure.new(error: "L'URL du webhook n'est pas autorisée")
       end
 
       body = payload(webhook, events)
@@ -157,8 +161,22 @@ module Webhooks
       )
 
       if !(200..299).cover?(response.code)
-        "HTTP #{response.code} (#{response.return_message})"
+        Failure.new(
+          error: "HTTP #{response.code} (#{response.return_message})",
+          gone: response.code == 410,
+          retry_after: retry_after(response)
+        )
       end
+    end
+
+    def retry_after(response)
+      value = Array(response.headers&.[]('Retry-After')).first
+      return if value.blank?
+
+      delay = value.match?(/\A\d+\z/) ? value.to_i.seconds : (Time.httpdate(value) - Time.current).seconds
+      [delay, Webhook::RETRY_SCHEDULE.last].min if delay.positive?
+    rescue ArgumentError
+      nil
     end
 
     def payload(webhook, events)
@@ -185,18 +203,18 @@ module Webhooks
 
     # Re-read under lock: a concurrent webhookActiver may have reset the
     # counters since the run started.
-    def register_failure(webhook, claimed_at, error)
+    def register_failure(webhook, claimed_at, failure)
       webhook = Webhook.transaction do
         Webhook.deliverable.lock.find_by(id: webhook.id, delivery_claimed_at: claimed_at)&.tap do |locked|
           locked.consecutive_failures += 1
           locked.last_attempt_at = Time.current
-          locked.last_error = error
+          locked.last_error = failure.error
 
-          if locked.consecutive_failures >= Webhook::MAX_ATTEMPTS
+          if failure.gone || locked.consecutive_failures >= Webhook::MAX_ATTEMPTS
             locked.enabled = false
             locked.auto_disabled_at = Time.current
           else
-            locked.retry_at = locked.retry_delay.from_now
+            locked.retry_at = [locked.retry_delay, failure.retry_after].compact.max.from_now
           end
 
           locked.save!
@@ -207,13 +225,13 @@ module Webhooks
       if webhook.enabled?
         Webhooks::DeliveryJob.set(wait_until: webhook.retry_at).perform_later(webhook.id)
       else
-        notify_auto_disabled(webhook)
+        notify_auto_disabled(webhook, gone: failure.gone)
       end
     end
 
-    def notify_auto_disabled(webhook)
+    def notify_auto_disabled(webhook, gone:)
       webhook.procedure.administrateurs.each do |administrateur|
-        AdministrateurMailer.notify_webhook_auto_disabled(administrateur, webhook).deliver_later
+        AdministrateurMailer.notify_webhook_auto_disabled(administrateur, webhook, gone:).deliver_later
       end
     end
   end

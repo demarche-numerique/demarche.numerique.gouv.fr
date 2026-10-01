@@ -59,6 +59,13 @@ end
       expect(subject.body).to include(webhook.label)
       expect(subject.body).to include("HTTP 500 (Internal Server Error)")
       expect(subject.body).to include("webhookActiver")
+      expect(subject.body.to_s).to match(/#{Webhook::MAX_ATTEMPTS}\s+tentatives/)
+    end
+
+    context 'after a 410 Gone' do
+      subject { described_class.notify_webhook_auto_disabled(administrateur, webhook, gone: true) }
+
+      it { expect(subject.body).to include("410 Gone") }
     end
   end
 
