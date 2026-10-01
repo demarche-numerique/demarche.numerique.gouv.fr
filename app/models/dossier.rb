@@ -362,7 +362,8 @@ class Dossier < ApplicationRecord
   scope :brouillon_expired_after_notice_grace, -> do
     state_brouillon
       .visible_by_user
-      .where(brouillon_close_to_expiration_notice_sent_at: ...(Time.zone.now - Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks))
+      .removal_warned
+      .where(removal_due_at: ...Time.zone.now)
   end
 
   scope :brouillon_expired_without_notice, -> do
