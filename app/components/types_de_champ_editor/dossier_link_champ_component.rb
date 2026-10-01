@@ -8,15 +8,12 @@ class TypesDeChampEditor::DossierLinkChampComponent < TypesDeChampEditor::BaseCh
 
   def react_props
     {
-      id: dom_id(@type_de_champ, :procedures),
+      trigger_id: dom_id(@type_de_champ, :procedures),
       label: t(".label"),
       sections:,
       name: @form.field_name(:dossier_link_procedure_ids, multiple: true),
-      selected_keys: @type_de_champ.dossier_link_procedure_ids.map(&:to_s),
-      'aria-label': t(".aria_label"),
-      # Les libellés de démarches contiennent des espaces (et parfois des `,`/`;`) ;
-      # sans cela le séparateur par défaut `/\s|,|;/` empêche de saisir une espace dans la recherche.
-      value_separator: false,
+      value: @type_de_champ.dossier_link_procedure_ids.map(&:to_s),
+      placeholder: t('views.components.multiple_combobox'),
     }
   end
 

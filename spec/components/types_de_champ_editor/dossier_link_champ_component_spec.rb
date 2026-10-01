@@ -26,11 +26,9 @@ describe TypesDeChampEditor::DossierLinkChampComponent, type: :component do
       it 'returns the correct props' do
         props = subject.react_props
 
-        expect(props[:id]).to eq("procedures_type_de_champ_#{type_de_champ.stable_id}")
+        expect(props[:trigger_id]).to eq("procedures_type_de_champ_#{type_de_champ.stable_id}")
         expect(props[:label]).to eq("Sélectionnez la ou les démarches concernées")
-        expect(props[:selected_keys]).to eq([])
-        expect(props[:'aria-label']).to eq("Liste des démarches")
-        expect(props[:value_separator]).to be(false)
+        expect(props[:value]).to eq([])
         expect(props[:sections].map { it[:label] }).to contain_exactly('Démarches publiées', 'Démarches en test', 'Démarches closes/dépubliées')
       end
     end
@@ -49,16 +47,16 @@ describe TypesDeChampEditor::DossierLinkChampComponent, type: :component do
     context 'with no selected procedure ids' do
       let(:type_de_champ) { build(:type_de_champ_dossier_link, options: { dossier_link_procedure_ids: [] }) }
 
-      it 'returns an empty selected_keys' do
-        expect(subject.react_props[:selected_keys]).to eq([])
+      it 'returns an empty value' do
+        expect(subject.react_props[:value]).to eq([])
       end
     end
 
     context 'with multiple selected procedure ids' do
       let(:type_de_champ) { build(:type_de_champ_dossier_link, options: { dossier_link_procedure_ids: procedures.map { it.id.to_s } }) }
 
-      it 'returns the correct selected_keys' do
-        expect(subject.react_props[:selected_keys]).to eq(procedures.map { it.id.to_s })
+      it 'returns the correct value' do
+        expect(subject.react_props[:value]).to eq(procedures.map { it.id.to_s })
       end
     end
   end

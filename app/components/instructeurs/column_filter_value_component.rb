@@ -102,20 +102,22 @@ class Instructeurs::ColumnFilterValueComponent < ApplicationComponent
 
   def react_props
     {
-      id: input_id,
-      class: 'fr-mt-1w',
+      trigger_id: input_id,
+      label_id:,
+      class_name: 'fr-mt-1w',
       name: 'filter[filter][value][]',
       items: column_filter_options,
-      value_separator: false,
-      selected_keys: filtered_column&.filter_values,
+      value: Array(filtered_column&.filter_values).map(&:to_s),
       placeholder: t('.multi_select_placeholder'),
-      tags_below: true,
-      hide_selected_tags: true,
     }
   end
 
   def input_id(value: nil)
     ["value", filtered_column&.id, value].compact.join('_').parameterize
+  end
+
+  def label_id
+    "#{input_id}_label"
   end
 
   private

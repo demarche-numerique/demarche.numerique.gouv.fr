@@ -172,7 +172,7 @@ describe "procedure filters" do
         champ_select_value = "#{departement_champ.external_id} – #{departement_champ.value}"
 
         add_filter("formulaire-usager", "#{departement_champ.libelle} – Département")
-        add_filter_value(departement_champ.libelle, champ_select_value)
+        add_filter_value("#{departement_champ.libelle} – Département", champ_select_value, type: :multi_select)
 
         expect(page).to have_link(new_unfollow_dossier.id.to_s)
       end
@@ -215,7 +215,7 @@ describe "procedure filters" do
         region_champ.reload
 
         add_filter("formulaire-usager", region_champ.libelle)
-        add_filter_value(region_champ.libelle, region_champ.value)
+        add_filter_value("#{region_champ.libelle} – Région", region_champ.value, type: :multi_select)
 
         expect(page).to have_link(new_unfollow_dossier.id.to_s)
       end
@@ -276,9 +276,9 @@ describe "procedure filters" do
   end
 
   def selected_filter_values(libelle)
-    find_field(libelle)
-      .ancestor('.fr-ds-combobox__multiple')
-      .all('input[type="hidden"]', visible: false)
+    find('#editable-filters-component .fr-label', exact_text: libelle)
+      .ancestor("[id$='_column_filter_value_component']")
+      .all('input[type="hidden"][name="filter[filter][value][]"]', visible: false)
       .map(&:value)
   end
 
@@ -290,7 +290,7 @@ describe "procedure filters" do
         find_field(column_name).send_keys(:enter)
       end
     when :multi_select
-      select_combobox(column_name, filter_value)
+      select_react_option(filter_value, from: column_name)
     else
       raise "invalid type: #{type}"
     end

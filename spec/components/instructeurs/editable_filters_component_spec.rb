@@ -30,7 +30,7 @@ RSpec.describe Instructeurs::EditableFiltersComponent, type: :component do
       expect(react_props_items["items"].map(&:first)).to eq([
         "En construction", "En instruction", "Accepté", "Refusé", "Classé sans suite",
       ])
-      expect(react_props_items["selected_keys"]).to eq(["en_construction"])
+      expect(react_props_items["value"]).to eq(["en_construction"])
     end
   end
 end

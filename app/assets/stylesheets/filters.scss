@@ -2,8 +2,14 @@
 
 #editable-filters-component {
   .fr-fieldset,
-  .fr-ds-combobox__multiple {
+  .fr-ds-select_multiple {
     margin-bottom: 0 !important;
+  }
+
+  // The select sizes itself to its container (a shrinkable flex item here),
+  // where the combobox it replaced got a width from its text input.
+  .fr-ds-select_multiple {
+    min-width: 16rem;
   }
 
   .fr-fieldset__legend {

@@ -2,8 +2,9 @@
 // react-aria : `addObjectDiffToProperties` évalue un getter (`childNodes`) qui
 // lève une exception sur les nœuds de collection, gelant le composant à la
 // sélection / frappe. Ce comportement est neutralisé par le patch
-// `patches/react-dom@<version>.patch`. Ce test reproduit la MÊME structure que
-// ComboBox.tsx (AriaComboBox + Virtualizer + Collection de sections) et échoue
+// `patches/react-dom@<version>.patch`. Ce test reproduit la structure d'une
+// combobox react-aria à sections (AriaComboBox + Virtualizer + Collection de
+// sections), celle que Select.tsx partage via Autocomplete, et échoue
 // si le patch n'est plus appliqué (typiquement après un bump de react-dom dont
 // la clé `patchedDependencies` n'a pas suivi).
 import './process-env-shim';

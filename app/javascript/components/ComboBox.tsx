@@ -2,16 +2,13 @@ import type { ListBoxItemProps } from 'react-aria-components';
 import {
   ComboBox as AriaComboBox,
   ListBox,
-  ListBoxSection,
-  Header,
   Popover,
   Input,
   Label,
   Text,
   Button,
   Virtualizer,
-  ListLayout,
-  Collection
+  ListLayout
 } from 'react-aria-components';
 import { useMemo, useRef, createContext, useContext, useId } from 'react';
 import type { RefObject } from 'react';
@@ -29,49 +26,14 @@ import {
 } from './react-aria/hooks';
 import {
   type Item,
-  type Section,
   MultiComboBoxProps,
   RemoteComboBoxProps
 } from './react-aria/props';
 import { DropdownItem } from './react-aria/components/ListBox';
 import { TagGroup } from './react-aria/components/TagGroup';
 
-function flattenSections(sections: Section[]): Item[] {
-  return sections.flatMap((section) => section.items);
-}
-
-function reconstructSections(
-  originalSections: Section[],
-  filteredItems: Item[]
-): Section[] {
-  const filteredValues = new Set(filteredItems.map((item) => item.value));
-  return originalSections
-    .map((section) => ({
-      label: section.label,
-      items: section.items.filter((item) => filteredValues.has(item.value))
-    }))
-    .filter((section) => section.items.length > 0);
-}
-
-function getItems(
-  items?: Item[],
-  sections?: Section[]
-): { flatItems: Item[]; sections: Section[] | null } {
-  if (items && sections) {
-    throw new Error('ComboBox: pass either `items` or `sections`, not both.');
-  }
-  if (!items && !sections) {
-    return { flatItems: [], sections: null };
-  }
-  if (sections) {
-    return { flatItems: flattenSections(sections), sections };
-  }
-  return { flatItems: items!, sections: null };
-}
-
 export function ComboBox({
   children,
-  sections,
   errorMessage,
   label,
   labelId,
@@ -91,7 +53,6 @@ export function ComboBox({
   isOpen?: boolean;
   placeholder?: string;
   errorMessage?: string;
-  sections?: Section[] | null;
 }) {
   const generatedId = useId();
   // if label is passed, we need to generate an id for the input, otherwise we use the labelId passed in the props
@@ -103,7 +64,7 @@ export function ComboBox({
   return (
     <AriaComboBox
       {...props}
-      {...(sections ? {} : { items })}
+      items={items}
       className={`fr-ds-combobox ${className ?? ''}`}
       shouldFocusWrap={true}
     >
@@ -153,21 +114,7 @@ export function ComboBox({
               ) : undefined
             }
           >
-            {sections ? (
-              <Collection items={sections}>
-                {(section) => (
-                  // Numeric keys cannot collide with item values, see Select.tsx
-                  <ListBoxSection id={sections.indexOf(section)}>
-                    <Header className="dropdown-section-header">
-                      {section.label}
-                    </Header>
-                    <Collection items={section.items}>{children}</Collection>
-                  </ListBoxSection>
-                )}
-              </Collection>
-            ) : (
-              children
-            )}
+            {children}
           </ListBox>
         </Virtualizer>
       </Popover>
@@ -196,7 +143,6 @@ export function ComboBoxItem(props: ListBoxItemProps<Item>) {
 export function MultiComboBox(maybeProps: MultiComboBoxProps) {
   const {
     items: defaultItems,
-    sections: defaultSections,
     selectedKeys: defaultSelectedKeys,
     placeholder,
     name,
@@ -205,18 +151,9 @@ export function MultiComboBox(maybeProps: MultiComboBoxProps) {
     allowsCustomValue,
     valueSeparator,
     className,
-    focusOnSelect,
-    tagsBelow = false,
-    hideSelectedTags = false,
     ...props
   } = useMemo(() => s.create(maybeProps, MultiComboBoxProps), [maybeProps]);
 
-  const { flatItems, sections } = useMemo(
-    () => getItems(defaultItems, defaultSections),
-    [defaultItems, defaultSections]
-  );
-
-  const keepSelectedItems = hideSelectedTags;
   const { ref, dispatch } = useDispatchChangeEvent();
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -228,38 +165,17 @@ export function MultiComboBox(maybeProps: MultiComboBoxProps) {
     items: filteredItems,
     ...comboBoxProps
   } = useMultiList({
-    defaultItems: flatItems,
+    defaultItems,
     defaultSelectedKeys,
     formValue,
     allowsCustomValue,
     valueSeparator,
-    keepSelectedItems,
     focusInput: () => {
       inputRef.current?.focus();
     },
-    onChange: () => {
-      dispatch();
-      if (focusOnSelect) {
-        document.getElementById(focusOnSelect)?.focus();
-      }
-    }
+    onChange: dispatch
   });
   const formResetRef = useOnFormReset(onReset);
-
-  const filteredSections = useMemo(
-    () => (sections ? reconstructSections(sections, filteredItems) : null),
-    [sections, filteredItems]
-  );
-
-  const tagGroup = !hideSelectedTags ? (
-    <TagGroup
-      items={selectedItems}
-      onRemove={(value) => onRemove(new Set([value]))}
-      fallbackFocusRef={inputRef}
-      className={`fr-tag-list${tagsBelow ? ' fr-mt-1w' : ''}`}
-      aria-label={props['aria-label']}
-    />
-  ) : null;
 
   const disabledKeys = useMemo(
     () => selectedItems.map((item) => item.value),
@@ -268,7 +184,13 @@ export function MultiComboBox(maybeProps: MultiComboBoxProps) {
 
   return (
     <div className={`fr-ds-combobox__multiple ${className ? className : ''}`}>
-      {!tagsBelow ? tagGroup : null}
+      <TagGroup
+        items={selectedItems}
+        onRemove={(value) => onRemove(new Set([value]))}
+        fallbackFocusRef={inputRef}
+        className="fr-tag-list"
+        aria-label={props['aria-label']}
+      />
       <ComboBox
         allowsCustomValue={allowsCustomValue}
         inputRef={inputRef}
@@ -276,13 +198,11 @@ export function MultiComboBox(maybeProps: MultiComboBoxProps) {
         placeholder={placeholder}
         {...comboBoxProps}
         items={filteredItems}
-        sections={filteredSections}
         disabledKeys={disabledKeys}
         {...props}
       >
         {(item) => <ComboBoxItem id={getKey(item)}>{item.label}</ComboBoxItem>}
       </ComboBox>
-      {tagsBelow ? tagGroup : null}
       {name ? (
         <span ref={ref}>
           {hiddenInputValues.length === 0 ? (
@@ -317,9 +237,6 @@ export function RemoteComboBox({
   children,
   ...maybeProps
 }: RemoteComboBoxProps) {
-  if ('sections' in maybeProps) {
-    throw new Error('RemoteComboBox does not support the `sections` prop.');
-  }
   const {
     items: defaultItems,
     selectedKey: defaultSelectedKey,

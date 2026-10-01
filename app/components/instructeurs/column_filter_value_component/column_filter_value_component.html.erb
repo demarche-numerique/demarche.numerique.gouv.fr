@@ -64,11 +64,11 @@
       </div>
     </fieldset>
   <% elsif selectable? %>
-    <%= form.label input_id, class: 'fr-label' do %>
+    <%= form.label input_id, class: 'fr-label', id: label_id do %>
       <%= render_label %>
     <% end %>
     <react-fragment>
-      <%= render ReactComponent.new "ComboBox/MultiComboBox", **react_props %>
+      <%= render ReactComponent.new "Select/MultipleSelect", **react_props %>
     </react-fragment>
   <% else %>
     <div class="default-filter">

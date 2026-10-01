@@ -62,11 +62,7 @@ export const MultiComboBoxProps = s.assign(
       selectedKeys: s.array(s.string()),
       allowsCustomValue: s.boolean(),
       valueSeparator: s.union([s.string(), s.literal(false)]),
-      focusOnSelect: s.string(),
-      placeholder: s.string(),
-      tagsBelow: s.boolean(),
-      hideSelectedTags: s.boolean(),
-      sections: s.array(Section)
+      placeholder: s.string()
     })
   )
 );

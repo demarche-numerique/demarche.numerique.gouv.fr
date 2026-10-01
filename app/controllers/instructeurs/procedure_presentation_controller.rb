@@ -145,7 +145,7 @@ module Instructeurs
       end
 
       if h[:displayed_columns].present?
-        # React ComboBox/MultiComboBox return [''] when no value is selected
+        # React Select/MultipleSelect returns [''] when no value is selected
         # We need to remove them
         h[:displayed_columns] = h[:displayed_columns].reject(&:empty?)
 
