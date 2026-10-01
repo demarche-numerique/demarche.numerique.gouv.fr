@@ -5,9 +5,6 @@ class Expired::UsersDeletionService < Expired::MailRateLimiter
   NOTICE_SENT_AT = User.arel_table[:inactive_close_to_expiration_notice_sent_at]
 
   def process_expired
-    # we are working on two dataset because we apply two incompatible join on the same query
-    #   inner join on users not having dossier.en_instruction [so we do not destroy users with dossiers.en_instruction]
-    #   outer join on users not having dossier at all [so we destroy users without dossiers]
     [expired_users_without_dossiers, expired_users_with_dossiers].each do |expired_segment|
       reporting_errors { delete_notified_users(expired_segment) }
       reporting_errors { send_inactive_close_to_expiration_notice(expired_segment) }
@@ -40,31 +37,28 @@ class Expired::UsersDeletionService < Expired::MailRateLimiter
     end
   end
 
-  # rubocop:disable DS/Unscoped
   def expired_users_with_dossiers
-    dossiers = Dossier.arel_table
-    users = User.arel_table
-
-    expired_users
-      .joins(
-      users.join(dossiers, Arel::Nodes::OuterJoin)
-        .on(users[:id].eq(dossiers[:user_id])
-        .and(dossiers[:state].eq(Dossier.states.fetch(:en_instruction))))
-        .join_sources
-    )
-      .where(dossiers[:id].eq(nil))
+    expired_users.where.not(owned_by_user(Dossier.state_en_instruction))
   end
 
   def expired_users_without_dossiers
-    expired_users.where.missing(:dossiers)
+    expired_users.where.not(owned_by_user(Dossier))
   end
 
+  # NOT EXISTS rather than where.missing, which Postgres cannot plan as an anti-join.
+  # rubocop:disable DS/Unscoped
   def expired_users
     User.unscoped
-      .where.missing(:expert, :instructeur, :administrateur)
+      .where.not(owned_by_user(Expert))
+      .where.not(owned_by_user(Instructeur))
+      .where.not(owned_by_user(Administrateur))
       .where(INACTIVITY_CLOCK.lteq(Expired::INACTIVE_USER_RETENTION_IN_YEAR.years.ago))
   end
   # rubocop:enable DS/Unscoped
+
+  def owned_by_user(relation)
+    relation.where(relation.arel_table[:user_id].eq(User.arel_table[:id])).arel.exists
+  end
 
   # BalancerDeliveryMethod drops any mail to an address the user never verified.
   # rubocop:disable DS/Unscoped
