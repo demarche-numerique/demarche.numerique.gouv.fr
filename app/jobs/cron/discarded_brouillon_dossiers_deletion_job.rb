@@ -5,5 +5,5 @@ class Cron::DiscardedBrouillonDossiersDeletionJob < Cron::DiscardedDossiersDelet
 
   private
 
-  def scope = Dossier.en_brouillon_expired_to_delete
+  def scope = Dossier.trash_purge_due
 end
