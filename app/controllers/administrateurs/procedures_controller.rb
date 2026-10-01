@@ -5,7 +5,7 @@ module Administrateurs
     layout 'all', only: [:all, :administrateurs]
     respond_to :html, :xlsx
 
-    before_action :retrieve_procedure, only: [:show, :update, :champs, :annotations, :modifications, :edit, :zones, :monavis, :update_monavis, :accuse_lecture, :update_accuse_lecture, :publication, :publish, :transfert, :close, :confirmation, :allow_expert_review, :allow_expert_messaging, :experts_require_administrateur_invitation, :reset_draft, :publish_revision, :check_path, :api_champ_columns, :commune_info, :path, :update_path, :rdv, :update_rdv, :pro_connect_restricted, :update_pro_connect_restricted]
+    before_action :retrieve_procedure, only: [:show, :update, :champs, :annotations, :modifications, :parcours, :edit, :zones, :monavis, :update_monavis, :accuse_lecture, :update_accuse_lecture, :publication, :publish, :transfert, :close, :confirmation, :allow_expert_review, :allow_expert_messaging, :experts_require_administrateur_invitation, :reset_draft, :publish_revision, :check_path, :api_champ_columns, :commune_info, :path, :update_path, :rdv, :update_rdv, :pro_connect_restricted, :update_pro_connect_restricted]
     before_action :draft_valid?, only: [:apercu]
     after_action :reset_draft_procedure, only: [:update]
 
@@ -305,6 +305,11 @@ module Administrateurs
 
     def modifications
       ProcedureRevisionPreloader.new(@procedure.revisions.includes(administrateur: :user).reorder(published_at: :desc)).all
+    end
+
+    def parcours
+      ProcedureRevisionPreloader.load_one(@procedure.draft_revision)
+      @branch_trees = @procedure.draft_revision.branch_trees
     end
 
     def publication

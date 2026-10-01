@@ -53,6 +53,9 @@ class Logic::PossibleValues::Number < Data.define(:integer, :intervals, :limits)
 
       min == max && !(min_inclusive && max_inclusive)
     end
+
+    # The interval as a champ of the given kind holds it.
+    def snap(integer) = integer ? snap_to_integers : self
   end
 
   # The values the champ's own validation leaves it (see
@@ -68,13 +71,47 @@ class Logic::PossibleValues::Number < Data.define(:integer, :intervals, :limits)
   end
 
   def initialize(integer:, intervals: [Interval.unbounded], limits: nil)
-    super(integer:, intervals: intervals.map { integer ? it.snap_to_integers : it }.reject(&:empty?), limits:)
+    super(integer:, intervals: intervals.map { it.snap(integer) }.reject(&:empty?), limits:)
   end
 
   def empty? = intervals.empty?
 
+  def union(other)
+    return nil if !other.is_a?(self.class)
+
+    with(intervals: coalesce(intervals + other.intervals))
+  end
+
+  # Ascending: a bound before what lies past it
+  def sort_key
+    interval = intervals.first
+
+    [0, interval.min || -Float::INFINITY, interval.min_inclusive ? 0 : 1]
+  end
+
+  def to_s(_type_de_champ = nil)
+    return I18n.t('logic.possible_values.any') if intervals == [Interval.unbounded]
+
+    intervals.map { describe(it) }.join(I18n.t('logic.possible_values.or'))
+  end
+
   # The same champ as if it had no limits: what its comparisons alone leave.
   def unlimited = self.class.new(integer:)
+
+  # Splits the values at every constant the comparisons mention: each constant on
+  # its own and the open intervals between consecutive constants, so that an
+  # comparison is either true or false on a whole region.
+  def regions(comparisons)
+    cuts = cuts(comparisons)
+    bounds = [nil, *cuts, nil]
+
+    points = cuts.map { Interval.point(it) }
+    gaps = bounds.each_cons(2).map { |low, high| Interval.new(min: low, min_inclusive: false, max: high, max_inclusive: false) }
+
+    (points + gaps).map { intersect([it]) }.reject(&:empty?)
+  end
+
+  def max_regions(comparisons) = 2 * cuts(comparisons).size + 1
 
   def restrict(operator_class, value)
     return self if !value.is_a?(Numeric)
@@ -94,10 +131,61 @@ class Logic::PossibleValues::Number < Data.define(:integer, :intervals, :limits)
 
   private
 
+  # The constants the comparisons mention, one cut per value whether it is
+  # written as an integer or a decimal: 3 and 3.0 are the same cut.
+  def cuts(comparisons) = comparisons.map(&:last).filter { it.is_a?(Numeric) }.uniq(&:to_r).sort
+
   # Every kept interval crossed with every new one: intersecting two unions of
   # intervals means intersecting them pairwise, and the constructor drops the
   # pairs that do not overlap.
   def intersect(others)
     with(intervals: intervals.product(others).map { |a, b| a.intersect(b) })
+  end
+
+  # Sorted intervals, overlapping or touching ones merged.
+  def coalesce(intervals)
+    intervals.map { it.snap(integer) }.reject(&:empty?).sort_by { [it.min ? 1 : 0, it.min || 0, it.min_inclusive ? 0 : 1] }.each_with_object([]) do |interval, merged|
+      last = merged.last
+
+      if last && touching?(last, interval)
+        upper = [last, interval].find { it.max.nil? } || [last, interval].max_by { [it.max, it.max_inclusive ? 1 : 0] }
+        merged[-1] = last.with(max: upper.max, max_inclusive: upper.max_inclusive)
+      else
+        merged << interval
+      end
+    end
+  end
+
+  # `a` starts before `b`: they touch when `a` reaches `b`'s start.
+  def touching?(a, b)
+    return true if a.max.nil? || b.min.nil?
+    return true if a.max > b.min
+    return true if a.max == b.min && (a.max_inclusive || b.min_inclusive)
+
+    integer && a.max + 1 == b.min
+  end
+
+  def describe(interval)
+    min, max = format(interval.min), format(interval.max)
+
+    case [interval.min.nil?, interval.max.nil?]
+    in [true, true] then I18n.t('logic.possible_values.any')
+    in [true, false] then I18n.t(interval.max_inclusive ? 'logic.possible_values.number.at_most' : 'logic.possible_values.number.less_than', value: max)
+    in [false, true] then I18n.t(interval.min_inclusive ? 'logic.possible_values.number.at_least' : 'logic.possible_values.number.more_than', value: min)
+    in [false, false]
+      if interval.min == interval.max
+        min
+      elsif interval.min_inclusive && interval.max_inclusive
+        I18n.t('logic.possible_values.number.between', min:, max:)
+      else
+        I18n.t('logic.possible_values.number.between_exclusive', min:, max:)
+      end
+    end
+  end
+
+  def format(value)
+    return nil if value.nil?
+
+    value == value.to_i ? value.to_i.to_s : value.to_s
   end
 end
