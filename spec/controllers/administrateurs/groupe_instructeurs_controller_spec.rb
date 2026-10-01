@@ -45,6 +45,26 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
         end
       end
     end
+
+    context 'with every modal of the page' do
+      let(:modal_html) { response.body }
+
+      before { get :index, params: { procedure_id: procedure.id }, flash: { routing_mode: 'custom' } }
+
+      context 'modal-add-groupe' do
+        before { pending 'migrated in Task 6f' }
+
+        it_behaves_like 'a labelled DSFR modal', 'modal-add-groupe'
+      end
+
+      context 'modal-import' do
+        before { pending 'migrated in Task 6g' }
+
+        it_behaves_like 'a labelled DSFR modal', 'modal-import'
+      end
+
+      it_behaves_like 'a labelled DSFR modal', 'routing-mode-modal'
+    end
   end
 
   describe '#show' do

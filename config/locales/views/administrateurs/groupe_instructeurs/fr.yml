@@ -6,6 +6,14 @@ fr:
           one: "L’expert %{value} a été affecté à la démarche n° %{procedure}"
           other: "Les experts %{value} ont été affectés à la démarche n° %{procedure}"
     groupe_instructeurs:
+      routing_modal:
+        custom:
+          title: Configuration manuelle du routage
+          alert_title: Deux groupes par défaut ont été créés
+          alert_body: "Vous devez maintenant les renommer et leur attribuer des règles de routage à partir du ou des champs « routables » de votre formulaire, soit des champs de type :"
+        simple:
+          title: Configuration automatique du routage
+          alert_title: "Les groupes instructeurs ont été créés à partir du champ « %{champ} »"
       index:
         procedures: Démarches
       add_instructeurs:
