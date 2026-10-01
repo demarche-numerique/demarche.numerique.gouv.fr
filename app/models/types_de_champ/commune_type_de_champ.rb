@@ -40,9 +40,7 @@ class TypesDeChamp::CommuneTypeDeChamp < TypeDeChamp
   end
 
   def columns(procedure_id:, displayable: true, prefix: nil)
-    addressable_columns(procedure_id:, displayable:, prefix:)
-      .concat(legacy_columns(procedure_id:, prefix:))
-      .concat(addressable_columns(procedure_id:, displayable:, prefix:, only: [:city_code]))
+    addressable_columns(procedure_id:, displayable:, prefix:, only: [*DEFAULT_ADDRESSABLE_COLUMNS, :city_code])
   end
 
   def customization_column(procedure_id:)
@@ -54,40 +52,6 @@ class TypesDeChamp::CommuneTypeDeChamp < TypeDeChamp
   end
 
   private
-
-  # Anciennes colonnes conservées pour rester résolvables par les
-  # ProcedurePresentation / exports / colonnes graphql persistées avant la bascule sur AddressableColumnConcern.
-  def legacy_columns(procedure_id:, prefix:)
-    [
-      Columns::ChampColumn.new(
-        procedure_id:,
-        stable_id:,
-        tdc_type: type_champ,
-        label: libelle_with_prefix(prefix),
-        type: :text,
-        displayable: false,
-        filterable: false,
-        options_for_select:,
-        mandatory: mandatory?
-      ),
-    ] +
-    [
-      ['code postal (5 chiffres)', '$.code_postal', :text],
-      ['département', '$.code_departement', :number],
-    ].map do |(label, jsonpath, type)|
-      Columns::JSONPathColumn.new(
-        procedure_id:,
-        stable_id:,
-        tdc_type: type_champ,
-        label: "#{libelle_with_prefix(prefix)} - #{label}",
-        jsonpath:,
-        displayable: false,
-        filterable: false,
-        type:,
-        mandatory: mandatory?
-      )
-    end
-  end
 
   def paths
     paths = super

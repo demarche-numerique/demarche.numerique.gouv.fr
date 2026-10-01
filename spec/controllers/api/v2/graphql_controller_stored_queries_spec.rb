@@ -384,7 +384,7 @@ describe API::V2::GraphqlController do
           expect(gql_errors).to be_nil
           expect(gql_data[:dossier][:id]).to eq(dossier.to_typed_id)
           expect(gql_data[:dossier][:champs].size).to eq(7)
-          expect(columns.size).to eq(19)
+          expect(columns.size).to eq(18)
 
           expect(columns[0]).to include(label: "label text", value: 'text')
           expect(columns[1]).to include(label: "label integer_number", value: "42")
@@ -397,7 +397,6 @@ describe API::V2::GraphqlController do
           expect(columns[7]).to include(label: "label entreprise – Entreprise raison sociale", value: 'GRTGAZ')
           expect(columns[16]).to include(label: "label entreprise – SIRET – Département", value: '92')
           expect(columns[17]).to include(label: "label entreprise – SIRET – Région", value: '11')
-          expect(columns[18]).to include(label: "label entreprise – SIRET – Région", value: 'Île-de-France')
         }
 
         context 'with champId' do
