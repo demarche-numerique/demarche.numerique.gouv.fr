@@ -92,9 +92,9 @@ describe GroupeInstructeur, type: :model do
 
   describe '#add_instructeurs' do
     let!(:target) { create(:groupe_instructeur, procedure: procedure) }
-    let!(:current) { create(:instructeur, email: 'moi@interieur.gouv.fr') }
+    let(:domain) { 'interieur.gouv.fr' }
 
-    subject { target.add_instructeurs(emails:, current_instructeur: current) }
+    subject { target.add_instructeurs(emails:, restrict_to_domain: domain) }
 
     context 'with a new instructeur from the same domain' do
       let(:emails) { ['nouveau@interieur.gouv.fr'] }
@@ -146,8 +146,8 @@ describe GroupeInstructeur, type: :model do
       end
     end
 
-    context 'without current_instructeur (administrateur side)' do
-      let(:current) { nil }
+    context 'without domain restriction (administrateur side)' do
+      let(:domain) { nil }
       let(:emails) { ['quelquun@gmail.com', 'autre@interieur.gouv.fr'] }
 
       it 'does not restrict by domain' do

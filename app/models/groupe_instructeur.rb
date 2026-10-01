@@ -58,15 +58,14 @@ class GroupeInstructeur < ApplicationRecord
     end
   end
 
-  def add_instructeurs(ids: [], emails: [], current_instructeur: nil)
+  def add_instructeurs(ids: [], emails: [], restrict_to_domain: nil)
     instructeurs_to_add, valid_emails, invalid_emails = Instructeur.find_all_by_identifier_with_emails(ids:, emails:)
     not_found_emails = valid_emails - instructeurs_to_add.map(&:email)
     invalid_domain_emails = []
 
-    # check if instructeur_emails are in the same domain as the current instructeur
-    if current_instructeur
+    if restrict_to_domain
       candidate_emails = instructeurs_to_add.map(&:email) + not_found_emails
-      invalid_domain_emails = invalid_domain_for(candidate_emails, current_instructeur)
+      invalid_domain_emails = invalid_domain_for(candidate_emails, restrict_to_domain)
       not_found_emails -= invalid_domain_emails
       instructeurs_to_add = instructeurs_to_add.reject { invalid_domain_emails.include?(_1.email) }
     end
@@ -83,8 +82,8 @@ class GroupeInstructeur < ApplicationRecord
     [instructeurs_to_add, invalid_emails, invalid_domain_emails]
   end
 
-  def invalid_domain_for(emails, current_instructeur)
-    emails.reject { _1.split('@').last.casecmp?(current_instructeur.email_domain) }
+  def invalid_domain_for(emails, domain)
+    emails.reject { _1.split('@').last.casecmp?(domain) }
   end
 
   def create_instructeur_for(emails)

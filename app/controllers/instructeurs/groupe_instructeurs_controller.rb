@@ -26,7 +26,7 @@ module Instructeurs
     def add_instructeurs
       emails, maybe_typos, errors = parse_emails
 
-      added_instructeurs, invalid_emails, invalid_domain_emails = groupe_instructeur.add_instructeurs(emails:, current_instructeur:)
+      added_instructeurs, invalid_emails, invalid_domain_emails = groupe_instructeur.add_instructeurs(emails:, restrict_to_domain: current_instructeur.email_domain)
 
       if invalid_emails.present?
         errors += [
