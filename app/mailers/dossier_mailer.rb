@@ -32,16 +32,9 @@ class DossierMailer < ApplicationMailer
 
   def notify_new_answer
     commentaire = params[:commentaire]
-    dossier = commentaire.dossier
-
-    use_recipient_locale(dossier.user)
-    @dossier = dossier
-    @service = dossier.procedure.service
-    @logo_url = procedure_logo_url(@dossier.procedure)
     @body = commentaire.body
-    @subject = default_i18n_subject(dossier_id: dossier.id, libelle_demarche: dossier.procedure.libelle)
 
-    mail(to: dossier.user_email_for(:notification), subject: @subject)
+    mail_to_usager(commentaire.dossier)
   end
 
   def notify_new_commentaire_to_instructeur(dossier, instructeur_email)
@@ -69,16 +62,7 @@ class DossierMailer < ApplicationMailer
   end
 
   def notify_dossier_modifie_par_instructeur
-    dossier = params[:commentaire].dossier
-
-    I18n.with_locale(dossier.user_locale) do
-      @dossier = dossier
-      @service = dossier.procedure.service
-      @logo_url = procedure_logo_url(@dossier.procedure)
-      @subject = default_i18n_subject(dossier_id: dossier.id, libelle_demarche: dossier.procedure.libelle)
-
-      mail(to: dossier.user_email_for(:notification), subject: @subject)
-    end
+    mail_to_usager(params[:commentaire].dossier)
   end
 
   def notify_new_avis_to_instructeur(avis, instructeur_email)
@@ -225,6 +209,16 @@ class DossierMailer < ApplicationMailer
   end
 
   protected
+
+  def mail_to_usager(dossier)
+    use_recipient_locale(dossier.user)
+    @dossier = dossier
+    @service = dossier.procedure.service
+    @logo_url = procedure_logo_url(dossier.procedure)
+    @subject = default_i18n_subject(dossier_id: dossier.id, libelle_demarche: dossier.procedure.libelle)
+
+    mail(to: dossier.user_email_for(:notification), subject: @subject)
+  end
 
   def prevent_perform_deliveries
     commentaire = params[:commentaire]
