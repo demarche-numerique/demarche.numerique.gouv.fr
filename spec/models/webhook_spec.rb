@@ -140,6 +140,33 @@ describe Webhook, type: :model do
     end
   end
 
+  describe '#schedule_delivery' do
+    let(:webhook) { webhooks.default }
+
+    before { webhook.debounce_delivery_flag.remove }
+
+    it 'schedules one run per safety lag window' do
+      webhook.schedule_delivery
+      webhook.schedule_delivery
+
+      expect(Webhooks::DeliveryJob).to have_been_enqueued.with(webhook.id).once
+
+      webhook.debounce_delivery_flag.remove
+      webhook.schedule_delivery
+
+      expect(Webhooks::DeliveryJob).to have_been_enqueued.with(webhook.id).twice
+    end
+
+    it 'schedules anyway when Redis is unavailable' do
+      allow(webhook.debounce_delivery_flag).to receive(:mark).and_return(nil)
+
+      webhook.schedule_delivery
+      webhook.schedule_delivery
+
+      expect(Webhooks::DeliveryJob).to have_been_enqueued.with(webhook.id).twice
+    end
+  end
+
   describe '#clear_backoff!' do
     let(:webhook) { webhooks.default }
 
