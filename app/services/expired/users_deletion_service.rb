@@ -24,14 +24,13 @@ class Expired::UsersDeletionService < Expired::MailRateLimiter
   end
 
   def delete_notified_users(users)
-    user_ids = only_notified(users).pluck(:id)
-    user_ids.each do |user_id|
-      user = User.find(user_id)
-      begin
-        user.delete_and_keep_track_dossiers_also_delete_user(nil, reason: :user_expired)
-      rescue => e
-        Sentry.capture_exception(e, tags: { user: user.id })
-      end
+    only_notified(users).pluck(:id).each do |user_id|
+      user = only_notified(users).find_by(id: user_id)
+      next if user.nil?
+
+      user.delete_and_keep_track_dossiers_also_delete_user(nil, reason: :user_expired)
+    rescue => e
+      Sentry.capture_exception(e, tags: { user: user_id })
     end
   end
 

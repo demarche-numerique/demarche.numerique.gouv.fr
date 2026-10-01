@@ -142,6 +142,24 @@ describe Expired::UsersDeletionService do
       end
     end
 
+    context 'when a notified user signs in while the batch is being deleted' do
+      let(:dossier) { nil }
+      let(:user) { create(:user, current_sign_in_at: signed_in_expired, inactive_close_to_expiration_notice_sent_at: due_close_to_expiration) }
+      let!(:other) { create(:user, current_sign_in_at: signed_in_expired, inactive_close_to_expiration_notice_sent_at: due_close_to_expiration) }
+
+      it 'keeps the user who came back' do
+        came_back = nil
+        allow_any_instance_of(User).to receive(:delete_and_keep_track_dossiers_also_delete_user).and_wrap_original do |original, *args, **kwargs|
+          came_back ||= [user, other].find { it.id != original.receiver.id }
+          came_back.update_columns(current_sign_in_at: Time.current, inactive_close_to_expiration_notice_sent_at: nil)
+          original.call(*args, **kwargs)
+        end
+
+        subject
+        expect(User.exists?(came_back.id)).to be(true)
+      end
+    end
+
     context 'when the user email was never verified' do
       let(:dossier) { nil }
       let(:user) { create(:user, current_sign_in_at: signed_in_expired) }
