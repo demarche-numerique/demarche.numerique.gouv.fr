@@ -1,0 +1,46 @@
+<dialog
+  class="fr-modal"
+  id="routing-mode-modal"
+  aria-labelledby="fr-modal-title-modal-1"
+  role="dialog"
+  data-controller="auto-open-modal"
+>
+  <div class="fr-container fr-container--fluid fr-container-md">
+    <div class="fr-grid-row fr-grid-row--center">
+      <div class="fr-col-12 fr-col-md-8 fr-col-lg-6">
+        <div class="fr-modal__body">
+          <div class="fr-modal__header">
+            <button
+              class="fr-btn fr-btn--close"
+              title="Fermer la fenêtre modale"
+              aria-controls="routing-mode-modal"
+            >
+              Fermer
+            </button>
+          </div>
+
+          <div class="fr-modal__content">
+            <h1 class="fr-modal__title" id="fr-modal-title-modal-1">
+              <span class="fr-icon-arrow-right-line fr-icon--lg"></span>
+              Configuration manuelle du routage
+            </h1>
+
+            <div class="fr-alert fr-alert--success">
+              <h2 class="fr-alert__title">
+                Deux groupes par défaut ont été créés
+              </h2>
+
+              <p>
+                Vous devez maintenant les renommer et leur attribuer des règles
+                de routage à partir du ou des champs « routables » de votre
+                formulaire, soit des champs de type :
+              </p>
+
+              <%= render TypesDeChamp::ByCategoryListComponent.new(types: TypeDeChamp.conditionable_types) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>
