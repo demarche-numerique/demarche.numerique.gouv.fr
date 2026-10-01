@@ -6,8 +6,8 @@ fr:
           one: "%{emails} n’est pas une adresse électronique valide"
           other: "%{emails} ne sont pas des adresses électroniques valides"
         wrong_domain:
-          one: "%{emails} ne peut être ajouté car il n’appartient pas au domaine: %{domain}"
-          other: "%{emails} ne peuvent être ajoutés car ils n’appartiennent pas au domaine: %{domain}"
+          one: "%{emails} ne peut être ajouté car il n’appartient pas au domaine : %{domain}"
+          other: "%{emails} ne peuvent être ajoutés car ils n’appartiennent pas au domaine : %{domain}"
         assignment:
           one: "L’instructeur %{emails} a été ajouté au groupe « %{groupe} »."
           other: "Les instructeurs %{emails} ont été ajoutés au groupe « %{groupe} »."
