@@ -22,7 +22,11 @@
           <%= form_with(**form_options) do %>
             <div class="fr-modal__content">
               <h1 id="<%= title_id %>" class="fr-modal__title">
-                <span class="fr-icon-arrow-right-line fr-icon--lg" aria-hidden="true"></span>
+                <span
+                  class="fr-icon-arrow-right-line fr-icon--lg"
+                  aria-hidden="true"
+                ></span>
+
                 <%= t('.title') %>
               </h1>
 
@@ -39,7 +43,10 @@
                   value="1"
                   data-action="keydown.esc->modal-escape#close"
                 >
-                <label class="fr-label" for="<%= checkbox_id %>"><%= t('.dismiss') %></label>
+
+                <label class="fr-label" for="<%= checkbox_id %>">
+                  <%= t('.dismiss') %>
+                </label>
               </div>
 
               <% if batch? %>
@@ -50,12 +57,19 @@
             <div class="fr-modal__footer">
               <ul class="fr-btns-group fr-btns-group--inline-md">
                 <li>
-                  <button type="button" class="fr-btn fr-btn--secondary" aria-controls="<%= modal_id %>">
+                  <button
+                    type="button"
+                    class="fr-btn fr-btn--secondary"
+                    aria-controls="<%= modal_id %>"
+                  >
                     <%= t('.cancel') %>
                   </button>
                 </li>
+
                 <li>
-                  <button type="submit" class="fr-btn"><%= t('.confirm') %></button>
+                  <button type="submit" class="fr-btn">
+                    <%= t('.confirm') %>
+                  </button>
                 </li>
               </ul>
             </div>
