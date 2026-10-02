@@ -26,13 +26,22 @@ module Instructeurs
     def add_instructeurs
       emails, maybe_typos, errors = parse_emails
 
-      added_instructeurs, invalid_emails = groupe_instructeur.add_instructeurs(emails:)
+      added_instructeurs, invalid_emails, invalid_domain_emails = groupe_instructeur.add_instructeurs(emails:, restrict_to_domain: current_instructeur.email_domain)
 
       if invalid_emails.present?
         errors += [
           t('.wrong_address',
             count: invalid_emails.size,
             emails: emails_for_flash(invalid_emails)),
+        ]
+      end
+
+      if invalid_domain_emails.present?
+        errors += [
+          t('.wrong_domain',
+            count: invalid_domain_emails.size,
+            emails: emails_for_flash(invalid_domain_emails),
+            domain: current_instructeur.email_domain),
         ]
       end
 
@@ -76,16 +85,6 @@ module Instructeurs
     end
 
     private
-
-    def create_instructeur(email)
-      user = User.create_or_promote_to_instructeur(
-        email,
-        SecureRandom.hex,
-        administrateurs: [procedure.administrateurs.first]
-      )
-
-      user.instructeur
-    end
 
     def procedure
       current_instructeur

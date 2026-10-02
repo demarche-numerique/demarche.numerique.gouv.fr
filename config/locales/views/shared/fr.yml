@@ -44,6 +44,7 @@ fr:
         remove: Retirer
         instructeur_emails: Adresse(s) électronique(s)
         copy_paste_hint: "Vous pouvez saisir les adresses individuellement, ou bien copier-coller dans le champ ci-dessous une liste d’adresses séparées par des points-virgules (exemple : adresse1@mail.com; adresse2@mail.com; adresse3@mail.com)."
+        domain_restriction_hint: "Seules les adresses du même domaine que la vôtre (@%{domain}) peuvent être ajoutées."
         actions: Action
         notification_alert_html: Même si votre démarche est encore en test / non publiée, tous les instructeurs que vous ajouterez à la démarche <strong>seront notifiés par email</strong>.
         notification_alert_publiee_html: Tous les instructeurs que vous ajouterez à la démarche <strong>seront notifiés par email</strong>.

@@ -14,13 +14,16 @@
   = form_for :instructeur, url: { action: :add_instructeurs, id: groupe_instructeur.id }, html: { class: 'form', data: { controller: 'enable-submit-if-filled' } } do |f|
     .instructeur-wrapper{ data: { 'action': "change->enable-submit-if-filled#fillCombobox" } }
       %p= t('views.shared.groupe_instructeurs.instructeur_emails')
-      %p.fr-hint-text= t('views.shared.groupe_instructeurs.copy_paste_hint')
+      %p.fr-hint-text#instructeur-emails-copy-paste-hint= t('views.shared.groupe_instructeurs.copy_paste_hint')
+      - if local_assigns[:restrict_to_domain]
+        %p.fr-hint-text#instructeur-emails-domain-hint= t('views.shared.groupe_instructeurs.domain_restriction_hint', domain: restrict_to_domain)
+      - hint_ids = ['instructeur-emails-copy-paste-hint', ('instructeur-emails-domain-hint' if local_assigns[:restrict_to_domain])].compact.join(' ')
 
       - if disabled_as_super_admin
         = f.select :emails, available_instructeur_emails, {}, disabled: disabled_as_super_admin, id: 'instructeur_emails'
       - else
         %react-fragment
-          = render ReactComponent.new 'ComboBox/MultiComboBox', items: available_instructeur_emails, id: 'instructeur_emails', name: 'emails[]', allows_custom_value: true, 'aria-label': 'Emails', data: { 'enable-submit-if-filled-target': 'input' }
+          = render ReactComponent.new 'ComboBox/MultiComboBox', items: available_instructeur_emails, id: 'instructeur_emails', name: 'emails[]', allows_custom_value: true, 'aria-label': 'Emails', 'aria-describedby': hint_ids, data: { 'enable-submit-if-filled-target': 'input' }
 
       = f.button t('views.shared.groupe_instructeurs.assign'), class: 'fr-btn fr-btn--primary fr-btn--icon-left fr-icon-add-line fr-icon--lg', disabled: true, data: { 'enable-submit-if-filled-target': 'submit' }
 
