@@ -18,7 +18,7 @@ class RepetitionRow
     @flat_children ||= @children_type_de_champs.map { dossier.project_champ(it, row_id: id) }
   end
 
-  def spreadsheet_columns(type_de_champs, export_template: nil, format:)
+  def spreadsheet_columns(type_de_champs, export_template:, format:)
     [
       ['Dossier ID', dossier.id.to_s],
       ['Ligne', :index],

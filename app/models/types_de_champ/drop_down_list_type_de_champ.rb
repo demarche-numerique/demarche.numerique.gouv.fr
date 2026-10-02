@@ -31,14 +31,6 @@ class TypesDeChamp::DropDownListTypeDeChamp < TypesDeChamp::DropDownBaseTypeDeCh
     end
   end
 
-  def typed_champ_value_for_export(champ, path = :value)
-    if drop_down_advanced? && path != :value
-      champ.referentiel_item_value(path)
-    else
-      super
-    end
-  end
-
   def typed_champ_value_for_tag(champ, path = :value)
     if drop_down_advanced? && path != :value
       champ.referentiel_item_value(path)
@@ -49,31 +41,18 @@ class TypesDeChamp::DropDownListTypeDeChamp < TypesDeChamp::DropDownBaseTypeDeCh
 
   def columns(procedure_id:, displayable: true, prefix: nil)
     if drop_down_advanced?
-      referentiel_columns = if referentiel.present?
-        referentiel.headers_with_path.map do |(header, path)|
-          options_for_select = referentiel.options_for_path(path)
+      super + referentiel_columns(procedure_id:, displayable:, prefix:)
+    else
+      super
+    end
+  end
 
-          if drop_down_other?
-            options_for_select << [I18n.t('shared.champs.drop_down_list.other'), Champs::DropDownListChamp::OTHER]
-          end
-
-          Columns::JSONPathColumn.new(
-            procedure_id:,
-            stable_id:,
-            tdc_type: type_champ,
-            label: "#{libelle_with_prefix(prefix)} – Référentiel #{header}",
-            type: :enum,
-            jsonpath: "$.referentiel.data.row.#{path}",
-            displayable:,
-            options_for_select:,
-            mandatory: mandatory?
-          )
-        end
-      else
-        []
+  # One column per référentiel header, as "libellé (header)".
+  def legacy_export_columns(procedure_id:)
+    if drop_down_advanced? && referentiel.present?
+      referentiel.headers.zip(referentiel_columns(procedure_id:, displayable: false, prefix: nil)).map do |(header, column)|
+        ["#{libelle} (#{header})", column]
       end
-
-      super + referentiel_columns
     else
       super
     end
@@ -95,6 +74,30 @@ class TypesDeChamp::DropDownListTypeDeChamp < TypesDeChamp::DropDownBaseTypeDeCh
   end
 
   private
+
+  def referentiel_columns(procedure_id:, displayable:, prefix:)
+    return [] if referentiel.blank?
+
+    referentiel.headers_with_path.map do |(header, path)|
+      options_for_select = referentiel.options_for_path(path)
+
+      if drop_down_other?
+        options_for_select << [I18n.t('shared.champs.drop_down_list.other'), Champs::DropDownListChamp::OTHER]
+      end
+
+      Columns::JSONPathColumn.new(
+        procedure_id:,
+        stable_id:,
+        tdc_type: type_champ,
+        label: "#{libelle_with_prefix(prefix)} – Référentiel #{header}",
+        type: :enum,
+        jsonpath: "$.referentiel.data.row.#{path}",
+        displayable:,
+        options_for_select:,
+        mandatory: mandatory?
+      )
+    end
+  end
 
   def set_default_drop_down_options
     if drop_down_options.empty?

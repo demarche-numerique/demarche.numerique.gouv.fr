@@ -35,7 +35,7 @@ describe RepetitionRow do
       repetition = procedure.active_revision.public_root_type_de_champs.find(&:repetition?)
       row = fresh_dossier.project_rows_for(repetition).second
 
-      expect(row.spreadsheet_columns([], format: :xlsx)).to eq([['Dossier ID', dossier.id.to_s], ['Ligne', :index]])
+      expect(row.spreadsheet_columns([], export_template: LegacyExportTemplate.new(procedure:, kind: :xlsx), format: :xlsx)).to eq([['Dossier ID', dossier.id.to_s], ['Ligne', :index]])
       expect(row.index).to eq(2)
     end
   end

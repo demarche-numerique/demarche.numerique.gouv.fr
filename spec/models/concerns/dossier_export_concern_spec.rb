@@ -2,6 +2,8 @@
 
 describe DossierExportConcern do
   describe "champ_values_for_export" do
+    let(:export_template) { LegacyExportTemplate.new(procedure:, kind: :xlsx) }
+
     context 'with integer_number' do
       let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :integer_number, libelle: 'c1' }]) }
       let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
@@ -11,8 +13,8 @@ describe DossierExportConcern do
         dossier
         expect {
           integer_number_type_de_champ.update(type_champ: :decimal_number)
-        }.to change { dossier.reload.champ_values_for_export(procedure.all_revisions_type_de_champs.not_repetition.to_a, format: :xlsx) }
-          .from([["c1", 42]]).to([["c1", 42.0]])
+        }.to change { dossier.reload.champ_values_for_export(procedure.all_revisions_type_de_champs.not_repetition.to_a, export_template: LegacyExportTemplate.new(procedure:, kind: :xlsx), format: :xlsx) }
+          .from([["c1", 42, :float]]).to([["c1", 42.0, :float]])
       end
     end
     context 'with a unconditionnal procedure' do
@@ -38,8 +40,8 @@ describe DossierExportConcern do
       let(:repetition_second_revision_champ) { dossier_second_revision.root_champs_public.find(&:repetition?) }
       let(:dossier) { create(:dossier, procedure: procedure) }
       let(:dossier_second_revision) { create(:dossier, procedure: procedure) }
-      let(:dossier_champ_values_for_export) { dossier.champ_values_for_export(procedure.type_de_champs_for_procedure_export, format: :xlsx) }
-      let(:dossier_second_revision_champ_values_for_export) { dossier_second_revision.champ_values_for_export(procedure.type_de_champs_for_procedure_export, format: :xlsx) }
+      let(:dossier_champ_values_for_export) { dossier.champ_values_for_export(procedure.type_de_champs_for_procedure_export, export_template:, format: :xlsx) }
+      let(:dossier_second_revision_champ_values_for_export) { dossier_second_revision.champ_values_for_export(procedure.type_de_champs_for_procedure_export, export_template:, format: :xlsx) }
 
       context "when procedure published" do
         before do
@@ -74,7 +76,7 @@ describe DossierExportConcern do
             dossier_test = create(:dossier, procedure: proc_test)
             type_champs = proc_test.all_revisions_type_de_champs(parent: tdc_repetition).to_a
             expect(type_champs.size).to eq(1)
-            expect(dossier_test.champ_values_for_export(type_champs, format: :xlsx).size).to eq(3)
+            expect(dossier_test.champ_values_for_export(type_champs, export_template: LegacyExportTemplate.new(procedure: proc_test, kind: :xlsx), format: :xlsx).size).to eq(3)
           end
         end
 
@@ -86,7 +88,7 @@ describe DossierExportConcern do
             expect do
               dossier.rebase!
               dossier.reload
-            end.not_to change { dossier.champ_values_for_export(procedure.type_de_champs_for_procedure_export, format: :xlsx) }
+            end.not_to change { dossier.champ_values_for_export(procedure.type_de_champs_for_procedure_export, export_template:, format: :xlsx) }
           end
         end
       end
@@ -109,7 +111,7 @@ describe DossierExportConcern do
       let(:text_tdc) { procedure.active_revision.public_root_type_de_champs.second }
       let(:tdcs) { dossier.root_champs_public.map(&:type_de_champ) }
 
-      subject { dossier.champ_values_for_export(tdcs, format: :xlsx) }
+      subject { dossier.champ_values_for_export(tdcs, export_template:, format: :xlsx) }
 
       before do
         text_tdc.update(condition: ds_eq(champ_value(yes_no_tdc.stable_id), constant(true)))
@@ -122,31 +124,13 @@ describe DossierExportConcern do
       context 'with a champ visible' do
         let(:yes_no_value) { 'true' }
 
-        it { is_expected.to eq([[yes_no_tdc.libelle, "Oui"], [text_tdc.libelle, "text"]]) }
+        it { is_expected.to eq([[yes_no_tdc.libelle, "Oui", :string], [text_tdc.libelle, "text", :string]]) }
       end
 
       context 'with a champ invisible' do
         let(:yes_no_value) { 'false' }
 
-        it { is_expected.to eq([[yes_no_tdc.libelle, "Non"], [text_tdc.libelle, nil]]) }
-      end
-
-      context 'with another revision' do
-        let(:tdc_from_another_revision) { create(:type_de_champ_communes, libelle: 'commune', condition: ds_eq(constant(true), constant(true))) }
-        let(:tdcs) { dossier.root_champs_public.map(&:type_de_champ) << tdc_from_another_revision }
-        let(:yes_no_value) { 'true' }
-
-        let(:expected) do
-          [
-            [yes_no_tdc.libelle, "Oui"],
-            [text_tdc.libelle, "text"],
-            ["commune", nil],
-            ["commune (Code INSEE)", nil],
-            ["commune (Département)", nil],
-          ]
-        end
-
-        it { is_expected.to eq(expected) }
+        it { is_expected.to eq([[yes_no_tdc.libelle, "Non", :string], [text_tdc.libelle, nil, :string]]) }
       end
     end
   end
@@ -155,38 +139,41 @@ describe DossierExportConcern do
     before_all { seed "cases/sva" }
 
     let(:dossier) { dossiers.brouillon }
+    let(:export_template) { LegacyExportTemplate.new(procedure: dossier.procedure, kind: :xlsx) }
+
+    subject { dossier.spreadsheet_columns(type_de_champs: [], export_template:, format: :xlsx) }
 
     context 'user france connected' do
       let(:dossier) { build(:dossier, user: build(:user, france_connect_informations: [build(:france_connect_information)]), procedure: procedures.individual) }
-      it { expect(dossier.spreadsheet_columns(type_de_champs: [])).to include(["FranceConnect ?", true]) }
+      it { is_expected.to include(["FranceConnect ?", "true", :string]) }
     end
 
     context 'user not france connected' do
       let(:dossier) { build(:dossier, procedure: procedures.individual) }
-      it { expect(dossier.spreadsheet_columns(type_de_champs: [])).to include(["FranceConnect ?", false]) }
+      it { is_expected.to include(["FranceConnect ?", "false", :string]) }
     end
 
     context 'for_individual' do
       let(:dossier) { dossiers.brouillon }
       it do
-        expect(dossier.spreadsheet_columns(type_de_champs: [])).to include(["Dépôt pour un tiers", :for_tiers])
-        expect(dossier.spreadsheet_columns(type_de_champs: [])).to include(['Nom du mandataire', :mandataire_last_name])
-        expect(dossier.spreadsheet_columns(type_de_champs: [])).to include(['Prénom du mandataire', :mandataire_first_name])
+        is_expected.to include(["Dépôt pour un tiers", dossier.for_tiers.to_s, :string])
+        is_expected.to include(['Nom du mandataire', dossier.mandataire_last_name, :string])
+        is_expected.to include(['Prénom du mandataire', dossier.mandataire_first_name, :string])
       end
     end
 
-    it { expect(dossier.spreadsheet_columns(type_de_champs: [])).to include(["État du dossier", "Brouillon"]) }
+    it { is_expected.to include(["État du dossier", "Brouillon", :string]) }
 
     context 'procedure sva' do
       let(:dossier) { build(:dossier, :en_instruction, procedure: procedures.sva) }
 
-      it { expect(dossier.spreadsheet_columns(type_de_champs: [])).to include(["Date décision SVA", :sva_svr_decision_on]) }
+      it { is_expected.to include(["Date décision SVA", nil, :date]) }
     end
 
     context 'procedure svr' do
       let(:dossier) { build(:dossier, :en_instruction, procedure: procedures.svr) }
 
-      it { expect(dossier.spreadsheet_columns(type_de_champs: [])).to include(["Date décision SVR", :sva_svr_decision_on]) }
+      it { is_expected.to include(["Date décision SVR", nil, :date]) }
     end
   end
 end

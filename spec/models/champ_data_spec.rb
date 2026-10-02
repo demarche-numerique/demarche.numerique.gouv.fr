@@ -184,7 +184,7 @@ describe ChampData do
     let(:champ) { Champs::TextChamp.new(value:, dossier: build(:dossier)) }
     before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_text)) }
 
-    let(:value_for_export) { champ.type_de_champ.champ_value_for_export(champ) }
+    let(:value_for_export) { legacy_export_cells(champ).first.second }
 
     context 'when type_de_champ is text' do
       let(:value) { '123' }
@@ -245,8 +245,8 @@ describe ChampData do
       end
 
       it do
-        expect(type_de_champ_text.champ_value_for_export(champ_iban)).to eq(nil)
-        expect(type_de_champ_iban.champ_value_for_export(champ_text)).to eq(nil)
+        expect(legacy_export_cells(champ_iban, type_de_champ: type_de_champ_text).first.second).to eq(nil)
+        expect(legacy_export_cells(champ_text, type_de_champ: type_de_champ_iban).first.second).to eq(nil)
       end
     end
   end

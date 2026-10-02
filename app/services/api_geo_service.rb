@@ -278,6 +278,7 @@ class APIGeoService
         street_number: address[:streetNumber],
         street_name: address[:streetName],
         street_address: address[:streetAddress],
+        label: address[:label],
         postal_code: postal_code.presence || '',
         city_name: safely_normalize_city_name(department_code, city_code, city_name_fallback),
         city_code: city_code.presence || '',

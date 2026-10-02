@@ -2,9 +2,8 @@
 
 class ExportedColumnFormatter
   def self.format(column:, champ_or_dossier:, format:)
-    return if champ_or_dossier.nil?
-
     raw_value = column.value(champ_or_dossier)
+    return if raw_value.nil?
 
     case column.type
     when :boolean

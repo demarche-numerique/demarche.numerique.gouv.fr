@@ -22,10 +22,6 @@ class Champs::RNAChamp < ChampData
     data&.dig("association_titre")
   end
 
-  def identifier
-    title.present? ? "#{value} (#{title})" : value
-  end
-
   def status_message?
     true
   end

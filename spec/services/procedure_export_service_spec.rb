@@ -107,7 +107,6 @@ describe ProcedureExportService do
             "dossier_link",
             "piece_justificative",
             "rna",
-            "carte",
             "iban",
             "siret",
             "annuaire_education",
@@ -125,11 +124,6 @@ describe ProcedureExportService do
             "engagement_juridique",
             "yes_no",
             "referentiel",
-            "quotient_familial",
-            "etudiant_boursier",
-            "aah",
-            "aeeh",
-            "ars",
             "pre_rempli",
           ]
         end

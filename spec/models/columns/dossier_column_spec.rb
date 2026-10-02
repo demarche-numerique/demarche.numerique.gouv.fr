@@ -73,6 +73,37 @@ describe Columns::DossierColumn do
         end
       end
 
+      context 'when the dossier has no établissement yet' do
+        let(:procedure) { create(:procedure, for_individual: false, groupe_instructeurs: [groupe_instructeur]) }
+        let(:dossier) { create(:dossier, procedure:, etablissement: nil) }
+
+        it 'reads nil rather than raising' do
+          expect(procedure.find_column(label: "Entreprise SIREN").value(dossier)).to be_nil
+        end
+      end
+
+      context 'with the chorus columns' do
+        before { allow_any_instance_of(Procedure).to receive(:chorusable?).and_return(true) }
+
+        let(:chorus) do
+          ChorusConfiguration.new(
+            domaine_fonctionnel: { 'code' => 'DF01', 'label' => 'Domaine' },
+            referentiel_de_programmation: { 'code' => 'RP01', 'label' => 'Référentiel' },
+            centre_de_cout: { 'code' => 'CC01', 'description' => 'Centre' }
+          )
+        end
+        let(:procedure) { create(:procedure, for_individual: true, groupe_instructeurs: [groupe_instructeur], chorus:) }
+        let(:dossier) { create(:dossier, procedure:) }
+
+        def chorus_column(name) = procedure.columns.find { it.table == 'procedure' && it.column == name }
+
+        it 'reads the code of each configured item' do
+          expect(chorus_column('domaine_fonctionnel').value(dossier)).to eq('DF01')
+          expect(chorus_column('referentiel_prog').value(dossier)).to eq('RP01')
+          expect(chorus_column('centre_de_cout').value(dossier)).to eq('CC01')
+        end
+      end
+
       context 'when procedure for entreprise which is also an association' do
         let(:procedure) { create(:procedure, for_individual: false, groupe_instructeurs: [groupe_instructeur]) }
         let(:etablissement) { create(:etablissement, :is_association) }

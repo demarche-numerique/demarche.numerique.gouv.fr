@@ -14,10 +14,6 @@ class TypesDeChamp::CheckboxTypeDeChamp < TypeDeChamp
     champ_value_true?(champ) ? 'Oui' : 'Non'
   end
 
-  def typed_champ_value_for_export(champ, path = :value)
-    champ_value_true?(champ) ? 'on' : 'off'
-  end
-
   def typed_champ_value_for_api(champ, version: 2)
     case version
     when 2
@@ -31,10 +27,6 @@ class TypesDeChamp::CheckboxTypeDeChamp < TypeDeChamp
     'Non'
   end
 
-  def champ_default_export_value(path = :value)
-    'off'
-  end
-
   def champ_default_api_value(version = 2)
     case version
     when 2
@@ -45,6 +37,11 @@ class TypesDeChamp::CheckboxTypeDeChamp < TypeDeChamp
   end
 
   def typed_champ_blank_or_invalid?(champ) = !champ_value_true?(champ)
+
+  # 'on' / 'off', 'off' when blank
+  def legacy_export_columns(procedure_id:)
+    [legacy_export_column(procedure_id:, label: libelle, columns: canonical_column(procedure_id:)) { it ? 'on' : 'off' }]
+  end
 
   def canonical_column(procedure_id:, displayable: true, prefix: nil)
     Columns::CheckboxColumn.new(

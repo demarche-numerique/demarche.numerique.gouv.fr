@@ -12,18 +12,9 @@ class TypesDeChamp::EpciTypeDeChamp < TypesDeChamp::TextTypeDeChamp
   include AddressableColumnConcern
 
   def columns(procedure_id:, displayable: true, prefix: nil)
-    super.concat(addressable_columns(procedure_id:, displayable:, prefix:, only: [:department_code, :region_code]))
-  end
-
-  def typed_champ_value_for_export(champ, path = :value)
-    case path
-    when :value
-      typed_champ_value(champ)
-    when :code
-      champ.code
-    when :departement
-      champ.departement_code_and_name
-    end
+    super
+      .concat([code_column(procedure_id:, displayable:, prefix:)])
+      .concat(addressable_columns(procedure_id:, displayable:, prefix:, only: [:department_code, :region_code]))
   end
 
   def typed_champ_value_for_tag(champ, path = :value)
@@ -41,7 +32,26 @@ class TypesDeChamp::EpciTypeDeChamp < TypesDeChamp::TextTypeDeChamp
     Dossiers::EpciComponent.data_labels
   end
 
+  # the name, the code and the département
+  def legacy_export_columns(procedure_id:)
+    super + [
+      ["#{libelle} (Code)", code_column(procedure_id:, displayable: false, prefix: nil)],
+      ["#{libelle} (Département)", addressable_columns(procedure_id:, only: [:department_code]).first],
+    ]
+  end
+
   private
+
+  def code_column(procedure_id:, displayable:, prefix:)
+    Columns::ExternalIdColumn.new(
+      procedure_id:,
+      stable_id:,
+      tdc_type: type_champ,
+      label: "#{libelle_with_prefix(prefix)} – Code",
+      displayable:,
+      mandatory: mandatory?
+    )
+  end
 
   def paths
     paths = super

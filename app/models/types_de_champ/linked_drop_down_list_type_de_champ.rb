@@ -17,9 +17,10 @@ class TypesDeChamp::LinkedDropDownListTypeDeChamp < TypesDeChamp::DropDownBaseTy
 
   PRIMARY_PATTERN = /^--(.*)--$/
 
-  def libelles_for_export
-    path = paths.first
-    [[path[:libelle], path[:path]]]
+  # "primaire;secondaire" in one cell
+  def legacy_export_columns(procedure_id:)
+    parts = [:primary, :secondary].map { part_column(procedure_id:, prefix: nil, path: it) }
+    [legacy_export_column(procedure_id:, label: libelle, columns: parts) { |primary, secondary| "#{primary};#{secondary}" if primary || secondary }]
   end
 
   def primary_options
@@ -46,17 +47,6 @@ class TypesDeChamp::LinkedDropDownListTypeDeChamp < TypesDeChamp::DropDownBaseTy
       secondary_value(champ)
     when :value
       typed_champ_value(champ)
-    end
-  end
-
-  def typed_champ_value_for_export(champ, path = :value)
-    case path
-    when :primary
-      primary_value(champ)
-    when :secondary
-      secondary_value(champ)
-    when :value
-      "#{primary_value(champ) || ''};#{secondary_value(champ) || ''}"
     end
   end
 
@@ -92,33 +82,31 @@ class TypesDeChamp::LinkedDropDownListTypeDeChamp < TypesDeChamp::DropDownBaseTy
   end
 
   def columns(procedure_id:, displayable: true, prefix: nil)
-    super.concat([
-      Columns::LinkedDropDownColumn.new(
-        procedure_id:,
-        stable_id:,
-        tdc_type: type_champ,
-        label: "#{libelle_with_prefix(prefix)} (Primaire)",
-        type: :enum,
-        path: :primary,
-        displayable: false,
-        options_for_select: primary_options.map { [it, it] },
-        mandatory: mandatory?
-      ),
-      Columns::LinkedDropDownColumn.new(
-        procedure_id:,
-        stable_id:,
-        tdc_type: type_champ,
-        label: "#{libelle_with_prefix(prefix)} (Secondaire)",
-        type: :enum,
-        path: :secondary,
-        displayable: false,
-        options_for_select: secondary_options.values.flatten.uniq.sort.map { [it, it] },
-        mandatory: mandatory?
-      ),
-    ])
+    super.concat([:primary, :secondary].map { part_column(procedure_id:, prefix:, path: it) })
   end
 
   private
+
+  def part_column(procedure_id:, prefix:, path:)
+    label, options = case path
+    when :primary
+      ['Primaire', primary_options]
+    when :secondary
+      ['Secondaire', secondary_options.values.flatten.uniq.sort]
+    end
+
+    Columns::LinkedDropDownColumn.new(
+      procedure_id:,
+      stable_id:,
+      tdc_type: type_champ,
+      label: "#{libelle_with_prefix(prefix)} (#{label})",
+      type: :enum,
+      path:,
+      displayable: false,
+      options_for_select: options.map { [it, it] },
+      mandatory: mandatory?
+    )
+  end
 
   def primary_value(champ) = unpack_value(champ.value, 0, primary_options)
   def secondary_value(champ) = unpack_value(champ.value, 1, secondary_options.values.flatten)
