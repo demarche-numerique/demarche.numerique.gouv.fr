@@ -8,22 +8,18 @@ module Administrateurs
 
     def show
       preview_dossier = @procedure.dossier_for_preview(current_user)
-      attributes = @attestation_template.render_attributes_for(dossier: preview_dossier)
-
-      @body = attributes.fetch(:body)
-      @signature = attributes.fetch(:signature)
 
       respond_to do |format|
         format.html do
+          attributes = @attestation_template.render_attributes_for(dossier: preview_dossier)
+          @body = attributes.fetch(:body)
+          @signature = attributes.fetch(:signature)
+
           render layout: 'attestation'
         end
 
         format.pdf do
-          html = render_to_string('/administrateurs/attestation_template_v2s/show', layout: 'attestation', formats: [:html])
-
-          options = { procedure_id: @procedure.id, path: request.path, user_id: current_user.id }
-
-          pdf = WeasyprintService.generate_pdf(html, options)
+          pdf = AttestationPdfService.render(@attestation_template, dossier: preview_dossier, context: { path: request.path, user_id: current_user.id })
 
           send_data(pdf, filename: 'attestation.pdf', type: 'application/pdf', disposition: 'inline')
         end

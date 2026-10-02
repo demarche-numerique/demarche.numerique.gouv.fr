@@ -66,11 +66,47 @@ describe TypstService do
     end
   end
 
+  describe 'attestation' do
+    let(:dossier) { dossiers.accepte }
+    let(:attestation_template) { create(:attestation_template, :v2, :with_files, procedure: dossier.procedure, footer: 'Ministère des specs') }
+
+    it 'lays out the letterhead, the title and the body, embedding the logo and the signature', :external_deps do
+      require_tool!('typst')
+
+      described_class.with_assets do |assets|
+        data = Typst::AttestationPayload.new(attestation_template, assets:, dossier:).to_h
+
+        document = described_class.query('attestation', data, '(headings: headings(), paragraphs: paragraphs(), images: images())', assets:)
+
+        expect(document['headings']).to eq([{ 'level' => 1, 'text' => "Mon titre pour #{dossier.procedure.libelle}" }])
+        expect(document['paragraphs']).to include("Dossier: n° #{dossier.id}", 'Ministère des specs')
+        expect(document['images'].map { it['alt'] }).to eq(['République française', 'Liberté Égalité Fraternité', 'Ministère des devs', 'Signature'])
+
+        pdf = described_class.generate_pdf('attestation', data, assets:)
+
+        expect(pdf[0, 5]).to eq('%PDF-')
+
+        require_tool!('verapdf')
+
+        Tempfile.create(['attestation', '.pdf']) do |file|
+          file.binmode
+          file.write(pdf)
+          file.flush
+
+          report, warnings, = Open3.capture3('verapdf', '--format', 'text', '--flavour', 'ua1', file.path)
+
+          expect(report).to start_with('PASS'), -> { "veraPDF PDF/UA-1 validation failed:\n#{report}\n#{warnings}" }
+        end
+      end
+    end
+  end
+
   describe 'compilation root' do
     it 'ships the templates, their fonts and the default logos, and nothing else' do
       entries = Dir.glob('**/*', base: TypstService::ROOT).sort
 
       expect(entries).to eq([
+        'attestation.typ',
         'attestation_depot.typ',
         'dossier.typ',
         'dossier_vide.typ',
@@ -82,6 +118,8 @@ describe TypstService do
         'fonts/marianne-regular.ttf',
         'images',
         'images/Marianne-Light@2x.png',
+        'images/centered_marianne.svg',
+        'images/liberte2.svg',
         'images/logo-demarche-numerique@2x.png',
         'introspection.typ',
         'theme.typ',
