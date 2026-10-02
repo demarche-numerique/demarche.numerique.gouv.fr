@@ -84,6 +84,19 @@ RSpec.describe API::Public::V1::DossiersController, type: :controller do
             end
           end
 
+          context 'when a carte champ is prefilled with a GeoJSON object' do
+            let!(:type_de_champ) { create(:type_de_champ_carte, procedure:) }
+            let(:point) { build(:geo_area, :point).geometry.as_json }
+            let(:create_request) { post :create, params: { id: procedure.id, "champ_#{type_de_champ.to_typed_id_for_query}" => point }, as: :json }
+
+            it "creates the geo area" do
+              create_request
+
+              champ = find_champ_by_stable_id(Dossier.last, type_de_champ.stable_id)
+              expect(champ.geo_areas.map(&:geometry)).to eq([point])
+            end
+          end
+
           context 'when prefill given values contains more than one rows for repetitions' do
             let(:procedure) { create(:procedure, :published, public_type_de_champs:) }
             let(:public_type_de_champs) do

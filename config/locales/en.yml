@@ -300,6 +300,7 @@ en:
           rna_html: A RNA number
           repetition_html: A array of hashes with possible values for each field of the repetition
           epci_html: An array of the department code and the <a href="https://geo.api.gouv.fr/epcis" target="_blank" rel="noopener noreferrer">EPCI one</a>
+          carte_html: A <a href="https://geojson.org" target="_blank" rel="noopener noreferrer">GeoJSON</a> geometry (Point, LineString or Polygon) in WGS84 coordinates, as an object or a JSON string
           annuaire_education_html: An educational institution code, as defined by the <a href="https://api.gouv.fr/les-api/api-annuaire-education" target="_blank" rel="noopener noreferrer">Éducation Nationale</a> directory
           dossier_link_html: The file ID, as integer
         examples:

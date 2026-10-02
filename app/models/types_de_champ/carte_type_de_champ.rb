@@ -3,6 +3,9 @@
 class TypesDeChamp::CarteTypeDeChamp < TypeDeChamp
   def self.category = LOCALISATION
   def self.icon = 'fr-icon-road-map-line'
+
+  def prefillable? = true
+
   LAYERS = [
     :unesco,
     :arretes_protection,

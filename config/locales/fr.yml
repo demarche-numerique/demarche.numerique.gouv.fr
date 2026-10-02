@@ -302,6 +302,7 @@ fr:
           annuaire_education_html: Un code d’établissement scolaire, tel que défini par <a href="https://api.gouv.fr/les-api/api-annuaire-education" target="_blank" rel="noopener noreferrer">l’Annuaire de l’Éducation Nationale</a>
           dossier_link_html: L’identifiant du dossier, sous forme de nombre entier
           epci_html: Un tableau contenant le code de département et <a href="https://geo.api.gouv.fr/epcis" target="_blank" rel="noopener noreferrer">celui de l’EPCI</a>
+          carte_html: Une géométrie <a href="https://geojson.org" target="_blank" rel="noopener noreferrer">GeoJSON</a> (Point, LineString ou Polygon) en coordonnées WGS84, sous forme d’objet ou de chaîne JSON
         examples:
           title: Exemple
           prenom: "Jean"
