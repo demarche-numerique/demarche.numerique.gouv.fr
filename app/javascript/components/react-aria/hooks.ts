@@ -99,100 +99,6 @@ const naturalSort: MatchSorterOptions['baseSort'] = (a, b) => {
   });
 };
 
-export function useSingleList({
-  defaultItems,
-  defaultSelectedKey,
-  emptyFilterKey,
-  onChange
-}: {
-  defaultItems?: Item[];
-  defaultSelectedKey?: string | null;
-  emptyFilterKey?: string | null;
-  onChange?: (item: Item | null) => void;
-}) {
-  const [selectedKey, setSelectedKey] = useState(defaultSelectedKey);
-  const items = useMemo(
-    () => (defaultItems ? distinctBy(defaultItems, 'value') : []),
-    [defaultItems]
-  );
-  const selectedItem = useMemo(
-    () => items.find((item) => item.value == selectedKey) ?? null,
-    [items, selectedKey]
-  );
-  const [inputValue, setInputValue] = useState(() => selectedItem?.label ?? '');
-  // show fallback item when input value is not matching any items
-  const fallbackItem = useMemo(
-    () => items.find((item) => item.value == emptyFilterKey),
-    [items, emptyFilterKey]
-  );
-  const filteredItems = useMemo(() => {
-    if (inputValue == '') {
-      return items;
-    }
-    const filteredItems = matchSorter(items, inputValue, {
-      keys: ['label'],
-      baseSort: naturalSort
-    });
-    if (filteredItems.length == 0 && fallbackItem) {
-      return [fallbackItem];
-    } else {
-      return filteredItems;
-    }
-  }, [items, inputValue, fallbackItem]);
-
-  const initialSelectedKeyRef = useRef(defaultSelectedKey);
-
-  const setSelection = useEvent((key?: string | null) => {
-    const inputValue = key
-      ? items.find((item) => item.value == key)?.label
-      : '';
-    setSelectedKey(key);
-    setInputValue(inputValue ?? '');
-  });
-  const onSelectionChange = useEvent<
-    NonNullable<ComboBoxProps['onSelectionChange']>
-  >((key) => {
-    setSelection(key ? String(key) : null);
-    const item =
-      (typeof key != 'string'
-        ? null
-        : selectedItem?.value == key
-          ? selectedItem
-          : items.find((item) => item.value == key)) ?? null;
-    onChange?.(item);
-  });
-  const onInputChange = useEvent<NonNullable<ComboBoxProps['onInputChange']>>(
-    (value) => {
-      setInputValue(value);
-      if (value == '') {
-        onSelectionChange(null);
-      }
-    }
-  );
-  const onReset = useEvent(() => {
-    setSelectedKey(null);
-    setInputValue('');
-  });
-
-  // reset default selected key when props change
-  useEffect(() => {
-    if (initialSelectedKeyRef.current != defaultSelectedKey) {
-      initialSelectedKeyRef.current = defaultSelectedKey;
-      setSelection(defaultSelectedKey);
-    }
-  }, [defaultSelectedKey, setSelection]);
-
-  return {
-    selectedItem,
-    selectedKey,
-    onSelectionChange,
-    inputValue,
-    onInputChange,
-    items: filteredItems,
-    onReset
-  };
-}
-
 export function useMultiList({
   defaultItems,
   defaultSelectedKeys,
@@ -643,6 +549,16 @@ export function useOnFormReset(onReset?: () => void) {
   }, [onReset, onResetListener]);
 
   return ref;
+}
+
+// `data: { autosubmit_target: 'input' }` from the server becomes `data-autosubmit-target`.
+export function dataAttributes(data?: Record<string, string>) {
+  return Object.fromEntries(
+    Object.entries(data ?? {}).map(([key, value]) => [
+      `data-${key.replace(/_/g, '-')}`,
+      value
+    ])
+  );
 }
 
 function distinctBy<T>(array: T[], key: keyof T): T[] {

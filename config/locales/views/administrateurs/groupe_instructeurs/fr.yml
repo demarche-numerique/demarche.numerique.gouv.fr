@@ -43,6 +43,7 @@ fr:
         hint:
           one: "Le groupe « %{label} » contient des dossiers. Afin de procéder à sa suppression, vous devez réaffecter ses dossiers à lʼautre groupe instructeur"
           other: "Le groupe « %{label} » contient des dossiers. Afin de procéder à sa suppression, vous devez réaffecter ses dossiers à lʼun des %{count} autres groupes instructeurs"
+        label: Nouveau groupe instructeur
         select: Sélectionner
         submit: Réaffecter les dossiers à ce groupe
         confirm: "Êtes-vous sûr de vouloir réaffecter les dossiers du groupe « %{label} » ?"

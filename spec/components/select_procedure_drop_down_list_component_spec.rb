@@ -39,9 +39,10 @@ RSpec.describe SelectProcedureDropDownListComponent, type: :component do
     ])
   end
 
-  it 'includes the action path in the props' do
+  it 'renders a select that submits the form on change' do
     subject
-    expect(react_props_items["data"]["action_path"]).to eq('/test/path')
+    expect(react_component['name']).to eq('Select/SingleSelect')
+    expect(react_props_items["data"]["autosubmit_target"]).to eq('input')
   end
 
   it 'applies the form class' do

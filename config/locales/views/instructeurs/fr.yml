@@ -58,5 +58,6 @@ fr:
         success: "Le dossier n° %{dossier_id} a été réaffecté au groupe d’instructeurs « %{label} »."
         error: Veuillez sélectionner un groupe instructeur dans la liste ci-dessous
         submit: Réaffecter le dossier à ce groupe
+        label: Nouveau groupe instructeur
         select: Sélectionner
         confirm: "Êtes-vous sûr de vouloir réaffecter le dossier n° %{dossier_id} du groupe « %{label} » ?"

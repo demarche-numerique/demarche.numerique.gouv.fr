@@ -242,6 +242,53 @@ suite('SingleSelect with a section id equal to an item value', () => {
   });
 });
 
+suite('SingleSelect inside a form', () => {
+  let container: HTMLDivElement;
+  let root: Root;
+
+  beforeEach(() => {
+    container = document.createElement('div');
+    document.body.appendChild(container);
+    root = createRoot(container);
+  });
+
+  afterEach(() => {
+    root.unmount();
+    container.remove();
+  });
+
+  test('mirrors the value and the data attributes on the input carrying the change event', async () => {
+    const changes: string[] = [];
+    container.addEventListener('change', (event) => {
+      const input = event.target as HTMLInputElement;
+      changes.push(`${input.dataset.autosubmitTarget}=${input.value}`);
+    });
+    root.render(
+      <form>
+        <SingleSelect
+          name="procedure_id"
+          value={null}
+          aria-label="Démarche"
+          items={[
+            { label: 'Aide', value: '1' },
+            { label: 'Subvention', value: '2' }
+          ]}
+          data={{ autosubmit_target: 'input' }}
+        />
+      </form>
+    );
+
+    await userEvent.click(page.getByRole('button'));
+    await userEvent.click(page.getByRole('option', { name: 'Subvention' }));
+
+    await expect.poll(() => changes).toEqual(['input=2']);
+    expect(
+      container.querySelector<HTMLSelectElement>('select[name="procedure_id"]')
+        ?.value
+    ).toBe('2');
+  });
+});
+
 const decoratedItems = [
   {
     label: 'Texte court',

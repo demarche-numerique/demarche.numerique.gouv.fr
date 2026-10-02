@@ -12,17 +12,16 @@
 
   %p= t('administrateurs.groupe_instructeurs.reaffectation.hint', label: @groupe_instructeur.label, count: @groupes_instructeurs.count)
 
-  = form_with url: reaffecter_admin_procedure_groupe_instructeur_path, method: :post, local: true, data: { turbo: true, controller: 'enable-submit-if-filled', action: 'change->enable-submit-if-filled#fillCombobox' } do |form|
+  = form_with url: reaffecter_admin_procedure_groupe_instructeur_path, method: :post, local: true, data: { turbo: true, controller: 'enable-submit-if-filled', action: 'change->enable-submit-if-filled#fill' } do |form|
     .fr-grid-row.fr-grid-row--gutters.fr-grid-row--bottom.fr-mt-3w
       .fr-col-8
         .fr-select-group
           %react-fragment
-            = render ReactComponent.new "ComboBox/SingleComboBox",
-              id: 'target_group',
+            = render ReactComponent.new "Select/SingleSelect",
+              label: t('administrateurs.groupe_instructeurs.reaffectation.label'),
               name: 'target_group',
               placeholder: t('administrateurs.groupe_instructeurs.reaffectation.select'),
               items: @groupes_instructeurs.map { |g| { label: g.label, value: g.id.to_s } },
-              class: 'fr-mt-1w',
               data: { enable_submit_if_filled_target: 'input' }
 
       .fr-col-4

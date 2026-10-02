@@ -39,6 +39,7 @@ en:
         hint:
           one: "The group « %{label} » has files. In order to delete it, you have to reassign them to the other group"
           other: "The group « %{label} » has files. In order to delete it, you have to reassign them to one of the %{count} other groups"
+        label: New group
         select: Select
         submit: Reassign files to this group
         confirm: "Are you sure you want to reassign files from the group « %{label} » ?"

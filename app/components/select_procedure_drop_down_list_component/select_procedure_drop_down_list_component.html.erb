@@ -3,7 +3,7 @@
     <%= label_tag :procedure_id, t('.label_html'), class: 'fr-label fr-text--bold fr-mr-2w', id: 'select-procedure-drop-down-list-label', for: 'select-procedure-drop-down-list' %>
 
     <react-fragment class="flex-1">
-      <%= render ReactComponent.new "ComboBox/SingleComboBox", **react_props %>
+      <%= render ReactComponent.new "Select/SingleSelect", **react_props %>
     </react-fragment>
 
     <input

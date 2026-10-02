@@ -16,14 +16,11 @@ class SelectProcedureDropDownListComponent < Dsfr::InputComponent
       items:,
       placeholder: t('.placeholder'),
       name: "procedure_id",
-      id: 'select-procedure-drop-down-list',
-      'aria-describedby': 'select-procedure-drop-down-list-label',
-      form: 'select-procedure-drop-down-list-component',
+      trigger_id: 'select-procedure-drop-down-list',
+      label_id: 'select-procedure-drop-down-list-label',
       data: {
-        no_autosubmit: 'input blur',
         no_autosubmit_on_empty: 'true',
         autosubmit_target: 'input',
-        action_path: @action_path,
       },
     }
   end

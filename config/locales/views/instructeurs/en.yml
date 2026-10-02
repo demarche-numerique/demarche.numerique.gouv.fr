@@ -47,5 +47,6 @@ en:
         success: "The file n° %{dossier_id} has been re-assigned to « %{label} » group."
         error: "Please select a group in the list below"
         submit: Reassign the file to this group
+        label: New group
         select: Select
         confirm: "Are you sure you want to reassign the file n° %{dossier_id} to the group « %{label} » ?"

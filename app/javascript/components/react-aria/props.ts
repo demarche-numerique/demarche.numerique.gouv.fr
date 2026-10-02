@@ -55,17 +55,6 @@ const ComboBoxPropsSchema = s.partial(
     data: s.record(s.string(), s.string())
   })
 );
-export const SingleComboBoxProps = s.assign(
-  ComboBoxPropsSchema,
-  s.partial(
-    s.object({
-      selectedKey: s.nullable(s.string()),
-      emptyFilterKey: s.nullable(s.string()),
-      placeholder: s.string(),
-      sections: s.array(Section)
-    })
-  )
-);
 export const MultiComboBoxProps = s.assign(
   ComboBoxPropsSchema,
   s.partial(
@@ -96,9 +85,6 @@ export const RemoteComboBoxProps = s.assign(
     })
   )
 );
-export type SingleComboBoxProps = s.Infer<typeof SingleComboBoxProps> & {
-  children?: ReactNode;
-};
 export type MultiComboBoxProps = s.Infer<typeof MultiComboBoxProps>;
 export type RemoteComboBoxProps = s.Infer<typeof RemoteComboBoxProps> & {
   children?: ReactNode;

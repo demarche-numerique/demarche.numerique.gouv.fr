@@ -82,12 +82,25 @@ module SystemHelpers
   # the page holds several fields and the first one is not the target.
   def select_type_de_champ(libelle, from: nil)
     trigger_id = from || find('label', exact_text: 'Type de champ', match: :first)['for']
+    pick_react_select_option(trigger_id, libelle)
+  end
+
+  # Picks an option in a React Select (Select/SingleSelect or MultipleSelect)
+  # by the text of its label. react-aria renders its own label as a span (a
+  # button cannot be the target of a <label>) and names the trigger by
+  # aria-labelledby, which a Rails label passed as `label_id` joins too.
+  def select_react_option(option, from:)
+    label_id = find('.fr-label', exact_text: from, match: :first)['id']
+    pick_react_select_option(find("button[aria-labelledby~='#{label_id}']")['id'], option)
+  end
+
+  def pick_react_select_option(trigger_id, option)
     find_by_id(trigger_id).click
 
     # the menu is portaled to the body, out of any `within` scope
     popover = page.document.find('.select-popover')
-    popover.find('input').set(libelle)
-    popover.find('[role="option"]', exact_text: libelle).click
+    popover.find('input').set(option)
+    popover.find('[role="option"]', exact_text: option).click
   end
 
   def hide_autonotice_message

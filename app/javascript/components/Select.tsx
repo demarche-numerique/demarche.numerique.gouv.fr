@@ -38,6 +38,7 @@ import {
   MultipleSelectProps
 } from './react-aria/props';
 import { TagGroup } from './react-aria/components/TagGroup';
+import { dataAttributes } from './react-aria/hooks';
 
 type SelectionMode = 'single' | 'multiple';
 type SelectProps<M extends SelectionMode = 'single'> = AriaSelectProps<
@@ -55,6 +56,7 @@ type SelectProps<M extends SelectionMode = 'single'> = AriaSelectProps<
   alwaysShowKey?: string;
   emptyHint?: string;
   selectedLabels?: { one: string; other: string };
+  data?: Record<string, string>;
 };
 type AutocompleteFilter = NonNullable<AutocompleteProps<Item>['filter']>;
 
@@ -250,6 +252,7 @@ export function SingleSelect(maybeProps: SelectProps<'single'>) {
   const {
     value: initialValue,
     className,
+    data,
     ...props
   } = useMemo(() => s.create(maybeProps, SingleSelectProps), [maybeProps]);
   const [value, setValue] = useState<string | null>(() => initialValue);
@@ -277,7 +280,15 @@ export function SingleSelect(maybeProps: SelectProps<'single'>) {
         onChange={onChange}
         {...props}
       />
-      <input ref={changeDispatchRef} type="hidden" />
+      {/* The form value travels in react-aria's hidden <select>. This input only carries
+          the change event, so it mirrors the value and takes the `data` attributes for the
+          Stimulus controllers listening to it (autosubmit, enable-submit-if-filled). */}
+      <input
+        ref={changeDispatchRef}
+        type="hidden"
+        value={value ?? ''}
+        {...dataAttributes(data)}
+      />
     </>
   );
 }
