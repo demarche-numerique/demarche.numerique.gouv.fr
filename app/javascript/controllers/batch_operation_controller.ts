@@ -182,6 +182,9 @@ export class BatchOperationController extends ApplicationController {
     if (!modalForm) return;
 
     const ids = this.getSelectedIds();
+    if (modalType === 'archive') {
+      modalForm.reset();
+    }
     this.clearPreviousInputs(modalForm);
     this.injectHiddenInputs(modalForm, ids);
     if (modalType === 'commentaire') {

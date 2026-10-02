@@ -17,7 +17,7 @@ suite('ModalFormActionController', () => {
         data-action="modal-form-action#set"
         data-modal-form-action-url-param="/procedures/1/dossiers/2/archive"
       >Archive</button>
-      <dialog id="modal"><form action=""></form></dialog>
+      <dialog id="modal"><form action=""><input type="checkbox" name="dismiss_archive_warning" value="1"></form></dialog>
     `;
     application = Application.start();
     application.register('modal-form-action', ModalFormActionController);
@@ -38,5 +38,15 @@ suite('ModalFormActionController', () => {
     expect(form.getAttribute('action')).toBe(
       '/procedures/1/dossiers/2/archive'
     );
+  });
+
+  test('forgets a previously checked choice', () => {
+    const button = document.querySelector('button') as HTMLButtonElement;
+    const checkbox = document.querySelector('input') as HTMLInputElement;
+    checkbox.checked = true;
+
+    button.click();
+
+    expect(checkbox.checked).toBe(false);
   });
 });

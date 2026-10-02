@@ -9,6 +9,7 @@ export class ModalFormActionController extends ApplicationController {
     invariant(modalId, 'aria-controls is required');
     const form = document.getElementById(modalId)?.querySelector('form');
     invariant(form, `a form is required in #${modalId}`);
+    form.reset();
     form.action = event.params.url;
   }
 }
