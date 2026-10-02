@@ -14,7 +14,7 @@ RSpec.describe Dossiers::BatchOperationComponent, type: :component do
       cmp
     end
 
-    let(:user) { create(:user) }
+    let(:user) { instructeurs.default.user }
     let(:procedure) { create(:procedure) }
 
     before do
@@ -30,6 +30,32 @@ RSpec.describe Dossiers::BatchOperationComponent, type: :component do
         is_expected.to have_button('Mettre les dossiers à la corbeille', disabled: true)
         is_expected.to have_button('Envoyer un message aux usagers', disabled: true)
       end
+    end
+
+    context 'statut traites while the archive warning is shown' do
+      let(:statut) { 'traites' }
+
+      it do
+        is_expected.to have_selector("button[value='archiver'][aria-controls='modal-archive-batch'][data-modal-type='archive']")
+        is_expected.to have_selector('dialog#modal-archive-batch', visible: :all)
+      end
+    end
+
+    context 'statut traites once the archive warning is dismissed' do
+      let(:statut) { 'traites' }
+
+      before { user.instructeur.update!(archive_warning_dismissed: true) }
+
+      it do
+        is_expected.to have_selector("button[value='archiver']:not([aria-controls])")
+        is_expected.not_to have_selector('dialog#modal-archive-batch', visible: :all)
+      end
+    end
+
+    context 'statut tous while the archive warning is shown' do
+      let(:statut) { 'tous' }
+
+      it { is_expected.to have_selector("button[value='archiver'][aria-controls='modal-archive-batch']") }
     end
 
     context 'statut suivis' do
