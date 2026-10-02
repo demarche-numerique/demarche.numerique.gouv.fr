@@ -20,11 +20,55 @@ msgid "{0, plural, =0 {{defaultChildren}} one {1 choix sélectionné} other {# "
 msgstr "{0, plural, =0 {{defaultChildren}} one {1 choix sélectionné} other {# "
 "choix sélectionnés}}"
 
+#: app/javascript/components/Map/parcelle.ts:81
+msgid "{area} hectares"
+msgstr "{area} hectares"
+
+#: app/javascript/components/Map/parcelle.ts:84
+msgid "{area} m²"
+msgstr "{area} m²"
+
+#: app/javascript/components/shared/maplibre/StyleControl.tsx:28
+msgid "Carte IGN"
+msgstr "Carte IGN"
+
+#: app/javascript/components/Map/parcelle.ts:87
+msgid "commune {commune}"
+msgstr "commune {commune}"
+
+#: app/javascript/components/shared/maplibre/StyleControl.tsx:99
+msgid "Couches"
+msgstr "Couches"
+
+#: app/javascript/components/shared/maplibre/StyleControl.tsx:58
+msgid "Couches cartographiques"
+msgstr "Couches cartographiques"
+
+#: app/javascript/components/Map/parcelle.ts:77
+msgid "Feuille {feuille}"
+msgstr "Feuille {feuille}"
+
+#: app/javascript/components/shared/maplibre/StyleControl.tsx:67
+msgid "Fond de carte"
+msgstr "Fond de carte"
+
 #: app/javascript/shared/attachment-error.ts:15
 msgid "La taille maximale du fichier autorisée est de&nbsp;<strong>{maxSizeMB} "
 "Mo</strong>."
 msgstr "La taille maximale du fichier autorisée est de&nbsp;<strong>{maxSizeMB} "
 "Mo</strong>."
+
+#: app/javascript/components/Map/MapCanvas.tsx:151
+msgid "Nous ne pouvons pas afficher la carte car elle est incompatible avec "
+"votre navigateur. Nous vous conseillons de le mettre à jour ou "
+"d’utiliser <0>un navigateur plus récent</0>."
+msgstr "Nous ne pouvons pas afficher la carte car elle est incompatible avec "
+"votre navigateur. Nous vous conseillons de le mettre à jour ou "
+"d’utiliser <0>un navigateur plus récent</0>."
+
+#: app/javascript/components/Map/parcelle.ts:74
+msgid "Parcelle n° {numero}"
+msgstr "Parcelle n° {numero}"
 
 #: app/javascript/components/Select.tsx:125
 msgid "Rechercher"
@@ -34,11 +78,27 @@ msgstr "Rechercher"
 msgid "Rechercher dans la liste"
 msgstr "Rechercher dans la liste"
 
+#: app/javascript/components/shared/maplibre/StyleControl.tsx:127
+msgid "Réglage de l’opacité de la couche «{NBS}{name}{NBS}»"
+msgstr "Réglage de l’opacité de la couche «{NBS}{name}{NBS}»"
+
+#: app/javascript/components/shared/maplibre/StyleControl.tsx:26
+msgid "Satellite"
+msgstr "Satellite"
+
 #: app/javascript/components/Select.tsx:209
 msgid "Sélection"
 msgstr "Sélection"
+
+#: app/javascript/components/shared/maplibre/StyleControl.tsx:37
+msgid "Sélectionner les couches cartographiques"
+msgstr "Sélectionner les couches cartographiques"
 
 #. placeholder {0}: item.label
 #: app/javascript/components/react-aria/components/TagGroup.tsx:36
 msgid "Supprimer {0}"
 msgstr "Supprimer {0}"
+
+#: app/javascript/components/shared/maplibre/StyleControl.tsx:27
+msgid "Vectoriel"
+msgstr "Vectoriel"

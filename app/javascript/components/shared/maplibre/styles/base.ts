@@ -9,6 +9,68 @@ import invariant from 'tiny-invariant';
 import { layers as cadastreLayers } from './layers/cadastre.ts';
 import { layers as rpgLayers } from './layers/rpg.ts';
 
+// The parcelle layers, mirroring CarteTypeDeChamp::PARCELLE_LAYERS: a champ
+// enables at most one of them, which is why their layers share their ids. The
+// parcelles of a dossier are never drawn from their geometry: the tiles'
+// parcelles are highlighted through the filter of the `parcelle-highlighted`
+// layer, by the id property below.
+export const PARCELLE_LAYERS = {
+  cadastres: { source: 'cadastre', idProperty: 'id', layers: cadastreLayers },
+  rpg: { source: 'rpg', idProperty: 'ID_PARCEL', layers: rpgLayers }
+} as const;
+
+export type ParcelleLayer = keyof typeof PARCELLE_LAYERS;
+
+export function isParcelleLayer(id: string): id is ParcelleLayer {
+  return id in PARCELLE_LAYERS;
+}
+
+// The parcelle layer among the enabled ones, if any.
+export function getParcelleLayer(ids: string[]): ParcelleLayer | undefined {
+  const parcelleLayers = ids.filter(isParcelleLayer);
+  invariant(
+    parcelleLayers.length <= 1,
+    `A map shows one parcelle layer at most, got ${parcelleLayers.join(', ')}`
+  );
+  return parcelleLayers[0];
+}
+
+// Hidden layers closing every basemap: the layers added by the map components
+// are inserted before them, so their order never depends on which component
+// got to add its layer first. The rasters have their own, under the parcelle
+// layers: they are back at once after a change of basemap, the parcelle layers
+// only once their source is.
+export const ANCHORS = {
+  rasters: 'anchor-rasters',
+  optionalLayers: 'anchor-optional-layers',
+  selections: 'anchor-selections'
+} as const;
+
+export const anchorLayers: LayerSpecification[] = Object.values(ANCHORS).map(
+  (id) => ({ id, type: 'background', layout: { visibility: 'none' } })
+);
+
+// In a new tab: the map sits in a form the usager is filling.
+function credit(href: string, name: string) {
+  return `<a href="${href}" target="_blank" rel="noopener noreferrer">© ${name}</a>`;
+}
+
+// The attribution of a source set here wins over the one of its TileJSON, and
+// maplibre shows an attribution once, when it is repeated word for word or is
+// part of a longer one: the same credit must read the same on every source.
+const CREDITS = {
+  dinum: credit('https://www.data.gouv.fr/', 'DINUM (data.gouv.fr)'),
+  openstreetmap: credit(
+    'https://www.openstreetmap.org/copyright',
+    'Contributeurs OpenStreetMap'
+  ),
+  openmaptiles: credit('https://www.openmaptiles.org/', 'OpenMapTiles'),
+  ign: credit('https://www.ign.fr/', 'IGN'),
+  // The protected areas are drawn by PatriNat, the OFB-MNHN-CNRS-IRD unit
+  // behind the INPN, and only served by the IGN.
+  patrinat: credit('https://inpn.mnhn.fr/', 'PatriNat (OFB-MNHN-CNRS-IRD)')
+};
+
 function ignServiceURL(layer: string, style: string, format = 'image/png') {
   const url = `https://data.geopf.fr/wmts`;
   const query =
@@ -145,17 +207,21 @@ export function buildOptionalSources(
 ): StyleSpecification['sources'] {
   const sources: StyleSpecification['sources'] = {};
 
-  if (ids.includes('cadastres')) {
-    sources.cadastre = {
-      type: 'vector',
-      url: 'https://openmaptiles.geo.data.gouv.fr/data/cadastre.json'
-    };
-  }
-  if (ids.includes('rpg')) {
-    sources.rpg = {
-      type: 'vector',
-      url: 'pmtiles://https://pmtiles-data.s3.rbx.io.cloud.ovh.net/rpg_2023.pmtiles'
-    };
+  switch (getParcelleLayer(ids)) {
+    case 'cadastres':
+      sources[PARCELLE_LAYERS.cadastres.source] = {
+        type: 'vector',
+        url: 'https://openmaptiles.geo.data.gouv.fr/data/cadastre.json',
+        attribution: CREDITS.dinum
+      };
+      break;
+    case 'rpg':
+      sources[PARCELLE_LAYERS.rpg.source] = {
+        type: 'vector',
+        url: 'pmtiles://https://pmtiles-data.s3.rbx.io.cloud.ovh.net/rpg_2023.pmtiles',
+        attribution: CREDITS.ign
+      };
+      break;
   }
 
   return sources;
@@ -163,11 +229,11 @@ export function buildOptionalSources(
 
 function buildSources() {
   return Object.fromEntries(
-    OPTIONAL_LAYERS.filter(({ id }) => id != 'cadastres' && id != 'rpg')
+    OPTIONAL_LAYERS.filter(({ id }) => !isParcelleLayer(id))
       .flatMap(({ layers }) => layers)
       .map(([, code, style]) => [
         getLayerCode(code),
-        rasterSource([ignServiceURL(code, style)], 'IGN-F/Géoportail/MNHN')
+        rasterSource([ignServiceURL(code, style)], CREDITS.patrinat)
       ])
   );
 }
@@ -198,22 +264,43 @@ function rasterLayer(
   };
 }
 
+// `highlighted` holds the ids of the parcelles to highlight; without it, the
+// filter of `parcelle-highlighted` is left to the caller (the editor sets it).
 export function buildOptionalLayers(
   ids: string[],
-  opacity: Record<string, number>
+  opacity: Record<string, number>,
+  highlighted?: string[]
 ): LayerSpecification[] {
+  const parcelleLayer = getParcelleLayer(ids);
+
   return OPTIONAL_LAYERS.filter(({ id }) => ids.includes(id))
     .flatMap(({ layers, id }) =>
       layers.map(([, code]) => [code, opacity[id] / 100] as const)
     )
     .flatMap(([code, opacity]) => {
-      if (code == 'CADASTRE') {
-        return cadastreLayers;
-      } else if (code == 'RPG') {
-        return rpgLayers;
+      if (code == 'CADASTRE' || code == 'RPG') {
+        invariant(parcelleLayer, `No parcelle layer for ${code}`);
+        return parcelleLayers(PARCELLE_LAYERS[parcelleLayer], highlighted);
       }
       return [rasterLayer(getLayerCode(code), opacity)];
     });
+}
+
+function parcelleLayers(
+  { idProperty, layers }: (typeof PARCELLE_LAYERS)[ParcelleLayer],
+  highlighted?: string[]
+): LayerSpecification[] {
+  if (!highlighted) {
+    return layers;
+  }
+  return layers.map((layer) =>
+    layer.id == 'parcelle-highlighted'
+      ? {
+          ...layer,
+          filter: ['in', ['get', idProperty], ['literal', highlighted]]
+        }
+      : layer
+  );
 }
 
 export const NBS = ' ' as const;
@@ -254,19 +341,21 @@ export const style: StyleSpecification = {
   sources: {
     'decoupage-administratif': {
       type: 'vector',
-      url: 'https://openmaptiles.geo.data.gouv.fr/data/decoupage-administratif.json'
+      url: 'https://openmaptiles.geo.data.gouv.fr/data/decoupage-administratif.json',
+      attribution: CREDITS.dinum
     },
     openmaptiles: {
       type: 'vector',
-      url: 'https://openmaptiles.geo.data.gouv.fr/data/france-vector.json'
+      url: 'https://openmaptiles.geo.data.gouv.fr/data/france-vector.json',
+      attribution: `${CREDITS.openstreetmap} ${CREDITS.openmaptiles} ${CREDITS.dinum}`
     },
     'photographies-aeriennes': rasterSource(
       [ignServiceURL('ORTHOIMAGERY.ORTHOPHOTOS', 'normal', 'image/jpeg')],
-      'IGN-F/Géoportail'
+      CREDITS.ign
     ),
     'plan-ign': rasterSource(
       [ignServiceURL('GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2', 'normal')],
-      'IGN-F/Géoportail'
+      CREDITS.ign
     ),
     ...buildSources()
   },
