@@ -233,17 +233,8 @@ class Champs::ReferentielChamp < ChampData
 
   def update_repetition_prefillable_champs(data, repetition_type_de_champ, mappings)
     group_mappings_by_json_array(mappings).flat_map do |array_key, array_mappings|
-      json_array = Array(JSONPathUtil.on_safe(data.with_indifferent_access, array_key).first)
-      if json_array.is_a?(Array)
-        json_array.flat_map do |json_value|
-          if json_value.blank?
-            []
-          else
-            prefill_row(element_attributes(json_value, array_mappings), determine_row_id(repetition_type_de_champ))
-          end
-        end
-      else
-        []
+      json_elements(data, array_key).flat_map do |json_value|
+        prefill_row(element_attributes(json_value, array_mappings), determine_row_id(repetition_type_de_champ))
       end
     end
   end
@@ -263,6 +254,10 @@ class Champs::ReferentielChamp < ChampData
 
   def group_mappings_by_json_array(mappings)
     mappings.group_by { |jsonpath, _| JSONPathUtil.extract_array_name(jsonpath) }
+  end
+
+  def json_elements(data, array_key)
+    Array(JSONPathUtil.on_safe(data.with_indifferent_access, array_key).first).compact_blank
   end
 
   def element_attributes(json_value, array_mappings)
