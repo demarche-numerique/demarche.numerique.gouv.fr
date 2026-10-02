@@ -37,9 +37,12 @@ class TypesDeChamp::CarteTypeDeChamp < TypeDeChamp
   end
 
   def carte_optional_layers
-    LAYERS.filter_map do |layer|
+    layers = LAYERS.filter_map do |layer|
       layer_enabled?(layer) ? layer : nil
-    end.sort
+    end
+    # A carte saved before the parcelle layers were exclusive may hold both:
+    # the first one wins, as when both are enabled at once.
+    (layers - (PARCELLE_LAYERS & layers).drop(1)).sort
   end
 
   def editable_options=(options)

@@ -30,5 +30,11 @@ describe TypesDeChamp::CarteTypeDeChamp do
 
       expect(tdc.carte_optional_layers).to eq([:cadastres, :znieff])
     end
+
+    it 'lists cadastres only on a carte saved with both layers before they were exclusive' do
+      tdc.update_column(:options, { cadastres: '1', rpg: '1', znieff: '1' })
+
+      expect(tdc.reload.carte_optional_layers).to eq([:cadastres, :znieff])
+    end
   end
 end
