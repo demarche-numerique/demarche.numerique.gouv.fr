@@ -50,6 +50,30 @@ describe Instructeurs::BatchOperationsController, type: :controller do
       end
     end
 
+    context 'when archiving with dismiss_archive_warning' do
+      let(:params) { super().merge(dismiss_archive_warning: '1') }
+
+      it 'remembers that the instructeur dismissed the archive warning' do
+        expect { subject }.to change { instructeur.reload.archive_warning_dismissed }.from(false).to(true)
+      end
+    end
+
+    context 'when archiving without dismiss_archive_warning' do
+      it 'keeps showing the archive warning' do
+        expect { subject }.not_to change { instructeur.reload.archive_warning_dismissed }
+      end
+    end
+
+    context 'when another operation is sent with dismiss_archive_warning' do
+      let(:params) do
+        super().deep_merge(batch_operation: { operation: BatchOperation.operations.fetch(:supprimer) }, dismiss_archive_warning: '1')
+      end
+
+      it 'does not touch the archive warning preference' do
+        expect { subject }.not_to change { instructeur.reload.archive_warning_dismissed }
+      end
+    end
+
     context 'with an empty justificatif' do
       let(:dossier) { create(:dossier, :en_instruction, :with_individual, procedure: procedure) }
       let(:params) do
