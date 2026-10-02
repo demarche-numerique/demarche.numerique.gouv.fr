@@ -142,6 +142,7 @@ fr:
             sva_svr:
               immutable: "La configuration SVA/SVR ne peut plus être modifiée"
               declarative_incompatible: "Le SVA/SVR est incompatible avec une démarche déclarative"
+              definitive: "La règle SVA/SVR a été désactivée et ne peut plus être modifiée"
             monavis_embed:
               format: 'Le code MonAvis %{message}'
               invalid_format: "n’est pas au bon format"
