@@ -17,8 +17,11 @@ en:
               invalid_crs: "contains invalid coordinates, please use the WGS84 coordinate system"
   geo_area:
     label:
-      cadastre: "Parcel n° %{numero} - Sheet %{prefixe} %{section} - %{surface} m² - town %{commune}"
-      rpg: "Parcel n° %{numero} - %{surface} hectares"
+      parcelle: "Parcel n° %{numero}"
+      feuille: "Sheet %{feuille}"
+      surface_m2: "%{surface} m²"
+      surface_hectares: "%{surface} hectares"
+      commune: "town %{commune}"
       area: "An area of %{area} m²"
       area_unknown: "An area of unknown surface"
       line: "A %{length} m long line"
