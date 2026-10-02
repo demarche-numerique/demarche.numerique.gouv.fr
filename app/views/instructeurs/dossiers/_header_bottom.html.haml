@@ -3,7 +3,8 @@
     %ul.fr-tabs__list
       = dynamic_tab_item(t('views.instructeurs.dossiers.tab_steps.request'),
         instructeur_dossier_path(dossier.procedure, params[:statut], dossier),
-        notification: notifications_sticker[:demande])
+        notification: notifications_sticker[:demande],
+        notification_key: :demande)
 
       - if gallery_attachments.present?
         = dynamic_tab_item(t('views.instructeurs.dossiers.tab_steps.attachments'),
@@ -11,16 +12,19 @@
 
       = dynamic_tab_item(t('views.instructeurs.dossiers.tab_steps.private_annotations'),
         annotations_privees_instructeur_dossier_path(dossier.procedure, dossier, statut: params[:statut]),
-        notification: notifications_sticker[:annotations_privees])
+        notification: notifications_sticker[:annotations_privees],
+        notification_key: :annotations_privees)
 
       = dynamic_tab_item(t('views.instructeurs.dossiers.tab_steps.external_opinion'),
         [avis_instructeur_dossier_path(dossier.procedure, dossier, statut: params[:statut]),
         avis_new_instructeur_dossier_path(dossier.procedure, dossier, statut: params[:statut])],
-        notification: notifications_sticker[:avis_externe])
+        notification: notifications_sticker[:avis_externe],
+        notification_key: :avis_externe)
 
       = dynamic_tab_item(t('views.instructeurs.dossiers.tab_steps.messaging'),
         messagerie_instructeur_dossier_path(dossier.procedure, dossier, statut: params[:statut]),
-        notification: notifications_sticker[:messagerie])
+        notification: notifications_sticker[:messagerie],
+        notification_key: :messagerie)
 
       - if dossier.procedure.rdv_enabled?
         = dynamic_tab_item(t('views.instructeurs.dossiers.tab_steps.rendez_vous'),
