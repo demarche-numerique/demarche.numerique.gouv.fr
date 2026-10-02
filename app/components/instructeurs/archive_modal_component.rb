@@ -11,6 +11,8 @@ class Instructeurs::ArchiveModalComponent < ApplicationComponent
     current_instructeur.present? && !current_instructeur.archive_warning_dismissed?
   end
 
+  private
+
   def batch?
     procedure.present?
   end
