@@ -34,7 +34,7 @@
   <%= form_with url: admin_api_tokens_path,
     method: :post,
     html: { class: 'fr-mt-2w' },
-    data: { controller: 'api-token-securite' } do |f| %>
+    data: { controller: 'api-token-securite', turbo: false } do |f| %>
     <%= render Dsfr::RadioButtonListComponent.new(form: f,
       target: :networkFiltering,
       buttons: [ { label: t('.auto_assign'),

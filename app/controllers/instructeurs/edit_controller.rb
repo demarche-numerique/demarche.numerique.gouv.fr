@@ -49,7 +49,7 @@ module Instructeurs
         flash.notice = t('.success')
         redirect_to instructeur_dossier_path(dossier.procedure, dossier, statut: params[:statut])
       else
-        render :show, layout: "empty_layout"
+        render :show, status: :unprocessable_content, layout: "empty_layout"
       end
     end
 
