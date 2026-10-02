@@ -286,7 +286,7 @@ class Champs::ReferentielChamp < ChampData
           else
             row_id = determine_row_id(repetition_type_de_champ)
             array_mappings.map do |jsonpath, type_de_champ|
-              update_prefillable_champ(type_de_champ:, raw_value: raw_value_in(json_value, jsonpath), row_id:)
+              prefill_champ(type_de_champ, prefill_attributes_for(type_de_champ, raw_value_in(json_value, jsonpath)), row_id:)
             end
           end
         end
@@ -323,8 +323,7 @@ class Champs::ReferentielChamp < ChampData
 
   def update_simple_prefillable_champs(data, mappings)
     mappings.map do |jsonpath, type_de_champ|
-      raw_value = JSONPathUtil.on_safe(data, jsonpath).first
-      update_prefillable_champ(type_de_champ:, raw_value:)
+      prefill_champ(type_de_champ, prefill_attributes_for(type_de_champ, JSONPathUtil.on_safe(data, jsonpath).first))
     end
   end
 
@@ -335,16 +334,14 @@ class Champs::ReferentielChamp < ChampData
       .to_assignable_attributes(self, normalize_api_value(raw_value, type_de_champ))
   end
 
-  def update_prefillable_champ(type_de_champ:, raw_value:, row_id: nil)
-    prefill_champ = dossier.champ_for_update(type_de_champ, row_id:, updated_by:)
-    attributes = prefill_attributes_for(type_de_champ, raw_value)
-    return prefill_champ if attributes.nil?
+  def prefill_champ(type_de_champ, attributes, row_id: nil)
+    champ = dossier.champ_for_update(type_de_champ, row_id:, updated_by:)
+    return champ if attributes.nil?
 
     # A new identifier makes the fetched data stale: back to idle, so that the dossier fetches it again.
-    prefill_champ.reset_external_data! if prefill_champ.has_async_external_data? && attributes.key?(:external_id) && prefill_champ.external_id != attributes[:external_id]
-    attributes[:prefilled] = true
-    prefill_champ.update(attributes.merge(prefilled_original_value: attributes.except(:prefilled)))
-    prefill_champ
+    champ.reset_external_data! if champ.has_async_external_data? && attributes.key?(:external_id) && champ.external_id != attributes[:external_id]
+    champ.update(attributes.merge(prefilled: true, prefilled_original_value: attributes))
+    champ
   end
 
   def rewrap_selected_object_in_datasource(data)
