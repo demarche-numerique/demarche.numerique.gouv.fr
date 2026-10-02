@@ -226,6 +226,7 @@ RSpec.describe PrefillChamps do
     it_behaves_like "a champ public value that is unauthorized", :explication, "value"
     it_behaves_like "a champ public value that is unauthorized", :piece_justificative, "value"
     it_behaves_like "a champ public value that is unauthorized", :carte, "value"
+    it_behaves_like "a champ public value that is unauthorized", :carte, { "type" => "Point", "coordinates" => ["2.3", "48.8"] }
     it_behaves_like "a champ public value that is unauthorized", :pays, "value"
     it_behaves_like "a champ public value that is unauthorized", :regions, "value"
     it_behaves_like "a champ public value that is unauthorized", :departements, "value"

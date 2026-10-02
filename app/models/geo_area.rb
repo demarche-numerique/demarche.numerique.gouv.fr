@@ -129,6 +129,9 @@ class GeoArea < ApplicationRecord
     geometry['type'] == 'Point'
   end
 
+  # The geometries a usager can draw on the map.
+  def drawable? = point? || line? || polygon?
+
   def legacy_cadastre?
     cadastre? && properties['surface_intersection'].present?
   end

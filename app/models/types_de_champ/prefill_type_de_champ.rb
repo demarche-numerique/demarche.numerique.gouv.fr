@@ -45,6 +45,8 @@ class TypesDeChamp::PrefillTypeDeChamp < SimpleDelegator
       TypesDeChamp::PrefillBooleanTypeDeChamp.new(type_de_champ, revision)
     when TypeDeChamp.type_champs.fetch(:dossier_link)
       TypesDeChamp::PrefillDossierLinkTypeDeChamp.new(type_de_champ, revision)
+    when TypeDeChamp.type_champs.fetch(:carte)
+      TypesDeChamp::PrefillCarteTypeDeChamp.new(type_de_champ, revision)
     else
       new(type_de_champ, revision)
     end

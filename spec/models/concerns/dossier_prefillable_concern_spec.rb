@@ -162,6 +162,21 @@ RSpec.describe DossierPrefillableConcern do
       end
     end
 
+    context 'when dossier contains a carte champ' do
+      let(:public_type_de_champs) { [{ type: :carte }] }
+      let(:type_de_champ_1) { procedure.published_revision.public_root_type_de_champs.first }
+      let(:point) { build(:geo_area, :point).geometry.as_json }
+      let(:params) { { "champ_#{type_de_champ_1.to_typed_id_for_query}" => point.to_json } }
+      let(:values) { PrefillChamps.new(dossier, params).to_a }
+
+      it 'persists the geometry as a geo area drawn by the usager' do
+        fill
+        champ = find_champ_by_stable_id(dossier, type_de_champ_1.stable_id)
+        expect(champ.prefilled).to eq(true)
+        expect(champ.geo_areas.map { [it.source, it.geometry] }).to eq([['selection_utilisateur', point]])
+      end
+    end
+
     context 'when dossier contains an advanced (referentiel-backed) drop_down_list' do
       # Regression: prefilling such a champ with a human label used to be wiped
       # to nil by the store_referentiel before_save (which only matched item ids).
