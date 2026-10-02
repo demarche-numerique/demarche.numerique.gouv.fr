@@ -15,9 +15,10 @@
       .fr-alert.fr-alert--warning.fr-alert--sm.fr-mb-4w
         %p= t('.notice_incompatible_with_declarative_html', edit_admin_procedure_path: edit_admin_procedure_path(procedure, section: "options-avancees", anchor: "declarative_with_state-legend"))
 
-    - if procedure.publiee? && procedure.sva_svr_enabled?
+    - if procedure.sva_svr_disablable?
       .fr-alert.fr-alert--warning.fr-alert--sm.fr-mb-4w
         %p= t('.notice_edit_denied')
+        = link_to t('.disable', rule: configuration.human_decision), new_admin_procedure_sva_svr_disabling_path(procedure), class: 'fr-btn fr-btn--secondary fr-btn--sm fr-my-1w'
 
     %fieldset.fr-fieldset
       %legend.fr-fieldset__legend= t(".rule")
@@ -41,4 +42,4 @@
 
       = render Dsfr::RadioButtonListComponent.new(form: f, target: :resume, buttons: resume_buttons)
 
-  = render Procedure::FixedFooterComponent.new(procedure: procedure, form: f, is_form_disabled: form_disabled?)
+  = render Procedure::FixedFooterComponent.new(procedure: procedure, form: (f if !form_disabled?))

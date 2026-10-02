@@ -7,15 +7,20 @@ module ProcedureSVASVRConcern
     scope :sva_svr, -> { where("sva_svr ->> 'decision' IN (?) AND sva_svr ->> 'disabled_at' IS NULL", ['sva', 'svr']) }
     validate :sva_svr_immutable_on_published, if: :will_save_change_to_sva_svr?
     validate :validates_sva_svr_compatible
+    after_update :drop_sva_svr_dates_en_construction, if: -> { saved_change_to_sva_svr? && sva_svr_disabled? }
   end
 
   def sva_svr_disabled? = sva_svr['disabled_at'].present?
+
+  def sva_svr_disabled_at = sva_svr['disabled_at']&.then { Time.zone.parse(it) }
 
   def sva_svr_ever_enabled? = [:sva, :svr].include?(decision)
 
   def sva_svr_enabled?
     sva_svr_ever_enabled? && !sva_svr_disabled?
   end
+
+  def sva_svr_disablable? = !brouillon? && sva_svr_enabled?
 
   def sva?
     decision == :sva && !sva_svr_disabled?
@@ -33,7 +38,24 @@ module ProcedureSVASVRConcern
     decision
   end
 
+  def sva_svr_pending_dossiers
+    dossiers.state_en_instruction
+      .visible_by_administration
+      .where.not(sva_svr_decision_on: nil)
+      .where(sva_svr_decision_triggered_at: nil)
+  end
+
+  def disable_sva_svr
+    self.sva_svr = sva_svr.merge('disabled_at' => Time.current.iso8601)
+  end
+
   private
+
+  def drop_sva_svr_dates_en_construction
+    dossiers.state_en_construction
+      .where.not(sva_svr_decision_on: nil)
+      .update_all(sva_svr_decision_on: nil, updated_at: Time.current)
+  end
 
   def decision
     sva_svr.fetch("decision", nil)&.to_sym
