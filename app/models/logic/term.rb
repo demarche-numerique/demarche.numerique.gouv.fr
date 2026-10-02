@@ -16,6 +16,8 @@ class Logic::Term
 
   def terms = [self]
 
+  def to_sexp = Logic.to_sexp(to_expr)
+
   private
 
   def hash_value = to_h.hash
