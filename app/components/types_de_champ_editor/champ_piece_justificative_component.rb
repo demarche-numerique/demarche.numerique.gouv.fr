@@ -20,7 +20,6 @@ class TypesDeChampEditor::ChampPieceJustificativeComponent < TypesDeChampEditor:
   def piece_justificative_template_options
     {
       attached_file: type_de_champ.piece_justificative_template,
-      auto_attach_url: helpers.auto_attach_url(type_de_champ, procedure_id: procedure.id),
       view_as: :download,
     }
   end
