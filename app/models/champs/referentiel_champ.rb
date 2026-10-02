@@ -170,10 +170,12 @@ class Champs::ReferentielChamp < ChampData
     targets
       .group_by { |_, type_de_champ| dossier.revision.parent_of(type_de_champ) }
       .flat_map do |repetition_type_de_champ, mappings|
-        if repetition_type_de_champ.present?
-          update_repetition_prefillable_champs(data, repetition_type_de_champ, mappings)
-        else
+        if repetition_type_de_champ.nil?
           update_simple_prefillable_champs(data, mappings)
+        elsif repetition_type_de_champ == parent
+          prefill_own_row(data, mappings)
+        else
+          prefill_new_rows(data, repetition_type_de_champ, mappings)
         end
       end
   end
@@ -276,24 +278,20 @@ class Champs::ReferentielChamp < ChampData
     end
   end
 
-  def update_repetition_prefillable_champs(data, repetition_type_de_champ, mappings)
+  # In its own repetition, the champ writes on its own row: no row to add.
+  # Note: limited to updating that row only.
+  def prefill_own_row(data, mappings)
     group_mappings_by_json_array(mappings).flat_map do |array_key, array_mappings|
-      json_elements(data, array_key).flat_map do |json_value|
-        prefill_row(element_attributes(json_value, array_mappings), determine_row_id(repetition_type_de_champ))
-      end
+      json_elements(data, array_key).flat_map { prefill_row(element_attributes(it, array_mappings), row_id) }
     end
   end
 
-  def determine_row_id(repetition_type_de_champ)
-    # When the referentiel champ belongs to the very repetition being prefilled, keep the data
-    # on its own row. Note: limited to updating that row only.
-    # Otherwise (root champ, or a champ of another repetition), create a new row for each array
-    # element: reusing our own row_id would write a row of our repetition into another one, where
-    # no row marker carries it — the data would be persisted but invisible to the whole app.
-    if dossier.revision.parent_of(type_de_champ) == repetition_type_de_champ
-      self.row_id
-    else
-      dossier.repetition_add_row(repetition_type_de_champ, updated_by:)
+  # Elsewhere (root champ, or a champ of another repetition), one new row per element.
+  def prefill_new_rows(data, repetition_type_de_champ, mappings)
+    group_mappings_by_json_array(mappings).flat_map do |array_key, array_mappings|
+      json_elements(data, array_key)
+        .map { element_attributes(it, array_mappings) }
+        .flat_map { prefill_row(it, add_prefilled_row(repetition_type_de_champ)) }
     end
   end
 
@@ -321,6 +319,12 @@ class Champs::ReferentielChamp < ChampData
 
   def prefill_row(element_attributes, row_id)
     element_attributes.map { |type_de_champ, attributes| prefill_champ(type_de_champ, attributes, row_id:) }
+  end
+
+  # Reusing our own row_id would write a row of our repetition into another one, where no row
+  # marker carries it: the data would be persisted but invisible to the whole app.
+  def add_prefilled_row(repetition_type_de_champ)
+    dossier.repetition_add_row(repetition_type_de_champ, updated_by:)
   end
 
   def update_simple_prefillable_champs(data, mappings)
