@@ -64,6 +64,16 @@ describe Instructeurs::BatchOperationsController, type: :controller do
       end
     end
 
+    context 'when archiving with dismiss_archive_warning but no batch is created' do
+      let(:dossier) { create(:dossier, :accepte, :with_individual, batch_operation: create(:batch_operation, :archiver, instructeur:), procedure:) }
+      let(:params) { super().merge(dismiss_archive_warning: '1') }
+
+      it 'keeps showing the archive warning' do
+        expect { subject }.not_to change { instructeur.reload.archive_warning_dismissed }
+        expect(flash.alert).to eq("Le traitement de masse n’a pas été lancé. Vérifiez que l’action demandée est possible pour les dossiers sélectionnés")
+      end
+    end
+
     context 'when another operation is sent with dismiss_archive_warning' do
       let(:params) do
         super().deep_merge(batch_operation: { operation: BatchOperation.operations.fetch(:supprimer) }, dismiss_archive_warning: '1')
