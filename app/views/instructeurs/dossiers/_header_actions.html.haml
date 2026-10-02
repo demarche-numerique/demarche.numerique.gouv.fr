@@ -19,5 +19,3 @@
       = render Instructeurs::InstructionButtonComponent.new(dossier:, procedure: dossier.procedure)
   .border-left-light.fr-ml-2w.fr-mb-1v
   = render partial: 'instructeurs/dossiers/print_and_export_actions', locals: { dossier: }
-- if dossier.termine?
-  = render Instructeurs::ArchiveModalComponent.new
