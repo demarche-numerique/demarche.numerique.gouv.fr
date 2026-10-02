@@ -68,6 +68,10 @@ class Typst::Payload
 
   def template = self.class.template
 
+  # The TypstService::Assets a payload downloaded files into, when it embeds
+  # any: TypstService.render then compiles in that store's root.
+  def assets = nil
+
   # The document data, every string sanitized: the admin-authored text the
   # payloads carry (libellés, descriptions, options) is pasted from anywhere.
   def to_h = self.class.sanitize(build)
@@ -92,10 +96,10 @@ class Typst::Payload
   private
 
   # Root-relative path of an image of lib/typst/root/images (the only images
-  # a document can embed; the default logos ship there, an instance with its
-  # own logos copies them alongside). nil when the file is missing or points
-  # outside that directory, in which case the theme renders the alt text in
-  # a placeholder frame instead of failing the generation.
+  # a document can embed besides its assets; the default logos ship there, an
+  # instance with its own logos copies them alongside). nil when the file is
+  # missing or points outside that directory, in which case the theme renders
+  # the alt text in a placeholder frame instead of failing the generation.
   def asset_path(src)
     file = TypstService::IMAGES_DIR.join(src).expand_path
     return if !file.file? || !file.to_s.start_with?("#{TypstService::IMAGES_DIR}/")
