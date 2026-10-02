@@ -61,7 +61,7 @@ describe 'Archive warning modal', js: true do
     find('#modal-archive-dismiss', visible: :all).send_keys(:escape)
 
     expect(page).to have_no_selector('#modal-archive', visible: :visible)
-    expect(page).to have_selector('[aria-controls="modal-archive"]:focus')
+    expect(page).to have_selector('button.fr-icon-folder-2-line[aria-controls="modal-archive"]:focus')
     expect(dossier_1.reload.archived).to be(false)
   end
 
