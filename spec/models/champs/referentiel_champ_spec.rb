@@ -274,6 +274,12 @@ describe Champs::ReferentielChamp, type: :model do
       end
     end
 
+    it 'takes a single object for a one-element array' do
+      prefill(societes: { nom: 'ACME', siren: '111' })
+
+      expect(rows).to eq([['ACME', '111']])
+    end
+
     it 'adds no row when the response carries no data' do
       expect { prefill(nil) }.not_to change { rows }
     end
