@@ -217,5 +217,17 @@ RSpec.describe Ami::CreateNotificationService do
         expect(payload[:content_link]).to end_with("/dossiers/#{dossier.id}/messagerie")
       end
     end
+
+    context 'when triggered by a dossier edited by an instructeur' do
+      it 'tells the user the dossier was edited and links to the messagerie' do
+        payload = described_class.new(dossier:, trigger: :dossier_modifie_par_instructeur, state: nil).create_notification_payload(event_date:)
+
+        expect(payload).to include(
+          content_title: "Dossier modifié par un instructeur",
+          content_body: "Consulter les modifications apportées à votre démarche «\u00A0#{procedure.libelle}\u00A0» n°\u00A0#{formatted_dossier_id}."
+        )
+        expect(payload[:content_link]).to end_with("/dossiers/#{dossier.id}/messagerie")
+      end
+    end
   end
 end

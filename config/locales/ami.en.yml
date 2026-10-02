@@ -31,3 +31,6 @@ en:
       messagerie_message:
         title: New message
         body: "Read the message about your procedure «\u00A0%{libelle_demarche}\u00A0» no.\u00A0%{dossier_id}."
+      dossier_modifie_par_instructeur:
+        title: File modified by an instructor
+        body: "See the changes made to your procedure «\u00A0%{libelle_demarche}\u00A0» no.\u00A0%{dossier_id}."

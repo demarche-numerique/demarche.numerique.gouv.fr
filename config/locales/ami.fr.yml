@@ -31,3 +31,6 @@ fr:
       messagerie_message:
         title: Nouveau message
         body: "Lire le message concernant votre démarche «\u00A0%{libelle_demarche}\u00A0» n°\u00A0%{dossier_id}."
+      dossier_modifie_par_instructeur:
+        title: Dossier modifié par un instructeur
+        body: "Consulter les modifications apportées à votre démarche «\u00A0%{libelle_demarche}\u00A0» n°\u00A0%{dossier_id}."
