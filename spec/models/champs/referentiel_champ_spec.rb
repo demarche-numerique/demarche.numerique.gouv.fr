@@ -240,6 +240,55 @@ describe Champs::ReferentielChamp, type: :model do
     end
   end
 
+  describe '#update_external_data! prefilling a repetition from a root referentiel champ' do
+    let(:mapping) do
+      {
+        "$.societes[0].nom" => { prefill: "1", prefill_stable_id: 201 },
+        "$.societes[0].siren" => { prefill: "1", prefill_stable_id: 202 },
+      }
+    end
+    let(:public_type_de_champs) do
+      [
+        { type: :referentiel, stable_id: 100, referentiel:, referentiel_mapping: mapping },
+        {
+          type: :repetition, stable_id: 200, mandatory: false, children: [
+            { type: :text, stable_id: 201 },
+            { type: :text, stable_id: 202 },
+          ],
+        },
+      ]
+    end
+
+    # Chaque appel repart d'un dossier rechargé, comme une seconde requête : la comparaison
+    # lit alors `prefilled_original_value` depuis la colonne jsonb.
+    def prefill(data)
+      Dossier.find(dossier.id).champs.find(&:referentiel?).update_external_data!(data:)
+    end
+
+    def rows
+      reloaded = Dossier.find(dossier.id)
+      repetition = reloaded.find_type_de_champ_by_stable_id(200)
+      nom, siren = [201, 202].map { reloaded.find_type_de_champ_by_stable_id(it) }
+      reloaded.repetition_row_ids(repetition).map do |row_id|
+        [reloaded.project_champ(nom, row_id:).value, reloaded.project_champ(siren, row_id:).value]
+      end
+    end
+
+    it 'adds no row when the response carries no data' do
+      expect { prefill(nil) }.not_to change { rows }
+    end
+
+    context 'when the API answers a top-level array' do
+      let(:mapping) { { "$.[0].nom" => { prefill: "1", prefill_stable_id: 201 } } }
+
+      it 'adds a row per element' do
+        prefill([{ nom: 'ACME' }, { nom: 'BETA' }])
+
+        expect(rows).to eq([['ACME', nil], ['BETA', nil]])
+      end
+    end
+  end
+
   describe '#fetch_external_data' do
     subject { referentiel_champ.update_external_data!(data:) }
 

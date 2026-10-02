@@ -261,7 +261,7 @@ class Champs::ReferentielChamp < ChampData
   end
 
   def json_elements(data, array_key)
-    Array(JSONPathUtil.on_safe(data.with_indifferent_access, array_key).first).compact_blank
+    Array(JSONPathUtil.on_safe(data, array_key).first).compact_blank
   end
 
   def element_attributes(json_value, array_mappings)
