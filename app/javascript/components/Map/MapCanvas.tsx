@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, type ReactNode } from 'react';
 import type { Feature } from 'geojson';
 import {
   Map,
@@ -17,7 +17,7 @@ import { PortalControl } from './PortalControl';
 import { AttributionControl } from './AttributionControl';
 import { OptionalLayers } from './OptionalLayers';
 import { SelectionsLayer, SELECTIONS_LAYERS } from './SelectionsLayer';
-import { useElementVisible, useMapStyle } from './hooks';
+import { MapStyleIdContext, useElementVisible, useMapStyle } from './hooks';
 import { getBounds } from './geometry';
 import { getMaxZoom } from './camera';
 import {
@@ -43,7 +43,13 @@ type Hovered = {
   latitude: number;
 };
 
-export function MapCanvas({ layers }: { layers: string[] }) {
+export function MapCanvas({
+  layers,
+  children
+}: {
+  layers: string[];
+  children?: ReactNode;
+}) {
   const mapId = useMapId();
   const bounds = useBounds();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -84,6 +90,7 @@ export function MapCanvas({ layers }: { layers: string[] }) {
           </PortalControl>
           <OptionalLayers layers={optionalLayers} />
           <SelectionsLayer />
+          <MapStyleIdContext value={style.id}>{children}</MapStyleIdContext>
           {hovered ? (
             <Popup
               longitude={hovered.longitude}

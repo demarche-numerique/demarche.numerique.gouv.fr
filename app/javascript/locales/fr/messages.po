@@ -28,6 +28,10 @@ msgstr "{area} hectares"
 msgid "{area} m²"
 msgstr "{area} m²"
 
+#: app/javascript/components/Map/DrawLayer.tsx:168
+msgid "Ajouter un point"
+msgstr "Ajouter un point"
+
 #: app/javascript/components/shared/maplibre/StyleControl.tsx:28
 msgid "Carte IGN"
 msgstr "Carte IGN"
@@ -43,6 +47,14 @@ msgstr "Couches"
 #: app/javascript/components/shared/maplibre/StyleControl.tsx:58
 msgid "Couches cartographiques"
 msgstr "Couches cartographiques"
+
+#: app/javascript/components/Map/DrawLayer.tsx:170
+msgid "Dessiner un polygone"
+msgstr "Dessiner un polygone"
+
+#: app/javascript/components/Map/DrawLayer.tsx:171
+msgid "Dessiner un rectangle"
+msgstr "Dessiner un rectangle"
 
 #: app/javascript/components/Map/parcelle.ts:77
 msgid "Feuille {feuille}"
@@ -65,6 +77,10 @@ msgid "Nous ne pouvons pas afficher la carte car elle est incompatible avec "
 msgstr "Nous ne pouvons pas afficher la carte car elle est incompatible avec "
 "votre navigateur. Nous vous conseillons de le mettre à jour ou "
 "d’utiliser <0>un navigateur plus récent</0>."
+
+#: app/javascript/components/Map/DrawLayer.tsx:177
+msgid "Outils de dessin"
+msgstr "Outils de dessin"
 
 #: app/javascript/components/Map/parcelle.ts:74
 msgid "Parcelle n° {numero}"
@@ -90,6 +106,10 @@ msgstr "Satellite"
 msgid "Sélection"
 msgstr "Sélection"
 
+#: app/javascript/components/Map/DrawLayer.tsx:165
+msgid "Sélectionner et modifier une forme"
+msgstr "Sélectionner et modifier une forme"
+
 #: app/javascript/components/shared/maplibre/StyleControl.tsx:37
 msgid "Sélectionner les couches cartographiques"
 msgstr "Sélectionner les couches cartographiques"
@@ -98,6 +118,14 @@ msgstr "Sélectionner les couches cartographiques"
 #: app/javascript/components/react-aria/components/TagGroup.tsx:36
 msgid "Supprimer {0}"
 msgstr "Supprimer {0}"
+
+#: app/javascript/components/Map/DrawLayer.tsx:173
+msgid "Supprimer la forme sélectionnée"
+msgstr "Supprimer la forme sélectionnée"
+
+#: app/javascript/components/Map/DrawLayer.tsx:169
+msgid "Tracer une ligne"
+msgstr "Tracer une ligne"
 
 #: app/javascript/components/shared/maplibre/StyleControl.tsx:27
 msgid "Vectoriel"
