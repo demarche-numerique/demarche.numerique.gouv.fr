@@ -28,6 +28,15 @@ class Champs::RepetitionChamp < ChampData
     dossier.repetition_remove_row(type_de_champ, row_id, updated_by:)
   end
 
+  # A row created by a prefill records the public_id of its source champ.
+  def mark_prefilled_by!(champ)
+    update!(prefilled_original_value: { 'prefilled_by' => champ.public_id })
+  end
+
+  def prefilled_by?(champ)
+    prefilled_original_value&.dig('prefilled_by') == champ.public_id
+  end
+
   def focusable_input_id(attribute = :value)
     rows.last&.flat_children&.first&.focusable_input_id(attribute)
   end
