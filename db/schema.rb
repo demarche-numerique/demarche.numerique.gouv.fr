@@ -901,6 +901,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_08_180000) do
 
   create_table "instructeurs", id: :serial, force: :cascade do |t|
     t.string "agent_connect_id_token"
+    t.boolean "archive_warning_dismissed", default: false, null: false
     t.boolean "bypass_email_login_token", default: false, null: false
     t.datetime "created_at", precision: nil
     t.text "encrypted_login_token"
