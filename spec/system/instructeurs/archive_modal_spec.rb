@@ -65,6 +65,21 @@ describe 'Archive warning modal', js: true do
     expect(dossier_1.reload.archived).to be(false)
   end
 
+  scenario 'batch archiving shows the modal instead of the browser confirm' do
+    suppress_turbo_poll
+    visit instructeur_procedure_path(procedure, statut: 'traites')
+
+    check(dom_id(BatchOperation.new, "checkbox_#{dossier_1.id}"))
+    check(dom_id(BatchOperation.new, "checkbox_#{dossier_2.id}"))
+    open_dsfr_modal('#modal-archive-batch') { click_on 'Déplacer les dossiers dans “à archiver“' }
+    within('#modal-archive-batch') { click_on 'Confirmer' }
+
+    expect(page).to have_content('dossiers sont en cours de déplacement dans « à archiver »')
+    expect(BatchOperation.last.operation).to eq('archiver')
+    expect(BatchOperation.last.dossiers).to match_array([dossier_1, dossier_2])
+    expect(instructeur.reload.archive_warning_dismissed).to be(false)
+  end
+
   def log_in(email, password)
     visit new_user_session_path
     expect(page).to have_current_path(new_user_session_path)

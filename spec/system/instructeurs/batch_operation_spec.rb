@@ -34,9 +34,8 @@ describe 'BatchOperation a dossier:', js: true do
 
       # ensure batch is created
 
-      accept_alert do
-        click_on "Déplacer les dossiers dans “à archiver“"
-      end
+      open_dsfr_modal('#modal-archive-batch') { click_on "Déplacer les dossiers dans “à archiver“" }
+      within('#modal-archive-batch') { click_on 'Confirmer' }
 
       # ensure batched dossier is disabled
       expect(page).to have_selector("##{checkbox_id}[disabled]")
@@ -85,9 +84,8 @@ describe 'BatchOperation a dossier:', js: true do
       end
 
       # submit checkall
-      accept_alert do
-        click_on "Déplacer les dossiers dans “à archiver“"
-      end
+      open_dsfr_modal('#modal-archive-batch') { click_on "Déplacer les dossiers dans “à archiver“" }
+      within('#modal-archive-batch') { click_on 'Confirmer' }
 
       # reload
       visit instructeur_procedure_path(procedure, statut: 'traites')
