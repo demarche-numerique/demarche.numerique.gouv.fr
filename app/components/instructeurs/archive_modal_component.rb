@@ -29,7 +29,7 @@ class Instructeurs::ArchiveModalComponent < ApplicationComponent
 
   def form_options
     if batch?
-      { url: instructeur_batch_operations_path(procedure_id: procedure.id), method: :post, data: { 'batch-operation-target': 'archiveForm' } }
+      { url: instructeur_batch_operations_path(procedure_id: procedure.id), method: :post, data: { turbo: true, 'batch-operation-target': 'archiveForm' } }
     else
       { url: '', method: :patch, authenticity_token: helpers.form_authenticity_token }
     end

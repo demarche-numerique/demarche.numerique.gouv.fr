@@ -19,6 +19,7 @@ RSpec.describe Instructeurs::ArchiveModalComponent, type: :component do
       expect(subject).to have_selector('label[for="modal-archive-dismiss"]', text: 'Ne plus afficher cette information', visible: :all)
       expect(subject).to have_selector('button[type="button"][aria-controls="modal-archive"]', text: 'Annuler', visible: :all)
       expect(subject).to have_selector('button[type="submit"]', text: 'Confirmer', visible: :all)
+      expect(subject).to have_no_selector('form[data-turbo]', visible: :all)
     end
   end
 
@@ -28,7 +29,7 @@ RSpec.describe Instructeurs::ArchiveModalComponent, type: :component do
     it 'posts the archiver operation to the batch endpoint with its own ids' do
       batch_path = Rails.application.routes.url_helpers.instructeur_batch_operations_path(procedure_id: procedure.id)
 
-      expect(subject).to have_selector("dialog#modal-archive-batch form[action='#{batch_path}'][data-batch-operation-target='archiveForm']", visible: :all)
+      expect(subject).to have_selector("dialog#modal-archive-batch form[action='#{batch_path}'][data-turbo='true'][data-batch-operation-target='archiveForm']", visible: :all)
       expect(subject).to have_selector('input[name="batch_operation[operation]"][value="archiver"]', visible: :all)
       expect(subject).to have_selector('h1#modal-archive-batch-title', visible: :all)
       expect(subject).to have_selector('input#modal-archive-batch-dismiss', visible: :all)
