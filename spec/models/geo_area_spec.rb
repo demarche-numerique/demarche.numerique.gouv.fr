@@ -204,6 +204,20 @@ RSpec.describe GeoArea, type: :model do
       end
     end
 
+    context "when geo is an RPG parcelle" do
+      let(:geo_area) { build(:geo_area, :polygon, source: :rpg, properties: { id: '1234' }, champ_data: nil) }
+
+      it "gives its surface in hectares, decimals included" do
+        expect(geo_area.label).to eq("Parcelle n°\u00A01234 – 0,01\u00A0hectares")
+      end
+
+      it "gives a whole number of hectares without decimals" do
+        geo_area.properties['contenance'] = 20_000
+
+        expect(geo_area.label).to eq("Parcelle n°\u00A01234 – 2\u00A0hectares")
+      end
+    end
+
     context "when geo is a point" do
       let(:geo_area) { build(:geo_area, :selection_utilisateur, :point, champ_data: nil) }
       it "should return the label" do
@@ -221,7 +235,21 @@ RSpec.describe GeoArea, type: :model do
     context "when geo is a cadastre parcelle" do
       let(:geo_area) { build(:geo_area, :selection_utilisateur, :cadastre, champ_data: nil) }
       it "should return the label" do
-        expect(geo_area.label).to eq("Parcelle n° 42 - Feuille 000 A11 - 123 m² – commune 75127")
+        expect(geo_area.label).to eq("Parcelle n°\u00A042 – Feuille 000\u00A0A11 – 123\u00A0m² – commune 75127")
+      end
+
+      it "groups the thousands of its surface" do
+        geo_area.properties['contenance'] = 12345.6
+
+        expect(geo_area.label).to include(" – 12 346\u00A0m² – ")
+      end
+
+      context "when it predates the cadastre API" do
+        let(:geo_area) { build(:geo_area, :legacy_cadastre, champ_data: nil) }
+
+        it "should return the label" do
+          expect(geo_area.label).to eq("Parcelle n°\u00A042 – Feuille 000\u00A0A11 – 1 234\u00A0m² – commune 75127")
+        end
       end
 
       context "when area is nil" do
@@ -229,8 +257,8 @@ RSpec.describe GeoArea, type: :model do
 
         before { allow(geo_area).to receive(:area).and_return(nil) }
 
-        it "should not crash" do
-          expect(geo_area.label).to eq("Parcelle n°  - Feuille   -  m² – commune ")
+        it "leaves out what it does not know" do
+          expect(geo_area.label).to eq("Parcelle cadastrale")
         end
       end
     end
