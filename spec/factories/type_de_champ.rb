@@ -25,6 +25,11 @@ FactoryBot.define do
     end
 
     after(:build) do |type_de_champ, evaluator|
+      # A type de champ always belongs to a procedure. Without one given, it
+      # belongs to a seeded procedure without being laid out there: its
+      # coordinate goes to a revision of its own.
+      type_de_champ.procedure ||= Oaken::Seeds.procedures.close
+
       if !evaluator.no_coordinate
         revision = evaluator.procedure&.active_revision || build(:procedure_revision)
         evaluator.procedure&.save
