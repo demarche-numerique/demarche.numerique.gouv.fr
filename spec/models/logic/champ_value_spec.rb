@@ -158,10 +158,10 @@ describe Logic::ChampValue do
     context 'commune tdc' do
       let(:tdc_type) { :communes }
       let(:champ) do
-        Champs::CommuneChamp.new(code_postal:, external_id:, stable_id: tdc.stable_id, dossier:)
+        Champs::CommuneChamp.new(postal_code:, external_id:, stable_id: tdc.stable_id, dossier:)
           .tap { |c| c.send(:on_codes_change) } # private method called before save to fill value, which is required for compute
       end
-      let(:code_postal) { '92500' }
+      let(:postal_code) { '92500' }
       let(:external_id) { '92063' }
 
       it do
@@ -172,10 +172,10 @@ describe Logic::ChampValue do
     context 'epci tdc' do
       let(:tdc_type) { :epci }
       let(:champ) do
-        Champs::EpciChamp.new(code_departement:, external_id:, stable_id: tdc.stable_id, dossier:)
+        Champs::EpciChamp.new(department_code:, external_id:, stable_id: tdc.stable_id, dossier:)
           .tap { |c| c.send(:on_epci_name_changes) } # private method called before save to fill value, which is required for compute
       end
-      let(:code_departement) { '43' }
+      let(:department_code) { '43' }
       let(:external_id) { '244301016' }
 
       it { is_expected.to eq({ department_code: '43', region_code: '84' }) }

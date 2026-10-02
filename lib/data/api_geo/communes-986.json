@@ -2,21 +2,21 @@
   {
     "name": "Alo",
     "code": "98611",
-    "departement_code": "986",
+    "department_code": "986",
     "region_code": "986",
     "postal_code": "98610"
   },
   {
     "name": "Sigave",
     "code": "98612",
-    "departement_code": "986",
+    "department_code": "986",
     "region_code": "986",
     "postal_code": "98620"
   },
   {
     "name": "Uvea",
     "code": "98613",
-    "departement_code": "986",
+    "department_code": "986",
     "region_code": "986",
     "postal_code": "98600"
   }

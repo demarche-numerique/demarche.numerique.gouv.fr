@@ -16,15 +16,6 @@ class Champs::AddressChamp < Champs::TextChamp
 
   before_validation :set_full_address, if: :should_set_full_address?, on: :update
 
-  # Legacy attributes
-  def code_departement
-    department_code
-  end
-
-  def code_region
-    region_code
-  end
-
   def full_address?
     if france?
       city_code.present? && street_address.present?
@@ -252,7 +243,7 @@ class Champs::AddressChamp < Champs::TextChamp
     end
   end
 
-  def condition_value = { department_code: code_departement, region_code: code_region }
+  def condition_value = { department_code:, region_code: }
 
   private
 

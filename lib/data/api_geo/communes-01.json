@@ -3,7 +3,7 @@
     "name": "L’Abergement-Clémenciat",
     "code": "01001",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01400"
   },
@@ -11,7 +11,7 @@
     "name": "L’Abergement-de-Varey",
     "code": "01002",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01640"
   },
@@ -19,7 +19,7 @@
     "name": "Ambérieu-en-Bugey",
     "code": "01004",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01500"
   },
@@ -27,7 +27,7 @@
     "name": "Ambérieux-en-Dombes",
     "code": "01005",
     "epci_code": "200042497",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01330"
   },
@@ -35,7 +35,7 @@
     "name": "Ambléon",
     "code": "01006",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01300"
   },
@@ -43,7 +43,7 @@
     "name": "Ambronay",
     "code": "01007",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01500"
   },
@@ -51,7 +51,7 @@
     "name": "Ambutrix",
     "code": "01008",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01500"
   },
@@ -59,7 +59,7 @@
     "name": "Andert-et-Condon",
     "code": "01009",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01300"
   },
@@ -67,7 +67,7 @@
     "name": "Anglefort",
     "code": "01010",
     "epci_code": "200070852",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01350"
   },
@@ -75,7 +75,7 @@
     "name": "Apremont",
     "code": "01011",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01100"
   },
@@ -83,7 +83,7 @@
     "name": "Aranc",
     "code": "01012",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01110"
   },
@@ -91,7 +91,7 @@
     "name": "Arandas",
     "code": "01013",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01230"
   },
@@ -99,7 +99,7 @@
     "name": "Arbent",
     "code": "01014",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01100"
   },
@@ -107,7 +107,7 @@
     "name": "Arboys en Bugey",
     "code": "01015",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01300"
   },
@@ -115,7 +115,7 @@
     "name": "Arbigny",
     "code": "01016",
     "epci_code": "200071371",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01190"
   },
@@ -123,7 +123,7 @@
     "name": "Argis",
     "code": "01017",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01230"
   },
@@ -131,7 +131,7 @@
     "name": "Armix",
     "code": "01019",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01510"
   },
@@ -139,7 +139,7 @@
     "name": "Ars-sur-Formans",
     "code": "01021",
     "epci_code": "200042497",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01480"
   },
@@ -147,7 +147,7 @@
     "name": "Artemare",
     "code": "01022",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01510"
   },
@@ -155,7 +155,7 @@
     "name": "Asnières-sur-Saône",
     "code": "01023",
     "epci_code": "200071371",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01570"
   },
@@ -163,7 +163,7 @@
     "name": "Attignat",
     "code": "01024",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01340"
   },
@@ -171,7 +171,7 @@
     "name": "Bâgé-Dommartin",
     "code": "01025",
     "epci_code": "200071371",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01380"
   },
@@ -179,7 +179,7 @@
     "name": "Bâgé-le-Châtel",
     "code": "01026",
     "epci_code": "200071371",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01380"
   },
@@ -187,7 +187,7 @@
     "name": "Balan",
     "code": "01027",
     "epci_code": "240100610",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01360"
   },
@@ -195,7 +195,7 @@
     "name": "Baneins",
     "code": "01028",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01990"
   },
@@ -203,7 +203,7 @@
     "name": "Beaupont",
     "code": "01029",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01270"
   },
@@ -211,7 +211,7 @@
     "name": "Beauregard",
     "code": "01030",
     "epci_code": "200042497",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01480"
   },
@@ -219,7 +219,7 @@
     "name": "Bellignat",
     "code": "01031",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01100"
   },
@@ -227,7 +227,7 @@
     "name": "Béligneux",
     "code": "01032",
     "epci_code": "240100610",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01360"
   },
@@ -235,7 +235,7 @@
     "name": "Valserhône",
     "code": "01033",
     "epci_code": "240100891",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01200"
   },
@@ -243,7 +243,7 @@
     "name": "Belley",
     "code": "01034",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01300"
   },
@@ -251,7 +251,7 @@
     "name": "Belleydoux",
     "code": "01035",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01130"
   },
@@ -259,7 +259,7 @@
     "name": "Valromey-sur-Séran",
     "code": "01036",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01260"
   },
@@ -267,7 +267,7 @@
     "name": "Bénonces",
     "code": "01037",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01470"
   },
@@ -275,7 +275,7 @@
     "name": "Bény",
     "code": "01038",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01370"
   },
@@ -283,7 +283,7 @@
     "name": "Béréziat",
     "code": "01040",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01340"
   },
@@ -291,7 +291,7 @@
     "name": "Bettant",
     "code": "01041",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01500"
   },
@@ -299,7 +299,7 @@
     "name": "Bey",
     "code": "01042",
     "epci_code": "200070555",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01290"
   },
@@ -307,7 +307,7 @@
     "name": "Beynost",
     "code": "01043",
     "epci_code": "240100800",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01700"
   },
@@ -315,7 +315,7 @@
     "name": "Billiat",
     "code": "01044",
     "epci_code": "240100891",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01200"
   },
@@ -323,7 +323,7 @@
     "name": "Birieux",
     "code": "01045",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01330"
   },
@@ -331,7 +331,7 @@
     "name": "Biziat",
     "code": "01046",
     "epci_code": "200070555",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01290"
   },
@@ -339,7 +339,7 @@
     "name": "Blyes",
     "code": "01047",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01150"
   },
@@ -347,7 +347,7 @@
     "name": "La Boisse",
     "code": "01049",
     "epci_code": "240100610",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01120"
   },
@@ -355,7 +355,7 @@
     "name": "Boissey",
     "code": "01050",
     "epci_code": "200071371",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01190"
   },
@@ -363,7 +363,7 @@
     "name": "Boissey",
     "code": "01050",
     "epci_code": "200071371",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01380"
   },
@@ -371,7 +371,7 @@
     "name": "Bolozon",
     "code": "01051",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01450"
   },
@@ -379,7 +379,7 @@
     "name": "Bouligneux",
     "code": "01052",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01330"
   },
@@ -387,7 +387,7 @@
     "name": "Bourg-en-Bresse",
     "code": "01053",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01000"
   },
@@ -395,7 +395,7 @@
     "name": "Bourg-Saint-Christophe",
     "code": "01054",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01800"
   },
@@ -403,7 +403,7 @@
     "name": "Boyeux-Saint-Jérôme",
     "code": "01056",
     "epci_code": "200029999",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01640"
   },
@@ -411,7 +411,7 @@
     "name": "Boz",
     "code": "01057",
     "epci_code": "200071371",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01190"
   },
@@ -419,7 +419,7 @@
     "name": "Brégnier-Cordon",
     "code": "01058",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01300"
   },
@@ -427,7 +427,7 @@
     "name": "Brénod",
     "code": "01060",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01110"
   },
@@ -435,7 +435,7 @@
     "name": "Brens",
     "code": "01061",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01300"
   },
@@ -443,7 +443,7 @@
     "name": "Bressolles",
     "code": "01062",
     "epci_code": "240100610",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01360"
   },
@@ -451,7 +451,7 @@
     "name": "Brion",
     "code": "01063",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01460"
   },
@@ -459,7 +459,7 @@
     "name": "Briord",
     "code": "01064",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01470"
   },
@@ -467,7 +467,7 @@
     "name": "Buellas",
     "code": "01065",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01310"
   },
@@ -475,7 +475,7 @@
     "name": "La Burbanche",
     "code": "01066",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01510"
   },
@@ -483,7 +483,7 @@
     "name": "Ceignes",
     "code": "01067",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01430"
   },
@@ -491,7 +491,7 @@
     "name": "Cerdon",
     "code": "01068",
     "epci_code": "200029999",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01450"
   },
@@ -499,7 +499,7 @@
     "name": "Certines",
     "code": "01069",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01240"
   },
@@ -507,7 +507,7 @@
     "name": "Cessy",
     "code": "01071",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01170"
   },
@@ -515,7 +515,7 @@
     "name": "Ceyzériat",
     "code": "01072",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01250"
   },
@@ -523,7 +523,7 @@
     "name": "Ceyzérieu",
     "code": "01073",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01350"
   },
@@ -531,7 +531,7 @@
     "name": "Chalamont",
     "code": "01074",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01320"
   },
@@ -539,7 +539,7 @@
     "name": "Chaleins",
     "code": "01075",
     "epci_code": "200070118",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01480"
   },
@@ -547,7 +547,7 @@
     "name": "Chaley",
     "code": "01076",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01230"
   },
@@ -555,7 +555,7 @@
     "name": "Challes-la-Montagne",
     "code": "01077",
     "epci_code": "200029999",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01450"
   },
@@ -563,7 +563,7 @@
     "name": "Challex",
     "code": "01078",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01630"
   },
@@ -571,7 +571,7 @@
     "name": "Champagne-en-Valromey",
     "code": "01079",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01260"
   },
@@ -579,7 +579,7 @@
     "name": "Champdor-Corcelles",
     "code": "01080",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01110"
   },
@@ -587,7 +587,7 @@
     "name": "Champfromier",
     "code": "01081",
     "epci_code": "240100891",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01410"
   },
@@ -595,7 +595,7 @@
     "name": "Chanay",
     "code": "01082",
     "epci_code": "240100891",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01420"
   },
@@ -603,7 +603,7 @@
     "name": "Chaneins",
     "code": "01083",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01990"
   },
@@ -611,7 +611,7 @@
     "name": "Chanoz-Châtenay",
     "code": "01084",
     "epci_code": "200070555",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01400"
   },
@@ -619,7 +619,7 @@
     "name": "La Chapelle-du-Châtelard",
     "code": "01085",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01240"
   },
@@ -627,7 +627,7 @@
     "name": "Charix",
     "code": "01087",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01130"
   },
@@ -635,7 +635,7 @@
     "name": "Charnoz-sur-Ain",
     "code": "01088",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01800"
   },
@@ -643,7 +643,7 @@
     "name": "Château-Gaillard",
     "code": "01089",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01500"
   },
@@ -651,7 +651,7 @@
     "name": "Châtenay",
     "code": "01090",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01320"
   },
@@ -659,7 +659,7 @@
     "name": "Châtillon-la-Palud",
     "code": "01092",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01320"
   },
@@ -667,7 +667,7 @@
     "name": "Châtillon-sur-Chalaronne",
     "code": "01093",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01400"
   },
@@ -675,7 +675,7 @@
     "name": "Chavannes-sur-Reyssouze",
     "code": "01094",
     "epci_code": "200071371",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01190"
   },
@@ -683,7 +683,7 @@
     "name": "Nivigne et Suran",
     "code": "01095",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01250"
   },
@@ -691,7 +691,7 @@
     "name": "Chaveyriat",
     "code": "01096",
     "epci_code": "200070555",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01660"
   },
@@ -699,7 +699,7 @@
     "name": "Chazey-Bons",
     "code": "01098",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01300"
   },
@@ -707,7 +707,7 @@
     "name": "Chazey-Bons",
     "code": "01098",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01510"
   },
@@ -715,7 +715,7 @@
     "name": "Chazey-sur-Ain",
     "code": "01099",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01150"
   },
@@ -723,7 +723,7 @@
     "name": "Cheignieu-la-Balme",
     "code": "01100",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01510"
   },
@@ -731,7 +731,7 @@
     "name": "Chevillard",
     "code": "01101",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01430"
   },
@@ -739,7 +739,7 @@
     "name": "Chevroux",
     "code": "01102",
     "epci_code": "200071371",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01190"
   },
@@ -747,7 +747,7 @@
     "name": "Chevry",
     "code": "01103",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01170"
   },
@@ -755,7 +755,7 @@
     "name": "Chézery-Forens",
     "code": "01104",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01200"
   },
@@ -763,7 +763,7 @@
     "name": "Chézery-Forens",
     "code": "01104",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01410"
   },
@@ -771,7 +771,7 @@
     "name": "Civrieux",
     "code": "01105",
     "epci_code": "200042497",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01390"
   },
@@ -779,7 +779,7 @@
     "name": "Cize",
     "code": "01106",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01250"
   },
@@ -787,7 +787,7 @@
     "name": "Cleyzieu",
     "code": "01107",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01230"
   },
@@ -795,7 +795,7 @@
     "name": "Coligny",
     "code": "01108",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01270"
   },
@@ -803,7 +803,7 @@
     "name": "Collonges",
     "code": "01109",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01550"
   },
@@ -811,7 +811,7 @@
     "name": "Colomieu",
     "code": "01110",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01300"
   },
@@ -819,7 +819,7 @@
     "name": "Conand",
     "code": "01111",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01230"
   },
@@ -827,7 +827,7 @@
     "name": "Condamine",
     "code": "01112",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01430"
   },
@@ -835,7 +835,7 @@
     "name": "Condeissiat",
     "code": "01113",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01400"
   },
@@ -843,7 +843,7 @@
     "name": "Confort",
     "code": "01114",
     "epci_code": "240100891",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01200"
   },
@@ -851,7 +851,7 @@
     "name": "Confrançon",
     "code": "01115",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01310"
   },
@@ -859,7 +859,7 @@
     "name": "Contrevoz",
     "code": "01116",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01300"
   },
@@ -867,7 +867,7 @@
     "name": "Conzieu",
     "code": "01117",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01300"
   },
@@ -875,7 +875,7 @@
     "name": "Corbonod",
     "code": "01118",
     "epci_code": "200070852",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01420"
   },
@@ -883,7 +883,7 @@
     "name": "Corlier",
     "code": "01121",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01110"
   },
@@ -891,7 +891,7 @@
     "name": "Cormoranche-sur-Saône",
     "code": "01123",
     "epci_code": "200070555",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01290"
   },
@@ -899,7 +899,7 @@
     "name": "Cormoz",
     "code": "01124",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01560"
   },
@@ -907,7 +907,7 @@
     "name": "Corveissiat",
     "code": "01125",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01250"
   },
@@ -915,7 +915,7 @@
     "name": "Courmangoux",
     "code": "01127",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01370"
   },
@@ -923,7 +923,7 @@
     "name": "Courtes",
     "code": "01128",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01560"
   },
@@ -931,7 +931,7 @@
     "name": "Crans",
     "code": "01129",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01320"
   },
@@ -939,7 +939,7 @@
     "name": "Bresse Vallons",
     "code": "01130",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01340"
   },
@@ -947,7 +947,7 @@
     "name": "Cressin-Rochefort",
     "code": "01133",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01350"
   },
@@ -955,7 +955,7 @@
     "name": "Crottet",
     "code": "01134",
     "epci_code": "200070555",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01290"
   },
@@ -963,7 +963,7 @@
     "name": "Crottet",
     "code": "01134",
     "epci_code": "200070555",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01750"
   },
@@ -971,7 +971,7 @@
     "name": "Crozet",
     "code": "01135",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01170"
   },
@@ -979,7 +979,7 @@
     "name": "Cruzilles-lès-Mépillat",
     "code": "01136",
     "epci_code": "200070555",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01290"
   },
@@ -987,7 +987,7 @@
     "name": "Culoz-Béon",
     "code": "01138",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01350"
   },
@@ -995,7 +995,7 @@
     "name": "Curciat-Dongalon",
     "code": "01139",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01560"
   },
@@ -1003,7 +1003,7 @@
     "name": "Curtafond",
     "code": "01140",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01310"
   },
@@ -1011,7 +1011,7 @@
     "name": "Cuzieu",
     "code": "01141",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01300"
   },
@@ -1019,7 +1019,7 @@
     "name": "Dagneux",
     "code": "01142",
     "epci_code": "240100610",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01120"
   },
@@ -1027,7 +1027,7 @@
     "name": "Divonne-les-Bains",
     "code": "01143",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01220"
   },
@@ -1035,7 +1035,7 @@
     "name": "Dompierre-sur-Veyle",
     "code": "01145",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01240"
   },
@@ -1043,7 +1043,7 @@
     "name": "Dompierre-sur-Chalaronne",
     "code": "01146",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01400"
   },
@@ -1051,7 +1051,7 @@
     "name": "Domsure",
     "code": "01147",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01270"
   },
@@ -1059,7 +1059,7 @@
     "name": "Dortan",
     "code": "01148",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01590"
   },
@@ -1067,7 +1067,7 @@
     "name": "Douvres",
     "code": "01149",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01500"
   },
@@ -1075,7 +1075,7 @@
     "name": "Drom",
     "code": "01150",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01250"
   },
@@ -1083,7 +1083,7 @@
     "name": "Druillat",
     "code": "01151",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01160"
   },
@@ -1091,7 +1091,7 @@
     "name": "Échallon",
     "code": "01152",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01130"
   },
@@ -1099,7 +1099,7 @@
     "name": "Échenevex",
     "code": "01153",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01170"
   },
@@ -1107,7 +1107,7 @@
     "name": "Évosges",
     "code": "01155",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01230"
   },
@@ -1115,7 +1115,7 @@
     "name": "Faramans",
     "code": "01156",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01800"
   },
@@ -1123,7 +1123,7 @@
     "name": "Fareins",
     "code": "01157",
     "epci_code": "200042497",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01480"
   },
@@ -1131,7 +1131,7 @@
     "name": "Farges",
     "code": "01158",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01550"
   },
@@ -1139,7 +1139,7 @@
     "name": "Feillens",
     "code": "01159",
     "epci_code": "200071371",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01570"
   },
@@ -1147,7 +1147,7 @@
     "name": "Ferney-Voltaire",
     "code": "01160",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01210"
   },
@@ -1155,7 +1155,7 @@
     "name": "Flaxieu",
     "code": "01162",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01350"
   },
@@ -1163,7 +1163,7 @@
     "name": "Foissiat",
     "code": "01163",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01340"
   },
@@ -1171,7 +1171,7 @@
     "name": "Francheleins",
     "code": "01165",
     "epci_code": "200070118",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01090"
   },
@@ -1179,7 +1179,7 @@
     "name": "Frans",
     "code": "01166",
     "epci_code": "200042497",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01480"
   },
@@ -1187,7 +1187,7 @@
     "name": "Garnerans",
     "code": "01167",
     "epci_code": "200070118",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01140"
   },
@@ -1195,7 +1195,7 @@
     "name": "Genouilleux",
     "code": "01169",
     "epci_code": "200070118",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01090"
   },
@@ -1203,7 +1203,7 @@
     "name": "Béard-Géovreissiat",
     "code": "01170",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01460"
   },
@@ -1211,7 +1211,7 @@
     "name": "Géovreisset",
     "code": "01171",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01100"
   },
@@ -1219,7 +1219,7 @@
     "name": "Gex",
     "code": "01173",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01170"
   },
@@ -1227,7 +1227,7 @@
     "name": "Giron",
     "code": "01174",
     "epci_code": "240100891",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01130"
   },
@@ -1235,7 +1235,7 @@
     "name": "Gorrevod",
     "code": "01175",
     "epci_code": "200071371",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01190"
   },
@@ -1243,7 +1243,7 @@
     "name": "Grand-Corent",
     "code": "01177",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01250"
   },
@@ -1251,7 +1251,7 @@
     "name": "Grièges",
     "code": "01179",
     "epci_code": "200070555",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01290"
   },
@@ -1259,7 +1259,7 @@
     "name": "Grilly",
     "code": "01180",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01220"
   },
@@ -1267,7 +1267,7 @@
     "name": "Groissiat",
     "code": "01181",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01100"
   },
@@ -1275,7 +1275,7 @@
     "name": "Guéreins",
     "code": "01183",
     "epci_code": "200070118",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01090"
   },
@@ -1283,7 +1283,7 @@
     "name": "Hautecourt-Romanèche",
     "code": "01184",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01250"
   },
@@ -1291,7 +1291,7 @@
     "name": "Plateau d’Hauteville",
     "code": "01185",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01110"
   },
@@ -1299,7 +1299,7 @@
     "name": "Haut Valromey",
     "code": "01187",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01260"
   },
@@ -1307,7 +1307,7 @@
     "name": "Illiat",
     "code": "01188",
     "epci_code": "200070118",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01140"
   },
@@ -1315,7 +1315,7 @@
     "name": "Injoux-Génissiat",
     "code": "01189",
     "epci_code": "240100891",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01200"
   },
@@ -1323,7 +1323,7 @@
     "name": "Innimond",
     "code": "01190",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01680"
   },
@@ -1331,7 +1331,7 @@
     "name": "Izenave",
     "code": "01191",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01430"
   },
@@ -1339,7 +1339,7 @@
     "name": "Izernore",
     "code": "01192",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01580"
   },
@@ -1347,7 +1347,7 @@
     "name": "Izieu",
     "code": "01193",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01300"
   },
@@ -1355,7 +1355,7 @@
     "name": "Jassans-Riottier",
     "code": "01194",
     "epci_code": "200040590",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01480"
   },
@@ -1363,7 +1363,7 @@
     "name": "Jasseron",
     "code": "01195",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01250"
   },
@@ -1371,7 +1371,7 @@
     "name": "Jayat",
     "code": "01196",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01340"
   },
@@ -1379,7 +1379,7 @@
     "name": "Journans",
     "code": "01197",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01250"
   },
@@ -1387,7 +1387,7 @@
     "name": "Joyeux",
     "code": "01198",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01800"
   },
@@ -1395,7 +1395,7 @@
     "name": "Jujurieux",
     "code": "01199",
     "epci_code": "200029999",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01640"
   },
@@ -1403,7 +1403,7 @@
     "name": "Labalme",
     "code": "01200",
     "epci_code": "200029999",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01450"
   },
@@ -1411,7 +1411,7 @@
     "name": "Lagnieu",
     "code": "01202",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01150"
   },
@@ -1419,7 +1419,7 @@
     "name": "Laiz",
     "code": "01203",
     "epci_code": "200070555",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01290"
   },
@@ -1427,7 +1427,7 @@
     "name": "Le Poizat-Lalleyriat",
     "code": "01204",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01130"
   },
@@ -1435,7 +1435,7 @@
     "name": "Lantenay",
     "code": "01206",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01430"
   },
@@ -1443,7 +1443,7 @@
     "name": "Lapeyrouse",
     "code": "01207",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01330"
   },
@@ -1451,7 +1451,7 @@
     "name": "Lavours",
     "code": "01208",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01350"
   },
@@ -1459,7 +1459,7 @@
     "name": "Léaz",
     "code": "01209",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01200"
   },
@@ -1467,7 +1467,7 @@
     "name": "Lélex",
     "code": "01210",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01410"
   },
@@ -1475,7 +1475,7 @@
     "name": "Lent",
     "code": "01211",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01240"
   },
@@ -1483,7 +1483,7 @@
     "name": "Lescheroux",
     "code": "01212",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01560"
   },
@@ -1491,7 +1491,7 @@
     "name": "Leyment",
     "code": "01213",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01150"
   },
@@ -1499,7 +1499,7 @@
     "name": "Leyssard",
     "code": "01214",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01450"
   },
@@ -1507,7 +1507,7 @@
     "name": "Surjoux-Lhopital",
     "code": "01215",
     "epci_code": "240100891",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01420"
   },
@@ -1515,7 +1515,7 @@
     "name": "Lhuis",
     "code": "01216",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01680"
   },
@@ -1523,7 +1523,7 @@
     "name": "Lompnas",
     "code": "01219",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01680"
   },
@@ -1531,7 +1531,7 @@
     "name": "Loyettes",
     "code": "01224",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01360"
   },
@@ -1539,7 +1539,7 @@
     "name": "Lurcy",
     "code": "01225",
     "epci_code": "200070118",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01090"
   },
@@ -1547,7 +1547,7 @@
     "name": "Magnieu",
     "code": "01227",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01300"
   },
@@ -1555,7 +1555,7 @@
     "name": "Maillat",
     "code": "01228",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01430"
   },
@@ -1563,7 +1563,7 @@
     "name": "Malafretaz",
     "code": "01229",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01340"
   },
@@ -1571,7 +1571,7 @@
     "name": "Mantenay-Montlin",
     "code": "01230",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01560"
   },
@@ -1579,7 +1579,7 @@
     "name": "Manziat",
     "code": "01231",
     "epci_code": "200071371",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01570"
   },
@@ -1587,7 +1587,7 @@
     "name": "Marboz",
     "code": "01232",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01851"
   },
@@ -1595,7 +1595,7 @@
     "name": "Marchamp",
     "code": "01233",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01680"
   },
@@ -1603,7 +1603,7 @@
     "name": "Marignieu",
     "code": "01234",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01300"
   },
@@ -1611,7 +1611,7 @@
     "name": "Marlieux",
     "code": "01235",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01240"
   },
@@ -1619,7 +1619,7 @@
     "name": "Marsonnas",
     "code": "01236",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01340"
   },
@@ -1627,7 +1627,7 @@
     "name": "Martignat",
     "code": "01237",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01100"
   },
@@ -1635,7 +1635,7 @@
     "name": "Massieux",
     "code": "01238",
     "epci_code": "200042497",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01600"
   },
@@ -1643,7 +1643,7 @@
     "name": "Massignieu-de-Rives",
     "code": "01239",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01300"
   },
@@ -1651,7 +1651,7 @@
     "name": "Matafelon-Granges",
     "code": "01240",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01580"
   },
@@ -1659,7 +1659,7 @@
     "name": "Meillonnas",
     "code": "01241",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01370"
   },
@@ -1667,7 +1667,7 @@
     "name": "Mérignat",
     "code": "01242",
     "epci_code": "200029999",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01450"
   },
@@ -1675,7 +1675,7 @@
     "name": "Messimy-sur-Saône",
     "code": "01243",
     "epci_code": "200070118",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01480"
   },
@@ -1683,7 +1683,7 @@
     "name": "Meximieux",
     "code": "01244",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01800"
   },
@@ -1691,7 +1691,7 @@
     "name": "Bohas-Meyriat-Rignat",
     "code": "01245",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01250"
   },
@@ -1699,7 +1699,7 @@
     "name": "Mézériat",
     "code": "01246",
     "epci_code": "200070555",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01660"
   },
@@ -1707,7 +1707,7 @@
     "name": "Mijoux",
     "code": "01247",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01170"
   },
@@ -1715,7 +1715,7 @@
     "name": "Mijoux",
     "code": "01247",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01410"
   },
@@ -1723,7 +1723,7 @@
     "name": "Mionnay",
     "code": "01248",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01390"
   },
@@ -1731,7 +1731,7 @@
     "name": "Miribel",
     "code": "01249",
     "epci_code": "240100800",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01700"
   },
@@ -1739,7 +1739,7 @@
     "name": "Misérieux",
     "code": "01250",
     "epci_code": "200042497",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01600"
   },
@@ -1747,7 +1747,7 @@
     "name": "Mogneneins",
     "code": "01252",
     "epci_code": "200070118",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01140"
   },
@@ -1755,7 +1755,7 @@
     "name": "Montagnat",
     "code": "01254",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01250"
   },
@@ -1763,7 +1763,7 @@
     "name": "Montagnieu",
     "code": "01255",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01470"
   },
@@ -1771,7 +1771,7 @@
     "name": "Montanges",
     "code": "01257",
     "epci_code": "240100891",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01200"
   },
@@ -1779,7 +1779,7 @@
     "name": "Montceaux",
     "code": "01258",
     "epci_code": "200070118",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01090"
   },
@@ -1787,7 +1787,7 @@
     "name": "Montcet",
     "code": "01259",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01310"
   },
@@ -1795,7 +1795,7 @@
     "name": "Le Montellier",
     "code": "01260",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01800"
   },
@@ -1803,7 +1803,7 @@
     "name": "Monthieux",
     "code": "01261",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01390"
   },
@@ -1811,7 +1811,7 @@
     "name": "Montluel",
     "code": "01262",
     "epci_code": "240100610",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01120"
   },
@@ -1819,7 +1819,7 @@
     "name": "Montmerle-sur-Saône",
     "code": "01263",
     "epci_code": "200070118",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01090"
   },
@@ -1827,7 +1827,7 @@
     "name": "Montracol",
     "code": "01264",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01310"
   },
@@ -1835,7 +1835,7 @@
     "name": "Montréal-la-Cluse",
     "code": "01265",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01460"
   },
@@ -1843,7 +1843,7 @@
     "name": "Montrevel-en-Bresse",
     "code": "01266",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01340"
   },
@@ -1851,7 +1851,7 @@
     "name": "Nurieux-Volognat",
     "code": "01267",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01460"
   },
@@ -1859,7 +1859,7 @@
     "name": "Murs-et-Gélignieux",
     "code": "01268",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01300"
   },
@@ -1867,7 +1867,7 @@
     "name": "Nantua",
     "code": "01269",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01130"
   },
@@ -1875,7 +1875,7 @@
     "name": "Nantua",
     "code": "01269",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01460"
   },
@@ -1883,7 +1883,7 @@
     "name": "Neuville-les-Dames",
     "code": "01272",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01400"
   },
@@ -1891,7 +1891,7 @@
     "name": "Neuville-sur-Ain",
     "code": "01273",
     "epci_code": "200029999",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01160"
   },
@@ -1899,7 +1899,7 @@
     "name": "Les Neyrolles",
     "code": "01274",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01130"
   },
@@ -1907,7 +1907,7 @@
     "name": "Neyron",
     "code": "01275",
     "epci_code": "240100800",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01700"
   },
@@ -1915,7 +1915,7 @@
     "name": "Niévroz",
     "code": "01276",
     "epci_code": "240100610",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01120"
   },
@@ -1923,7 +1923,7 @@
     "name": "Nivollet-Montgriffon",
     "code": "01277",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01230"
   },
@@ -1931,7 +1931,7 @@
     "name": "Oncieu",
     "code": "01279",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01230"
   },
@@ -1939,7 +1939,7 @@
     "name": "Ordonnaz",
     "code": "01280",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01510"
   },
@@ -1947,7 +1947,7 @@
     "name": "Ornex",
     "code": "01281",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01210"
   },
@@ -1955,7 +1955,7 @@
     "name": "Outriaz",
     "code": "01282",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01430"
   },
@@ -1963,7 +1963,7 @@
     "name": "Oyonnax",
     "code": "01283",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01100"
   },
@@ -1971,7 +1971,7 @@
     "name": "Ozan",
     "code": "01284",
     "epci_code": "200071371",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01190"
   },
@@ -1979,7 +1979,7 @@
     "name": "Parcieux",
     "code": "01285",
     "epci_code": "200042497",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01600"
   },
@@ -1987,7 +1987,7 @@
     "name": "Parves et Nattages",
     "code": "01286",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01300"
   },
@@ -1995,7 +1995,7 @@
     "name": "Péron",
     "code": "01288",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01630"
   },
@@ -2003,7 +2003,7 @@
     "name": "Péronnas",
     "code": "01289",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01960"
   },
@@ -2011,7 +2011,7 @@
     "name": "Pérouges",
     "code": "01290",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01800"
   },
@@ -2019,7 +2019,7 @@
     "name": "Perrex",
     "code": "01291",
     "epci_code": "200070555",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01540"
   },
@@ -2027,7 +2027,7 @@
     "name": "Peyriat",
     "code": "01293",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01430"
   },
@@ -2035,7 +2035,7 @@
     "name": "Peyrieu",
     "code": "01294",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01300"
   },
@@ -2043,7 +2043,7 @@
     "name": "Peyzieux-sur-Saône",
     "code": "01295",
     "epci_code": "200070118",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01140"
   },
@@ -2051,7 +2051,7 @@
     "name": "Pirajoux",
     "code": "01296",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01270"
   },
@@ -2059,7 +2059,7 @@
     "name": "Pizay",
     "code": "01297",
     "epci_code": "240100610",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01120"
   },
@@ -2067,7 +2067,7 @@
     "name": "Plagne",
     "code": "01298",
     "epci_code": "240100891",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01130"
   },
@@ -2075,7 +2075,7 @@
     "name": "Le Plantay",
     "code": "01299",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01330"
   },
@@ -2083,7 +2083,7 @@
     "name": "Polliat",
     "code": "01301",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01310"
   },
@@ -2091,7 +2091,7 @@
     "name": "Pollieu",
     "code": "01302",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01350"
   },
@@ -2099,7 +2099,7 @@
     "name": "Poncin",
     "code": "01303",
     "epci_code": "200029999",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01450"
   },
@@ -2107,7 +2107,7 @@
     "name": "Pont-d’Ain",
     "code": "01304",
     "epci_code": "200029999",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01160"
   },
@@ -2115,7 +2115,7 @@
     "name": "Pont-de-Vaux",
     "code": "01305",
     "epci_code": "200071371",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01190"
   },
@@ -2123,7 +2123,7 @@
     "name": "Pont-de-Veyle",
     "code": "01306",
     "epci_code": "200070555",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01290"
   },
@@ -2131,7 +2131,7 @@
     "name": "Port",
     "code": "01307",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01460"
   },
@@ -2139,7 +2139,7 @@
     "name": "Pougny",
     "code": "01308",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01550"
   },
@@ -2147,7 +2147,7 @@
     "name": "Pouillat",
     "code": "01309",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01250"
   },
@@ -2155,7 +2155,7 @@
     "name": "Prémeyzel",
     "code": "01310",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01300"
   },
@@ -2163,7 +2163,7 @@
     "name": "Prémillieu",
     "code": "01311",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01110"
   },
@@ -2171,7 +2171,7 @@
     "name": "Prévessin-Moëns",
     "code": "01313",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01280"
   },
@@ -2179,7 +2179,7 @@
     "name": "Priay",
     "code": "01314",
     "epci_code": "200029999",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01160"
   },
@@ -2187,7 +2187,7 @@
     "name": "Ramasse",
     "code": "01317",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01250"
   },
@@ -2195,7 +2195,7 @@
     "name": "Rancé",
     "code": "01318",
     "epci_code": "200042497",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01390"
   },
@@ -2203,7 +2203,7 @@
     "name": "Relevant",
     "code": "01319",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01990"
   },
@@ -2211,7 +2211,7 @@
     "name": "Replonges",
     "code": "01320",
     "epci_code": "200071371",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01750"
   },
@@ -2219,7 +2219,7 @@
     "name": "Revonnas",
     "code": "01321",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01250"
   },
@@ -2227,7 +2227,7 @@
     "name": "Reyrieux",
     "code": "01322",
     "epci_code": "200042497",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01600"
   },
@@ -2235,7 +2235,7 @@
     "name": "Reyssouze",
     "code": "01323",
     "epci_code": "200071371",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01190"
   },
@@ -2243,7 +2243,7 @@
     "name": "Rignieux-le-Franc",
     "code": "01325",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01800"
   },
@@ -2251,7 +2251,7 @@
     "name": "Romans",
     "code": "01328",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01400"
   },
@@ -2259,7 +2259,7 @@
     "name": "Rossillon",
     "code": "01329",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01510"
   },
@@ -2267,7 +2267,7 @@
     "name": "Saint-Alban",
     "code": "01331",
     "epci_code": "200029999",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01450"
   },
@@ -2275,7 +2275,7 @@
     "name": "Saint-André-de-Bâgé",
     "code": "01332",
     "epci_code": "200071371",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01380"
   },
@@ -2283,7 +2283,7 @@
     "name": "Saint-André-de-Corcy",
     "code": "01333",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01390"
   },
@@ -2291,7 +2291,7 @@
     "name": "Saint-André-d’Huiriat",
     "code": "01334",
     "epci_code": "200070555",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01290"
   },
@@ -2299,7 +2299,7 @@
     "name": "Saint-André-le-Bouchoux",
     "code": "01335",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01240"
   },
@@ -2307,7 +2307,7 @@
     "name": "Saint-André-sur-Vieux-Jonc",
     "code": "01336",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01960"
   },
@@ -2315,7 +2315,7 @@
     "name": "Saint-Bénigne",
     "code": "01337",
     "epci_code": "200071371",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01190"
   },
@@ -2323,7 +2323,7 @@
     "name": "Groslée-Saint-Benoit",
     "code": "01338",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01300"
   },
@@ -2331,7 +2331,7 @@
     "name": "Saint-Bernard",
     "code": "01339",
     "epci_code": "200042497",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01600"
   },
@@ -2339,7 +2339,7 @@
     "name": "Sainte-Croix",
     "code": "01342",
     "epci_code": "240100610",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01120"
   },
@@ -2347,7 +2347,7 @@
     "name": "Saint-Cyr-sur-Menthon",
     "code": "01343",
     "epci_code": "200070555",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01380"
   },
@@ -2355,7 +2355,7 @@
     "name": "Saint-Denis-lès-Bourg",
     "code": "01344",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01000"
   },
@@ -2363,7 +2363,7 @@
     "name": "Saint-Denis-en-Bugey",
     "code": "01345",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01500"
   },
@@ -2371,7 +2371,7 @@
     "name": "Saint-Didier-d’Aussiat",
     "code": "01346",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01340"
   },
@@ -2379,7 +2379,7 @@
     "name": "Saint-Didier-de-Formans",
     "code": "01347",
     "epci_code": "200042497",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01600"
   },
@@ -2387,7 +2387,7 @@
     "name": "Saint-Didier-sur-Chalaronne",
     "code": "01348",
     "epci_code": "200070118",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01140"
   },
@@ -2395,7 +2395,7 @@
     "name": "Saint-Éloi",
     "code": "01349",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01800"
   },
@@ -2403,7 +2403,7 @@
     "name": "Saint-Étienne-du-Bois",
     "code": "01350",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01370"
   },
@@ -2411,7 +2411,7 @@
     "name": "Saint-Étienne-sur-Chalaronne",
     "code": "01351",
     "epci_code": "200070118",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01140"
   },
@@ -2419,7 +2419,7 @@
     "name": "Saint-Étienne-sur-Reyssouze",
     "code": "01352",
     "epci_code": "200071371",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01190"
   },
@@ -2427,7 +2427,7 @@
     "name": "Sainte-Euphémie",
     "code": "01353",
     "epci_code": "200042497",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01600"
   },
@@ -2435,7 +2435,7 @@
     "name": "Saint-Genis-Pouilly",
     "code": "01354",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01630"
   },
@@ -2443,7 +2443,7 @@
     "name": "Saint-Genis-sur-Menthon",
     "code": "01355",
     "epci_code": "200070555",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01380"
   },
@@ -2451,7 +2451,7 @@
     "name": "Saint-Georges-sur-Renon",
     "code": "01356",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01400"
   },
@@ -2459,7 +2459,7 @@
     "name": "Saint-Germain-de-Joux",
     "code": "01357",
     "epci_code": "240100891",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01130"
   },
@@ -2467,7 +2467,7 @@
     "name": "Saint-Germain-les-Paroisses",
     "code": "01358",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01300"
   },
@@ -2475,7 +2475,7 @@
     "name": "Saint-Germain-sur-Renon",
     "code": "01359",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01240"
   },
@@ -2483,7 +2483,7 @@
     "name": "Saint-Jean-de-Gonville",
     "code": "01360",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01630"
   },
@@ -2491,7 +2491,7 @@
     "name": "Saint-Jean-de-Niost",
     "code": "01361",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01800"
   },
@@ -2499,7 +2499,7 @@
     "name": "Saint-Jean-de-Thurigneux",
     "code": "01362",
     "epci_code": "200042497",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01390"
   },
@@ -2507,7 +2507,7 @@
     "name": "Saint-Jean-le-Vieux",
     "code": "01363",
     "epci_code": "200029999",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01640"
   },
@@ -2515,7 +2515,7 @@
     "name": "Saint-Jean-sur-Reyssouze",
     "code": "01364",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01560"
   },
@@ -2523,7 +2523,7 @@
     "name": "Saint-Jean-sur-Veyle",
     "code": "01365",
     "epci_code": "200070555",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01290"
   },
@@ -2531,7 +2531,7 @@
     "name": "Sainte-Julie",
     "code": "01366",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01150"
   },
@@ -2539,7 +2539,7 @@
     "name": "Saint-Julien-sur-Reyssouze",
     "code": "01367",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01560"
   },
@@ -2547,7 +2547,7 @@
     "name": "Saint-Julien-sur-Veyle",
     "code": "01368",
     "epci_code": "200070555",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01540"
   },
@@ -2555,7 +2555,7 @@
     "name": "Saint-Just",
     "code": "01369",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01250"
   },
@@ -2563,7 +2563,7 @@
     "name": "Saint-Laurent-sur-Saône",
     "code": "01370",
     "epci_code": "200070308",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01750"
   },
@@ -2571,7 +2571,7 @@
     "name": "Saint-Marcel",
     "code": "01371",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01390"
   },
@@ -2579,7 +2579,7 @@
     "name": "Saint-Martin-de-Bavel",
     "code": "01372",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01510"
   },
@@ -2587,7 +2587,7 @@
     "name": "Saint-Martin-du-Frêne",
     "code": "01373",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01430"
   },
@@ -2595,7 +2595,7 @@
     "name": "Saint-Martin-du-Mont",
     "code": "01374",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01160"
   },
@@ -2603,7 +2603,7 @@
     "name": "Saint-Martin-le-Châtel",
     "code": "01375",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01310"
   },
@@ -2611,7 +2611,7 @@
     "name": "Saint-Maurice-de-Beynost",
     "code": "01376",
     "epci_code": "240100800",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01700"
   },
@@ -2619,7 +2619,7 @@
     "name": "Saint-Maurice-de-Gourdans",
     "code": "01378",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01800"
   },
@@ -2627,7 +2627,7 @@
     "name": "Saint-Maurice-de-Rémens",
     "code": "01379",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01500"
   },
@@ -2635,7 +2635,7 @@
     "name": "Saint-Nizier-le-Bouchoux",
     "code": "01380",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01560"
   },
@@ -2643,7 +2643,7 @@
     "name": "Saint-Nizier-le-Désert",
     "code": "01381",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01320"
   },
@@ -2651,7 +2651,7 @@
     "name": "Sainte-Olive",
     "code": "01382",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01330"
   },
@@ -2659,7 +2659,7 @@
     "name": "Saint-Paul-de-Varax",
     "code": "01383",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01240"
   },
@@ -2667,7 +2667,7 @@
     "name": "Saint-Rambert-en-Bugey",
     "code": "01384",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01230"
   },
@@ -2675,7 +2675,7 @@
     "name": "Saint-Rémy",
     "code": "01385",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01310"
   },
@@ -2683,7 +2683,7 @@
     "name": "Saint-Sorlin-en-Bugey",
     "code": "01386",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01150"
   },
@@ -2691,7 +2691,7 @@
     "name": "Saint-Sulpice",
     "code": "01387",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01340"
   },
@@ -2699,7 +2699,7 @@
     "name": "Saint-Trivier-de-Courtes",
     "code": "01388",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01560"
   },
@@ -2707,7 +2707,7 @@
     "name": "Saint-Trivier-sur-Moignans",
     "code": "01389",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01990"
   },
@@ -2715,7 +2715,7 @@
     "name": "Saint-Vulbas",
     "code": "01390",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01150"
   },
@@ -2723,7 +2723,7 @@
     "name": "Salavre",
     "code": "01391",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01270"
   },
@@ -2731,7 +2731,7 @@
     "name": "Samognat",
     "code": "01392",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01580"
   },
@@ -2739,7 +2739,7 @@
     "name": "Sandrans",
     "code": "01393",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01400"
   },
@@ -2747,7 +2747,7 @@
     "name": "Sault-Brénaz",
     "code": "01396",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01150"
   },
@@ -2755,7 +2755,7 @@
     "name": "Sauverny",
     "code": "01397",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01220"
   },
@@ -2763,7 +2763,7 @@
     "name": "Savigneux",
     "code": "01398",
     "epci_code": "200042497",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01480"
   },
@@ -2771,7 +2771,7 @@
     "name": "Ségny",
     "code": "01399",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01170"
   },
@@ -2779,7 +2779,7 @@
     "name": "Seillonnaz",
     "code": "01400",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01470"
   },
@@ -2787,7 +2787,7 @@
     "name": "Sergy",
     "code": "01401",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01630"
   },
@@ -2795,7 +2795,7 @@
     "name": "Sermoyer",
     "code": "01402",
     "epci_code": "200071371",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01190"
   },
@@ -2803,7 +2803,7 @@
     "name": "Serrières-de-Briord",
     "code": "01403",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01470"
   },
@@ -2811,7 +2811,7 @@
     "name": "Serrières-sur-Ain",
     "code": "01404",
     "epci_code": "200029999",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01450"
   },
@@ -2819,7 +2819,7 @@
     "name": "Servas",
     "code": "01405",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01960"
   },
@@ -2827,7 +2827,7 @@
     "name": "Servignat",
     "code": "01406",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01560"
   },
@@ -2835,7 +2835,7 @@
     "name": "Seyssel",
     "code": "01407",
     "epci_code": "200070852",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01420"
   },
@@ -2843,7 +2843,7 @@
     "name": "Simandre-sur-Suran",
     "code": "01408",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01250"
   },
@@ -2851,7 +2851,7 @@
     "name": "Sonthonnax-la-Montagne",
     "code": "01410",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01580"
   },
@@ -2859,7 +2859,7 @@
     "name": "Souclin",
     "code": "01411",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01150"
   },
@@ -2867,7 +2867,7 @@
     "name": "Sulignat",
     "code": "01412",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01400"
   },
@@ -2875,7 +2875,7 @@
     "name": "Talissieu",
     "code": "01415",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01510"
   },
@@ -2883,7 +2883,7 @@
     "name": "Tenay",
     "code": "01416",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01230"
   },
@@ -2891,7 +2891,7 @@
     "name": "Thil",
     "code": "01418",
     "epci_code": "240100800",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01120"
   },
@@ -2899,7 +2899,7 @@
     "name": "Thoiry",
     "code": "01419",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01710"
   },
@@ -2907,7 +2907,7 @@
     "name": "Thoissey",
     "code": "01420",
     "epci_code": "200070118",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01140"
   },
@@ -2915,7 +2915,7 @@
     "name": "Torcieu",
     "code": "01421",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01230"
   },
@@ -2923,7 +2923,7 @@
     "name": "Tossiat",
     "code": "01422",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01250"
   },
@@ -2931,7 +2931,7 @@
     "name": "Toussieux",
     "code": "01423",
     "epci_code": "200042497",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01600"
   },
@@ -2939,7 +2939,7 @@
     "name": "Tramoyes",
     "code": "01424",
     "epci_code": "240100800",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01390"
   },
@@ -2947,7 +2947,7 @@
     "name": "La Tranclière",
     "code": "01425",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01160"
   },
@@ -2955,7 +2955,7 @@
     "name": "Val-Revermont",
     "code": "01426",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01370"
   },
@@ -2963,7 +2963,7 @@
     "name": "Trévoux",
     "code": "01427",
     "epci_code": "200042497",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01600"
   },
@@ -2971,7 +2971,7 @@
     "name": "Valeins",
     "code": "01428",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01140"
   },
@@ -2979,7 +2979,7 @@
     "name": "Vandeins",
     "code": "01429",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01660"
   },
@@ -2987,7 +2987,7 @@
     "name": "Varambon",
     "code": "01430",
     "epci_code": "200029999",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01160"
   },
@@ -2995,7 +2995,7 @@
     "name": "Vaux-en-Bugey",
     "code": "01431",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01150"
   },
@@ -3003,7 +3003,7 @@
     "name": "Verjon",
     "code": "01432",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01270"
   },
@@ -3011,7 +3011,7 @@
     "name": "Vernoux",
     "code": "01433",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01560"
   },
@@ -3019,7 +3019,7 @@
     "name": "Versailleux",
     "code": "01434",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01330"
   },
@@ -3027,7 +3027,7 @@
     "name": "Versonnex",
     "code": "01435",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01210"
   },
@@ -3035,7 +3035,7 @@
     "name": "Vesancy",
     "code": "01436",
     "epci_code": "240100750",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01170"
   },
@@ -3043,7 +3043,7 @@
     "name": "Vescours",
     "code": "01437",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01560"
   },
@@ -3051,7 +3051,7 @@
     "name": "Vésines",
     "code": "01439",
     "epci_code": "200071371",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01570"
   },
@@ -3059,7 +3059,7 @@
     "name": "Vieu-d’Izenave",
     "code": "01441",
     "epci_code": "200042935",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01430"
   },
@@ -3067,7 +3067,7 @@
     "name": "Villars-les-Dombes",
     "code": "01443",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01330"
   },
@@ -3075,7 +3075,7 @@
     "name": "Villebois",
     "code": "01444",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01150"
   },
@@ -3083,7 +3083,7 @@
     "name": "Villemotier",
     "code": "01445",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01270"
   },
@@ -3091,7 +3091,7 @@
     "name": "Villeneuve",
     "code": "01446",
     "epci_code": "200042497",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01480"
   },
@@ -3099,7 +3099,7 @@
     "name": "Villereversure",
     "code": "01447",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01250"
   },
@@ -3107,7 +3107,7 @@
     "name": "Villes",
     "code": "01448",
     "epci_code": "240100891",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01200"
   },
@@ -3115,7 +3115,7 @@
     "name": "Villette-sur-Ain",
     "code": "01449",
     "epci_code": "200069193",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01320"
   },
@@ -3123,7 +3123,7 @@
     "name": "Villieu-Loyes-Mollon",
     "code": "01450",
     "epci_code": "240100883",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01800"
   },
@@ -3131,7 +3131,7 @@
     "name": "Viriat",
     "code": "01451",
     "epci_code": "200071751",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01440"
   },
@@ -3139,7 +3139,7 @@
     "name": "Virieu-le-Grand",
     "code": "01452",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01510"
   },
@@ -3147,7 +3147,7 @@
     "name": "Arvière-en-Valromey",
     "code": "01453",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01260"
   },
@@ -3155,7 +3155,7 @@
     "name": "Virignin",
     "code": "01454",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01300"
   },
@@ -3163,7 +3163,7 @@
     "name": "Vongnes",
     "code": "01456",
     "epci_code": "200040350",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01350"
   },
@@ -3171,7 +3171,7 @@
     "name": "Vonnas",
     "code": "01457",
     "epci_code": "200070555",
-    "departement_code": "01",
+    "department_code": "01",
     "region_code": "84",
     "postal_code": "01540"
   }

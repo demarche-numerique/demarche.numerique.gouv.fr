@@ -33,16 +33,16 @@ module Maintenance
 
     describe '#process' do
       it 'restores the departement code and name' do
-        corrupt(departement_champ, external_id: 'Var', value_json: { 'code_region' => nil, 'region_code' => nil, 'department_code' => 'Var' })
+        corrupt(departement_champ, external_id: 'Var', value_json: { 'region_code' => nil, 'department_code' => 'Var' })
 
         described_class.process(departement_champ)
 
         expect(departement_champ.reload).to have_attributes(external_id: '83', value: 'Var')
-        expect(departement_champ.value_json).to include('department_code' => '83', 'region_code' => '93', 'code_region' => '93')
+        expect(departement_champ.value_json).to include('department_code' => '83', 'region_code' => '93')
       end
 
       it 'restores the EPCI code and name' do
-        epci_champ.update!(code_departement: '01')
+        epci_champ.update!(department_code: '01')
         corrupt(epci_champ, external_id: epci[:name])
 
         described_class.process(epci_champ)
@@ -58,7 +58,7 @@ module Maintenance
       end
 
       it 'leaves an EPCI missing from the referentiel untouched' do
-        epci_champ.update!(code_departement: '01')
+        epci_champ.update!(department_code: '01')
         corrupt(epci_champ, external_id: 'CC Disparue')
 
         described_class.process(epci_champ)

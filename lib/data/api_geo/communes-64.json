@@ -3,7 +3,7 @@
     "name": "Aast",
     "code": "64001",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64460"
   },
@@ -11,7 +11,7 @@
     "name": "Abère",
     "code": "64002",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -19,7 +19,7 @@
     "name": "Abidos",
     "code": "64003",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64150"
   },
@@ -27,7 +27,7 @@
     "name": "Abitain",
     "code": "64004",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64390"
   },
@@ -35,7 +35,7 @@
     "name": "Abos",
     "code": "64005",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64360"
   },
@@ -43,7 +43,7 @@
     "name": "Accous",
     "code": "64006",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64490"
   },
@@ -51,7 +51,7 @@
     "name": "Agnos",
     "code": "64007",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64400"
   },
@@ -59,7 +59,7 @@
     "name": "Ahaxe-Alciette-Bascassan",
     "code": "64008",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64220"
   },
@@ -67,7 +67,7 @@
     "name": "Ahetze",
     "code": "64009",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64210"
   },
@@ -75,7 +75,7 @@
     "name": "Aïcirits-Camou-Suhast",
     "code": "64010",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -83,7 +83,7 @@
     "name": "Aincille",
     "code": "64011",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64220"
   },
@@ -91,7 +91,7 @@
     "name": "Ainharp",
     "code": "64012",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64130"
   },
@@ -99,7 +99,7 @@
     "name": "Ainhice-Mongelos",
     "code": "64013",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64220"
   },
@@ -107,7 +107,7 @@
     "name": "Ainhoa",
     "code": "64014",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64250"
   },
@@ -115,7 +115,7 @@
     "name": "Alçay-Alçabéhéty-Sunharette",
     "code": "64015",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64470"
   },
@@ -123,7 +123,7 @@
     "name": "Aldudes",
     "code": "64016",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64430"
   },
@@ -131,7 +131,7 @@
     "name": "Alos-Sibas-Abense",
     "code": "64017",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64470"
   },
@@ -139,7 +139,7 @@
     "name": "Amendeuix-Oneix",
     "code": "64018",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -147,7 +147,7 @@
     "name": "Amorots-Succos",
     "code": "64019",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -155,7 +155,7 @@
     "name": "Andoins",
     "code": "64021",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64420"
   },
@@ -163,7 +163,7 @@
     "name": "Andrein",
     "code": "64022",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64390"
   },
@@ -171,7 +171,7 @@
     "name": "Angaïs",
     "code": "64023",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64510"
   },
@@ -179,7 +179,7 @@
     "name": "Anglet",
     "code": "64024",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64600"
   },
@@ -187,7 +187,7 @@
     "name": "Angous",
     "code": "64025",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -195,7 +195,7 @@
     "name": "Anhaux",
     "code": "64026",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64220"
   },
@@ -203,7 +203,7 @@
     "name": "Anos",
     "code": "64027",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -211,7 +211,7 @@
     "name": "Anoye",
     "code": "64028",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -219,7 +219,7 @@
     "name": "Aramits",
     "code": "64029",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64570"
   },
@@ -227,7 +227,7 @@
     "name": "Arancou",
     "code": "64031",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64270"
   },
@@ -235,7 +235,7 @@
     "name": "Araujuzon",
     "code": "64032",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -243,7 +243,7 @@
     "name": "Araux",
     "code": "64033",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -251,7 +251,7 @@
     "name": "Arbérats-Sillègue",
     "code": "64034",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -259,7 +259,7 @@
     "name": "Arbonne",
     "code": "64035",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64210"
   },
@@ -267,7 +267,7 @@
     "name": "Arbouet-Sussaute",
     "code": "64036",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -275,7 +275,7 @@
     "name": "Arbus",
     "code": "64037",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64230"
   },
@@ -283,7 +283,7 @@
     "name": "Arcangues",
     "code": "64038",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64200"
   },
@@ -291,7 +291,7 @@
     "name": "Aren",
     "code": "64039",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64400"
   },
@@ -299,7 +299,7 @@
     "name": "Arette",
     "code": "64040",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64570"
   },
@@ -307,7 +307,7 @@
     "name": "Aressy",
     "code": "64041",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64320"
   },
@@ -315,7 +315,7 @@
     "name": "Argagnon",
     "code": "64042",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64300"
   },
@@ -323,7 +323,7 @@
     "name": "Argelos",
     "code": "64043",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64450"
   },
@@ -331,7 +331,7 @@
     "name": "Arget",
     "code": "64044",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64410"
   },
@@ -339,7 +339,7 @@
     "name": "Arhansus",
     "code": "64045",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -347,7 +347,7 @@
     "name": "Armendarits",
     "code": "64046",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64640"
   },
@@ -355,7 +355,7 @@
     "name": "Arnéguy",
     "code": "64047",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64220"
   },
@@ -363,7 +363,7 @@
     "name": "Arnos",
     "code": "64048",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64370"
   },
@@ -371,7 +371,7 @@
     "name": "Aroue-Ithorots-Olhaïby",
     "code": "64049",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -379,7 +379,7 @@
     "name": "Arrast-Larrebieu",
     "code": "64050",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64130"
   },
@@ -387,7 +387,7 @@
     "name": "Arraute-Charritte",
     "code": "64051",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -395,7 +395,7 @@
     "name": "Arricau-Bordes",
     "code": "64052",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -403,7 +403,7 @@
     "name": "Arrien",
     "code": "64053",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64420"
   },
@@ -411,7 +411,7 @@
     "name": "Arros-de-Nay",
     "code": "64054",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64800"
   },
@@ -419,7 +419,7 @@
     "name": "Arrosès",
     "code": "64056",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -427,7 +427,7 @@
     "name": "Arthez-de-Béarn",
     "code": "64057",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64370"
   },
@@ -435,7 +435,7 @@
     "name": "Arthez-d’Asson",
     "code": "64058",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64800"
   },
@@ -443,7 +443,7 @@
     "name": "Artigueloutan",
     "code": "64059",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64420"
   },
@@ -451,7 +451,7 @@
     "name": "Artiguelouve",
     "code": "64060",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64230"
   },
@@ -459,7 +459,7 @@
     "name": "Artix",
     "code": "64061",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64170"
   },
@@ -467,7 +467,7 @@
     "name": "Arudy",
     "code": "64062",
     "epci_code": "246400337",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64260"
   },
@@ -475,7 +475,7 @@
     "name": "Arzacq-Arraziguet",
     "code": "64063",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64410"
   },
@@ -483,7 +483,7 @@
     "name": "Asasp-Arros",
     "code": "64064",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64660"
   },
@@ -491,7 +491,7 @@
     "name": "Ascain",
     "code": "64065",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64310"
   },
@@ -499,7 +499,7 @@
     "name": "Ascarat",
     "code": "64066",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64220"
   },
@@ -507,7 +507,7 @@
     "name": "Assat",
     "code": "64067",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64510"
   },
@@ -515,7 +515,7 @@
     "name": "Asson",
     "code": "64068",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64800"
   },
@@ -523,7 +523,7 @@
     "name": "Aste-Béon",
     "code": "64069",
     "epci_code": "246400337",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64260"
   },
@@ -531,7 +531,7 @@
     "name": "Astis",
     "code": "64070",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64450"
   },
@@ -539,7 +539,7 @@
     "name": "Athos-Aspis",
     "code": "64071",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64390"
   },
@@ -547,7 +547,7 @@
     "name": "Aubertin",
     "code": "64072",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64290"
   },
@@ -555,7 +555,7 @@
     "name": "Aubin",
     "code": "64073",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64230"
   },
@@ -563,7 +563,7 @@
     "name": "Aubous",
     "code": "64074",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64330"
   },
@@ -571,7 +571,7 @@
     "name": "Audaux",
     "code": "64075",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -579,7 +579,7 @@
     "name": "Auga",
     "code": "64077",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64450"
   },
@@ -587,7 +587,7 @@
     "name": "Auriac",
     "code": "64078",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64450"
   },
@@ -595,7 +595,7 @@
     "name": "Aurions-Idernes",
     "code": "64079",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -603,7 +603,7 @@
     "name": "Aussevielle",
     "code": "64080",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64230"
   },
@@ -611,7 +611,7 @@
     "name": "Aussurucq",
     "code": "64081",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64130"
   },
@@ -619,7 +619,7 @@
     "name": "Auterrive",
     "code": "64082",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64270"
   },
@@ -627,7 +627,7 @@
     "name": "Autevielle-Saint-Martin-Bideren",
     "code": "64083",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64390"
   },
@@ -635,7 +635,7 @@
     "name": "Aydie",
     "code": "64084",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64330"
   },
@@ -643,7 +643,7 @@
     "name": "Aydius",
     "code": "64085",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64490"
   },
@@ -651,7 +651,7 @@
     "name": "Ayherre",
     "code": "64086",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64240"
   },
@@ -659,7 +659,7 @@
     "name": "Baigts-de-Béarn",
     "code": "64087",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64300"
   },
@@ -667,7 +667,7 @@
     "name": "Balansun",
     "code": "64088",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64300"
   },
@@ -675,7 +675,7 @@
     "name": "Baleix",
     "code": "64089",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64460"
   },
@@ -683,7 +683,7 @@
     "name": "Baliracq-Maumusson",
     "code": "64090",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64330"
   },
@@ -691,7 +691,7 @@
     "name": "Baliros",
     "code": "64091",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64510"
   },
@@ -699,7 +699,7 @@
     "name": "Banca",
     "code": "64092",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64430"
   },
@@ -707,7 +707,7 @@
     "name": "Barcus",
     "code": "64093",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64130"
   },
@@ -715,7 +715,7 @@
     "name": "Bardos",
     "code": "64094",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64520"
   },
@@ -723,7 +723,7 @@
     "name": "Barinque",
     "code": "64095",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -731,7 +731,7 @@
     "name": "Barraute-Camu",
     "code": "64096",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64390"
   },
@@ -739,7 +739,7 @@
     "name": "Barzun",
     "code": "64097",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64530"
   },
@@ -747,7 +747,7 @@
     "name": "Bassillon-Vauzé",
     "code": "64098",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -755,7 +755,7 @@
     "name": "Bastanès",
     "code": "64099",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -763,7 +763,7 @@
     "name": "Bassussarry",
     "code": "64100",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64200"
   },
@@ -771,7 +771,7 @@
     "name": "Baudreix",
     "code": "64101",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64800"
   },
@@ -779,7 +779,7 @@
     "name": "Bayonne",
     "code": "64102",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64100"
   },
@@ -787,7 +787,7 @@
     "name": "Bédeille",
     "code": "64103",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64460"
   },
@@ -795,7 +795,7 @@
     "name": "Bedous",
     "code": "64104",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64490"
   },
@@ -803,7 +803,7 @@
     "name": "Béguios",
     "code": "64105",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -811,7 +811,7 @@
     "name": "Béhasque-Lapiste",
     "code": "64106",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -819,7 +819,7 @@
     "name": "Béhorléguy",
     "code": "64107",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64220"
   },
@@ -827,7 +827,7 @@
     "name": "Bellocq",
     "code": "64108",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64270"
   },
@@ -835,7 +835,7 @@
     "name": "Bénéjacq",
     "code": "64109",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64800"
   },
@@ -843,7 +843,7 @@
     "name": "Béost",
     "code": "64110",
     "epci_code": "246400337",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64440"
   },
@@ -851,7 +851,7 @@
     "name": "Bentayou-Sérée",
     "code": "64111",
     "epci_code": "200072106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64460"
   },
@@ -859,7 +859,7 @@
     "name": "Bérenx",
     "code": "64112",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64300"
   },
@@ -867,7 +867,7 @@
     "name": "Bergouey-Viellenave",
     "code": "64113",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64270"
   },
@@ -875,7 +875,7 @@
     "name": "Bernadets",
     "code": "64114",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -883,7 +883,7 @@
     "name": "Berrogain-Laruns",
     "code": "64115",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64130"
   },
@@ -891,7 +891,7 @@
     "name": "Bescat",
     "code": "64116",
     "epci_code": "246400337",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64260"
   },
@@ -899,7 +899,7 @@
     "name": "Bésingrand",
     "code": "64117",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64150"
   },
@@ -907,7 +907,7 @@
     "name": "Bétracq",
     "code": "64118",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -915,7 +915,7 @@
     "name": "Beuste",
     "code": "64119",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64800"
   },
@@ -923,7 +923,7 @@
     "name": "Beyrie-sur-Joyeuse",
     "code": "64120",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -931,7 +931,7 @@
     "name": "Beyrie-en-Béarn",
     "code": "64121",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64230"
   },
@@ -939,7 +939,7 @@
     "name": "Biarritz",
     "code": "64122",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64200"
   },
@@ -947,7 +947,7 @@
     "name": "Bidache",
     "code": "64123",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64520"
   },
@@ -955,7 +955,7 @@
     "name": "Bidarray",
     "code": "64124",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64780"
   },
@@ -963,7 +963,7 @@
     "name": "Bidart",
     "code": "64125",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64210"
   },
@@ -971,7 +971,7 @@
     "name": "Bidos",
     "code": "64126",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64400"
   },
@@ -979,7 +979,7 @@
     "name": "Bielle",
     "code": "64127",
     "epci_code": "246400337",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64260"
   },
@@ -987,7 +987,7 @@
     "name": "Bilhères",
     "code": "64128",
     "epci_code": "246400337",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64260"
   },
@@ -995,7 +995,7 @@
     "name": "Billère",
     "code": "64129",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64140"
   },
@@ -1003,7 +1003,7 @@
     "name": "Biriatou",
     "code": "64130",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64700"
   },
@@ -1011,7 +1011,7 @@
     "name": "Biron",
     "code": "64131",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64300"
   },
@@ -1019,7 +1019,7 @@
     "name": "Bizanos",
     "code": "64132",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64320"
   },
@@ -1027,7 +1027,7 @@
     "name": "Boeil-Bezing",
     "code": "64133",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64510"
   },
@@ -1035,7 +1035,7 @@
     "name": "Bonloc",
     "code": "64134",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64240"
   },
@@ -1043,7 +1043,7 @@
     "name": "Bonnut",
     "code": "64135",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64300"
   },
@@ -1051,7 +1051,7 @@
     "name": "Borce",
     "code": "64136",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64490"
   },
@@ -1059,7 +1059,7 @@
     "name": "Bordères",
     "code": "64137",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64800"
   },
@@ -1067,7 +1067,7 @@
     "name": "Bordes",
     "code": "64138",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64510"
   },
@@ -1075,7 +1075,7 @@
     "name": "Bosdarros",
     "code": "64139",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64290"
   },
@@ -1083,7 +1083,7 @@
     "name": "Boucau",
     "code": "64140",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64340"
   },
@@ -1091,7 +1091,7 @@
     "name": "Boueilh-Boueilho-Lasque",
     "code": "64141",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64330"
   },
@@ -1099,7 +1099,7 @@
     "name": "Bougarber",
     "code": "64142",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64230"
   },
@@ -1107,7 +1107,7 @@
     "name": "Bouillon",
     "code": "64143",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64410"
   },
@@ -1115,7 +1115,7 @@
     "name": "Boumourt",
     "code": "64144",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64370"
   },
@@ -1123,7 +1123,7 @@
     "name": "Bourdettes",
     "code": "64145",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64800"
   },
@@ -1131,7 +1131,7 @@
     "name": "Bournos",
     "code": "64146",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64450"
   },
@@ -1139,7 +1139,7 @@
     "name": "Briscous",
     "code": "64147",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64240"
   },
@@ -1147,7 +1147,7 @@
     "name": "Bruges-Capbis-Mifaget",
     "code": "64148",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64800"
   },
@@ -1155,7 +1155,7 @@
     "name": "Bugnein",
     "code": "64149",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -1163,7 +1163,7 @@
     "name": "Bunus",
     "code": "64150",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -1171,7 +1171,7 @@
     "name": "Burgaronne",
     "code": "64151",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64390"
   },
@@ -1179,7 +1179,7 @@
     "name": "Buros",
     "code": "64152",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -1187,7 +1187,7 @@
     "name": "Burosse-Mendousse",
     "code": "64153",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64330"
   },
@@ -1195,7 +1195,7 @@
     "name": "Bussunarits-Sarrasquette",
     "code": "64154",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64220"
   },
@@ -1203,7 +1203,7 @@
     "name": "Bustince-Iriberry",
     "code": "64155",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64220"
   },
@@ -1211,7 +1211,7 @@
     "name": "Buziet",
     "code": "64156",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64680"
   },
@@ -1219,7 +1219,7 @@
     "name": "Buzy",
     "code": "64157",
     "epci_code": "246400337",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64260"
   },
@@ -1227,7 +1227,7 @@
     "name": "Cabidos",
     "code": "64158",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64410"
   },
@@ -1235,7 +1235,7 @@
     "name": "Cadillon",
     "code": "64159",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64330"
   },
@@ -1243,7 +1243,7 @@
     "name": "Cambo-les-Bains",
     "code": "64160",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64250"
   },
@@ -1251,7 +1251,7 @@
     "name": "Came",
     "code": "64161",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64520"
   },
@@ -1259,7 +1259,7 @@
     "name": "Camou-Cihigue",
     "code": "64162",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64470"
   },
@@ -1267,7 +1267,7 @@
     "name": "Cardesse",
     "code": "64165",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64360"
   },
@@ -1275,7 +1275,7 @@
     "name": "Caro",
     "code": "64166",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64220"
   },
@@ -1283,7 +1283,7 @@
     "name": "Carrère",
     "code": "64167",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -1291,7 +1291,7 @@
     "name": "Carresse-Cassaber",
     "code": "64168",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64270"
   },
@@ -1299,7 +1299,7 @@
     "name": "Castagnède",
     "code": "64170",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64270"
   },
@@ -1307,7 +1307,7 @@
     "name": "Casteide-Cami",
     "code": "64171",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64170"
   },
@@ -1315,7 +1315,7 @@
     "name": "Casteide-Candau",
     "code": "64172",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64370"
   },
@@ -1323,7 +1323,7 @@
     "name": "Casteide-Doat",
     "code": "64173",
     "epci_code": "200072106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64460"
   },
@@ -1331,7 +1331,7 @@
     "name": "Castéra-Loubix",
     "code": "64174",
     "epci_code": "200072106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64460"
   },
@@ -1339,7 +1339,7 @@
     "name": "Castet",
     "code": "64175",
     "epci_code": "246400337",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64260"
   },
@@ -1347,7 +1347,7 @@
     "name": "Castetbon",
     "code": "64176",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -1355,7 +1355,7 @@
     "name": "Castétis",
     "code": "64177",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64300"
   },
@@ -1363,7 +1363,7 @@
     "name": "Castetnau-Camblong",
     "code": "64178",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -1371,7 +1371,7 @@
     "name": "Castetner",
     "code": "64179",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64300"
   },
@@ -1379,7 +1379,7 @@
     "name": "Castetpugon",
     "code": "64180",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64330"
   },
@@ -1387,7 +1387,7 @@
     "name": "Castillon (Canton d’Arthez-de-Béarn)",
     "code": "64181",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64370"
   },
@@ -1395,7 +1395,7 @@
     "name": "Castillon (Canton de Lembeye)",
     "code": "64182",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -1403,7 +1403,7 @@
     "name": "Caubios-Loos",
     "code": "64183",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64230"
   },
@@ -1411,7 +1411,7 @@
     "name": "Cescau",
     "code": "64184",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64170"
   },
@@ -1419,7 +1419,7 @@
     "name": "Cette-Eygun",
     "code": "64185",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64490"
   },
@@ -1427,7 +1427,7 @@
     "name": "Charre",
     "code": "64186",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -1435,7 +1435,7 @@
     "name": "Charritte-de-Bas",
     "code": "64187",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64130"
   },
@@ -1443,7 +1443,7 @@
     "name": "Chéraute",
     "code": "64188",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64130"
   },
@@ -1451,7 +1451,7 @@
     "name": "Ciboure",
     "code": "64189",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64500"
   },
@@ -1459,7 +1459,7 @@
     "name": "Claracq",
     "code": "64190",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64330"
   },
@@ -1467,7 +1467,7 @@
     "name": "Coarraze",
     "code": "64191",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64800"
   },
@@ -1475,7 +1475,7 @@
     "name": "Conchez-de-Béarn",
     "code": "64192",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64330"
   },
@@ -1483,7 +1483,7 @@
     "name": "Corbère-Abères",
     "code": "64193",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -1491,7 +1491,7 @@
     "name": "Coslédaà-Lube-Boast",
     "code": "64194",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -1499,7 +1499,7 @@
     "name": "Coublucq",
     "code": "64195",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64410"
   },
@@ -1507,7 +1507,7 @@
     "name": "Crouseilles",
     "code": "64196",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -1515,7 +1515,7 @@
     "name": "Cuqueron",
     "code": "64197",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64360"
   },
@@ -1523,7 +1523,7 @@
     "name": "Denguin",
     "code": "64198",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64230"
   },
@@ -1531,7 +1531,7 @@
     "name": "Diusse",
     "code": "64199",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64330"
   },
@@ -1539,7 +1539,7 @@
     "name": "Doazon",
     "code": "64200",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64370"
   },
@@ -1547,7 +1547,7 @@
     "name": "Dognen",
     "code": "64201",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -1555,7 +1555,7 @@
     "name": "Domezain-Berraute",
     "code": "64202",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -1563,7 +1563,7 @@
     "name": "Doumy",
     "code": "64203",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64450"
   },
@@ -1571,7 +1571,7 @@
     "name": "Eaux-Bonnes",
     "code": "64204",
     "epci_code": "246400337",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64440"
   },
@@ -1579,7 +1579,7 @@
     "name": "Escos",
     "code": "64205",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64270"
   },
@@ -1587,7 +1587,7 @@
     "name": "Escot",
     "code": "64206",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64490"
   },
@@ -1595,7 +1595,7 @@
     "name": "Escou",
     "code": "64207",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64870"
   },
@@ -1603,7 +1603,7 @@
     "name": "Escoubès",
     "code": "64208",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -1611,7 +1611,7 @@
     "name": "Escout",
     "code": "64209",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64870"
   },
@@ -1619,7 +1619,7 @@
     "name": "Escurès",
     "code": "64210",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -1627,7 +1627,7 @@
     "name": "Eslourenties-Daban",
     "code": "64211",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64420"
   },
@@ -1635,7 +1635,7 @@
     "name": "Espéchède",
     "code": "64212",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -1643,7 +1643,7 @@
     "name": "Espelette",
     "code": "64213",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64250"
   },
@@ -1651,7 +1651,7 @@
     "name": "Espès-Undurein",
     "code": "64214",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64130"
   },
@@ -1659,7 +1659,7 @@
     "name": "Espiute",
     "code": "64215",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64390"
   },
@@ -1667,7 +1667,7 @@
     "name": "Espoey",
     "code": "64216",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64420"
   },
@@ -1675,7 +1675,7 @@
     "name": "Esquiule",
     "code": "64217",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64400"
   },
@@ -1683,7 +1683,7 @@
     "name": "Estérençuby",
     "code": "64218",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64220"
   },
@@ -1691,7 +1691,7 @@
     "name": "Estialescq",
     "code": "64219",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64290"
   },
@@ -1699,7 +1699,7 @@
     "name": "Estos",
     "code": "64220",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64400"
   },
@@ -1707,7 +1707,7 @@
     "name": "Etcharry",
     "code": "64221",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -1715,7 +1715,7 @@
     "name": "Etchebar",
     "code": "64222",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64470"
   },
@@ -1723,7 +1723,7 @@
     "name": "Etsaut",
     "code": "64223",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64490"
   },
@@ -1731,7 +1731,7 @@
     "name": "Eysus",
     "code": "64224",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64400"
   },
@@ -1739,7 +1739,7 @@
     "name": "Ance Féas",
     "code": "64225",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64570"
   },
@@ -1747,7 +1747,7 @@
     "name": "Fichous-Riumayou",
     "code": "64226",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64410"
   },
@@ -1755,7 +1755,7 @@
     "name": "Gabaston",
     "code": "64227",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -1763,7 +1763,7 @@
     "name": "Gabat",
     "code": "64228",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -1771,7 +1771,7 @@
     "name": "Gamarthe",
     "code": "64229",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64220"
   },
@@ -1779,7 +1779,7 @@
     "name": "Gan",
     "code": "64230",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64290"
   },
@@ -1787,7 +1787,7 @@
     "name": "Garindein",
     "code": "64231",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64130"
   },
@@ -1795,7 +1795,7 @@
     "name": "Garlède-Mondebat",
     "code": "64232",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64450"
   },
@@ -1803,7 +1803,7 @@
     "name": "Garlin",
     "code": "64233",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64330"
   },
@@ -1811,7 +1811,7 @@
     "name": "Garos",
     "code": "64234",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64410"
   },
@@ -1819,7 +1819,7 @@
     "name": "Garris",
     "code": "64235",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -1827,7 +1827,7 @@
     "name": "Gayon",
     "code": "64236",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -1835,7 +1835,7 @@
     "name": "Gelos",
     "code": "64237",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64110"
   },
@@ -1843,7 +1843,7 @@
     "name": "Ger",
     "code": "64238",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64530"
   },
@@ -1851,7 +1851,7 @@
     "name": "Gerderest",
     "code": "64239",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -1859,7 +1859,7 @@
     "name": "Gère-Bélesten",
     "code": "64240",
     "epci_code": "246400337",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64260"
   },
@@ -1867,7 +1867,7 @@
     "name": "Géronce",
     "code": "64241",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64400"
   },
@@ -1875,7 +1875,7 @@
     "name": "Gestas",
     "code": "64242",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -1883,7 +1883,7 @@
     "name": "Géus-d’Arzacq",
     "code": "64243",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64370"
   },
@@ -1891,7 +1891,7 @@
     "name": "Geüs-d’Oloron",
     "code": "64244",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64400"
   },
@@ -1899,7 +1899,7 @@
     "name": "Goès",
     "code": "64245",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64400"
   },
@@ -1907,7 +1907,7 @@
     "name": "Gomer",
     "code": "64246",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64420"
   },
@@ -1915,7 +1915,7 @@
     "name": "Gotein-Libarrenx",
     "code": "64247",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64130"
   },
@@ -1923,7 +1923,7 @@
     "name": "Guéthary",
     "code": "64249",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64210"
   },
@@ -1931,7 +1931,7 @@
     "name": "Guiche",
     "code": "64250",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64520"
   },
@@ -1939,7 +1939,7 @@
     "name": "Guinarthe-Parenties",
     "code": "64251",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64390"
   },
@@ -1947,7 +1947,7 @@
     "name": "Gurmençon",
     "code": "64252",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64400"
   },
@@ -1955,7 +1955,7 @@
     "name": "Gurs",
     "code": "64253",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -1963,7 +1963,7 @@
     "name": "Hagetaubin",
     "code": "64254",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64370"
   },
@@ -1971,7 +1971,7 @@
     "name": "Halsou",
     "code": "64255",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64480"
   },
@@ -1979,7 +1979,7 @@
     "name": "Hasparren",
     "code": "64256",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64240"
   },
@@ -1987,7 +1987,7 @@
     "name": "Haut-de-Bosdarros",
     "code": "64257",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64800"
   },
@@ -1995,7 +1995,7 @@
     "name": "Haux",
     "code": "64258",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64470"
   },
@@ -2003,7 +2003,7 @@
     "name": "Hélette",
     "code": "64259",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64640"
   },
@@ -2011,7 +2011,7 @@
     "name": "Hendaye",
     "code": "64260",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64700"
   },
@@ -2019,7 +2019,7 @@
     "name": "Herrère",
     "code": "64261",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64680"
   },
@@ -2027,7 +2027,7 @@
     "name": "Higuères-Souye",
     "code": "64262",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -2035,7 +2035,7 @@
     "name": "L’Hôpital-d’Orion",
     "code": "64263",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64270"
   },
@@ -2043,7 +2043,7 @@
     "name": "L’Hôpital-Saint-Blaise",
     "code": "64264",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64130"
   },
@@ -2051,7 +2051,7 @@
     "name": "Hosta",
     "code": "64265",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -2059,7 +2059,7 @@
     "name": "Hours",
     "code": "64266",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64420"
   },
@@ -2067,7 +2067,7 @@
     "name": "Ibarrolle",
     "code": "64267",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -2075,7 +2075,7 @@
     "name": "Idaux-Mendy",
     "code": "64268",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64130"
   },
@@ -2083,7 +2083,7 @@
     "name": "Idron",
     "code": "64269",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64320"
   },
@@ -2091,7 +2091,7 @@
     "name": "Igon",
     "code": "64270",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64800"
   },
@@ -2099,7 +2099,7 @@
     "name": "Iholdy",
     "code": "64271",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64640"
   },
@@ -2107,7 +2107,7 @@
     "name": "Ilharre",
     "code": "64272",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -2115,7 +2115,7 @@
     "name": "Irissarry",
     "code": "64273",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64780"
   },
@@ -2123,7 +2123,7 @@
     "name": "Irouléguy",
     "code": "64274",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64220"
   },
@@ -2131,7 +2131,7 @@
     "name": "Ispoure",
     "code": "64275",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64220"
   },
@@ -2139,7 +2139,7 @@
     "name": "Issor",
     "code": "64276",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64570"
   },
@@ -2147,7 +2147,7 @@
     "name": "Isturits",
     "code": "64277",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64240"
   },
@@ -2155,7 +2155,7 @@
     "name": "Itxassou",
     "code": "64279",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64250"
   },
@@ -2163,7 +2163,7 @@
     "name": "Izeste",
     "code": "64280",
     "epci_code": "246400337",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64260"
   },
@@ -2171,7 +2171,7 @@
     "name": "Jasses",
     "code": "64281",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -2179,7 +2179,7 @@
     "name": "Jatxou",
     "code": "64282",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64480"
   },
@@ -2187,7 +2187,7 @@
     "name": "Jaxu",
     "code": "64283",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64220"
   },
@@ -2195,7 +2195,7 @@
     "name": "Jurançon",
     "code": "64284",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64110"
   },
@@ -2203,7 +2203,7 @@
     "name": "Juxue",
     "code": "64285",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -2211,7 +2211,7 @@
     "name": "Laà-Mondrans",
     "code": "64286",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64300"
   },
@@ -2219,7 +2219,7 @@
     "name": "Laàs",
     "code": "64287",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64390"
   },
@@ -2227,7 +2227,7 @@
     "name": "Labastide-Cézéracq",
     "code": "64288",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64170"
   },
@@ -2235,7 +2235,7 @@
     "name": "La Bastide-Clairence",
     "code": "64289",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64240"
   },
@@ -2243,7 +2243,7 @@
     "name": "Labastide-Monréjeau",
     "code": "64290",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64170"
   },
@@ -2251,7 +2251,7 @@
     "name": "Labastide-Villefranche",
     "code": "64291",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64270"
   },
@@ -2259,7 +2259,7 @@
     "name": "Labatmale",
     "code": "64292",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64530"
   },
@@ -2267,7 +2267,7 @@
     "name": "Labatut-Figuières",
     "code": "64293",
     "epci_code": "200072106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64460"
   },
@@ -2275,7 +2275,7 @@
     "name": "Labets-Biscay",
     "code": "64294",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -2283,7 +2283,7 @@
     "name": "Labeyrie",
     "code": "64295",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64300"
   },
@@ -2291,7 +2291,7 @@
     "name": "Lacadée",
     "code": "64296",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64300"
   },
@@ -2299,7 +2299,7 @@
     "name": "Lacarre",
     "code": "64297",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64220"
   },
@@ -2307,7 +2307,7 @@
     "name": "Lacarry-Arhan-Charritte-de-Haut",
     "code": "64298",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64470"
   },
@@ -2315,7 +2315,7 @@
     "name": "Lacommande",
     "code": "64299",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64360"
   },
@@ -2323,7 +2323,7 @@
     "name": "Lacq",
     "code": "64300",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64170"
   },
@@ -2331,7 +2331,7 @@
     "name": "Lagor",
     "code": "64301",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64150"
   },
@@ -2339,7 +2339,7 @@
     "name": "Lagos",
     "code": "64302",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64800"
   },
@@ -2347,7 +2347,7 @@
     "name": "Laguinge-Restoue",
     "code": "64303",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64470"
   },
@@ -2355,7 +2355,7 @@
     "name": "Lahonce",
     "code": "64304",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64990"
   },
@@ -2363,7 +2363,7 @@
     "name": "Lahontan",
     "code": "64305",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64270"
   },
@@ -2371,7 +2371,7 @@
     "name": "Lahourcade",
     "code": "64306",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64150"
   },
@@ -2379,7 +2379,7 @@
     "name": "Lalongue",
     "code": "64307",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -2387,7 +2387,7 @@
     "name": "Lalonquette",
     "code": "64308",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64450"
   },
@@ -2395,7 +2395,7 @@
     "name": "Lamayou",
     "code": "64309",
     "epci_code": "200072106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64460"
   },
@@ -2403,7 +2403,7 @@
     "name": "Lanne-en-Barétous",
     "code": "64310",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64570"
   },
@@ -2411,7 +2411,7 @@
     "name": "Lannecaube",
     "code": "64311",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -2419,7 +2419,7 @@
     "name": "Lanneplaà",
     "code": "64312",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64300"
   },
@@ -2427,7 +2427,7 @@
     "name": "Lantabat",
     "code": "64313",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64640"
   },
@@ -2435,7 +2435,7 @@
     "name": "Larceveau-Arros-Cibits",
     "code": "64314",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -2443,7 +2443,7 @@
     "name": "Laroin",
     "code": "64315",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64110"
   },
@@ -2451,7 +2451,7 @@
     "name": "Larrau",
     "code": "64316",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64560"
   },
@@ -2459,7 +2459,7 @@
     "name": "Larressore",
     "code": "64317",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64480"
   },
@@ -2467,7 +2467,7 @@
     "name": "Larreule",
     "code": "64318",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64410"
   },
@@ -2475,7 +2475,7 @@
     "name": "Larribar-Sorhapuru",
     "code": "64319",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -2483,7 +2483,7 @@
     "name": "Laruns",
     "code": "64320",
     "epci_code": "246400337",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64440"
   },
@@ -2491,7 +2491,7 @@
     "name": "Lasclaveries",
     "code": "64321",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64450"
   },
@@ -2499,7 +2499,7 @@
     "name": "Lasse",
     "code": "64322",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64220"
   },
@@ -2507,7 +2507,7 @@
     "name": "Lasserre",
     "code": "64323",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -2515,7 +2515,7 @@
     "name": "Lasseube",
     "code": "64324",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64290"
   },
@@ -2523,7 +2523,7 @@
     "name": "Lasseubetat",
     "code": "64325",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64290"
   },
@@ -2531,7 +2531,7 @@
     "name": "Lay-Lamidou",
     "code": "64326",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -2539,7 +2539,7 @@
     "name": "Lecumberry",
     "code": "64327",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64220"
   },
@@ -2547,7 +2547,7 @@
     "name": "Ledeuix",
     "code": "64328",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64400"
   },
@@ -2555,7 +2555,7 @@
     "name": "Lée",
     "code": "64329",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64320"
   },
@@ -2563,7 +2563,7 @@
     "name": "Lées-Athas",
     "code": "64330",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64490"
   },
@@ -2571,7 +2571,7 @@
     "name": "Lembeye",
     "code": "64331",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -2579,7 +2579,7 @@
     "name": "Lème",
     "code": "64332",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64450"
   },
@@ -2587,7 +2587,7 @@
     "name": "Léren",
     "code": "64334",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64270"
   },
@@ -2595,7 +2595,7 @@
     "name": "Lescar",
     "code": "64335",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64230"
   },
@@ -2603,7 +2603,7 @@
     "name": "Lescun",
     "code": "64336",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64490"
   },
@@ -2611,7 +2611,7 @@
     "name": "Lespielle",
     "code": "64337",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -2619,7 +2619,7 @@
     "name": "Lespourcy",
     "code": "64338",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -2627,7 +2627,7 @@
     "name": "Lestelle-Bétharram",
     "code": "64339",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64800"
   },
@@ -2635,7 +2635,7 @@
     "name": "Lichans-Sunhar",
     "code": "64340",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64470"
   },
@@ -2643,7 +2643,7 @@
     "name": "Lichos",
     "code": "64341",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64130"
   },
@@ -2651,7 +2651,7 @@
     "name": "Licq-Athérey",
     "code": "64342",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64560"
   },
@@ -2659,7 +2659,7 @@
     "name": "Limendous",
     "code": "64343",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64420"
   },
@@ -2667,7 +2667,7 @@
     "name": "Livron",
     "code": "64344",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64530"
   },
@@ -2675,7 +2675,7 @@
     "name": "Lohitzun-Oyhercq",
     "code": "64345",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -2683,7 +2683,7 @@
     "name": "Lombia",
     "code": "64346",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -2691,7 +2691,7 @@
     "name": "Lonçon",
     "code": "64347",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64410"
   },
@@ -2699,7 +2699,7 @@
     "name": "Lons",
     "code": "64348",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64140"
   },
@@ -2707,7 +2707,7 @@
     "name": "Loubieng",
     "code": "64349",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64300"
   },
@@ -2715,7 +2715,7 @@
     "name": "Louhossoa",
     "code": "64350",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64250"
   },
@@ -2723,7 +2723,7 @@
     "name": "Lourdios-Ichère",
     "code": "64351",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64570"
   },
@@ -2731,7 +2731,7 @@
     "name": "Lourenties",
     "code": "64352",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64420"
   },
@@ -2739,7 +2739,7 @@
     "name": "Louvie-Juzon",
     "code": "64353",
     "epci_code": "246400337",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64260"
   },
@@ -2747,7 +2747,7 @@
     "name": "Louvie-Soubiron",
     "code": "64354",
     "epci_code": "246400337",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64440"
   },
@@ -2755,7 +2755,7 @@
     "name": "Louvigny",
     "code": "64355",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64410"
   },
@@ -2763,7 +2763,7 @@
     "name": "Luc-Armau",
     "code": "64356",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -2771,7 +2771,7 @@
     "name": "Lucarré",
     "code": "64357",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -2779,7 +2779,7 @@
     "name": "Lucgarier",
     "code": "64358",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64420"
   },
@@ -2787,7 +2787,7 @@
     "name": "Lucq-de-Béarn",
     "code": "64359",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64360"
   },
@@ -2795,7 +2795,7 @@
     "name": "Lurbe-Saint-Christau",
     "code": "64360",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64660"
   },
@@ -2803,7 +2803,7 @@
     "name": "Lussagnet-Lusson",
     "code": "64361",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -2811,7 +2811,7 @@
     "name": "Luxe-Sumberraute",
     "code": "64362",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -2819,7 +2819,7 @@
     "name": "Lys",
     "code": "64363",
     "epci_code": "246400337",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64260"
   },
@@ -2827,7 +2827,7 @@
     "name": "Macaye",
     "code": "64364",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64240"
   },
@@ -2835,7 +2835,7 @@
     "name": "Malaussanne",
     "code": "64365",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64410"
   },
@@ -2843,7 +2843,7 @@
     "name": "Mascaraàs-Haron",
     "code": "64366",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64330"
   },
@@ -2851,7 +2851,7 @@
     "name": "Maslacq",
     "code": "64367",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64300"
   },
@@ -2859,7 +2859,7 @@
     "name": "Masparraute",
     "code": "64368",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -2867,7 +2867,7 @@
     "name": "Maspie-Lalonquère-Juillacq",
     "code": "64369",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -2875,7 +2875,7 @@
     "name": "Maucor",
     "code": "64370",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -2883,7 +2883,7 @@
     "name": "Mauléon-Licharre",
     "code": "64371",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64130"
   },
@@ -2891,7 +2891,7 @@
     "name": "Maure",
     "code": "64372",
     "epci_code": "200072106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64460"
   },
@@ -2899,7 +2899,7 @@
     "name": "Mazères-Lezons",
     "code": "64373",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64110"
   },
@@ -2907,7 +2907,7 @@
     "name": "Mazerolles",
     "code": "64374",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64230"
   },
@@ -2915,7 +2915,7 @@
     "name": "Méharin",
     "code": "64375",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -2923,7 +2923,7 @@
     "name": "Meillon",
     "code": "64376",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64510"
   },
@@ -2931,7 +2931,7 @@
     "name": "Mendionde",
     "code": "64377",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64240"
   },
@@ -2939,7 +2939,7 @@
     "name": "Menditte",
     "code": "64378",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64130"
   },
@@ -2947,7 +2947,7 @@
     "name": "Mendive",
     "code": "64379",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64220"
   },
@@ -2955,7 +2955,7 @@
     "name": "Méracq",
     "code": "64380",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64410"
   },
@@ -2963,7 +2963,7 @@
     "name": "Méritein",
     "code": "64381",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -2971,7 +2971,7 @@
     "name": "Mesplède",
     "code": "64382",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64370"
   },
@@ -2979,7 +2979,7 @@
     "name": "Mialos",
     "code": "64383",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64410"
   },
@@ -2987,7 +2987,7 @@
     "name": "Miossens-Lanusse",
     "code": "64385",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64450"
   },
@@ -2995,7 +2995,7 @@
     "name": "Mirepeix",
     "code": "64386",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64800"
   },
@@ -3003,7 +3003,7 @@
     "name": "Momas",
     "code": "64387",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64230"
   },
@@ -3011,7 +3011,7 @@
     "name": "Momy",
     "code": "64388",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -3019,7 +3019,7 @@
     "name": "Monassut-Audiracq",
     "code": "64389",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -3027,7 +3027,7 @@
     "name": "Moncaup",
     "code": "64390",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -3035,7 +3035,7 @@
     "name": "Moncayolle-Larrory-Mendibieu",
     "code": "64391",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64130"
   },
@@ -3043,7 +3043,7 @@
     "name": "Moncla",
     "code": "64392",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64330"
   },
@@ -3051,7 +3051,7 @@
     "name": "Monein",
     "code": "64393",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64360"
   },
@@ -3059,7 +3059,7 @@
     "name": "Monpezat",
     "code": "64394",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -3067,7 +3067,7 @@
     "name": "Monségur",
     "code": "64395",
     "epci_code": "200072106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64460"
   },
@@ -3075,7 +3075,7 @@
     "name": "Mont",
     "code": "64396",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64300"
   },
@@ -3083,7 +3083,7 @@
     "name": "Montagut",
     "code": "64397",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64410"
   },
@@ -3091,7 +3091,7 @@
     "name": "Montaner",
     "code": "64398",
     "epci_code": "200072106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64460"
   },
@@ -3099,7 +3099,7 @@
     "name": "Montardon",
     "code": "64399",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64121"
   },
@@ -3107,7 +3107,7 @@
     "name": "Montaut",
     "code": "64400",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64800"
   },
@@ -3115,7 +3115,7 @@
     "name": "Mont-Disse",
     "code": "64401",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64330"
   },
@@ -3123,7 +3123,7 @@
     "name": "Montfort",
     "code": "64403",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -3131,7 +3131,7 @@
     "name": "Montory",
     "code": "64404",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64470"
   },
@@ -3139,7 +3139,7 @@
     "name": "Morlaàs",
     "code": "64405",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -3147,7 +3147,7 @@
     "name": "Morlanne",
     "code": "64406",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64370"
   },
@@ -3155,7 +3155,7 @@
     "name": "Mouguerre",
     "code": "64407",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64990"
   },
@@ -3163,7 +3163,7 @@
     "name": "Mouhous",
     "code": "64408",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64330"
   },
@@ -3171,7 +3171,7 @@
     "name": "Moumour",
     "code": "64409",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64400"
   },
@@ -3179,7 +3179,7 @@
     "name": "Mourenx",
     "code": "64410",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64150"
   },
@@ -3187,7 +3187,7 @@
     "name": "Musculdy",
     "code": "64411",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64130"
   },
@@ -3195,7 +3195,7 @@
     "name": "Nabas",
     "code": "64412",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -3203,7 +3203,7 @@
     "name": "Narcastet",
     "code": "64413",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64510"
   },
@@ -3211,7 +3211,7 @@
     "name": "Narp",
     "code": "64414",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -3219,7 +3219,7 @@
     "name": "Navailles-Angos",
     "code": "64415",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64450"
   },
@@ -3227,7 +3227,7 @@
     "name": "Navarrenx",
     "code": "64416",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -3235,7 +3235,7 @@
     "name": "Nay",
     "code": "64417",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64800"
   },
@@ -3243,7 +3243,7 @@
     "name": "Noguères",
     "code": "64418",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64150"
   },
@@ -3251,7 +3251,7 @@
     "name": "Nousty",
     "code": "64419",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64420"
   },
@@ -3259,7 +3259,7 @@
     "name": "Ogenne-Camptort",
     "code": "64420",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -3267,7 +3267,7 @@
     "name": "Ogeu-les-Bains",
     "code": "64421",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64680"
   },
@@ -3275,7 +3275,7 @@
     "name": "Oloron-Sainte-Marie",
     "code": "64422",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64400"
   },
@@ -3283,7 +3283,7 @@
     "name": "Oraàs",
     "code": "64423",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64390"
   },
@@ -3291,7 +3291,7 @@
     "name": "Ordiarp",
     "code": "64424",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64130"
   },
@@ -3299,7 +3299,7 @@
     "name": "Orègue",
     "code": "64425",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -3307,7 +3307,7 @@
     "name": "Orin",
     "code": "64426",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64400"
   },
@@ -3315,7 +3315,7 @@
     "name": "Orion",
     "code": "64427",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64390"
   },
@@ -3323,7 +3323,7 @@
     "name": "Orriule",
     "code": "64428",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64390"
   },
@@ -3331,7 +3331,7 @@
     "name": "Orsanco",
     "code": "64429",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -3339,7 +3339,7 @@
     "name": "Orthez",
     "code": "64430",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64300"
   },
@@ -3347,7 +3347,7 @@
     "name": "Os-Marsillon",
     "code": "64431",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64150"
   },
@@ -3355,7 +3355,7 @@
     "name": "Ossas-Suhare",
     "code": "64432",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64470"
   },
@@ -3363,7 +3363,7 @@
     "name": "Osse-en-Aspe",
     "code": "64433",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64490"
   },
@@ -3371,7 +3371,7 @@
     "name": "Ossenx",
     "code": "64434",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -3379,7 +3379,7 @@
     "name": "Osserain-Rivareyte",
     "code": "64435",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64390"
   },
@@ -3387,7 +3387,7 @@
     "name": "Ossès",
     "code": "64436",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64780"
   },
@@ -3395,7 +3395,7 @@
     "name": "Ostabat-Asme",
     "code": "64437",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -3403,7 +3403,7 @@
     "name": "Ouillon",
     "code": "64438",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -3411,7 +3411,7 @@
     "name": "Ousse",
     "code": "64439",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64320"
   },
@@ -3419,7 +3419,7 @@
     "name": "Ozenx-Montestrucq",
     "code": "64440",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64300"
   },
@@ -3427,7 +3427,7 @@
     "name": "Pagolle",
     "code": "64441",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -3435,7 +3435,7 @@
     "name": "Parbayse",
     "code": "64442",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64360"
   },
@@ -3443,7 +3443,7 @@
     "name": "Pardies",
     "code": "64443",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64150"
   },
@@ -3451,7 +3451,7 @@
     "name": "Pardies-Piétat",
     "code": "64444",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64800"
   },
@@ -3459,7 +3459,7 @@
     "name": "Pau",
     "code": "64445",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64000"
   },
@@ -3467,7 +3467,7 @@
     "name": "Peyrelongue-Abos",
     "code": "64446",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -3475,7 +3475,7 @@
     "name": "Piets-Plasence-Moustrou",
     "code": "64447",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64410"
   },
@@ -3483,7 +3483,7 @@
     "name": "Poey-de-Lescar",
     "code": "64448",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64230"
   },
@@ -3491,7 +3491,7 @@
     "name": "Poey-d’Oloron",
     "code": "64449",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64400"
   },
@@ -3499,7 +3499,7 @@
     "name": "Pomps",
     "code": "64450",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64370"
   },
@@ -3507,7 +3507,7 @@
     "name": "Ponson-Debat-Pouts",
     "code": "64451",
     "epci_code": "200072106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64460"
   },
@@ -3515,7 +3515,7 @@
     "name": "Ponson-Dessus",
     "code": "64452",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64460"
   },
@@ -3523,7 +3523,7 @@
     "name": "Pontacq",
     "code": "64453",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64530"
   },
@@ -3531,7 +3531,7 @@
     "name": "Pontiacq-Viellepinte",
     "code": "64454",
     "epci_code": "200072106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64460"
   },
@@ -3539,7 +3539,7 @@
     "name": "Portet",
     "code": "64455",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64330"
   },
@@ -3547,7 +3547,7 @@
     "name": "Pouliacq",
     "code": "64456",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64410"
   },
@@ -3555,7 +3555,7 @@
     "name": "Poursiugues-Boucoue",
     "code": "64457",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64410"
   },
@@ -3563,7 +3563,7 @@
     "name": "Préchacq-Josbaig",
     "code": "64458",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -3571,7 +3571,7 @@
     "name": "Préchacq-Navarrenx",
     "code": "64459",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -3579,7 +3579,7 @@
     "name": "Précilhon",
     "code": "64460",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64400"
   },
@@ -3587,7 +3587,7 @@
     "name": "Puyoô",
     "code": "64461",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64270"
   },
@@ -3595,7 +3595,7 @@
     "name": "Ramous",
     "code": "64462",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64270"
   },
@@ -3603,7 +3603,7 @@
     "name": "Rébénacq",
     "code": "64463",
     "epci_code": "246400337",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64260"
   },
@@ -3611,7 +3611,7 @@
     "name": "Ribarrouy",
     "code": "64464",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64330"
   },
@@ -3619,7 +3619,7 @@
     "name": "Riupeyrous",
     "code": "64465",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -3627,7 +3627,7 @@
     "name": "Rivehaute",
     "code": "64466",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -3635,7 +3635,7 @@
     "name": "Rontignon",
     "code": "64467",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64110"
   },
@@ -3643,7 +3643,7 @@
     "name": "Roquiague",
     "code": "64468",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64130"
   },
@@ -3651,7 +3651,7 @@
     "name": "Saint-Abit",
     "code": "64469",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64800"
   },
@@ -3659,7 +3659,7 @@
     "name": "Saint-Armou",
     "code": "64470",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -3667,7 +3667,7 @@
     "name": "Saint-Boès",
     "code": "64471",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64300"
   },
@@ -3675,7 +3675,7 @@
     "name": "Saint-Castin",
     "code": "64472",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -3683,7 +3683,7 @@
     "name": "Sainte-Colome",
     "code": "64473",
     "epci_code": "246400337",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64260"
   },
@@ -3691,7 +3691,7 @@
     "name": "Saint-Dos",
     "code": "64474",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64270"
   },
@@ -3699,7 +3699,7 @@
     "name": "Sainte-Engrâce",
     "code": "64475",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64560"
   },
@@ -3707,7 +3707,7 @@
     "name": "Saint-Esteben",
     "code": "64476",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64640"
   },
@@ -3715,7 +3715,7 @@
     "name": "Saint-Étienne-de-Baïgorry",
     "code": "64477",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64430"
   },
@@ -3723,7 +3723,7 @@
     "name": "Saint-Faust",
     "code": "64478",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64110"
   },
@@ -3731,7 +3731,7 @@
     "name": "Saint-Girons-en-Béarn",
     "code": "64479",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64300"
   },
@@ -3739,7 +3739,7 @@
     "name": "Saint-Gladie-Arrive-Munein",
     "code": "64480",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64390"
   },
@@ -3747,7 +3747,7 @@
     "name": "Saint-Goin",
     "code": "64481",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64400"
   },
@@ -3755,7 +3755,7 @@
     "name": "Saint-Jammes",
     "code": "64482",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -3763,7 +3763,7 @@
     "name": "Saint-Jean-de-Luz",
     "code": "64483",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64500"
   },
@@ -3771,7 +3771,7 @@
     "name": "Saint-Jean-le-Vieux",
     "code": "64484",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64220"
   },
@@ -3779,7 +3779,7 @@
     "name": "Saint-Jean-Pied-de-Port",
     "code": "64485",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64220"
   },
@@ -3787,7 +3787,7 @@
     "name": "Saint-Jean-Poudge",
     "code": "64486",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64330"
   },
@@ -3795,7 +3795,7 @@
     "name": "Saint-Just-Ibarre",
     "code": "64487",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -3803,7 +3803,7 @@
     "name": "Saint-Laurent-Bretagne",
     "code": "64488",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -3811,7 +3811,7 @@
     "name": "Saint-Martin-d’Arberoue",
     "code": "64489",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64640"
   },
@@ -3819,7 +3819,7 @@
     "name": "Saint-Martin-d’Arrossa",
     "code": "64490",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64780"
   },
@@ -3827,7 +3827,7 @@
     "name": "Saint-Médard",
     "code": "64491",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64370"
   },
@@ -3835,7 +3835,7 @@
     "name": "Saint-Michel",
     "code": "64492",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64220"
   },
@@ -3843,7 +3843,7 @@
     "name": "Saint-Palais",
     "code": "64493",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -3851,7 +3851,7 @@
     "name": "Saint-Pé-de-Léren",
     "code": "64494",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64270"
   },
@@ -3859,7 +3859,7 @@
     "name": "Saint-Pée-sur-Nivelle",
     "code": "64495",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64310"
   },
@@ -3867,7 +3867,7 @@
     "name": "Saint-Pierre-d’Irube",
     "code": "64496",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64990"
   },
@@ -3875,7 +3875,7 @@
     "name": "Saint-Vincent",
     "code": "64498",
     "epci_code": "246401756",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64800"
   },
@@ -3883,7 +3883,7 @@
     "name": "Salies-de-Béarn",
     "code": "64499",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64270"
   },
@@ -3891,7 +3891,7 @@
     "name": "Salles-Mongiscard",
     "code": "64500",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64300"
   },
@@ -3899,7 +3899,7 @@
     "name": "Sallespisse",
     "code": "64501",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64300"
   },
@@ -3907,7 +3907,7 @@
     "name": "Sames",
     "code": "64502",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64520"
   },
@@ -3915,7 +3915,7 @@
     "name": "Samsons-Lion",
     "code": "64503",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -3923,7 +3923,7 @@
     "name": "Sare",
     "code": "64504",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64310"
   },
@@ -3931,7 +3931,7 @@
     "name": "Sarpourenx",
     "code": "64505",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64300"
   },
@@ -3939,7 +3939,7 @@
     "name": "Sarrance",
     "code": "64506",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64490"
   },
@@ -3947,7 +3947,7 @@
     "name": "Saubole",
     "code": "64507",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64420"
   },
@@ -3955,7 +3955,7 @@
     "name": "Saucède",
     "code": "64508",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64400"
   },
@@ -3963,7 +3963,7 @@
     "name": "Sauguis-Saint-Étienne",
     "code": "64509",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64470"
   },
@@ -3971,7 +3971,7 @@
     "name": "Sault-de-Navailles",
     "code": "64510",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64300"
   },
@@ -3979,7 +3979,7 @@
     "name": "Sauvagnon",
     "code": "64511",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64230"
   },
@@ -3987,7 +3987,7 @@
     "name": "Sauvelade",
     "code": "64512",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64150"
   },
@@ -3995,7 +3995,7 @@
     "name": "Sauveterre-de-Béarn",
     "code": "64513",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64390"
   },
@@ -4003,7 +4003,7 @@
     "name": "Séby",
     "code": "64514",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64410"
   },
@@ -4011,7 +4011,7 @@
     "name": "Sedze-Maubecq",
     "code": "64515",
     "epci_code": "200072106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -4019,7 +4019,7 @@
     "name": "Sedzère",
     "code": "64516",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -4027,7 +4027,7 @@
     "name": "Séméacq-Blachon",
     "code": "64517",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -4035,7 +4035,7 @@
     "name": "Sendets",
     "code": "64518",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64320"
   },
@@ -4043,7 +4043,7 @@
     "name": "Serres-Castet",
     "code": "64519",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64121"
   },
@@ -4051,7 +4051,7 @@
     "name": "Serres-Morlaàs",
     "code": "64520",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -4059,7 +4059,7 @@
     "name": "Serres-Sainte-Marie",
     "code": "64521",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64170"
   },
@@ -4067,7 +4067,7 @@
     "name": "Sévignacq-Meyracq",
     "code": "64522",
     "epci_code": "246400337",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64260"
   },
@@ -4075,7 +4075,7 @@
     "name": "Sévignacq",
     "code": "64523",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -4083,7 +4083,7 @@
     "name": "Simacourbe",
     "code": "64524",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64350"
   },
@@ -4091,7 +4091,7 @@
     "name": "Siros",
     "code": "64525",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64230"
   },
@@ -4099,7 +4099,7 @@
     "name": "Soumoulou",
     "code": "64526",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64420"
   },
@@ -4107,7 +4107,7 @@
     "name": "Souraïde",
     "code": "64527",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64250"
   },
@@ -4115,7 +4115,7 @@
     "name": "Suhescun",
     "code": "64528",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64780"
   },
@@ -4123,7 +4123,7 @@
     "name": "Sus",
     "code": "64529",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -4131,7 +4131,7 @@
     "name": "Susmiou",
     "code": "64530",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -4139,7 +4139,7 @@
     "name": "Tabaille-Usquain",
     "code": "64531",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -4147,7 +4147,7 @@
     "name": "Tadousse-Ussau",
     "code": "64532",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64330"
   },
@@ -4155,7 +4155,7 @@
     "name": "Tardets-Sorholus",
     "code": "64533",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64470"
   },
@@ -4163,7 +4163,7 @@
     "name": "Taron-Sadirac-Viellenave",
     "code": "64534",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64330"
   },
@@ -4171,7 +4171,7 @@
     "name": "Tarsacq",
     "code": "64535",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64360"
   },
@@ -4179,7 +4179,7 @@
     "name": "Thèze",
     "code": "64536",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64450"
   },
@@ -4187,7 +4187,7 @@
     "name": "Trois-Villes",
     "code": "64537",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64470"
   },
@@ -4195,7 +4195,7 @@
     "name": "Uhart-Cize",
     "code": "64538",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64220"
   },
@@ -4203,7 +4203,7 @@
     "name": "Uhart-Mixe",
     "code": "64539",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64120"
   },
@@ -4211,7 +4211,7 @@
     "name": "Urcuit",
     "code": "64540",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64990"
   },
@@ -4219,7 +4219,7 @@
     "name": "Urdos",
     "code": "64542",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64490"
   },
@@ -4227,7 +4227,7 @@
     "name": "Urepel",
     "code": "64543",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64430"
   },
@@ -4235,7 +4235,7 @@
     "name": "Urost",
     "code": "64544",
     "epci_code": "200067296",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64160"
   },
@@ -4243,7 +4243,7 @@
     "name": "Urrugne",
     "code": "64545",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64122"
   },
@@ -4251,7 +4251,7 @@
     "name": "Urrugne",
     "code": "64545",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64700"
   },
@@ -4259,7 +4259,7 @@
     "name": "Urt",
     "code": "64546",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64240"
   },
@@ -4267,7 +4267,7 @@
     "name": "Ustaritz",
     "code": "64547",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64480"
   },
@@ -4275,7 +4275,7 @@
     "name": "Uzan",
     "code": "64548",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64370"
   },
@@ -4283,7 +4283,7 @@
     "name": "Uzein",
     "code": "64549",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64230"
   },
@@ -4291,7 +4291,7 @@
     "name": "Uzos",
     "code": "64550",
     "epci_code": "200067254",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64110"
   },
@@ -4299,7 +4299,7 @@
     "name": "Verdets",
     "code": "64551",
     "epci_code": "200067262",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64400"
   },
@@ -4307,7 +4307,7 @@
     "name": "Vialer",
     "code": "64552",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64330"
   },
@@ -4315,7 +4315,7 @@
     "name": "Viellenave-d’Arthez",
     "code": "64554",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64170"
   },
@@ -4323,7 +4323,7 @@
     "name": "Viellenave-de-Navarrenx",
     "code": "64555",
     "epci_code": "200067288",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64190"
   },
@@ -4331,7 +4331,7 @@
     "name": "Vielleségure",
     "code": "64556",
     "epci_code": "200039204",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64150"
   },
@@ -4339,7 +4339,7 @@
     "name": "Vignes",
     "code": "64557",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64410"
   },
@@ -4347,7 +4347,7 @@
     "name": "Villefranque",
     "code": "64558",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64990"
   },
@@ -4355,7 +4355,7 @@
     "name": "Viodos-Abense-de-Bas",
     "code": "64559",
     "epci_code": "200067106",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64130"
   },
@@ -4363,7 +4363,7 @@
     "name": "Viven",
     "code": "64560",
     "epci_code": "200067239",
-    "departement_code": "64",
+    "department_code": "64",
     "region_code": "75",
     "postal_code": "64450"
   }

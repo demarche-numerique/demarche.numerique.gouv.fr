@@ -21,7 +21,7 @@ class Dossiers::EpciComponent < ApplicationComponent
     [
       ['EPCI', name],
       [t('shared.dossiers.geo.department'), champ.departement_code_and_name],
-      [t('shared.dossiers.geo.region_code'), champ.code_region],
+      [t('shared.dossiers.geo.region_code'), champ.region_code],
     ]
   end
 

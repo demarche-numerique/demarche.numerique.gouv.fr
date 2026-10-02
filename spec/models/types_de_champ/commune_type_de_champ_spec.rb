@@ -24,11 +24,5 @@ describe TypesDeChamp::CommuneTypeDeChamp do
       expect(insee_column.label).to eq('Ma commune – Code INSEE')
       expect(insee_column.value(champ.reload)).to eq('10420')
     end
-
-    it 'keeps legacy jsonpaths resolvable but hidden' do
-      legacy = jsonpath_columns.reject(&:displayable)
-      expect(legacy.map(&:jsonpath)).to contain_exactly('$.code_postal', '$.code_departement')
-      expect(legacy).to all(have_attributes(filterable: false))
-    end
   end
 end

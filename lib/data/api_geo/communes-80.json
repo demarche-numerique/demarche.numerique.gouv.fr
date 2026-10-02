@@ -3,7 +3,7 @@
     "name": "Abbeville",
     "code": "80001",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80100"
   },
@@ -11,7 +11,7 @@
     "name": "Ablaincourt-Pressoir",
     "code": "80002",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80320"
   },
@@ -19,7 +19,7 @@
     "name": "Acheux-en-Amiénois",
     "code": "80003",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80560"
   },
@@ -27,7 +27,7 @@
     "name": "Acheux-en-Vimeu",
     "code": "80004",
     "epci_code": "200070944",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80210"
   },
@@ -35,7 +35,7 @@
     "name": "Agenville",
     "code": "80005",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80370"
   },
@@ -43,7 +43,7 @@
     "name": "Agenvillers",
     "code": "80006",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -51,7 +51,7 @@
     "name": "Aigneville",
     "code": "80008",
     "epci_code": "200070944",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80210"
   },
@@ -59,7 +59,7 @@
     "name": "Ailly-le-Haut-Clocher",
     "code": "80009",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80690"
   },
@@ -67,7 +67,7 @@
     "name": "Ailly-sur-Noye",
     "code": "80010",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80250"
   },
@@ -75,7 +75,7 @@
     "name": "Ailly-sur-Somme",
     "code": "80011",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80470"
   },
@@ -83,7 +83,7 @@
     "name": "Airaines",
     "code": "80013",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80270"
   },
@@ -91,7 +91,7 @@
     "name": "Aizecourt-le-Bas",
     "code": "80014",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80240"
   },
@@ -99,7 +99,7 @@
     "name": "Aizecourt-le-Haut",
     "code": "80015",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -107,7 +107,7 @@
     "name": "Albert",
     "code": "80016",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -115,7 +115,7 @@
     "name": "Allaines",
     "code": "80017",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -123,7 +123,7 @@
     "name": "Allenay",
     "code": "80018",
     "epci_code": "247600588",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80130"
   },
@@ -131,7 +131,7 @@
     "name": "Allery",
     "code": "80019",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80270"
   },
@@ -139,7 +139,7 @@
     "name": "Allonville",
     "code": "80020",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80260"
   },
@@ -147,7 +147,7 @@
     "name": "Amiens",
     "code": "80021",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80000"
   },
@@ -155,7 +155,7 @@
     "name": "Amiens",
     "code": "80021",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80080"
   },
@@ -163,7 +163,7 @@
     "name": "Amiens",
     "code": "80021",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80090"
   },
@@ -171,7 +171,7 @@
     "name": "Andainville",
     "code": "80022",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -179,7 +179,7 @@
     "name": "Andechy",
     "code": "80023",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -187,7 +187,7 @@
     "name": "Argœuves",
     "code": "80024",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80470"
   },
@@ -195,7 +195,7 @@
     "name": "Argoules",
     "code": "80025",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80120"
   },
@@ -203,7 +203,7 @@
     "name": "Arguel",
     "code": "80026",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -211,7 +211,7 @@
     "name": "Armancourt",
     "code": "80027",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -219,7 +219,7 @@
     "name": "Arquèves",
     "code": "80028",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80560"
   },
@@ -227,7 +227,7 @@
     "name": "Arrest",
     "code": "80029",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80820"
   },
@@ -235,7 +235,7 @@
     "name": "Arry",
     "code": "80030",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80120"
   },
@@ -243,7 +243,7 @@
     "name": "Arvillers",
     "code": "80031",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80910"
   },
@@ -251,7 +251,7 @@
     "name": "Assainvillers",
     "code": "80032",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -259,7 +259,7 @@
     "name": "Assevillers",
     "code": "80033",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -267,7 +267,7 @@
     "name": "Athies",
     "code": "80034",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -275,7 +275,7 @@
     "name": "Aubercourt",
     "code": "80035",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80110"
   },
@@ -283,7 +283,7 @@
     "name": "Aubigny",
     "code": "80036",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -291,7 +291,7 @@
     "name": "Aubvillers",
     "code": "80037",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80110"
   },
@@ -299,7 +299,7 @@
     "name": "Auchonvillers",
     "code": "80038",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80560"
   },
@@ -307,7 +307,7 @@
     "name": "Ault",
     "code": "80039",
     "epci_code": "247600588",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80460"
   },
@@ -315,7 +315,7 @@
     "name": "Aumâtre",
     "code": "80040",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -323,7 +323,7 @@
     "name": "Aumont",
     "code": "80041",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80640"
   },
@@ -331,7 +331,7 @@
     "name": "Autheux",
     "code": "80042",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80600"
   },
@@ -339,7 +339,7 @@
     "name": "Authie",
     "code": "80043",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80560"
   },
@@ -347,7 +347,7 @@
     "name": "Authieule",
     "code": "80044",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80600"
   },
@@ -355,7 +355,7 @@
     "name": "Authuille",
     "code": "80045",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -363,7 +363,7 @@
     "name": "Avelesges",
     "code": "80046",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80270"
   },
@@ -371,7 +371,7 @@
     "name": "Aveluy",
     "code": "80047",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -379,7 +379,7 @@
     "name": "Avesnes-Chaussoy",
     "code": "80048",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -387,7 +387,7 @@
     "name": "Ayencourt",
     "code": "80049",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -395,7 +395,7 @@
     "name": "Bacouel-sur-Selle",
     "code": "80050",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80480"
   },
@@ -403,7 +403,7 @@
     "name": "Bailleul",
     "code": "80051",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80490"
   },
@@ -411,7 +411,7 @@
     "name": "Baizieux",
     "code": "80052",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -419,7 +419,7 @@
     "name": "Balâtre",
     "code": "80053",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -427,7 +427,7 @@
     "name": "Barleux",
     "code": "80054",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -435,7 +435,7 @@
     "name": "Barly",
     "code": "80055",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80600"
   },
@@ -443,7 +443,7 @@
     "name": "Bavelincourt",
     "code": "80056",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80260"
   },
@@ -451,7 +451,7 @@
     "name": "Bayencourt",
     "code": "80057",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80560"
   },
@@ -459,7 +459,7 @@
     "name": "Bayonvillers",
     "code": "80058",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80170"
   },
@@ -467,7 +467,7 @@
     "name": "Bazentin",
     "code": "80059",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -475,7 +475,7 @@
     "name": "Béalcourt",
     "code": "80060",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80370"
   },
@@ -483,7 +483,7 @@
     "name": "Beaucamps-le-Jeune",
     "code": "80061",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80430"
   },
@@ -491,7 +491,7 @@
     "name": "Beaucamps-le-Vieux",
     "code": "80062",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80430"
   },
@@ -499,7 +499,7 @@
     "name": "Beauchamps",
     "code": "80063",
     "epci_code": "247600588",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80770"
   },
@@ -507,7 +507,7 @@
     "name": "Beaucourt-en-Santerre",
     "code": "80064",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80110"
   },
@@ -515,7 +515,7 @@
     "name": "Beaucourt-sur-l’Ancre",
     "code": "80065",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -523,7 +523,7 @@
     "name": "Beaucourt-sur-l’Hallue",
     "code": "80066",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80260"
   },
@@ -531,7 +531,7 @@
     "name": "Beaufort-en-Santerre",
     "code": "80067",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80170"
   },
@@ -539,7 +539,7 @@
     "name": "Beaumetz",
     "code": "80068",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80370"
   },
@@ -547,7 +547,7 @@
     "name": "Beaumont-Hamel",
     "code": "80069",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -555,7 +555,7 @@
     "name": "Beauquesne",
     "code": "80070",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80600"
   },
@@ -563,7 +563,7 @@
     "name": "Beauval",
     "code": "80071",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80630"
   },
@@ -571,7 +571,7 @@
     "name": "Bécordel-Bécourt",
     "code": "80073",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -579,7 +579,7 @@
     "name": "Becquigny",
     "code": "80074",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -587,7 +587,7 @@
     "name": "Béhen",
     "code": "80076",
     "epci_code": "200070944",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80870"
   },
@@ -595,7 +595,7 @@
     "name": "Béhencourt",
     "code": "80077",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80260"
   },
@@ -603,7 +603,7 @@
     "name": "Bellancourt",
     "code": "80078",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80132"
   },
@@ -611,7 +611,7 @@
     "name": "Belleuse",
     "code": "80079",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80160"
   },
@@ -619,7 +619,7 @@
     "name": "Belloy-en-Santerre",
     "code": "80080",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -627,7 +627,7 @@
     "name": "Belloy-Saint-Léonard",
     "code": "80081",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80270"
   },
@@ -635,7 +635,7 @@
     "name": "Belloy-sur-Somme",
     "code": "80082",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80310"
   },
@@ -643,7 +643,7 @@
     "name": "Bergicourt",
     "code": "80083",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -651,7 +651,7 @@
     "name": "Bermesnil",
     "code": "80084",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -659,7 +659,7 @@
     "name": "Bernâtre",
     "code": "80085",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80370"
   },
@@ -667,7 +667,7 @@
     "name": "Bernaville",
     "code": "80086",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80370"
   },
@@ -675,7 +675,7 @@
     "name": "Bernay-en-Ponthieu",
     "code": "80087",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80120"
   },
@@ -683,7 +683,7 @@
     "name": "Bernes",
     "code": "80088",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80240"
   },
@@ -691,7 +691,7 @@
     "name": "Berneuil",
     "code": "80089",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80620"
   },
@@ -699,7 +699,7 @@
     "name": "Berny-en-Santerre",
     "code": "80090",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -707,7 +707,7 @@
     "name": "Bertangles",
     "code": "80092",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80260"
   },
@@ -715,7 +715,7 @@
     "name": "Berteaucourt-les-Dames",
     "code": "80093",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80850"
   },
@@ -723,7 +723,7 @@
     "name": "Berteaucourt-lès-Thennes",
     "code": "80094",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80110"
   },
@@ -731,7 +731,7 @@
     "name": "Bertrancourt",
     "code": "80095",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80560"
   },
@@ -739,7 +739,7 @@
     "name": "Béthencourt-sur-Mer",
     "code": "80096",
     "epci_code": "200070944",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80130"
   },
@@ -747,7 +747,7 @@
     "name": "Béthencourt-sur-Somme",
     "code": "80097",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80190"
   },
@@ -755,7 +755,7 @@
     "name": "Bettembos",
     "code": "80098",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -763,7 +763,7 @@
     "name": "Bettencourt-Rivière",
     "code": "80099",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80270"
   },
@@ -771,7 +771,7 @@
     "name": "Bettencourt-Saint-Ouen",
     "code": "80100",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80610"
   },
@@ -779,7 +779,7 @@
     "name": "Beuvraignes",
     "code": "80101",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -787,7 +787,7 @@
     "name": "Biaches",
     "code": "80102",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -795,7 +795,7 @@
     "name": "Biarre",
     "code": "80103",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80190"
   },
@@ -803,7 +803,7 @@
     "name": "Biencourt",
     "code": "80104",
     "epci_code": "200069722",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -811,7 +811,7 @@
     "name": "Billancourt",
     "code": "80105",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80190"
   },
@@ -819,7 +819,7 @@
     "name": "Blangy-sous-Poix",
     "code": "80106",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -827,7 +827,7 @@
     "name": "Blangy-Tronville",
     "code": "80107",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80440"
   },
@@ -835,7 +835,7 @@
     "name": "Boisbergues",
     "code": "80108",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80600"
   },
@@ -843,7 +843,7 @@
     "name": "Le Boisle",
     "code": "80109",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -851,7 +851,7 @@
     "name": "Boismont",
     "code": "80110",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80230"
   },
@@ -859,7 +859,7 @@
     "name": "Bonnay",
     "code": "80112",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -867,7 +867,7 @@
     "name": "Bonneville",
     "code": "80113",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80670"
   },
@@ -875,7 +875,7 @@
     "name": "Bosquel",
     "code": "80114",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80160"
   },
@@ -883,7 +883,7 @@
     "name": "Bouchavesnes-Bergen",
     "code": "80115",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -891,7 +891,7 @@
     "name": "Bouchoir",
     "code": "80116",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80910"
   },
@@ -899,7 +899,7 @@
     "name": "Bouchon",
     "code": "80117",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80830"
   },
@@ -907,7 +907,7 @@
     "name": "Boufflers",
     "code": "80118",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -915,7 +915,7 @@
     "name": "Bougainville",
     "code": "80119",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80540"
   },
@@ -923,7 +923,7 @@
     "name": "Bouillancourt-en-Séry",
     "code": "80120",
     "epci_code": "200069722",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80220"
   },
@@ -931,7 +931,7 @@
     "name": "Bouillancourt-la-Bataille",
     "code": "80121",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -939,7 +939,7 @@
     "name": "Bouquemaison",
     "code": "80122",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80600"
   },
@@ -947,7 +947,7 @@
     "name": "Bourdon",
     "code": "80123",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80310"
   },
@@ -955,7 +955,7 @@
     "name": "Bourseville",
     "code": "80124",
     "epci_code": "200070944",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80130"
   },
@@ -963,7 +963,7 @@
     "name": "Boussicourt",
     "code": "80125",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -971,7 +971,7 @@
     "name": "Bouttencourt",
     "code": "80126",
     "epci_code": "200069722",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80220"
   },
@@ -979,7 +979,7 @@
     "name": "Bouvaincourt-sur-Bresle",
     "code": "80127",
     "epci_code": "247600588",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80220"
   },
@@ -987,7 +987,7 @@
     "name": "Bouvincourt-en-Vermandois",
     "code": "80128",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -995,7 +995,7 @@
     "name": "Bouzincourt",
     "code": "80129",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -1003,7 +1003,7 @@
     "name": "Bovelles",
     "code": "80130",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80540"
   },
@@ -1011,7 +1011,7 @@
     "name": "Boves",
     "code": "80131",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80440"
   },
@@ -1019,7 +1019,7 @@
     "name": "Braches",
     "code": "80132",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80110"
   },
@@ -1027,7 +1027,7 @@
     "name": "Brailly-Cornehotte",
     "code": "80133",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -1035,7 +1035,7 @@
     "name": "Brassy",
     "code": "80134",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80160"
   },
@@ -1043,7 +1043,7 @@
     "name": "Bray-lès-Mareuil",
     "code": "80135",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80580"
   },
@@ -1051,7 +1051,7 @@
     "name": "Bray-sur-Somme",
     "code": "80136",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80340"
   },
@@ -1059,7 +1059,7 @@
     "name": "Breilly",
     "code": "80137",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80470"
   },
@@ -1067,7 +1067,7 @@
     "name": "Bresle",
     "code": "80138",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -1075,7 +1075,7 @@
     "name": "Breuil",
     "code": "80139",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80400"
   },
@@ -1083,7 +1083,7 @@
     "name": "Brévillers",
     "code": "80140",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80600"
   },
@@ -1091,7 +1091,7 @@
     "name": "Brie",
     "code": "80141",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -1099,7 +1099,7 @@
     "name": "Briquemesnil-Floxicourt",
     "code": "80142",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80540"
   },
@@ -1107,7 +1107,7 @@
     "name": "Brocourt",
     "code": "80143",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80430"
   },
@@ -1115,7 +1115,7 @@
     "name": "Brouchy",
     "code": "80144",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80400"
   },
@@ -1123,7 +1123,7 @@
     "name": "Brucamps",
     "code": "80145",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80690"
   },
@@ -1131,7 +1131,7 @@
     "name": "Brutelles",
     "code": "80146",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80230"
   },
@@ -1139,7 +1139,7 @@
     "name": "Buigny-l’Abbé",
     "code": "80147",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80132"
   },
@@ -1147,7 +1147,7 @@
     "name": "Buigny-lès-Gamaches",
     "code": "80148",
     "epci_code": "247600588",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80220"
   },
@@ -1155,7 +1155,7 @@
     "name": "Buigny-Saint-Maclou",
     "code": "80149",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80132"
   },
@@ -1163,7 +1163,7 @@
     "name": "Buire-Courcelles",
     "code": "80150",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -1171,7 +1171,7 @@
     "name": "Buire-sur-l’Ancre",
     "code": "80151",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -1179,7 +1179,7 @@
     "name": "Bus-la-Mésière",
     "code": "80152",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -1187,7 +1187,7 @@
     "name": "Bus-lès-Artois",
     "code": "80153",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80560"
   },
@@ -1195,7 +1195,7 @@
     "name": "Bussu",
     "code": "80154",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -1203,7 +1203,7 @@
     "name": "Bussus-lès-Yaucourt",
     "code": "80155",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80135"
   },
@@ -1211,7 +1211,7 @@
     "name": "Bussy-lès-Daours",
     "code": "80156",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -1219,7 +1219,7 @@
     "name": "Bussy-lès-Poix",
     "code": "80157",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -1227,7 +1227,7 @@
     "name": "Buverchy",
     "code": "80158",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80400"
   },
@@ -1235,7 +1235,7 @@
     "name": "Cachy",
     "code": "80159",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -1243,7 +1243,7 @@
     "name": "Cagny",
     "code": "80160",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80330"
   },
@@ -1251,7 +1251,7 @@
     "name": "Cahon",
     "code": "80161",
     "epci_code": "200070944",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80132"
   },
@@ -1259,7 +1259,7 @@
     "name": "Caix",
     "code": "80162",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80170"
   },
@@ -1267,7 +1267,7 @@
     "name": "Cambron",
     "code": "80163",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80132"
   },
@@ -1275,7 +1275,7 @@
     "name": "Camon",
     "code": "80164",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80450"
   },
@@ -1283,7 +1283,7 @@
     "name": "Camps-en-Amiénois",
     "code": "80165",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80540"
   },
@@ -1291,7 +1291,7 @@
     "name": "Canaples",
     "code": "80166",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80670"
   },
@@ -1299,7 +1299,7 @@
     "name": "Canchy",
     "code": "80167",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -1307,7 +1307,7 @@
     "name": "Candas",
     "code": "80168",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80750"
   },
@@ -1315,7 +1315,7 @@
     "name": "Cannessières",
     "code": "80169",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -1323,7 +1323,7 @@
     "name": "Cantigny",
     "code": "80170",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -1331,7 +1331,7 @@
     "name": "Caours",
     "code": "80171",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80132"
   },
@@ -1339,7 +1339,7 @@
     "name": "Cappy",
     "code": "80172",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80340"
   },
@@ -1347,7 +1347,7 @@
     "name": "Cardonnette",
     "code": "80173",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80260"
   },
@@ -1355,7 +1355,7 @@
     "name": "Le Cardonnois",
     "code": "80174",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -1363,7 +1363,7 @@
     "name": "Carrépuis",
     "code": "80176",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -1371,7 +1371,7 @@
     "name": "Cartigny",
     "code": "80177",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -1379,7 +1379,7 @@
     "name": "Caulières",
     "code": "80179",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -1387,7 +1387,7 @@
     "name": "Cavillon",
     "code": "80180",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80310"
   },
@@ -1395,7 +1395,7 @@
     "name": "Cayeux-en-Santerre",
     "code": "80181",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -1403,7 +1403,7 @@
     "name": "Cayeux-sur-Mer",
     "code": "80182",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80410"
   },
@@ -1411,7 +1411,7 @@
     "name": "Cerisy-Buleux",
     "code": "80183",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -1419,7 +1419,7 @@
     "name": "Cerisy",
     "code": "80184",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -1427,7 +1427,7 @@
     "name": "Champien",
     "code": "80185",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -1435,7 +1435,7 @@
     "name": "Chaulnes",
     "code": "80186",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80320"
   },
@@ -1443,7 +1443,7 @@
     "name": "La Chaussée-Tirancourt",
     "code": "80187",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80310"
   },
@@ -1451,7 +1451,7 @@
     "name": "Chaussoy-Epagny",
     "code": "80188",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80250"
   },
@@ -1459,7 +1459,7 @@
     "name": "La Chavatte",
     "code": "80189",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -1467,7 +1467,7 @@
     "name": "Chépy",
     "code": "80190",
     "epci_code": "200070944",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80210"
   },
@@ -1475,7 +1475,7 @@
     "name": "Chilly",
     "code": "80191",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80170"
   },
@@ -1483,7 +1483,7 @@
     "name": "Chipilly",
     "code": "80192",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -1491,7 +1491,7 @@
     "name": "Chirmont",
     "code": "80193",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80250"
   },
@@ -1499,7 +1499,7 @@
     "name": "Chuignes",
     "code": "80194",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80340"
   },
@@ -1507,7 +1507,7 @@
     "name": "Chuignolles",
     "code": "80195",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80340"
   },
@@ -1515,7 +1515,7 @@
     "name": "Citerne",
     "code": "80196",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80490"
   },
@@ -1523,7 +1523,7 @@
     "name": "Cizancourt",
     "code": "80197",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -1531,7 +1531,7 @@
     "name": "Clairy-Saulchoix",
     "code": "80198",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80540"
   },
@@ -1539,7 +1539,7 @@
     "name": "Cléry-sur-Somme",
     "code": "80199",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -1547,7 +1547,7 @@
     "name": "Cocquerel",
     "code": "80200",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80510"
   },
@@ -1555,7 +1555,7 @@
     "name": "Coigneux",
     "code": "80201",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80560"
   },
@@ -1563,7 +1563,7 @@
     "name": "Coisy",
     "code": "80202",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80260"
   },
@@ -1571,7 +1571,7 @@
     "name": "Colincamps",
     "code": "80203",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80560"
   },
@@ -1579,7 +1579,7 @@
     "name": "Combles",
     "code": "80204",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80360"
   },
@@ -1587,7 +1587,7 @@
     "name": "Condé-Folie",
     "code": "80205",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80890"
   },
@@ -1595,7 +1595,7 @@
     "name": "Contalmaison",
     "code": "80206",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -1603,7 +1603,7 @@
     "name": "Contay",
     "code": "80207",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80560"
   },
@@ -1611,7 +1611,7 @@
     "name": "Conteville",
     "code": "80208",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80370"
   },
@@ -1619,7 +1619,7 @@
     "name": "Contre",
     "code": "80210",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80160"
   },
@@ -1627,7 +1627,7 @@
     "name": "Conty",
     "code": "80211",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80160"
   },
@@ -1635,7 +1635,7 @@
     "name": "Corbie",
     "code": "80212",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -1643,7 +1643,7 @@
     "name": "Cottenchy",
     "code": "80213",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80440"
   },
@@ -1651,7 +1651,7 @@
     "name": "Coullemelle",
     "code": "80214",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80250"
   },
@@ -1659,7 +1659,7 @@
     "name": "Coulonvillers",
     "code": "80215",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80135"
   },
@@ -1667,7 +1667,7 @@
     "name": "Courcelette",
     "code": "80216",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -1675,7 +1675,7 @@
     "name": "Courcelles-au-Bois",
     "code": "80217",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80560"
   },
@@ -1683,7 +1683,7 @@
     "name": "Courcelles-sous-Moyencourt",
     "code": "80218",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -1691,7 +1691,7 @@
     "name": "Courcelles-sous-Thoix",
     "code": "80219",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80160"
   },
@@ -1699,7 +1699,7 @@
     "name": "Courtemanche",
     "code": "80220",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -1707,7 +1707,7 @@
     "name": "Cramont",
     "code": "80221",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80370"
   },
@@ -1715,7 +1715,7 @@
     "name": "Crécy-en-Ponthieu",
     "code": "80222",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -1723,7 +1723,7 @@
     "name": "Crémery",
     "code": "80223",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -1731,7 +1731,7 @@
     "name": "Cressy-Omencourt",
     "code": "80224",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80190"
   },
@@ -1739,7 +1739,7 @@
     "name": "Creuse",
     "code": "80225",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80480"
   },
@@ -1747,7 +1747,7 @@
     "name": "Croix-Moligneaux",
     "code": "80226",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80400"
   },
@@ -1755,7 +1755,7 @@
     "name": "Croixrault",
     "code": "80227",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -1763,7 +1763,7 @@
     "name": "Le Crotoy",
     "code": "80228",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80550"
   },
@@ -1771,7 +1771,7 @@
     "name": "Crouy-Saint-Pierre",
     "code": "80229",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80310"
   },
@@ -1779,7 +1779,7 @@
     "name": "Curchy",
     "code": "80230",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80190"
   },
@@ -1787,7 +1787,7 @@
     "name": "Curlu",
     "code": "80231",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80360"
   },
@@ -1795,7 +1795,7 @@
     "name": "Damery",
     "code": "80232",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -1803,7 +1803,7 @@
     "name": "Dancourt-Popincourt",
     "code": "80233",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -1811,7 +1811,7 @@
     "name": "Daours",
     "code": "80234",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -1819,7 +1819,7 @@
     "name": "Dargnies",
     "code": "80235",
     "epci_code": "247600588",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80570"
   },
@@ -1827,7 +1827,7 @@
     "name": "Davenescourt",
     "code": "80236",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -1835,7 +1835,7 @@
     "name": "Démuin",
     "code": "80237",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80110"
   },
@@ -1843,7 +1843,7 @@
     "name": "Dernancourt",
     "code": "80238",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -1851,7 +1851,7 @@
     "name": "Devise",
     "code": "80239",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -1859,7 +1859,7 @@
     "name": "Doingt",
     "code": "80240",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -1867,7 +1867,7 @@
     "name": "Domart-en-Ponthieu",
     "code": "80241",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80620"
   },
@@ -1875,7 +1875,7 @@
     "name": "Domart-sur-la-Luce",
     "code": "80242",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80110"
   },
@@ -1883,7 +1883,7 @@
     "name": "Domesmont",
     "code": "80243",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80370"
   },
@@ -1891,7 +1891,7 @@
     "name": "Dominois",
     "code": "80244",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80120"
   },
@@ -1899,7 +1899,7 @@
     "name": "Domléger-Longvillers",
     "code": "80245",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80370"
   },
@@ -1907,7 +1907,7 @@
     "name": "Dommartin",
     "code": "80246",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80440"
   },
@@ -1915,7 +1915,7 @@
     "name": "Dompierre-Becquincourt",
     "code": "80247",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80980"
   },
@@ -1923,7 +1923,7 @@
     "name": "Dompierre-sur-Authie",
     "code": "80248",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -1931,7 +1931,7 @@
     "name": "Domqueur",
     "code": "80249",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80620"
   },
@@ -1939,7 +1939,7 @@
     "name": "Domvast",
     "code": "80250",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -1947,7 +1947,7 @@
     "name": "Doudelainville",
     "code": "80251",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -1955,7 +1955,7 @@
     "name": "Douilly",
     "code": "80252",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80400"
   },
@@ -1963,7 +1963,7 @@
     "name": "Doullens",
     "code": "80253",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80600"
   },
@@ -1971,7 +1971,7 @@
     "name": "Dreuil-lès-Amiens",
     "code": "80256",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80470"
   },
@@ -1979,7 +1979,7 @@
     "name": "Driencourt",
     "code": "80258",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80240"
   },
@@ -1987,7 +1987,7 @@
     "name": "Dromesnil",
     "code": "80259",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80640"
   },
@@ -1995,7 +1995,7 @@
     "name": "Drucat",
     "code": "80260",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80132"
   },
@@ -2003,7 +2003,7 @@
     "name": "Dury",
     "code": "80261",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80480"
   },
@@ -2011,7 +2011,7 @@
     "name": "Eaucourt-sur-Somme",
     "code": "80262",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80580"
   },
@@ -2019,7 +2019,7 @@
     "name": "L’Échelle-Saint-Aurin",
     "code": "80263",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -2027,7 +2027,7 @@
     "name": "Éclusier-Vaux",
     "code": "80264",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80340"
   },
@@ -2035,7 +2035,7 @@
     "name": "Embreville",
     "code": "80265",
     "epci_code": "247600588",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80570"
   },
@@ -2043,7 +2043,7 @@
     "name": "Englebelmer",
     "code": "80266",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -2051,7 +2051,7 @@
     "name": "Ennemain",
     "code": "80267",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -2059,7 +2059,7 @@
     "name": "Épagne-Épagnette",
     "code": "80268",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80580"
   },
@@ -2067,7 +2067,7 @@
     "name": "Épaumesnil",
     "code": "80269",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -2075,7 +2075,7 @@
     "name": "Épécamps",
     "code": "80270",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80370"
   },
@@ -2083,7 +2083,7 @@
     "name": "Épehy",
     "code": "80271",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80740"
   },
@@ -2091,7 +2091,7 @@
     "name": "Épénancourt",
     "code": "80272",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80190"
   },
@@ -2099,7 +2099,7 @@
     "name": "Éplessier",
     "code": "80273",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -2107,7 +2107,7 @@
     "name": "Eppeville",
     "code": "80274",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80400"
   },
@@ -2115,7 +2115,7 @@
     "name": "Équancourt",
     "code": "80275",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80360"
   },
@@ -2123,7 +2123,7 @@
     "name": "Équennes-Éramecourt",
     "code": "80276",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -2131,7 +2131,7 @@
     "name": "Erches",
     "code": "80278",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -2139,7 +2139,7 @@
     "name": "Ercheu",
     "code": "80279",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80400"
   },
@@ -2147,7 +2147,7 @@
     "name": "Ercourt",
     "code": "80280",
     "epci_code": "200070944",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80210"
   },
@@ -2155,7 +2155,7 @@
     "name": "Ergnies",
     "code": "80281",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80690"
   },
@@ -2163,7 +2163,7 @@
     "name": "Érondelle",
     "code": "80282",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80580"
   },
@@ -2171,7 +2171,7 @@
     "name": "Esclainvillers",
     "code": "80283",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80250"
   },
@@ -2179,7 +2179,7 @@
     "name": "Esmery-Hallon",
     "code": "80284",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80400"
   },
@@ -2187,7 +2187,7 @@
     "name": "Essertaux",
     "code": "80285",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80160"
   },
@@ -2195,7 +2195,7 @@
     "name": "Estrébœuf",
     "code": "80287",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80230"
   },
@@ -2203,7 +2203,7 @@
     "name": "Estrées-Deniécourt",
     "code": "80288",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -2211,7 +2211,7 @@
     "name": "Estrées-lès-Crécy",
     "code": "80290",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -2219,7 +2219,7 @@
     "name": "Estrées-sur-Noye",
     "code": "80291",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80250"
   },
@@ -2227,7 +2227,7 @@
     "name": "Étalon",
     "code": "80292",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80190"
   },
@@ -2235,7 +2235,7 @@
     "name": "Ételfay",
     "code": "80293",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -2243,7 +2243,7 @@
     "name": "Éterpigny",
     "code": "80294",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -2251,7 +2251,7 @@
     "name": "Étinehem-Méricourt",
     "code": "80295",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80340"
   },
@@ -2259,7 +2259,7 @@
     "name": "L’Étoile",
     "code": "80296",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80830"
   },
@@ -2267,7 +2267,7 @@
     "name": "Étréjust",
     "code": "80297",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -2275,7 +2275,7 @@
     "name": "Étricourt-Manancourt",
     "code": "80298",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80360"
   },
@@ -2283,7 +2283,7 @@
     "name": "La Faloise",
     "code": "80299",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80250"
   },
@@ -2291,7 +2291,7 @@
     "name": "Falvy",
     "code": "80300",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80190"
   },
@@ -2299,7 +2299,7 @@
     "name": "Famechon",
     "code": "80301",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -2307,7 +2307,7 @@
     "name": "Faverolles",
     "code": "80302",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -2315,7 +2315,7 @@
     "name": "Favières",
     "code": "80303",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80120"
   },
@@ -2323,7 +2323,7 @@
     "name": "Fay",
     "code": "80304",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -2331,7 +2331,7 @@
     "name": "Ferrières",
     "code": "80305",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80470"
   },
@@ -2339,7 +2339,7 @@
     "name": "Fescamps",
     "code": "80306",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -2347,7 +2347,7 @@
     "name": "Feuillères",
     "code": "80307",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -2355,7 +2355,7 @@
     "name": "Feuquières-en-Vimeu",
     "code": "80308",
     "epci_code": "200070944",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80210"
   },
@@ -2363,7 +2363,7 @@
     "name": "Fienvillers",
     "code": "80310",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80750"
   },
@@ -2371,7 +2371,7 @@
     "name": "Fignières",
     "code": "80311",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -2379,7 +2379,7 @@
     "name": "Fins",
     "code": "80312",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80360"
   },
@@ -2387,7 +2387,7 @@
     "name": "Flaucourt",
     "code": "80313",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -2395,7 +2395,7 @@
     "name": "Flers",
     "code": "80314",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80360"
   },
@@ -2403,7 +2403,7 @@
     "name": "Flers-sur-Noye",
     "code": "80315",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80160"
   },
@@ -2411,7 +2411,7 @@
     "name": "Flesselles",
     "code": "80316",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80260"
   },
@@ -2419,7 +2419,7 @@
     "name": "Fleury",
     "code": "80317",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80160"
   },
@@ -2427,7 +2427,7 @@
     "name": "Flixecourt",
     "code": "80318",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80420"
   },
@@ -2435,7 +2435,7 @@
     "name": "Fluy",
     "code": "80319",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80540"
   },
@@ -2443,7 +2443,7 @@
     "name": "Folies",
     "code": "80320",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80170"
   },
@@ -2451,7 +2451,7 @@
     "name": "Folleville",
     "code": "80321",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80250"
   },
@@ -2459,7 +2459,7 @@
     "name": "Fonches-Fonchette",
     "code": "80322",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -2467,7 +2467,7 @@
     "name": "Fontaine-le-Sec",
     "code": "80324",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -2475,7 +2475,7 @@
     "name": "Fontaine-lès-Cappy",
     "code": "80325",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80340"
   },
@@ -2483,7 +2483,7 @@
     "name": "Fontaine-sous-Montdidier",
     "code": "80326",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -2491,7 +2491,7 @@
     "name": "Fontaine-sur-Maye",
     "code": "80327",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -2499,7 +2499,7 @@
     "name": "Fontaine-sur-Somme",
     "code": "80328",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80510"
   },
@@ -2507,7 +2507,7 @@
     "name": "Forceville",
     "code": "80329",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80560"
   },
@@ -2515,7 +2515,7 @@
     "name": "Forceville-en-Vimeu",
     "code": "80330",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -2523,7 +2523,7 @@
     "name": "Forest-l’Abbaye",
     "code": "80331",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -2531,7 +2531,7 @@
     "name": "Forest-Montiers",
     "code": "80332",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80120"
   },
@@ -2539,7 +2539,7 @@
     "name": "Fort-Mahon-Plage",
     "code": "80333",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80120"
   },
@@ -2547,7 +2547,7 @@
     "name": "Fossemanant",
     "code": "80334",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80160"
   },
@@ -2555,7 +2555,7 @@
     "name": "Foucaucourt-en-Santerre",
     "code": "80335",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80340"
   },
@@ -2563,7 +2563,7 @@
     "name": "Foucaucourt-Hors-Nesle",
     "code": "80336",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -2571,7 +2571,7 @@
     "name": "Fouencamps",
     "code": "80337",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80440"
   },
@@ -2579,7 +2579,7 @@
     "name": "Fouilloy",
     "code": "80338",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -2587,7 +2587,7 @@
     "name": "Fouquescourt",
     "code": "80339",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80170"
   },
@@ -2595,7 +2595,7 @@
     "name": "Fourcigny",
     "code": "80340",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -2603,7 +2603,7 @@
     "name": "Fourdrinoy",
     "code": "80341",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80310"
   },
@@ -2611,7 +2611,7 @@
     "name": "Framerville-Rainecourt",
     "code": "80342",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80131"
   },
@@ -2619,7 +2619,7 @@
     "name": "Framicourt",
     "code": "80343",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -2627,7 +2627,7 @@
     "name": "Francières",
     "code": "80344",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80690"
   },
@@ -2635,7 +2635,7 @@
     "name": "Franleu",
     "code": "80345",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80210"
   },
@@ -2643,7 +2643,7 @@
     "name": "Franqueville",
     "code": "80346",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80620"
   },
@@ -2651,7 +2651,7 @@
     "name": "Fransart",
     "code": "80347",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -2659,7 +2659,7 @@
     "name": "Fransu",
     "code": "80348",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80620"
   },
@@ -2667,7 +2667,7 @@
     "name": "Fransures",
     "code": "80349",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80160"
   },
@@ -2675,7 +2675,7 @@
     "name": "Franvillers",
     "code": "80350",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -2683,7 +2683,7 @@
     "name": "Fréchencourt",
     "code": "80351",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80260"
   },
@@ -2691,7 +2691,7 @@
     "name": "Frémontiers",
     "code": "80352",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80160"
   },
@@ -2699,7 +2699,7 @@
     "name": "Fresnes-Mazancourt",
     "code": "80353",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80320"
   },
@@ -2707,7 +2707,7 @@
     "name": "Fresnes-Tilloloy",
     "code": "80354",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -2715,7 +2715,7 @@
     "name": "Fresneville",
     "code": "80355",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -2723,7 +2723,7 @@
     "name": "Fresnoy-Andainville",
     "code": "80356",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -2731,7 +2731,7 @@
     "name": "Fresnoy-au-Val",
     "code": "80357",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -2739,7 +2739,7 @@
     "name": "Fresnoy-en-Chaussée",
     "code": "80358",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80110"
   },
@@ -2747,7 +2747,7 @@
     "name": "Fresnoy-lès-Roye",
     "code": "80359",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -2755,7 +2755,7 @@
     "name": "Fressenneville",
     "code": "80360",
     "epci_code": "200070944",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80390"
   },
@@ -2763,7 +2763,7 @@
     "name": "Frettecuisse",
     "code": "80361",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -2771,7 +2771,7 @@
     "name": "Frettemeule",
     "code": "80362",
     "epci_code": "200069722",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80220"
   },
@@ -2779,7 +2779,7 @@
     "name": "Friaucourt",
     "code": "80364",
     "epci_code": "247600588",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80460"
   },
@@ -2787,7 +2787,7 @@
     "name": "Fricamps",
     "code": "80365",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -2795,7 +2795,7 @@
     "name": "Fricourt",
     "code": "80366",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -2803,7 +2803,7 @@
     "name": "Frise",
     "code": "80367",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80340"
   },
@@ -2811,7 +2811,7 @@
     "name": "Friville-Escarbotin",
     "code": "80368",
     "epci_code": "200070944",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80130"
   },
@@ -2819,7 +2819,7 @@
     "name": "Frohen-sur-Authie",
     "code": "80369",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80370"
   },
@@ -2827,7 +2827,7 @@
     "name": "Froyelles",
     "code": "80371",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -2835,7 +2835,7 @@
     "name": "Frucourt",
     "code": "80372",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80490"
   },
@@ -2843,7 +2843,7 @@
     "name": "Gamaches",
     "code": "80373",
     "epci_code": "247600588",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80220"
   },
@@ -2851,7 +2851,7 @@
     "name": "Gapennes",
     "code": "80374",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -2859,7 +2859,7 @@
     "name": "Gauville",
     "code": "80375",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -2867,7 +2867,7 @@
     "name": "Gentelles",
     "code": "80376",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -2875,7 +2875,7 @@
     "name": "Gézaincourt",
     "code": "80377",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80600"
   },
@@ -2883,7 +2883,7 @@
     "name": "Ginchy",
     "code": "80378",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80360"
   },
@@ -2891,7 +2891,7 @@
     "name": "Glisy",
     "code": "80379",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80440"
   },
@@ -2899,7 +2899,7 @@
     "name": "Gorenflos",
     "code": "80380",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80690"
   },
@@ -2907,7 +2907,7 @@
     "name": "Gorges",
     "code": "80381",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80370"
   },
@@ -2915,7 +2915,7 @@
     "name": "Goyencourt",
     "code": "80383",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -2923,7 +2923,7 @@
     "name": "Grandcourt",
     "code": "80384",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -2931,7 +2931,7 @@
     "name": "Grand-Laviers",
     "code": "80385",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80132"
   },
@@ -2939,7 +2939,7 @@
     "name": "Gratibus",
     "code": "80386",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -2947,7 +2947,7 @@
     "name": "Grattepanche",
     "code": "80387",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80680"
   },
@@ -2955,7 +2955,7 @@
     "name": "Grébault-Mesnil",
     "code": "80388",
     "epci_code": "200070944",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -2963,7 +2963,7 @@
     "name": "Grivesnes",
     "code": "80390",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80250"
   },
@@ -2971,7 +2971,7 @@
     "name": "Grivillers",
     "code": "80391",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -2979,7 +2979,7 @@
     "name": "Grouches-Luchuel",
     "code": "80392",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80600"
   },
@@ -2987,7 +2987,7 @@
     "name": "Gruny",
     "code": "80393",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -2995,7 +2995,7 @@
     "name": "Guerbigny",
     "code": "80395",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -3003,7 +3003,7 @@
     "name": "Gueschart",
     "code": "80396",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -3011,7 +3011,7 @@
     "name": "Gueudecourt",
     "code": "80397",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80360"
   },
@@ -3019,7 +3019,7 @@
     "name": "Guignemicourt",
     "code": "80399",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80540"
   },
@@ -3027,7 +3027,7 @@
     "name": "Guillaucourt",
     "code": "80400",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80170"
   },
@@ -3035,7 +3035,7 @@
     "name": "Guillemont",
     "code": "80401",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80360"
   },
@@ -3043,7 +3043,7 @@
     "name": "Guizancourt",
     "code": "80402",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -3051,7 +3051,7 @@
     "name": "Guyencourt-sur-Noye",
     "code": "80403",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80250"
   },
@@ -3059,7 +3059,7 @@
     "name": "Guyencourt-Saulcourt",
     "code": "80404",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80240"
   },
@@ -3067,7 +3067,7 @@
     "name": "Hailles",
     "code": "80405",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80440"
   },
@@ -3075,7 +3075,7 @@
     "name": "Hallencourt",
     "code": "80406",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80490"
   },
@@ -3083,7 +3083,7 @@
     "name": "Hallivillers",
     "code": "80407",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80250"
   },
@@ -3091,7 +3091,7 @@
     "name": "Halloy-lès-Pernois",
     "code": "80408",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80670"
   },
@@ -3099,7 +3099,7 @@
     "name": "Hallu",
     "code": "80409",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80320"
   },
@@ -3107,7 +3107,7 @@
     "name": "Ham",
     "code": "80410",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80400"
   },
@@ -3115,7 +3115,7 @@
     "name": "Le Hamel",
     "code": "80411",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -3123,7 +3123,7 @@
     "name": "Hamelet",
     "code": "80412",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -3131,7 +3131,7 @@
     "name": "Hancourt",
     "code": "80413",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80240"
   },
@@ -3139,7 +3139,7 @@
     "name": "Hangard",
     "code": "80414",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80110"
   },
@@ -3147,7 +3147,7 @@
     "name": "Hangest-en-Santerre",
     "code": "80415",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80134"
   },
@@ -3155,7 +3155,7 @@
     "name": "Hangest-sur-Somme",
     "code": "80416",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80310"
   },
@@ -3163,7 +3163,7 @@
     "name": "Harbonnières",
     "code": "80417",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80131"
   },
@@ -3171,7 +3171,7 @@
     "name": "Hardecourt-aux-Bois",
     "code": "80418",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80360"
   },
@@ -3179,7 +3179,7 @@
     "name": "Harponville",
     "code": "80420",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80560"
   },
@@ -3187,7 +3187,7 @@
     "name": "Hattencourt",
     "code": "80421",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -3195,7 +3195,7 @@
     "name": "Hautvillers-Ouville",
     "code": "80422",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80132"
   },
@@ -3203,7 +3203,7 @@
     "name": "Havernas",
     "code": "80423",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80670"
   },
@@ -3211,7 +3211,7 @@
     "name": "Hébécourt",
     "code": "80424",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80680"
   },
@@ -3219,7 +3219,7 @@
     "name": "Hédauville",
     "code": "80425",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80560"
   },
@@ -3227,7 +3227,7 @@
     "name": "Heilly",
     "code": "80426",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -3235,7 +3235,7 @@
     "name": "Hem-Hardinval",
     "code": "80427",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80600"
   },
@@ -3243,7 +3243,7 @@
     "name": "Hem-Monacu",
     "code": "80428",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80360"
   },
@@ -3251,7 +3251,7 @@
     "name": "Hénencourt",
     "code": "80429",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -3259,7 +3259,7 @@
     "name": "Herbécourt",
     "code": "80430",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -3267,7 +3267,7 @@
     "name": "Hérissart",
     "code": "80431",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80260"
   },
@@ -3275,7 +3275,7 @@
     "name": "Herleville",
     "code": "80432",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80340"
   },
@@ -3283,7 +3283,7 @@
     "name": "Herly",
     "code": "80433",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80190"
   },
@@ -3291,7 +3291,7 @@
     "name": "Hervilly",
     "code": "80434",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80240"
   },
@@ -3299,7 +3299,7 @@
     "name": "Hesbécourt",
     "code": "80435",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80240"
   },
@@ -3307,7 +3307,7 @@
     "name": "Hescamps",
     "code": "80436",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -3315,7 +3315,7 @@
     "name": "Heucourt-Croquoison",
     "code": "80437",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80270"
   },
@@ -3323,7 +3323,7 @@
     "name": "Heudicourt",
     "code": "80438",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80122"
   },
@@ -3331,7 +3331,7 @@
     "name": "Heuzecourt",
     "code": "80439",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80370"
   },
@@ -3339,7 +3339,7 @@
     "name": "Hiermont",
     "code": "80440",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80370"
   },
@@ -3347,7 +3347,7 @@
     "name": "Hombleux",
     "code": "80442",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80400"
   },
@@ -3355,7 +3355,7 @@
     "name": "Hornoy-le-Bourg",
     "code": "80443",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80640"
   },
@@ -3363,7 +3363,7 @@
     "name": "Huchenneville",
     "code": "80444",
     "epci_code": "200070944",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80132"
   },
@@ -3371,7 +3371,7 @@
     "name": "Humbercourt",
     "code": "80445",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80600"
   },
@@ -3379,7 +3379,7 @@
     "name": "Huppy",
     "code": "80446",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -3387,7 +3387,7 @@
     "name": "Ignaucourt",
     "code": "80449",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -3395,7 +3395,7 @@
     "name": "Inval-Boiron",
     "code": "80450",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80430"
   },
@@ -3403,7 +3403,7 @@
     "name": "Irles",
     "code": "80451",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -3411,7 +3411,7 @@
     "name": "Jumel",
     "code": "80452",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80250"
   },
@@ -3419,7 +3419,7 @@
     "name": "Laboissière-en-Santerre",
     "code": "80453",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -3427,7 +3427,7 @@
     "name": "Lachapelle",
     "code": "80455",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -3435,7 +3435,7 @@
     "name": "Lafresguimont-Saint-Martin",
     "code": "80456",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80430"
   },
@@ -3443,7 +3443,7 @@
     "name": "Lahoussoye",
     "code": "80458",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -3451,7 +3451,7 @@
     "name": "Laleu",
     "code": "80459",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80270"
   },
@@ -3459,7 +3459,7 @@
     "name": "Lamaronde",
     "code": "80460",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -3467,7 +3467,7 @@
     "name": "Lamotte-Brebière",
     "code": "80461",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80450"
   },
@@ -3475,7 +3475,7 @@
     "name": "Lamotte-Buleux",
     "code": "80462",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -3483,7 +3483,7 @@
     "name": "Lamotte-Warfusée",
     "code": "80463",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -3491,7 +3491,7 @@
     "name": "Lanchères",
     "code": "80464",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80230"
   },
@@ -3499,7 +3499,7 @@
     "name": "Languevoisin-Quiquery",
     "code": "80465",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80190"
   },
@@ -3507,7 +3507,7 @@
     "name": "Lanches-Saint-Hilaire",
     "code": "80466",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80620"
   },
@@ -3515,7 +3515,7 @@
     "name": "Laucourt",
     "code": "80467",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -3523,7 +3523,7 @@
     "name": "Laviéville",
     "code": "80468",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -3531,7 +3531,7 @@
     "name": "Lawarde-Mauger-l’Hortoy",
     "code": "80469",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80250"
   },
@@ -3539,7 +3539,7 @@
     "name": "Léalvillers",
     "code": "80470",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80560"
   },
@@ -3547,7 +3547,7 @@
     "name": "Lesbœufs",
     "code": "80472",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80360"
   },
@@ -3555,7 +3555,7 @@
     "name": "Liancourt-Fosse",
     "code": "80473",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -3563,7 +3563,7 @@
     "name": "Licourt",
     "code": "80474",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80320"
   },
@@ -3571,7 +3571,7 @@
     "name": "Liéramont",
     "code": "80475",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80240"
   },
@@ -3579,7 +3579,7 @@
     "name": "Liercourt",
     "code": "80476",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80580"
   },
@@ -3587,7 +3587,7 @@
     "name": "Ligescourt",
     "code": "80477",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -3595,7 +3595,7 @@
     "name": "Lignières",
     "code": "80478",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -3603,7 +3603,7 @@
     "name": "Lignières-Châtelain",
     "code": "80479",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -3611,7 +3611,7 @@
     "name": "Lignières-en-Vimeu",
     "code": "80480",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -3619,7 +3619,7 @@
     "name": "Lihons",
     "code": "80481",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80320"
   },
@@ -3627,7 +3627,7 @@
     "name": "Limeux",
     "code": "80482",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80490"
   },
@@ -3635,7 +3635,7 @@
     "name": "Liomer",
     "code": "80484",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80430"
   },
@@ -3643,7 +3643,7 @@
     "name": "Ô-de-Selle",
     "code": "80485",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80160"
   },
@@ -3651,7 +3651,7 @@
     "name": "Long",
     "code": "80486",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80510"
   },
@@ -3659,7 +3659,7 @@
     "name": "Longavesnes",
     "code": "80487",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80240"
   },
@@ -3667,7 +3667,7 @@
     "name": "Longpré-les-Corps-Saints",
     "code": "80488",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80510"
   },
@@ -3675,7 +3675,7 @@
     "name": "Longueau",
     "code": "80489",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80330"
   },
@@ -3683,7 +3683,7 @@
     "name": "Longueval",
     "code": "80490",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80360"
   },
@@ -3691,7 +3691,7 @@
     "name": "Longuevillette",
     "code": "80491",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80600"
   },
@@ -3699,7 +3699,7 @@
     "name": "Louvencourt",
     "code": "80493",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80560"
   },
@@ -3707,7 +3707,7 @@
     "name": "Louvrechy",
     "code": "80494",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80250"
   },
@@ -3715,7 +3715,7 @@
     "name": "Lucheux",
     "code": "80495",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80600"
   },
@@ -3723,7 +3723,7 @@
     "name": "Machiel",
     "code": "80496",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -3731,7 +3731,7 @@
     "name": "Machy",
     "code": "80497",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -3739,7 +3739,7 @@
     "name": "Mailly-Maillet",
     "code": "80498",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80560"
   },
@@ -3747,7 +3747,7 @@
     "name": "Mailly-Raineval",
     "code": "80499",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80110"
   },
@@ -3755,7 +3755,7 @@
     "name": "Maisnières",
     "code": "80500",
     "epci_code": "200069722",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80220"
   },
@@ -3763,7 +3763,7 @@
     "name": "Maison-Ponthieu",
     "code": "80501",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -3771,7 +3771,7 @@
     "name": "Maison-Roland",
     "code": "80502",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80135"
   },
@@ -3779,7 +3779,7 @@
     "name": "Maizicourt",
     "code": "80503",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80370"
   },
@@ -3787,7 +3787,7 @@
     "name": "Malpart",
     "code": "80504",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80250"
   },
@@ -3795,7 +3795,7 @@
     "name": "Carnoy-Mametz",
     "code": "80505",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -3803,7 +3803,7 @@
     "name": "Marcelcave",
     "code": "80507",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -3811,7 +3811,7 @@
     "name": "Marché-Allouarde",
     "code": "80508",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -3819,7 +3819,7 @@
     "name": "Marchélepot-Misery",
     "code": "80509",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -3827,7 +3827,7 @@
     "name": "Marestmontiers",
     "code": "80511",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -3835,7 +3835,7 @@
     "name": "Mareuil-Caubert",
     "code": "80512",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80132"
   },
@@ -3843,7 +3843,7 @@
     "name": "Maricourt",
     "code": "80513",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80360"
   },
@@ -3851,7 +3851,7 @@
     "name": "Marieux",
     "code": "80514",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80560"
   },
@@ -3859,7 +3859,7 @@
     "name": "Marlers",
     "code": "80515",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -3867,7 +3867,7 @@
     "name": "Marquaix",
     "code": "80516",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80240"
   },
@@ -3875,7 +3875,7 @@
     "name": "Marquivillers",
     "code": "80517",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -3883,7 +3883,7 @@
     "name": "Martainneville",
     "code": "80518",
     "epci_code": "200069722",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -3891,7 +3891,7 @@
     "name": "Matigny",
     "code": "80519",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80400"
   },
@@ -3899,7 +3899,7 @@
     "name": "Maucourt",
     "code": "80520",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80170"
   },
@@ -3907,7 +3907,7 @@
     "name": "Maurepas",
     "code": "80521",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80360"
   },
@@ -3915,7 +3915,7 @@
     "name": "Le Mazis",
     "code": "80522",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80430"
   },
@@ -3923,7 +3923,7 @@
     "name": "Méaulte",
     "code": "80523",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -3931,7 +3931,7 @@
     "name": "Méharicourt",
     "code": "80524",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80170"
   },
@@ -3939,7 +3939,7 @@
     "name": "Meigneux",
     "code": "80525",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -3947,7 +3947,7 @@
     "name": "Le Meillard",
     "code": "80526",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80370"
   },
@@ -3955,7 +3955,7 @@
     "name": "Méneslies",
     "code": "80527",
     "epci_code": "200070944",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80520"
   },
@@ -3963,7 +3963,7 @@
     "name": "Méréaucourt",
     "code": "80528",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -3971,7 +3971,7 @@
     "name": "Mérélessart",
     "code": "80529",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80490"
   },
@@ -3979,7 +3979,7 @@
     "name": "Méricourt-l’Abbé",
     "code": "80530",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -3987,7 +3987,7 @@
     "name": "Méricourt-en-Vimeu",
     "code": "80531",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80640"
   },
@@ -3995,7 +3995,7 @@
     "name": "Mers-les-Bains",
     "code": "80533",
     "epci_code": "247600588",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80350"
   },
@@ -4003,7 +4003,7 @@
     "name": "Le Mesge",
     "code": "80535",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80310"
   },
@@ -4011,7 +4011,7 @@
     "name": "Mesnil-Bruntel",
     "code": "80536",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -4019,7 +4019,7 @@
     "name": "Mesnil-Domqueur",
     "code": "80537",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80620"
   },
@@ -4027,7 +4027,7 @@
     "name": "Mesnil-en-Arrouaise",
     "code": "80538",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80360"
   },
@@ -4035,7 +4035,7 @@
     "name": "Mesnil-Martinsart",
     "code": "80540",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -4043,7 +4043,7 @@
     "name": "Mesnil-Saint-Georges",
     "code": "80541",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -4051,7 +4051,7 @@
     "name": "Mesnil-Saint-Nicaise",
     "code": "80542",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80190"
   },
@@ -4059,7 +4059,7 @@
     "name": "Métigny",
     "code": "80543",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80270"
   },
@@ -4067,7 +4067,7 @@
     "name": "Mézerolles",
     "code": "80544",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80600"
   },
@@ -4075,7 +4075,7 @@
     "name": "Mézières-en-Santerre",
     "code": "80545",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80110"
   },
@@ -4083,7 +4083,7 @@
     "name": "Miannay",
     "code": "80546",
     "epci_code": "200070944",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80132"
   },
@@ -4091,7 +4091,7 @@
     "name": "Millencourt",
     "code": "80547",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -4099,7 +4099,7 @@
     "name": "Millencourt-en-Ponthieu",
     "code": "80548",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80135"
   },
@@ -4107,7 +4107,7 @@
     "name": "Miraumont",
     "code": "80549",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -4115,7 +4115,7 @@
     "name": "Mirvaux",
     "code": "80550",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80260"
   },
@@ -4123,7 +4123,7 @@
     "name": "Moislains",
     "code": "80552",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -4131,7 +4131,7 @@
     "name": "Molliens-au-Bois",
     "code": "80553",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80260"
   },
@@ -4139,7 +4139,7 @@
     "name": "Molliens-Dreuil",
     "code": "80554",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80540"
   },
@@ -4147,7 +4147,7 @@
     "name": "Monchy-Lagache",
     "code": "80555",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -4155,7 +4155,7 @@
     "name": "Mons-Boubert",
     "code": "80556",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80210"
   },
@@ -4163,7 +4163,7 @@
     "name": "Estrées-Mons",
     "code": "80557",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -4171,7 +4171,7 @@
     "name": "Monsures",
     "code": "80558",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80160"
   },
@@ -4179,7 +4179,7 @@
     "name": "Montagne-Fayel",
     "code": "80559",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80540"
   },
@@ -4187,7 +4187,7 @@
     "name": "Montauban-de-Picardie",
     "code": "80560",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -4195,7 +4195,7 @@
     "name": "Montdidier",
     "code": "80561",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -4203,7 +4203,7 @@
     "name": "Montigny-sur-l’Hallue",
     "code": "80562",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80260"
   },
@@ -4211,7 +4211,7 @@
     "name": "Montigny-les-Jongleurs",
     "code": "80563",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80370"
   },
@@ -4219,7 +4219,7 @@
     "name": "Montonvillers",
     "code": "80565",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80260"
   },
@@ -4227,7 +4227,7 @@
     "name": "Fieffes-Montrelet",
     "code": "80566",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80670"
   },
@@ -4235,7 +4235,7 @@
     "name": "Morchain",
     "code": "80568",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80190"
   },
@@ -4243,7 +4243,7 @@
     "name": "Morcourt",
     "code": "80569",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80340"
   },
@@ -4251,7 +4251,7 @@
     "name": "Moreuil",
     "code": "80570",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80110"
   },
@@ -4259,7 +4259,7 @@
     "name": "Morisel",
     "code": "80571",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80110"
   },
@@ -4267,7 +4267,7 @@
     "name": "Morlancourt",
     "code": "80572",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -4275,7 +4275,7 @@
     "name": "Morvillers-Saint-Saturnin",
     "code": "80573",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -4283,7 +4283,7 @@
     "name": "Mouflers",
     "code": "80574",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80690"
   },
@@ -4291,7 +4291,7 @@
     "name": "Mouflières",
     "code": "80575",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -4299,7 +4299,7 @@
     "name": "Moyencourt",
     "code": "80576",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80400"
   },
@@ -4307,7 +4307,7 @@
     "name": "Moyencourt-lès-Poix",
     "code": "80577",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -4315,7 +4315,7 @@
     "name": "Moyenneville",
     "code": "80578",
     "epci_code": "200070944",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80870"
   },
@@ -4323,7 +4323,7 @@
     "name": "Muille-Villette",
     "code": "80579",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80400"
   },
@@ -4331,7 +4331,7 @@
     "name": "Nampont",
     "code": "80580",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80120"
   },
@@ -4339,7 +4339,7 @@
     "name": "Namps-Maisnil",
     "code": "80582",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -4347,7 +4347,7 @@
     "name": "Nampty",
     "code": "80583",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80160"
   },
@@ -4355,7 +4355,7 @@
     "name": "Naours",
     "code": "80584",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80260"
   },
@@ -4363,7 +4363,7 @@
     "name": "Nesle",
     "code": "80585",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80190"
   },
@@ -4371,7 +4371,7 @@
     "name": "Nesle-l’Hôpital",
     "code": "80586",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -4379,7 +4379,7 @@
     "name": "Neslette",
     "code": "80587",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -4387,7 +4387,7 @@
     "name": "Neufmoulin",
     "code": "80588",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80132"
   },
@@ -4395,7 +4395,7 @@
     "name": "Neuilly-le-Dien",
     "code": "80589",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -4403,7 +4403,7 @@
     "name": "Neuilly-l’Hôpital",
     "code": "80590",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80132"
   },
@@ -4411,7 +4411,7 @@
     "name": "Neuville-au-Bois",
     "code": "80591",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -4419,7 +4419,7 @@
     "name": "Neuville-Coppegueule",
     "code": "80592",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80430"
   },
@@ -4427,7 +4427,7 @@
     "name": "La Neuville-lès-Bray",
     "code": "80593",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80340"
   },
@@ -4435,7 +4435,7 @@
     "name": "La Neuville-Sire-Bernard",
     "code": "80595",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80110"
   },
@@ -4443,7 +4443,7 @@
     "name": "Neuvillette",
     "code": "80596",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80600"
   },
@@ -4451,7 +4451,7 @@
     "name": "Nibas",
     "code": "80597",
     "epci_code": "200070944",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80390"
   },
@@ -4459,7 +4459,7 @@
     "name": "Nouvion",
     "code": "80598",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80860"
   },
@@ -4467,7 +4467,7 @@
     "name": "Noyelles-en-Chaussée",
     "code": "80599",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -4475,7 +4475,7 @@
     "name": "Noyelles-sur-Mer",
     "code": "80600",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80860"
   },
@@ -4483,7 +4483,7 @@
     "name": "Nurlu",
     "code": "80601",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80240"
   },
@@ -4491,7 +4491,7 @@
     "name": "Occoches",
     "code": "80602",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80600"
   },
@@ -4499,7 +4499,7 @@
     "name": "Ochancourt",
     "code": "80603",
     "epci_code": "200070944",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80210"
   },
@@ -4507,7 +4507,7 @@
     "name": "Offignies",
     "code": "80604",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -4515,7 +4515,7 @@
     "name": "Offoy",
     "code": "80605",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80400"
   },
@@ -4523,7 +4523,7 @@
     "name": "Oisemont",
     "code": "80606",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -4531,7 +4531,7 @@
     "name": "Oissy",
     "code": "80607",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80540"
   },
@@ -4539,7 +4539,7 @@
     "name": "Oneux",
     "code": "80609",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80135"
   },
@@ -4547,7 +4547,7 @@
     "name": "Oresmaux",
     "code": "80611",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80160"
   },
@@ -4555,7 +4555,7 @@
     "name": "Oust-Marest",
     "code": "80613",
     "epci_code": "247600588",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80460"
   },
@@ -4563,7 +4563,7 @@
     "name": "Outrebois",
     "code": "80614",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80600"
   },
@@ -4571,7 +4571,7 @@
     "name": "Ovillers-la-Boisselle",
     "code": "80615",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -4579,7 +4579,7 @@
     "name": "Pargny",
     "code": "80616",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80190"
   },
@@ -4587,7 +4587,7 @@
     "name": "Parvillers-le-Quesnoy",
     "code": "80617",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -4595,7 +4595,7 @@
     "name": "Pendé",
     "code": "80618",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80230"
   },
@@ -4603,7 +4603,7 @@
     "name": "Pernois",
     "code": "80619",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80670"
   },
@@ -4611,7 +4611,7 @@
     "name": "Péronne",
     "code": "80620",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -4619,7 +4619,7 @@
     "name": "Hypercourt",
     "code": "80621",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80320"
   },
@@ -4627,7 +4627,7 @@
     "name": "Picquigny",
     "code": "80622",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80310"
   },
@@ -4635,7 +4635,7 @@
     "name": "Piennes-Onvillers",
     "code": "80623",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -4643,7 +4643,7 @@
     "name": "Pierregot",
     "code": "80624",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80260"
   },
@@ -4651,7 +4651,7 @@
     "name": "Trois-Rivières",
     "code": "80625",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -4659,7 +4659,7 @@
     "name": "Pissy",
     "code": "80626",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80540"
   },
@@ -4667,7 +4667,7 @@
     "name": "Plachy-Buyon",
     "code": "80627",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80160"
   },
@@ -4675,7 +4675,7 @@
     "name": "Le Plessier-Rozainvillers",
     "code": "80628",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80110"
   },
@@ -4683,7 +4683,7 @@
     "name": "Pœuilly",
     "code": "80629",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80240"
   },
@@ -4691,7 +4691,7 @@
     "name": "Poix-de-Picardie",
     "code": "80630",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -4699,7 +4699,7 @@
     "name": "Ponches-Estruval",
     "code": "80631",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -4707,7 +4707,7 @@
     "name": "Pont-de-Metz",
     "code": "80632",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80480"
   },
@@ -4715,7 +4715,7 @@
     "name": "Ponthoile",
     "code": "80633",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80860"
   },
@@ -4723,7 +4723,7 @@
     "name": "Pont-Noyelles",
     "code": "80634",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80115"
   },
@@ -4731,7 +4731,7 @@
     "name": "Pont-Remy",
     "code": "80635",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80580"
   },
@@ -4739,7 +4739,7 @@
     "name": "Port-le-Grand",
     "code": "80637",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80132"
   },
@@ -4747,7 +4747,7 @@
     "name": "Potte",
     "code": "80638",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80190"
   },
@@ -4755,7 +4755,7 @@
     "name": "Poulainville",
     "code": "80639",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80260"
   },
@@ -4763,7 +4763,7 @@
     "name": "Pozières",
     "code": "80640",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -4771,7 +4771,7 @@
     "name": "Prouville",
     "code": "80642",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80370"
   },
@@ -4779,7 +4779,7 @@
     "name": "Prouzel",
     "code": "80643",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80160"
   },
@@ -4787,7 +4787,7 @@
     "name": "Proyart",
     "code": "80644",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80340"
   },
@@ -4795,7 +4795,7 @@
     "name": "Puchevillers",
     "code": "80645",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80560"
   },
@@ -4803,7 +4803,7 @@
     "name": "Punchy",
     "code": "80646",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80320"
   },
@@ -4811,7 +4811,7 @@
     "name": "Puzeaux",
     "code": "80647",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80320"
   },
@@ -4819,7 +4819,7 @@
     "name": "Pys",
     "code": "80648",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -4827,7 +4827,7 @@
     "name": "Quend",
     "code": "80649",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80120"
   },
@@ -4835,7 +4835,7 @@
     "name": "Querrieu",
     "code": "80650",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80115"
   },
@@ -4843,7 +4843,7 @@
     "name": "Le Quesne",
     "code": "80651",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80430"
   },
@@ -4851,7 +4851,7 @@
     "name": "Le Quesnel",
     "code": "80652",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80118"
   },
@@ -4859,7 +4859,7 @@
     "name": "Quesnoy-le-Montant",
     "code": "80654",
     "epci_code": "200070944",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80132"
   },
@@ -4867,7 +4867,7 @@
     "name": "Quesnoy-sur-Airaines",
     "code": "80655",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80270"
   },
@@ -4875,7 +4875,7 @@
     "name": "Quevauvillers",
     "code": "80656",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80710"
   },
@@ -4883,7 +4883,7 @@
     "name": "Quiry-le-Sec",
     "code": "80657",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80250"
   },
@@ -4891,7 +4891,7 @@
     "name": "Quivières",
     "code": "80658",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80400"
   },
@@ -4899,7 +4899,7 @@
     "name": "Raincheval",
     "code": "80659",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80600"
   },
@@ -4907,7 +4907,7 @@
     "name": "Rainneville",
     "code": "80661",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80260"
   },
@@ -4915,7 +4915,7 @@
     "name": "Ramburelles",
     "code": "80662",
     "epci_code": "200069722",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -4923,7 +4923,7 @@
     "name": "Rambures",
     "code": "80663",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -4931,7 +4931,7 @@
     "name": "Rancourt",
     "code": "80664",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80360"
   },
@@ -4939,7 +4939,7 @@
     "name": "Regnière-Écluse",
     "code": "80665",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80120"
   },
@@ -4947,7 +4947,7 @@
     "name": "Remaisnil",
     "code": "80666",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80600"
   },
@@ -4955,7 +4955,7 @@
     "name": "Remaugies",
     "code": "80667",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -4963,7 +4963,7 @@
     "name": "Remiencourt",
     "code": "80668",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80250"
   },
@@ -4971,7 +4971,7 @@
     "name": "Rethonvillers",
     "code": "80669",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -4979,7 +4979,7 @@
     "name": "Revelles",
     "code": "80670",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80540"
   },
@@ -4987,7 +4987,7 @@
     "name": "Ribeaucourt",
     "code": "80671",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80620"
   },
@@ -4995,7 +4995,7 @@
     "name": "Ribemont-sur-Ancre",
     "code": "80672",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -5003,7 +5003,7 @@
     "name": "Riencourt",
     "code": "80673",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80310"
   },
@@ -5011,7 +5011,7 @@
     "name": "Rivery",
     "code": "80674",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80136"
   },
@@ -5019,7 +5019,7 @@
     "name": "Rogy",
     "code": "80675",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80160"
   },
@@ -5027,7 +5027,7 @@
     "name": "Roiglise",
     "code": "80676",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -5035,7 +5035,7 @@
     "name": "Roisel",
     "code": "80677",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80240"
   },
@@ -5043,7 +5043,7 @@
     "name": "Rollot",
     "code": "80678",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -5051,7 +5051,7 @@
     "name": "Ronssoy",
     "code": "80679",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80740"
   },
@@ -5059,7 +5059,7 @@
     "name": "Rosières-en-Santerre",
     "code": "80680",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80170"
   },
@@ -5067,7 +5067,7 @@
     "name": "Rouvrel",
     "code": "80681",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80250"
   },
@@ -5075,7 +5075,7 @@
     "name": "Rouvroy-en-Santerre",
     "code": "80682",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80170"
   },
@@ -5083,7 +5083,7 @@
     "name": "Rouy-le-Grand",
     "code": "80683",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80190"
   },
@@ -5091,7 +5091,7 @@
     "name": "Rouy-le-Petit",
     "code": "80684",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80190"
   },
@@ -5099,7 +5099,7 @@
     "name": "Roye",
     "code": "80685",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -5107,7 +5107,7 @@
     "name": "Rubempré",
     "code": "80686",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80260"
   },
@@ -5115,7 +5115,7 @@
     "name": "Rubescourt",
     "code": "80687",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -5123,7 +5123,7 @@
     "name": "Rue",
     "code": "80688",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80120"
   },
@@ -5131,7 +5131,7 @@
     "name": "Rumigny",
     "code": "80690",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80680"
   },
@@ -5139,7 +5139,7 @@
     "name": "Saigneville",
     "code": "80691",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80230"
   },
@@ -5147,7 +5147,7 @@
     "name": "Sailly-Flibeaucourt",
     "code": "80692",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80970"
   },
@@ -5155,7 +5155,7 @@
     "name": "Sailly-Laurette",
     "code": "80693",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -5163,7 +5163,7 @@
     "name": "Sailly-le-Sec",
     "code": "80694",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -5171,7 +5171,7 @@
     "name": "Sailly-Saillisel",
     "code": "80695",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80360"
   },
@@ -5179,7 +5179,7 @@
     "name": "Sains-en-Amiénois",
     "code": "80696",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80680"
   },
@@ -5187,7 +5187,7 @@
     "name": "Saint-Acheul",
     "code": "80697",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80370"
   },
@@ -5195,7 +5195,7 @@
     "name": "Saint-Aubin-Montenoy",
     "code": "80698",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80540"
   },
@@ -5203,7 +5203,7 @@
     "name": "Saint-Aubin-Rivière",
     "code": "80699",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80430"
   },
@@ -5211,7 +5211,7 @@
     "name": "Saint-Blimont",
     "code": "80700",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80960"
   },
@@ -5219,7 +5219,7 @@
     "name": "Saint-Christ-Briost",
     "code": "80701",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -5227,7 +5227,7 @@
     "name": "Saint-Fuscien",
     "code": "80702",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80680"
   },
@@ -5235,7 +5235,7 @@
     "name": "Saint-Germain-sur-Bresle",
     "code": "80703",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80430"
   },
@@ -5243,7 +5243,7 @@
     "name": "Saint-Gratien",
     "code": "80704",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80260"
   },
@@ -5251,7 +5251,7 @@
     "name": "Saint-Léger-lès-Authie",
     "code": "80705",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80560"
   },
@@ -5259,7 +5259,7 @@
     "name": "Saint-Léger-lès-Domart",
     "code": "80706",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80780"
   },
@@ -5267,7 +5267,7 @@
     "name": "Saint-Léger-sur-Bresle",
     "code": "80707",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -5275,7 +5275,7 @@
     "name": "Saint-Mard",
     "code": "80708",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -5283,7 +5283,7 @@
     "name": "Saint-Maulvis",
     "code": "80709",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -5291,7 +5291,7 @@
     "name": "Saint-Maxent",
     "code": "80710",
     "epci_code": "200069722",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -5299,7 +5299,7 @@
     "name": "Saint-Ouen",
     "code": "80711",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80610"
   },
@@ -5307,7 +5307,7 @@
     "name": "Saint-Quentin-en-Tourmont",
     "code": "80713",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80120"
   },
@@ -5315,7 +5315,7 @@
     "name": "Saint-Quentin-la-Motte-Croix-au-Bailly",
     "code": "80714",
     "epci_code": "247600588",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80880"
   },
@@ -5323,7 +5323,7 @@
     "name": "Saint-Riquier",
     "code": "80716",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80135"
   },
@@ -5331,7 +5331,7 @@
     "name": "Saint-Sauflieu",
     "code": "80717",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80160"
   },
@@ -5339,7 +5339,7 @@
     "name": "Saint-Sauveur",
     "code": "80718",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80470"
   },
@@ -5347,7 +5347,7 @@
     "name": "Sainte-Segrée",
     "code": "80719",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -5355,7 +5355,7 @@
     "name": "Saint-Valery-sur-Somme",
     "code": "80721",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80230"
   },
@@ -5363,7 +5363,7 @@
     "name": "Saint-Vaast-en-Chaussée",
     "code": "80722",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80310"
   },
@@ -5371,7 +5371,7 @@
     "name": "Saisseval",
     "code": "80723",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80540"
   },
@@ -5379,7 +5379,7 @@
     "name": "Saleux",
     "code": "80724",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80480"
   },
@@ -5387,7 +5387,7 @@
     "name": "Salouël",
     "code": "80725",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80480"
   },
@@ -5395,7 +5395,7 @@
     "name": "Sancourt",
     "code": "80726",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80400"
   },
@@ -5403,7 +5403,7 @@
     "name": "Saulchoy-sous-Poix",
     "code": "80728",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -5411,7 +5411,7 @@
     "name": "Sauvillers-Mongival",
     "code": "80729",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80110"
   },
@@ -5419,7 +5419,7 @@
     "name": "Saveuse",
     "code": "80730",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80470"
   },
@@ -5427,7 +5427,7 @@
     "name": "Senarpont",
     "code": "80732",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -5435,7 +5435,7 @@
     "name": "Senlis-le-Sec",
     "code": "80733",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -5443,7 +5443,7 @@
     "name": "Sentelie",
     "code": "80734",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80160"
   },
@@ -5451,7 +5451,7 @@
     "name": "Seux",
     "code": "80735",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80540"
   },
@@ -5459,7 +5459,7 @@
     "name": "Sorel-en-Vimeu",
     "code": "80736",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80490"
   },
@@ -5467,7 +5467,7 @@
     "name": "Sorel",
     "code": "80737",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80240"
   },
@@ -5475,7 +5475,7 @@
     "name": "Soues",
     "code": "80738",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80310"
   },
@@ -5483,7 +5483,7 @@
     "name": "Sourdon",
     "code": "80740",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80250"
   },
@@ -5491,7 +5491,7 @@
     "name": "Soyécourt",
     "code": "80741",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -5499,7 +5499,7 @@
     "name": "Surcamps",
     "code": "80742",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80620"
   },
@@ -5507,7 +5507,7 @@
     "name": "Suzanne",
     "code": "80743",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80340"
   },
@@ -5515,7 +5515,7 @@
     "name": "Tailly",
     "code": "80744",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80270"
   },
@@ -5523,7 +5523,7 @@
     "name": "Talmas",
     "code": "80746",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80260"
   },
@@ -5531,7 +5531,7 @@
     "name": "Templeux-la-Fosse",
     "code": "80747",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80240"
   },
@@ -5539,7 +5539,7 @@
     "name": "Templeux-le-Guérard",
     "code": "80748",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80240"
   },
@@ -5547,7 +5547,7 @@
     "name": "Terramesnil",
     "code": "80749",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80600"
   },
@@ -5555,7 +5555,7 @@
     "name": "Tertry",
     "code": "80750",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -5563,7 +5563,7 @@
     "name": "Thennes",
     "code": "80751",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80110"
   },
@@ -5571,7 +5571,7 @@
     "name": "Thézy-Glimont",
     "code": "80752",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80440"
   },
@@ -5579,7 +5579,7 @@
     "name": "Thiepval",
     "code": "80753",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -5587,7 +5587,7 @@
     "name": "Thieulloy-l’Abbaye",
     "code": "80754",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80640"
   },
@@ -5595,7 +5595,7 @@
     "name": "Thieulloy-la-Ville",
     "code": "80755",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80290"
   },
@@ -5603,7 +5603,7 @@
     "name": "Thièvres",
     "code": "80756",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80560"
   },
@@ -5611,7 +5611,7 @@
     "name": "Thoix",
     "code": "80757",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80160"
   },
@@ -5619,7 +5619,7 @@
     "name": "Thory",
     "code": "80758",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80250"
   },
@@ -5627,7 +5627,7 @@
     "name": "Tilloloy",
     "code": "80759",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -5635,7 +5635,7 @@
     "name": "Tilloy-Floriville",
     "code": "80760",
     "epci_code": "200069722",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80220"
   },
@@ -5643,7 +5643,7 @@
     "name": "Tincourt-Boucly",
     "code": "80762",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80240"
   },
@@ -5651,7 +5651,7 @@
     "name": "Le Titre",
     "code": "80763",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80132"
   },
@@ -5659,7 +5659,7 @@
     "name": "Tœufles",
     "code": "80764",
     "epci_code": "200070944",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80870"
   },
@@ -5667,7 +5667,7 @@
     "name": "Tours-en-Vimeu",
     "code": "80765",
     "epci_code": "200070944",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80210"
   },
@@ -5675,7 +5675,7 @@
     "name": "Toutencourt",
     "code": "80766",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80560"
   },
@@ -5683,7 +5683,7 @@
     "name": "Le Translay",
     "code": "80767",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -5691,7 +5691,7 @@
     "name": "Treux",
     "code": "80769",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -5699,7 +5699,7 @@
     "name": "Tully",
     "code": "80770",
     "epci_code": "200070944",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80130"
   },
@@ -5707,7 +5707,7 @@
     "name": "Ugny-l’Équipée",
     "code": "80771",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80400"
   },
@@ -5715,7 +5715,7 @@
     "name": "Vadencourt",
     "code": "80773",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80560"
   },
@@ -5723,7 +5723,7 @@
     "name": "Vaire-sous-Corbie",
     "code": "80774",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -5731,7 +5731,7 @@
     "name": "Valines",
     "code": "80775",
     "epci_code": "200070944",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80210"
   },
@@ -5739,7 +5739,7 @@
     "name": "Varennes",
     "code": "80776",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80560"
   },
@@ -5747,7 +5747,7 @@
     "name": "Vauchelles-lès-Authie",
     "code": "80777",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80560"
   },
@@ -5755,7 +5755,7 @@
     "name": "Vauchelles-lès-Domart",
     "code": "80778",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80620"
   },
@@ -5763,7 +5763,7 @@
     "name": "Vauchelles-les-Quesnoy",
     "code": "80779",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80132"
   },
@@ -5771,7 +5771,7 @@
     "name": "Vaudricourt",
     "code": "80780",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80230"
   },
@@ -5779,7 +5779,7 @@
     "name": "Vauvillers",
     "code": "80781",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80131"
   },
@@ -5787,7 +5787,7 @@
     "name": "Vaux-en-Amiénois",
     "code": "80782",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80260"
   },
@@ -5795,7 +5795,7 @@
     "name": "Vaux-Marquenneville",
     "code": "80783",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -5803,7 +5803,7 @@
     "name": "Vaux-sur-Somme",
     "code": "80784",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -5811,7 +5811,7 @@
     "name": "Vecquemont",
     "code": "80785",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -5819,7 +5819,7 @@
     "name": "Velennes",
     "code": "80786",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80160"
   },
@@ -5827,7 +5827,7 @@
     "name": "Vercourt",
     "code": "80787",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80120"
   },
@@ -5835,7 +5835,7 @@
     "name": "Vergies",
     "code": "80788",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80270"
   },
@@ -5843,7 +5843,7 @@
     "name": "Vermandovillers",
     "code": "80789",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80320"
   },
@@ -5851,7 +5851,7 @@
     "name": "Verpillières",
     "code": "80790",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -5859,7 +5859,7 @@
     "name": "Vers-sur-Selle",
     "code": "80791",
     "epci_code": "248000531",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80480"
   },
@@ -5867,7 +5867,7 @@
     "name": "La Vicogne",
     "code": "80792",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80260"
   },
@@ -5875,7 +5875,7 @@
     "name": "Vignacourt",
     "code": "80793",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80650"
   },
@@ -5883,7 +5883,7 @@
     "name": "Villecourt",
     "code": "80794",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80190"
   },
@@ -5891,7 +5891,7 @@
     "name": "Ville-le-Marclet",
     "code": "80795",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80420"
   },
@@ -5899,7 +5899,7 @@
     "name": "Villeroy",
     "code": "80796",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -5907,7 +5907,7 @@
     "name": "Villers-aux-Érables",
     "code": "80797",
     "epci_code": "200070969",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80110"
   },
@@ -5915,7 +5915,7 @@
     "name": "Villers-Bocage",
     "code": "80798",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80260"
   },
@@ -5923,7 +5923,7 @@
     "name": "Villers-Bretonneux",
     "code": "80799",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80800"
   },
@@ -5931,7 +5931,7 @@
     "name": "Villers-Campsart",
     "code": "80800",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -5939,7 +5939,7 @@
     "name": "Villers-Carbonnel",
     "code": "80801",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80200"
   },
@@ -5947,7 +5947,7 @@
     "name": "Villers-Faucon",
     "code": "80802",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80240"
   },
@@ -5955,7 +5955,7 @@
     "name": "Villers-lès-Roye",
     "code": "80803",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80700"
   },
@@ -5963,7 +5963,7 @@
     "name": "Villers-sous-Ailly",
     "code": "80804",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80690"
   },
@@ -5971,7 +5971,7 @@
     "name": "Villers-Tournelle",
     "code": "80805",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -5979,7 +5979,7 @@
     "name": "Villers-sur-Authie",
     "code": "80806",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80120"
   },
@@ -5987,7 +5987,7 @@
     "name": "Ville-sur-Ancre",
     "code": "80807",
     "epci_code": "248000747",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -5995,7 +5995,7 @@
     "name": "Vironchaux",
     "code": "80808",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -6003,7 +6003,7 @@
     "name": "Vismes",
     "code": "80809",
     "epci_code": "200069722",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -6011,7 +6011,7 @@
     "name": "Vitz-sur-Authie",
     "code": "80810",
     "epci_code": "200069672",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -6019,7 +6019,7 @@
     "name": "Voyennes",
     "code": "80811",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80400"
   },
@@ -6027,7 +6027,7 @@
     "name": "Vraignes-en-Vermandois",
     "code": "80812",
     "epci_code": "200037059",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80240"
   },
@@ -6035,7 +6035,7 @@
     "name": "Vraignes-lès-Hornoy",
     "code": "80813",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80640"
   },
@@ -6043,7 +6043,7 @@
     "name": "Vrély",
     "code": "80814",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80170"
   },
@@ -6051,7 +6051,7 @@
     "name": "Vron",
     "code": "80815",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80120"
   },
@@ -6059,7 +6059,7 @@
     "name": "Wargnies",
     "code": "80819",
     "epci_code": "200070951",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80670"
   },
@@ -6067,7 +6067,7 @@
     "name": "Warloy-Baillon",
     "code": "80820",
     "epci_code": "248000499",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80300"
   },
@@ -6075,7 +6075,7 @@
     "name": "Warlus",
     "code": "80821",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80270"
   },
@@ -6083,7 +6083,7 @@
     "name": "Warsy",
     "code": "80822",
     "epci_code": "200070977",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80500"
   },
@@ -6091,7 +6091,7 @@
     "name": "Warvillers",
     "code": "80823",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80170"
   },
@@ -6099,7 +6099,7 @@
     "name": "Wiencourt-l’Équipée",
     "code": "80824",
     "epci_code": "200070928",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80170"
   },
@@ -6107,7 +6107,7 @@
     "name": "Wiry-au-Mont",
     "code": "80825",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80270"
   },
@@ -6115,7 +6115,7 @@
     "name": "Woignarue",
     "code": "80826",
     "epci_code": "247600588",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80460"
   },
@@ -6123,7 +6123,7 @@
     "name": "Woincourt",
     "code": "80827",
     "epci_code": "200070944",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80520"
   },
@@ -6131,7 +6131,7 @@
     "name": "Woirel",
     "code": "80828",
     "epci_code": "200071181",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80140"
   },
@@ -6139,7 +6139,7 @@
     "name": "Y",
     "code": "80829",
     "epci_code": "200070985",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80190"
   },
@@ -6147,7 +6147,7 @@
     "name": "Yvrench",
     "code": "80832",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -6155,7 +6155,7 @@
     "name": "Yvrencheux",
     "code": "80833",
     "epci_code": "200070936",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80150"
   },
@@ -6163,7 +6163,7 @@
     "name": "Yzengremer",
     "code": "80834",
     "epci_code": "200070944",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80520"
   },
@@ -6171,7 +6171,7 @@
     "name": "Yzeux",
     "code": "80835",
     "epci_code": "200071223",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80310"
   },
@@ -6179,7 +6179,7 @@
     "name": "Yonval",
     "code": "80836",
     "epci_code": "200070993",
-    "departement_code": "80",
+    "department_code": "80",
     "region_code": "32",
     "postal_code": "80132"
   }

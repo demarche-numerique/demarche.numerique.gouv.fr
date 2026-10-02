@@ -30,7 +30,7 @@ class TypesDeChamp::RNATypeDeChamp < TypeDeChamp
     i18n_scope = [:activerecord, :attributes, :procedure_presentation, :fields, :etablissement]
 
     super
-      .concat(addressable_columns(procedure_id:, displayable:, prefix:, deprecated_columns: true))
+      .concat(addressable_columns(procedure_id:, displayable:, prefix:))
       .concat(
         Etablissement::EXPORTABLE_ASSOCIATION_COLUMNS.map do |(column, attributes)|
           Columns::JSONPathColumn.new(

@@ -15,7 +15,6 @@ class TypesDeChamp::DepartementTypeDeChamp < TypesDeChamp::TextTypeDeChamp
 
   def columns(procedure_id:, displayable: true, prefix: nil)
     addressable_columns(procedure_id:, displayable:, prefix:, only: [:department_code, :region_code])
-      .concat(legacy_columns(procedure_id:, prefix:))
   end
 
   def typed_champ_value(champ)
@@ -54,24 +53,6 @@ class TypesDeChamp::DepartementTypeDeChamp < TypesDeChamp::TextTypeDeChamp
   end
 
   private
-
-  # ChampColumn par défaut conservé pour rester résolvable par les ProcedurePresentation /
-  # exports / colonnes graphql persistées avant la bascule sur AddressableColumnConcern.
-  def legacy_columns(procedure_id:, prefix:)
-    [
-      Columns::ChampColumn.new(
-        procedure_id:,
-        stable_id:,
-        tdc_type: type_champ,
-        label: libelle_with_prefix(prefix),
-        type: :enum,
-        displayable: false,
-        filterable: false,
-        options_for_select:,
-        mandatory: mandatory?
-      ),
-    ]
-  end
 
   def paths
     paths = super

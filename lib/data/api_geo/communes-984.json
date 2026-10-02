@@ -2,31 +2,31 @@
   {
     "name": "Îles Saint-Paul et Nouvelle-Amsterdam",
     "code": "98411",
-    "departement_code": "984",
+    "department_code": "984",
     "region_code": "984"
   },
   {
     "name": "Archipel des Kerguelen",
     "code": "98412",
-    "departement_code": "984",
+    "department_code": "984",
     "region_code": "984"
   },
   {
     "name": "Archipel des Crozet",
     "code": "98413",
-    "departement_code": "984",
+    "department_code": "984",
     "region_code": "984"
   },
   {
     "name": "La Terre-Adélie",
     "code": "98414",
-    "departement_code": "984",
+    "department_code": "984",
     "region_code": "984"
   },
   {
     "name": "Îles Éparses de l’océan Indien",
     "code": "98415",
-    "departement_code": "984",
+    "department_code": "984",
     "region_code": "984"
   }
 ]
