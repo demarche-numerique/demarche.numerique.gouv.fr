@@ -143,13 +143,14 @@ module DossierChampsConcern
     champ_for_update(type_de_champ, row_id:, updated_by:)
   end
 
-  def repetition_row_ids(type_de_champ)
+  def repetition_row_markers(type_de_champ)
     return [] if !type_de_champ.repetition?
+    champ_data_on_stream.filter { _1.row? && _1.stable_id == type_de_champ.stable_id && !_1.discarded? }
+  end
+
+  def repetition_row_ids(type_de_champ)
     @repetition_row_ids ||= {}
-    @repetition_row_ids[type_de_champ.stable_id] ||= champ_data_on_stream
-      .filter { _1.row? && _1.stable_id == type_de_champ.stable_id && !_1.discarded? }
-      .map(&:row_id)
-      .sort
+    @repetition_row_ids[type_de_champ.stable_id] ||= repetition_row_markers(type_de_champ).map(&:row_id).sort
   end
 
   def repetition_add_row(type_de_champ, updated_by:)
