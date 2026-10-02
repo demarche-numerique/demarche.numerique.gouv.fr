@@ -19,6 +19,7 @@ end
 
 # A list of features to be deployed on first push
 features = [
+  :administrateur_pro_connect_exempted,
   :administrateur_web_hook,
   :blocking_pending_correction,
   :cojo_type_de_champ,
