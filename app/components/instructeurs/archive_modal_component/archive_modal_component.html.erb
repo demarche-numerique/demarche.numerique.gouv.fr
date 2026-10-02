@@ -1,0 +1,81 @@
+<dialog
+  id="<%= modal_id %>"
+  class="fr-modal"
+  aria-labelledby="<%= title_id %>"
+  role="dialog"
+  data-controller="modal-escape"
+>
+  <div class="fr-container fr-container--fluid fr-container-md">
+    <div class="fr-grid-row fr-grid-row--center">
+      <div class="fr-col-12 fr-col-md-8 fr-col-lg-6">
+        <div class="fr-modal__body">
+          <div class="fr-modal__header">
+            <button
+              class="fr-btn--close fr-btn"
+              aria-controls="<%= modal_id %>"
+              title="<%= t('utils.modal_close_alt') %>"
+            >
+              <%= t('utils.modal_close') %>
+            </button>
+          </div>
+
+          <%= form_with(**form_options) do %>
+            <div class="fr-modal__content">
+              <h1 id="<%= title_id %>" class="fr-modal__title">
+                <span
+                  class="fr-icon-arrow-right-line fr-icon--lg"
+                  aria-hidden="true"
+                ></span>
+
+                <%= t('.title') %>
+              </h1>
+
+              <%= render Dsfr::NoticeComponent.new(extra_class_names: 'fr-mb-3w') do |notice| %>
+                <% notice.with_title { t('.notice_title') } %>
+                <% notice.with_desc { t('.notice_desc') } %>
+              <% end %>
+
+              <div class="fr-checkbox-group fr-mb-3w">
+                <input
+                  type="checkbox"
+                  id="<%= checkbox_id %>"
+                  name="dismiss_archive_warning"
+                  value="1"
+                  data-action="keydown.esc->modal-escape#close"
+                >
+
+                <label class="fr-label" for="<%= checkbox_id %>">
+                  <%= t('.dismiss') %>
+                </label>
+              </div>
+
+              <% if batch? %>
+                <%= hidden_field_tag 'batch_operation[operation]', BatchOperation.operations.fetch(:archiver), id: nil %>
+              <% end %>
+            </div>
+
+            <div class="fr-modal__footer">
+              <ul class="fr-btns-group fr-btns-group--inline-md">
+                <li>
+                  <button
+                    type="button"
+                    class="fr-btn fr-btn--secondary"
+                    aria-controls="<%= modal_id %>"
+                  >
+                    <%= t('.cancel') %>
+                  </button>
+                </li>
+
+                <li>
+                  <button type="submit" class="fr-btn">
+                    <%= t('.confirm') %>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>
