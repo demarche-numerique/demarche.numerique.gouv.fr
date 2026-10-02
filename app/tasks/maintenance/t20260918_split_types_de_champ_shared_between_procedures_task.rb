@@ -30,9 +30,11 @@ module Maintenance
           # validations, whose callbacks would also rewrite the attributes
           cloned_type_de_champ.save!(validate: false)
 
-          coordinates_given_the_copy(procedure, type_de_champ)
-            .where(type_de_champ_id:)
-            .update_all(type_de_champ_id: cloned_type_de_champ.id)
+          coordinates = coordinates_given_the_copy(procedure, type_de_champ).where(type_de_champ_id:)
+          revision_ids = coordinates.pluck(:revision_id)
+          coordinates.update_all(type_de_champ_id: cloned_type_de_champ.id)
+          # the stored trees name the record too: they follow the coordinates
+          ProcedureRevision.where(id: revision_ids).find_each(&:store_type_de_champ_tree)
         end
       end
     end

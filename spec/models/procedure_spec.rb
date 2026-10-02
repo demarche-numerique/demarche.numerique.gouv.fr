@@ -1303,13 +1303,15 @@ describe Procedure do
       end
     end
 
+    # a procedure not saved yet only has coordinates: its revisions lay out their
+    # types de champ once saved
     context 'with bouillon procedure' do
       let(:procedure) { build(:procedure, public_type_de_champs: type_de_champs, private_type_de_champs: type_de_champs) }
 
       it do
         expect(procedure.revisions.size).to eq(1)
-        expect(procedure.draft_revision.type_de_champs.size).to eq(4)
-        expect(procedure.draft_revision.public_root_type_de_champs.size).to eq(2)
+        expect(procedure.draft_revision.revision_type_de_champs.size).to eq(4)
+        expect(procedure.draft_revision.public_revision_type_de_champs.size).to eq(2)
         expect(procedure.published_revision).to be_nil
       end
     end
@@ -1319,10 +1321,10 @@ describe Procedure do
 
       it do
         expect(procedure.revisions.size).to eq(2)
-        expect(procedure.draft_revision.type_de_champs.size).to eq(4)
-        expect(procedure.draft_revision.public_root_type_de_champs.size).to eq(2)
-        expect(procedure.published_revision.type_de_champs.size).to eq(4)
-        expect(procedure.published_revision.public_root_type_de_champs.size).to eq(2)
+        expect(procedure.draft_revision.revision_type_de_champs.size).to eq(4)
+        expect(procedure.draft_revision.public_revision_type_de_champs.size).to eq(2)
+        expect(procedure.published_revision.revision_type_de_champs.size).to eq(4)
+        expect(procedure.published_revision.public_revision_type_de_champs.size).to eq(2)
       end
     end
 
@@ -1347,9 +1349,9 @@ describe Procedure do
         let(:procedure) { build(:procedure, public_type_de_champs: type_de_champs) }
 
         it do
-          expect(revision.type_de_champs.size).to eq(5)
-          expect(revision.public_root_type_de_champs.size).to eq(2)
-          expect(revision.public_root_type_de_champs.map(&:type_champ)).to eq(['yes_no', 'repetition'])
+          expect(revision.revision_type_de_champs.size).to eq(5)
+          expect(revision.public_revision_type_de_champs.size).to eq(2)
+          expect(revision.public_revision_type_de_champs.map(&:type_champ)).to eq(['yes_no', 'repetition'])
           expect(repetition.revision_type_de_champs.size).to eq(3)
           expect(repetition.revision_type_de_champs.map(&:type_champ)).to eq(['text', 'text', 'integer_number'])
           expect(repetition.revision_type_de_champs.map(&:mandatory?)).to eq([true, true, false])
@@ -1361,9 +1363,9 @@ describe Procedure do
 
         context 'draft revision' do
           it do
-            expect(revision.type_de_champs.size).to eq(5)
-            expect(revision.public_root_type_de_champs.size).to eq(2)
-            expect(revision.public_root_type_de_champs.map(&:type_champ)).to eq(['yes_no', 'repetition'])
+            expect(revision.revision_type_de_champs.size).to eq(5)
+            expect(revision.public_revision_type_de_champs.size).to eq(2)
+            expect(revision.public_revision_type_de_champs.map(&:type_champ)).to eq(['yes_no', 'repetition'])
             expect(repetition.revision_type_de_champs.size).to eq(3)
             expect(repetition.revision_type_de_champs.map(&:type_champ)).to eq(['text', 'text', 'integer_number'])
             expect(repetition.revision_type_de_champs.map(&:mandatory?)).to eq([true, true, false])
@@ -1374,9 +1376,9 @@ describe Procedure do
           let(:revision) { procedure.published_revision }
 
           it do
-            expect(revision.type_de_champs.size).to eq(5)
-            expect(revision.public_root_type_de_champs.size).to eq(2)
-            expect(revision.public_root_type_de_champs.map(&:type_champ)).to eq(['yes_no', 'repetition'])
+            expect(revision.revision_type_de_champs.size).to eq(5)
+            expect(revision.public_revision_type_de_champs.size).to eq(2)
+            expect(revision.public_revision_type_de_champs.map(&:type_champ)).to eq(['yes_no', 'repetition'])
             expect(repetition.revision_type_de_champs.size).to eq(3)
             expect(repetition.revision_type_de_champs.map(&:type_champ)).to eq(['text', 'text', 'integer_number'])
             expect(repetition.revision_type_de_champs.map(&:mandatory?)).to eq([true, true, false])

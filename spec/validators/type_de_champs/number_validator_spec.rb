@@ -11,7 +11,7 @@ RSpec.describe TypeDeChamps::NumberValidator do
     end
 
     let(:procedure) do
-      build(
+      create(
         :procedure,
         scope => [
           {
