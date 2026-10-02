@@ -33,6 +33,10 @@ class URLValidator < ActiveModel::EachValidator
     end
   end
 
+  def self.private_ip?(ip)
+    ip.private? || ip.loopback? || ip.link_local? || RESERVED_RANGES.any? { it.include?(ip) }
+  end
+
   def validate_each(record, attribute, value)
     return if options[:accept_email] && email?(value)
 
@@ -58,7 +62,7 @@ class URLValidator < ActiveModel::EachValidator
 
   def local_host?(host)
     ip = ip_literal(host)
-    ip ? private_ip?(ip) : internal_name?(host)
+    ip ? self.class.private_ip?(ip) : internal_name?(host)
   end
 
   def internal_name?(host)
@@ -74,9 +78,5 @@ class URLValidator < ActiveModel::EachValidator
     IPAddr.new(address).native
   rescue SocketError
     nil # a domain name
-  end
-
-  def private_ip?(ip)
-    ip.private? || ip.loopback? || ip.link_local? || RESERVED_RANGES.any? { it.include?(ip) }
   end
 end
