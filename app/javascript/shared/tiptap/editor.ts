@@ -28,6 +28,7 @@ import {
   type Extensions
 } from '@tiptap/core';
 
+import { BlockTagGuard } from './block_tags';
 import {
   DocumentWithHeader,
   Title,
@@ -199,6 +200,9 @@ function getEditorOptions(
           return node.attrs.label;
         },
         suggestion: createSuggestionMenu(tags, element)
+      }),
+      BlockTagGuard.configure({
+        blockTagIds: tags.filter((t) => t.block).map((t) => t.id)
       })
     );
   }
