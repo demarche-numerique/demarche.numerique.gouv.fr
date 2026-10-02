@@ -296,6 +296,13 @@ class Dossier < ApplicationRecord
   scope :with_type_de_champ, -> (stable_id) { joins(:champ_data).where(champs: { stream: MAIN_STREAM, stable_id: }) }
   scope :without_type_de_champ, -> (stable_id) { where.not(id: with_type_de_champ(stable_id).select(:id)) }
 
+  # The "without" scopes are complements, so a dossier with no champ row at all
+  # falls in them just like one whose row is empty.
+  scope :with_filled_champ, -> (stable_id) { with_type_de_champ(stable_id).where.not(champs: { value: [nil, ''] }) }
+  scope :without_filled_champ, -> (stable_id) { where.not(id: with_filled_champ(stable_id).select(:id)) }
+  scope :with_checked_champ, -> (stable_id) { with_type_de_champ(stable_id).where(champs: { value: Champs::BooleanChamp::TRUE_VALUE }) }
+  scope :without_checked_champ, -> (stable_id) { where.not(id: with_checked_champ(stable_id).select(:id)) }
+
   scope :all_state,                   -> (include_archived: false) { include_archived ? state_not_brouillon : not_archived.state_not_brouillon }
   scope :en_construction,             -> { not_archived.state_en_construction }
   scope :en_instruction,              -> { not_archived.state_en_instruction }
