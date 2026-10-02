@@ -228,6 +228,7 @@ describe ProConnectController, type: :controller do
               expect(response).to redirect_to(uri)
               expect(controller.current_user).to be_nil
               expect(cookies.encrypted[ProConnectController::MFA_FORCED_COOKIE_NAME]).to eq(email)
+              expect(cookies[ProConnectSessionConcern::ADMINISTRATEUR_DEVICE_COOKIE_NAME]).to be_present
             end
           end
 
@@ -283,6 +284,7 @@ describe ProConnectController, type: :controller do
               subject
 
               expect(controller.current_user).to eq(administrateur.user)
+              expect(cookies[ProConnectSessionConcern::ADMINISTRATEUR_DEVICE_COOKIE_NAME]).to be_nil
             end
           end
         end

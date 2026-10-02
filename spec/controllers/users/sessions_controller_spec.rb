@@ -156,7 +156,7 @@ describe Users::SessionsController, type: :controller do
         subject
 
         expect(response).to redirect_to(pro_connect_path(force_pro_connect: true))
-        expect(flash.alert).to eq('Vous devez utiliser ProConnect pour vous connecter.')
+        expect(flash.alert).to eq('Vous devez utiliser ProConnect pour vous connecter à votre espace administrateur.')
         expect(controller.current_user).to be_nil
         expect(user.reload.last_sign_in_at).to eq(2.days.ago)
         expect(user.sign_in_count).to eq(3)
@@ -170,6 +170,33 @@ describe Users::SessionsController, type: :controller do
 
           expect(response).to render_template(:new)
           expect(flash.alert).to eq('Adresse électronique ou mot de passe incorrect.')
+        end
+      end
+    end
+
+    context 'when the browser is marked as an administrateur one' do
+      let(:device_cookie_name) { ProConnectSessionConcern::ADMINISTRATEUR_DEVICE_COOKIE_NAME.to_s }
+
+      before { cookies[device_cookie_name] = '1' }
+
+      it 'keeps the mark when a citizen signs in' do
+        subject
+
+        expect(controller.current_user).to eq(user)
+        expect(response.cookies.keys).not_to include(device_cookie_name)
+      end
+
+      context 'when an administrateur free to use a password signs in' do
+        let(:user) { administrateurs.default.user }
+        let(:email) { user.email }
+        let(:password) { users.default_password }
+
+        it 'forgets the mark' do
+          subject
+
+          expect(controller.current_user).to eq(user)
+          expect(response.cookies.keys).to include(device_cookie_name)
+          expect(response.cookies[device_cookie_name]).to be_nil
         end
       end
     end

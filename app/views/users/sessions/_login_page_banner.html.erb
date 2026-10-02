@@ -1,0 +1,7 @@
+<% banner = banner_for(:login_page) %>
+
+<% if banner&.active? %>
+  <%= render Dsfr::NoticeComponent.new(closable: false, extra_class_names: 'banner-notice') do |c| %>
+    <% c.with_title { sanitize_banner(banner.content) } %>
+  <% end %>
+<% end %>

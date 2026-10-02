@@ -4,6 +4,7 @@ describe 'users/sessions/new', type: :view do
   before(:each) do
     allow(view).to receive(:devise_mapping).and_return(Devise.mappings[:user])
     allow(view).to receive(:resource).and_return(User.new)
+    allow(view).to receive(:pro_connect_only_login?).and_return(false)
   end
 
   before do
@@ -40,6 +41,18 @@ describe 'users/sessions/new', type: :view do
       it 'renders ProConnect login button' do
         expect(rendered).to have_css('.pro-connect-login')
       end
+    end
+  end
+
+  context 'when the browser is marked as an administrateur device but the visitor was invited' do
+    before do
+      allow(view).to receive(:pro_connect_only_login?).and_return(true)
+      params[:context] = 'invite'
+      render
+    end
+
+    it 'renders the full form' do
+      expect(rendered).to have_field('Mot de passe')
     end
   end
 
